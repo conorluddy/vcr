@@ -3,7 +3,27 @@
   "name": "OpenImageIO / oiiotool",
   "category": "A6. Image processing and colour",
   "tier": "catalogued",
-  "role": "Production image/sequence processing",
+  "role": "VFX-grade CLI for EXR, sequences and OCIO colour conversion; stack-based image operations",
+  "summary": "oiiotool is the command-line front end to OpenImageIO. It reads and writes EXR, TIFF, PNG, DPX, HDR and many more, keeps an image stack processed left to right, and offers resize, crop, composite, diff, metadata editing and --colorconvert via OpenColorIO. Sequences are addressed with frame wildcards, --frames and --parallel-frames. Strength: float, multichannel and colour-managed work that ImageMagick handles poorly.",
+  "use_when": [
+    "EXR or other float and multichannel images, including AOV channel shuffling",
+    "Colour-managed conversion of a numbered sequence (ACEScg to sRGB) via OCIO",
+    "Over ImageMagick when bit depth, metadata or channel names must survive",
+    "Frame diffs with thresholds on production formats"
+  ],
+  "avoid_when": [
+    "Ordinary web stills: ImageMagick has the shorter command lines and is validated",
+    "Drawing, text or montage: ImageMagick",
+    "Node processing: Sharp",
+    "Colour config authoring only: OpenColorIO tools"
+  ],
+  "pairs_with": [
+    "opencolorio",
+    "imagemagick",
+    "blender",
+    "natron",
+    "ffmpeg-ffprobe"
+  ],
   "official_url": "https://openimageio.readthedocs.io/en/latest/oiiotool.html",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
@@ -15,6 +35,22 @@
   "install": {
     "macos": "brew install openimageio",
     "check_command": "oiiotool --version"
+  },
+  "notes": [
+    "2026-10-26: The docs at official_url are the latest (dev) build and show 3.3.0, while the newest tagged release is v3.2.1.2 and Homebrew has 3.2.1.2; check option names against the installed version. Only the first 100000 characters of the 227000-character page were read."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a6",
+    "version_seen": "3.2.1.2 (docs show 3.3.0 dev)",
+    "last_release": "2026-10-15",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Release v3.2.1.2 on 2026-10-15; docs track 3.3.0. Covers OCIO conversion and sequences in one CLI, filling the float and VFX gap ImageMagick leaves.",
+    "sources": [
+      "https://openimageio.readthedocs.io/en/latest/oiiotool.html",
+      "https://formulae.brew.sh/api/formula/openimageio.json"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
