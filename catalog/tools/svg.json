@@ -1,0 +1,25 @@
+{
+  "id": "svg",
+  "name": "SVG",
+  "category": "Native browser platform APIs",
+  "tier": "core",
+  "role": "Native vector graphics format and browser rendering",
+  "official_url": "https://developer.mozilla.org/en-US/docs/Web/SVG",
+  "automation_route": "browser-platform-api",
+  "capabilities": [
+    "vector-authoring",
+    "svg-animation"
+  ],
+  "notes": [
+    "Core alongside GSAP: static SVG is a native, dependency-free source format; GSAP supplies the timeline."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "not-applicable",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

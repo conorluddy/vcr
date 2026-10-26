@@ -1,0 +1,23 @@
+{
+  "id": "shotstack",
+  "name": "Shotstack",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "Remote rendering service candidate; optional API route",
+  "official_url": "https://shotstack.io/",
+  "automation_route": "remote-api",
+  "capabilities": [
+    "remote-rendering",
+    "video-composition"
+  ],
+  "license": "Commercial API",
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -4,7 +4,7 @@ VCR is a local-first, agent-friendly workspace for creating and reviewing motion
 
 ## Current status
 
-- 113 resources from PRD Appendix A are listed in [`catalog/tools.json`](catalog/tools.json).
+- 119 resources from PRD Appendix A live as one file each under `catalog/tools/`, with a `tier` (`core`, `catalogued`, `candidate`), per-tool capabilities, licence as last understood and an install recipe where one exists. `catalog/tools.json` is a generated index; run `pnpm vcr catalog build` after editing a record.
 - Registry entries are discovery metadata. Installation is unknown, validation is not performed, and no shared adapters are implemented yet.
 - The project and tool JSON Schemas are in `catalog/schemas/`.
 - `examples/` and `projects/templates/` are starter source files, not validated render fixtures.
@@ -19,6 +19,7 @@ pnpm validate                      # schemas, capability vocabulary, unknown-fie
 pnpm vcr tools list --tier core    # filter by --capability, --tier, --category; add --json
 pnpm vcr tools info ffmpeg-ffprobe
 pnpm doctor                        # probes local tools, writes environment/<hostname>.json
+pnpm vcr catalog build [--check]   # regenerate catalog/tools.json from catalog/tools/*.json
 pnpm test && pnpm typecheck
 ```
 
@@ -26,7 +27,7 @@ Every command logs one JSON line to stderr with `command`, `duration_ms` and `ex
 
 ## Find a tool
 
-Run `pnpm vcr tools list` or open `catalog/tools.json` and filter by `category`, `role`, or `official_url`. Check the resource's official documentation before installing it. The catalogue records intent from the PRD and does not attest to current versions, licenses, platform support, or machine installation.
+Run `pnpm vcr tools list --tier core` for the operational targets, or filter by `--capability` (see `catalog/capabilities/vocabulary.json`) and `--category`. Read a single record under `catalog/tools/<id>.json` rather than the whole index. Check the resource's official documentation before installing it. The catalogue records intent from the PRD and does not attest to current versions, licenses, platform support, or machine installation.
 
 ## Start a project
 

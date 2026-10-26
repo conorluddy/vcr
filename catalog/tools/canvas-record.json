@@ -1,0 +1,26 @@
+{
+  "id": "canvas-record",
+  "name": "canvas-record",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "Canvas recording and sequence export",
+  "official_url": "https://github.com/dmnsgn/canvas-record",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "capture",
+    "video-encoding"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add canvas-record"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

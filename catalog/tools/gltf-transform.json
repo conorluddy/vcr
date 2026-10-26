@@ -1,0 +1,26 @@
+{
+  "id": "gltf-transform",
+  "name": "glTF Transform",
+  "category": "A8. Physics, audio and 3D assets",
+  "tier": "catalogued",
+  "role": "JS/CLI model preparation and optimisation",
+  "official_url": "https://gltf-transform.dev/cli",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "3d-asset-processing"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add -g @gltf-transform/cli",
+    "check_command": "gltf-transform --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

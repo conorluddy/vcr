@@ -1,0 +1,26 @@
+{
+  "id": "mermaid-cli",
+  "name": "Mermaid CLI",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "catalogued",
+  "role": "Text-defined diagrams to assets",
+  "official_url": "https://github.com/mermaid-js/mermaid-cli",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "diagram-generation"
+  ],
+  "license": "MIT; bundles a headless Chromium",
+  "install": {
+    "macos": "pnpm add -g @mermaid-js/mermaid-cli",
+    "check_command": "mmdc --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

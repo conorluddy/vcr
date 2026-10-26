@@ -1,0 +1,27 @@
+{
+  "id": "g-mic",
+  "name": "G'MIC",
+  "category": "A6. Image processing and colour",
+  "tier": "catalogued",
+  "role": "CLI filters and procedural image processing",
+  "official_url": "https://gmic.eu/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "image-processing",
+    "effects"
+  ],
+  "license": "CeCILL",
+  "install": {
+    "macos": "brew install gmic",
+    "check_command": "gmic version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

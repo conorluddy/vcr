@@ -1,0 +1,29 @@
+{
+  "id": "manim-community",
+  "name": "Manim Community",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Python scenes + CLI; educational animation",
+  "official_url": "https://docs.manim.community/en/stable/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "timeline-animation",
+    "2d-rendering",
+    "video-encoding",
+    "typography"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "uv tool install manim",
+    "check_command": "manim --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

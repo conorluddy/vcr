@@ -1,0 +1,28 @@
+{
+  "id": "imagemagick",
+  "name": "ImageMagick",
+  "category": "A6. Image processing and colour",
+  "tier": "catalogued",
+  "role": "CLI image operations, montage and comparison",
+  "official_url": "https://imagemagick.org/script/command-line-tools.php/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "image-processing",
+    "media-inspection",
+    "image-sequence-processing"
+  ],
+  "license": "ImageMagick licence (Apache-2.0 compatible)",
+  "install": {
+    "macos": "brew install imagemagick",
+    "check_command": "magick --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

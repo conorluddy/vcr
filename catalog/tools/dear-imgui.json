@@ -1,0 +1,22 @@
+{
+  "id": "dear-imgui",
+  "name": "Dear ImGui",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "Native UI infrastructure; outside primary scope",
+  "official_url": "https://github.com/ocornut/imgui",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "parameter-ui"
+  ],
+  "license": "MIT",
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

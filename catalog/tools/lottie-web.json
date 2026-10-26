@@ -1,0 +1,26 @@
+{
+  "id": "lottie-web",
+  "name": "Lottie Web",
+  "category": "A2. Animation and authored assets",
+  "tier": "catalogued",
+  "role": "Lottie playback; validate generated/edited JSON",
+  "official_url": "https://github.com/airbnb/lottie-web",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "asset-playback",
+    "svg-animation"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add lottie-web"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

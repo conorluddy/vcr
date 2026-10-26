@@ -1,0 +1,27 @@
+{
+  "id": "pov-ray",
+  "name": "POV-Ray",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Text scene/INI + CLI; procedural ray tracing",
+  "official_url": "https://www.povray.org/documentation/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "ray-tracing",
+    "3d-rendering"
+  ],
+  "license": "AGPL-3.0",
+  "install": {
+    "macos": "brew install povray",
+    "check_command": "povray --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

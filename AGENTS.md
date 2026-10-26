@@ -14,7 +14,7 @@ Read `specifications/vcr-prd.md` for product intent and release gates. This repo
 
 ## Repository map
 
-- `catalog/`: versioned tool registry, capability vocabulary, and schemas.
+- `catalog/`: one record per tool under `tools/`, a generated `tools.json` index, capability vocabulary, and schemas. Edit records, never the index.
 - `skills/`: toolkit and workflow operating guides, added as they become operational.
 - `examples/`: small native examples with explicit status and reproduction notes.
 - `projects/`: products and productions following the project schema.

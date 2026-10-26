@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { writeCatalogIndex } from "./catalog.js";
 import { formatDoctorTable, runDoctor } from "./doctor.js";
 import { logEvent, startTimer } from "./log.js";
 import { findRepositoryRoot } from "./repository.js";
@@ -13,6 +14,7 @@ const USAGE = `vcr <command>
   tools list [--capability x] [--tier x] [--category x]
   tools info <id>
   doctor                        Probe local tools and write environment/<hostname>.json
+  catalog build [--check]       Regenerate catalog/tools.json from catalog/tools/*.json
 
 Flags: --json for machine-readable output.`;
 
@@ -60,6 +62,15 @@ async function dispatch(args: string[], options: Record<string, string | true>):
       print(asJson ? tool.value : JSON.stringify(tool.value, null, 2));
       return 0;
     }
+  }
+
+  if (command === "catalog" && subcommand === "build") {
+    const checkOnly = options["check"] === true;
+    const outcome = writeCatalogIndex(repositoryRoot, checkOnly);
+    if (!outcome.ok) return failWith(outcome.error, asJson);
+    const { recordCount, wasStale } = outcome.value;
+    print(asJson ? outcome.value : `${recordCount} records; index ${wasStale ? (checkOnly ? "is stale" : "rewritten") : "up to date"}`);
+    return checkOnly && wasStale ? 1 : 0;
   }
 
   if (command === "doctor") {

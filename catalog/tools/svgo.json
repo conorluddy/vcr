@@ -1,0 +1,26 @@
+{
+  "id": "svgo",
+  "name": "SVGO",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "catalogued",
+  "role": "SVG optimisation; preserve IDs needed by animation",
+  "official_url": "https://github.com/svg/svgo",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "svg-optimisation"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add -g svgo",
+    "check_command": "svgo --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

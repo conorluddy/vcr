@@ -1,0 +1,27 @@
+{
+  "id": "mlt-melt",
+  "name": "MLT / melt",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "Multitrack CLI processing",
+  "official_url": "https://mltframework.org/docs/melt/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "video-composition",
+    "video-encoding"
+  ],
+  "license": "LGPL-2.1",
+  "install": {
+    "macos": "brew install mlt",
+    "check_command": "melt -version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

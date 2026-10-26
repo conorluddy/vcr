@@ -1,11 +1,15 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "capabilities": [
-    "generative-2d", "vector-authoring", "typography", "svg-animation", "2d-rendering",
-    "3d-rendering", "shaders", "effects", "video-composition", "video-encoding",
-    "media-inspection", "image-processing", "colour-management", "native-authoring",
-    "physics-simulation", "audio", "3d-asset-processing", "diagram-generation",
-    "capture", "asset-playback", "plotter-workflow", "candidate"
+    "2d-rendering", "3d-asset-processing", "3d-rendering", "asset-playback", "audio",
+    "capture", "colour-management", "compositing", "computer-vision", "data-visualisation",
+    "diagram-generation", "effects", "font-processing", "game-engine", "generative-2d",
+    "geospatial", "gif-encoding", "image-processing", "image-sequence-processing", "math-utilities",
+    "media-inspection", "model-loading", "native-authoring", "parameter-ui", "physics-simulation",
+    "pixel-art", "plotter-workflow", "raw-processing", "ray-tracing", "react-integration",
+    "remote-rendering", "scientific-visualisation", "sdf-generation", "shaders", "shot-detection",
+    "svg-animation", "svg-optimisation", "svg-rasterisation", "text-rendering", "timeline-animation",
+    "tweening", "typography", "vector-authoring", "vector-tracing", "video-composition", "video-encoding"
   ],
-  "note": "Initial broad vocabulary. Resource capability assignments require review and are not inferred as validated adapter support."
+  "note": "A capability is something a tool does, assigned per tool after review. It is never evidence of adapter support; see each record's validation and adapter_maturity."
 }

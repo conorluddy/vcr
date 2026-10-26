@@ -10,7 +10,7 @@ export interface ToolSummary {
   category: string;
   role: string;
   official_url: string;
-  tier?: string | undefined;
+  tier: string;
   capabilities: string[];
   installation_status: string;
   validation: { status: string };
@@ -26,19 +26,15 @@ export interface ToolFilter {
 
 // === PUBLIC API ===
 
+/** Reads the per-tool files directly so a stale index never misleads a caller. */
 export function loadTools(repositoryRoot: string): Result<ToolSummary[]> {
-  const perToolFiles = listJsonFiles(join(repositoryRoot, "catalog/tools"));
-  if (perToolFiles.length > 0) {
-    const tools: ToolSummary[] = [];
-    for (const filePath of perToolFiles) {
-      const parsed = readJsonFile<ToolSummary>(filePath);
-      if (!parsed.ok) return parsed;
-      tools.push(parsed.value);
-    }
-    return ok(tools);
+  const tools: ToolSummary[] = [];
+  for (const filePath of listJsonFiles(join(repositoryRoot, "catalog/tools"))) {
+    const parsed = readJsonFile<ToolSummary>(filePath);
+    if (!parsed.ok) return parsed;
+    tools.push(parsed.value);
   }
-  const registry = readJsonFile<{ resources: ToolSummary[] }>(join(repositoryRoot, "catalog/tools.json"));
-  return registry.ok ? ok(registry.value.resources) : registry;
+  return ok(tools);
 }
 
 export function filterTools(tools: ToolSummary[], filter: ToolFilter): ToolSummary[] {
@@ -56,7 +52,7 @@ export function findTool(tools: ToolSummary[], id: string): Result<ToolSummary> 
 }
 
 export function formatToolTable(tools: ToolSummary[]): string {
-  const rows = tools.map((tool) => [tool.id, tool.tier ?? "-", tool.installation_status, tool.validation.status, tool.adapter_maturity, tool.capabilities.join(",")]);
+  const rows = tools.map((tool) => [tool.id, tool.tier, tool.installation_status, tool.validation.status, tool.adapter_maturity, tool.capabilities.join(",")]);
   const header = ["id", "tier", "installed", "validated", "adapter", "capabilities"];
   const widths = header.map((_, column) => Math.max(header[column]!.length, ...rows.map((row) => row[column]!.length)));
   const line = (row: string[]) => row.map((cell, column) => cell.padEnd(widths[column]!)).join("  ");

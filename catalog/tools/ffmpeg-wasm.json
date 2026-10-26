@@ -1,0 +1,26 @@
+{
+  "id": "ffmpeg-wasm",
+  "name": "ffmpeg.wasm",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "Browser FFmpeg; assess overhead and browser prerequisites",
+  "official_url": "https://ffmpegwasm.netlify.app/docs/overview/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "video-encoding",
+    "media-inspection"
+  ],
+  "license": "MIT wrapper over FFmpeg LGPL/GPL",
+  "install": {
+    "macos": "pnpm add @ffmpeg/ffmpeg"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "jimp",
+  "name": "Jimp",
+  "category": "A6. Image processing and colour",
+  "tier": "catalogued",
+  "role": "JS image manipulation",
+  "official_url": "https://github.com/jimp-dev/jimp",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "image-processing"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add jimp"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -5,6 +5,7 @@ const tool = (id: string, extra: Partial<ToolSummary> = {}): ToolSummary => ({
   id,
   name: id,
   category: "A5. Video and capture",
+  tier: "catalogued",
   role: "",
   official_url: "https://example.test",
   capabilities: ["capture"],

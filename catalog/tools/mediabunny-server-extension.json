@@ -1,0 +1,25 @@
+{
+  "id": "mediabunny-server-extension",
+  "name": "Mediabunny server extension",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "Optional server codecs/backend; evaluate separately",
+  "official_url": "https://mediabunny.dev/guide/extensions/server",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "video-encoding"
+  ],
+  "license": "Recheck; may be commercial",
+  "notes": [
+    "Separate package from mediabunny; evaluate independently."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

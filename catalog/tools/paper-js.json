@@ -1,0 +1,26 @@
+{
+  "id": "paper-js",
+  "name": "Paper.js",
+  "category": "A1. Creative coding and 2D",
+  "tier": "catalogued",
+  "role": "Vector path geometry and Bézier operations",
+  "official_url": "https://paperjs.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "vector-authoring",
+    "2d-rendering"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add paper"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

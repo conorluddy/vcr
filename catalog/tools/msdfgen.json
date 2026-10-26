@@ -1,0 +1,27 @@
+{
+  "id": "msdfgen",
+  "name": "msdfgen",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "catalogued",
+  "role": "Signed distance-field generation",
+  "official_url": "https://github.com/Chlumsky/msdfgen",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "sdf-generation",
+    "font-processing"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "brew install msdfgen",
+    "check_command": "msdfgen -help"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}
