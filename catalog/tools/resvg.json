@@ -14,6 +14,10 @@
     "macos": "brew install resvg",
     "check_command": "resvg --version"
   },
+  "skill": "skills/toolkits/resvg/SKILL.md",
+  "examples": [
+    "native-svg"
+  ],
   "documentation_status": "skill-verified",
   "installation_status": "unknown",
   "validation": {

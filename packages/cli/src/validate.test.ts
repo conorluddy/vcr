@@ -28,6 +28,9 @@ const validTool = {
   category: "A5",
   tier: "core",
   role: "encode",
+  summary: "Encodes, muxes and probes media.",
+  use_when: ["you need a video file"],
+  avoid_when: ["you need a timeline"],
   official_url: "https://ffmpeg.org/",
   automation_route: "native-cli-or-scripting",
   capabilities: ["video-encoding"],
@@ -76,6 +79,45 @@ describe("validateRepository", () => {
     const fixtureRoot = createFixtureRepository([validTool]);
     writeFileSync(join(fixtureRoot, "catalog/tools/gifski.json"), JSON.stringify({ ...validTool, id: "gifski", name: "gifski" }));
     const report = validateRepository(fixtureRoot);
-    expect(report.diagnostics).toEqual([expect.objectContaining({ file: "catalog/tools.json", message: "index is stale", suggestion: expect.stringContaining("catalog build") })]);
+    expect(report.diagnostics).toEqual([
+      expect.objectContaining({ file: "catalog/tools.json", message: "index is stale", suggestion: expect.stringContaining("catalog build") }),
+      expect.objectContaining({ file: "catalog/INDEX.md", message: "index is stale" }),
+    ]);
+  });
+
+  test("a missing card on a catalogued record is reported with the fields to add", () => {
+    const { summary, use_when, avoid_when, ...bare } = validTool;
+    const report = validateRepository(createFixtureRepository([{ ...bare, tier: "catalogued" }]));
+    expect(report.diagnostics).toEqual([expect.objectContaining({ path: "/", message: expect.stringContaining("missing summary, use_when, avoid_when") })]);
+  });
+
+  test("a summary over budget fails with the budget in the suggestion", () => {
+    const report = validateRepository(createFixtureRepository([{ ...validTool, summary: "x".repeat(601) }]));
+    expect(report.diagnostics).toEqual([expect.objectContaining({ severity: "error", path: "/summary", suggestion: expect.stringContaining("600") })]);
+  });
+
+  test("pairs_with, skill and examples must resolve", () => {
+    const report = validateRepository(createFixtureRepository([{ ...validTool, pairs_with: ["ghost"], skill: "skills/toolkits/ghost/SKILL.md", examples: ["ghost"] }]));
+    expect(report.diagnostics.map((diagnostic) => diagnostic.path).sort()).toEqual(["/examples", "/pairs_with", "/skill"]);
+    expect(hasErrors(report)).toBe(true);
+  });
+
+  test("an example and its tool must link both ways", () => {
+    const fixtureRoot = createFixtureRepository([validTool]);
+    mkdirSync(join(fixtureRoot, "examples/demo"), { recursive: true });
+    writeFileSync(join(fixtureRoot, "examples/demo/run.sh"), "#!/bin/sh\n");
+    writeFileSync(join(fixtureRoot, "examples/demo/example.json"), JSON.stringify({ id: "demo", title: "Demo", status: "validated", tools: ["ffmpeg"], run: "./run.sh" }));
+    const report = validateRepository(fixtureRoot);
+    expect(report.diagnostics).toEqual([expect.objectContaining({ file: "examples/demo/example.json", path: "/tools", suggestion: expect.stringContaining("catalog/tools/ffmpeg.json") })]);
+  });
+
+  test("a facet must point at a real heading in the skill", () => {
+    const fixtureRoot = createFixtureRepository([{ ...validTool, skill: "skills/toolkits/ffmpeg/SKILL.md", facets: [{ id: "mux", one_line: "Combine streams", skill_section: "Muxing" }] }]);
+    mkdirSync(join(fixtureRoot, "skills/toolkits/ffmpeg"), { recursive: true });
+    writeFileSync(join(fixtureRoot, "skills/toolkits/ffmpeg/SKILL.md"), "# FFmpeg\n\n## Encoding\n");
+    writeCatalogIndex(fixtureRoot, false);
+    expect(validateRepository(fixtureRoot).diagnostics).toEqual([expect.objectContaining({ path: "/facets/mux", message: expect.stringContaining('"Muxing"') })]);
+    writeFileSync(join(fixtureRoot, "skills/toolkits/ffmpeg/SKILL.md"), "# FFmpeg\n\n## Muxing\n");
+    expect(validateRepository(fixtureRoot).diagnostics).toEqual([]);
   });
 });

@@ -1,0 +1,9 @@
+{
+  "id": "ffmpeg-assembly",
+  "title": "Image sequence plus tone muxed by FFmpeg, checked by ffprobe",
+  "summary": "ImageMagick draws 48 marker frames, FFmpeg adds a 440 Hz tone and muxes to MP4; ffprobe metadata is diffed against expected/.",
+  "status": "validated",
+  "tools": ["imagemagick", "ffmpeg-ffprobe"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-10-26", "hostname": "Conors-MacBook-Pro-2.local" }
+}

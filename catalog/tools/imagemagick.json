@@ -16,6 +16,12 @@
     "macos": "brew install imagemagick",
     "check_command": "magick --version"
   },
+  "skill": "skills/toolkits/imagemagick/SKILL.md",
+  "examples": [
+    "ffmpeg-assembly",
+    "blender-smoke",
+    "browser-capture"
+  ],
   "documentation_status": "skill-verified",
   "installation_status": "unknown",
   "validation": {

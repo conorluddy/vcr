@@ -22,6 +22,12 @@
     "macos": "brew install ffmpeg",
     "check_command": "ffmpeg -version"
   },
+  "skill": "skills/toolkits/ffmpeg/SKILL.md",
+  "examples": [
+    "native-svg",
+    "ffmpeg-assembly",
+    "browser-capture"
+  ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
   ],

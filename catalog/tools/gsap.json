@@ -15,6 +15,9 @@
   "install": {
     "macos": "pnpm add gsap"
   },
+  "examples": [
+    "browser-capture"
+  ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {

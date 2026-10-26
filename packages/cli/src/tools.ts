@@ -1,21 +1,51 @@
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { listJsonFiles, readJsonFile } from "./repository.js";
+import { fileSizeKb } from "./catalog.js";
+import { listFilesNamed, listJsonFiles, readJsonFile } from "./repository.js";
 import { fail, ok, type Result } from "./result.types.js";
 
 // === TYPES ===
+
+export interface ToolFacet {
+  id: string;
+  one_line: string;
+  skill_section?: string;
+  example?: string;
+}
 
 export interface ToolSummary {
   id: string;
   name: string;
   category: string;
-  role: string;
-  official_url: string;
   tier: string;
+  role: string;
+  summary?: string;
+  use_when?: string[];
+  avoid_when?: string[];
+  pairs_with?: string[];
+  official_url: string;
   capabilities: string[];
+  facets?: ToolFacet[];
+  license?: string;
+  install?: { macos?: string; check_command?: string };
+  skill?: string;
+  examples?: string[];
   installation_status: string;
-  validation: { status: string };
+  validation: { status: string; evidence?: Array<{ date: string; example?: string }> };
   adapter_maturity: string;
   [extra: string]: unknown;
+}
+
+export interface ExampleManifest {
+  id: string;
+  title: string;
+  summary?: string;
+  status: string;
+  tools: string[];
+  run: string;
+  report?: string;
+  /** Repository-relative directory, filled in on load. */
+  directory: string;
 }
 
 export interface ToolFilter {
@@ -37,6 +67,17 @@ export function loadTools(repositoryRoot: string): Result<ToolSummary[]> {
   return ok(tools);
 }
 
+export function loadExamples(repositoryRoot: string): Result<ExampleManifest[]> {
+  const examples: ExampleManifest[] = [];
+  for (const filePath of listFilesNamed(join(repositoryRoot, "examples"), "example.json")) {
+    const parsed = readJsonFile<Omit<ExampleManifest, "directory">>(filePath);
+    if (!parsed.ok) return parsed;
+    const directory = filePath.slice(repositoryRoot.length + 1).replace(/\/example\.json$/, "");
+    examples.push({ ...parsed.value, directory });
+  }
+  return ok(examples);
+}
+
 export function filterTools(tools: ToolSummary[], filter: ToolFilter): ToolSummary[] {
   return tools.filter(
     (tool) =>
@@ -51,10 +92,57 @@ export function findTool(tools: ToolSummary[], id: string): Result<ToolSummary> 
   return tool ? ok(tool) : fail("TOOL_NOT_FOUND", `No tool with id "${id}". Run "vcr tools list" to see ids.`);
 }
 
+/** Tier 0 as a table: what `vcr tools list` prints. */
 export function formatToolTable(tools: ToolSummary[]): string {
-  const rows = tools.map((tool) => [tool.id, tool.tier, tool.installation_status, tool.validation.status, tool.adapter_maturity, tool.capabilities.join(",")]);
-  const header = ["id", "tier", "installed", "validated", "adapter", "capabilities"];
+  const rows = tools.map((tool) => [tool.id, tool.tier, tool.validation.status, tool.role]);
+  const header = ["id", "tier", "validated", "role"];
   const widths = header.map((_, column) => Math.max(header[column]!.length, ...rows.map((row) => row[column]!.length)));
-  const line = (row: string[]) => row.map((cell, column) => cell.padEnd(widths[column]!)).join("  ");
+  const line = (row: string[]) => row.map((cell, column) => cell.padEnd(widths[column]!)).join("  ").trimEnd();
   return [line(header), ...rows.map(line)].join("\n");
+}
+
+/** Tier 1: the card, with pointers to tiers 2 and 3 and what they cost. */
+export function formatToolCard(tool: ToolSummary, examples: ExampleManifest[], repositoryRoot: string): string {
+  const lines: string[] = [];
+  lines.push(`${tool.id} — ${tool.name} · ${tool.tier} · ${tool.automation_route as string}`);
+  lines.push(tool.role, "");
+  if (tool.summary) lines.push(tool.summary, "");
+  if (tool.use_when?.length) lines.push("Use when:", ...tool.use_when.map((item) => `- ${item}`), "");
+  if (tool.avoid_when?.length) lines.push("Avoid when:", ...tool.avoid_when.map((item) => `- ${item}`), "");
+  if (tool.facets?.length) lines.push("Facets:", ...tool.facets.map((facet) => `- ${facet.id}: ${facet.one_line}`), "");
+  lines.push(`Capabilities: ${tool.capabilities.join(", ")}`);
+  if (tool.pairs_with?.length) lines.push(`Pairs with: ${tool.pairs_with.join(", ")}`);
+  if (tool.license) lines.push(`Licence: ${tool.license}`);
+  if (tool.install?.macos) lines.push(`Install (macOS): ${tool.install.macos}${tool.install.check_command ? `  · check: ${tool.install.check_command}` : ""}`);
+  lines.push(`Evidence: ${evidenceLine(tool)}`);
+  lines.push(`Guide: ${tool.skill ? `${tool.skill} (${fileSizeKb(repositoryRoot, tool.skill) ?? "?"} KB) — vcr tools info ${tool.id} --full` : "none yet"}`);
+  const own = examples.filter((example) => example.tools.includes(tool.id));
+  lines.push(`Examples: ${own.length ? `${own.map((example) => `${example.id} (${example.status})`).join(", ")} — vcr tools examples ${tool.id}` : "none yet"}`);
+  lines.push(`Docs: ${tool.official_url}`);
+  return lines.join("\n");
+}
+
+/** Tier 2 appended to the card. */
+export function readToolGuide(tool: ToolSummary, repositoryRoot: string): Result<string> {
+  if (!tool.skill) return fail("NO_GUIDE", `${tool.id} has no skill yet. Its card is the deepest tier available.`);
+  const path = join(repositoryRoot, tool.skill);
+  if (!existsSync(path)) return fail("GUIDE_MISSING", `${tool.skill} is referenced by ${tool.id} but does not exist.`);
+  return ok(readFileSync(path, "utf8"));
+}
+
+/** Tier 3 listing for one tool. */
+export function formatExamplesForTool(tool: ToolSummary, examples: ExampleManifest[]): string {
+  const own = examples.filter((example) => example.tools.includes(tool.id));
+  if (own.length === 0) return `No examples list ${tool.id} yet.`;
+  return own
+    .map((example) => [`${example.id} (${example.status}) — ${example.title}`, example.summary ? `  ${example.summary}` : null, `  run: cd ${example.directory} && ${example.run}`, example.report ? `  report: ${example.report}` : null].filter(Boolean).join("\n"))
+    .join("\n\n");
+}
+
+// === PRIVATE HELPERS ===
+
+function evidenceLine(tool: ToolSummary): string {
+  const latest = tool.validation.evidence?.at(-1);
+  if (!latest) return tool.validation.status;
+  return `${tool.validation.status} ${latest.date}${latest.example ? ` (${latest.example})` : ""}`;
 }

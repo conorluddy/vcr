@@ -1,0 +1,45 @@
+{
+  "id": "playwright",
+  "name": "Playwright",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "Headless browser automation; the capture route for every browser-rendered toolkit",
+  "official_url": "https://playwright.dev/docs/intro",
+  "documentation_urls": [
+    "https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental/"
+  ],
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "capture"
+  ],
+  "license": "Apache-2.0",
+  "install": {
+    "macos": "pnpm add -D playwright && npx playwright install chromium",
+    "check_command": "npx playwright --version"
+  },
+  "examples": [
+    "browser-capture"
+  ],
+  "notes": [
+    "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
+    "Use HeadlessExperimental.beginFrame under --deterministic-mode for order-independent frames; see specifications/spikes/browser-capture.md."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "Chromium 156.0.8078.4",
+        "command": "examples/browser-capture/run.sh",
+        "result": "90 alpha frames; shuffled order matches sequential",
+        "example": "examples/browser-capture"
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/spikes/browser-capture.md"
+}
