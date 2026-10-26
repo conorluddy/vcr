@@ -3,16 +3,50 @@
   "name": "Satori",
   "category": "A4. Vector, typography, diagrams and stills",
   "tier": "catalogued",
-  "role": "HTML/CSS-like layout to SVG; not a full browser",
+  "role": "React-style flexbox layout to SVG without a browser; pairs with resvg for PNG",
+  "summary": "Vercel library that converts a React-element tree styled with a subset of CSS (flexbox layout) into SVG, given font data. Runs in Node, edge runtimes or the browser. Output is SVG; rasterise it with resvg. Its strength is HTML/CSS-like layout for social cards and title images without a browser.",
+  "use_when": [
+    "Title cards, thumbnails and social images from JSX-style layout; over Playwright when no browser is wanted",
+    "Batch stills driven by data, rendered to PNG via resvg",
+    "Flexbox layout for text blocks that you then convert to SVG"
+  ],
+  "avoid_when": [
+    "Full CSS (grid, many selectors, filters) or interactive content: Playwright with a real page",
+    "Motion: it produces a single still; use GSAP in a browser scene",
+    "Hand-tuned vector artwork: author SVG directly"
+  ],
+  "pairs_with": [
+    "resvg",
+    "svg",
+    "opentype-js",
+    "svgo"
+  ],
   "official_url": "https://github.com/vercel/satori",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "typography",
-    "vector-authoring"
+    "vector-authoring",
+    "text-rendering"
   ],
   "license": "MPL-2.0",
   "install": {
     "macos": "pnpm add satori"
+  },
+  "notes": [
+    "2026-10-26: supported CSS subset and font format limits recalled from upstream docs, not re-read."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a4",
+    "version_seen": "0.63.2",
+    "last_release": "2026-10-20",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "npm 0.63.2 published 2026-10-20 after 0.63.1 the same day; repository pushed 2026-10-23; MPL-2.0. Unique route from CSS-like layout to SVG without a browser. Pre-1.0 so APIs may change.",
+    "sources": [
+      "https://github.com/vercel/satori",
+      "https://www.npmjs.com/package/satori"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

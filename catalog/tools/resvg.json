@@ -4,6 +4,25 @@
   "category": "A4. Vector, typography, diagrams and stills",
   "tier": "catalogued",
   "role": "Static SVG rasterisation",
+  "summary": "Rust SVG renderer and command line tool that rasterises static SVG to PNG with consistent, browser-independent output. Supports most of SVG 1.1 and parts of SVG 2, text via system or supplied fonts, and ignores scripts and animation. Its strength is deterministic output from a single fast binary, which makes still frames and card backgrounds reproducible.",
+  "use_when": [
+    "Rasterising static SVG to PNG reproducibly without launching a browser; over Inkscape for speed and determinism",
+    "Converting Graphviz, Mermaid or Satori SVG into frames or textures",
+    "Fixtures that need a stable hash across runs on the same version"
+  ],
+  "avoid_when": [
+    "SMIL, CSS animation or script in the SVG: it ignores them, so use a browser capture with Playwright",
+    "Heavy filter or foreignObject content: a browser renders those",
+    "Raster resizing of photos: libvips or ImageMagick"
+  ],
+  "pairs_with": [
+    "svg",
+    "svgo",
+    "graphviz",
+    "mermaid-cli",
+    "satori",
+    "opentype-js"
+  ],
   "official_url": "https://github.com/linebender/resvg",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
@@ -18,6 +37,22 @@
   "examples": [
     "native-svg"
   ],
+  "notes": [
+    "2026-10-26: Homebrew offers 0.49.0 while validation evidence is for 0.47.0; revalidate on upgrade."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a4",
+    "version_seen": "0.49.0",
+    "last_release": "2026-10-24",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Release v0.49.0 published 2026-10-24 under linebender; MPL-2.0. Local validation record covers 0.47.0, so a newer release now exists upstream.",
+    "sources": [
+      "https://github.com/linebender/resvg",
+      "https://api.github.com/repos/linebender/resvg/releases/latest"
+    ]
+  },
   "documentation_status": "skill-verified",
   "installation_status": "unknown",
   "validation": {
