@@ -1,21 +1,11 @@
-# Generated media and render work
+# Generated media, caches and render work live in directories, never by extension.
+# Committed previews and fixtures are allowed under the size policy in README.md.
 output/
 renders/
 cache/
 .cache/
 tmp/
-*.mp4
-*.mov
-*.webm
-*.gif
-*.png
-*.jpg
-*.jpeg
-*.exr
-*.wav
-*.mp3
-*.m4a
-*.zip
+environment/*.local.json
 
 # Local environment and editor state
 .DS_Store

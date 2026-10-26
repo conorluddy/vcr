@@ -16,7 +16,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "generative-2d",
         "2d-rendering"
@@ -37,7 +37,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "generative-2d",
         "2d-rendering"
@@ -58,7 +58,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "generative-2d",
         "2d-rendering"
@@ -79,7 +79,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "generative-2d",
         "2d-rendering"
@@ -100,7 +100,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "generative-2d",
         "2d-rendering"
@@ -121,7 +121,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "generative-2d",
         "2d-rendering"
@@ -142,7 +142,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "generative-2d",
         "2d-rendering"
@@ -163,7 +163,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "generative-2d",
         "2d-rendering"
@@ -184,7 +184,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "generative-2d",
         "2d-rendering"
@@ -205,7 +205,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "generative-2d",
         "2d-rendering"
@@ -226,7 +226,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "generative-2d",
         "2d-rendering"
@@ -247,7 +247,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "svg-animation",
         "asset-playback"
@@ -268,7 +268,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "svg-animation",
         "asset-playback"
@@ -289,7 +289,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "svg-animation",
         "asset-playback"
@@ -310,7 +310,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "svg-animation",
         "asset-playback"
@@ -331,7 +331,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "svg-animation",
         "asset-playback"
@@ -352,7 +352,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "svg-animation",
         "asset-playback"
@@ -373,7 +373,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "svg-animation",
         "asset-playback"
@@ -394,7 +394,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "svg-animation",
         "asset-playback"
@@ -415,7 +415,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "svg-animation",
         "asset-playback"
@@ -436,7 +436,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "svg-animation",
         "asset-playback"
@@ -457,7 +457,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "3d-rendering",
         "shaders",
@@ -479,7 +479,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "3d-rendering",
         "shaders",
@@ -501,7 +501,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "3d-rendering",
         "shaders",
@@ -523,7 +523,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "3d-rendering",
         "shaders",
@@ -545,7 +545,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "3d-rendering",
         "shaders",
@@ -567,7 +567,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "3d-rendering",
         "shaders",
@@ -589,7 +589,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "3d-rendering",
         "shaders",
@@ -611,7 +611,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "3d-rendering",
         "shaders",
@@ -633,7 +633,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "3d-rendering",
         "shaders",
@@ -655,7 +655,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "3d-rendering",
         "shaders",
@@ -677,7 +677,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "3d-rendering",
         "shaders",
@@ -699,7 +699,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "3d-rendering",
         "shaders",
@@ -721,7 +721,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "3d-rendering",
         "shaders",
@@ -743,7 +743,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "vector-authoring",
         "typography",
@@ -765,7 +765,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "vector-authoring",
         "typography",
@@ -787,7 +787,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "vector-authoring",
         "typography",
@@ -809,7 +809,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "vector-authoring",
         "typography",
@@ -831,7 +831,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "vector-authoring",
         "typography",
@@ -853,7 +853,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "vector-authoring",
         "typography",
@@ -875,7 +875,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "vector-authoring",
         "typography",
@@ -897,7 +897,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "vector-authoring",
         "typography",
@@ -919,7 +919,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "vector-authoring",
         "typography",
@@ -941,7 +941,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "vector-authoring",
         "typography",
@@ -963,7 +963,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "video-composition",
         "video-encoding",
@@ -986,7 +986,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "video-composition",
         "video-encoding",
@@ -1009,7 +1009,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "video-composition",
         "video-encoding",
@@ -1032,7 +1032,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "video-composition",
         "video-encoding",
@@ -1055,7 +1055,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "video-composition",
         "video-encoding",
@@ -1078,7 +1078,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "video-composition",
         "video-encoding",
@@ -1101,7 +1101,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "video-composition",
         "video-encoding",
@@ -1124,7 +1124,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "video-composition",
         "video-encoding",
@@ -1147,7 +1147,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "video-composition",
         "video-encoding",
@@ -1170,7 +1170,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "video-composition",
         "video-encoding",
@@ -1193,7 +1193,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "video-composition",
         "video-encoding",
@@ -1216,7 +1216,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "video-composition",
         "video-encoding",
@@ -1239,7 +1239,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "video-composition",
         "video-encoding",
@@ -1262,7 +1262,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "image-processing",
         "colour-management"
@@ -1283,7 +1283,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "image-processing",
         "colour-management"
@@ -1304,7 +1304,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "image-processing",
         "colour-management"
@@ -1325,7 +1325,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "image-processing",
         "colour-management"
@@ -1346,7 +1346,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "image-processing",
         "colour-management"
@@ -1367,7 +1367,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "image-processing",
         "colour-management"
@@ -1388,7 +1388,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "image-processing",
         "colour-management"
@@ -1409,7 +1409,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "image-processing",
         "colour-management"
@@ -1430,7 +1430,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "native-authoring"
       ]
@@ -1450,7 +1450,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "native-authoring"
       ]
@@ -1470,7 +1470,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "native-authoring"
       ]
@@ -1490,7 +1490,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "native-authoring"
       ]
@@ -1510,7 +1510,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "native-authoring"
       ]
@@ -1530,7 +1530,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "native-authoring"
       ]
@@ -1550,7 +1550,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "native-authoring"
       ]
@@ -1570,7 +1570,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "native-authoring"
       ]
@@ -1590,7 +1590,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "native-authoring"
       ]
@@ -1610,7 +1610,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "native-authoring"
       ]
@@ -1630,7 +1630,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "native-authoring"
       ]
@@ -1650,7 +1650,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "native-authoring"
       ]
@@ -1670,7 +1670,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "native-authoring"
       ]
@@ -1690,7 +1690,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "physics-simulation",
         "audio",
@@ -1712,7 +1712,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "physics-simulation",
         "audio",
@@ -1734,7 +1734,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "physics-simulation",
         "audio",
@@ -1756,7 +1756,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "physics-simulation",
         "audio",
@@ -1778,7 +1778,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -1798,7 +1798,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -1818,7 +1818,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -1838,7 +1838,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -1858,7 +1858,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -1878,7 +1878,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -1898,7 +1898,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -1918,7 +1918,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -1938,7 +1938,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -1958,7 +1958,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -1978,7 +1978,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -1998,7 +1998,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2018,7 +2018,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2038,7 +2038,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2058,7 +2058,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2078,7 +2078,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2098,7 +2098,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2118,7 +2118,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2138,7 +2138,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2158,7 +2158,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2178,7 +2178,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2198,7 +2198,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2218,7 +2218,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2238,7 +2238,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2258,7 +2258,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2278,7 +2278,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2298,7 +2298,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2318,7 +2318,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2338,7 +2338,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2358,7 +2358,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2378,7 +2378,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
         "candidate"
       ]
@@ -2401,7 +2401,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
       "id": "mediarecorder",
@@ -2421,7 +2421,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
       "id": "svg",
@@ -2441,7 +2441,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
       "id": "web-animations-api",
@@ -2461,7 +2461,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
       "id": "web-audio",
@@ -2481,7 +2481,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
       "id": "webcodecs",
@@ -2501,7 +2501,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
       "id": "webgl",
@@ -2521,7 +2521,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
       "id": "webgpu",
@@ -2541,7 +2541,7 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/motion-harness-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a"
     }
   ]
 }

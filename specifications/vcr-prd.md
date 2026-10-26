@@ -1,4 +1,4 @@
-# Motion Harness — Product Requirements Document
+# VCR — Product Requirements Document
 
 Version: 0.1 • Date: 26 October 2026 • Owner: Conor Luddy
 
@@ -6,7 +6,7 @@ Status: Proposed specification. Captures the agreed product direction; implement
 
 ## 1. Product definition
 
-Motion Harness is a canonical, agent-friendly repository for creating, editing, reviewing and exporting motion graphics, images and videos using code-first libraries and command-line creative tools. It starts as a comprehensive toolkit and grows into a shared production system through independently useful layers.
+VCR is a canonical, agent-friendly repository for creating, editing, reviewing and exporting motion graphics, images and videos using code-first libraries and command-line creative tools. It starts as a comprehensive toolkit and grows into a shared production system through independently useful layers.
 
 The repository can hold many products, video series and individual productions. Completed work becomes a searchable reference collection, improving future creation without loading the entire collection into an agent's context. Standalone projects can use the same contracts and selected tools.
 
@@ -194,7 +194,7 @@ Acceptance: find an approved portrait product reveal, adapt it into a new video,
 Default: one monorepo containing the harness and multiple projects. Optional: standalone projects depending on a versioned harness distribution. A cloned canonical repository must work without requiring package publication on day one; package boundaries should make later publishing possible.
 
 ```text
-motion-harness/
+vcr/
   AGENTS.md
   catalog/tools/
   catalog/capabilities/
@@ -210,13 +210,13 @@ motion-harness/
   shared/transitions/
   shared/presets/
   projects/<project-id>/
-    project.yaml
+    project.json
     brand/
-    assets/manifest.yaml
+    assets/manifest.json
     components/
     videos/<video-id>/
       brief.md
-      video.yaml
+      video.json
       scenes/
       review/
       render-manifest.json

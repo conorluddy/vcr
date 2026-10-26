@@ -1,6 +1,6 @@
-# Motion Harness
+# VCR
 
-Motion Harness is a local-first, agent-friendly workspace for creating and reviewing motion graphics, images, and video with native creative tools. This repository is being built in layers; the first foundation is tool discovery and a reusable project layout.
+VCR is a local-first, agent-friendly workspace for creating and reviewing motion graphics, images, and video with native creative tools. This repository is being built in layers; the first foundation is tool discovery and a reusable project layout.
 
 ## Current status
 
@@ -16,7 +16,11 @@ Open `catalog/tools.json` and filter by `category`, `role`, or `official_url`. C
 
 ## Start a project
 
-Copy `projects/templates/product/` to `projects/<project-id>/`, then update `project.json`, brand tokens, asset manifest, and video records. Keep generated renders and caches under the configured output directories; `.gitignore` excludes them by default.
+Copy `projects/templates/product/` to `projects/<project-id>/`, then update `project.json`, brand tokens, asset manifest, and video records. Keep generated renders and caches under the configured output directories; `.gitignore` excludes those directories by default.
+
+## Committed media policy
+
+Media is ignored by directory, not by extension, so brand assets and fixtures can live in Git. Keep any committed image under 200 KB and any committed audio or video under 1 MB; anything larger belongs in an output directory or the asset store chosen in Layer 1. Prefer a content hash in `expected/` over a committed render where a hash is enough to verify.
 
 ## Repository map
 
@@ -28,4 +32,4 @@ Copy `projects/templates/product/` to `projects/<project-id>/`, then update `pro
 - `references/` — curated production metadata and lessons.
 - `specifications/` — product requirements and decisions.
 
-See [`AGENTS.md`](AGENTS.md) for repository working rules and [`specifications/motion-harness-prd.md`](specifications/motion-harness-prd.md) for the complete product direction.
+See [`AGENTS.md`](AGENTS.md) for repository working rules and [`specifications/vcr-prd.md`](specifications/vcr-prd.md) for the complete product direction.

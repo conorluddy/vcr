@@ -1,0 +1,25 @@
+# Architecture decision records
+
+One file per decision, `NNNN-kebab-title.md`, never edited after acceptance except to change `Status` and add a `Superseded by` line.
+
+```markdown
+# NNNN. Title
+
+Date: YYYY-MM-DD
+Status: proposed | accepted | superseded by NNNN
+
+## Context
+What forced a decision. Facts, not opinions.
+
+## Options considered
+Each option with its real cost and benefit.
+
+## Decision
+One paragraph. What we do.
+
+## Consequences
+What becomes easier, what becomes harder, what we must now do.
+
+## Revisit when
+A concrete, observable trigger.
+```
