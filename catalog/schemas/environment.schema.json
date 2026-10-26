@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vcr.local/schemas/environment.schema.json",
+  "title": "VCR environment record",
+  "description": "Machine-specific tool availability as observed by `vcr doctor`. Installation is a fact about one machine, never about the catalogue.",
+  "type": "object",
+  "required": ["schema_version", "hostname", "os", "checked_at", "tools"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "hostname": { "type": "string" },
+    "os": {
+      "type": "object",
+      "required": ["platform", "release", "arch"],
+      "properties": {
+        "platform": { "type": "string" },
+        "release": { "type": "string" },
+        "arch": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "checked_at": { "type": "string", "format": "date-time" },
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tool_id", "status", "executable", "version"],
+        "properties": {
+          "tool_id": { "type": "string" },
+          "status": { "enum": ["installed", "missing", "error"] },
+          "executable": { "type": ["string", "null"] },
+          "version": { "type": ["string", "null"] },
+          "detail": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

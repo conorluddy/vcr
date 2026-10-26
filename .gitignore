@@ -17,3 +17,4 @@ environment/*.local.json
 node_modules/
 dist/
 coverage/
+*.tsbuildinfo

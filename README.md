@@ -10,9 +10,23 @@ VCR is a local-first, agent-friendly workspace for creating and reviewing motion
 - `examples/` and `projects/templates/` are starter source files, not validated render fixtures.
 - The common timeline, compositor, renderer, and CLI described as later layers do not exist yet.
 
+## Commands
+
+Requires Node 22 and pnpm. `pnpm install`, then:
+
+```text
+pnpm validate                      # schemas, capability vocabulary, unknown-field diagnostics
+pnpm vcr tools list --tier core    # filter by --capability, --tier, --category; add --json
+pnpm vcr tools info ffmpeg-ffprobe
+pnpm doctor                        # probes local tools, writes environment/<hostname>.json
+pnpm test && pnpm typecheck
+```
+
+Every command logs one JSON line to stderr with `command`, `duration_ms` and `exit_code`. Exit codes: 0 ok, 1 failed, 2 usage.
+
 ## Find a tool
 
-Open `catalog/tools.json` and filter by `category`, `role`, or `official_url`. Check the resource's official documentation before installing it. The catalogue records intent from the PRD and does not attest to current versions, licenses, platform support, or machine installation.
+Run `pnpm vcr tools list` or open `catalog/tools.json` and filter by `category`, `role`, or `official_url`. Check the resource's official documentation before installing it. The catalogue records intent from the PRD and does not attest to current versions, licenses, platform support, or machine installation.
 
 ## Start a project
 
@@ -25,6 +39,8 @@ Media is ignored by directory, not by extension, so brand assets and fixtures ca
 ## Repository map
 
 - `catalog/` — tool registry, capability vocabulary, and schemas.
+- `environment/` — per-machine tool availability written by `vcr doctor`. Installation facts live here, never in the catalogue.
+- `packages/cli/` — the `vcr` command.
 - `skills/` — progressively loaded toolkit and production workflow guides.
 - `examples/` — minimal native examples with status and reproduction notes.
 - `projects/` — in-repository productions and reusable project templates.
