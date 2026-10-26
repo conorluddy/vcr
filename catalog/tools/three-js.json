@@ -3,7 +3,27 @@
   "name": "Three.js",
   "category": "A3. 3D, shaders and effects",
   "tier": "core",
-  "role": "Browser 3D scene rendering",
+  "role": "Browser 3D rendered once per seek with alpha: product shots, hero objects, camera moves",
+  "summary": "The standard WebGL and WebGPU scene graph for the browser, with loaders, PBR materials, lights, shadows, postprocessing and a shading language. In VCR a scene renders once per requested time with a transparent clear colour, so 3D layers composite over anything else. Real-time quality in seconds per shot rather than Blender's minutes.",
+  "use_when": [
+    "Product reveals, floating objects and camera orbits that must turn around fast",
+    "Over Babylon.js for the larger ecosystem: pmndrs postprocessing, drei, glTF tooling",
+    "Over Blender when real-time PBR is enough and the source should stay web-native",
+    "Shader-driven visuals through TSL or raw GLSL"
+  ],
+  "avoid_when": [
+    "Path-traced quality or the compositor: Blender",
+    "Step-by-step physics or fluids: Blender caches, or Rapier with fixed-step replay",
+    "Mostly 2D with incidental depth: p5.js or PixiJS",
+    "React is already the app shell: React Three Fiber on top"
+  ],
+  "pairs_with": [
+    "playwright",
+    "postprocessing",
+    "gltf-transform",
+    "ffmpeg-ffprobe",
+    "blender"
+  ],
   "official_url": "https://threejs.org/",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -12,17 +32,58 @@
     "effects",
     "model-loading"
   ],
+  "facets": [
+    {
+      "id": "scene-and-camera",
+      "one_line": "Renderer with alpha, cameras as functions of t, render on the driven frame",
+      "skill_section": "Scene and camera",
+      "example": "three-capture"
+    },
+    {
+      "id": "loaders",
+      "one_line": "glTF and textures loaded before the scene declares itself ready",
+      "skill_section": "Loaders"
+    },
+    {
+      "id": "materials-and-lights",
+      "one_line": "Standard and physical materials, environment lighting, shadows",
+      "skill_section": "Materials and lights"
+    },
+    {
+      "id": "postprocessing",
+      "one_line": "Composer passes and which effects are seek-safe",
+      "skill_section": "Postprocessing"
+    },
+    {
+      "id": "tsl",
+      "one_line": "Node materials in JavaScript for the WebGPU renderer",
+      "skill_section": "TSL"
+    }
+  ],
   "license": "MIT",
   "install": {
     "macos": "pnpm add three"
   },
-  "documentation_status": "listed-in-prd",
+  "skill": "skills/toolkits/three-js/SKILL.md",
+  "examples": [
+    "three-capture"
+  ],
+  "documentation_status": "skill-verified",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "pnpm latest, Chromium 156",
+        "command": "examples/three-capture/run.sh",
+        "result": "90 alpha frames at 1280x720; shuffled order matches sequential",
+        "example": "examples/three-capture"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
 }

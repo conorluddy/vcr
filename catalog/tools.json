@@ -115,7 +115,26 @@
       "name": "Blender",
       "category": "A7. Native applications and procedural tools",
       "tier": "core",
-      "role": "Background CLI + Python; 3D, animation and compositing",
+      "role": "Headless 3D rendering, Python scene build and compositing from the macOS app bundle",
+      "summary": "Full 3D authoring suite driven in background mode: a .blend file or a Python-built scene renders one frame or a range to PNG or EXR with alpha, under Workbench for speed, EEVEE for real-time quality or Cycles for path tracing. The compositor and simulation caches cover what VCR's own layers cannot yet. Blender keeps its own clock, so frame N is frame N.",
+      "use_when": [
+        "Path-traced product shots, cloth, fluids, particles with baked caches",
+        "An existing .blend from a designer must render in a production",
+        "Render passes and compositor work before VCR's compositor lands",
+        "Over Three.js when minutes per frame are acceptable for the look"
+      ],
+      "avoid_when": [
+        "Fast iteration on a web-native look: Three.js in seconds",
+        "Simple 2D or typography: SVG, GSAP or p5.js",
+        "You need a scriptable 2D animation app: Synfig or Manim"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "imagemagick",
+        "openimageio-oiiotool",
+        "gltf-transform",
+        "three-js"
+      ],
       "official_url": "https://docs.blender.org/manual/en/latest/advanced/command_line/render.html",
       "documentation_urls": [
         "https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html"
@@ -127,6 +146,30 @@
         "compositing",
         "physics-simulation",
         "model-loading"
+      ],
+      "facets": [
+        {
+          "id": "background-render",
+          "one_line": "Frame and range renders from the CLI, option ordering, output paths",
+          "skill_section": "Background render",
+          "example": "blender-smoke"
+        },
+        {
+          "id": "python-scene-build",
+          "one_line": "Factory-settings scenes built in bpy, enums read not guessed, seeds recorded",
+          "skill_section": "Python scene build",
+          "example": "blender-smoke"
+        },
+        {
+          "id": "compositor",
+          "one_line": "Node tree by type, render passes to multilayer EXR",
+          "skill_section": "Compositor"
+        },
+        {
+          "id": "engines",
+          "one_line": "Workbench, EEVEE and Cycles: speed, quality and what is byte-stable",
+          "skill_section": "Cycles, EEVEE and Workbench"
+        }
       ],
       "license": "GPL-3.0",
       "install": {
@@ -526,7 +569,27 @@
       "name": "FFmpeg / ffprobe",
       "category": "A5. Video and capture",
       "tier": "core",
-      "role": "Native encoding, assembly, filters and media inspection",
+      "role": "Native encoding, muxing, filtergraphs, probing and sequence assembly; every renderer's delivery path",
+      "summary": "The command-line media toolchain. Every renderer's output becomes video here: image sequences to H.264, VP9 or ProRes 4444 with alpha, audio muxing, overlays and crossfades in filtergraphs, trims and concatenation, and ffprobe as the inspection tool the examples diff against. Deterministic in metadata and frames per build, not in container bytes.",
+      "use_when": [
+        "Any encode, mux, trim, concatenate or probe",
+        "Assembling an image sequence from any renderer into a deliverable",
+        "Overlaying flat layers with alpha before VCR's compositor exists",
+        "Verifying a render: frame count, fps, duration, pixel format"
+      ],
+      "avoid_when": [
+        "Editorial decisions: those belong in VCR's timeline, FFmpeg gets resolved intervals",
+        "In-browser conversion with no native binary: Mediabunny or ffmpeg.wasm",
+        "Shot detection or scene splitting: PySceneDetect drives FFmpeg for you",
+        "GIF quality matters: encode frames with gifski"
+      ],
+      "pairs_with": [
+        "imagemagick",
+        "playwright",
+        "blender",
+        "gifski",
+        "pyscenedetect"
+      ],
       "official_url": "https://ffmpeg.org/documentation.html",
       "documentation_urls": [
         "https://ffmpeg.org/ffmpeg-filters.html"
@@ -539,6 +602,37 @@
         "audio",
         "gif-encoding",
         "image-sequence-processing"
+      ],
+      "facets": [
+        {
+          "id": "encode",
+          "one_line": "Codecs and pixel formats for web, alpha and intermediate delivery",
+          "skill_section": "Encode",
+          "example": "native-svg"
+        },
+        {
+          "id": "mux",
+          "one_line": "Combine audio and video, concatenate, who is authoritative on duration",
+          "skill_section": "Mux",
+          "example": "ffmpeg-assembly"
+        },
+        {
+          "id": "filtergraph",
+          "one_line": "Overlay with alpha, crossfade, scale and colour range",
+          "skill_section": "Filtergraph"
+        },
+        {
+          "id": "probe",
+          "one_line": "ffprobe JSON as evidence and as a test oracle",
+          "skill_section": "Probe",
+          "example": "ffmpeg-assembly"
+        },
+        {
+          "id": "image-sequences",
+          "one_line": "Sequence clocks, holds, gaps and rounding",
+          "skill_section": "Image sequences",
+          "example": "browser-capture"
+        }
       ],
       "license": "LGPL-2.1 or GPL depending on build flags",
       "install": {
@@ -929,7 +1023,25 @@
       "name": "GSAP",
       "category": "A2. Animation and authored assets",
       "tier": "core",
-      "role": "Timelines and animation; external-clock integration",
+      "role": "Paused, seekable timelines for DOM and SVG motion; the clock for every browser scene",
+      "summary": "Animation library that writes CSS transforms and SVG attributes from a timeline you build once and seek from outside. In VCR every browser scene exposes one paused GSAP timeline; the capture harness seeks it frame by frame, so output is a pure function of time. Plugins cover motion along SVG paths, per-character text, stroke reveals and shape morphs.",
+      "use_when": [
+        "Any DOM or SVG motion that must be seeked from outside: title cards, lower thirds, kinetic type",
+        "Over Anime.js when you need labels, nested timelines and the plugin set",
+        "Over CSS animations whenever frames must be captured deterministically",
+        "Orchestrating several elements against one clock with relative positions"
+      ],
+      "avoid_when": [
+        "Canvas or WebGL content: drive p5.js or Three.js from t directly instead",
+        "Spring physics is the point: Motion or React Spring sample springs natively",
+        "You need a visual curve editor: Theatre.js, then export values"
+      ],
+      "pairs_with": [
+        "svg",
+        "playwright",
+        "ffmpeg-ffprobe",
+        "three-js"
+      ],
       "official_url": "https://gsap.com/docs/v3/",
       "automation_route": "library-or-runtime",
       "capabilities": [
@@ -937,14 +1049,38 @@
         "timeline-animation",
         "svg-animation"
       ],
+      "facets": [
+        {
+          "id": "timeline",
+          "one_line": "Build, nest, label and seek one paused timeline per scene",
+          "skill_section": "Timeline",
+          "example": "browser-capture"
+        },
+        {
+          "id": "eases",
+          "one_line": "Named and custom easing curves and when each reads well",
+          "skill_section": "Eases"
+        },
+        {
+          "id": "motion-path",
+          "one_line": "Move and auto-rotate elements along an SVG path",
+          "skill_section": "MotionPath"
+        },
+        {
+          "id": "split-text",
+          "one_line": "Per-character and per-line text animation, font-load safe",
+          "skill_section": "SplitText"
+        }
+      ],
       "license": "GSAP standard licence (free including plugins since 3.13; recheck)",
       "install": {
         "macos": "pnpm add gsap"
       },
+      "skill": "skills/toolkits/gsap/SKILL.md",
       "examples": [
         "browser-capture"
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-verified",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -1093,7 +1229,9 @@
       "examples": [
         "ffmpeg-assembly",
         "blender-smoke",
-        "browser-capture"
+        "browser-capture",
+        "p5-capture",
+        "three-capture"
       ],
       "documentation_status": "skill-verified",
       "installation_status": "unknown",
@@ -1760,7 +1898,25 @@
       "name": "p5.js",
       "category": "A1. Creative coding and 2D",
       "tier": "core",
-      "role": "Generative visuals; provide explicit time/seed conventions",
+      "role": "Generative 2D and WebGL sketches written as a pure function of time and seed",
+      "summary": "Creative-coding library with the broadest beginner-to-expert API for procedural 2D, simple WebGL, noise and randomness. In VCR a sketch runs with noLoop and redraws for the time the harness asks for, resetting its seeds every frame, so particle fields, flow fields and noise textures capture deterministically.",
+      "use_when": [
+        "Procedural backgrounds, particles, flow fields and noise-driven abstracts",
+        "Over Pts or canvas-sketch when you want the largest API and example base",
+        "Quick 2D experiments where a scene graph would be overhead",
+        "Data-driven abstract visuals from a small JSON input"
+      ],
+      "avoid_when": [
+        "Real 3D with lights, materials and loaders: Three.js",
+        "Vector output that a designer must edit afterwards: SVG with GSAP",
+        "Sprite-heavy scenes with thousands of objects: PixiJS",
+        "Typography layout: SVG or Satori"
+      ],
+      "pairs_with": [
+        "playwright",
+        "ffmpeg-ffprobe",
+        "gsap"
+      ],
       "official_url": "https://p5js.org/",
       "automation_route": "library-or-runtime",
       "capabilities": [
@@ -1768,18 +1924,55 @@
         "2d-rendering",
         "3d-rendering"
       ],
+      "facets": [
+        {
+          "id": "draw-loop-and-seeding",
+          "one_line": "noLoop, redraw from t, reset noiseSeed and randomSeed per frame",
+          "skill_section": "Draw loop and seeding",
+          "example": "p5-capture"
+        },
+        {
+          "id": "2d-drawing",
+          "one_line": "Transparent clear, transforms, colour modes",
+          "skill_section": "2D drawing"
+        },
+        {
+          "id": "webgl-mode",
+          "one_line": "Centred origin, per-frame lights, loaded fonts",
+          "skill_section": "WebGL mode"
+        },
+        {
+          "id": "noise",
+          "one_line": "Seeded Perlin noise as the deterministic motion source",
+          "skill_section": "Noise",
+          "example": "p5-capture"
+        }
+      ],
       "license": "LGPL-2.1",
       "install": {
         "macos": "pnpm add p5"
       },
-      "documentation_status": "listed-in-prd",
+      "skill": "skills/toolkits/p5-js/SKILL.md",
+      "examples": [
+        "p5-capture"
+      ],
+      "documentation_status": "skill-verified",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-10-26",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.3.4",
+            "command": "examples/p5-capture/run.sh",
+            "result": "90 alpha frames at 1280x720; shuffled order matches sequential",
+            "example": "examples/p5-capture"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
@@ -1952,7 +2145,9 @@
         "check_command": "npx playwright --version"
       },
       "examples": [
-        "browser-capture"
+        "browser-capture",
+        "p5-capture",
+        "three-capture"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
@@ -2555,20 +2750,60 @@
       "name": "SVG",
       "category": "Native browser platform APIs",
       "tier": "core",
-      "role": "Native vector graphics format and browser rendering",
+      "role": "Dependency-free vector source for cards, logos and diagrams; rasterised by resvg or a browser",
+      "summary": "The vector format every tool here reads and writes. Static SVG rasterises deterministically with resvg; animated SVG runs inline in a browser scene driven by GSAP. Designers can edit the source, Graphviz and Mermaid emit it, and SVGO shrinks it. Keep colour and layout in the SVG and motion in the timeline.",
+      "use_when": [
+        "Title cards, lower thirds, logos and diagrams that must stay editable and scale to any size",
+        "Stroke-draw reveals and shape morphs over a transparent background",
+        "Output from Graphviz, Mermaid, D3 or Inkscape entering a production",
+        "A fixture that needs no dependencies at all"
+      ],
+      "avoid_when": [
+        "Photographic or heavily filtered content at 4K: filters are slow in browsers",
+        "Hundreds of animated elements: PixiJS or p5.js canvas",
+        "SMIL animation: it cannot be seeked from outside and resvg ignores it"
+      ],
+      "pairs_with": [
+        "gsap",
+        "resvg",
+        "svgo",
+        "inkscape",
+        "graphviz",
+        "mermaid-cli"
+      ],
       "official_url": "https://developer.mozilla.org/en-US/docs/Web/SVG",
       "automation_route": "browser-platform-api",
       "capabilities": [
         "vector-authoring",
         "svg-animation"
       ],
+      "facets": [
+        {
+          "id": "static-authoring",
+          "one_line": "viewBox, stable ids, fonts to paths, colour separate from motion",
+          "skill_section": "Static authoring",
+          "example": "native-svg"
+        },
+        {
+          "id": "smil-versus-script",
+          "one_line": "Why SMIL is out and GSAP plugins are in",
+          "skill_section": "SMIL versus script"
+        },
+        {
+          "id": "rasterisation",
+          "one_line": "resvg for stills, the capture harness for motion, one AA convention per production",
+          "skill_section": "Rasterisation",
+          "example": "native-svg"
+        }
+      ],
+      "skill": "skills/toolkits/svg/SKILL.md",
       "examples": [
         "native-svg"
       ],
       "notes": [
         "Core alongside GSAP: static SVG is a native, dependency-free source format; GSAP supplies the timeline."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-verified",
       "installation_status": "not-applicable",
       "validation": {
         "status": "partial",
@@ -2720,7 +2955,27 @@
       "name": "Three.js",
       "category": "A3. 3D, shaders and effects",
       "tier": "core",
-      "role": "Browser 3D scene rendering",
+      "role": "Browser 3D rendered once per seek with alpha: product shots, hero objects, camera moves",
+      "summary": "The standard WebGL and WebGPU scene graph for the browser, with loaders, PBR materials, lights, shadows, postprocessing and a shading language. In VCR a scene renders once per requested time with a transparent clear colour, so 3D layers composite over anything else. Real-time quality in seconds per shot rather than Blender's minutes.",
+      "use_when": [
+        "Product reveals, floating objects and camera orbits that must turn around fast",
+        "Over Babylon.js for the larger ecosystem: pmndrs postprocessing, drei, glTF tooling",
+        "Over Blender when real-time PBR is enough and the source should stay web-native",
+        "Shader-driven visuals through TSL or raw GLSL"
+      ],
+      "avoid_when": [
+        "Path-traced quality or the compositor: Blender",
+        "Step-by-step physics or fluids: Blender caches, or Rapier with fixed-step replay",
+        "Mostly 2D with incidental depth: p5.js or PixiJS",
+        "React is already the app shell: React Three Fiber on top"
+      ],
+      "pairs_with": [
+        "playwright",
+        "postprocessing",
+        "gltf-transform",
+        "ffmpeg-ffprobe",
+        "blender"
+      ],
       "official_url": "https://threejs.org/",
       "automation_route": "library-or-runtime",
       "capabilities": [
@@ -2729,18 +2984,59 @@
         "effects",
         "model-loading"
       ],
+      "facets": [
+        {
+          "id": "scene-and-camera",
+          "one_line": "Renderer with alpha, cameras as functions of t, render on the driven frame",
+          "skill_section": "Scene and camera",
+          "example": "three-capture"
+        },
+        {
+          "id": "loaders",
+          "one_line": "glTF and textures loaded before the scene declares itself ready",
+          "skill_section": "Loaders"
+        },
+        {
+          "id": "materials-and-lights",
+          "one_line": "Standard and physical materials, environment lighting, shadows",
+          "skill_section": "Materials and lights"
+        },
+        {
+          "id": "postprocessing",
+          "one_line": "Composer passes and which effects are seek-safe",
+          "skill_section": "Postprocessing"
+        },
+        {
+          "id": "tsl",
+          "one_line": "Node materials in JavaScript for the WebGPU renderer",
+          "skill_section": "TSL"
+        }
+      ],
       "license": "MIT",
       "install": {
         "macos": "pnpm add three"
       },
-      "documentation_status": "listed-in-prd",
+      "skill": "skills/toolkits/three-js/SKILL.md",
+      "examples": [
+        "three-capture"
+      ],
+      "documentation_status": "skill-verified",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-10-26",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "pnpm latest, Chromium 156",
+            "command": "examples/three-capture/run.sh",
+            "result": "90 alpha frames at 1280x720; shuffled order matches sequential",
+            "example": "examples/three-capture"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {

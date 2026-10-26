@@ -3,7 +3,27 @@
   "name": "FFmpeg / ffprobe",
   "category": "A5. Video and capture",
   "tier": "core",
-  "role": "Native encoding, assembly, filters and media inspection",
+  "role": "Native encoding, muxing, filtergraphs, probing and sequence assembly; every renderer's delivery path",
+  "summary": "The command-line media toolchain. Every renderer's output becomes video here: image sequences to H.264, VP9 or ProRes 4444 with alpha, audio muxing, overlays and crossfades in filtergraphs, trims and concatenation, and ffprobe as the inspection tool the examples diff against. Deterministic in metadata and frames per build, not in container bytes.",
+  "use_when": [
+    "Any encode, mux, trim, concatenate or probe",
+    "Assembling an image sequence from any renderer into a deliverable",
+    "Overlaying flat layers with alpha before VCR's compositor exists",
+    "Verifying a render: frame count, fps, duration, pixel format"
+  ],
+  "avoid_when": [
+    "Editorial decisions: those belong in VCR's timeline, FFmpeg gets resolved intervals",
+    "In-browser conversion with no native binary: Mediabunny or ffmpeg.wasm",
+    "Shot detection or scene splitting: PySceneDetect drives FFmpeg for you",
+    "GIF quality matters: encode frames with gifski"
+  ],
+  "pairs_with": [
+    "imagemagick",
+    "playwright",
+    "blender",
+    "gifski",
+    "pyscenedetect"
+  ],
   "official_url": "https://ffmpeg.org/documentation.html",
   "documentation_urls": [
     "https://ffmpeg.org/ffmpeg-filters.html"
@@ -16,6 +36,37 @@
     "audio",
     "gif-encoding",
     "image-sequence-processing"
+  ],
+  "facets": [
+    {
+      "id": "encode",
+      "one_line": "Codecs and pixel formats for web, alpha and intermediate delivery",
+      "skill_section": "Encode",
+      "example": "native-svg"
+    },
+    {
+      "id": "mux",
+      "one_line": "Combine audio and video, concatenate, who is authoritative on duration",
+      "skill_section": "Mux",
+      "example": "ffmpeg-assembly"
+    },
+    {
+      "id": "filtergraph",
+      "one_line": "Overlay with alpha, crossfade, scale and colour range",
+      "skill_section": "Filtergraph"
+    },
+    {
+      "id": "probe",
+      "one_line": "ffprobe JSON as evidence and as a test oracle",
+      "skill_section": "Probe",
+      "example": "ffmpeg-assembly"
+    },
+    {
+      "id": "image-sequences",
+      "one_line": "Sequence clocks, holds, gaps and rounding",
+      "skill_section": "Image sequences",
+      "example": "browser-capture"
+    }
   ],
   "license": "LGPL-2.1 or GPL depending on build flags",
   "install": {

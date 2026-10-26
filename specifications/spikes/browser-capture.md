@@ -34,10 +34,18 @@ After the capture fix, plain `page.screenshot` also matched in every run, and th
 
 Chromium flags `--disable-gpu`, `--disable-gpu-compositing` and a forced full repaint before each capture changed nothing and are not used.
 
+## Addendum, same day: canvas and WebGL
+
+Extracting the loop into `packages/capture` for p5.js and Three.js found two more facts:
+
+- `HeadlessExperimental.beginFrame` hangs on any page with a canvas (2D or WebGL), under every GPU flag combination tried (`--disable-gpu`, swiftshader, no GPU compositing). It stays the fast path for DOM-only scenes only.
+- A synchronous canvas or WebGL draw inside the harness's `evaluate` blocks on the compositor, which is waiting for the harness. The scene contract therefore schedules its render on `requestAnimationFrame` from `seek`, and the harness settles two animation frames before `page.screenshot`. That path is deterministic for DOM, 2D canvas and WebGL (shuffled matches sequential in `examples/p5-capture` and `examples/three-capture`) at about 12 frames per second at 1280x720 including the verification re-run.
+- ES module imports need HTTP; `file://` blocks them with CORS. The harness serves the scene directory on loopback.
+
 ## Contract for the browser adapter
 
 1. Scenes expose one paused timeline and a pure `seek(time)`; nothing reads a wall clock.
-2. The adapter owns frame production: `beginFrame` per request, transparent default background, viewport set once per run.
+2. The adapter owns frame production: a permanent transparent default background, the viewport set once per run, and either `beginFrame` (DOM-only) or a two-frame settle before screenshot (anything with a canvas). `seek` schedules canvas renders on an animation frame.
 3. `evaluate` calls never return framework objects.
 4. Determinism evidence is a shuffled-order run compared with a sequential run, kept as a test fixture.
 

@@ -10,7 +10,7 @@
     "validate": "tsx packages/cli/src/index.ts validate",
     "doctor": "tsx packages/cli/src/index.ts doctor",
     "test": "vitest run",
-    "typecheck": "tsc -b packages/cli packages/timeline"
+    "typecheck": "tsc -b packages/cli packages/timeline packages/capture"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",

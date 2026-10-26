@@ -1,0 +1,9 @@
+{
+  "id": "p5-capture",
+  "title": "p5.js sketch captured as a pure function of time and seed",
+  "summary": "noLoop sketch with noiseSeed and randomSeed reset per frame; 90 frames at 1280x720 with alpha, shuffled order matches sequential.",
+  "status": "validated",
+  "tools": ["p5-js", "playwright", "imagemagick"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-10-26", "hostname": "Conors-MacBook-Pro-2.local" }
+}
