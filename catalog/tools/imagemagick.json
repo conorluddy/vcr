@@ -16,13 +16,22 @@
     "macos": "brew install imagemagick",
     "check_command": "magick --version"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-verified",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "7.1.2-15",
+        "command": "examples/ffmpeg-assembly/run.sh",
+        "result": "48 synthetic frames drawn; alpha statistics and identify used by browser-capture and blender-smoke",
+        "example": "examples/ffmpeg-assembly"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
 }

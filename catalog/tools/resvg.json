@@ -14,13 +14,22 @@
     "macos": "brew install resvg",
     "check_command": "resvg --version"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-verified",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.47.0",
+        "command": "examples/native-svg/run.sh",
+        "result": "PNG hash and ffprobe metadata match expected/",
+        "example": "examples/native-svg"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
 }
