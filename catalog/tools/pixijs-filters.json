@@ -3,12 +3,29 @@
   "name": "PixiJS Filters",
   "category": "A3. 3D, shaders and effects",
   "tier": "catalogued",
-  "role": "2D display effects",
+  "role": "Community filter pack for PixiJS: glow, bloom, shockwave, CRT and more",
+  "summary": "Collection of community-authored display filters for PixiJS such as glow, bloom, shockwave, pixelate, CRT, RGB split and displacement. Applied by assigning to a container or sprite's filters array and animating uniforms from time. Output is a PixiJS canvas. Distinguishing strength: ready-made 2D effects without writing GLSL.",
+  "use_when": [
+    "Over writing GLSL when a PixiJS scene needs glow, CRT, shockwave or glitch effects",
+    "Per-object animated effects where CSS filters are too coarse",
+    "Seekable 2D FX where uniforms are set as a function of t"
+  ],
+  "avoid_when": [
+    "No PixiJS in the scene: glfx-js or gl-react for image effects",
+    "3D scene effects: postprocessing",
+    "Mismatched pixi.js major: pin pixi-filters to the matching major"
+  ],
+  "pairs_with": [
+    "pixijs",
+    "gsap",
+    "playwright"
+  ],
   "official_url": "https://github.com/pixijs/filters",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "effects",
-    "2d-rendering"
+    "2d-rendering",
+    "shaders"
   ],
   "license": "MIT",
   "install": {
@@ -21,6 +38,22 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "notes": [
+    "2026-10-26: package name is pixi-filters while the repo is pixijs/filters; compatibility with the current pixi.js major was not verified."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a3",
+    "version_seen": "pixi-filters 6.1.5",
+    "last_release": "2025-11-29",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "npm release Nov 2025, repo pushed Feb 2026; MIT. Wide ready-made effect catalogue beside PixiJS core filters.",
+    "sources": [
+      "https://github.com/pixijs/filters",
+      "https://registry.npmjs.org/pixi-filters"
+    ]
+  },
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }

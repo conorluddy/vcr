@@ -3,7 +3,23 @@
   "name": "regl",
   "category": "A3. 3D, shaders and effects",
   "tier": "catalogued",
-  "role": "Functional WebGL abstraction",
+  "role": "Functional WebGL: declarative draw commands with state as data",
+  "summary": "WebGL abstraction where draw commands are declared as functions of props, with state, uniforms and buffers managed for you and no hidden global state. Output is a canvas. Distinguishing strength: the stateless functional style suits rendering as a pure function of time, for shaders, particles and data visuals.",
+  "use_when": [
+    "Over raw WebGL for custom shader and particle pieces written as pure draw commands",
+    "Over Three.js when no scene graph, loaders or PBR are needed",
+    "Over OGL when you prefer a functional API to scene classes"
+  ],
+  "avoid_when": [
+    "glTF models, lights or shadows: Three.js",
+    "Thin helpers over normal WebGL calls: TWGL",
+    "WebGPU target: Three.js with TSL, or the webgpu record"
+  ],
+  "pairs_with": [
+    "glslify",
+    "glmatrix",
+    "playwright"
+  ],
   "official_url": "https://github.com/regl-project/regl",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -22,6 +38,19 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a3",
+    "version_seen": "regl 2.1.1",
+    "last_release": "2024-11-12",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "Last npm release Nov 2024 (2.1.0 was Feb 2021); repo pushed Oct 2026; MIT. Stable and feature-complete rather than abandoned.",
+    "sources": [
+      "https://github.com/regl-project/regl",
+      "https://registry.npmjs.org/regl"
+    ]
+  },
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }
