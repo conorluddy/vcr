@@ -10,12 +10,12 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 
 ## core (6)
 
-- `blender` ✓ — Background CLI + Python; 3D, animation and compositing · 3d-rendering, native-authoring, compositing, physics-simulation, model-loading · guide 2 KB
-- `ffmpeg-ffprobe` ✓ — Native encoding, assembly, filters and media inspection · video-encoding, video-composition, media-inspection, audio, gif-encoding, image-sequence-processing · guide 3 KB
-- `gsap` ✓ — Timelines and animation; external-clock integration · tweening, timeline-animation, svg-animation
-- `p5-js` — Generative visuals; provide explicit time/seed conventions · generative-2d, 2d-rendering, 3d-rendering
-- `svg` ✓ — Native vector graphics format and browser rendering · vector-authoring, svg-animation
-- `three-js` — Browser 3D scene rendering · 3d-rendering, shaders, effects, model-loading
+- `blender` ✓ — Headless 3D rendering, Python scene build and compositing from the macOS app bundle · 3d-rendering, native-authoring, compositing, physics-simulation, model-loading · guide 4 KB
+- `ffmpeg-ffprobe` ✓ — Native encoding, muxing, filtergraphs, probing and sequence assembly; every renderer's delivery path · video-encoding, video-composition, media-inspection, audio, gif-encoding, image-sequence-processing · guide 4 KB
+- `gsap` ✓ — Paused, seekable timelines for DOM and SVG motion; the clock for every browser scene · tweening, timeline-animation, svg-animation · guide 4 KB
+- `p5-js` ✓ — Generative 2D and WebGL sketches written as a pure function of time and seed · generative-2d, 2d-rendering, 3d-rendering · guide 4 KB
+- `svg` ✓ — Dependency-free vector source for cards, logos and diagrams; rasterised by resvg or a browser · vector-authoring, svg-animation · guide 3 KB
+- `three-js` ✓ — Browser 3D rendered once per seek with alpha: product shots, hero objects, camera moves · 3d-rendering, shaders, effects, model-loading · guide 4 KB
 
 ## catalogued (84)
 

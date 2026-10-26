@@ -18,7 +18,9 @@
     "check_command": "npx playwright --version"
   },
   "examples": [
-    "browser-capture"
+    "browser-capture",
+    "p5-capture",
+    "three-capture"
   ],
   "notes": [
     "Not in PRD Appendix A; added because the browser-capture spike depends on it.",

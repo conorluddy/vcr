@@ -20,7 +20,9 @@
   "examples": [
     "ffmpeg-assembly",
     "blender-smoke",
-    "browser-capture"
+    "browser-capture",
+    "p5-capture",
+    "three-capture"
   ],
   "documentation_status": "skill-verified",
   "installation_status": "unknown",
