@@ -3,7 +3,22 @@
   "name": "gl-react",
   "category": "A3. 3D, shaders and effects",
   "tier": "catalogued",
-  "role": "Composable React/WebGL shaders",
+  "role": "React components that compose GLSL shaders as a node graph over textures",
+  "summary": "React library where each shader is a Node component taking uniforms and other nodes or images as inputs, rendered to WebGL surfaces. Suited to image effect chains such as blur, colour grading and transitions described declaratively. Distinguishing strength: shader composition as a React tree. Little 3D support and a long gap before the 2026 release.",
+  "use_when": [
+    "2D image or frame effect chains already living in a React tree",
+    "Over Three.js post effects when there is no 3D scene, only textures and fragment shaders"
+  ],
+  "avoid_when": [
+    "Plain fragment shaders without React: glslcanvas or regl",
+    "3D scenes with effects: Three.js with postprocessing",
+    "Steadier release cadence wanted: OGL or regl"
+  ],
+  "pairs_with": [
+    "glslify",
+    "glslcanvas",
+    "webgl"
+  ],
   "official_url": "https://github.com/gre/gl-react",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -22,6 +37,22 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "notes": [
+    "2026-10-26: React 19 compatibility of 6.0.0 and the gl-react-dom surface package were not verified."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a3",
+    "version_seen": "gl-react 6.0.0",
+    "last_release": "2026-05-15",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "npm 6.0.0 published May 2026 after four years without a release (5.2.x in 2022); repo pushed Oct 2026; MIT. Overlaps Three.js post effects and raw GLSL tools and ties shaders to the React render cycle.",
+    "sources": [
+      "https://github.com/gre/gl-react",
+      "https://registry.npmjs.org/gl-react"
+    ]
+  },
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }
