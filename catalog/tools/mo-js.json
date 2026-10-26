@@ -2,7 +2,7 @@
   "id": "mo-js",
   "name": "mo.js",
   "category": "A2. Animation and authored assets",
-  "tier": "catalogued",
+  "tier": "candidate",
   "role": "Declarative burst, shape and ripple effects; own timeline, no GSAP-style seek guarantee",
   "summary": "Motion graphics library for the web with ready-made bursts, shapes, swirls and stagger, driven by its own Timeline and Tween classes. Renders SVG shapes and HTML elements with retina-sharp output. Good for celebratory particle-like effects with little code. Releases have stalled since 2023, and determinism under external seeking is not documented.",
   "use_when": [

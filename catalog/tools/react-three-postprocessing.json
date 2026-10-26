@@ -2,7 +2,7 @@
   "id": "react-three-postprocessing",
   "name": "react-three/postprocessing",
   "category": "A9. Adjacent resources mentioned during discovery",
-  "tier": "candidate",
+  "tier": "catalogued",
   "role": "Declarative post effects (bloom, DOF, SSAO, LUTs) for R3F, wrapping postprocessing",
   "summary": "pmndrs React wrapper around the postprocessing library: an EffectComposer and effect components (Bloom, DepthOfField, SSAO, Vignette, ToneMapping, LUT and more) placed inside an R3F canvas. Driven by JSX and props; output is the post-processed canvas. Strength is composing effect stacks declaratively in the same tree as the scene.",
   "use_when": [

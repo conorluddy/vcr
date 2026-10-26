@@ -2,7 +2,7 @@
   "id": "shotstack",
   "name": "Shotstack",
   "category": "A9. Adjacent resources mentioned during discovery",
-  "tier": "candidate",
+  "tier": "catalogued",
   "role": "Hosted video rendering: submit a JSON edit, receive a rendered file",
   "summary": "Cloud video API: you POST a JSON timeline (clips, titles, audio, effects) to the Edit API and poll or receive a webhook for the rendered video, image or audio file. Driven by plain HTTP or the SDKs; output is a hosted video file. Strength is rendering with no local FFmpeg or browser, at the cost of uploads, per-render fees and an account key.",
   "use_when": [

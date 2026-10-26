@@ -16,7 +16,6 @@
   ],
   "pairs_with": [
     "glslify",
-    "glslcanvas",
     "webgl"
   ],
   "official_url": "https://github.com/gre/gl-react",

@@ -2,7 +2,7 @@
   "id": "diffusion-studio-core",
   "name": "Diffusion Studio Core",
   "category": "A5. Video and capture",
-  "tier": "catalogued",
+  "tier": "candidate",
   "role": "Browser-only TypeScript timeline engine on WebCodecs; export is client-side",
   "summary": "TypeScript video composition engine for the browser: layers, transitions, effects, keyframes, masks and captions on a timeline, decoded and encoded with WebCodecs and drawn on Canvas 2D, built on Mediabunny. Aimed at people building non-linear editors. Requires COOP/COEP headers. Free tier stamps a watermark on renders unless a paid licence key is bought.",
   "use_when": [

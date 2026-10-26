@@ -2,7 +2,7 @@
   "id": "vtk-js",
   "name": "vtk.js",
   "category": "A9. Adjacent resources mentioned during discovery",
-  "tier": "candidate",
+  "tier": "catalogued",
   "role": "Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering",
   "summary": "Visualization Toolkit ported to WebGL JavaScript: volume rendering, isosurfaces, polydata, transfer functions, widgets and readers for scientific formats. Driven from JavaScript in a browser page; output is canvas pixels. Strength is scientific-grade volume and mesh rendering that Three.js lacks out of the box.",
   "use_when": [

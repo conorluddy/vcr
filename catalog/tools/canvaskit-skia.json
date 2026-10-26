@@ -2,7 +2,7 @@
   "id": "canvaskit-skia",
   "name": "CanvasKit / Skia",
   "category": "A9. Adjacent resources mentioned during discovery",
-  "tier": "candidate",
+  "tier": "catalogued",
   "role": "Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output",
   "summary": "Skia compiled to WebAssembly, exposing a Canvas-like API plus Skia-only features: Paragraph text shaping, SkSL runtime shaders, path boolean ops and PDF/SVG surfaces. Runs in Node or the browser; drawing code is a pure function of t, so frames render to PNG without a browser capture loop. Distinguishing strength: richer, more deterministic 2D than Canvas 2D without launching Chromium.",
   "use_when": [

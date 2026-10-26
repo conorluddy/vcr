@@ -17,7 +17,6 @@
   ],
   "pairs_with": [
     "mediabunny",
-    "webav",
     "canvas-2d",
     "webgl",
     "ffmpeg-ffprobe"

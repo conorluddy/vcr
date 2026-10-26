@@ -2,7 +2,7 @@
   "id": "dotlottie",
   "name": "dotLottie",
   "category": "A9. Adjacent resources mentioned during discovery",
-  "tier": "candidate",
+  "tier": "catalogued",
   "role": ".lottie container plus ThorVG WASM canvas player with frame seeking",
   "summary": "LottieFiles runtime and container format: .lottie zips animations, images and themes, and dotlottie-web plays them on canvas via a ThorVG WASM renderer. Frames are seekable (setFrame), so a capture harness can step playback deterministically. Distinguishing strength: smaller packaged assets, theming and state machines over plain Lottie JSON.",
   "use_when": [

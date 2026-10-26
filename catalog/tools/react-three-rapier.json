@@ -2,7 +2,7 @@
   "id": "react-three-rapier",
   "name": "react-three/rapier",
   "category": "A9. Adjacent resources mentioned during discovery",
-  "tier": "candidate",
+  "tier": "catalogued",
   "role": "Rapier physics for R3F as components: bodies, colliders, joints, manual stepping",
   "summary": "pmndrs R3F integration of the Rapier WASM physics engine: RigidBody, colliders, joints and instanced bodies as components, with a fixed 60 Hz timestep and a manual step() option. Driven from JSX and refs; output is simulated transforms rendered by R3F. Strength is physics inside the R3F tree with snapshot and restore.",
   "use_when": [

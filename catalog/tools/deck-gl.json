@@ -2,7 +2,7 @@
   "id": "deck-gl",
   "name": "deck.gl",
   "category": "A9. Adjacent resources mentioned during discovery",
-  "tier": "candidate",
+  "tier": "catalogued",
   "role": "WebGL layers for large geospatial and point-cloud data; view state as props",
   "summary": "WebGL2/WebGPU visualisation framework layering scatterplots, arcs, hexbins, trips and 3D tiles over maps or a plain canvas. Everything is declarative props, so animating means setting props or viewState from t and capturing the canvas. Distinguishing strength: GPU rendering of very large geospatial datasets with built-in map projections.",
   "use_when": [
@@ -17,7 +17,6 @@
   ],
   "pairs_with": [
     "d3",
-    "luma-gl",
     "playwright",
     "three-js"
   ],

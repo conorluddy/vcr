@@ -2,7 +2,7 @@
   "id": "troika-three-text",
   "name": "Troika Three Text",
   "category": "A9. Adjacent resources mentioned during discovery",
-  "tier": "candidate",
+  "tier": "catalogued",
   "role": "SDF text meshes for Three.js with font loading and Web Worker typesetting",
   "summary": "Text rendering for Three.js: a Text mesh that typesets TTF, OTF or WOFF fonts in a worker and renders them with signed-distance fields, giving crisp text at any size with outline, stroke, curve and per-range colouring. Driven from JavaScript by setting properties and calling sync(); output is a Three.js mesh. This is the text layer that drei's Text wraps.",
   "use_when": [

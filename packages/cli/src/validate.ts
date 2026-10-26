@@ -30,11 +30,11 @@ interface Vocabulary {
 // === BUDGETS ===
 
 /** Byte budgets for the tiers an agent reads whole. */
-export const BUDGET_BYTES = { indexMarkdown: 12 * 1024, skill: 12 * 1024 } as const;
+export const BUDGET_BYTES = { indexMarkdown: 16 * 1024, skill: 12 * 1024 } as const;
 
-/** Tiers that must carry a tier 1 card. Warning until the core cards land, then error. */
+/** Tiers that must carry a tier 1 card. Every core and catalogued record carries a card since the assessment pass. */
 const CARD_REQUIRED_TIERS = new Set(["core", "catalogued"]);
-const CARD_MISSING_SEVERITY: DiagnosticSeverity = "warning";
+const CARD_MISSING_SEVERITY: DiagnosticSeverity = "error";
 
 // === PUBLIC API ===
 

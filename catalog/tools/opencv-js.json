@@ -2,7 +2,7 @@
   "id": "opencv-js",
   "name": "OpenCV.js",
   "category": "A9. Adjacent resources mentioned during discovery",
-  "tier": "candidate",
+  "tier": "catalogued",
   "role": "OpenCV compiled to WASM: feature detection, filtering, tracking, analysis in browser or Node",
   "summary": "OpenCV's computer-vision library built for JavaScript through WebAssembly, published as @techstark/opencv-js (the official docs cover the build). Driven from a script or a browser page on image data; outputs are matrices, keypoints, masks and filtered images. It is the only catalogued option for analysis such as tracking, contours, optical flow and face or marker detection.",
   "use_when": [
