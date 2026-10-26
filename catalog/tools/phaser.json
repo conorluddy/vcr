@@ -3,7 +3,21 @@
   "name": "Phaser",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Game-oriented animation/simulation scenes",
+  "role": "2D HTML5 game framework with its own loop, scenes, tweens and Arcade/Matter physics",
+  "summary": "Full 2D game framework on WebGL/Canvas: scene manager, sprites, tilemaps, cameras, tween system and two physics engines. Driven from JavaScript in a browser page; output is canvas pixels. Its strength is a complete game loop with assets and input, which VCR does not need because it seeks by time rather than plays.",
+  "use_when": [
+    "Replaying an existing Phaser game or scene as footage"
+  ],
+  "avoid_when": [
+    "Seekable 2D scenes: PixiJS with a GSAP timeline gives deterministic frames",
+    "Physics-only motion: Matter.js is smaller and steppable by hand",
+    "3D or editor-driven games: PlayCanvas or Godot"
+  ],
+  "pairs_with": [
+    "pixijs",
+    "matter-js",
+    "playwright"
+  ],
   "official_url": "https://phaser.io/",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -19,6 +33,22 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9b",
+    "version_seen": "4.2.1",
+    "last_release": "2026-07-09",
+    "maintenance": "active",
+    "verdict": "drop",
+    "rationale": "Active (v4.2.1, July 2026) but its real-time game loop is hostile to frame-exact capture, and rendering duplicates PixiJS while physics duplicates Matter.js, both catalogued. No incremental route for an agent.",
+    "sources": [
+      "https://registry.npmjs.org/phaser",
+      "https://phaser.io/"
+    ]
+  },
+  "notes": [
+    "2026-10-26: deterministic manual stepping in v4 not verified."
+  ],
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }

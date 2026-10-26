@@ -3,14 +3,28 @@
   "name": "Shotstack",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Remote rendering service candidate; optional API route",
+  "role": "Hosted video rendering: submit a JSON edit, receive a rendered file",
+  "summary": "Cloud video API: you POST a JSON timeline (clips, titles, audio, effects) to the Edit API and poll or receive a webhook for the rendered video, image or audio file. Driven by plain HTTP or the SDKs; output is a hosted video file. Strength is rendering with no local FFmpeg or browser, at the cost of uploads, per-render fees and an account key.",
+  "use_when": [
+    "Render must run without local compute and a JSON edit describes it well",
+    "Templated batch video where per-minute pricing beats owning render hardware"
+  ],
+  "avoid_when": [
+    "Local, frame-exact browser scenes: Remotion or the capture harness plus FFmpeg",
+    "Free and offline pipelines: FFmpeg or Editly",
+    "Code-defined React video with its own cloud option: Remotion Lambda"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "remotion"
+  ],
   "official_url": "https://shotstack.io/",
   "automation_route": "remote-api",
   "capabilities": [
     "remote-rendering",
     "video-composition"
   ],
-  "license": "Commercial API",
+  "license": "Commercial API (paid tiers; free sandbox not verified)",
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -18,6 +32,22 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9b",
+    "version_seen": "0.2.9 (Node SDK)",
+    "last_release": "2024-07-30",
+    "maintenance": "slow",
+    "verdict": "promote",
+    "rationale": "Only remote-rendering service among the candidates, with a clear HTTP route and a JSON edit format an agent can generate. Node SDK last published July 2024, so the API is the dependency, not the SDK. Cost and data egress apply.",
+    "sources": [
+      "https://registry.npmjs.org/shotstack-sdk",
+      "https://shotstack.io/docs/guide/"
+    ]
+  },
+  "notes": [
+    "2026-10-26: pricing, free sandbox, output format list and service status not verified (API reference not read). Recheck before adoption."
+  ],
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }

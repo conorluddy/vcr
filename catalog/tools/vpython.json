@@ -3,7 +3,21 @@
   "name": "VPython",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Python educational 3D; assess export route",
+  "role": "Python 3D for teaching; browser-rendered scenes, no documented headless export",
+  "summary": "Python package where short scripts create 3D objects whose scene is rendered by a browser or notebook widget. Driven by Python; output is an interactive scene in a window, with no documented image or video export from the command line. Its strength is physics-teaching brevity, not production rendering.",
+  "use_when": [
+    "Reproducing an existing VPython physics demo as a screen capture"
+  ],
+  "avoid_when": [
+    "Python-scripted frames: Blender via bpy or Manim for maths animation",
+    "Browser 3D you can seek: Three.js",
+    "Offline ray-traced stills: POV-Ray"
+  ],
+  "pairs_with": [
+    "blender",
+    "manim-community",
+    "three-js"
+  ],
   "official_url": "https://vpython.org/",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
@@ -17,6 +31,22 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9b",
+    "version_seen": "7.6.5",
+    "last_release": "2024-03-26",
+    "maintenance": "slow",
+    "verdict": "drop",
+    "rationale": "Latest PyPI 7.6.5 (March 2024); the README says a CLI launch opens a browser window and describes no headless or export route. Blender, Manim and Three.js cover Python-driven or browser 3D with real output paths.",
+    "sources": [
+      "https://pypi.org/pypi/vpython/json",
+      "https://github.com/vpython/vpython-jupyter"
+    ]
+  },
+  "notes": [
+    "2026-10-26: headless rendering not documented; not tried. Repo issue and PR counts suggest light activity."
+  ],
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }

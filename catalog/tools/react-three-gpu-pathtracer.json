@@ -3,7 +3,21 @@
   "name": "react-three/gpu-pathtracer",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Path-traced output candidate",
+  "role": "Progressive GPU path tracing for R3F scenes via three-gpu-pathtracer",
+  "summary": "R3F wrapper over three-gpu-pathtracer: a WebGL path tracer that accumulates samples on a canvas until a sample count is reached. Driven by React props (samples, frames, reset) inside an R3F scene; output is a converged still or a noisy progressive frame. Strength is physically based lighting inside the browser stack.",
+  "use_when": [
+    "Path-traced stills of an existing R3F scene where a browser-only pipeline is required"
+  ],
+  "avoid_when": [
+    "Production ray-traced frames: Blender Cycles is faster, supported and scriptable",
+    "Simple offline ray tracing: POV-Ray",
+    "Real-time look: Three.js with postprocessing"
+  ],
+  "pairs_with": [
+    "react-three-fiber",
+    "three-js",
+    "playwright"
+  ],
   "official_url": "https://github.com/pmndrs/react-three-gpu-pathtracer",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -18,6 +32,22 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9b",
+    "version_seen": "0.3.2",
+    "last_release": "2025-07-07",
+    "maintenance": "slow",
+    "verdict": "drop",
+    "rationale": "Version 0.3.2, last published July 2025, pre-1.0 with a small repo. Needs a GPU-backed browser and converge-time waiting; Blender Cycles and POV-Ray (both catalogued) give path-traced frames with proper CLI routes.",
+    "sources": [
+      "https://registry.npmjs.org/@react-three/gpu-pathtracer",
+      "https://github.com/pmndrs/react-three-gpu-pathtracer"
+    ]
+  },
+  "notes": [
+    "2026-10-26: commit dates not shown by fetched page; README props table contradicts itself on minSamples default."
+  ],
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }
