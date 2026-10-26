@@ -21,6 +21,10 @@
     "macos": "brew install --cask blender",
     "check_command": "/Applications/Blender.app/Contents/MacOS/Blender --version"
   },
+  "skill": "skills/toolkits/blender-background/SKILL.md",
+  "examples": [
+    "blender-smoke"
+  ],
   "notes": [
     "Not on PATH on macOS; use the app bundle executable. First native application spike planned in M0."
   ],

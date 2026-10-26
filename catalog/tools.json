@@ -133,6 +133,10 @@
         "macos": "brew install --cask blender",
         "check_command": "/Applications/Blender.app/Contents/MacOS/Blender --version"
       },
+      "skill": "skills/toolkits/blender-background/SKILL.md",
+      "examples": [
+        "blender-smoke"
+      ],
       "notes": [
         "Not on PATH on macOS; use the app bundle executable. First native application spike planned in M0."
       ],
@@ -541,6 +545,12 @@
         "macos": "brew install ffmpeg",
         "check_command": "ffmpeg -version"
       },
+      "skill": "skills/toolkits/ffmpeg/SKILL.md",
+      "examples": [
+        "native-svg",
+        "ffmpeg-assembly",
+        "browser-capture"
+      ],
       "notes": [
         "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
       ],
@@ -931,6 +941,9 @@
       "install": {
         "macos": "pnpm add gsap"
       },
+      "examples": [
+        "browser-capture"
+      ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
@@ -1076,6 +1089,12 @@
         "macos": "brew install imagemagick",
         "check_command": "magick --version"
       },
+      "skill": "skills/toolkits/imagemagick/SKILL.md",
+      "examples": [
+        "ffmpeg-assembly",
+        "blender-smoke",
+        "browser-capture"
+      ],
       "documentation_status": "skill-verified",
       "installation_status": "unknown",
       "validation": {
@@ -1914,6 +1933,51 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "playwright",
+      "name": "Playwright",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "Headless browser automation; the capture route for every browser-rendered toolkit",
+      "official_url": "https://playwright.dev/docs/intro",
+      "documentation_urls": [
+        "https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental/"
+      ],
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "capture"
+      ],
+      "license": "Apache-2.0",
+      "install": {
+        "macos": "pnpm add -D playwright && npx playwright install chromium",
+        "check_command": "npx playwright --version"
+      },
+      "examples": [
+        "browser-capture"
+      ],
+      "notes": [
+        "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
+        "Use HeadlessExperimental.beginFrame under --deterministic-mode for order-independent frames; see specifications/spikes/browser-capture.md."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-10-26",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "Chromium 156.0.8078.4",
+            "command": "examples/browser-capture/run.sh",
+            "result": "90 alpha frames; shuffled order matches sequential",
+            "example": "examples/browser-capture"
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-10-26",
+      "source": "specifications/spikes/browser-capture.md"
+    },
+    {
       "id": "popmotion",
       "name": "Popmotion",
       "category": "A9. Adjacent resources mentioned during discovery",
@@ -2310,6 +2374,10 @@
         "macos": "brew install resvg",
         "check_command": "resvg --version"
       },
+      "skill": "skills/toolkits/resvg/SKILL.md",
+      "examples": [
+        "native-svg"
+      ],
       "documentation_status": "skill-verified",
       "installation_status": "unknown",
       "validation": {
@@ -2493,6 +2561,9 @@
       "capabilities": [
         "vector-authoring",
         "svg-animation"
+      ],
+      "examples": [
+        "native-svg"
       ],
       "notes": [
         "Core alongside GSAP: static SVG is a native, dependency-free source format; GSAP supplies the timeline."

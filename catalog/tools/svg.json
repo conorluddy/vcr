@@ -10,6 +10,9 @@
     "vector-authoring",
     "svg-animation"
   ],
+  "examples": [
+    "native-svg"
+  ],
   "notes": [
     "Core alongside GSAP: static SVG is a native, dependency-free source format; GSAP supplies the timeline."
   ],

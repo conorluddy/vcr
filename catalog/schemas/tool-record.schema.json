@@ -4,50 +4,287 @@
   "title": "VCR tool record",
   "description": "One catalogued resource. Documentation, machine installation, validation evidence and adapter maturity are separate facts; only validation evidence and adapter maturity belong here. Installation lives in environment records.",
   "type": "object",
-  "required": ["id", "name", "category", "tier", "role", "official_url", "automation_route", "capabilities", "documentation_status", "installation_status", "validation", "adapter_maturity", "checked_at", "source"],
+  "required": [
+    "id",
+    "name",
+    "category",
+    "tier",
+    "role",
+    "official_url",
+    "automation_route",
+    "capabilities",
+    "documentation_status",
+    "installation_status",
+    "validation",
+    "adapter_maturity",
+    "checked_at",
+    "source"
+  ],
   "properties": {
-    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-    "name": { "type": "string" },
-    "category": { "type": "string" },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
     "tier": {
-      "enum": ["core", "catalogued", "candidate"],
+      "enum": [
+        "core",
+        "catalogued",
+        "candidate"
+      ],
       "description": "core: an initial operational target with a skill and example planned. catalogued: a real option with a known automation route. candidate: surfaced during discovery, incremental value unassessed."
     },
-    "role": { "type": "string" },
-    "official_url": { "type": "string", "format": "uri" },
-    "documentation_urls": { "type": "array", "items": { "type": "string", "format": "uri" } },
-    "automation_route": { "enum": ["library-or-runtime", "native-cli-or-scripting", "browser-platform-api", "remote-api", "manual-only"] },
-    "capabilities": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true },
-    "license": { "type": "string", "description": "Licence as last understood, with any commercial caveat. Recheck before shipping." },
+    "role": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Tier 0: one line an agent reads while routing. What it is and the one thing that distinguishes it."
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 600,
+      "description": "Tier 1: one paragraph for comparing a shortlist. Required for core and catalogued tiers."
+    },
+    "use_when": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "maxLength": 120
+      },
+      "description": "Tier 1: concrete, comparative reasons to pick this tool over its neighbours."
+    },
+    "avoid_when": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "maxLength": 120
+      },
+      "description": "Tier 1: situations where a neighbour is the better choice, named."
+    },
+    "pairs_with": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "description": "Tool ids this is commonly combined with. Validated to exist."
+    },
+    "official_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "documentation_urls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "automation_route": {
+      "enum": [
+        "library-or-runtime",
+        "native-cli-or-scripting",
+        "browser-platform-api",
+        "remote-api",
+        "manual-only"
+      ]
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "facets": {
+      "type": "array",
+      "description": "Sub-features worth routing to separately (core tier only). Each points at a section of the skill.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "one_line"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "one_line": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "skill_section": {
+            "type": "string",
+            "description": "Exact heading text in the SKILL.md."
+          },
+          "example": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "license": {
+      "type": "string",
+      "description": "Licence as last understood, with any commercial caveat. Recheck before shipping."
+    },
     "install": {
       "type": "object",
       "properties": {
-        "macos": { "type": "string", "description": "Shell command to install on macOS, for on-demand setup." },
-        "check_command": { "type": "string", "description": "Command that proves presence and prints a version." }
+        "macos": {
+          "type": "string",
+          "description": "Shell command to install on macOS, for on-demand setup."
+        },
+        "check_command": {
+          "type": "string",
+          "description": "Command that proves presence and prints a version."
+        }
       },
       "additionalProperties": false
     },
-    "notes": { "type": "array", "items": { "type": "string" } },
-    "documentation_status": { "enum": ["listed-in-prd", "skill-written", "skill-verified"] },
-    "installation_status": { "enum": ["unknown", "not-applicable"], "description": "Catalogue never claims installation; see environment/." },
+    "skill": {
+      "type": "string",
+      "description": "Tier 2: path to the operating guide (skills/toolkits/<id>/SKILL.md). Validated to exist."
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "description": "Tier 3: example ids under examples/. Validated to exist and to list this tool."
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "assessment": {
+      "type": "object",
+      "description": "Dated review of the tool against its official source. Facts only; verdicts are applied in review.",
+      "required": [
+        "date",
+        "assessed_by",
+        "maintenance",
+        "verdict",
+        "rationale"
+      ],
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "assessed_by": {
+          "type": "string"
+        },
+        "version_seen": {
+          "type": "string"
+        },
+        "last_release": {
+          "type": "string"
+        },
+        "maintenance": {
+          "enum": [
+            "active",
+            "slow",
+            "unmaintained",
+            "unknown"
+          ]
+        },
+        "verdict": {
+          "enum": [
+            "keep",
+            "promote",
+            "demote",
+            "drop"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "maxLength": 400
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "documentation_status": {
+      "enum": [
+        "listed-in-prd",
+        "skill-written",
+        "skill-verified"
+      ]
+    },
+    "installation_status": {
+      "enum": [
+        "unknown",
+        "not-applicable"
+      ],
+      "description": "Catalogue never claims installation; see environment/."
+    },
     "validation": {
       "type": "object",
-      "required": ["status", "evidence"],
+      "required": [
+        "status",
+        "evidence"
+      ],
       "properties": {
-        "status": { "enum": ["not-validated", "partial", "validated", "blocked"] },
+        "status": {
+          "enum": [
+            "not-validated",
+            "partial",
+            "validated",
+            "blocked"
+          ]
+        },
         "evidence": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["date", "hostname", "version", "command", "result"],
+            "required": [
+              "date",
+              "hostname",
+              "version",
+              "command",
+              "result"
+            ],
             "properties": {
-              "date": { "type": "string", "format": "date" },
-              "hostname": { "type": "string" },
-              "version": { "type": "string" },
-              "command": { "type": "string" },
-              "result": { "type": "string" },
-              "output_hash": { "type": "string" },
-              "example": { "type": "string" }
+              "date": {
+                "type": "string",
+                "format": "date"
+              },
+              "hostname": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "command": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string"
+              },
+              "output_hash": {
+                "type": "string"
+              },
+              "example": {
+                "type": "string"
+              }
             },
             "additionalProperties": false
           }
@@ -55,9 +292,24 @@
       },
       "additionalProperties": false
     },
-    "adapter_maturity": { "enum": ["none", "experimental", "supported", "deprecated"] },
-    "checked_at": { "type": ["string", "null"], "format": "date" },
-    "source": { "type": "string" }
+    "adapter_maturity": {
+      "enum": [
+        "none",
+        "experimental",
+        "supported",
+        "deprecated"
+      ]
+    },
+    "checked_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "source": {
+      "type": "string"
+    }
   },
   "additionalProperties": false
 }

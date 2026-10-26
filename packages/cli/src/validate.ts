@@ -1,8 +1,10 @@
 import { Ajv2020, type ValidateFunction } from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
+import { existsSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { writeCatalogIndex } from "./catalog.js";
 import { listFilesNamed, listJsonFiles, readJsonFile } from "./repository.js";
+import type { ExampleManifest, ToolSummary } from "./tools.js";
 
 // === TYPES ===
 
@@ -21,18 +23,22 @@ export interface ValidationReport {
   diagnostics: Diagnostic[];
 }
 
-interface ToolRecord {
-  id: string;
-  capabilities: string[];
-}
-
 interface Vocabulary {
   capabilities: string[];
 }
 
+// === BUDGETS ===
+
+/** Byte budgets for the tiers an agent reads whole. */
+export const BUDGET_BYTES = { indexMarkdown: 12 * 1024, skill: 12 * 1024 } as const;
+
+/** Tiers that must carry a tier 1 card. Warning until the core cards land, then error. */
+const CARD_REQUIRED_TIERS = new Set(["core", "catalogued"]);
+const CARD_MISSING_SEVERITY: DiagnosticSeverity = "warning";
+
 // === PUBLIC API ===
 
-/** Validates every catalogue, project, video and reference document against its schema. */
+/** Validates every catalogue, example, project, reference and environment document, plus cross-references and budgets. */
 export function validateRepository(repositoryRoot: string): ValidationReport {
   const schemas = loadSchemas(repositoryRoot);
   const diagnostics: Diagnostic[] = [];
@@ -54,12 +60,29 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
   const knownCapabilities = new Set(vocabulary.ok ? vocabulary.value.capabilities : []);
   if (!vocabulary.ok) diagnostics.push({ severity: "error", file: "catalog/capabilities/vocabulary.json", path: "", message: vocabulary.error.message });
 
+  const tools = new Map<string, { record: ToolSummary; file: string }>();
   for (const recordPath of listJsonFiles(join(repositoryRoot, "catalog/tools"))) {
-    const record = check(recordPath, "toolRecord") as ToolRecord | undefined;
-    if (record?.capabilities) diagnostics.push(...capabilityDiagnostics(record, knownCapabilities, relative(repositoryRoot, recordPath)));
+    const record = check(recordPath, "toolRecord") as ToolSummary | undefined;
+    if (record?.id) tools.set(record.id, { record, file: relative(repositoryRoot, recordPath) });
   }
+
+  const examples = new Map<string, { manifest: ExampleManifest; file: string }>();
+  for (const manifestPath of listFilesNamed(join(repositoryRoot, "examples"), "example.json")) {
+    const manifest = check(manifestPath, "example") as ExampleManifest | undefined;
+    if (manifest?.id) examples.set(manifest.id, { manifest: { ...manifest, directory: relative(repositoryRoot, join(manifestPath, "..")) }, file: relative(repositoryRoot, manifestPath) });
+  }
+
+  for (const { record, file } of tools.values()) {
+    diagnostics.push(...capabilityDiagnostics(record, knownCapabilities, file));
+    diagnostics.push(...toolReferenceDiagnostics(record, file, tools, examples, repositoryRoot));
+    diagnostics.push(...cardDiagnostics(record, file));
+  }
+  for (const { manifest, file } of examples.values()) diagnostics.push(...exampleDiagnostics(manifest, file, tools, repositoryRoot));
+
   check(join(repositoryRoot, "catalog/tools.json"), "tool");
   diagnostics.push(...indexFreshnessDiagnostics(repositoryRoot));
+  diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/INDEX.md", BUDGET_BYTES.indexMarkdown));
+
   for (const projectPath of listFilesNamed(join(repositoryRoot, "projects"), "project.json")) check(projectPath, "project");
   for (const referencePath of listJsonFiles(join(repositoryRoot, "references"))) check(referencePath, "reference");
   for (const environmentPath of listJsonFiles(join(repositoryRoot, "environment"))) check(environmentPath, "environment");
@@ -86,18 +109,26 @@ function loadSchemas(repositoryRoot: string) {
   return {
     toolRecord: ajv.compile(toolRecordSchema),
     tool: ajv.compile(load("tool")),
+    example: ajv.compile(load("example")),
     project: ajv.compile(load("project")),
     reference: ajv.compile(load("reference")),
     environment: ajv.compile(load("environment")),
   };
 }
 
-/** The committed index must match what `vcr catalog build` produces from the per-tool files. */
+/** The committed index files must match what `vcr catalog build` produces from the per-tool files. */
 function indexFreshnessDiagnostics(repositoryRoot: string): Diagnostic[] {
   const outcome = writeCatalogIndex(repositoryRoot, true);
   if (!outcome.ok) return [{ severity: "error", file: "catalog/tools", path: "", message: outcome.error.message }];
-  if (!outcome.value.wasStale) return [];
-  return [{ severity: "error", file: "catalog/tools.json", path: "", message: "index is stale", suggestion: "Run `pnpm vcr catalog build` and commit the result." }];
+  return outcome.value.staleFiles.map((file) => ({ severity: "error" as const, file, path: "", message: "index is stale", suggestion: "Run `pnpm vcr catalog build` and commit the result." }));
+}
+
+function budgetDiagnostics(repositoryRoot: string, relativePath: string, maxBytes: number): Diagnostic[] {
+  const absolutePath = join(repositoryRoot, relativePath);
+  if (!existsSync(absolutePath)) return [];
+  const size = statSync(absolutePath).size;
+  if (size <= maxBytes) return [];
+  return [{ severity: "error", file: relativePath, path: "", message: `${size} bytes exceeds the ${maxBytes} byte budget for a tier read whole`, suggestion: "Shorten one-liners, or move detail to the next tier down." }];
 }
 
 function schemaDiagnostics(validator: ValidateFunction, document: unknown, file: string): Diagnostic[] {
@@ -107,8 +138,15 @@ function schemaDiagnostics(validator: ValidateFunction, document: unknown, file:
     file,
     path: error.instancePath || "/",
     message: error.message ?? "schema violation",
-    suggestion: error.keyword === "enum" ? `Allowed: ${JSON.stringify(error.params["allowedValues"])}` : undefined,
+    suggestion: suggestionFor(error.keyword, error.params),
   }));
+}
+
+function suggestionFor(keyword: string, params: Record<string, unknown>): string | undefined {
+  if (keyword === "enum") return `Allowed: ${JSON.stringify(params["allowedValues"])}`;
+  if (keyword === "maxLength") return `Budget is ${String(params["limit"])} characters; move detail to the next tier down.`;
+  if (keyword === "maxItems") return `At most ${String(params["limit"])} items; keep the strongest.`;
+  return undefined;
 }
 
 /** PRD §8: unknown fields produce diagnostics rather than silently disappearing. */
@@ -120,8 +158,8 @@ function unknownFieldDiagnostics(schema: unknown, document: unknown, file: strin
     .map((key) => ({ severity: "warning" as const, file, path: `/${key}`, message: `unknown field "${key}"`, suggestion: "Add it to the schema or remove it." }));
 }
 
-function capabilityDiagnostics(record: ToolRecord, knownCapabilities: Set<string>, file: string): Diagnostic[] {
-  return record.capabilities
+function capabilityDiagnostics(record: ToolSummary, knownCapabilities: Set<string>, file: string): Diagnostic[] {
+  return (record.capabilities ?? [])
     .filter((capability) => !knownCapabilities.has(capability))
     .map((capability) => ({
       severity: "error" as const,
@@ -130,4 +168,64 @@ function capabilityDiagnostics(record: ToolRecord, knownCapabilities: Set<string
       message: `capability "${capability}" is not in catalog/capabilities/vocabulary.json`,
       suggestion: "Use an existing capability or add it to the vocabulary in the same change.",
     }));
+}
+
+/** Every pointer from a record to a neighbour, a skill, an example or a skill section must resolve. */
+function toolReferenceDiagnostics(record: ToolSummary, file: string, tools: Map<string, unknown>, examples: Map<string, { manifest: ExampleManifest }>, repositoryRoot: string): Diagnostic[] {
+  const diagnostics: Diagnostic[] = [];
+  const error = (path: string, message: string, suggestion: string) => diagnostics.push({ severity: "error", file, path, message, suggestion });
+
+  for (const neighbour of record.pairs_with ?? []) {
+    if (!tools.has(neighbour)) error("/pairs_with", `"${neighbour}" is not a catalogued tool id`, "Use an id from catalog/tools/ or drop it.");
+  }
+  for (const exampleId of record.examples ?? []) {
+    const example = examples.get(exampleId);
+    if (!example) error("/examples", `example "${exampleId}" has no examples/<dir>/example.json`, "Add the manifest or remove the reference.");
+    else if (!example.manifest.tools.includes(record.id)) error("/examples", `example "${exampleId}" does not list ${record.id} in its tools`, "Add the tool to the example manifest so the link is two-way.");
+  }
+  let skillText: string | null = null;
+  if (record.skill) {
+    const skillPath = join(repositoryRoot, record.skill);
+    if (!existsSync(skillPath)) error("/skill", `${record.skill} does not exist`, "Write the SKILL.md or remove the reference.");
+    else {
+      skillText = readFileSync(skillPath, "utf8");
+      diagnostics.push(...budgetDiagnostics(repositoryRoot, record.skill, BUDGET_BYTES.skill));
+    }
+  }
+  if ((record.documentation_status === "skill-written" || record.documentation_status === "skill-verified") && !record.skill) {
+    error("/skill", `documentation_status is ${String(record.documentation_status)} but no skill path is set`, "Set skill to skills/toolkits/<id>/SKILL.md.");
+  }
+  for (const facet of record.facets ?? []) {
+    if (record.tier !== "core") error("/facets", "facets are reserved for the core tier", "Remove facets or promote the tool.");
+    if (facet.skill_section && skillText && !hasHeading(skillText, facet.skill_section)) error(`/facets/${facet.id}`, `no heading "${facet.skill_section}" in ${record.skill ?? "the skill"}`, "Match the heading text exactly or add the section.");
+    if (facet.example && !examples.has(facet.example)) error(`/facets/${facet.id}`, `example "${facet.example}" does not exist`, "Point at an examples/<dir>/example.json id.");
+  }
+  return diagnostics;
+}
+
+function cardDiagnostics(record: ToolSummary, file: string): Diagnostic[] {
+  if (!CARD_REQUIRED_TIERS.has(record.tier)) return [];
+  const missing = (["summary", "use_when", "avoid_when"] as const).filter((field) => !record[field] || (Array.isArray(record[field]) && record[field].length === 0));
+  if (missing.length === 0) return [];
+  return [{ severity: CARD_MISSING_SEVERITY, file, path: "/", message: `${record.tier} record has no tier 1 card: missing ${missing.join(", ")}`, suggestion: "Add summary, use_when and avoid_when, or demote to candidate." }];
+}
+
+function exampleDiagnostics(manifest: ExampleManifest, file: string, tools: Map<string, { record: ToolSummary }>, repositoryRoot: string): Diagnostic[] {
+  const diagnostics: Diagnostic[] = [];
+  const error = (path: string, message: string, suggestion: string) => diagnostics.push({ severity: "error", file, path, message, suggestion });
+  const expectedDirectory = `examples/${manifest.id}`;
+  if (manifest.directory !== expectedDirectory) error("/id", `manifest lives in ${manifest.directory} but its id says ${expectedDirectory}`, "Rename the directory or the id.");
+  const runScript = manifest.run.replace(/^\.\//, "").split(" ")[0] ?? "";
+  if (!existsSync(join(repositoryRoot, manifest.directory, runScript))) error("/run", `${runScript} not found in ${manifest.directory}`, "Point run at the reproduction script.");
+  for (const toolId of manifest.tools) {
+    const tool = tools.get(toolId);
+    if (!tool) error("/tools", `"${toolId}" is not a catalogued tool id`, "Use an id from catalog/tools/.");
+    else if (!(tool.record.examples ?? []).includes(manifest.id)) error("/tools", `${toolId} does not list this example in its examples`, `Add "${manifest.id}" to catalog/tools/${toolId}.json examples.`);
+  }
+  if (manifest.report && !existsSync(join(repositoryRoot, manifest.report))) error("/report", `${manifest.report} does not exist`, "Fix the path or remove it.");
+  return diagnostics;
+}
+
+function hasHeading(markdown: string, heading: string): boolean {
+  return markdown.split("\n").some((line) => /^#{1,6}\s/.test(line) && line.replace(/^#{1,6}\s+/, "").trim() === heading.trim());
 }

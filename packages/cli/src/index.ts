@@ -5,16 +5,17 @@ import { writeCatalogIndex } from "./catalog.js";
 import { formatDoctorTable, runDoctor } from "./doctor.js";
 import { logEvent, startTimer } from "./log.js";
 import { findRepositoryRoot } from "./repository.js";
-import { filterTools, findTool, formatToolTable, loadTools } from "./tools.js";
+import { filterTools, findTool, formatExamplesForTool, formatToolCard, formatToolTable, loadExamples, loadTools, readToolGuide } from "./tools.js";
 import { hasErrors, validateRepository } from "./validate.js";
 
 const USAGE = `vcr <command>
 
   validate                      Validate catalogue, projects, references and environment records
-  tools list [--capability x] [--tier x] [--category x]
-  tools info <id>
+  tools list [--capability x] [--tier x] [--category x]   Tier 0: one line per tool
+  tools info <id> [--full]      Tier 1 card; --full appends the tier 2 guide
+  tools examples <id>           Tier 3: runnable examples that demonstrate the tool
   doctor                        Probe local tools and write environment/<hostname>.json
-  catalog build [--check]       Regenerate catalog/tools.json from catalog/tools/*.json
+  catalog build [--check]       Regenerate catalog/tools.json and catalog/INDEX.md
 
 Flags: --json for machine-readable output.`;
 
@@ -56,10 +57,30 @@ async function dispatch(args: string[], options: Record<string, string | true>):
       print(asJson ? matching : formatToolTable(matching));
       return 0;
     }
+    const examples = loadExamples(repositoryRoot);
+    if (!examples.ok) return failWith(examples.error, asJson);
     if (subcommand === "info" && target) {
       const tool = findTool(tools.value, target);
       if (!tool.ok) return failWith(tool.error, asJson);
-      print(asJson ? tool.value : JSON.stringify(tool.value, null, 2));
+      if (asJson) {
+        print(tool.value);
+        return 0;
+      }
+      const card = formatToolCard(tool.value, examples.value, repositoryRoot);
+      if (options["full"] !== true) {
+        print(card);
+        return 0;
+      }
+      const guide = readToolGuide(tool.value, repositoryRoot);
+      if (!guide.ok) return failWith(guide.error, asJson);
+      print(`${card}\n\n---\n\n${guide.value}`);
+      return 0;
+    }
+    if (subcommand === "examples" && target) {
+      const tool = findTool(tools.value, target);
+      if (!tool.ok) return failWith(tool.error, asJson);
+      const own = examples.value.filter((example) => example.tools.includes(tool.value.id));
+      print(asJson ? own : formatExamplesForTool(tool.value, examples.value));
       return 0;
     }
   }
@@ -68,8 +89,8 @@ async function dispatch(args: string[], options: Record<string, string | true>):
     const checkOnly = options["check"] === true;
     const outcome = writeCatalogIndex(repositoryRoot, checkOnly);
     if (!outcome.ok) return failWith(outcome.error, asJson);
-    const { recordCount, wasStale } = outcome.value;
-    print(asJson ? outcome.value : `${recordCount} records; index ${wasStale ? (checkOnly ? "is stale" : "rewritten") : "up to date"}`);
+    const { recordCount, wasStale, staleFiles } = outcome.value;
+    print(asJson ? outcome.value : `${recordCount} records; ${wasStale ? `${checkOnly ? "stale" : "rewrote"}: ${staleFiles.join(", ")}` : "index up to date"}`);
     return checkOnly && wasStale ? 1 : 0;
   }
 

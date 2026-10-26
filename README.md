@@ -19,7 +19,8 @@ Requires Node 22 and pnpm. `pnpm install`, then:
 ```text
 pnpm validate                      # schemas, capability vocabulary, unknown-field diagnostics
 pnpm vcr tools list --tier core    # filter by --capability, --tier, --category; add --json
-pnpm vcr tools info ffmpeg-ffprobe
+pnpm vcr tools info ffmpeg-ffprobe [--full]
+pnpm vcr tools examples ffmpeg-ffprobe
 pnpm doctor                        # probes local tools, writes environment/<hostname>.json
 pnpm vcr catalog build [--check]   # regenerate catalog/tools.json from catalog/tools/*.json
 pnpm test && pnpm typecheck
@@ -29,7 +30,16 @@ Every command logs one JSON line to stderr with `command`, `duration_ms` and `ex
 
 ## Find a tool
 
-Run `pnpm vcr tools list --tier core` for the operational targets, or filter by `--capability` (see `catalog/capabilities/vocabulary.json`) and `--category`. Read a single record under `catalog/tools/<id>.json` rather than the whole index. Check the resource's official documentation before installing it. The catalogue records intent from the PRD and does not attest to current versions, licenses, platform support, or machine installation.
+The catalogue is a four-tier tree sized to the decisions an agent makes:
+
+| Tier | Moment | Where | Budget |
+| --- | --- | --- | --- |
+| 0 | route a task | `catalog/INDEX.md`, `pnpm vcr tools list` | whole file under 12 KB |
+| 1 | compare a shortlist | `pnpm vcr tools info <id>`, `catalog/tools/<id>.json` | about 200 tokens |
+| 2 | commit to a tool | `pnpm vcr tools info <id> --full`, `skills/toolkits/<id>/SKILL.md` | under 12 KB |
+| 3 | do the work | `pnpm vcr tools examples <id>`, `examples/<id>/` | one at a time |
+
+Budgets and every cross-reference (pairs with, skill, examples, facet sections) are enforced by `pnpm validate`.
 
 ## Start a project
 

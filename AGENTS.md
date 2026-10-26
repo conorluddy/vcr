@@ -12,6 +12,17 @@ Read `specifications/vcr-prd.md` for product intent and release gates. This repo
 - Prefer official documentation links and preserve uncertainty where versions or support are unverified.
 - Load only the relevant toolkit or workflow guidance for a task. Do not copy the entire catalogue into a prompt.
 
+## How to navigate the catalogue
+
+Four tiers, each sized to one decision. Descend only as far as the task needs.
+
+1. Route: read `catalog/INDEX.md` whole (under 12 KB). One line per tool.
+2. Shortlist: `pnpm vcr tools info <id>` for two or three tools. Summary, use when, avoid when, pairs with, evidence.
+3. Commit: `pnpm vcr tools info <id> --full` loads the operating guide (`skills/toolkits/<id>/SKILL.md`). One at a time.
+4. Do: `pnpm vcr tools examples <id>`, then open one example directory.
+
+Never load more than one guide at a time unless comparing two tools. A card or guide never claims the tool is installed; `pnpm doctor` does.
+
 ## Repository map
 
 - `catalog/`: one record per tool under `tools/`, a generated `tools.json` index, capability vocabulary, and schemas. Edit records, never the index.
