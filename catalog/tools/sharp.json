@@ -3,16 +3,53 @@
   "name": "Sharp",
   "category": "A6. Image processing and colour",
   "tier": "catalogued",
-  "role": "Node image processing and compositing",
+  "role": "Fast Node image processing on libvips; resize, composite, convert with low memory",
+  "summary": "Node-API library over libvips. Promise-based pipelines resize, crop, rotate, composite, tint and convert between JPEG, PNG, WebP, AVIF, TIFF, GIF and SVG input, handling ICC profiles and alpha, with Buffer and stream I/O. Prebuilt binaries install via pnpm with no system dependencies. Strength: speed and memory use far ahead of ImageMagick or Jimp on batches.",
+  "use_when": [
+    "Over Jimp or ImageMagick for batch resize and encode inside a Node build",
+    "Compositing PNG layers with alpha before encoding in a Node scene",
+    "Rasterising SVG to PNG in Node when resvg is not already in use",
+    "Producing WebP or AVIF deliverables from frames"
+  ],
+  "avoid_when": [
+    "Shell-only scripts or inspection: ImageMagick is the validated baseline",
+    "Per-pixel custom code: Jimp or Image.js",
+    "EXR or float multichannel: oiiotool",
+    "Non-Node hosts: libvips CLI"
+  ],
+  "pairs_with": [
+    "libvips",
+    "imagemagick",
+    "resvg",
+    "playwright",
+    "ffmpeg-ffprobe"
+  ],
   "official_url": "https://sharp.pixelplumbing.com/",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "image-processing",
-    "compositing"
+    "compositing",
+    "svg-rasterisation"
   ],
   "license": "Apache-2.0",
   "install": {
     "macos": "pnpm add sharp"
+  },
+  "notes": [
+    "2026-10-26: Speed comparison (4x-5x faster than ImageMagick) is the project's own claim, not measured here. Requires Node 20.9 or later per the site."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a6",
+    "version_seen": "0.35.5",
+    "last_release": "2026-09-27",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Changelog shows 0.35.5 dated 2026-09-27; npm matches. Apache-2.0 on libvips; clearest Node choice over Jimp for speed and formats.",
+    "sources": [
+      "https://sharp.pixelplumbing.com/",
+      "https://registry.npmjs.org/sharp"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
