@@ -3,13 +3,31 @@
   "name": "image-js",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "JS image-processing candidate",
+  "role": "Pure-JS image analysis and processing; duplicates sharp and jimp",
+  "summary": "Pure TypeScript image processing library for Node and the browser: load, grayscale, threshold, morphology, ROI detection and pixel ops on typed arrays. Aimed at scientific image analysis rather than production asset prep. Distinguishing strength: ROI and mask analysis in JS; otherwise overlaps sharp and jimp.",
+  "use_when": [
+    "Mask or region analysis (ROI, morphology) in JS without native deps"
+  ],
+  "avoid_when": [
+    "Resize, convert, composite: sharp is faster and native",
+    "Pure-JS fallback with no native build: jimp",
+    "Detection and tracking: opencv-js"
+  ],
+  "pairs_with": [
+    "sharp",
+    "jimp",
+    "opencv-js"
+  ],
   "official_url": "https://github.com/image-js/image-js",
   "automation_route": "library-or-runtime",
   "capabilities": [
-    "image-processing"
+    "image-processing",
+    "computer-vision"
   ],
   "license": "MIT",
+  "install": {
+    "macos": "pnpm add image-js"
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -18,5 +36,18 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "1.7.1",
+    "last_release": "2026-09-30 (npm)",
+    "maintenance": "active",
+    "verdict": "drop",
+    "rationale": "Maintained (1.7.1 Sep 2026, Zakodium) but duplicates sharp (faster, native) and jimp (pure JS) for resize, crop and filters; its analysis tools (ROI, morphology) are not a VCR need. Choose sharp or jimp.",
+    "sources": [
+      "https://github.com/image-js/image-js",
+      "https://www.npmjs.com/package/image-js"
+    ]
+  },
   "source": "specifications/vcr-prd.md#appendix-a"
 }

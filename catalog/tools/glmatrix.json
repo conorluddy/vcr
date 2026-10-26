@@ -3,13 +3,33 @@
   "name": "glMatrix",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Vector/matrix supporting utilities",
+  "role": "Fast vec/mat/quat helpers for hand-written WebGL and WebGPU code",
+  "summary": "High-performance vector, matrix and quaternion library for JavaScript, using Float32Array and in-place operations. It has no rendering or timeline: it supplies projection, view and transform maths to raw WebGL or WebGPU code. Pure functions of their inputs, so safe in seek-driven frames.",
+  "use_when": [
+    "Raw WebGL or WebGPU scenes needing matrices without a framework",
+    "Over hand-rolled maths in custom shader pipelines",
+    "Quaternion slerp for camera paths in non-Three.js renderers"
+  ],
+  "avoid_when": [
+    "Three.js scenes: its own Matrix4 and Quaternion are built in",
+    "Lightweight WebGL: OGL and twgl ship their own maths",
+    "Animated values over time: GSAP, not matrices"
+  ],
+  "pairs_with": [
+    "webgl",
+    "webgpu",
+    "regl",
+    "twgl"
+  ],
   "official_url": "https://glmatrix.net/",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "math-utilities"
   ],
   "license": "MIT",
+  "install": {
+    "macos": "pnpm add gl-matrix"
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -18,5 +38,19 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "3.4.4",
+    "last_release": "2025-08-08 (npm); repo pushed 2026-07-13",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Maintained (3.4.4 Aug 2025, commits Jul 2026) and stable, but a supporting math library, not a scene tool. Three.js, OGL and twgl bundle equivalent vec/mat types, so it earns a place only for raw WebGL.",
+    "sources": [
+      "https://glmatrix.net/",
+      "https://www.npmjs.com/package/gl-matrix",
+      "https://github.com/toji/gl-matrix"
+    ]
+  },
   "source": "specifications/vcr-prd.md#appendix-a"
 }

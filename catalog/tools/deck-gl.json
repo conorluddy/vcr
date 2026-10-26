@@ -3,7 +3,24 @@
   "name": "deck.gl",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Geospatial/data visualisation scenes",
+  "role": "WebGL layers for large geospatial and point-cloud data; view state as props",
+  "summary": "WebGL2/WebGPU visualisation framework layering scatterplots, arcs, hexbins, trips and 3D tiles over maps or a plain canvas. Everything is declarative props, so animating means setting props or viewState from t and capturing the canvas. Distinguishing strength: GPU rendering of very large geospatial datasets with built-in map projections.",
+  "use_when": [
+    "Over D3 when data is geospatial or too large for SVG",
+    "Camera fly-throughs over maps by animating viewState from t",
+    "Over Three.js when you want ready-made data layers, not custom meshes"
+  ],
+  "avoid_when": [
+    "Small charts and diagrams: D3 is simpler and vector-friendly",
+    "Scientific volumes and meshes: vtk-js",
+    "Generic 3D scenes: Three.js or react-three-fiber"
+  ],
+  "pairs_with": [
+    "d3",
+    "luma-gl",
+    "playwright",
+    "three-js"
+  ],
   "official_url": "https://deck.gl/",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -11,6 +28,9 @@
     "data-visualisation"
   ],
   "license": "MIT",
+  "install": {
+    "macos": "pnpm add deck.gl"
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -19,5 +39,19 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "9.4.0",
+    "last_release": "2026-09-05 (npm); repo pushed 2026-10-26",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "Actively maintained (9.4.0 Sep 2026). Only catalogued tool for GPU layers over maps and million-point geospatial data; D3 is SVG/canvas and vtk-js is scientific. View state is a plain prop, so frames can be driven by t.",
+    "sources": [
+      "https://deck.gl/",
+      "https://www.npmjs.com/package/deck.gl",
+      "https://github.com/visgl/deck.gl"
+    ]
+  },
   "source": "specifications/vcr-prd.md#appendix-a"
 }

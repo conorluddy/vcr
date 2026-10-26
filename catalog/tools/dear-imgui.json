@@ -3,7 +3,20 @@
   "name": "Dear ImGui",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Native UI infrastructure; outside primary scope",
+  "role": "Native C++ immediate-mode debug UI; no agent-drivable route",
+  "summary": "Immediate-mode C++ GUI library for tool panels and debug overlays inside native apps (OpenGL, Metal, Vulkan backends). It is a compile-time dependency of a C++ host, not a tool: there is no CLI, scripting API or output. Relevant only when building a native renderer that needs live parameter sliders.",
+  "use_when": [
+    "Building a custom native C++ renderer that needs live parameter sliders"
+  ],
+  "avoid_when": [
+    "Browser scenes: Leva or Theatre.js expose parameters without C++",
+    "Any scripted render pipeline: no headless route, use Playwright capture",
+    "Native 3D work: Blender or Godot ship their own UI"
+  ],
+  "pairs_with": [
+    "godot",
+    "blender"
+  ],
   "official_url": "https://github.com/ocornut/imgui",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -18,5 +31,17 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "v1.93.0",
+    "last_release": "2026-10-14",
+    "maintenance": "active",
+    "verdict": "drop",
+    "rationale": "Actively maintained, but it is an immediate-mode native C++ GUI for tool panels with no scripting or CLI an agent can drive and no media output. Parameter control is better served by Leva or Theatre.js.",
+    "sources": [
+      "https://github.com/ocornut/imgui"
+    ]
+  },
   "source": "specifications/vcr-prd.md#appendix-a"
 }

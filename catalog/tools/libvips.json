@@ -3,7 +3,23 @@
   "name": "libvips",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Native image pipeline underlying Sharp",
+  "role": "Streaming image library with vips CLI; the engine under sharp",
+  "summary": "Demand-driven, multi-threaded image processing library with a vips command line and bindings for C, Python and others. Streams large images at low memory and is the engine under sharp. Distinguishing strength: speed and memory on big batches without a Node runtime.",
+  "use_when": [
+    "Over ImageMagick for very large images or fast batch resize at low memory",
+    "Shell or Python pipelines without a Node runtime",
+    "Tiling and pyramids (dzsave) for big stills"
+  ],
+  "avoid_when": [
+    "Node pipelines: sharp wraps libvips with a friendlier API",
+    "Broad effects and format coverage: imagemagick",
+    "Colour-managed conversions: opencolorio or openimageio-oiiotool"
+  ],
+  "pairs_with": [
+    "sharp",
+    "imagemagick",
+    "ffmpeg-ffprobe"
+  ],
   "official_url": "https://www.libvips.org/",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
@@ -22,5 +38,17 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "8.18.7 (Homebrew stable)",
+    "last_release": "unknown (release date not read)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Maintained (Homebrew stable 8.18.7). The vips CLI streams huge images at low memory, but sharp wraps the same library for Node and ImageMagick covers the broad CLI case. Keep as candidate for standalone CLI use.",
+    "sources": [
+      "https://www.libvips.org/"
+    ]
+  },
   "source": "specifications/vcr-prd.md#appendix-a"
 }
