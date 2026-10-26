@@ -3,7 +3,24 @@
   "name": "Hyperframes",
   "category": "A5. Video and capture",
   "tier": "catalogued",
-  "role": "HTML-to-video renderer with seekable timeline, Studio preview and component registry",
+  "role": "HTML-to-MP4 renderer seeking a paused timeline in headless Chrome; reference, not a VCR dependency",
+  "summary": "HeyGen's open-source framework that renders HTML compositions (data-attribute timing, tracks, sub-compositions) to deterministic MP4 by seeking each frame in headless Chrome. Supports GSAP, CSS, Lottie, Three.js, Anime.js and WAAPI. CLI: init, preview, render; Docker and AWS Lambda for scale. Needs Node 22+ and FFmpeg. Per ADR 0001 it is a reference for VCR's own engine, not a dependency.",
+  "use_when": [
+    "Need a finished browser-authored video today, outside VCR's own pipeline",
+    "Studying a working seek-and-capture timeline contract, tracks and registry as reference for VCR",
+    "Captioned or music-synced HTML video where its ~450-block registry saves hand-building"
+  ],
+  "avoid_when": [
+    "Native sources (Blender, Manim) or filtergraph compositing: FFmpeg, no HTML round trip",
+    "Inside VCR proper: ADR 0001 builds the compositor in-house; Playwright plus FFmpeg for capture",
+    "Alpha PNG layers for a later compositor: Playwright beginFrame capture, not an MP4 render"
+  ],
+  "pairs_with": [
+    "gsap",
+    "playwright",
+    "ffmpeg-ffprobe",
+    "remotion"
+  ],
   "official_url": "https://hyperframes.heygen.com/catalog",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
@@ -12,14 +29,29 @@
     "capture",
     "timeline-animation"
   ],
-  "license": "HeyGen terms; plan usage limits apply",
+  "license": "Apache-2.0; README states no per-render fees or commercial-use thresholds",
   "install": {
     "check_command": "npx hyperframes --version"
   },
   "notes": [
     "Moved from A9 to A5: it is a working HTML-to-video renderer, not a candidate.",
-    "Not a VCR dependency per ADR 0001 (in-house composition engine). Reference and inspiration only."
+    "Not a VCR dependency per ADR 0001 (in-house composition engine). Reference and inspiration only.",
+    "2026-10-26: earlier record said 'HeyGen terms; plan usage limits apply'; the repository README says Apache-2.0 with no render fees, while hosted HeyGen services may have plans. Not reconciled beyond the README.",
+    "2026-10-26: the install check uses npx, which downloads the package on first use."
   ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a5",
+    "version_seen": "0.8.203",
+    "last_release": "2026-10-26",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Apache-2.0 repo with release v0.8.203 published 2026-10-26 and a push the same day; very active, pre-1.0 so API churn is likely. Kept as reference per ADR 0001; reach for it as a standalone renderer when a browser-authored video is needed now.",
+    "sources": [
+      "https://hyperframes.heygen.com/catalog",
+      "https://github.com/heygen-com/hyperframes"
+    ]
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -27,6 +59,6 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
 }

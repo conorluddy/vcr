@@ -3,13 +3,53 @@
   "name": "CCapture.js",
   "category": "A5. Video and capture",
   "tier": "catalogued",
-  "role": "Fixed-framerate canvas capture; assess compatibility",
+  "role": "Fixed-framerate canvas capture by hooking browser time; 2.x rewrite on WebCodecs",
+  "summary": "Browser library that overrides timing functions (Date, requestAnimationFrame, optionally performance.now) so a canvas animation advances one fixed step per captured frame, then writes MP4/WebM via WebCodecs, GIF via gifenc, or PNG/JPG/WebP frames in a tar. 2.0.0 is a ground-up rewrite adding GPU motion blur. Distinguishing strength: retrofits deterministic capture onto code you cannot change to render on demand.",
+  "use_when": [
+    "Existing canvas animation driven by rAF or Date that you cannot refactor to seek",
+    "Motion blur by sub-frame sampling on a canvas or WebGL scene, in-browser",
+    "Over canvas-record when time-hooking an unmodified sketch beats refactoring it"
+  ],
+  "avoid_when": [
+    "Web Audio, CSS animations or WAAPI: not frame-stepped; Playwright with beginFrame covers them",
+    "Seekable timelines such as GSAP: Playwright seeks them exactly, no time hooking",
+    "Server-side or CI capture: Playwright frames into FFmpeg"
+  ],
+  "pairs_with": [
+    "canvas-2d",
+    "three-js",
+    "webcodecs",
+    "gifski",
+    "ffmpeg-ffprobe"
+  ],
   "official_url": "https://github.com/spite/ccapture.js/",
   "automation_route": "library-or-runtime",
   "capabilities": [
-    "capture"
+    "capture",
+    "video-encoding",
+    "image-sequence-processing"
   ],
-  "license": "MIT; unmaintained, verify",
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add ccapture.js"
+  },
+  "notes": [
+    "2026-10-26: PRD flagged this as unmaintained; that is outdated, 2.0.0 shipped 2026-07-27 as a rewrite. Single-maintainer project; the 1.x API was removed, so older tutorials do not apply.",
+    "2026-10-26: time hooking (hookDate) is global and breaks real date arithmetic during capture; not exercised."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a5",
+    "version_seen": "2.0.0",
+    "last_release": "2026-07-27",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "PRD called it unmaintained but v2.0.0, a WebCodecs rewrite, was published 2026-07-27 and the repo was pushed 2026-10-13. 1.x API removed. Time-hooking is the niche; Playwright is the validated route.",
+    "sources": [
+      "https://github.com/spite/ccapture.js/",
+      "https://www.npmjs.com/package/ccapture.js"
+    ]
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -17,6 +57,6 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
 }
