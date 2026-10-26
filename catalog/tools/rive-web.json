@@ -3,15 +3,49 @@
   "name": "Rive Web",
   "category": "A2. Animation and authored assets",
   "tier": "catalogued",
-  "role": "Authored asset playback/control; runtime is not general authoring API",
+  "role": "Plays Rive .riv interactive animations with state machines; authoring is in the Rive app",
+  "summary": "Web runtime for Rive files authored in the Rive editor, offered as canvas and WebGL builds over a WASM core. Plays named animations and state machines with inputs set from code, so interactive characters and UI can be driven programmatically. It is a playback runtime: assets cannot be authored through this API. Distinguishing strength: runtime state machines in a small binary format.",
+  "use_when": [
+    "A designer ships a .riv with state machines or inputs to drive from data",
+    "Over Lottie when the asset needs interactive state, not a linear loop",
+    "Interactive mascots and animated UI controls"
+  ],
+  "avoid_when": [
+    "Source is After Effects: Lottie Web",
+    "Linear exported loops with a tiny player: dotLottie",
+    "Generating animation from code: GSAP, Anime.js or Motion Canvas"
+  ],
+  "pairs_with": [
+    "lottie-web",
+    "playwright",
+    "gsap"
+  ],
   "official_url": "https://rive.app/docs/runtimes/web/web-js",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "asset-playback"
   ],
-  "license": "MIT runtime; authoring in Rive app",
+  "license": "MIT runtime (@rive-app/canvas); authoring in the proprietary Rive app, free and paid plans",
   "install": {
-    "macos": "pnpm add @rive-app/canvas"
+    "macos": "pnpm add @rive-app/canvas",
+    "check_command": "pnpm list @rive-app/canvas --depth 0"
+  },
+  "notes": [
+    "2026-10-26: frame-exact seeking for capture not verified; the runtime is clocked by requestAnimationFrame."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a2",
+    "version_seen": "2.47.1",
+    "last_release": "2026-10-24",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Active: 2.47.1 released 2026-10-24, MIT runtime. Only route for .riv assets; playback-only, authoring needs the Rive app.",
+    "sources": [
+      "https://rive.app/docs/runtimes/web/web-js",
+      "https://github.com/rive-app/rive-wasm/releases",
+      "https://www.npmjs.com/package/@rive-app/canvas"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

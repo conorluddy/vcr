@@ -3,16 +3,51 @@
   "name": "React Spring",
   "category": "A2. Animation and authored assets",
   "tier": "catalogued",
-  "role": "Spring animation; evaluate offline sampling",
+  "role": "Physics-based spring animation for React; velocity-aware, not time-seekable",
+  "summary": "Spring-physics animation library for React (and other targets) built on useSpring, useTransition and useTrail. Values settle by simulated physics rather than fixed durations, giving natural interruption and velocity carry-over. Because springs are stateful and clocked by requestAnimationFrame, frame-exact seeking needs the frameLoop override or offline sampling, which is unproven here.",
+  "use_when": [
+    "React UI where interruptible, velocity-carrying springs are the point",
+    "Over Motion when you want hook-first physics and transitions on lists",
+    "Sampling spring curves offline to bake into keyframes"
+  ],
+  "avoid_when": [
+    "Exact-time seek for capture: GSAP timelines",
+    "Sequenced multi-step choreography: GSAP or Motion",
+    "Non-React DOM or SVG animation: Anime.js or GSAP"
+  ],
+  "pairs_with": [
+    "motion",
+    "react-three-fiber",
+    "gsap"
+  ],
   "official_url": "https://www.react-spring.dev/",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "tweening",
+    "physics-simulation",
     "react-integration"
   ],
   "license": "MIT",
   "install": {
-    "macos": "pnpm add @react-spring/web"
+    "macos": "pnpm add @react-spring/web",
+    "check_command": "pnpm list @react-spring/web --depth 0"
+  },
+  "notes": [
+    "2026-10-26: offline sampling and a manual frame loop are unverified; the PRD item to evaluate it remains open."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a2",
+    "version_seen": "10.1.2",
+    "last_release": "2026-06-24",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Active: v10.1.2 released 2026-06-24, MIT. Well maintained, but spring clock is not externally seekable; keep as catalogued React option behind Motion and GSAP.",
+    "sources": [
+      "https://www.react-spring.dev/",
+      "https://github.com/pmndrs/react-spring/releases",
+      "https://www.npmjs.com/package/@react-spring/web"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

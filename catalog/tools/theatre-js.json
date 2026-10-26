@@ -3,16 +3,50 @@
   "name": "Theatre.js",
   "category": "A2. Animation and authored assets",
   "tier": "catalogued",
-  "role": "Visual sequence/curve editing linked to code",
+  "role": "Visual keyframe editor (Studio) with a code runtime; sequence position is settable",
+  "summary": "Animation toolkit with a browser Studio for editing sheets, objects and keyframe curves, and a core runtime that plays the resulting sequence. Sequence position can be set from code, so a harness can scrub it, and the project state is a JSON file you commit. Works with Three.js and React via adapters. Strength: designer-friendly curve editing tied to code values.",
+  "use_when": [
+    "Hand-tuned camera or object curves in Three.js scenes",
+    "Over GSAP when someone must edit curves in a visual timeline",
+    "Exporting committed keyframe JSON for a reproducible render"
+  ],
+  "avoid_when": [
+    "Purely scripted DOM motion: GSAP",
+    "Fast-changing dependency choice: last release is May 2024",
+    "Light scenes where the Studio UI is overhead: Anime.js"
+  ],
+  "pairs_with": [
+    "three-js",
+    "react-three-fiber",
+    "gsap"
+  ],
   "official_url": "https://www.theatrejs.com/docs/latest",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "timeline-animation",
     "parameter-ui"
   ],
-  "license": "Apache-2.0",
+  "license": "Apache-2.0 core; Studio licence differs (believed AGPL-3.0; recheck)",
   "install": {
-    "macos": "pnpm add @theatre/core"
+    "macos": "pnpm add @theatre/core",
+    "check_command": "pnpm list @theatre/core --depth 0"
+  },
+  "notes": [
+    "2026-10-26: Studio licence not confirmed from a source read; recheck @theatre/studio before shipping. Last release 0.7.2 is 2024-05-19."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a2",
+    "version_seen": "0.7.2",
+    "last_release": "2024-05-19",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "Last release 0.7.2 on 2024-05-19 (about 29 months), last push 2024-08-14; pre-1.0 but stable. No other catalogued tool offers a visual curve editor.",
+    "sources": [
+      "https://www.theatrejs.com/docs/latest",
+      "https://github.com/theatre-js/theatre",
+      "https://www.npmjs.com/package/@theatre/core"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
