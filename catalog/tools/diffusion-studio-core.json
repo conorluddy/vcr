@@ -1,0 +1,26 @@
+{
+  "id": "diffusion-studio-core",
+  "name": "Diffusion Studio Core",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "Browser compositing engine",
+  "official_url": "https://github.com/diffusionstudio/core",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "video-composition",
+    "video-encoding"
+  ],
+  "license": "MPL-2.0 (recheck)",
+  "install": {
+    "macos": "pnpm add @diffusionstudio/core"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

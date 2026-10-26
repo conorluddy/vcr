@@ -1,0 +1,28 @@
+{
+  "id": "synfig",
+  "name": "Synfig",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Native animation project + CLI render",
+  "official_url": "https://wiki.synfig.org/Render_options",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "native-authoring",
+    "2d-rendering",
+    "timeline-animation"
+  ],
+  "license": "GPL-3.0",
+  "install": {
+    "macos": "brew install --cask synfigstudio",
+    "check_command": "synfig --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

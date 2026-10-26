@@ -1,0 +1,26 @@
+{
+  "id": "drei",
+  "name": "Drei",
+  "category": "A3. 3D, shaders and effects",
+  "tier": "catalogued",
+  "role": "R3F helper components",
+  "official_url": "https://github.com/pmndrs/drei",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "3d-rendering",
+    "react-integration"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add @react-three/drei"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

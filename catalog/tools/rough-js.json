@@ -1,0 +1,26 @@
+{
+  "id": "rough-js",
+  "name": "Rough.js",
+  "category": "A1. Creative coding and 2D",
+  "tier": "catalogued",
+  "role": "Hand-drawn Canvas/SVG primitives",
+  "official_url": "https://roughjs.com/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "2d-rendering",
+    "vector-authoring"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add roughjs"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "webgpu",
+  "name": "WebGPU",
+  "category": "Native browser platform APIs",
+  "tier": "catalogued",
+  "role": "Browser GPU API; target-browser support must be checked",
+  "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API",
+  "automation_route": "browser-platform-api",
+  "capabilities": [
+    "3d-rendering",
+    "shaders"
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "not-applicable",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

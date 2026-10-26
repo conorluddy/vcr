@@ -1,0 +1,22 @@
+{
+  "id": "glslify",
+  "name": "glslify",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "GLSL module tooling",
+  "official_url": "https://github.com/glslify/glslify",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "shaders"
+  ],
+  "license": "MIT",
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "opencolorio",
+  "name": "OpenColorIO",
+  "category": "A6. Image processing and colour",
+  "tier": "catalogued",
+  "role": "Colour-management integration",
+  "official_url": "https://github.com/AcademySoftwareFoundation/OpenColorIO",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "colour-management"
+  ],
+  "license": "BSD-3-Clause",
+  "install": {
+    "macos": "brew install opencolorio",
+    "check_command": "ociocheck -h"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

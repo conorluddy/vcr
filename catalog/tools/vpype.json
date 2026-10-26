@@ -1,0 +1,27 @@
+{
+  "id": "vpype",
+  "name": "vpype",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "CLI vector pipelines",
+  "official_url": "https://vpype.readthedocs.io/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "plotter-workflow",
+    "vector-authoring"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "uv tool install vpype",
+    "check_command": "vpype --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

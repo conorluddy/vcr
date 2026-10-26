@@ -1,0 +1,45 @@
+{
+  "id": "blender",
+  "name": "Blender",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "core",
+  "role": "Background CLI + Python; 3D, animation and compositing",
+  "official_url": "https://docs.blender.org/manual/en/latest/advanced/command_line/render.html",
+  "documentation_urls": [
+    "https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html"
+  ],
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "3d-rendering",
+    "native-authoring",
+    "compositing",
+    "physics-simulation",
+    "model-loading"
+  ],
+  "license": "GPL-3.0",
+  "install": {
+    "macos": "brew install --cask blender",
+    "check_command": "/Applications/Blender.app/Contents/MacOS/Blender --version"
+  },
+  "notes": [
+    "Not on PATH on macOS; use the app bundle executable. First native application spike planned in M0."
+  ],
+  "documentation_status": "skill-verified",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.4.0",
+        "command": "examples/blender-smoke/run.sh",
+        "result": "Workbench background render of one 320x240 RGBA frame from the app bundle",
+        "example": "examples/blender-smoke"
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

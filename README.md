@@ -4,15 +4,32 @@ VCR is a local-first, agent-friendly workspace for creating and reviewing motion
 
 ## Current status
 
-- 113 resources from PRD Appendix A are listed in [`catalog/tools.json`](catalog/tools.json).
-- Registry entries are discovery metadata. Installation is unknown, validation is not performed, and no shared adapters are implemented yet.
+- 119 resources from PRD Appendix A live as one file each under `catalog/tools/`, with a `tier` (`core`, `catalogued`, `candidate`), per-tool capabilities, licence as last understood and an install recipe where one exists. `catalog/tools.json` is a generated index; run `pnpm vcr catalog build` after editing a record.
+- Registry entries are discovery metadata. Six records carry validation evidence from the examples; installation facts live in `environment/`; no shared adapters are implemented yet.
 - The project and tool JSON Schemas are in `catalog/schemas/`.
-- `examples/` and `projects/templates/` are starter source files, not validated render fixtures.
+- `examples/` holds four validated fixtures on the primary Mac: SVG via resvg and FFmpeg, FFmpeg sequence-plus-audio assembly, a Blender background render, and deterministic browser capture of a GSAP timeline (`specifications/spikes/browser-capture.md`). Each has a `run.sh` that diffs against `expected/`.
+- `skills/toolkits/` has operating guides for FFmpeg, ImageMagick, resvg and Blender; `.claude/skills` links there so agents load them on demand.
+- `packages/timeline/` holds the PRD §9 time types only; the resolver is Layer 2.
 - The common timeline, compositor, renderer, and CLI described as later layers do not exist yet.
+
+## Commands
+
+Requires Node 22 and pnpm. `pnpm install`, then:
+
+```text
+pnpm validate                      # schemas, capability vocabulary, unknown-field diagnostics
+pnpm vcr tools list --tier core    # filter by --capability, --tier, --category; add --json
+pnpm vcr tools info ffmpeg-ffprobe
+pnpm doctor                        # probes local tools, writes environment/<hostname>.json
+pnpm vcr catalog build [--check]   # regenerate catalog/tools.json from catalog/tools/*.json
+pnpm test && pnpm typecheck
+```
+
+Every command logs one JSON line to stderr with `command`, `duration_ms` and `exit_code`. Exit codes: 0 ok, 1 failed, 2 usage.
 
 ## Find a tool
 
-Open `catalog/tools.json` and filter by `category`, `role`, or `official_url`. Check the resource's official documentation before installing it. The catalogue records intent from the PRD and does not attest to current versions, licenses, platform support, or machine installation.
+Run `pnpm vcr tools list --tier core` for the operational targets, or filter by `--capability` (see `catalog/capabilities/vocabulary.json`) and `--category`. Read a single record under `catalog/tools/<id>.json` rather than the whole index. Check the resource's official documentation before installing it. The catalogue records intent from the PRD and does not attest to current versions, licenses, platform support, or machine installation.
 
 ## Start a project
 
@@ -25,6 +42,8 @@ Media is ignored by directory, not by extension, so brand assets and fixtures ca
 ## Repository map
 
 - `catalog/` — tool registry, capability vocabulary, and schemas.
+- `environment/` — per-machine tool availability written by `vcr doctor`. Installation facts live here, never in the catalogue.
+- `packages/cli/` — the `vcr` command.
 - `skills/` — progressively loaded toolkit and production workflow guides.
 - `examples/` — minimal native examples with status and reproduction notes.
 - `projects/` — in-repository productions and reusable project templates.

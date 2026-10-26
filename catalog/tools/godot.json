@@ -1,0 +1,28 @@
+{
+  "id": "godot",
+  "name": "Godot",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Scene scripts + movie CLI; visual rendering needs suitable backend",
+  "official_url": "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "game-engine",
+    "3d-rendering",
+    "native-authoring"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "brew install --cask godot",
+    "check_command": "godot --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

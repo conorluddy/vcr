@@ -1,0 +1,26 @@
+{
+  "id": "potrace",
+  "name": "Potrace",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "catalogued",
+  "role": "Bitmap tracing to vectors",
+  "official_url": "https://potrace.sourceforge.net/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "vector-tracing"
+  ],
+  "license": "GPL-2.0",
+  "install": {
+    "macos": "brew install potrace",
+    "check_command": "potrace --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

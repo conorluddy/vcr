@@ -1,0 +1,27 @@
+{
+  "id": "editly",
+  "name": "Editly",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "Declarative Node/CLI editing",
+  "official_url": "https://github.com/mifi/editly",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "video-composition",
+    "video-encoding"
+  ],
+  "license": "MIT; maintenance uncertain",
+  "install": {
+    "macos": "pnpm add -g editly",
+    "check_command": "editly --help"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

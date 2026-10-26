@@ -1,0 +1,28 @@
+{
+  "id": "remotion",
+  "name": "Remotion",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "React video composition/export; check applicable license",
+  "official_url": "https://www.remotion.dev/docs",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "video-composition",
+    "video-encoding",
+    "react-integration",
+    "capture"
+  ],
+  "license": "Remotion licence: free for individuals and companies of three or fewer; company licence otherwise",
+  "install": {
+    "macos": "pnpm add remotion @remotion/cli"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "hyperframes",
+  "name": "Hyperframes",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "HTML-to-video renderer with seekable timeline, Studio preview and component registry",
+  "official_url": "https://hyperframes.heygen.com/catalog",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "video-composition",
+    "video-encoding",
+    "capture",
+    "timeline-animation"
+  ],
+  "license": "HeyGen terms; plan usage limits apply",
+  "install": {
+    "check_command": "npx hyperframes --version"
+  },
+  "notes": [
+    "Moved from A9 to A5: it is a working HTML-to-video renderer, not a candidate.",
+    "Not a VCR dependency per ADR 0001 (in-house composition engine). Reference and inspiration only."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

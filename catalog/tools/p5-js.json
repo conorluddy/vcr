@@ -1,0 +1,27 @@
+{
+  "id": "p5-js",
+  "name": "p5.js",
+  "category": "A1. Creative coding and 2D",
+  "tier": "core",
+  "role": "Generative visuals; provide explicit time/seed conventions",
+  "official_url": "https://p5js.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "generative-2d",
+    "2d-rendering",
+    "3d-rendering"
+  ],
+  "license": "LGPL-2.1",
+  "install": {
+    "macos": "pnpm add p5"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

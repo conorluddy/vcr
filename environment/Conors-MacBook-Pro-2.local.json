@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "hostname": "Conors-MacBook-Pro-2.local",
+  "os": {
+    "platform": "darwin",
+    "release": "25.6.0",
+    "arch": "arm64"
+  },
+  "checked_at": "2026-10-26T12:29:05.598Z",
+  "tools": [
+    {
+      "tool_id": "ffmpeg-ffprobe",
+      "status": "installed",
+      "executable": "/opt/homebrew/bin/ffmpeg",
+      "version": "8.0.1"
+    },
+    {
+      "tool_id": "imagemagick",
+      "status": "installed",
+      "executable": "/opt/homebrew/bin/magick",
+      "version": "7.1.2-15"
+    },
+    {
+      "tool_id": "resvg",
+      "status": "installed",
+      "executable": "/opt/homebrew/bin/resvg",
+      "version": "0.47.0"
+    },
+    {
+      "tool_id": "svgo",
+      "status": "installed",
+      "executable": "/Users/conor/.nvm/versions/node/v22.19.0/bin/svgo",
+      "version": "4.0.1"
+    },
+    {
+      "tool_id": "gifski",
+      "status": "missing",
+      "executable": null,
+      "version": null
+    },
+    {
+      "tool_id": "inkscape",
+      "status": "missing",
+      "executable": null,
+      "version": null
+    },
+    {
+      "tool_id": "graphviz",
+      "status": "missing",
+      "executable": null,
+      "version": null
+    },
+    {
+      "tool_id": "manim-community",
+      "status": "missing",
+      "executable": null,
+      "version": null
+    },
+    {
+      "tool_id": "blender",
+      "status": "installed",
+      "executable": "/Applications/Blender.app/Contents/MacOS/Blender",
+      "version": "4.4.0"
+    },
+    {
+      "tool_id": "node",
+      "status": "installed",
+      "executable": "/Users/conor/.nvm/versions/node/v22.19.0/bin/node",
+      "version": "22.19.0"
+    },
+    {
+      "tool_id": "python",
+      "status": "installed",
+      "executable": "/Users/conor/.pyenv/shims/python3",
+      "version": "3.12.2"
+    }
+  ]
+}

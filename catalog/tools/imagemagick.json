@@ -1,0 +1,37 @@
+{
+  "id": "imagemagick",
+  "name": "ImageMagick",
+  "category": "A6. Image processing and colour",
+  "tier": "catalogued",
+  "role": "CLI image operations, montage and comparison",
+  "official_url": "https://imagemagick.org/script/command-line-tools.php/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "image-processing",
+    "media-inspection",
+    "image-sequence-processing"
+  ],
+  "license": "ImageMagick licence (Apache-2.0 compatible)",
+  "install": {
+    "macos": "brew install imagemagick",
+    "check_command": "magick --version"
+  },
+  "documentation_status": "skill-verified",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "7.1.2-15",
+        "command": "examples/ffmpeg-assembly/run.sh",
+        "result": "48 synthetic frames drawn; alpha statistics and identify used by browser-capture and blender-smoke",
+        "example": "examples/ffmpeg-assembly"
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

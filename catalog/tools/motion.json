@@ -1,0 +1,27 @@
+{
+  "id": "motion",
+  "name": "Motion",
+  "category": "A2. Animation and authored assets",
+  "tier": "catalogued",
+  "role": "React/JS motion and layout animation",
+  "official_url": "https://motion.dev/docs",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "tweening",
+    "react-integration",
+    "svg-animation"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add motion"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

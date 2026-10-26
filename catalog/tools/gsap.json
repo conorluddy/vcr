@@ -1,0 +1,36 @@
+{
+  "id": "gsap",
+  "name": "GSAP",
+  "category": "A2. Animation and authored assets",
+  "tier": "core",
+  "role": "Timelines and animation; external-clock integration",
+  "official_url": "https://gsap.com/docs/v3/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "tweening",
+    "timeline-animation",
+    "svg-animation"
+  ],
+  "license": "GSAP standard licence (free including plugins since 3.13; recheck)",
+  "install": {
+    "macos": "pnpm add gsap"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.x via pnpm",
+        "command": "examples/browser-capture/run.sh",
+        "result": "90 frames seeked and captured with alpha; shuffled order matches sequential; see specifications/spikes/browser-capture.md",
+        "example": "examples/browser-capture"
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

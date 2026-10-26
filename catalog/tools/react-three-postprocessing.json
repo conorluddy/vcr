@@ -1,0 +1,23 @@
+{
+  "id": "react-three-postprocessing",
+  "name": "react-three/postprocessing",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "React wrapper for effects",
+  "official_url": "https://github.com/pmndrs/react-postprocessing",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "effects",
+    "react-integration"
+  ],
+  "license": "MIT",
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "pyscenedetect",
+  "name": "PySceneDetect",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "Shot detection and splitting",
+  "official_url": "https://www.scenedetect.com/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "shot-detection",
+    "media-inspection"
+  ],
+  "license": "BSD-3-Clause",
+  "install": {
+    "macos": "uv tool install scenedetect[opencv]",
+    "check_command": "scenedetect version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

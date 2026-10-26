@@ -1,0 +1,35 @@
+{
+  "id": "resvg",
+  "name": "resvg",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "catalogued",
+  "role": "Static SVG rasterisation",
+  "official_url": "https://github.com/linebender/resvg",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "svg-rasterisation"
+  ],
+  "license": "MPL-2.0",
+  "install": {
+    "macos": "brew install resvg",
+    "check_command": "resvg --version"
+  },
+  "documentation_status": "skill-verified",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.47.0",
+        "command": "examples/native-svg/run.sh",
+        "result": "PNG hash and ffprobe metadata match expected/",
+        "example": "examples/native-svg"
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}
