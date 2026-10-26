@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "id": "replace-with-project-id",
+  "title": "Replace with product or series name",
+  "description": "Project description and production constraints.",
+  "reuse_scope": "private",
+  "dependency_policy": "unpinned",
+  "brand": "brand/brand.json",
+  "assets_manifest": "assets/manifest.json",
+  "videos": ["videos/example-video/video.json"],
+  "output_directory": "output",
+  "cache_directory": ".cache"
+}

@@ -1,0 +1,2547 @@
+{
+  "schema_version": "1.0.0",
+  "resources": [
+    {
+      "id": "canvas-sketch",
+      "name": "canvas-sketch",
+      "category": "A1. Creative coding and 2D",
+      "role": "Generative artwork workflow",
+      "official_url": "https://github.com/mattdesl/canvas-sketch",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering"
+      ]
+    },
+    {
+      "id": "easeljs",
+      "name": "EaselJS",
+      "category": "A1. Creative coding and 2D",
+      "role": "Canvas display list; evaluate compatibility before support",
+      "official_url": "https://createjs.com/easeljs",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering"
+      ]
+    },
+    {
+      "id": "fabric-js",
+      "name": "Fabric.js",
+      "category": "A1. Creative coding and 2D",
+      "role": "Editable canvas objects and SVG interchange",
+      "official_url": "https://fabricjs.com/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering"
+      ]
+    },
+    {
+      "id": "konva",
+      "name": "Konva",
+      "category": "A1. Creative coding and 2D",
+      "role": "Interactive Canvas scene graph; possible editor foundation",
+      "official_url": "https://konvajs.org/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering"
+      ]
+    },
+    {
+      "id": "p5-js",
+      "name": "p5.js",
+      "category": "A1. Creative coding and 2D",
+      "role": "Generative visuals; provide explicit time/seed conventions",
+      "official_url": "https://p5js.org/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering"
+      ]
+    },
+    {
+      "id": "paper-js",
+      "name": "Paper.js",
+      "category": "A1. Creative coding and 2D",
+      "role": "Vector path geometry and Bézier operations",
+      "official_url": "https://paperjs.org/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering"
+      ]
+    },
+    {
+      "id": "pixijs",
+      "name": "PixiJS",
+      "category": "A1. Creative coding and 2D",
+      "role": "GPU 2D rendering, sprites and effects",
+      "official_url": "https://pixijs.com/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering"
+      ]
+    },
+    {
+      "id": "pts",
+      "name": "Pts",
+      "category": "A1. Creative coding and 2D",
+      "role": "Geometry-centred creative coding",
+      "official_url": "https://ptsjs.org/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering"
+      ]
+    },
+    {
+      "id": "rough-js",
+      "name": "Rough.js",
+      "category": "A1. Creative coding and 2D",
+      "role": "Hand-drawn Canvas/SVG primitives",
+      "official_url": "https://roughjs.com/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering"
+      ]
+    },
+    {
+      "id": "ssam",
+      "name": "Ssam",
+      "category": "A1. Creative coding and 2D",
+      "role": "Sketch loop, snapshots and export",
+      "official_url": "https://github.com/cdaein/ssam",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering"
+      ]
+    },
+    {
+      "id": "two-js",
+      "name": "Two.js",
+      "category": "A1. Creative coding and 2D",
+      "role": "Flat geometry across SVG/Canvas/WebGL",
+      "official_url": "https://two.js.org/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering"
+      ]
+    },
+    {
+      "id": "anime-js",
+      "name": "Anime.js",
+      "category": "A2. Animation and authored assets",
+      "role": "DOM/SVG/object animation; verify installed major API",
+      "official_url": "https://animejs.com/documentation",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "svg-animation",
+        "asset-playback"
+      ]
+    },
+    {
+      "id": "gsap",
+      "name": "GSAP",
+      "category": "A2. Animation and authored assets",
+      "role": "Timelines and animation; external-clock integration",
+      "official_url": "https://gsap.com/docs/v3/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "svg-animation",
+        "asset-playback"
+      ]
+    },
+    {
+      "id": "lottie-web",
+      "name": "Lottie Web",
+      "category": "A2. Animation and authored assets",
+      "role": "Lottie playback; validate generated/edited JSON",
+      "official_url": "https://github.com/airbnb/lottie-web",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "svg-animation",
+        "asset-playback"
+      ]
+    },
+    {
+      "id": "mo-js",
+      "name": "mo.js",
+      "category": "A2. Animation and authored assets",
+      "role": "Bursts, shapes and graphic effects",
+      "official_url": "https://mojs.github.io/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "svg-animation",
+        "asset-playback"
+      ]
+    },
+    {
+      "id": "motion",
+      "name": "Motion",
+      "category": "A2. Animation and authored assets",
+      "role": "React/JS motion and layout animation",
+      "official_url": "https://motion.dev/docs",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "svg-animation",
+        "asset-playback"
+      ]
+    },
+    {
+      "id": "motion-canvas",
+      "name": "Motion Canvas",
+      "category": "A2. Animation and authored assets",
+      "role": "TS informative animation and narration workflows",
+      "official_url": "https://motioncanvas.io/docs/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "svg-animation",
+        "asset-playback"
+      ]
+    },
+    {
+      "id": "react-spring",
+      "name": "React Spring",
+      "category": "A2. Animation and authored assets",
+      "role": "Spring animation; evaluate offline sampling",
+      "official_url": "https://www.react-spring.dev/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "svg-animation",
+        "asset-playback"
+      ]
+    },
+    {
+      "id": "rive-web",
+      "name": "Rive Web",
+      "category": "A2. Animation and authored assets",
+      "role": "Authored asset playback/control; runtime is not general authoring API",
+      "official_url": "https://rive.app/docs/runtimes/web/web-js",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "svg-animation",
+        "asset-playback"
+      ]
+    },
+    {
+      "id": "theatre-js",
+      "name": "Theatre.js",
+      "category": "A2. Animation and authored assets",
+      "role": "Visual sequence/curve editing linked to code",
+      "official_url": "https://www.theatrejs.com/docs/latest",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "svg-animation",
+        "asset-playback"
+      ]
+    },
+    {
+      "id": "tween-js",
+      "name": "tween.js",
+      "category": "A2. Animation and authored assets",
+      "role": "Numeric property interpolation",
+      "official_url": "https://tweenjs.github.io/tween.js/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "svg-animation",
+        "asset-playback"
+      ]
+    },
+    {
+      "id": "babylon-js",
+      "name": "Babylon.js",
+      "category": "A3. 3D, shaders and effects",
+      "role": "3D engine and authoring ecosystem",
+      "official_url": "https://www.babylonjs.com/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects"
+      ]
+    },
+    {
+      "id": "drei",
+      "name": "Drei",
+      "category": "A3. 3D, shaders and effects",
+      "role": "R3F helper components",
+      "official_url": "https://github.com/pmndrs/drei",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects"
+      ]
+    },
+    {
+      "id": "gl-react",
+      "name": "gl-react",
+      "category": "A3. 3D, shaders and effects",
+      "role": "Composable React/WebGL shaders",
+      "official_url": "https://github.com/gre/gl-react",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects"
+      ]
+    },
+    {
+      "id": "ogl",
+      "name": "OGL",
+      "category": "A3. 3D, shaders and effects",
+      "role": "Minimal WebGL layer",
+      "official_url": "https://github.com/oframe/ogl",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects"
+      ]
+    },
+    {
+      "id": "pixijs-filters",
+      "name": "PixiJS Filters",
+      "category": "A3. 3D, shaders and effects",
+      "role": "2D display effects",
+      "official_url": "https://github.com/pixijs/filters",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects"
+      ]
+    },
+    {
+      "id": "playcanvas-engine",
+      "name": "PlayCanvas Engine",
+      "category": "A3. 3D, shaders and effects",
+      "role": "Web 3D engine; use engine independently where suitable",
+      "official_url": "https://playcanvas.com/products/engine",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects"
+      ]
+    },
+    {
+      "id": "postprocessing",
+      "name": "postprocessing",
+      "category": "A3. 3D, shaders and effects",
+      "role": "Three.js effects pipeline",
+      "official_url": "https://github.com/pmndrs/postprocessing",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects"
+      ]
+    },
+    {
+      "id": "react-three-fiber",
+      "name": "React Three Fiber",
+      "category": "A3. 3D, shaders and effects",
+      "role": "Declarative Three.js; match React/package majors",
+      "official_url": "https://r3f.docs.pmnd.rs/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects"
+      ]
+    },
+    {
+      "id": "regl",
+      "name": "regl",
+      "category": "A3. 3D, shaders and effects",
+      "role": "Functional WebGL abstraction",
+      "official_url": "https://github.com/regl-project/regl",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects"
+      ]
+    },
+    {
+      "id": "three-js",
+      "name": "Three.js",
+      "category": "A3. 3D, shaders and effects",
+      "role": "Browser 3D scene rendering",
+      "official_url": "https://threejs.org/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects"
+      ]
+    },
+    {
+      "id": "three-js-shading-language",
+      "name": "Three.js Shading Language",
+      "category": "A3. 3D, shaders and effects",
+      "role": "JS shader construction; pin compatible Three version",
+      "official_url": "https://github.com/mrdoob/three.js/wiki/Three.js-Shading-Language",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects"
+      ]
+    },
+    {
+      "id": "three-meshline",
+      "name": "THREE.MeshLine",
+      "category": "A3. 3D, shaders and effects",
+      "role": "Thick stylised lines; evaluate maintained compatible implementation",
+      "official_url": "https://github.com/spite/THREE.MeshLine",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects"
+      ]
+    },
+    {
+      "id": "twgl",
+      "name": "TWGL",
+      "category": "A3. 3D, shaders and effects",
+      "role": "WebGL boilerplate helpers",
+      "official_url": "https://twgljs.org/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects"
+      ]
+    },
+    {
+      "id": "d3",
+      "name": "D3",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "role": "Data-driven geometry, layout and animation",
+      "official_url": "https://d3js.org/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "vector-authoring",
+        "typography",
+        "diagram-generation"
+      ]
+    },
+    {
+      "id": "graphviz",
+      "name": "Graphviz",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "role": "CLI graph layout/rendering",
+      "official_url": "https://www.graphviz.org/doc/info/command.html",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "vector-authoring",
+        "typography",
+        "diagram-generation"
+      ]
+    },
+    {
+      "id": "mermaid-cli",
+      "name": "Mermaid CLI",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "role": "Text-defined diagrams to assets",
+      "official_url": "https://github.com/mermaid-js/mermaid-cli",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "vector-authoring",
+        "typography",
+        "diagram-generation"
+      ]
+    },
+    {
+      "id": "msdfgen",
+      "name": "msdfgen",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "role": "Signed distance-field generation",
+      "official_url": "https://github.com/Chlumsky/msdfgen",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "vector-authoring",
+        "typography",
+        "diagram-generation"
+      ]
+    },
+    {
+      "id": "opentype-js",
+      "name": "opentype.js",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "role": "Font outlines and glyph manipulation",
+      "official_url": "https://opentype.js.org/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "vector-authoring",
+        "typography",
+        "diagram-generation"
+      ]
+    },
+    {
+      "id": "potrace",
+      "name": "Potrace",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "role": "Bitmap tracing to vectors",
+      "official_url": "https://potrace.sourceforge.net/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "vector-authoring",
+        "typography",
+        "diagram-generation"
+      ]
+    },
+    {
+      "id": "resvg",
+      "name": "resvg",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "role": "Static SVG rasterisation",
+      "official_url": "https://github.com/linebender/resvg",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "vector-authoring",
+        "typography",
+        "diagram-generation"
+      ]
+    },
+    {
+      "id": "satori",
+      "name": "Satori",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "role": "HTML/CSS-like layout to SVG; not a full browser",
+      "official_url": "https://github.com/vercel/satori",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "vector-authoring",
+        "typography",
+        "diagram-generation"
+      ]
+    },
+    {
+      "id": "svg-js",
+      "name": "SVG.js",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "role": "SVG construction/manipulation",
+      "official_url": "https://svgjs.dev/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "vector-authoring",
+        "typography",
+        "diagram-generation"
+      ]
+    },
+    {
+      "id": "svgo",
+      "name": "SVGO",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "role": "SVG optimisation; preserve IDs needed by animation",
+      "official_url": "https://github.com/svg/svgo",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "vector-authoring",
+        "typography",
+        "diagram-generation"
+      ]
+    },
+    {
+      "id": "canvas-record",
+      "name": "canvas-record",
+      "category": "A5. Video and capture",
+      "role": "Canvas recording and sequence export",
+      "official_url": "https://github.com/dmnsgn/canvas-record",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "media-inspection",
+        "capture"
+      ]
+    },
+    {
+      "id": "ccapture-js",
+      "name": "CCapture.js",
+      "category": "A5. Video and capture",
+      "role": "Fixed-framerate canvas capture; assess compatibility",
+      "official_url": "https://github.com/spite/ccapture.js/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "media-inspection",
+        "capture"
+      ]
+    },
+    {
+      "id": "diffusion-studio-core",
+      "name": "Diffusion Studio Core",
+      "category": "A5. Video and capture",
+      "role": "Browser compositing engine",
+      "official_url": "https://github.com/diffusionstudio/core",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "media-inspection",
+        "capture"
+      ]
+    },
+    {
+      "id": "editly",
+      "name": "Editly",
+      "category": "A5. Video and capture",
+      "role": "Declarative Node/CLI editing",
+      "official_url": "https://github.com/mifi/editly",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "media-inspection",
+        "capture"
+      ]
+    },
+    {
+      "id": "ffmpeg-ffprobe",
+      "name": "FFmpeg / ffprobe",
+      "category": "A5. Video and capture",
+      "role": "Native encoding, assembly, filters and media inspection",
+      "official_url": "https://ffmpeg.org/documentation.html",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "media-inspection",
+        "capture"
+      ]
+    },
+    {
+      "id": "ffmpeg-filters",
+      "name": "FFmpeg filters",
+      "category": "A5. Video and capture",
+      "role": "Detailed compositing/audio/filter reference",
+      "official_url": "https://ffmpeg.org/ffmpeg-filters.html",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "media-inspection",
+        "capture"
+      ]
+    },
+    {
+      "id": "ffmpeg-wasm",
+      "name": "ffmpeg.wasm",
+      "category": "A5. Video and capture",
+      "role": "Browser FFmpeg; assess overhead and browser prerequisites",
+      "official_url": "https://ffmpegwasm.netlify.app/docs/overview/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "media-inspection",
+        "capture"
+      ]
+    },
+    {
+      "id": "gifski",
+      "name": "gifski",
+      "category": "A5. Video and capture",
+      "role": "GIF delivery encoder",
+      "official_url": "https://github.com/ImageOptim/gifski",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "media-inspection",
+        "capture"
+      ]
+    },
+    {
+      "id": "mediabunny",
+      "name": "Mediabunny",
+      "category": "A5. Video and capture",
+      "role": "TS media I/O and conversion",
+      "official_url": "https://mediabunny.dev/guide/introduction",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "media-inspection",
+        "capture"
+      ]
+    },
+    {
+      "id": "mediabunny-server-extension",
+      "name": "Mediabunny server extension",
+      "category": "A5. Video and capture",
+      "role": "Optional server codecs/backend; evaluate separately",
+      "official_url": "https://mediabunny.dev/guide/extensions/server",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "media-inspection",
+        "capture"
+      ]
+    },
+    {
+      "id": "mlt-melt",
+      "name": "MLT / melt",
+      "category": "A5. Video and capture",
+      "role": "Multitrack CLI processing",
+      "official_url": "https://mltframework.org/docs/melt/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "media-inspection",
+        "capture"
+      ]
+    },
+    {
+      "id": "pyscenedetect",
+      "name": "PySceneDetect",
+      "category": "A5. Video and capture",
+      "role": "Shot detection and splitting",
+      "official_url": "https://www.scenedetect.com/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "media-inspection",
+        "capture"
+      ]
+    },
+    {
+      "id": "remotion",
+      "name": "Remotion",
+      "category": "A5. Video and capture",
+      "role": "React video composition/export; check applicable license",
+      "official_url": "https://www.remotion.dev/docs",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "media-inspection",
+        "capture"
+      ]
+    },
+    {
+      "id": "g-mic",
+      "name": "G'MIC",
+      "category": "A6. Image processing and colour",
+      "role": "CLI filters and procedural image processing",
+      "official_url": "https://gmic.eu/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "image-processing",
+        "colour-management"
+      ]
+    },
+    {
+      "id": "gimp-batch",
+      "name": "GIMP batch",
+      "category": "A6. Image processing and colour",
+      "role": "Scripted image operations; version-specific procedures",
+      "official_url": "https://www.gimp.org/man/gimp.html",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "image-processing",
+        "colour-management"
+      ]
+    },
+    {
+      "id": "imagemagick",
+      "name": "ImageMagick",
+      "category": "A6. Image processing and colour",
+      "role": "CLI image operations, montage and comparison",
+      "official_url": "https://imagemagick.org/script/command-line-tools.php/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "image-processing",
+        "colour-management"
+      ]
+    },
+    {
+      "id": "jimp",
+      "name": "Jimp",
+      "category": "A6. Image processing and colour",
+      "role": "JS image manipulation",
+      "official_url": "https://github.com/jimp-dev/jimp",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "image-processing",
+        "colour-management"
+      ]
+    },
+    {
+      "id": "opencolorio",
+      "name": "OpenColorIO",
+      "category": "A6. Image processing and colour",
+      "role": "Colour-management integration",
+      "official_url": "https://github.com/AcademySoftwareFoundation/OpenColorIO",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "image-processing",
+        "colour-management"
+      ]
+    },
+    {
+      "id": "openimageio-oiiotool",
+      "name": "OpenImageIO / oiiotool",
+      "category": "A6. Image processing and colour",
+      "role": "Production image/sequence processing",
+      "official_url": "https://openimageio.readthedocs.io/en/latest/oiiotool.html",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "image-processing",
+        "colour-management"
+      ]
+    },
+    {
+      "id": "rawtherapee-cli",
+      "name": "RawTherapee CLI",
+      "category": "A6. Image processing and colour",
+      "role": "Camera RAW preparation",
+      "official_url": "https://rawtherapee.com/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "image-processing",
+        "colour-management"
+      ]
+    },
+    {
+      "id": "sharp",
+      "name": "Sharp",
+      "category": "A6. Image processing and colour",
+      "role": "Node image processing and compositing",
+      "official_url": "https://sharp.pixelplumbing.com/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "image-processing",
+        "colour-management"
+      ]
+    },
+    {
+      "id": "after-effects",
+      "name": "After Effects",
+      "category": "A7. Native applications and procedural tools",
+      "role": "Application scripting + aerender; render existing projects/templates",
+      "official_url": "https://helpx.adobe.com/after-effects/desktop/render-and-export/automate-rendering/automated-rendering-network-rendering.html",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "native-authoring"
+      ]
+    },
+    {
+      "id": "aseprite",
+      "name": "Aseprite",
+      "category": "A7. Native applications and procedural tools",
+      "role": "Batch CLI + scripts; pixel animation and sheets",
+      "official_url": "https://www.aseprite.org/docs/cli/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "native-authoring"
+      ]
+    },
+    {
+      "id": "blender",
+      "name": "Blender",
+      "category": "A7. Native applications and procedural tools",
+      "role": "Background CLI + Python; 3D, animation and compositing",
+      "official_url": "https://docs.blender.org/manual/en/latest/advanced/command_line/render.html",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "native-authoring"
+      ]
+    },
+    {
+      "id": "blender-cli-arguments",
+      "name": "Blender CLI arguments",
+      "category": "A7. Native applications and procedural tools",
+      "role": "Execution and scripting options",
+      "official_url": "https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "native-authoring"
+      ]
+    },
+    {
+      "id": "godot",
+      "name": "Godot",
+      "category": "A7. Native applications and procedural tools",
+      "role": "Scene scripts + movie CLI; visual rendering needs suitable backend",
+      "official_url": "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "native-authoring"
+      ]
+    },
+    {
+      "id": "houdini",
+      "name": "Houdini",
+      "category": "A7. Native applications and procedural tools",
+      "role": "hython/hbatch; commercial procedural/simulation workflows",
+      "official_url": "https://www.sidefx.com/docs/houdini/render/batch.html",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "native-authoring"
+      ]
+    },
+    {
+      "id": "inkscape",
+      "name": "Inkscape",
+      "category": "A7. Native applications and procedural tools",
+      "role": "CLI actions/export; vector source workflows",
+      "official_url": "https://wiki.inkscape.org/wiki/Using_the_Command_Line",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "native-authoring"
+      ]
+    },
+    {
+      "id": "manim-community",
+      "name": "Manim Community",
+      "category": "A7. Native applications and procedural tools",
+      "role": "Python scenes + CLI; educational animation",
+      "official_url": "https://docs.manim.community/en/stable/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "native-authoring"
+      ]
+    },
+    {
+      "id": "natron",
+      "name": "Natron",
+      "category": "A7. Native applications and procedural tools",
+      "role": "Background renderer + Python; verify current build/API",
+      "official_url": "https://natron.readthedocs.io/en/v2.3.15/devel/natronexecution.html",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "native-authoring"
+      ]
+    },
+    {
+      "id": "pov-ray",
+      "name": "POV-Ray",
+      "category": "A7. Native applications and procedural tools",
+      "role": "Text scene/INI + CLI; procedural ray tracing",
+      "official_url": "https://www.povray.org/documentation/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "native-authoring"
+      ]
+    },
+    {
+      "id": "synfig",
+      "name": "Synfig",
+      "category": "A7. Native applications and procedural tools",
+      "role": "Native animation project + CLI render",
+      "official_url": "https://wiki.synfig.org/Render_options",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "native-authoring"
+      ]
+    },
+    {
+      "id": "vpype",
+      "name": "vpype",
+      "category": "A7. Native applications and procedural tools",
+      "role": "CLI vector pipelines",
+      "official_url": "https://vpype.readthedocs.io/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "native-authoring"
+      ]
+    },
+    {
+      "id": "vsketch",
+      "name": "vsketch",
+      "category": "A7. Native applications and procedural tools",
+      "role": "Python + vsk CLI; plotter-oriented generative vectors",
+      "official_url": "https://vsketch.readthedocs.io/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "native-authoring"
+      ]
+    },
+    {
+      "id": "gltf-transform",
+      "name": "glTF Transform",
+      "category": "A8. Physics, audio and 3D assets",
+      "role": "JS/CLI model preparation and optimisation",
+      "official_url": "https://gltf-transform.dev/cli",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "physics-simulation",
+        "audio",
+        "3d-asset-processing"
+      ]
+    },
+    {
+      "id": "matter-js",
+      "name": "Matter.js",
+      "category": "A8. Physics, audio and 3D assets",
+      "role": "2D physics; fixed-step replay/cache",
+      "official_url": "https://brm.io/matter-js/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "physics-simulation",
+        "audio",
+        "3d-asset-processing"
+      ]
+    },
+    {
+      "id": "rapier",
+      "name": "Rapier",
+      "category": "A8. Physics, audio and 3D assets",
+      "role": "Web-capable 2D/3D physics",
+      "official_url": "https://rapier.rs/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "physics-simulation",
+        "audio",
+        "3d-asset-processing"
+      ]
+    },
+    {
+      "id": "tone-js",
+      "name": "Tone.js",
+      "category": "A8. Physics, audio and 3D assets",
+      "role": "Audio synthesis, scheduling and effects",
+      "official_url": "https://tonejs.github.io/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "physics-simulation",
+        "audio",
+        "3d-asset-processing"
+      ]
+    },
+    {
+      "id": "canvaskit-skia",
+      "name": "CanvasKit / Skia",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "WASM graphics rendering candidate",
+      "official_url": "https://skia.org/docs/user/modules/canvaskit/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "createjs-tweenjs",
+      "name": "CreateJS / TweenJS",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "EaselJS-adjacent tweening ecosystem",
+      "official_url": "https://createjs.com/tweenjs",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "dear-imgui",
+      "name": "Dear ImGui",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Native UI infrastructure; outside primary scope",
+      "official_url": "https://github.com/ocornut/imgui",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "deck-gl",
+      "name": "deck.gl",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Geospatial/data visualisation scenes",
+      "official_url": "https://deck.gl/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "dotlottie",
+      "name": "dotLottie",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Lottie packaging/runtime ecosystem",
+      "official_url": "https://developers.lottiefiles.com/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "glfx-js",
+      "name": "glfx.js",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "WebGL image-effects candidate",
+      "official_url": "https://github.com/evanw/glfx.js",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "glmatrix",
+      "name": "glMatrix",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Vector/matrix supporting utilities",
+      "official_url": "https://glmatrix.net/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "glslcanvas",
+      "name": "glslCanvas",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Lightweight fragment-shader canvas host",
+      "official_url": "https://github.com/patriciogonzalezvivo/glslCanvas",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "glslify",
+      "name": "glslify",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "GLSL module tooling",
+      "official_url": "https://github.com/glslify/glslify",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "gltfjsx",
+      "name": "gltfjsx",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Model-to-JSX supporting workflow",
+      "official_url": "https://github.com/pmndrs/gltfjsx",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "graphicsmagick",
+      "name": "GraphicsMagick",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Alternative native image CLI",
+      "official_url": "http://www.graphicsmagick.org/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "gstreamer",
+      "name": "GStreamer",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Media pipeline CLI/framework candidate",
+      "official_url": "https://gstreamer.freedesktop.org/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "hyperframes",
+      "name": "Hyperframes",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Existing workflow/inspiration; assess interoperability separately",
+      "official_url": "https://hyperframes.heygen.com/catalog",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "image-js",
+      "name": "image-js",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "JS image-processing candidate",
+      "official_url": "https://github.com/image-js/image-js",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "leva",
+      "name": "Leva",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Parameter inspection/control panels",
+      "official_url": "https://github.com/pmndrs/leva",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "libvips",
+      "name": "libvips",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Native image pipeline underlying Sharp",
+      "official_url": "https://www.libvips.org/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "luma-gl",
+      "name": "luma.gl",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "GPU rendering building blocks",
+      "official_url": "https://luma.gl/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "maath",
+      "name": "maath",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Graphics math helpers",
+      "official_url": "https://github.com/pmndrs/maath",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "opencv-js",
+      "name": "OpenCV.js",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Computer-vision/image-analysis candidate",
+      "official_url": "https://docs.opencv.org/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "phaser",
+      "name": "Phaser",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Game-oriented animation/simulation scenes",
+      "official_url": "https://phaser.io/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "photon",
+      "name": "Photon",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "WASM image-processing candidate",
+      "official_url": "https://github.com/silvia-odwyer/photon",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "popmotion",
+      "name": "Popmotion",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Animation primitive candidate; assess overlap",
+      "official_url": "https://popmotion.io/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "react-three-gpu-pathtracer",
+      "name": "react-three/gpu-pathtracer",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Path-traced output candidate",
+      "official_url": "https://github.com/pmndrs/react-three-gpu-pathtracer",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "react-three-postprocessing",
+      "name": "react-three/postprocessing",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "React wrapper for effects",
+      "official_url": "https://github.com/pmndrs/react-postprocessing",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "react-three-rapier",
+      "name": "react-three/rapier",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "R3F physics integration",
+      "official_url": "https://github.com/pmndrs/react-three-rapier",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "shotstack",
+      "name": "Shotstack",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Remote rendering service candidate; optional API route",
+      "official_url": "https://shotstack.io/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "svgator",
+      "name": "SVGator",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Visual authoring reference; no CLI commitment",
+      "official_url": "https://www.svgator.com/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "troika-three-text",
+      "name": "Troika Three Text",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Three.js text rendering candidate",
+      "official_url": "https://github.com/protectwise/troika/tree/main/packages/troika-three-text",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "vpython",
+      "name": "VPython",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Python educational 3D; assess export route",
+      "official_url": "https://vpython.org/",
+      "automation_route": "native-cli-or-scripting",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "vtk-js",
+      "name": "vtk.js",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Scientific visualisation scenes",
+      "official_url": "https://kitware.github.io/vtk-js/",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "webav",
+      "name": "WebAV",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "role": "Browser media toolkit candidate",
+      "official_url": "https://github.com/bilibili/WebAV",
+      "automation_route": "library-or-runtime",
+      "documentation_status": "candidate",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a",
+      "capabilities": [
+        "candidate"
+      ]
+    },
+    {
+      "id": "canvas-2d",
+      "name": "Canvas 2D",
+      "category": "Native browser platform APIs",
+      "role": "2D drawing API in supported browsers",
+      "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API",
+      "automation_route": "browser-platform-api",
+      "capabilities": [
+        "2d-rendering"
+      ],
+      "documentation_status": "platform-api",
+      "installation_status": "not-applicable",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a"
+    },
+    {
+      "id": "mediarecorder",
+      "name": "MediaRecorder",
+      "category": "Native browser platform APIs",
+      "role": "Browser media recording API",
+      "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder",
+      "automation_route": "browser-platform-api",
+      "capabilities": [
+        "capture"
+      ],
+      "documentation_status": "platform-api",
+      "installation_status": "not-applicable",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a"
+    },
+    {
+      "id": "svg",
+      "name": "SVG",
+      "category": "Native browser platform APIs",
+      "role": "Native vector graphics format and browser rendering",
+      "official_url": "https://developer.mozilla.org/en-US/docs/Web/SVG",
+      "automation_route": "browser-platform-api",
+      "capabilities": [
+        "vector-authoring"
+      ],
+      "documentation_status": "platform-api",
+      "installation_status": "not-applicable",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a"
+    },
+    {
+      "id": "web-animations-api",
+      "name": "Web Animations API",
+      "category": "Native browser platform APIs",
+      "role": "Browser animation API",
+      "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API",
+      "automation_route": "browser-platform-api",
+      "capabilities": [
+        "svg-animation"
+      ],
+      "documentation_status": "platform-api",
+      "installation_status": "not-applicable",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a"
+    },
+    {
+      "id": "web-audio",
+      "name": "Web Audio API",
+      "category": "Native browser platform APIs",
+      "role": "Browser audio processing and synthesis API",
+      "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API",
+      "automation_route": "browser-platform-api",
+      "capabilities": [
+        "audio"
+      ],
+      "documentation_status": "platform-api",
+      "installation_status": "not-applicable",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a"
+    },
+    {
+      "id": "webcodecs",
+      "name": "WebCodecs",
+      "category": "Native browser platform APIs",
+      "role": "Browser media codec API",
+      "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/WebCodecs_API",
+      "automation_route": "browser-platform-api",
+      "capabilities": [
+        "video-encoding"
+      ],
+      "documentation_status": "platform-api",
+      "installation_status": "not-applicable",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a"
+    },
+    {
+      "id": "webgl",
+      "name": "WebGL",
+      "category": "Native browser platform APIs",
+      "role": "Browser GPU graphics API",
+      "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API",
+      "automation_route": "browser-platform-api",
+      "capabilities": [
+        "3d-rendering"
+      ],
+      "documentation_status": "platform-api",
+      "installation_status": "not-applicable",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a"
+    },
+    {
+      "id": "webgpu",
+      "name": "WebGPU",
+      "category": "Native browser platform APIs",
+      "role": "Browser GPU API; target-browser support must be checked",
+      "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API",
+      "automation_route": "browser-platform-api",
+      "capabilities": [
+        "3d-rendering"
+      ],
+      "documentation_status": "platform-api",
+      "installation_status": "not-applicable",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/motion-harness-prd.md#appendix-a"
+    }
+  ]
+}

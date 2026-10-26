@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "generative-2d", "vector-authoring", "typography", "svg-animation", "2d-rendering",
+    "3d-rendering", "shaders", "effects", "video-composition", "video-encoding",
+    "media-inspection", "image-processing", "colour-management", "native-authoring",
+    "physics-simulation", "audio", "3d-asset-processing", "diagram-generation",
+    "capture", "asset-playback", "plotter-workflow", "candidate"
+  ],
+  "note": "Initial broad vocabulary. Resource capability assignments require review and are not inferred as validated adapter support."
+}

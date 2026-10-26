@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "id": "example-video",
+  "title": "Example video",
+  "status": "experiment",
+  "brief": "brief.md",
+  "source_directory": "scenes",
+  "dependencies": [],
+  "parameters": {
+    "content": {},
+    "design": {},
+    "motion": {}
+  },
+  "review_status": "not-reviewed",
+  "deliverables": [],
+  "render_manifest": "render-manifest.json"
+}

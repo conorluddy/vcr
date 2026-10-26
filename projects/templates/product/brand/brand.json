@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "name": "Replace with brand name",
+  "tokens": {
+    "color": { "background": "#111410", "foreground": "#f3f4ef", "accent": "#c7f36b" },
+    "font": { "display": "Replace with licensed font family", "body": "Replace with licensed font family" }
+  },
+  "licensing_notes": "Record font and asset rights before production use."
+}

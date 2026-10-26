@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://motion-harness.local/schemas/reference.schema.json",
+  "title": "Motion Harness reference record",
+  "type": "object",
+  "required": ["schema_version", "id", "status", "description", "tools", "techniques", "source_paths", "reuse_constraints"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "id": { "type": "string" },
+    "status": { "enum": ["experiment", "completed", "approved", "deprecated"] },
+    "description": { "type": "string" },
+    "tools": { "type": "array", "items": { "type": "string" } },
+    "tool_versions": { "type": "object" },
+    "techniques": { "type": "array", "items": { "type": "string" } },
+    "aspect_ratios": { "type": "array", "items": { "type": "string" } },
+    "preview": { "type": ["string", "null"] },
+    "source_paths": { "type": "array", "items": { "type": "string" } },
+    "limitations": { "type": "array", "items": { "type": "string" } },
+    "reuse_constraints": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}

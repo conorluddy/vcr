@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://motion-harness.local/schemas/project.schema.json",
+  "title": "Motion Harness project",
+  "type": "object",
+  "required": ["schema_version", "id", "title", "reuse_scope", "dependency_policy", "assets_manifest", "videos"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "reuse_scope": { "enum": ["private", "project", "shared"] },
+    "dependency_policy": { "enum": ["unpinned", "lockfile", "frozen"] },
+    "brand": { "type": "string" },
+    "assets_manifest": { "type": "string" },
+    "videos": { "type": "array", "items": { "type": "string" } },
+    "output_directory": { "type": "string" },
+    "cache_directory": { "type": "string" }
+  },
+  "additionalProperties": true
+}
