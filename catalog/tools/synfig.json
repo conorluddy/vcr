@@ -3,19 +3,39 @@
   "name": "Synfig",
   "category": "A7. Native applications and procedural tools",
   "tier": "catalogued",
-  "role": "Native animation project + CLI render",
+  "role": "synfig CLI renders .sif and .sifz 2D vector animation projects to frames or video",
+  "summary": "Open-source 2D vector and bitmap animation studio. The synfig CLI renders .sif, .sifz and .sfg project files to PNG sequences, GIF or video at chosen size and frame range, with tweened vertices, bones and layers. Strength is cut-out and vector tweening authored visually and rendered headlessly. macOS packaging is the weak spot; Homebrew disabled its cask.",
+  "use_when": [
+    "An existing .sif project from an animator must render headlessly",
+    "Vector tweening and bone rigs authored visually, over Blender grease pencil",
+    "Frame-range renders of a 2D project to PNG with alpha"
+  ],
+  "avoid_when": [
+    "Code-authored 2D motion: GSAP or Manim",
+    "3D or lighting: Blender",
+    "Reliable macOS arm64 install today: Blender or Inkscape"
+  ],
+  "pairs_with": [
+    "inkscape",
+    "ffmpeg-ffprobe",
+    "blender",
+    "imagemagick"
+  ],
   "official_url": "https://wiki.synfig.org/Render_options",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "native-authoring",
     "2d-rendering",
-    "timeline-animation"
+    "timeline-animation",
+    "vector-authoring"
   ],
   "license": "GPL-3.0",
   "install": {
-    "macos": "brew install --cask synfigstudio",
-    "check_command": "synfig --version"
+    "check_command": "/Applications/SynfigStudio.app/Contents/MacOS/synfig --version"
   },
+  "notes": [
+    "2026-10-26: Homebrew cask synfigstudio (1.4.5) was disabled 2026-09-01 for failing Gatekeeper, so install.macos was removed. Release 1.5.5 ships SynfigStudio-1.5.5-20260315.dmg; its CPU architecture is not stated in the asset name, so arm64 support is unverified. App-bundle CLI path is assumed."
+  ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -23,6 +43,19 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a7",
+    "version_seen": "1.5.5",
+    "last_release": "2026-03-16",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "1.5.5 released 2026-03-16 with a macOS dmg and the repo was pushed 2026-10-25. The Homebrew cask is disabled for Gatekeeper and dmg architecture is unstated, so macOS arm64 is unverified; keep tier but flag install.",
+    "sources": [
+      "https://github.com/synfig/synfig/releases",
+      "https://wiki.synfig.org/Render_options"
+    ]
+  },
+  "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
 }
