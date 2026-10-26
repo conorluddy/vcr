@@ -3,13 +3,29 @@
   "name": "glslCanvas",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Lightweight fragment-shader canvas host",
+  "role": "Legacy fragment-shader canvas host; superseded by OGL or regl",
+  "summary": "Tiny library that mounts a GLSL fragment shader on a canvas via a data attribute, feeding u_time, u_resolution and u_mouse. Its clock is wall time, so capture needs the time uniform overridden to be deterministic. Unmaintained since 2022.",
+  "use_when": [
+    "Quick fragment-shader prototype from a book-of-shaders style snippet"
+  ],
+  "avoid_when": [
+    "Deterministic frames: OGL, regl or twgl with t as an explicit uniform",
+    "Shader module reuse: glslify with any of those",
+    "Headless Node shaders: CanvasKit SkSL, no browser"
+  ],
+  "pairs_with": [
+    "glslify",
+    "webgl"
+  ],
   "official_url": "https://github.com/patriciogonzalezvivo/glslCanvas",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "shaders"
   ],
   "license": "MIT",
+  "install": {
+    "macos": "pnpm add glslCanvas"
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -18,5 +34,18 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "0.2.6",
+    "last_release": "2022-11-23 (npm); repo last push 2023-07-19",
+    "maintenance": "unmaintained",
+    "verdict": "drop",
+    "rationale": "No release since Nov 2022 and repo idle since mid 2023; WebGL1-era. Fragment-shader hosting is covered by OGL, regl and twgl, which are maintained and give explicit control of the time uniform.",
+    "sources": [
+      "https://github.com/patriciogonzalezvivo/glslCanvas",
+      "https://www.npmjs.com/package/glslCanvas"
+    ]
+  },
   "source": "specifications/vcr-prd.md#appendix-a"
 }

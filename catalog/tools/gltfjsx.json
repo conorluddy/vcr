@@ -3,14 +3,36 @@
   "name": "gltfjsx",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Model-to-JSX supporting workflow",
+  "role": "CLI that turns a .glb/.gltf into a react-three-fiber JSX component",
+  "summary": "Command-line tool that parses a glTF/GLB and emits a React Three Fiber component with each mesh, material and animation clip as addressable JSX, optionally TypeScript and with Draco/meshopt optimisation via gltf-transform. Run once at build time; output is source code. Distinguishing strength: scene graph becomes editable, typed JSX.",
+  "use_when": [
+    "Over loading a raw GLB when you need to restyle or animate individual meshes in R3F",
+    "Generating typed R3F components for a model as a build step",
+    "Pruning and compressing a model while generating its component"
+  ],
+  "avoid_when": [
+    "Non-React Three.js: GLTFLoader directly, or three-js",
+    "Pure optimisation or inspection: gltf-transform",
+    "Authoring or editing models: Blender"
+  ],
+  "pairs_with": [
+    "react-three-fiber",
+    "drei",
+    "gltf-transform",
+    "three-js"
+  ],
   "official_url": "https://github.com/pmndrs/gltfjsx",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "3d-asset-processing",
-    "react-integration"
+    "react-integration",
+    "model-loading"
   ],
   "license": "MIT",
+  "install": {
+    "macos": "pnpm dlx gltfjsx model.glb",
+    "check_command": "pnpm dlx gltfjsx --help"
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -19,5 +41,18 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "6.5.3",
+    "last_release": "2024-11-04 (npm and repo)",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "Slow: last release Nov 2024 (about 23 months), no recent commits. Still the only CLI turning a .glb into typed react-three-fiber JSX; gltf-transform optimises but does not generate components. Recheck before relying on it.",
+    "sources": [
+      "https://github.com/pmndrs/gltfjsx",
+      "https://www.npmjs.com/package/gltfjsx"
+    ]
+  },
   "source": "specifications/vcr-prd.md#appendix-a"
 }

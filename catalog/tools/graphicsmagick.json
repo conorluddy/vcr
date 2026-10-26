@@ -3,17 +3,26 @@
   "name": "GraphicsMagick",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Alternative native image CLI",
+  "role": "ImageMagick-fork CLI (gm); duplicates imagemagick",
+  "summary": "Image CLI forked from ImageMagick, run as gm convert, gm mogrify or gm composite, emphasising stability and batch speed. Same scripting model and output as ImageMagick with fewer formats and effects. Adds nothing to the catalogue beyond a second binary for the same jobs.",
+  "use_when": [
+    "Existing scripts already written for gm"
+  ],
+  "avoid_when": [
+    "General image CLI work: imagemagick has the wider feature set",
+    "Fast batch resize on big images: libvips or sharp",
+    "Node pipelines: sharp"
+  ],
+  "pairs_with": [
+    "imagemagick",
+    "libvips"
+  ],
   "official_url": "http://www.graphicsmagick.org/",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "image-processing"
   ],
   "license": "MIT-style",
-  "install": {
-    "macos": "brew install graphicsmagick",
-    "check_command": "gm version"
-  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -22,5 +31,17 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "1.3.49 (Homebrew stable)",
+    "last_release": "unknown",
+    "maintenance": "active",
+    "verdict": "drop",
+    "rationale": "Maintained (Homebrew stable 1.3.49, release date not verified), but duplicates ImageMagick on the same CLI surface and libvips on speed, with a smaller format and filter set. No capability a catalogued neighbour lacks.",
+    "sources": [
+      "http://www.graphicsmagick.org/"
+    ]
+  },
   "source": "specifications/vcr-prd.md#appendix-a"
 }

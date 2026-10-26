@@ -3,7 +3,21 @@
   "name": "Leva",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Parameter inspection/control panels",
+  "role": "React control panel for live-tweaking values; human-facing only",
+  "summary": "React hook-based panel (useControls) rendering sliders, colour pickers and folders that feed values into a scene, popular with react-three-fiber. It is interactive-only: values change by human input, not by an agent. Useful for authoring sessions to find parameters, then hard-coding them.",
+  "use_when": [
+    "A human tuning R3F scene values interactively before they are written to files"
+  ],
+  "avoid_when": [
+    "Keyframed parameter curves with export: theatre-js",
+    "Agent-driven runs: set parameters via props or JSON, no panel",
+    "Non-React scenes: a plain lil-gui panel, or none"
+  ],
+  "pairs_with": [
+    "react-three-fiber",
+    "drei",
+    "theatre-js"
+  ],
   "official_url": "https://github.com/pmndrs/leva",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -11,6 +25,9 @@
     "react-integration"
   ],
   "license": "MIT",
+  "install": {
+    "macos": "pnpm add leva"
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -19,5 +36,18 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "0.10.1",
+    "last_release": "2025-10-31 (npm); repo pushed 2025-11-09",
+    "maintenance": "active",
+    "verdict": "drop",
+    "rationale": "Active, but a React GUI for humans to tweak values; no CLI or headless route an agent can drive, and VCR parameters live in files. Theatre.js covers editable parameter curves with export.",
+    "sources": [
+      "https://github.com/pmndrs/leva",
+      "https://www.npmjs.com/package/leva"
+    ]
+  },
   "source": "specifications/vcr-prd.md#appendix-a"
 }

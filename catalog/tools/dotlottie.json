@@ -3,13 +3,33 @@
   "name": "dotLottie",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Lottie packaging/runtime ecosystem",
+  "role": ".lottie container plus ThorVG WASM canvas player with frame seeking",
+  "summary": "LottieFiles runtime and container format: .lottie zips animations, images and themes, and dotlottie-web plays them on canvas via a ThorVG WASM renderer. Frames are seekable (setFrame), so a capture harness can step playback deterministically. Distinguishing strength: smaller packaged assets, theming and state machines over plain Lottie JSON.",
+  "use_when": [
+    "Over lottie-web for .lottie packages, themes or state machines",
+    "Canvas playback with exact frame seeking for capture",
+    "Lottie assets exported from After Effects or LottieFiles"
+  ],
+  "avoid_when": [
+    "Authoring motion: GSAP or Motion; Lottie only plays finished files",
+    "Interactive vector state graphics: Rive",
+    "Legacy SVG-renderer feature coverage: lottie-web"
+  ],
+  "pairs_with": [
+    "lottie-web",
+    "after-effects",
+    "playwright",
+    "rive-web"
+  ],
   "official_url": "https://developers.lottiefiles.com/",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "asset-playback"
   ],
   "license": "MIT",
+  "install": {
+    "macos": "pnpm add @lottiefiles/dotlottie-web"
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -18,5 +38,19 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "@lottiefiles/dotlottie-web 0.81.0",
+    "last_release": "2026-10-06 (npm)",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "Actively maintained (0.81.0 Oct 2026). Adds the compressed .lottie container, theming and state machines, and a ThorVG WASM canvas renderer with frame seeking; lottie-web is the older SVG-first player.",
+    "sources": [
+      "https://developers.lottiefiles.com/",
+      "https://www.npmjs.com/package/@lottiefiles/dotlottie-web",
+      "https://github.com/LottieFiles/dotlottie-web"
+    ]
+  },
   "source": "specifications/vcr-prd.md#appendix-a"
 }

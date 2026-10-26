@@ -3,13 +3,30 @@
   "name": "CreateJS / TweenJS",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "EaselJS-adjacent tweening ecosystem",
+  "role": "Legacy tween engine from the CreateJS suite; superseded by GSAP",
+  "summary": "Tweening library from the CreateJS family, animating numeric properties with eases and a chainable API, mostly paired with EaselJS canvas display lists. Ticker-driven; timelines can be paused and seeked. Unmaintained: last release May 2022, stable line is 1.x.",
+  "use_when": [
+    "Maintaining an existing EaselJS project that already uses TweenJS"
+  ],
+  "avoid_when": [
+    "New work: GSAP has seekable nested timelines and is maintained",
+    "Plain value tweens: tween-js is smaller and maintained",
+    "Vector canvas scenes: Konva or Paper.js over EaselJS"
+  ],
+  "pairs_with": [
+    "easeljs",
+    "gsap"
+  ],
   "official_url": "https://createjs.com/tweenjs",
   "automation_route": "library-or-runtime",
   "capabilities": [
-    "tweening"
+    "tweening",
+    "timeline-animation"
   ],
   "license": "MIT",
+  "install": {
+    "macos": "pnpm add @createjs/tweenjs"
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -18,5 +35,19 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "@createjs/tweenjs 2.0.0-beta.4",
+    "last_release": "2022-05-16 (npm); repo last push 2023-12-18",
+    "maintenance": "unmaintained",
+    "verdict": "drop",
+    "rationale": "No release since May 2022 (2.0.0-beta.4 still beta), repo idle since Dec 2023. Tweening is covered by maintained GSAP (seekable timelines) and tween-js; EaselJS neighbour is already catalogued.",
+    "sources": [
+      "https://createjs.com/tweenjs",
+      "https://www.npmjs.com/package/@createjs/tweenjs",
+      "https://github.com/CreateJS/TweenJS"
+    ]
+  },
   "source": "specifications/vcr-prd.md#appendix-a"
 }
