@@ -30,3 +30,7 @@ One brief for every assessor so every record answers the same questions. You are
 ## Report back
 
 Three lines per record: id, verdict, one-line reason. Then any proposed vocabulary additions with the record that needs them, and any record whose `official_url` should change.
+
+## Re-assessment
+
+An assessment is a dated fact. Re-run this brief for a record when its `assessment.date` is more than six months old, when a verdict is challenged, or before promoting a tool to core. The reviewer applies verdicts; retired records go to `catalog/retired/` with their assessment intact.

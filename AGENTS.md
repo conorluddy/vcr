@@ -11,6 +11,9 @@ Read `specifications/vcr-prd.md` for product intent and release gates. This repo
 - Generated media, caches, and temporary render artifacts belong in ignored output directories.
 - Prefer official documentation links and preserve uncertainty where versions or support are unverified.
 - Load only the relevant toolkit or workflow guidance for a task. Do not copy the entire catalogue into a prompt.
+- Edit tool records, never the generated `catalog/tools.json` or `catalog/INDEX.md`; run `pnpm vcr catalog build` and commit the result. `pnpm validate` fails on a stale index, a dangling reference or a budget overrun.
+- Decisions live in `specifications/decisions/` as numbered ADRs. Read 0001 (in-house engine) and 0002 (headless, no editor) before proposing architecture.
+- When agents work in git worktrees, merge their branches into one integration branch, rebuild the index once, and never `git add -A` from the main checkout while worktrees exist under `.claude/worktrees/`.
 
 ## How to navigate the catalogue
 
@@ -25,14 +28,15 @@ Never load more than one guide at a time unless comparing two tools. A card or g
 
 ## Repository map
 
-- `catalog/`: one record per tool under `tools/`, a generated `tools.json` index, capability vocabulary, and schemas. Edit records, never the index.
-- `skills/`: toolkit and workflow operating guides, added as they become operational.
-- `examples/`: small native examples with explicit status and reproduction notes.
+- `catalog/`: one record per tool under `tools/`, retired records under `retired/`, generated `tools.json` and `INDEX.md`, vocabulary, schemas, `ASSESSMENT-BRIEF.md`.
+- `environment/`: per-machine tool availability from `vcr doctor`. The only place installation is a fact.
+- `packages/`: `cli` (the `vcr` command), `timeline` (time types), `capture` (browser frame capture).
+- `skills/`: toolkit and workflow operating guides; `.claude/skills` links here.
+- `examples/`: validated fixtures with `example.json`, `run.sh` and `expected/`.
 - `projects/`: products and productions following the project schema.
-- `shared/`: reusable components and presets with explicit versions.
-- `references/`: curated production metadata; default status is not approved.
-- `specifications/`: product requirements and decisions.
+- `shared/`, `references/`: reserved for Layer 1 and Layer 7; empty.
+- `specifications/`: PRD, `decisions/` (ADRs), `spikes/` (reports).
 
 ## Current boundary
 
-The catalogue is discovery metadata. No tool is claimed as installed or validated by this repository yet. TypeScript orchestration, package management, schemas beyond the initial JSON contracts, and shared rendering APIs remain provisional per the PRD.
+Layer 0 is complete: every live record is carded and assessed, eight carry validation evidence, and six fixtures reproduce. Layer 1 (project workspace) has not started. There is no timeline resolver, compositor, review surface or reference search; do not imply one. The TypeScript toolchain, pnpm workspace and JSON Schemas are decided, not provisional. Everything beyond Layer 0 is still provisional per the PRD.
