@@ -1,0 +1,26 @@
+{
+  "id": "konva",
+  "name": "Konva",
+  "category": "A1. Creative coding and 2D",
+  "tier": "catalogued",
+  "role": "Interactive Canvas scene graph; possible editor foundation",
+  "official_url": "https://konvajs.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "2d-rendering",
+    "tweening"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add konva"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

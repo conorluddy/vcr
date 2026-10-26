@@ -1,0 +1,26 @@
+{
+  "id": "libvips",
+  "name": "libvips",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "Native image pipeline underlying Sharp",
+  "official_url": "https://www.libvips.org/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "image-processing"
+  ],
+  "license": "LGPL-2.1",
+  "install": {
+    "macos": "brew install vips",
+    "check_command": "vips --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

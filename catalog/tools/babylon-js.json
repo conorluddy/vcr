@@ -1,0 +1,28 @@
+{
+  "id": "babylon-js",
+  "name": "Babylon.js",
+  "category": "A3. 3D, shaders and effects",
+  "tier": "catalogued",
+  "role": "3D engine and authoring ecosystem",
+  "official_url": "https://www.babylonjs.com/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "3d-rendering",
+    "shaders",
+    "effects",
+    "physics-simulation"
+  ],
+  "license": "Apache-2.0",
+  "install": {
+    "macos": "pnpm add @babylonjs/core"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

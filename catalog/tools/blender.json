@@ -1,0 +1,36 @@
+{
+  "id": "blender",
+  "name": "Blender",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "core",
+  "role": "Background CLI + Python; 3D, animation and compositing",
+  "official_url": "https://docs.blender.org/manual/en/latest/advanced/command_line/render.html",
+  "documentation_urls": [
+    "https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html"
+  ],
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "3d-rendering",
+    "native-authoring",
+    "compositing",
+    "physics-simulation",
+    "model-loading"
+  ],
+  "license": "GPL-3.0",
+  "install": {
+    "macos": "brew install --cask blender",
+    "check_command": "/Applications/Blender.app/Contents/MacOS/Blender --version"
+  },
+  "notes": [
+    "Not on PATH on macOS; use the app bundle executable. First native application spike planned in M0."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

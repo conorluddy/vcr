@@ -1,0 +1,26 @@
+{
+  "id": "theatre-js",
+  "name": "Theatre.js",
+  "category": "A2. Animation and authored assets",
+  "tier": "catalogued",
+  "role": "Visual sequence/curve editing linked to code",
+  "official_url": "https://www.theatrejs.com/docs/latest",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "timeline-animation",
+    "parameter-ui"
+  ],
+  "license": "Apache-2.0",
+  "install": {
+    "macos": "pnpm add @theatre/core"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

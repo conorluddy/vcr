@@ -1,0 +1,26 @@
+{
+  "id": "react-three-fiber",
+  "name": "React Three Fiber",
+  "category": "A3. 3D, shaders and effects",
+  "tier": "catalogued",
+  "role": "Declarative Three.js; match React/package majors",
+  "official_url": "https://r3f.docs.pmnd.rs/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "3d-rendering",
+    "react-integration"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add @react-three/fiber"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

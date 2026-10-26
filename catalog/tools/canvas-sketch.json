@@ -1,0 +1,27 @@
+{
+  "id": "canvas-sketch",
+  "name": "canvas-sketch",
+  "category": "A1. Creative coding and 2D",
+  "tier": "catalogued",
+  "role": "Generative artwork workflow",
+  "official_url": "https://github.com/mattdesl/canvas-sketch",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "generative-2d",
+    "2d-rendering",
+    "capture"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add canvas-sketch"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

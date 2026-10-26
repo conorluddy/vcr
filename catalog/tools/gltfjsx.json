@@ -1,0 +1,23 @@
+{
+  "id": "gltfjsx",
+  "name": "gltfjsx",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "Model-to-JSX supporting workflow",
+  "official_url": "https://github.com/pmndrs/gltfjsx",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "3d-asset-processing",
+    "react-integration"
+  ],
+  "license": "MIT",
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

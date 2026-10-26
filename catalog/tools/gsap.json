@@ -1,0 +1,27 @@
+{
+  "id": "gsap",
+  "name": "GSAP",
+  "category": "A2. Animation and authored assets",
+  "tier": "core",
+  "role": "Timelines and animation; external-clock integration",
+  "official_url": "https://gsap.com/docs/v3/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "tweening",
+    "timeline-animation",
+    "svg-animation"
+  ],
+  "license": "GSAP standard licence (free including plugins since 3.13; recheck)",
+  "install": {
+    "macos": "pnpm add gsap"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

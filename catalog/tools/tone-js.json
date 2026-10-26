@@ -1,0 +1,25 @@
+{
+  "id": "tone-js",
+  "name": "Tone.js",
+  "category": "A8. Physics, audio and 3D assets",
+  "tier": "catalogued",
+  "role": "Audio synthesis, scheduling and effects",
+  "official_url": "https://tonejs.github.io/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "audio"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add tone"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

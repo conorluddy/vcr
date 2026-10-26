@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vcr.local/schemas/tool-record.schema.json",
+  "title": "VCR tool record",
+  "description": "One catalogued resource. Documentation, machine installation, validation evidence and adapter maturity are separate facts; only validation evidence and adapter maturity belong here. Installation lives in environment records.",
+  "type": "object",
+  "required": ["id", "name", "category", "tier", "role", "official_url", "automation_route", "capabilities", "documentation_status", "installation_status", "validation", "adapter_maturity", "checked_at", "source"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "name": { "type": "string" },
+    "category": { "type": "string" },
+    "tier": {
+      "enum": ["core", "catalogued", "candidate"],
+      "description": "core: an initial operational target with a skill and example planned. catalogued: a real option with a known automation route. candidate: surfaced during discovery, incremental value unassessed."
+    },
+    "role": { "type": "string" },
+    "official_url": { "type": "string", "format": "uri" },
+    "documentation_urls": { "type": "array", "items": { "type": "string", "format": "uri" } },
+    "automation_route": { "enum": ["library-or-runtime", "native-cli-or-scripting", "browser-platform-api", "remote-api", "manual-only"] },
+    "capabilities": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true },
+    "license": { "type": "string", "description": "Licence as last understood, with any commercial caveat. Recheck before shipping." },
+    "install": {
+      "type": "object",
+      "properties": {
+        "macos": { "type": "string", "description": "Shell command to install on macOS, for on-demand setup." },
+        "check_command": { "type": "string", "description": "Command that proves presence and prints a version." }
+      },
+      "additionalProperties": false
+    },
+    "notes": { "type": "array", "items": { "type": "string" } },
+    "documentation_status": { "enum": ["listed-in-prd", "skill-written", "skill-verified"] },
+    "installation_status": { "enum": ["unknown", "not-applicable"], "description": "Catalogue never claims installation; see environment/." },
+    "validation": {
+      "type": "object",
+      "required": ["status", "evidence"],
+      "properties": {
+        "status": { "enum": ["not-validated", "partial", "validated", "blocked"] },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["date", "hostname", "version", "command", "result"],
+            "properties": {
+              "date": { "type": "string", "format": "date" },
+              "hostname": { "type": "string" },
+              "version": { "type": "string" },
+              "command": { "type": "string" },
+              "result": { "type": "string" },
+              "output_hash": { "type": "string" },
+              "example": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "adapter_maturity": { "enum": ["none", "experimental", "supported", "deprecated"] },
+    "checked_at": { "type": ["string", "null"], "format": "date" },
+    "source": { "type": "string" }
+  },
+  "additionalProperties": false
+}

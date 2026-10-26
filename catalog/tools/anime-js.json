@@ -1,0 +1,27 @@
+{
+  "id": "anime-js",
+  "name": "Anime.js",
+  "category": "A2. Animation and authored assets",
+  "tier": "catalogued",
+  "role": "DOM/SVG/object animation; verify installed major API",
+  "official_url": "https://animejs.com/documentation",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "tweening",
+    "timeline-animation",
+    "svg-animation"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add animejs"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

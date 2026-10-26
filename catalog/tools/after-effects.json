@@ -1,0 +1,27 @@
+{
+  "id": "after-effects",
+  "name": "After Effects",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Application scripting + aerender; render existing projects/templates",
+  "official_url": "https://helpx.adobe.com/after-effects/desktop/render-and-export/automate-rendering/automated-rendering-network-rendering.html",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "native-authoring",
+    "compositing",
+    "timeline-animation"
+  ],
+  "license": "Commercial (Adobe subscription)",
+  "install": {
+    "check_command": "aerender -version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "ccapture-js",
+  "name": "CCapture.js",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "Fixed-framerate canvas capture; assess compatibility",
+  "official_url": "https://github.com/spite/ccapture.js/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "capture"
+  ],
+  "license": "MIT; unmaintained, verify",
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

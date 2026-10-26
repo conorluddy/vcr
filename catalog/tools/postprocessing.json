@@ -1,0 +1,26 @@
+{
+  "id": "postprocessing",
+  "name": "postprocessing",
+  "category": "A3. 3D, shaders and effects",
+  "tier": "catalogued",
+  "role": "Three.js effects pipeline",
+  "official_url": "https://github.com/pmndrs/postprocessing",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "effects",
+    "3d-rendering"
+  ],
+  "license": "Zlib",
+  "install": {
+    "macos": "pnpm add postprocessing"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

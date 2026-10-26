@@ -1,0 +1,28 @@
+{
+  "id": "openimageio-oiiotool",
+  "name": "OpenImageIO / oiiotool",
+  "category": "A6. Image processing and colour",
+  "tier": "catalogued",
+  "role": "Production image/sequence processing",
+  "official_url": "https://openimageio.readthedocs.io/en/latest/oiiotool.html",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "image-sequence-processing",
+    "image-processing",
+    "colour-management"
+  ],
+  "license": "Apache-2.0",
+  "install": {
+    "macos": "brew install openimageio",
+    "check_command": "oiiotool --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

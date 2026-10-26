@@ -1,0 +1,26 @@
+{
+  "id": "ogl",
+  "name": "OGL",
+  "category": "A3. 3D, shaders and effects",
+  "tier": "catalogued",
+  "role": "Minimal WebGL layer",
+  "official_url": "https://github.com/oframe/ogl",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "3d-rendering",
+    "shaders"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add ogl"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

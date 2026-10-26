@@ -1,0 +1,26 @@
+{
+  "id": "react-spring",
+  "name": "React Spring",
+  "category": "A2. Animation and authored assets",
+  "tier": "catalogued",
+  "role": "Spring animation; evaluate offline sampling",
+  "official_url": "https://www.react-spring.dev/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "tweening",
+    "react-integration"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add @react-spring/web"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

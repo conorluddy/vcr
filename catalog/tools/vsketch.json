@@ -1,0 +1,27 @@
+{
+  "id": "vsketch",
+  "name": "vsketch",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Python + vsk CLI; plotter-oriented generative vectors",
+  "official_url": "https://vsketch.readthedocs.io/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "plotter-workflow",
+    "generative-2d"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "uv tool install vsketch",
+    "check_command": "vsk --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

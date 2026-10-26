@@ -1,0 +1,27 @@
+{
+  "id": "gstreamer",
+  "name": "GStreamer",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "Media pipeline CLI/framework candidate",
+  "official_url": "https://gstreamer.freedesktop.org/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "video-encoding",
+    "video-composition"
+  ],
+  "license": "LGPL-2.1",
+  "install": {
+    "macos": "brew install gstreamer",
+    "check_command": "gst-launch-1.0 --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

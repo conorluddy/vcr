@@ -1,7 +1,7 @@
 import { Ajv2020, type ValidateFunction } from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
-import { existsSync } from "node:fs";
 import { join, relative } from "node:path";
+import { writeCatalogIndex } from "./catalog.js";
 import { listFilesNamed, listJsonFiles, readJsonFile } from "./repository.js";
 
 // === TYPES ===
@@ -24,10 +24,6 @@ export interface ValidationReport {
 interface ToolRecord {
   id: string;
   capabilities: string[];
-}
-
-interface ToolRegistry {
-  resources: ToolRecord[];
 }
 
 interface Vocabulary {
@@ -58,10 +54,12 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
   const knownCapabilities = new Set(vocabulary.ok ? vocabulary.value.capabilities : []);
   if (!vocabulary.ok) diagnostics.push({ severity: "error", file: "catalog/capabilities/vocabulary.json", path: "", message: vocabulary.error.message });
 
-  for (const registryPath of toolRegistryPaths(repositoryRoot)) {
-    const registry = check(registryPath, "tool") as ToolRegistry | undefined;
-    if (registry?.resources) diagnostics.push(...capabilityDiagnostics(registry.resources, knownCapabilities, relative(repositoryRoot, registryPath)));
+  for (const recordPath of listJsonFiles(join(repositoryRoot, "catalog/tools"))) {
+    const record = check(recordPath, "toolRecord") as ToolRecord | undefined;
+    if (record?.capabilities) diagnostics.push(...capabilityDiagnostics(record, knownCapabilities, relative(repositoryRoot, recordPath)));
   }
+  check(join(repositoryRoot, "catalog/tools.json"), "tool");
+  diagnostics.push(...indexFreshnessDiagnostics(repositoryRoot));
   for (const projectPath of listFilesNamed(join(repositoryRoot, "projects"), "project.json")) check(projectPath, "project");
   for (const referencePath of listJsonFiles(join(repositoryRoot, "references"))) check(referencePath, "reference");
   for (const environmentPath of listJsonFiles(join(repositoryRoot, "environment"))) check(environmentPath, "environment");
@@ -78,19 +76,28 @@ export function hasErrors(report: ValidationReport): boolean {
 function loadSchemas(repositoryRoot: string) {
   const ajv = new Ajv2020({ allErrors: true, strict: false });
   addFormats.default(ajv);
-  const compile = (name: string): ValidateFunction => {
+  const load = (name: string): object => {
     const schema = readJsonFile(join(repositoryRoot, `catalog/schemas/${name}.schema.json`));
     if (!schema.ok) throw new Error(schema.error.message);
-    return ajv.compile(schema.value as object);
+    return schema.value as object;
   };
-  return { tool: compile("tool"), project: compile("project"), reference: compile("reference"), environment: compile("environment") };
+  const toolRecordSchema = load("tool-record");
+  ajv.addSchema(toolRecordSchema);
+  return {
+    toolRecord: ajv.compile(toolRecordSchema),
+    tool: ajv.compile(load("tool")),
+    project: ajv.compile(load("project")),
+    reference: ajv.compile(load("reference")),
+    environment: ajv.compile(load("environment")),
+  };
 }
 
-/** The monolithic registry today; per-tool files under catalog/tools/ once the catalogue is split. */
-function toolRegistryPaths(repositoryRoot: string): string[] {
-  const perToolDirectory = join(repositoryRoot, "catalog/tools");
-  const monolith = join(repositoryRoot, "catalog/tools.json");
-  return [...(existsSync(monolith) ? [monolith] : []), ...listJsonFiles(perToolDirectory)];
+/** The committed index must match what `vcr catalog build` produces from the per-tool files. */
+function indexFreshnessDiagnostics(repositoryRoot: string): Diagnostic[] {
+  const outcome = writeCatalogIndex(repositoryRoot, true);
+  if (!outcome.ok) return [{ severity: "error", file: "catalog/tools", path: "", message: outcome.error.message }];
+  if (!outcome.value.wasStale) return [];
+  return [{ severity: "error", file: "catalog/tools.json", path: "", message: "index is stale", suggestion: "Run `pnpm vcr catalog build` and commit the result." }];
 }
 
 function schemaDiagnostics(validator: ValidateFunction, document: unknown, file: string): Diagnostic[] {
@@ -113,16 +120,14 @@ function unknownFieldDiagnostics(schema: unknown, document: unknown, file: strin
     .map((key) => ({ severity: "warning" as const, file, path: `/${key}`, message: `unknown field "${key}"`, suggestion: "Add it to the schema or remove it." }));
 }
 
-function capabilityDiagnostics(resources: ToolRecord[], knownCapabilities: Set<string>, file: string): Diagnostic[] {
-  return resources.flatMap((resource) =>
-    resource.capabilities
-      .filter((capability) => !knownCapabilities.has(capability))
-      .map((capability) => ({
-        severity: "error" as const,
-        file,
-        path: `/resources/${resource.id}/capabilities`,
-        message: `capability "${capability}" is not in catalog/capabilities/vocabulary.json`,
-        suggestion: "Use an existing capability or add it to the vocabulary in the same change.",
-      })),
-  );
+function capabilityDiagnostics(record: ToolRecord, knownCapabilities: Set<string>, file: string): Diagnostic[] {
+  return record.capabilities
+    .filter((capability) => !knownCapabilities.has(capability))
+    .map((capability) => ({
+      severity: "error" as const,
+      file,
+      path: "/capabilities",
+      message: `capability "${capability}" is not in catalog/capabilities/vocabulary.json`,
+      suggestion: "Use an existing capability or add it to the vocabulary in the same change.",
+    }));
 }

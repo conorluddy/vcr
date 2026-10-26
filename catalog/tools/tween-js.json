@@ -1,0 +1,25 @@
+{
+  "id": "tween-js",
+  "name": "tween.js",
+  "category": "A2. Animation and authored assets",
+  "tier": "catalogued",
+  "role": "Numeric property interpolation",
+  "official_url": "https://tweenjs.github.io/tween.js/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "tweening"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add @tweenjs/tween.js"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

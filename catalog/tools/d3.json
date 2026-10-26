@@ -1,0 +1,27 @@
+{
+  "id": "d3",
+  "name": "D3",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "catalogued",
+  "role": "Data-driven geometry, layout and animation",
+  "official_url": "https://d3js.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "data-visualisation",
+    "vector-authoring",
+    "svg-animation"
+  ],
+  "license": "ISC",
+  "install": {
+    "macos": "pnpm add d3"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

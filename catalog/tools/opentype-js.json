@@ -1,0 +1,27 @@
+{
+  "id": "opentype-js",
+  "name": "opentype.js",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "catalogued",
+  "role": "Font outlines and glyph manipulation",
+  "official_url": "https://opentype.js.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "font-processing",
+    "typography",
+    "vector-authoring"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add opentype.js"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

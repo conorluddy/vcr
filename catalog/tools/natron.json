@@ -1,0 +1,26 @@
+{
+  "id": "natron",
+  "name": "Natron",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Background renderer + Python; verify current build/API",
+  "official_url": "https://natron.readthedocs.io/en/v2.3.15/devel/natronexecution.html",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "compositing",
+    "native-authoring"
+  ],
+  "license": "GPL-2.0; verify current builds for macOS arm64",
+  "install": {
+    "check_command": "NatronRenderer --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

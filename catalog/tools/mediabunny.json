@@ -1,0 +1,26 @@
+{
+  "id": "mediabunny",
+  "name": "Mediabunny",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "TS media I/O and conversion",
+  "official_url": "https://mediabunny.dev/guide/introduction",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "video-encoding",
+    "media-inspection"
+  ],
+  "license": "MPL-2.0",
+  "install": {
+    "macos": "pnpm add mediabunny"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "playcanvas-engine",
+  "name": "PlayCanvas Engine",
+  "category": "A3. 3D, shaders and effects",
+  "tier": "catalogued",
+  "role": "Web 3D engine; use engine independently where suitable",
+  "official_url": "https://playcanvas.com/products/engine",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "3d-rendering",
+    "game-engine"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add playcanvas"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

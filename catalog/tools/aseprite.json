@@ -1,0 +1,26 @@
+{
+  "id": "aseprite",
+  "name": "Aseprite",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Batch CLI + scripts; pixel animation and sheets",
+  "official_url": "https://www.aseprite.org/docs/cli/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "pixel-art",
+    "native-authoring"
+  ],
+  "license": "Commercial; source available for self-build",
+  "install": {
+    "check_command": "aseprite --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

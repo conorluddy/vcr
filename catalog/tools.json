@@ -1,13 +1,24 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
+  "generated_from": "catalog/tools/*.json",
   "resources": [
     {
-      "id": "canvas-sketch",
-      "name": "canvas-sketch",
-      "category": "A1. Creative coding and 2D",
-      "role": "Generative artwork workflow",
-      "official_url": "https://github.com/mattdesl/canvas-sketch",
-      "automation_route": "library-or-runtime",
+      "id": "after-effects",
+      "name": "After Effects",
+      "category": "A7. Native applications and procedural tools",
+      "tier": "catalogued",
+      "role": "Application scripting + aerender; render existing projects/templates",
+      "official_url": "https://helpx.adobe.com/after-effects/desktop/render-and-export/automate-rendering/automated-rendering-network-rendering.html",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "native-authoring",
+        "compositing",
+        "timeline-animation"
+      ],
+      "license": "Commercial (Adobe subscription)",
+      "install": {
+        "check_command": "aerender -version"
+      },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
@@ -16,229 +27,25 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "generative-2d",
-        "2d-rendering"
-      ]
-    },
-    {
-      "id": "easeljs",
-      "name": "EaselJS",
-      "category": "A1. Creative coding and 2D",
-      "role": "Canvas display list; evaluate compatibility before support",
-      "official_url": "https://createjs.com/easeljs",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "generative-2d",
-        "2d-rendering"
-      ]
-    },
-    {
-      "id": "fabric-js",
-      "name": "Fabric.js",
-      "category": "A1. Creative coding and 2D",
-      "role": "Editable canvas objects and SVG interchange",
-      "official_url": "https://fabricjs.com/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "generative-2d",
-        "2d-rendering"
-      ]
-    },
-    {
-      "id": "konva",
-      "name": "Konva",
-      "category": "A1. Creative coding and 2D",
-      "role": "Interactive Canvas scene graph; possible editor foundation",
-      "official_url": "https://konvajs.org/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "generative-2d",
-        "2d-rendering"
-      ]
-    },
-    {
-      "id": "p5-js",
-      "name": "p5.js",
-      "category": "A1. Creative coding and 2D",
-      "role": "Generative visuals; provide explicit time/seed conventions",
-      "official_url": "https://p5js.org/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "generative-2d",
-        "2d-rendering"
-      ]
-    },
-    {
-      "id": "paper-js",
-      "name": "Paper.js",
-      "category": "A1. Creative coding and 2D",
-      "role": "Vector path geometry and Bézier operations",
-      "official_url": "https://paperjs.org/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "generative-2d",
-        "2d-rendering"
-      ]
-    },
-    {
-      "id": "pixijs",
-      "name": "PixiJS",
-      "category": "A1. Creative coding and 2D",
-      "role": "GPU 2D rendering, sprites and effects",
-      "official_url": "https://pixijs.com/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "generative-2d",
-        "2d-rendering"
-      ]
-    },
-    {
-      "id": "pts",
-      "name": "Pts",
-      "category": "A1. Creative coding and 2D",
-      "role": "Geometry-centred creative coding",
-      "official_url": "https://ptsjs.org/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "generative-2d",
-        "2d-rendering"
-      ]
-    },
-    {
-      "id": "rough-js",
-      "name": "Rough.js",
-      "category": "A1. Creative coding and 2D",
-      "role": "Hand-drawn Canvas/SVG primitives",
-      "official_url": "https://roughjs.com/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "generative-2d",
-        "2d-rendering"
-      ]
-    },
-    {
-      "id": "ssam",
-      "name": "Ssam",
-      "category": "A1. Creative coding and 2D",
-      "role": "Sketch loop, snapshots and export",
-      "official_url": "https://github.com/cdaein/ssam",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "generative-2d",
-        "2d-rendering"
-      ]
-    },
-    {
-      "id": "two-js",
-      "name": "Two.js",
-      "category": "A1. Creative coding and 2D",
-      "role": "Flat geometry across SVG/Canvas/WebGL",
-      "official_url": "https://two.js.org/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "generative-2d",
-        "2d-rendering"
-      ]
+      "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
       "id": "anime-js",
       "name": "Anime.js",
       "category": "A2. Animation and authored assets",
+      "tier": "catalogued",
       "role": "DOM/SVG/object animation; verify installed major API",
       "official_url": "https://animejs.com/documentation",
       "automation_route": "library-or-runtime",
+      "capabilities": [
+        "tweening",
+        "timeline-animation",
+        "svg-animation"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add animejs"
+      },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
@@ -247,1201 +54,24 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "svg-animation",
-        "asset-playback"
-      ]
-    },
-    {
-      "id": "gsap",
-      "name": "GSAP",
-      "category": "A2. Animation and authored assets",
-      "role": "Timelines and animation; external-clock integration",
-      "official_url": "https://gsap.com/docs/v3/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "svg-animation",
-        "asset-playback"
-      ]
-    },
-    {
-      "id": "lottie-web",
-      "name": "Lottie Web",
-      "category": "A2. Animation and authored assets",
-      "role": "Lottie playback; validate generated/edited JSON",
-      "official_url": "https://github.com/airbnb/lottie-web",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "svg-animation",
-        "asset-playback"
-      ]
-    },
-    {
-      "id": "mo-js",
-      "name": "mo.js",
-      "category": "A2. Animation and authored assets",
-      "role": "Bursts, shapes and graphic effects",
-      "official_url": "https://mojs.github.io/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "svg-animation",
-        "asset-playback"
-      ]
-    },
-    {
-      "id": "motion",
-      "name": "Motion",
-      "category": "A2. Animation and authored assets",
-      "role": "React/JS motion and layout animation",
-      "official_url": "https://motion.dev/docs",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "svg-animation",
-        "asset-playback"
-      ]
-    },
-    {
-      "id": "motion-canvas",
-      "name": "Motion Canvas",
-      "category": "A2. Animation and authored assets",
-      "role": "TS informative animation and narration workflows",
-      "official_url": "https://motioncanvas.io/docs/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "svg-animation",
-        "asset-playback"
-      ]
-    },
-    {
-      "id": "react-spring",
-      "name": "React Spring",
-      "category": "A2. Animation and authored assets",
-      "role": "Spring animation; evaluate offline sampling",
-      "official_url": "https://www.react-spring.dev/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "svg-animation",
-        "asset-playback"
-      ]
-    },
-    {
-      "id": "rive-web",
-      "name": "Rive Web",
-      "category": "A2. Animation and authored assets",
-      "role": "Authored asset playback/control; runtime is not general authoring API",
-      "official_url": "https://rive.app/docs/runtimes/web/web-js",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "svg-animation",
-        "asset-playback"
-      ]
-    },
-    {
-      "id": "theatre-js",
-      "name": "Theatre.js",
-      "category": "A2. Animation and authored assets",
-      "role": "Visual sequence/curve editing linked to code",
-      "official_url": "https://www.theatrejs.com/docs/latest",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "svg-animation",
-        "asset-playback"
-      ]
-    },
-    {
-      "id": "tween-js",
-      "name": "tween.js",
-      "category": "A2. Animation and authored assets",
-      "role": "Numeric property interpolation",
-      "official_url": "https://tweenjs.github.io/tween.js/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "svg-animation",
-        "asset-playback"
-      ]
-    },
-    {
-      "id": "babylon-js",
-      "name": "Babylon.js",
-      "category": "A3. 3D, shaders and effects",
-      "role": "3D engine and authoring ecosystem",
-      "official_url": "https://www.babylonjs.com/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "3d-rendering",
-        "shaders",
-        "effects"
-      ]
-    },
-    {
-      "id": "drei",
-      "name": "Drei",
-      "category": "A3. 3D, shaders and effects",
-      "role": "R3F helper components",
-      "official_url": "https://github.com/pmndrs/drei",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "3d-rendering",
-        "shaders",
-        "effects"
-      ]
-    },
-    {
-      "id": "gl-react",
-      "name": "gl-react",
-      "category": "A3. 3D, shaders and effects",
-      "role": "Composable React/WebGL shaders",
-      "official_url": "https://github.com/gre/gl-react",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "3d-rendering",
-        "shaders",
-        "effects"
-      ]
-    },
-    {
-      "id": "ogl",
-      "name": "OGL",
-      "category": "A3. 3D, shaders and effects",
-      "role": "Minimal WebGL layer",
-      "official_url": "https://github.com/oframe/ogl",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "3d-rendering",
-        "shaders",
-        "effects"
-      ]
-    },
-    {
-      "id": "pixijs-filters",
-      "name": "PixiJS Filters",
-      "category": "A3. 3D, shaders and effects",
-      "role": "2D display effects",
-      "official_url": "https://github.com/pixijs/filters",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "3d-rendering",
-        "shaders",
-        "effects"
-      ]
-    },
-    {
-      "id": "playcanvas-engine",
-      "name": "PlayCanvas Engine",
-      "category": "A3. 3D, shaders and effects",
-      "role": "Web 3D engine; use engine independently where suitable",
-      "official_url": "https://playcanvas.com/products/engine",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "3d-rendering",
-        "shaders",
-        "effects"
-      ]
-    },
-    {
-      "id": "postprocessing",
-      "name": "postprocessing",
-      "category": "A3. 3D, shaders and effects",
-      "role": "Three.js effects pipeline",
-      "official_url": "https://github.com/pmndrs/postprocessing",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "3d-rendering",
-        "shaders",
-        "effects"
-      ]
-    },
-    {
-      "id": "react-three-fiber",
-      "name": "React Three Fiber",
-      "category": "A3. 3D, shaders and effects",
-      "role": "Declarative Three.js; match React/package majors",
-      "official_url": "https://r3f.docs.pmnd.rs/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "3d-rendering",
-        "shaders",
-        "effects"
-      ]
-    },
-    {
-      "id": "regl",
-      "name": "regl",
-      "category": "A3. 3D, shaders and effects",
-      "role": "Functional WebGL abstraction",
-      "official_url": "https://github.com/regl-project/regl",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "3d-rendering",
-        "shaders",
-        "effects"
-      ]
-    },
-    {
-      "id": "three-js",
-      "name": "Three.js",
-      "category": "A3. 3D, shaders and effects",
-      "role": "Browser 3D scene rendering",
-      "official_url": "https://threejs.org/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "3d-rendering",
-        "shaders",
-        "effects"
-      ]
-    },
-    {
-      "id": "three-js-shading-language",
-      "name": "Three.js Shading Language",
-      "category": "A3. 3D, shaders and effects",
-      "role": "JS shader construction; pin compatible Three version",
-      "official_url": "https://github.com/mrdoob/three.js/wiki/Three.js-Shading-Language",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "3d-rendering",
-        "shaders",
-        "effects"
-      ]
-    },
-    {
-      "id": "three-meshline",
-      "name": "THREE.MeshLine",
-      "category": "A3. 3D, shaders and effects",
-      "role": "Thick stylised lines; evaluate maintained compatible implementation",
-      "official_url": "https://github.com/spite/THREE.MeshLine",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "3d-rendering",
-        "shaders",
-        "effects"
-      ]
-    },
-    {
-      "id": "twgl",
-      "name": "TWGL",
-      "category": "A3. 3D, shaders and effects",
-      "role": "WebGL boilerplate helpers",
-      "official_url": "https://twgljs.org/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "3d-rendering",
-        "shaders",
-        "effects"
-      ]
-    },
-    {
-      "id": "d3",
-      "name": "D3",
-      "category": "A4. Vector, typography, diagrams and stills",
-      "role": "Data-driven geometry, layout and animation",
-      "official_url": "https://d3js.org/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "vector-authoring",
-        "typography",
-        "diagram-generation"
-      ]
-    },
-    {
-      "id": "graphviz",
-      "name": "Graphviz",
-      "category": "A4. Vector, typography, diagrams and stills",
-      "role": "CLI graph layout/rendering",
-      "official_url": "https://www.graphviz.org/doc/info/command.html",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "vector-authoring",
-        "typography",
-        "diagram-generation"
-      ]
-    },
-    {
-      "id": "mermaid-cli",
-      "name": "Mermaid CLI",
-      "category": "A4. Vector, typography, diagrams and stills",
-      "role": "Text-defined diagrams to assets",
-      "official_url": "https://github.com/mermaid-js/mermaid-cli",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "vector-authoring",
-        "typography",
-        "diagram-generation"
-      ]
-    },
-    {
-      "id": "msdfgen",
-      "name": "msdfgen",
-      "category": "A4. Vector, typography, diagrams and stills",
-      "role": "Signed distance-field generation",
-      "official_url": "https://github.com/Chlumsky/msdfgen",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "vector-authoring",
-        "typography",
-        "diagram-generation"
-      ]
-    },
-    {
-      "id": "opentype-js",
-      "name": "opentype.js",
-      "category": "A4. Vector, typography, diagrams and stills",
-      "role": "Font outlines and glyph manipulation",
-      "official_url": "https://opentype.js.org/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "vector-authoring",
-        "typography",
-        "diagram-generation"
-      ]
-    },
-    {
-      "id": "potrace",
-      "name": "Potrace",
-      "category": "A4. Vector, typography, diagrams and stills",
-      "role": "Bitmap tracing to vectors",
-      "official_url": "https://potrace.sourceforge.net/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "vector-authoring",
-        "typography",
-        "diagram-generation"
-      ]
-    },
-    {
-      "id": "resvg",
-      "name": "resvg",
-      "category": "A4. Vector, typography, diagrams and stills",
-      "role": "Static SVG rasterisation",
-      "official_url": "https://github.com/linebender/resvg",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "vector-authoring",
-        "typography",
-        "diagram-generation"
-      ]
-    },
-    {
-      "id": "satori",
-      "name": "Satori",
-      "category": "A4. Vector, typography, diagrams and stills",
-      "role": "HTML/CSS-like layout to SVG; not a full browser",
-      "official_url": "https://github.com/vercel/satori",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "vector-authoring",
-        "typography",
-        "diagram-generation"
-      ]
-    },
-    {
-      "id": "svg-js",
-      "name": "SVG.js",
-      "category": "A4. Vector, typography, diagrams and stills",
-      "role": "SVG construction/manipulation",
-      "official_url": "https://svgjs.dev/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "vector-authoring",
-        "typography",
-        "diagram-generation"
-      ]
-    },
-    {
-      "id": "svgo",
-      "name": "SVGO",
-      "category": "A4. Vector, typography, diagrams and stills",
-      "role": "SVG optimisation; preserve IDs needed by animation",
-      "official_url": "https://github.com/svg/svgo",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "vector-authoring",
-        "typography",
-        "diagram-generation"
-      ]
-    },
-    {
-      "id": "canvas-record",
-      "name": "canvas-record",
-      "category": "A5. Video and capture",
-      "role": "Canvas recording and sequence export",
-      "official_url": "https://github.com/dmnsgn/canvas-record",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "video-composition",
-        "video-encoding",
-        "media-inspection",
-        "capture"
-      ]
-    },
-    {
-      "id": "ccapture-js",
-      "name": "CCapture.js",
-      "category": "A5. Video and capture",
-      "role": "Fixed-framerate canvas capture; assess compatibility",
-      "official_url": "https://github.com/spite/ccapture.js/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "video-composition",
-        "video-encoding",
-        "media-inspection",
-        "capture"
-      ]
-    },
-    {
-      "id": "diffusion-studio-core",
-      "name": "Diffusion Studio Core",
-      "category": "A5. Video and capture",
-      "role": "Browser compositing engine",
-      "official_url": "https://github.com/diffusionstudio/core",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "video-composition",
-        "video-encoding",
-        "media-inspection",
-        "capture"
-      ]
-    },
-    {
-      "id": "editly",
-      "name": "Editly",
-      "category": "A5. Video and capture",
-      "role": "Declarative Node/CLI editing",
-      "official_url": "https://github.com/mifi/editly",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "video-composition",
-        "video-encoding",
-        "media-inspection",
-        "capture"
-      ]
-    },
-    {
-      "id": "ffmpeg-ffprobe",
-      "name": "FFmpeg / ffprobe",
-      "category": "A5. Video and capture",
-      "role": "Native encoding, assembly, filters and media inspection",
-      "official_url": "https://ffmpeg.org/documentation.html",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "video-composition",
-        "video-encoding",
-        "media-inspection",
-        "capture"
-      ]
-    },
-    {
-      "id": "ffmpeg-filters",
-      "name": "FFmpeg filters",
-      "category": "A5. Video and capture",
-      "role": "Detailed compositing/audio/filter reference",
-      "official_url": "https://ffmpeg.org/ffmpeg-filters.html",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "video-composition",
-        "video-encoding",
-        "media-inspection",
-        "capture"
-      ]
-    },
-    {
-      "id": "ffmpeg-wasm",
-      "name": "ffmpeg.wasm",
-      "category": "A5. Video and capture",
-      "role": "Browser FFmpeg; assess overhead and browser prerequisites",
-      "official_url": "https://ffmpegwasm.netlify.app/docs/overview/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "video-composition",
-        "video-encoding",
-        "media-inspection",
-        "capture"
-      ]
-    },
-    {
-      "id": "gifski",
-      "name": "gifski",
-      "category": "A5. Video and capture",
-      "role": "GIF delivery encoder",
-      "official_url": "https://github.com/ImageOptim/gifski",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "video-composition",
-        "video-encoding",
-        "media-inspection",
-        "capture"
-      ]
-    },
-    {
-      "id": "mediabunny",
-      "name": "Mediabunny",
-      "category": "A5. Video and capture",
-      "role": "TS media I/O and conversion",
-      "official_url": "https://mediabunny.dev/guide/introduction",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "video-composition",
-        "video-encoding",
-        "media-inspection",
-        "capture"
-      ]
-    },
-    {
-      "id": "mediabunny-server-extension",
-      "name": "Mediabunny server extension",
-      "category": "A5. Video and capture",
-      "role": "Optional server codecs/backend; evaluate separately",
-      "official_url": "https://mediabunny.dev/guide/extensions/server",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "video-composition",
-        "video-encoding",
-        "media-inspection",
-        "capture"
-      ]
-    },
-    {
-      "id": "mlt-melt",
-      "name": "MLT / melt",
-      "category": "A5. Video and capture",
-      "role": "Multitrack CLI processing",
-      "official_url": "https://mltframework.org/docs/melt/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "video-composition",
-        "video-encoding",
-        "media-inspection",
-        "capture"
-      ]
-    },
-    {
-      "id": "pyscenedetect",
-      "name": "PySceneDetect",
-      "category": "A5. Video and capture",
-      "role": "Shot detection and splitting",
-      "official_url": "https://www.scenedetect.com/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "video-composition",
-        "video-encoding",
-        "media-inspection",
-        "capture"
-      ]
-    },
-    {
-      "id": "remotion",
-      "name": "Remotion",
-      "category": "A5. Video and capture",
-      "role": "React video composition/export; check applicable license",
-      "official_url": "https://www.remotion.dev/docs",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "video-composition",
-        "video-encoding",
-        "media-inspection",
-        "capture"
-      ]
-    },
-    {
-      "id": "g-mic",
-      "name": "G'MIC",
-      "category": "A6. Image processing and colour",
-      "role": "CLI filters and procedural image processing",
-      "official_url": "https://gmic.eu/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "image-processing",
-        "colour-management"
-      ]
-    },
-    {
-      "id": "gimp-batch",
-      "name": "GIMP batch",
-      "category": "A6. Image processing and colour",
-      "role": "Scripted image operations; version-specific procedures",
-      "official_url": "https://www.gimp.org/man/gimp.html",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "image-processing",
-        "colour-management"
-      ]
-    },
-    {
-      "id": "imagemagick",
-      "name": "ImageMagick",
-      "category": "A6. Image processing and colour",
-      "role": "CLI image operations, montage and comparison",
-      "official_url": "https://imagemagick.org/script/command-line-tools.php/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "image-processing",
-        "colour-management"
-      ]
-    },
-    {
-      "id": "jimp",
-      "name": "Jimp",
-      "category": "A6. Image processing and colour",
-      "role": "JS image manipulation",
-      "official_url": "https://github.com/jimp-dev/jimp",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "image-processing",
-        "colour-management"
-      ]
-    },
-    {
-      "id": "opencolorio",
-      "name": "OpenColorIO",
-      "category": "A6. Image processing and colour",
-      "role": "Colour-management integration",
-      "official_url": "https://github.com/AcademySoftwareFoundation/OpenColorIO",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "image-processing",
-        "colour-management"
-      ]
-    },
-    {
-      "id": "openimageio-oiiotool",
-      "name": "OpenImageIO / oiiotool",
-      "category": "A6. Image processing and colour",
-      "role": "Production image/sequence processing",
-      "official_url": "https://openimageio.readthedocs.io/en/latest/oiiotool.html",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "image-processing",
-        "colour-management"
-      ]
-    },
-    {
-      "id": "rawtherapee-cli",
-      "name": "RawTherapee CLI",
-      "category": "A6. Image processing and colour",
-      "role": "Camera RAW preparation",
-      "official_url": "https://rawtherapee.com/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "image-processing",
-        "colour-management"
-      ]
-    },
-    {
-      "id": "sharp",
-      "name": "Sharp",
-      "category": "A6. Image processing and colour",
-      "role": "Node image processing and compositing",
-      "official_url": "https://sharp.pixelplumbing.com/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "image-processing",
-        "colour-management"
-      ]
-    },
-    {
-      "id": "after-effects",
-      "name": "After Effects",
-      "category": "A7. Native applications and procedural tools",
-      "role": "Application scripting + aerender; render existing projects/templates",
-      "official_url": "https://helpx.adobe.com/after-effects/desktop/render-and-export/automate-rendering/automated-rendering-network-rendering.html",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "native-authoring"
-      ]
+      "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
       "id": "aseprite",
       "name": "Aseprite",
       "category": "A7. Native applications and procedural tools",
+      "tier": "catalogued",
       "role": "Batch CLI + scripts; pixel animation and sheets",
       "official_url": "https://www.aseprite.org/docs/cli/",
       "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "pixel-art",
+        "native-authoring"
+      ],
+      "license": "Commercial; source available for self-build",
+      "install": {
+        "check_command": "aseprite --version"
+      },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
@@ -1450,260 +80,62 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "babylon-js",
+      "name": "Babylon.js",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "catalogued",
+      "role": "3D engine and authoring ecosystem",
+      "official_url": "https://www.babylonjs.com/",
+      "automation_route": "library-or-runtime",
       "capabilities": [
-        "native-authoring"
-      ]
+        "3d-rendering",
+        "shaders",
+        "effects",
+        "physics-simulation"
+      ],
+      "license": "Apache-2.0",
+      "install": {
+        "macos": "pnpm add @babylonjs/core"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
       "id": "blender",
       "name": "Blender",
       "category": "A7. Native applications and procedural tools",
+      "tier": "core",
       "role": "Background CLI + Python; 3D, animation and compositing",
       "official_url": "https://docs.blender.org/manual/en/latest/advanced/command_line/render.html",
+      "documentation_urls": [
+        "https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html"
+      ],
       "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
       "capabilities": [
-        "native-authoring"
-      ]
-    },
-    {
-      "id": "blender-cli-arguments",
-      "name": "Blender CLI arguments",
-      "category": "A7. Native applications and procedural tools",
-      "role": "Execution and scripting options",
-      "official_url": "https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "native-authoring"
-      ]
-    },
-    {
-      "id": "godot",
-      "name": "Godot",
-      "category": "A7. Native applications and procedural tools",
-      "role": "Scene scripts + movie CLI; visual rendering needs suitable backend",
-      "official_url": "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "native-authoring"
-      ]
-    },
-    {
-      "id": "houdini",
-      "name": "Houdini",
-      "category": "A7. Native applications and procedural tools",
-      "role": "hython/hbatch; commercial procedural/simulation workflows",
-      "official_url": "https://www.sidefx.com/docs/houdini/render/batch.html",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "native-authoring"
-      ]
-    },
-    {
-      "id": "inkscape",
-      "name": "Inkscape",
-      "category": "A7. Native applications and procedural tools",
-      "role": "CLI actions/export; vector source workflows",
-      "official_url": "https://wiki.inkscape.org/wiki/Using_the_Command_Line",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "native-authoring"
-      ]
-    },
-    {
-      "id": "manim-community",
-      "name": "Manim Community",
-      "category": "A7. Native applications and procedural tools",
-      "role": "Python scenes + CLI; educational animation",
-      "official_url": "https://docs.manim.community/en/stable/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "native-authoring"
-      ]
-    },
-    {
-      "id": "natron",
-      "name": "Natron",
-      "category": "A7. Native applications and procedural tools",
-      "role": "Background renderer + Python; verify current build/API",
-      "official_url": "https://natron.readthedocs.io/en/v2.3.15/devel/natronexecution.html",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "native-authoring"
-      ]
-    },
-    {
-      "id": "pov-ray",
-      "name": "POV-Ray",
-      "category": "A7. Native applications and procedural tools",
-      "role": "Text scene/INI + CLI; procedural ray tracing",
-      "official_url": "https://www.povray.org/documentation/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "native-authoring"
-      ]
-    },
-    {
-      "id": "synfig",
-      "name": "Synfig",
-      "category": "A7. Native applications and procedural tools",
-      "role": "Native animation project + CLI render",
-      "official_url": "https://wiki.synfig.org/Render_options",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "native-authoring"
-      ]
-    },
-    {
-      "id": "vpype",
-      "name": "vpype",
-      "category": "A7. Native applications and procedural tools",
-      "role": "CLI vector pipelines",
-      "official_url": "https://vpype.readthedocs.io/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "native-authoring"
-      ]
-    },
-    {
-      "id": "vsketch",
-      "name": "vsketch",
-      "category": "A7. Native applications and procedural tools",
-      "role": "Python + vsk CLI; plotter-oriented generative vectors",
-      "official_url": "https://vsketch.readthedocs.io/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "native-authoring"
-      ]
-    },
-    {
-      "id": "gltf-transform",
-      "name": "glTF Transform",
-      "category": "A8. Physics, audio and 3D assets",
-      "role": "JS/CLI model preparation and optimisation",
-      "official_url": "https://gltf-transform.dev/cli",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
+        "3d-rendering",
+        "native-authoring",
+        "compositing",
         "physics-simulation",
-        "audio",
-        "3d-asset-processing"
-      ]
-    },
-    {
-      "id": "matter-js",
-      "name": "Matter.js",
-      "category": "A8. Physics, audio and 3D assets",
-      "role": "2D physics; fixed-step replay/cache",
-      "official_url": "https://brm.io/matter-js/",
-      "automation_route": "library-or-runtime",
+        "model-loading"
+      ],
+      "license": "GPL-3.0",
+      "install": {
+        "macos": "brew install --cask blender",
+        "check_command": "/Applications/Blender.app/Contents/MacOS/Blender --version"
+      },
+      "notes": [
+        "Not on PATH on macOS; use the app bundle executable. First native application spike planned in M0."
+      ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
@@ -1712,689 +144,1217 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "physics-simulation",
-        "audio",
-        "3d-asset-processing"
-      ]
-    },
-    {
-      "id": "rapier",
-      "name": "Rapier",
-      "category": "A8. Physics, audio and 3D assets",
-      "role": "Web-capable 2D/3D physics",
-      "official_url": "https://rapier.rs/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "physics-simulation",
-        "audio",
-        "3d-asset-processing"
-      ]
-    },
-    {
-      "id": "tone-js",
-      "name": "Tone.js",
-      "category": "A8. Physics, audio and 3D assets",
-      "role": "Audio synthesis, scheduling and effects",
-      "official_url": "https://tonejs.github.io/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "physics-simulation",
-        "audio",
-        "3d-asset-processing"
-      ]
-    },
-    {
-      "id": "canvaskit-skia",
-      "name": "CanvasKit / Skia",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "WASM graphics rendering candidate",
-      "official_url": "https://skia.org/docs/user/modules/canvaskit/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "createjs-tweenjs",
-      "name": "CreateJS / TweenJS",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "EaselJS-adjacent tweening ecosystem",
-      "official_url": "https://createjs.com/tweenjs",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "dear-imgui",
-      "name": "Dear ImGui",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Native UI infrastructure; outside primary scope",
-      "official_url": "https://github.com/ocornut/imgui",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "deck-gl",
-      "name": "deck.gl",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Geospatial/data visualisation scenes",
-      "official_url": "https://deck.gl/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "dotlottie",
-      "name": "dotLottie",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Lottie packaging/runtime ecosystem",
-      "official_url": "https://developers.lottiefiles.com/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "glfx-js",
-      "name": "glfx.js",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "WebGL image-effects candidate",
-      "official_url": "https://github.com/evanw/glfx.js",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "glmatrix",
-      "name": "glMatrix",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Vector/matrix supporting utilities",
-      "official_url": "https://glmatrix.net/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "glslcanvas",
-      "name": "glslCanvas",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Lightweight fragment-shader canvas host",
-      "official_url": "https://github.com/patriciogonzalezvivo/glslCanvas",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "glslify",
-      "name": "glslify",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "GLSL module tooling",
-      "official_url": "https://github.com/glslify/glslify",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "gltfjsx",
-      "name": "gltfjsx",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Model-to-JSX supporting workflow",
-      "official_url": "https://github.com/pmndrs/gltfjsx",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "graphicsmagick",
-      "name": "GraphicsMagick",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Alternative native image CLI",
-      "official_url": "http://www.graphicsmagick.org/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "gstreamer",
-      "name": "GStreamer",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Media pipeline CLI/framework candidate",
-      "official_url": "https://gstreamer.freedesktop.org/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "hyperframes",
-      "name": "Hyperframes",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Existing workflow/inspiration; assess interoperability separately",
-      "official_url": "https://hyperframes.heygen.com/catalog",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "image-js",
-      "name": "image-js",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "JS image-processing candidate",
-      "official_url": "https://github.com/image-js/image-js",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "leva",
-      "name": "Leva",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Parameter inspection/control panels",
-      "official_url": "https://github.com/pmndrs/leva",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "libvips",
-      "name": "libvips",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Native image pipeline underlying Sharp",
-      "official_url": "https://www.libvips.org/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "luma-gl",
-      "name": "luma.gl",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "GPU rendering building blocks",
-      "official_url": "https://luma.gl/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "maath",
-      "name": "maath",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Graphics math helpers",
-      "official_url": "https://github.com/pmndrs/maath",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "opencv-js",
-      "name": "OpenCV.js",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Computer-vision/image-analysis candidate",
-      "official_url": "https://docs.opencv.org/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "phaser",
-      "name": "Phaser",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Game-oriented animation/simulation scenes",
-      "official_url": "https://phaser.io/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "photon",
-      "name": "Photon",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "WASM image-processing candidate",
-      "official_url": "https://github.com/silvia-odwyer/photon",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "popmotion",
-      "name": "Popmotion",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Animation primitive candidate; assess overlap",
-      "official_url": "https://popmotion.io/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "react-three-gpu-pathtracer",
-      "name": "react-three/gpu-pathtracer",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Path-traced output candidate",
-      "official_url": "https://github.com/pmndrs/react-three-gpu-pathtracer",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "react-three-postprocessing",
-      "name": "react-three/postprocessing",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "React wrapper for effects",
-      "official_url": "https://github.com/pmndrs/react-postprocessing",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "react-three-rapier",
-      "name": "react-three/rapier",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "R3F physics integration",
-      "official_url": "https://github.com/pmndrs/react-three-rapier",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "shotstack",
-      "name": "Shotstack",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Remote rendering service candidate; optional API route",
-      "official_url": "https://shotstack.io/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "svgator",
-      "name": "SVGator",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Visual authoring reference; no CLI commitment",
-      "official_url": "https://www.svgator.com/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "troika-three-text",
-      "name": "Troika Three Text",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Three.js text rendering candidate",
-      "official_url": "https://github.com/protectwise/troika/tree/main/packages/troika-three-text",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "vpython",
-      "name": "VPython",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Python educational 3D; assess export route",
-      "official_url": "https://vpython.org/",
-      "automation_route": "native-cli-or-scripting",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "vtk-js",
-      "name": "vtk.js",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Scientific visualisation scenes",
-      "official_url": "https://kitware.github.io/vtk-js/",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
-    },
-    {
-      "id": "webav",
-      "name": "WebAV",
-      "category": "A9. Adjacent resources mentioned during discovery",
-      "role": "Browser media toolkit candidate",
-      "official_url": "https://github.com/bilibili/WebAV",
-      "automation_route": "library-or-runtime",
-      "documentation_status": "candidate",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a",
-      "capabilities": [
-        "candidate"
-      ]
+      "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
       "id": "canvas-2d",
       "name": "Canvas 2D",
       "category": "Native browser platform APIs",
+      "tier": "catalogued",
       "role": "2D drawing API in supported browsers",
       "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API",
       "automation_route": "browser-platform-api",
       "capabilities": [
         "2d-rendering"
       ],
-      "documentation_status": "platform-api",
+      "documentation_status": "listed-in-prd",
       "installation_status": "not-applicable",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "canvas-record",
+      "name": "canvas-record",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "Canvas recording and sequence export",
+      "official_url": "https://github.com/dmnsgn/canvas-record",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "capture",
+        "video-encoding"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add canvas-record"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "canvas-sketch",
+      "name": "canvas-sketch",
+      "category": "A1. Creative coding and 2D",
+      "tier": "catalogued",
+      "role": "Generative artwork workflow",
+      "official_url": "https://github.com/mattdesl/canvas-sketch",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering",
+        "capture"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add canvas-sketch"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "canvaskit-skia",
+      "name": "CanvasKit / Skia",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "WASM graphics rendering candidate",
+      "official_url": "https://skia.org/docs/user/modules/canvaskit/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "2d-rendering"
+      ],
+      "license": "BSD-3-Clause",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "ccapture-js",
+      "name": "CCapture.js",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "Fixed-framerate canvas capture; assess compatibility",
+      "official_url": "https://github.com/spite/ccapture.js/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "capture"
+      ],
+      "license": "MIT; unmaintained, verify",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "createjs-tweenjs",
+      "name": "CreateJS / TweenJS",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "EaselJS-adjacent tweening ecosystem",
+      "official_url": "https://createjs.com/tweenjs",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "tweening"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "d3",
+      "name": "D3",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "catalogued",
+      "role": "Data-driven geometry, layout and animation",
+      "official_url": "https://d3js.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "data-visualisation",
+        "vector-authoring",
+        "svg-animation"
+      ],
+      "license": "ISC",
+      "install": {
+        "macos": "pnpm add d3"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "dear-imgui",
+      "name": "Dear ImGui",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Native UI infrastructure; outside primary scope",
+      "official_url": "https://github.com/ocornut/imgui",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "parameter-ui"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "deck-gl",
+      "name": "deck.gl",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Geospatial/data visualisation scenes",
+      "official_url": "https://deck.gl/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "geospatial",
+        "data-visualisation"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "diffusion-studio-core",
+      "name": "Diffusion Studio Core",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "Browser compositing engine",
+      "official_url": "https://github.com/diffusionstudio/core",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "video-composition",
+        "video-encoding"
+      ],
+      "license": "MPL-2.0 (recheck)",
+      "install": {
+        "macos": "pnpm add @diffusionstudio/core"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "dotlottie",
+      "name": "dotLottie",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Lottie packaging/runtime ecosystem",
+      "official_url": "https://developers.lottiefiles.com/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "asset-playback"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "drei",
+      "name": "Drei",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "catalogued",
+      "role": "R3F helper components",
+      "official_url": "https://github.com/pmndrs/drei",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-rendering",
+        "react-integration"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add @react-three/drei"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "easeljs",
+      "name": "EaselJS",
+      "category": "A1. Creative coding and 2D",
+      "tier": "catalogued",
+      "role": "Canvas display list; evaluate compatibility before support",
+      "official_url": "https://createjs.com/easeljs",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "2d-rendering",
+        "tweening"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "editly",
+      "name": "Editly",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "Declarative Node/CLI editing",
+      "official_url": "https://github.com/mifi/editly",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "video-composition",
+        "video-encoding"
+      ],
+      "license": "MIT; maintenance uncertain",
+      "install": {
+        "macos": "pnpm add -g editly",
+        "check_command": "editly --help"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "fabric-js",
+      "name": "Fabric.js",
+      "category": "A1. Creative coding and 2D",
+      "tier": "catalogued",
+      "role": "Editable canvas objects and SVG interchange",
+      "official_url": "https://fabricjs.com/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "2d-rendering",
+        "vector-authoring"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add fabric"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "ffmpeg-ffprobe",
+      "name": "FFmpeg / ffprobe",
+      "category": "A5. Video and capture",
+      "tier": "core",
+      "role": "Native encoding, assembly, filters and media inspection",
+      "official_url": "https://ffmpeg.org/documentation.html",
+      "documentation_urls": [
+        "https://ffmpeg.org/ffmpeg-filters.html"
+      ],
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "video-encoding",
+        "video-composition",
+        "media-inspection",
+        "audio",
+        "gif-encoding",
+        "image-sequence-processing"
+      ],
+      "license": "LGPL-2.1 or GPL depending on build flags",
+      "install": {
+        "macos": "brew install ffmpeg",
+        "check_command": "ffmpeg -version"
+      },
+      "notes": [
+        "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "ffmpeg-wasm",
+      "name": "ffmpeg.wasm",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "Browser FFmpeg; assess overhead and browser prerequisites",
+      "official_url": "https://ffmpegwasm.netlify.app/docs/overview/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "video-encoding",
+        "media-inspection"
+      ],
+      "license": "MIT wrapper over FFmpeg LGPL/GPL",
+      "install": {
+        "macos": "pnpm add @ffmpeg/ffmpeg"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "g-mic",
+      "name": "G'MIC",
+      "category": "A6. Image processing and colour",
+      "tier": "catalogued",
+      "role": "CLI filters and procedural image processing",
+      "official_url": "https://gmic.eu/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing",
+        "effects"
+      ],
+      "license": "CeCILL",
+      "install": {
+        "macos": "brew install gmic",
+        "check_command": "gmic version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "gifski",
+      "name": "gifski",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "GIF delivery encoder",
+      "official_url": "https://github.com/ImageOptim/gifski",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "gif-encoding"
+      ],
+      "license": "AGPL-3.0",
+      "install": {
+        "macos": "brew install gifski",
+        "check_command": "gifski --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "gimp-batch",
+      "name": "GIMP batch",
+      "category": "A6. Image processing and colour",
+      "tier": "catalogued",
+      "role": "Scripted image operations; version-specific procedures",
+      "official_url": "https://www.gimp.org/man/gimp.html",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing"
+      ],
+      "license": "GPL-3.0",
+      "install": {
+        "macos": "brew install --cask gimp",
+        "check_command": "gimp --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "gl-react",
+      "name": "gl-react",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "catalogued",
+      "role": "Composable React/WebGL shaders",
+      "official_url": "https://github.com/gre/gl-react",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "shaders",
+        "react-integration",
+        "effects"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add gl-react"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "glfx-js",
+      "name": "glfx.js",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "WebGL image-effects candidate",
+      "official_url": "https://github.com/evanw/glfx.js",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "effects",
+        "image-processing"
+      ],
+      "license": "MIT; unmaintained",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "glmatrix",
+      "name": "glMatrix",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Vector/matrix supporting utilities",
+      "official_url": "https://glmatrix.net/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "math-utilities"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "glslcanvas",
+      "name": "glslCanvas",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Lightweight fragment-shader canvas host",
+      "official_url": "https://github.com/patriciogonzalezvivo/glslCanvas",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "shaders"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "glslify",
+      "name": "glslify",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "GLSL module tooling",
+      "official_url": "https://github.com/glslify/glslify",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "shaders"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "gltf-transform",
+      "name": "glTF Transform",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
+      "role": "JS/CLI model preparation and optimisation",
+      "official_url": "https://gltf-transform.dev/cli",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "3d-asset-processing"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add -g @gltf-transform/cli",
+        "check_command": "gltf-transform --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "gltfjsx",
+      "name": "gltfjsx",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Model-to-JSX supporting workflow",
+      "official_url": "https://github.com/pmndrs/gltfjsx",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "3d-asset-processing",
+        "react-integration"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "godot",
+      "name": "Godot",
+      "category": "A7. Native applications and procedural tools",
+      "tier": "catalogued",
+      "role": "Scene scripts + movie CLI; visual rendering needs suitable backend",
+      "official_url": "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "game-engine",
+        "3d-rendering",
+        "native-authoring"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "brew install --cask godot",
+        "check_command": "godot --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "graphicsmagick",
+      "name": "GraphicsMagick",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Alternative native image CLI",
+      "official_url": "http://www.graphicsmagick.org/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing"
+      ],
+      "license": "MIT-style",
+      "install": {
+        "macos": "brew install graphicsmagick",
+        "check_command": "gm version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "graphviz",
+      "name": "Graphviz",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "catalogued",
+      "role": "CLI graph layout/rendering",
+      "official_url": "https://www.graphviz.org/doc/info/command.html",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "diagram-generation",
+        "vector-authoring"
+      ],
+      "license": "EPL-1.0",
+      "install": {
+        "macos": "brew install graphviz",
+        "check_command": "dot -V"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "gsap",
+      "name": "GSAP",
+      "category": "A2. Animation and authored assets",
+      "tier": "core",
+      "role": "Timelines and animation; external-clock integration",
+      "official_url": "https://gsap.com/docs/v3/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "tweening",
+        "timeline-animation",
+        "svg-animation"
+      ],
+      "license": "GSAP standard licence (free including plugins since 3.13; recheck)",
+      "install": {
+        "macos": "pnpm add gsap"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "gstreamer",
+      "name": "GStreamer",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Media pipeline CLI/framework candidate",
+      "official_url": "https://gstreamer.freedesktop.org/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "video-encoding",
+        "video-composition"
+      ],
+      "license": "LGPL-2.1",
+      "install": {
+        "macos": "brew install gstreamer",
+        "check_command": "gst-launch-1.0 --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "houdini",
+      "name": "Houdini",
+      "category": "A7. Native applications and procedural tools",
+      "tier": "catalogued",
+      "role": "hython/hbatch; commercial procedural/simulation workflows",
+      "official_url": "https://www.sidefx.com/docs/houdini/render/batch.html",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "native-authoring",
+        "physics-simulation",
+        "3d-rendering"
+      ],
+      "license": "Commercial; Apprentice edition has output restrictions",
+      "install": {
+        "check_command": "hython --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "hyperframes",
+      "name": "Hyperframes",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "HTML-to-video renderer with seekable timeline, Studio preview and component registry",
+      "official_url": "https://hyperframes.heygen.com/catalog",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "capture",
+        "timeline-animation"
+      ],
+      "license": "HeyGen terms; plan usage limits apply",
+      "install": {
+        "check_command": "npx hyperframes --version"
+      },
+      "notes": [
+        "Moved from A9 to A5: it is a working HTML-to-video renderer, not a candidate.",
+        "Not a VCR dependency per ADR 0001 (in-house composition engine). Reference and inspiration only."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "image-js",
+      "name": "image-js",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "JS image-processing candidate",
+      "official_url": "https://github.com/image-js/image-js",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "image-processing"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "imagemagick",
+      "name": "ImageMagick",
+      "category": "A6. Image processing and colour",
+      "tier": "catalogued",
+      "role": "CLI image operations, montage and comparison",
+      "official_url": "https://imagemagick.org/script/command-line-tools.php/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing",
+        "media-inspection",
+        "image-sequence-processing"
+      ],
+      "license": "ImageMagick licence (Apache-2.0 compatible)",
+      "install": {
+        "macos": "brew install imagemagick",
+        "check_command": "magick --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "inkscape",
+      "name": "Inkscape",
+      "category": "A7. Native applications and procedural tools",
+      "tier": "catalogued",
+      "role": "CLI actions/export; vector source workflows",
+      "official_url": "https://wiki.inkscape.org/wiki/Using_the_Command_Line",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "vector-authoring",
+        "svg-rasterisation",
+        "native-authoring"
+      ],
+      "license": "GPL-2.0",
+      "install": {
+        "macos": "brew install --cask inkscape",
+        "check_command": "inkscape --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "jimp",
+      "name": "Jimp",
+      "category": "A6. Image processing and colour",
+      "tier": "catalogued",
+      "role": "JS image manipulation",
+      "official_url": "https://github.com/jimp-dev/jimp",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "image-processing"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add jimp"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "konva",
+      "name": "Konva",
+      "category": "A1. Creative coding and 2D",
+      "tier": "catalogued",
+      "role": "Interactive Canvas scene graph; possible editor foundation",
+      "official_url": "https://konvajs.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "2d-rendering",
+        "tweening"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add konva"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "leva",
+      "name": "Leva",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Parameter inspection/control panels",
+      "official_url": "https://github.com/pmndrs/leva",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "parameter-ui",
+        "react-integration"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "libvips",
+      "name": "libvips",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Native image pipeline underlying Sharp",
+      "official_url": "https://www.libvips.org/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing"
+      ],
+      "license": "LGPL-2.1",
+      "install": {
+        "macos": "brew install vips",
+        "check_command": "vips --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "lottie-web",
+      "name": "Lottie Web",
+      "category": "A2. Animation and authored assets",
+      "tier": "catalogued",
+      "role": "Lottie playback; validate generated/edited JSON",
+      "official_url": "https://github.com/airbnb/lottie-web",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "asset-playback",
+        "svg-animation"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add lottie-web"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "luma-gl",
+      "name": "luma.gl",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "GPU rendering building blocks",
+      "official_url": "https://luma.gl/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-rendering",
+        "shaders"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "maath",
+      "name": "maath",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Graphics math helpers",
+      "official_url": "https://github.com/pmndrs/maath",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "math-utilities"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "manim-community",
+      "name": "Manim Community",
+      "category": "A7. Native applications and procedural tools",
+      "tier": "catalogued",
+      "role": "Python scenes + CLI; educational animation",
+      "official_url": "https://docs.manim.community/en/stable/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "timeline-animation",
+        "2d-rendering",
+        "video-encoding",
+        "typography"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "uv tool install manim",
+        "check_command": "manim --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "matter-js",
+      "name": "Matter.js",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
+      "role": "2D physics; fixed-step replay/cache",
+      "official_url": "https://brm.io/matter-js/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "physics-simulation"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add matter-js"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "mediabunny",
+      "name": "Mediabunny",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "TS media I/O and conversion",
+      "official_url": "https://mediabunny.dev/guide/introduction",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "video-encoding",
+        "media-inspection"
+      ],
+      "license": "MPL-2.0",
+      "install": {
+        "macos": "pnpm add mediabunny"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "mediabunny-server-extension",
+      "name": "Mediabunny server extension",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "Optional server codecs/backend; evaluate separately",
+      "official_url": "https://mediabunny.dev/guide/extensions/server",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "video-encoding"
+      ],
+      "license": "Recheck; may be commercial",
+      "notes": [
+        "Separate package from mediabunny; evaluate independently."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
       "validation": {
         "status": "not-validated",
         "evidence": []
@@ -2407,14 +1367,1068 @@
       "id": "mediarecorder",
       "name": "MediaRecorder",
       "category": "Native browser platform APIs",
+      "tier": "catalogued",
       "role": "Browser media recording API",
       "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder",
       "automation_route": "browser-platform-api",
       "capabilities": [
         "capture"
       ],
-      "documentation_status": "platform-api",
+      "documentation_status": "listed-in-prd",
       "installation_status": "not-applicable",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "mermaid-cli",
+      "name": "Mermaid CLI",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "catalogued",
+      "role": "Text-defined diagrams to assets",
+      "official_url": "https://github.com/mermaid-js/mermaid-cli",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "diagram-generation"
+      ],
+      "license": "MIT; bundles a headless Chromium",
+      "install": {
+        "macos": "pnpm add -g @mermaid-js/mermaid-cli",
+        "check_command": "mmdc --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "mlt-melt",
+      "name": "MLT / melt",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "Multitrack CLI processing",
+      "official_url": "https://mltframework.org/docs/melt/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "video-composition",
+        "video-encoding"
+      ],
+      "license": "LGPL-2.1",
+      "install": {
+        "macos": "brew install mlt",
+        "check_command": "melt -version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "mo-js",
+      "name": "mo.js",
+      "category": "A2. Animation and authored assets",
+      "tier": "catalogued",
+      "role": "Bursts, shapes and graphic effects",
+      "official_url": "https://mojs.github.io/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "svg-animation",
+        "effects"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add @mojs/core"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "motion",
+      "name": "Motion",
+      "category": "A2. Animation and authored assets",
+      "tier": "catalogued",
+      "role": "React/JS motion and layout animation",
+      "official_url": "https://motion.dev/docs",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "tweening",
+        "react-integration",
+        "svg-animation"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add motion"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "motion-canvas",
+      "name": "Motion Canvas",
+      "category": "A2. Animation and authored assets",
+      "tier": "catalogued",
+      "role": "TS informative animation and narration workflows",
+      "official_url": "https://motioncanvas.io/docs/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "timeline-animation",
+        "2d-rendering",
+        "video-encoding"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add @motion-canvas/core"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "msdfgen",
+      "name": "msdfgen",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "catalogued",
+      "role": "Signed distance-field generation",
+      "official_url": "https://github.com/Chlumsky/msdfgen",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "sdf-generation",
+        "font-processing"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "brew install msdfgen",
+        "check_command": "msdfgen -help"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "natron",
+      "name": "Natron",
+      "category": "A7. Native applications and procedural tools",
+      "tier": "catalogued",
+      "role": "Background renderer + Python; verify current build/API",
+      "official_url": "https://natron.readthedocs.io/en/v2.3.15/devel/natronexecution.html",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "compositing",
+        "native-authoring"
+      ],
+      "license": "GPL-2.0; verify current builds for macOS arm64",
+      "install": {
+        "check_command": "NatronRenderer --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "ogl",
+      "name": "OGL",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "catalogued",
+      "role": "Minimal WebGL layer",
+      "official_url": "https://github.com/oframe/ogl",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-rendering",
+        "shaders"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add ogl"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "opencolorio",
+      "name": "OpenColorIO",
+      "category": "A6. Image processing and colour",
+      "tier": "catalogued",
+      "role": "Colour-management integration",
+      "official_url": "https://github.com/AcademySoftwareFoundation/OpenColorIO",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "colour-management"
+      ],
+      "license": "BSD-3-Clause",
+      "install": {
+        "macos": "brew install opencolorio",
+        "check_command": "ociocheck -h"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "opencv-js",
+      "name": "OpenCV.js",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Computer-vision/image-analysis candidate",
+      "official_url": "https://docs.opencv.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "computer-vision",
+        "image-processing"
+      ],
+      "license": "Apache-2.0",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "openimageio-oiiotool",
+      "name": "OpenImageIO / oiiotool",
+      "category": "A6. Image processing and colour",
+      "tier": "catalogued",
+      "role": "Production image/sequence processing",
+      "official_url": "https://openimageio.readthedocs.io/en/latest/oiiotool.html",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-sequence-processing",
+        "image-processing",
+        "colour-management"
+      ],
+      "license": "Apache-2.0",
+      "install": {
+        "macos": "brew install openimageio",
+        "check_command": "oiiotool --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "opentype-js",
+      "name": "opentype.js",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "catalogued",
+      "role": "Font outlines and glyph manipulation",
+      "official_url": "https://opentype.js.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "font-processing",
+        "typography",
+        "vector-authoring"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add opentype.js"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "p5-js",
+      "name": "p5.js",
+      "category": "A1. Creative coding and 2D",
+      "tier": "core",
+      "role": "Generative visuals; provide explicit time/seed conventions",
+      "official_url": "https://p5js.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering",
+        "3d-rendering"
+      ],
+      "license": "LGPL-2.1",
+      "install": {
+        "macos": "pnpm add p5"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "paper-js",
+      "name": "Paper.js",
+      "category": "A1. Creative coding and 2D",
+      "tier": "catalogued",
+      "role": "Vector path geometry and Bézier operations",
+      "official_url": "https://paperjs.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring",
+        "2d-rendering"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add paper"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "phaser",
+      "name": "Phaser",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Game-oriented animation/simulation scenes",
+      "official_url": "https://phaser.io/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "game-engine",
+        "2d-rendering",
+        "physics-simulation"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "photon",
+      "name": "Photon",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "WASM image-processing candidate",
+      "official_url": "https://github.com/silvia-odwyer/photon",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "image-processing"
+      ],
+      "license": "Apache-2.0",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "pixijs",
+      "name": "PixiJS",
+      "category": "A1. Creative coding and 2D",
+      "tier": "catalogued",
+      "role": "GPU 2D rendering, sprites and effects",
+      "official_url": "https://pixijs.com/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "2d-rendering",
+        "effects"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add pixi.js"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "pixijs-filters",
+      "name": "PixiJS Filters",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "catalogued",
+      "role": "2D display effects",
+      "official_url": "https://github.com/pixijs/filters",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "effects",
+        "2d-rendering"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add pixi-filters"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "playcanvas-engine",
+      "name": "PlayCanvas Engine",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "catalogued",
+      "role": "Web 3D engine; use engine independently where suitable",
+      "official_url": "https://playcanvas.com/products/engine",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-rendering",
+        "game-engine"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add playcanvas"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "popmotion",
+      "name": "Popmotion",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Animation primitive candidate; assess overlap",
+      "official_url": "https://popmotion.io/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "tweening"
+      ],
+      "license": "MIT; superseded by Motion",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "postprocessing",
+      "name": "postprocessing",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "catalogued",
+      "role": "Three.js effects pipeline",
+      "official_url": "https://github.com/pmndrs/postprocessing",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "effects",
+        "3d-rendering"
+      ],
+      "license": "Zlib",
+      "install": {
+        "macos": "pnpm add postprocessing"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "potrace",
+      "name": "Potrace",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "catalogued",
+      "role": "Bitmap tracing to vectors",
+      "official_url": "https://potrace.sourceforge.net/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "vector-tracing"
+      ],
+      "license": "GPL-2.0",
+      "install": {
+        "macos": "brew install potrace",
+        "check_command": "potrace --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "pov-ray",
+      "name": "POV-Ray",
+      "category": "A7. Native applications and procedural tools",
+      "tier": "catalogued",
+      "role": "Text scene/INI + CLI; procedural ray tracing",
+      "official_url": "https://www.povray.org/documentation/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "ray-tracing",
+        "3d-rendering"
+      ],
+      "license": "AGPL-3.0",
+      "install": {
+        "macos": "brew install povray",
+        "check_command": "povray --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "pts",
+      "name": "Pts",
+      "category": "A1. Creative coding and 2D",
+      "tier": "catalogued",
+      "role": "Geometry-centred creative coding",
+      "official_url": "https://ptsjs.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering"
+      ],
+      "license": "Apache-2.0",
+      "install": {
+        "macos": "pnpm add pts"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "pyscenedetect",
+      "name": "PySceneDetect",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "Shot detection and splitting",
+      "official_url": "https://www.scenedetect.com/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "shot-detection",
+        "media-inspection"
+      ],
+      "license": "BSD-3-Clause",
+      "install": {
+        "macos": "uv tool install scenedetect[opencv]",
+        "check_command": "scenedetect version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "rapier",
+      "name": "Rapier",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
+      "role": "Web-capable 2D/3D physics",
+      "official_url": "https://rapier.rs/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "physics-simulation"
+      ],
+      "license": "Apache-2.0",
+      "install": {
+        "macos": "pnpm add @dimforge/rapier3d-compat"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "rawtherapee-cli",
+      "name": "RawTherapee CLI",
+      "category": "A6. Image processing and colour",
+      "tier": "catalogued",
+      "role": "Camera RAW preparation",
+      "official_url": "https://rawtherapee.com/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "raw-processing"
+      ],
+      "license": "GPL-3.0",
+      "install": {
+        "macos": "brew install --cask rawtherapee",
+        "check_command": "rawtherapee-cli -v"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "react-spring",
+      "name": "React Spring",
+      "category": "A2. Animation and authored assets",
+      "tier": "catalogued",
+      "role": "Spring animation; evaluate offline sampling",
+      "official_url": "https://www.react-spring.dev/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "tweening",
+        "react-integration"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add @react-spring/web"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "react-three-fiber",
+      "name": "React Three Fiber",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "catalogued",
+      "role": "Declarative Three.js; match React/package majors",
+      "official_url": "https://r3f.docs.pmnd.rs/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-rendering",
+        "react-integration"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add @react-three/fiber"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "react-three-gpu-pathtracer",
+      "name": "react-three/gpu-pathtracer",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Path-traced output candidate",
+      "official_url": "https://github.com/pmndrs/react-three-gpu-pathtracer",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "ray-tracing",
+        "react-integration"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "react-three-postprocessing",
+      "name": "react-three/postprocessing",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "React wrapper for effects",
+      "official_url": "https://github.com/pmndrs/react-postprocessing",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "effects",
+        "react-integration"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "react-three-rapier",
+      "name": "react-three/rapier",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "R3F physics integration",
+      "official_url": "https://github.com/pmndrs/react-three-rapier",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "physics-simulation",
+        "react-integration"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "regl",
+      "name": "regl",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "catalogued",
+      "role": "Functional WebGL abstraction",
+      "official_url": "https://github.com/regl-project/regl",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "shaders",
+        "2d-rendering",
+        "3d-rendering"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add regl"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "remotion",
+      "name": "Remotion",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "React video composition/export; check applicable license",
+      "official_url": "https://www.remotion.dev/docs",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "video-composition",
+        "video-encoding",
+        "react-integration",
+        "capture"
+      ],
+      "license": "Remotion licence: free for individuals and companies of three or fewer; company licence otherwise",
+      "install": {
+        "macos": "pnpm add remotion @remotion/cli"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "resvg",
+      "name": "resvg",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "catalogued",
+      "role": "Static SVG rasterisation",
+      "official_url": "https://github.com/linebender/resvg",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "svg-rasterisation"
+      ],
+      "license": "MPL-2.0",
+      "install": {
+        "macos": "brew install resvg",
+        "check_command": "resvg --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "rive-web",
+      "name": "Rive Web",
+      "category": "A2. Animation and authored assets",
+      "tier": "catalogued",
+      "role": "Authored asset playback/control; runtime is not general authoring API",
+      "official_url": "https://rive.app/docs/runtimes/web/web-js",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "asset-playback"
+      ],
+      "license": "MIT runtime; authoring in Rive app",
+      "install": {
+        "macos": "pnpm add @rive-app/canvas"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "rough-js",
+      "name": "Rough.js",
+      "category": "A1. Creative coding and 2D",
+      "tier": "catalogued",
+      "role": "Hand-drawn Canvas/SVG primitives",
+      "official_url": "https://roughjs.com/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "2d-rendering",
+        "vector-authoring"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add roughjs"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "satori",
+      "name": "Satori",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "catalogued",
+      "role": "HTML/CSS-like layout to SVG; not a full browser",
+      "official_url": "https://github.com/vercel/satori",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "typography",
+        "vector-authoring"
+      ],
+      "license": "MPL-2.0",
+      "install": {
+        "macos": "pnpm add satori"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "sharp",
+      "name": "Sharp",
+      "category": "A6. Image processing and colour",
+      "tier": "catalogued",
+      "role": "Node image processing and compositing",
+      "official_url": "https://sharp.pixelplumbing.com/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "image-processing",
+        "compositing"
+      ],
+      "license": "Apache-2.0",
+      "install": {
+        "macos": "pnpm add sharp"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "shotstack",
+      "name": "Shotstack",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Remote rendering service candidate; optional API route",
+      "official_url": "https://shotstack.io/",
+      "automation_route": "remote-api",
+      "capabilities": [
+        "remote-rendering",
+        "video-composition"
+      ],
+      "license": "Commercial API",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "ssam",
+      "name": "Ssam",
+      "category": "A1. Creative coding and 2D",
+      "tier": "catalogued",
+      "role": "Sketch loop, snapshots and export",
+      "official_url": "https://github.com/cdaein/ssam",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "generative-2d",
+        "capture",
+        "video-encoding"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add ssam"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
       "validation": {
         "status": "not-validated",
         "evidence": []
@@ -2427,14 +2441,445 @@
       "id": "svg",
       "name": "SVG",
       "category": "Native browser platform APIs",
+      "tier": "core",
       "role": "Native vector graphics format and browser rendering",
       "official_url": "https://developer.mozilla.org/en-US/docs/Web/SVG",
       "automation_route": "browser-platform-api",
       "capabilities": [
+        "vector-authoring",
+        "svg-animation"
+      ],
+      "notes": [
+        "Core alongside GSAP: static SVG is a native, dependency-free source format; GSAP supplies the timeline."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "not-applicable",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "svg-js",
+      "name": "SVG.js",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "catalogued",
+      "role": "SVG construction/manipulation",
+      "official_url": "https://svgjs.dev/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring",
+        "svg-animation"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add @svgdotjs/svg.js"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "svgator",
+      "name": "SVGator",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Visual authoring reference; no CLI commitment",
+      "official_url": "https://www.svgator.com/",
+      "automation_route": "manual-only",
+      "capabilities": [
+        "svg-animation"
+      ],
+      "license": "Commercial SaaS",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "svgo",
+      "name": "SVGO",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "catalogued",
+      "role": "SVG optimisation; preserve IDs needed by animation",
+      "official_url": "https://github.com/svg/svgo",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "svg-optimisation"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add -g svgo",
+        "check_command": "svgo --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "synfig",
+      "name": "Synfig",
+      "category": "A7. Native applications and procedural tools",
+      "tier": "catalogued",
+      "role": "Native animation project + CLI render",
+      "official_url": "https://wiki.synfig.org/Render_options",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "native-authoring",
+        "2d-rendering",
+        "timeline-animation"
+      ],
+      "license": "GPL-3.0",
+      "install": {
+        "macos": "brew install --cask synfigstudio",
+        "check_command": "synfig --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "theatre-js",
+      "name": "Theatre.js",
+      "category": "A2. Animation and authored assets",
+      "tier": "catalogued",
+      "role": "Visual sequence/curve editing linked to code",
+      "official_url": "https://www.theatrejs.com/docs/latest",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "timeline-animation",
+        "parameter-ui"
+      ],
+      "license": "Apache-2.0",
+      "install": {
+        "macos": "pnpm add @theatre/core"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "three-js",
+      "name": "Three.js",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "core",
+      "role": "Browser 3D scene rendering",
+      "official_url": "https://threejs.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-rendering",
+        "shaders",
+        "effects",
+        "model-loading"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add three"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "three-js-shading-language",
+      "name": "Three.js Shading Language",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "catalogued",
+      "role": "JS shader construction; pin compatible Three version",
+      "official_url": "https://github.com/mrdoob/three.js/wiki/Three.js-Shading-Language",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "shaders"
+      ],
+      "license": "MIT (part of three)",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "three-meshline",
+      "name": "THREE.MeshLine",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "catalogued",
+      "role": "Thick stylised lines; evaluate maintained compatible implementation",
+      "official_url": "https://github.com/spite/THREE.MeshLine",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-rendering"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add meshline"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "tone-js",
+      "name": "Tone.js",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
+      "role": "Audio synthesis, scheduling and effects",
+      "official_url": "https://tonejs.github.io/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add tone"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "troika-three-text",
+      "name": "Troika Three Text",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Three.js text rendering candidate",
+      "official_url": "https://github.com/protectwise/troika/tree/main/packages/troika-three-text",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "text-rendering",
+        "3d-rendering"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "tween-js",
+      "name": "tween.js",
+      "category": "A2. Animation and authored assets",
+      "tier": "catalogued",
+      "role": "Numeric property interpolation",
+      "official_url": "https://tweenjs.github.io/tween.js/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "tweening"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add @tweenjs/tween.js"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "twgl",
+      "name": "TWGL",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "catalogued",
+      "role": "WebGL boilerplate helpers",
+      "official_url": "https://twgljs.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "shaders"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add twgl.js"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "two-js",
+      "name": "Two.js",
+      "category": "A1. Creative coding and 2D",
+      "tier": "catalogued",
+      "role": "Flat geometry across SVG/Canvas/WebGL",
+      "official_url": "https://two.js.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "2d-rendering",
         "vector-authoring"
       ],
-      "documentation_status": "platform-api",
-      "installation_status": "not-applicable",
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add two.js"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "vpype",
+      "name": "vpype",
+      "category": "A7. Native applications and procedural tools",
+      "tier": "catalogued",
+      "role": "CLI vector pipelines",
+      "official_url": "https://vpype.readthedocs.io/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "plotter-workflow",
+        "vector-authoring"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "uv tool install vpype",
+        "check_command": "vpype --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "vpython",
+      "name": "VPython",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Python educational 3D; assess export route",
+      "official_url": "https://vpython.org/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "3d-rendering"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "vsketch",
+      "name": "vsketch",
+      "category": "A7. Native applications and procedural tools",
+      "tier": "catalogued",
+      "role": "Python + vsk CLI; plotter-oriented generative vectors",
+      "official_url": "https://vsketch.readthedocs.io/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "plotter-workflow",
+        "generative-2d"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "uv tool install vsketch",
+        "check_command": "vsk --version"
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "vtk-js",
+      "name": "vtk.js",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Scientific visualisation scenes",
+      "official_url": "https://kitware.github.io/vtk-js/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "scientific-visualisation",
+        "3d-rendering"
+      ],
+      "license": "BSD-3-Clause",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
       "validation": {
         "status": "not-validated",
         "evidence": []
@@ -2447,13 +2892,15 @@
       "id": "web-animations-api",
       "name": "Web Animations API",
       "category": "Native browser platform APIs",
+      "tier": "catalogued",
       "role": "Browser animation API",
       "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API",
       "automation_route": "browser-platform-api",
       "capabilities": [
-        "svg-animation"
+        "tweening",
+        "timeline-animation"
       ],
-      "documentation_status": "platform-api",
+      "documentation_status": "listed-in-prd",
       "installation_status": "not-applicable",
       "validation": {
         "status": "not-validated",
@@ -2467,14 +2914,38 @@
       "id": "web-audio",
       "name": "Web Audio API",
       "category": "Native browser platform APIs",
+      "tier": "catalogued",
       "role": "Browser audio processing and synthesis API",
       "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API",
       "automation_route": "browser-platform-api",
       "capabilities": [
         "audio"
       ],
-      "documentation_status": "platform-api",
+      "documentation_status": "listed-in-prd",
       "installation_status": "not-applicable",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "webav",
+      "name": "WebAV",
+      "category": "A9. Adjacent resources mentioned during discovery",
+      "tier": "candidate",
+      "role": "Browser media toolkit candidate",
+      "official_url": "https://github.com/bilibili/WebAV",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "video-composition",
+        "video-encoding"
+      ],
+      "license": "MIT",
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
       "validation": {
         "status": "not-validated",
         "evidence": []
@@ -2487,13 +2958,15 @@
       "id": "webcodecs",
       "name": "WebCodecs",
       "category": "Native browser platform APIs",
+      "tier": "catalogued",
       "role": "Browser media codec API",
       "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/WebCodecs_API",
       "automation_route": "browser-platform-api",
       "capabilities": [
-        "video-encoding"
+        "video-encoding",
+        "media-inspection"
       ],
-      "documentation_status": "platform-api",
+      "documentation_status": "listed-in-prd",
       "installation_status": "not-applicable",
       "validation": {
         "status": "not-validated",
@@ -2507,13 +2980,15 @@
       "id": "webgl",
       "name": "WebGL",
       "category": "Native browser platform APIs",
+      "tier": "catalogued",
       "role": "Browser GPU graphics API",
       "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API",
       "automation_route": "browser-platform-api",
       "capabilities": [
-        "3d-rendering"
+        "3d-rendering",
+        "shaders"
       ],
-      "documentation_status": "platform-api",
+      "documentation_status": "listed-in-prd",
       "installation_status": "not-applicable",
       "validation": {
         "status": "not-validated",
@@ -2527,13 +3002,15 @@
       "id": "webgpu",
       "name": "WebGPU",
       "category": "Native browser platform APIs",
+      "tier": "catalogued",
       "role": "Browser GPU API; target-browser support must be checked",
       "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API",
       "automation_route": "browser-platform-api",
       "capabilities": [
-        "3d-rendering"
+        "3d-rendering",
+        "shaders"
       ],
-      "documentation_status": "platform-api",
+      "documentation_status": "listed-in-prd",
       "installation_status": "not-applicable",
       "validation": {
         "status": "not-validated",

@@ -1,0 +1,27 @@
+{
+  "id": "graphviz",
+  "name": "Graphviz",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "catalogued",
+  "role": "CLI graph layout/rendering",
+  "official_url": "https://www.graphviz.org/doc/info/command.html",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "diagram-generation",
+    "vector-authoring"
+  ],
+  "license": "EPL-1.0",
+  "install": {
+    "macos": "brew install graphviz",
+    "check_command": "dot -V"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "satori",
+  "name": "Satori",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "catalogued",
+  "role": "HTML/CSS-like layout to SVG; not a full browser",
+  "official_url": "https://github.com/vercel/satori",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "typography",
+    "vector-authoring"
+  ],
+  "license": "MPL-2.0",
+  "install": {
+    "macos": "pnpm add satori"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

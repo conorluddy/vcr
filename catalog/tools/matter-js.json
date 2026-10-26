@@ -1,0 +1,25 @@
+{
+  "id": "matter-js",
+  "name": "Matter.js",
+  "category": "A8. Physics, audio and 3D assets",
+  "tier": "catalogued",
+  "role": "2D physics; fixed-step replay/cache",
+  "official_url": "https://brm.io/matter-js/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "physics-simulation"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add matter-js"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

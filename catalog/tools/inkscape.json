@@ -1,0 +1,28 @@
+{
+  "id": "inkscape",
+  "name": "Inkscape",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "CLI actions/export; vector source workflows",
+  "official_url": "https://wiki.inkscape.org/wiki/Using_the_Command_Line",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "vector-authoring",
+    "svg-rasterisation",
+    "native-authoring"
+  ],
+  "license": "GPL-2.0",
+  "install": {
+    "macos": "brew install --cask inkscape",
+    "check_command": "inkscape --version"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}
