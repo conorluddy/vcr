@@ -3,7 +3,25 @@
   "name": "Fabric.js",
   "category": "A1. Creative coding and 2D",
   "tier": "catalogued",
-  "role": "Editable canvas objects and SVG interchange",
+  "role": "Canvas object model with selection, serialisation and SVG import/export",
+  "summary": "Canvas 2D library that wraps drawn items as editable objects (shapes, text, images, groups, paths) with transforms, serialisation to JSON and a two-way SVG parser. Includes tweening of position, transform and style. Driven by script against a canvas; output is canvas pixels, JSON or SVG. Its strength is an editor-grade object layer with interaction built in.",
+  "use_when": [
+    "Editable canvas objects that round-trip through SVG or JSON",
+    "Over Konva when SVG import/export and JSON serialisation matter most",
+    "Template-style compositions where objects are loaded, edited and exported programmatically",
+    "Image or text overlays with filters on a canvas"
+  ],
+  "avoid_when": [
+    "Deterministic frame-by-frame motion graphics: GSAP on SVG or p5.js",
+    "GPU-heavy sprite scenes: PixiJS",
+    "Pure vector geometry and boolean path ops: Paper.js",
+    "Lightweight interactive scene graph with React bindings: Konva"
+  ],
+  "pairs_with": [
+    "svg",
+    "gsap",
+    "playwright"
+  ],
   "official_url": "https://fabricjs.com/",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -13,6 +31,23 @@
   "license": "MIT",
   "install": {
     "macos": "pnpm add fabric"
+  },
+  "notes": [
+    "2026-10-26: fabricjs.com did not state a licence or Node support; MIT is from the npm registry and Node support was not verified."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a1",
+    "version_seen": "7.4.0",
+    "last_release": "2026-05-18",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "GitHub release v7.4.0 on 2026-05-18, MIT per npm. Distinct from Konva through SVG parser and JSON serialisation; fabricjs.com confirms tweening and SVG in both directions.",
+    "sources": [
+      "https://fabricjs.com/",
+      "https://api.github.com/repos/fabricjs/fabric.js/releases/latest",
+      "https://registry.npmjs.org/fabric"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
