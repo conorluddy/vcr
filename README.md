@@ -4,14 +4,13 @@ VCR is a local-first, agent-friendly workspace for creating and reviewing motion
 
 ## Current status
 
-- 104 live resources (from PRD Appendix A plus Playwright) live as one file each under `catalog/tools/`, with a `tier` (`core`, `catalogued`, `candidate`), per-tool capabilities, licence as last understood and an install recipe where one exists. `catalog/tools.json` is a generated index; run `pnpm vcr catalog build` after editing a record.
-- Registry entries are discovery metadata. Six records carry validation evidence from the examples; installation facts live in `environment/`; no shared adapters are implemented yet.
-- The project and tool JSON Schemas are in `catalog/schemas/`.
-- `examples/` holds six validated fixtures on the primary Mac: SVG via resvg and FFmpeg, FFmpeg sequence-plus-audio assembly, a Blender background render, and deterministic browser capture of GSAP, p5.js and Three.js scenes through `packages/capture` (`specifications/spikes/browser-capture.md`). Each has a `run.sh` that diffs against `expected/`.
-- `skills/toolkits/` has operating guides for all six core tools plus ImageMagick and resvg; `.claude/skills` links there so agents load them on demand.
-- Every live record carries a tier 1 card. The 98 non-core records were assessed on 2026-10-26 against their official sources (`catalog/ASSESSMENT-BRIEF.md`): 9 candidates promoted, 6 records demoted, 16 retired to `catalog/retired/` with their reasoning.
-- `packages/timeline/` holds the PRD §9 time types only; the resolver is Layer 2. `packages/capture/` is the browser frame-capture harness.
-- The common timeline, compositor, renderer, and CLI described as later layers do not exist yet.
+Layer 0 (tool suite) is complete and Layer 1 has not started. Concretely:
+
+- **Catalogue**: 104 live records under `catalog/tools/`, one file each, every one carrying a tier 1 card (summary, use when, avoid when, pairs with) and, for the 98 non-core records, a dated assessment against its official source. 16 tools were retired to `catalog/retired/` with their reasoning. `catalog/tools.json` and `catalog/INDEX.md` are generated; run `pnpm vcr catalog build` after editing a record.
+- **Evidence**: eight records carry validation evidence from the six fixtures under `examples/`, all reproducible on the primary Mac with `run.sh`. Installation facts live in `environment/`, never in the catalogue.
+- **Skills**: operating guides for the six core tools (SVG, GSAP, p5.js, Three.js, FFmpeg, Blender) plus ImageMagick and resvg. `.claude/skills` links there.
+- **Code**: `packages/cli` (the `vcr` command), `packages/timeline` (PRD §9 time types only), `packages/capture` (deterministic browser frame capture, see `specifications/spikes/browser-capture.md`).
+- **Decided**: the composition engine is built in-house (ADR 0001) and the studio stays headless with read-only visualisers (ADR 0002). The timeline resolver, compositor and review surface described as later layers do not exist yet.
 
 ## Commands
 
@@ -23,7 +22,7 @@ pnpm vcr tools list --tier core    # filter by --capability, --tier, --category;
 pnpm vcr tools info ffmpeg-ffprobe [--full]
 pnpm vcr tools examples ffmpeg-ffprobe
 pnpm doctor                        # probes local tools, writes environment/<hostname>.json
-pnpm vcr catalog build [--check]   # regenerate catalog/tools.json from catalog/tools/*.json
+pnpm vcr catalog build [--check]   # regenerate catalog/tools.json and catalog/INDEX.md from catalog/tools/*.json
 pnpm test && pnpm typecheck
 ```
 
@@ -52,14 +51,14 @@ Media is ignored by directory, not by extension, so brand assets and fixtures ca
 
 ## Repository map
 
-- `catalog/` — tool registry, capability vocabulary, and schemas.
-- `environment/` — per-machine tool availability written by `vcr doctor`. Installation facts live here, never in the catalogue.
-- `packages/cli/` — the `vcr` command.
-- `skills/` — progressively loaded toolkit and production workflow guides.
-- `examples/` — minimal native examples with status and reproduction notes.
-- `projects/` — in-repository productions and reusable project templates.
-- `shared/` — versioned shared components, transitions, and presets.
-- `references/` — curated production metadata and lessons.
-- `specifications/` — product requirements and decisions.
+- `catalog/` — one record per tool under `tools/`, retired records under `retired/`, generated `tools.json` and `INDEX.md`, the capability vocabulary, JSON Schemas, and the assessment brief.
+- `environment/` — per-machine tool availability written by `vcr doctor`.
+- `packages/cli/` — the `vcr` command. `packages/timeline/` — time types. `packages/capture/` — browser frame-capture harness.
+- `skills/` — toolkit and workflow operating guides in Agent Skills format.
+- `examples/` — validated fixtures, each with `example.json`, `run.sh` and `expected/`.
+- `projects/` — in-repository productions and the project template.
+- `shared/` — versioned shared components, transitions and presets (empty until Layer 1).
+- `references/` — curated production metadata (empty until Layer 1).
+- `specifications/` — the PRD, decision records and spike reports.
 
 See [`AGENTS.md`](AGENTS.md) for repository working rules and [`specifications/vcr-prd.md`](specifications/vcr-prd.md) for the complete product direction.

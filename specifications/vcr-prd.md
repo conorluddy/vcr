@@ -1,8 +1,20 @@
 # VCR — Product Requirements Document
 
-Version: 0.1 • Date: 26 October 2026 • Owner: Conor Luddy
+Version: 0.2 • Date: 26 October 2026 • Owner: Conor Luddy
 
-Status: Proposed specification. Captures the agreed product direction; implementation choices explicitly labelled provisional remain subject to technical spikes. No integrations are represented as installed or validated by this document.
+Status: Active specification. Layer 0 is complete; see "Amendments and progress" below for what has been decided and built since 0.1. Implementation choices labelled provisional remain subject to spikes. Installation and validation are facts recorded in `environment/` and on tool records, never implied by this document.
+
+## Amendments and progress
+
+Recorded here so the body of the PRD stays the original intent. Each amendment points at its evidence.
+
+- **ADR 0001**: the composition engine (Layers 2 to 4) is built in-house. HyperFrames and Remotion are catalogued references, not dependencies. `specifications/decisions/0001-in-house-composition-engine.md`.
+- **ADR 0002**: headless first. Visual surfaces are generated and read-only; no editor. `specifications/decisions/0002-headless-first-no-editor.md`.
+- **Manifests are JSON**, not YAML (`project.json`, `video.json`, `assets/manifest.json`), validated by JSON Schema with unknown-field diagnostics per §8.
+- **Catalogue structure**: one record per tool under `catalog/tools/`, a `tier` (core, catalogued, candidate), a four-tier progressive-disclosure tree (index line, card, operating guide, example) with byte budgets enforced by `vcr validate`. `catalog/tools.json` and `catalog/INDEX.md` are generated. Two Appendix A rows that were documentation links (FFmpeg filters, Blender CLI arguments) are folded into their parent records.
+- **Assessment**: every non-core record was assessed against its official source on 2026-10-26 under `catalog/ASSESSMENT-BRIEF.md`. Nine candidates were promoted, six records demoted and sixteen retired to `catalog/retired/` with their reasoning. Playwright was added as the capture route for browser toolkits.
+- **Browser-capture spike** (`specifications/spikes/browser-capture.md`): frame-by-frame capture of a paused timeline is deterministic in any frame order for DOM, 2D canvas and WebGL. `HeadlessExperimental.beginFrame` hangs on canvases, so `packages/capture` defaults to a settle-then-screenshot path. Go for Layer 2.
+- **Progress against §17**: M0 complete. M1 largely complete: doctor exists, three tool families (SVG/GSAP, p5.js, Three.js) plus FFmpeg and Blender render fixtures, skills exist for all six core tools. Not yet: an on-demand `tools setup` command and workflow skills. M2 onward not started.
 
 ## 1. Product definition
 
@@ -200,11 +212,15 @@ vcr/
   catalog/capabilities/
   skills/toolkits/
   skills/workflows/
+  catalog/retired/
+  catalog/INDEX.md            (generated)
+  environment/
   packages/cli/
-  packages/core/
+  packages/capture/
+  packages/core/              (not yet)
   packages/timeline/
-  packages/compositor/
-  packages/adapters/
+  packages/compositor/        (not yet)
+  packages/adapters/          (not yet)
   examples/
   shared/components/
   shared/transitions/
@@ -438,7 +454,7 @@ Spikes required: browser capture with arbitrary frame evaluation; native Blender
 
 ## Appendix A. Resource catalogue
 
-These are official project/documentation links or original repositories previously discussed. Capability summaries describe intended roles, not verified adapter support. Earlier research established relevance; versions, licenses, platform support and installation behaviour must be rechecked when implementing each integration. Do not infer maintenance status from inclusion.
+These are official project/documentation links or original repositories previously discussed. Capability summaries describe intended roles, not verified adapter support. The tables below are the 0.1 discovery list and are kept as written; the current, assessed state of every entry is its record under `catalog/tools/` (or `catalog/retired/` for the sixteen dropped after assessment on 2026-10-26). Do not infer maintenance status from inclusion here.
 
 ### A1. Creative coding and 2D
 
