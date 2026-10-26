@@ -3,14 +3,31 @@
   "name": "Babylon.js",
   "category": "A3. 3D, shaders and effects",
   "tier": "catalogued",
-  "role": "3D engine and authoring ecosystem",
+  "role": "Full web 3D engine with built-in PBR, post effects, physics and node materials",
+  "summary": "WebGL2 and WebGPU engine driven from JavaScript or TypeScript. Ships PBR, glow and other post effects, physics plugins, an inspector and a node material editor in one package. In VCR it would render a scene per seek to a transparent canvas like Three.js. Distinguishing strength: the integrated feature set means fewer third-party parts to version-match.",
+  "use_when": [
+    "Over Three.js when you want effects, physics and node materials in one first-party package",
+    "Visual node-based material authoring through the Node Material Editor",
+    "Scenes already authored in the Babylon Sandbox or its tooling"
+  ],
+  "avoid_when": [
+    "Reusing pmndrs postprocessing, drei or glTF tooling: Three.js",
+    "Small bundle for one hero object: Three.js or OGL",
+    "React is the app shell: React Three Fiber"
+  ],
+  "pairs_with": [
+    "playwright",
+    "gltf-transform",
+    "ffmpeg-ffprobe"
+  ],
   "official_url": "https://www.babylonjs.com/",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "3d-rendering",
     "shaders",
     "effects",
-    "physics-simulation"
+    "physics-simulation",
+    "model-loading"
   ],
   "license": "Apache-2.0",
   "install": {
@@ -23,6 +40,19 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a3",
+    "version_seen": "@babylonjs/core 9.32.0",
+    "last_release": "2026-10-22",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Frequent npm releases, latest Oct 2026; Apache-2.0; official site reachable. Batteries-included alternative to Three.js with a Node Material Editor, but a smaller ecosystem and no pmndrs tooling.",
+    "sources": [
+      "https://www.babylonjs.com/",
+      "https://registry.npmjs.org/@babylonjs/core"
+    ]
+  },
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }

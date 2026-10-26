@@ -1,0 +1,51 @@
+{
+  "id": "maath",
+  "name": "maath",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "Math helpers for R3F: easing, damping, random, buffers and vector utilities",
+  "summary": "pmndrs utility collection: easing and damping functions, seeded random distributions, buffer and matrix helpers, geometry points-in-shapes. Imported as an ES module inside a Three.js or R3F scene. Its one strength is frame-rate-independent damping helpers aimed at R3F's useFrame loop.",
+  "use_when": [
+    "R3F scenes already using useFrame that want damp/easing helpers without writing them"
+  ],
+  "avoid_when": [
+    "Matrix and vector maths outside Three: gl-matrix is the maintained standard",
+    "Tweening with seekable time: GSAP or Motion sample from t",
+    "Seeded randomness only: a small PRNG is simpler than a dependency"
+  ],
+  "pairs_with": [
+    "react-three-fiber",
+    "three-js"
+  ],
+  "official_url": "https://github.com/pmndrs/maath",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "math-utilities"
+  ],
+  "license": "MIT",
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9b",
+    "version_seen": "0.10.8",
+    "last_release": "2024-07-07",
+    "maintenance": "slow",
+    "verdict": "drop",
+    "rationale": "Last npm release July 2024 (about 28 months). Overlaps glmatrix for maths and GSAP/Motion for easing; damping helpers depend on delta-time loops, which VCR replaces with seek-by-t.",
+    "sources": [
+      "https://registry.npmjs.org/maath",
+      "https://github.com/pmndrs/maath"
+    ]
+  },
+  "notes": [
+    "2026-10-26: repo commit dates were not shown by the fetched page; maintenance judged from npm release date only."
+  ],
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

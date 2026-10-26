@@ -3,15 +3,32 @@
   "name": "THREE.MeshLine",
   "category": "A3. 3D, shaders and effects",
   "tier": "catalogued",
-  "role": "Thick stylised lines; evaluate maintained compatible implementation",
+  "role": "Thick camera-facing lines for Three.js; npm three.meshline, pmndrs fork is meshline",
+  "summary": "Replacement for THREE.Line that draws lines as strips of camera-facing triangles, so width, dashes and taper work where WebGL lines are fixed at one pixel. Supplies MeshLine geometry, MeshLineMaterial and raycast. Two packages exist: three.meshline from the original author (2.0.0, 2026) and meshline, the pmndrs fork used by R3F (3.3.1, 2024).",
+  "use_when": [
+    "Over THREE.Line when width, dashes or taper must render consistently across devices",
+    "Animated stroke reveals via dashOffset or visibility as a function of t",
+    "Stylised trails and orbit lines in a Three.js scene"
+  ],
+  "avoid_when": [
+    "Flat 2D stroke animation: SVG with GSAP or Paper.js",
+    "Screen-space lines without a separate package: Line2 in Three.js examples/jsm",
+    "Text or glyph outlines: troika-three-text"
+  ],
+  "pairs_with": [
+    "three-js",
+    "react-three-fiber",
+    "drei"
+  ],
   "official_url": "https://github.com/spite/THREE.MeshLine",
   "automation_route": "library-or-runtime",
   "capabilities": [
-    "3d-rendering"
+    "3d-rendering",
+    "effects"
   ],
   "license": "MIT",
   "install": {
-    "macos": "pnpm add meshline"
+    "macos": "pnpm add three.meshline"
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +37,24 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "notes": [
+    "2026-10-26: the earlier catalogue install of meshline is the pmndrs fork; the original now publishes as three.meshline. The 2026 README says the pmndrs fork exists; whether it will track r155+ changes was not verified."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a3",
+    "version_seen": "three.meshline 2.0.0; meshline 3.3.1",
+    "last_release": "2026-10-13 (three.meshline); 2024-06-03 (meshline)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Original spite repo is live again: three.meshline 2.0.0 published 2026-10-13, needs three r155+. The pmndrs fork (npm meshline) last released Jun 2024 and is slow, so prefer three.meshline.",
+    "sources": [
+      "https://github.com/spite/THREE.MeshLine",
+      "https://github.com/pmndrs/meshline",
+      "https://registry.npmjs.org/three.meshline",
+      "https://registry.npmjs.org/meshline"
+    ]
+  },
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }

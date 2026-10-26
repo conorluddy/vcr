@@ -2,18 +2,38 @@
   "id": "natron",
   "name": "Natron",
   "category": "A7. Native applications and procedural tools",
-  "tier": "catalogued",
-  "role": "Background renderer + Python; verify current build/API",
+  "tier": "candidate",
+  "role": "NatronRenderer background compositing of .ntp projects; macOS builds are Intel-only",
+  "summary": "Open-source node compositor. NatronRenderer renders a .ntp project headlessly, overriding Reader and Writer files and frame ranges from the command line, and Python scripts can build node graphs. Strength would be free node compositing, but the last release is a 2024 pre-release and macOS builds are x86_64 only, so on Apple Silicon it runs under Rosetta if at all.",
+  "use_when": [
+    "An existing .ntp project must render and Rosetta is acceptable",
+    "Node-based keying or merge graphs where Blender's compositor is not enough",
+    "Scripted Reader and Writer swaps on a saved comp"
+  ],
+  "avoid_when": [
+    "Anything new on Apple Silicon: Blender's compositor or OpenImageIO",
+    "Single-pass layer ops: ImageMagick or libvips",
+    "You need current OpenFX and plugin support: Nuke or After Effects"
+  ],
+  "pairs_with": [
+    "blender",
+    "openimageio-oiiotool",
+    "ffmpeg-ffprobe",
+    "opencolorio"
+  ],
   "official_url": "https://natron.readthedocs.io/en/v2.3.15/devel/natronexecution.html",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "compositing",
     "native-authoring"
   ],
-  "license": "GPL-2.0; verify current builds for macOS arm64",
+  "license": "GPL-2.0; community-maintained, no arm64 macOS build published",
   "install": {
     "check_command": "NatronRenderer --version"
   },
+  "notes": [
+    "2026-10-26: The Homebrew cask natron 2.5.0 was disabled 2026-09-01 for failing Gatekeeper, so install.macos was removed. The latest GitHub release asset is Natron-RB-2.5 macOS12 x86_64 dmg (2024-09-13 pre-release); repo last pushed 2026-07-24. Natron 2.3.15 docs were the ones read."
+  ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -21,6 +41,19 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a7",
+    "version_seen": "2.5.1-pre2 (latest GitHub release); docs read were v2.3.15",
+    "last_release": "2024-09-13",
+    "maintenance": "slow",
+    "verdict": "demote",
+    "rationale": "Latest release is a September 2024 pre-release with an x86_64-only macOS dmg; the Homebrew cask was disabled on 2026-09-01 for Gatekeeper. Repo still gets sporadic commits (July 2026). Blender's compositor covers the arm64 case.",
+    "sources": [
+      "https://github.com/NatronGitHub/Natron/releases",
+      "https://natron.readthedocs.io/en/v2.3.15/devel/natronexecution.html"
+    ]
+  },
+  "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
 }

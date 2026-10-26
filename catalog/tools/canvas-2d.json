@@ -3,12 +3,48 @@
   "name": "Canvas 2D",
   "category": "Native browser platform APIs",
   "tier": "catalogued",
-  "role": "2D drawing API in supported browsers",
+  "role": "Immediate-mode 2D raster drawing; redraw each frame as a pure function of t",
+  "summary": "The browser's 2D drawing context: paths, text, gradients, images, compositing and pixel access, supported in every Chromium. VCR draws a frame by clearing and redrawing from t, then screenshots or reads pixels, so output is deterministic given fixed fonts and assets. Nothing is retained between frames, which suits generative work and rules out a scene graph.",
+  "use_when": [
+    "Generative or data-driven 2D redrawn each frame from t, no scene graph needed",
+    "Over SVG when hundreds of shapes move or pixel manipulation is needed",
+    "Over PixiJS when the scene is small and you want zero dependencies"
+  ],
+  "avoid_when": [
+    "Thousands of sprites or filters: PixiJS on WebGL",
+    "Editable vector text and logos: SVG",
+    "Interactive scenes with hit testing: Konva or Fabric.js",
+    "3D: Three.js on WebGL"
+  ],
+  "pairs_with": [
+    "p5-js",
+    "pixijs",
+    "canvas-record",
+    "playwright",
+    "svg"
+  ],
   "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API",
   "automation_route": "browser-platform-api",
   "capabilities": [
-    "2d-rendering"
+    "2d-rendering",
+    "text-rendering"
   ],
+  "notes": [
+    "2026-10-26: Font-load timing before the first frame affects canvas text; not tested here."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a8-web",
+    "version_seen": "HTML Living Standard",
+    "last_release": "n/a (platform)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Standard-track, not experimental, supported since Chrome 1 per MDN browser-compat-data 8.1.7; no VCR-specific gaps known. Canvas text depends on fonts being loaded.",
+    "sources": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API",
+      "https://unpkg.com/@mdn/browser-compat-data/data.json"
+    ]
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "not-applicable",
   "validation": {

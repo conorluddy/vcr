@@ -1,0 +1,50 @@
+{
+  "id": "svgator",
+  "name": "SVGator",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "Browser SaaS editor for animated SVG; no public render API found",
+  "summary": "Commercial web app for animating SVG visually, exporting animated SVG (CSS or JS), Lottie, and on higher plans video or GIF. Driven through its editor UI; the site lists a Player API for playback control and an MCP integration with no documented detail. Strength is a visual authoring workflow with no code.",
+  "use_when": [
+    "A designer authors the animation in a GUI and you only embed the exported SVG"
+  ],
+  "avoid_when": [
+    "Scripted SVG animation: GSAP or SVG.js with a seekable timeline",
+    "Lottie assets: dotLottie or Lottie Web with a Lottie authored in After Effects",
+    "Deterministic capture: export then drive via the SVG toolchain, not the SaaS"
+  ],
+  "pairs_with": [
+    "svg",
+    "gsap"
+  ],
+  "official_url": "https://www.svgator.com/",
+  "automation_route": "manual-only",
+  "capabilities": [
+    "svg-animation"
+  ],
+  "license": "Commercial SaaS (free tier; video export on Team plan)",
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9b",
+    "version_seen": "n/a (SaaS)",
+    "last_release": "n/a",
+    "maintenance": "unknown",
+    "verdict": "drop",
+    "rationale": "No CLI or documented authoring API; the product is a GUI. Output is an animated SVG that GSAP and Inkscape-based flows reproduce in code. Release cadence of a SaaS is not published.",
+    "sources": [
+      "https://www.svgator.com/"
+    ]
+  },
+  "notes": [
+    "2026-10-26: the listed MCP integration was not documented on the fetched page; if it is real and scriptable, reassess."
+  ],
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

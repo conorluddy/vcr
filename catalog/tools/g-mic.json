@@ -3,17 +3,51 @@
   "name": "G'MIC",
   "category": "A6. Image processing and colour",
   "tier": "catalogued",
-  "role": "CLI filters and procedural image processing",
+  "role": "CLI filter language with ~1000 procedural filters; stylised and generative looks",
+  "summary": "Image-processing framework driven by the gmic command line and its own scripting language. Ships roughly a thousand filters (denoise, stylise, tone-map, procedural noise, patterns) and runs them over stills or image sequences, writing standard raster formats. Its strength is filters and generative looks that ImageMagick has no equivalent for; it is not a compositor or a colour-managed pipeline tool.",
+  "use_when": [
+    "Painterly, stylised or procedural filter looks that ImageMagick lacks",
+    "Heavy denoise, inpainting or detail-preserving tone mapping on frames",
+    "Generating procedural textures or noise fields from the CLI",
+    "Applying one filter chain across a numbered frame sequence"
+  ],
+  "avoid_when": [
+    "Plain resize, crop, convert, montage: ImageMagick is the validated CLI baseline",
+    "Colour-managed conversion between spaces: OpenColorIO or oiiotool",
+    "Node pipelines needing fast resize and encode: Sharp",
+    "Anything needing predictable output across versions: pin the gmic build"
+  ],
+  "pairs_with": [
+    "imagemagick",
+    "ffmpeg-ffprobe",
+    "openimageio-oiiotool"
+  ],
   "official_url": "https://gmic.eu/",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "image-processing",
     "effects"
   ],
-  "license": "CeCILL",
+  "license": "CeCILL (LGPL-like and GPL-compatible; recheck per component)",
   "install": {
     "macos": "brew install gmic",
     "check_command": "gmic version"
+  },
+  "notes": [
+    "2026-10-26: Homebrew formula gmic exists at 4.0.6, matching the upstream release; macOS build capabilities (OpenMP, optional libs) not verified. gmic.eu page gave no command syntax; learn from the gmic reference."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a6",
+    "version_seen": "4.0.6",
+    "last_release": "2026-10-14",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Version 4.0.6 listed on gmic.eu dated 2026-10-14; repository pushed 2026-10-26. Unique filter library not matched by ImageMagick; niche but real for effects.",
+    "sources": [
+      "https://gmic.eu/",
+      "https://formulae.brew.sh/api/formula/gmic.json"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

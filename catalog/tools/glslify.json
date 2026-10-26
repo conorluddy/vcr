@@ -3,13 +3,34 @@
   "name": "glslify",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "GLSL module tooling",
+  "role": "Build-time GLSL module composition via CLI or bundler transform",
+  "summary": "Node module system for GLSL: shaders import functions (noise, easing, blend modes) from npm packages, and the glslify CLI or bundler transform inlines them into one shader string. Build-time only, so output is a plain shader for regl, OGL or Three.js. Distinguishing strength: reusing community GLSL without copy-paste.",
+  "use_when": [
+    "Reusing npm GLSL (noise, blend, easing) in regl, OGL or Three.js shaders",
+    "Inlining shader modules as a build step in a scripted pipeline",
+    "Over copy-pasted snippets when several scenes share shader code"
+  ],
+  "avoid_when": [
+    "Three.js projects: ShaderChunk and TSL cover modularity natively",
+    "Single small shader: inline it, no tooling needed",
+    "Node-graph shaders: three-js-shading-language"
+  ],
+  "pairs_with": [
+    "regl",
+    "ogl",
+    "twgl",
+    "webgl"
+  ],
   "official_url": "https://github.com/glslify/glslify",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "shaders"
   ],
   "license": "MIT",
+  "install": {
+    "macos": "pnpm add -D glslify",
+    "check_command": "pnpm exec glslify --version"
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -18,5 +39,18 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "7.1.1",
+    "last_release": "2024-12-29 (npm); repo last push 2022-06-29",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "Slow: 7.1.1 Dec 2024, repo idle since 2022, but stable and tiny. Only tool here for npm-style GLSL modules via a CLI or bundler transform; neighbours (regl, OGL, twgl) do not compose shader code.",
+    "sources": [
+      "https://github.com/glslify/glslify",
+      "https://www.npmjs.com/package/glslify"
+    ]
+  },
   "source": "specifications/vcr-prd.md#appendix-a"
 }

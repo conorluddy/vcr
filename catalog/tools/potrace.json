@@ -3,16 +3,49 @@
   "name": "Potrace",
   "category": "A4. Vector, typography, diagrams and stills",
   "tier": "catalogued",
-  "role": "Bitmap tracing to vectors",
+  "role": "Single-colour bitmap tracing to SVG paths; stable but unreleased since 2019",
+  "summary": "Command line tool that traces a black and white bitmap into smooth vector outlines, writing SVG, PDF, EPS or other formats. Colour or greyscale input must be thresholded first (ImageMagick or built-in options); output is single-colour paths. Its strength is clean, well-regarded curve fitting from a small, stable native binary.",
+  "use_when": [
+    "Turning a scanned logo, sketch or silhouette into SVG paths for stroke-draw or morph animation",
+    "Single-colour vectorisation scripted in a shell pipeline after ImageMagick thresholding",
+    "Producing plotter-ready outlines for vpype"
+  ],
+  "avoid_when": [
+    "Multi-colour artwork: Inkscape's trace handles colour",
+    "The source is already vector: use SVG and SVGO",
+    "GPL-2.0 is a problem in a distributed product: avoid bundling the binary"
+  ],
+  "pairs_with": [
+    "imagemagick",
+    "svg",
+    "svgo",
+    "vpype",
+    "inkscape"
+  ],
   "official_url": "https://potrace.sourceforge.net/",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "vector-tracing"
   ],
-  "license": "GPL-2.0",
+  "license": "GPL-2.0-or-later (commercial Potrace Professional is separate; recheck before bundling)",
   "install": {
     "macos": "brew install potrace",
     "check_command": "potrace --version"
+  },
+  "notes": [
+    "2026-10-26: Homebrew shows licence GPL-2.0-or-later; upstream offers a separate commercial Potrace Professional."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a4",
+    "version_seen": "1.16",
+    "last_release": "2019-09-17",
+    "maintenance": "unmaintained",
+    "verdict": "keep",
+    "rationale": "Latest release 1.16 dated 2019-09-17, older than 36 months by the brief's rule, but the tool is feature-complete and still packaged by Homebrew. GPL-2.0-or-later. Keep: no maintained neighbour in the catalogue traces bitmaps.",
+    "sources": [
+      "https://potrace.sourceforge.net/"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

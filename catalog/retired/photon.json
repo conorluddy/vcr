@@ -1,0 +1,51 @@
+{
+  "id": "photon",
+  "name": "Photon",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "Rust image-processing library compiled to WASM, with a Node build",
+  "summary": "Rust image library for filters, colour channel ops, blending, watermarking and text, compiled to WebAssembly with a native Node package (photon-node). Driven from JavaScript on pixel data; output is edited images. Strength is fast pixel effects in-browser without a native dependency.",
+  "use_when": [
+    "Browser-side pixel filters where a WASM-only dependency is required"
+  ],
+  "avoid_when": [
+    "Server-side image work: Sharp or libvips are faster and cover more formats",
+    "Pixel-level JS editing without WASM: Jimp or image-js",
+    "Batch CLI conversions: ImageMagick"
+  ],
+  "pairs_with": [
+    "sharp",
+    "libvips"
+  ],
+  "official_url": "https://github.com/silvia-odwyer/photon",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "image-processing"
+  ],
+  "license": "Apache-2.0",
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9b",
+    "version_seen": "0.3.3",
+    "last_release": "2025-05-10",
+    "maintenance": "active",
+    "verdict": "drop",
+    "rationale": "Last npm release May 2025 (about 17 months) though the repo shows activity; it duplicates Sharp, libvips, Jimp and image-js for every VCR image task and offers no distinguishing route.",
+    "sources": [
+      "https://registry.npmjs.org/@silvia-odwyer/photon",
+      "https://github.com/silvia-odwyer/photon"
+    ]
+  },
+  "notes": [
+    "2026-10-26: commit dates not shown by fetched page; maintenance classed active from README activity and a 2026 roadmap mention, treat as borderline slow."
+  ],
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

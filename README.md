@@ -4,12 +4,12 @@ VCR is a local-first, agent-friendly workspace for creating and reviewing motion
 
 ## Current status
 
-- 119 resources from PRD Appendix A live as one file each under `catalog/tools/`, with a `tier` (`core`, `catalogued`, `candidate`), per-tool capabilities, licence as last understood and an install recipe where one exists. `catalog/tools.json` is a generated index; run `pnpm vcr catalog build` after editing a record.
+- 104 live resources (from PRD Appendix A plus Playwright) live as one file each under `catalog/tools/`, with a `tier` (`core`, `catalogued`, `candidate`), per-tool capabilities, licence as last understood and an install recipe where one exists. `catalog/tools.json` is a generated index; run `pnpm vcr catalog build` after editing a record.
 - Registry entries are discovery metadata. Six records carry validation evidence from the examples; installation facts live in `environment/`; no shared adapters are implemented yet.
 - The project and tool JSON Schemas are in `catalog/schemas/`.
 - `examples/` holds six validated fixtures on the primary Mac: SVG via resvg and FFmpeg, FFmpeg sequence-plus-audio assembly, a Blender background render, and deterministic browser capture of GSAP, p5.js and Three.js scenes through `packages/capture` (`specifications/spikes/browser-capture.md`). Each has a `run.sh` that diffs against `expected/`.
 - `skills/toolkits/` has operating guides for all six core tools plus ImageMagick and resvg; `.claude/skills` links there so agents load them on demand.
-- The six core records carry full tier 1 cards and facets; the other 114 are awaiting assessment (`catalog/ASSESSMENT-BRIEF.md`).
+- Every live record carries a tier 1 card. The 98 non-core records were assessed on 2026-10-26 against their official sources (`catalog/ASSESSMENT-BRIEF.md`): 9 candidates promoted, 6 records demoted, 16 retired to `catalog/retired/` with their reasoning.
 - `packages/timeline/` holds the PRD §9 time types only; the resolver is Layer 2. `packages/capture/` is the browser frame-capture harness.
 - The common timeline, compositor, renderer, and CLI described as later layers do not exist yet.
 
@@ -35,7 +35,7 @@ The catalogue is a four-tier tree sized to the decisions an agent makes:
 
 | Tier | Moment | Where | Budget |
 | --- | --- | --- | --- |
-| 0 | route a task | `catalog/INDEX.md`, `pnpm vcr tools list` | whole file under 12 KB |
+| 0 | route a task | `catalog/INDEX.md`, `pnpm vcr tools list` | whole file under 16 KB |
 | 1 | compare a shortlist | `pnpm vcr tools info <id>`, `catalog/tools/<id>.json` | about 200 tokens |
 | 2 | commit to a tool | `pnpm vcr tools info <id> --full`, `skills/toolkits/<id>/SKILL.md` | under 12 KB |
 | 3 | do the work | `pnpm vcr tools examples <id>`, `examples/<id>/` | one at a time |

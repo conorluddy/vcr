@@ -2,13 +2,46 @@
   "id": "mediarecorder",
   "name": "MediaRecorder",
   "category": "Native browser platform APIs",
-  "tier": "catalogued",
-  "role": "Browser media recording API",
+  "tier": "candidate",
+  "role": "Real-time recording of a MediaStream to WebM/MP4; wall-clock bound, not frame-exact",
+  "summary": "Records a MediaStream (canvas.captureStream, tab or microphone) into a Blob in the browser's chosen codec. It runs in real time and drops or duplicates frames when rendering is slow, so output depends on wall-clock timing, not on t. Fine for a quick preview or live capture; wrong for frame-accurate renders where frames are produced in any order.",
+  "use_when": [
+    "A quick real-time preview recording of a canvas scene",
+    "Capturing microphone or tab audio you cannot render offline"
+  ],
+  "avoid_when": [
+    "Deterministic or frame-exact output: WebCodecs, or Playwright screenshots into ffmpeg",
+    "Seeking frames in any order: capture per frame and encode with ffmpeg",
+    "Controlled codec, bitrate and keyframes: WebCodecs",
+    "Offline generated audio: Web Audio's OfflineAudioContext"
+  ],
+  "pairs_with": [
+    "canvas-2d",
+    "webgl",
+    "playwright",
+    "ffmpeg-ffprobe"
+  ],
   "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder",
   "automation_route": "browser-platform-api",
   "capabilities": [
     "capture"
   ],
+  "notes": [
+    "2026-10-26: Container and codec support in headless Chromium not checked; call MediaRecorder.isTypeSupported at runtime."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a8-web",
+    "version_seen": "W3C MediaStream Recording (MDN: widely available)",
+    "last_release": "n/a (platform)",
+    "maintenance": "active",
+    "verdict": "demote",
+    "rationale": "Chrome 47+ and widely available per MDN, but real-time only. WebCodecs plus ffmpeg cover VCR's deterministic capture with more control, so incremental value is low.",
+    "sources": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder",
+      "https://unpkg.com/@mdn/browser-compat-data/data.json"
+    ]
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "not-applicable",
   "validation": {

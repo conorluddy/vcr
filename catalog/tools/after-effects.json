@@ -3,7 +3,24 @@
   "name": "After Effects",
   "category": "A7. Native applications and procedural tools",
   "tier": "catalogued",
-  "role": "Application scripting + aerender; render existing projects/templates",
+  "role": "Adobe's aerender CLI and ExtendScript render existing .aep projects and templates",
+  "summary": "Adobe's commercial motion-graphics app. aerender renders an existing .aep project or template headlessly, a frame range to an image sequence or movie, and ExtendScript or the app can swap text and footage into a template first. Its strength is that designers' existing AE templates render without rebuilding them. No source, no Linux, and every render needs an Adobe licence.",
+  "use_when": [
+    "A designer's .aep template must render with swapped text or footage",
+    "Over Blender when the look depends on AE effects or plugins",
+    "Over Natron when the project already exists as .aep",
+    "Compositing with third-party AE plugins that have no native equivalent"
+  ],
+  "avoid_when": [
+    "Building new motion from scratch: Blender, GSAP or Manim need no licence",
+    "Unattended or CI renders without a seat: Natron or Blender",
+    "Rendering on machines where Adobe cannot be installed or signed in"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "imagemagick",
+    "blender"
+  ],
   "official_url": "https://helpx.adobe.com/after-effects/desktop/render-and-export/automate-rendering/automated-rendering-network-rendering.html",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
@@ -11,10 +28,13 @@
     "compositing",
     "timeline-animation"
   ],
-  "license": "Commercial (Adobe subscription)",
+  "license": "Proprietary, Adobe Creative Cloud subscription required; aerender ships with the app",
   "install": {
     "check_command": "aerender -version"
   },
+  "notes": [
+    "2026-10-26: Adobe help page returned HTTP 403 to automated fetch, so the version, release date and licence terms for command-line rendering were not read; verify on the machine. aerender is inside the app folder, not on PATH."
+  ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -22,6 +42,18 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a7",
+    "version_seen": "not seen (Adobe page blocked)",
+    "last_release": "not seen",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Adobe's help page returned HTTP 403, so current version and release date were not verified. Commercial and subscription-only, but the only route to render existing .aep templates; no open neighbour reads the format.",
+    "sources": [
+      "https://helpx.adobe.com/after-effects/desktop/render-and-export/automate-rendering/automated-rendering-network-rendering.html"
+    ]
+  },
+  "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
 }

@@ -1,0 +1,53 @@
+{
+  "id": "luma-gl",
+  "name": "luma.gl",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "WebGL2/WebGPU engine under deck.gl; thin shader-and-pipeline layer",
+  "summary": "vis.gl's GPU abstraction over WebGL2 and WebGPU: devices, buffers, shader modules, render pipelines and a small model/animation-loop layer. Driven from JavaScript in a browser page; output is canvas pixels captured by the harness. Its distinguishing role is being the renderer beneath deck.gl, not a scene-graph engine.",
+  "use_when": [
+    "You need deck.gl internals or custom deck.gl layers with direct pipeline access",
+    "Writing raw WebGPU/WebGL2 pipelines with a shared abstraction over both backends"
+  ],
+  "avoid_when": [
+    "General 3D scenes: Three.js has loaders, materials and the ecosystem",
+    "Small shader work: regl or TWGL are lighter and simpler",
+    "Fullscreen-shader sketches: GLSLCanvas or OGL need less setup"
+  ],
+  "pairs_with": [
+    "deck-gl",
+    "playwright"
+  ],
+  "official_url": "https://luma.gl/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "3d-rendering",
+    "shaders"
+  ],
+  "license": "MIT",
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9b",
+    "version_seen": "9.4.2",
+    "last_release": "2026-09-19",
+    "maintenance": "active",
+    "verdict": "drop",
+    "rationale": "Active, but duplicates catalogued low-level GPU layers (regl, twgl, ogl) and Three.js; its main value is as deck.gl's engine, which deck-gl already covers. No agent-facing route beyond a browser page.",
+    "sources": [
+      "https://registry.npmjs.org/@luma.gl/core",
+      "https://luma.gl/"
+    ]
+  },
+  "notes": [
+    "2026-10-26: no headless capture test attempted; docs read only."
+  ],
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

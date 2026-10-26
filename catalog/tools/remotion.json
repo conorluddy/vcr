@@ -3,7 +3,25 @@
   "name": "Remotion",
   "category": "A5. Video and capture",
   "tier": "catalogued",
-  "role": "React video composition/export; check applicable license",
+  "role": "React-component video renderer with CLI and Lambda; company licence above 3 employees",
+  "summary": "Framework where each frame is a React component of the current frame number; headless Chrome renders frames and FFmpeg encodes MP4, WebM, ProRes or GIF. CLI, Node API, Studio preview, and Lambda or Cloud Run for distributed renders. Distinguishing strength: mature React ecosystem, typed props for data-driven video. Per ADR 0001 a reference for VCR, not a dependency. Source-available licence, not OSI open source.",
+  "use_when": [
+    "Data-driven React video you need to ship now, outside VCR's pipeline",
+    "Parametrised batch renders with typed props and distributed rendering on Lambda",
+    "Reference for frame-as-function-of-time design and its Studio and caption tooling"
+  ],
+  "avoid_when": [
+    "Inside VCR proper: ADR 0001 builds the compositor in-house; Playwright plus FFmpeg for capture",
+    "Non-React or native sources: FFmpeg filtergraphs, or HyperFrames for plain HTML",
+    "Company with more than 3 employees and no budget: a company licence is required",
+    "Alpha-layer frames for a later compositor: Playwright beginFrame capture"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "playwright",
+    "hyperframes",
+    "gsap"
+  ],
   "official_url": "https://www.remotion.dev/docs",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -12,9 +30,26 @@
     "react-integration",
     "capture"
   ],
-  "license": "Remotion licence: free for individuals and companies of three or fewer; company licence otherwise",
+  "license": "Remotion License: free for individuals, non-profits, evaluation and for-profits up to 3 employees; Company License required otherwise (remotion.pro); terms change in Remotion 5.0",
   "install": {
     "macos": "pnpm add remotion @remotion/cli"
+  },
+  "notes": [
+    "2026-10-26: LICENSE.md states the licence will change in Remotion 5.0 but does not say how; recheck before any use. Employee counting rules are not defined on that page; see remotion.pro/faq."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a5",
+    "version_seen": "4.0.539",
+    "last_release": "2026-10-26",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "npm 4.0.539 published 2026-10-26; releases are near-daily. Licence is source-available: free up to 3 employees, otherwise a paid Company License, and it changes in 5.0. Kept as reference per ADR 0001.",
+    "sources": [
+      "https://www.remotion.dev/docs",
+      "https://github.com/remotion-dev/remotion/blob/main/LICENSE.md",
+      "https://www.npmjs.com/package/remotion"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -23,6 +58,6 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
 }

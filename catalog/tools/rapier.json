@@ -3,7 +3,24 @@
   "name": "Rapier",
   "category": "A8. Physics, audio and 3D assets",
   "tier": "catalogued",
-  "role": "Web-capable 2D/3D physics",
+  "role": "Rust/WASM 2D and 3D physics with optional cross-platform determinism and world snapshots",
+  "summary": "Dimforge's physics engine compiled to WebAssembly, with separate 2D and 3D npm packages (-compat builds inline the WASM and need `await RAPIER.init()`). Fixed-step replay from t: set the world timestep to 1/fps and step n times, or step once and cache per-frame transforms; takeSnapshot/restoreSnapshot allow checkpoints so seeking need not restart from zero. Upstream describes an opt-in cross-platform determinism mode.",
+  "use_when": [
+    "3D physics beside Three.js or R3F, via react-three-rapier",
+    "Over Matter.js for big piles, joints, or reproducible results across machines",
+    "Checkpointing the world so frame f is computed from the nearest snapshot"
+  ],
+  "avoid_when": [
+    "A handful of 2D bodies with no WASM wanted: Matter.js",
+    "Scripted motion with no collisions: GSAP or Theatre.js",
+    "Soft bodies and cloth: Rapier does not provide them"
+  ],
+  "pairs_with": [
+    "three-js",
+    "react-three-rapier",
+    "react-three-fiber",
+    "matter-js"
+  ],
   "official_url": "https://rapier.rs/",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -12,6 +29,23 @@
   "license": "Apache-2.0",
   "install": {
     "macos": "pnpm add @dimforge/rapier3d-compat"
+  },
+  "notes": [
+    "2026-10-26: The pages fetched point to separate Determinism and Serialization guides; flags and snapshot API details were not read, so the replay recipe is unvalidated. Use @dimforge/rapier2d-compat for 2D."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a8-web",
+    "version_seen": "0.21.0 (rapier2d-compat and rapier3d-compat)",
+    "last_release": "2026-09-25",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Frequent npm releases (0.19.3 Nov 2025, 0.20.0 Aug 2026, 0.21.0 Sept 2026); Apache-2.0; 2D and 3D from one project with a determinism option.",
+    "sources": [
+      "https://rapier.rs/",
+      "https://rapier.rs/docs/user_guides/javascript/getting_started_js",
+      "https://registry.npmjs.org/@dimforge/rapier3d-compat"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

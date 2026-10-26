@@ -3,12 +3,29 @@
   "name": "PlayCanvas Engine",
   "category": "A3. 3D, shaders and effects",
   "tier": "catalogued",
-  "role": "Web 3D engine; use engine independently where suitable",
+  "role": "Open-source web 3D engine usable standalone; strong glTF and Gaussian splat support",
+  "summary": "MIT-licensed WebGL2 and WebGPU engine with an entity-component model, PBR, glTF, physics integration and Gaussian splat rendering. Used as a standalone npm library from code, without the PlayCanvas Editor. Distinguishing strength: small runtime footprint, game-style structure and splat support.",
+  "use_when": [
+    "Over Three.js for Gaussian splat scenes with an engine-native renderer",
+    "Over Babylon.js when a smaller runtime and entity-component structure fit",
+    "Game-like scenes with scripts and components rather than one-off shots"
+  ],
+  "avoid_when": [
+    "Ecosystem tooling like postprocessing, drei or R3F: Three.js",
+    "Offline cinematic quality: Blender",
+    "Render-once-per-seek control: Three.js is simpler to drive"
+  ],
+  "pairs_with": [
+    "gltf-transform",
+    "playwright",
+    "ffmpeg-ffprobe"
+  ],
   "official_url": "https://playcanvas.com/products/engine",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "3d-rendering",
-    "game-engine"
+    "game-engine",
+    "model-loading"
   ],
   "license": "MIT",
   "install": {
@@ -21,6 +38,22 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "notes": [
+    "2026-10-26: determinism of the engine update loop under external seeking was not verified; splat support is from memory."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a3",
+    "version_seen": "playcanvas 2.23.3",
+    "last_release": "2026-10-15",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Frequent npm releases through Oct 2026; MIT; engine is usable without the cloud editor. Overlaps Three.js and Babylon.js with a game-engine slant.",
+    "sources": [
+      "https://playcanvas.com/products/engine",
+      "https://registry.npmjs.org/playcanvas"
+    ]
+  },
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }

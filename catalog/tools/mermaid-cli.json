@@ -3,16 +3,51 @@
   "name": "Mermaid CLI",
   "category": "A4. Vector, typography, diagrams and stills",
   "tier": "catalogued",
-  "role": "Text-defined diagrams to assets",
+  "role": "Text diagrams (flowchart, sequence, gantt) to SVG/PNG via headless Chromium",
+  "summary": "Command line wrapper (mmdc) that renders Mermaid text diagrams (flowchart, sequence, gantt, class, state, ER) to SVG, PNG or PDF by driving headless Chromium via Puppeteer. Input is a .mmd file or Markdown with fenced blocks. Its strength is the quickest path from a readable text definition to a styled diagram, at the cost of a browser install.",
+  "use_when": [
+    "Flowcharts, sequence diagrams or gantt charts from short text; over Graphviz for readable syntax",
+    "Diagrams for explainers where the default Mermaid theme is acceptable and layout need not be tuned",
+    "Generating SVG or transparent PNG from Markdown docs in a script"
+  ],
+  "avoid_when": [
+    "Large graphs needing layout control: Graphviz",
+    "Environment without Chromium or where startup time matters: Graphviz is a single native binary",
+    "Diagram elements must be animated with exact stable ids: hand-authored SVG"
+  ],
+  "pairs_with": [
+    "svg",
+    "svgo",
+    "resvg",
+    "playwright",
+    "graphviz"
+  ],
   "official_url": "https://github.com/mermaid-js/mermaid-cli",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
-    "diagram-generation"
+    "diagram-generation",
+    "vector-authoring"
   ],
-  "license": "MIT; bundles a headless Chromium",
+  "license": "MIT; downloads a headless Chromium via Puppeteer",
   "install": {
     "macos": "pnpm add -g @mermaid-js/mermaid-cli",
     "check_command": "mmdc --version"
+  },
+  "notes": [
+    "2026-10-26: Chromium download and Node version requirements of 12.0.0 not verified from source."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a4",
+    "version_seen": "12.0.0",
+    "last_release": "2026-09-24",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "npm 12.0.0 published 2026-09-24, with 11.17.0 on 2026-09-02; MIT. Official wrapper for Mermaid; no neighbour offers the same text syntax. Requires Puppeteer-managed Chromium.",
+    "sources": [
+      "https://github.com/mermaid-js/mermaid-cli",
+      "https://www.npmjs.com/package/@mermaid-js/mermaid-cli"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

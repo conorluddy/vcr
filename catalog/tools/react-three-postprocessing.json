@@ -2,8 +2,25 @@
   "id": "react-three-postprocessing",
   "name": "react-three/postprocessing",
   "category": "A9. Adjacent resources mentioned during discovery",
-  "tier": "candidate",
-  "role": "React wrapper for effects",
+  "tier": "catalogued",
+  "role": "Declarative post effects (bloom, DOF, SSAO, LUTs) for R3F, wrapping postprocessing",
+  "summary": "pmndrs React wrapper around the postprocessing library: an EffectComposer and effect components (Bloom, DepthOfField, SSAO, Vignette, ToneMapping, LUT and more) placed inside an R3F canvas. Driven by JSX and props; output is the post-processed canvas. Strength is composing effect stacks declaratively in the same tree as the scene.",
+  "use_when": [
+    "Effect stacks in an R3F scene, expressed as JSX next to the meshes",
+    "Over raw postprocessing when the scene is already React and R3F",
+    "Animating effect props (bloom intensity, focus) from a seekable time value"
+  ],
+  "avoid_when": [
+    "Non-React Three.js scenes: postprocessing directly, no wrapper",
+    "Effects on video or images: FFmpeg or Natron",
+    "Custom shader passes with no React: Three.js Shading Language"
+  ],
+  "pairs_with": [
+    "react-three-fiber",
+    "postprocessing",
+    "three-js",
+    "drei"
+  ],
   "official_url": "https://github.com/pmndrs/react-postprocessing",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -11,6 +28,10 @@
     "react-integration"
   ],
   "license": "MIT",
+  "install": {
+    "macos": "pnpm add @react-three/postprocessing postprocessing",
+    "check_command": "pnpm list @react-three/postprocessing"
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -18,6 +39,22 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9b",
+    "version_seen": "3.2.2",
+    "last_release": "2026-10-21",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "Released 2026-10-21; tracks R3F and postprocessing. Adds the declarative R3F route to effects that catalogued postprocessing offers only imperatively. Thin wrapper, so value depends on R3F being used.",
+    "sources": [
+      "https://registry.npmjs.org/@react-three/postprocessing",
+      "https://github.com/pmndrs/react-postprocessing"
+    ]
+  },
+  "notes": [
+    "2026-10-26: official_url points at the react-postprocessing repo; not independently checked beyond npm metadata."
+  ],
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }

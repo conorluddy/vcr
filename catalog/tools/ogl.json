@@ -3,14 +3,30 @@
   "name": "OGL",
   "category": "A3. 3D, shaders and effects",
   "tier": "catalogued",
-  "role": "Minimal WebGL layer",
+  "role": "Tiny zero-dependency WebGL library with a Three.js-like API, about 29 KB",
+  "summary": "Minimal ES-module WebGL library with Geometry, Program, Mesh, Camera, Transform, RenderTarget and a few extras, shaped like a lean Three.js. You write your own shaders and drive render calls from time. Output is a canvas. Distinguishing strength: very small, readable source with no dependencies.",
+  "use_when": [
+    "Over Three.js for a single custom-shader mesh or fullscreen effect with minimal code",
+    "Over regl when a scene graph and camera classes help but Three.js is overkill",
+    "Tiny bundle for a self-contained generative scene"
+  ],
+  "avoid_when": [
+    "glTF, PBR, shadows or postprocessing: Three.js",
+    "Pure functional draw commands: regl",
+    "Thin helpers over raw WebGL only: TWGL"
+  ],
+  "pairs_with": [
+    "glmatrix",
+    "glslify",
+    "playwright"
+  ],
   "official_url": "https://github.com/oframe/ogl",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "3d-rendering",
     "shaders"
   ],
-  "license": "MIT",
+  "license": "Unlicense (public domain)",
   "install": {
     "macos": "pnpm add ogl"
   },
@@ -21,6 +37,22 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "notes": [
+    "2026-10-26: npm metadata and README say Unlicense but the repository licence field is empty."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a3",
+    "version_seen": "ogl 1.0.11",
+    "last_release": "2025-01-27",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "Last npm release Jan 2025 and last repo push Apr 2025, so 18 to 21 months idle: slow. Small, dependency-free, public-domain, and stable for custom-shader work.",
+    "sources": [
+      "https://github.com/oframe/ogl",
+      "https://registry.npmjs.org/ogl"
+    ]
+  },
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }

@@ -3,13 +3,47 @@
   "name": "WebGL",
   "category": "Native browser platform APIs",
   "tier": "catalogued",
-  "role": "Browser GPU graphics API",
+  "role": "GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries",
+  "summary": "The browser's OpenGL ES binding, in WebGL 1 and 2, used directly or through Three.js, PixiJS, OGL, regl and twgl. Rendering is a function of uniforms such as time, so frames can be drawn in any order. Headless Chromium falls back to software GL when no GPU is present, which is slow but works. Read pixels or screenshot the canvas.",
+  "use_when": [
+    "Custom fragment shaders or GPU particles driven by a time uniform",
+    "Under Three.js, PixiJS or OGL: the default backend that works everywhere",
+    "Over WebGPU when headless or broad Chromium support matters today"
+  ],
+  "avoid_when": [
+    "Heavy compute or modern GPU features: WebGPU, where supported",
+    "Plain 2D drawing: Canvas 2D",
+    "Raw API verbosity: use Three.js, OGL, regl or twgl instead"
+  ],
+  "pairs_with": [
+    "three-js",
+    "ogl",
+    "regl",
+    "twgl",
+    "pixijs"
+  ],
   "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API",
   "automation_route": "browser-platform-api",
   "capabilities": [
     "3d-rendering",
     "shaders"
   ],
+  "notes": [
+    "2026-10-26: Software GL fallback speed in headless Chromium comes from general knowledge; not measured."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a8-web",
+    "version_seen": "WebGL 1.0 and 2.0 (Khronos)",
+    "last_release": "n/a (platform)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "WebGL 1 since Chrome 9, WebGL 2 since Chrome 56 per MDN browser-compat-data; standard-track, not experimental.",
+    "sources": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API",
+      "https://unpkg.com/@mdn/browser-compat-data/data.json"
+    ]
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "not-applicable",
   "validation": {

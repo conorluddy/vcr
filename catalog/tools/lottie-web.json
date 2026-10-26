@@ -3,7 +3,24 @@
   "name": "Lottie Web",
   "category": "A2. Animation and authored assets",
   "tier": "catalogued",
-  "role": "Lottie playback; validate generated/edited JSON",
+  "role": "Plays After Effects/Bodymovin Lottie JSON in the browser; frame-addressable",
+  "summary": "Airbnb's browser player for Lottie JSON exported from After Effects via Bodymovin. Renders to SVG, canvas or HTML and can be paused and set to an exact frame with goToAndStop, so playback is addressable by time for capture. It plays authored assets; it does not author or edit them. Strength: reuse of designer-made vector animation with no re-implementation.",
+  "use_when": [
+    "A designer or marketplace supplies a Lottie JSON that must appear in a scene",
+    "Over Rive when the source is After Effects, not Rive",
+    "Vector icon and character loops that must be frame-seeked for capture"
+  ],
+  "avoid_when": [
+    "Authoring new motion in code: GSAP or Anime.js",
+    "Smaller runtime for .lottie bundles: dotLottie player",
+    "Interactive state-machine assets: Rive Web"
+  ],
+  "pairs_with": [
+    "gsap",
+    "playwright",
+    "dotlottie",
+    "svg"
+  ],
   "official_url": "https://github.com/airbnb/lottie-web",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -12,7 +29,24 @@
   ],
   "license": "MIT",
   "install": {
-    "macos": "pnpm add lottie-web"
+    "macos": "pnpm add lottie-web",
+    "check_command": "pnpm list lottie-web --depth 0"
+  },
+  "notes": [
+    "2026-10-26: official_url is the GitHub repo; docs live in the repo README and wiki. Not run; frame-exact seek claim is from API docs."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a2",
+    "version_seen": "5.13.0",
+    "last_release": "2025-05-21",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "Last npm release 5.13.0 on 2025-05-21, last push 2025-09-01; MIT, not archived. Still the reference Lottie player and the only route for After Effects exports here.",
+    "sources": [
+      "https://github.com/airbnb/lottie-web",
+      "https://www.npmjs.com/package/lottie-web"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

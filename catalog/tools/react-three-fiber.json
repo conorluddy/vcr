@@ -3,7 +3,25 @@
   "name": "React Three Fiber",
   "category": "A3. 3D, shaders and effects",
   "tier": "catalogued",
-  "role": "Declarative Three.js; match React/package majors",
+  "role": "React renderer for Three.js: declarative JSX scenes with hooks for the frame loop",
+  "summary": "React reconciler that maps JSX to Three.js objects and exposes useFrame, useThree and an event system. Output is the same canvas as plain Three.js. Distinguishing strength: declarative scene composition and the pmndrs component ecosystem. Majors are tied to React: v9 targets React 19, v8 React 18.",
+  "use_when": [
+    "Over plain Three.js when scenes are React components with props and state",
+    "With drei and postprocessing for shots composed from reusable pieces",
+    "Seek-driven frames through frameloop never and advance"
+  ],
+  "avoid_when": [
+    "No React in the project: Three.js directly",
+    "Tight render-once-per-seek control: plain Three.js is simpler",
+    "Non-React engines wanted: Babylon.js or PlayCanvas"
+  ],
+  "pairs_with": [
+    "three-js",
+    "drei",
+    "postprocessing",
+    "react-three-postprocessing",
+    "react-three-rapier"
+  ],
   "official_url": "https://r3f.docs.pmnd.rs/",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -12,7 +30,7 @@
   ],
   "license": "MIT",
   "install": {
-    "macos": "pnpm add @react-three/fiber"
+    "macos": "pnpm add @react-three/fiber three"
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -21,6 +39,22 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "notes": [
+    "2026-10-26: frameloop never with advance() for seek-driven capture is from memory of the docs and was not verified."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a3",
+    "version_seen": "@react-three/fiber 9.8.2",
+    "last_release": "2026-10-14",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "pmndrs maintained, release Oct 2026; v9 pairs with React 19. Adds a React layer to Three.js rather than a different renderer.",
+    "sources": [
+      "https://r3f.docs.pmnd.rs/",
+      "https://registry.npmjs.org/@react-three/fiber"
+    ]
+  },
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }

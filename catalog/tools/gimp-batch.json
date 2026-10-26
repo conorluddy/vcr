@@ -3,16 +3,51 @@
   "name": "GIMP batch",
   "category": "A6. Image processing and colour",
   "tier": "catalogued",
-  "role": "Scripted image operations; version-specific procedures",
+  "role": "Headless GIMP via --batch with Script-Fu or Python; heavyweight, version-specific procedures",
+  "summary": "GIMP's non-interactive mode: gimp-console (or gimp -i) with -b/--batch commands and --batch-interpreter selecting Script-Fu (default) or another interpreter, then --quit. Gives access to GIMP's full procedure database, layers and plug-ins from scripts. Script procedures differ between GIMP 2 and 3, so every script is version-specific. Distinguishing strength: reproducing GIMP-only operations without the GUI.",
+  "use_when": [
+    "A GIMP-specific operation (layer modes, plug-in filter, XCF layers) has no CLI equivalent elsewhere",
+    "Batch-converting or editing existing .xcf files with layers intact",
+    "Reusing an existing Script-Fu routine unchanged"
+  ],
+  "avoid_when": [
+    "Resize, crop, convert, annotate: ImageMagick starts faster and is the validated baseline",
+    "Fast Node-side pipelines: Sharp",
+    "Colour-managed or EXR sequence work: oiiotool",
+    "Needing stability across GIMP majors: scripts break between 2.10 and 3"
+  ],
+  "pairs_with": [
+    "imagemagick",
+    "ffmpeg-ffprobe",
+    "inkscape"
+  ],
   "official_url": "https://www.gimp.org/man/gimp.html",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "image-processing"
   ],
-  "license": "GPL-3.0",
+  "license": "GPL-3.0-or-later",
   "install": {
     "macos": "brew install --cask gimp",
     "check_command": "gimp --version"
+  },
+  "notes": [
+    "2026-10-26: The official_url man page documents GIMP 3 (data dir 3.0, config dir 3.2): -b/--batch, --batch-interpreter (default Script-Fu), --quit, -i; GIMP_BATCH_INTERPRETER is legacy and --pdb-compat-mode exists for deprecated procedures. GIMP 2 scripts used different procedure names and python-fu-eval; whether python-fu-eval is registered in GIMP 3 was not verified. Python is not covered on that page.",
+    "2026-10-26: Homebrew cask gimp is at 3.2.6 (upstream 2026-09-10); the gimp CLI path inside the macOS app bundle was not verified."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a6",
+    "version_seen": "3.2.6",
+    "last_release": "2026-09-10",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "GIMP 3.2.6 released 2026-09-10 per gimp.org downloads; man page documents the GIMP 3 batch interface. Valid but heavyweight and version-bound; a niche behind ImageMagick for scripted edits.",
+    "sources": [
+      "https://www.gimp.org/man/gimp.html",
+      "https://www.gimp.org/downloads/",
+      "https://formulae.brew.sh/api/cask/gimp.json"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

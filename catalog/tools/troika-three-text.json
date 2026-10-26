@@ -2,8 +2,25 @@
   "id": "troika-three-text",
   "name": "Troika Three Text",
   "category": "A9. Adjacent resources mentioned during discovery",
-  "tier": "candidate",
-  "role": "Three.js text rendering candidate",
+  "tier": "catalogued",
+  "role": "SDF text meshes for Three.js with font loading and Web Worker typesetting",
+  "summary": "Text rendering for Three.js: a Text mesh that typesets TTF, OTF or WOFF fonts in a worker and renders them with signed-distance fields, giving crisp text at any size with outline, stroke, curve and per-range colouring. Driven from JavaScript by setting properties and calling sync(); output is a Three.js mesh. This is the text layer that drei's Text wraps.",
+  "use_when": [
+    "Crisp, animatable text inside a Three.js or R3F scene",
+    "Over canvas-texture text when size varies or the camera moves close",
+    "Dynamic text with arbitrary fonts and no pre-built atlas"
+  ],
+  "avoid_when": [
+    "Extruded 3D letterforms: Three.js TextGeometry with a typeface JSON",
+    "HTML titles over video: GSAP on DOM text is simpler and sharper",
+    "Pre-baked SDF atlases: msdfgen"
+  ],
+  "pairs_with": [
+    "three-js",
+    "drei",
+    "react-three-fiber",
+    "gsap"
+  ],
   "official_url": "https://github.com/protectwise/troika/tree/main/packages/troika-three-text",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -11,6 +28,10 @@
     "3d-rendering"
   ],
   "license": "MIT",
+  "install": {
+    "macos": "pnpm add troika-three-text",
+    "check_command": "pnpm list troika-three-text"
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -18,6 +39,22 @@
     "evidence": []
   },
   "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9b",
+    "version_seen": "0.52.5",
+    "last_release": "2026-07-24",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "Release 0.52.5 on 2026-07-24; the standard SDF text for Three.js and the engine behind drei's Text. Adds runtime font typesetting that catalogued msdfgen (offline atlases) and opentype-js (outlines) do not give directly.",
+    "sources": [
+      "https://registry.npmjs.org/troika-three-text",
+      "https://github.com/protectwise/troika/tree/main/packages/troika-three-text"
+    ]
+  },
+  "notes": [
+    "2026-10-26: sync() is async, so capture must wait for it; not tested. official_url is a monorepo subpath."
+  ],
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }

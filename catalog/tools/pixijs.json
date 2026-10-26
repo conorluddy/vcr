@@ -3,16 +3,53 @@
   "name": "PixiJS",
   "category": "A1. Creative coding and 2D",
   "tier": "catalogued",
-  "role": "GPU 2D rendering, sprites and effects",
+  "role": "GPU-accelerated 2D renderer (WebGPU and WebGL) for sprites, text and filters",
+  "summary": "Fast 2D rendering engine with scene graph, sprites, graphics, text, masks and a filter pipeline, running on WebGPU or WebGL. Driven by its ticker or manual render calls; output is a canvas that can be captured or extracted to pixels. Its strength is throughput for many sprites and shader effects, with a large ecosystem. Current line is v8.",
+  "use_when": [
+    "Thousands of sprites, particles or textured meshes at frame rate",
+    "Over Konva or Fabric.js when GPU filters and blend effects are needed",
+    "Over Three.js when the scene is flat 2D and needs no 3D camera",
+    "Rendering a scene from script and extracting pixels via the renderer"
+  ],
+  "avoid_when": [
+    "Small vector-first scenes with interaction: Konva",
+    "Procedural noise or flow-field sketches: p5.js",
+    "Editable objects with SVG round-trip: Fabric.js",
+    "Real 3D lights and materials: Three.js"
+  ],
+  "pairs_with": [
+    "pixijs-filters",
+    "gsap",
+    "matter-js",
+    "playwright"
+  ],
   "official_url": "https://pixijs.com/",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "2d-rendering",
-    "effects"
+    "effects",
+    "shaders"
   ],
   "license": "MIT",
   "install": {
     "macos": "pnpm add pixi.js"
+  },
+  "notes": [
+    "2026-10-26: pixijs.com did not state a licence or headless/Node support; MIT is from the npm registry and ticker control was not verified."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a1",
+    "version_seen": "8.22.0",
+    "last_release": "2026-10-01",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "GitHub release v8.22.0 on 2026-10-01; MIT per npm; v8 supports WebGPU and WebGL. Clear GPU niche versus the Canvas-based neighbours.",
+    "sources": [
+      "https://pixijs.com/",
+      "https://api.github.com/repos/pixijs/pixijs/releases/latest",
+      "https://registry.npmjs.org/pixi.js"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

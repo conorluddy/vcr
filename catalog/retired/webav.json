@@ -1,0 +1,53 @@
+{
+  "id": "webav",
+  "name": "WebAV",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "WebCodecs-based browser SDK: clip, composite and encode MP4 in the page",
+  "summary": "Bilibili's browser SDK on WebCodecs: av-cliper decodes clips and sprites and a Combinator composites them to an MP4 stream, av-canvas adds an interactive editor and av-recorder records MediaStreams. Driven from JavaScript in Chrome, Edge or Electron; output is MP4. Strength is a ready compositing layer over raw WebCodecs.",
+  "use_when": [
+    "Sprite-layered MP4 composition entirely in the browser, with a ready editor canvas"
+  ],
+  "avoid_when": [
+    "Encode and mux from canvas frames: Mediabunny, lighter and server-capable",
+    "Programmatic editing library: Diffusion Studio Core",
+    "Anything FFmpeg can do: FFmpeg (native) or FFmpeg.wasm"
+  ],
+  "pairs_with": [
+    "webcodecs",
+    "mediabunny",
+    "playwright"
+  ],
+  "official_url": "https://github.com/bilibili/WebAV",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "video-composition",
+    "video-encoding"
+  ],
+  "license": "MIT",
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9b",
+    "version_seen": "1.2.8",
+    "last_release": "2026-01-10",
+    "maintenance": "active",
+    "verdict": "drop",
+    "rationale": "Active (1.2.8, Jan 2026) but duplicates Mediabunny and Diffusion Studio Core for browser composition and encoding, and needs a WebCodecs browser (no Node route).",
+    "sources": [
+      "https://registry.npmjs.org/@webav/av-cliper",
+      "https://github.com/bilibili/WebAV"
+    ]
+  },
+  "notes": [
+    "2026-10-26: npm metadata lists no licence field, MIT from the repository page; Node support not mentioned in the README."
+  ],
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -2,8 +2,21 @@
   "id": "easeljs",
   "name": "EaselJS",
   "category": "A1. Creative coding and 2D",
-  "tier": "catalogued",
-  "role": "Canvas display list; evaluate compatibility before support",
+  "tier": "candidate",
+  "role": "Legacy Canvas display list from the CreateJS suite; pre-dates modern Canvas scene graphs",
+  "summary": "Canvas 2D display-list library (Stage, Container, Bitmap, Shape, Text) modelled on the Flash API, part of CreateJS and designed to pair with TweenJS. Driven by a Ticker; output is Canvas frames. A limited StageGL (WebGL) mode exists. The last npm release is 1.0.2 from 2017; the repository still gets sporadic commits, so treat it as legacy and mainly relevant for existing CreateJS or Adobe Animate exports.",
+  "use_when": [
+    "Rendering existing CreateJS or Adobe Animate canvas exports",
+    "Flash-style display list paired with TweenJS in an existing codebase"
+  ],
+  "avoid_when": [
+    "New scenes needing a scene graph: Konva for Canvas, PixiJS for GPU",
+    "Maintained tweening and timelines: GSAP over TweenJS",
+    "Anything needing modern TypeScript types or ESM: Konva or Fabric.js"
+  ],
+  "pairs_with": [
+    "playwright"
+  ],
   "official_url": "https://createjs.com/easeljs",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -11,6 +24,27 @@
     "tweening"
   ],
   "license": "MIT",
+  "install": {
+    "macos": "pnpm add easeljs"
+  },
+  "notes": [
+    "2026-10-26: createjs.com/easeljs returned only a stub page; the repository on GitHub (CreateJS/EaselJS) is a likelier official_url. Last npm release date comes from the registry; the Jan 2026 commit was a minor touch-input fix."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a1",
+    "version_seen": "1.0.2 (npm)",
+    "last_release": "2017-09-18",
+    "maintenance": "slow",
+    "verdict": "demote",
+    "rationale": "No npm release since 2017-09-18 (1.0.2); repo's latest commit is a minor touch fix on 2026-01-24. Konva covers Canvas scene graphs and PixiJS the GPU case, so incremental value is limited to legacy CreateJS content.",
+    "sources": [
+      "https://createjs.com/easeljs",
+      "https://github.com/CreateJS/EaselJS",
+      "https://registry.npmjs.org/easeljs",
+      "https://api.github.com/repos/CreateJS/EaselJS/commits?per_page=1"
+    ]
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {

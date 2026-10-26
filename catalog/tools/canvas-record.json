@@ -3,16 +3,51 @@
   "name": "canvas-record",
   "category": "A5. Video and capture",
   "tier": "catalogued",
-  "role": "Canvas recording and sequence export",
+  "role": "Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped",
+  "summary": "Browser library that records a 2D, WebGL or WebGPU canvas into MP4, WebM, MKV, GIF or a PNG/JPG frame sequence. Encoders include WebCodecs (fast, no WASM), an embedded MP4 WASM encoder, an FFmpeg WASM encoder and plain frame dumps. Distinguishing strength: stepped frame-by-frame recording of generative canvas sketches without a headless browser, if your code can render on demand.",
+  "use_when": [
+    "Canvas sketch you control that can render frame N on demand, exported in-browser",
+    "Over CCapture.js for a current WebCodecs MP4 path and WebGPU support",
+    "Quick MP4 or frame sequence from a three.js or p5.js canvas during interactive work"
+  ],
+  "avoid_when": [
+    "DOM, SVG or CSS scenes: Playwright captures the whole page",
+    "Server-side or CI renders: Playwright frames into FFmpeg",
+    "Alpha PNG sequences at scale: Playwright beginFrame capture is the validated route"
+  ],
+  "pairs_with": [
+    "canvas-2d",
+    "three-js",
+    "p5-js",
+    "webcodecs",
+    "ffmpeg-ffprobe"
+  ],
   "official_url": "https://github.com/dmnsgn/canvas-record",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "capture",
-    "video-encoding"
+    "video-encoding",
+    "image-sequence-processing"
   ],
   "license": "MIT",
   "install": {
     "macos": "pnpm add canvas-record"
+  },
+  "notes": [
+    "2026-10-26: README does not cover Node or headless use; assumed browser-only. Not exercised."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a5",
+    "version_seen": "6.0.0",
+    "last_release": "2026-09-17",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Browser-only canvas recorder with WebCodecs, WASM, GIF and frame encoders; v6.0.0 published 2026-09-17, repo pushed same month. Useful for canvas sketches; Playwright remains VCR's capture route for everything else.",
+    "sources": [
+      "https://github.com/dmnsgn/canvas-record",
+      "https://www.npmjs.com/package/canvas-record"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -21,6 +56,6 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
 }
