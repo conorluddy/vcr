@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://motion-harness.local/schemas/project.schema.json",
-  "title": "Motion Harness project",
+  "$id": "https://vcr.local/schemas/project.schema.json",
+  "title": "VCR project",
   "type": "object",
   "required": ["schema_version", "id", "title", "reuse_scope", "dependency_policy", "assets_manifest", "videos"],
   "properties": {

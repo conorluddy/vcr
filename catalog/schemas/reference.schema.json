@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://motion-harness.local/schemas/reference.schema.json",
-  "title": "Motion Harness reference record",
+  "$id": "https://vcr.local/schemas/reference.schema.json",
+  "title": "VCR reference record",
   "type": "object",
   "required": ["schema_version", "id", "status", "description", "tools", "techniques", "source_paths", "reuse_constraints"],
   "properties": {

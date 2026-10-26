@@ -1,6 +1,6 @@
-# Motion Harness repository guide
+# VCR repository guide
 
-Read `specifications/motion-harness-prd.md` for product intent and release gates. This repository implements the PRD in layers; catalogue inclusion does not imply installation, validation, or adapter support.
+Read `specifications/vcr-prd.md` for product intent and release gates. This repository implements the PRD in layers; catalogue inclusion does not imply installation, validation, or adapter support.
 
 ## Working rules
 

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://motion-harness.local/schemas/tool.schema.json",
-  "title": "Motion Harness tool registry",
+  "$id": "https://vcr.local/schemas/tool.schema.json",
+  "title": "VCR tool registry",
   "type": "object",
   "required": ["schema_version", "resources"],
   "properties": {
