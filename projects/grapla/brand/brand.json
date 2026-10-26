@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "name": "Grapla",
+  "tokens": {
+    "color": {
+      "background": "#1e1d19",
+      "surface": "#29261b",
+      "foreground": "#f6f4ef",
+      "muted": "#9a968c",
+      "accent": "#ffc918",
+      "accent_secondary": "#ed9e0c",
+      "dot_grid": "#333333"
+    },
+    "font": { "display": "JetBrains Mono", "body": "JetBrains Mono" },
+    "radius": 0,
+    "texture": "dot grid, 48px pitch, 1px dots"
+  },
+  "voice": [
+    "Numbers over adjectives. Headlines 4 to 6 words. Body under 15 words.",
+    "No exclamation marks, no rhetorical questions, no emojis.",
+    "Technical nouns as UI labels in CAPS: GUARD, MOUNT, PATHFINDER. Grapla in title case in prose.",
+    "Never say subscription. Pricing phrase: Yours forever. No renewal. No server. Just BJJ."
+  ],
+  "licensing_notes": "JetBrains Mono is OFL-1.1. Screenshots and wordmark are Grapla's own. Accent #ffc918 is never a large fill."
+}

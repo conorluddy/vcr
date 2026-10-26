@@ -10,6 +10,7 @@ Layer 0 (tool suite) is complete and Layer 1 has not started. Concretely:
 - **Evidence**: eight records carry validation evidence from the six fixtures under `examples/`, all reproducible on the primary Mac with `run.sh`. Installation facts live in `environment/`, never in the catalogue.
 - **Skills**: operating guides for the six core tools (SVG, GSAP, p5.js, Three.js, FFmpeg, Blender) plus ImageMagick and resvg. `.claude/skills` links there.
 - **Code**: `packages/cli` (the `vcr` command), `packages/timeline` (PRD §9 time types only), `packages/capture` (deterministic browser frame capture, see `specifications/spikes/browser-capture.md`).
+- **First production**: `projects/grapla/videos/launch-know-your-game`, the PRD §18 proving piece, rendered and assembled without a timeline engine; reference record in `references/`.
 - **Decided**: the composition engine is built in-house (ADR 0001) and the studio stays headless with read-only visualisers (ADR 0002). The timeline resolver, compositor and review surface described as later layers do not exist yet.
 
 ## Commands

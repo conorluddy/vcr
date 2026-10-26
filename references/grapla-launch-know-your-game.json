@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "id": "grapla-launch-know-your-game",
+  "status": "completed",
+  "description": "20 s portrait launch piece for Grapla: SVG wordmark title over a p5 knowledge-graph background, a Three.js phone cycling three app screenshots with captions, and a GSAP end card. Assembled from four alpha PNG sequences with an FFmpeg overlay chain. The PRD §18 proving production, done without a timeline engine.",
+  "tools": ["svg", "gsap", "p5-js", "three-js", "playwright", "ffmpeg-ffprobe"],
+  "tool_versions": { "gsap": "3.x", "three": "0.186", "p5": "2.3.4", "chromium": "156.0.8078.4", "ffmpeg": "8.0.1" },
+  "techniques": ["wordmark-title", "graph-background", "phone-product-shot", "caption-per-shot", "flat-layer-overlay-assembly", "tpad-start-offset"],
+  "aspect_ratios": ["9:16"],
+  "preview": "references/previews/grapla-launch-know-your-game.png",
+  "source_paths": ["projects/grapla/videos/launch-know-your-game"],
+  "limitations": [
+    "Silent; narration and music are Layer 5 work.",
+    "Scene timings are hand-placed in video.json and repeated in assemble.sh; the Layer 2 resolver should generate the tpad offsets.",
+    "Inline SVG styles beat stylesheet fills; the wordmark needed an !important override.",
+    "Capture speed at 1080x1920: p5 15 fps, GSAP 17 fps, Three 10 fps. Whole render about four minutes."
+  ],
+  "reuse_constraints": ["Grapla wordmark and screenshots are project-private; reuse the structure, not the assets.", "Brand voice rules in projects/grapla/brand/brand.json apply to any copy change."]
+}
