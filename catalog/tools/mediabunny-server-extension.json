@@ -3,16 +3,49 @@
   "name": "Mediabunny server extension",
   "category": "A5. Video and capture",
   "tier": "catalogued",
-  "role": "Optional server codecs/backend; evaluate separately",
+  "role": "Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno",
+  "summary": "@mediabunny/server registers a NodeAV backend (bindings to FFmpeg's C API) so Mediabunny can encode and decode AVC, HEVC, VP8, VP9, AV1 and ProRes, plus AAC, MP3, Opus, FLAC, AC-3 and others, outside the browser. Adds resize, rotate, flip and crop transforms and hardware acceleration on macOS, Linux and Windows. Same Mediabunny API server-side as in the browser.",
+  "use_when": [
+    "Same Mediabunny TypeScript code must run in Node with codecs WebCodecs lacks",
+    "Server-side TS pipeline wanting FFmpeg codecs without shelling out to a CLI"
+  ],
+  "avoid_when": [
+    "Filtergraphs, overlays or muxing control: ffmpeg-ffprobe directly",
+    "Simple delivery encodes in scripts: the ffmpeg CLI has fewer moving parts",
+    "Browser use: base mediabunny plus WebCodecs"
+  ],
+  "pairs_with": [
+    "mediabunny",
+    "ffmpeg-ffprobe"
+  ],
   "official_url": "https://mediabunny.dev/guide/extensions/server",
   "automation_route": "library-or-runtime",
   "capabilities": [
-    "video-encoding"
+    "video-encoding",
+    "audio"
   ],
-  "license": "Recheck; may be commercial",
+  "license": "MPL-2.0 per npm; confirm in the package LICENSE, and the bundled FFmpeg build's own licence terms",
+  "install": {
+    "macos": "pnpm add mediabunny @mediabunny/server"
+  },
   "notes": [
-    "Separate package from mediabunny; evaluate independently."
+    "Separate package from mediabunny; evaluate independently.",
+    "2026-10-26: npm lists MPL-2.0 for @mediabunny/server; the docs page does not state a licence, so the earlier 'may be commercial' caution is unconfirmed. Whether NodeAV's bundled FFmpeg is LGPL or GPL was not checked.",
+    "2026-10-26: published in lockstep with mediabunny (1.62.1); maturity not labelled in the docs."
   ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a5",
+    "version_seen": "1.62.1",
+    "last_release": "2026-10-22",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Published 2026-10-22 in lockstep with mediabunny; npm licence MPL-2.0. Adds FFmpeg-grade codecs to Node via NodeAV. Narrow value over the FFmpeg CLI; keep as catalogued for TypeScript-only pipelines.",
+    "sources": [
+      "https://mediabunny.dev/guide/extensions/server",
+      "https://www.npmjs.com/package/@mediabunny/server"
+    ]
+  },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
@@ -20,6 +53,6 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
 }
