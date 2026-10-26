@@ -3,7 +3,25 @@
   "name": "Graphviz",
   "category": "A4. Vector, typography, diagrams and stills",
   "tier": "catalogued",
-  "role": "CLI graph layout/rendering",
+  "role": "DOT graph layout to SVG/PNG from one native binary; automatic layout",
+  "summary": "Graph layout engine and renderer driven from the dot command line. Takes DOT text describing nodes and edges and lays them out with algorithms such as dot (hierarchies), neato and fdp (force), twopi and circo, emitting SVG, PNG or PDF. Output is deterministic for a given input and version. Its strength is automatic layout of large directed graphs without hand placement.",
+  "use_when": [
+    "Large directed graphs or dependency trees needing automatic layout; over Mermaid CLI, which has less layout control",
+    "Deterministic SVG diagrams from DOT text with no browser required",
+    "Pipeline needs SVG that resvg can rasterise with no Chromium dependency"
+  ],
+  "avoid_when": [
+    "Simple flowcharts or sequence diagrams: Mermaid CLI has friendlier syntax",
+    "Diagram parts must animate individually with design polish: hand-author SVG and use GSAP",
+    "Fully custom visual style: D3 or hand-built SVG"
+  ],
+  "pairs_with": [
+    "svg",
+    "resvg",
+    "svgo",
+    "mermaid-cli",
+    "gsap"
+  ],
   "official_url": "https://www.graphviz.org/doc/info/command.html",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
@@ -14,6 +32,23 @@
   "install": {
     "macos": "brew install graphviz",
     "check_command": "dot -V"
+  },
+  "notes": [
+    "2026-10-26: version 16.1.0 date taken from GitLab release API; the download page gives no release date."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a4",
+    "version_seen": "16.1.0",
+    "last_release": "2026-09-04",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Version 16.1.0 released 2026-09-04 per the GitLab release list; Homebrew carries 16.1.0. Licence is EPL-1.0 per Homebrew. Distinct value: automatic graph layout from a native CLI with SVG output.",
+    "sources": [
+      "https://www.graphviz.org/doc/info/command.html",
+      "https://graphviz.org/download/",
+      "https://gitlab.com/graphviz/graphviz/-/releases"
+    ]
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
