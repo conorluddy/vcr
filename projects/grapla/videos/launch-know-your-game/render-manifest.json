@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "status": "rendered",
+  "rendered_at": "2026-10-26T15:39:20.969Z",
+  "recipe": {
+    "capture": "pnpm render",
+    "assembly": "./assemble.sh",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "environment": {
+    "hostname": "Conors-MacBook-Pro-2.local",
+    "gsap": "3.15.0",
+    "three": "0.186.1",
+    "p5": "2.3.4",
+    "node": "v22.19.0"
+  },
+  "scenes": {
+    "background": {
+      "start_s": 0,
+      "end_s": 20,
+      "frames": 600,
+      "frames_per_second_captured": 15,
+      "first_hash": "d8a764ea769aa25929aa9e241db1b5e86a9803cc0fefb7e927ada43a2bc22929",
+      "deterministic": null
+    }
+  },
+  "outputs": [
+    "output/launch-know-your-game.mp4"
+  ]
+}

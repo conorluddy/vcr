@@ -77,6 +77,25 @@ importers:
 
   packages/timeline: {}
 
+  projects/grapla:
+    dependencies:
+      gsap:
+        specifier: ^3.15.0
+        version: 3.15.0
+      p5:
+        specifier: ^2.3.4
+        version: 2.3.4
+      three:
+        specifier: ^0.186.1
+        version: 0.186.1
+    devDependencies:
+      '@vcr/capture':
+        specifier: workspace:*
+        version: link:../../packages/capture
+      tsx:
+        specifier: ^4.23.15
+        version: 4.23.15
+
 packages:
 
   '@babel/runtime@7.29.10':

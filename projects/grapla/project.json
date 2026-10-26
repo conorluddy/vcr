@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "id": "grapla",
+  "title": "Grapla",
+  "description": "BJJ knowledge graph and training log for iOS. Free download, one-time Pro unlock. Source of truth for product facts: ~/Development/Grapla and ~/Development/GraplaWeb/docs/brand.md.",
+  "reuse_scope": "project",
+  "dependency_policy": "lockfile",
+  "brand": "brand/brand.json",
+  "assets_manifest": "assets/manifest.json",
+  "videos": ["videos/launch-know-your-game/video.json"],
+  "output_directory": "output",
+  "cache_directory": ".cache"
+}

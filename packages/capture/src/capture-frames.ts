@@ -5,7 +5,7 @@
 import { createHash } from "node:crypto";
 import { mkdirSync, readFile, writeFileSync } from "node:fs";
 import { createServer, type Server } from "node:http";
-import { basename, dirname, extname, join, normalize } from "node:path";
+import { dirname, extname, join, normalize, relative } from "node:path";
 import { chromium, type CDPSession, type Page } from "playwright";
 
 // === TYPES ===
@@ -21,8 +21,10 @@ export interface SceneContract {
 export interface CaptureOptions {
   /** http(s):// URL of the scene page. Use `sceneFile` for a local page: file:// blocks ES module imports. */
   sceneUrl?: string | undefined;
-  /** Absolute path to a local scene page; its directory is served over loopback HTTP for the run. */
+  /** Absolute path to a local scene page; its directory (or `serveRoot`) is served over loopback HTTP for the run. */
   sceneFile?: string | undefined;
+  /** Serve this ancestor directory instead of the scene's own, so scenes can reference shared assets and node_modules. */
+  serveRoot?: string | undefined;
   /** Scripts to inject before the scene is built, e.g. a library's UMD bundle. */
   scripts?: Array<{ path: string } | { url: string }>;
   width: number;
@@ -73,8 +75,9 @@ export const BEGIN_FRAME_CHROMIUM_ARGS = ["--deterministic-mode", "--enable-begi
 // === PUBLIC API ===
 
 export async function captureFrames(options: CaptureOptions): Promise<CaptureReport> {
-  const served = options.sceneFile ? await serveDirectory(dirname(options.sceneFile)) : null;
-  const sceneUrl = served ? `${served.url}/${basename(options.sceneFile!)}` : options.sceneUrl;
+  const root = options.sceneFile ? (options.serveRoot ?? dirname(options.sceneFile)) : null;
+  const served = root ? await serveDirectory(root) : null;
+  const sceneUrl = served ? `${served.url}/${relative(root!, options.sceneFile!)}` : options.sceneUrl;
   if (!sceneUrl) throw new Error("captureFrames needs sceneUrl or sceneFile");
   log("capture.scene", { url: sceneUrl });
   const captureMode: CaptureMode = options.captureMode ?? (process.env["VCR_CAPTURE_MODE"] as CaptureMode | undefined) ?? "screenshot";
