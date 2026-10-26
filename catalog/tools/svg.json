@@ -16,10 +16,19 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "not-applicable",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "n/a (platform)",
+        "command": "examples/native-svg/run.sh",
+        "result": "Static SVG rasterised by resvg",
+        "example": "examples/native-svg"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
 }

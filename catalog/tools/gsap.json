@@ -18,10 +18,19 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.x via pnpm",
+        "command": "examples/browser-capture/run.sh",
+        "result": "90 frames seeked and captured with alpha; shuffled order matches sequential; see specifications/spikes/browser-capture.md",
+        "example": "examples/browser-capture"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
 }

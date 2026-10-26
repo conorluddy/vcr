@@ -5,9 +5,11 @@ VCR is a local-first, agent-friendly workspace for creating and reviewing motion
 ## Current status
 
 - 119 resources from PRD Appendix A live as one file each under `catalog/tools/`, with a `tier` (`core`, `catalogued`, `candidate`), per-tool capabilities, licence as last understood and an install recipe where one exists. `catalog/tools.json` is a generated index; run `pnpm vcr catalog build` after editing a record.
-- Registry entries are discovery metadata. Installation is unknown, validation is not performed, and no shared adapters are implemented yet.
+- Registry entries are discovery metadata. Six records carry validation evidence from the examples; installation facts live in `environment/`; no shared adapters are implemented yet.
 - The project and tool JSON Schemas are in `catalog/schemas/`.
-- `examples/` and `projects/templates/` are starter source files, not validated render fixtures.
+- `examples/` holds four validated fixtures on the primary Mac: SVG via resvg and FFmpeg, FFmpeg sequence-plus-audio assembly, a Blender background render, and deterministic browser capture of a GSAP timeline (`specifications/spikes/browser-capture.md`). Each has a `run.sh` that diffs against `expected/`.
+- `skills/toolkits/` has operating guides for FFmpeg, ImageMagick, resvg and Blender; `.claude/skills` links there so agents load them on demand.
+- `packages/timeline/` holds the PRD §9 time types only; the resolver is Layer 2.
 - The common timeline, compositor, renderer, and CLI described as later layers do not exist yet.
 
 ## Commands

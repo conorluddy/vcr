@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  html, body { margin: 0; background: transparent; width: 100%; height: 100%; overflow: hidden; }
+  #stage { position: relative; width: 100%; height: 100%; }
+  #square { position: absolute; left: 50%; top: 50%; width: 30%; aspect-ratio: 1; margin: -15% 0 0 -15%; background: #c7f36b; border-radius: 4%; }
+  #label { position: absolute; left: 10%; top: 12%; font: 700 8vh Arial, sans-serif; color: #f3f4ef; opacity: 0; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="square"></div>
+  <div id="label">VCR</div>
+</div>
+<script>
+  // The timeline is built paused. The harness seeks it; nothing here reads a wall clock.
+  window.buildTimeline = () => {
+    // force3D "auto" swaps between matrix3d and 2D transforms mid-tween, which changes edge anti-aliasing per order of evaluation.
+    // lazy defers first-render writes to the next ticker tick, after the harness has already taken its screenshot.
+    gsap.defaults({ force3D: false, lazy: false });
+    const tl = gsap.timeline({ paused: true });
+    tl.to("#square", { rotation: 360, scale: 0.6, duration: 3, ease: "power2.inOut" }, 0)
+      .to("#label", { opacity: 1, x: 120, duration: 1.5, ease: "power3.out" }, 0.5)
+      .to("#square", { opacity: 0.35, duration: 1, ease: "none" }, 2);
+    window.__timeline = tl;
+    return tl.duration();
+  };
+</script>
+</body>
+</html>

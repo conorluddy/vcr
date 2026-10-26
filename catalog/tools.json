@@ -136,14 +136,23 @@
       "notes": [
         "Not on PATH on macOS; use the app bundle executable. First native application spike planned in M0."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-verified",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-10-26",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.4.0",
+            "command": "examples/blender-smoke/run.sh",
+            "result": "Workbench background render of one 320x240 RGBA frame from the app bundle",
+            "example": "examples/blender-smoke"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
@@ -535,14 +544,23 @@
       "notes": [
         "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-verified",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-10-26",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "8.0.1",
+            "command": "examples/ffmpeg-assembly/run.sh",
+            "result": "48 frames at 24 fps mux to 2.000000 s with AAC; ffprobe JSON matches expected/",
+            "example": "examples/ffmpeg-assembly"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
@@ -916,11 +934,20 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-10-26",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.x via pnpm",
+            "command": "examples/browser-capture/run.sh",
+            "result": "90 frames seeked and captured with alpha; shuffled order matches sequential; see specifications/spikes/browser-capture.md",
+            "example": "examples/browser-capture"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
@@ -1049,14 +1076,23 @@
         "macos": "brew install imagemagick",
         "check_command": "magick --version"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-verified",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-10-26",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "7.1.2-15",
+            "command": "examples/ffmpeg-assembly/run.sh",
+            "result": "48 synthetic frames drawn; alpha statistics and identify used by browser-capture and blender-smoke",
+            "example": "examples/ffmpeg-assembly"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
@@ -2274,14 +2310,23 @@
         "macos": "brew install resvg",
         "check_command": "resvg --version"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-verified",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-10-26",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.47.0",
+            "command": "examples/native-svg/run.sh",
+            "result": "PNG hash and ffprobe metadata match expected/",
+            "example": "examples/native-svg"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
@@ -2455,11 +2500,20 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "not-applicable",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-10-26",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "n/a (platform)",
+            "command": "examples/native-svg/run.sh",
+            "result": "Static SVG rasterised by resvg",
+            "example": "examples/native-svg"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
