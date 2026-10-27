@@ -1,116 +1,40 @@
-// Spike: can a headless browser evaluate a paused GSAP timeline at arbitrary frames and
-// capture alpha PNGs deterministically? Writes frames to output/ and a JSON report.
-import { createHash } from "node:crypto";
+// Exercise the shared capture harness with a paused GSAP scene at HD and 4K.
 import { mkdirSync, writeFileSync } from "node:fs";
-import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
-import { chromium, type CDPSession, type Page } from "playwright";
+import { fileURLToPath } from "node:url";
+import { captureFrames, type CaptureMode, type CaptureReport } from "@vcr/capture";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const require = createRequire(import.meta.url);
-const gsapPath = require.resolve("gsap/dist/gsap.min.js");
 const FPS = 30;
-type CaptureMode = "screenshot" | "settle" | "beginframe";
-const CAPTURE_MODE = (process.env["VCR_CAPTURE"] ?? "beginframe") as CaptureMode;
-
-interface RunReport {
-  label: string;
-  width: number;
-  height: number;
-  frames: number;
-  wall_ms: number;
-  frames_per_second: number;
-  js_heap_mb: number | null;
-}
-
-const log = (event: string, fields: Record<string, unknown> = {}): void => {
-  process.stderr.write(`${JSON.stringify({ time: new Date().toISOString(), event, ...fields })}\n`);
-};
-
-async function openScene(page: Page, width: number, height: number): Promise<number> {
-  await page.setViewportSize({ width, height });
-  log("scene.viewport", { width, height });
-  await page.goto(pathToFileURL(join(here, "scene.html")).href);
-  log("scene.loaded");
-  await page.addScriptTag({ path: gsapPath });
-  log("scene.gsap");
-  const duration = await page.evaluate(() => (window as unknown as { buildTimeline: () => number }).buildTimeline());
-  log("scene.timeline", { duration });
-  return duration;
-}
-
-async function captureFrame(page: Page, frame: number): Promise<Buffer> {
-  // Block body on purpose: seek() returns the timeline, and Playwright would try to serialise that cyclic graph.
-  await page.evaluate((seconds) => {
-    (window as unknown as { __timeline: { seek: (t: number, suppress: boolean) => unknown } }).__timeline.seek(seconds, false);
-  }, frame / FPS);
-  return page.screenshot({ omitBackground: true, type: "png"});
-}
-
-async function timedRun(page: Page, cdp: CDPSession, label: string, width: number, height: number, frames: number[], outputDirectory?: string): Promise<{ report: RunReport; hashes: string[] }> {
-  await openScene(page, width, height);
-  const hashes: string[] = [];
-  const startedAt = performance.now();
-  for (const frame of frames) {
-    const png = await captureFrame(page, cdp, frame);
-    hashes[frame] = createHash("sha256").update(png).digest("hex");
-    if (outputDirectory) writeFileSync(join(outputDirectory, `frame-${String(frame).padStart(4, "0")}.png`), png);
-    if (frame % 30 === 0) log("capture.progress", { label, frame });
-  }
-  const wallMs = Math.round(performance.now() - startedAt);
-  const heap = await page.evaluate(() => (performance as unknown as { memory?: { usedJSHeapSize: number } }).memory?.usedJSHeapSize ?? null);
-  return {
-    report: { label, width, height, frames: frames.length, wall_ms: wallMs, frames_per_second: Number((frames.length / (wallMs / 1000)).toFixed(2)), js_heap_mb: heap === null ? null : Number((heap / 1_048_576).toFixed(1)) },
-    hashes,
-  };
-}
-
-const outputDirectory = join(here, "output/frames");
+const requestedMode = process.env["VCR_CAPTURE"] ?? "screenshot";
+if (!["screenshot", "settle", "beginframe"].includes(requestedMode)) throw new Error(`Unknown capture mode: ${requestedMode}`);
+const captureMode: CaptureMode = requestedMode === "beginframe" ? "beginframe" : "screenshot";
+const outputDirectory = join(here, "output");
 mkdirSync(outputDirectory, { recursive: true });
-log("browser.launching");
-// Chromium promotes layers and picks raster scales from recent animation history, so the same
-// frame can rasterise differently depending on which frames came before it. These flags keep
-// compositing and rasterisation on one path regardless of order.
-const DETERMINISTIC_CHROMIUM_ARGS = [
-  "--deterministic-mode",
-  "--enable-begin-frame-control",
-  "--run-all-compositor-stages-before-draw",
-  "--disable-new-content-rendering-timeout",
-  "--disable-threaded-animation",
-  "--disable-threaded-scrolling",
-  "--disable-checker-imaging",
-  "--disable-image-animation-resync",
-  "--disable-lcd-text",
-  "--force-device-scale-factor=1",
-  "--font-render-hinting=none",
-];
-const browser = await chromium.launch({ args: CAPTURE_MODE === "beginframe" ? DETERMINISTIC_CHROMIUM_ARGS : [] });
-log("browser.launched", { version: browser.version() });
-const page = await browser.newPage();
-const cdp = await page.context().newCDPSession(page);
-// Transparent default background so beginFrame screenshots carry alpha like omitBackground does.
-await cdp.send("Emulation.setDefaultBackgroundColorOverride", { color: { r: 0, g: 0, b: 0, a: 0 } });
-const duration = await openScene(page, 1920, 1080);
-const totalFrames = Math.round(duration * FPS);
-const sequential = Array.from({ length: totalFrames }, (_, index) => index);
-const shuffled = [...sequential].sort(() => 0.5 - Math.random());
+const options = { sceneFile: join(here, "scene.html"), fps: FPS, captureMode };
+const hd = await captureFrames({ ...options, width: 1920, height: 1080, outputDirectory: join(outputDirectory, "frames") });
 
-const hd = await timedRun(page, cdp, "1080p sequential", 1920, 1080, sequential, outputDirectory);
-const shuffledDirectory = join(here, "output/frames-shuffled");
-mkdirSync(shuffledDirectory, { recursive: true });
-const hdShuffled = await timedRun(page, cdp, "1080p shuffled", 1920, 1080, shuffled, shuffledDirectory);
-const uhd = await timedRun(page, cdp, "4K sequential (30 frames)", 3840, 2160, sequential.slice(0, 30));
-await browser.close();
-
-const mismatches = sequential.filter((frame) => hd.hashes[frame] !== hdShuffled.hashes[frame]);
+// Fixed seed keeps an order-dependent failure reproducible.
+const shuffled = Array.from({ length: hd.frames }, (_, frame) => frame);
+let state = 0x5eed;
+for (let index = shuffled.length - 1; index > 0; index--) {
+  state = (state * 1664525 + 1013904223) >>> 0;
+  const swap = state % (index + 1);
+  [shuffled[index], shuffled[swap]] = [shuffled[swap]!, shuffled[index]!];
+}
+const hdShuffled = await captureFrames({ ...options, width: 1920, height: 1080, frames: shuffled });
+const uhd = await captureFrames({ ...options, width: 3840, height: 2160, frames: Array.from({ length: 30 }, (_, frame) => frame) });
+const mismatches = shuffled.filter((frame, index) => hd.hashes[frame] !== hdShuffled.hashes[index]);
+const runSummary = (label: string, report: CaptureReport) => ({ label, width: report.width, height: report.height, frames: report.frames, wall_ms: report.wall_ms, frames_per_second: report.frames_per_second });
 const report = {
-  capture_mode: CAPTURE_MODE,
+  capture_mode: captureMode,
   fps: FPS,
-  timeline_duration_s: duration,
-  runs: [hd.report, hdShuffled.report, uhd.report],
+  timeline_duration_s: hd.duration_s,
+  runs: [runSummary("1080p sequential", hd), runSummary("1080p shuffled", hdShuffled), runSummary("4K sequential (30 frames)", uhd)],
   shuffled_matches_sequential: mismatches.length === 0,
   mismatched_frames: mismatches,
 };
-writeFileSync(join(here, "output/report.json"), `${JSON.stringify(report, null, 2)}\n`);
+writeFileSync(join(outputDirectory, "report.json"), `${JSON.stringify(report, null, 2)}\n`);
 console.log(JSON.stringify(report, null, 2));
+if (mismatches.length > 0) throw new Error(`Non-deterministic frames: ${mismatches.join(", ")}`);
+if (new Set(hd.hashes).size < 2) throw new Error("Animated fixture produced identical frames");

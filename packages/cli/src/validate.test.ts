@@ -43,6 +43,31 @@ const validTool = {
 };
 
 describe("validateRepository", () => {
+  test.each([
+    { capabilities: {} }, { validation: null }, { pairs_with: 42 },
+  ])("invalid tool shapes produce diagnostics rather than throwing: %j", (invalid) => {
+    const root = createFixtureRepository([validTool]);
+    writeFileSync(join(root, "catalog/tools/ffmpeg.json"), JSON.stringify({ ...validTool, ...invalid }));
+    expect(hasErrors(validateRepository(root))).toBe(true);
+  });
+
+  test("invalid example shapes do not enter reference checks", () => {
+    const root = createFixtureRepository([validTool]);
+    mkdirSync(join(root, "examples/broken"), { recursive: true });
+    writeFileSync(join(root, "examples/broken/example.json"), JSON.stringify({ id: "broken", tools: null, run: 42 }));
+    expect(hasErrors(validateRepository(root))).toBe(true);
+  });
+
+  test.each(["validated", "partial"])("%s requires evidence", (status) => {
+    const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status, evidence: [] } }]));
+    expect(report.diagnostics).toContainEqual(expect.objectContaining({ path: "/validation/evidence", severity: "error" }));
+  });
+
+  test.each(["ghost", "examples/ghost"])("evidence example %s must resolve", (example) => {
+    const evidence = [{ date: "2026-10-26", hostname: "test", version: "1", command: "./run.sh", result: "ok", example }];
+    const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status: "validated", evidence } }]));
+    expect(report.diagnostics).toContainEqual(expect.objectContaining({ path: "/validation/evidence/0/example", severity: "error" }));
+  });
   test("a valid registry produces no diagnostics", () => {
     const report = validateRepository(createFixtureRepository([validTool]));
     expect(report.filesChecked).toBe(2);

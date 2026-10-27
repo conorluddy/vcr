@@ -8,3 +8,7 @@ pnpm --filter @vcr/project-grapla assemble          # FFmpeg overlay chain to th
 ```
 
 Facts and copy come from `~/Development/Grapla` and `~/Development/GraplaWeb/docs/brand.md`; numbers in copy are a dated snapshot.
+
+Capturing one named scene preserves the other scenes' manifest evidence, including their capture dates and environments. Unknown scene names fail before rendering or writing. Changes to dimensions, FPS or other scenes' timing require a full capture. Earlier manifests are archived under the video's ignored `output/manifests/` directory.
+
+The capture manifest records PNG sequence outputs and a separate MP4 delivery target; it does not claim that assembly has run. `partial` means some scene evidence is missing, and `captured` means all four scenes have capture evidence. Run `assemble` after capture to produce the MP4.

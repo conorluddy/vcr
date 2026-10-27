@@ -52,7 +52,9 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
       diagnostics.push({ severity: "error", file: displayPath, path: "", message: parsed.error.message });
       return undefined;
     }
-    diagnostics.push(...schemaDiagnostics(schemas[schemaName], parsed.value, displayPath));
+    const issues = schemaDiagnostics(schemas[schemaName], parsed.value, displayPath);
+    diagnostics.push(...issues);
+    if (issues.some((issue) => issue.severity === "error")) return undefined;
     return parsed.value;
   };
 
@@ -61,9 +63,11 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
   if (!vocabulary.ok) diagnostics.push({ severity: "error", file: "catalog/capabilities/vocabulary.json", path: "", message: vocabulary.error.message });
 
   const tools = new Map<string, { record: ToolSummary; file: string }>();
+  let validToolRecords = true;
   for (const recordPath of listJsonFiles(join(repositoryRoot, "catalog/tools"))) {
     const record = check(recordPath, "toolRecord") as ToolSummary | undefined;
     if (record?.id) tools.set(record.id, { record, file: relative(repositoryRoot, recordPath) });
+    else validToolRecords = false;
   }
 
   const examples = new Map<string, { manifest: ExampleManifest; file: string }>();
@@ -80,7 +84,7 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
   for (const { manifest, file } of examples.values()) diagnostics.push(...exampleDiagnostics(manifest, file, tools, repositoryRoot));
 
   check(join(repositoryRoot, "catalog/tools.json"), "tool");
-  diagnostics.push(...indexFreshnessDiagnostics(repositoryRoot));
+  if (validToolRecords) diagnostics.push(...indexFreshnessDiagnostics(repositoryRoot));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/INDEX.md", BUDGET_BYTES.indexMarkdown));
 
   for (const projectPath of listFilesNamed(join(repositoryRoot, "projects"), "project.json")) check(projectPath, "project");
@@ -182,6 +186,14 @@ function toolReferenceDiagnostics(record: ToolSummary, file: string, tools: Map<
     const example = examples.get(exampleId);
     if (!example) error("/examples", `example "${exampleId}" has no examples/<dir>/example.json`, "Add the manifest or remove the reference.");
     else if (!example.manifest.tools.includes(record.id)) error("/examples", `example "${exampleId}" does not list ${record.id} in its tools`, "Add the tool to the example manifest so the link is two-way.");
+  }
+  for (const [index, evidence] of (record.validation.evidence ?? []).entries()) {
+    if (!evidence.example) continue;
+    // Existing evidence records use repository-relative paths; cards use bare example ids.
+    const exampleId = evidence.example.replace(/^examples\//, "");
+    const example = examples.get(exampleId);
+    if (!example) error(`/validation/evidence/${index}/example`, `evidence example "${evidence.example}" does not exist`, "Point at an existing example id or examples/<id> path.");
+    else if (!example.manifest.tools.includes(record.id)) error(`/validation/evidence/${index}/example`, `evidence example "${evidence.example}" does not list ${record.id}`, "Use an example that demonstrates this tool.");
   }
   let skillText: string | null = null;
   if (record.skill) {

@@ -22,8 +22,8 @@ Flags: --json for machine-readable output.`;
 // === ENTRY ===
 
 const argv = process.argv.slice(2);
-const flags = parseFlags(argv);
-const positional = argv.filter((argument) => !argument.startsWith("--"));
+const parsed = parseArguments(argv);
+const { flags, positional } = parsed;
 const repositoryRoot = findRepositoryRoot();
 const elapsed = startTimer();
 
@@ -36,6 +36,10 @@ process.exit(exitCode);
 async function dispatch(args: string[], options: Record<string, string | true>): Promise<number> {
   const [command, subcommand, target] = args;
   const asJson = options["json"] === true;
+  if (parsed.error) {
+    print(asJson ? { error: { code: "INVALID_ARGUMENT", message: parsed.error } } : `${parsed.error}\n\n${USAGE}`);
+    return 2;
+  }
 
   if (command === "validate") {
     const report = validateRepository(repositoryRoot);
@@ -110,18 +114,24 @@ async function dispatch(args: string[], options: Record<string, string | true>):
 
 // === HELPERS ===
 
-function parseFlags(args: string[]): Record<string, string | true> {
-  const parsed: Record<string, string | true> = {};
+function parseArguments(args: string[]): { flags: Record<string, string | true>; positional: string[]; error?: string } {
+  const flags: Record<string, string | true> = {};
+  const positional: string[] = [];
+  const booleanFlags = new Set(["json", "full", "check"]);
+  const valueFlags = new Set(["capability", "tier", "category"]);
+  let error: string | undefined;
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index]!;
-    if (!argument.startsWith("--")) continue;
-    const next = args[index + 1];
-    if (next && !next.startsWith("--")) {
-      parsed[argument.slice(2)] = next;
-      index += 1;
-    } else parsed[argument.slice(2)] = true;
+    if (!argument.startsWith("--")) { positional.push(argument); continue; }
+    const name = argument.slice(2);
+    if (booleanFlags.has(name)) flags[name] = true;
+    else if (valueFlags.has(name)) {
+      const next = args[index + 1];
+      if (!next || next.startsWith("--")) error ??= `--${name} requires a value`;
+      else { flags[name] = next; index += 1; }
+    } else error ??= `Unknown option ${argument}`;
   }
-  return parsed;
+  return { flags, positional, ...(error ? { error } : {}) };
 }
 
 function text(value: string | true | undefined): string | undefined {

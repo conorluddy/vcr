@@ -15,3 +15,7 @@ The page sets `window.__scene = { duration, seek }`. `seek(t)` must be pure and 
 - `beginframe`: `HeadlessExperimental.beginFrame` under `--deterministic-mode`. About 60 frames per second at 1080p for DOM-only pages, but hangs on any page with a canvas.
 
 `sceneFile` serves the page's directory over loopback HTTP so ES module imports and `node_modules` references resolve; `file://` blocks module imports.
+
+Full captures remove existing numbered `frame-*.png` files in the output directory before writing the new sequence, so shortening a scene cannot leave an old tail. An explicit `frames` list updates only the requested frames. Other files are preserved. The scene server closes even when Chromium fails to launch or close.
+
+Chromium partial rasterization is disabled because reused tiles can make fractional DOM/SVG transforms depend on earlier frames. Verify a scene with shuffled captures before recording determinism evidence.

@@ -238,6 +238,10 @@
     },
     "validation": {
       "type": "object",
+      "allOf": [{
+        "if": { "properties": { "status": { "enum": ["partial", "validated"] } }, "required": ["status"] },
+        "then": { "properties": { "evidence": { "minItems": 1 } } }
+      }],
       "required": [
         "status",
         "evidence"

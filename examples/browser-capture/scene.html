@@ -14,6 +14,7 @@
   <div id="square"></div>
   <div id="label">VCR</div>
 </div>
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
 <script>
   // The timeline is built paused. The harness seeks it; nothing here reads a wall clock.
   window.buildTimeline = () => {
@@ -27,6 +28,7 @@
     window.__timeline = tl;
     return tl.duration();
   };
+  document.fonts.ready.then(() => { window.__scene = { duration: window.buildTimeline(), seek: (t) => { window.__timeline.seek(t, false); } }; });
 </script>
 </body>
 </html>

@@ -3,10 +3,10 @@
 // seek, the harness owns frame production via beginFrame, and nothing returned from
 // evaluate is a framework object.
 import { createHash } from "node:crypto";
-import { mkdirSync, readFile, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFile, unlinkSync, writeFileSync } from "node:fs";
 import { createServer, type Server } from "node:http";
 import { dirname, extname, join, normalize, relative } from "node:path";
-import { chromium, type CDPSession, type Page } from "playwright";
+import { chromium, type Browser, type CDPSession, type Page } from "playwright";
 
 // === TYPES ===
 
@@ -32,7 +32,7 @@ export interface CaptureOptions {
   fps: number;
   /** Explicit frame list; defaults to the whole duration in order. */
   frames?: number[];
-  /** Where PNGs go; omitted means hash only. */
+  /** Where PNGs go; omitted means hash only. Full renders replace frame-*.png; explicit frame lists update only those frames. */
   outputDirectory?: string | undefined;
   /** Capture every frame twice in a shuffled order and compare hashes. */
   verifyDeterminism?: boolean;
@@ -63,6 +63,8 @@ export const DETERMINISTIC_CHROMIUM_ARGS = [
   "--disable-threaded-animation",
   "--disable-threaded-scrolling",
   "--disable-checker-imaging",
+  // Reused raster tiles can differ by frame history for fractional SVG/DOM transforms.
+  "--disable-partial-raster",
   "--disable-image-animation-resync",
   "--disable-lcd-text",
   "--force-device-scale-factor=1",
@@ -82,9 +84,10 @@ export async function captureFrames(options: CaptureOptions): Promise<CaptureRep
   log("capture.scene", { url: sceneUrl });
   const captureMode: CaptureMode = options.captureMode ?? (process.env["VCR_CAPTURE_MODE"] as CaptureMode | undefined) ?? "screenshot";
   const extraArgs = (process.env["VCR_CHROMIUM_EXTRA_ARGS"] ?? "").split(" ").filter(Boolean);
-  const browser = await chromium.launch({ args: [...DETERMINISTIC_CHROMIUM_ARGS, ...(captureMode === "beginframe" ? BEGIN_FRAME_CHROMIUM_ARGS : []), ...extraArgs] });
-  log("capture.mode", { captureMode });
+  let browser: Browser | undefined;
   try {
+    browser = await chromium.launch({ args: [...DETERMINISTIC_CHROMIUM_ARGS, ...(captureMode === "beginframe" ? BEGIN_FRAME_CHROMIUM_ARGS : []), ...extraArgs] });
+    log("capture.mode", { captureMode });
     const page = await browser.newPage({ viewport: { width: options.width, height: options.height } });
     const cdp = await page.context().newCDPSession(page);
     await cdp.send("Emulation.setDefaultBackgroundColorOverride", { color: { r: 0, g: 0, b: 0, a: 0 } });
@@ -92,7 +95,14 @@ export async function captureFrames(options: CaptureOptions): Promise<CaptureRep
     log("capture.ready", { duration });
     const totalFrames = Math.round(duration * options.fps);
     const frames = options.frames ?? Array.from({ length: totalFrames }, (_, index) => index);
-    if (options.outputDirectory) mkdirSync(options.outputDirectory, { recursive: true });
+    if (options.outputDirectory) {
+      mkdirSync(options.outputDirectory, { recursive: true });
+      if (options.frames === undefined) {
+        for (const entry of readdirSync(options.outputDirectory, { withFileTypes: true })) {
+          if (entry.isFile() && /^frame-\d+\.png$/.test(entry.name)) unlinkSync(join(options.outputDirectory, entry.name));
+        }
+      }
+    }
 
     const startedAt = performance.now();
     const hashes = await captureInOrder(page, cdp, frames, options, captureMode);
@@ -119,8 +129,14 @@ export async function captureFrames(options: CaptureOptions): Promise<CaptureRep
       mismatched_frames: mismatched,
     };
   } finally {
-    await browser.close();
-    served?.server.close();
+    try {
+      await browser?.close();
+    } finally {
+      if (served) await new Promise<void>((resolve, reject) => {
+        served.server.close((error) => error ? reject(error) : resolve());
+        served.server.closeAllConnections();
+      });
+    }
   }
 }
 
@@ -210,7 +226,8 @@ function serveDirectory(root: string): Promise<{ server: Server; url: string }> 
       response.writeHead(200, { "content-type": MEDIA_TYPES[extname(filePath)] ?? "application/octet-stream" }).end(data);
     });
   });
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
+    server.once("error", reject);
     server.listen(0, "127.0.0.1", () => {
       const address = server.address();
       const port = typeof address === "object" && address ? address.port : 0;

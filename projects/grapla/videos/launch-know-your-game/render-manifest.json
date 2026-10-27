@@ -1,20 +1,13 @@
 {
   "schema_version": "1.0.0",
-  "status": "rendered",
-  "rendered_at": "2026-10-26T15:39:20.969Z",
+  "status": "captured",
+  "captured_at": "2026-10-26T18:07:20.787Z",
   "recipe": {
     "capture": "pnpm render",
     "assembly": "./assemble.sh",
     "width": 1080,
     "height": 1920,
     "fps": 30
-  },
-  "environment": {
-    "hostname": "Conors-MacBook-Pro-2.local",
-    "gsap": "3.15.0",
-    "three": "0.186.1",
-    "p5": "2.3.4",
-    "node": "v22.19.0"
   },
   "scenes": {
     "background": {
@@ -23,10 +16,71 @@
       "frames": 600,
       "frames_per_second_captured": 15,
       "first_hash": "d8a764ea769aa25929aa9e241db1b5e86a9803cc0fefb7e927ada43a2bc22929",
-      "deterministic": null
+      "deterministic": null,
+      "captured_at": "2026-10-26T18:06:28.223Z",
+      "environment": {
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "gsap": "3.15.0",
+        "three": "0.186.1",
+        "p5": "2.3.4",
+        "node": "v22.19.0"
+      }
+    },
+    "title": {
+      "start_s": 0,
+      "end_s": 4,
+      "frames": 120,
+      "frames_per_second_captured": 15.19,
+      "first_hash": "b163a0aad98a71aa447db7a809f06266205b25369ace5f2f2146f5c3b1f8e66c",
+      "deterministic": null,
+      "captured_at": "2026-10-26T18:06:36.365Z",
+      "environment": {
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "gsap": "3.15.0",
+        "three": "0.186.1",
+        "p5": "2.3.4",
+        "node": "v22.19.0"
+      }
+    },
+    "product": {
+      "start_s": 4,
+      "end_s": 15,
+      "frames": 330,
+      "frames_per_second_captured": 9.68,
+      "first_hash": "b163a0aad98a71aa447db7a809f06266205b25369ace5f2f2146f5c3b1f8e66c",
+      "deterministic": null,
+      "captured_at": "2026-10-26T18:07:10.793Z",
+      "environment": {
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "gsap": "3.15.0",
+        "three": "0.186.1",
+        "p5": "2.3.4",
+        "node": "v22.19.0"
+      }
+    },
+    "end": {
+      "start_s": 15,
+      "end_s": 20,
+      "frames": 150,
+      "frames_per_second_captured": 15.34,
+      "first_hash": "b163a0aad98a71aa447db7a809f06266205b25369ace5f2f2146f5c3b1f8e66c",
+      "deterministic": null,
+      "captured_at": "2026-10-26T18:07:20.787Z",
+      "environment": {
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "gsap": "3.15.0",
+        "three": "0.186.1",
+        "p5": "2.3.4",
+        "node": "v22.19.0"
+      }
     }
   },
   "outputs": [
-    "output/launch-know-your-game.mp4"
-  ]
+    "output/frames/background",
+    "output/frames/title",
+    "output/frames/product",
+    "output/frames/end"
+  ],
+  "delivery_target": "output/launch-know-your-game.mp4",
+  "previous_manifest": "output/manifests/286dffff-a938-4f4e-ad0c-bb26381b5fcd.json"
 }
