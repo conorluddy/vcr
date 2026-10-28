@@ -1,0 +1,9 @@
+{
+  "id": "blender-smoke",
+  "title": "Blender background render of one RGBA frame",
+  "summary": "Python builds a cube, sun and camera from factory settings; Workbench renders frame 1 to a transparent 320x240 PNG from the app bundle.",
+  "status": "validated",
+  "tools": ["blender", "imagemagick"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-10-26", "hostname": "Conors-MacBook-Pro-2.local" }
+}

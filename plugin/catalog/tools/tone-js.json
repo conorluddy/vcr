@@ -1,0 +1,57 @@
+{
+  "id": "tone-js",
+  "name": "Tone.js",
+  "category": "A8. Physics, audio and 3D assets",
+  "tier": "catalogued",
+  "role": "Web Audio framework for synths, sequencing and effects; Tone.Offline renders faster than real time",
+  "summary": "Web Audio wrapper with instruments, effects, and a Transport for scheduling in musical time. For VCR the useful path is Tone.Offline, which renders a scheduled piece into an AudioBuffer off the real-time clock, so audio is a function of the score, not wall time. Output is a buffer you encode to WAV and mux with ffmpeg. Live playback during headless capture is not deterministic.",
+  "use_when": [
+    "Generating a music bed or UI sound effects from code, synced to a beat grid",
+    "Over raw Web Audio when you want instruments, effects and a Transport",
+    "Offline-rendering audio to a WAV that ffmpeg muxes under the video"
+  ],
+  "avoid_when": [
+    "Only filtering or mixing existing files: ffmpeg",
+    "Audio-reactive visuals from a file: Web Audio AnalyserNode or ffmpeg analysis",
+    "A few oscillators or gain ramps: raw Web Audio avoids the dependency"
+  ],
+  "pairs_with": [
+    "web-audio",
+    "ffmpeg-ffprobe",
+    "playwright"
+  ],
+  "official_url": "https://tonejs.github.io/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "audio"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add tone"
+  },
+  "notes": [
+    "2026-10-26: npm `latest` is 15.1.22 (2025-04-27) while `next` builds 15.5.x were published through 2026-10-25. Tone.Offline behaviour is from general knowledge; the README fetched did not mention it."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a8-web",
+    "version_seen": "15.1.22 stable (next: 15.5.62)",
+    "last_release": "2025-04-27 (npm latest); next build 2026-10-25",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Repo pushed 2026-10-25 and next builds published through Oct 2026, though the stable npm tag is 18 months old. MIT. Only audio-synthesis library in the catalogue.",
+    "sources": [
+      "https://tonejs.github.io/",
+      "https://registry.npmjs.org/tone"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

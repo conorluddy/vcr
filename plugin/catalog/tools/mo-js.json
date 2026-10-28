@@ -1,0 +1,58 @@
+{
+  "id": "mo-js",
+  "name": "mo.js",
+  "category": "A2. Animation and authored assets",
+  "tier": "candidate",
+  "role": "Declarative burst, shape and ripple effects; own timeline, no GSAP-style seek guarantee",
+  "summary": "Motion graphics library for the web with ready-made bursts, shapes, swirls and stagger, driven by its own Timeline and Tween classes. Renders SVG shapes and HTML elements with retina-sharp output. Good for celebratory particle-like effects with little code. Releases have stalled since 2023, and determinism under external seeking is not documented.",
+  "use_when": [
+    "A one-off confetti or radial burst effect with minimal code",
+    "Click-ripple style UI micro-effects on SVG shapes"
+  ],
+  "avoid_when": [
+    "Anything needing guaranteed seek-by-time capture: GSAP",
+    "Particle fields and noise-driven visuals: p5.js or PixiJS",
+    "Long-term dependency choice: last release 2023"
+  ],
+  "pairs_with": [
+    "gsap",
+    "svg"
+  ],
+  "official_url": "https://mojs.github.io/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "svg-animation",
+    "effects"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add @mojs/core",
+    "check_command": "pnpm list @mojs/core --depth 0"
+  },
+  "notes": [
+    "2026-10-26: GitHub pushes continued to 2026-07-30 but the last npm release (@mojs/core 1.7.1) is 2023-10-06; the unscoped mo.js package is a stale 0.0.2. Seek behaviour not verified."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a2",
+    "version_seen": "1.7.1",
+    "last_release": "2023-10-06",
+    "maintenance": "slow",
+    "verdict": "demote",
+    "rationale": "Last release 1.7.1 on 2023-10-06 (about 36 months); repo pushed 2026-07 but no release. Effects are niche, seeking is undocumented, and GSAP or Anime.js cover the need.",
+    "sources": [
+      "https://mojs.github.io/",
+      "https://github.com/mojs/mojs",
+      "https://www.npmjs.com/package/@mojs/core"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

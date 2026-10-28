@@ -1,0 +1,59 @@
+{
+  "id": "pyscenedetect",
+  "name": "PySceneDetect",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "Shot boundary detection CLI and Python library over OpenCV; splits video via FFmpeg",
+  "summary": "Python CLI and library that finds scene cuts in video using content, adaptive, threshold and histogram detectors on OpenCV frames, and outputs timecode lists, CSV, thumbnails, or split clips by calling FFmpeg or mkvmerge. Distinguishing strength: ready-made cut detection with tunable detectors, so an agent need not write frame-diff code.",
+  "use_when": [
+    "Splitting footage into shots or listing cut timecodes, over a hand-rolled FFmpeg scene filter",
+    "Producing an edit decision list from source footage for VCR's timeline",
+    "Generating one thumbnail per shot for a contact sheet"
+  ],
+  "avoid_when": [
+    "Only a rough scene score is needed: ffmpeg select='gt(scene,0.4)' needs no Python",
+    "Semantic scene understanding: PySceneDetect finds visual cuts, not meaning",
+    "Browser-side analysis: opencv-js or WebCodecs"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "opencv-js"
+  ],
+  "official_url": "https://www.scenedetect.com/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "shot-detection",
+    "media-inspection",
+    "computer-vision"
+  ],
+  "license": "BSD-3-Clause",
+  "install": {
+    "macos": "uv tool install scenedetect[opencv]",
+    "check_command": "scenedetect version"
+  },
+  "notes": [
+    "2026-10-26: Python 3.10+ required; the scenedetect[opencv] extra pulls a large OpenCV wheel."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a5",
+    "version_seen": "0.7.2",
+    "last_release": "2026-10-12",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Version 0.7.2 on PyPI released 2026-10-12, BSD-3-Clause, requires Python 3.10+. Active and unique among our tools for shot detection; FFmpeg's scene filter is the lightweight alternative.",
+    "sources": [
+      "https://www.scenedetect.com/",
+      "https://pypi.org/project/scenedetect/"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

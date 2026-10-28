@@ -1,0 +1,60 @@
+{
+  "id": "pov-ray",
+  "name": "POV-Ray",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "povray renders text scene files and INI settings from the CLI; procedural ray tracing",
+  "summary": "Long-standing ray tracer. A .pov scene description in its own language plus an INI file renders from the CLI to PNG or other formats with alpha, using CSG, procedural textures and radiosity. Strength is fully text-defined, reproducible scenes with exact geometric primitives. Last stable is 3.7.0.10 from 2021, and animation uses clock-driven frames.",
+  "use_when": [
+    "Scenes defined purely by code, with CSG and procedural textures",
+    "Over Blender when a tiny text-only scene description is the source of truth",
+    "Clock-driven frame sequences from one .pov file",
+    "Deliberate retro or mathematical ray-traced looks"
+  ],
+  "avoid_when": [
+    "Modern PBR, denoising or GPU rendering: Blender Cycles",
+    "Existing meshes and rigs: Blender, or Three.js for web",
+    "Fast iteration: POV-Ray is CPU-only and slow at quality settings"
+  ],
+  "pairs_with": [
+    "blender",
+    "ffmpeg-ffprobe",
+    "imagemagick"
+  ],
+  "official_url": "https://www.povray.org/documentation/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "ray-tracing",
+    "3d-rendering"
+  ],
+  "license": "AGPL-3.0 (3.7.0.10 and later)",
+  "install": {
+    "macos": "brew install povray",
+    "check_command": "povray --version"
+  },
+  "notes": [
+    "2026-10-26: GitHub releases show 3.7.0.10 (8 Jul 2021) and 3.8.0-beta.2 (Aug 2021); repo pushed 2026-10-07 but the substance of recent commits was not inspected. The Homebrew formula is bottled; arm64 bottle not checked. povray.org returned 403."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a7",
+    "version_seen": "3.7.0.10 (3.8.0-beta.2 pre-release)",
+    "last_release": "2021-07-08",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "Last stable release is July 2021, over five years old, yet the repository was pushed 2026-10-07 and Homebrew still bottles it. Niche but unique as a pure-text ray tracer; not unmaintained enough to drop. Substance of recent commits unchecked.",
+    "sources": [
+      "https://github.com/POV-Ray/povray/releases",
+      "https://www.povray.org/documentation/"
+    ]
+  },
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

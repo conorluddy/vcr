@@ -1,7 +1,7 @@
 import { execFile } from "node:child_process";
-import { chmodSync, cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, statSync } from "node:fs";
+import { chmodSync, cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, join } from "node:path";
+import { join } from "node:path";
 import { promisify } from "node:util";
 import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { resolveRoots } from "./roots.js";
@@ -44,15 +44,14 @@ describe("vcr CLI", () => {
   });
 });
 
-describe("vcr outside the harness repository (P0 exit evidence)", () => {
+describe("the bundled plugin CLI outside the harness repository (P0/P1 exit evidence)", () => {
   let harnessCopy: string;
   let scratch: string;
   let machineHome: string;
-  const tsxLoader = import.meta.resolve("tsx");
   const runFromScratch = (...args: string[]) =>
-    execFileAsync(process.execPath, ["--import", tsxLoader, join(root, "packages/cli/src/index.ts"), ...args], {
+    execFileAsync(process.execPath, [join(harnessCopy, "cli/vcr.mjs"), ...args], {
       cwd: scratch,
-      env: { ...process.env, VCR_HARNESS: harnessCopy, VCR_HOME: machineHome, VCR_WORKSPACE: "" },
+      env: { ...process.env, VCR_HARNESS: "", VCR_HOME: machineHome, VCR_WORKSPACE: "" },
     });
 
   beforeAll(() => {
@@ -60,8 +59,7 @@ describe("vcr outside the harness repository (P0 exit evidence)", () => {
     harnessCopy = join(base, "harness");
     scratch = join(base, "product");
     machineHome = join(base, "home");
-    const skipGenerated = (source: string) => !["node_modules", "output", ".cache"].includes(basename(source));
-    for (const directory of ["catalog", "skills", "examples"]) cpSync(join(root, directory), join(harnessCopy, directory), { recursive: true, filter: skipGenerated });
+    cpSync(join(root, "plugin"), harnessCopy, { recursive: true });
     mkdirSync(scratch);
     setWritable(harnessCopy, false);
   });
@@ -75,7 +73,7 @@ describe("vcr outside the harness repository (P0 exit evidence)", () => {
 
   test("status reports user mode and no workspace before init", async () => {
     const { stdout } = await runFromScratch("status", "--json");
-    expect(JSON.parse(stdout)).toMatchObject({ harness: harnessCopy, workspace: null, machine: machineHome, isDevMode: false });
+    expect(JSON.parse(stdout)).toMatchObject({ harness: realpathSync(harnessCopy), workspace: null, machine: machineHome, isDevMode: false });
   });
 
   test("validate without a workspace fails with WORKSPACE_NOT_FOUND", async () => {

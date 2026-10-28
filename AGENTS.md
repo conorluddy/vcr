@@ -11,7 +11,8 @@ Read `specifications/vcr-prd.md` for product intent and release gates. This repo
 - Generated media, caches, and temporary render artifacts belong in ignored output directories.
 - Prefer official documentation links and preserve uncertainty where versions or support are unverified.
 - Load only the relevant toolkit or workflow guidance for a task. Do not copy the entire catalogue into a prompt.
-- Edit tool records, never the generated `catalog/tools.json` or `catalog/INDEX.md`; run `pnpm vcr catalog build` and commit the result. `pnpm validate` fails on a stale index, a dangling reference or a budget overrun.
+- Edit tool records, never the generated `catalog/tools.json` or `catalog/INDEX.md`; run `pnpm vcr catalog build` and commit the result.
+- `plugin/` is generated and committed (bundled CLI, catalogue, skills, example sources, both host manifests). Never edit it; run `pnpm vcr plugin build` after changing the CLI, catalogue, skills or examples. `pnpm validate` fails when it is stale, over 5 MB or carries media. `pnpm validate` fails on a stale index, a dangling reference or a budget overrun.
 - Decisions live in `specifications/decisions/` as numbered ADRs. Read 0001 (in-house engine) and 0002 (headless, no editor) before proposing architecture.
 - Plugin distribution (Claude Code and Codex) and the human review layer are specified in `specifications/vcr-plugin-prd.md` and ADR 0003; read them before touching root resolution, packaging, review files or storage.
 - When agents work in git worktrees, merge their branches into one integration branch, rebuild the index once, and never `git add -A` from the main checkout while worktrees exist under `.claude/worktrees/`.
@@ -22,7 +23,7 @@ Four tiers, each sized to one decision. Descend only as far as the task needs.
 
 1. Route: read `catalog/INDEX.md` whole (under 16 KB). One line per tool.
 2. Shortlist: `pnpm vcr tools info <id>` for two or three tools. Summary, use when, avoid when, pairs with, evidence.
-3. Commit: `pnpm vcr tools info <id> --full` loads the operating guide (`skills/toolkits/<id>/SKILL.md`). One at a time.
+3. Commit: `pnpm vcr tools info <id> --full` loads the operating guide (`skills/<id>/SKILL.md`). One at a time.
 4. Do: `pnpm vcr tools examples <id>`, then open one example directory.
 
 Never load more than one guide at a time unless comparing two tools. A card or guide never claims the tool is installed; `pnpm doctor` does.
@@ -33,7 +34,8 @@ Never load more than one guide at a time unless comparing two tools. A card or g
 - `environment/`: the maintainer's per-machine tool availability from `vcr doctor --record` (`pnpm doctor`). The only place installation is a fact for validation evidence; other machines record to `~/.vcr/environment/`.
 - `vcr.json`: marks this repository as a VCR workspace, so harness and workspace resolve to the same root (dev mode). See `vcr status`.
 - `packages/`: `cli` (the `vcr` command), `timeline` (time types), `capture` (browser frame capture).
-- `skills/`: toolkit and workflow operating guides; `.claude/skills` links here.
+- `skills/`: flat `skills/<name>/SKILL.md` operating guides, no `vcr-` prefix; `.claude/skills` links here.
+- `plugin/`: generated Claude Code and Codex plugin; marketplaces at `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`.
 - `examples/`: validated fixtures with `example.json`, `run.sh` and `expected/`.
 - `projects/`: products and productions following the project schema.
 - `shared/`, `references/`: reserved for Layer 1 and Layer 7; empty.

@@ -1,0 +1,58 @@
+{
+  "id": "drei",
+  "name": "Drei",
+  "category": "A3. 3D, shaders and effects",
+  "tier": "catalogued",
+  "role": "Helper components for React Three Fiber: controls, loaders, text, environments",
+  "summary": "Large collection of ready-made React Three Fiber components and hooks: Environment lighting, Text, Html, loaders, camera rigs, controls, ContactShadows, Float and more. Driven by JSX inside an R3F Canvas; output is the same Three.js scene. Distinguishing strength: removes boilerplate for common scene furniture, though interactive helpers matter little in offline capture.",
+  "use_when": [
+    "Over hand-written Three.js setup when R3F is the shell and you want Environment, Text or Bounds",
+    "Quick studio lighting and contact shadows for product shots",
+    "Billboard and SDF text in a 3D scene without wiring troika yourself"
+  ],
+  "avoid_when": [
+    "No React in the project: Three.js with its examples/jsm helpers",
+    "Interaction controls: useless in frame capture, skip them",
+    "Minimal bundle: Three.js directly, importing only what is needed"
+  ],
+  "pairs_with": [
+    "react-three-fiber",
+    "three-js",
+    "postprocessing",
+    "gltfjsx",
+    "troika-three-text"
+  ],
+  "official_url": "https://github.com/pmndrs/drei",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "3d-rendering",
+    "react-integration",
+    "model-loading"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add @react-three/drei"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a3",
+    "version_seen": "@react-three/drei 10.7.9",
+    "last_release": "2026-09-25",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "pmndrs repo with regular releases through 2026; MIT. Only meaningful alongside React Three Fiber, so its value follows that decision.",
+    "sources": [
+      "https://github.com/pmndrs/drei",
+      "https://registry.npmjs.org/@react-three/drei"
+    ]
+  },
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

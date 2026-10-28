@@ -1,0 +1,59 @@
+{
+  "id": "msdfgen",
+  "name": "msdfgen",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "catalogued",
+  "role": "Signed distance-field generation",
+  "summary": "Command line tool and C++ library that builds single- and multi-channel signed distance field textures from vector shapes or font glyphs. Output is an image that a shader samples to render text or icons crisply at any scale. Its strength is sharp corners from MSDF where a plain SDF rounds them. The atlas generator msdf-atlas-gen is a separate repository.",
+  "use_when": [
+    "Crisp resolution-independent glyphs or icons in WebGL, Three.js or game scenes via a shader",
+    "Preparing distance-field fonts when troika-three-text's runtime generation is not wanted",
+    "Offline, deterministic SDF baking in a build step"
+  ],
+  "avoid_when": [
+    "Text only needs to appear in a DOM or SVG scene: opentype.js or the browser",
+    "Three.js text with no pipeline: troika-three-text generates SDFs at runtime",
+    "A full multi-glyph atlas with metrics: use the separate msdf-atlas-gen"
+  ],
+  "pairs_with": [
+    "three-js",
+    "troika-three-text",
+    "webgl",
+    "opentype-js"
+  ],
+  "official_url": "https://github.com/Chlumsky/msdfgen",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "sdf-generation",
+    "font-processing"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "brew install msdfgen",
+    "check_command": "msdfgen -help"
+  },
+  "notes": [
+    "2026-10-26: the msdfgen CLI needs FreeType support for font input; whether the Homebrew bottle enables it was not verified."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a4",
+    "version_seen": "1.13",
+    "last_release": "2025-11-30",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Release v1.13 on 2025-11-30; repository pushed 2026-08-29; MIT. Niche but unique: no other record bakes MSDF textures. Atlas generation lives in a separate project.",
+    "sources": [
+      "https://github.com/Chlumsky/msdfgen"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

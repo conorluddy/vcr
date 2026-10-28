@@ -1,0 +1,61 @@
+{
+  "id": "paper-js",
+  "name": "Paper.js",
+  "category": "A1. Creative coding and 2D",
+  "tier": "catalogued",
+  "role": "Vector scene graph with Bezier path geometry and boolean path operations",
+  "summary": "Vector graphics scripting framework on Canvas, built around paths, segments and curves. Offers boolean operations, offsetting, hit testing, path flattening and intersection, plus SVG import/export. Driven by PaperScript or JavaScript; output is Canvas pixels or SVG. Its strength is geometric path computation that other canvas libraries lack.",
+  "use_when": [
+    "Boolean union, intersection and subtraction of vector shapes",
+    "Over Two.js when you need path geometry, not just drawing",
+    "Computing path length, points and offsets for motion or morphing",
+    "SVG import, edit and export of paths in script"
+  ],
+  "avoid_when": [
+    "Interactive scene graph with events: Konva",
+    "GPU sprite scenes: PixiJS",
+    "Animated SVG on a timeline: GSAP with svg",
+    "Plotter-ready paths and optimisation: vpype"
+  ],
+  "pairs_with": [
+    "svg",
+    "gsap",
+    "vpype"
+  ],
+  "official_url": "https://paperjs.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "vector-authoring",
+    "2d-rendering"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add paper"
+  },
+  "notes": [
+    "2026-10-26: paperjs.org returned only navigation text; headless Node use (paper-jsdom or canvas) and feature list were not verified from it."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a1",
+    "version_seen": "0.16.0",
+    "last_release": "2026-10-21",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "GitHub release v0.16.0 on 2026-10-21; MIT per npm. Boolean path ops and curve geometry are unique among the A1 neighbours.",
+    "sources": [
+      "https://paperjs.org/",
+      "https://api.github.com/repos/paperjs/paper.js/releases/latest",
+      "https://registry.npmjs.org/paper"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

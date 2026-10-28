@@ -1,0 +1,61 @@
+{
+  "id": "anime-js",
+  "name": "Anime.js",
+  "category": "A2. Animation and authored assets",
+  "tier": "catalogued",
+  "role": "Light DOM/SVG/object tweening with seekable timelines; GSAP's closest neighbour",
+  "summary": "Small JavaScript animation engine (v4, modular ESM) that animates CSS properties, SVG attributes and plain JS objects. createTimeline with autoplay off exposes seek, so a harness can drive it frame by frame like a GSAP timeline. Includes stagger, SVG path drawing and morphing helpers, springs and scroll observers. Outputs nothing itself; a capture tool records the page.",
+  "use_when": [
+    "Light DOM/SVG motion where GSAP's plugin set and size are not needed",
+    "SVG line drawing and stagger effects with a small dependency",
+    "Animating plain JS object values that then feed a canvas draw call"
+  ],
+  "avoid_when": [
+    "Complex nested timelines with labels and plugins: GSAP",
+    "Spring-first React UI motion: Motion or React Spring",
+    "v3 snippets: v4 API differs (createTimeline, animate); check installed major"
+  ],
+  "pairs_with": [
+    "svg",
+    "playwright",
+    "ffmpeg-ffprobe"
+  ],
+  "official_url": "https://animejs.com/documentation",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "tweening",
+    "timeline-animation",
+    "svg-animation"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add animejs",
+    "check_command": "pnpm list animejs --depth 0"
+  },
+  "notes": [
+    "2026-10-26: seekability of the v4 timeline read from docs only; not run. v3 to v4 renamed the API, so confirm the installed major before writing scenes."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a2",
+    "version_seen": "4.5.0",
+    "last_release": "2026-06-22",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Active: v4.5.0 released 2026-06-22, MIT, npm modified 2026-08. Direct GSAP neighbour with seekable timelines; useful lighter alternative, GSAP stays the core clock.",
+    "sources": [
+      "https://animejs.com/documentation",
+      "https://github.com/juliangarnier/anime/releases",
+      "https://www.npmjs.com/package/animejs"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

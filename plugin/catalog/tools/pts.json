@@ -1,0 +1,63 @@
+{
+  "id": "pts",
+  "name": "Pts",
+  "category": "A1. Creative coding and 2D",
+  "tier": "catalogued",
+  "role": "TypeScript creative-coding library centred on points, geometry and vector math",
+  "summary": "Modular library treating everything as points and groups of points, with geometry, intersection, interpolation, noise and animation helpers. Renders to Canvas or SVG (and other spaces), driven by a space with an animate callback. Output is Canvas pixels or SVG. Its strength is geometric computation as the primary idiom, written in TypeScript.",
+  "use_when": [
+    "Geometry-first sketches: intersections, interpolation and point groups",
+    "Over p5.js when you want typed, modular geometry and vector math",
+    "Sketches that should render to either Canvas or SVG from the same code",
+    "Over canvas-sketch when you want a built-in geometry API"
+  ],
+  "avoid_when": [
+    "Largest example base and tutorials: p5.js",
+    "Many sprites or GPU effects: PixiJS",
+    "Video or GIF export out of the box: Ssam",
+    "Cleanly editable vector output with path booleans: Paper.js"
+  ],
+  "pairs_with": [
+    "p5-js",
+    "svg",
+    "playwright"
+  ],
+  "official_url": "https://ptsjs.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "generative-2d",
+    "2d-rendering",
+    "math-utilities"
+  ],
+  "license": "Apache-2.0",
+  "install": {
+    "macos": "pnpm add pts"
+  },
+  "notes": [
+    "2026-10-26: Release date of npm 1.0.3 was not retrievable; maintenance judged from a repository commit on 2026-10-21."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a1",
+    "version_seen": "1.0.3",
+    "last_release": "unknown (latest repo commit 2026-10-21)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Latest tag v1.0.3, repository commit on 2026-10-21 (a .gitignore update, so minor); Apache-2.0. Release date not found. Geometry-first API differs from p5.js.",
+    "sources": [
+      "https://ptsjs.org/",
+      "https://github.com/williamngan/pts",
+      "https://api.github.com/repos/williamngan/pts/commits?per_page=1",
+      "https://registry.npmjs.org/pts"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

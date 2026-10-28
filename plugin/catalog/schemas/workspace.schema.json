@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vcr.local/schemas/workspace.schema.json",
+  "title": "VCR workspace marker (vcr.json)",
+  "type": "object",
+  "required": ["schema_version", "harness_version", "projects"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "harness_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+" },
+    "projects": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+  },
+  "additionalProperties": true
+}

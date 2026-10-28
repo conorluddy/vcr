@@ -122,7 +122,7 @@ describe("validateRepository", () => {
   });
 
   test("pairs_with, skill and examples must resolve", () => {
-    const report = validateRepository(createFixtureRepository([{ ...validTool, pairs_with: ["ghost"], skill: "skills/toolkits/ghost/SKILL.md", examples: ["ghost"] }]));
+    const report = validateRepository(createFixtureRepository([{ ...validTool, pairs_with: ["ghost"], skill: "skills/ghost/SKILL.md", examples: ["ghost"] }]));
     expect(report.diagnostics.map((diagnostic) => diagnostic.path).sort()).toEqual(["/examples", "/pairs_with", "/skill"]);
     expect(hasErrors(report)).toBe(true);
   });
@@ -137,12 +137,12 @@ describe("validateRepository", () => {
   });
 
   test("a facet must point at a real heading in the skill", () => {
-    const fixtureRoot = createFixtureRepository([{ ...validTool, skill: "skills/toolkits/ffmpeg/SKILL.md", facets: [{ id: "mux", one_line: "Combine streams", skill_section: "Muxing" }] }]);
-    mkdirSync(join(fixtureRoot, "skills/toolkits/ffmpeg"), { recursive: true });
-    writeFileSync(join(fixtureRoot, "skills/toolkits/ffmpeg/SKILL.md"), "# FFmpeg\n\n## Encoding\n");
+    const fixtureRoot = createFixtureRepository([{ ...validTool, skill: "skills/ffmpeg/SKILL.md", facets: [{ id: "mux", one_line: "Combine streams", skill_section: "Muxing" }] }]);
+    mkdirSync(join(fixtureRoot, "skills/ffmpeg"), { recursive: true });
+    writeFileSync(join(fixtureRoot, "skills/ffmpeg/SKILL.md"), "# FFmpeg\n\n## Encoding\n");
     writeCatalogIndex(fixtureRoot, false);
     expect(validateRepository(fixtureRoot).diagnostics).toEqual([expect.objectContaining({ path: "/facets/mux", message: expect.stringContaining('"Muxing"') })]);
-    writeFileSync(join(fixtureRoot, "skills/toolkits/ffmpeg/SKILL.md"), "# FFmpeg\n\n## Muxing\n");
+    writeFileSync(join(fixtureRoot, "skills/ffmpeg/SKILL.md"), "# FFmpeg\n\n## Muxing\n");
     expect(validateRepository(fixtureRoot).diagnostics).toEqual([]);
   });
 });

@@ -1,0 +1,82 @@
+{
+  "id": "p5-js",
+  "name": "p5.js",
+  "category": "A1. Creative coding and 2D",
+  "tier": "core",
+  "role": "Generative 2D and WebGL sketches written as a pure function of time and seed",
+  "summary": "Creative-coding library with the broadest beginner-to-expert API for procedural 2D, simple WebGL, noise and randomness. In VCR a sketch runs with noLoop and redraws for the time the harness asks for, resetting its seeds every frame, so particle fields, flow fields and noise textures capture deterministically.",
+  "use_when": [
+    "Procedural backgrounds, particles, flow fields and noise-driven abstracts",
+    "Over Pts or canvas-sketch when you want the largest API and example base",
+    "Quick 2D experiments where a scene graph would be overhead",
+    "Data-driven abstract visuals from a small JSON input"
+  ],
+  "avoid_when": [
+    "Real 3D with lights, materials and loaders: Three.js",
+    "Vector output that a designer must edit afterwards: SVG with GSAP",
+    "Sprite-heavy scenes with thousands of objects: PixiJS",
+    "Typography layout: SVG or Satori"
+  ],
+  "pairs_with": [
+    "playwright",
+    "ffmpeg-ffprobe",
+    "gsap"
+  ],
+  "official_url": "https://p5js.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "generative-2d",
+    "2d-rendering",
+    "3d-rendering"
+  ],
+  "facets": [
+    {
+      "id": "draw-loop-and-seeding",
+      "one_line": "noLoop, redraw from t, reset noiseSeed and randomSeed per frame",
+      "skill_section": "Draw loop and seeding",
+      "example": "p5-capture"
+    },
+    {
+      "id": "2d-drawing",
+      "one_line": "Transparent clear, transforms, colour modes",
+      "skill_section": "2D drawing"
+    },
+    {
+      "id": "webgl-mode",
+      "one_line": "Centred origin, per-frame lights, loaded fonts",
+      "skill_section": "WebGL mode"
+    },
+    {
+      "id": "noise",
+      "one_line": "Seeded Perlin noise as the deterministic motion source",
+      "skill_section": "Noise",
+      "example": "p5-capture"
+    }
+  ],
+  "license": "LGPL-2.1",
+  "install": {
+    "macos": "pnpm add p5"
+  },
+  "skill": "skills/p5-js/SKILL.md",
+  "examples": [
+    "p5-capture"
+  ],
+  "documentation_status": "skill-verified",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "2.3.4",
+        "command": "examples/p5-capture/run.sh",
+        "result": "90 alpha frames at 1280x720; shuffled order matches sequential",
+        "example": "examples/p5-capture"
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

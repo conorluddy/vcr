@@ -1,0 +1,62 @@
+{
+  "id": "gltf-transform",
+  "name": "glTF Transform",
+  "category": "A8. Physics, audio and 3D assets",
+  "tier": "catalogued",
+  "role": "Node CLI and library to inspect, optimise and compress glTF/GLB before a scene loads them",
+  "summary": "Scriptable glTF 2.x toolkit: a CLI (`gltf-transform optimize`, `draco`, `meshopt`, `etc1s`/`uastc`, `inspect`) and a JS library with NodeIO. It runs in Node with no GUI and rewrites models, textures and animations into smaller, load-ready GLBs. In VCR it is a pre-production step that makes assets cheap for Three.js or Babylon.js to load; it renders nothing itself.",
+  "use_when": [
+    "Shrinking a GLB (Draco/Meshopt, WebP/KTX2 textures) before a Three.js scene loads it",
+    "Scripted, repeatable asset prep in a build step; over Blender GUI export tweaks",
+    "Inspecting a model's meshes, materials, animations and sizes from the terminal",
+    "Over gltfjsx when you must rewrite the binary asset, not generate JSX"
+  ],
+  "avoid_when": [
+    "Authoring or rigging a model: Blender is the tool",
+    "Generating React components from a model: gltfjsx",
+    "Rendering anything: Three.js or Babylon.js load the output",
+    "KTX2 compression needs the external KTX-Software toolchain installed"
+  ],
+  "pairs_with": [
+    "three-js",
+    "react-three-fiber",
+    "gltfjsx",
+    "blender",
+    "babylon-js"
+  ],
+  "official_url": "https://gltf-transform.dev/cli",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "3d-asset-processing"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add -g @gltf-transform/cli",
+    "check_command": "gltf-transform --version"
+  },
+  "notes": [
+    "2026-10-26: CLI docs say image work uses Sharp; KTX2 (etc1s/uastc) is assumed to need the KTX-Software binary, which is not verified here. Code licence read from npm metadata; the docs page itself is CC BY 3.0."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a8-web",
+    "version_seen": "4.5.1 (CLI docs page shows 4.5.0)",
+    "last_release": "2026-09-28",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Regular 2026 releases on npm (4.4.2 July, 4.5.0 Sept 1, 4.5.1 Sept 28); MIT; headless Node CLI and API give a clear automation route. Nothing else in the catalogue does glTF optimisation.",
+    "sources": [
+      "https://gltf-transform.dev/cli",
+      "https://registry.npmjs.org/@gltf-transform/cli"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

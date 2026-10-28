@@ -1,0 +1,55 @@
+{
+  "id": "three-js-shading-language",
+  "name": "Three.js Shading Language",
+  "category": "A3. 3D, shaders and effects",
+  "tier": "catalogued",
+  "role": "Node-based shader authoring in JavaScript that compiles to WGSL or GLSL",
+  "summary": "Node-graph shader language written as JavaScript functions, shipped inside Three.js as three/tsl. A NodeBuilder compiles it to WGSL for WebGPU or GLSL for WebGL2, so one material source targets both. Used through NodeMaterial classes with time and uniform nodes. Distinguishing strength: composable materials and post effects without string-built GLSL.",
+  "use_when": [
+    "Over raw GLSL ShaderMaterial for materials that should run on WebGPU and WebGL2",
+    "Procedural materials with animated uniforms driven by a time node you control",
+    "Post effects built from nodes rather than the postprocessing package"
+  ],
+  "avoid_when": [
+    "Existing GLSL snippets or glslify modules: ShaderMaterial in Three.js",
+    "WebGL-only pmndrs effects: postprocessing",
+    "Shaders outside Three.js: regl, OGL or glslcanvas"
+  ],
+  "pairs_with": [
+    "three-js",
+    "webgpu",
+    "postprocessing"
+  ],
+  "official_url": "https://github.com/mrdoob/three.js/wiki/Three.js-Shading-Language",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "shaders",
+    "effects"
+  ],
+  "license": "MIT (part of three)",
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "notes": [
+    "2026-10-26: API churn between Three.js releases is expected, so pin the three version; the wiki page states no stability level."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a3",
+    "version_seen": "three 0.186.1 (bundled)",
+    "last_release": "2026-09-24",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Part of Three.js, released roughly monthly; the wiki spec was last edited 2026-06-24. The official_url wiki page is reachable; threejs.org/docs/TSL.html returned 404.",
+    "sources": [
+      "https://github.com/mrdoob/three.js/wiki/Three.js-Shading-Language",
+      "https://registry.npmjs.org/three"
+    ]
+  },
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

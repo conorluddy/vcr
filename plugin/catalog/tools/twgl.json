@@ -1,0 +1,56 @@
+{
+  "id": "twgl",
+  "name": "TWGL",
+  "category": "A3. 3D, shaders and effects",
+  "tier": "catalogued",
+  "role": "Tiny WebGL helper: programs, buffers, uniforms and framebuffers with less boilerplate",
+  "summary": "Small helper library over the raw WebGL API that creates programs, buffer info, textures and framebuffers from plain objects, then draws with setUniforms and drawBufferInfo. Output is a canvas, with no scene graph. Distinguishing strength: keeps raw WebGL control with a fraction of the boilerplate.",
+  "use_when": [
+    "Over raw WebGL for a fullscreen fragment shader or multi-pass render-to-texture effect",
+    "Over regl when you want thin helpers around normal WebGL calls, not a new paradigm",
+    "Over Three.js when the whole piece is one custom shader"
+  ],
+  "avoid_when": [
+    "Scenes with models, lights or cameras: Three.js",
+    "Functional draw-command style: regl",
+    "Scene classes in a minimal library: OGL"
+  ],
+  "pairs_with": [
+    "glmatrix",
+    "glslify",
+    "webgl",
+    "playwright"
+  ],
+  "official_url": "https://twgljs.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "shaders",
+    "2d-rendering"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add twgl.js"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a3",
+    "version_seen": "twgl.js 7.0.0",
+    "last_release": "2025-07-16",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "npm release Jul 2025, repo pushed Oct 2026; MIT. Thin helper rather than a framework; WebGL only.",
+    "sources": [
+      "https://twgljs.org/",
+      "https://registry.npmjs.org/twgl.js"
+    ]
+  },
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

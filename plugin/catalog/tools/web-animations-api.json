@@ -1,0 +1,56 @@
+{
+  "id": "web-animations-api",
+  "name": "Web Animations API",
+  "category": "Native browser platform APIs",
+  "tier": "catalogued",
+  "role": "Native element.animate() with a seekable Animation.currentTime; no library needed",
+  "summary": "Browser API that animates DOM and SVG elements with keyframes, timing and a document timeline. Each Animation can be paused and its currentTime set, so frames are seekable from outside, and document.getAnimations() lists every running animation, CSS ones included. GSAP-like seeking with no dependency, but no labels, nesting or plugins.",
+  "use_when": [
+    "Small DOM or SVG motion that must be seekable with zero dependencies",
+    "Pausing and seeking every CSS animation on a page via document.getAnimations()",
+    "Over CSS keyframes when frames are captured by setting currentTime"
+  ],
+  "avoid_when": [
+    "Multi-element choreography with labels and nesting: GSAP",
+    "Spring physics: Motion or React Spring",
+    "Canvas or WebGL content: drive it from t directly",
+    "Path morphs, text splitting, motion paths: GSAP plugins"
+  ],
+  "pairs_with": [
+    "gsap",
+    "svg",
+    "playwright",
+    "anime-js"
+  ],
+  "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API",
+  "automation_route": "browser-platform-api",
+  "capabilities": [
+    "tweening",
+    "timeline-animation"
+  ],
+  "notes": [
+    "2026-10-26: Seek-then-capture determinism was not tested; the MDN page fetched does not describe currentTime, which is assumed from the spec."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a8-web",
+    "version_seen": "W3C Web Animations Level 1 (Candidate Recommendation)",
+    "last_release": "n/a (platform)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Standard-track and not experimental in Chrome since 75 per MDN browser-compat-data; seeking is a core feature. GSAP stays the richer timeline.",
+    "sources": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API",
+      "https://unpkg.com/@mdn/browser-compat-data/data.json"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "not-applicable",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,62 @@
+{
+  "id": "mediabunny",
+  "name": "Mediabunny",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "Pure-TypeScript media toolkit: read, write, convert, WebCodecs-backed; browser and Node",
+  "summary": "Zero-dependency TypeScript library for reading, writing and converting MP4, MOV, WebM, MKV, MP3, WAV, Ogg and more, using WebCodecs for encode and decode. Handles metadata, frame and audio sample extraction, trimming, resizing and conversion in browsers and Node. Distinguishing strength: small, fast, typed in-browser media I/O where ffmpeg.wasm would be heavy. Foundation of Diffusion Studio Core.",
+  "use_when": [
+    "In-browser convert, trim, remux or frame extraction, over ffmpeg.wasm for size and speed",
+    "Writing MP4/WebM from canvas frames or WebCodecs output in a page",
+    "Reading metadata and decoded frames from TypeScript without a native binary"
+  ],
+  "avoid_when": [
+    "Native encode, filtergraph or ProRes with alpha: ffmpeg-ffprobe",
+    "Codecs WebCodecs lacks in the browser: ffmpeg.wasm",
+    "Server-side codec coverage: add the server extension, or just use FFmpeg"
+  ],
+  "pairs_with": [
+    "webcodecs",
+    "canvas-record",
+    "ffmpeg-wasm",
+    "mediabunny-server-extension",
+    "diffusion-studio-core"
+  ],
+  "official_url": "https://mediabunny.dev/guide/introduction",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "video-encoding",
+    "media-inspection",
+    "audio"
+  ],
+  "license": "MPL-2.0",
+  "install": {
+    "macos": "pnpm add mediabunny"
+  },
+  "notes": [
+    "2026-10-26: encode support depends on the host browser's WebCodecs codecs; not exercised."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a5",
+    "version_seen": "1.62.1",
+    "last_release": "2026-10-22",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Release 1.62.1 on 2026-10-22, frequent releases, MPL-2.0. Clear in-browser alternative to ffmpeg.wasm; no role in native delivery where FFmpeg wins.",
+    "sources": [
+      "https://mediabunny.dev/guide/introduction",
+      "https://github.com/Vanilagy/mediabunny",
+      "https://www.npmjs.com/package/mediabunny"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

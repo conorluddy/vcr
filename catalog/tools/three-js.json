@@ -64,7 +64,7 @@
   "install": {
     "macos": "pnpm add three"
   },
-  "skill": "skills/toolkits/three-js/SKILL.md",
+  "skill": "skills/three-js/SKILL.md",
   "examples": [
     "three-capture"
   ],

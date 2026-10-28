@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vcr.local/schemas/example.schema.json",
+  "title": "VCR example manifest",
+  "description": "One runnable example under examples/<id>/. Tier 3 of the catalogue tree: loaded one at a time, with source.",
+  "type": "object",
+  "required": ["id", "title", "status", "tools", "run"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "title": { "type": "string", "maxLength": 100 },
+    "summary": { "type": "string", "maxLength": 300 },
+    "status": { "enum": ["not-validated", "validated"] },
+    "tools": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true },
+    "run": { "type": "string", "description": "Command relative to the example directory that reproduces it and exits 0 on success." },
+    "validated_on": {
+      "type": "object",
+      "required": ["date", "hostname"],
+      "properties": {
+        "date": { "type": "string", "format": "date" },
+        "hostname": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "report": { "type": "string", "description": "Path to a spike report or write-up, if one exists." }
+  },
+  "additionalProperties": false
+}

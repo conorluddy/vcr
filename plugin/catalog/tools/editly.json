@@ -1,0 +1,57 @@
+{
+  "id": "editly",
+  "name": "Editly",
+  "category": "A5. Video and capture",
+  "tier": "candidate",
+  "role": "Declarative JSON/CLI video editor on ffmpeg with transitions, titles and GL layers",
+  "summary": "Node CLI and API that builds a video from a JSON5 spec of clips, images, audio, titles and transitions, rendering frames through headless-gl and canvas and piping them to ffmpeg. Output is one MP4 (or GIF) in one command. Distinguishing strength: the fastest route from a declarative edit list to a finished slideshow-style video without a browser. ESM only; needs ffmpeg, headless-gl on Linux.",
+  "use_when": [
+    "Slideshow or montage with transitions from a JSON spec, no browser needed",
+    "Quick title-card plus clip assembly where an FFmpeg filtergraph would be tedious to hand-write"
+  ],
+  "avoid_when": [
+    "Alpha-aware layering or exact timing control: write the FFmpeg filtergraph directly",
+    "Browser-authored scenes: Playwright capture into FFmpeg",
+    "Anything needing long-term support: Remotion or MLT/melt are maintained",
+    "Sequence-accurate edits from a VCR timeline: FFmpeg gets resolved intervals"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe"
+  ],
+  "official_url": "https://github.com/mifi/editly",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "video-composition",
+    "video-encoding"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "npm i -g editly",
+    "check_command": "editly --help"
+  },
+  "notes": [
+    "2026-10-26: GitHub shows v0.15.0-rc.1 (2025-01-19) but npm latest is 0.14.2 (2022-12-23); the README says the project is maintained by one person. Native headless-gl dependency may fail to build on current Node; not tested."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a5",
+    "version_seen": "0.14.2 (npm); 0.15.0-rc.1 (GitHub)",
+    "last_release": "2025-01-19 (rc); 2022-12-23 (npm stable)",
+    "maintenance": "slow",
+    "verdict": "demote",
+    "rationale": "Last npm stable 2022-12-23; last release candidate 2025-01-19; last push 2025-05-12 (about 17 months ago). Single maintainer, native headless-gl dependency. Adds little over FFmpeg filtergraphs plus VCR's own timeline.",
+    "sources": [
+      "https://github.com/mifi/editly",
+      "https://www.npmjs.com/package/editly"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

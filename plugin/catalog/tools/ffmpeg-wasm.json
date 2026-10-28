@@ -1,0 +1,60 @@
+{
+  "id": "ffmpeg-wasm",
+  "name": "ffmpeg.wasm",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "FFmpeg compiled to WebAssembly for in-browser transcodes; slower, size-limited",
+  "summary": "WebAssembly build of FFmpeg run in a web worker, with single-thread and multi-thread cores. Gives browser pages the familiar ffmpeg command line over an in-memory filesystem: transcode, trim, mux, extract frames. Distinguishing strength: full FFmpeg filter and codec coverage in the browser, at the cost of a multi-MB core, much slower speed than native, and COOP/COEP plus SharedArrayBuffer for multithreading.",
+  "use_when": [
+    "In-browser tool needs an arbitrary FFmpeg command or codec that WebCodecs lacks",
+    "Over Mediabunny when you need filtergraphs or exotic containers, accepting the speed cost"
+  ],
+  "avoid_when": [
+    "Any native or CI delivery: ffmpeg-ffprobe is far faster",
+    "Plain remux, trim or transcode in a browser: Mediabunny is smaller and faster",
+    "Frame-accurate decode of large video in the page: WebCodecs directly"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "mediabunny",
+    "webcodecs"
+  ],
+  "official_url": "https://ffmpegwasm.netlify.app/docs/overview/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "video-encoding",
+    "media-inspection",
+    "audio"
+  ],
+  "license": "MIT wrapper; bundled FFmpeg core is LGPL or GPL depending on included libraries (x264 is GPL)",
+  "install": {
+    "macos": "pnpm add @ffmpeg/ffmpeg"
+  },
+  "notes": [
+    "2026-10-26: bundled core is FFmpeg n5.1.4 per the docs, older than native FFmpeg 8.x; check the core's license flags before shipping.",
+    "2026-10-26: no release since 0.12.15 (2025-01-07), though the repo was pushed 2026-09-29."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a5",
+    "version_seen": "0.12.15 (@ffmpeg/ffmpeg)",
+    "last_release": "2025-01-07",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "Last release 2025-01-07 (about 21 months) but repo pushed 2026-09-29. Bundled core is FFmpeg 5.1.4. Only browser route to full FFmpeg; irrelevant to native delivery where ffmpeg-ffprobe wins.",
+    "sources": [
+      "https://ffmpegwasm.netlify.app/docs/overview/",
+      "https://github.com/ffmpegwasm/ffmpeg.wasm",
+      "https://www.npmjs.com/package/@ffmpeg/ffmpeg"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

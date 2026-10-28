@@ -307,7 +307,7 @@
         "macos": "brew install --cask blender",
         "check_command": "/Applications/Blender.app/Contents/MacOS/Blender --version"
       },
-      "skill": "skills/toolkits/blender-background/SKILL.md",
+      "skill": "skills/blender-background/SKILL.md",
       "examples": [
         "blender-smoke"
       ],
@@ -1172,7 +1172,7 @@
         "macos": "brew install ffmpeg",
         "check_command": "ffmpeg -version"
       },
-      "skill": "skills/toolkits/ffmpeg/SKILL.md",
+      "skill": "skills/ffmpeg/SKILL.md",
       "examples": [
         "native-svg",
         "ffmpeg-assembly",
@@ -1911,7 +1911,7 @@
       "install": {
         "macos": "pnpm add gsap"
       },
-      "skill": "skills/toolkits/gsap/SKILL.md",
+      "skill": "skills/gsap/SKILL.md",
       "examples": [
         "browser-capture"
       ],
@@ -2147,7 +2147,7 @@
         "macos": "brew install imagemagick",
         "check_command": "magick --version"
       },
-      "skill": "skills/toolkits/imagemagick/SKILL.md",
+      "skill": "skills/imagemagick/SKILL.md",
       "examples": [
         "ffmpeg-assembly",
         "blender-smoke",
@@ -3561,7 +3561,7 @@
       "install": {
         "macos": "pnpm add p5"
       },
-      "skill": "skills/toolkits/p5-js/SKILL.md",
+      "skill": "skills/p5-js/SKILL.md",
       "examples": [
         "p5-capture"
       ],
@@ -4721,7 +4721,7 @@
         "macos": "brew install resvg",
         "check_command": "resvg --version"
       },
-      "skill": "skills/toolkits/resvg/SKILL.md",
+      "skill": "skills/resvg/SKILL.md",
       "examples": [
         "native-svg"
       ],
@@ -5171,7 +5171,7 @@
           "example": "native-svg"
         }
       ],
-      "skill": "skills/toolkits/svg/SKILL.md",
+      "skill": "skills/svg/SKILL.md",
       "examples": [
         "native-svg"
       ],
@@ -5502,7 +5502,7 @@
       "install": {
         "macos": "pnpm add three"
       },
-      "skill": "skills/toolkits/three-js/SKILL.md",
+      "skill": "skills/three-js/SKILL.md",
       "examples": [
         "three-capture"
       ],

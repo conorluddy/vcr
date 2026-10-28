@@ -227,7 +227,7 @@ function toolReferenceDiagnostics(record: ToolSummary, file: string, tools: Map<
     }
   }
   if ((record.documentation_status === "skill-written" || record.documentation_status === "skill-verified") && !record.skill) {
-    error("/skill", `documentation_status is ${String(record.documentation_status)} but no skill path is set`, "Set skill to skills/toolkits/<id>/SKILL.md.");
+    error("/skill", `documentation_status is ${String(record.documentation_status)} but no skill path is set`, "Set skill to skills/<id>/SKILL.md.");
   }
   for (const facet of record.facets ?? []) {
     if (record.tier !== "core") error("/facets", "facets are reserved for the core tier", "Remove facets or promote the tool.");

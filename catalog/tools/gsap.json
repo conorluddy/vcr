@@ -56,7 +56,7 @@
   "install": {
     "macos": "pnpm add gsap"
   },
-  "skill": "skills/toolkits/gsap/SKILL.md",
+  "skill": "skills/gsap/SKILL.md",
   "examples": [
     "browser-capture"
   ],

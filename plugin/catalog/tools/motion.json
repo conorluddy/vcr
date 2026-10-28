@@ -1,0 +1,61 @@
+{
+  "id": "motion",
+  "name": "Motion",
+  "category": "A2. Animation and authored assets",
+  "tier": "catalogued",
+  "role": "Motion (ex Framer Motion): hybrid JS/React animation, springs, layout and scroll",
+  "summary": "Animation library for JavaScript and React (import motion/react), successor to Framer Motion. animate() drives DOM, SVG and values with springs, keyframes and stagger, and returns controls whose time can be set. Strong at layout transitions, gestures and scroll-linked effects in React UI. Releases are frequent. Capture needs a harness that sets time, not wall-clock playback.",
+  "use_when": [
+    "React UI scenes needing layout animation and springs",
+    "Over React Spring for the broader API and vanilla JS animate()",
+    "Scroll-linked or gesture-driven motion in a captured page"
+  ],
+  "avoid_when": [
+    "Frame-exact multi-element choreography: GSAP timelines",
+    "Non-React sequencing with labels and plugins: GSAP",
+    "Physics-style springs on arbitrary values: React Spring"
+  ],
+  "pairs_with": [
+    "gsap",
+    "playwright",
+    "react-spring",
+    "web-animations-api"
+  ],
+  "official_url": "https://motion.dev/docs",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "tweening",
+    "react-integration",
+    "svg-animation"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add motion",
+    "check_command": "pnpm list motion --depth 0"
+  },
+  "notes": [
+    "2026-10-26: time-settable controls read from docs; deterministic offline seeking not tested. Some features are paid (Motion+); core is MIT."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a2",
+    "version_seen": "14.6.0",
+    "last_release": "2026-10-22",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Active: motion 14.6.0 published 2026-10-22, MIT. Large React/vanilla user base; complements GSAP for React UI and springs.",
+    "sources": [
+      "https://motion.dev/docs",
+      "https://www.npmjs.com/package/motion"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

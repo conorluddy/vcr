@@ -1,0 +1,61 @@
+{
+  "id": "aseprite",
+  "name": "Aseprite",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Batch CLI and Lua scripts that export pixel-art animation, tags and sprite sheets",
+  "summary": "Pixel-art and sprite animation editor. The --batch CLI converts .aseprite files to PNG sequences, GIF or sprite sheets with JSON data, and Lua scripts can create or edit sprites. Its strength is tagged frames and sheet metadata for pixel assets, not general video. Source is public but the licence is not open source.",
+  "use_when": [
+    "Exporting an artist's .aseprite files to frames or a sheet with JSON metadata",
+    "Over GIMP or ImageMagick when layers, tags and frame timing must survive export",
+    "Authoring pixel-art loops that a scene plays as sprites",
+    "Lua-scripted generation of palette-locked sprites"
+  ],
+  "avoid_when": [
+    "Smooth vector or high-resolution motion: Inkscape, Synfig or Blender",
+    "Sprites already exist as plain PNG frames: ImageMagick or libvips",
+    "You need an unrestricted open-source licence: use a different editor"
+  ],
+  "pairs_with": [
+    "imagemagick",
+    "gifski",
+    "ffmpeg-ffprobe",
+    "libvips"
+  ],
+  "official_url": "https://www.aseprite.org/docs/cli/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "pixel-art",
+    "native-authoring"
+  ],
+  "license": "Aseprite EULA: source viewable on GitHub but not open source; official binaries are paid (aseprite.org or Steam), self-build allowed under EULA terms (not read in full); some bundled modules MIT",
+  "install": {
+    "check_command": "/Applications/Aseprite.app/Contents/MacOS/aseprite --version"
+  },
+  "notes": [
+    "2026-10-26: No Homebrew formula or cask exists; install is purchase or self-build. The EULA text and the macOS app path in check_command were not verified."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a7",
+    "version_seen": "1.3.18.6",
+    "last_release": "2026-09-22",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Releases 1.3.18.5 and 1.3.18.6 landed in September 2026 and the repository was pushed 2026-10-22. CLI batch export is documented. Licence is the Aseprite EULA, not OSI open source, and the full EULA text was not read.",
+    "sources": [
+      "https://www.aseprite.org/release-notes/",
+      "https://github.com/aseprite/aseprite",
+      "https://www.aseprite.org/docs/cli/"
+    ]
+  },
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

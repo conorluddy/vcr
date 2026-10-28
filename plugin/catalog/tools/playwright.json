@@ -1,0 +1,81 @@
+{
+  "id": "playwright",
+  "name": "Playwright",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "Headless browser automation; the capture route for every browser-rendered toolkit",
+  "summary": "Browser automation library for Chromium, Firefox and WebKit. In VCR it drives headless Chromium to seek a paused timeline and capture frames as PNG, including alpha, via screenshots or the HeadlessExperimental beginFrame protocol under deterministic mode. Distinguishing strength: one capture path for any DOM, SVG, canvas or WebGL scene, validated here against a GSAP timeline with order-independent frames.",
+  "use_when": [
+    "Capturing any browser-rendered scene frame by frame, DOM, SVG, canvas or WebGL",
+    "Alpha PNG layers from HTML for a later compositor, over MP4 renderers like HyperFrames",
+    "Over canvas-record or CCapture.js when the scene is not a bare canvas or needs server-side runs"
+  ],
+  "avoid_when": [
+    "Native sources (Blender, Manim, FFmpeg): they render without a browser",
+    "Live screen recording with real-time audio: real-time capture drifts; seek instead",
+    "GPU-heavy WebGL where headless software rendering is too slow: test the GPU flags first",
+    "Turning frames into video: hand them to ffmpeg-ffprobe"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "gsap",
+    "three-js",
+    "p5-js",
+    "gifski"
+  ],
+  "official_url": "https://playwright.dev/docs/intro",
+  "documentation_urls": [
+    "https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental/"
+  ],
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "capture"
+  ],
+  "license": "Apache-2.0",
+  "install": {
+    "macos": "pnpm add -D playwright && npx playwright install chromium",
+    "check_command": "npx playwright --version"
+  },
+  "examples": [
+    "browser-capture",
+    "p5-capture",
+    "three-capture"
+  ],
+  "notes": [
+    "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
+    "Use HeadlessExperimental.beginFrame under --deterministic-mode for order-independent frames; see specifications/spikes/browser-capture.md.",
+    "2026-10-26: HeadlessExperimental is a Chrome DevTools domain flagged experimental upstream and may change; re-check after Playwright or Chromium upgrades."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a5",
+    "version_seen": "1.64.1",
+    "last_release": "2026-10-14",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Release 1.64.1 on 2026-10-14, Apache-2.0, pushed daily by Microsoft. Validated locally by the browser-capture example; the beginFrame route depends on an experimental CDP domain, which is the main risk.",
+    "sources": [
+      "https://playwright.dev/docs/intro",
+      "https://www.npmjs.com/package/playwright",
+      "https://github.com/microsoft/playwright"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "Chromium 156.0.8078.4",
+        "command": "examples/browser-capture/run.sh",
+        "result": "90 alpha frames; shuffled order matches sequential",
+        "example": "examples/browser-capture"
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/spikes/browser-capture.md"
+}

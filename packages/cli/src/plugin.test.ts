@@ -1,0 +1,33 @@
+import { existsSync, mkdtempSync, readFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { describe, expect, test } from "vitest";
+import { buildPlugin, PLUGIN_MAX_BYTES } from "./plugin.js";
+import { resolveRoots } from "./roots.js";
+
+describe("buildPlugin", () => {
+  const roots = resolveRoots({ cwd: process.cwd(), env: {} });
+  if (!roots.ok) throw new Error(roots.error.message);
+  const outcome = buildPlugin(roots.value.harness, mkdtempSync(join(tmpdir(), "vcr-plugin-test-")));
+  if (!outcome.ok) throw new Error(outcome.error.message);
+  const { directory, version, totalBytes } = outcome.value;
+  const readJson = (path: string) => JSON.parse(readFileSync(join(directory, path), "utf8")) as { name: string; version: string; skills?: string };
+
+  test("both host manifests carry the harness version and the same name", () => {
+    expect(readJson(".claude-plugin/plugin.json")).toMatchObject({ name: "vcr", version });
+    expect(readJson(".codex-plugin/plugin.json")).toMatchObject({ name: "vcr", version, skills: "./skills/" });
+  });
+
+  test("ships the bundled CLI, flat skills and the catalogue, under the size cap", () => {
+    expect(existsSync(join(directory, "cli/vcr.mjs"))).toBe(true);
+    expect(existsSync(join(directory, "skills/gsap/SKILL.md"))).toBe(true);
+    expect(existsSync(join(directory, "catalog/INDEX.md"))).toBe(true);
+    expect(totalBytes).toBeLessThan(PLUGIN_MAX_BYTES);
+  });
+
+  test("leaves out node_modules and output from example sources", () => {
+    expect(existsSync(join(directory, "examples/three-capture/scene.html"))).toBe(true);
+    expect(existsSync(join(directory, "examples/three-capture/node_modules"))).toBe(false);
+    expect(existsSync(join(directory, "examples/three-capture/output"))).toBe(false);
+  });
+});

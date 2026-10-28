@@ -26,6 +26,7 @@ pnpm doctor                        # probes local tools, writes ~/.vcr/environme
 pnpm vcr status                    # harness, workspace and machine roots; dev mode inside this repository
 pnpm vcr workspace init            # make a directory a VCR workspace (vcr.json); idempotent
 pnpm vcr catalog build [--check]   # regenerate catalog/tools.json and catalog/INDEX.md from catalog/tools/*.json
+pnpm vcr plugin build              # regenerate plugin/ (bundled CLI, skills, catalogue, manifests); commit it
 pnpm test && pnpm typecheck
 ```
 
@@ -41,7 +42,7 @@ The catalogue is a four-tier tree sized to the decisions an agent makes:
 | --- | --- | --- | --- |
 | 0 | route a task | `catalog/INDEX.md`, `pnpm vcr tools list` | whole file under 16 KB |
 | 1 | compare a shortlist | `pnpm vcr tools info <id>`, `catalog/tools/<id>.json` | about 200 tokens |
-| 2 | commit to a tool | `pnpm vcr tools info <id> --full`, `skills/toolkits/<id>/SKILL.md` | under 12 KB |
+| 2 | commit to a tool | `pnpm vcr tools info <id> --full`, `skills/<id>/SKILL.md` | under 12 KB |
 | 3 | do the work | `pnpm vcr tools examples <id>`, `examples/<id>/` | one at a time |
 
 Budgets and every cross-reference (pairs with, skill, examples, facet sections) are enforced by `pnpm validate`.

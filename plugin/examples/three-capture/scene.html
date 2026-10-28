@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8" /><style>html, body { margin: 0; background: transparent; overflow: hidden; }</style></head>
+<body>
+<script type="module">
+  // Three.js scene rendered once per seek with a transparent clear colour. No animation loop:
+  // the harness asks for time t and the scene sets every animated value from t.
+  import * as THREE from "./node_modules/three/build/three.module.js";
+  const DURATION = 3;
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+  document.body.appendChild(renderer.domElement);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 1.2, 5);
+  camera.lookAt(0, 0, 0);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+  const key = new THREE.DirectionalLight(0xffffff, 1.4);
+  key.position.set(3, 4, 5);
+  scene.add(key);
+  const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(0.8, 0.28, 160, 24), new THREE.MeshStandardMaterial({ color: 0xc7f36b, metalness: 0.2, roughness: 0.35 }));
+  scene.add(knot);
+  // seek sets state only; the draw happens on the animation frame that the harness's beginFrame drives.
+  // A synchronous WebGL render inside seek would block on the compositor, which is waiting for us.
+  const renderAt = (t) => {
+    knot.rotation.set(t * 0.9, t * 1.3, 0);
+    knot.position.y = Math.sin(t * 2) * 0.3;
+    renderer.render(scene, camera);
+  };
+  window.__scene = {
+    duration: DURATION,
+    seek: (t) => requestAnimationFrame(() => renderAt(t)),
+  };
+</script>
+</body>
+</html>
