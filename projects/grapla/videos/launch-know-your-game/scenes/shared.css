@@ -1,8 +1,0 @@
-@font-face { font-family: "JetBrains Mono"; font-weight: 400; src: url("/assets/fonts/JetBrainsMono-Regular.woff2") format("woff2"); }
-@font-face { font-family: "JetBrains Mono"; font-weight: 700; src: url("/assets/fonts/JetBrainsMono-Bold.woff2") format("woff2"); }
-html, body { margin: 0; width: 1080px; height: 1920px; background: transparent; overflow: hidden; font-family: "JetBrains Mono", monospace; color: #f6f4ef; }
-.label { color: #ffc918; font-weight: 700; font-size: 34px; letter-spacing: 0.18em; text-transform: uppercase; }
-.body { color: #f6f4ef; font-weight: 400; font-size: 40px; line-height: 1.35; }
-.muted { color: #9a968c; }
-.wordmark svg { width: 100%; height: auto; display: block; }
-.wordmark svg * { fill: #f6f4ef !important; }
