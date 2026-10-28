@@ -7,6 +7,8 @@ description: Static and scripted SVG as a native, dependency-free source format 
 
 The one source format every tool here can read. Static SVG rasterises deterministically with resvg; animated SVG runs through a browser with GSAP.
 
+
+`vcr` below means `node <plugin-root>/cli/vcr.mjs`, where the plugin root is two directories above this SKILL.md; inside the VCR repository it is `pnpm vcr`. Run it from the workspace (the directory holding `vcr.json`).
 ## Use cases and limits
 - Title cards, lower thirds, logos, diagrams from Graphviz or Mermaid, stroke-draw reveals, icon motion.
 - Over a canvas library when the asset must stay editable by a designer; over bitmap when it must scale to any delivery size.
@@ -17,7 +19,7 @@ Nothing to install. Rasterisation needs resvg (`skills/resvg`) or the capture ha
 
 ## Smoke test
 ```text
-examples/native-svg/run.sh
+vcr example create native-svg && (cd examples/native-svg && ./run.sh)
 # expect: native-svg: OK
 ```
 

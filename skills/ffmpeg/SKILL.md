@@ -7,6 +7,8 @@ description: Encode, mux, filter, probe and assemble media with FFmpeg and ffpro
 
 Delivery path for every renderer in VCR. Native output (Blender, browser capture, ImageMagick sequences) always becomes video here.
 
+
+`vcr` below means `node <plugin-root>/cli/vcr.mjs`, where the plugin root is two directories above this SKILL.md; inside the VCR repository it is `pnpm vcr`. Run it from the workspace (the directory holding `vcr.json`).
 ## Use cases and limits
 - Image sequence to MP4/MOV/WebM/GIF; audio mux; trim and concatenate; overlay and crossfade via filtergraphs; probe any media.
 - Not a timeline: composition decisions live in VCR's resolver (Layer 2). FFmpeg receives resolved frame intervals.
@@ -17,13 +19,13 @@ Delivery path for every renderer in VCR. Native output (Blender, browser capture
 ```text
 brew install ffmpeg
 ffmpeg -version | head -1    # expect: ffmpeg version 8.x
-pnpm doctor                  # records it in environment/<hostname>.json
+vcr doctor                   # records it in ~/.vcr/environment/<hostname>.json
 ```
 Validated 8.0.1 on macOS arm64, see `examples/ffmpeg-assembly`.
 
 ## Smoke test
 ```text
-examples/ffmpeg-assembly/run.sh
+vcr example create ffmpeg-assembly && (cd examples/ffmpeg-assembly && ./run.sh)
 # expect: ffmpeg-assembly: OK  (48 frames at 24 fps = 2.000000 s, aac audio 48 kHz)
 ```
 

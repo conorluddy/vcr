@@ -8521,16 +8521,18 @@ async function resolveExecutable(probe) {
 // packages/cli/src/examples.ts
 import { cpSync, existsSync as existsSync4, readFileSync as readFileSync4, writeFileSync as writeFileSync4 } from "node:fs";
 import { basename, join as join5 } from "node:path";
-var HARNESS_ONLY_FILES = /* @__PURE__ */ new Set(["node_modules", "output", ".cache", "capture.ts", "run.sh", "expected"]);
+var GENERATED_FILES = /* @__PURE__ */ new Set(["node_modules", "output", ".cache"]);
+var BROWSER_HARNESS_FILES = /* @__PURE__ */ new Set(["capture.ts", "run.sh", "expected"]);
 function createExample(harnessRoot, workspaceRoot, exampleId, cliInvocation2) {
   const source = join5(harnessRoot, "examples", exampleId);
   if (!existsSync4(join5(source, "example.json"))) return fail("EXAMPLE_NOT_FOUND", `No example "${exampleId}" in ${join5(harnessRoot, "examples")}. List them with \`vcr tools examples <tool-id>\`.`);
   const directory = join5(workspaceRoot, "examples", exampleId);
   const manifest = JSON.parse(readFileSync4(join5(source, "example.json"), "utf8"));
   const relativeDirectory = `examples/${exampleId}`;
-  const nextSteps = buildNextSteps(relativeDirectory, existsSync4(join5(source, "package.json")), manifest.capture, cliInvocation2);
+  const nextSteps = buildNextSteps(relativeDirectory, existsSync4(join5(source, "package.json")), manifest, cliInvocation2);
   if (existsSync4(directory)) return ok({ directory, isCreated: false, nextSteps });
-  cpSync(source, directory, { recursive: true, filter: (path) => !HARNESS_ONLY_FILES.has(basename(path)) });
+  const isHarnessOnly = (name) => GENERATED_FILES.has(name) || name.endsWith(".test.ts") || manifest.capture !== void 0 && BROWSER_HARNESS_FILES.has(name);
+  cpSync(source, directory, { recursive: true, filter: (path) => !isHarnessOnly(basename(path)) });
   if (existsSync4(join5(source, "package.json"))) writeStandalonePackage(join5(source, "package.json"), join5(directory, "package.json"));
   return ok({ directory, isCreated: true, nextSteps });
 }
@@ -8540,9 +8542,11 @@ function writeStandalonePackage(sourcePath, targetPath) {
   writeFileSync4(targetPath, `${JSON.stringify(standalone, null, 2)}
 `);
 }
-function buildNextSteps(relativeDirectory, hasPackage, capture, cliInvocation2) {
+function buildNextSteps(relativeDirectory, hasPackage, manifest, cliInvocation2) {
+  const { capture, run } = manifest;
   const steps = [];
   if (hasPackage) steps.push(`npm install --prefix ${relativeDirectory}`);
+  if (!capture && run) steps.push(`(cd ${relativeDirectory} && ${run})`);
   if (capture) {
     steps.push(`${cliInvocation2} setup capture`);
     steps.push(`${cliInvocation2} capture ${relativeDirectory}/${capture.scene} --width ${capture.width} --height ${capture.height} --fps ${capture.fps} --verify`);

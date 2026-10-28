@@ -7,6 +7,8 @@ description: Author seekable motion for browser-rendered scenes with GSAP timeli
 
 The timeline library for every browser scene in VCR. One paused timeline per scene, seeked by the harness; nothing animates on its own clock.
 
+
+`vcr` below means `node <plugin-root>/cli/vcr.mjs`, where the plugin root is two directories above this SKILL.md; inside the VCR repository it is `pnpm vcr`. Run it from the workspace (the directory holding `vcr.json`).
 ## Use cases and limits
 - Kinetic typography, title cards, SVG and DOM motion, orchestrating several elements with one clock.
 - Not a renderer: it writes CSS transforms and attributes; the browser rasterises. Pixel output depends on Chromium, which the capture harness pins.
@@ -14,15 +16,18 @@ The timeline library for every browser scene in VCR. One paused timeline per sce
 
 ## Install and doctor
 ```text
-pnpm add gsap
+npm install gsap
 node -e "console.log(require('gsap/package.json').version)"
 ```
 Validated 3.x with Chromium 156 via `examples/browser-capture`.
 
 ## Smoke test
 ```text
-examples/browser-capture/run.sh
-# expect: shuffled_matches_sequential=true, 90 frames, prores yuva444p12le
+vcr example create browser-capture                 # copies the scene into examples/browser-capture, prints these steps
+npm install --prefix examples/browser-capture
+vcr setup capture --yes                 # once per machine: Playwright + Chromium into ~/.vcr
+vcr capture examples/browser-capture/scene.html --width 1920 --height 1080 --fps 30 --verify
+# expect: captured 90 frames; shuffled matches sequential: true
 ```
 
 ## Scene contract
@@ -55,7 +60,7 @@ Never return the timeline from code the harness evaluates; it is a cyclic object
 - Revert with `split.revert()` only in teardown; reverting mid-timeline changes layout and breaks determinism.
 
 ## Capture
-Use `@vcr/capture` (`packages/capture`): `captureFrames({ sceneFile, width, height, fps, outputDirectory, verifyDeterminism: true })`. DOM-only scenes can use `captureMode: "beginframe"` for about 60 frames per second at 1080p; scenes with a canvas must use the default screenshot mode.
+Capture with `vcr capture <scene.html> --width W --height H --fps F --verify`; frames and `report.json` land in `output/` beside the scene (the same engine as `@vcr/capture`'s `captureFrames` inside the repository). DOM-only scenes can set `VCR_CAPTURE_MODE=beginframe` for about 60 frames per second at 1080p; scenes with a canvas must use the default screenshot mode.
 
 ## Troubleshooting
 - Frames differ between runs: a tween has `lazy` on, a CSS animation or transition is running alongside, or something reads the clock. Set `gsap.defaults({ lazy: false })` and remove CSS animations.
