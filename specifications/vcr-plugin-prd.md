@@ -87,10 +87,10 @@ Replaces `findRepositoryRoot()`.
 
 **Manifests.** A Claude Code manifest and a Codex manifest, both generated from one source by `vcr plugin build` (§6.7).
 
-**Skills** (Agent Skills format; identical files for both hosts). Workflow skills carry no `vcr-` prefix because the host's plugin namespace already scopes them: `init`, `brief` and `review` appear as `/vcr:init`, `/vcr:brief` and `/vcr:review` in Claude Code.
+**Skills** (Agent Skills format; identical files for both hosts). No skill carries a `vcr-` prefix, because the host's plugin namespace already scopes it: `/vcr:start`, `/vcr:init`, `/vcr:gsap` in Claude Code. A skill's name is its directory name.
 
-- `vcr` (router): the four-tier navigation from `AGENTS.md` and a pointer to `INDEX.md`. Its description triggers on VCR context (a `vcr.json` workspace, or the user naming VCR), so it does not claim every "make a video" request from HyperFrames, which is installed on the same machine.
-- Eight toolkit skills (`vcr-gsap` and the rest), unchanged apart from path fixes. Repository-relative paths such as `examples/three-capture/run.sh` become `vcr tools examples <id>` calls.
+- `start` (router; `/vcr:start`): the four-tier navigation from `AGENTS.md` and a pointer to `INDEX.md`. Its description triggers on VCR context (a `vcr.json` workspace, or the user naming VCR), so it does not claim every "make a video" request from HyperFrames, which is installed on the same machine.
+- Eight toolkit skills (`gsap`, `three-js` and the rest), unchanged apart from dropping the `vcr-` name prefix and path fixes. Repository-relative paths such as `examples/three-capture/run.sh` become `vcr tools examples <id>` calls.
 - `init` (new; `/vcr:init` in Claude Code): set up a workspace. Reports and stops if one already exists (`vcr status --json`); otherwise picks the git root (asking only when ambiguous), runs `vcr workspace init` and `vcr doctor`, and offers `vcr setup capture` with the download size when the capture runtime is missing. Ends with the three roots and an offer to hand off to `brief`. Agent- and human-invocable: "start a video here" outside a workspace may trigger it.
 - `brief` (new; `/vcr:brief`): interview the human, then write `brief.md` (objective, audience and placement, content, constraints, review notes), shaped on the Grapla proof-of-concept brief.
 - `review` (new; `/vcr:review`): read open findings (summary first), fix the source, re-render the affected range, attach before/after evidence, mark the finding `addressed`, then open the review pages and request review.
@@ -285,7 +285,7 @@ Existing commands keep their behaviour. `catalog build` and `doctor --record` ar
 | --- | --- | --- | --- |
 | P0 Roots | Three-root resolution, doctor to `VCR_HOME`, tests | 2 | `vcr tools info gsap` and `vcr doctor` work from a scratch directory against a read-only harness copy |
 | S1 Spike | Install a throwaway two-file plugin into both hosts. Measure: invocation candidates (a/b/c in §6.2), surviving an update, writing `~/.vcr` and binding loopback inside Codex's sandbox, launching Chromium from each host. Report in `specifications/spikes/` | 1 | A written decision on invocation and sandbox fallbacks; opens P1 |
-| P1 Plugin | `vcr plugin build`, bundled CLI, router skill, `init` skill, path-fixed toolkit skills, both manifests and marketplaces, `vcr setup capture`, `vcr example create` | 3 | Fresh install on both hosts in an empty directory; `/vcr:init` sets up the workspace; `three-capture` scaffolds and renders from the installed plugin |
+| P1 Plugin | `vcr plugin build`, bundled CLI, router skill, `init` skill, renamed and path-fixed toolkit skills, both manifests and marketplaces, `vcr setup capture`, `vcr example create` | 3 | Fresh install on both hosts in an empty directory; `/vcr:init` sets up the workspace; `three-capture` scaffolds and renders from the installed plugin |
 | P2 Contract | Render manifest subset, findings, approvals, `status`, `findings`, TTY approve, `brief`, `vcr storage` (report, clear, prune, budgets) | 2 | A fixture video has finding records; validate passes; the agent cannot approve; ST-04 tests pass |
 | P3 Review pages | Videos, Render, note form, Decide, Storage, server, auto-refresh | 3 | J3, J6 and J9 end to end on a fixture video rendered through the installed plugin |
 | P4 Loop | `review`, session-start hooks, evidence pairs, Compare | 2 | J4 and J5 on both hosts with no human restating context |
