@@ -5,6 +5,8 @@ description: Generate, convert, inspect, compare and montage images from the CLI
 
 # ImageMagick 7
 
+
+`vcr` below means `node <plugin-root>/cli/vcr.mjs`, where the plugin root is two directories above this SKILL.md; inside the VCR repository it is `pnpm vcr`. Run it from the workspace (the directory holding `vcr.json`).
 ## Use cases and limits
 - Synthetic frames for fixtures, contact sheets for review, pixel and alpha inspection, format conversion, perceptual diffs.
 - Not for video: hand sequences to FFmpeg. Text rendering needs an explicit `-font` on macOS (no default font is configured).

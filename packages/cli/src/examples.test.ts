@@ -23,6 +23,15 @@ describe("createExample", () => {
     expect(outcome.value.nextSteps.at(-1)).toBe("vcr capture examples/three-capture/scene.html --width 1280 --height 720 --fps 30 --verify");
   });
 
+  test("native examples keep their standalone run.sh and expected output", () => {
+    const workspace = mkdtempSync(join(tmpdir(), "vcr-example-"));
+    const outcome = createExample(harness, workspace, "native-svg", "vcr");
+    if (!outcome.ok) throw new Error(outcome.error.message);
+    expect(existsSync(join(workspace, "examples/native-svg/run.sh"))).toBe(true);
+    expect(existsSync(join(workspace, "examples/native-svg/expected"))).toBe(true);
+    expect(outcome.value.nextSteps).toEqual(["(cd examples/native-svg && ./run.sh)"]);
+  });
+
   test("never overwrites an existing example", () => {
     const workspace = mkdtempSync(join(tmpdir(), "vcr-example-"));
     createExample(harness, workspace, "three-capture", "vcr");

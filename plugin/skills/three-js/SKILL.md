@@ -7,6 +7,8 @@ description: Browser 3D scenes with Three.js rendered once per seek with alpha, 
 
 The browser 3D renderer for VCR. A scene is a pure function of time: `seek(t)` sets every animated value from t and renders once. No render loop.
 
+
+`vcr` below means `node <plugin-root>/cli/vcr.mjs`, where the plugin root is two directories above this SKILL.md; inside the VCR repository it is `pnpm vcr`. Run it from the workspace (the directory holding `vcr.json`).
 ## Use cases and limits
 - Product reveals, floating objects, camera orbits, text in 3D, shader effects, particle systems that can be evaluated at any t.
 - Over Blender when the look is real-time and the turnaround matters; over Babylon.js for the larger ecosystem and the pmndrs tooling.
@@ -15,15 +17,18 @@ The browser 3D renderer for VCR. A scene is a pure function of time: `seek(t)` s
 
 ## Install and doctor
 ```text
-pnpm add three
+npm install three
 node -e "console.log(require('three/package.json').version)"
 ```
 Validated with Chromium 156 (ANGLE on Apple Silicon) via `examples/three-capture`.
 
 ## Smoke test
 ```text
-examples/three-capture/run.sh
-# expect: three-capture: OK, alpha min 0 max 1, shuffled_matches_sequential true
+vcr example create three-capture                 # copies the scene into examples/three-capture, prints these steps
+npm install --prefix examples/three-capture
+vcr setup capture --yes                 # once per machine: Playwright + Chromium into ~/.vcr
+vcr capture examples/three-capture/scene.html --width 1280 --height 720 --fps 30 --verify
+# expect: captured 90 frames, alpha min 0 max 1; shuffled matches sequential: true
 ```
 
 ## Scene and camera
@@ -58,7 +63,7 @@ window.__scene = { duration: 3, seek: (t) => requestAnimationFrame(() => renderA
 - Time inside a TSL material must come from a uniform you set from t, never from the built-in `time` node.
 
 ## Capture
-`@vcr/capture` with `sceneFile`, screenshot mode. 1280x720 runs at roughly 12 frames per second including the determinism re-run; 4K will want a frame cache.
+`vcr capture <scene.html> … --verify`, screenshot mode. 1280x720 runs at roughly 12 frames per second including the determinism re-run; 4K will want a frame cache.
 
 ## Troubleshooting
 - CORS error on the module import: the page was opened with file://; use `sceneFile` so the harness serves it.

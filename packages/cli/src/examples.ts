@@ -20,8 +20,9 @@ export interface CreateExampleOutcome {
   nextSteps: string[];
 }
 
-/** Repository-only plumbing: scripts that import workspace packages or assert recorded fixture output. */
-const HARNESS_ONLY_FILES = new Set(["node_modules", "output", ".cache", "capture.ts", "run.sh", "expected"]);
+const GENERATED_FILES = new Set(["node_modules", "output", ".cache"]);
+/** Browser examples reproduce through `pnpm capture` and `@vcr/capture`; scaffolds use `vcr capture` instead. Native examples' run.sh is standalone and kept. */
+const BROWSER_HARNESS_FILES = new Set(["capture.ts", "run.sh", "expected"]);
 
 // === PUBLIC API ===
 
@@ -32,10 +33,11 @@ export function createExample(harnessRoot: string, workspaceRoot: string, exampl
   const directory = join(workspaceRoot, "examples", exampleId);
   const manifest = JSON.parse(readFileSync(join(source, "example.json"), "utf8")) as { capture?: ExampleCaptureSpec; run?: string };
   const relativeDirectory = `examples/${exampleId}`;
-  const nextSteps = buildNextSteps(relativeDirectory, existsSync(join(source, "package.json")), manifest.capture, cliInvocation);
+  const nextSteps = buildNextSteps(relativeDirectory, existsSync(join(source, "package.json")), manifest, cliInvocation);
   if (existsSync(directory)) return ok({ directory, isCreated: false, nextSteps });
 
-  cpSync(source, directory, { recursive: true, filter: (path) => !HARNESS_ONLY_FILES.has(basename(path)) });
+  const isHarnessOnly = (name: string) => GENERATED_FILES.has(name) || name.endsWith(".test.ts") || (manifest.capture !== undefined && BROWSER_HARNESS_FILES.has(name));
+  cpSync(source, directory, { recursive: true, filter: (path) => !isHarnessOnly(basename(path)) });
   if (existsSync(join(source, "package.json"))) writeStandalonePackage(join(source, "package.json"), join(directory, "package.json"));
   return ok({ directory, isCreated: true, nextSteps });
 }
@@ -49,9 +51,11 @@ function writeStandalonePackage(sourcePath: string, targetPath: string): void {
   writeFileSync(targetPath, `${JSON.stringify(standalone, null, 2)}\n`);
 }
 
-function buildNextSteps(relativeDirectory: string, hasPackage: boolean, capture: ExampleCaptureSpec | undefined, cliInvocation: string): string[] {
+function buildNextSteps(relativeDirectory: string, hasPackage: boolean, manifest: { capture?: ExampleCaptureSpec; run?: string }, cliInvocation: string): string[] {
+  const { capture, run } = manifest;
   const steps: string[] = [];
   if (hasPackage) steps.push(`npm install --prefix ${relativeDirectory}`);
+  if (!capture && run) steps.push(`(cd ${relativeDirectory} && ${run})`);
   if (capture) {
     steps.push(`${cliInvocation} setup capture`);
     steps.push(`${cliInvocation} capture ${relativeDirectory}/${capture.scene} --width ${capture.width} --height ${capture.height} --fps ${capture.fps} --verify`);

@@ -5,6 +5,8 @@ description: Rasterise static SVG to PNG deterministically with resvg. Use for t
 
 # resvg
 
+
+`vcr` below means `node <plugin-root>/cli/vcr.mjs`, where the plugin root is two directories above this SKILL.md; inside the VCR repository it is `pnpm vcr`. Run it from the workspace (the directory holding `vcr.json`).
 ## Use cases and limits
 - Static SVG to PNG at any size with correct anti-aliasing and alpha. Deterministic output for a given resvg version.
 - No animation, no scripting, no CSS beyond presentation attributes and inline styles. Animated SVG goes through browser capture instead.
@@ -19,7 +21,7 @@ Validated: 0.47.0 on macOS arm64, see `examples/native-svg`.
 
 ## Smoke test
 ```text
-examples/native-svg/run.sh
+vcr example create native-svg && (cd examples/native-svg && ./run.sh)
 # expect: native-svg: OK  (PNG hash and ffprobe metadata match expected/)
 ```
 

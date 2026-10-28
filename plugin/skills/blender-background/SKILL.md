@@ -5,6 +5,8 @@ description: Render Blender scenes headlessly from the macOS app bundle with a P
 
 # Blender in background mode
 
+
+`vcr` below means `node <plugin-root>/cli/vcr.mjs`, where the plugin root is two directories above this SKILL.md; inside the VCR repository it is `pnpm vcr`. Run it from the workspace (the directory holding `vcr.json`).
 ## Use cases and limits
 - Deterministic frame renders from a `.blend` file or a scene built in Python. Blender owns its own clock: VCR asks for frame N, Blender renders frame N.
 - Over Three.js when the look needs path tracing, the compositor, simulation caches or an existing `.blend`.
@@ -20,7 +22,7 @@ Validated 4.4.0 on macOS arm64, Workbench engine, see `examples/blender-smoke`.
 
 ## Smoke test
 ```text
-examples/blender-smoke/run.sh
+vcr example create blender-smoke && (cd examples/blender-smoke && ./run.sh)
 # expect: blender-smoke: OK (Blender 4.4.0); 320x240 srgba PNG with transparent film
 ```
 

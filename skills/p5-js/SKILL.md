@@ -7,6 +7,8 @@ description: Generative and procedural 2D and WebGL visuals with p5.js, written 
 
 Creative-coding library. In VCR a sketch never runs its own loop: `noLoop()`, then the harness asks for time t and the sketch draws exactly that frame.
 
+
+`vcr` below means `node <plugin-root>/cli/vcr.mjs`, where the plugin root is two directories above this SKILL.md; inside the VCR repository it is `pnpm vcr`. Run it from the workspace (the directory holding `vcr.json`).
 ## Use cases and limits
 - Procedural backgrounds, particles, flow fields, noise-driven shapes, quick 2D experiments, simple WebGL.
 - Over Pts or canvas-sketch when you want the broadest API and the most examples; over Three.js only when the 3D is incidental.
@@ -15,15 +17,18 @@ Creative-coding library. In VCR a sketch never runs its own loop: `noLoop()`, th
 
 ## Install and doctor
 ```text
-pnpm add p5
+npm install p5
 ls node_modules/p5/lib/p5.min.js   # the UMD bundle; the exports map hides it from require.resolve
 ```
 Validated p5 2.3.4 with Chromium 156 via `examples/p5-capture`.
 
 ## Smoke test
 ```text
-examples/p5-capture/run.sh
-# expect: p5-capture: OK, alpha min 0 max 1, shuffled_matches_sequential true
+vcr example create p5-capture                 # copies the scene into examples/p5-capture, prints these steps
+npm install --prefix examples/p5-capture
+vcr setup capture --yes                 # once per machine: Playwright + Chromium into ~/.vcr
+vcr capture examples/p5-capture/scene.html --width 1280 --height 720 --fps 30 --verify
+# expect: captured 90 frames, alpha min 0 max 1; shuffled matches sequential: true
 ```
 
 ## Draw loop and seeding
@@ -56,7 +61,7 @@ new p5((sketch) => {
 - Loops: sample noise around a circle (`cos(a) * r, sin(a) * r`) so the last frame meets the first.
 
 ## Capture
-`@vcr/capture` with `sceneFile` (the harness serves the directory, so `<script src="./node_modules/p5/lib/p5.min.js">` resolves). Screenshot mode; 1280x720 runs at roughly 12 frames per second including the determinism re-run.
+`vcr capture <scene.html> … --verify` (the harness serves the scene's directory, so `<script src="./node_modules/p5/lib/p5.min.js">` resolves). Screenshot mode; 1280x720 runs at roughly 12 frames per second including the determinism re-run.
 
 ## Troubleshooting
 - Blank frames: `noLoop()` missing so the harness and p5's loop fight, or `background()` with alpha 0 instead of `clear()`.
