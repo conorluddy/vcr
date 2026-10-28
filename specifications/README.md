@@ -5,13 +5,14 @@
 ## Layout
 
 - `vcr-prd.md` — product requirements. Requirement IDs (`L2-01` and so on) are the stable vocabulary; child documents quote IDs instead of restating them.
+- `vcr-plugin-prd.md` — child PRD for distribution as a Claude Code and Codex plugin, and the human review layer (review pages and storage controls). Requirement groups PL, RT, AG, RS, RV, ST, SH, PX.
 - `decisions/` — architecture decision records, numbered. See `decisions/README.md`.
 - `spikes/` — reports from time-boxed technical spikes: decision, numbers, limitations. A child specification cites the spike that opened it.
 - `<layer>/` — a short child specification per layer, created when work on that layer starts and not before.
 
 ## Decisions and spikes so far
 
-- ADR 0001: in-house composition engine. ADR 0002: headless first, no editor.
+- ADR 0001: in-house composition engine. ADR 0002: headless first, no editor. ADR 0003 (proposed): plugin distribution, bundled CLI, three roots.
 - Spike: browser capture (go for Layer 2; settle-then-screenshot for canvases, `beginFrame` for DOM-only).
 
 ## Decomposition
@@ -25,6 +26,7 @@
 | compositor | L3 / M4 | M3 | alpha and colour round-trip | not started |
 | advanced motion | L4 / M5 | M4 | deterministic simulation fixture | not started |
 | production delivery | L5 / M6 | M4 | FFmpeg intermediate and export strategy | not started |
+| plugin and review layer (`vcr-plugin-prd.md`) | L0 packaging, early L1 and L6 slices | — | S1 plugin invocation | draft |
 | review loop | L6 / M7 | M3 | none | not started |
 | reference corpus | L7 / M8 | M2 | none | not started |
 

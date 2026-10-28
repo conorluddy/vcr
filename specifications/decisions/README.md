@@ -1,5 +1,9 @@
 # Architecture decision records
 
+- 0001 — build the composition engine in-house. Accepted.
+- 0002 — headless first; read-only visualisers, no editor. Accepted.
+- 0003 — distribute as a plugin with a bundled CLI and three roots. Proposed.
+
 One file per decision, `NNNN-kebab-title.md`, never edited after acceptance except to change `Status` and add a `Superseded by` line.
 
 ```markdown
