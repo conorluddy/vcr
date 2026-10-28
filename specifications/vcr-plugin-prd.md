@@ -1,4 +1,4 @@
-# VCR — Agent plugin and human layer ("Dailies")
+# VCR — Agent plugin and review layer
 
 Version: 0.1 • Date: 28 October 2026 • Owner: Conor Luddy
 
@@ -12,19 +12,20 @@ VCR ships as three layers that meet only at files.
 | --- | --- | --- | --- |
 | Harness core | Catalogue data, schemas, the `vcr` CLI, the capture runtime | Anyone with a terminal | Workspace and machine state, never itself |
 | Agent layer | A plugin for Claude Code and Codex: router skill, toolkit skills, workflow skills, guardrail hooks. Thin; it teaches an agent to drive the core | Coding agents | Through the CLI and scene source |
-| Human layer ("Dailies") | Generated local pages: watch a render, scrub frames, pin notes to frames, compare revisions, approve | The human reviewer | Findings and approvals only |
+| Review layer (human) | Generated local pages: watch a render, scrub frames, pin notes to frames, compare revisions, approve, see and reclaim storage | The human reviewer | Findings, approvals, and clearing regenerable output (§6.5) |
 
 User data lives in two places that belong to no layer: the **workspace** (projects, videos, renders, findings, approvals) and **machine state** (environment record, installed runtimes).
 
-Thesis: the plugin equips the editor and Dailies equips the reviewer. Files are the only channel between them, so each layer works without the one above it. This is ADR 0002 ("the agent is the editor; the human is the reviewer") given a product shape.
+Thesis: the plugin equips the editor and the review layer equips the reviewer. Files are the only channel between them, so each layer works without the one above it. This is ADR 0002 ("the agent is the editor; the human is the reviewer") given a product shape. Clearing regenerable output is housekeeping, not editing: it changes no source, finding or approval.
 
 ## 2. Problem and evidence
 
 - P1. VCR is unusable outside its own repository. `findRepositoryRoot()` (`packages/cli/src/repository.ts`) walks up to `catalog/`; `vcr doctor` writes into the repository; skills are found only through the `.claude/skills` symlink; Grapla's `render.ts` imports `@vcr/capture` through the pnpm workspace.
 - P2. Codex sees none of it.
-- P3. There is no human review surface. `projects/grapla/videos/launch-know-your-game/review/first-cut.md` ends "awaiting Conor's notes" and records that "no workflow skill for briefing or review existed".
+- P3. There is no human review surface. The Grapla proof of concept's `review/first-cut.md` (commit `6aa0f87`; the project is being removed) ends "awaiting Conor's notes" and records that "no workflow skill for briefing or review existed".
 - P4. Frame references are ambiguous. The brief's `product f0210` is scene-local (the product scene is 330 frames), but L6-01 requires composition frames. Notes travel through chat and lose their anchor.
 - P5. Nothing stops self-approval. L6 acceptance says "self-review does not automatically mean approved"; nothing enforces it.
+- P6. Videos eat disk fast. The Grapla proof of concept left 160 MB of ignored `output/` behind one 20-second, 30 fps video, and frame sequences, MP4s, proxies and Chromium are scattered across ignored directories that nothing reports or clears.
 
 ## 3. Users and jobs
 
@@ -38,10 +39,11 @@ The agent (Claude Code or Codex) discovers, selects, authors, renders, reads fin
 - J6. Approve a revision. The agent cannot approve, even by accident.
 - J7. Review on a phone through an explicit, private share.
 - J8. All of the above in Codex, except J7 (see §9).
+- J9. See what VCR is using on disk, per root, video and render, and reclaim it in one action without losing anything that cannot be regenerated.
 
 ## 4. Goals and non-goals
 
-Goals: one install per host; works from any directory; zero writes to the plugin directory; host parity by construction; a human never needs a terminal to review; files are the contract; local-first.
+Goals: one install per host; works from any directory; zero writes to the plugin directory; host parity by construction; a human never needs a terminal to review; storage is always visible and reclaimable; files are the contract; local-first.
 
 Non-goals for v1:
 
@@ -59,11 +61,12 @@ Audience: Conor first, public later. Going public must be a packaging change, no
 1. **Files are the interface.** Every surface reads and writes schema-validated workspace files. No layer holds state another layer cannot read.
 2. **The harness is read-only at runtime.** The plugin cache can be replaced at any moment.
 3. **Thin agent layer.** Skills describe and route; the CLI acts. Logic lives in the CLI, which is why parity holds by construction.
-4. **Generated, disposable surfaces.** Dailies can be rebuilt from files, as `catalog/INDEX.md` is.
+4. **Generated, disposable surfaces.** The review pages can be rebuilt from files, as `catalog/INDEX.md` is.
 5. **Human-only actions get human-only channels**: approval and resolving a finding.
-6. **Graceful degradation.** The core works without the plugin, the plugin without Dailies, Dailies without an agent.
-7. **Progressive disclosure carries over.** Tier budgets (16 KB index, 12 KB guide) apply to everything the plugin loads, including `vcr status`.
-8. **Honest evidence.** A ✓ on a catalogue record means "validated in the author's recorded environment". The user's own `vcr doctor` is the only installation fact on their machine (L0-02).
+6. **Graceful degradation.** The core works without the plugin, the plugin without the review layer, the review layer without an agent.
+7. **Space is a first-class resource.** Every byte VCR writes belongs to a named storage class with a size report and a clear command. Clearing never touches source, findings, approvals or anything else that cannot be regenerated.
+8. **Progressive disclosure carries over.** Tier budgets (16 KB index, 12 KB guide) apply to everything the plugin loads, including `vcr status`.
+9. **Honest evidence.** A ✓ on a catalogue record means "validated in the author's recorded environment". The user's own `vcr doctor` is the only installation fact on their machine (L0-02).
 
 ## 6. Architecture
 
@@ -88,8 +91,8 @@ Replaces `findRepositoryRoot()`.
 
 - `vcr` (router): the four-tier navigation from `AGENTS.md` and a pointer to `INDEX.md`. Its description triggers on VCR context (a `vcr.json` workspace, or the user naming VCR), so it does not claim every "make a video" request from HyperFrames, which is installed on the same machine.
 - Eight toolkit skills (`vcr-gsap` and the rest), unchanged apart from path fixes. Repository-relative paths such as `examples/three-capture/run.sh` become `vcr tools examples <id>` calls.
-- `vcr-brief` (new): interview the human, then write `brief.md` (objective, audience and placement, content, constraints, review notes), shaped on the Grapla brief.
-- `vcr-review` (new): read open findings (summary first), fix the source, re-render the affected range, attach before/after evidence, mark the finding `addressed`, then open Dailies and request review.
+- `vcr-brief` (new): interview the human, then write `brief.md` (objective, audience and placement, content, constraints, review notes), shaped on the Grapla proof-of-concept brief.
+- `vcr-review` (new): read open findings (summary first), fix the source, re-render the affected range, attach before/after evidence, mark the finding `addressed`, then open the review pages and request review.
 
 **CLI.** A bundled single file, `cli/vcr.mjs`, committed inside the plugin. It runs on system Node 22 or newer with no install step.
 
@@ -104,7 +107,7 @@ Replaces `findRepositoryRoot()`.
 
 **Hooks.** Both hosts support a Claude-like hook schema. Codex hooks need the user's trust and make a plugin ineligible for its public directory.
 
-- Session start: run `vcr status --brief` (≤ 1 KB: videos awaiting review and open-finding counts).
+- Session start: run `vcr status --brief` (≤ 1 KB: videos awaiting review, open-finding counts, and one storage line when over budget).
 - Before a tool runs: deny edits under `review/approvals/` and under the harness root.
 - Hooks only make things smoother. Every rule is also enforced in the CLI (§6.4).
 
@@ -114,51 +117,74 @@ Replaces `findRepositoryRoot()`.
 - MCP is the fallback if S1 cannot make CLI invocation reliable, because each host launches the server with a known root. Its costs: a long-running process, tool schemas held in context, and minute-long renders that do not suit synchronous tool calls.
 - Also revisit when a target host has no shell.
 
-### 6.3 Human layer: Dailies
+### 6.3 Review layer
 
 Surfaces:
 
-- **Desk** (`vcr dailies`): every video in the workspace with its state (`draft`, `in_review`, `changes_requested`, `approved`), open-finding count and latest thumbnail.
-- **Reel** (per video and render): a player (the MP4 when assembled, otherwise a frame-sequence player), a scene strip with boundaries, a contact sheet, and a scrubber showing composition frame and scene-local frame. Notes list alongside. Clicking a frame opens the note form with video, render, scene and frame pre-filled; the human adds severity, text and an optional region box.
+- **Videos** (`vcr review open`): every video in the workspace with its state (`draft`, `in_review`, `changes_requested`, `approved`), open-finding count, disk usage and latest thumbnail.
+- **Render** (per video and render): a player (the MP4 when assembled, otherwise a frame-sequence player), a scene strip with boundaries, a contact sheet, and a scrubber showing composition frame and scene-local frame. Notes list alongside. Clicking a frame opens the note form with video, render, scene and frame pre-filled; the human adds severity, text and an optional region box.
 - **Compare**: two renders at the same composition frame, side by side or as a wipe, plus each finding's before/after pair.
 - **Decide**: approve or request changes, with an optional note.
+- **Storage**: usage by root, storage class, video and render, largest first, against the workspace budgets. Each clear action shows what it will delete and how many bytes before it runs (§6.5).
 
 Mechanics:
 
-- `vcr dailies serve|open` starts a server bound to 127.0.0.1 on a random port, with a per-session token in the URL. It checks the Origin header on every POST, re-reads files on every request, and pushes a refresh when manifests change, so a new render appears on its own. It exits after 30 minutes idle. No daemon.
-- `vcr dailies build` writes a self-contained static bundle: read-only, "copy note as text" in place of POST. It is the input to share.
+- `vcr review serve|open` starts a server bound to 127.0.0.1 on a random port, with a per-session token in the URL. It checks the Origin header on every POST, re-reads files on every request, and pushes a refresh when manifests change, so a new render appears on its own. It exits after 30 minutes idle. No daemon.
+- `vcr review build` writes a self-contained static bundle: read-only, "copy note as text" in place of POST. It is the input to share.
 - Static HTML and inline JS, no framework, so the bundle stays small. Visual design is a P3 task (frontend-design skill).
 
 ### 6.4 Review data contract
 
 Workspace files, per video.
 
-- **Render manifest (review subset)**: `render_id`, `video_id`, `fps`, dimensions, `duration_frames`, `scenes[{id, start_frame, end_frame, frames_dir}]`, `outputs[{kind, path, sha256}]`, `created_at`, environment. This PRD needs only this subset; the L1 child specification owns the full schema (L1-05). Grapla's `render.ts` migrates to emit it.
-- **Retained revision**: `review/renders/<render_id>/` holds the manifest, a contact sheet and evidence frames under the 200 KB-per-image preview policy, and is committed. Full frames and the MP4 stay in ignored `output/` and may be deleted; Compare then falls back to the contact sheet and evidence frames and says so (L6-04).
-- **Finding**: one file per note, `review/findings/F-0007.json`, so concurrent human and agent writes stay conflict-free and diffable. Fields: `id`, `render_id`, `scene_id`, `frame` (canonical composition frame), `scene_frame` (derived), optional `region {x, y, w, h}` in 0–1 units, `severity` (`blocker | major | minor | note`), `text`, `author {kind: human | agent}`, `source` (`dailies | cli | chat | share`), `status`, `created_at`, `resolution {render_id, note, evidence[]}`.
+- **Render manifest (review subset)**: `render_id`, `video_id`, `fps`, dimensions, `duration_frames`, `scenes[{id, start_frame, end_frame, frames_dir}]`, `outputs[{kind, path, sha256}]`, `created_at`, environment. This PRD needs only this subset; the L1 child specification owns the full schema (L1-05). The capture path owned by `vcr` emits it (ADR 0003).
+- **Retained revision**: `review/renders/<render_id>/` holds the manifest, a contact sheet and evidence frames under the 200 KB-per-image preview policy, and is committed. It is the evidence storage class (§6.5). Full frames and the MP4 stay in ignored `output/` and may be deleted; Compare then falls back to the contact sheet and evidence frames and says so (L6-04).
+- **Finding**: one file per note, `review/findings/F-0007.json`, so concurrent human and agent writes stay conflict-free and diffable. Fields: `id`, `render_id`, `scene_id`, `frame` (canonical composition frame), `scene_frame` (derived), optional `region {x, y, w, h}` in 0–1 units, `severity` (`blocker | major | minor | note`), `text`, `author {kind: human | agent}`, `source` (`review | cli | chat | share`), `status`, `created_at`, `resolution {render_id, note, evidence[]}`.
 - **Finding states**: `open` → `addressed` (the agent claims a fix and attaches evidence) → `resolved` (human only); or `wontfix` (human only). The agent may reopen only its own findings.
-- **Approval**: `review/approvals/<render_id>.json` with `decision` (`approved | changes_requested`), `manifest_sha256`, `channel` (`dailies | tty`), `at`, `note`.
-- **Human-only channels**: the token-gated Dailies POST, or `vcr review approve|resolve`, which requires an interactive TTY and typing the video id. Agent hosts run commands without a TTY.
+- **Approval**: `review/approvals/<render_id>.json` with `decision` (`approved | changes_requested`), `manifest_sha256`, `channel` (`review | tty`), `at`, `note`.
+- **Human-only channels**: the token-gated review-page POST, or `vcr review approve|resolve`, which requires an interactive TTY and typing the video id. Agent hosts run commands without a TTY.
 - **Validation**: `vcr validate` rejects an approval whose manifest hash does not match a retained render, and a `resolved` finding without a human channel. This is a guardrail against accidental self-approval, not a security boundary.
 - **Writes** are atomic (temp file, then rename) and idempotent: re-posting the same note does not duplicate it.
 - `review/REVIEW.md` is a generated human-readable summary, keeping the git-diffable narrative that `first-cut.md` provides today.
 
-### 6.5 The loop
+### 6.5 Storage
+
+Every byte VCR writes falls into one of five classes. Sizes are reported per class, root, video and render; budgets live in `vcr.json` under `storage`.
+
+| Class | Where | Regenerable | Committed | Cleared by |
+| --- | --- | --- | --- | --- |
+| Output | Workspace `output/`: frame sequences, MP4s, ranges | Yes, by re-rendering | No | `vcr storage clear output`, Storage view |
+| Cache | Workspace `.cache/`: intermediate captures, transcodes | Yes | No | `vcr storage clear cache`, Storage view |
+| Evidence | Workspace `review/renders/`: manifests, contact sheets, evidence frames | No | Yes | `vcr storage prune evidence` only |
+| Proxies | `VCR_HOME/proxies`: share transcodes | Yes | No | `vcr storage clear proxies`, Storage view |
+| Runtime | `VCR_HOME/runtime`: Playwright and Chromium | Yes, by `vcr setup capture` | No | `vcr storage clear runtime` |
+
+- `vcr storage [--video <id>] [--json] [--limit --offset]`: the size report, largest first.
+- `vcr storage clear <class> [--video <id>] [--render <id>] [--older-than <days>] [--keep-latest <n>]` prints the planned deletions and byte total, and applies them only with `--yes`. It is idempotent and agent-safe, because everything it removes is regenerable.
+- `vcr storage prune evidence --video <id> --keep <n>` reduces older retained revisions to manifest plus contact sheet. It never prunes the latest revision, an approved revision, or one cited by an open finding. Git history keeps what was pruned.
+- Budgets: `storage.output_warn_bytes` (default 5 GB per workspace) and `storage.evidence_warn_bytes` (default 2 MB per video). Over budget is a warning in `vcr status`, `vcr validate` and the Storage view, never a failure and never an automatic deletion.
+- Clearing output under a render keeps its retained revision; Render and Compare fall back to it and say so.
+- The Storage view clears output, cache and proxies through the token-gated POST, with the same plan-then-apply step. Runtime and evidence are CLI-only.
+
+### 6.6 The loop
 
 1. The human asks for a video. `vcr-brief` interviews them and writes `brief.md`; the human confirms it.
-2. The agent authors and renders. The render manifest and retained revision are written, the state becomes `in_review`, and `vcr dailies open` runs.
+2. The agent authors and renders. The render manifest and retained revision are written, the state becomes `in_review`, and `vcr review open` runs.
 3. The human leaves notes and requests changes.
 4. Next turn or session, the session-start hook (or the skill calling `vcr status`) surfaces open findings. `vcr-review` fixes them, re-renders the affected ranges, attaches before/after evidence and marks each `addressed`.
 5. The human compares, resolves and approves. The approval names the manifest hash; a reference record may then move to `approved` (L7).
 
-### 6.6 CLI additions
+### 6.7 CLI additions
 
 ```text
 vcr workspace init
 vcr status [--brief] [--json]
 vcr findings list|show|add|address           (agent-safe)
-vcr review approve|request-changes|resolve   (TTY only)
-vcr dailies open|serve|build|share
+vcr review approve|request-changes|resolve   (TTY only; the rest of `vcr review` is agent-safe)
+vcr review open|serve|build|share
+vcr storage [--video <id>] [--json]
+vcr storage clear <class> [...] [--yes]     (agent-safe; dry run without --yes)
+vcr storage prune evidence --video <id> --keep <n>
 vcr setup capture                            (reports planned changes, idempotent, installs into VCR_HOME)
 vcr example create <id>
 vcr plugin build                             (maintainer only)
@@ -166,16 +192,16 @@ vcr plugin build                             (maintainer only)
 
 Existing commands keep their behaviour. `catalog build` and `doctor --record` are maintainer-only. Every command gets `--json` and stable exit codes (parent §14); errors use `{code, message, retryable}`.
 
-### 6.7 Assembly and release
+### 6.8 Assembly and release
 
-- `vcr plugin build` assembles a generated, committed `plugin/` directory, the same convention as `catalog/INDEX.md`. Contents: skills; catalogue (`INDEX.md`, `tools.json`, cards, vocabulary); example sources without `node_modules`, `output/` or media; `cli/vcr.mjs`; Dailies templates; `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json`.
+- `vcr plugin build` assembles a generated, committed `plugin/` directory, the same convention as `catalog/INDEX.md`. Contents: skills; catalogue (`INDEX.md`, `tools.json`, cards, vocabulary); example sources without `node_modules`, `output/` or media; `cli/vcr.mjs`; review-page templates; `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json`.
 - `vcr validate` fails on a stale `plugin/`, as on a stale index. It also checks tier budgets, no media, total size under 5 MB, and manifest versions equal to the harness version.
 - Examples become runnable outside the repository through `vcr example create <id>`, which scaffolds into the workspace (parent §14). They are no longer run in place against the pnpm workspace.
 - Marketplaces: `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json` at the repository root, both with source `./plugin`. Precedent: `ios-simulator-skill`, installed from one repository into both hosts today.
 - The repository stays private. "Public later" means a licence plus either flipping visibility or splitting `plugin/` into its own repository, since clones currently carry `projects/` media.
 - One semver version for harness, catalogue and plugin. `vcr.json` pins `harness_version`; the CLI warns on a major mismatch (L1-05).
 
-### 6.8 Prior art
+### 6.9 Prior art
 
 - **HyperFrames**: same split, different human layer. Its agent layer is skills driving an npm CLI pinned to the plugin version through `npx`; runtime state lives outside the plugin in `~/.cache/hyperframes`. Its human layer is a desktop app where people also edit, and `history --who` reconciles agent and human edits. VCR deliberately differs: the human layer writes only findings and approvals (ADR 0002), so there is nothing to reconcile.
 - **`ios-simulator-skill`**: dual manifests and dual marketplaces from one plugin directory.
@@ -209,14 +235,14 @@ Existing commands keep their behaviour. `catalog build` and `doctor --record` ar
 - AG-05: `vcr-review` loads findings summary first, addresses each with a re-render of the affected range and before/after evidence (L6 acceptance), and never resolves or approves.
 - AG-06: Hooks are optional. Removing them loses convenience, never a guarantee.
 
-### Dailies (DY)
+### Review layer (RS)
 
-- DY-01: Desk lists every workspace video with state, open-finding count and latest thumbnail.
-- DY-02: Reel shows player, scene strip, contact sheet and a scrubber with composition and scene-local frames. A note pinned from a frame records video, render, scene and composition frame without typing them (L6-01).
-- DY-03: Compare shows two renders at the same composition frame and each finding's before/after pair, degrading to retained evidence when full frames are gone (L6-04).
-- DY-04: Decide writes an approval or a change request through a human-only channel.
-- DY-05: The server binds loopback only, requires the session token, checks Origin on writes, refreshes on manifest change and exits after 30 minutes idle.
-- DY-06: `vcr dailies build` produces a self-contained read-only bundle. Dailies works with no agent running.
+- RS-01: Videos lists every workspace video with state, open-finding count, disk usage and latest thumbnail.
+- RS-02: Render shows player, scene strip, contact sheet and a scrubber with composition and scene-local frames. A note pinned from a frame records video, render, scene and composition frame without typing them (L6-01).
+- RS-03: Compare shows two renders at the same composition frame and each finding's before/after pair, degrading to retained evidence when full frames are gone (L6-04).
+- RS-04: Decide writes an approval or a change request through a human-only channel.
+- RS-05: The server binds loopback only, requires the session token, checks Origin on writes, refreshes on manifest change and exits after 30 minutes idle.
+- RS-06: `vcr review build` produces a self-contained read-only bundle. The review layer works with no agent running.
 
 ### Review contract (RV)
 
@@ -227,9 +253,18 @@ Existing commands keep their behaviour. `catalog build` and `doctor --record` ar
 - RV-05: Writes are atomic and idempotent.
 - RV-06: `review/REVIEW.md` is generated from findings and approvals and is never hand-edited.
 
+### Storage (ST)
+
+- ST-01: Every file VCR writes belongs to one of the five storage classes in §6.5. A test fails if a command writes outside them.
+- ST-02: `vcr storage` reports usage by root, class, video and render, in `--json` and paginated, and finishes in under two seconds on a workspace of 50 renders.
+- ST-03: Clearing is plan-then-apply: the planned deletions and byte total are shown before anything is removed, in the CLI and in the Storage view alike.
+- ST-04: Clearing never removes source, findings, approvals, `brief.md`, manifests or committed evidence. Tests assert this against a fixture workspace.
+- ST-05: Evidence pruning keeps the latest, approved and finding-cited revisions, and is CLI-only.
+- ST-06: Budgets warn in `vcr status`, `vcr validate` and the Storage view; nothing is deleted automatically.
+
 ### Share (SH)
 
-- SH-01: Sharing happens only through an explicit `vcr dailies share` command, never automatically.
+- SH-01: Sharing happens only through an explicit `vcr review share` command, never automatically.
 - SH-02: Share publishes a transcoded review proxy and the static bundle, kept under the artifact media limit; full renders and source assets are never uploaded.
 - SH-03: Comments from a share are imported as findings with `source: share`.
 - SH-04: Approvals are never accepted through share.
@@ -249,12 +284,12 @@ Existing commands keep their behaviour. `catalog build` and `doctor --record` ar
 | P0 Roots | Three-root resolution, doctor to `VCR_HOME`, tests | 2 | `vcr tools info gsap` and `vcr doctor` work from a scratch directory against a read-only harness copy |
 | S1 Spike | Install a throwaway two-file plugin into both hosts. Measure: invocation candidates (a/b/c in §6.2), surviving an update, writing `~/.vcr` and binding loopback inside Codex's sandbox, launching Chromium from each host. Report in `specifications/spikes/` | 1 | A written decision on invocation and sandbox fallbacks; opens P1 |
 | P1 Plugin | `vcr plugin build`, bundled CLI, router skill, path-fixed toolkit skills, both manifests and marketplaces, `vcr setup capture`, `vcr example create` | 3 | Fresh install on both hosts in an empty directory; `three-capture` scaffolds and renders from the installed plugin |
-| P2 Contract | Render manifest subset, findings, approvals, `status`, `findings`, TTY approve, `vcr-brief`; migrate Grapla's first cut | 2 | Grapla has finding records; validate passes; the agent cannot approve |
-| P3 Dailies | Desk, Reel, note form, Decide, server, auto-refresh | 3 | J3 and J6 end to end on Grapla |
+| P2 Contract | Render manifest subset, findings, approvals, `status`, `findings`, TTY approve, `vcr-brief`, `vcr storage` (report, clear, prune, budgets) | 2 | A fixture video has finding records; validate passes; the agent cannot approve; ST-04 tests pass |
+| P3 Review pages | Videos, Render, note form, Decide, Storage, server, auto-refresh | 3 | J3, J6 and J9 end to end on a fixture video rendered through the installed plugin |
 | P4 Loop | `vcr-review`, session-start hooks, evidence pairs, Compare | 2 | J4 and J5 on both hosts with no human restating context |
 | P5 Share | Static bundle, review proxy, artifact publish through the skill, comment import | 2 | J7 from a phone; the proxy stays under the limit |
 
-P0 and P1 are Layer 0 packaging and can start now. P2 pulls the render-manifest subset forward from L1, coordinated with the L1 child specification. P3 and P4 deliver an early slice of L6 ahead of M3, because the first production showed the need. Moving Grapla's video into the Grapla repository after P1 is the L1-01 standalone proof.
+P0 and P1 are Layer 0 packaging and can start now. P2 pulls the render-manifest subset forward from L1, coordinated with the L1 child specification. P3 and P4 deliver an early slice of L6 ahead of M3, because the first production showed the need. The first production started in a product repository after P1 is the L1-01 standalone proof. The Grapla proof of concept is removed from this repository in its own PR and does not migrate.
 
 ## 9. Host parity
 
@@ -274,6 +309,8 @@ Same skills, same CLI, same files. Only packaging differs.
 
 ## 10. Success measures
 
+- Disk usage for any video is visible in one view or one command, and can be reclaimed in one action.
+
 - Install to first fixture render in 10 minutes or less on a clean machine, excluding the Chromium download.
 - Tool choice plus operating instructions fit in about 6k tokens (index, one card, one guide).
 - 100% of findings carry a scene and composition frame. No finding is re-explained in chat.
@@ -292,15 +329,16 @@ Same skills, same CLI, same files. Only packaging differs.
 | Human and agent write at the same time | One file per record, atomic rename, idempotent posts |
 | Trigger collision with HyperFrames and other video skills | Router scoped to VCR, `vcr-` prefixes, a routing test (AG-01) |
 | Plugin version drifts from the workspace | `harness_version` pin plus a CLI warning (PL-06) |
-| Share leaks private assets (Grapla screenshots) | Explicit per-share command, proxy only, recorded, never automatic (SH-01 to SH-05) |
-| Dailies creeps toward an editor | Writes limited to findings and approvals; ADR 0002's revisit triggers apply |
+| Share leaks private assets (product screenshots) | Explicit per-share command, proxy only, recorded, never automatic (SH-01 to SH-05) |
+| Clearing deletes something that cannot be regenerated | Five named classes; plan-then-apply; evidence prune is CLI-only and keeps latest, approved and cited revisions; ST-04 tests |
+| Review layer creeps toward an editor | Writes limited to findings and approvals; ADR 0002's revisit triggers apply |
 | Render manifest churns before L1 lands | Minimal, versioned subset, owned by the L1 child specification |
 
-## 12. Open questions
+## 12. Decisions on open questions
 
-Each with a recommendation.
+Settled with the owner on 28 October 2026.
 
-1. Grapla's video: move it to the Grapla repository after P1, or keep it here? Recommend moving it, as the L1-01 proof.
-2. Region boxes on notes in v1? Recommend optional.
-3. Naming: "Dailies" for the human layer, "Desk" and "Reel" for its views? Recommend keeping them.
-4. A per-video size cap on committed `review/renders/` evidence? Recommend 2 MB per video.
+1. The Grapla proof of concept is deleted, not migrated. The L1-01 proof is the first new production in a product repository.
+2. Region boxes on notes are optional in v1. The field is in the schema from day one.
+3. Plain names: the review layer, with Videos, Render, Compare, Decide and Storage views. No "Dailies".
+4. No fixed evidence cap. Storage is a first-class feature instead (§6.5, ST): sizes always visible, clearing in CLI and UI, budgets that warn.

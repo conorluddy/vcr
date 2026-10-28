@@ -13,7 +13,7 @@ Read `specifications/vcr-prd.md` for product intent and release gates. This repo
 - Load only the relevant toolkit or workflow guidance for a task. Do not copy the entire catalogue into a prompt.
 - Edit tool records, never the generated `catalog/tools.json` or `catalog/INDEX.md`; run `pnpm vcr catalog build` and commit the result. `pnpm validate` fails on a stale index, a dangling reference or a budget overrun.
 - Decisions live in `specifications/decisions/` as numbered ADRs. Read 0001 (in-house engine) and 0002 (headless, no editor) before proposing architecture.
-- Plugin distribution (Claude Code and Codex) and the Dailies review layer are specified in `specifications/vcr-plugin-prd.md` and ADR 0003; read them before touching root resolution, packaging or review files.
+- Plugin distribution (Claude Code and Codex) and the human review layer are specified in `specifications/vcr-plugin-prd.md` and ADR 0003; read them before touching root resolution, packaging, review files or storage.
 - When agents work in git worktrees, merge their branches into one integration branch, rebuild the index once, and never `git add -A` from the main checkout while worktrees exist under `.claude/worktrees/`.
 
 ## How to navigate the catalogue
