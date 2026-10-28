@@ -1,7 +1,7 @@
 # 0003. Distribute as a plugin with a bundled CLI and three roots
 
 Date: 2026-10-28
-Status: proposed
+Status: accepted
 
 ## Context
 

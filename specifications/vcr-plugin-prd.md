@@ -2,7 +2,7 @@
 
 Version: 0.1 • Date: 28 October 2026 • Owner: Conor Luddy
 
-Status: Draft. Child of `vcr-prd.md`; requirement IDs there (L0-03, L1-05, L6-01 and so on) are quoted, not restated. Architecture is recorded in ADR 0003 (`decisions/0003-plugin-distribution-and-three-roots.md`). Refines parent §7 (distribution) and §13 (skills), and pulls an early slice of Layer 6 forward.
+Status: Active. P0 (three roots), S1 (spike) and P1 (installable plugin) are done; P2 is next. Child of `vcr-prd.md`; requirement IDs there (L0-03, L1-05, L6-01 and so on) are quoted, not restated. Architecture is recorded in ADR 0003 (`decisions/0003-plugin-distribution-and-three-roots.md`). Refines parent §7 (distribution) and §13 (skills), and pulls an early slice of Layer 6 forward.
 
 ## 1. Product definition
 
