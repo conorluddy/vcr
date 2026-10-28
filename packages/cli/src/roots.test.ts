@@ -73,4 +73,14 @@ describe("resolveRoots", () => {
     const userRoots = resolveOrThrow({ cwd: product, env: { VCR_HARNESS: harness } });
     expect(requireDevMode(userRoots, "catalog build")).toMatchObject({ ok: false, error: { code: "MAINTAINER_ONLY" } });
   });
+
+  test("inside the Codex sandbox an unwritable ~/.vcr falls back to <workspace>/.vcr", () => {
+    const { harness, product } = createScratchTree();
+    writeFileSync(join(product, "vcr.json"), "{}");
+    const env = { VCR_HARNESS: harness, CODEX_SANDBOX: "seatbelt" };
+    const blocked = resolveOrThrow({ cwd: product, env, canWrite: () => false });
+    expect(blocked).toMatchObject({ machine: join(product, ".vcr"), machineSource: "workspace-codex-fallback", isCodexSandbox: true });
+    expect(resolveOrThrow({ cwd: product, env, canWrite: () => true }).machineSource).toBe("default");
+    expect(resolveOrThrow({ cwd: product, env: { ...env, VCR_HOME: join(product, "home") }, canWrite: () => false }).machineSource).toBe("VCR_HOME");
+  });
 });

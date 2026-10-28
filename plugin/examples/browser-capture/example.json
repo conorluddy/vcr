@@ -5,6 +5,15 @@
   "status": "validated",
   "tools": ["gsap", "playwright", "ffmpeg-ffprobe", "imagemagick"],
   "run": "./run.sh",
-  "validated_on": { "date": "2026-10-26", "hostname": "Conors-MacBook-Pro-2.local" },
+  "capture": {
+    "scene": "scene.html",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-10-26",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  },
   "report": "specifications/spikes/browser-capture.md"
 }

@@ -6,7 +6,8 @@ import { createHash } from "node:crypto";
 import { mkdirSync, readdirSync, readFile, unlinkSync, writeFileSync } from "node:fs";
 import { createServer, type Server } from "node:http";
 import { dirname, extname, join, normalize, relative } from "node:path";
-import { chromium, type Browser, type CDPSession, type Page } from "playwright";
+import { createRequire } from "node:module";
+import type { Browser, CDPSession, Page } from "playwright";
 
 // === TYPES ===
 
@@ -41,6 +42,10 @@ export interface CaptureOptions {
    * beginframe drives Chromium's frame production explicitly and is faster, but hangs on any page with a canvas.
    */
   captureMode?: CaptureMode | undefined;
+  /** Directory whose `node_modules` holds Playwright (the installed plugin's runtime). Omitted means normal module resolution. */
+  playwrightRuntimeDirectory?: string | undefined;
+  /** Extra Chromium flags, e.g. `--single-process` inside the Codex sandbox. */
+  chromiumArgs?: string[] | undefined;
 }
 
 export type CaptureMode = "beginframe" | "screenshot";
@@ -83,9 +88,10 @@ export async function captureFrames(options: CaptureOptions): Promise<CaptureRep
   if (!sceneUrl) throw new Error("captureFrames needs sceneUrl or sceneFile");
   log("capture.scene", { url: sceneUrl });
   const captureMode: CaptureMode = options.captureMode ?? (process.env["VCR_CAPTURE_MODE"] as CaptureMode | undefined) ?? "screenshot";
-  const extraArgs = (process.env["VCR_CHROMIUM_EXTRA_ARGS"] ?? "").split(" ").filter(Boolean);
+  const extraArgs = [...(options.chromiumArgs ?? []), ...(process.env["VCR_CHROMIUM_EXTRA_ARGS"] ?? "").split(" ").filter(Boolean)];
   let browser: Browser | undefined;
   try {
+    const { chromium } = await loadPlaywright(options.playwrightRuntimeDirectory);
     browser = await chromium.launch({ args: [...DETERMINISTIC_CHROMIUM_ARGS, ...(captureMode === "beginframe" ? BEGIN_FRAME_CHROMIUM_ARGS : []), ...extraArgs] });
     log("capture.mode", { captureMode });
     const page = await browser.newPage({ viewport: { width: options.width, height: options.height } });
@@ -208,6 +214,12 @@ const MEDIA_TYPES: Record<string, string> = {
   ".woff2": "font/woff2",
   ".ttf": "font/ttf",
 };
+
+/** Loaded lazily so a bundled CLI starts without Playwright installed; only capture needs it. */
+async function loadPlaywright(runtimeDirectory: string | undefined): Promise<typeof import("playwright")> {
+  if (runtimeDirectory) return createRequire(join(runtimeDirectory, "/"))("playwright") as typeof import("playwright");
+  return import("playwright");
+}
 
 /** Loopback static server for one scene directory. Symlinked node_modules resolve because readFile follows links. */
 function serveDirectory(root: string): Promise<{ server: Server; url: string }> {

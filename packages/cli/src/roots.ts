@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, mkdirSync, unlinkSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -14,6 +14,10 @@ export interface Roots {
   workspace: string | null;
   /** Machine state shared by every host: environment record, capture runtime. */
   machine: string;
+  /** Why `machine` is where it is. The Codex fallback applies when its sandbox cannot write `~/.vcr` (spike S1). */
+  machineSource: "VCR_HOME" | "default" | "workspace-codex-fallback";
+  /** Running inside the Codex seatbelt sandbox: capture needs `--single-process` and temp files inside `machine`. */
+  isCodexSandbox: boolean;
   /** Harness and workspace are the same directory, so maintainer commands may write into the harness. */
   isDevMode: boolean;
 }
@@ -24,6 +28,8 @@ export interface RootInputs {
   workspaceFlag?: string | undefined;
   /** Where the CLI itself lives; the harness is found by walking up from here. */
   cliDirectory?: string | undefined;
+  /** Injectable for tests; the default creates the directory and writes and removes a probe file. */
+  canWrite?: ((directory: string) => boolean) | undefined;
 }
 
 export const WORKSPACE_MARKER = "vcr.json";
@@ -31,13 +37,14 @@ export const WORKSPACE_MARKER = "vcr.json";
 // === PUBLIC API ===
 
 /** Resolves harness, workspace and machine roots in the documented order. Only a missing harness is an error. */
-export function resolveRoots({ cwd, env, workspaceFlag, cliDirectory = dirname(fileURLToPath(import.meta.url)) }: RootInputs): Result<Roots> {
+export function resolveRoots({ cwd, env, workspaceFlag, cliDirectory = dirname(fileURLToPath(import.meta.url)), canWrite = isWritableDirectory }: RootInputs): Result<Roots> {
   const harness = resolveHarness(env["VCR_HARNESS"], cliDirectory);
   if (!harness.ok) return harness;
   const explicitWorkspace = workspaceFlag ?? env["VCR_WORKSPACE"];
   const workspace = explicitWorkspace ? resolve(cwd, explicitWorkspace) : findAncestorWithMarker(cwd);
-  const machine = resolve(env["VCR_HOME"] ?? join(homedir(), ".vcr"));
-  return ok({ harness: harness.value, workspace, machine, isDevMode: workspace === harness.value });
+  const isCodexSandbox = Boolean(env["CODEX_SANDBOX"]);
+  const machine = resolveMachine(env["VCR_HOME"], workspace, isCodexSandbox, canWrite);
+  return ok({ harness: harness.value, workspace, ...machine, isCodexSandbox, isDevMode: workspace === harness.value });
 }
 
 /** Narrows to a workspace that exists, or explains how to create one. */
@@ -68,6 +75,25 @@ function resolveHarness(explicitHarness: string | undefined, cliDirectory: strin
     current = parent;
   }
   return ok(current);
+}
+
+function resolveMachine(explicitHome: string | undefined, workspace: string | null, isCodexSandbox: boolean, canWrite: (directory: string) => boolean): Pick<Roots, "machine" | "machineSource"> {
+  if (explicitHome) return { machine: resolve(explicitHome), machineSource: "VCR_HOME" };
+  const defaultHome = join(homedir(), ".vcr");
+  if (isCodexSandbox && workspace && !canWrite(defaultHome)) return { machine: join(workspace, ".vcr"), machineSource: "workspace-codex-fallback" };
+  return { machine: defaultHome, machineSource: "default" };
+}
+
+function isWritableDirectory(directory: string): boolean {
+  try {
+    mkdirSync(directory, { recursive: true });
+    const probe = join(directory, `.write-probe-${process.pid}`);
+    writeFileSync(probe, "");
+    unlinkSync(probe);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 function findAncestorWithMarker(startDirectory: string): string | null {
