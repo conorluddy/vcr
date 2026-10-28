@@ -40,15 +40,23 @@ Roots (`specifications/vcr-plugin-prd.md` §6.1): the harness is this repository
 
 ## Install as a plugin
 
-From this repository's marketplace (private for now; the marketplaces live at `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`):
+Both hosts install straight from GitHub. The repository is private, so your git credentials need access to `conorluddy/vcr`.
 
 ```text
-claude plugin marketplace add <path-or-git-url-of-this-repo>
+# Claude Code
+claude plugin marketplace add conorluddy/vcr
 claude plugin install vcr@vcr
 
-codex plugin marketplace add <path-or-git-url-of-this-repo>
+# Codex
+codex plugin marketplace add conorluddy/vcr
 codex plugin add vcr@vcr
 ```
+
+Update with `claude plugin marketplace update vcr && claude plugin update vcr@vcr` (then restart Claude Code), or `codex plugin marketplace upgrade vcr && codex plugin add vcr@vcr`. Remove with `claude plugin uninstall vcr@vcr` or `codex plugin remove vcr@vcr`. For local development, pass this checkout's path instead of `conorluddy/vcr`; Claude Code then runs the plugin straight from `plugin/`, so run `pnpm vcr plugin build` after changes.
+
+The plugin is `plugin/` (built by `pnpm vcr plugin build`, committed so installs need no build step); the marketplaces that point at it are `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`. It adds 10 skills (about 1k tokens per Claude Code session) and no hooks, MCP servers or background processes.
+
+Releasing: hosts only pick up a change when the version changes. Bump `version` in `packages/cli/package.json` (semver; it flows into both manifests), run `pnpm vcr plugin build`, and merge. Unbumped changes on `main` reach nobody who already has the plugin installed.
 
 Then, in any project, ask the agent to set up VCR (the `init` skill, `/vcr:init` in Claude Code). It writes `vcr.json`, records the machine's tools in `~/.vcr`, and offers to install the capture runtime (Playwright and about 150 MB of Chromium, shared across projects). Requires Node 22 or newer; nothing else is installed until you agree.
 
