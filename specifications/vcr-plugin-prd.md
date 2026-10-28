@@ -326,7 +326,7 @@ Same skills, same CLI, same files. Only packaging differs.
 
 | Risk | Response |
 | --- | --- |
-| Codex sandbox blocks loopback binding, writes to `~/.vcr` or launching Chromium | Confirmed by S1. Workspace-local `VCR_HOME`, `--single-process` Chromium, and a documented `writable_roots` / `network_access` setup. P1 must confirm capture determinism under `--single-process` |
+| Codex sandbox blocks loopback binding, writes to `~/.vcr` or launching Chromium | Confirmed by S1. Workspace-local `VCR_HOME`, `--single-process` Chromium, and a documented `writable_roots` / `network_access` setup. Capture is byte-identical under `--single-process` on all three browser fixtures (S1 addendum); capture also needs `network_access` for its scene server |
 | CLI invocation breaks on plugin update | Resolved by S1: invocation is relative to the skill file. MCP is no longer needed as a fallback |
 | No plugin hooks on Codex | Hooks are Claude-only conveniences; every rule also lives in the CLI |
 | CSRF against the local server | Per-session token, Origin check, loopback only, idle exit |
