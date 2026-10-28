@@ -87,13 +87,13 @@ Replaces `findRepositoryRoot()`.
 
 **Manifests.** A Claude Code manifest and a Codex manifest, both generated from one source by `vcr plugin build` (§6.7).
 
-**Skills** (Agent Skills format; identical files for both hosts):
+**Skills** (Agent Skills format; identical files for both hosts). Workflow skills carry no `vcr-` prefix because the host's plugin namespace already scopes them: `init`, `brief` and `review` appear as `/vcr:init`, `/vcr:brief` and `/vcr:review` in Claude Code.
 
 - `vcr` (router): the four-tier navigation from `AGENTS.md` and a pointer to `INDEX.md`. Its description triggers on VCR context (a `vcr.json` workspace, or the user naming VCR), so it does not claim every "make a video" request from HyperFrames, which is installed on the same machine.
 - Eight toolkit skills (`vcr-gsap` and the rest), unchanged apart from path fixes. Repository-relative paths such as `examples/three-capture/run.sh` become `vcr tools examples <id>` calls.
-- `init` (new; `/vcr:init` in Claude Code): set up a workspace. Reports and stops if one already exists (`vcr status --json`); otherwise picks the git root (asking only when ambiguous), runs `vcr workspace init` and `vcr doctor`, and offers `vcr setup capture` with the download size when the capture runtime is missing. Ends with the three roots and an offer to hand off to `vcr-brief`. Agent- and human-invocable: "start a video here" outside a workspace may trigger it.
-- `vcr-brief` (new): interview the human, then write `brief.md` (objective, audience and placement, content, constraints, review notes), shaped on the Grapla proof-of-concept brief.
-- `vcr-review` (new): read open findings (summary first), fix the source, re-render the affected range, attach before/after evidence, mark the finding `addressed`, then open the review pages and request review.
+- `init` (new; `/vcr:init` in Claude Code): set up a workspace. Reports and stops if one already exists (`vcr status --json`); otherwise picks the git root (asking only when ambiguous), runs `vcr workspace init` and `vcr doctor`, and offers `vcr setup capture` with the download size when the capture runtime is missing. Ends with the three roots and an offer to hand off to `brief`. Agent- and human-invocable: "start a video here" outside a workspace may trigger it.
+- `brief` (new; `/vcr:brief`): interview the human, then write `brief.md` (objective, audience and placement, content, constraints, review notes), shaped on the Grapla proof-of-concept brief.
+- `review` (new; `/vcr:review`): read open findings (summary first), fix the source, re-render the affected range, attach before/after evidence, mark the finding `addressed`, then open the review pages and request review.
 
 **CLI.** A bundled single file, `cli/vcr.mjs`, committed inside the plugin. It runs on system Node 22 or newer with no install step.
 
@@ -169,10 +169,10 @@ Every byte VCR writes falls into one of five classes. Sizes are reported per cla
 
 ### 6.6 The loop
 
-1. The human asks for a video. `vcr-brief` interviews them and writes `brief.md`; the human confirms it.
+1. The human asks for a video. `brief` interviews them and writes `brief.md`; the human confirms it.
 2. The agent authors and renders. The render manifest and retained revision are written, the state becomes `in_review`, and `vcr review open` runs.
 3. The human leaves notes and requests changes.
-4. Next turn or session, the session-start hook (or the skill calling `vcr status`) surfaces open findings. `vcr-review` fixes them, re-renders the affected ranges, attaches before/after evidence and marks each `addressed`.
+4. Next turn or session, the session-start hook (or the skill calling `vcr status`) surfaces open findings. `review` fixes them, re-renders the affected ranges, attaches before/after evidence and marks each `addressed`.
 5. The human compares, resolves and approves. The approval names the manifest hash; a reference record may then move to `approved` (L7).
 
 ### 6.7 CLI additions
@@ -232,8 +232,8 @@ Existing commands keep their behaviour. `catalog build` and `doctor --record` ar
 - AG-01: The router skill triggers on VCR context only. A routing test confirms that a generic "make a video" prompt outside a VCR workspace does not select it.
 - AG-02: Skills are host-neutral: identical files on both hosts, agentskills.io fields only, no host-specific paths in skill text beyond the single invocation settled by S1.
 - AG-03: Toolkit skills reference examples through `vcr tools examples` and `vcr example create`, never through repository-relative paths.
-- AG-04: `vcr-brief` produces a `brief.md` with the five sections in §6.2 and asks for the human's confirmation before rendering.
-- AG-05: `vcr-review` loads findings summary first, addresses each with a re-render of the affected range and before/after evidence (L6 acceptance), and never resolves or approves.
+- AG-04: `brief` produces a `brief.md` with the five sections in §6.2 and asks for the human's confirmation before rendering.
+- AG-05: `review` loads findings summary first, addresses each with a re-render of the affected range and before/after evidence (L6 acceptance), and never resolves or approves.
 - AG-06: Hooks are optional. Removing them loses convenience, never a guarantee.
 - AG-07: `init` is idempotent, writes nothing beyond RT-05 and the machine-root doctor record, and never downloads the capture runtime without showing its size and asking (L0-03). Declining leaves a working workspace.
 
@@ -286,9 +286,9 @@ Existing commands keep their behaviour. `catalog build` and `doctor --record` ar
 | P0 Roots | Three-root resolution, doctor to `VCR_HOME`, tests | 2 | `vcr tools info gsap` and `vcr doctor` work from a scratch directory against a read-only harness copy |
 | S1 Spike | Install a throwaway two-file plugin into both hosts. Measure: invocation candidates (a/b/c in §6.2), surviving an update, writing `~/.vcr` and binding loopback inside Codex's sandbox, launching Chromium from each host. Report in `specifications/spikes/` | 1 | A written decision on invocation and sandbox fallbacks; opens P1 |
 | P1 Plugin | `vcr plugin build`, bundled CLI, router skill, `init` skill, path-fixed toolkit skills, both manifests and marketplaces, `vcr setup capture`, `vcr example create` | 3 | Fresh install on both hosts in an empty directory; `/vcr:init` sets up the workspace; `three-capture` scaffolds and renders from the installed plugin |
-| P2 Contract | Render manifest subset, findings, approvals, `status`, `findings`, TTY approve, `vcr-brief`, `vcr storage` (report, clear, prune, budgets) | 2 | A fixture video has finding records; validate passes; the agent cannot approve; ST-04 tests pass |
+| P2 Contract | Render manifest subset, findings, approvals, `status`, `findings`, TTY approve, `brief`, `vcr storage` (report, clear, prune, budgets) | 2 | A fixture video has finding records; validate passes; the agent cannot approve; ST-04 tests pass |
 | P3 Review pages | Videos, Render, note form, Decide, Storage, server, auto-refresh | 3 | J3, J6 and J9 end to end on a fixture video rendered through the installed plugin |
-| P4 Loop | `vcr-review`, session-start hooks, evidence pairs, Compare | 2 | J4 and J5 on both hosts with no human restating context |
+| P4 Loop | `review`, session-start hooks, evidence pairs, Compare | 2 | J4 and J5 on both hosts with no human restating context |
 | P5 Share | Static bundle, review proxy, artifact publish through the skill, comment import | 2 | J7 from a phone; the proxy stays under the limit |
 
 P0 and P1 are Layer 0 packaging and can start now. P2 pulls the render-manifest subset forward from L1, coordinated with the L1 child specification. P3 and P4 deliver an early slice of L6 ahead of M3, because the first production showed the need. The first production started in a product repository after P1 is the L1-01 standalone proof. The Grapla proof of concept was removed in #23 and does not migrate.
@@ -329,7 +329,7 @@ Same skills, same CLI, same files. Only packaging differs.
 | Codex hooks need trust and rule out its public directory | Hooks optional; every rule also lives in the CLI |
 | CSRF against the local server | Per-session token, Origin check, loopback only, idle exit |
 | Human and agent write at the same time | One file per record, atomic rename, idempotent posts |
-| Trigger collision with HyperFrames and other video skills | Router scoped to VCR, `vcr-` prefixes, a routing test (AG-01) |
+| Trigger collision with HyperFrames and other video skills | Router scoped to VCR, skills namespaced by the plugin (`/vcr:brief`), a routing test (AG-01) |
 | Plugin version drifts from the workspace | `harness_version` pin plus a CLI warning (PL-06) |
 | Share leaks private assets (product screenshots) | Explicit per-share command, proxy only, recorded, never automatic (SH-01 to SH-05) |
 | Clearing deletes something that cannot be regenerated | Five named classes; plan-then-apply; evidence prune is CLI-only and keeps latest, approved and cited revisions; ST-04 tests |
