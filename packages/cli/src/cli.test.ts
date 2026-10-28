@@ -1,11 +1,13 @@
 import { execFile } from "node:child_process";
-import { join } from "node:path";
+import { chmodSync, cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, statSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { basename, join } from "node:path";
 import { promisify } from "node:util";
-import { describe, expect, test } from "vitest";
-import { findRepositoryRoot } from "./repository.js";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
+import { resolveRoots } from "./roots.js";
 
 const execFileAsync = promisify(execFile);
-const root = findRepositoryRoot();
+const root = harnessRoot();
 const runCli = (...args: string[]) => execFileAsync(process.execPath, ["--import", "tsx", join(root, "packages/cli/src/index.ts"), ...args], { cwd: root });
 
 describe("vcr CLI", () => {
@@ -41,3 +43,73 @@ describe("vcr CLI", () => {
     await expect(runCli("frobnicate")).rejects.toMatchObject({ code: 2 });
   });
 });
+
+describe("vcr outside the harness repository (P0 exit evidence)", () => {
+  let harnessCopy: string;
+  let scratch: string;
+  let machineHome: string;
+  const tsxLoader = import.meta.resolve("tsx");
+  const runFromScratch = (...args: string[]) =>
+    execFileAsync(process.execPath, ["--import", tsxLoader, join(root, "packages/cli/src/index.ts"), ...args], {
+      cwd: scratch,
+      env: { ...process.env, VCR_HARNESS: harnessCopy, VCR_HOME: machineHome, VCR_WORKSPACE: "" },
+    });
+
+  beforeAll(() => {
+    const base = mkdtempSync(join(tmpdir(), "vcr-scratch-"));
+    harnessCopy = join(base, "harness");
+    scratch = join(base, "product");
+    machineHome = join(base, "home");
+    const skipGenerated = (source: string) => !["node_modules", "output", ".cache"].includes(basename(source));
+    for (const directory of ["catalog", "skills", "examples"]) cpSync(join(root, directory), join(harnessCopy, directory), { recursive: true, filter: skipGenerated });
+    mkdirSync(scratch);
+    setWritable(harnessCopy, false);
+  });
+
+  afterAll(() => setWritable(harnessCopy, true));
+
+  test("tools info works against a read-only harness", async () => {
+    const { stdout } = await runFromScratch("tools", "info", "gsap", "--json");
+    expect(JSON.parse(stdout).id).toBe("gsap");
+  });
+
+  test("status reports user mode and no workspace before init", async () => {
+    const { stdout } = await runFromScratch("status", "--json");
+    expect(JSON.parse(stdout)).toMatchObject({ harness: harnessCopy, workspace: null, machine: machineHome, isDevMode: false });
+  });
+
+  test("validate without a workspace fails with WORKSPACE_NOT_FOUND", async () => {
+    await expect(runFromScratch("validate", "--json")).rejects.toMatchObject({ code: 1, stdout: expect.stringContaining("WORKSPACE_NOT_FOUND") });
+  });
+
+  test("workspace init then validate succeeds in the scratch directory", async () => {
+    await runFromScratch("workspace", "init");
+    const { stdout } = await runFromScratch("validate", "--json");
+    expect(JSON.parse(stdout).diagnostics).toEqual([]);
+  });
+
+  test("doctor writes to the machine root, and --record is maintainer-only", async () => {
+    await runFromScratch("doctor", "--json");
+    expect(readdirSync(join(machineHome, "environment"))).toHaveLength(1);
+    await expect(runFromScratch("doctor", "--record", "--json")).rejects.toMatchObject({ stdout: expect.stringContaining("MAINTAINER_ONLY") });
+  }, 30_000);
+
+  test("catalog build is maintainer-only", async () => {
+    await expect(runFromScratch("catalog", "build", "--json")).rejects.toMatchObject({ stdout: expect.stringContaining("MAINTAINER_ONLY") });
+  });
+});
+
+/** Recursively sets or clears write permission so the harness copy is genuinely read-only during the run. */
+function setWritable(path: string, isWritable: boolean): void {
+  if (!existsSync(path)) return;
+  const isDirectory = statSync(path).isDirectory();
+  if (isDirectory && isWritable) chmodSync(path, 0o755);
+  if (isDirectory) for (const entry of readdirSync(path)) setWritable(join(path, entry), isWritable);
+  chmodSync(path, isWritable ? (isDirectory ? 0o755 : 0o644) : (isDirectory ? 0o555 : 0o444));
+}
+
+function harnessRoot(): string {
+  const roots = resolveRoots({ cwd: process.cwd(), env: {} });
+  if (!roots.ok) throw new Error(roots.error.message);
+  return roots.value.harness;
+}

@@ -30,7 +30,8 @@ Never load more than one guide at a time unless comparing two tools. A card or g
 ## Repository map
 
 - `catalog/`: one record per tool under `tools/`, retired records under `retired/`, generated `tools.json` and `INDEX.md`, vocabulary, schemas, `ASSESSMENT-BRIEF.md`.
-- `environment/`: per-machine tool availability from `vcr doctor`. The only place installation is a fact.
+- `environment/`: the maintainer's per-machine tool availability from `vcr doctor --record` (`pnpm doctor`). The only place installation is a fact for validation evidence; other machines record to `~/.vcr/environment/`.
+- `vcr.json`: marks this repository as a VCR workspace, so harness and workspace resolve to the same root (dev mode). See `vcr status`.
 - `packages/`: `cli` (the `vcr` command), `timeline` (time types), `capture` (browser frame capture).
 - `skills/`: toolkit and workflow operating guides; `.claude/skills` links here.
 - `examples/`: validated fixtures with `example.json`, `run.sh` and `expected/`.

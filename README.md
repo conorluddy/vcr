@@ -22,12 +22,16 @@ pnpm validate                      # schemas, capability vocabulary, unknown-fie
 pnpm vcr tools list --tier core    # filter by --capability, --tier, --category; add --json
 pnpm vcr tools info ffmpeg-ffprobe [--full]
 pnpm vcr tools examples ffmpeg-ffprobe
-pnpm doctor                        # probes local tools, writes environment/<hostname>.json
+pnpm doctor                        # probes local tools, writes ~/.vcr/environment/ and (here) environment/<hostname>.json
+pnpm vcr status                    # harness, workspace and machine roots; dev mode inside this repository
+pnpm vcr workspace init            # make a directory a VCR workspace (vcr.json); idempotent
 pnpm vcr catalog build [--check]   # regenerate catalog/tools.json and catalog/INDEX.md from catalog/tools/*.json
 pnpm test && pnpm typecheck
 ```
 
 Every command logs one JSON line to stderr with `command`, `duration_ms` and `exit_code`. Exit codes: 0 ok, 1 failed, 2 usage.
+
+Roots (`specifications/vcr-plugin-prd.md` §6.1): the harness is this repository (or `VCR_HARNESS`) and is never written outside dev mode; the workspace is the nearest ancestor of cwd holding `vcr.json` (or `--workspace`, `VCR_WORKSPACE`); machine state lives in `VCR_HOME` (default `~/.vcr`). This repository has its own `vcr.json`, so here harness and workspace coincide and maintainer commands (`catalog build`, `doctor --record`) are allowed.
 
 ## Find a tool
 
@@ -53,7 +57,7 @@ Media is ignored by directory, not by extension, so brand assets and fixtures ca
 ## Repository map
 
 - `catalog/` — one record per tool under `tools/`, retired records under `retired/`, generated `tools.json` and `INDEX.md`, the capability vocabulary, JSON Schemas, and the assessment brief.
-- `environment/` — per-machine tool availability written by `vcr doctor`.
+- `environment/` — the maintainer's per-machine tool availability, written by `vcr doctor --record`. Users' records go to `~/.vcr/environment/`.
 - `packages/cli/` — the `vcr` command. `packages/timeline/` — time types. `packages/capture/` — browser frame-capture harness.
 - `skills/` — toolkit and workflow operating guides in Agent Skills format.
 - `examples/` — validated fixtures, each with `example.json`, `run.sh` and `expected/`.
