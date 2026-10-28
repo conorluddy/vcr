@@ -14,6 +14,7 @@
 
 - ADR 0001: in-house composition engine. ADR 0002: headless first, no editor. ADR 0003 (proposed): plugin distribution, bundled CLI, three roots.
 - Spike: browser capture (go for Layer 2; settle-then-screenshot for canvases, `beginFrame` for DOM-only).
+- Spike S1: plugin invocation (go for plugin P1. Skill-relative CLI path on both hosts; Codex needs a workspace-local `VCR_HOME` and `--single-process` Chromium; no plugin hooks on Codex).
 
 ## Decomposition
 
@@ -26,7 +27,7 @@
 | compositor | L3 / M4 | M3 | alpha and colour round-trip | not started |
 | advanced motion | L4 / M5 | M4 | deterministic simulation fixture | not started |
 | production delivery | L5 / M6 | M4 | FFmpeg intermediate and export strategy | not started |
-| plugin and review layer (`vcr-plugin-prd.md`) | L0 packaging, early L1 and L6 slices | — | S1 plugin invocation | draft |
+| plugin and review layer (`vcr-plugin-prd.md`) | L0 packaging, early L1 and L6 slices | — | S1 plugin invocation (passed) | draft; P0 done |
 | review loop | L6 / M7 | M3 | none | not started |
 | reference corpus | L7 / M8 | M2 | none | not started |
 
