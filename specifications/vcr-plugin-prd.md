@@ -22,7 +22,7 @@ Thesis: the plugin equips the editor and the review layer equips the reviewer. F
 
 - P1. VCR is unusable outside its own repository. `findRepositoryRoot()` (`packages/cli/src/repository.ts`) walks up to `catalog/`; `vcr doctor` writes into the repository; skills are found only through the `.claude/skills` symlink; Grapla's `render.ts` imports `@vcr/capture` through the pnpm workspace.
 - P2. Codex sees none of it.
-- P3. There is no human review surface. The Grapla proof of concept's `review/first-cut.md` (commit `6aa0f87`; the project is being removed) ends "awaiting Conor's notes" and records that "no workflow skill for briefing or review existed".
+- P3. There is no human review surface. The Grapla proof of concept's `review/first-cut.md` (commit `6aa0f87`; removed in #23) ends "awaiting Conor's notes" and records that "no workflow skill for briefing or review existed".
 - P4. Frame references are ambiguous. The brief's `product f0210` is scene-local (the product scene is 330 frames), but L6-01 requires composition frames. Notes travel through chat and lose their anchor.
 - P5. Nothing stops self-approval. L6 acceptance says "self-review does not automatically mean approved"; nothing enforces it.
 - P6. Videos eat disk fast. The Grapla proof of concept left 160 MB of ignored `output/` behind one 20-second, 30 fps video, and frame sequences, MP4s, proxies and Chromium are scattered across ignored directories that nothing reports or clears.
@@ -289,7 +289,7 @@ Existing commands keep their behaviour. `catalog build` and `doctor --record` ar
 | P4 Loop | `vcr-review`, session-start hooks, evidence pairs, Compare | 2 | J4 and J5 on both hosts with no human restating context |
 | P5 Share | Static bundle, review proxy, artifact publish through the skill, comment import | 2 | J7 from a phone; the proxy stays under the limit |
 
-P0 and P1 are Layer 0 packaging and can start now. P2 pulls the render-manifest subset forward from L1, coordinated with the L1 child specification. P3 and P4 deliver an early slice of L6 ahead of M3, because the first production showed the need. The first production started in a product repository after P1 is the L1-01 standalone proof. The Grapla proof of concept is removed from this repository in its own PR and does not migrate.
+P0 and P1 are Layer 0 packaging and can start now. P2 pulls the render-manifest subset forward from L1, coordinated with the L1 child specification. P3 and P4 deliver an early slice of L6 ahead of M3, because the first production showed the need. The first production started in a product repository after P1 is the L1-01 standalone proof. The Grapla proof of concept was removed in #23 and does not migrate.
 
 ## 9. Host parity
 
