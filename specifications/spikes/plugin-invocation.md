@@ -76,8 +76,26 @@ Chromium flag bisect inside `workspace-write`: `--single-process` alone is enoug
 
 ## Limitations
 
-- **Byte-identical capture under `--single-process` is unverified.** The browser-capture spike's determinism results were measured in normal multi-process mode, so P1 must re-run the fixtures' `expected/` comparisons in Codex mode before claiming parity.
+- ~~**Byte-identical capture under `--single-process` is unverified.**~~ Verified; see the addendum. The browser-capture spike's determinism results were measured in normal multi-process mode, so P1 must re-run the fixtures' `expected/` comparisons in Codex mode before claiming parity.
 - **A Codex run hung.** One `codex exec` under `workspace-write`, with an env-prefixed command, hung for more than 8 minutes without running the probe, probably waiting on approval review (`approvals_reviewer = "auto_review"`). Unattended Codex runs need commands that are allowed without escalation.
 - **Codex skill invocation was not tested by name.** The skill was loaded from a natural-language request. How a Codex user types a plugin skill name (the equivalent of `/vcr:init`) was not exercised.
 - **Remote marketplaces were not tested.** Only local-directory marketplaces were installed. Git-sourced Claude installs run from the cache, so the version-directory behaviour above applies to them.
 - **One machine, one version of each host.** Codex removed `plugin_hooks` at some point before 0.164.0; this may change again.
+
+## Addendum, same day: capture determinism under `--single-process`
+
+Each browser fixture was captured three ways:
+
+- normal multi-process
+- `VCR_CHROMIUM_EXTRA_ARGS=--single-process`
+- `--single-process` inside `codex sandbox` (`workspace-write` + `network_access`, `TMPDIR` in the workspace)
+
+Each run's 90 PNG frames were hashed, and the hashes compared.
+
+| Fixture | Normal | `--single-process` | Codex sandbox | Shuffled order matches sequential |
+| --- | --- | --- | --- | --- |
+| browser-capture (DOM/GSAP) | `845d0a909b5a5a3c` | same | same | yes, all three |
+| p5-capture (2D canvas) | `ccae37b821f28141` | same | same | yes, all three |
+| three-capture (WebGL) | `fdd4714902223fd5` | same | same | yes, all three |
+
+**Byte-identical in every mode.** `--single-process` is safe as the Codex capture mode, and the first limitation above is resolved. The scene server's loopback bind means capture under Codex needs `network_access`, the same as the review server.
