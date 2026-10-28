@@ -100,13 +100,13 @@ Replaces `findRepositoryRoot()`.
 - Committed because Claude Code installs plugins from git and runs no build scripts. `tokextract` broke for exactly this reason.
 - The capture runtime is bundled with `playwright` left external, so it resolves from `VCR_HOME/runtime` after `vcr setup capture` (closes L0-03).
 - No `bin/` directory: in Claude Code it blocks installs in claude.ai and Cowork, and Codex does not put it on PATH.
-- How skills invoke the CLI is settled by spike S1 (§8). Candidates:
-  - (a) Host-substituted root: Claude Code replaces `${CLAUDE_PLUGIN_ROOT}` in skill text; Codex documents no equivalent.
-  - (b) HyperFrames' rule: find the plugin root two levels up from the skill file.
-  - (c) A session-start hook that `ensure`s a `~/.vcr/bin/vcr` shim pointing at the current plugin version.
-- Requirement: one documented invocation that works on both hosts and survives plugin updates.
+- Invocation (settled by spike S1, `specifications/spikes/plugin-invocation.md`): the plugin root is two directories above the calling SKILL.md, and skills run `node <root>/cli/vcr.mjs …`. Both hosts give the model the current SKILL.md path every session, so this survives updates. Codex deletes the old version directory on update. `${CLAUDE_PLUGIN_ROOT}` works only on Claude Code, and a hook-written shim never runs on Codex.
+- Under Codex (`CODEX_SANDBOX` set), the CLI does three things, and `vcr status` reports them:
+  - defaults `VCR_HOME` to `<workspace>/.vcr` unless `~/.vcr` is writable;
+  - keeps temp files inside `VCR_HOME`;
+  - launches Chromium with `--single-process`, the only mode S1 found that runs inside the seatbelt sandbox.
 
-**Hooks.** Both hosts support a Claude-like hook schema. Codex hooks need the user's trust and make a plugin ineligible for its public directory.
+**Hooks.** Claude Code only: Codex 0.164 lists `plugin_hooks` as removed (S1). User-scope plugin hooks fire in every Claude session on the machine, so each hook must be silent and fast outside a VCR workspace.
 
 - Session start: run `vcr status --brief` (≤ 1 KB: videos awaiting review, open-finding counts, and one storage line when over budget).
 - Before a tool runs: deny edits under `review/approvals/` and under the harness root.
@@ -302,8 +302,10 @@ Same skills, same CLI, same files. Only packaging differs.
 | Skills | `skills/` | `skills/` through the manifest's `"skills": "./skills/"` | Identical files; agentskills.io fields only (name ≤ 64 chars, description ≤ 1024) |
 | Manifest | `.claude-plugin/plugin.json` | `.codex-plugin/plugin.json` (root `plugin.json` under Agent Plugins 1.0, later) | Both generated from one source |
 | Marketplace | `.claude-plugin/marketplace.json` | `.agents/plugins/marketplace.json` (Codex also reads Claude's) | Both at the repository root |
-| CLI invocation | `${CLAUDE_PLUGIN_ROOT}` substituted in skill text | No documented substitution | Spike S1; no `bin/` |
-| Hooks | `hooks/hooks.json` | Supported; needs user trust; rules out the public directory | Conveniences only; the CLI enforces the rules |
+| CLI invocation | `${CLAUDE_PLUGIN_ROOT}` substituted in skill text | No substitution; the skill listing carries the SKILL.md path | Plugin root two levels above SKILL.md on both (S1); no `bin/` |
+| Install location | Local marketplace: the source directory. Git: `cache/…/<version>`, old versions kept | `~/.codex/plugins/cache/<marketplace>/<plugin>/<version>`, old version deleted on update | Never hard-code a version path |
+| Sandbox | None by default | Seatbelt. `read-only` and `workspace-write` block `~/.vcr`, loopback and default Chromium | Workspace-local `VCR_HOME` fallback, `--single-process` Chromium, `network_access` for the review server (S1) |
+| Hooks | `hooks/hooks.json`; fire in every session | Not supported (`plugin_hooks` removed) | Claude-only conveniences; the CLI enforces the rules |
 | Persistent data | `CLAUDE_PLUGIN_DATA` | `PLUGIN_DATA` | Neither: `VCR_HOME` is shared across hosts, so one Chromium |
 | Node dependencies | Installed from the lockfile, no scripts | Undocumented | None needed: single-file bundle plus `vcr setup capture` |
 | Commands, subagents, MCP | Supported | Partial | Not used in v1 |
@@ -324,9 +326,9 @@ Same skills, same CLI, same files. Only packaging differs.
 
 | Risk | Response |
 | --- | --- |
-| Codex sandbox blocks loopback binding, writes to `~/.vcr` or launching Chromium | Measured in S1. Fall back to a workspace-local `VCR_HOME` (`.vcr/`, ignored); document the approvals the sandbox needs; smoke-test it |
-| CLI invocation differs per host or breaks on plugin update (the version directory changes) | Spike S1; MCP as the fallback |
-| Codex hooks need trust and rule out its public directory | Hooks optional; every rule also lives in the CLI |
+| Codex sandbox blocks loopback binding, writes to `~/.vcr` or launching Chromium | Confirmed by S1. Workspace-local `VCR_HOME`, `--single-process` Chromium, and a documented `writable_roots` / `network_access` setup. P1 must confirm capture determinism under `--single-process` |
+| CLI invocation breaks on plugin update | Resolved by S1: invocation is relative to the skill file. MCP is no longer needed as a fallback |
+| No plugin hooks on Codex | Hooks are Claude-only conveniences; every rule also lives in the CLI |
 | CSRF against the local server | Per-session token, Origin check, loopback only, idle exit |
 | Human and agent write at the same time | One file per record, atomic rename, idempotent posts |
 | Trigger collision with HyperFrames and other video skills | Router scoped to VCR, skills namespaced by the plugin (`/vcr:brief`), a routing test (AG-01) |
