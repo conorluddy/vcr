@@ -52,7 +52,25 @@ codex plugin add vcr@vcr
 
 Then, in any project, ask the agent to set up VCR (the `init` skill, `/vcr:init` in Claude Code). It writes `vcr.json`, records the machine's tools in `~/.vcr`, and offers to install the capture runtime (Playwright and about 150 MB of Chromium, shared across projects). Requires Node 22 or newer; nothing else is installed until you agree.
 
-Under Codex's sandbox, VCR keeps its machine files in `<workspace>/.vcr` and captures with `--single-process` (byte-identical output, measured in spike S1). Capture needs `sandbox_workspace_write.network_access = true`, and the first Chromium download must happen once outside the sandbox.
+Under Codex's sandbox, VCR keeps its machine files in `<workspace>/.vcr` and captures with `--single-process` (byte-identical output, measured in spike S1). The first Chromium download must happen once outside the sandbox (`vcr setup capture --yes` in your own terminal).
+
+### Codex network access: scope it to VCR
+
+Capture starts a loopback server for the scene, and installs reach npm, so inside Codex both need `sandbox_workspace_write.network_access = true`. **Do not put that in `~/.codex/config.toml`**: it would let every Codex session, in every project, reach the internet from its commands, which makes it easier for an instruction hidden in a web page or file to send data out. Scope it to VCR instead:
+
+- A profile, used only when you ask for it. Create `~/.codex/vcr.config.toml`:
+
+  ```toml
+  [sandbox_workspace_write]
+  network_access = true
+  # Optional: share one capture runtime across projects instead of <workspace>/.vcr
+  # writable_roots = ["/Users/<you>/.vcr"]
+  ```
+
+  then run `codex -p vcr` (or `codex exec -p vcr "…"`) for VCR work.
+- Or per run: `codex exec -c sandbox_workspace_write.network_access=true "…"`.
+
+Without either, everything except capture and installs still works.
 
 ## Find a tool
 
