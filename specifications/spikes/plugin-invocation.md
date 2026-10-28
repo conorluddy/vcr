@@ -66,7 +66,7 @@ Chromium flag bisect inside `workspace-write`: `--single-process` alone is enoug
   - launches Chromium with `--single-process`.
   - `vcr status` reports which of these applied.
 - **Review server under Codex.** It needs `sandbox_workspace_write.network_access = true`, or an approved escalation. `vcr review open` prints that config line when binding fails with EPERM, rather than failing silently.
-- **Recommended Codex setup**, documented by `init`: add `~/.vcr` to `sandbox_workspace_write.writable_roots` and turn on `network_access`. That keeps one shared Chromium (PRD §6.1). The workspace-local `VCR_HOME` is the zero-config fallback, at the cost of one runtime per workspace.
+- **Recommended Codex setup** (amended 2026-10-28: scope it to a VCR profile, `~/.codex/vcr.config.toml` used via `codex -p vcr`, or a per-run `-c` flag, never the global config, because `network_access` there opens every Codex session to the network): add `~/.vcr` to `sandbox_workspace_write.writable_roots` and turn on `network_access`. That keeps one shared Chromium (PRD §6.1). The workspace-local `VCR_HOME` is the zero-config fallback, at the cost of one runtime per workspace.
 - **Hooks.**
   - Claude only. User-scope plugin hooks fire in **every** Claude session on the machine: during this spike, a session in an unrelated Grapla worktree ran the probe's hook.
   - So the session-start hook must be silent and fast outside a VCR workspace, and must never write outside `VCR_HOME`.

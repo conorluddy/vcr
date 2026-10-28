@@ -304,7 +304,7 @@ Same skills, same CLI, same files. Only packaging differs.
 | Marketplace | `.claude-plugin/marketplace.json` | `.agents/plugins/marketplace.json` (Codex also reads Claude's) | Both at the repository root |
 | CLI invocation | `${CLAUDE_PLUGIN_ROOT}` substituted in skill text | No substitution; the skill listing carries the SKILL.md path | Plugin root two levels above SKILL.md on both (S1); no `bin/` |
 | Install location | Local marketplace: the source directory. Git: `cache/…/<version>`, old versions kept | `~/.codex/plugins/cache/<marketplace>/<plugin>/<version>`, old version deleted on update | Never hard-code a version path |
-| Sandbox | None by default | Seatbelt. `read-only` and `workspace-write` block `~/.vcr`, loopback and default Chromium | Workspace-local `VCR_HOME` fallback, `--single-process` Chromium, `network_access` for the review server (S1) |
+| Sandbox | None by default | Seatbelt. `read-only` and `workspace-write` block `~/.vcr`, loopback and default Chromium | Workspace-local `VCR_HOME` fallback, `--single-process` Chromium, `network_access` for capture and the review server, scoped to a VCR profile (`codex -p vcr`) or a per-run flag, never the global config (S1) |
 | Hooks | `hooks/hooks.json`; fire in every session | Not supported (`plugin_hooks` removed) | Claude-only conveniences; the CLI enforces the rules |
 | Persistent data | `CLAUDE_PLUGIN_DATA` | `PLUGIN_DATA` | Neither: `VCR_HOME` is shared across hosts, so one Chromium |
 | Node dependencies | Installed from the lockfile, no scripts | Undocumented | None needed: single-file bundle plus `vcr setup capture` |

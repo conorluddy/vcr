@@ -8292,7 +8292,7 @@ function applyCaptureSetup(plan, isCodexSandbox) {
     return ok(plan);
   } catch (cause) {
     const message = cause instanceof Error ? cause.message : String(cause);
-    const hint = isCodexSandbox ? " Inside the Codex sandbox this needs network access: set sandbox_workspace_write.network_access = true, or run `vcr setup capture --yes` from your own terminal." : "";
+    const hint = isCodexSandbox ? " Inside the Codex sandbox this needs network access: rerun Codex with a VCR-only profile (`codex -p vcr`) or `-c sandbox_workspace_write.network_access=true` for this run (not in the global config), or run `vcr setup capture --yes` from your own terminal." : "";
     return fail("CAPTURE_SETUP_FAILED", `${message}${hint}`, true);
   }
 }
