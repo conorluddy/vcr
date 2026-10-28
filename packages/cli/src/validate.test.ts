@@ -3,12 +3,12 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, test } from "vitest";
 import { writeCatalogIndex } from "./catalog.js";
-import { findRepositoryRoot } from "./repository.js";
+import { resolveRoots } from "./roots.js";
 import { hasErrors, validateRepository } from "./validate.js";
 
 /** A throwaway repository with the real schemas and vocabulary, controlled per-tool records and a fresh index. */
 function createFixtureRepository(records: Array<{ id: string }>, project?: object): string {
-  const realRoot = findRepositoryRoot();
+  const realRoot = harnessRoot();
   const fixtureRoot = mkdtempSync(join(tmpdir(), "vcr-validate-"));
   mkdirSync(join(fixtureRoot, "catalog/tools"), { recursive: true });
   cpSync(join(realRoot, "catalog/schemas"), join(fixtureRoot, "catalog/schemas"), { recursive: true });
@@ -146,3 +146,9 @@ describe("validateRepository", () => {
     expect(validateRepository(fixtureRoot).diagnostics).toEqual([]);
   });
 });
+
+function harnessRoot(): string {
+  const roots = resolveRoots({ cwd: process.cwd(), env: {} });
+  if (!roots.ok) throw new Error(roots.error.message);
+  return roots.value.harness;
+}

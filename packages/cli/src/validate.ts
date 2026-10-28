@@ -4,6 +4,7 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { writeCatalogIndex } from "./catalog.js";
 import { listFilesNamed, listJsonFiles, readJsonFile } from "./repository.js";
+import { WORKSPACE_MARKER } from "./roots.js";
 import type { ExampleManifest, ToolSummary } from "./tools.js";
 
 // === TYPES ===
@@ -38,25 +39,9 @@ const CARD_MISSING_SEVERITY: DiagnosticSeverity = "error";
 
 // === PUBLIC API ===
 
-/** Validates every catalogue, example, project, reference and environment document, plus cross-references and budgets. */
+/** Validates every catalogue, example, project, reference and environment document, plus cross-references and budgets. Dev mode only. */
 export function validateRepository(repositoryRoot: string): ValidationReport {
-  const schemas = loadSchemas(repositoryRoot);
-  const diagnostics: Diagnostic[] = [];
-  let filesChecked = 0;
-
-  const check = (filePath: string, schemaName: keyof typeof schemas): unknown => {
-    filesChecked += 1;
-    const parsed = readJsonFile(filePath);
-    const displayPath = relative(repositoryRoot, filePath);
-    if (!parsed.ok) {
-      diagnostics.push({ severity: "error", file: displayPath, path: "", message: parsed.error.message });
-      return undefined;
-    }
-    const issues = schemaDiagnostics(schemas[schemaName], parsed.value, displayPath);
-    diagnostics.push(...issues);
-    if (issues.some((issue) => issue.severity === "error")) return undefined;
-    return parsed.value;
-  };
+  const { check, diagnostics, report } = createChecker(loadSchemas(repositoryRoot), repositoryRoot);
 
   const vocabulary = readJsonFile<Vocabulary>(join(repositoryRoot, "catalog/capabilities/vocabulary.json"));
   const knownCapabilities = new Set(vocabulary.ok ? vocabulary.value.capabilities : []);
@@ -87,11 +72,17 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
   if (validToolRecords) diagnostics.push(...indexFreshnessDiagnostics(repositoryRoot));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/INDEX.md", BUDGET_BYTES.indexMarkdown));
 
-  for (const projectPath of listFilesNamed(join(repositoryRoot, "projects"), "project.json")) check(projectPath, "project");
-  for (const referencePath of listJsonFiles(join(repositoryRoot, "references"))) check(referencePath, "reference");
+  checkWorkspaceDocuments(check, repositoryRoot);
   for (const environmentPath of listJsonFiles(join(repositoryRoot, "environment"))) check(environmentPath, "environment");
 
-  return { filesChecked, diagnostics };
+  return report();
+}
+
+/** Validates a workspace outside the harness: its marker, projects and references, against the harness schemas. */
+export function validateWorkspace(harnessRoot: string, workspaceRoot: string): ValidationReport {
+  const { check, report } = createChecker(loadSchemas(harnessRoot), workspaceRoot);
+  checkWorkspaceDocuments(check, workspaceRoot);
+  return report();
 }
 
 export function hasErrors(report: ValidationReport): boolean {
@@ -99,6 +90,36 @@ export function hasErrors(report: ValidationReport): boolean {
 }
 
 // === PRIVATE HELPERS ===
+
+type Schemas = ReturnType<typeof loadSchemas>;
+type Check = (filePath: string, schemaName: keyof Schemas) => unknown;
+
+/** Parses and schema-checks one file at a time, collecting diagnostics relative to `displayRoot`. Returns the document when valid. */
+function createChecker(schemas: Schemas, displayRoot: string) {
+  const diagnostics: Diagnostic[] = [];
+  let filesChecked = 0;
+  const check: Check = (filePath, schemaName) => {
+    filesChecked += 1;
+    const parsed = readJsonFile(filePath);
+    const displayPath = relative(displayRoot, filePath);
+    if (!parsed.ok) {
+      diagnostics.push({ severity: "error", file: displayPath, path: "", message: parsed.error.message });
+      return undefined;
+    }
+    const issues = schemaDiagnostics(schemas[schemaName], parsed.value, displayPath);
+    diagnostics.push(...issues);
+    if (issues.some((issue) => issue.severity === "error")) return undefined;
+    return parsed.value;
+  };
+  return { check, diagnostics, report: (): ValidationReport => ({ filesChecked, diagnostics }) };
+}
+
+function checkWorkspaceDocuments(check: Check, workspaceRoot: string): void {
+  const markerPath = join(workspaceRoot, WORKSPACE_MARKER);
+  if (existsSync(markerPath)) check(markerPath, "workspace");
+  for (const projectPath of listFilesNamed(join(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
+  for (const referencePath of listJsonFiles(join(workspaceRoot, "references"))) check(referencePath, "reference");
+}
 
 function loadSchemas(repositoryRoot: string) {
   const ajv = new Ajv2020({ allErrors: true, strict: false });
@@ -117,6 +138,7 @@ function loadSchemas(repositoryRoot: string) {
     project: ajv.compile(load("project")),
     reference: ajv.compile(load("reference")),
     environment: ajv.compile(load("environment")),
+    workspace: ajv.compile(load("workspace")),
   };
 }
 

@@ -1,20 +1,8 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { fail, ok, type Result } from "./result.types.js";
 
 // === PUBLIC API ===
-
-/** Walks up from this file until it finds the workspace root (the directory holding `catalog/`). */
-export function findRepositoryRoot(startDirectory = dirname(fileURLToPath(import.meta.url))): string {
-  let current = resolve(startDirectory);
-  while (!existsSync(join(current, "catalog"))) {
-    const parent = dirname(current);
-    if (parent === current) throw new Error("Cannot find repository root: no ancestor directory contains catalog/");
-    current = parent;
-  }
-  return current;
-}
 
 export function readJsonFile<T = unknown>(filePath: string): Result<T> {
   try {

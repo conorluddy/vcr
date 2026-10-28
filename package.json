@@ -8,7 +8,7 @@
   "scripts": {
     "vcr": "tsx packages/cli/src/index.ts",
     "validate": "tsx packages/cli/src/index.ts validate",
-    "doctor": "tsx packages/cli/src/index.ts doctor",
+    "doctor": "tsx packages/cli/src/index.ts doctor --record",
     "test": "vitest run",
     "typecheck": "tsc -b packages/cli packages/timeline packages/capture && tsc -p tsconfig.fixtures.json"
   },
