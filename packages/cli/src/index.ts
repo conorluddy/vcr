@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 import { mkdirSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { dirname, join, resolve } from "node:path";
+import { applyCaptureSetup, formatCaptureSetupPlan, planCaptureSetup, runCapture } from "./capture.js";
 import { writeCatalogIndex } from "./catalog.js";
 import { formatDoctorTable, runDoctor } from "./doctor.js";
+import { createExample } from "./examples.js";
 import { logEvent, startTimer } from "./log.js";
 import { buildPlugin, pluginDiagnostics, readHarnessVersion } from "./plugin.js";
 import { requireDevMode, requireWorkspace, resolveRoots, type Roots } from "./roots.js";
@@ -18,6 +20,10 @@ const USAGE = `vcr <command>
   tools list [--capability x] [--tier x] [--category x]   Tier 0: one line per tool
   tools info <id> [--full]      Tier 1 card; --full appends the tier 2 guide
   tools examples <id>           Tier 3: runnable examples that demonstrate the tool
+  example create <id>           Copy an example's sources into <workspace>/examples/<id> and print next steps
+  setup capture [--yes]         Plan (or with --yes, install) Playwright and Chromium into <VCR_HOME>/runtime
+  capture <scene.html> --width n --height n --fps n [--out dir] [--verify]
+                                Capture a browser scene frame by frame; frames and report.json go to --out
   doctor [--record]             Probe local tools and write <VCR_HOME>/environment/<hostname>.json
                                 --record also writes environment/ (harness repository only)
   catalog build [--check]       Regenerate catalog/tools.json and catalog/INDEX.md (harness repository only)
@@ -122,6 +128,43 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     }
   }
 
+  if (command === "example" && subcommand === "create" && target) {
+    const workspace = requireWorkspace(roots);
+    if (!workspace.ok) return failWith(workspace.error, asJson);
+    const outcome = createExample(repositoryRoot, workspace.value, target, cliInvocation(roots));
+    if (!outcome.ok) return failWith(outcome.error, asJson);
+    const { directory, isCreated, nextSteps } = outcome.value;
+    print(asJson ? outcome.value : `${isCreated ? "created" : "already exists, nothing written:"} ${directory}\n\nnext, from ${workspace.value}:\n${nextSteps.map((step) => `  ${step}`).join("\n")}`);
+    return 0;
+  }
+
+  if (command === "setup" && subcommand === "capture") {
+    const plan = planCaptureSetup(roots);
+    const shouldApply = options["yes"] === true && plan.steps.length > 0;
+    if (!shouldApply) {
+      print(asJson ? plan : formatCaptureSetupPlan(plan, false));
+      return 0;
+    }
+    const applied = applyCaptureSetup(plan, roots.isCodexSandbox);
+    if (!applied.ok) return failWith(applied.error, asJson);
+    print(asJson ? { applied: applied.value, remaining: planCaptureSetup(roots).steps } : formatCaptureSetupPlan(applied.value, true));
+    return 0;
+  }
+
+  if (command === "capture" && subcommand) {
+    const dimensions = { width: Number(options["width"]), height: Number(options["height"]), fps: Number(options["fps"]) };
+    if (!Object.values(dimensions).every((value) => Number.isFinite(value) && value > 0)) {
+      return failWith({ code: "INVALID_ARGUMENT", message: "capture needs positive --width, --height and --fps" }, asJson, 2);
+    }
+    const sceneFile = resolve(subcommand);
+    const outputDirectory = resolve(text(options["out"]) ?? join(dirname(sceneFile), "output"));
+    const report = await runCapture(roots, { sceneFile, outputDirectory, verifyDeterminism: options["verify"] === true, ...dimensions });
+    if (!report.ok) return failWith(report.error, asJson);
+    const { frames, frames_per_second, shuffled_matches_sequential } = report.value;
+    print(asJson ? { outputDirectory, frames, frames_per_second, shuffled_matches_sequential } : `captured ${frames} frames to ${outputDirectory}/frames (${frames_per_second} fps)${shuffled_matches_sequential === null ? "" : `; shuffled matches sequential: ${shuffled_matches_sequential}`}`);
+    return shuffled_matches_sequential === false ? 1 : 0;
+  }
+
   if (command === "catalog" && subcommand === "build") {
     const checkOnly = options["check"] === true;
     const devMode = requireDevMode(roots, "catalog build");
@@ -163,8 +206,8 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
 function parseArguments(args: string[]): { flags: Record<string, string | true>; positional: string[]; error?: string } {
   const flags: Record<string, string | true> = {};
   const positional: string[] = [];
-  const booleanFlags = new Set(["json", "full", "check", "record"]);
-  const valueFlags = new Set(["capability", "tier", "category", "workspace"]);
+  const booleanFlags = new Set(["json", "full", "check", "record", "yes", "verify"]);
+  const valueFlags = new Set(["capability", "tier", "category", "workspace", "width", "height", "fps", "out"]);
   let error: string | undefined;
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index]!;
@@ -180,6 +223,11 @@ function parseArguments(args: string[]): { flags: Record<string, string | true>;
   return { flags, positional, ...(error ? { error } : {}) };
 }
 
+/** How a human or skill should call this CLI again: the bundle path when installed, the pnpm script in the repository. */
+function cliInvocation(roots: Roots): string {
+  return roots.isDevMode ? "pnpm vcr" : `node ${process.argv[1]}`;
+}
+
 function writeEnvironmentRecord(directory: string, record: { hostname: string }): string {
   mkdirSync(directory, { recursive: true });
   const outputPath = join(directory, `${record.hostname}.json`);
@@ -192,6 +240,7 @@ function formatRoots(roots: Roots, harnessVersion: string): string {
     `harness    ${roots.harness}`,
     `workspace  ${roots.workspace ?? "none (run vcr workspace init)"}`,
     `machine    ${roots.machine}`,
+    `machine    from ${roots.machineSource}${roots.isCodexSandbox ? " (Codex sandbox: capture uses --single-process)" : ""}`,
     `mode       ${roots.isDevMode ? "dev (harness repository)" : "user"}`,
     `version    ${harnessVersion}`,
   ].join("\n");
@@ -205,7 +254,7 @@ function print(value: unknown): void {
   process.stdout.write(`${typeof value === "string" ? value : JSON.stringify(value, null, 2)}\n`);
 }
 
-function failWith(error: { code: string; message: string }, asJson: boolean): number {
+function failWith(error: { code: string; message: string }, asJson: boolean, exitCode = 1): number {
   print(asJson ? { error } : `${error.code}: ${error.message}`);
-  return 1;
+  return exitCode;
 }

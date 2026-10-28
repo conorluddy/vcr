@@ -16,8 +16,8 @@ export interface EnsureWorkspaceOutcome {
   changes: string[];
 }
 
-/** Regenerable output never belongs in git. */
-const IGNORED_DIRECTORIES = ["output/", ".cache/"];
+/** Regenerable output never belongs in git; `.vcr/` is the Codex-sandbox machine root (spike S1). */
+const IGNORED_DIRECTORIES = ["output/", ".cache/", ".vcr/"];
 
 // === PUBLIC API ===
 

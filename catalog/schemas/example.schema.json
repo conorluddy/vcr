@@ -12,6 +12,18 @@
     "status": { "enum": ["not-validated", "validated"] },
     "tools": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true },
     "run": { "type": "string", "description": "Command relative to the example directory that reproduces it and exits 0 on success." },
+    "capture": {
+      "type": "object",
+      "description": "How `vcr capture` renders this example's browser scene once scaffolded with `vcr example create`.",
+      "required": ["scene", "width", "height", "fps"],
+      "properties": {
+        "scene": { "type": "string" },
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "fps": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "additionalProperties": false
+    },
     "validated_on": {
       "type": "object",
       "required": ["date", "hostname"],

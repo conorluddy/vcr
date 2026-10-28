@@ -16,7 +16,7 @@ describe("ensureWorkspace", () => {
     const directory = mkdtempSync(join(tmpdir(), "vcr-workspace-"));
     writeFileSync(join(directory, ".gitignore"), "node_modules/\noutput/");
     ensureWorkspace(directory, "0.1.0");
-    expect(readFileSync(join(directory, ".gitignore"), "utf8")).toBe("node_modules/\noutput/\n.cache/\n");
+    expect(readFileSync(join(directory, ".gitignore"), "utf8")).toBe("node_modules/\noutput/\n.cache/\n.vcr/\n");
   });
 
   test("never overwrites an existing vcr.json", () => {

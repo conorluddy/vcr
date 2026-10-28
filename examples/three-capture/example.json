@@ -5,5 +5,14 @@
   "status": "validated",
   "tools": ["three-js", "playwright", "imagemagick"],
   "run": "./run.sh",
-  "validated_on": { "date": "2026-10-26", "hostname": "Conors-MacBook-Pro-2.local" }
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-10-26",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
 }
