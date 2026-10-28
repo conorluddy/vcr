@@ -1,0 +1,60 @@
+{
+  "id": "svg-js",
+  "name": "SVG.js",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "catalogued",
+  "role": "Chainable SVG construction in browser or Node; animation runner is not seekable",
+  "summary": "Lightweight JavaScript library for creating and manipulating SVG in a browser or Node (with svgdom). Builds shapes, gradients, groups, paths and transforms with a chainable API and ships its own animation runner. In VCR use it for programmatic SVG construction and let GSAP own the timeline. Output is SVG DOM or a serialised string.",
+  "use_when": [
+    "Building SVG shapes programmatically with a small chainable API; lighter than D3 for plain drawing",
+    "Generating SVG strings in Node with svgdom for later rasterisation by resvg",
+    "Manipulating existing SVG ids and attributes from script"
+  ],
+  "avoid_when": [
+    "Seekable animation: its runner uses a real-time clock, use GSAP",
+    "Data-driven layouts and scales: D3",
+    "Static templates with no DOM needs: string-built SVG"
+  ],
+  "pairs_with": [
+    "svg",
+    "gsap",
+    "resvg",
+    "svgo"
+  ],
+  "official_url": "https://svgjs.dev/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "vector-authoring",
+    "svg-animation"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add @svgdotjs/svg.js"
+  },
+  "notes": [
+    "2026-10-26: Node usage needs svgdom; its compatibility with 3.2.8 was not checked."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a4",
+    "version_seen": "3.2.8",
+    "last_release": "2026-08-04",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "npm 3.2.8 published 2026-08-04 after 3.2.7 on 2026-07-19; MIT; repository pushed 2026-08-04. Overlaps GSAP and D3 on animation and data work but remains the simplest SVG builder.",
+    "sources": [
+      "https://svgjs.dev/",
+      "https://www.npmjs.com/package/@svgdotjs/svg.js",
+      "https://github.com/svgdotjs/svg.js"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

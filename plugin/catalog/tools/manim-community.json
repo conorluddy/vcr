@@ -1,0 +1,63 @@
+{
+  "id": "manim-community",
+  "name": "Manim Community",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Python scenes rendered by the manim CLI to video or PNG sequences for maths and diagram motion",
+  "summary": "Python animation library and CLI. A Scene subclass builds mobjects, text and LaTeX and animates them, and manim renders to MP4, GIF, or PNG frames with transparency, using Cairo or OpenGL. Strength is mathematical and explanatory motion, such as equations, graphs and transforms, as readable code. Needs system libraries and a TeX install for maths text.",
+  "use_when": [
+    "Equation, graph or geometry explainers with LaTeX typography",
+    "Over GSAP when the content is mathematical and Python-authored",
+    "Over Blender when 2D explanation matters more than 3D look",
+    "Deterministic scripted scenes that render to alpha PNG frames"
+  ],
+  "avoid_when": [
+    "UI, titles or DOM-style motion: GSAP",
+    "Photoreal 3D: Blender",
+    "Real-time or interactive output: Three.js or p5.js"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "svg",
+    "blender",
+    "imagemagick"
+  ],
+  "official_url": "https://docs.manim.community/en/stable/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "timeline-animation",
+    "2d-rendering",
+    "video-encoding",
+    "typography"
+  ],
+  "license": "MIT (Community edition; not 3Blue1Brown's original manimgl)",
+  "install": {
+    "macos": "uv tool install manim",
+    "check_command": "manim --version"
+  },
+  "notes": [
+    "2026-10-26: Install needs Cairo, Pango and ffmpeg via Homebrew, plus a TeX distribution for MathTex; not verified whether uv alone suffices on macOS arm64."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a7",
+    "version_seen": "0.22.0",
+    "last_release": "2026-10-08",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "v0.22.0 released 2026-10-08, marked latest on GitHub. Python scene API with CLI renders is documented. Distinct from Blender and GSAP for maths-led explainers.",
+    "sources": [
+      "https://github.com/ManimCommunity/manim/releases",
+      "https://docs.manim.community/en/stable/"
+    ]
+  },
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

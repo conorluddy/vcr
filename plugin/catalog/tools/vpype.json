@@ -1,0 +1,61 @@
+{
+  "id": "vpype",
+  "name": "vpype",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths",
+  "summary": "Python CLI and library for vector path pipelines. Commands chain to read SVG, generate shapes, scale and crop to a page, merge and sort lines, and write SVG or HPGL for pen plotters. Strength is deterministic line geometry processing, with layers and stable output, as a pre-step for plotter work or line-art animation.",
+  "use_when": [
+    "Optimising and layering line art for a pen plotter",
+    "Over Inkscape CLI when you need geometry ops: merge, sort, simplify",
+    "Pipeline-style SVG line processing in one shell command",
+    "Generating frames of line art via a Python API"
+  ],
+  "avoid_when": [
+    "Filled shapes, gradients or text styling: Inkscape or resvg",
+    "Generating art with sketches and noise: vsketch or p5.js",
+    "Colour compositing or raster output: ImageMagick"
+  ],
+  "pairs_with": [
+    "vsketch",
+    "inkscape",
+    "svgo",
+    "resvg"
+  ],
+  "official_url": "https://vpype.readthedocs.io/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "plotter-workflow",
+    "vector-authoring"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "uv tool install vpype",
+    "check_command": "vpype --version"
+  },
+  "notes": [
+    "2026-10-26: Install on macOS arm64 was not tested; some plugins need compiled wheels."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a7",
+    "version_seen": "1.15.0",
+    "last_release": "2025-08-04",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "1.15.0 released 2025-08-04, about 15 months before assessment, after 1.14.0 in January 2024. Documentation is current and the tool has no direct neighbour for plotter geometry pipelines.",
+    "sources": [
+      "https://github.com/abey79/vpype/releases",
+      "https://vpype.readthedocs.io/"
+    ]
+  },
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,59 @@
+{
+  "id": "rawtherapee-cli",
+  "name": "RawTherapee CLI",
+  "category": "A6. Image processing and colour",
+  "tier": "catalogued",
+  "role": "Headless RAW development with .pp3 profiles; camera RAW to TIFF or PNG for the pipeline",
+  "summary": "RawTherapee's rawtherapee-cli develops camera RAW files non-interactively, applying a .pp3 processing profile (demosaic, white balance, exposure, tone, noise) and writing TIFF, PNG or JPEG. Output is deterministic for a given profile and version. Strength: high-quality demosaic and profile-driven batch development; it does nothing for non-RAW inputs.",
+  "use_when": [
+    "Developing camera RAW stills into linear or sRGB TIFF as a production source",
+    "Batch-applying one .pp3 look to a folder of RAW files",
+    "Over ImageMagick, whose RAW support delegates to a separate decoder"
+  ],
+  "avoid_when": [
+    "Non-RAW images: ImageMagick or Sharp",
+    "Scene-referred EXR or ACES output: process RAW elsewhere, then oiiotool with OCIO",
+    "Interactive grading of single shots: use the GUI",
+    "Simple RAW preview thumbnails: libvips or exiftool previews"
+  ],
+  "pairs_with": [
+    "imagemagick",
+    "openimageio-oiiotool",
+    "opencolorio"
+  ],
+  "official_url": "https://rawtherapee.com/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "raw-processing"
+  ],
+  "license": "GPL-3.0-or-later",
+  "install": {
+    "macos": "brew install --cask rawtherapee",
+    "check_command": "rawtherapee-cli -v"
+  },
+  "notes": [
+    "2026-10-26: Upstream site shows 5.13 (2026-07-26) with a macOS universal zip; it does not document the CLI, and rawtherapee.com/documentation returned 404. The path of rawtherapee-cli inside the macOS app bundle was not verified, so the check_command may not be on PATH."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a6",
+    "version_seen": "5.13",
+    "last_release": "2026-07-26",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Version 5.13 released 2026-07-26 per rawtherapee.com; Homebrew cask matches. Only RAW developer in the catalogue; CLI docs were not reachable so the automation route rests on general knowledge.",
+    "sources": [
+      "https://rawtherapee.com/",
+      "https://formulae.brew.sh/api/cask/rawtherapee.json"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

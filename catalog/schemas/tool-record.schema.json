@@ -152,7 +152,7 @@
     },
     "skill": {
       "type": "string",
-      "description": "Tier 2: path to the operating guide (skills/toolkits/<id>/SKILL.md). Validated to exist."
+      "description": "Tier 2: path to the operating guide (skills/<id>/SKILL.md). Validated to exist."
     },
     "examples": {
       "type": "array",

@@ -1,0 +1,51 @@
+{
+  "id": "gstreamer",
+  "name": "GStreamer",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "Graph-based media pipelines via gst-launch-1.0; for live and streaming work",
+  "summary": "Plugin-based multimedia framework: gst-launch-1.0 wires elements (sources, decoders, compositors, encoders, sinks) into pipelines, and the C/Python APIs build the same graphs. Handles live capture, RTP/WebRTC and hardware codecs. Distinguishing strength: streaming and live graphs; for offline files FFmpeg is simpler.",
+  "use_when": [
+    "Live or streaming pipelines (RTP, WebRTC, capture devices) that FFmpeg handles poorly",
+    "Hardware-accelerated or custom element graphs",
+    "Appsink and appsrc hand-off of raw frames to code"
+  ],
+  "avoid_when": [
+    "Offline encode, trim or mux: ffmpeg-ffprobe",
+    "Timeline-style compositing: mlt-melt or editly",
+    "Frame-by-frame capture to video: ffmpeg-ffprobe on an image sequence"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "mlt-melt"
+  ],
+  "official_url": "https://gstreamer.freedesktop.org/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "video-encoding",
+    "video-composition"
+  ],
+  "license": "LGPL-2.1",
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "1.28.8",
+    "last_release": "unknown (1.28.8 bug fix release, date not read)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Maintained (1.28.8 current, Homebrew stable). Pipeline-graph model suits live and streaming media, but offline encoding and compositing are better served by FFmpeg and MLT; keep as candidate for live pipelines only.",
+    "sources": [
+      "https://gstreamer.freedesktop.org/",
+      "https://gstreamer.freedesktop.org/news/"
+    ]
+  },
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

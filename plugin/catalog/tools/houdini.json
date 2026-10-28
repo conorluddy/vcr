@@ -1,0 +1,62 @@
+{
+  "id": "houdini",
+  "name": "Houdini",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "hython and hbatch drive procedural and simulation scenes; commercial, Apprentice is capped",
+  "summary": "SideFX procedural 3D and simulation package. hython runs Python with the hou module to load a .hip, edit parameters and cook or render ROP nodes, and hbatch runs HScript. Its strength is proceduralism: parameterised networks, FLIP fluids, pyro and Vellum that VCR can vary by seed. Every run consumes a Houdini licence; Apprentice limits resolution and watermarks.",
+  "use_when": [
+    "Pyro, fluid or destruction simulation beyond Blender's solvers",
+    "A procedural .hip must be re-cooked with different parameters per shot",
+    "Over Blender when artists already deliver Houdini networks",
+    "Parametric variations driven from Python via the hou module"
+  ],
+  "avoid_when": [
+    "Hobby budget or open-source requirement: Blender covers most needs free",
+    "Quick scenes or simple 3D: Blender or Three.js",
+    "Apprentice only: 1920x1080 cap, watermark and no commercial use rule out production"
+  ],
+  "pairs_with": [
+    "blender",
+    "openimageio-oiiotool",
+    "opencolorio",
+    "ffmpeg-ffprobe"
+  ],
+  "official_url": "https://www.sidefx.com/docs/houdini/render/batch.html",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "native-authoring",
+    "physics-simulation",
+    "3d-rendering"
+  ],
+  "license": "Commercial (SideFX; Indie, FX and Education tiers, prices not read). Apprentice is free, non-commercial only, 1920x1080 cap, watermark except .picnc, no third-party renderers, 30-day auto-renewing licence",
+  "install": {
+    "check_command": "hython --version"
+  },
+  "notes": [
+    "2026-10-26: Download page needs a login, so the exact production build and date were not seen; Houdini 21 release notes were read. Installer is manual from sidefx.com, and hython is not on PATH by default. Apple Silicon support for Houdini 21 inferred from search results, not read from SideFX directly."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a7",
+    "version_seen": "21.0 (release notes read; build not visible)",
+    "last_release": "not seen (download page requires login)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Houdini 21 documentation is current, Intel Mac builds are deprecated and Apple Silicon is the target. hbatch uses a full Houdini licence per the batch docs. Commercial, with Apprentice capped for non-commercial work; exact build and date unverified.",
+    "sources": [
+      "https://www.sidefx.com/docs/houdini/render/batch.html",
+      "https://www.sidefx.com/docs/houdini/news/21/platforms.html",
+      "https://www.sidefx.com/products/houdini-apprentice/"
+    ]
+  },
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,81 @@
+{
+  "id": "gsap",
+  "name": "GSAP",
+  "category": "A2. Animation and authored assets",
+  "tier": "core",
+  "role": "Paused, seekable timelines for DOM and SVG motion; the clock for every browser scene",
+  "summary": "Animation library that writes CSS transforms and SVG attributes from a timeline you build once and seek from outside. In VCR every browser scene exposes one paused GSAP timeline; the capture harness seeks it frame by frame, so output is a pure function of time. Plugins cover motion along SVG paths, per-character text, stroke reveals and shape morphs.",
+  "use_when": [
+    "Any DOM or SVG motion that must be seeked from outside: title cards, lower thirds, kinetic type",
+    "Over Anime.js when you need labels, nested timelines and the plugin set",
+    "Over CSS animations whenever frames must be captured deterministically",
+    "Orchestrating several elements against one clock with relative positions"
+  ],
+  "avoid_when": [
+    "Canvas or WebGL content: drive p5.js or Three.js from t directly instead",
+    "Spring physics is the point: Motion or React Spring sample springs natively",
+    "You need a visual curve editor: Theatre.js, then export values"
+  ],
+  "pairs_with": [
+    "svg",
+    "playwright",
+    "ffmpeg-ffprobe",
+    "three-js"
+  ],
+  "official_url": "https://gsap.com/docs/v3/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "tweening",
+    "timeline-animation",
+    "svg-animation"
+  ],
+  "facets": [
+    {
+      "id": "timeline",
+      "one_line": "Build, nest, label and seek one paused timeline per scene",
+      "skill_section": "Timeline",
+      "example": "browser-capture"
+    },
+    {
+      "id": "eases",
+      "one_line": "Named and custom easing curves and when each reads well",
+      "skill_section": "Eases"
+    },
+    {
+      "id": "motion-path",
+      "one_line": "Move and auto-rotate elements along an SVG path",
+      "skill_section": "MotionPath"
+    },
+    {
+      "id": "split-text",
+      "one_line": "Per-character and per-line text animation, font-load safe",
+      "skill_section": "SplitText"
+    }
+  ],
+  "license": "GSAP standard licence (free including plugins since 3.13; recheck)",
+  "install": {
+    "macos": "pnpm add gsap"
+  },
+  "skill": "skills/gsap/SKILL.md",
+  "examples": [
+    "browser-capture"
+  ],
+  "documentation_status": "skill-verified",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.x via pnpm",
+        "command": "examples/browser-capture/run.sh",
+        "result": "90 frames seeked and captured with alpha; shuffled order matches sequential; see specifications/spikes/browser-capture.md",
+        "example": "examples/browser-capture"
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

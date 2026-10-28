@@ -1,0 +1,54 @@
+{
+  "id": "webgpu",
+  "name": "WebGPU",
+  "category": "Native browser platform APIs",
+  "tier": "catalogued",
+  "role": "Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking",
+  "summary": "Successor to WebGL with explicit pipelines, compute shaders and WGSL, used directly or via Three.js WebGPURenderer or TypeGPU. Secure contexts only. Chrome 113 shipped it on ChromeOS, macOS and Windows; 144 added Linux on Intel Gen12+. Headless capture needs a working adapter, so check navigator.gpu.requestAdapter() and keep a WebGL fallback.",
+  "use_when": [
+    "GPU compute or heavy particle and simulation work beyond what WebGL handles",
+    "Three.js WebGPURenderer and node materials on a machine with a GPU",
+    "Modern shader pipelines written in WGSL"
+  ],
+  "avoid_when": [
+    "Anything that must render on any machine: WebGL",
+    "Headless or CI renders without an adapter: WebGL on software GL",
+    "Simple 2D: Canvas 2D"
+  ],
+  "pairs_with": [
+    "three-js",
+    "webgl",
+    "playwright"
+  ],
+  "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API",
+  "automation_route": "browser-platform-api",
+  "capabilities": [
+    "3d-rendering",
+    "shaders"
+  ],
+  "notes": [
+    "2026-10-26: Headless Chromium adapter availability and required flags were not tested."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a8-web",
+    "version_seen": "W3C WebGPU (Candidate Recommendation); MDN: limited availability",
+    "last_release": "n/a (platform)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Chrome 113 on ChromeOS, macOS, Windows; 144 adds Linux (Intel Gen12+); Firefox 141, Safari 26 per MDN browser-compat-data. Not Baseline, so fallbacks are required.",
+    "sources": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API",
+      "https://unpkg.com/@mdn/browser-compat-data/data.json"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "not-applicable",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

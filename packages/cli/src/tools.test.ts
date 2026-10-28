@@ -49,11 +49,11 @@ describe("formatToolTable", () => {
 describe("formatToolCard", () => {
   const example: ExampleManifest = { id: "demo", title: "Demo", status: "validated", tools: ["ffmpeg"], run: "./run.sh", directory: "examples/demo" };
   test("renders every tier 1 field and points at tiers 2 and 3 with their cost", () => {
-    const card = formatToolCard(tool("ffmpeg", { tier: "core", summary: "Encodes things.", use_when: ["you need an mp4"], avoid_when: ["you need a timeline"], pairs_with: ["gifski"], skill: "skills/toolkits/ffmpeg/SKILL.md" }), [example], "/nonexistent");
+    const card = formatToolCard(tool("ffmpeg", { tier: "core", summary: "Encodes things.", use_when: ["you need an mp4"], avoid_when: ["you need a timeline"], pairs_with: ["gifski"], skill: "skills/ffmpeg/SKILL.md" }), [example], "/nonexistent");
     expect(card).toContain("Encodes things.");
     expect(card).toContain("- you need an mp4");
     expect(card).toContain("Pairs with: gifski");
-    expect(card).toContain("Guide: skills/toolkits/ffmpeg/SKILL.md (? KB) — vcr tools info ffmpeg --full");
+    expect(card).toContain("Guide: skills/ffmpeg/SKILL.md (? KB) — vcr tools info ffmpeg --full");
     expect(card).toContain("Examples: demo (validated) — vcr tools examples ffmpeg");
   });
   test("says what is missing instead of inventing it", () => {

@@ -1,0 +1,58 @@
+{
+  "id": "canvaskit-skia",
+  "name": "CanvasKit / Skia",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "catalogued",
+  "role": "Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output",
+  "summary": "Skia compiled to WebAssembly, exposing a Canvas-like API plus Skia-only features: Paragraph text shaping, SkSL runtime shaders, path boolean ops and PDF/SVG surfaces. Runs in Node or the browser; drawing code is a pure function of t, so frames render to PNG without a browser capture loop. Distinguishing strength: richer, more deterministic 2D than Canvas 2D without launching Chromium.",
+  "use_when": [
+    "Over Canvas 2D when you need shaped paragraphs, SkSL shaders or path ops without a browser",
+    "Over Playwright capture when 2D frames can render headless in Node as PNG",
+    "Need PDF or SVG vector output from the same draw code as raster frames"
+  ],
+  "avoid_when": [
+    "Simple shapes and text: canvas-2d or canvas-sketch is lighter and well known",
+    "3D or GPU-heavy scenes: Three.js or PixiJS over WebGL",
+    "DOM or CSS layouts: capture with Playwright instead"
+  ],
+  "pairs_with": [
+    "canvas-2d",
+    "playwright",
+    "ffmpeg-ffprobe",
+    "lottie-web"
+  ],
+  "official_url": "https://skia.org/docs/user/modules/canvaskit/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "2d-rendering",
+    "text-rendering",
+    "shaders"
+  ],
+  "license": "BSD-3-Clause",
+  "install": {
+    "macos": "pnpm add canvaskit-wasm"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a9a",
+    "version_seen": "canvaskit-wasm 0.42.0",
+    "last_release": "2026-08-18 (npm); skia repo pushed 2026-10-26",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "Maintained (npm 0.42.0 Aug 2026, Skia pushed daily). Runs headless in Node via WASM with no browser, giving Skia text shaping, SkSL runtime shaders and PDF/SVG output that canvas-2d lacks; deterministic per frame.",
+    "sources": [
+      "https://skia.org/docs/user/modules/canvaskit/",
+      "https://www.npmjs.com/package/canvaskit-wasm",
+      "https://github.com/google/skia"
+    ]
+  },
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

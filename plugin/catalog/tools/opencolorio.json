@@ -1,0 +1,59 @@
+{
+  "id": "opencolorio",
+  "name": "OpenColorIO",
+  "category": "A6. Image processing and colour",
+  "tier": "catalogued",
+  "role": "Colour-management engine for ACES and config-driven transforms; library plus ocio* CLI utilities",
+  "summary": "Academy Software Foundation colour-management library. A config file defines colour spaces, looks and views; applications use the C++ or Python API (or the ocioconvert and ociocheck utilities) to transform pixels between them. Used inside OpenImageIO, Blender, Natron and most VFX tools. Strength: authoritative, config-driven ACES and scene-referred transforms; it processes colour, not files.",
+  "use_when": [
+    "Converting between ACES, linear and display spaces from one shared config",
+    "Validating or authoring an OCIO config the whole pipeline will share",
+    "Over ad-hoc ImageMagick colourspace flags when transforms must match Blender or Natron"
+  ],
+  "avoid_when": [
+    "Reading, writing or resizing files: oiiotool or ImageMagick, which call OCIO",
+    "Simple sRGB to linear conversion: ImageMagick is enough",
+    "Browser display: use a canvas colour space, OCIO has no JS runtime here"
+  ],
+  "pairs_with": [
+    "openimageio-oiiotool",
+    "blender",
+    "natron",
+    "imagemagick"
+  ],
+  "official_url": "https://github.com/AcademySoftwareFoundation/OpenColorIO",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "colour-management"
+  ],
+  "license": "BSD-3-Clause",
+  "install": {
+    "macos": "brew install opencolorio",
+    "check_command": "ociocheck -h"
+  },
+  "notes": [
+    "2026-10-26: Homebrew opencolorio is at 2.6.0, matching upstream. The check_command ociocheck -h was not verified. The repo page fetched did not list bindings or CLIs; those are from general knowledge and should be confirmed against opencolorio.readthedocs.io."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a6",
+    "version_seen": "2.6.0",
+    "last_release": "2026-10-01",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Release v2.6.0 on 2026-10-01 from the project's release feed; Homebrew matches. Standard colour engine under the other A6 and DCC tools, with no peer.",
+    "sources": [
+      "https://github.com/AcademySoftwareFoundation/OpenColorIO",
+      "https://formulae.brew.sh/api/formula/opencolorio.json"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

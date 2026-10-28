@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import { mkdirSync, writeFileSync } from "node:fs";
-import { createRequire } from "node:module";
 import { join } from "node:path";
 import { writeCatalogIndex } from "./catalog.js";
 import { formatDoctorTable, runDoctor } from "./doctor.js";
 import { logEvent, startTimer } from "./log.js";
+import { buildPlugin, pluginDiagnostics, readHarnessVersion } from "./plugin.js";
 import { requireDevMode, requireWorkspace, resolveRoots, type Roots } from "./roots.js";
 import { filterTools, findTool, formatExamplesForTool, formatToolCard, formatToolTable, loadExamples, loadTools, readToolGuide } from "./tools.js";
 import { hasErrors, validateRepository, validateWorkspace } from "./validate.js";
@@ -21,11 +21,11 @@ const USAGE = `vcr <command>
   doctor [--record]             Probe local tools and write <VCR_HOME>/environment/<hostname>.json
                                 --record also writes environment/ (harness repository only)
   catalog build [--check]       Regenerate catalog/tools.json and catalog/INDEX.md (harness repository only)
+  plugin build                  Assemble plugin/ for Claude Code and Codex (harness repository only)
 
 Flags: --json for machine-readable output; --workspace <dir> to select a workspace.
 Roots: VCR_HARNESS, VCR_WORKSPACE, VCR_HOME (default ~/.vcr).`;
 
-const HARNESS_VERSION = (createRequire(import.meta.url)("../package.json") as { version: string }).version;
 
 // === ENTRY ===
 
@@ -50,22 +50,27 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
   }
 
   const repositoryRoot = roots.harness;
+  const harnessVersion = readHarnessVersion(roots.harness);
+  if (!harnessVersion.ok) return failWith(harnessVersion.error, asJson);
 
   if (command === "status") {
-    print(asJson ? { ...roots, harness_version: HARNESS_VERSION } : formatRoots(roots));
+    print(asJson ? { ...roots, harness_version: harnessVersion.value } : formatRoots(roots, harnessVersion.value));
     return 0;
   }
 
   if (command === "workspace" && subcommand === "init") {
     const target = roots.workspace ?? process.cwd();
-    const outcome = ensureWorkspace(target, HARNESS_VERSION);
+    const outcome = ensureWorkspace(target, harnessVersion.value);
     print(asJson ? outcome : outcome.changes.length > 0 ? `initialised ${target}: wrote ${outcome.changes.join(", ")}` : `${target} is already a workspace; nothing changed`);
     return 0;
   }
 
   if (command === "validate") {
     let report;
-    if (roots.isDevMode) report = validateRepository(repositoryRoot);
+    if (roots.isDevMode) {
+      report = validateRepository(repositoryRoot);
+      report.diagnostics.push(...pluginDiagnostics(repositoryRoot));
+    }
     else {
       const workspace = requireWorkspace(roots);
       if (!workspace.ok) return failWith(workspace.error, asJson);
@@ -128,6 +133,16 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     return checkOnly && wasStale ? 1 : 0;
   }
 
+  if (command === "plugin" && subcommand === "build") {
+    const devMode = requireDevMode(roots, "plugin build");
+    if (!devMode.ok) return failWith(devMode.error, asJson);
+    const outcome = buildPlugin(repositoryRoot);
+    if (!outcome.ok) return failWith(outcome.error, asJson);
+    const { directory, version, fileCount, totalBytes } = outcome.value;
+    print(asJson ? outcome.value : `built ${directory} v${version}: ${fileCount} files, ${(totalBytes / 1024).toFixed(0)} KB`);
+    return 0;
+  }
+
   if (command === "doctor") {
     const shouldRecord = options["record"] === true;
     const devMode = requireDevMode(roots, "doctor --record");
@@ -172,13 +187,13 @@ function writeEnvironmentRecord(directory: string, record: { hostname: string })
   return outputPath;
 }
 
-function formatRoots(roots: Roots): string {
+function formatRoots(roots: Roots, harnessVersion: string): string {
   return [
     `harness    ${roots.harness}`,
     `workspace  ${roots.workspace ?? "none (run vcr workspace init)"}`,
     `machine    ${roots.machine}`,
     `mode       ${roots.isDevMode ? "dev (harness repository)" : "user"}`,
-    `version    ${HARNESS_VERSION}`,
+    `version    ${harnessVersion}`,
   ].join("\n");
 }
 

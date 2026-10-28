@@ -1,0 +1,61 @@
+{
+  "id": "two-js",
+  "name": "Two.js",
+  "category": "A1. Creative coding and 2D",
+  "tier": "catalogued",
+  "role": "Scene graph for flat 2D drawing with one API across SVG, Canvas and WebGL renderers",
+  "summary": "Dependency-free 2D drawing API with a scene graph, built-in animation loop and three interchangeable renderers (SVG, Canvas, WebGL). Includes an SVG interpreter for importing artwork from tools like Illustrator. Output is SVG DOM, Canvas or WebGL pixels. Its strength is writing a scene once and choosing the renderer, SVG included.",
+  "use_when": [
+    "Flat geometry that must be output as SVG or Canvas from the same code",
+    "Over Paper.js when you want a simple scene graph and renderer choice, not path booleans",
+    "Importing Illustrator SVG into a scripted, animated scene",
+    "Over PixiJS when the scene is small and vector-first"
+  ],
+  "avoid_when": [
+    "Boolean path operations: Paper.js",
+    "Many sprites or GPU filters: PixiJS",
+    "Seekable timelines on DOM or SVG: GSAP",
+    "Interactive object editing: Konva or Fabric.js"
+  ],
+  "pairs_with": [
+    "svg",
+    "gsap",
+    "playwright"
+  ],
+  "official_url": "https://two.js.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "2d-rendering",
+    "vector-authoring"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add two.js"
+  },
+  "notes": [
+    "2026-10-26: two.js.org did not describe SVG export; only SVG import was confirmed."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a1",
+    "version_seen": "0.8.24",
+    "last_release": "2026-08-29",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "GitHub release v0.8.24 on 2026-08-29; MIT, copyright 2012-2026. Renderer-agnostic scene graph is its distinct angle versus Paper.js and PixiJS.",
+    "sources": [
+      "https://two.js.org/",
+      "https://api.github.com/repos/jonobr1/two.js/releases/latest",
+      "https://registry.npmjs.org/two.js"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

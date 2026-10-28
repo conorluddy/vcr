@@ -1,0 +1,79 @@
+{
+  "id": "imagemagick",
+  "name": "ImageMagick",
+  "category": "A6. Image processing and colour",
+  "tier": "catalogued",
+  "role": "Baseline CLI for image ops, montage, compare and inspection; the validated stills toolchain",
+  "summary": "The command-line image toolbox (magick, identify, compare, montage, mogrify). Handles convert, resize, composite, draw, annotate, alpha statistics, diffs and contact sheets across nearly every format. In VCR it is the validated baseline for stills work: drawing synthetic frames, measuring alpha, and comparing output. Strength is breadth and ubiquity, not speed or colour management.",
+  "use_when": [
+    "Default for any still-image convert, resize, composite, draw or annotate",
+    "Comparing frames or reading alpha stats and metadata as test evidence",
+    "Contact sheets and montages of a frame sequence for review",
+    "Over Sharp when a shell script is simpler than a Node process"
+  ],
+  "avoid_when": [
+    "Large batches where speed and memory matter: libvips or Sharp",
+    "ACES or OCIO colour-managed conversion: oiiotool",
+    "Procedural filter looks: G'MIC",
+    "Strict security with untrusted files: restrict policy.xml or use libvips"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "libvips",
+    "openimageio-oiiotool"
+  ],
+  "official_url": "https://imagemagick.org/script/command-line-tools.php/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "image-processing",
+    "media-inspection",
+    "image-sequence-processing"
+  ],
+  "license": "ImageMagick licence (Apache-2.0 compatible)",
+  "install": {
+    "macos": "brew install imagemagick",
+    "check_command": "magick --version"
+  },
+  "skill": "skills/imagemagick/SKILL.md",
+  "examples": [
+    "ffmpeg-assembly",
+    "blender-smoke",
+    "browser-capture",
+    "p5-capture",
+    "three-capture"
+  ],
+  "notes": [
+    "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a6",
+    "version_seen": "7.1.2-34",
+    "last_release": "2026-10-14",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Release 7.1.2-34 on 2026-10-14 per the project's release feed. Validated in this repo as the stills baseline; no neighbour replaces its breadth.",
+    "sources": [
+      "https://imagemagick.org/script/command-line-tools.php/",
+      "https://formulae.brew.sh/api/formula/imagemagick.json"
+    ]
+  },
+  "documentation_status": "skill-verified",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "7.1.2-15",
+        "command": "examples/ffmpeg-assembly/run.sh",
+        "result": "48 synthetic frames drawn; alpha statistics and identify used by browser-capture and blender-smoke",
+        "example": "examples/ffmpeg-assembly"
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

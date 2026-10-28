@@ -1,0 +1,64 @@
+{
+  "id": "inkscape",
+  "name": "Inkscape",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Command-line actions export and convert SVG and other vector source to PNG, PDF and plain SVG",
+  "summary": "Open-source vector editor. The inkscape CLI runs actions on a document, converts between SVG, PDF, EPS and PNG, exports by object id or area at a given DPI, and strips to plain SVG. Strength is faithful handling of designer-authored Inkscape SVG, including text-to-path, before it enters VCR. It is not an animation tool.",
+  "use_when": [
+    "Designer SVG needs text converted to paths or objects exported by id",
+    "Over resvg when Inkscape-specific features must render as authored",
+    "Over svgo when you must edit objects by action, not just minify",
+    "Converting PDF or EPS artwork into SVG for animation"
+  ],
+  "avoid_when": [
+    "Plain SVG to PNG at scale: resvg is faster and lighter",
+    "Optimising SVG size: svgo",
+    "Motion of any kind: GSAP, Synfig or Blender"
+  ],
+  "pairs_with": [
+    "svgo",
+    "resvg",
+    "potrace",
+    "svg",
+    "vpype"
+  ],
+  "official_url": "https://wiki.inkscape.org/wiki/Using_the_Command_Line",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "vector-authoring",
+    "svg-rasterisation",
+    "native-authoring"
+  ],
+  "license": "GPL-2.0-or-later",
+  "install": {
+    "macos": "brew install --cask inkscape",
+    "check_command": "/Applications/Inkscape.app/Contents/MacOS/inkscape --version"
+  },
+  "notes": [
+    "2026-10-26: Official 1.4 and 1.4.1 platform pages list an arm64 dmg; Homebrew cask currently reports 1.4.4. Startup time per invocation is not measured; use --shell or actions for batches."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a7",
+    "version_seen": "1.4.4",
+    "last_release": "2026-05-05",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "1.4.4 tagged 2026-05-05 (1.4.3 in December 2025); official platform pages list a macOS arm64 dmg and the cask is available. CLI actions and export are documented.",
+    "sources": [
+      "https://gitlab.com/inkscape/inkscape/-/tags?format=atom",
+      "https://inkscape.org/release/1.4.1/platforms",
+      "https://wiki.inkscape.org/wiki/Using_the_Command_Line"
+    ]
+  },
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,59 @@
+{
+  "id": "matter-js",
+  "name": "Matter.js",
+  "category": "A8. Physics, audio and 3D assets",
+  "tier": "catalogued",
+  "role": "2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t",
+  "summary": "2D rigid-body engine for bodies, constraints, collisions and composites, with an optional built-in canvas renderer. For VCR skip Matter.Runner: call Engine.update(engine, 1000/fps) with a constant delta and read body positions. To render frame f in any order, rebuild the world and step f times, or pre-bake every frame's transforms in one pass and look them up. Pure JS, small, repeatable in the same browser build.",
+  "use_when": [
+    "Simple 2D falling, stacking or bouncing bodies drawn in Canvas 2D, PixiJS or SVG",
+    "Over Rapier 2D when you want zero WASM init and a tiny API",
+    "Pre-baking body transforms per frame into JSON for a seekable timeline"
+  ],
+  "avoid_when": [
+    "Large piles, 3D, or snapshot/restore: Rapier is faster and has takeSnapshot",
+    "Cross-machine reproducible results: Rapier documents an opt-in determinism mode",
+    "Hand-keyed motion with no collisions: GSAP"
+  ],
+  "pairs_with": [
+    "pixijs",
+    "canvas-2d",
+    "p5-js",
+    "svg",
+    "gsap"
+  ],
+  "official_url": "https://brm.io/matter-js/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "physics-simulation"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add matter-js"
+  },
+  "notes": [
+    "2026-10-26: Repo was pushed 2026-09-30 but the last npm release is 0.20.0 (2024-06-23); commit substance not inspected, so maintenance is rated slow. Determinism is not documented upstream; the fixed-step replay recipe is VCR's own and unverified."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a8-web",
+    "version_seen": "0.20.0",
+    "last_release": "2024-06-23",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "No release in 28 months though the repo saw a push on 2026-09-30; MIT; adequate for small 2D scenes. Rapier is faster and better documented for determinism but heavier.",
+    "sources": [
+      "https://brm.io/matter-js/",
+      "https://registry.npmjs.org/matter-js"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

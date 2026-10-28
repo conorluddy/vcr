@@ -49,7 +49,7 @@
       "example": "native-svg"
     }
   ],
-  "skill": "skills/toolkits/svg/SKILL.md",
+  "skill": "skills/svg/SKILL.md",
   "examples": [
     "native-svg"
   ],

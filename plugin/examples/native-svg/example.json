@@ -1,0 +1,9 @@
+{
+  "id": "native-svg",
+  "title": "Native SVG title card rasterised by resvg and held by FFmpeg",
+  "summary": "Dependency-free SVG to PNG to a 3-second MP4. Proves the static-asset and delivery paths with no timeline.",
+  "status": "validated",
+  "tools": ["svg", "resvg", "ffmpeg-ffprobe"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-10-26", "hostname": "Conors-MacBook-Pro-2.local" }
+}

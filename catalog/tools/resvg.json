@@ -33,7 +33,7 @@
     "macos": "brew install resvg",
     "check_command": "resvg --version"
   },
-  "skill": "skills/toolkits/resvg/SKILL.md",
+  "skill": "skills/resvg/SKILL.md",
   "examples": [
     "native-svg"
   ],

@@ -1,0 +1,62 @@
+{
+  "id": "rough-js",
+  "name": "Rough.js",
+  "category": "A1. Creative coding and 2D",
+  "tier": "catalogued",
+  "role": "Hand-drawn, sketchy rendering of shapes and paths to Canvas or SVG",
+  "summary": "Small library (under 9kB gzipped) that draws lines, curves, arcs, polygons, circles, ellipses and SVG paths with a hand-sketched look. Driven by rough.canvas or rough.svg; output is Canvas pixels or SVG nodes. Its strength is the sketch aesthetic as a drop-in layer. Not an animation or scene library. Development has been quiet since late 2023.",
+  "use_when": [
+    "Whiteboard or diagram look on shapes and paths",
+    "Over Paper.js or Two.js when the sketchy style is the point",
+    "Adding a hand-drawn style to SVG output that GSAP then animates",
+    "Small footprint, no scene graph needed"
+  ],
+  "avoid_when": [
+    "Interactive objects or animation loop: Konva or Two.js",
+    "Clean geometric vector output: Two.js or SVG directly",
+    "Diagram layout from text: Mermaid CLI or Graphviz",
+    "Heavy procedural generation: p5.js"
+  ],
+  "pairs_with": [
+    "svg",
+    "gsap",
+    "canvas-2d"
+  ],
+  "official_url": "https://roughjs.com/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "2d-rendering",
+    "vector-authoring"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add roughjs"
+  },
+  "notes": [
+    "2026-10-26: A seed option for deterministic jitter exists in the library to our knowledge but was not on roughjs.com; confirm in the API wiki before relying on it. Release date of 4.6.6 not retrieved."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a1",
+    "version_seen": "4.6.6",
+    "last_release": "unknown (latest repo commit 2023-11-20)",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "npm latest is 4.6.6; the repository's last commit is 2023-11-20, about 35 months ago, so maintenance is slow rather than dead. MIT. Unique sketch-style niche among A1 tools.",
+    "sources": [
+      "https://roughjs.com/",
+      "https://github.com/rough-stuff/rough",
+      "https://api.github.com/repos/rough-stuff/rough/commits?per_page=1",
+      "https://registry.npmjs.org/roughjs"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

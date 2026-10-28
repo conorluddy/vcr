@@ -1,0 +1,62 @@
+{
+  "id": "konva",
+  "name": "Konva",
+  "category": "A1. Creative coding and 2D",
+  "tier": "catalogued",
+  "role": "Canvas 2D scene graph (stage, layers, groups, shapes) with events, tweens and export",
+  "summary": "Canvas library organised as stage, layers, groups and shapes, with pointer events, per-frame animation, built-in tweens and export of a node or stage to canvas, data URL or Blob at a chosen pixel ratio. Official integrations for React, Vue, Svelte and Angular. Output is canvas pixels. Its strength is a dependency-free, interactive scene graph that suits editor-style UIs.",
+  "use_when": [
+    "Interactive canvas editor or annotation surface with drag, transform and layers",
+    "Over Fabric.js when you want a leaner scene graph with React or Vue bindings",
+    "Exporting a node or stage at a chosen pixel ratio from script",
+    "Over PixiJS when the scene is small and vector-first, not sprite-heavy"
+  ],
+  "avoid_when": [
+    "Thousands of sprites or shader filters: PixiJS",
+    "SVG import/export round-trip: Fabric.js",
+    "Procedural, noise-driven visuals: p5.js",
+    "Seekable timeline motion: GSAP over Konva tweens"
+  ],
+  "pairs_with": [
+    "gsap",
+    "playwright",
+    "pixijs"
+  ],
+  "official_url": "https://konvajs.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "2d-rendering",
+    "tweening",
+    "react-integration"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add konva"
+  },
+  "notes": [
+    "2026-10-26: konvajs.org did not mention Node.js server-side use; not verified."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a1",
+    "version_seen": "10.9.0",
+    "last_release": "2026-10-15",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "GitHub release 10.9.0 on 2026-10-15; MIT, maintained since 2015. Complements Fabric.js and PixiJS: scene-graph interactivity without SVG round-trip or GPU focus.",
+    "sources": [
+      "https://konvajs.org/",
+      "https://api.github.com/repos/konvajs/konva/releases/latest",
+      "https://registry.npmjs.org/konva"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

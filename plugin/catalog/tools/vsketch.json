@@ -1,0 +1,60 @@
+{
+  "id": "vsketch",
+  "name": "vsketch",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Python sketches and the vsk CLI generate plotter-oriented line art as SVG",
+  "summary": "Python generative-art framework for pen plotters, with a Processing-like sketch API, Perlin noise, shapes, and vpype integration for output. The vsk CLI runs, renders and saves sketches to SVG, with parameters and seeds exposed. Strength is reproducible seeded line art that flows straight into vpype pipelines. Line geometry only: no fills, gradients or raster.",
+  "use_when": [
+    "Seeded generative line art destined for a plotter or SVG animation",
+    "Over p5.js when Python authoring and vpype output matter",
+    "Parameter-swept variants of a sketch via the vsk CLI"
+  ],
+  "avoid_when": [
+    "Interactive or filled graphics: p5.js or Canvas 2D",
+    "Post-processing existing SVG: vpype alone",
+    "Raster or pixel-based generative art: p5.js or Canvas 2D"
+  ],
+  "pairs_with": [
+    "vpype",
+    "svgo",
+    "resvg",
+    "inkscape"
+  ],
+  "official_url": "https://vsketch.readthedocs.io/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "plotter-workflow",
+    "generative-2d"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "uv tool install vsketch",
+    "check_command": "vsk --version"
+  },
+  "notes": [
+    "2026-10-26: The vsk --version flag and macOS arm64 install were not verified; vsketch pulls vpype as a dependency."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a7",
+    "version_seen": "1.2.0",
+    "last_release": "2025-08-06",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "1.2.0 released 2025-08-06, about 14 months before assessment; 1.1.0 was January 2024. Small but distinctive plotter-focused sketching layer over vpype.",
+    "sources": [
+      "https://github.com/abey79/vsketch/releases",
+      "https://vsketch.readthedocs.io/"
+    ]
+  },
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920" role="img" aria-labelledby="title desc">
+  <title id="title">VCR</title>
+  <desc id="desc">Minimal dark title card with a green accent and editable text.</desc>
+  <rect width="1080" height="1920" fill="#111410" />
+  <circle cx="130" cy="260" r="8" fill="#c7f36b" />
+  <text x="130" y="962" fill="#c7f36b" font-family="Arial, sans-serif" font-size="144" font-weight="700">VCR</text>
+  <text x="134" y="1110" fill="#9ba094" font-family="Arial, sans-serif" font-size="28" letter-spacing="5">NATIVE SOURCE • EDITABLE</text>
+</svg>

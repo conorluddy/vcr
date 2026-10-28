@@ -1,0 +1,57 @@
+{
+  "id": "jimp",
+  "name": "Jimp",
+  "category": "A6. Image processing and colour",
+  "tier": "catalogued",
+  "role": "Pure-JavaScript image manipulation, no native dependencies; slow but trivially portable",
+  "summary": "Node image library written entirely in JavaScript with zero native dependencies, driven from code: read, resize, crop, composite, filter, write PNG, JPEG, BMP, TIFF, GIF. Strength is install-anywhere portability, including sandboxes where native binaries fail. Cost is speed and memory, since all pixel work runs in JS.",
+  "use_when": [
+    "Over Sharp when native binaries cannot install (restricted CI, edge runtimes)",
+    "Small tweaks on a handful of frames where startup cost dominates",
+    "Per-pixel JS callbacks over a bitmap with no extra tooling"
+  ],
+  "avoid_when": [
+    "Batches or large images: Sharp is several times faster",
+    "Format breadth (AVIF, WebP, SVG, ICC): Sharp or ImageMagick",
+    "Shell scripts with no Node project: ImageMagick",
+    "Pure pixel access in the browser: Image.js or canvas-2d"
+  ],
+  "pairs_with": [
+    "sharp",
+    "imagemagick"
+  ],
+  "official_url": "https://github.com/jimp-dev/jimp",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "image-processing"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add jimp"
+  },
+  "notes": [
+    "2026-10-26: npm jimp 1.6.1 published 2026-04-07 and the last repository push was the same day; roughly six months since a release, inside the active window. Speed comparison with Sharp is from general knowledge, not measured."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a6",
+    "version_seen": "1.6.1",
+    "last_release": "2026-04-07",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "npm latest 1.6.1 published 2026-04-07, last repo push the same day. Pure-JS niche is real, but Sharp wins on speed and format coverage wherever native install works.",
+    "sources": [
+      "https://github.com/jimp-dev/jimp",
+      "https://registry.npmjs.org/jimp"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

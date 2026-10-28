@@ -1,0 +1,61 @@
+{
+  "id": "godot",
+  "name": "Godot",
+  "category": "A7. Native applications and procedural tools",
+  "tier": "catalogued",
+  "role": "Godot headless and --write-movie runs scripted scenes to frames or video, in 2D and 3D",
+  "summary": "Open-source game engine. Scenes and GDScript run from the command line, and --write-movie renders a scene at a fixed frame rate to PNG sequence or AVI with a fixed timestep, so frame N follows the game clock. Strength is interactive-style 2D and 3D scenes with physics and shaders as video. Needs a real renderer: --headless gives no pixels.",
+  "use_when": [
+    "Game-like scenes with physics, tilemaps or shaders that should become video",
+    "Over Blender when the scene is already a Godot project",
+    "Fixed-timestep capture of an interactive prototype via --write-movie",
+    "2D sprite and particle scenes needing an engine scene tree"
+  ],
+  "avoid_when": [
+    "Offline-quality lighting or path tracing: Blender Cycles",
+    "Pure DOM or SVG motion: GSAP",
+    "Headless CI without a GPU or display: Blender Workbench or Three.js"
+  ],
+  "pairs_with": [
+    "blender",
+    "ffmpeg-ffprobe",
+    "aseprite"
+  ],
+  "official_url": "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "game-engine",
+    "3d-rendering",
+    "native-authoring"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "brew install --cask godot",
+    "check_command": "/Applications/Godot.app/Contents/MacOS/Godot --version"
+  },
+  "notes": [
+    "2026-10-26: Movie Maker mode behaviour on Apple Silicon and with --headless was not tested; only the command-line documentation was consulted."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a7",
+    "version_seen": "4.7.2",
+    "last_release": "2026-08-18",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "4.7.2 stable released 2026-08-18; Homebrew cask tracks it. Command-line and movie-writing modes are documented. Renders need a graphics backend, so it is a native-application route, not a headless one.",
+    "sources": [
+      "https://github.com/godotengine/godot/releases",
+      "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html"
+    ]
+  },
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "webcodecs",
+  "name": "WebCodecs",
+  "category": "Native browser platform APIs",
+  "tier": "catalogued",
+  "role": "Frame-exact browser video/audio encoders and decoders; pair with a muxer",
+  "summary": "Low-level API (VideoEncoder, VideoDecoder, AudioEncoder, ImageDecoder, VideoFrame) for encoding and decoding media without a container. Feed it VideoFrames made from a canvas with explicit timestamps and it returns encoded chunks; a muxer such as Mediabunny writes the file. Frame-exact, unlike MediaRecorder. Needs fully specified codec strings; H.264 availability varies by build.",
+  "use_when": [
+    "Encoding canvas frames to VP9, AV1 or H.264 in-browser with exact timestamps",
+    "Decoding source video frames to seek without ffmpeg",
+    "Over MediaRecorder when output must not depend on wall-clock time"
+  ],
+  "avoid_when": [
+    "Finished MP4 with audio mux and filters: ffmpeg",
+    "Container reading and writing: Mediabunny or WebAV on top",
+    "Cross-engine needs: Firefox support only from v130, so check"
+  ],
+  "pairs_with": [
+    "mediabunny",
+    "canvas-2d",
+    "webgl",
+    "ffmpeg-ffprobe"
+  ],
+  "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/WebCodecs_API",
+  "automation_route": "browser-platform-api",
+  "capabilities": [
+    "video-encoding",
+    "media-inspection"
+  ],
+  "notes": [
+    "2026-10-26: Codec support in headless Chromium (H.264, AAC) not verified; check isConfigSupported at runtime. MDN page states dedicated-worker availability but not secure-context status."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a8-web",
+    "version_seen": "W3C WebCodecs (Working Draft)",
+    "last_release": "n/a (platform)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Standard-track, not experimental; Chrome 94 shipped VideoEncoder, VideoDecoder, AudioEncoder and ImageDecoder per MDN browser-compat-data.",
+    "sources": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/WebCodecs_API",
+      "https://unpkg.com/@mdn/browser-compat-data/data.json"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "not-applicable",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

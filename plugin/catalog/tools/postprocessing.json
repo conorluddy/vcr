@@ -1,0 +1,60 @@
+{
+  "id": "postprocessing",
+  "name": "postprocessing",
+  "category": "A3. 3D, shaders and effects",
+  "tier": "catalogued",
+  "role": "pmndrs effects pipeline for Three.js: merged passes for bloom, DOF, SMAA, SSAO",
+  "summary": "Effect library for Three.js that wraps its own EffectComposer and merges Effect instances into single fullscreen passes. Covers bloom, depth of field, SMAA, SSAO, god rays, LUT, chromatic aberration and more. Driven by calling composer.render at each seek. Distinguishing strength: efficient pass merging and a wide, maintained effect set.",
+  "use_when": [
+    "Over Three.js examples/jsm passes for bloom, DOF and colour grading in merged passes",
+    "Film-look finishing on a Three.js shot: vignette, noise, LUT, chromatic aberration",
+    "With R3F through react-three-postprocessing"
+  ],
+  "avoid_when": [
+    "WebGPU renderer with TSL nodes: Three.js built-in node post processing",
+    "Effects over 2D layers: PixiJS Filters or the compositor",
+    "Effects needing frame history: not seek-safe, check each effect"
+  ],
+  "pairs_with": [
+    "three-js",
+    "react-three-postprocessing",
+    "react-three-fiber",
+    "drei"
+  ],
+  "official_url": "https://github.com/pmndrs/postprocessing",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "effects",
+    "3d-rendering",
+    "shaders"
+  ],
+  "license": "Zlib",
+  "install": {
+    "macos": "pnpm add postprocessing"
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "notes": [
+    "2026-10-26: compatibility with Three.js 0.186 was not verified; the library targets WebGLRenderer, not the WebGPU renderer."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a3",
+    "version_seen": "postprocessing 6.39.5",
+    "last_release": "2026-09-09",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "pmndrs maintained, release Sep 2026; Zlib licence. Merges effects into fewer passes than the Three.js examples composer.",
+    "sources": [
+      "https://github.com/pmndrs/postprocessing",
+      "https://registry.npmjs.org/postprocessing"
+    ]
+  },
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

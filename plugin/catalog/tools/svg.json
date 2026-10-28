@@ -1,0 +1,77 @@
+{
+  "id": "svg",
+  "name": "SVG",
+  "category": "Native browser platform APIs",
+  "tier": "core",
+  "role": "Dependency-free vector source for cards, logos and diagrams; rasterised by resvg or a browser",
+  "summary": "The vector format every tool here reads and writes. Static SVG rasterises deterministically with resvg; animated SVG runs inline in a browser scene driven by GSAP. Designers can edit the source, Graphviz and Mermaid emit it, and SVGO shrinks it. Keep colour and layout in the SVG and motion in the timeline.",
+  "use_when": [
+    "Title cards, lower thirds, logos and diagrams that must stay editable and scale to any size",
+    "Stroke-draw reveals and shape morphs over a transparent background",
+    "Output from Graphviz, Mermaid, D3 or Inkscape entering a production",
+    "A fixture that needs no dependencies at all"
+  ],
+  "avoid_when": [
+    "Photographic or heavily filtered content at 4K: filters are slow in browsers",
+    "Hundreds of animated elements: PixiJS or p5.js canvas",
+    "SMIL animation: it cannot be seeked from outside and resvg ignores it"
+  ],
+  "pairs_with": [
+    "gsap",
+    "resvg",
+    "svgo",
+    "inkscape",
+    "graphviz",
+    "mermaid-cli"
+  ],
+  "official_url": "https://developer.mozilla.org/en-US/docs/Web/SVG",
+  "automation_route": "browser-platform-api",
+  "capabilities": [
+    "vector-authoring",
+    "svg-animation"
+  ],
+  "facets": [
+    {
+      "id": "static-authoring",
+      "one_line": "viewBox, stable ids, fonts to paths, colour separate from motion",
+      "skill_section": "Static authoring",
+      "example": "native-svg"
+    },
+    {
+      "id": "smil-versus-script",
+      "one_line": "Why SMIL is out and GSAP plugins are in",
+      "skill_section": "SMIL versus script"
+    },
+    {
+      "id": "rasterisation",
+      "one_line": "resvg for stills, the capture harness for motion, one AA convention per production",
+      "skill_section": "Rasterisation",
+      "example": "native-svg"
+    }
+  ],
+  "skill": "skills/svg/SKILL.md",
+  "examples": [
+    "native-svg"
+  ],
+  "notes": [
+    "Core alongside GSAP: static SVG is a native, dependency-free source format; GSAP supplies the timeline."
+  ],
+  "documentation_status": "skill-verified",
+  "installation_status": "not-applicable",
+  "validation": {
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-10-26",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "n/a (platform)",
+        "command": "examples/native-svg/run.sh",
+        "result": "Static SVG rasterised by resvg",
+        "example": "examples/native-svg"
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

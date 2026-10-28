@@ -1,0 +1,61 @@
+{
+  "id": "motion-canvas",
+  "name": "Motion Canvas",
+  "category": "A2. Animation and authored assets",
+  "tier": "catalogued",
+  "role": "TypeScript generator-based 2D animation editor and renderer for explainers",
+  "summary": "Vite-based tool for authoring vector animations as TypeScript generator functions, with a live editor, a 2D canvas scene graph and audio-synced timelines. Renders image sequences or video from the editor via its rendering plugins. A full authoring environment with its own project structure, not a library for an existing page. Strength: code-driven explainer and diagram animation with narration sync.",
+  "use_when": [
+    "Explainer, diagram and code-walkthrough videos authored in TypeScript",
+    "Over Manim when the team writes TypeScript and wants a live preview",
+    "Narration-synced vector sequences rendered to frames"
+  ],
+  "avoid_when": [
+    "Animating an existing DOM page: GSAP with Playwright",
+    "Math-heavy scenes: Manim Community",
+    "Timeline plus composition in HTML: Remotion or HyperFrames"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "remotion",
+    "manim-community"
+  ],
+  "official_url": "https://motioncanvas.io/docs/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "timeline-animation",
+    "2d-rendering",
+    "video-encoding"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add @motion-canvas/core",
+    "check_command": "pnpm list @motion-canvas/core --depth 0"
+  },
+  "notes": [
+    "2026-10-26: headless CLI rendering route unverified; docs describe rendering from the editor UI. Last release 3.17.2 is 2024-12-14."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a2",
+    "version_seen": "3.17.2",
+    "last_release": "2024-12-14",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "Last release 3.17.2 on 2024-12-14 (about 22 months), last push 2026-07-02; MIT. Distinct code-first explainer niche, but headless rendering is unverified.",
+    "sources": [
+      "https://motioncanvas.io/docs/",
+      "https://github.com/motion-canvas/motion-canvas",
+      "https://www.npmjs.com/package/@motion-canvas/core"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

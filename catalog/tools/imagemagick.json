@@ -34,7 +34,7 @@
     "macos": "brew install imagemagick",
     "check_command": "magick --version"
   },
-  "skill": "skills/toolkits/imagemagick/SKILL.md",
+  "skill": "skills/imagemagick/SKILL.md",
   "examples": [
     "ffmpeg-assembly",
     "blender-smoke",

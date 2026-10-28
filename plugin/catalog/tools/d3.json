@@ -1,0 +1,61 @@
+{
+  "id": "d3",
+  "name": "D3",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "catalogued",
+  "role": "Data-driven scales, layouts and shapes; use its geometry, not its transitions",
+  "summary": "Modular JavaScript library for binding data to DOM or SVG and computing layouts, scales, shapes, paths, colour interpolation and transitions. In VCR use its pure functions (d3-scale, d3-shape, d3-hierarchy, d3-force) to compute geometry, draw with SVG and animate with GSAP; avoid its built-in transitions, which run on a wall clock. Output is SVG or canvas drawing in a browser scene.",
+  "use_when": [
+    "Charts and layouts (treemap, force, chord, geo) computed from data and drawn as SVG",
+    "Over chart-template libraries when you need bespoke marks and full control of geometry",
+    "Using d3-scale or d3-shape alone as maths helpers inside canvas, p5.js or Three.js scenes"
+  ],
+  "avoid_when": [
+    "A standard bar or line chart on a deadline: author SVG directly",
+    "Motion must be seekable: d3 transitions use a real-time clock, so drive frames from GSAP",
+    "Static diagram from text: Graphviz or Mermaid CLI lay out faster"
+  ],
+  "pairs_with": [
+    "svg",
+    "gsap",
+    "playwright",
+    "resvg"
+  ],
+  "official_url": "https://d3js.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "data-visualisation",
+    "vector-authoring",
+    "svg-animation"
+  ],
+  "license": "ISC",
+  "install": {
+    "macos": "pnpm add d3"
+  },
+  "notes": [
+    "2026-10-26: whether recent d3/d3 commits are substantive was not checked; maintenance rated by release date."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a4",
+    "version_seen": "7.9.0",
+    "last_release": "2024-03-12",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "Last npm release 7.9.0 on 2024-03-12 (about 31 months); repository pushed 2026-10-21, so maintained but release cadence is slow. ISC licence. Mature and stable; value for data-driven geometry is clear.",
+    "sources": [
+      "https://d3js.org/",
+      "https://www.npmjs.com/package/d3",
+      "https://github.com/d3/d3"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -57,7 +57,7 @@
   "install": {
     "macos": "pnpm add p5"
   },
-  "skill": "skills/toolkits/p5-js/SKILL.md",
+  "skill": "skills/p5-js/SKILL.md",
   "examples": [
     "p5-capture"
   ],

@@ -1,0 +1,59 @@
+{
+  "id": "gifski",
+  "name": "gifski",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "Highest-quality GIF encoder from PNG frames or y4m; palette per frame, AGPL",
+  "summary": "Rust CLI and library that encodes an image sequence or y4m stream into a GIF using per-frame palettes and temporal dithering, giving visibly better quality than FFmpeg's palette filters. Input is PNG frames (gifski -o out.gif frame*.png) or an ffmpeg yuv4mpegpipe. Licensed AGPL-3.0 or later with commercial terms available from the author.",
+  "use_when": [
+    "Any GIF where quality matters: over FFmpeg palettegen/paletteuse",
+    "Renderer already produced a PNG sequence and you want a GIF without a video step",
+    "Piping an FFmpeg yuv4mpegpipe straight into a GIF"
+  ],
+  "avoid_when": [
+    "Small file size over quality: FFmpeg with a tuned palette, or an animated WebP/MP4 instead",
+    "Embedding in a closed-source product: AGPL; get a commercial licence or use FFmpeg",
+    "Real delivery formats (MP4, VP9, ProRes): ffmpeg-ffprobe"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "playwright",
+    "imagemagick"
+  ],
+  "official_url": "https://github.com/ImageOptim/gifski",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "gif-encoding",
+    "image-sequence-processing"
+  ],
+  "license": "AGPL-3.0-or-later; commercial licence available from the author (recheck before shipping)",
+  "install": {
+    "macos": "brew install gifski",
+    "check_command": "gifski --version"
+  },
+  "notes": [
+    "2026-10-26: GitHub reports the licence as NOASSERTION; the README states AGPL 3 or later with alternative commercial licences. Resolution is downscaled by default for large input; set --width explicitly."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a5",
+    "version_seen": "1.34.0",
+    "last_release": "2025-07-13",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Latest release 1.34.0 on 2025-07-13 and repo pushed 2026-06-17, so active. Best GIF quality of the options. AGPL matters for redistribution only; running the CLI on our frames is fine.",
+    "sources": [
+      "https://github.com/ImageOptim/gifski",
+      "https://github.com/ImageOptim/gifski/releases"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

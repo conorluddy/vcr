@@ -1,0 +1,12 @@
+{
+  "name": "vcr",
+  "owner": { "name": "Conor Luddy" },
+  "description": "VCR: agent studio for code-first motion graphics and video",
+  "plugins": [
+    {
+      "name": "vcr",
+      "source": "./plugin",
+      "description": "Tool catalogue, operating guides, deterministic browser capture and a human review loop for code-first video."
+    }
+  ]
+}

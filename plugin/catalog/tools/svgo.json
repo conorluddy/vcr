@@ -1,0 +1,58 @@
+{
+  "id": "svgo",
+  "name": "SVGO",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "catalogued",
+  "role": "SVG optimisation; preserve IDs needed by animation",
+  "summary": "Node.js tool and library that optimises SVG by removing metadata, editor cruft and redundant attributes and by minifying paths. Run as the svgo CLI or from a script with a plugin config; output is smaller SVG. Its strength is a large plugin set. Default presets can strip or rename ids and viewBox that animation targets, so config must preserve them.",
+  "use_when": [
+    "Shrinking SVG exported from Inkscape, Figma or Illustrator before it enters a scene",
+    "Cleaning Graphviz or Mermaid SVG output in a pipeline",
+    "Normalising SVG before diffing or hashing"
+  ],
+  "avoid_when": [
+    "The SVG is animated by id or class: disable cleanupIds and removeViewBox, or skip it",
+    "Rasterising only: resvg gets the same pixels without optimising",
+    "Hand-authored minimal SVG that is already small"
+  ],
+  "pairs_with": [
+    "svg",
+    "resvg",
+    "inkscape",
+    "graphviz",
+    "mermaid-cli",
+    "potrace"
+  ],
+  "official_url": "https://github.com/svg/svgo",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "svg-optimisation"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add -g svgo",
+    "check_command": "svgo --version"
+  },
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a4",
+    "version_seen": "4.1.0",
+    "last_release": "2026-08-24",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "npm 4.1.0 published 2026-08-24, with 2.8.4 backported the same day; MIT. De facto SVG optimiser; no neighbour covers it. The ID-preservation caveat in the role is a real risk with default presets.",
+    "sources": [
+      "https://github.com/svg/svgo",
+      "https://www.npmjs.com/package/svgo"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

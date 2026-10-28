@@ -1,0 +1,59 @@
+{
+  "id": "tween-js",
+  "name": "tween.js",
+  "category": "A2. Animation and authored assets",
+  "tier": "catalogued",
+  "role": "Tiny numeric property interpolator with easing; you call update(time) yourself",
+  "summary": "Minimal tweening engine: tween numeric properties of objects over a duration with easing, chaining and yoyo. Nothing runs on its own; the host calls update(time), so passing the harness time gives deterministic output. Typically used to feed Three.js or canvas values. Smallest of the tween tools, with no timeline, SVG or DOM helpers.",
+  "use_when": [
+    "Interpolating object values inside a Three.js or canvas loop with explicit time",
+    "Over GSAP when you want a few kB and update(time) control",
+    "Chained numeric tweens without DOM involvement"
+  ],
+  "avoid_when": [
+    "DOM or SVG targets and labelled timelines: GSAP",
+    "Spring or velocity behaviour: Motion or React Spring",
+    "Complex sequences: Anime.js or GSAP timelines"
+  ],
+  "pairs_with": [
+    "three-js",
+    "canvas-2d",
+    "gsap"
+  ],
+  "official_url": "https://tweenjs.github.io/tween.js/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "tweening"
+  ],
+  "license": "MIT (npm; GitHub licence detection shows NOASSERTION)",
+  "install": {
+    "macos": "pnpm add @tweenjs/tween.js",
+    "check_command": "pnpm list @tweenjs/tween.js --depth 0"
+  },
+  "notes": [
+    "2026-10-26: GitHub reports no detected licence while npm lists MIT; confirm LICENSE file before shipping. Last npm release 25.0.0 is 2024-07-26."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a2",
+    "version_seen": "25.0.0",
+    "last_release": "2024-07-26",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Repo pushed 2026-10-06, so commits are active though last release 25.0.0 was 2024-07-26. Simple, deterministic via update(time); a neighbour to GSAP for raw numeric tweens.",
+    "sources": [
+      "https://tweenjs.github.io/tween.js/",
+      "https://github.com/tweenjs/tween.js",
+      "https://www.npmjs.com/package/@tweenjs/tween.js"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.1.0",
+  "capabilities": [
+    "2d-rendering", "3d-asset-processing", "3d-rendering", "asset-playback", "audio",
+    "capture", "colour-management", "compositing", "computer-vision", "data-visualisation",
+    "diagram-generation", "effects", "font-processing", "game-engine", "generative-2d",
+    "geospatial", "gif-encoding", "image-processing", "image-sequence-processing", "math-utilities",
+    "media-inspection", "model-loading", "native-authoring", "parameter-ui", "physics-simulation",
+    "pixel-art", "plotter-workflow", "raw-processing", "ray-tracing", "react-integration",
+    "remote-rendering", "scientific-visualisation", "sdf-generation", "shaders", "shot-detection",
+    "svg-animation", "svg-optimisation", "svg-rasterisation", "text-rendering", "timeline-animation",
+    "tweening", "typography", "vector-authoring", "vector-tracing", "video-composition", "video-encoding"
+  ],
+  "note": "A capability is something a tool does, assigned per tool after review. It is never evidence of adapter support; see each record's validation and adapter_maturity."
+}

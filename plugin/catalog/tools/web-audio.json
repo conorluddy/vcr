@@ -1,0 +1,54 @@
+{
+  "id": "web-audio",
+  "name": "Web Audio API",
+  "category": "Native browser platform APIs",
+  "tier": "catalogued",
+  "role": "Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time",
+  "summary": "Node-graph audio API for oscillators, buffers, filters, gain automation and analysis. A live AudioContext plays in real time; an OfflineAudioContext renders the graph to an AudioBuffer as fast as possible, which suits VCR. Encode the buffer to WAV and mux with ffmpeg. AnalyserNode supplies FFT data for audio-reactive visuals when fed a decoded buffer.",
+  "use_when": [
+    "Rendering generated sound effects or beds offline into a WAV, no dependencies",
+    "Audio analysis (FFT) feeding visuals, computed from a decoded buffer",
+    "Over Tone.js when you only need a few oscillators, filters or gain ramps"
+  ],
+  "avoid_when": [
+    "Musical scheduling, instruments and effects: Tone.js",
+    "Mixing and fading existing files: ffmpeg",
+    "Live playback during capture: not deterministic"
+  ],
+  "pairs_with": [
+    "tone-js",
+    "ffmpeg-ffprobe",
+    "playwright",
+    "mediabunny"
+  ],
+  "official_url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API",
+  "automation_route": "browser-platform-api",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-10-26: Autoplay policy and headless audio output not checked; OfflineAudioContext avoids both in principle."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a8-web",
+    "version_seen": "W3C Web Audio API 1.0 (Recommendation)",
+    "last_release": "n/a (platform)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "AudioContext and OfflineAudioContext supported since Chrome 35 per MDN browser-compat-data; stable and standard-track.",
+    "sources": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API",
+      "https://unpkg.com/@mdn/browser-compat-data/data.json"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "not-applicable",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

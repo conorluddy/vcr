@@ -1,0 +1,58 @@
+{
+  "id": "mlt-melt",
+  "name": "MLT / melt",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
+  "role": "MLT multitrack framework with melt CLI and XML projects; the engine behind Kdenlive and Shotcut",
+  "summary": "LGPL multimedia framework whose melt CLI plays or renders multitrack timelines from command-line producers, filters and transitions or from an XML project file. Uses FFmpeg for codecs and frei0r or Movit for effects. Distinguishing strength: a mature declarative timeline and compositing model with an XML interchange, driven without a GUI.",
+  "use_when": [
+    "Multitrack edit from an XML project, over hand-written FFmpeg filtergraphs",
+    "Opening Kdenlive or Shotcut projects headlessly to render them",
+    "Reference for a timeline-to-render contract with tracks, transitions and filters"
+  ],
+  "avoid_when": [
+    "Simple encode, trim or concat: ffmpeg-ffprobe is simpler and everywhere",
+    "Browser-authored scenes: Playwright capture into FFmpeg",
+    "Alpha-precise flat-layer compositing VCR controls: FFmpeg overlay filters until VCR's compositor exists"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe"
+  ],
+  "official_url": "https://mltframework.org/docs/melt/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "video-composition",
+    "video-encoding",
+    "audio"
+  ],
+  "license": "LGPL-2.1-or-later for the framework; some modules and plugins are GPL, check the build",
+  "install": {
+    "macos": "brew install mlt",
+    "check_command": "melt -version"
+  },
+  "notes": [
+    "2026-10-26: Homebrew formula name 'mlt' assumed from the record; melt installation was not tested and a Homebrew build includes whatever modules the formula enables."
+  ],
+  "assessment": {
+    "date": "2026-10-26",
+    "assessed_by": "assess-a5",
+    "version_seen": "7.42.0",
+    "last_release": "2026-10-03",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Release v7.42.0 on 2026-10-03 and a push on 2026-10-25; LGPL-2.1; Kdenlive and Shotcut ship on it. Capable but redundant with FFmpeg for VCR's current needs; useful as timeline-model reference.",
+    "sources": [
+      "https://mltframework.org/docs/melt/",
+      "https://github.com/mltframework/mlt"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-26",
+  "source": "specifications/vcr-prd.md#appendix-a"
+}

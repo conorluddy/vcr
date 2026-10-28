@@ -73,7 +73,7 @@
     "macos": "brew install ffmpeg",
     "check_command": "ffmpeg -version"
   },
-  "skill": "skills/toolkits/ffmpeg/SKILL.md",
+  "skill": "skills/ffmpeg/SKILL.md",
   "examples": [
     "native-svg",
     "ffmpeg-assembly",
