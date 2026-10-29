@@ -30,7 +30,8 @@
     "check_command": "pnpm list @mojs/core --depth 0"
   },
   "notes": [
-    "2026-10-26: GitHub pushes continued to 2026-07-30 but the last npm release (@mojs/core 1.7.1) is 2023-10-06; the unscoped mo.js package is a stale 0.0.2. Seek behaviour not verified."
+    "2026-10-26: GitHub pushes continued to 2026-07-30 but the last npm release (@mojs/core 1.7.1) is 2023-10-06; the unscoped mo.js package is a stale 0.0.2. Seek behaviour not verified.",
+    "2026-10-29: Skill opportunity: no new skill yet; existing GSAP guidance covers seekable animation, and mo.js seeking is unverified."
   ],
   "assessment": {
     "date": "2026-10-26",

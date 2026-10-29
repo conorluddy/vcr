@@ -47,5 +47,8 @@
       "https://gstreamer.freedesktop.org/news/"
     ]
   },
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "notes": [
+    "2026-10-29: Skill opportunity: further research first; a standalone live-pipeline skill may be useful after a reproducible streaming fixture and an existing-skill check."
+  ]
 }

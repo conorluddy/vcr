@@ -32,7 +32,8 @@
     "check_command": "NatronRenderer --version"
   },
   "notes": [
-    "2026-10-26: The Homebrew cask natron 2.5.0 was disabled 2026-09-01 for failing Gatekeeper, so install.macos was removed. The latest GitHub release asset is Natron-RB-2.5 macOS12 x86_64 dmg (2024-09-13 pre-release); repo last pushed 2026-07-24. Natron 2.3.15 docs were the ones read."
+    "2026-10-26: The Homebrew cask natron 2.5.0 was disabled 2026-09-01 for failing Gatekeeper, so install.macos was removed. The latest GitHub release asset is Natron-RB-2.5 macOS12 x86_64 dmg (2024-09-13 pre-release); repo last pushed 2026-07-24. Natron 2.3.15 docs were the ones read.",
+    "2026-10-29: Skill opportunity: further research first; a standalone Natron guide would need a supported machine and reproducible headless fixture."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

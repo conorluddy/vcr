@@ -12,7 +12,8 @@
   "notes": [
     "2026-10-29: Documentation assessment only. The project describes a Python API and CLI tools; no fixture has been run.",
     "2026-10-29: The schema value listed-in-prd means listed-only here; source is a conversation, not the PRD.",
-    "2026-10-29: Existing vocabulary lacks editorial timeline interchange; media-inspection reflects its inspection tools, not rendering or animation. Optional format adapters need separate assessment."
+    "2026-10-29: Existing vocabulary lacks editorial timeline interchange; media-inspection reflects its inspection tools, not rendering or animation. Optional format adapters need separate assessment.",
+    "2026-10-29: Skill opportunity: possible standalone editorial interchange skill; first run a scoped timeline round-trip fixture and check existing skills and ownership."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

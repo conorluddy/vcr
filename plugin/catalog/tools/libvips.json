@@ -50,5 +50,8 @@
       "https://www.libvips.org/"
     ]
   },
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "notes": [
+    "2026-10-29: Skill opportunity: further research first; existing ImageMagick guidance addresses common image tasks, while libvips-specific large-image benefits need a fixture."
+  ]
 }

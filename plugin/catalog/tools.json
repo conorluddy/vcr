@@ -134,8 +134,10 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+        "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+        "2026-10-29: Skill opportunity: Further research first: a session-specific VCR workflow needs a tested export fixture; standalone DAW scripting guidance may be useful beyond VCR.",
+        "2026-10-29: Automation depends on Ardour scripting and session context; a headless scripting workflow was not verified."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -144,8 +146,33 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Digital audio workstation with multitrack editing, mixing, MIDI and Lua scripting. Its automation works through Ardour sessions and scripting, not a simple standalone audio filter.",
+      "use_when": [
+        "Review or edit a multitrack music session with Lua scripting",
+        "Combine recorded and MIDI material in a DAW session"
+      ],
+      "avoid_when": [
+        "Simple scripted transcoding: FFmpeg",
+        "Need a lightweight offline audio feature extractor: librosa"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "fluidsynth"
+      ],
+      "license": "GPL v2 (official site; exact variant and distribution terms need review)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "ingest-assess-a",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official site describes an audio workstation; the manual documents Lua scripting but warns its API may change. Release and recent activity dates not verified.",
+        "sources": [
+          "https://ardour.org/",
+          "https://manual.ardour.org/lua-scripting/"
+        ]
+      }
     },
     {
       "id": "aseprite",
@@ -220,8 +247,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+        "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+        "2026-10-29: Skill opportunity: Further research first: a synthetic audio-event fixture is needed before recommending a general audio-analysis skill."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -230,8 +258,33 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Audio event detection library and command-line tools for onsets, tempo and pitch. Produces analysis events from audio; useful when a lightweight onset detector is preferable to a broader analysis library.",
+      "use_when": [
+        "Detect onsets or pitch from audio for timing experiments",
+        "Try a focused event detector alongside librosa"
+      ],
+      "avoid_when": [
+        "Need general spectral and music analysis: librosa",
+        "Encode or mux an audio track: FFmpeg"
+      ],
+      "pairs_with": [
+        "librosa",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "GPL-3.0-or-later (project code; dependencies separately)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "ingest-assess-a",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official project describes onset, pitch and tempo analysis and GPLv3-or-later terms. Latest release and substantive activity dates not established.",
+        "sources": [
+          "https://aubio.org/",
+          "https://github.com/aubio/aubio"
+        ]
+      }
     },
     {
       "id": "audiowaveform",
@@ -245,8 +298,10 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+        "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+        "2026-10-29: Skill opportunity: Further research first: a repeatable waveform asset fixture could justify VCR-specific guidance.",
+        "2026-10-29: Ongoing development moved to https://codeberg.org/chrisn/audiowaveform per the project README; verify the new source and its current releases."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -255,8 +310,32 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Command-line tool producing waveform data and PNG waveform images from audio. It can create JSON for a downstream visualiser without requiring a browser to compute peaks.",
+      "use_when": [
+        "Generate waveform data or stills from supported audio",
+        "Feed waveform data to a separate visualisation pipeline"
+      ],
+      "avoid_when": [
+        "Need onset or beat analysis: aubio or librosa",
+        "Need video or audio encoding: FFmpeg"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "imagemagick"
+      ],
+      "license": "GPL-3.0 (repository label; exact variant and dependencies require review)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "ingest-assess-a",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official repository documents a waveform CLI and says ongoing development moved to Codeberg. Current release and activity dates at the new home were not verified.",
+        "sources": [
+          "https://github.com/bbc/audiowaveform"
+        ]
+      }
     },
     {
       "id": "babylon-js",
@@ -716,13 +795,15 @@
       "tier": "candidate",
       "role": "Image graphs",
       "official_url": "https://github.com/chaiNNer-org/chaiNNer",
-      "automation_route": "native-cli-or-scripting",
+      "automation_route": "manual-only",
       "capabilities": [
         "image-processing"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+        "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+        "2026-10-29: Skill opportunity: Further research first: verify whether a supported unattended interface exists and check model terms before writing a skill.",
+        "2026-10-29: GUI route confirmed; native CLI or headless automation not documented in the reviewed README. Model licences are separate."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -731,8 +812,31 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Node-based image-processing application for combining transformations, including model-based upscaling. The documented interface is graphical; an agent-driven headless route has not been established.",
+      "use_when": [
+        "Explore reusable image-processing graphs interactively",
+        "Evaluate model-backed upscaling workflows"
+      ],
+      "avoid_when": [
+        "Require a verified headless CLI: ImageMagick or resvg",
+        "Need simple resizing without model setup: ImageMagick"
+      ],
+      "pairs_with": [
+        "imagemagick"
+      ],
+      "license": "GPL-3.0 (repository label; models, dependencies and exact variant need review)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "ingest-assess-a",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official README documents a node-based GUI; no unattended CLI was established from that source. Release and substantive activity dates not verified.",
+        "sources": [
+          "https://github.com/chaiNNer-org/chaiNNer"
+        ]
+      }
     },
     {
       "id": "clap",
@@ -746,8 +850,10 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+        "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+        "2026-10-29: Skill opportunity: No skill yet: first identify an actual host/plugin workflow and verify concrete interoperability.",
+        "2026-10-29: CLAP is a specification and API, not an executable or evidence of host/plugin compatibility."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -756,8 +862,32 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "C audio-plugin API specification and headers for communication between plugins and hosts. CLAP is an interoperability interface, not a standalone audio processor or host.",
+      "use_when": [
+        "Research a plugin interface for a future audio host",
+        "Inspect host and plugin compatibility requirements"
+      ],
+      "avoid_when": [
+        "Need sound synthesis now: FluidSynth or Csound",
+        "Need an executable audio processing tool: FFmpeg"
+      ],
+      "pairs_with": [
+        "fluidsynth",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "MIT (API repository; each host and plugin has separate terms)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "ingest-assess-a",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official repository describes an audio plugin API and MIT licence. A runnable host is separate; release and recent activity dates not verified.",
+        "sources": [
+          "https://github.com/free-audio/clap"
+        ]
+      }
     },
     {
       "id": "colmap",
@@ -771,8 +901,10 @@
         "3d-asset-processing"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+        "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+        "2026-10-29: Skill opportunity: Further research first: an owned multi-view dataset and reconstruction fixture would establish whether a VCR or standalone skill is worthwhile.",
+        "2026-10-29: GPU availability and reconstruction fidelity are environment and dataset dependent; no VCR fixture run."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -781,8 +913,36 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Structure-from-motion and multi-view stereo software driven through a GUI, CLI or Python bindings. It reconstructs camera poses and 3D geometry from image collections; suitable capture input and compute resources matter.",
+      "use_when": [
+        "Reconstruct a scene from multiple photographs via CLI",
+        "Prepare camera and geometry data for a 3D pipeline"
+      ],
+      "avoid_when": [
+        "Need to render an existing 3D scene: Blender",
+        "Need simple image operations: ImageMagick"
+      ],
+      "pairs_with": [
+        "blender",
+        "imagemagick"
+      ],
+      "license": "BSD (core; upstream warns third-party dependency licences vary)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "ingest-assess-a",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Official documentation describes a CLI and Python bindings; a November 2025 release is within 12 months. Recommend catalogued after review; no VCR fixture has been run.",
+        "sources": [
+          "https://colmap.github.io/",
+          "https://github.com/colmap/colmap",
+          "https://github.com/colmap/colmap/blob/main/CHANGELOG.rst",
+          "https://github.com/colmap/colmap/releases"
+        ],
+        "version_seen": "4.2.1 (release page; release year not verified)"
+      }
     },
     {
       "id": "comfyui",
@@ -796,8 +956,10 @@
         "image-processing"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+        "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+        "2026-10-29: Skill opportunity: Further research first: identify a repeatable local workflow, model licence and execution footprint before VCR or standalone guidance.",
+        "2026-10-29: Models, custom nodes, hosted services, data and generated outputs have separate conditions; offline behaviour depends on the chosen workflow."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -806,8 +968,32 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Node-graph application and local API for model-based creative workflows. It can orchestrate image generation and other workflows; actual outputs and terms depend on models and custom nodes.",
+      "use_when": [
+        "Explore a model-driven image workflow with explicit model provenance",
+        "Reuse a graph through its documented local API"
+      ],
+      "avoid_when": [
+        "Need simple deterministic raster operations: ImageMagick",
+        "Need video encoding or muxing: FFmpeg"
+      ],
+      "pairs_with": [
+        "imagemagick",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "GPL-3.0 (repository label; verify exact variant, model weights, custom nodes and service terms separately)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "ingest-assess-a",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official project documents node workflows and local API, with optional remote services. Release and recent activity dates were not verified.",
+        "sources": [
+          "https://github.com/Comfy-Org/ComfyUI"
+        ]
+      }
     },
     {
       "id": "csound",
@@ -821,8 +1007,10 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+        "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+        "2026-10-29: Skill opportunity: Further research first: one scripted score and offline audio fixture could support a standalone synthesis skill.",
+        "2026-10-29: Official website advertises 7.0.0 released while the reviewed development README describes 7.0.0 beta; reconcile version before use."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -831,8 +1019,33 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Programmable sound and music synthesis system with a CLI and embeddable API. Written instruments and scores can produce audio files or be used in realtime; it is not a general video renderer.",
+      "use_when": [
+        "Generate or process audio with a scripted score",
+        "Explore synthesis independently of a graphical DAW"
+      ],
+      "avoid_when": [
+        "Need video assembly: FFmpeg",
+        "Need existing MIDI files rendered with SoundFonts: FluidSynth"
+      ],
+      "pairs_with": [
+        "fluidsynth",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "LGPL-2.1-or-later (core project; verify dependencies and assets)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "ingest-assess-a",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official site and repository describe sound synthesis, CLI and LGPL terms. The site and development branch differ in 7.0 release status; recent dated activity remains unverified.",
+        "sources": [
+          "https://csound.com/",
+          "https://github.com/csound/csound"
+        ]
+      }
     },
     {
       "id": "d3",
@@ -963,8 +1176,10 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+        "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+        "2026-10-29: Skill opportunity: Further research first: evaluate maintained alternatives, model terms and a representative fixture before writing a skill.",
+        "2026-10-29: Original repository archived 2025-01-01; maintainer notes the fork only receives important bug fixes."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -973,8 +1188,31 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Research code and command-line interface for separating recorded music into stems using neural models. The original repository is archived and no longer maintained; model and weight terms require separate checks.",
+      "use_when": [
+        "Research offline music-stem separation on suitable licensed audio",
+        "Evaluate separation quality before using stems in a production"
+      ],
+      "avoid_when": [
+        "Need maintained or safety-supported software without a prior evaluation",
+        "Need simple audio trimming or muxing: FFmpeg"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "license": "MIT (source code; model weights, input and output rights not assessed)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "ingest-assess-a",
+        "maintenance": "unmaintained",
+        "verdict": "keep",
+        "rationale": "Original repository is archived and its maintainer says neither it nor the fork is actively maintained. Keep candidate for review; do not imply a maintained successor.",
+        "sources": [
+          "https://github.com/facebookresearch/demucs"
+        ]
+      }
     },
     {
       "id": "diffusion-studio-core",
@@ -1008,7 +1246,8 @@
       },
       "notes": [
         "2026-10-26: npm latest is 4.0.3 (2025-11-30) while the GitHub latest release tag is v1.1.1 (2024-10); version numbering differs between sources.",
-        "2026-10-26: no commits since 2025-11-18; no deprecation notice."
+        "2026-10-26: no commits since 2025-11-18; no deprecation notice.",
+        "2026-10-29: Skill opportunity: Further research first: its editor-focused browser API and watermark constraint need a concrete VCR use case before a skill."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -1177,7 +1416,8 @@
         "macos": "pnpm add easeljs"
       },
       "notes": [
-        "2026-10-26: createjs.com/easeljs returned only a stub page; the repository on GitHub (CreateJS/EaselJS) is a likelier official_url. Last npm release date comes from the registry; the Jan 2026 commit was a minor touch-input fix."
+        "2026-10-26: createjs.com/easeljs returned only a stub page; the repository on GitHub (CreateJS/EaselJS) is a likelier official_url. Last npm release date comes from the registry; the Jan 2026 commit was a minor touch-input fix.",
+        "2026-10-29: Skill opportunity: No skill yet: existing evidence points to legacy CreateJS exports; revisit if an actual migration needs a reproducible fixture."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -1236,7 +1476,8 @@
         "check_command": "editly --help"
       },
       "notes": [
-        "2026-10-26: GitHub shows v0.15.0-rc.1 (2025-01-19) but npm latest is 0.14.2 (2022-12-23); the README says the project is maintained by one person. Native headless-gl dependency may fail to build on current Node; not tested."
+        "2026-10-26: GitHub shows v0.15.0-rc.1 (2025-01-19) but npm latest is 0.14.2 (2022-12-23); the README says the project is maintained by one person. Native headless-gl dependency may fail to build on current Node; not tested.",
+        "2026-10-29: Skill opportunity: Further research first: evaluate the headless-gl dependency and a reproducible montage against the existing FFmpeg skill."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -1273,8 +1514,10 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+        "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+        "2026-10-29: Skill opportunity: Further research first: a repeatable descriptor fixture and licence/model review should precede a VCR or standalone skill.",
+        "2026-10-29: Optional models have separate provenance and licensing; verify exact AGPL variant and terms for intended deployment."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -1283,8 +1526,34 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "C++ audio-analysis library with Python and JavaScript bindings and CLI tools. It offers a broad set of audio descriptors and optional model inference, including onset analysis.",
+      "use_when": [
+        "Explore audio descriptors beyond a single onset detector",
+        "Compute music-analysis features with documented Python bindings"
+      ],
+      "avoid_when": [
+        "Need a smaller focused detector: aubio",
+        "Need video or audio encoding: FFmpeg"
+      ],
+      "pairs_with": [
+        "aubio",
+        "librosa",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "AGPL-3.0 (project README; models, dependencies and alternative terms require separate review)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "ingest-assess-a",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources document audio-analysis APIs and AGPLv3 project licensing. Recent release and substantive activity dates not verified.",
+        "sources": [
+          "https://essentia.upf.edu/",
+          "https://github.com/MTG/essentia"
+        ]
+      }
     },
     {
       "id": "fabric-js",
@@ -1522,8 +1791,10 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+        "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+        "2026-10-29: Skill opportunity: Further research first: verify a legal SoundFont and a reproducible MIDI-to-audio fixture before proposing a standalone skill.",
+        "2026-10-29: SoundFonts are separate assets with independent licence and provenance; no VCR fixture run."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -1532,8 +1803,33 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "SoundFont-based software synthesizer with a CLI shell and library API. It accepts MIDI events and can play MIDI files; the available sounds depend on a separately supplied SoundFont.",
+      "use_when": [
+        "Render or play MIDI with a suitable SoundFont",
+        "Explore an offline music-to-audio workflow"
+      ],
+      "avoid_when": [
+        "Need a programmable synthesis score: Csound",
+        "Need audio analysis rather than synthesis: librosa"
+      ],
+      "pairs_with": [
+        "csound",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "LGPL-2.1 (repository label; verify exact variant, dependencies and SoundFont rights)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "ingest-assess-a",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources document MIDI playback, SoundFont support, a CLI and LGPL licensing. Latest release and substantive activity dates not verified.",
+        "sources": [
+          "https://www.fluidsynth.org/",
+          "https://github.com/FluidSynth/fluidsynth"
+        ]
+      }
     },
     {
       "id": "frei0r",
@@ -1547,8 +1843,10 @@
         "effects"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+        "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+        "2026-10-29: Skill opportunity: Further research first: test a host build and specific effect before a VCR or standalone skill.",
+        "2026-10-29: Plugin collection requires a compatible host; effects, builds and licences vary and no VCR integration is verified."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -1557,8 +1855,33 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Video-effects plugin API and collection of filters, generators and mixers. Effects require a compatible host; availability in a particular FFmpeg build is not implied.",
+      "use_when": [
+        "Explore effects offered through a compatible video host",
+        "Research portable frame-effect plugins for a native pipeline"
+      ],
+      "avoid_when": [
+        "Need a standalone video encoder: FFmpeg",
+        "Need a host-independent effect without checking plugin compatibility"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "mlt-melt"
+      ],
+      "license": "GPL family and compatible licences (per project; check each plugin and host separately)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "ingest-assess-a",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe video effect plugins and a host API; per-plugin licences vary. Latest release and substantive activity dates not verified.",
+        "sources": [
+          "https://dyne.org/frei0r/",
+          "https://github.com/dyne/frei0r"
+        ]
+      }
     },
     {
       "id": "g-mic",
@@ -1852,7 +2175,10 @@
           "https://github.com/toji/gl-matrix"
         ]
       },
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "notes": [
+        "2026-10-29: Skill opportunity: No skill yet: this supporting math library has no standalone rendering workflow; revisit for a recurring raw WebGL task."
+      ]
     },
     {
       "id": "glslify",
@@ -1908,7 +2234,10 @@
           "https://www.npmjs.com/package/glslify"
         ]
       },
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "notes": [
+        "2026-10-29: Skill opportunity: Further research first: test a shader-module build in a real scene before proposing a standalone shader tooling skill."
+      ]
     },
     {
       "id": "gltf-transform",
@@ -2028,7 +2357,10 @@
           "https://www.npmjs.com/package/gltfjsx"
         ]
       },
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "notes": [
+        "2026-10-29: Skill opportunity: Further research first: verify a GLB-to-R3F fixture and current maintenance before proposing a standalone skill."
+      ]
     },
     {
       "id": "godot",
@@ -2283,7 +2615,10 @@
           "https://gstreamer.freedesktop.org/news/"
         ]
       },
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "notes": [
+        "2026-10-29: Skill opportunity: further research first; a standalone live-pipeline skill may be useful after a reproducible streaming fixture and an existing-skill check."
+      ]
     },
     {
       "id": "houdini",
@@ -2685,8 +3020,9 @@
         "image-processing"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+        "2026-10-29: Primary code.videolan.org page was inaccessible; the upstream project identifies the GitHub mirror as official. GPU backends and the FFmpeg build determine usable functionality.",
+        "2026-10-29: Skill opportunity: further research first; evaluate colour processing in a pinned FFmpeg build before proposing a VCR skill."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -2695,8 +3031,34 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "C library implementing GPU video processing, scaling and colour management algorithms. Applications integrate it directly; FFmpeg can expose selected functionality when built with the library.",
+      "use_when": [
+        "Need GPU scaling or colour processing in a supported host",
+        "Compare rendering approaches with OpenColorIO for video"
+      ],
+      "avoid_when": [
+        "Need a ready-to-run encoder: FFmpeg",
+        "Need portable CPU-only image operations: ImageMagick"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "opencolorio"
+      ],
+      "license": "LGPL-2.1-or-later (core library; dependencies and host builds require separate review)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-b",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official mirror documents a GPU video-processing library, LGPL terms and releases; the primary repository returned an error and a recent release year was not verified.",
+        "sources": [
+          "https://code.videolan.org/videolan/libplacebo",
+          "https://github.com/haasn/libplacebo",
+          "https://github.com/haasn/libplacebo/releases"
+        ]
+      }
     },
     {
       "id": "librosa",
@@ -2711,7 +3073,8 @@
       ],
       "notes": [
         "2026-10-29: Listed from a conversation; listed-in-prd is the schema’s listed-only status, not an assertion of PRD inclusion.",
-        "2026-10-29: Documentation assessed; no fixture has been run. Dependency and asset terms require separate review."
+        "2026-10-29: Documentation assessed; no fixture has been run. Dependency and asset terms require separate review.",
+        "2026-10-29: Skill opportunity: further research first; a standalone audio-analysis skill needs the proposed onset fixture and an existing-skill check."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -2801,7 +3164,10 @@
           "https://www.libvips.org/"
         ]
       },
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "notes": [
+        "2026-10-29: Skill opportunity: further research first; existing ImageMagick guidance addresses common image tasks, while libvips-specific large-image benefits need a fixture."
+      ]
     },
     {
       "id": "lmms",
@@ -2815,8 +3181,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+        "2026-10-29: The original site could not be opened in this check; the project repository was accessible. CLI render and plugins have not been tested.",
+        "2026-10-29: Skill opportunity: further research first; a standalone LMMS workflow may be useful for music production after a reproducible render."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -2825,8 +3192,36 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Music production application with arrangement, instruments and effects; it can render project files through its command-line interface. Useful as a music-workflow reference where a native project is desired.",
+      "use_when": [
+        "Work with a native LMMS arrangement instead of programmatic synthesis",
+        "Explore MIDI-driven composition in a dedicated application"
+      ],
+      "avoid_when": [
+        "Need direct scripted audio transformations: use SoX",
+        "Need automated video encoding: FFmpeg"
+      ],
+      "pairs_with": [
+        "sox",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "GPL-2.0-or-later (project licence; bundled plugins and assets need separate review)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-b",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Project source documents a CLI render action; the exact options in a selected installed release and current release dates require verification.",
+        "sources": [
+          "https://lmms.io/",
+          "https://github.com/LMMS/lmms",
+          "https://github.com/LMMS/lmms/blob/master/LICENSE.txt",
+          "https://github.com/LMMS/lmms/releases",
+          "https://github.com/LMMS/lmms/blob/master/src/core/main.cpp"
+        ]
+      }
     },
     {
       "id": "lottie-web",
@@ -2900,8 +3295,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+        "2026-10-29: A plugin standard is not an audio-processing executable; host and plugin support is a separate fact.",
+        "2026-10-29: Skill opportunity: further research first; a host-specific standalone workflow would need an actual plugin and tested host."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -2910,8 +3306,34 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Open standard defining an extensible C interface and bundles for audio plugins. It specifies how plugins and hosts interact; usable effects and instruments require a compatible host and individual plugins.",
+      "use_when": [
+        "Evaluate interoperable audio plugin hosting and control",
+        "Identify host/plugin interfaces for a future audio workflow"
+      ],
+      "avoid_when": [
+        "Need a finished audio effect without a host: SoX",
+        "Need a project renderer without plugin-host integration: FFmpeg"
+      ],
+      "pairs_with": [
+        "sox",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "ISC (specification implementation; individual plugins and hosts have separate licences)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-b",
+        "maintenance": "unknown",
+        "verdict": "promote",
+        "rationale": "The project documents an extensible audio-plugin standard and describes host/plugin bundles; release date and current host compatibility require verification.",
+        "sources": [
+          "https://lv2plug.in/",
+          "https://github.com/lv2/lv2"
+        ],
+        "version_seen": "1.18.10 (project download page)"
+      }
     },
     {
       "id": "magenta-studio",
@@ -2925,8 +3347,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+        "2026-10-29: Standalone and Ableton workflows use interactive interfaces; output and model terms require independent review.",
+        "2026-10-29: Skill opportunity: further research first; no VCR skill is justified until a repeatable supported interface is established."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -2935,8 +3358,34 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Interactive collection of model-assisted MIDI transformations, offered as standalone applications and Ableton Live devices. It is a research lead for music workflows; a general automation interface is not established.",
+      "use_when": [
+        "Explore model-assisted MIDI variations through the documented UI",
+        "Research editable MIDI outputs for composition support"
+      ],
+      "avoid_when": [
+        "Need scriptable MIDI manipulation: Mido",
+        "Need deterministic non-generative transformations: Mido"
+      ],
+      "pairs_with": [
+        "mido",
+        "pretty-midi"
+      ],
+      "license": "Apache-2.0 (repository code; model weights, third-party dependencies and Ableton terms require separate review)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-b",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official pages document interactive Ableton and standalone MIDI tools; a reusable CLI automation route and current release activity were not established.",
+        "sources": [
+          "https://magenta.tensorflow.org/studio",
+          "https://magenta.tensorflow.org/v1/studio/standalone",
+          "https://github.com/magenta/magenta-studio"
+        ]
+      }
     },
     {
       "id": "manim-community",
@@ -3192,8 +3641,9 @@
         "media-inspection"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+        "2026-10-29: The MediaInfo repository lists more than one licence file; verify components and distribution terms for the chosen build.",
+        "2026-10-29: Skill opportunity: existing FFmpeg guidance may cover the job; compare reports on a fixture before adding a VCR skill."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -3202,8 +3652,34 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Media metadata inspector available as a CLI and library. Reports technical and tag information for audio and video files, complementing ffprobe where a second metadata view is useful.",
+      "use_when": [
+        "Inspect technical and container tags as a second view alongside ffprobe",
+        "Produce file metadata reports for media triage"
+      ],
+      "avoid_when": [
+        "Need to decode, encode or assemble media: FFmpeg",
+        "Need visual image comparison: ImageMagick"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "imagemagick"
+      ],
+      "license": "BSD-2-Clause (repository licence; dependencies and build-specific components require review)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-b",
+        "maintenance": "unknown",
+        "verdict": "promote",
+        "rationale": "Official sources describe media metadata reporting and provide repository licence information; release dates and build-specific dependencies need checking.",
+        "sources": [
+          "https://mediaarea.net/en/MediaInfo",
+          "https://github.com/MediaArea/MediaInfo",
+          "https://github.com/MediaArea/MediaInfo/blob/master/LICENSE"
+        ]
+      }
     },
     {
       "id": "mediapipe",
@@ -3217,8 +3693,9 @@
         "computer-vision"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+        "2026-10-29: Framework code licence does not establish the terms of individual models or downloaded assets.",
+        "2026-10-29: Skill opportunity: further research first; a standalone landmark extraction workflow needs a pinned task, model and fixture."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -3227,8 +3704,37 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Cross-platform machine-learning framework and task libraries for vision, audio and other media. APIs and separately supplied models can support detection or landmark workflows; model terms and runtime requirements vary.",
+      "use_when": [
+        "Explore pose or hand landmarks for video analysis",
+        "Use a documented task API for image segmentation"
+      ],
+      "avoid_when": [
+        "Need classical image processing without model assets: OpenCV.js",
+        "Need general scene rendering: Three.js"
+      ],
+      "pairs_with": [
+        "opencv-js",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "Apache-2.0 (framework code; models, assets and dependencies have separate terms)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-b",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Official docs describe cross-platform ML task APIs; PyPI release 1.2.0 is dated 2026-10-27. Framework code is Apache-2.0; model terms remain separate.",
+        "sources": [
+          "https://ai.google.dev/edge/mediapipe",
+          "https://github.com/google-ai-edge/mediapipe",
+          "https://github.com/google-ai-edge/mediapipe/releases",
+          "https://pypi.org/project/mediapipe/"
+        ],
+        "version_seen": "1.2.0 (PyPI)",
+        "last_release": "2026-10-27"
+      }
     },
     {
       "id": "mediarecorder",
@@ -3259,7 +3765,8 @@
         "capture"
       ],
       "notes": [
-        "2026-10-26: Container and codec support in headless Chromium not checked; call MediaRecorder.isTypeSupported at runtime."
+        "2026-10-26: Container and codec support in headless Chromium not checked; call MediaRecorder.isTypeSupported at runtime.",
+        "2026-10-29: Skill opportunity: no new skill yet; VCR capture and FFmpeg cover the frame-accurate workflow, while browser codec support remains untested."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -3357,8 +3864,9 @@
         "3d-asset-processing"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+        "2026-10-29: Simplification and compression can change geometry or require decoder support; validate the exact target.",
+        "2026-10-29: Skill opportunity: existing glTF Transform guidance may be enough; test a representative mesh and fidelity before creating a standalone skill."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -3367,8 +3875,34 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "C/C++ mesh optimisation library with bindings and a companion gltfpack CLI for glTF. It offers mesh simplification and compact storage; compare output fidelity before using it in a production.",
+      "use_when": [
+        "Optimise triangle mesh data programmatically",
+        "Use gltfpack on glTF assets when its trade-offs are acceptable"
+      ],
+      "avoid_when": [
+        "Need general glTF inspection and editing: glTF Transform",
+        "Need to render a scene: Three.js"
+      ],
+      "pairs_with": [
+        "gltf-transform",
+        "three-js"
+      ],
+      "license": "MIT (library; verify dependencies and asset rights separately)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-b",
+        "maintenance": "unknown",
+        "verdict": "promote",
+        "rationale": "Project documents C/C++ and JavaScript interfaces, gltfpack and MIT licence; release date year was not confirmed.",
+        "sources": [
+          "https://github.com/zeux/meshoptimizer",
+          "https://github.com/zeux/meshoptimizer/releases"
+        ],
+        "version_seen": "v1.3 (release page; date year unverified)"
+      }
     },
     {
       "id": "meyda",
@@ -3382,8 +3916,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+        "2026-10-29: Feature extraction is not beat tracking or proof of deterministic capture; verify any specific workflow.",
+        "2026-10-29: Skill opportunity: further research first; test a seekable audio-reactive scene before proposing a VCR guide."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -3392,8 +3927,33 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "JavaScript audio feature extraction library for arrays and Web Audio. Exposes features such as RMS and spectral centroid for offline analysis or live reactive graphics.",
+      "use_when": [
+        "Extract audio features in a JavaScript/Web Audio scene",
+        "Use a browser-facing analyser rather than a Python analysis pipeline"
+      ],
+      "avoid_when": [
+        "Need Python-based music analysis: librosa",
+        "Need audio encoding or mixing: FFmpeg"
+      ],
+      "pairs_with": [
+        "web-audio",
+        "p5-js"
+      ],
+      "license": "MIT (project code; dependencies and audio assets require separate review)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-b",
+        "maintenance": "unknown",
+        "verdict": "promote",
+        "rationale": "Official site describes JavaScript feature extraction including offline and Web Audio use; repository identifies MIT licensing. Release recency is not verified.",
+        "sources": [
+          "https://meyda.js.org/",
+          "https://github.com/meyda/meyda"
+        ]
+      }
     },
     {
       "id": "mido",
@@ -3407,8 +3967,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+        "2026-10-29: Port backends and devices are separately required; reading a MIDI file does not render its sound.",
+        "2026-10-29: Skill opportunity: possible standalone MIDI manipulation skill after a reproducible round-trip fixture and an existing-skill check."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -3417,8 +3978,37 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Python library for MIDI 1.0 messages, ports and files. Supports inspecting and modifying symbolic events; live ports require an appropriate backend and are separate from audio synthesis.",
+      "use_when": [
+        "Read and write MIDI events in Python",
+        "Inspect MIDI messages or ports without rendering audio"
+      ],
+      "avoid_when": [
+        "Need musical harmonic analysis: music21",
+        "Need synthesised audio output: FluidSynth"
+      ],
+      "pairs_with": [
+        "music21",
+        "fluidsynth"
+      ],
+      "license": "MIT (library code; backends and musical content require separate review)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-b",
+        "maintenance": "unknown",
+        "verdict": "promote",
+        "rationale": "Official documentation covers Python MIDI 1.0; PyPI release 1.3.3 is dated 2024-10-25. Recent substantive commit activity was not established.",
+        "sources": [
+          "https://mido.readthedocs.io/en/stable/",
+          "https://github.com/mido/mido",
+          "https://github.com/mido/mido/blob/main/LICENSE",
+          "https://pypi.org/project/mido/"
+        ],
+        "version_seen": "1.3.3 (PyPI); stable documentation 1.3.2",
+        "last_release": "2024-10-25"
+      }
     },
     {
       "id": "mlt-melt",
@@ -3510,7 +4100,8 @@
         "check_command": "pnpm list @mojs/core --depth 0"
       },
       "notes": [
-        "2026-10-26: GitHub pushes continued to 2026-07-30 but the last npm release (@mojs/core 1.7.1) is 2023-10-06; the unscoped mo.js package is a stale 0.0.2. Seek behaviour not verified."
+        "2026-10-26: GitHub pushes continued to 2026-07-30 but the last npm release (@mojs/core 1.7.1) is 2023-10-06; the unscoped mo.js package is a stale 0.0.2. Seek behaviour not verified.",
+        "2026-10-29: Skill opportunity: no new skill yet; existing GSAP guidance covers seekable animation, and mo.js seeking is unverified."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -3729,8 +4320,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+        "2026-10-29: The project identifies separate copyright and licence terms for the corpus and external materials.",
+        "2026-10-29: Skill opportunity: possible standalone composition-analysis skill after a rights-clear score fixture and existing-skill review."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -3739,8 +4331,36 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Python toolkit for symbolic music analysis and notation. Represents scores and musical structures and supports computational analysis; the separately provided corpus has its own rights.",
+      "use_when": [
+        "Analyse harmony, notation or score structures in Python",
+        "Work with symbolic music instead of sampled audio"
+      ],
+      "avoid_when": [
+        "Need low-level MIDI message and port access: Mido",
+        "Need waveform signal analysis: librosa"
+      ],
+      "pairs_with": [
+        "mido",
+        "librosa"
+      ],
+      "license": "BSD-3-Clause (code; bundled scores and external materials have separate rights)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-b",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Official docs describe symbolic music analysis; PyPI release 10.5.2 is dated 2026-10-28. Code is BSD-3-Clause while score and corpus rights vary.",
+        "sources": [
+          "https://www.music21.org/",
+          "https://github.com/cuthbertLab/music21",
+          "https://pypi.org/project/music21/"
+        ],
+        "version_seen": "10.5.2 (PyPI)",
+        "last_release": "2026-10-28"
+      }
     },
     {
       "id": "natron",
@@ -3776,7 +4396,8 @@
         "check_command": "NatronRenderer --version"
       },
       "notes": [
-        "2026-10-26: The Homebrew cask natron 2.5.0 was disabled 2026-09-01 for failing Gatekeeper, so install.macos was removed. The latest GitHub release asset is Natron-RB-2.5 macOS12 x86_64 dmg (2024-09-13 pre-release); repo last pushed 2026-07-24. Natron 2.3.15 docs were the ones read."
+        "2026-10-26: The Homebrew cask natron 2.5.0 was disabled 2026-09-01 for failing Gatekeeper, so install.macos was removed. The latest GitHub release asset is Natron-RB-2.5 macOS12 x86_64 dmg (2024-09-13 pre-release); repo last pushed 2026-07-24. Natron 2.3.15 docs were the ones read.",
+        "2026-10-29: Skill opportunity: further research first; a standalone Natron guide would need a supported machine and reproducible headless fixture."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -3813,8 +4434,9 @@
         "3d-asset-processing"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+        "2026-10-29: Documented quickstart requires NVIDIA CUDA; applicability on this macOS machine is unverified. Model and dataset rights are separate.",
+        "2026-10-29: Skill opportunity: further research first; assess existing reconstruction skills and reproduce one pinned GPU fixture."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -3823,8 +4445,38 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Python-based framework and command-line workflows for training, viewing and exporting neural scene representations from image datasets. Its documented quickstart requires NVIDIA CUDA and significant dependencies.",
+      "use_when": [
+        "Research NeRF or Gaussian-splat reconstruction from image datasets",
+        "Explore reconstruction workflows with an appropriate CUDA environment"
+      ],
+      "avoid_when": [
+        "Need a conventional editable 3D model: Blender",
+        "Need basic mesh processing without model training: Trimesh"
+      ],
+      "pairs_with": [
+        "blender",
+        "colmap"
+      ],
+      "license": "Apache-2.0 (project code; methods, models, datasets and dependencies need separate review)",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-b",
+        "maintenance": "unknown",
+        "verdict": "promote",
+        "rationale": "Official docs cover reconstruction CLI workflows; PyPI 1.1.5 is dated 2024-11-11. Newer substantive development and model terms remain unverified.",
+        "sources": [
+          "https://docs.nerf.studio/",
+          "https://github.com/nerfstudio-project/nerfstudio",
+          "https://github.com/nerfstudio-project/nerfstudio/blob/main/LICENSE",
+          "https://github.com/nerfstudio-project/nerfstudio/releases",
+          "https://pypi.org/project/nerfstudio/"
+        ],
+        "version_seen": "1.1.5 (PyPI); repository release page lists 1.1.1",
+        "last_release": "2024-11-11"
+      }
     },
     {
       "id": "ogl",
@@ -3896,8 +4548,9 @@
         "3d-asset-processing"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Potential standalone 3D processing skill; first verify a reproducible point-cloud workflow and ownership."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -3906,8 +4559,35 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "C++ and Python library for processing 3D data, including point clouds and meshes. Its geometry operations suit reconstruction and inspection, while scene authoring remains with native 3D tools.",
+      "use_when": [
+        "Process point clouds or meshes before a Blender scene",
+        "Use Python for 3D data operations"
+      ],
+      "avoid_when": [
+        "Author and render a production scene: Blender",
+        "Need a lightweight triangle mesh workflow: Trimesh"
+      ],
+      "pairs_with": [
+        "blender",
+        "trimesh"
+      ],
+      "license": "MIT for project code; dependency and asset terms need review",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+        "sources": [
+          "https://github.com/isl-org/Open3D",
+          "https://github.com/isl-org/Open3D/blob/main/LICENSE",
+          "https://github.com/isl-org/Open3D/releases"
+        ],
+        "version_seen": "0.20.0 (GitHub release; date year unverified)"
+      }
     },
     {
       "id": "opencolorio",
@@ -4105,7 +4785,8 @@
       "notes": [
         "2026-10-29: Documentation assessment only. The project describes a Python API and CLI tools; no fixture has been run.",
         "2026-10-29: The schema value listed-in-prd means listed-only here; source is a conversation, not the PRD.",
-        "2026-10-29: Existing vocabulary lacks editorial timeline interchange; media-inspection reflects its inspection tools, not rendering or animation. Optional format adapters need separate assessment."
+        "2026-10-29: Existing vocabulary lacks editorial timeline interchange; media-inspection reflects its inspection tools, not rendering or animation. Optional format adapters need separate assessment.",
+        "2026-10-29: Skill opportunity: possible standalone editorial interchange skill; first run a scoped timeline round-trip fixture and check existing skills and ownership."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -4224,8 +4905,9 @@
         "3d-asset-processing"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Potential standalone scene-interchange skill; investigate actual USD round trips and licence obligations first."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -4234,8 +4916,35 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "OpenUSD is a scene-description framework and interchange ecosystem for composing 3D scene data, with C++ and Python interfaces. Import fidelity varies by application and schema.",
+      "use_when": [
+        "Exchange or compose layered 3D scene descriptions",
+        "Investigate a reusable scene interchange route"
+      ],
+      "avoid_when": [
+        "Need a finished rendered image: Blender",
+        "Need small real-time GLB assets: glTF Transform"
+      ],
+      "pairs_with": [
+        "blender",
+        "gltf-transform"
+      ],
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+        "sources": [
+          "https://openusd.org/",
+          "https://github.com/PixarAnimationStudios/OpenUSD",
+          "https://github.com/PixarAnimationStudios/OpenUSD/blob/dev/LICENSE.txt",
+          "https://github.com/PixarAnimationStudios/OpenUSD/releases"
+        ],
+        "version_seen": "26.11.1 (GitHub release; date year unverified)"
+      }
     },
     {
       "id": "p5-js",
@@ -4392,8 +5101,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Possible standalone Python audio-effects skill; verify plugin hosting and GPL dependencies before proposing."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -4402,8 +5112,34 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Python audio-effects library that chains built-in processors and can host VST3 or Audio Unit plugins. Native plugins, their permissions and compatibility must be assessed separately.",
+      "use_when": [
+        "Apply effects or host supported plugins in Python",
+        "Prototype an offline audio processing chain"
+      ],
+      "avoid_when": [
+        "Basic audio conversion and muxing: FFmpeg",
+        "Live modular synthesis: SuperCollider"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "supercollider"
+      ],
+      "license": "GPL-3.0 for project code; bundled libraries and third-party plugins have separate terms",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+        "sources": [
+          "https://github.com/spotify/pedalboard",
+          "https://github.com/spotify/pedalboard/releases"
+        ],
+        "version_seen": "0.9.26 (GitHub release; date year unverified)"
+      }
     },
     {
       "id": "pixijs",
@@ -4858,8 +5594,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Possible standalone MIDI manipulation skill; outside core VCR work until an actual job and fixture exist."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -4868,8 +5605,34 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Python MIDI utilities for inspecting, modifying and writing musical note data. It offers a note-oriented representation; optional synthesis and external instruments require separate dependencies.",
+      "use_when": [
+        "Manipulate symbolic MIDI notes in Python",
+        "Explore editable music variants rather than audio-only changes"
+      ],
+      "avoid_when": [
+        "Process audio recordings: FFmpeg or librosa",
+        "Need low-level MIDI message operations: Mido"
+      ],
+      "pairs_with": [
+        "mido",
+        "music21"
+      ],
+      "license": "MIT for project code; dependency, soundfont and asset terms need review",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+        "sources": [
+          "https://github.com/craffel/pretty-midi",
+          "https://github.com/craffel/pretty-midi/releases"
+        ],
+        "version_seen": "0.2.11 (GitHub release; date year unverified)"
+      }
     },
     {
       "id": "pts",
@@ -4946,8 +5709,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Further research first: independently useful patch workflows need headless execution evidence and ownership."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -4956,8 +5720,33 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Visual dataflow environment for sound and multimedia. Native Pd patches express realtime processing; automation and offline rendering depend on the patch and runtime configuration.",
+      "use_when": [
+        "Prototype patch-based audio processing",
+        "Explore interactive signal flows with editable patches"
+      ],
+      "avoid_when": [
+        "Simple scripted audio conversion: FFmpeg",
+        "Need Python effects processing: Pedalboard"
+      ],
+      "pairs_with": [
+        "supercollider",
+        "ffmpeg-ffprobe"
+      ],
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+        "sources": [
+          "https://puredata.info/",
+          "https://github.com/pure-data/pure-data",
+          "https://github.com/pure-data/pure-data/blob/master/LICENSE.txt"
+        ]
+      }
     },
     {
       "id": "pyscenedetect",
@@ -5389,8 +6178,9 @@
         "image-processing"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Possible standalone restoration skill; first verify specific model weights, rights and an image fixture."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -5399,8 +6189,34 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Model-based image restoration and upscaling with Python inference scripts. It produces processed image files; model weights, output quality and compute requirements vary by model.",
+      "use_when": [
+        "Explore model-based enlargement or restoration of raster assets",
+        "Process image batches with the supplied inference scripts"
+      ],
+      "avoid_when": [
+        "Simple resize with predictable output: ImageMagick",
+        "Need original image detail guaranteed: retain source"
+      ],
+      "pairs_with": [
+        "imagemagick",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "BSD-3-Clause for project code; model weights and asset terms require separate review",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+        "sources": [
+          "https://github.com/xinntao/Real-ESRGAN",
+          "https://github.com/xinntao/Real-ESRGAN/releases"
+        ],
+        "version_seen": "0.3.0 (GitHub release; date year unverified)"
+      }
     },
     {
       "id": "regl",
@@ -5728,8 +6544,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Possible standalone audio time-stretch skill; verify CLI behaviour, licences and duration/quality fixture."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -5738,8 +6555,34 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "C++ audio time-stretch and pitch-shift library with a command-line utility. It can alter tempo and pitch independently; quality and latency depend on algorithm and settings.",
+      "use_when": [
+        "Time-stretch an audio file without changing pitch",
+        "Adjust pitch and tempo independently"
+      ],
+      "avoid_when": [
+        "Simple encoding or muxing: FFmpeg",
+        "Need MIDI note manipulation: pretty_midi"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "pedalboard"
+      ],
+      "license": "GPL (project page); commercial licensing offered; verify version and dependency terms",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "slow",
+        "verdict": "keep",
+        "rationale": "Project page records v4.0.0 on 2024-10-25 and describes a CLI and C++ library.",
+        "sources": [
+          "https://breakfastquay.com/rubberband/"
+        ],
+        "version_seen": "4.0.0",
+        "last_release": "2024-10-25"
+      }
     },
     {
       "id": "satori",
@@ -5813,8 +6656,9 @@
         "computer-vision"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Possible standalone segmentation skill; compare alternatives and validate chosen checkpoints and masks first."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -5823,8 +6667,33 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Python inference code and model checkpoints for promptable image segmentation. It produces masks for specified prompts; checkpoint, input and model rights must be checked separately.",
+      "use_when": [
+        "Extract masks from images using point or box prompts",
+        "Explore a subject-isolation workflow"
+      ],
+      "avoid_when": [
+        "Need an editable vector trace: VTracer",
+        "Need simple image compositing: ImageMagick"
+      ],
+      "pairs_with": [
+        "imagemagick",
+        "mediapipe"
+      ],
+      "license": "Apache-2.0 (project code and stated model); verify selected checkpoints and assets",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+        "sources": [
+          "https://github.com/facebookresearch/segment-anything",
+          "https://github.com/facebookresearch/segment-anything/releases"
+        ]
+      }
     },
     {
       "id": "sharp",
@@ -5954,8 +6823,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Further research first: identify a maintained Vamp plugin and test output timing on a known signal."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -5964,8 +6834,32 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Batch audio feature extraction and annotation tool using Vamp plugins. It reads audio and writes structured results such as CSV or RDF; available analyses depend on installed plugins.",
+      "use_when": [
+        "Batch-extract timed features using a specific Vamp plugin",
+        "Create structured feature data for audio-reactive experiments"
+      ],
+      "avoid_when": [
+        "Need a Python audio analysis API: librosa",
+        "Need simple audio conversion: FFmpeg"
+      ],
+      "pairs_with": [
+        "librosa",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "GPL (project page); exact version and plugin terms need review",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+        "sources": [
+          "https://www.vamp-plugins.org/sonic-annotator/"
+        ]
+      }
     },
     {
       "id": "sox",
@@ -5979,8 +6873,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Further research first: compare maintenance, licences and a representative SoX workflow with FFmpeg."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -5989,8 +6884,31 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Command-line sound processing toolkit for converting and transforming audio files. Its effects offer a dedicated audio route alongside FFmpeg; supported codecs depend on the build.",
+      "use_when": [
+        "Apply command-line audio effects or format conversion",
+        "Prepare source audio for offline analysis"
+      ],
+      "avoid_when": [
+        "Mux audio with video: FFmpeg",
+        "Need detailed music analysis: librosa"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "librosa"
+      ],
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+        "sources": [
+          "https://sox.sourceforge.net/"
+        ]
+      }
     },
     {
       "id": "ssam",
@@ -6067,8 +6985,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Potential standalone synthesis skill; establish scoped noninteractive render and server lifecycle before authoring."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -6077,8 +6996,35 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Audio synthesis and algorithmic composition platform with the sclang language and a separate audio server. Scripted workflows need explicit server, timing and rendering configuration.",
+      "use_when": [
+        "Program synthesis or algorithmic composition",
+        "Explore configurable audio generation with a separate server"
+      ],
+      "avoid_when": [
+        "Need simple audio encoding: FFmpeg",
+        "Need only prerecorded audio analysis: librosa"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "pure-data"
+      ],
+      "license": "GPL-3.0 (repository label); verify dependencies and extensions separately",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+        "sources": [
+          "https://supercollider.github.io/",
+          "https://github.com/supercollider/supercollider",
+          "https://github.com/supercollider/supercollider/releases"
+        ],
+        "version_seen": "3.14.1 (GitHub release; date year unverified)"
+      }
     },
     {
       "id": "surge-xt",
@@ -6092,8 +7038,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Further research first: demonstrate reproducible plugin host control and relevant ownership."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -6102,8 +7049,34 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Open-source software synthesizer with multiple synthesis and modulation options. It is designed for instrument/plugin use; headless automation depends on a suitable host.",
+      "use_when": [
+        "Explore synthesizer patches in a supported plugin host",
+        "Prototype sound design outside a VCR render"
+      ],
+      "avoid_when": [
+        "Need a command-line audio converter: FFmpeg",
+        "Need independent note-file manipulation: pretty_midi"
+      ],
+      "pairs_with": [
+        "pedalboard",
+        "supercollider"
+      ],
+      "license": "GPL-3.0 (repository label); verify components and plugins separately",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+        "sources": [
+          "https://surge-synthesizer.github.io/",
+          "https://github.com/surge-synthesizer/surge"
+        ],
+        "version_seen": "1.3.4 (project website; release date unverified)"
+      }
     },
     {
       "id": "svg",
@@ -6694,8 +7667,9 @@
         "3d-asset-processing"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Potential standalone mesh inspection skill; test mesh import, analysis and dependency compatibility first."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -6704,8 +7678,35 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Python library for loading, inspecting and transforming triangular meshes, with emphasis on geometry analysis and watertight surfaces. Some operations require optional dependencies.",
+      "use_when": [
+        "Inspect or manipulate triangular geometry in Python",
+        "Analyse watertightness before a 3D rendering workflow"
+      ],
+      "avoid_when": [
+        "Need point-cloud reconstruction: Open3D",
+        "Need full 3D scene authoring and rendering: Blender"
+      ],
+      "pairs_with": [
+        "blender",
+        "open3d"
+      ],
+      "license": "MIT for project code; optional dependencies and asset terms require review",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+        "sources": [
+          "https://trimesh.org/",
+          "https://github.com/mikedh/trimesh",
+          "https://github.com/mikedh/trimesh/releases"
+        ],
+        "version_seen": "5.2.0 (documentation and GitHub release; date year unverified)"
+      }
     },
     {
       "id": "troika-three-text",
@@ -6955,8 +7956,9 @@
         "image-sequence-processing"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Potential standalone video-processing skill; verify CLI and a scoped filter fixture first."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -6965,8 +7967,35 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "Scriptable video processing framework that uses Python and plugins to build frame-processing pipelines. Output and capabilities depend on the installed filters and runtime.",
+      "use_when": [
+        "Build a Python-driven video filtering pipeline",
+        "Explore frame processing beyond a simple FFmpeg filtergraph"
+      ],
+      "avoid_when": [
+        "Need straightforward encoding and muxing: FFmpeg",
+        "Need a graphical video editor: use a native editor"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "imagemagick"
+      ],
+      "license": "LGPL-2.1 (repository label); verify plugin and dependency terms separately",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Project site records R81 on 2026-10-22; scripted video filtering has a documented route.",
+        "sources": [
+          "https://www.vapoursynth.com/",
+          "https://github.com/vapoursynth/vapoursynth"
+        ],
+        "version_seen": "R81",
+        "last_release": "2026-10-22"
+      }
     },
     {
       "id": "vpype",
@@ -7161,7 +8190,8 @@
       ],
       "notes": [
         "2026-10-29: Listed from a conversation; listed-in-prd is the schema’s listed-only status, not an assertion of PRD inclusion.",
-        "2026-10-29: Documentation assessed; no fixture has been run. Dependency and asset terms require separate review."
+        "2026-10-29: Documentation assessed; no fixture has been run. Dependency and asset terms require separate review.",
+        "2026-10-29: Skill opportunity: further research first; run a colour tracing fixture and check existing vector skills before choosing a VCR or standalone guide."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -7486,8 +8516,9 @@
         "audio"
       ],
       "notes": [
-        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+        "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+        "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+        "2026-10-29: Skill opportunity: Potential standalone transcription skill; assess existing skills, selected model rights and a timed speech fixture first."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -7496,8 +8527,33 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": null,
-      "source": "references/ideas/check-vcr-repo-conversation.md"
+      "checked_at": "2026-10-29",
+      "source": "references/ideas/check-vcr-repo-conversation.md",
+      "summary": "C/C++ implementation of Whisper inference with a command-line transcription example. It needs a compatible model file, and timing and accuracy depend on model, language and audio.",
+      "use_when": [
+        "Produce local speech transcript candidates for caption review",
+        "Explore timestamped speech analysis without a hosted API"
+      ],
+      "avoid_when": [
+        "Need exact captions without human review: correct the transcript manually",
+        "Need image mask extraction: Segment Anything"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "license": "MIT for project code; model weights and input media terms require separate review",
+      "assessment": {
+        "date": "2026-10-29",
+        "assessed_by": "assess-c",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+        "sources": [
+          "https://github.com/ggml-org/whisper.cpp",
+          "https://github.com/ggml-org/whisper.cpp/releases"
+        ],
+        "version_seen": "1.9.5 (GitHub release; date year unverified)"
+      }
     }
   ]
 }

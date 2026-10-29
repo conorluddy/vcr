@@ -10,8 +10,9 @@
     "computer-vision"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+    "2026-10-29: Framework code licence does not establish the terms of individual models or downloaded assets.",
+    "2026-10-29: Skill opportunity: further research first; a standalone landmark extraction workflow needs a pinned task, model and fixture."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +21,35 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Cross-platform machine-learning framework and task libraries for vision, audio and other media. APIs and separately supplied models can support detection or landmark workflows; model terms and runtime requirements vary.",
+  "use_when": [
+    "Explore pose or hand landmarks for video analysis",
+    "Use a documented task API for image segmentation"
+  ],
+  "avoid_when": [
+    "Need classical image processing without model assets: OpenCV.js",
+    "Need general scene rendering: Three.js"
+  ],
+  "pairs_with": [
+    "opencv-js",
+    "ffmpeg-ffprobe"
+  ],
+  "license": "Apache-2.0 (framework code; models, assets and dependencies have separate terms)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-b",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "Official docs describe cross-platform ML task APIs; PyPI release 1.2.0 is dated 2026-10-27. Framework code is Apache-2.0; model terms remain separate.",
+    "sources": [
+      "https://ai.google.dev/edge/mediapipe",
+      "https://github.com/google-ai-edge/mediapipe",
+      "https://github.com/google-ai-edge/mediapipe/releases",
+      "https://pypi.org/project/mediapipe/"
+    ],
+    "version_seen": "1.2.0 (PyPI)",
+    "last_release": "2026-10-27"
+  }
 }

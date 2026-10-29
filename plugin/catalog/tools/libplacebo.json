@@ -10,8 +10,9 @@
     "image-processing"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+    "2026-10-29: Primary code.videolan.org page was inaccessible; the upstream project identifies the GitHub mirror as official. GPU backends and the FFmpeg build determine usable functionality.",
+    "2026-10-29: Skill opportunity: further research first; evaluate colour processing in a pinned FFmpeg build before proposing a VCR skill."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +21,32 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "C library implementing GPU video processing, scaling and colour management algorithms. Applications integrate it directly; FFmpeg can expose selected functionality when built with the library.",
+  "use_when": [
+    "Need GPU scaling or colour processing in a supported host",
+    "Compare rendering approaches with OpenColorIO for video"
+  ],
+  "avoid_when": [
+    "Need a ready-to-run encoder: FFmpeg",
+    "Need portable CPU-only image operations: ImageMagick"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "opencolorio"
+  ],
+  "license": "LGPL-2.1-or-later (core library; dependencies and host builds require separate review)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-b",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official mirror documents a GPU video-processing library, LGPL terms and releases; the primary repository returned an error and a recent release year was not verified.",
+    "sources": [
+      "https://code.videolan.org/videolan/libplacebo",
+      "https://github.com/haasn/libplacebo",
+      "https://github.com/haasn/libplacebo/releases"
+    ]
+  }
 }

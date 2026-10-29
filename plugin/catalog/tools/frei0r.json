@@ -10,8 +10,10 @@
     "effects"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+    "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+    "2026-10-29: Skill opportunity: Further research first: test a host build and specific effect before a VCR or standalone skill.",
+    "2026-10-29: Plugin collection requires a compatible host; effects, builds and licences vary and no VCR integration is verified."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +22,31 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Video-effects plugin API and collection of filters, generators and mixers. Effects require a compatible host; availability in a particular FFmpeg build is not implied.",
+  "use_when": [
+    "Explore effects offered through a compatible video host",
+    "Research portable frame-effect plugins for a native pipeline"
+  ],
+  "avoid_when": [
+    "Need a standalone video encoder: FFmpeg",
+    "Need a host-independent effect without checking plugin compatibility"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "mlt-melt"
+  ],
+  "license": "GPL family and compatible licences (per project; check each plugin and host separately)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "ingest-assess-a",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official sources describe video effect plugins and a host API; per-plugin licences vary. Latest release and substantive activity dates not verified.",
+    "sources": [
+      "https://dyne.org/frei0r/",
+      "https://github.com/dyne/frei0r"
+    ]
+  }
 }

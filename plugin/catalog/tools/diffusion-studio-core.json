@@ -30,7 +30,8 @@
   },
   "notes": [
     "2026-10-26: npm latest is 4.0.3 (2025-11-30) while the GitHub latest release tag is v1.1.1 (2024-10); version numbering differs between sources.",
-    "2026-10-26: no commits since 2025-11-18; no deprecation notice."
+    "2026-10-26: no commits since 2025-11-18; no deprecation notice.",
+    "2026-10-29: Skill opportunity: Further research first: its editor-focused browser API and watermark constraint need a concrete VCR use case before a skill."
   ],
   "assessment": {
     "date": "2026-10-26",

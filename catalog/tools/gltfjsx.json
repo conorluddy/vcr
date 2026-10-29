@@ -54,5 +54,8 @@
       "https://www.npmjs.com/package/gltfjsx"
     ]
   },
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "notes": [
+    "2026-10-29: Skill opportunity: Further research first: verify a GLB-to-R3F fixture and current maintenance before proposing a standalone skill."
+  ]
 }
