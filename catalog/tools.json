@@ -123,6 +123,31 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "ardour",
+      "name": "Ardour",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Audio workstation",
+      "official_url": "https://ardour.org/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "aseprite",
       "name": "Aseprite",
       "category": "A7. Native applications and procedural tools",
@@ -182,6 +207,56 @@
       },
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "aubio",
+      "name": "aubio",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Onsets and pitch",
+      "official_url": "https://aubio.org/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
+      "id": "audiowaveform",
+      "name": "audiowaveform",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Waveform data",
+      "official_url": "https://github.com/bbc/audiowaveform",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     },
     {
       "id": "babylon-js",
@@ -635,6 +710,131 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "chainner",
+      "name": "chaiNNer",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Image graphs",
+      "official_url": "https://github.com/chaiNNer-org/chaiNNer",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
+      "id": "clap",
+      "name": "CLAP",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Plugin standard",
+      "official_url": "https://github.com/free-audio/clap",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
+      "id": "colmap",
+      "name": "COLMAP",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Reconstruction",
+      "official_url": "https://colmap.github.io/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "3d-asset-processing"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
+      "id": "comfyui",
+      "name": "ComfyUI",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Generative graphs",
+      "official_url": "https://github.com/Comfy-Org/ComfyUI",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
+      "id": "csound",
+      "name": "Csound",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Audio synthesis",
+      "official_url": "https://csound.com/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "d3",
       "name": "D3",
       "category": "A4. Vector, typography, diagrams and stills",
@@ -752,11 +952,36 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "demucs",
+      "name": "Demucs",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Source separation",
+      "official_url": "https://github.com/facebookresearch/demucs",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "diffusion-studio-core",
       "name": "Diffusion Studio Core",
       "category": "A5. Video and capture",
       "tier": "candidate",
-      "role": "Browser-only TypeScript timeline engine on WebCodecs; export is client-side",
+      "role": "Browser timeline engine using WebCodecs",
       "summary": "TypeScript video composition engine for the browser: layers, transitions, effects, keyframes, masks and captions on a timeline, decoded and encoded with WebCodecs and drawn on Canvas 2D, built on Mediabunny. Aimed at people building non-linear editors. Requires COOP/COEP headers. Free tier stamps a watermark on renders unless a paid licence key is bought.",
       "use_when": [
         "Building an in-browser editor UI that needs a ready timeline model and client-side export",
@@ -927,7 +1152,7 @@
       "name": "EaselJS",
       "category": "A1. Creative coding and 2D",
       "tier": "candidate",
-      "role": "Legacy Canvas display list from the CreateJS suite; pre-dates modern Canvas scene graphs",
+      "role": "Legacy CreateJS Canvas display list",
       "summary": "Canvas 2D display-list library (Stage, Container, Bitmap, Shape, Text) modelled on the Flash API, part of CreateJS and designed to pair with TweenJS. Driven by a Ticker; output is Canvas frames. A limited StageGL (WebGL) mode exists. The last npm release is 1.0.2 from 2017; the repository still gets sporadic commits, so treat it as legacy and mainly relevant for existing CreateJS or Adobe Animate exports.",
       "use_when": [
         "Rendering existing CreateJS or Adobe Animate canvas exports",
@@ -984,7 +1209,7 @@
       "name": "Editly",
       "category": "A5. Video and capture",
       "tier": "candidate",
-      "role": "Declarative JSON/CLI video editor on ffmpeg with transitions, titles and GL layers",
+      "role": "Declarative FFmpeg video editor",
       "summary": "Node CLI and API that builds a video from a JSON5 spec of clips, images, audio, titles and transitions, rendering frames through headless-gl and canvas and piping them to ffmpeg. Output is one MP4 (or GIF) in one command. Distinguishing strength: the fastest route from a declarative edit list to a finished slideshow-style video without a browser. ESM only; needs ffmpeg, headless-gl on Linux.",
       "use_when": [
         "Slideshow or montage with transitions from a JSON spec, no browser needed",
@@ -1035,6 +1260,31 @@
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "essentia",
+      "name": "Essentia",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Audio features",
+      "official_url": "https://essentia.upf.edu/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     },
     {
       "id": "fabric-js",
@@ -1259,6 +1509,56 @@
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "fluidsynth",
+      "name": "FluidSynth",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "MIDI synthesis",
+      "official_url": "https://www.fluidsynth.org/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
+      "id": "frei0r",
+      "name": "frei0r",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Video effects",
+      "official_url": "https://frei0r.dyne.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "effects"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     },
     {
       "id": "g-mic",
@@ -1503,7 +1803,7 @@
       "name": "glMatrix",
       "category": "A9. Adjacent resources mentioned during discovery",
       "tier": "candidate",
-      "role": "Fast vec/mat/quat helpers for hand-written WebGL and WebGPU code",
+      "role": "Vector and matrix utilities",
       "summary": "High-performance vector, matrix and quaternion library for JavaScript, using Float32Array and in-place operations. It has no rendering or timeline: it supplies projection, view and transform maths to raw WebGL or WebGPU code. Pure functions of their inputs, so safe in seek-driven frames.",
       "use_when": [
         "Raw WebGL or WebGPU scenes needing matrices without a framework",
@@ -1559,7 +1859,7 @@
       "name": "glslify",
       "category": "A9. Adjacent resources mentioned during discovery",
       "tier": "candidate",
-      "role": "Build-time GLSL module composition via CLI or bundler transform",
+      "role": "GLSL modules and bundling",
       "summary": "Node module system for GLSL: shaders import functions (noise, easing, blend modes) from npm packages, and the glslify CLI or bundler transform inlines them into one shader string. Build-time only, so output is a plain shader for regl, OGL or Three.js. Distinguishing strength: reusing community GLSL without copy-paste.",
       "use_when": [
         "Reusing npm GLSL (noise, blend, easing) in regl, OGL or Three.js shaders",
@@ -1677,7 +1977,7 @@
       "name": "gltfjsx",
       "category": "A9. Adjacent resources mentioned during discovery",
       "tier": "candidate",
-      "role": "CLI that turns a .glb/.gltf into a react-three-fiber JSX component",
+      "role": "Convert glTF models to React Three Fiber",
       "summary": "Command-line tool that parses a glTF/GLB and emits a React Three Fiber component with each mesh, material and animation clip as addressable JSX, optionally TypeScript and with Draco/meshopt optimisation via gltf-transform. Run once at build time; output is source code. Distinguishing strength: scene graph becomes editable, typed JSX.",
       "use_when": [
         "Over loading a raw GLB when you need to restyle or animate individual meshes in R3F",
@@ -1939,7 +2239,7 @@
       "name": "GStreamer",
       "category": "A9. Adjacent resources mentioned during discovery",
       "tier": "candidate",
-      "role": "Graph-based media pipelines via gst-launch-1.0; for live and streaming work",
+      "role": "Media pipeline framework and CLI",
       "summary": "Plugin-based multimedia framework: gst-launch-1.0 wires elements (sources, decoders, compositors, encoders, sinks) into pipelines, and the C/Python APIs build the same graphs. Handles live capture, RTP/WebRTC and hardware codecs. Distinguishing strength: streaming and live graphs; for offline files FFmpeg is simpler.",
       "use_when": [
         "Live or streaming pipelines (RTP, WebRTC, capture devices) that FFmpeg handles poorly",
@@ -2374,11 +2674,61 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "libplacebo",
+      "name": "libplacebo",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Video processing",
+      "official_url": "https://code.videolan.org/videolan/libplacebo",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "image-processing"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
+      "id": "librosa",
+      "name": "librosa",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Rhythm and spectra",
+      "official_url": "https://librosa.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "libvips",
       "name": "libvips",
       "category": "A9. Adjacent resources mentioned during discovery",
       "tier": "candidate",
-      "role": "Streaming image library with vips CLI; the engine under sharp",
+      "role": "Streaming image processing library",
       "summary": "Demand-driven, multi-threaded image processing library with a vips command line and bindings for C, Python and others. Streams large images at low memory and is the engine under sharp. Distinguishing strength: speed and memory on big batches without a Node runtime.",
       "use_when": [
         "Over ImageMagick for very large images or fast batch resize at low memory",
@@ -2426,6 +2776,31 @@
         ]
       },
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "lmms",
+      "name": "LMMS",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Music workstation",
+      "official_url": "https://lmms.io/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     },
     {
       "id": "lottie-web",
@@ -2486,6 +2861,56 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "lv2",
+      "name": "LV2",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Plugin standard",
+      "official_url": "https://lv2plug.in/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
+      "id": "magenta-studio",
+      "name": "Magenta Studio",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "MIDI variants",
+      "official_url": "https://magenta.tensorflow.org/studio",
+      "automation_route": "manual-only",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     },
     {
       "id": "manim-community",
@@ -2730,11 +3155,61 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "mediainfo",
+      "name": "MediaInfo",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Media metadata",
+      "official_url": "https://mediaarea.net/en/MediaInfo",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
+      "id": "mediapipe",
+      "name": "MediaPipe",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Vision and tracking",
+      "official_url": "https://ai.google.dev/edge/mediapipe",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "computer-vision"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "mediarecorder",
       "name": "MediaRecorder",
       "category": "Native browser platform APIs",
       "tier": "candidate",
-      "role": "Real-time recording of a MediaStream to WebM/MP4; wall-clock bound, not frame-exact",
+      "role": "Browser MediaStream recording API",
       "summary": "Records a MediaStream (canvas.captureStream, tab or microphone) into a Blob in the browser's chosen codec. It runs in real time and drops or duplicates frames when rendering is slow, so output depends on wall-clock timing, not on t. Fine for a quick preview or live capture; wrong for frame-accurate renders where frames are produced in any order.",
       "use_when": [
         "A quick real-time preview recording of a canvas scene",
@@ -2845,6 +3320,81 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "meshoptimizer",
+      "name": "meshoptimizer",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Mesh optimisation",
+      "official_url": "https://github.com/zeux/meshoptimizer",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-asset-processing"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
+      "id": "meyda",
+      "name": "Meyda",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Audio features",
+      "official_url": "https://meyda.js.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
+      "id": "mido",
+      "name": "Mido",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "MIDI processing",
+      "official_url": "https://mido.readthedocs.io/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "mlt-melt",
       "name": "MLT / melt",
       "category": "A5. Video and capture",
@@ -2907,7 +3457,7 @@
       "name": "mo.js",
       "category": "A2. Animation and authored assets",
       "tier": "candidate",
-      "role": "Declarative burst, shape and ripple effects; own timeline, no GSAP-style seek guarantee",
+      "role": "Declarative shape and burst animation",
       "summary": "Motion graphics library for the web with ready-made bursts, shapes, swirls and stagger, driven by its own Timeline and Tween classes. Renders SVG shapes and HTML elements with retina-sharp output. Good for celebratory particle-like effects with little code. Releases have stalled since 2023, and determinism under external seeking is not documented.",
       "use_when": [
         "A one-off confetti or radial burst effect with minimal code",
@@ -3142,11 +3692,36 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "music21",
+      "name": "music21",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Music analysis",
+      "official_url": "https://www.music21.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "natron",
       "name": "Natron",
       "category": "A7. Native applications and procedural tools",
       "tier": "candidate",
-      "role": "NatronRenderer background compositing of .ntp projects; macOS builds are Intel-only",
+      "role": "Native node-based compositor",
       "summary": "Open-source node compositor. NatronRenderer renders a .ntp project headlessly, overriding Reader and Writer files and frame ranges from the command line, and Python scripts can build node graphs. Strength would be free node compositing, but the last release is a 2024 pre-release and macOS builds are x86_64 only, so on Apple Silicon it runs under Rosetta if at all.",
       "use_when": [
         "An existing .ntp project must render and Rosetta is acceptable",
@@ -3199,6 +3774,31 @@
       },
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "nerfstudio",
+      "name": "Nerfstudio",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Reconstruction",
+      "official_url": "https://docs.nerf.studio/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "3d-asset-processing"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     },
     {
       "id": "ogl",
@@ -3257,6 +3857,31 @@
       },
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "open3d",
+      "name": "Open3D",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "3D geometry",
+      "official_url": "https://www.open3d.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-asset-processing"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     },
     {
       "id": "opencolorio",
@@ -3441,6 +4066,31 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "opentimelineio",
+      "name": "OpenTimelineIO",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Timeline exchange",
+      "official_url": "https://opentimelineio.readthedocs.io/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "timeline-animation"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "opentype-js",
       "name": "opentype.js",
       "category": "A4. Vector, typography, diagrams and stills",
@@ -3501,6 +4151,31 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "openusd",
+      "name": "OpenUSD",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "3D interchange",
+      "official_url": "https://openusd.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-asset-processing"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     },
     {
       "id": "p5-js",
@@ -3644,6 +4319,31 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "pedalboard",
+      "name": "Pedalboard",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Audio effects",
+      "official_url": "https://github.com/spotify/pedalboard",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     },
     {
       "id": "pixijs",
@@ -4087,6 +4787,31 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "pretty-midi",
+      "name": "pretty_midi",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "MIDI processing",
+      "official_url": "https://github.com/craffel/pretty-midi",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "pts",
       "name": "Pts",
       "category": "A1. Creative coding and 2D",
@@ -4148,6 +4873,31 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "pure-data",
+      "name": "Pure Data",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Audio programming",
+      "official_url": "https://puredata.info/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     },
     {
       "id": "pyscenedetect",
@@ -4568,6 +5318,31 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "real-esrgan",
+      "name": "Real-ESRGAN",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Upscaling",
+      "official_url": "https://github.com/xinntao/Real-ESRGAN",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "regl",
       "name": "regl",
       "category": "A3. 3D, shaders and effects",
@@ -4882,6 +5657,31 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "rubber-band",
+      "name": "Rubber Band",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Time stretch",
+      "official_url": "https://breakfastquay.com/rubberband/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "satori",
       "name": "Satori",
       "category": "A4. Vector, typography, diagrams and stills",
@@ -4940,6 +5740,31 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "segment-anything",
+      "name": "Segment Anything",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Segmentation",
+      "official_url": "https://github.com/facebookresearch/segment-anything",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "computer-vision"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     },
     {
       "id": "sharp",
@@ -5058,6 +5883,56 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "sonic-annotator",
+      "name": "Sonic Annotator",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Audio annotation",
+      "official_url": "https://www.vamp-plugins.org/sonic-annotator/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
+      "id": "sox",
+      "name": "SoX",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Audio processing",
+      "official_url": "https://sox.sourceforge.net/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "ssam",
       "name": "Ssam",
       "category": "A1. Creative coding and 2D",
@@ -5119,6 +5994,56 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "supercollider",
+      "name": "SuperCollider",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Audio synthesis",
+      "official_url": "https://supercollider.github.io/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
+      "id": "surge-xt",
+      "name": "Surge XT",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Synthesizer",
+      "official_url": "https://surge-synthesizer.github.io/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     },
     {
       "id": "svg",
@@ -5698,6 +6623,31 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "trimesh",
+      "name": "Trimesh",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Mesh processing",
+      "official_url": "https://trimesh.org/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-asset-processing"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "troika-three-text",
       "name": "Troika Three Text",
       "category": "A9. Adjacent resources mentioned during discovery",
@@ -5934,6 +6884,31 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "vapoursynth",
+      "name": "VapourSynth",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Video filtering",
+      "official_url": "https://www.vapoursynth.com/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-sequence-processing"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
+    },
+    {
       "id": "vpype",
       "name": "vpype",
       "category": "A7. Native applications and procedural tools",
@@ -6112,6 +7087,31 @@
       ],
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "vtracer",
+      "name": "VTracer",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Colour tracing",
+      "official_url": "https://github.com/visioncortex/vtracer",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "vector-tracing"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     },
     {
       "id": "web-animations-api",
@@ -6387,6 +7387,31 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "whisper-cpp",
+      "name": "whisper.cpp",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Speech to text",
+      "official_url": "https://github.com/ggml-org/whisper.cpp",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+        "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "references/ideas/check-vcr-repo-conversation.md"
     }
   ]
 }

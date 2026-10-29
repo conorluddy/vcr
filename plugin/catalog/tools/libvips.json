@@ -3,7 +3,7 @@
   "name": "libvips",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Streaming image library with vips CLI; the engine under sharp",
+  "role": "Streaming image processing library",
   "summary": "Demand-driven, multi-threaded image processing library with a vips command line and bindings for C, Python and others. Streams large images at low memory and is the engine under sharp. Distinguishing strength: speed and memory on big batches without a Node runtime.",
   "use_when": [
     "Over ImageMagick for very large images or fast batch resize at low memory",

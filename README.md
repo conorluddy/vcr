@@ -6,7 +6,7 @@ VCR is a local-first, agent-friendly workspace for creating and reviewing motion
 
 Layer 0 (tool suite) is complete, the plugin is installable (plugin PRD phases P0 and P1), and Layer 1 has not started. Concretely:
 
-- **Catalogue**: 104 live records under `catalog/tools/`, one file each, every one carrying a tier 1 card (summary, use when, avoid when, pairs with) and, for the 98 non-core records, a dated assessment against its official source. 16 tools were retired to `catalog/retired/` with their reasoning. `catalog/tools.json` and `catalog/INDEX.md` are generated; run `pnpm vcr catalog build` after editing a record.
+- **Catalogue**: 145 live records under `catalog/tools/`, one file each. The original 104 are carded and assessed; 41 additional conversation-sourced candidates await assessment. 16 tools were retired to `catalog/retired/` with their reasoning. `catalog/tools.json` and `catalog/INDEX.md` are generated; run `pnpm vcr catalog build` after editing a record.
 - **Evidence**: eight records carry validation evidence from the six fixtures under `examples/`, all reproducible on the primary Mac with `run.sh`. Installation facts live in `environment/`, never in the catalogue.
 - **Skills**: operating guides for the six core tools (SVG, GSAP, p5.js, Three.js, FFmpeg, Blender) plus ImageMagick and resvg, and two workflow skills: `start` (router) and `init` (workspace setup). `.claude/skills` links there.
 - **Plugin**: `plugin/` is a generated, committed Claude Code and Codex plugin: a single-file bundled CLI, the catalogue, the skills and example sources. It works from any directory against a read-only harness; see "Install as a plugin" below and `specifications/spikes/plugin-invocation.md`.
@@ -112,7 +112,7 @@ Media is ignored by directory, not by extension, so brand assets and fixtures ca
 - `examples/` — validated fixtures, each with `example.json`, `run.sh` and `expected/`; copied into other workspaces by `vcr example create`.
 - `projects/` — in-repository productions and the project template.
 - `shared/` — versioned shared components, transitions and presets (empty until Layer 1).
-- `references/` — curated production metadata (empty until Layer 1).
+- `references/` — ideas and conversation references; curated production metadata is planned for later layers.
 - `specifications/` — the PRD, the plugin PRD, decision records and spike reports.
 
 See [`AGENTS.md`](AGENTS.md) for repository working rules and [`specifications/vcr-prd.md`](specifications/vcr-prd.md) for the complete product direction.

@@ -3,7 +3,7 @@
   "name": "MediaRecorder",
   "category": "Native browser platform APIs",
   "tier": "candidate",
-  "role": "Real-time recording of a MediaStream to WebM/MP4; wall-clock bound, not frame-exact",
+  "role": "Browser MediaStream recording API",
   "summary": "Records a MediaStream (canvas.captureStream, tab or microphone) into a Blob in the browser's chosen codec. It runs in real time and drops or duplicates frames when rendering is slow, so output depends on wall-clock timing, not on t. Fine for a quick preview or live capture; wrong for frame-accurate renders where frames are produced in any order.",
   "use_when": [
     "A quick real-time preview recording of a canvas scene",
