@@ -27,6 +27,8 @@ Record the observed result, including failures and tolerances, and separate a su
 - An **operating skill** is justified by a repeated VCR job and needs an example, expected output and troubleshooting. A guide is not evidence of installation.
 - An **adapter** is a separate implementation decision, capability contract and test. Never infer one from a card, skill or fixture.
 
+For each assessment, identify the skill opportunity: no skill yet, an existing skill already covers the job, a VCR toolkit skill, a standalone skill, or further research first. Give the use case, supporting evidence and gaps. A standalone skill is a candidate when the workflow is useful without a VCR workspace or catalogue; consider an existing independent skill first, and identify an owner and maintenance/release path before proposing a new repository. VCR-specific integration belongs in VCR. Do not create or publish a skill or repository merely because a tool was catalogued; use the user's selected write boundary and obtain authorization for separate projects.
+
 Review the source record and evidence; regenerate the catalogue and plugin with `pnpm vcr catalog build` and `pnpm vcr plugin build`, then run `pnpm validate`. Commit generated changes with source. Do not edit generated files. Respect index and plugin size limits; shorten summaries or defer intake rather than increase the budgets without a separate decision.
 
 ## 5. Maintain
