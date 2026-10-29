@@ -10,8 +10,10 @@
     "audio"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+    "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+    "2026-10-29: Skill opportunity: Further research first: evaluate maintained alternatives, model terms and a representative fixture before writing a skill.",
+    "2026-10-29: Original repository archived 2025-01-01; maintainer notes the fork only receives important bug fixes."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +22,29 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Research code and command-line interface for separating recorded music into stems using neural models. The original repository is archived and no longer maintained; model and weight terms require separate checks.",
+  "use_when": [
+    "Research offline music-stem separation on suitable licensed audio",
+    "Evaluate separation quality before using stems in a production"
+  ],
+  "avoid_when": [
+    "Need maintained or safety-supported software without a prior evaluation",
+    "Need simple audio trimming or muxing: FFmpeg"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe"
+  ],
+  "license": "MIT (source code; model weights, input and output rights not assessed)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "ingest-assess-a",
+    "maintenance": "unmaintained",
+    "verdict": "keep",
+    "rationale": "Original repository is archived and its maintainer says neither it nor the fork is actively maintained. Keep candidate for review; do not imply a maintained successor.",
+    "sources": [
+      "https://github.com/facebookresearch/demucs"
+    ]
+  }
 }

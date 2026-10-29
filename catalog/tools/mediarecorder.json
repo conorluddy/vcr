@@ -27,7 +27,8 @@
     "capture"
   ],
   "notes": [
-    "2026-10-26: Container and codec support in headless Chromium not checked; call MediaRecorder.isTypeSupported at runtime."
+    "2026-10-26: Container and codec support in headless Chromium not checked; call MediaRecorder.isTypeSupported at runtime.",
+    "2026-10-29: Skill opportunity: no new skill yet; VCR capture and FFmpeg cover the frame-accurate workflow, while browser codec support remains untested."
   ],
   "assessment": {
     "date": "2026-10-26",

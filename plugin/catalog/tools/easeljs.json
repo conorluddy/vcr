@@ -28,7 +28,8 @@
     "macos": "pnpm add easeljs"
   },
   "notes": [
-    "2026-10-26: createjs.com/easeljs returned only a stub page; the repository on GitHub (CreateJS/EaselJS) is a likelier official_url. Last npm release date comes from the registry; the Jan 2026 commit was a minor touch-input fix."
+    "2026-10-26: createjs.com/easeljs returned only a stub page; the repository on GitHub (CreateJS/EaselJS) is a likelier official_url. Last npm release date comes from the registry; the Jan 2026 commit was a minor touch-input fix.",
+    "2026-10-29: Skill opportunity: No skill yet: existing evidence points to legacy CreateJS exports; revisit if an actual migration needs a reproducible fixture."
   ],
   "assessment": {
     "date": "2026-10-26",

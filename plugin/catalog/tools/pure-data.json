@@ -10,8 +10,9 @@
     "audio"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+    "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+    "2026-10-29: Skill opportunity: Further research first: independently useful patch workflows need headless execution evidence and ownership."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +21,31 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Visual dataflow environment for sound and multimedia. Native Pd patches express realtime processing; automation and offline rendering depend on the patch and runtime configuration.",
+  "use_when": [
+    "Prototype patch-based audio processing",
+    "Explore interactive signal flows with editable patches"
+  ],
+  "avoid_when": [
+    "Simple scripted audio conversion: FFmpeg",
+    "Need Python effects processing: Pedalboard"
+  ],
+  "pairs_with": [
+    "supercollider",
+    "ffmpeg-ffprobe"
+  ],
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-c",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+    "sources": [
+      "https://puredata.info/",
+      "https://github.com/pure-data/pure-data",
+      "https://github.com/pure-data/pure-data/blob/master/LICENSE.txt"
+    ]
+  }
 }

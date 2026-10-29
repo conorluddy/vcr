@@ -52,5 +52,8 @@
       "https://github.com/toji/gl-matrix"
     ]
   },
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "notes": [
+    "2026-10-29: Skill opportunity: No skill yet: this supporting math library has no standalone rendering workflow; revisit for a recurring raw WebGL task."
+  ]
 }

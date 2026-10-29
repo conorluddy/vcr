@@ -10,8 +10,10 @@
     "image-processing"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+    "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+    "2026-10-29: Skill opportunity: Further research first: identify a repeatable local workflow, model licence and execution footprint before VCR or standalone guidance.",
+    "2026-10-29: Models, custom nodes, hosted services, data and generated outputs have separate conditions; offline behaviour depends on the chosen workflow."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +22,30 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Node-graph application and local API for model-based creative workflows. It can orchestrate image generation and other workflows; actual outputs and terms depend on models and custom nodes.",
+  "use_when": [
+    "Explore a model-driven image workflow with explicit model provenance",
+    "Reuse a graph through its documented local API"
+  ],
+  "avoid_when": [
+    "Need simple deterministic raster operations: ImageMagick",
+    "Need video encoding or muxing: FFmpeg"
+  ],
+  "pairs_with": [
+    "imagemagick",
+    "ffmpeg-ffprobe"
+  ],
+  "license": "GPL-3.0 (repository label; verify exact variant, model weights, custom nodes and service terms separately)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "ingest-assess-a",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official project documents node workflows and local API, with optional remote services. Release and recent activity dates were not verified.",
+    "sources": [
+      "https://github.com/Comfy-Org/ComfyUI"
+    ]
+  }
 }

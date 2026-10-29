@@ -10,8 +10,9 @@
     "audio"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+    "2026-10-29: The original site could not be opened in this check; the project repository was accessible. CLI render and plugins have not been tested.",
+    "2026-10-29: Skill opportunity: further research first; a standalone LMMS workflow may be useful for music production after a reproducible render."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +21,34 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Music production application with arrangement, instruments and effects; it can render project files through its command-line interface. Useful as a music-workflow reference where a native project is desired.",
+  "use_when": [
+    "Work with a native LMMS arrangement instead of programmatic synthesis",
+    "Explore MIDI-driven composition in a dedicated application"
+  ],
+  "avoid_when": [
+    "Need direct scripted audio transformations: use SoX",
+    "Need automated video encoding: FFmpeg"
+  ],
+  "pairs_with": [
+    "sox",
+    "ffmpeg-ffprobe"
+  ],
+  "license": "GPL-2.0-or-later (project licence; bundled plugins and assets need separate review)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-b",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Project source documents a CLI render action; the exact options in a selected installed release and current release dates require verification.",
+    "sources": [
+      "https://lmms.io/",
+      "https://github.com/LMMS/lmms",
+      "https://github.com/LMMS/lmms/blob/master/LICENSE.txt",
+      "https://github.com/LMMS/lmms/releases",
+      "https://github.com/LMMS/lmms/blob/master/src/core/main.cpp"
+    ]
+  }
 }

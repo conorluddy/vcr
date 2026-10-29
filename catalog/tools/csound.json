@@ -10,8 +10,10 @@
     "audio"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+    "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+    "2026-10-29: Skill opportunity: Further research first: one scripted score and offline audio fixture could support a standalone synthesis skill.",
+    "2026-10-29: Official website advertises 7.0.0 released while the reviewed development README describes 7.0.0 beta; reconcile version before use."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +22,31 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Programmable sound and music synthesis system with a CLI and embeddable API. Written instruments and scores can produce audio files or be used in realtime; it is not a general video renderer.",
+  "use_when": [
+    "Generate or process audio with a scripted score",
+    "Explore synthesis independently of a graphical DAW"
+  ],
+  "avoid_when": [
+    "Need video assembly: FFmpeg",
+    "Need existing MIDI files rendered with SoundFonts: FluidSynth"
+  ],
+  "pairs_with": [
+    "fluidsynth",
+    "ffmpeg-ffprobe"
+  ],
+  "license": "LGPL-2.1-or-later (core project; verify dependencies and assets)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "ingest-assess-a",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official site and repository describe sound synthesis, CLI and LGPL terms. The site and development branch differ in 7.0 release status; recent dated activity remains unverified.",
+    "sources": [
+      "https://csound.com/",
+      "https://github.com/csound/csound"
+    ]
+  }
 }

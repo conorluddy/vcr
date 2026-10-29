@@ -11,7 +11,8 @@
   ],
   "notes": [
     "2026-10-29: Listed from a conversation; listed-in-prd is the schema’s listed-only status, not an assertion of PRD inclusion.",
-    "2026-10-29: Documentation assessed; no fixture has been run. Dependency and asset terms require separate review."
+    "2026-10-29: Documentation assessed; no fixture has been run. Dependency and asset terms require separate review.",
+    "2026-10-29: Skill opportunity: further research first; run a colour tracing fixture and check existing vector skills before choosing a VCR or standalone guide."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

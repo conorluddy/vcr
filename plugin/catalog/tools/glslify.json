@@ -52,5 +52,8 @@
       "https://www.npmjs.com/package/glslify"
     ]
   },
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "notes": [
+    "2026-10-29: Skill opportunity: Further research first: test a shader-module build in a real scene before proposing a standalone shader tooling skill."
+  ]
 }

@@ -10,8 +10,9 @@
     "audio"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+    "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+    "2026-10-29: Skill opportunity: Possible standalone MIDI manipulation skill; outside core VCR work until an actual job and fixture exist."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +21,32 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Python MIDI utilities for inspecting, modifying and writing musical note data. It offers a note-oriented representation; optional synthesis and external instruments require separate dependencies.",
+  "use_when": [
+    "Manipulate symbolic MIDI notes in Python",
+    "Explore editable music variants rather than audio-only changes"
+  ],
+  "avoid_when": [
+    "Process audio recordings: FFmpeg or librosa",
+    "Need low-level MIDI message operations: Mido"
+  ],
+  "pairs_with": [
+    "mido",
+    "music21"
+  ],
+  "license": "MIT for project code; dependency, soundfont and asset terms need review",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-c",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+    "sources": [
+      "https://github.com/craffel/pretty-midi",
+      "https://github.com/craffel/pretty-midi/releases"
+    ],
+    "version_seen": "0.2.11 (GitHub release; date year unverified)"
+  }
 }

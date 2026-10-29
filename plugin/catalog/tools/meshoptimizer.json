@@ -10,8 +10,9 @@
     "3d-asset-processing"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+    "2026-10-29: Simplification and compression can change geometry or require decoder support; validate the exact target.",
+    "2026-10-29: Skill opportunity: existing glTF Transform guidance may be enough; test a representative mesh and fidelity before creating a standalone skill."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +21,32 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "C/C++ mesh optimisation library with bindings and a companion gltfpack CLI for glTF. It offers mesh simplification and compact storage; compare output fidelity before using it in a production.",
+  "use_when": [
+    "Optimise triangle mesh data programmatically",
+    "Use gltfpack on glTF assets when its trade-offs are acceptable"
+  ],
+  "avoid_when": [
+    "Need general glTF inspection and editing: glTF Transform",
+    "Need to render a scene: Three.js"
+  ],
+  "pairs_with": [
+    "gltf-transform",
+    "three-js"
+  ],
+  "license": "MIT (library; verify dependencies and asset rights separately)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-b",
+    "maintenance": "unknown",
+    "verdict": "promote",
+    "rationale": "Project documents C/C++ and JavaScript interfaces, gltfpack and MIT licence; release date year was not confirmed.",
+    "sources": [
+      "https://github.com/zeux/meshoptimizer",
+      "https://github.com/zeux/meshoptimizer/releases"
+    ],
+    "version_seen": "v1.3 (release page; date year unverified)"
+  }
 }

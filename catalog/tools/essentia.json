@@ -10,8 +10,10 @@
     "audio"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+    "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+    "2026-10-29: Skill opportunity: Further research first: a repeatable descriptor fixture and licence/model review should precede a VCR or standalone skill.",
+    "2026-10-29: Optional models have separate provenance and licensing; verify exact AGPL variant and terms for intended deployment."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +22,32 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "C++ audio-analysis library with Python and JavaScript bindings and CLI tools. It offers a broad set of audio descriptors and optional model inference, including onset analysis.",
+  "use_when": [
+    "Explore audio descriptors beyond a single onset detector",
+    "Compute music-analysis features with documented Python bindings"
+  ],
+  "avoid_when": [
+    "Need a smaller focused detector: aubio",
+    "Need video or audio encoding: FFmpeg"
+  ],
+  "pairs_with": [
+    "aubio",
+    "librosa",
+    "ffmpeg-ffprobe"
+  ],
+  "license": "AGPL-3.0 (project README; models, dependencies and alternative terms require separate review)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "ingest-assess-a",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official sources document audio-analysis APIs and AGPLv3 project licensing. Recent release and substantive activity dates not verified.",
+    "sources": [
+      "https://essentia.upf.edu/",
+      "https://github.com/MTG/essentia"
+    ]
+  }
 }

@@ -10,8 +10,9 @@
     "audio"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+    "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+    "2026-10-29: Skill opportunity: Potential standalone synthesis skill; establish scoped noninteractive render and server lifecycle before authoring."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +21,33 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Audio synthesis and algorithmic composition platform with the sclang language and a separate audio server. Scripted workflows need explicit server, timing and rendering configuration.",
+  "use_when": [
+    "Program synthesis or algorithmic composition",
+    "Explore configurable audio generation with a separate server"
+  ],
+  "avoid_when": [
+    "Need simple audio encoding: FFmpeg",
+    "Need only prerecorded audio analysis: librosa"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "pure-data"
+  ],
+  "license": "GPL-3.0 (repository label); verify dependencies and extensions separately",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-c",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+    "sources": [
+      "https://supercollider.github.io/",
+      "https://github.com/supercollider/supercollider",
+      "https://github.com/supercollider/supercollider/releases"
+    ],
+    "version_seen": "3.14.1 (GitHub release; date year unverified)"
+  }
 }

@@ -10,8 +10,9 @@
     "image-sequence-processing"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+    "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+    "2026-10-29: Skill opportunity: Potential standalone video-processing skill; verify CLI and a scoped filter fixture first."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +21,33 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Scriptable video processing framework that uses Python and plugins to build frame-processing pipelines. Output and capabilities depend on the installed filters and runtime.",
+  "use_when": [
+    "Build a Python-driven video filtering pipeline",
+    "Explore frame processing beyond a simple FFmpeg filtergraph"
+  ],
+  "avoid_when": [
+    "Need straightforward encoding and muxing: FFmpeg",
+    "Need a graphical video editor: use a native editor"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "imagemagick"
+  ],
+  "license": "LGPL-2.1 (repository label); verify plugin and dependency terms separately",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-c",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Project site records R81 on 2026-10-22; scripted video filtering has a documented route.",
+    "sources": [
+      "https://www.vapoursynth.com/",
+      "https://github.com/vapoursynth/vapoursynth"
+    ],
+    "version_seen": "R81",
+    "last_release": "2026-10-22"
+  }
 }

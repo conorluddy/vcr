@@ -10,8 +10,10 @@
     "audio"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+    "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+    "2026-10-29: Skill opportunity: Further research first: a repeatable waveform asset fixture could justify VCR-specific guidance.",
+    "2026-10-29: Ongoing development moved to https://codeberg.org/chrisn/audiowaveform per the project README; verify the new source and its current releases."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +22,30 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Command-line tool producing waveform data and PNG waveform images from audio. It can create JSON for a downstream visualiser without requiring a browser to compute peaks.",
+  "use_when": [
+    "Generate waveform data or stills from supported audio",
+    "Feed waveform data to a separate visualisation pipeline"
+  ],
+  "avoid_when": [
+    "Need onset or beat analysis: aubio or librosa",
+    "Need video or audio encoding: FFmpeg"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "imagemagick"
+  ],
+  "license": "GPL-3.0 (repository label; exact variant and dependencies require review)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "ingest-assess-a",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official repository documents a waveform CLI and says ongoing development moved to Codeberg. Current release and activity dates at the new home were not verified.",
+    "sources": [
+      "https://github.com/bbc/audiowaveform"
+    ]
+  }
 }

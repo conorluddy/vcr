@@ -30,7 +30,8 @@
     "check_command": "editly --help"
   },
   "notes": [
-    "2026-10-26: GitHub shows v0.15.0-rc.1 (2025-01-19) but npm latest is 0.14.2 (2022-12-23); the README says the project is maintained by one person. Native headless-gl dependency may fail to build on current Node; not tested."
+    "2026-10-26: GitHub shows v0.15.0-rc.1 (2025-01-19) but npm latest is 0.14.2 (2022-12-23); the README says the project is maintained by one person. Native headless-gl dependency may fail to build on current Node; not tested.",
+    "2026-10-29: Skill opportunity: Further research first: evaluate the headless-gl dependency and a reproducible montage against the existing FFmpeg skill."
   ],
   "assessment": {
     "date": "2026-10-26",

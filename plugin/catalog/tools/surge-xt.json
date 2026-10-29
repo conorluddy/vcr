@@ -10,8 +10,9 @@
     "audio"
   ],
   "notes": [
-    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
-    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+    "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+    "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+    "2026-10-29: Skill opportunity: Further research first: demonstrate reproducible plugin host control and relevant ownership."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,6 +21,32 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "references/ideas/check-vcr-repo-conversation.md"
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Open-source software synthesizer with multiple synthesis and modulation options. It is designed for instrument/plugin use; headless automation depends on a suitable host.",
+  "use_when": [
+    "Explore synthesizer patches in a supported plugin host",
+    "Prototype sound design outside a VCR render"
+  ],
+  "avoid_when": [
+    "Need a command-line audio converter: FFmpeg",
+    "Need independent note-file manipulation: pretty_midi"
+  ],
+  "pairs_with": [
+    "pedalboard",
+    "supercollider"
+  ],
+  "license": "GPL-3.0 (repository label); verify components and plugins separately",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-c",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+    "sources": [
+      "https://surge-synthesizer.github.io/",
+      "https://github.com/surge-synthesizer/surge"
+    ],
+    "version_seen": "1.3.4 (project website; release date unverified)"
+  }
 }
