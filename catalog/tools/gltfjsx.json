@@ -3,7 +3,7 @@
   "name": "gltfjsx",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "CLI that turns a .glb/.gltf into a react-three-fiber JSX component",
+  "role": "Convert glTF models to React Three Fiber",
   "summary": "Command-line tool that parses a glTF/GLB and emits a React Three Fiber component with each mesh, material and animation clip as addressable JSX, optionally TypeScript and with Draco/meshopt optimisation via gltf-transform. Run once at build time; output is source code. Distinguishing strength: scene graph becomes editable, typed JSX.",
   "use_when": [
     "Over loading a raw GLB when you need to restyle or animate individual meshes in R3F",

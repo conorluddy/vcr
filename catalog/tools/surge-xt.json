@@ -1,0 +1,25 @@
+{
+  "id": "surge-xt",
+  "name": "Surge XT",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Synthesizer",
+  "official_url": "https://surge-synthesizer.github.io/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "references/ideas/check-vcr-repo-conversation.md"
+}

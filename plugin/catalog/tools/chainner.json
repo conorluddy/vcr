@@ -1,0 +1,25 @@
+{
+  "id": "chainner",
+  "name": "chaiNNer",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Image graphs",
+  "official_url": "https://github.com/chaiNNer-org/chaiNNer",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "image-processing"
+  ],
+  "notes": [
+    "2026-10-29: Suggested in the conversation reference; automation route, licence, maintenance and applicability remain unassessed.",
+    "The schema value listed-in-prd denotes listed-only status here; this candidate is sourced from the conversation, not the PRD."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "references/ideas/check-vcr-repo-conversation.md"
+}

@@ -1,0 +1,59 @@
+{
+  "id": "opentimelineio",
+  "name": "OpenTimelineIO",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Timeline exchange",
+  "official_url": "https://opentimelineio.readthedocs.io/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "media-inspection"
+  ],
+  "notes": [
+    "2026-10-29: Documentation assessment only. The project describes a Python API and CLI tools; no fixture has been run.",
+    "2026-10-29: The schema value listed-in-prd means listed-only here; source is a conversation, not the PRD.",
+    "2026-10-29: Existing vocabulary lacks editorial timeline interchange; media-inspection reflects its inspection tools, not rendering or animation. Optional format adapters need separate assessment."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Editorial timeline interchange format and C++/Python API for clips, tracks, markers and timing, with external media references. Native OTIO JSON is built in; other editorial formats may require separately installed adapters. It does not render media.",
+  "use_when": [
+    "Study editorial interchange and timeline representation for VCR Layer 2",
+    "Read or write editorial metadata across supported adapter formats"
+  ],
+  "avoid_when": [
+    "Encode or assemble video: FFmpeg",
+    "Need VCR frame-accurate timeline resolution or rendering: not yet implemented"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe"
+  ],
+  "license": "Apache-2.0 (core project; verify dependencies, adapters and assets separately)",
+  "install": {
+    "macos": "python -m pip install opentimelineio (in a dedicated virtual environment)",
+    "check_command": "python -c \"import opentimelineio; print(opentimelineio.__version__)\""
+  },
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "codex",
+    "version_seen": "0.18.1 (GitHub pre-release); documentation 0.19.0.dev1",
+    "last_release": "2025-11 (0.18.0 pre-release; 0.18.1 date year unverified)",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "Official docs describe C++/Python editorial interchange and separately packaged format adapters. November 2025 v0.18.0 release is within 12 months; no fixture run. Recommend catalogued after review.",
+    "sources": [
+      "https://opentimelineio.readthedocs.io/en/latest/",
+      "https://opentimelineio.readthedocs.io/en/latest/tutorials/quickstart.html",
+      "https://opentimelineio.readthedocs.io/en/latest/tutorials/adapters.html",
+      "https://github.com/AcademySoftwareFoundation/OpenTimelineIO/releases",
+      "https://github.com/AcademySoftwareFoundation/OpenTimelineIO/blob/main/LICENSE.txt"
+    ]
+  }
+}

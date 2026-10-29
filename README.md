@@ -6,9 +6,9 @@ VCR is a local-first, agent-friendly workspace for creating and reviewing motion
 
 Layer 0 (tool suite) is complete, the plugin is installable (plugin PRD phases P0 and P1), and Layer 1 has not started. Concretely:
 
-- **Catalogue**: 104 live records under `catalog/tools/`, one file each, every one carrying a tier 1 card (summary, use when, avoid when, pairs with) and, for the 98 non-core records, a dated assessment against its official source. 16 tools were retired to `catalog/retired/` with their reasoning. `catalog/tools.json` and `catalog/INDEX.md` are generated; run `pnpm vcr catalog build` after editing a record.
+- **Catalogue**: 145 live records under `catalog/tools/`, one file each. The original 104 are carded and assessed; 41 additional conversation-sourced candidates are being assessed separately. 16 tools were retired to `catalog/retired/` with their reasoning. `catalog/tools.json` and `catalog/INDEX.md` are generated; run `pnpm vcr catalog build` after editing a record. See [candidate ingestion](catalog/CANDIDATE-INGESTION.md) for the assessment and evidence process.
 - **Evidence**: eight records carry validation evidence from the six fixtures under `examples/`, all reproducible on the primary Mac with `run.sh`. Installation facts live in `environment/`, never in the catalogue.
-- **Skills**: operating guides for the six core tools (SVG, GSAP, p5.js, Three.js, FFmpeg, Blender) plus ImageMagick and resvg, and two workflow skills: `start` (router) and `init` (workspace setup). `.claude/skills` links there.
+- **Skills**: operating guides for the six core tools (SVG, GSAP, p5.js, Three.js, FFmpeg, Blender) plus ImageMagick and resvg, and workflow skills `start` (router), `init` (workspace setup) and `ingest` (candidate assessment). `.claude/skills` links there.
 - **Plugin**: `plugin/` is a generated, committed Claude Code and Codex plugin: a single-file bundled CLI, the catalogue, the skills and example sources. It works from any directory against a read-only harness; see "Install as a plugin" below and `specifications/spikes/plugin-invocation.md`.
 - **Code**: `packages/cli` (the `vcr` command), `packages/timeline` (PRD §9 time types only), `packages/capture` (deterministic browser frame capture, see `specifications/spikes/browser-capture.md`).
 - **First production**: a Grapla launch proof of concept (PRD §18) was rendered and assembled without a timeline engine, then removed. It is in git history at `a39043a`.
@@ -54,7 +54,7 @@ codex plugin add vcr@vcr
 
 Update with `claude plugin marketplace update vcr && claude plugin update vcr@vcr` (then restart Claude Code), or `codex plugin marketplace upgrade vcr && codex plugin add vcr@vcr`. Remove with `claude plugin uninstall vcr@vcr` or `codex plugin remove vcr@vcr`. For local development, pass this checkout's path instead of `conorluddy/vcr`; Claude Code then runs the plugin straight from `plugin/`, so run `pnpm vcr plugin build` after changes.
 
-The plugin is `plugin/` (built by `pnpm vcr plugin build`, committed so installs need no build step); the marketplaces that point at it are `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`. It adds 10 skills (about 1k tokens per Claude Code session) and no hooks, MCP servers or background processes.
+The plugin is `plugin/` (built by `pnpm vcr plugin build`, committed so installs need no build step); the marketplaces that point at it are `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`. It adds 11 skills and no hooks, MCP servers or background processes.
 
 Releasing: hosts only pick up a change when the version changes. Bump `version` in `packages/cli/package.json` (semver; it flows into both manifests), run `pnpm vcr plugin build`, and merge. Unbumped changes on `main` reach nobody who already has the plugin installed.
 
@@ -112,7 +112,7 @@ Media is ignored by directory, not by extension, so brand assets and fixtures ca
 - `examples/` — validated fixtures, each with `example.json`, `run.sh` and `expected/`; copied into other workspaces by `vcr example create`.
 - `projects/` — in-repository productions and the project template.
 - `shared/` — versioned shared components, transitions and presets (empty until Layer 1).
-- `references/` — curated production metadata (empty until Layer 1).
+- `references/` — ideas and conversation references; curated production metadata is planned for later layers.
 - `specifications/` — the PRD, the plugin PRD, decision records and spike reports.
 
 See [`AGENTS.md`](AGENTS.md) for repository working rules and [`specifications/vcr-prd.md`](specifications/vcr-prd.md) for the complete product direction.

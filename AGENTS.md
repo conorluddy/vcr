@@ -37,16 +37,16 @@ Never load more than one guide at a time unless comparing two tools. A card or g
 - `environment/`: the maintainer's per-machine tool availability from `vcr doctor --record` (`pnpm doctor`). The only place installation is a fact for validation evidence; other machines record to `~/.vcr/environment/`.
 - `vcr.json`: marks this repository as a VCR workspace, so harness and workspace resolve to the same root (dev mode). See `vcr status`.
 - `packages/`: `cli` (the `vcr` command; bundled into `plugin/cli/vcr.mjs`), `timeline` (time types), `capture` (browser frame capture, driven by `vcr capture`).
-- `skills/`: flat `skills/<name>/SKILL.md`, no `vcr-` prefix. Workflow: `start` (router), `init` (workspace setup). Toolkits: one per core tool plus ImageMagick and resvg. `.claude/skills` links here.
+- `skills/`: flat `skills/<name>/SKILL.md`, no `vcr-` prefix. Workflow: `start` (router), `init` (workspace setup), `ingest` (candidate assessment). Toolkits: one per core tool plus ImageMagick and resvg. `.claude/skills` links here.
 - `plugin/`: generated Claude Code and Codex plugin; marketplaces at `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`.
 - `examples/`: validated fixtures with `example.json`, `run.sh` and `expected/`; browser examples also carry a `capture` block for `vcr capture`.
 - `projects/`: products and productions following the project schema.
-- `shared/`, `references/`: reserved for Layer 1 and Layer 7; empty.
+- `shared/`: reserved for Layer 1. `references/ideas/` holds exploratory material; production reference search is reserved for Layer 7.
 - `specifications/`: PRD, `decisions/` (ADRs), `spikes/` (reports).
 
 ## Current boundary
 
-Layer 0 is complete: every live record is carded and assessed, eight carry validation evidence, and six fixtures reproduce. The plugin is installable on Claude Code and Codex (plugin PRD P0 and P1): three roots, `vcr workspace init`, `vcr setup capture`, `vcr capture`, `vcr example create`, and the `start` and `init` skills. Layer 1 (project workspace) and the review layer (findings, approvals, review pages, `vcr storage`; plugin PRD P2 onward) have not started. There is no timeline resolver, compositor, review surface or reference search; do not imply one. The TypeScript toolchain, pnpm workspace and JSON Schemas are decided, not provisional. Everything beyond Layer 0 is still provisional per the PRD.
+Layer 0 is complete for the initial catalogue: those records are carded and assessed, eight carry validation evidence, and six fixtures reproduce. New discovery candidates may be unassessed. The plugin is installable on Claude Code and Codex (plugin PRD P0 and P1): three roots, `vcr workspace init`, `vcr setup capture`, `vcr capture`, `vcr example create`, and the `start` and `init` skills. Layer 1 (project workspace) and the review layer (findings, approvals, review pages, `vcr storage`; plugin PRD P2 onward) have not started. There is no timeline resolver, compositor, review surface or reference search; do not imply one. The TypeScript toolchain, pnpm workspace and JSON Schemas are decided, not provisional. Everything beyond Layer 0 is still provisional per the PRD.
 
 
 - - - - -  NEVER EDIT BELOW THIS LINE - - - - - -
