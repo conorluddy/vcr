@@ -1,6 +1,8 @@
 # Tool assessment brief
 
-One brief for every assessor so every record answers the same questions. You are assessing a section of PRD Appendix A; write only to the files named in your assignment under `catalog/tools/`. Run `pnpm validate` before you report.
+For the full candidate lifecycle and evidence gate, see [CANDIDATE-INGESTION.md](CANDIDATE-INGESTION.md). This brief covers the documentation-assessment stage only.
+
+One brief for every assessor so every record answers the same questions. Assess only the assigned records under `catalog/tools/`, whether they came from PRD Appendix A or later discovery. Run `pnpm validate` before you report.
 
 ## What to produce, per record
 
