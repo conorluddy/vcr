@@ -7,6 +7,10 @@ cache/
 tmp/
 environment/*.local.json
 
+# Local productions and reference media; keep reusable workspace templates tracked.
+/projects/*
+!/projects/templates/
+
 # Local environment and editor state
 .DS_Store
 .env

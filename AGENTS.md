@@ -40,7 +40,7 @@ Never load more than one guide at a time unless comparing two tools. A card or g
 - `skills/`: flat `skills/<name>/SKILL.md`, no `vcr-` prefix. Workflow: `start` (router), `init` (workspace setup), `ingest` (candidate assessment). Toolkits: one per core tool plus ImageMagick and resvg. `.claude/skills` links here.
 - `plugin/`: generated Claude Code and Codex plugin; marketplaces at `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`.
 - `examples/`: validated fixtures with `example.json`, `run.sh` and `expected/`; browser examples also carry a `capture` block for `vcr capture`.
-- `projects/`: products and productions following the project schema.
+- `projects/`: local products and productions following the project schema; contents are ignored except tracked reusable `templates/`.
 - `shared/`: reserved for Layer 1. `references/ideas/` holds exploratory material; production reference search is reserved for Layer 7.
 - `specifications/`: PRD, `decisions/` (ADRs), `spikes/` (reports).
 
