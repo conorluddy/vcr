@@ -68,5 +68,8 @@
       "https://build123d.readthedocs.io/en/latest/installation.html",
       "https://build123d.readthedocs.io/en/stable/import_export.html"
     ]
-  }
+  },
+  "examples": [
+    "build123d-product"
+  ]
 }

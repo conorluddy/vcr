@@ -66,7 +66,8 @@
   },
   "skill": "skills/blender-background/SKILL.md",
   "examples": [
-    "blender-smoke"
+    "blender-smoke",
+    "build123d-product"
   ],
   "notes": [
     "Not on PATH on macOS; use the app bundle executable. First native application spike planned in M0."

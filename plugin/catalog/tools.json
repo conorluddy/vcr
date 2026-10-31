@@ -463,7 +463,8 @@
       },
       "skill": "skills/blender-background/SKILL.md",
       "examples": [
-        "blender-smoke"
+        "blender-smoke",
+        "build123d-product"
       ],
       "notes": [
         "Not on PATH on macOS; use the app bundle executable. First native application spike planned in M0."
@@ -557,7 +558,10 @@
           "https://build123d.readthedocs.io/en/latest/installation.html",
           "https://build123d.readthedocs.io/en/stable/import_export.html"
         ]
-      }
+      },
+      "examples": [
+        "build123d-product"
+      ]
     },
     {
       "id": "canvas-2d",
