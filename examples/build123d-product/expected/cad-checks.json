@@ -1,0 +1,21 @@
+{
+  "build123d": "0.13.0",
+  "python": "3.12.2",
+  "platform": "macOS-26.6-arm64-arm-64bit",
+  "machine": "arm64",
+  "dimensions_mm": [
+    60.0,
+    40.0,
+    12.0
+  ],
+  "volume_mm3": 28295.893782901545,
+  "expected_volume_mm3": 28295.89378290154,
+  "visible_edges": 24,
+  "hidden_edges": 14,
+  "svg_viewbox": [
+    -34.083771,
+    -21.589256,
+    68.443688,
+    43.293538
+  ]
+}

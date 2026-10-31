@@ -20,6 +20,16 @@ for quality in ["coarse", "fine"]:
         offset = len(vertices)
         vertices.extend(obj.matrix_world @ v.co for v in obj.data.vertices)
         obj.data.calc_loop_triangles()
+        # Exported normals must agree with triangle winding after world transforms.
+        normal_matrix = obj.matrix_world.to_3x3().inverted().transposed()
+        corner_normals = obj.data.corner_normals
+        for triangle in obj.data.loop_triangles:
+            points = [obj.matrix_world @ obj.data.vertices[i].co for i in triangle.vertices]
+            geometric = (points[1] - points[0]).cross(points[2] - points[0]).normalized()
+            for loop_index in triangle.loops:
+                normal = (normal_matrix @ corner_normals[loop_index].vector).normalized()
+                assert all(math.isfinite(x) for x in normal) and normal.length > 0.99
+                assert normal.dot(geometric) > 0.5, "Imported normal opposes triangle winding"
         triangles.extend(tuple(offset + i for i in t.vertices) for t in obj.data.loop_triangles)
     bounds = [(min(v[i] for v in vertices), max(v[i] for v in vertices)) for i in range(3)]
     dimensions = [hi - lo for lo, hi in bounds]
@@ -38,7 +48,9 @@ for quality in ["coarse", "fine"]:
     assert tree.ray_cast(Vector((-0.015, 0, 0.1)), Vector((0, 0, -1)))[0] is not None
     reports[quality] = {"objects": len(meshes), "vertices": len(vertices),
                         "triangles": len(triangles), "bounds_m": bounds,
-                        "dimensions_m": dimensions, "signed_volume_m3": signed_volume}
+                        "dimensions_m": dimensions, "signed_volume_m3": signed_volume,
+                        "normals_agree_with_winding": True,
+                        "hole_ray_misses": True, "control_ray_hits": True}
 assert reports["fine"]["triangles"] > reports["coarse"]["triangles"]
 scene = bpy.context.scene
 scene.render.engine = "BLENDER_WORKBENCH"

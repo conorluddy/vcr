@@ -532,7 +532,8 @@
         "2026-10-31: Latest release listing and stable docs show 0.13.0; the release date was not exposed by the retrieved pages, so maintenance remains unknown. Latest docs describe a development build and must not be assumed identical to stable.",
         "2026-10-31: Release pyproject requires Python >=3.11,<3.15 and cadquery-ocp-novtk >=8.0,<8.1 plus scientific and geometry dependencies. macOS wheel availability and dependency licence obligations remain unverified; installation recipe is proposed, not executed.",
         "2026-10-31: Next fixture when a precise product asset is needed: pin dependencies, build one owned filleted part, check dimensions and volume, export GLB and SVG, and separately inspect imported scale, axes, normals and tessellation in the chosen renderer.",
-        "2026-10-31: Skill opportunity: no skill yet. Existing Blender guidance covers rendering; a build123d toolkit guide needs a repeated CAD-generation job, a reproducible geometry/export example and troubleshooting evidence. Promotion awaits review."
+        "2026-10-31: Skill opportunity: no skill yet. Existing Blender guidance covers rendering; a build123d toolkit guide needs a repeated CAD-generation job, a reproducible geometry/export example and troubleshooting evidence. Promotion awaits review.",
+        "2026-10-31: Product-part fixture executed successfully with build123d 0.13.0 and Blender 4.4.0 on macOS arm64; CAD, STEP, SVG and GLB geometry checks are recorded in examples/build123d-product/evidence.md. Catalogue validation and promotion await maintainer review."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",

@@ -21,7 +21,7 @@ Existing Blender is GPL-3.0. Dependency distribution rights are not certified.
 
 ## Installation and side effects
 
-build123d is absent from system Python 3.12.2. Approval requested for an isolated
+build123d is absent from system Python 3.12.2. User approved an isolated
 environment at `.cache/build123d-fixture/venv`, pinning build123d 0.13.0.
 pip downloads and transitive dependencies stay within `.cache/build123d-fixture`.
 No global packages or sibling projects change. Network access to package indexes
@@ -58,5 +58,51 @@ review. Revisit on export, dependency or Blender changes.
 
 ## Observation
 
-Not run yet; installation approval pending. Environment: macOS arm64; exact OS,
-package versions and backend will be recorded by the run. Reviewer: pending.
+Executed 2026-10-31 by Codex on Conors-MacBook-Pro-2.local, macOS 26.6
+(Darwin 25.6.0), arm64, Python 3.12.2, build123d 0.13.0,
+cadquery-ocp-novtk 8.0.1.1.0 and Blender 4.4.0 (05377985c527).
+Blender Workbench used the Metal backend; GPU model/driver was not separately
+recorded. Machine availability was probed with the existing runDoctor API into
+`environment/build123d-fixture.json`; global Python was not changed.
+
+**Observed pass, pending maintainer review.** Final `./run.sh` exited 0.
+- CAD dimensions: 60 × 40 × 12 mm. Analytic volume: 28295.89378290154 mm³;
+  observed 28295.893782901545 mm³. Valid single solid; STEP roundtrip passed.
+- SVG: 24 visible edges, 14 hidden edges; visible-only projection exported,
+  parsed and had a nonzero viewBox.
+- Blender: coarse 232 triangles / 250 vertices, fine 1032 / 1050.
+  Fine world dimensions: 0.05999999866 × 0.04000000283 × 0.01200000755 m.
+  Positive signed volume differs from CAD volume by 0.000348%.
+- Both imports passed finite nondegenerate triangles, normals agreeing with
+  winding (dot > 0.5), offset-hole miss ray and solid control hit ray.
+  These checks do not establish watertightness for arbitrary assets.
+- PNG: 800 × 600 RGBA, alpha spans 0–255. Codex visually inspected the still:
+  rounded vertical corners, the offset hole and smooth side shading are visible,
+  with no obvious missing faces or inverted surfaces at this view.
+
+Retained measurements and SHA-256 hashes are in `expected/`; the fully resolved
+Python package set is `requirements.txt`. These are observed evidence, not
+byte-exact golden outputs: STEP headers, logs and GPU rendering may vary.
+Full GLBs, STEP, SVG, PNG, logs, caches and a fresh hash manifest stay in ignored
+`output/`. The source hashes identify the final run. Do not copy new outputs over
+these evidence snapshots without explicit review of what changed.
+
+Reproduce after approved installation: create a Python 3.12 environment under
+`.cache/build123d-fixture/venv`, install `-r examples/build123d-product/requirements.txt`
+using repository-local pip caching, then run `examples/build123d-product/run.sh`.
+Outside this repository set `BUILD123D_PYTHON` explicitly. The script installs
+nothing and uses factory startup to avoid loading user Blender add-ons.
+
+Execution deviations: initial sandbox network access failed, then approved
+escalated pip installation succeeded; a prematurely started run before pip
+finished failed to import build123d. The first sandboxed Blender invocation
+crashed during Metal device detection before executing Python. Running with
+GPU access outside the sandbox succeeded. The runner now scopes ezdxf/IPython/
+Matplotlib caches to output; a first import had attempted an unwritable user
+cache. Installation plus pip cache occupies approximately 946 MB locally.
+
+This establishes this build123d → GLB → Blender geometry path and the scoped CAD,
+STEP and SVG checks only. No Three.js import, PBR fidelity, animation, general
+geometry repair or adapter has been tested. Catalogue and example validation
+states remain unchanged pending maintainer review. Reviewer and promotion
+decision: pending. Revisit on version/environment or export changes.

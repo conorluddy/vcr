@@ -1,5 +1,4 @@
 """Original synthetic CAD fixture; outputs are regenerable, never source assets."""
-import hashlib
 import json
 import math
 import platform

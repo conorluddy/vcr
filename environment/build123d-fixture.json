@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "hostname": "Conors-MacBook-Pro-2.local",
+  "os": {
+    "platform": "darwin",
+    "release": "25.6.0",
+    "arch": "arm64"
+  },
+  "checked_at": "2026-10-31T13:05:06.120Z",
+  "tools": [
+    {
+      "tool_id": "build123d",
+      "status": "installed",
+      "executable": "/Users/conor/Development/VCR/.cache/build123d-fixture/venv/bin/python",
+      "version": "0.13.0"
+    },
+    {
+      "tool_id": "blender",
+      "status": "installed",
+      "executable": "/Applications/Blender.app/Contents/MacOS/Blender",
+      "version": "4.4.0"
+    }
+  ]
+}
