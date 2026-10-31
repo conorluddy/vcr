@@ -107,11 +107,12 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `webgl` — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders
 - `webgpu` — Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking · 3d-rendering, shaders
 
-## candidate (52)
+## candidate (53)
 
 - `ardour` — Audio workstation
 - `aubio` — Onsets and pitch
 - `audiowaveform` — Waveform data
+- `build123d` — Python parametric CAD for precise product geometry and SVG technical projections
 - `chainner` — Image graphs
 - `clap` — Plugin standard
 - `colmap` — Reconstruction

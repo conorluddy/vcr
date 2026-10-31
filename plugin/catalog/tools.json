@@ -488,6 +488,78 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "build123d",
+      "name": "build123d",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Python parametric CAD for precise product geometry and SVG technical projections",
+      "official_url": "https://github.com/gumyr/build123d",
+      "documentation_urls": [
+        "https://build123d.readthedocs.io/en/stable/",
+        "https://build123d.readthedocs.io/en/stable/import_export.html"
+      ],
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-asset-processing",
+        "vector-authoring"
+      ],
+      "summary": "Python parametric CAD on Open Cascade: scripts construct precise solids using builder contexts or algebraic operations, then export STEP, STL, glTF/GLB or SVG projections. Useful upstream of product visualisation when dimensions, fillets, booleans and reproducible variants matter.",
+      "use_when": [
+        "Create dimensioned product parts for a later Blender or Three.js scene",
+        "Generate SVG technical projections or cross sections from the same CAD source",
+        "Prefer exact solid operations over editing a triangular mesh in Trimesh"
+      ],
+      "avoid_when": [
+        "Need lighting, materials, camera animation and final frames: Blender or Three.js",
+        "Need analysis or repair of existing triangular meshes: Trimesh",
+        "Need typography or freeform vector artwork: SVG or Inkscape"
+      ],
+      "pairs_with": [
+        "blender",
+        "three-js",
+        "gltf-transform",
+        "resvg"
+      ],
+      "license": "Apache-2.0 for project code; Open Cascade bindings, other dependencies and supplied assets have separate terms",
+      "install": {
+        "macos": "python3 -m venv .venv && .venv/bin/python -m pip install build123d==0.13.0",
+        "check_command": ".venv/bin/python -c \"import build123d; from importlib.metadata import version; print(version('build123d'))\""
+      },
+      "notes": [
+        "2026-10-31: User discovery lead from https://github.com/gumyr/build123d; listed-in-prd is the schema listed-only status, not PRD provenance.",
+        "2026-10-31: Documentation assessment only. No installation, geometry fixture, render handoff or adapter was verified; pairs_with identifies intended workflows.",
+        "2026-10-31: Latest release listing and stable docs show 0.13.0; the release date was not exposed by the retrieved pages, so maintenance remains unknown. Latest docs describe a development build and must not be assumed identical to stable.",
+        "2026-10-31: Release pyproject requires Python >=3.11,<3.15 and cadquery-ocp-novtk >=8.0,<8.1 plus scientific and geometry dependencies. macOS wheel availability and dependency licence obligations remain unverified; installation recipe is proposed, not executed.",
+        "2026-10-31: Next fixture when a precise product asset is needed: pin dependencies, build one owned filleted part, check dimensions and volume, export GLB and SVG, and separately inspect imported scale, axes, normals and tessellation in the chosen renderer.",
+        "2026-10-31: Skill opportunity: no skill yet. Existing Blender guidance covers rendering; a build123d toolkit guide needs a repeated CAD-generation job, a reproducible geometry/export example and troubleshooting evidence. Promotion awaits review."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-10-31",
+      "source": "https://github.com/gumyr/build123d",
+      "assessment": {
+        "date": "2026-10-31",
+        "assessed_by": "Codex",
+        "version_seen": "0.13.0 (GitHub latest release listing and stable documentation)",
+        "maintenance": "unknown",
+        "verdict": "promote",
+        "rationale": "Documented Python solid modelling and CAD/mesh/SVG export add precise parametric asset generation beyond Blender scene authoring and Trimesh mesh processing. Recommend catalogued after review; release date, local execution and renderer interoperability remain unverified.",
+        "sources": [
+          "https://github.com/gumyr/build123d",
+          "https://github.com/gumyr/build123d/releases",
+          "https://github.com/gumyr/build123d/blob/dev/LICENSE",
+          "https://raw.githubusercontent.com/gumyr/build123d/v0.13.0/pyproject.toml",
+          "https://build123d.readthedocs.io/en/latest/installation.html",
+          "https://build123d.readthedocs.io/en/stable/import_export.html"
+        ]
+      }
+    },
+    {
       "id": "canvas-2d",
       "name": "Canvas 2D",
       "category": "Native browser platform APIs",
