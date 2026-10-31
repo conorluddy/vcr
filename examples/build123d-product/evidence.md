@@ -53,8 +53,7 @@ Predeclared checks:
 
 Stop on failed assertions, import errors or missing dependencies; retain logs.
 No baseline is rewritten to hide a failure. A pass covers only this original
-part and the observed machine. Catalogue validation remains pending maintainer
-review. Revisit on export, dependency or Blender changes.
+part and the observed machine. Catalogue validation is scoped by the maintainer review below. Revisit on export, dependency or Blender changes.
 
 ## Observation
 
@@ -65,7 +64,7 @@ Blender Workbench used the Metal backend; GPU model/driver was not separately
 recorded. Machine availability was probed with the existing runDoctor API into
 `environment/build123d-fixture.json`; global Python was not changed.
 
-**Observed pass, pending maintainer review.** Final `./run.sh` exited 0.
+**Observed pass, accepted by maintainer in conversation on 2026-10-31.** Final `./run.sh` exited 0.
 - CAD dimensions: 60 × 40 × 12 mm. Analytic volume: 28295.89378290154 mm³;
   observed 28295.893782901545 mm³. Valid single solid; STEP roundtrip passed.
 - SVG: 24 visible edges, 14 hidden edges; visible-only projection exported,
@@ -103,6 +102,6 @@ cache. Installation plus pip cache occupies approximately 946 MB locally.
 
 This establishes this build123d → GLB → Blender geometry path and the scoped CAD,
 STEP and SVG checks only. No Three.js import, PBR fidelity, animation, general
-geometry repair or adapter has been tested. Catalogue and example validation
-states remain unchanged pending maintainer review. Reviewer and promotion
-decision: pending. Revisit on version/environment or export changes.
+geometry repair or adapter has been tested. Maintainer Conor endorsed inclusion after the fixture result. The example is
+validated for this run; build123d is catalogued with partial validation scoped to
+these checks. Adapter maturity remains none. Revisit on version/environment or export changes.

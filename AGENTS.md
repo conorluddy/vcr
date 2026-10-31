@@ -46,7 +46,7 @@ Never load more than one guide at a time unless comparing two tools. A card or g
 
 ## Current boundary
 
-Layer 0 is complete for the initial catalogue: those records are carded and assessed, eight carry validation evidence, and six fixtures reproduce. New discovery candidates may be unassessed. The plugin is installable on Claude Code and Codex (plugin PRD P0 and P1): three roots, `vcr workspace init`, `vcr setup capture`, `vcr capture`, `vcr example create`, and the `start` and `init` skills. Layer 1 (project workspace) and the review layer (findings, approvals, review pages, `vcr storage`; plugin PRD P2 onward) have not started. There is no timeline resolver, compositor, review surface or reference search; do not imply one. The TypeScript toolchain, pnpm workspace and JSON Schemas are decided, not provisional. Everything beyond Layer 0 is still provisional per the PRD.
+Layer 0 is complete for the initial catalogue: those records are carded and assessed, nine carry validation evidence, and seven fixtures reproduce. New discovery candidates may be unassessed. The plugin is installable on Claude Code and Codex (plugin PRD P0 and P1): three roots, `vcr workspace init`, `vcr setup capture`, `vcr capture`, `vcr example create`, and the `start` and `init` skills. Layer 1 (project workspace) and the review layer (findings, approvals, review pages, `vcr storage`; plugin PRD P2 onward) have not started. There is no timeline resolver, compositor, review surface or reference search; do not imply one. The TypeScript toolchain, pnpm workspace and JSON Schemas are decided, not provisional. Everything beyond Layer 0 is still provisional per the PRD.
 
 
 - - - - -  NEVER EDIT BELOW THIS LINE - - - - - -

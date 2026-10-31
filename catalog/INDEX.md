@@ -17,12 +17,13 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `svg` ✓ — Dependency-free vector source for cards, logos and diagrams; rasterised by resvg or a browser · vector-authoring, svg-animation · guide
 - `three-js` ✓ — Browser 3D rendered once per seek with alpha: product shots, hero objects, camera moves · 3d-rendering, shaders, effects, model-loading · guide
 
-## catalogued (87)
+## catalogued (88)
 
 - `after-effects` — Adobe's aerender CLI and ExtendScript render existing .aep projects and templates · native-authoring, compositing, timeline-animation
 - `anime-js` — Light DOM/SVG/object tweening with seekable timelines; GSAP's closest neighbour · tweening, timeline-animation, svg-animation
 - `aseprite` — Batch CLI and Lua scripts that export pixel-art animation, tags and sprite sheets · pixel-art, native-authoring
 - `babylon-js` — Full web 3D engine with built-in PBR, post effects, physics and node materials · 3d-rendering, shaders, effects, physics-simulation, model-loading
+- `build123d` ✓ — Python parametric CAD for precise product geometry and SVG technical projections · 3d-asset-processing, vector-authoring
 - `canvas-2d` — Immediate-mode 2D raster drawing; redraw each frame as a pure function of t · 2d-rendering, text-rendering
 - `canvas-record` — Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped · capture, video-encoding, image-sequence-processing
 - `canvas-sketch` — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture
@@ -107,12 +108,11 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `webgl` — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders
 - `webgpu` — Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking · 3d-rendering, shaders
 
-## candidate (53)
+## candidate (52)
 
 - `ardour` — Audio workstation
 - `aubio` — Onsets and pitch
 - `audiowaveform` — Waveform data
-- `build123d` — Python parametric CAD for precise product geometry and SVG technical projections
 - `chainner` — Image graphs
 - `clap` — Plugin standard
 - `colmap` — Reconstruction

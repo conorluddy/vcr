@@ -2,11 +2,15 @@
   "id": "build123d-product",
   "title": "Parametric CAD part exported to GLB and imported into Blender",
   "summary": "Owned filleted part with an offset hole; checks CAD dimensions, STEP roundtrip, SVG projection and Blender GLB geometry before rendering a still.",
-  "status": "not-validated",
+  "status": "validated",
   "tools": [
     "build123d",
     "blender"
   ],
   "run": "./run.sh",
-  "report": "examples/build123d-product/evidence.md"
+  "report": "examples/build123d-product/evidence.md",
+  "validated_on": {
+    "date": "2026-10-31",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
 }
