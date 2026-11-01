@@ -3,7 +3,7 @@
 - 0001 — build the composition engine in-house. Accepted.
 - 0002 — headless first; read-only visualisers, no editor. Accepted.
 - 0003 — distribute as a plugin with a bundled CLI and three roots. Accepted.
-- 0004 — progressive disclosure and feedback are first-class, enforced by checks. Proposed.
+- 0004 — progressive disclosure and feedback are first-class, enforced by checks. Accepted.
 
 One file per decision, `NNNN-kebab-title.md`, never edited after acceptance except to change `Status` and add a `Superseded by` line.
 
