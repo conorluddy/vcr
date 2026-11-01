@@ -590,6 +590,33 @@
       ]
     },
     {
+      "id": "bvh-mocap",
+      "name": "BVHLoader + CMU mocap",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Mocap playback",
+      "official_url": "https://threejs.org/docs/#examples/en/loaders/BVHLoader",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "timeline-animation",
+        "model-loading"
+      ],
+      "notes": [
+        "2026-11-01: Three.js BVHLoader plays BVH motion capture through AnimationMixer.setTime(t). Proposed data source: CMU Graphics Lab Motion Capture Database (http://mocap.cs.cmu.edu/); data terms are separate from code and unverified.",
+        "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "conversation 2026-11-01: character and figure tooling gap"
+    },
+    {
       "id": "canvas-2d",
       "name": "Canvas 2D",
       "category": "Native browser platform APIs",
@@ -3111,6 +3138,32 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "kalidokit",
+      "name": "Kalidokit",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Pose to rig",
+      "official_url": "https://github.com/yeemachine/kalidokit",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "computer-vision"
+      ],
+      "notes": [
+        "2026-11-01: Solves MediaPipe landmarks into rig rotations for VRM or other humanoid rigs. Proposed pairing: mediapipe, three-vrm. Maintenance unverified; activity appears quiet.",
+        "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "conversation 2026-11-01: character and figure tooling gap"
+    },
+    {
       "id": "konva",
       "name": "Konva",
       "category": "A1. Creative coding and 2D",
@@ -3628,6 +3681,33 @@
       },
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "mannequin-js",
+      "name": "mannequin.js",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Posable figure",
+      "official_url": "https://boytchev.github.io/mannequin.js/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-rendering",
+        "timeline-animation"
+      ],
+      "notes": [
+        "2026-11-01: Procedural jointed human figure on Three.js; poses are joint angles, so a pose can be a pure function of t. Proposed route: render through the three-js capture path.",
+        "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "conversation 2026-11-01: character and figure tooling gap"
     },
     {
       "id": "matter-js",
@@ -4427,6 +4507,33 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "mpfb",
+      "name": "MPFB (MakeHuman for Blender)",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Human figures",
+      "official_url": "https://static.makehumancommunity.org/mpfb.html",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "3d-rendering",
+        "native-authoring"
+      ],
+      "notes": [
+        "2026-11-01: Blender extension generating parametric rigged humans; proposed route is Blender Python in background mode. Rigify ships with Blender and needs no separate record.",
+        "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "conversation 2026-11-01: character and figure tooling gap"
     },
     {
       "id": "msdfgen",
@@ -6643,6 +6750,32 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "rhubarb-lip-sync",
+      "name": "Rhubarb Lip Sync",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "Lip-sync timing",
+      "official_url": "https://github.com/DanielSWolf/rhubarb-lip-sync",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-11-01: CLI that turns a voice recording into timed mouth shapes (JSON/TSV); proposed driver for avatar or 2D mouth animation.",
+        "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "conversation 2026-11-01: character and figure tooling gap"
+    },
+    {
       "id": "rive-web",
       "name": "Rive Web",
       "category": "A2. Animation and authored assets",
@@ -7856,6 +7989,33 @@
       },
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "three-vrm",
+      "name": "three-vrm",
+      "category": "Discovery: conversation candidates",
+      "tier": "candidate",
+      "role": "VRM avatars",
+      "official_url": "https://github.com/pixiv/three-vrm",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-rendering",
+        "model-loading"
+      ],
+      "notes": [
+        "2026-11-01: Loads VRM avatars into Three.js with humanoid bones and expression blendshapes; candidate route for faces and lip-sync.",
+        "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "conversation 2026-11-01: character and figure tooling gap"
     },
     {
       "id": "tone-js",
