@@ -1,0 +1,28 @@
+{
+  "id": "kokoro-onnx",
+  "name": "Kokoro (kokoro-onnx)",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Local TTS voiceover",
+  "official_url": "https://github.com/thewh1teagle/kokoro-onnx",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-11-01: 82M-parameter TTS on ONNX Runtime for offline scratch or final voiceover.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: Code MIT; Kokoro model Apache-2.0.",
+    "2026-11-01: Pin onnxruntime and cache WAVs as fixtures. Python >=3.10,<3.14.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it a strong candidate."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}

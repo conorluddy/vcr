@@ -1,0 +1,28 @@
+{
+  "id": "whisperx",
+  "name": "WhisperX",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Word-timed ASR",
+  "official_url": "https://github.com/m-bain/whisperX",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-11-01: faster-whisper ASR with forced alignment for word timestamps and optional diarisation.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: BSD-2-Clause; diarisation uses gated pyannote models.",
+    "2026-11-01: CPU-only on Apple Silicon; ML output drifts across versions, so commit alignment JSON as fixtures.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it a strong candidate."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}

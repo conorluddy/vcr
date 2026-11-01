@@ -1,0 +1,28 @@
+{
+  "id": "stable-ts",
+  "name": "stable-ts",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Script-to-audio alignment",
+  "official_url": "https://github.com/jianfch/stable-ts",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-11-01: Stabilised Whisper word timestamps and forced alignment of known text; SRT, VTT, ASS and JSON output.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified).",
+    "2026-11-01: Last release reported 2025-08, so maintenance may be slow.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it a strong candidate."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}

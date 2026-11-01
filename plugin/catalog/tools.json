@@ -3,6 +3,34 @@
   "generated_from": "catalog/tools/*.json",
   "resources": [
     {
+      "id": "ab-av1",
+      "name": "ab-av1",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "VMAF-targeted CRF search",
+      "official_url": "https://github.com/alexheretic/ab-av1",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "video-encoding",
+        "media-inspection"
+      ],
+      "notes": [
+        "2026-11-01: Searches for the CRF that meets a target VMAF, then encodes; JSON output and atomic writes.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified).",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
       "id": "after-effects",
       "name": "After Effects",
       "category": "A7. Native applications and procedural tools",
@@ -60,6 +88,33 @@
       },
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "agg",
+      "name": "asciinema agg",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Asciicast to GIF",
+      "official_url": "https://github.com/asciinema/agg",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "gif-encoding"
+      ],
+      "notes": [
+        "2026-11-01: Renders asciicast recordings to GIF via gifski, deterministically from event timestamps.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: GPL-3.0-or-later.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "anime-js",
@@ -1192,6 +1247,34 @@
       }
     },
     {
+      "id": "d2",
+      "name": "D2",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Text-to-diagram CLI",
+      "official_url": "https://github.com/terrastruct/d2",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "diagram-generation",
+        "vector-authoring"
+      ],
+      "notes": [
+        "2026-11-01: Diagram language with a Go CLI producing SVG, PNG and PDF; native SVG labels rasterise cleanly with resvg.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: MPL-2.0 (TALA layout now open source).",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
       "id": "d3",
       "name": "D3",
       "category": "A4. Vector, typography, diagrams and stills",
@@ -1357,6 +1440,34 @@
           "https://github.com/facebookresearch/demucs"
         ]
       }
+    },
+    {
+      "id": "depth-anything-v2",
+      "name": "Depth Anything V2",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Monocular depth maps",
+      "official_url": "https://github.com/DepthAnything/Depth-Anything-V2",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "computer-vision"
+      ],
+      "notes": [
+        "2026-11-01: Depth maps for 2.5D parallax moves.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: Small model Apache-2.0; Base/Large/Giant CC-BY-NC-4.0.",
+        "2026-11-01: Only the Small model is safe for commercial use.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "diffusion-studio-core",
@@ -1531,6 +1642,34 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "dssim",
+      "name": "dssim",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Perceptual still difference score",
+      "official_url": "https://github.com/kornelski/dssim",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection"
+      ],
+      "notes": [
+        "2026-11-01: Rust CLI scoring multi-scale SSIM dissimilarity with an optional difference map; tolerance gating for stills.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: AGPL-3.0 (commercial licence offered).",
+        "2026-11-01: Run as an external CLI only; never link into shipped code.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
       "id": "easeljs",
       "name": "EaselJS",
       "category": "A1. Creative coding and 2D",
@@ -1698,6 +1837,34 @@
           "https://github.com/MTG/essentia"
         ]
       }
+    },
+    {
+      "id": "f3d",
+      "name": "f3d",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Headless 3D asset stills",
+      "official_url": "https://github.com/f3d-app/f3d",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "3d-rendering",
+        "model-loading"
+      ],
+      "notes": [
+        "2026-11-01: Minimal 3D viewer with headless rendering on macOS; glTF, USD, STEP, OBJ and Gaussian splats.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-3-Clause (unverified).",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "fabric-js",
@@ -1874,6 +2041,33 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "ffmpeg-normalize",
+      "name": "ffmpeg-normalize",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Loudness normalisation",
+      "official_url": "https://github.com/slhck/ffmpeg-normalize",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-11-01: EBU R128 two-pass loudness normalisation CLI with presets and batch mode.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified; libraries.io shows Other).",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
       "id": "ffmpeg-wasm",
       "name": "ffmpeg.wasm",
       "category": "A5. Video and capture",
@@ -1984,6 +2178,63 @@
           "https://github.com/FluidSynth/fluidsynth"
         ]
       }
+    },
+    {
+      "id": "fonttools",
+      "name": "fonttools",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Font subsetting and instancing",
+      "official_url": "https://github.com/fonttools/fonttools",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "font-processing"
+      ],
+      "notes": [
+        "2026-11-01: Python font toolkit: pyftsubset, variable-font instancing and inspection.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: MIT.",
+        "2026-11-01: Anchors font fixtures for reproducible text.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
+      "id": "freeze",
+      "name": "freeze",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Code and terminal stills",
+      "official_url": "https://github.com/charmbracelet/freeze",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "vector-authoring",
+        "text-rendering"
+      ],
+      "notes": [
+        "2026-11-01: Code or ANSI output to PNG, SVG or WebP with window chrome; the SVG output suits GSAP layers.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified).",
+        "2026-11-01: Maintenance may be slow.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "frei0r",
@@ -2097,6 +2348,33 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "gifsicle",
+      "name": "gifsicle",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "GIF optimisation",
+      "official_url": "https://github.com/kohler/gifsicle",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "gif-encoding"
+      ],
+      "notes": [
+        "2026-11-01: GIF optimisation and editing; post-processes gifski or agg output.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: GPL-2.0.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "gifski",
@@ -2392,6 +2670,34 @@
       "notes": [
         "2026-10-29: Skill opportunity: Further research first: test a shader-module build in a real scene before proposing a standalone shader tooling skill."
       ]
+    },
+    {
+      "id": "glslviewer",
+      "name": "glslViewer",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Headless GLSL renderer",
+      "official_url": "https://github.com/patriciogonzalezvivo/glslViewer",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "shaders"
+      ],
+      "notes": [
+        "2026-11-01: Renders fragment shaders or shaded models to PNG sequences with explicit time stepping.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-3-Clause.",
+        "2026-11-01: GPU float differences can break bit-identical fixtures; use perceptual tolerances.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "gltf-transform",
@@ -2794,6 +3100,34 @@
       ]
     },
     {
+      "id": "harfbuzz",
+      "name": "HarfBuzz utilities",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Text shaping ground truth",
+      "official_url": "https://github.com/harfbuzz/harfbuzz",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "font-processing",
+        "text-rendering"
+      ],
+      "notes": [
+        "2026-11-01: hb-shape, hb-view and hb-subset for shaping checks and shaped-text stills.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: Old MIT (unverified).",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
       "id": "houdini",
       "name": "Houdini",
       "category": "A7. Native applications and procedural tools",
@@ -3164,6 +3498,34 @@
       "source": "conversation 2026-11-01: character and figure tooling gap"
     },
     {
+      "id": "kokoro-onnx",
+      "name": "Kokoro (kokoro-onnx)",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Local TTS voiceover",
+      "official_url": "https://github.com/thewh1teagle/kokoro-onnx",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-11-01: 82M-parameter TTS on ONNX Runtime for offline scratch or final voiceover.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: Code MIT; Kokoro model Apache-2.0.",
+        "2026-11-01: Pin onnxruntime and cache WAVs as fixtures. Python >=3.10,<3.14.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
       "id": "konva",
       "name": "Konva",
       "category": "A1. Creative coding and 2D",
@@ -3238,6 +3600,64 @@
         "konva-capture"
       ],
       "skill": "skills/konva/SKILL.md"
+    },
+    {
+      "id": "libass",
+      "name": "libass",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "ASS subtitle renderer",
+      "official_url": "https://github.com/libass/libass",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "text-rendering",
+        "video-composition"
+      ],
+      "notes": [
+        "2026-11-01: Reference ASS/SSA renderer behind FFmpeg's ass and subtitles filters; styled and karaoke-timed burn-in.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: ISC (unverified).",
+        "2026-11-01: Pin font files; system font fallback breaks reproducibility. May be better recorded as an FFmpeg capability.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
+      "id": "libavif",
+      "name": "libavif (avifenc)",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "AVIF stills and animation",
+      "official_url": "https://github.com/AOMediaCodec/libavif",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing",
+        "image-sequence-processing"
+      ],
+      "notes": [
+        "2026-11-01: AVIF still and animated encoding with alpha from PNG sequences.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-2-Clause (unverified).",
+        "2026-11-01: Pin codec and speed for byte-stable output.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "libplacebo",
@@ -3400,6 +3820,34 @@
       "notes": [
         "2026-10-29: Skill opportunity: further research first; existing ImageMagick guidance addresses common image tasks, while libvips-specific large-image benefits need a fixture."
       ]
+    },
+    {
+      "id": "libwebp",
+      "name": "libwebp tools",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "WebP stills and animation",
+      "official_url": "https://chromium.googlesource.com/webm/libwebp",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing",
+        "image-sequence-processing"
+      ],
+      "notes": [
+        "2026-11-01: img2webp, gif2webp and cwebp for still and animated WebP with alpha.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-3-Clause (unverified).",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "lmms",
@@ -4765,6 +5213,35 @@
       }
     },
     {
+      "id": "odiff",
+      "name": "odiff",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Pixel diff for frame checks",
+      "official_url": "https://github.com/dmtrKovalenko/odiff",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection",
+        "image-processing"
+      ],
+      "notes": [
+        "2026-11-01: SIMD image diff CLI and Node binding; exit codes distinguish match from pixel difference, suited to golden-frame gating.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: MIT.",
+        "2026-11-01: Use threshold 0 with anti-aliasing off for strict determinism.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
       "id": "ogl",
       "name": "OGL",
       "category": "A3. 3D, shaders and effects",
@@ -5233,6 +5710,34 @@
       }
     },
     {
+      "id": "oxipng",
+      "name": "oxipng",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Lossless PNG optimiser",
+      "official_url": "https://github.com/oxipng/oxipng",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing"
+      ],
+      "notes": [
+        "2026-11-01: Rust lossless PNG optimiser that preserves pixels and alpha; safe for fixtures.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: MIT.",
+        "2026-11-01: Verify pixel identity with odiff.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
       "id": "p5-js",
       "name": "p5.js",
       "category": "A1. Creative coding and 2D",
@@ -5436,6 +5941,34 @@
         ],
         "version_seen": "0.9.26 (GitHub release; date year unverified)"
       }
+    },
+    {
+      "id": "piper",
+      "name": "Piper (piper1-gpl)",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Fast local TTS, many voices",
+      "official_url": "https://github.com/OHF-Voice/piper1-gpl",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-11-01: Neural TTS engine with many languages and voices.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: GPL-3.0 since v1.3.0; per-voice model licences.",
+        "2026-11-01: Project is seeking maintainers; old rhasspy/piper archived 2025-10.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "pixijs",
@@ -5739,6 +6272,34 @@
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
       "source": "specifications/spikes/browser-capture.md"
+    },
+    {
+      "id": "pngquant",
+      "name": "pngquant",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Lossy PNG quantisation",
+      "official_url": "https://pngquant.org/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing"
+      ],
+      "notes": [
+        "2026-11-01: Palette quantisation with alpha for small web PNGs.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: GPL-3.0-or-later (commercial licence offered).",
+        "2026-11-01: Lossy: never for fixtures or masters.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "postprocessing",
@@ -6612,6 +7173,35 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "rembg",
+      "name": "rembg",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Background removal",
+      "official_url": "https://github.com/danielgatis/rembg",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "computer-vision",
+        "image-processing"
+      ],
+      "notes": [
+        "2026-11-01: Background removal to alpha PNG via CLI, library or server with several model backends.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: Code MIT; per-model weight terms.",
+        "2026-11-01: Record model terms per backend.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
       "id": "remotion",
       "name": "Remotion",
       "category": "A5. Video and capture",
@@ -6748,6 +7338,35 @@
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "revideo",
+      "name": "Revideo",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Reference: headless Motion Canvas fork",
+      "official_url": "https://github.com/midrender/revideo",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "timeline-animation",
+        "video-composition"
+      ],
+      "notes": [
+        "2026-11-01: TypeScript Motion Canvas fork with headless rendering and an HTTP render server.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: MIT.",
+        "2026-11-01: Reference only per ADR 0001; no GitHub releases, moved organisations.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "rhubarb-lip-sync",
@@ -7137,6 +7756,35 @@
       "skill": "skills/sharp/SKILL.md"
     },
     {
+      "id": "shikijs-magic-move",
+      "name": "@shikijs/magic-move",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Animated code diffs",
+      "official_url": "https://shiki.style/packages/magic-move",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "text-rendering",
+        "tweening"
+      ],
+      "notes": [
+        "2026-11-01: Shiki-highlighted code-state transitions; replaces the archived shiki-magic-move package.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: MIT.",
+        "2026-11-01: CSS transitions are not seekable; needs a GSAP-driven adapter and odiff gating before promotion.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
       "id": "shotstack",
       "name": "Shotstack",
       "category": "A9. Adjacent resources mentioned during discovery",
@@ -7350,6 +7998,34 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "stable-ts",
+      "name": "stable-ts",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Script-to-audio alignment",
+      "official_url": "https://github.com/jianfch/stable-ts",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-11-01: Stabilised Whisper word timestamps and forced alignment of known text; SRT, VTT, ASS and JSON output.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified).",
+        "2026-11-01: Last release reported 2025-08, so maintenance may be slow.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "supercollider",
@@ -7651,6 +8327,34 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "svt-av1",
+      "name": "SVT-AV1",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Production AV1 encoder",
+      "official_url": "https://gitlab.com/AOMediaCodec/SVT-AV1",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "video-encoding"
+      ],
+      "notes": [
+        "2026-11-01: AV1 encoder via FFmpeg libsvtav1 or SvtAv1EncApp. rav1e considered and skipped in its favour.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-3-Clause-Clear plus AOM patent licence (unverified).",
+        "2026-11-01: No alpha; may be recorded as an FFmpeg capability.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "synfig",
@@ -8378,6 +9082,35 @@
       "skill": "skills/two-js/SKILL.md"
     },
     {
+      "id": "typst",
+      "name": "Typst",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Deterministic typesetting CLI",
+      "official_url": "https://github.com/typst/typst",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "typography",
+        "vector-authoring"
+      ],
+      "notes": [
+        "2026-11-01: Typesetting to PDF, PNG and SVG for title cards, equations, tables and data-driven stills.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: Apache-2.0.",
+        "2026-11-01: Pass --font-path to avoid system font variation.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
       "id": "vapoursynth",
       "name": "VapourSynth",
       "category": "Discovery: conversation candidates",
@@ -8429,6 +9162,92 @@
         "version_seen": "R81",
         "last_release": "2026-10-22"
       }
+    },
+    {
+      "id": "vhs",
+      "name": "VHS",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Scripted terminal recordings",
+      "official_url": "https://github.com/charmbracelet/vhs",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "capture",
+        "video-encoding"
+      ],
+      "notes": [
+        "2026-11-01: Renders .tape scripts of terminal sessions to GIF, MP4, WebM or frames via ttyd and Chromium.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified).",
+        "2026-11-01: Records in real time, so output is NOT a pure function of t; treat as a source asset.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
+      "id": "vl-convert",
+      "name": "vl-convert",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Vega-Lite to SVG/PNG",
+      "official_url": "https://github.com/vega/vl-convert",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "data-visualisation",
+        "vector-authoring"
+      ],
+      "notes": [
+        "2026-11-01: Dependency-free Vega and Vega-Lite rendering to SVG, PNG and PDF from Python or CLI.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-3-Clause.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
+      "id": "vmaf",
+      "name": "VMAF (libvmaf)",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Perceptual video quality score",
+      "official_url": "https://github.com/Netflix/vmaf",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection",
+        "video-encoding"
+      ],
+      "notes": [
+        "2026-11-01: Netflix full-reference video quality metric via the vmaf CLI or FFmpeg libvmaf filter.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-2-Clause-Patent.",
+        "2026-11-01: Luma only; pin the model version in fixtures. Homebrew formula name unverified.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "vpype",
@@ -9001,6 +9820,34 @@
         ],
         "version_seen": "1.9.5 (GitHub release; date year unverified)"
       }
+    },
+    {
+      "id": "whisperx",
+      "name": "WhisperX",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Word-timed ASR",
+      "official_url": "https://github.com/m-bain/whisperX",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-11-01: faster-whisper ASR with forced alignment for word timestamps and optional diarisation.",
+        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-2-Clause; diarisation uses gated pyannote models.",
+        "2026-11-01: CPU-only on Apple Silicon; ML output drifts across versions, so commit alignment JSON as fixtures.",
+        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-01",
+      "source": "references/ideas/new-candidate-tools-2026-11.md"
     }
   ]
 }

@@ -1,0 +1,28 @@
+{
+  "id": "dssim",
+  "name": "dssim",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Perceptual still difference score",
+  "official_url": "https://github.com/kornelski/dssim",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "media-inspection"
+  ],
+  "notes": [
+    "2026-11-01: Rust CLI scoring multi-scale SSIM dissimilarity with an optional difference map; tolerance gating for stills.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: AGPL-3.0 (commercial licence offered).",
+    "2026-11-01: Run as an external CLI only; never link into shipped code.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}
