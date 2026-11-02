@@ -24,6 +24,13 @@ Run `vcr status`. If it reports `workspace  none`, use the `init` skill before a
 
 A card or guide never claims the tool is installed on this machine; `vcr doctor` does. Prefer `core` tier tools: they carry validation evidence.
 
+## Producing an asset
+
+For native asset creation, tool-to-tool handoffs or delivery variants, read
+[Produce and verify a native asset](references/native-assets.md). It covers
+source and parameter separation, output-specific checks, delivery budgets and
+inspection. Load the selected toolkit guide for its actual commands.
+
 ## Rendering browser scenes
 
 A browser scene exposes `window.__scene = { duration, seek(t) }` with a pure seek. Capture it with `vcr capture <scene.html> --width W --height H --fps F --verify`. The first time on a machine, `vcr setup capture` shows what it will install; `vcr setup capture --yes` installs it. Assemble frames to video with the `ffmpeg` skill.

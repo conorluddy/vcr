@@ -1,0 +1,52 @@
+{
+  "id": "real-esrgan",
+  "name": "Real-ESRGAN",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Upscaling",
+  "official_url": "https://github.com/xinntao/Real-ESRGAN",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "image-processing"
+  ],
+  "notes": [
+    "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+    "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+    "2026-10-29: Skill opportunity: Possible standalone restoration skill; first verify specific model weights, rights and an image fixture."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Model-based image restoration and upscaling with Python inference scripts. It produces processed image files; model weights, output quality and compute requirements vary by model.",
+  "use_when": [
+    "Explore model-based enlargement or restoration of raster assets",
+    "Process image batches with the supplied inference scripts"
+  ],
+  "avoid_when": [
+    "Simple resize with predictable output: ImageMagick",
+    "Need original image detail guaranteed: retain source"
+  ],
+  "pairs_with": [
+    "imagemagick",
+    "ffmpeg-ffprobe"
+  ],
+  "license": "BSD-3-Clause for project code; model weights and asset terms require separate review",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-c",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+    "sources": [
+      "https://github.com/xinntao/Real-ESRGAN",
+      "https://github.com/xinntao/Real-ESRGAN/releases"
+    ],
+    "version_seen": "0.3.0 (GitHub release; date year unverified)"
+  }
+}

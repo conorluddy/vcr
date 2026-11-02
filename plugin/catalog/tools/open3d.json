@@ -1,0 +1,53 @@
+{
+  "id": "open3d",
+  "name": "Open3D",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "3D geometry",
+  "official_url": "https://www.open3d.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "3d-asset-processing"
+  ],
+  "notes": [
+    "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+    "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+    "2026-10-29: Skill opportunity: Potential standalone 3D processing skill; first verify a reproducible point-cloud workflow and ownership."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "C++ and Python library for processing 3D data, including point clouds and meshes. Its geometry operations suit reconstruction and inspection, while scene authoring remains with native 3D tools.",
+  "use_when": [
+    "Process point clouds or meshes before a Blender scene",
+    "Use Python for 3D data operations"
+  ],
+  "avoid_when": [
+    "Author and render a production scene: Blender",
+    "Need a lightweight triangle mesh workflow: Trimesh"
+  ],
+  "pairs_with": [
+    "blender",
+    "trimesh"
+  ],
+  "license": "MIT for project code; dependency and asset terms need review",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-c",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+    "sources": [
+      "https://github.com/isl-org/Open3D",
+      "https://github.com/isl-org/Open3D/blob/main/LICENSE",
+      "https://github.com/isl-org/Open3D/releases"
+    ],
+    "version_seen": "0.20.0 (GitHub release; date year unverified)"
+  }
+}

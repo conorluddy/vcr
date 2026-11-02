@@ -1,0 +1,52 @@
+{
+  "id": "librosa",
+  "name": "librosa",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Rhythm and spectra",
+  "official_url": "https://librosa.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-10-29: Listed from a conversation; listed-in-prd is the schema’s listed-only status, not an assertion of PRD inclusion.",
+    "2026-10-29: Documentation assessed; no fixture has been run. Dependency and asset terms require separate review.",
+    "2026-10-29: Skill opportunity: further research first; a standalone audio-analysis skill needs the proposed onset fixture and an existing-skill check."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Python library for audio and music signal analysis, including onset and spectral features. It can produce numeric data for offline audio-reactive workflows; it does not itself establish animation synchronisation.",
+  "use_when": [
+    "Analyse audio features offline in Python for a motion experiment",
+    "Compare detected onsets with known audio events"
+  ],
+  "avoid_when": [
+    "Need browser playback or live audio processing: Web Audio",
+    "Need video encoding or muxing: FFmpeg"
+  ],
+  "pairs_with": [
+    "web-audio",
+    "ffmpeg-ffprobe"
+  ],
+  "license": "ISC (project code; dependency and asset terms unassessed)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "codex",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official documentation describes Python audio analysis and project code is labelled ISC. Version 1.0.0 appears in docs; release and recent substantive activity dates could not be verified.",
+    "sources": [
+      "https://github.com/librosa/librosa",
+      "https://librosa.org/doc/latest/index.html"
+    ],
+    "version_seen": "1.0.0 (documentation; release date unverified)"
+  }
+}

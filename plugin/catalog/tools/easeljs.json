@@ -3,7 +3,7 @@
   "name": "EaselJS",
   "category": "A1. Creative coding and 2D",
   "tier": "candidate",
-  "role": "Legacy Canvas display list from the CreateJS suite; pre-dates modern Canvas scene graphs",
+  "role": "Legacy CreateJS Canvas display list",
   "summary": "Canvas 2D display-list library (Stage, Container, Bitmap, Shape, Text) modelled on the Flash API, part of CreateJS and designed to pair with TweenJS. Driven by a Ticker; output is Canvas frames. A limited StageGL (WebGL) mode exists. The last npm release is 1.0.2 from 2017; the repository still gets sporadic commits, so treat it as legacy and mainly relevant for existing CreateJS or Adobe Animate exports.",
   "use_when": [
     "Rendering existing CreateJS or Adobe Animate canvas exports",
@@ -28,7 +28,8 @@
     "macos": "pnpm add easeljs"
   },
   "notes": [
-    "2026-10-26: createjs.com/easeljs returned only a stub page; the repository on GitHub (CreateJS/EaselJS) is a likelier official_url. Last npm release date comes from the registry; the Jan 2026 commit was a minor touch-input fix."
+    "2026-10-26: createjs.com/easeljs returned only a stub page; the repository on GitHub (CreateJS/EaselJS) is a likelier official_url. Last npm release date comes from the registry; the Jan 2026 commit was a minor touch-input fix.",
+    "2026-10-29: Skill opportunity: No skill yet: existing evidence points to legacy CreateJS exports; revisit if an actual migration needs a reproducible fixture."
   ],
   "assessment": {
     "date": "2026-10-26",

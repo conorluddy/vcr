@@ -1,0 +1,55 @@
+{
+  "id": "colmap",
+  "name": "COLMAP",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Reconstruction",
+  "official_url": "https://colmap.github.io/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "3d-asset-processing"
+  ],
+  "notes": [
+    "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+    "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+    "2026-10-29: Skill opportunity: Further research first: an owned multi-view dataset and reconstruction fixture would establish whether a VCR or standalone skill is worthwhile.",
+    "2026-10-29: GPU availability and reconstruction fidelity are environment and dataset dependent; no VCR fixture run."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Structure-from-motion and multi-view stereo software driven through a GUI, CLI or Python bindings. It reconstructs camera poses and 3D geometry from image collections; suitable capture input and compute resources matter.",
+  "use_when": [
+    "Reconstruct a scene from multiple photographs via CLI",
+    "Prepare camera and geometry data for a 3D pipeline"
+  ],
+  "avoid_when": [
+    "Need to render an existing 3D scene: Blender",
+    "Need simple image operations: ImageMagick"
+  ],
+  "pairs_with": [
+    "blender",
+    "imagemagick"
+  ],
+  "license": "BSD (core; upstream warns third-party dependency licences vary)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "ingest-assess-a",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "Official documentation describes a CLI and Python bindings; a November 2025 release is within 12 months. Recommend catalogued after review; no VCR fixture has been run.",
+    "sources": [
+      "https://colmap.github.io/",
+      "https://github.com/colmap/colmap",
+      "https://github.com/colmap/colmap/blob/main/CHANGELOG.rst",
+      "https://github.com/colmap/colmap/releases"
+    ],
+    "version_seen": "4.2.1 (release page; release year not verified)"
+  }
+}

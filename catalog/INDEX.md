@@ -17,12 +17,13 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `svg` ✓ — Dependency-free vector source for cards, logos and diagrams; rasterised by resvg or a browser · vector-authoring, svg-animation · guide
 - `three-js` ✓ — Browser 3D rendered once per seek with alpha: product shots, hero objects, camera moves · 3d-rendering, shaders, effects, model-loading · guide
 
-## catalogued (87)
+## catalogued (88)
 
 - `after-effects` — Adobe's aerender CLI and ExtendScript render existing .aep projects and templates · native-authoring, compositing, timeline-animation
 - `anime-js` — Light DOM/SVG/object tweening with seekable timelines; GSAP's closest neighbour · tweening, timeline-animation, svg-animation
 - `aseprite` — Batch CLI and Lua scripts that export pixel-art animation, tags and sprite sheets · pixel-art, native-authoring
 - `babylon-js` — Full web 3D engine with built-in PBR, post effects, physics and node materials · 3d-rendering, shaders, effects, physics-simulation, model-loading
+- `build123d` ✓ — Python parametric CAD for precise product geometry and SVG technical projections · 3d-asset-processing, vector-authoring
 - `canvas-2d` — Immediate-mode 2D raster drawing; redraw each frame as a pure function of t · 2d-rendering, text-rendering
 - `canvas-record` — Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped · capture, video-encoding, image-sequence-processing
 - `canvas-sketch` — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture
@@ -107,16 +108,57 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `webgl` — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders
 - `webgpu` — Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking · 3d-rendering, shaders
 
-## candidate (11)
+## candidate (52)
 
-- `diffusion-studio-core` — Browser-only TypeScript timeline engine on WebCodecs; export is client-side
-- `easeljs` — Legacy Canvas display list from the CreateJS suite; pre-dates modern Canvas scene graphs
-- `editly` — Declarative JSON/CLI video editor on ffmpeg with transitions, titles and GL layers
-- `glmatrix` — Fast vec/mat/quat helpers for hand-written WebGL and WebGPU code
-- `glslify` — Build-time GLSL module composition via CLI or bundler transform
-- `gltfjsx` — CLI that turns a .glb/.gltf into a react-three-fiber JSX component
-- `gstreamer` — Graph-based media pipelines via gst-launch-1.0; for live and streaming work
-- `libvips` — Streaming image library with vips CLI; the engine under sharp
-- `mediarecorder` — Real-time recording of a MediaStream to WebM/MP4; wall-clock bound, not frame-exact
-- `mo-js` — Declarative burst, shape and ripple effects; own timeline, no GSAP-style seek guarantee
-- `natron` — NatronRenderer background compositing of .ntp projects; macOS builds are Intel-only
+- `ardour` — Audio workstation
+- `aubio` — Onsets and pitch
+- `audiowaveform` — Waveform data
+- `chainner` — Image graphs
+- `clap` — Plugin standard
+- `colmap` — Reconstruction
+- `comfyui` — Generative graphs
+- `csound` — Audio synthesis
+- `demucs` — Source separation
+- `diffusion-studio-core` — Browser timeline engine using WebCodecs
+- `easeljs` — Legacy CreateJS Canvas display list
+- `editly` — Declarative FFmpeg video editor
+- `essentia` — Audio features
+- `fluidsynth` — MIDI synthesis
+- `frei0r` — Video effects
+- `glmatrix` — Vector and matrix utilities
+- `glslify` — GLSL modules and bundling
+- `gltfjsx` — Convert glTF models to React Three Fiber
+- `gstreamer` — Media pipeline framework and CLI
+- `libplacebo` — Video processing
+- `librosa` — Rhythm and spectra
+- `libvips` — Streaming image processing library
+- `lmms` — Music workstation
+- `lv2` — Plugin standard
+- `magenta-studio` — MIDI variants
+- `mediainfo` — Media metadata
+- `mediapipe` — Vision and tracking
+- `mediarecorder` — Browser MediaStream recording API
+- `meshoptimizer` — Mesh optimisation
+- `meyda` — Audio features
+- `mido` — MIDI processing
+- `mo-js` — Declarative shape and burst animation
+- `music21` — Music analysis
+- `natron` — Native node-based compositor
+- `nerfstudio` — Reconstruction
+- `open3d` — 3D geometry
+- `opentimelineio` — Timeline exchange
+- `openusd` — 3D interchange
+- `pedalboard` — Audio effects
+- `pretty-midi` — MIDI processing
+- `pure-data` — Audio programming
+- `real-esrgan` — Upscaling
+- `rubber-band` — Time stretch
+- `segment-anything` — Segmentation
+- `sonic-annotator` — Audio annotation
+- `sox` — Audio processing
+- `supercollider` — Audio synthesis
+- `surge-xt` — Synthesizer
+- `trimesh` — Mesh processing
+- `vapoursynth` — Video filtering
+- `vtracer` — Colour tracing
+- `whisper-cpp` — Speech to text

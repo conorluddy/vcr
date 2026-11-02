@@ -3,7 +3,7 @@
   "name": "glslify",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Build-time GLSL module composition via CLI or bundler transform",
+  "role": "GLSL modules and bundling",
   "summary": "Node module system for GLSL: shaders import functions (noise, easing, blend modes) from npm packages, and the glslify CLI or bundler transform inlines them into one shader string. Build-time only, so output is a plain shader for regl, OGL or Three.js. Distinguishing strength: reusing community GLSL without copy-paste.",
   "use_when": [
     "Reusing npm GLSL (noise, blend, easing) in regl, OGL or Three.js shaders",
@@ -52,5 +52,8 @@
       "https://www.npmjs.com/package/glslify"
     ]
   },
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "notes": [
+    "2026-10-29: Skill opportunity: Further research first: test a shader-module build in a real scene before proposing a standalone shader tooling skill."
+  ]
 }

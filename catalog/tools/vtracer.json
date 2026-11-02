@@ -1,0 +1,52 @@
+{
+  "id": "vtracer",
+  "name": "VTracer",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Colour tracing",
+  "official_url": "https://github.com/visioncortex/vtracer",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "vector-tracing"
+  ],
+  "notes": [
+    "2026-10-29: Listed from a conversation; listed-in-prd is the schema’s listed-only status, not an assertion of PRD inclusion.",
+    "2026-10-29: Documentation assessed; no fixture has been run. Dependency and asset terms require separate review.",
+    "2026-10-29: Skill opportunity: further research first; run a colour tracing fixture and check existing vector skills before choosing a VCR or standalone guide."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Raster-to-SVG vector tracing with a CLI and colour support. Useful for turning simple colour artwork into vector source; geometry and visual fidelity depend on settings and input.",
+  "use_when": [
+    "Trace colour artwork to SVG rather than Potrace’s single-colour output",
+    "Explore raster-to-vector preparation for later SVG work"
+  ],
+  "avoid_when": [
+    "Need hand-edited semantic shapes: author SVG directly",
+    "Need faithful photographs: retain the raster image"
+  ],
+  "pairs_with": [
+    "potrace",
+    "svg",
+    "resvg"
+  ],
+  "license": "MIT (project code; dependency and asset terms unassessed)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "codex",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official repository documents a colour raster-to-SVG CLI and MIT project licence. Release and recent substantive activity dates could not be verified; keep as candidate pending review and fixture.",
+    "sources": [
+      "https://github.com/visioncortex/vtracer",
+      "https://github.com/visioncortex/vtracer/blob/master/LICENSE"
+    ]
+  }
+}

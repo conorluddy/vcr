@@ -1,0 +1,56 @@
+{
+  "id": "nerfstudio",
+  "name": "Nerfstudio",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Reconstruction",
+  "official_url": "https://docs.nerf.studio/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "3d-asset-processing"
+  ],
+  "notes": [
+    "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+    "2026-10-29: Documented quickstart requires NVIDIA CUDA; applicability on this macOS machine is unverified. Model and dataset rights are separate.",
+    "2026-10-29: Skill opportunity: further research first; assess existing reconstruction skills and reproduce one pinned GPU fixture."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Python-based framework and command-line workflows for training, viewing and exporting neural scene representations from image datasets. Its documented quickstart requires NVIDIA CUDA and significant dependencies.",
+  "use_when": [
+    "Research NeRF or Gaussian-splat reconstruction from image datasets",
+    "Explore reconstruction workflows with an appropriate CUDA environment"
+  ],
+  "avoid_when": [
+    "Need a conventional editable 3D model: Blender",
+    "Need basic mesh processing without model training: Trimesh"
+  ],
+  "pairs_with": [
+    "blender",
+    "colmap"
+  ],
+  "license": "Apache-2.0 (project code; methods, models, datasets and dependencies need separate review)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-b",
+    "maintenance": "unknown",
+    "verdict": "promote",
+    "rationale": "Official docs cover reconstruction CLI workflows; PyPI 1.1.5 is dated 2024-11-11. Newer substantive development and model terms remain unverified.",
+    "sources": [
+      "https://docs.nerf.studio/",
+      "https://github.com/nerfstudio-project/nerfstudio",
+      "https://github.com/nerfstudio-project/nerfstudio/blob/main/LICENSE",
+      "https://github.com/nerfstudio-project/nerfstudio/releases",
+      "https://pypi.org/project/nerfstudio/"
+    ],
+    "version_seen": "1.1.5 (PyPI); repository release page lists 1.1.1",
+    "last_release": "2024-11-11"
+  }
+}

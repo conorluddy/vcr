@@ -1,0 +1,51 @@
+{
+  "id": "meyda",
+  "name": "Meyda",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Audio features",
+  "official_url": "https://meyda.js.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+    "2026-10-29: Feature extraction is not beat tracking or proof of deterministic capture; verify any specific workflow.",
+    "2026-10-29: Skill opportunity: further research first; test a seekable audio-reactive scene before proposing a VCR guide."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "JavaScript audio feature extraction library for arrays and Web Audio. Exposes features such as RMS and spectral centroid for offline analysis or live reactive graphics.",
+  "use_when": [
+    "Extract audio features in a JavaScript/Web Audio scene",
+    "Use a browser-facing analyser rather than a Python analysis pipeline"
+  ],
+  "avoid_when": [
+    "Need Python-based music analysis: librosa",
+    "Need audio encoding or mixing: FFmpeg"
+  ],
+  "pairs_with": [
+    "web-audio",
+    "p5-js"
+  ],
+  "license": "MIT (project code; dependencies and audio assets require separate review)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-b",
+    "maintenance": "unknown",
+    "verdict": "promote",
+    "rationale": "Official site describes JavaScript feature extraction including offline and Web Audio use; repository identifies MIT licensing. Release recency is not verified.",
+    "sources": [
+      "https://meyda.js.org/",
+      "https://github.com/meyda/meyda"
+    ]
+  }
+}

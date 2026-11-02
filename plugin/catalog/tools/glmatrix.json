@@ -3,7 +3,7 @@
   "name": "glMatrix",
   "category": "A9. Adjacent resources mentioned during discovery",
   "tier": "candidate",
-  "role": "Fast vec/mat/quat helpers for hand-written WebGL and WebGPU code",
+  "role": "Vector and matrix utilities",
   "summary": "High-performance vector, matrix and quaternion library for JavaScript, using Float32Array and in-place operations. It has no rendering or timeline: it supplies projection, view and transform maths to raw WebGL or WebGPU code. Pure functions of their inputs, so safe in seek-driven frames.",
   "use_when": [
     "Raw WebGL or WebGPU scenes needing matrices without a framework",
@@ -52,5 +52,8 @@
       "https://github.com/toji/gl-matrix"
     ]
   },
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "notes": [
+    "2026-10-29: Skill opportunity: No skill yet: this supporting math library has no standalone rendering workflow; revisit for a recurring raw WebGL task."
+  ]
 }

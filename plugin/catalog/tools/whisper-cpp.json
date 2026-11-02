@@ -1,0 +1,51 @@
+{
+  "id": "whisper-cpp",
+  "name": "whisper.cpp",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Speech to text",
+  "official_url": "https://github.com/ggml-org/whisper.cpp",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+    "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+    "2026-10-29: Skill opportunity: Potential standalone transcription skill; assess existing skills, selected model rights and a timed speech fixture first."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "C/C++ implementation of Whisper inference with a command-line transcription example. It needs a compatible model file, and timing and accuracy depend on model, language and audio.",
+  "use_when": [
+    "Produce local speech transcript candidates for caption review",
+    "Explore timestamped speech analysis without a hosted API"
+  ],
+  "avoid_when": [
+    "Need exact captions without human review: correct the transcript manually",
+    "Need image mask extraction: Segment Anything"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe"
+  ],
+  "license": "MIT for project code; model weights and input media terms require separate review",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-c",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+    "sources": [
+      "https://github.com/ggml-org/whisper.cpp",
+      "https://github.com/ggml-org/whisper.cpp/releases"
+    ],
+    "version_seen": "1.9.5 (GitHub release; date year unverified)"
+  }
+}

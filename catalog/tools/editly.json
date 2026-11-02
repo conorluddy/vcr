@@ -3,7 +3,7 @@
   "name": "Editly",
   "category": "A5. Video and capture",
   "tier": "candidate",
-  "role": "Declarative JSON/CLI video editor on ffmpeg with transitions, titles and GL layers",
+  "role": "Declarative FFmpeg video editor",
   "summary": "Node CLI and API that builds a video from a JSON5 spec of clips, images, audio, titles and transitions, rendering frames through headless-gl and canvas and piping them to ffmpeg. Output is one MP4 (or GIF) in one command. Distinguishing strength: the fastest route from a declarative edit list to a finished slideshow-style video without a browser. ESM only; needs ffmpeg, headless-gl on Linux.",
   "use_when": [
     "Slideshow or montage with transitions from a JSON spec, no browser needed",
@@ -30,7 +30,8 @@
     "check_command": "editly --help"
   },
   "notes": [
-    "2026-10-26: GitHub shows v0.15.0-rc.1 (2025-01-19) but npm latest is 0.14.2 (2022-12-23); the README says the project is maintained by one person. Native headless-gl dependency may fail to build on current Node; not tested."
+    "2026-10-26: GitHub shows v0.15.0-rc.1 (2025-01-19) but npm latest is 0.14.2 (2022-12-23); the README says the project is maintained by one person. Native headless-gl dependency may fail to build on current Node; not tested.",
+    "2026-10-29: Skill opportunity: Further research first: evaluate the headless-gl dependency and a reproducible montage against the existing FFmpeg skill."
   ],
   "assessment": {
     "date": "2026-10-26",

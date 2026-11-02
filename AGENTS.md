@@ -16,7 +16,7 @@ Read `specifications/vcr-prd.md` for product intent and release gates. This repo
 - `plugin/` is generated and committed (bundled CLI, catalogue, skills, example sources, both host manifests). Never edit it; run `pnpm vcr plugin build` after changing the CLI, catalogue, skills or examples. `pnpm validate` fails when it is stale, over 5 MB or carries media.
 - Inside this repository the CLI is `pnpm vcr`; from an installed plugin it is `node <plugin-root>/cli/vcr.mjs`, the plugin root being two directories above the calling SKILL.md (spike S1). Skills say `vcr` and define it once; never hard-code a versioned plugin path.
 - The harness is read-only outside this repository: user state goes to the workspace (`vcr.json`) or the machine root (`VCR_HOME`, default `~/.vcr`), never into the plugin.
-- Decisions live in `specifications/decisions/` as numbered ADRs. Read 0001 (in-house engine), 0002 (headless, no editor) and 0003 (plugin distribution, three roots) before proposing architecture.
+- Decisions live in `specifications/decisions/` as numbered ADRs. Read 0001 (in-house engine), 0002 (headless, no editor), 0003 (plugin distribution, three roots) and 0004 (progressive disclosure and feedback as first-class) before proposing architecture.
 - Plugin distribution (Claude Code and Codex) and the human review layer are specified in `specifications/vcr-plugin-prd.md` and ADR 0003; read them before touching root resolution, packaging, review files or storage.
 - When agents work in git worktrees, merge their branches into one integration branch, rebuild the index once, and never `git add -A` from the main checkout while worktrees exist under `.claude/worktrees/`.
 
@@ -31,22 +31,36 @@ Four tiers, each sized to one decision. Descend only as far as the task needs.
 
 Never load more than one guide at a time unless comparing two tools. A card or guide never claims the tool is installed; `vcr doctor` does.
 
+## Production feedback issues
+
+Use `self-improvement` on every issue capturing a lesson from real VCR use; filter by it to find improvement leads. Add the relevant `loop:*` labels (they may overlap):
+
+| Label | Use when |
+| --- | --- |
+| `loop:field-notes` | A running production-session log; keep observations and updates here, then link focused follow-up issues back to it. |
+| `loop:friction` | VCR slowed, blocked or confused work on a real project. |
+| `loop:core-candidate` | A pattern proved useful in a project and could be absorbed into the CLI, harness or a skill. This is a proposal, not approved architecture or shipped support. |
+| `loop:docs-gap` | A skill, guide or catalogue card was wrong, missing or misleading in practice. |
+| `loop:agent-ux` | An agent driving VCR unattended hit problems with help, errors, hangs, authentication or similar interactions. |
+
+Before opening a follow-up, check existing issues for duplicates. Keep each actionable issue focused on one problem or proven pattern, link its source field notes and include reproduction steps or evidence, the workaround if any, and a definition of done. Apply ordinary type, priority, clarity and risk labels separately; loop labels describe the feedback source and kind, not implementation readiness. When resolving a follow-up, link the fix and verification evidence back to the source log.
+
 ## Repository map
 
 - `catalog/`: one record per tool under `tools/`, retired records under `retired/`, generated `tools.json` and `INDEX.md`, vocabulary, schemas, `ASSESSMENT-BRIEF.md`.
 - `environment/`: the maintainer's per-machine tool availability from `vcr doctor --record` (`pnpm doctor`). The only place installation is a fact for validation evidence; other machines record to `~/.vcr/environment/`.
 - `vcr.json`: marks this repository as a VCR workspace, so harness and workspace resolve to the same root (dev mode). See `vcr status`.
 - `packages/`: `cli` (the `vcr` command; bundled into `plugin/cli/vcr.mjs`), `timeline` (time types), `capture` (browser frame capture, driven by `vcr capture`).
-- `skills/`: flat `skills/<name>/SKILL.md`, no `vcr-` prefix. Workflow: `start` (router), `init` (workspace setup). Toolkits: one per core tool plus ImageMagick and resvg. `.claude/skills` links here.
+- `skills/`: flat `skills/<name>/SKILL.md`, no `vcr-` prefix. Workflow: `start` (router), `init` (workspace setup), `ingest` (candidate assessment). Toolkits: one per core tool plus ImageMagick and resvg. `.claude/skills` links here.
 - `plugin/`: generated Claude Code and Codex plugin; marketplaces at `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`.
 - `examples/`: validated fixtures with `example.json`, `run.sh` and `expected/`; browser examples also carry a `capture` block for `vcr capture`.
-- `projects/`: products and productions following the project schema.
-- `shared/`, `references/`: reserved for Layer 1 and Layer 7; empty.
+- `projects/`: local products and productions following the project schema; contents are ignored except tracked reusable `templates/`.
+- `shared/`: reserved for Layer 1. `references/ideas/` holds exploratory material; production reference search is reserved for Layer 7.
 - `specifications/`: PRD, `decisions/` (ADRs), `spikes/` (reports).
 
 ## Current boundary
 
-Layer 0 is complete: every live record is carded and assessed, eight carry validation evidence, and six fixtures reproduce. The plugin is installable on Claude Code and Codex (plugin PRD P0 and P1): three roots, `vcr workspace init`, `vcr setup capture`, `vcr capture`, `vcr example create`, and the `start` and `init` skills. Layer 1 (project workspace) and the review layer (findings, approvals, review pages, `vcr storage`; plugin PRD P2 onward) have not started. There is no timeline resolver, compositor, review surface or reference search; do not imply one. The TypeScript toolchain, pnpm workspace and JSON Schemas are decided, not provisional. Everything beyond Layer 0 is still provisional per the PRD.
+Layer 0 is complete for the initial catalogue: those records are carded and assessed, nine carry validation evidence, and seven fixtures reproduce. New discovery candidates may be unassessed. The plugin is installable on Claude Code and Codex (plugin PRD P0 and P1): three roots, `vcr workspace init`, `vcr setup capture`, `vcr capture`, `vcr example create`, and the `start` and `init` skills. Layer 1 (project workspace) and the review layer (findings, approvals, review pages, `vcr storage`; plugin PRD P2 onward) have not started. There is no timeline resolver, compositor, review surface or reference search; do not imply one. The TypeScript toolchain, pnpm workspace and JSON Schemas are decided, not provisional. Everything beyond Layer 0 is still provisional per the PRD.
 
 
 - - - - -  NEVER EDIT BELOW THIS LINE - - - - - -

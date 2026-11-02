@@ -1,0 +1,52 @@
+{
+  "id": "magenta-studio",
+  "name": "Magenta Studio",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "MIDI variants",
+  "official_url": "https://magenta.tensorflow.org/studio",
+  "automation_route": "manual-only",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+    "2026-10-29: Standalone and Ableton workflows use interactive interfaces; output and model terms require independent review.",
+    "2026-10-29: Skill opportunity: further research first; no VCR skill is justified until a repeatable supported interface is established."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Interactive collection of model-assisted MIDI transformations, offered as standalone applications and Ableton Live devices. It is a research lead for music workflows; a general automation interface is not established.",
+  "use_when": [
+    "Explore model-assisted MIDI variations through the documented UI",
+    "Research editable MIDI outputs for composition support"
+  ],
+  "avoid_when": [
+    "Need scriptable MIDI manipulation: Mido",
+    "Need deterministic non-generative transformations: Mido"
+  ],
+  "pairs_with": [
+    "mido",
+    "pretty-midi"
+  ],
+  "license": "Apache-2.0 (repository code; model weights, third-party dependencies and Ableton terms require separate review)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-b",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official pages document interactive Ableton and standalone MIDI tools; a reusable CLI automation route and current release activity were not established.",
+    "sources": [
+      "https://magenta.tensorflow.org/studio",
+      "https://magenta.tensorflow.org/v1/studio/standalone",
+      "https://github.com/magenta/magenta-studio"
+    ]
+  }
+}

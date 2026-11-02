@@ -1,0 +1,50 @@
+{
+  "id": "chainner",
+  "name": "chaiNNer",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Image graphs",
+  "official_url": "https://github.com/chaiNNer-org/chaiNNer",
+  "automation_route": "manual-only",
+  "capabilities": [
+    "image-processing"
+  ],
+  "notes": [
+    "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+    "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+    "2026-10-29: Skill opportunity: Further research first: verify whether a supported unattended interface exists and check model terms before writing a skill.",
+    "2026-10-29: GUI route confirmed; native CLI or headless automation not documented in the reviewed README. Model licences are separate."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Node-based image-processing application for combining transformations, including model-based upscaling. The documented interface is graphical; an agent-driven headless route has not been established.",
+  "use_when": [
+    "Explore reusable image-processing graphs interactively",
+    "Evaluate model-backed upscaling workflows"
+  ],
+  "avoid_when": [
+    "Require a verified headless CLI: ImageMagick or resvg",
+    "Need simple resizing without model setup: ImageMagick"
+  ],
+  "pairs_with": [
+    "imagemagick"
+  ],
+  "license": "GPL-3.0 (repository label; models, dependencies and exact variant need review)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "ingest-assess-a",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official README documents a node-based GUI; no unattended CLI was established from that source. Release and substantive activity dates not verified.",
+    "sources": [
+      "https://github.com/chaiNNer-org/chaiNNer"
+    ]
+  }
+}

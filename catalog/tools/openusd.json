@@ -1,0 +1,53 @@
+{
+  "id": "openusd",
+  "name": "OpenUSD",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "3D interchange",
+  "official_url": "https://openusd.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "3d-asset-processing"
+  ],
+  "notes": [
+    "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+    "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+    "2026-10-29: Skill opportunity: Potential standalone scene-interchange skill; investigate actual USD round trips and licence obligations first."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "OpenUSD is a scene-description framework and interchange ecosystem for composing 3D scene data, with C++ and Python interfaces. Import fidelity varies by application and schema.",
+  "use_when": [
+    "Exchange or compose layered 3D scene descriptions",
+    "Investigate a reusable scene interchange route"
+  ],
+  "avoid_when": [
+    "Need a finished rendered image: Blender",
+    "Need small real-time GLB assets: glTF Transform"
+  ],
+  "pairs_with": [
+    "blender",
+    "gltf-transform"
+  ],
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-c",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+    "sources": [
+      "https://openusd.org/",
+      "https://github.com/PixarAnimationStudios/OpenUSD",
+      "https://github.com/PixarAnimationStudios/OpenUSD/blob/dev/LICENSE.txt",
+      "https://github.com/PixarAnimationStudios/OpenUSD/releases"
+    ],
+    "version_seen": "26.11.1 (GitHub release; date year unverified)"
+  }
+}

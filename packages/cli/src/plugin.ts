@@ -35,7 +35,7 @@ Install: \`claude plugin install vcr@vcr\` or \`codex plugin add vcr@vcr\` after
 The CLI is \`node <this directory>/cli/vcr.mjs\` (Node 22 or newer). It never writes here: projects live in the workspace (\`vcr.json\`), machine state in \`VCR_HOME\` (default \`~/.vcr\`).
 `;
 
-const CATALOG_ENTRIES = ["INDEX.md", "tools.json", "tools", "schemas", "capabilities"];
+const CATALOG_ENTRIES = ["INDEX.md", "tools.json", "tools", "schemas", "capabilities", "CANDIDATE-INGESTION.md", "ASSESSMENT-BRIEF.md", "FIXTURE-EVIDENCE-TEMPLATE.md"];
 const SKIPPED_DIRECTORIES = new Set(["node_modules", "output", ".cache", "dist"]);
 const MEDIA_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".mp4", ".mov", ".webm", ".wav", ".mp3", ".aac", ".glb", ".gltf", ".blend", ".exr", ".woff", ".woff2"]);
 

@@ -1,0 +1,53 @@
+{
+  "id": "trimesh",
+  "name": "Trimesh",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Mesh processing",
+  "official_url": "https://trimesh.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "3d-asset-processing"
+  ],
+  "notes": [
+    "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+    "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+    "2026-10-29: Skill opportunity: Potential standalone mesh inspection skill; test mesh import, analysis and dependency compatibility first."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Python library for loading, inspecting and transforming triangular meshes, with emphasis on geometry analysis and watertight surfaces. Some operations require optional dependencies.",
+  "use_when": [
+    "Inspect or manipulate triangular geometry in Python",
+    "Analyse watertightness before a 3D rendering workflow"
+  ],
+  "avoid_when": [
+    "Need point-cloud reconstruction: Open3D",
+    "Need full 3D scene authoring and rendering: Blender"
+  ],
+  "pairs_with": [
+    "blender",
+    "open3d"
+  ],
+  "license": "MIT for project code; optional dependencies and asset terms require review",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-c",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+    "sources": [
+      "https://trimesh.org/",
+      "https://github.com/mikedh/trimesh",
+      "https://github.com/mikedh/trimesh/releases"
+    ],
+    "version_seen": "5.2.0 (documentation and GitHub release; date year unverified)"
+  }
+}

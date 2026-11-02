@@ -1,0 +1,54 @@
+{
+  "id": "music21",
+  "name": "music21",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Music analysis",
+  "official_url": "https://www.music21.org/",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+    "2026-10-29: The project identifies separate copyright and licence terms for the corpus and external materials.",
+    "2026-10-29: Skill opportunity: possible standalone composition-analysis skill after a rights-clear score fixture and existing-skill review."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Python toolkit for symbolic music analysis and notation. Represents scores and musical structures and supports computational analysis; the separately provided corpus has its own rights.",
+  "use_when": [
+    "Analyse harmony, notation or score structures in Python",
+    "Work with symbolic music instead of sampled audio"
+  ],
+  "avoid_when": [
+    "Need low-level MIDI message and port access: Mido",
+    "Need waveform signal analysis: librosa"
+  ],
+  "pairs_with": [
+    "mido",
+    "librosa"
+  ],
+  "license": "BSD-3-Clause (code; bundled scores and external materials have separate rights)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-b",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "Official docs describe symbolic music analysis; PyPI release 10.5.2 is dated 2026-10-28. Code is BSD-3-Clause while score and corpus rights vary.",
+    "sources": [
+      "https://www.music21.org/",
+      "https://github.com/cuthbertLab/music21",
+      "https://pypi.org/project/music21/"
+    ],
+    "version_seen": "10.5.2 (PyPI)",
+    "last_release": "2026-10-28"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "clap",
+  "name": "CLAP",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Plugin standard",
+  "official_url": "https://github.com/free-audio/clap",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+    "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+    "2026-10-29: Skill opportunity: No skill yet: first identify an actual host/plugin workflow and verify concrete interoperability.",
+    "2026-10-29: CLAP is a specification and API, not an executable or evidence of host/plugin compatibility."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "C audio-plugin API specification and headers for communication between plugins and hosts. CLAP is an interoperability interface, not a standalone audio processor or host.",
+  "use_when": [
+    "Research a plugin interface for a future audio host",
+    "Inspect host and plugin compatibility requirements"
+  ],
+  "avoid_when": [
+    "Need sound synthesis now: FluidSynth or Csound",
+    "Need an executable audio processing tool: FFmpeg"
+  ],
+  "pairs_with": [
+    "fluidsynth",
+    "ffmpeg-ffprobe"
+  ],
+  "license": "MIT (API repository; each host and plugin has separate terms)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "ingest-assess-a",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official repository describes an audio plugin API and MIT licence. A runnable host is separate; release and recent activity dates not verified.",
+    "sources": [
+      "https://github.com/free-audio/clap"
+    ]
+  }
+}

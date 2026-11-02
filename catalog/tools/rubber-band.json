@@ -1,0 +1,52 @@
+{
+  "id": "rubber-band",
+  "name": "Rubber Band",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Time stretch",
+  "official_url": "https://breakfastquay.com/rubberband/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+    "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+    "2026-10-29: Skill opportunity: Possible standalone audio time-stretch skill; verify CLI behaviour, licences and duration/quality fixture."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "C++ audio time-stretch and pitch-shift library with a command-line utility. It can alter tempo and pitch independently; quality and latency depend on algorithm and settings.",
+  "use_when": [
+    "Time-stretch an audio file without changing pitch",
+    "Adjust pitch and tempo independently"
+  ],
+  "avoid_when": [
+    "Simple encoding or muxing: FFmpeg",
+    "Need MIDI note manipulation: pretty_midi"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "pedalboard"
+  ],
+  "license": "GPL (project page); commercial licensing offered; verify version and dependency terms",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-c",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "Project page records v4.0.0 on 2024-10-25 and describes a CLI and C++ library.",
+    "sources": [
+      "https://breakfastquay.com/rubberband/"
+    ],
+    "version_seen": "4.0.0",
+    "last_release": "2024-10-25"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "id": "ardour",
+  "name": "Ardour",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Audio workstation",
+  "official_url": "https://ardour.org/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+    "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+    "2026-10-29: Skill opportunity: Further research first: a session-specific VCR workflow needs a tested export fixture; standalone DAW scripting guidance may be useful beyond VCR.",
+    "2026-10-29: Automation depends on Ardour scripting and session context; a headless scripting workflow was not verified."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Digital audio workstation with multitrack editing, mixing, MIDI and Lua scripting. Its automation works through Ardour sessions and scripting, not a simple standalone audio filter.",
+  "use_when": [
+    "Review or edit a multitrack music session with Lua scripting",
+    "Combine recorded and MIDI material in a DAW session"
+  ],
+  "avoid_when": [
+    "Simple scripted transcoding: FFmpeg",
+    "Need a lightweight offline audio feature extractor: librosa"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "fluidsynth"
+  ],
+  "license": "GPL v2 (official site; exact variant and distribution terms need review)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "ingest-assess-a",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official site describes an audio workstation; the manual documents Lua scripting but warns its API may change. Release and recent activity dates not verified.",
+    "sources": [
+      "https://ardour.org/",
+      "https://manual.ardour.org/lua-scripting/"
+    ]
+  }
+}

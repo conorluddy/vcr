@@ -1,0 +1,51 @@
+{
+  "id": "aubio",
+  "name": "aubio",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Onsets and pitch",
+  "official_url": "https://aubio.org/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
+    "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
+    "2026-10-29: Skill opportunity: Further research first: a synthetic audio-event fixture is needed before recommending a general audio-analysis skill."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Audio event detection library and command-line tools for onsets, tempo and pitch. Produces analysis events from audio; useful when a lightweight onset detector is preferable to a broader analysis library.",
+  "use_when": [
+    "Detect onsets or pitch from audio for timing experiments",
+    "Try a focused event detector alongside librosa"
+  ],
+  "avoid_when": [
+    "Need general spectral and music analysis: librosa",
+    "Encode or mux an audio track: FFmpeg"
+  ],
+  "pairs_with": [
+    "librosa",
+    "ffmpeg-ffprobe"
+  ],
+  "license": "GPL-3.0-or-later (project code; dependencies separately)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "ingest-assess-a",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official project describes onset, pitch and tempo analysis and GPLv3-or-later terms. Latest release and substantive activity dates not established.",
+    "sources": [
+      "https://aubio.org/",
+      "https://github.com/aubio/aubio"
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "segment-anything",
+  "name": "Segment Anything",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Segmentation",
+  "official_url": "https://github.com/facebookresearch/segment-anything",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "computer-vision"
+  ],
+  "notes": [
+    "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
+    "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
+    "2026-10-29: Skill opportunity: Possible standalone segmentation skill; compare alternatives and validate chosen checkpoints and masks first."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Python inference code and model checkpoints for promptable image segmentation. It produces masks for specified prompts; checkpoint, input and model rights must be checked separately.",
+  "use_when": [
+    "Extract masks from images using point or box prompts",
+    "Explore a subject-isolation workflow"
+  ],
+  "avoid_when": [
+    "Need an editable vector trace: VTracer",
+    "Need simple image compositing: ImageMagick"
+  ],
+  "pairs_with": [
+    "imagemagick",
+    "mediapipe"
+  ],
+  "license": "Apache-2.0 (project code and stated model); verify selected checkpoints and assets",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-c",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official sources describe an automation route; release and substantive-commit dates could not be fully established. Keep candidate pending further review.",
+    "sources": [
+      "https://github.com/facebookresearch/segment-anything",
+      "https://github.com/facebookresearch/segment-anything/releases"
+    ]
+  }
+}

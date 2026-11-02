@@ -1,0 +1,52 @@
+{
+  "id": "mediainfo",
+  "name": "MediaInfo",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Media metadata",
+  "official_url": "https://mediaarea.net/en/MediaInfo",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "media-inspection"
+  ],
+  "notes": [
+    "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
+    "2026-10-29: The MediaInfo repository lists more than one licence file; verify components and distribution terms for the chosen build.",
+    "2026-10-29: Skill opportunity: existing FFmpeg guidance may cover the job; compare reports on a fixture before adding a VCR skill."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-10-29",
+  "source": "references/ideas/check-vcr-repo-conversation.md",
+  "summary": "Media metadata inspector available as a CLI and library. Reports technical and tag information for audio and video files, complementing ffprobe where a second metadata view is useful.",
+  "use_when": [
+    "Inspect technical and container tags as a second view alongside ffprobe",
+    "Produce file metadata reports for media triage"
+  ],
+  "avoid_when": [
+    "Need to decode, encode or assemble media: FFmpeg",
+    "Need visual image comparison: ImageMagick"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "imagemagick"
+  ],
+  "license": "BSD-2-Clause (repository licence; dependencies and build-specific components require review)",
+  "assessment": {
+    "date": "2026-10-29",
+    "assessed_by": "assess-b",
+    "maintenance": "unknown",
+    "verdict": "promote",
+    "rationale": "Official sources describe media metadata reporting and provide repository licence information; release dates and build-specific dependencies need checking.",
+    "sources": [
+      "https://mediaarea.net/en/MediaInfo",
+      "https://github.com/MediaArea/MediaInfo",
+      "https://github.com/MediaArea/MediaInfo/blob/master/LICENSE"
+    ]
+  }
+}

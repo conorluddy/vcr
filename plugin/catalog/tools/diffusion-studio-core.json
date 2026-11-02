@@ -3,7 +3,7 @@
   "name": "Diffusion Studio Core",
   "category": "A5. Video and capture",
   "tier": "candidate",
-  "role": "Browser-only TypeScript timeline engine on WebCodecs; export is client-side",
+  "role": "Browser timeline engine using WebCodecs",
   "summary": "TypeScript video composition engine for the browser: layers, transitions, effects, keyframes, masks and captions on a timeline, decoded and encoded with WebCodecs and drawn on Canvas 2D, built on Mediabunny. Aimed at people building non-linear editors. Requires COOP/COEP headers. Free tier stamps a watermark on renders unless a paid licence key is bought.",
   "use_when": [
     "Building an in-browser editor UI that needs a ready timeline model and client-side export",
@@ -30,7 +30,8 @@
   },
   "notes": [
     "2026-10-26: npm latest is 4.0.3 (2025-11-30) while the GitHub latest release tag is v1.1.1 (2024-10); version numbering differs between sources.",
-    "2026-10-26: no commits since 2025-11-18; no deprecation notice."
+    "2026-10-26: no commits since 2025-11-18; no deprecation notice.",
+    "2026-10-29: Skill opportunity: Further research first: its editor-focused browser API and watermark constraint need a concrete VCR use case before a skill."
   ],
   "assessment": {
     "date": "2026-10-26",

@@ -1,0 +1,15 @@
+{
+  "generate.py": "95a12534ae447480f71f862de950ad52434f9d95e0aae85c21457e2669576015",
+  "inspect_blender.py": "6bce52d8c2545ff2cc44658478808df020a5d659e12416dc1d9bd5e7df103b00",
+  "output/blender-checks.json": "56f8c9ca361f14431dd14c04d54847c7b54cb1854b109fd124f4c84aee1d7287",
+  "output/blender.log": "801f45f6dcc611da309bf5428862889b08a190ab6d0d7e55cbf94f537f889d4a",
+  "output/cad-checks.json": "518d7918765c5096d8f4b561dab308a7f164e5a9b702a97f3cba2911c1623574",
+  "output/dependencies.txt": "9079796051f3a4997430683a5a64aa90bc13a3da6cb5a56f8fcf70cf8a22f545",
+  "output/generate.log": "4ade39f3a32fe8542851bea8bb24e0677ebacb5e54b0b638da462d86336bcdd8",
+  "output/part-coarse.glb": "f4ee56933534045d5b172a2575fa29ded2f23474366adc2260a15b61993c2d32",
+  "output/part-fine.glb": "fb694a78e29c6cb8196dc421e93f1d2d48f826939f74118be56e36758f2cd01e",
+  "output/part.png": "e9b0b471e4dd232ab55f001653586cb4c94038ed914251367908bfda3fbe4044",
+  "output/part.step": "338e2f10196cc25c7092b4b6de8586d2cea5bc737168c5f0975ab2946fe04341",
+  "output/part.svg": "23c53d7fffa8f97af0098e56d9c122c03081304836657a4ff701847f8cd8c9d4",
+  "run.sh": "7ea56ebf0a5fab2e575df70c0cd0bfb71a789071848ffafc44a6077bd305fc94"
+}
