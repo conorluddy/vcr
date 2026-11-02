@@ -4,7 +4,7 @@ Version: 0.3 • Date: 2026-11-02 • Status: Proposal for review
 
 Parent: [VCR PRD](vcr-prd.md) • Related: [Plugin and review PRD](vcr-plugin-prd.md), ADRs 0001–0004
 
-Review note (2026-11-02): [current VCR and external landscape comparison](research/capability-graph-landscape-2026-11-02.md). The owner confirmed the free/open-source focus in v0.2 and progressive refinement of port descriptions in v0.3: **media domain → format → semantic profile**, with evidence available at every level. This revision carries that model through discovery and compatibility, and aligns verification with ADR 0004. Broader planner, ranking and architecture choices remain subject to G0; no epic or implementation issues are created by this revision.
+Review note (2026-11-02): [current VCR and external landscape comparison](research/capability-graph-landscape-2026-11-02.md). The owner confirmed the free/open-source focus in v0.2 and progressive refinement of port descriptions in v0.3: **media domain → format → semantic profile**, with evidence available at every level. This revision carries that model through discovery and compatibility, and aligns verification with ADR 0004. Broader planner, ranking and architecture choices remain subject to G0. [Epic #65](https://github.com/conorluddy/vcr/issues/65) tracks the phased implementation and decision gates; see §14.
 
 ## 0. Executive summary
 
@@ -239,7 +239,7 @@ A gap is a *requested but missing or suboptimal transformation under a specified
 
 **Research-before-build gate:** search the active and retired catalogues, official documentation and established open-source ecosystems; inspect licence and current health; prove inability to achieve the goal with an existing operation under exact requirements; prototype the smallest missing edge; require human prioritisation before opening implementation tickets. Track near-misses and “found existing tool” resolutions.
 
-Domain-only matches, missing format/profile metadata and exhausted search budgets are reasons for further assessment, not proof of a missing integration. Preserve the original request and refinements in gap evidence. Production-derived gaps link to source field notes and follow AGENTS.md's deduplicated `self-improvement` / `loop:*` issue workflow; the prospects inbox and ingestion lifecycle handle discovered tools. This PRD remains in refinement before epic/subissue decomposition.
+Domain-only matches, missing format/profile metadata and exhausted search budgets are reasons for further assessment, not proof of a missing integration. Preserve the original request and refinements in gap evidence. Production-derived gaps link to source field notes and follow AGENTS.md's deduplicated `self-improvement` / `loop:*` issue workflow; the prospects inbox and ingestion lifecycle handle discovered tools. Epic/subissue creation records the delivery plan; it does not bypass the research and implementation gates.
 
 Potential future feedback: approved productions could reference operations/edges that succeeded. Opt-in, local-only collection first; avoid telemetry and noisy popularity feedback loops.
 
@@ -317,16 +317,24 @@ A graph cycle is not a plan. A technically possible conversion may still be unac
 7. Whether workspace-local operation definitions can shadow built-ins (proposed: no; namespace/override explicitly).
 8. Review UI data contract, strictly read-only until separate ADR.
 
-## 14. Proposed follow-up issues (not created by this PR)
+## 14. Delivery tracking: epic and atomic subissues
 
-- G0 spike: select canonical workflows and collect actual input/output contracts from official docs.
-- Domain/format taxonomy and versioned operation schema, with semantic profiles for image, audio, video and 3D; unknowns and conditional alternatives explicit.
-- Licence assessment schema and reference-only separation policy, including audit of existing records.
-- Offline graph builder and validator, deterministic sorted index with size checks.
-- Path search/explain command with reason codes and multi-input hyperedge fixture.
-- Edge evidence schema, reproducible fixture runner and invalidation strategy.
-- Gap registry, research-before-build procedure and scoring specification.
-- Optional read-only graph/path viewer proof of concept.
+[Epic #65: Capability graph discovery, handoff evidence and route planning](https://github.com/conorluddy/vcr/issues/65) contains 20 native subissues with dependencies, definitions of done, verification and scope boundaries. CG0–CG7 are work-package phases refining §12's G0–G5, distinct from the plugin PRD's P0/P1 milestones.
+
+| Phase | Independently useful deliverables | Issues |
+| --- | --- | --- |
+| CG0 — Prove the model | Representative handoffs, minimal contracts and a reviewed go/no-go | [#66](https://github.com/conorluddy/vcr/issues/66) |
+| CG1 — Describe ports | One validated operation card; retained build123d/GLB/Blender handoff | [#67](https://github.com/conorluddy/vcr/issues/67), [#68](https://github.com/conorluddy/vcr/issues/68) |
+| CG2 — Discover operations | Input/output domain filtering; format refinement and aliases | [#69](https://github.com/conorluddy/vcr/issues/69), [#70](https://github.com/conorluddy/vcr/issues/70) |
+| CG3 — Assess a handoff | Format matching; required bindings/cardinality; one units rule; scoped evidence/freshness; free/open-source policy; doctor-based readiness | [#71](https://github.com/conorluddy/vcr/issues/71), [#72](https://github.com/conorluddy/vcr/issues/72), [#73](https://github.com/conorluddy/vcr/issues/73), [#74](https://github.com/conorluddy/vcr/issues/74), [#75](https://github.com/conorluddy/vcr/issues/75), [#76](https://github.com/conorluddy/vcr/issues/76) |
+| CG4 — Explain known routes | One curated route; a fully bound fork/join; explicit verification of one reviewed fixture | [#77](https://github.com/conorluddy/vcr/issues/77), [#78](https://github.com/conorluddy/vcr/issues/78), [#79](https://github.com/conorluddy/vcr/issues/79) |
+| CG5 — Discover alternatives | Bounded search; explicit ranking; incomplete-search/frontier diagnostics | [#80](https://github.com/conorluddy/vcr/issues/80), [#81](https://github.com/conorluddy/vcr/issues/81), [#82](https://github.com/conorluddy/vcr/issues/82) |
+| CG6 — Learn from gaps | Retain/deduplicate requests; research two reproducible gaps to closure or justified proposal | [#83](https://github.com/conorluddy/vcr/issues/83), [#84](https://github.com/conorluddy/vcr/issues/84) |
+| CG7 — Optional explorer | Generated read-only operation/route visualization | [#85](https://github.com/conorluddy/vcr/issues/85) |
+
+Start with CG0. The first useful release delivers CG1–CG4 after a positive model decision. CG5 requires the recipe/search comparison to justify a planner; CG6 follows usable route diagnostics; CG7 requires a separate demand/go decision. Evidence develops throughout, starting with retained observations rather than waiting for a new verification runner. No implementation has shipped merely because its issue exists.
+
+Each implementation slice includes applicable index/plugin regeneration, deterministic builds, bounded output/help, three-root safety, validation and appropriate tests. Coordinate with existing [tool history #40](https://github.com/conorluddy/vcr/issues/40) and [command help #48](https://github.com/conorluddy/vcr/issues/48). Route descriptions do not implement the [cue/mux runtime #60](https://github.com/conorluddy/vcr/issues/60) or [batch renderer #62](https://github.com/conorluddy/vcr/issues/62).
 
 ## 15. Acceptance checklist for this PRD
 
