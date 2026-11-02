@@ -3,6 +3,8 @@
 Version: 0.1 • Date: 2026-10-28 • Status: Proposal for review  
 Parent: [VCR PRD](vcr-prd.md) • Related: [Plugin and review PRD](vcr-plugin-prd.md), ADRs 0001–0003
 
+Review note (2026-11-02): [current VCR and external landscape comparison](research/capability-graph-landscape-2026-11-02.md), including ADR 0004 alignment and recommended G0 changes. The recommendations remain unaccepted; the proposal below is unchanged.
+
 ## 0. Executive summary
 
 VCR's original purpose is a progressively disclosed, open-source, agent-friendly catalogue of creative tools. A flat catalogue tells an agent *what exists*; a capability graph should answer *what is possible, what can connect, what will be lost, what is legally usable, what has been verified, and what is missing*. The graph is **not** the video compositor, DAW, orchestration runtime, or a mandate to expose everything through one wrapper. It is a reusable discovery/planning/evidence subsystem for images, motion, audio, 3D and emerging creative media.
