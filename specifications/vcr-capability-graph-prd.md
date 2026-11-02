@@ -1,9 +1,10 @@
 # VCR — Capability Graph & Gap Intelligence PRD
 
-Version: 0.1 • Date: 2026-10-28 • Status: Proposal for review  
-Parent: [VCR PRD](vcr-prd.md) • Related: [Plugin and review PRD](vcr-plugin-prd.md), ADRs 0001–0003
+Version: 0.2 • Date: 2026-11-02 • Status: Proposal for review
 
-Review note (2026-11-02): [current VCR and external landscape comparison](research/capability-graph-landscape-2026-11-02.md), including ADR 0004 alignment and recommended G0 changes. The recommendations remain unaccepted; the proposal below is unchanged.
+Parent: [VCR PRD](vcr-prd.md) • Related: [Plugin and review PRD](vcr-plugin-prd.md), ADRs 0001–0004
+
+Review note (2026-11-02): [current VCR and external landscape comparison](research/capability-graph-landscape-2026-11-02.md), including ADR 0004 alignment and recommended G0 changes. The owner confirmed the free/open-source focus; v0.2 clarifies that policy. The other review recommendations remain unaccepted.
 
 ## 0. Executive summary
 
@@ -19,7 +20,7 @@ VCR's original purpose is a progressively disclosed, open-source, agent-friendly
 - Agent plugins (Claude Code, Codex) call the same CLI. Headless operation is complete without an agent or GUI. A future optional Swift/macOS or web explorer reads generated graph JSON or CLI output, never owns graph truth. ADR 0002's current *read-only visualisers* boundary remains in force; an interactive editor requires a separate ADR.
 - The harness and versioned graph definitions are read-only when installed. Workspace-specific adapters, constraints and execution evidence live in the workspace; local installation and runtime facts live in machine state. Do not write into installed plugin files (ADR 0003).
 - Scope starts with **discovery, compatibility and path explanation**; no arbitrary workflow execution in v1. The existing native tools, direct CLI and scene examples continue to work.
-- Explicit project policy: VCR's runnable *default recommendations* are restricted to verified open-source-licensed components. Proprietary/commercial products may be recorded as **reference-only** for capability research/gap detection, but never silently introduced as runnable path steps. Treat a tool's source licence, bundled assets, plugins, model weights, services and generated-output terms separately. All licence compliance checks are conservative signals, **not legal advice**.
+- Explicit project policy: VCR's runnable *default recommendations* focus on free, open-source components usable locally without a required paid licence, subscription or metered API. Verify open-source licensing separately from price: a free hosted tier does not establish open-source eligibility, and an optional paid cloud offering does not disqualify an independently usable open-source local core. Proprietary tools and paid-only services may be recorded as **reference-only** for capability research/gap detection, but never silently introduced as runnable path steps. Treat a tool's source licence, bundled assets, plugins, model weights, services and generated-output terms separately. Local hardware and compute requirements remain explicit. All licence compliance checks are conservative signals, **not legal advice**.
 - The parent PRD previously catalogued proprietary resources. Do not mass-delete them in this PR: migrate to a documented reference-only policy separately.
 
 ## 2. Users, jobs and examples
@@ -121,7 +122,7 @@ Outcomes: `compatible-verified`, `compatible-conditional`, `plausible-unverified
 Move beyond the existing free-text `license` property via a versioned **licence assessment record**, preserving current strings through migration. Record SPDX identifier/expression where appropriate; source URL and checked date; project and dependency attribution; licence of code, model weights, bundled media and codecs separately; commercial use; attribution, source-sharing, copyleft and redistribution obligations; whether a service requires proprietary backend; and whether rights on produced output differ. Distinguish: `osi-approved`, `source-available`, `proprietary`, `unknown` (classification must follow verified terms, not a self-asserted boolean). Version-scoped checks can expire and become unknown.
 
 Policy defaults:
-- **Runnable recommendation:** only eligible OSI-approved open-source code with compatible dependency and distribution conditions; require explicit review for conditional licence or output constraints.
+- **Runnable recommendation:** free local use of eligible OSI-approved open-source code with compatible dependency and distribution conditions, with no required paid service, subscription, API credit or software licence. Check the actual workflow, including models and custom nodes; require explicit review for conditional licence or output constraints. Record hardware and compute costs separately from software eligibility.
 - **Reference-only discovery:** commercial/proprietary products appear as examples of missing capability, clearly segregated from executable paths.
 - **Composition:** evaluate entire dependency chain, not only the visible headline tool. A GPL executable used as a separate process is not automatically the same as linking a GPL library into a distributed proprietary binary; still review actual distribution architecture. Never promise compliance based on SPDX alone.
 - Permission to **run**, **modify**, **redistribute**, **bundle**, **publish generated outputs**, **host models**, and **use commercially** are separately evaluated.
