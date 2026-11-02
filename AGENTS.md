@@ -31,6 +31,20 @@ Four tiers, each sized to one decision. Descend only as far as the task needs.
 
 Never load more than one guide at a time unless comparing two tools. A card or guide never claims the tool is installed; `vcr doctor` does.
 
+## Production feedback issues
+
+Use `self-improvement` on every issue capturing a lesson from real VCR use; filter by it to find improvement leads. Add the relevant `loop:*` labels (they may overlap):
+
+| Label | Use when |
+| --- | --- |
+| `loop:field-notes` | A running production-session log; keep observations and updates here, then link focused follow-up issues back to it. |
+| `loop:friction` | VCR slowed, blocked or confused work on a real project. |
+| `loop:core-candidate` | A pattern proved useful in a project and could be absorbed into the CLI, harness or a skill. This is a proposal, not approved architecture or shipped support. |
+| `loop:docs-gap` | A skill, guide or catalogue card was wrong, missing or misleading in practice. |
+| `loop:agent-ux` | An agent driving VCR unattended hit problems with help, errors, hangs, authentication or similar interactions. |
+
+Before opening a follow-up, check existing issues for duplicates. Keep each actionable issue focused on one problem or proven pattern, link its source field notes and include reproduction steps or evidence, the workaround if any, and a definition of done. Apply ordinary type, priority, clarity and risk labels separately; loop labels describe the feedback source and kind, not implementation readiness. When resolving a follow-up, link the fix and verification evidence back to the source log.
+
 ## Repository map
 
 - `catalog/`: one record per tool under `tools/`, retired records under `retired/`, generated `tools.json` and `INDEX.md`, vocabulary, schemas, `ASSESSMENT-BRIEF.md`.
