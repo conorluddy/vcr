@@ -23,7 +23,7 @@ The owner confirmed a free/open-source focus during this review. Runnable recomm
 | Shipped CLI | Tool filtering/cards, examples, workspace initialization, capture, doctor and generated plugin packaging | No graph planner, generic verification command, timeline resolver or human review layer exists. |
 | Production feedback | [AGENTS.md](../../AGENTS.md) defines `self-improvement` and `loop:*` issues; discovery also has a prospects inbox | Link gap records to source field notes and focused, deduplicated issues. Reuse discovery/assessment for knowledge gaps. |
 
-There is documentation drift to resolve separately: ADR 0004 describes the index cap as removed, while `validate.ts` still enforces 16 KiB; the current index is 16,142 bytes. AGENTS.md says nine records carry evidence, while ten currently do. A graph must measure additional disclosure and packaging cost rather than assume spare capacity.
+There is documentation drift to resolve separately: ADR 0004 describes the index cap as removed, while `validate.ts` still enforces 16 KiB; the current index is 16,142 bytes. At review time AGENTS.md said nine records carried evidence, while ten did; that count was corrected during the v0.3 PRD revision. A graph must measure additional disclosure and packaging cost rather than assume spare capacity.
 
 ## External approaches and implications
 
