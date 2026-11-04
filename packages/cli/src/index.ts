@@ -2,6 +2,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { applyCaptureSetup, formatCaptureSetupPlan, planCaptureSetup, runCapture } from "./capture.js";
+import { COMMANDS, findCommand, findCommandGroup, formatCommandHelp, formatGlobalUsage, GLOBAL_FLAGS } from "./commands.js";
 import { buildCatalogIndex, writeCatalogIndex } from "./catalog.js";
 import { disclosureReport, formatDisclosureReport } from "./disclosure.js";
 import { formatDoctorTable, runDoctor } from "./doctor.js";
@@ -13,26 +14,6 @@ import { requireDevMode, requireWorkspace, resolveRoots, type Roots } from "./ro
 import { filterTools, findTool, formatExamplesForTool, formatToolCard, formatToolTable, loadExamples, loadTools, readToolGuide } from "./tools.js";
 import { hasErrors, validateRepository, validateWorkspace } from "./validate.js";
 import { ensureWorkspace } from "./workspace.js";
-
-const USAGE = `vcr <command>
-
-  status                        Show the harness, workspace and machine roots
-  workspace init                Make this directory (or --workspace) a VCR workspace; idempotent
-  validate                      Validate the workspace (in the harness repository: everything)
-  tools list [--capability x] [--tier x] [--category x]   Tier 0: one line per tool
-  tools info <id> [--full]      Tier 1 card; --full appends the tier 2 guide
-  tools examples <id>           Tier 3: runnable examples that demonstrate the tool
-  example create <id>           Copy an example's sources into <workspace>/examples/<id> and print next steps
-  setup capture [--yes]         Plan (or with --yes, install) Playwright and Chromium into <VCR_HOME>/runtime
-  capture <scene.html> --width n --height n --fps n [--out dir] [--verify]
-                                Capture a browser scene frame by frame; frames and report.json go to --out
-  doctor [--record]             Probe local tools and write <VCR_HOME>/environment/<hostname>.json
-                                --record also writes environment/ (harness repository only)
-  catalog build [--check]       Regenerate catalog/tools.json, INDEX.md and CANDIDATES.md (harness repository only)
-  plugin build                  Assemble plugin/ for Claude Code and Codex (harness repository only)
-
-Flags: --json for machine-readable output; --workspace <dir> to select a workspace.
-Roots: VCR_HARNESS, VCR_WORKSPACE, VCR_HOME (default ~/.vcr).`;
 
 
 // === ENTRY ===
@@ -52,8 +33,9 @@ process.exit(exitCode);
 async function dispatch(args: string[], options: Record<string, string | true>, roots: Roots): Promise<number> {
   const [command, subcommand, target] = args;
   const asJson = options["json"] === true;
+  if (options["help"] === true) return printHelp(args, asJson);
   if (parsed.error) {
-    print(asJson ? { error: { code: "INVALID_ARGUMENT", message: parsed.error } } : `${parsed.error}\n\n${USAGE}`);
+    print(asJson ? { error: { code: "INVALID_ARGUMENT", message: parsed.error } } : `${parsed.error}\n\n${formatGlobalUsage()}`);
     return 2;
   }
 
@@ -203,8 +185,18 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     return 0;
   }
 
-  print(USAGE);
+  print(formatGlobalUsage());
   return command ? 2 : 0;
+}
+
+/** `--help` always exits 0: the command's own help, a group's commands, or global usage. */
+function printHelp(args: string[], asJson: boolean): number {
+  const command = findCommand(args);
+  const group = findCommandGroup(args[0]);
+  if (command) print(asJson ? command : formatCommandHelp(command));
+  else if (group.length > 0) print(asJson ? group : group.map(formatCommandHelp).join("\n\n---\n\n"));
+  else print(asJson ? { commands: COMMANDS, global_flags: GLOBAL_FLAGS } : formatGlobalUsage());
+  return 0;
 }
 
 // === HELPERS ===
@@ -212,11 +204,13 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
 function parseArguments(args: string[]): { flags: Record<string, string | true>; positional: string[]; error?: string } {
   const flags: Record<string, string | true> = {};
   const positional: string[] = [];
-  const booleanFlags = new Set(["json", "full", "check", "record", "yes", "verify"]);
-  const valueFlags = new Set(["capability", "tier", "category", "workspace", "width", "height", "fps", "out"]);
+  const allFlags = [...GLOBAL_FLAGS, ...COMMANDS.flatMap((command) => command.flags)];
+  const booleanFlags = new Set(allFlags.filter((flag) => !flag.value).map((flag) => flag.name));
+  const valueFlags = new Set(allFlags.filter((flag) => flag.value).map((flag) => flag.name));
   let error: string | undefined;
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index]!;
+    if (argument === "-h") { flags["help"] = true; continue; }
     if (!argument.startsWith("--")) { positional.push(argument); continue; }
     const name = argument.slice(2);
     if (booleanFlags.has(name)) flags[name] = true;
