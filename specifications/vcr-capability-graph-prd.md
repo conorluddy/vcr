@@ -322,7 +322,7 @@ A graph cycle is not a plan. A technically possible conversion may still be unac
 
 **Decisions to resolve in G0.** The G0 report's draft answers follow each item. They are pending owner review and are not recorded decisions.
 1. **Operation schema and taxonomy ownership:** a separate graph folder versus an extension to existing tool records. This PRD (§5) proposes separate.
-   - *Draft:* extend the tool records with `operations[]` (ports grouped per operation) and keep curated cross-tool routes as separate small records. On R1–R8, the separate folder gave the same verdicts at about 2.5× the plugin growth (estimated). It also added a second canonical store.
+   - *Draft:* extend the tool records with `operations[]` (ports grouped per operation) and keep curated cross-tool routes as separate small records. On R1–R8, the separate folder gave the same verdicts at about 2.5× the plugin growth (estimated). It also added a second canonical store. *Revised after the observed B pilot:* hold `operations[]` too. The pilot tied the current catalogue on correctness and unknowns and repeated cross-scope evidence errors (see the report).
    - This would override §5, so it needs an owner decision via an ADR or a PRD revision.
 2. **Minimal domain vocabulary,** explicit domain/format mappings, format alternatives and a compatibility profile baseline by media family; how much detail must be known to assert a verified edge.
    - *Draft:* `3d`, `image`, `video` and `audio`, with the formats and properties listed in the report. No domain or format is set for onset events.
@@ -379,8 +379,9 @@ Start with CG0. The release boundary follows the epic.
 
 The G0 draft also suggests these changes:
 
-- Fix the evidence labels before any schema work.
-- Scope #67–#76 to the eight sampled records.
+- Fix the evidence labels before any schema work. Done in Step 1.
+- After the observed B pilot, hold #67–#73 and #77 until a scope-match check exists, every evidence entry carries a version, date and scope, and an n>1 rerun favours operations data on correctness or unknowns. #74, #76 and the #75 ADR may proceed on existing tool records.
+- When CG1 reopens, scope #67–#76 to the eight sampled records.
 - Settle CLI naming in #67 together with #48 before implementation.
 
 Evidence develops throughout, starting with retained observations rather than waiting for a new verification runner. No implementation has shipped merely because its issue exists.

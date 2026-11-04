@@ -173,7 +173,14 @@ Nothing else survives. The R1 units, R5, R6, R7 and R8 answers, the readiness an
 
 ## Draft recommendation — pending owner review, not a recorded decision
 
-**Go on the model's contracts, and no-go on a separate graph store and search for now.**
+**Revised after the observed B pilot (below): keep the current catalogue workflow with Step 1 applied. No-go for now on `operations[]`, on a separate graph store and on search.** In the pilot, the current catalogue matched or beat the operations data on correctness and on unknowns; the data's only win was bytes, and those were self-reported. Hand-curated operation data also repeated the cross-scope evidence errors this spike set out to remove. Evidence quality is the constraint, so it comes first. Reopen CG1 only when all of the following hold:
+- a scope-match check exists (the cited example must exercise the same operation);
+- every evidence entry carries a version, date and scope;
+- a rerun with n>1 shows B ahead on correctness or unknowns, not only on bytes.
+
+The original draft follows for the record.
+
+*Original draft:* go on the model's contracts, and no-go on a separate graph store and search for now.
 
 1. **Evidence fixes first (~1–2 h, estimated).** These are the only changes that fix wrong answers today:
    - Correct the beginFrame text in `playwright.json` and `browser-capture/example.json`.
@@ -278,7 +285,12 @@ ADR ownership:
 
 ## Implications for #67–#85
 
-These follow the PRD §14 grouping.
+**Revised after the pilot.** Hold #67–#73 and #77 until the reopen conditions above hold. Three slices help agents choose tools today without an operations model, so they can proceed on their own, scoped to existing tool records:
+- **#74, evidence scope and freshness.** Build the scope-match check and require complete evidence entries (version, date, scope). This is also the first reopen condition.
+- **#76, readiness from doctor.** Step 1's `Readiness:` line is the first part. The rest is reading `vcr doctor` results onto the card.
+- **#75, the free/open-source policy ADR.** The open question is whether the policy label belongs on the card.
+
+The pre-pilot plan below is kept for when CG1 reopens. It follows the PRD §14 grouping.
 - **First release:**
   - **#67–#68**: the operation card as a tool-record extension, seeded from build123d-product.
   - **#69–#70**: domain and format filters on `tools list` instead of a new command family.
