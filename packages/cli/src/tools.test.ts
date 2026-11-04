@@ -75,6 +75,16 @@ describe("formatToolCard", () => {
 describe("formatToolCard evidence and readiness", () => {
   const evidence = (version: string) => ({ status: "validated", evidence: [{ date: "2026-10-26", version, example: "examples/demo" }] });
   const doctor = (version: string) => ({ schema_version: "1.0.0" as const, hostname: "h", os: { platform: "darwin", release: "1", arch: "arm64" }, checked_at: "2026-11-04T00:00:00Z", tools: [{ tool_id: "ffmpeg", status: "installed" as const, executable: "/x", version }] });
+  test("shows the latest evidence scope under the Evidence line when recorded", () => {
+    const validation = { status: "validated", evidence: [{ date: "2026-11-04", version: "1.64.1", example: "examples/demo", scope: "Linux container, Chromium 153 stand-in" }] };
+    const lines = formatToolCard(tool("ffmpeg", { validation }), [], "/nonexistent").split("\n");
+    const evidenceIndex = lines.findIndex((line) => line.startsWith("Evidence: "));
+    expect(lines[evidenceIndex + 1]).toBe("Evidence scope: Linux container, Chromium 153 stand-in");
+  });
+  test("omits the scope line for legacy entries without a scope", () => {
+    const validation = { status: "validated", evidence: [{ date: "2026-10-26", version: "8.0.1" }] };
+    expect(formatToolCard(tool("ffmpeg", { validation }), [], "/nonexistent")).not.toContain("Evidence scope:");
+  });
   test("flags an inexact evidence version without changing the status", () => {
     const card = formatToolCard(tool("ffmpeg", { validation: evidence("3.x via pnpm") }), [], "/nonexistent");
     expect(card).toContain('Evidence: validated 2026-10-26 (examples/demo); version inexact: "3.x via pnpm"');

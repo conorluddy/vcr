@@ -8875,6 +8875,8 @@ function formatToolCard(tool, examples, repositoryRoot, machine) {
   if (tool.license) lines.push(`Licence: ${tool.license}`);
   if (tool.install?.macos) lines.push(`Install (macOS): ${tool.install.macos}${tool.install.check_command ? `  \xB7 check: ${tool.install.check_command}` : ""}`);
   lines.push(`Evidence: ${evidenceLine(tool)}`);
+  const latestScope = tool.validation.evidence?.at(-1)?.scope;
+  if (latestScope) lines.push(`Evidence scope: ${latestScope}`);
   const readiness = tool.installation_status === "not-applicable" ? "no install needed" : formatReadiness(assessReadiness(tool.id, machine), tool.validation.evidence?.at(-1));
   lines.push(`Readiness: ${readiness} \xB7 VCR adapter ${tool.adapter_maturity || "unknown"}`);
   lines.push(`Guide: ${tool.skill ? `${tool.skill} (${fileSizeKb(repositoryRoot, tool.skill) ?? "?"} KB) \u2014 vcr tools info ${tool.id} --full` : "none yet"}`);
