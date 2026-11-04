@@ -80,6 +80,15 @@
         "command": "examples/three-capture/run.sh",
         "result": "90 alpha frames at 1280x720; shuffled order matches sequential",
         "example": "examples/three-capture"
+      },
+      {
+        "date": "2026-11-04",
+        "hostname": "vm",
+        "version": "0.186.1",
+        "command": "examples/three-capture/run.sh",
+        "result": "90 frames at 1280x720, shuffled order matches sequential; expected/summary.json diff passed; frame 30 alpha printed min 0 max 1 (not asserted). Env: Linux x86_64 container, Chrome for Testing 153.0.8010.12 headless shell standing in for pinned build 1248, ImageMagick 6.9.12-98 via convert shim.",
+        "example": "examples/three-capture",
+        "scope": "Render once per seek via the @vcr/capture screenshot route, Linux container, Chromium 153 stand-in; alpha printed, not asserted."
       }
     ]
   },
