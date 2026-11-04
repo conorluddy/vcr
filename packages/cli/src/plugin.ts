@@ -2,6 +2,7 @@ import { cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, 
 import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { basename, extname, join, relative } from "node:path";
+import { renderCliReference } from "./commands.js";
 import { fail, ok, type Result } from "./result.types.js";
 import type { Diagnostic } from "./validate.js";
 
@@ -16,6 +17,7 @@ export interface PluginBuildOutcome {
 
 export const PLUGIN_DIRECTORY = "plugin";
 export const PLUGIN_MAX_BYTES = 5 * 1024 * 1024;
+export const CLI_REFERENCE_PATH = "references/cli.md";
 
 /** One source for both host manifests (PRD §6.7). */
 const PLUGIN_IDENTITY = {
@@ -57,6 +59,10 @@ export function buildPlugin(harnessRoot: string, outputDirectory = join(harnessR
   cpSync(join(harnessRoot, "examples"), join(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename(source)) });
   writeManifests(outputDirectory, version.value);
   writeFileSync(join(outputDirectory, "README.md"), PLUGIN_README);
+  const cliReference = renderCliReference();
+  mkdirSync(join(outputDirectory, "references"), { recursive: true });
+  writeFileSync(join(outputDirectory, CLI_REFERENCE_PATH), cliReference);
+  if (outputDirectory === join(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync(join(harnessRoot, CLI_REFERENCE_PATH), cliReference);
 
   const files = listFiles(outputDirectory);
   const totalBytes = files.reduce((sum, file) => sum + statSync(join(outputDirectory, file)).size, 0);
@@ -72,6 +78,10 @@ export function pluginDiagnostics(harnessRoot: string): Diagnostic[] {
   if (!fresh.ok) return [{ severity: "error", file, path: "", message: fresh.error.message }];
 
   const diagnostics: Diagnostic[] = [];
+  const harnessReference = join(harnessRoot, CLI_REFERENCE_PATH);
+  if (!existsSync(harnessReference) || readFileSync(harnessReference, "utf8") !== renderCliReference()) {
+    diagnostics.push({ severity: "error", file: CLI_REFERENCE_PATH, path: "", message: `${CLI_REFERENCE_PATH} is missing or stale against packages/cli/src/commands.ts`, suggestion: "Run `pnpm vcr plugin build` and commit the result." });
+  }
   const staleFiles = differingFiles(committed, fresh.value.directory);
   if (staleFiles.length > 0) diagnostics.push({ severity: "error", file, path: "", message: `plugin/ is stale: ${staleFiles.slice(0, 5).join(", ")}${staleFiles.length > 5 ? ` and ${staleFiles.length - 5} more` : ""}`, suggestion: "Run `pnpm vcr plugin build` and commit the result." });
   if (fresh.value.totalBytes > PLUGIN_MAX_BYTES) diagnostics.push({ severity: "error", file, path: "", message: `plugin/ is ${(fresh.value.totalBytes / 1024 / 1024).toFixed(1)} MB; the cap is 5 MB` });

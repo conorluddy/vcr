@@ -8344,6 +8344,146 @@ function isChromiumInstalled(runtime) {
   }
 }
 
+// packages/cli/src/commands.ts
+var GLOBAL_FLAGS = [
+  { name: "json", description: "Machine-readable output; errors become { error: { code, message } }" },
+  { name: "workspace", value: "dir", description: "Select a workspace instead of discovering one from the current directory" },
+  { name: "help", description: "Print help for the command (also -h) and exit 0" }
+];
+var GLOBAL_ENVIRONMENT = [
+  { name: "VCR_HARNESS", description: "Harness root (the repository or the installed plugin)" },
+  { name: "VCR_WORKSPACE", description: "Workspace root; overrides discovery" },
+  { name: "VCR_HOME", description: "Machine state: runtime, environment records (default ~/.vcr)" }
+];
+var COMMANDS = [
+  { name: "status", summary: "Show the harness, workspace and machine roots", flags: [], example: "vcr status" },
+  { name: "workspace init", summary: "Make this directory (or --workspace) a VCR workspace; idempotent", flags: [], example: "vcr workspace init" },
+  { name: "validate", summary: "Validate the workspace (in the harness repository: everything)", flags: [], example: "vcr validate --json" },
+  {
+    name: "tools list",
+    summary: "Tier 0: one line per tool",
+    flags: [
+      { name: "capability", value: "id", description: "Only tools with this capability (see catalog/capabilities/vocabulary.json)" },
+      { name: "tier", value: "tier", description: "core or catalogued" },
+      { name: "category", value: "name", description: "Only tools in this category" }
+    ],
+    example: "vcr tools list --capability video-encoding"
+  },
+  {
+    name: "tools info",
+    argumentsHint: "<id>",
+    summary: "Tier 1 card; --full appends the tier 2 guide",
+    flags: [{ name: "full", description: "Append the tool's guide (skills/<id>/SKILL.md)" }],
+    example: "vcr tools info ffmpeg-ffprobe --full"
+  },
+  { name: "tools examples", argumentsHint: "<id>", summary: "Tier 3: runnable examples that demonstrate the tool", flags: [], example: "vcr tools examples gsap" },
+  { name: "example create", argumentsHint: "<id>", summary: "Copy an example's sources into <workspace>/examples/<id> and print next steps", flags: [], example: "vcr example create gsap-title-card" },
+  {
+    name: "setup capture",
+    summary: "Plan (or with --yes, install) Playwright and Chromium into <VCR_HOME>/runtime",
+    flags: [{ name: "yes", description: "Apply the plan instead of printing it" }],
+    example: "vcr setup capture --yes"
+  },
+  {
+    name: "capture",
+    argumentsHint: "<scene.html>",
+    summary: "Capture a browser scene frame by frame; frames and report.json go to --out",
+    flags: [
+      { name: "width", value: "n", description: "Viewport width in pixels", isRequired: true },
+      { name: "height", value: "n", description: "Viewport height in pixels", isRequired: true },
+      { name: "fps", value: "n", description: "Frames per second", isRequired: true },
+      { name: "out", value: "dir", description: "Output directory", defaultValue: "<scene dir>/output" },
+      { name: "verify", description: "Recapture in shuffled order and compare; exit 1 if frames differ" }
+    ],
+    environment: [{ name: "VCR_CAPTURE_MODE", description: "Frame grab method: screenshot (default) or beginframe" }],
+    example: "vcr capture scene.html --width 1920 --height 1080 --fps 30 --verify"
+  },
+  {
+    name: "doctor",
+    summary: "Probe local tools and write <VCR_HOME>/environment/<hostname>.json",
+    flags: [{ name: "record", description: "Also write environment/ in the harness repository (maintainer only)" }],
+    example: "vcr doctor"
+  },
+  {
+    name: "catalog build",
+    summary: "Regenerate catalog/tools.json, INDEX.md and CANDIDATES.md",
+    flags: [{ name: "check", description: "Report stale files and exit 1 instead of rewriting" }],
+    example: "vcr catalog build --check",
+    isMaintainerOnly: true
+  },
+  { name: "plugin build", summary: "Assemble plugin/ for Claude Code and Codex; regenerates references/cli.md", flags: [], example: "vcr plugin build", isMaintainerOnly: true }
+];
+function findCommand(positional2) {
+  return COMMANDS.filter((command) => command.name.split(" ").every((word, index) => positional2[index] === word)).sort((left, right) => right.name.length - left.name.length)[0];
+}
+function findCommandGroup(word) {
+  return word ? COMMANDS.filter((command) => command.name.split(" ")[0] === word) : [];
+}
+function formatGlobalUsage() {
+  const rows = COMMANDS.map((command) => [usageLine(command), `${command.summary}${command.isMaintainerOnly ? " (harness repository only)" : ""}`]);
+  const width = Math.max(...rows.map(([usage]) => usage.length)) + 2;
+  return [
+    "vcr <command>",
+    "",
+    ...rows.map(([usage, summary]) => `  ${usage.padEnd(width)}${summary}`),
+    "",
+    "Flags: --json for machine-readable output; --workspace <dir> to select a workspace; --help (or -h) on any command.",
+    `Roots: ${GLOBAL_ENVIRONMENT.map((variable) => variable.name).join(", ")} (VCR_HOME defaults to ~/.vcr).`
+  ].join("\n");
+}
+function formatCommandHelp(command) {
+  const lines = [`vcr ${usageLine(command)}`, "", command.summary + (command.isMaintainerOnly ? " Harness repository only." : "")];
+  if (command.flags.length > 0) lines.push("", "Flags:", ...formatFlags(command.flags));
+  if (command.environment) lines.push("", "Environment:", ...command.environment.map((variable) => `  ${variable.name}  ${variable.description}`));
+  lines.push("", "Example:", `  ${command.example}`, "", "Global flags: --json, --workspace <dir>, --help");
+  return lines.join("\n");
+}
+function renderCliReference() {
+  const sections = COMMANDS.map((command) => {
+    const lines = [`## \`vcr ${usageLine(command)}\``, "", command.summary + (command.isMaintainerOnly ? " Harness repository only." : "")];
+    if (command.flags.length > 0) lines.push("", "| Flag | Description | Default |", "| --- | --- | --- |", ...command.flags.map(markdownFlagRow));
+    if (command.environment) lines.push("", ...command.environment.map((variable) => `- \`${variable.name}\`: ${variable.description}`));
+    lines.push("", "```sh", command.example, "```");
+    return lines.join("\n");
+  });
+  return [
+    "# VCR CLI reference",
+    "",
+    "Generated by `vcr plugin build` from `packages/cli/src/commands.ts`. Do not edit; `vcr validate` fails when it is stale. Every command also answers `--help`.",
+    "",
+    "## Global flags",
+    "",
+    "| Flag | Description | Default |",
+    "| --- | --- | --- |",
+    ...GLOBAL_FLAGS.map(markdownFlagRow),
+    "",
+    "## Environment",
+    "",
+    ...GLOBAL_ENVIRONMENT.map((variable) => `- \`${variable.name}\`: ${variable.description}`),
+    "",
+    ...sections.flatMap((section) => [section, ""])
+  ].join("\n");
+}
+function usageLine(command) {
+  const flags2 = command.flags.map((flag) => {
+    const written = flag.value ? `--${flag.name} ${flag.value}` : `--${flag.name}`;
+    return flag.isRequired ? written : `[${written}]`;
+  });
+  return [command.name, command.argumentsHint, ...flags2].filter(Boolean).join(" ");
+}
+function formatFlags(flags2) {
+  const written = flags2.map((flag) => flag.value ? `--${flag.name} ${flag.value}` : `--${flag.name}`);
+  const width = Math.max(...written.map((entry) => entry.length)) + 2;
+  return flags2.map((flag, index) => {
+    const notes = [flag.isRequired ? "required" : void 0, flag.defaultValue ? `default ${flag.defaultValue}` : void 0].filter(Boolean);
+    return `  ${written[index].padEnd(width)}${flag.description}${notes.length > 0 ? ` (${notes.join("; ")})` : ""}`;
+  });
+}
+function markdownFlagRow(flag) {
+  const written = flag.value ? `--${flag.name} ${flag.value}` : `--${flag.name}`;
+  return `| \`${written}\`${flag.isRequired ? " (required)" : ""} | ${flag.description} | ${flag.defaultValue ? `\`${flag.defaultValue}\`` : ""} |`;
+}
+
 // packages/cli/src/catalog.ts
 import { readFileSync as readFileSync3, statSync as statSync2, writeFileSync as writeFileSync3 } from "node:fs";
 import { join as join4 } from "node:path";
@@ -8858,6 +8998,7 @@ import { tmpdir } from "node:os";
 import { basename as basename2, extname as extname2, join as join10, relative as relative2 } from "node:path";
 var PLUGIN_DIRECTORY = "plugin";
 var PLUGIN_MAX_BYTES = 5 * 1024 * 1024;
+var CLI_REFERENCE_PATH = "references/cli.md";
 var PLUGIN_IDENTITY = {
   name: "vcr",
   description: "Agent studio for code-first motion graphics and video: tool catalogue, operating guides, deterministic browser capture and a human review loop.",
@@ -8890,6 +9031,10 @@ function buildPlugin(harnessRoot, outputDirectory = join10(harnessRoot, PLUGIN_D
   cpSync2(join10(harnessRoot, "examples"), join10(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename2(source)) });
   writeManifests(outputDirectory, version.value);
   writeFileSync5(join10(outputDirectory, "README.md"), PLUGIN_README);
+  const cliReference = renderCliReference();
+  mkdirSync3(join10(outputDirectory, "references"), { recursive: true });
+  writeFileSync5(join10(outputDirectory, CLI_REFERENCE_PATH), cliReference);
+  if (outputDirectory === join10(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync5(join10(harnessRoot, CLI_REFERENCE_PATH), cliReference);
   const files = listFiles(outputDirectory);
   const totalBytes = files.reduce((sum, file) => sum + statSync4(join10(outputDirectory, file)).size, 0);
   return ok({ directory: outputDirectory, version: version.value, fileCount: files.length, totalBytes });
@@ -8901,6 +9046,10 @@ function pluginDiagnostics(harnessRoot) {
   const fresh = buildPlugin(harnessRoot, mkdtempSync(join10(tmpdir(), "vcr-plugin-")));
   if (!fresh.ok) return [{ severity: "error", file, path: "", message: fresh.error.message }];
   const diagnostics = [];
+  const harnessReference = join10(harnessRoot, CLI_REFERENCE_PATH);
+  if (!existsSync9(harnessReference) || readFileSync6(harnessReference, "utf8") !== renderCliReference()) {
+    diagnostics.push({ severity: "error", file: CLI_REFERENCE_PATH, path: "", message: `${CLI_REFERENCE_PATH} is missing or stale against packages/cli/src/commands.ts`, suggestion: "Run `pnpm vcr plugin build` and commit the result." });
+  }
   const staleFiles = differingFiles(committed, fresh.value.directory);
   if (staleFiles.length > 0) diagnostics.push({ severity: "error", file, path: "", message: `plugin/ is stale: ${staleFiles.slice(0, 5).join(", ")}${staleFiles.length > 5 ? ` and ${staleFiles.length - 5} more` : ""}`, suggestion: "Run `pnpm vcr plugin build` and commit the result." });
   if (fresh.value.totalBytes > PLUGIN_MAX_BYTES) diagnostics.push({ severity: "error", file, path: "", message: `plugin/ is ${(fresh.value.totalBytes / 1024 / 1024).toFixed(1)} MB; the cap is 5 MB` });
@@ -9275,25 +9424,6 @@ function ensureWorkspace(directory, harnessVersion) {
 }
 
 // packages/cli/src/index.ts
-var USAGE = `vcr <command>
-
-  status                        Show the harness, workspace and machine roots
-  workspace init                Make this directory (or --workspace) a VCR workspace; idempotent
-  validate                      Validate the workspace (in the harness repository: everything)
-  tools list [--capability x] [--tier x] [--category x]   Tier 0: one line per tool
-  tools info <id> [--full]      Tier 1 card; --full appends the tier 2 guide
-  tools examples <id>           Tier 3: runnable examples that demonstrate the tool
-  example create <id>           Copy an example's sources into <workspace>/examples/<id> and print next steps
-  setup capture [--yes]         Plan (or with --yes, install) Playwright and Chromium into <VCR_HOME>/runtime
-  capture <scene.html> --width n --height n --fps n [--out dir] [--verify]
-                                Capture a browser scene frame by frame; frames and report.json go to --out
-  doctor [--record]             Probe local tools and write <VCR_HOME>/environment/<hostname>.json
-                                --record also writes environment/ (harness repository only)
-  catalog build [--check]       Regenerate catalog/tools.json, INDEX.md and CANDIDATES.md (harness repository only)
-  plugin build                  Assemble plugin/ for Claude Code and Codex (harness repository only)
-
-Flags: --json for machine-readable output; --workspace <dir> to select a workspace.
-Roots: VCR_HARNESS, VCR_WORKSPACE, VCR_HOME (default ~/.vcr).`;
 var argv = process.argv.slice(2);
 var parsed = parseArguments(argv);
 var { flags, positional } = parsed;
@@ -9305,10 +9435,11 @@ process.exit(exitCode);
 async function dispatch(args, options, roots) {
   const [command, subcommand, target] = args;
   const asJson = options["json"] === true;
+  if (options["help"] === true) return printHelp(args, asJson);
   if (parsed.error) {
     print(asJson ? { error: { code: "INVALID_ARGUMENT", message: parsed.error } } : `${parsed.error}
 
-${USAGE}`);
+${formatGlobalUsage()}`);
     return 2;
   }
   const repositoryRoot = roots.harness;
@@ -9455,17 +9586,30 @@ ${formatDisclosureReport(disclosure)}` : summary);
 written ${writtenPaths.join(", ")}`);
     return 0;
   }
-  print(USAGE);
+  print(formatGlobalUsage());
   return command ? 2 : 0;
+}
+function printHelp(args, asJson) {
+  const command = findCommand(args);
+  const group = findCommandGroup(args[0]);
+  if (command) print(asJson ? command : formatCommandHelp(command));
+  else if (group.length > 0) print(asJson ? group : group.map(formatCommandHelp).join("\n\n---\n\n"));
+  else print(asJson ? { commands: COMMANDS, global_flags: GLOBAL_FLAGS } : formatGlobalUsage());
+  return 0;
 }
 function parseArguments(args) {
   const flags2 = {};
   const positional2 = [];
-  const booleanFlags = /* @__PURE__ */ new Set(["json", "full", "check", "record", "yes", "verify"]);
-  const valueFlags = /* @__PURE__ */ new Set(["capability", "tier", "category", "workspace", "width", "height", "fps", "out"]);
+  const allFlags = [...GLOBAL_FLAGS, ...COMMANDS.flatMap((command) => command.flags)];
+  const booleanFlags = new Set(allFlags.filter((flag) => !flag.value).map((flag) => flag.name));
+  const valueFlags = new Set(allFlags.filter((flag) => flag.value).map((flag) => flag.name));
   let error;
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index];
+    if (argument === "-h") {
+      flags2["help"] = true;
+      continue;
+    }
     if (!argument.startsWith("--")) {
       positional2.push(argument);
       continue;

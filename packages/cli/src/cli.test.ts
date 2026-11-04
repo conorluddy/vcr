@@ -39,6 +39,24 @@ describe("vcr CLI", () => {
     await expect(runCli("tools", "info", "does-not-exist", "--json")).rejects.toMatchObject({ code: 1, stdout: expect.stringContaining("TOOL_NOT_FOUND") });
   });
 
+  test.each([["--help"], ["-h"]])("capture %s documents its flags and environment, exit 0", async (flag) => {
+    const { stdout } = await runCli("capture", flag);
+    for (const expected of ["--width n", "--height n", "--fps n", "--out dir", "--verify", "VCR_CAPTURE_MODE"]) expect(stdout).toContain(expected);
+  });
+
+  test("every command answers --help --json with its own spec", async () => {
+    const { COMMANDS } = await import("./commands.js");
+    for (const command of COMMANDS) {
+      const { stdout } = await runCli(...command.name.split(" "), "--help", "--json");
+      expect(JSON.parse(stdout).name).toBe(command.name);
+    }
+  });
+
+  test("bare --help prints global usage and exits 0", async () => {
+    const { stdout } = await runCli("--help");
+    expect(stdout).toContain("vcr <command>");
+  });
+
   test("an unknown command prints usage and exits 2", async () => {
     await expect(runCli("frobnicate")).rejects.toMatchObject({ code: 2 });
   });
