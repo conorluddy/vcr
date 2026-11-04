@@ -71,7 +71,8 @@
         "version": "7.1.2-15",
         "command": "examples/ffmpeg-assembly/run.sh",
         "result": "48 synthetic frames drawn; alpha statistics and identify used by browser-capture and blender-smoke",
-        "example": "examples/ffmpeg-assembly"
+        "example": "examples/ffmpeg-assembly",
+        "scope": "Backfilled 2026-11-04: magick drew 48 synthetic frames in ffmpeg-assembly, macOS arm64. Alpha stats and identify in other examples are claimed, not cited."
       },
       {
         "date": "2026-11-04",

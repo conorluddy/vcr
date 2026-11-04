@@ -71,7 +71,8 @@
         "version": "3.x via pnpm",
         "command": "examples/browser-capture/run.sh",
         "result": "90 frames seeked and captured with alpha; shuffled order matches sequential; see specifications/spikes/browser-capture.md",
-        "example": "examples/browser-capture"
+        "example": "examples/browser-capture",
+        "scope": "Backfilled 2026-11-04: GSAP timeline seeked by browser-capture, alpha frames, macOS arm64; exact GSAP version not recorded; no expected/ retained."
       },
       {
         "date": "2026-11-04",

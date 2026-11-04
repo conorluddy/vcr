@@ -72,7 +72,8 @@
         "version": "Chromium 156.0.8078.4",
         "command": "examples/browser-capture/run.sh",
         "result": "90 alpha frames; shuffled order matches sequential",
-        "example": "examples/browser-capture"
+        "example": "examples/browser-capture",
+        "scope": "Backfilled 2026-11-04: browser-capture on Chromium 156, 90 alpha frames, shuffled matches sequential, macOS arm64; Playwright version not recorded."
       },
       {
         "date": "2026-11-04",

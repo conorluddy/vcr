@@ -37,7 +37,7 @@ When this becomes a `validation.evidence` entry:
 - Set `scope` (one line, at most 200 characters) to what the run proves and what it does not, e.g. "encode PNG sequence to H.264 MP4; no alpha, macOS arm64".
 - Record `hostname`; tool cards use it to tell a run on this machine from one elsewhere.
 - Point `example` at a fixture that exercises this tool.
-- Never edit an earlier entry. Add a new one, and put corrections in a dated note.
+- Never edit an earlier entry's observed fields (`date`, `hostname`, `version`, `command`, `result`, `example`). Add a new entry, and put corrections in a dated note. The one exception: a missing `scope` may be added once, starting `Backfilled <YYYY-MM-DD>:`, stating only what the recorded result supports.
 - From 2026-11-05, `vcr validate` fails a new entry that lacks an exact version or a scope. Older entries only warn, because they are history.
 
 Never populate `validation.evidence` with a plan. If a tool is unavailable, report blocked/not run and retain `not-validated`; do not install silently or substitute a different tool and claim the original passed.

@@ -83,7 +83,8 @@
         "version": "4.4.0",
         "command": "examples/blender-smoke/run.sh",
         "result": "Workbench background render of one 320x240 RGBA frame from the app bundle",
-        "example": "examples/blender-smoke"
+        "example": "examples/blender-smoke",
+        "scope": "Backfilled 2026-11-04: Workbench render of one 320x240 RGBA still from the app bundle, macOS arm64; no Cycles, EEVEE, animation or compositing."
       }
     ]
   },

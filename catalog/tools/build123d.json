@@ -55,7 +55,8 @@
         "version": "0.13.0",
         "command": "examples/build123d-product/run.sh",
         "result": "Valid 60x40x12 mm filleted solid; analytic volume and STEP roundtrip, SVG projection, GLB scale/orientation/normals and coarse/fine tessellation passed with Blender 4.4.0 on macOS arm64. Fine mesh volume error 0.00035%; 800x600 RGBA Workbench still inspected. Blender required GPU access outside sandbox.",
-        "example": "examples/build123d-product"
+        "example": "examples/build123d-product",
+        "scope": "Backfilled 2026-11-04: one filleted solid to STEP, SVG and GLB, imported into Blender 4.4.0, macOS arm64; one part, Workbench still only."
       }
     ]
   },

@@ -72,7 +72,8 @@
         "version": "2.3.4",
         "command": "examples/p5-capture/run.sh",
         "result": "90 alpha frames at 1280x720; shuffled order matches sequential",
-        "example": "examples/p5-capture"
+        "example": "examples/p5-capture",
+        "scope": "Backfilled 2026-11-04: p5 sketch redrawn per seek, 90 alpha frames at 1280x720, shuffled matches sequential, macOS arm64."
       },
       {
         "date": "2026-11-04",
