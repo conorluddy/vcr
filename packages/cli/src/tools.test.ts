@@ -89,7 +89,7 @@ describe("formatToolCard evidence and readiness", () => {
     mkdirSync(join(root, "node_modules", "gsap"), { recursive: true });
     writeFileSync(join(root, "node_modules", "gsap", "package.json"), JSON.stringify({ version: "3.15.0" }));
     const validation = { status: "validated", evidence: [{ date: "2026-11-04", version: "3.15.0" }] };
-    const card = formatToolCard(tool("gsap", { install: { macos: "pnpm add gsap" }, validation }), [], "/nonexistent", undefined, root);
+    const card = formatToolCard(tool("gsap", { install: { macos: "pnpm add gsap" }, validation }), [], "/nonexistent", undefined, { cwd: root, stopAt: root });
     expect(card).toContain("Readiness: this project: has gsap 3.15.0; same version as evidence · VCR adapter none");
   });
   test("omits the scope line for legacy entries without a scope", () => {

@@ -2977,7 +2977,7 @@ var require_compile = __commonJS({
       const schOrFunc = root.refs[ref];
       if (schOrFunc)
         return schOrFunc;
-      let _sch = resolve4.call(this, root, ref);
+      let _sch = resolve5.call(this, root, ref);
       if (_sch === void 0) {
         const schema = (_a = root.localRefs) === null || _a === void 0 ? void 0 : _a[ref];
         const { schemaId } = this.opts;
@@ -3004,7 +3004,7 @@ var require_compile = __commonJS({
     function sameSchemaEnv(s1, s2) {
       return s1.schema === s2.schema && s1.root === s2.root && s1.baseId === s2.baseId;
     }
-    function resolve4(root, ref) {
+    function resolve5(root, ref) {
       let sch;
       while (typeof (sch = this.refs[ref]) == "string")
         ref = sch;
@@ -3868,7 +3868,7 @@ var require_fast_uri = __commonJS({
       }
       return uri;
     }
-    function resolve4(baseURI, relativeURI, options) {
+    function resolve5(baseURI, relativeURI, options) {
       const schemelessOptions = options ? Object.assign({ scheme: "null" }, options) : { scheme: "null" };
       const {
         parsed: baseParsed,
@@ -4259,7 +4259,7 @@ var require_fast_uri = __commonJS({
     var fastUri = {
       SCHEMES,
       normalize: normalize2,
-      resolve: resolve4,
+      resolve: resolve5,
       resolveComponent,
       equal,
       serialize,
@@ -8074,7 +8074,7 @@ var require_dist = __commonJS({
 
 // packages/cli/src/index.ts
 import { mkdirSync as mkdirSync5, writeFileSync as writeFileSync8 } from "node:fs";
-import { dirname as dirname4, join as join13, resolve as resolve3 } from "node:path";
+import { dirname as dirname5, join as join13, resolve as resolve4 } from "node:path";
 
 // packages/cli/src/capture.ts
 import { execFileSync } from "node:child_process";
@@ -8155,8 +8155,8 @@ async function captureFrames(options) {
     try {
       await browser?.close();
     } finally {
-      if (served) await new Promise((resolve4, reject) => {
-        served.server.close((error) => error ? reject(error) : resolve4());
+      if (served) await new Promise((resolve5, reject) => {
+        served.server.close((error) => error ? reject(error) : resolve5());
         served.server.closeAllConnections();
       });
     }
@@ -8197,7 +8197,7 @@ async function captureOne(page, cdp, captureMode, frame) {
     if (!result.screenshotData) throw new Error(`beginFrame produced no screenshot for frame ${frame}`);
     return Buffer.from(result.screenshotData, "base64");
   }
-  await page.evaluate(() => new Promise((resolve4) => requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(resolve4, 0)))));
+  await page.evaluate(() => new Promise((resolve5) => requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(resolve5, 0)))));
   return page.screenshot({ type: "png" });
 }
 function shuffle(frames, seed) {
@@ -8243,12 +8243,12 @@ function serveDirectory(root) {
       response.writeHead(200, { "content-type": MEDIA_TYPES[extname(filePath)] ?? "application/octet-stream" }).end(data);
     });
   });
-  return new Promise((resolve4, reject) => {
+  return new Promise((resolve5, reject) => {
     server.once("error", reject);
     server.listen(0, "127.0.0.1", () => {
       const address = server.address();
       const port = typeof address === "object" && address ? address.port : 0;
-      resolve4({ server, url: `http://127.0.0.1:${port}` });
+      resolve5({ server, url: `http://127.0.0.1:${port}` });
     });
   });
 }
@@ -8830,24 +8830,31 @@ import { join as join10 } from "node:path";
 
 // packages/cli/src/project.ts
 import { existsSync as existsSync8 } from "node:fs";
-import { join as join9 } from "node:path";
+import { dirname as dirname4, join as join9, resolve as resolve3 } from "node:path";
 function npmPackagesFor(installCommand) {
   const first = (installCommand ?? "").split("&&")[0].trim();
   const match = /^(?:pnpm\s+add|npm\s+(?:i|install)|yarn\s+add)\s+(.+)$/.exec(first);
   if (!match) return [];
   const words = match[1].split(/\s+/);
   if (words.some((word) => word === "-g" || word === "--global")) return [];
-  return words.filter((word) => !word.startsWith("-")).map(stripVersionSpec).filter((name) => /^(?:@[\w.-]+\/)?[\w.-]+$/.test(name));
+  return words.filter((word) => !word.startsWith("-")).map(stripVersionSpec).filter((name) => /^(?:@[\w-][\w.-]*\/)?[\w-][\w.-]*$/.test(name));
 }
-function projectPackageVersions(projectRoot, names) {
+function projectPackageVersions(startDir, names, stopDir) {
+  const directories = searchDirectories(resolve3(startDir), stopDir ? resolve3(stopDir) : void 0);
   return names.map((name) => {
-    const path = join9(projectRoot, "node_modules", name, "package.json");
-    if (!existsSync8(path)) return { name, version: null };
-    const parsed2 = readJsonFile(path);
-    return { name, version: parsed2.ok && typeof parsed2.value.version === "string" ? parsed2.value.version : null };
+    for (const directory of directories) {
+      const path = join9(directory, "node_modules", name, "package.json");
+      if (!existsSync8(path)) continue;
+      const parsed2 = readJsonFile(path);
+      if (parsed2.ok && typeof parsed2.value.version === "string") return { name, version: parsed2.value.version };
+      return { name, version: null, unreadable: true };
+    }
+    return { name, version: null };
   });
 }
 function formatProjectReadiness(packages, installCommand, evidence) {
+  const unreadable = packages.filter((entry) => entry.unreadable);
+  if (unreadable.length) return `this project: ${unreadable.map((entry) => entry.name).join(", ")} present but its package.json is unreadable`;
   const missing = packages.filter((entry) => entry.version === null);
   if (missing.length === packages.length) return `this project: not installed (${installCommand.split("&&")[0].trim()})`;
   const installed = packages.filter((entry) => entry.version !== null).map((entry) => `${entry.name} ${entry.version}`).join(", ");
@@ -8860,6 +8867,19 @@ function evidenceNote2(primary, evidence) {
   if (match === "same-version") return "; same version as evidence";
   if (match === "different-version") return `; evidence ran ${evidence.version}, so this version is untested`;
   return versionScope(evidence.version) === "exact" ? "; version could not be compared with the evidence" : "; evidence version not exact, cannot compare";
+}
+function searchDirectories(start, stop) {
+  const directories = [];
+  const insideStop = stop !== void 0 && (start === stop || start.startsWith(stop + "/") || start.startsWith(stop + "\\"));
+  let directory = start;
+  for (; ; ) {
+    directories.push(directory);
+    if (insideStop ? directory === stop : existsSync8(join9(directory, "package.json"))) break;
+    const parent = dirname4(directory);
+    if (parent === directory) break;
+    directory = parent;
+  }
+  return directories;
 }
 function stripVersionSpec(word) {
   const at = word.lastIndexOf("@");
@@ -8902,7 +8922,7 @@ function formatToolTable(tools) {
   const line = (row) => row.map((cell, column) => cell.padEnd(widths[column])).join("  ").trimEnd();
   return [line(header), ...rows.map(line)].join("\n");
 }
-function formatToolCard(tool, examples, repositoryRoot, machine, projectRoot) {
+function formatToolCard(tool, examples, repositoryRoot, machine, project) {
   const lines = [];
   lines.push(`${tool.id} \u2014 ${tool.name} \xB7 ${tool.tier} \xB7 ${tool.automation_route}`);
   lines.push(tool.role, "");
@@ -8917,7 +8937,7 @@ function formatToolCard(tool, examples, repositoryRoot, machine, projectRoot) {
   lines.push(`Evidence: ${evidenceLine(tool)}`);
   const latestScope = tool.validation.evidence?.at(-1)?.scope;
   if (latestScope) lines.push(`Evidence scope: ${latestScope}`);
-  const readiness = readinessText(tool, machine, projectRoot);
+  const readiness = readinessText(tool, machine, project);
   lines.push(`Readiness: ${readiness} \xB7 VCR adapter ${tool.adapter_maturity || "unknown"}`);
   lines.push(`Guide: ${tool.skill ? `${tool.skill} (${fileSizeKb(repositoryRoot, tool.skill) ?? "?"} KB) \u2014 vcr tools info ${tool.id} --full` : "none yet"}`);
   const own = examples.filter((example) => example.tools.includes(tool.id));
@@ -8936,13 +8956,13 @@ function formatExamplesForTool(tool, examples) {
   if (own.length === 0) return `No examples list ${tool.id} yet.`;
   return own.map((example) => [`${example.id} (${example.status}) \u2014 ${example.title}`, example.summary ? `  ${example.summary}` : null, `  run: cd ${example.directory} && ${example.run}`, example.report ? `  report: ${example.report}` : null].filter(Boolean).join("\n")).join("\n\n");
 }
-function readinessText(tool, machine, projectRoot) {
+function readinessText(tool, machine, project) {
   if (tool.installation_status === "not-applicable") return "no install needed";
   const latest = tool.validation.evidence?.at(-1);
   const machineReadiness = assessReadiness(tool.id, machine);
   const packages = npmPackagesFor(tool.install?.macos);
   if (machineReadiness.state !== "not-probed" && machineReadiness.state !== "no-machine-record") return formatReadiness(machineReadiness, latest);
-  if (packages.length && projectRoot) return formatProjectReadiness(projectPackageVersions(projectRoot, packages), tool.install.macos, latest);
+  if (packages.length && project) return formatProjectReadiness(projectPackageVersions(project.cwd, packages, project.stopAt), tool.install.macos, latest);
   return formatReadiness(machineReadiness, latest);
 }
 function evidenceLine(tool) {
@@ -9264,7 +9284,7 @@ ${USAGE}`);
         print(tool.value);
         return 0;
       }
-      const card = formatToolCard(tool.value, examples.value, repositoryRoot, loadMachineRecord(roots.machine), roots.workspace ?? process.cwd());
+      const card = formatToolCard(tool.value, examples.value, repositoryRoot, loadMachineRecord(roots.machine), { cwd: process.cwd(), stopAt: roots.workspace ?? void 0 });
       if (options["full"] !== true) {
         print(card);
         return 0;
@@ -9315,8 +9335,8 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
     if (!Object.values(dimensions).every((value) => Number.isFinite(value) && value > 0)) {
       return failWith({ code: "INVALID_ARGUMENT", message: "capture needs positive --width, --height and --fps" }, asJson, 2);
     }
-    const sceneFile = resolve3(subcommand);
-    const outputDirectory = resolve3(text(options["out"]) ?? join13(dirname4(sceneFile), "output"));
+    const sceneFile = resolve4(subcommand);
+    const outputDirectory = resolve4(text(options["out"]) ?? join13(dirname5(sceneFile), "output"));
     const report = await runCapture(roots, { sceneFile, outputDirectory, verifyDeterminism: options["verify"] === true, ...dimensions });
     if (!report.ok) return failWith(report.error, asJson);
     const { frames, frames_per_second, shuffled_matches_sequential } = report.value;

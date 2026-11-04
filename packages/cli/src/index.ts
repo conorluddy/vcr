@@ -110,7 +110,7 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
         print(tool.value);
         return 0;
       }
-      const card = formatToolCard(tool.value, examples.value, repositoryRoot, loadMachineRecord(roots.machine), roots.workspace ?? process.cwd());
+      const card = formatToolCard(tool.value, examples.value, repositoryRoot, loadMachineRecord(roots.machine), { cwd: process.cwd(), stopAt: roots.workspace ?? undefined });
       if (options["full"] !== true) {
         print(card);
         return 0;
