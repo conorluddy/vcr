@@ -273,6 +273,19 @@ A graph cycle is not a plan. A technically possible conversion may still be unac
 | G4 — Gap intelligence | No-path frontier, missing/poor edge records, research workflow, prioritised gaps | Two real reproducible gaps, one resolved by discovery and one judged worthwhile |
 | G5 — Optional explorer | Static graph/path visualisation via exported schema; separate app/prototype | Works without agent and cannot mutate workspace inadvertently |
 
+**G0 status (2026-11-04):** desk-research report drafted: [spikes/capability-graph-g0.md](spikes/capability-graph-g0.md). Its go/no-go is a **draft pending owner review, not a recorded decision**. Against the exit gate, the report covers:
+
+- three explained routes: R1–R3, where R2 is spike-reported, not retained;
+- two deliberate incompatibilities: R6 (alpha) and R7 (animated SVG into resvg);
+- the fully bound FFmpeg join: R4, all eight bindings;
+- progressive refinement: R8;
+- incomplete metadata without invented edges: R5 onsets and the domain-only 3D records;
+- an unknown property: GLB animation;
+- stale evidence: Playwright beginFrame;
+- a missing prerequisite: Blender GPU access outside the sandbox.
+
+**Not demonstrated:** a deliberately exhausted search budget. No search was implemented, so this stays unknown and blocks G2's search-limit fixture rather than G1. G1+ starts only after the owner accepts or amends the draft.
+
 **Progressive-refinement acceptance scenarios (G0/G2):**
 
 | Request or condition | Required behavior |
@@ -307,15 +320,38 @@ A graph cycle is not a plan. A technically possible conversion may still be unac
 - Overengineering → use JSON and TypeScript indexes; defer database, GUI, distributed runner and cross-domain generality until fixtures require them.
 - Graph gap self-fulfilling predictions → research-before-build and deduplicated real-world demand.
 
-**Decisions to resolve in G0:**
-1. Operation schema and taxonomy ownership: separate graph folder versus extension to existing tool records (this PRD proposes separate).
-2. Minimal domain vocabulary, explicit domain/format mappings, format alternatives and compatibility profile baseline by media family; how much detail must be known to assert a verified edge.
-3. Path algorithm: bounded hypergraph search vs explicit recipe templates for multi-input joins.
-4. Licence assessment governance: OSI policy and separate source/weights/assets/output checks.
-5. Evidence publication policy and acceptable tolerances for nondeterministic renderers.
-6. Index size and plugin distribution strategy under current constraints.
-7. Whether workspace-local operation definitions can shadow built-ins (proposed: no; namespace/override explicitly).
-8. Review UI data contract, strictly read-only until separate ADR.
+**Decisions to resolve in G0.** The G0 report's draft answers follow each item. They are pending owner review and are not recorded decisions.
+1. **Operation schema and taxonomy ownership:** a separate graph folder versus an extension to existing tool records. This PRD (§5) proposes separate.
+   - *Draft:* extend the tool records with `operations[]` (ports grouped per operation) and keep curated cross-tool routes as separate small records. On R1–R8, the separate folder gave the same verdicts at about 2.5× the plugin growth (estimated). It also added a second canonical store.
+   - This would override §5, so it needs an owner decision via an ADR or a PRD revision.
+2. **Minimal domain vocabulary,** explicit domain/format mappings, format alternatives and a compatibility profile baseline by media family; how much detail must be known to assert a verified edge.
+   - *Draft:* `3d`, `image`, `video` and `audio`, with the formats and properties listed in the report. No domain or format is set for onset events.
+   - Evidence is assigned per property, not per port.
+3. **Path algorithm:** bounded hypergraph search versus explicit recipe templates for multi-input joins.
+   - *Draft:* recipes first. No request needed search to find a verified route (estimated by reasoning, since no search ran).
+4. **Licence assessment governance:** OSI policy and separate source/weights/assets/output checks.
+   - *Draft:* owned by #75, including a reference-only label and an ADR for migrating legacy proprietary records.
+5. **Evidence publication policy** and acceptable tolerances for nondeterministic renderers.
+   - *Draft:* add a `fixture-reported` class for claims made only in prose, with no retained output. O8 and O13 fall into it.
+6. **Index size and plugin distribution strategy** under current constraints.
+   - *Draft:* INDEX.md does not grow. It has 242 B of headroom (observed 2026-11-04). Record bytes ship twice, once in `tools/` and once in `tools.json`.
+7. **Workspace-local operation definitions:** whether they can shadow built-ins. Proposed: no; namespace and override explicitly. The spike did not exercise this.
+8. **Review UI data contract,** strictly read-only until a separate ADR. The spike did not exercise this.
+
+**Stable requirement identifiers.** Child issues quote these IDs. Each maps to parent requirements in [vcr-prd.md §6](vcr-prd.md).
+
+| ID | Requirement | Parent | First issues |
+| --- | --- | --- | --- |
+| CG-01 | Each operation declares its own input and output ports with domain → format → profile. A record without ports is *incomplete*, never incompatible, and stays discoverable. | L0-01, L0-05 | #67, #69, #70 |
+| CG-02 | Evidence class is recorded per claim or property: `retained-fixture`, `fixture-reported`, `documentation-only` or `unknown`. Each carries a date, scope, and the declared or observed version. Refinement never promotes a class. | L0-02 | #68, #74 |
+| CG-03 | An absent field means `unknown`, never a wildcard. Supported, unsupported or excluded, conditional and unknown remain distinct values. | L0-05, L6-03 | #71 |
+| CG-04 | A rejection names the conflicting property and lists alternatives with their own evidence classes. It never substitutes one silently. | L6-02 | #71, #73 |
+| CG-05 | A join is shown as a route only when every required binding is bound. Otherwise the result is `INCOMPLETE_JOIN`. | L6-02 | #72, #78 |
+| CG-06 | Technical compatibility, readiness (from doctor), policy and evidence scope are separate fields. | L0-02 | #75, #76 |
+| CG-07 | Proprietary and paid-only tools are labelled reference-only and never appear as runnable steps. Legacy records migrate through an ADR. | L0-01, L0-05 | #75 |
+| CG-08 | Route descriptions explain; they do not execute. Native toolkit commands stay usable without them. | L0-06 | #77 |
+| CG-09 | A `retained-fixture` claim must cite retained outputs. Version and text drift is flagged without erasing earlier observations. | L0-02, L6-04 | #74, #79 |
+| CG-10 | Disclosure stays bounded: INDEX.md does not grow, and per-request bytes are reported as observed or estimated (ADR 0004). | L0-05 | #69, #70 |
 
 ## 14. Delivery tracking: epic and atomic subissues
 
@@ -323,7 +359,7 @@ A graph cycle is not a plan. A technically possible conversion may still be unac
 
 | Phase | Independently useful deliverables | Issues |
 | --- | --- | --- |
-| CG0 — Prove the model | Representative handoffs, minimal contracts and a reviewed go/no-go | [#66](https://github.com/conorluddy/vcr/issues/66) |
+| CG0 — Prove the model | Representative handoffs, minimal contracts and a reviewed go/no-go ([draft report](spikes/capability-graph-g0.md), pending owner review) | [#66](https://github.com/conorluddy/vcr/issues/66) |
 | CG1 — Describe ports | One validated operation card; retained build123d/GLB/Blender handoff | [#67](https://github.com/conorluddy/vcr/issues/67), [#68](https://github.com/conorluddy/vcr/issues/68) |
 | CG2 — Discover operations | Input/output domain filtering; format refinement and aliases | [#69](https://github.com/conorluddy/vcr/issues/69), [#70](https://github.com/conorluddy/vcr/issues/70) |
 | CG3 — Assess a handoff | Format matching; required bindings/cardinality; one units rule; scoped evidence/freshness; free/open-source policy; doctor-based readiness | [#71](https://github.com/conorluddy/vcr/issues/71), [#72](https://github.com/conorluddy/vcr/issues/72), [#73](https://github.com/conorluddy/vcr/issues/73), [#74](https://github.com/conorluddy/vcr/issues/74), [#75](https://github.com/conorluddy/vcr/issues/75), [#76](https://github.com/conorluddy/vcr/issues/76) |
@@ -332,7 +368,22 @@ A graph cycle is not a plan. A technically possible conversion may still be unac
 | CG6 — Learn from gaps | Retain/deduplicate requests; research two reproducible gaps to closure or justified proposal | [#83](https://github.com/conorluddy/vcr/issues/83), [#84](https://github.com/conorluddy/vcr/issues/84) |
 | CG7 — Optional explorer | Generated read-only operation/route visualization | [#85](https://github.com/conorluddy/vcr/issues/85) |
 
-Start with CG0. The first useful release delivers CG1–CG4 after a positive model decision. CG5 requires the recipe/search comparison to justify a planner; CG6 follows usable route diagnostics; CG7 requires a separate demand/go decision. Evidence develops throughout, starting with retained observations rather than waiting for a new verification runner. No implementation has shipped merely because its issue exists.
+Start with CG0. The release boundary follows the epic.
+
+- **First release: #67–#77**, after the owner accepts the model decision. It covers CG1–CG3 and one curated route.
+- **Follow-on: #78–#79.** These are the fork/join and the verification of one reviewed fixture.
+- **Gated: CG5 and later.**
+  - CG5 (#80–#82) needs a recipe/search comparison that justifies a planner. The G0 draft found none on R1–R8.
+  - CG6 (#83–#84) follows usable route diagnostics.
+  - CG7 (#85) requires a separate demand/go decision.
+
+The G0 draft also suggests these changes:
+
+- Fix the evidence labels before any schema work.
+- Scope #67–#76 to the eight sampled records.
+- Settle CLI naming in #67 together with #48 before implementation.
+
+Evidence develops throughout, starting with retained observations rather than waiting for a new verification runner. No implementation has shipped merely because its issue exists.
 
 Each implementation slice includes applicable index/plugin regeneration, deterministic builds, bounded output/help, three-root safety, validation and appropriate tests. Coordinate with existing [tool history #40](https://github.com/conorluddy/vcr/issues/40) and [command help #48](https://github.com/conorluddy/vcr/issues/48). Route descriptions do not implement the [cue/mux runtime #60](https://github.com/conorluddy/vcr/issues/60) or [batch renderer #62](https://github.com/conorluddy/vcr/issues/62).
 

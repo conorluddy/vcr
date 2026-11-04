@@ -28,6 +28,7 @@
 | advanced motion | L4 / M5 | M4 | deterministic simulation fixture | not started |
 | production delivery | L5 / M6 | M4 | FFmpeg intermediate and export strategy | not started |
 | plugin and review layer (`vcr-plugin-prd.md`) | L0 packaging, early L1 and L6 slices | — | S1 plugin invocation (passed) | P0, S1 and P1 done (installable on both hosts); P2 next |
+| capability graph (`vcr-capability-graph-prd.md`, proposal) | L0 catalogue extension (L0-01, L0-02, L0-05, L0-06); L6 checks (L6-02 to L6-04) | owner go/no-go on CG0 | CG0 G0 desk research (`spikes/capability-graph-g0.md`, draft pending owner review) | proposal; CG0 report drafted, #67–#77 wait on the decision |
 | review loop | L6 / M7 | M3 | none | not started |
 | reference corpus | L7 / M8 | M2 | none | not started |
 
