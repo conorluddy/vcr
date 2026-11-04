@@ -4,6 +4,7 @@ import { dirname, join, resolve } from "node:path";
 import { applyCaptureSetup, formatCaptureSetupPlan, planCaptureSetup, runCapture } from "./capture.js";
 import { writeCatalogIndex } from "./catalog.js";
 import { formatDoctorTable, runDoctor } from "./doctor.js";
+import { loadMachineRecord } from "./evidence.js";
 import { createExample } from "./examples.js";
 import { logEvent, startTimer } from "./log.js";
 import { buildPlugin, pluginDiagnostics, readHarnessVersion } from "./plugin.js";
@@ -109,7 +110,7 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
         print(tool.value);
         return 0;
       }
-      const card = formatToolCard(tool.value, examples.value, repositoryRoot);
+      const card = formatToolCard(tool.value, examples.value, repositoryRoot, loadMachineRecord(roots.machine));
       if (options["full"] !== true) {
         print(card);
         return 0;

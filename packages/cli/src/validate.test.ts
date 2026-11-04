@@ -68,6 +68,19 @@ describe("validateRepository", () => {
     const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status: "validated", evidence } }]));
     expect(report.diagnostics).toContainEqual(expect.objectContaining({ path: "/validation/evidence/0/example", severity: "error" }));
   });
+  test("an inexact evidence version is a warning that keeps the record valid", () => {
+    const evidence = [{ date: "2026-10-26", hostname: "test", version: "3.x via pnpm", command: "./run.sh", result: "ok" }];
+    const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status: "validated", evidence } }]));
+    expect(report.diagnostics).toContainEqual(expect.objectContaining({ path: "/validation/evidence/0/version", severity: "warning" }));
+    expect(hasErrors(report)).toBe(false);
+  });
+  test("an exact or not-applicable evidence version raises no version warning", () => {
+    for (const version of ["8.0.1", "n/a (platform)"]) {
+      const evidence = [{ date: "2026-10-26", hostname: "test", version, command: "./run.sh", result: "ok" }];
+      const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status: "validated", evidence } }]));
+      expect(report.diagnostics.filter((diagnostic) => diagnostic.path === "/validation/evidence/0/version")).toEqual([]);
+    }
+  });
   test("a valid registry produces no diagnostics", () => {
     const report = validateRepository(createFixtureRepository([validTool]));
     expect(report.filesChecked).toBe(2);

@@ -288,6 +288,11 @@
               },
               "example": {
                 "type": "string"
+              },
+              "scope": {
+                "type": "string",
+                "maxLength": 200,
+                "description": "What this run proves and what it does not (operation, host, version combination). New entries should set it; legacy entries are not rewritten."
               }
             },
             "additionalProperties": false

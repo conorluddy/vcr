@@ -6,6 +6,7 @@ import { writeCatalogIndex } from "./catalog.js";
 import { listFilesNamed, listJsonFiles, readJsonFile } from "./repository.js";
 import { WORKSPACE_MARKER } from "./roots.js";
 import type { ExampleManifest, ToolSummary } from "./tools.js";
+import { versionScope } from "./evidence.js";
 
 // === TYPES ===
 
@@ -210,6 +211,10 @@ function toolReferenceDiagnostics(record: ToolSummary, file: string, tools: Map<
     else if (!example.manifest.tools.includes(record.id)) error("/examples", `example "${exampleId}" does not list ${record.id} in its tools`, "Add the tool to the example manifest so the link is two-way.");
   }
   for (const [index, evidence] of (record.validation.evidence ?? []).entries()) {
+    const scope = versionScope(evidence.version);
+    if (scope === "inexact" || scope === "unknown") {
+      diagnostics.push({ severity: "warning", file, path: `/validation/evidence/${index}/version`, message: `evidence version "${evidence.version ?? ""}" is ${scope}, so it does not identify what ran`, suggestion: "Keep it as historical source; record exact versions in new evidence." });
+    }
     if (!evidence.example) continue;
     // Existing evidence records use repository-relative paths; cards use bare example ids.
     const exampleId = evidence.example.replace(/^examples\//, "");
