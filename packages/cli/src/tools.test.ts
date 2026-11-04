@@ -1,3 +1,6 @@
+import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, test } from "vitest";
 import { filterTools, findTool, formatExamplesForTool, formatToolCard, formatToolTable, type ExampleManifest, type ToolSummary } from "./tools.js";
 
@@ -80,6 +83,14 @@ describe("formatToolCard evidence and readiness", () => {
     const lines = formatToolCard(tool("ffmpeg", { validation }), [], "/nonexistent").split("\n");
     const evidenceIndex = lines.findIndex((line) => line.startsWith("Evidence: "));
     expect(lines[evidenceIndex + 1]).toBe("Evidence scope: Linux container, Chromium 153 stand-in");
+  });
+  test("reads a library's readiness from the project, not the machine", () => {
+    const root = mkdtempSync(join(tmpdir(), "vcr-card-project-"));
+    mkdirSync(join(root, "node_modules", "gsap"), { recursive: true });
+    writeFileSync(join(root, "node_modules", "gsap", "package.json"), JSON.stringify({ version: "3.15.0" }));
+    const validation = { status: "validated", evidence: [{ date: "2026-11-04", version: "3.15.0" }] };
+    const card = formatToolCard(tool("gsap", { install: { macos: "pnpm add gsap" }, validation }), [], "/nonexistent", undefined, { cwd: root, stopAt: root });
+    expect(card).toContain("Readiness: this project: has gsap 3.15.0; same version as evidence · VCR adapter none");
   });
   test("omits the scope line for legacy entries without a scope", () => {
     const validation = { status: "validated", evidence: [{ date: "2026-10-26", version: "8.0.1" }] };
