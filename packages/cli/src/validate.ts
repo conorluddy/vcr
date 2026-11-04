@@ -35,6 +35,8 @@ interface Vocabulary {
 export const BUDGET_BYTES = { indexMarkdown: 16 * 1024, skill: 12 * 1024 } as const;
 
 /** Tiers that must carry a tier 1 card. Every core and catalogued record carries a card since the assessment pass. */
+/** Evidence dated on or after this day must record an exact version and a scope; older entries are historical and only warn. */
+export const EXACT_EVIDENCE_FROM = "2026-11-05";
 const CARD_REQUIRED_TIERS = new Set(["core", "catalogued"]);
 const CARD_MISSING_SEVERITY: DiagnosticSeverity = "error";
 
@@ -213,8 +215,15 @@ function toolReferenceDiagnostics(record: ToolSummary, file: string, tools: Map<
   const evidenceEntries = record.validation.evidence ?? [];
   for (const [index, evidence] of evidenceEntries.entries()) {
     const scope = versionScope(evidence.version);
+    const isNew = typeof evidence.date === "string" && evidence.date >= EXACT_EVIDENCE_FROM;
+    if (isNew && (scope === "inexact" || scope === "unknown")) {
+      error(`/validation/evidence/${index}/version`, `evidence from ${EXACT_EVIDENCE_FROM} on must record the exact version that ran, not "${evidence.version ?? ""}"`, "Record the version the run reported, e.g. 8.0.1 or Chromium 156.0.8078.4; use n/a only for platform features.");
+    }
+    if (isNew && !(typeof evidence.scope === "string" && evidence.scope.trim())) {
+      error(`/validation/evidence/${index}/scope`, `evidence from ${EXACT_EVIDENCE_FROM} on must set scope`, "Say in one line what the run proves and what it does not (see catalog/FIXTURE-EVIDENCE-TEMPLATE.md).");
+    }
     // Only the latest entry is what cards show; appending an exact entry clears the warning without editing history.
-    if (index === evidenceEntries.length - 1 && (scope === "inexact" || scope === "unknown")) {
+    if (!isNew && index === evidenceEntries.length - 1 && (scope === "inexact" || scope === "unknown")) {
       diagnostics.push({ severity: "warning", file, path: `/validation/evidence/${index}/version`, message: scope === "inexact" ? `evidence version "${evidence.version ?? ""}" is a range, not the version that ran` : `evidence version "${evidence.version ?? ""}" does not identify what ran`, suggestion: "Leave this entry as is; when re-validating, append a new evidence entry with the exact version and a scope (see catalog/FIXTURE-EVIDENCE-TEMPLATE.md)." });
     }
     if (!evidence.example) continue;

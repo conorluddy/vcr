@@ -38,5 +38,6 @@ When this becomes a `validation.evidence` entry:
 - Record `hostname`; tool cards use it to tell a run on this machine from one elsewhere.
 - Point `example` at a fixture that exercises this tool.
 - Never edit an earlier entry. Add a new one, and put corrections in a dated note.
+- From 2026-11-05, `vcr validate` fails a new entry that lacks an exact version or a scope. Older entries only warn, because they are history.
 
 Never populate `validation.evidence` with a plan. If a tool is unavailable, report blocked/not run and retain `not-validated`; do not install silently or substitute a different tool and claim the original passed.
