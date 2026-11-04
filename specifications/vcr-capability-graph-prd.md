@@ -156,6 +156,8 @@ Policy defaults:
 - Permission to **run**, **modify**, **redistribute**, **bundle**, **publish generated outputs**, **host models**, and **use commercially** are separately evaluated.
 - Record OSI status, licence exceptions, and source evidence without claiming to provide legal advice.
 
+[ADR 0005](decisions/0005-recommendation-policy-and-licence-migration.md) (accepted) sets out the five policy dimensions and the deferred migration of `license` strings, and relaxes the runnable-recommendation default above from OSI-approved to free for local and commercial use while VCR is the owner's own tool.
+
 ## 6. Search, planning and explanation
 
 **Inputs:** desired capability, input/output domains, known formats and semantic requirements, known assets/ports, target environment, project policy, quality requirements (editability, transparency, fidelity), and user weights for latency/setup/loss. A domain-only query returns relevant operations and potential route families with missing details, not a claim of an executable or verified path. Adding a format or profile refines the request and returns retained/excluded/unknown candidates with reasons; it never silently relaxes an earlier requirement.
