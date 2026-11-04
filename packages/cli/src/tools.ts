@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { fileSizeKb } from "./catalog.js";
 import type { EnvironmentRecord } from "./doctor.js";
 import { assessReadiness, formatReadiness, versionScope } from "./evidence.js";
+import { formatProjectReadiness, npmPackagesFor, projectPackageVersions } from "./project.js";
 import { listFilesNamed, listJsonFiles, readJsonFile } from "./repository.js";
 import { fail, ok, type Result } from "./result.types.js";
 
@@ -104,7 +105,8 @@ export function formatToolTable(tools: ToolSummary[]): string {
 }
 
 /** Tier 1: the card, with pointers to tiers 2 and 3 and what they cost. */
-export function formatToolCard(tool: ToolSummary, examples: ExampleManifest[], repositoryRoot: string, machine?: EnvironmentRecord): string {
+/** `projectRoot` is the current project; library readiness is read from its node_modules. */
+export function formatToolCard(tool: ToolSummary, examples: ExampleManifest[], repositoryRoot: string, machine?: EnvironmentRecord, projectRoot?: string): string {
   const lines: string[] = [];
   lines.push(`${tool.id} — ${tool.name} · ${tool.tier} · ${tool.automation_route as string}`);
   lines.push(tool.role, "");
@@ -120,7 +122,7 @@ export function formatToolCard(tool: ToolSummary, examples: ExampleManifest[], r
   const latestScope = tool.validation.evidence?.at(-1)?.scope;
   if (latestScope) lines.push(`Evidence scope: ${latestScope}`);
   // The catalogue never claims installation, so only its not-applicable value is worth showing.
-  const readiness = tool.installation_status === "not-applicable" ? "no install needed" : formatReadiness(assessReadiness(tool.id, machine), tool.validation.evidence?.at(-1));
+  const readiness = readinessText(tool, machine, projectRoot);
   lines.push(`Readiness: ${readiness} · VCR adapter ${tool.adapter_maturity || "unknown"}`);
   lines.push(`Guide: ${tool.skill ? `${tool.skill} (${fileSizeKb(repositoryRoot, tool.skill) ?? "?"} KB) — vcr tools info ${tool.id} --full` : "none yet"}`);
   const own = examples.filter((example) => example.tools.includes(tool.id));
@@ -147,6 +149,17 @@ export function formatExamplesForTool(tool: ToolSummary, examples: ExampleManife
 }
 
 // === PRIVATE HELPERS ===
+
+function readinessText(tool: ToolSummary, machine: EnvironmentRecord | undefined, projectRoot: string | undefined): string {
+  if (tool.installation_status === "not-applicable") return "no install needed";
+  const latest = tool.validation.evidence?.at(-1);
+  const machineReadiness = assessReadiness(tool.id, machine);
+  // A tool doctor probes is a machine tool; otherwise a per-project package is read from the project.
+  const packages = npmPackagesFor(tool.install?.macos);
+  if (machineReadiness.state !== "not-probed" && machineReadiness.state !== "no-machine-record") return formatReadiness(machineReadiness, latest);
+  if (packages.length && projectRoot) return formatProjectReadiness(projectPackageVersions(projectRoot, packages), tool.install!.macos!, latest);
+  return formatReadiness(machineReadiness, latest);
+}
 
 function evidenceLine(tool: ToolSummary): string {
   const latest = tool.validation.evidence?.at(-1);
