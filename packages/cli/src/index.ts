@@ -2,7 +2,8 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { applyCaptureSetup, formatCaptureSetupPlan, planCaptureSetup, runCapture } from "./capture.js";
-import { writeCatalogIndex } from "./catalog.js";
+import { buildCatalogIndex, writeCatalogIndex } from "./catalog.js";
+import { disclosureReport, formatDisclosureReport } from "./disclosure.js";
 import { formatDoctorTable, runDoctor } from "./doctor.js";
 import { loadMachineRecord } from "./evidence.js";
 import { createExample } from "./examples.js";
@@ -27,7 +28,7 @@ const USAGE = `vcr <command>
                                 Capture a browser scene frame by frame; frames and report.json go to --out
   doctor [--record]             Probe local tools and write <VCR_HOME>/environment/<hostname>.json
                                 --record also writes environment/ (harness repository only)
-  catalog build [--check]       Regenerate catalog/tools.json and catalog/INDEX.md (harness repository only)
+  catalog build [--check]       Regenerate catalog/tools.json, INDEX.md and CANDIDATES.md (harness repository only)
   plugin build                  Assemble plugin/ for Claude Code and Codex (harness repository only)
 
 Flags: --json for machine-readable output; --workspace <dir> to select a workspace.
@@ -173,7 +174,11 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     const outcome = writeCatalogIndex(repositoryRoot, checkOnly);
     if (!outcome.ok) return failWith(outcome.error, asJson);
     const { recordCount, wasStale, staleFiles } = outcome.value;
-    print(asJson ? outcome.value : `${recordCount} records; ${wasStale ? `${checkOnly ? "stale" : "rewrote"}: ${staleFiles.join(", ")}` : "index up to date"}`);
+    const built = buildCatalogIndex(repositoryRoot);
+    const manifests = loadExamples(repositoryRoot);
+    const disclosure = built.ok && manifests.ok ? disclosureReport(repositoryRoot, built.value, manifests.value) : undefined;
+    const summary = `${recordCount} records; ${wasStale ? `${checkOnly ? "stale" : "rewrote"}: ${staleFiles.join(", ")}` : "index up to date"}`;
+    print(asJson ? { ...outcome.value, disclosure } : disclosure ? `${summary}\n${formatDisclosureReport(disclosure)}` : summary);
     return checkOnly && wasStale ? 1 : 0;
   }
 

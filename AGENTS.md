@@ -11,7 +11,7 @@ Read `specifications/vcr-prd.md` for product intent and release gates. This repo
 - Generated media, caches, and temporary render artifacts belong in ignored output directories.
 - Prefer official documentation links and preserve uncertainty where versions or support are unverified.
 - Load only the relevant toolkit or workflow guidance for a task. Do not copy the entire catalogue into a prompt.
-- Edit tool records, never the generated `catalog/tools.json` or `catalog/INDEX.md`; run `pnpm vcr catalog build` and commit the result.
+- Edit tool records, never the generated `catalog/tools.json`, `catalog/INDEX.md` or `catalog/CANDIDATES.md`; run `pnpm vcr catalog build` and commit the result.
 - `pnpm validate` fails on a stale index, a dangling reference or a budget overrun.
 - `plugin/` is generated and committed (bundled CLI, catalogue, skills, example sources, both host manifests). Never edit it; run `pnpm vcr plugin build` after changing the CLI, catalogue, skills or examples. `pnpm validate` fails when it is stale, over 5 MB or carries media.
 - Inside this repository the CLI is `pnpm vcr`; from an installed plugin it is `node <plugin-root>/cli/vcr.mjs`, the plugin root being two directories above the calling SKILL.md (spike S1). Skills say `vcr` and define it once; never hard-code a versioned plugin path.
@@ -24,7 +24,7 @@ Read `specifications/vcr-prd.md` for product intent and release gates. This repo
 
 Four tiers, each sized to one decision. Descend only as far as the task needs.
 
-1. Route: read `catalog/INDEX.md` whole (under 16 KB). One line per tool.
+1. Route: read `catalog/INDEX.md` whole (under 16 KB). One line per routable tool; unassessed candidates are in `catalog/CANDIDATES.md`.
 2. Shortlist: `pnpm vcr tools info <id>` for two or three tools. Summary, use when, avoid when, pairs with, evidence.
 3. Commit: `pnpm vcr tools info <id> --full` loads the operating guide (`skills/<id>/SKILL.md`). One at a time.
 4. Do: `pnpm vcr tools examples <id>`, then open one example directory (or `vcr example create <id>` to copy it into a workspace).

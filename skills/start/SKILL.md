@@ -17,7 +17,7 @@ Run `vcr status`. If it reports `workspace  none`, use the `init` skill before a
 
 ## Choosing a tool: four tiers, one at a time
 
-1. Route: `vcr tools list` (or read `<plugin-root>/catalog/INDEX.md` whole). One line per tool; filter with `--capability`, `--tier`, `--category`.
+1. Route: `vcr tools list` (or read `<plugin-root>/catalog/INDEX.md` whole). One line per routable tool; unassessed candidates are in `CANDIDATES.md`; filter with `--capability`, `--tier`, `--category`.
 2. Shortlist: `vcr tools info <id>` for two or three candidates. Summary, use when, avoid when, pairs with, evidence.
 3. Commit: `vcr tools info <id> --full`, or load that tool's skill (`gsap`, `three-js`, `p5-js`, `svg`, `resvg`, `ffmpeg`, `imagemagick`, `blender-background`). One guide at a time.
 4. Do: `vcr tools examples <id>`, then `vcr example create <example-id>` and follow the steps it prints.
