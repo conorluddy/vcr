@@ -1,6 +1,6 @@
 # Spike: capability graph G0 (CG0)
 
-Date: 2026-11-04 · Status: **draft, pending owner review — not a recorded decision** · Issue: [#66](https://github.com/conorluddy/vcr/issues/66) (epic [#65](https://github.com/conorluddy/vcr/issues/65)) · PRD: [vcr-capability-graph-prd.md](../vcr-capability-graph-prd.md) v0.3 §12 G0 · Landscape: [capability-graph-landscape-2026-11-02.md](../research/capability-graph-landscape-2026-11-02.md)
+Date: 2026-11-04 · Status: **accepted by owner 2026-11-04** (the revised recommendation) · Issue: [#66](https://github.com/conorluddy/vcr/issues/66) (epic [#65](https://github.com/conorluddy/vcr/issues/65)) · PRD: [vcr-capability-graph-prd.md](../vcr-capability-graph-prd.md) v0.3 §12 G0 · Landscape: [capability-graph-landscape-2026-11-02.md](../research/capability-graph-landscape-2026-11-02.md)
 
 Tags: **observed now** means measured on 2026-11-04. **retained-observed <date>** means measured when a fixture ran and copied here without a rerun. **fixture-reported** means a number that appears only in fixture prose (README, spike report, evidence.md), with no retained output behind it. **estimated** means a judgement. Versions are **declared** unless a retained file records them.
 
@@ -171,7 +171,7 @@ URLs marked † in the prior-art notes were not re-fetched, so their behaviour c
 
 Nothing else survives. The R1 units, R5, R6, R7 and R8 answers, the readiness and policy split, version ranges, and the context-byte claim can all be delivered by A's text fixes or B's fields.
 
-## Draft recommendation — pending owner review, not a recorded decision
+## Recommendation — accepted by owner 2026-11-04
 
 **Revised after the observed B pilot (below): keep the current catalogue workflow with Step 1 applied. No-go for now on `operations[]`, on a separate graph store and on search.** In the pilot, the current catalogue matched or beat the operations data on correctness and on unknowns; the data's only win was bytes, and those were self-reported. Hand-curated operation data also repeated the cross-scope evidence errors this spike set out to remove. Evidence quality is the constraint, so it comes first. Reopen CG1 only when all of the following hold:
 - a scope-match check exists (the cited example must exercise the same operation);

@@ -273,7 +273,7 @@ A graph cycle is not a plan. A technically possible conversion may still be unac
 | G4 — Gap intelligence | No-path frontier, missing/poor edge records, research workflow, prioritised gaps | Two real reproducible gaps, one resolved by discovery and one judged worthwhile |
 | G5 — Optional explorer | Static graph/path visualisation via exported schema; separate app/prototype | Works without agent and cannot mutate workspace inadvertently |
 
-**G0 status (2026-11-04):** desk-research report drafted: [spikes/capability-graph-g0.md](spikes/capability-graph-g0.md). Its go/no-go is a **draft pending owner review, not a recorded decision**. Against the exit gate, the report covers:
+**G0 status (2026-11-04):** desk-research report drafted: [spikes/capability-graph-g0.md](spikes/capability-graph-g0.md). Its revised go/no-go was **accepted by the owner on 2026-11-04**: keep the current catalogue workflow with Step 1 applied; hold `operations[]`, a graph store and search behind the report's reopen conditions. Against the exit gate, the report covers:
 
 - three explained routes: R1–R3, where R2 is spike-reported, not retained;
 - two deliberate incompatibilities: R6 (alpha) and R7 (animated SVG into resvg);
@@ -284,7 +284,7 @@ A graph cycle is not a plan. A technically possible conversion may still be unac
 - stale evidence: Playwright beginFrame;
 - a missing prerequisite: Blender GPU access outside the sandbox.
 
-**Not demonstrated:** a deliberately exhausted search budget. No search was implemented, so this stays unknown and blocks G2's search-limit fixture rather than G1. G1+ starts only after the owner accepts or amends the draft.
+**Not demonstrated:** a deliberately exhausted search budget. No search was implemented, so this stays unknown and blocks G2's search-limit fixture rather than G1. G1+ stays on hold until the reopen conditions hold.
 
 **Progressive-refinement acceptance scenarios (G0/G2):**
 
@@ -320,7 +320,7 @@ A graph cycle is not a plan. A technically possible conversion may still be unac
 - Overengineering → use JSON and TypeScript indexes; defer database, GUI, distributed runner and cross-domain generality until fixtures require them.
 - Graph gap self-fulfilling predictions → research-before-build and deduplicated real-world demand.
 
-**Decisions to resolve in G0.** The G0 report's draft answers follow each item. They are pending owner review and are not recorded decisions.
+**Decisions to resolve in G0.** The G0 report's answers follow each item; the owner accepted the revised recommendation on 2026-11-04, so the *Revised* notes take precedence over the drafts.
 1. **Operation schema and taxonomy ownership:** a separate graph folder versus an extension to existing tool records. This PRD (§5) proposes separate.
    - *Draft:* extend the tool records with `operations[]` (ports grouped per operation) and keep curated cross-tool routes as separate small records. On R1–R8, the separate folder gave the same verdicts at about 2.5× the plugin growth (estimated). It also added a second canonical store. *Revised after the observed B pilot:* hold `operations[]` too. The pilot tied the current catalogue on correctness and unknowns and repeated cross-scope evidence errors (see the report).
    - This would override §5, so it needs an owner decision via an ADR or a PRD revision.
@@ -359,7 +359,7 @@ A graph cycle is not a plan. A technically possible conversion may still be unac
 
 | Phase | Independently useful deliverables | Issues |
 | --- | --- | --- |
-| CG0 — Prove the model | Representative handoffs, minimal contracts and a reviewed go/no-go ([draft report](spikes/capability-graph-g0.md), pending owner review) | [#66](https://github.com/conorluddy/vcr/issues/66) |
+| CG0 — Prove the model | Representative handoffs, minimal contracts and a reviewed go/no-go ([report](spikes/capability-graph-g0.md), accepted 2026-11-04) | [#66](https://github.com/conorluddy/vcr/issues/66) |
 | CG1 — Describe ports | One validated operation card; retained build123d/GLB/Blender handoff | [#67](https://github.com/conorluddy/vcr/issues/67), [#68](https://github.com/conorluddy/vcr/issues/68) |
 | CG2 — Discover operations | Input/output domain filtering; format refinement and aliases | [#69](https://github.com/conorluddy/vcr/issues/69), [#70](https://github.com/conorluddy/vcr/issues/70) |
 | CG3 — Assess a handoff | Format matching; required bindings/cardinality; one units rule; scoped evidence/freshness; free/open-source policy; doctor-based readiness | [#71](https://github.com/conorluddy/vcr/issues/71), [#72](https://github.com/conorluddy/vcr/issues/72), [#73](https://github.com/conorluddy/vcr/issues/73), [#74](https://github.com/conorluddy/vcr/issues/74), [#75](https://github.com/conorluddy/vcr/issues/75), [#76](https://github.com/conorluddy/vcr/issues/76) |
