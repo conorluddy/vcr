@@ -61,7 +61,7 @@ Per lead: official URL; proposed `id` (kebab-case, checked unique against catalo
   ## Method notes
   Rate limits hit, sources unreachable, anything unverified.
   ```
-- Touch nothing else: no `catalog/tools/` records, no generated files (tools.json, INDEX.md, plugin output).
+- Touch nothing else: no `catalog/tools/` records, no generated files (tools.json, INDEX.md, CANDIDATES.md, plugin output).
 - Run `pnpm install --frozen-lockfile && pnpm validate` if the toolchain is available; if it fails for a reason caused by your file, fix it; if it fails on main too or can't run, say so in the PR body.
 
 ## 6. Open the PR

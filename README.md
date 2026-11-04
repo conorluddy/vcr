@@ -86,7 +86,7 @@ The catalogue is a four-tier tree sized to the decisions an agent makes:
 
 | Tier | Moment | Where | Budget |
 | --- | --- | --- | --- |
-| 0 | route a task | `catalog/INDEX.md`, `pnpm vcr tools list` | whole file under 16 KB |
+| 0 | route a task | `catalog/INDEX.md` (candidates in `catalog/CANDIDATES.md`), `pnpm vcr tools list` | whole file under 16 KB; `vcr catalog build` prints measured sizes per tier |
 | 1 | compare a shortlist | `pnpm vcr tools info <id>`, `catalog/tools/<id>.json` | about 200 tokens |
 | 2 | commit to a tool | `pnpm vcr tools info <id> --full`, `skills/<id>/SKILL.md` | under 12 KB |
 | 3 | do the work | `pnpm vcr tools examples <id>`, `examples/<id>/` | one at a time |

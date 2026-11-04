@@ -26,7 +26,7 @@ One brief for every assessor so every record answers the same questions. Assess 
 - Never claim a tool is installed, tested or validated. You read documentation; that is all the evidence you have.
 - Uncertainty goes in `notes` as a dated sentence, never softened into the card.
 - Do not paraphrase upstream docs into `summary`. Say what an agent choosing between tools needs.
-- Do not touch files outside your section. Do not touch `catalog/tools.json` or `catalog/INDEX.md`; `pnpm vcr catalog build` regenerates them and the reviewer runs it.
+- Do not touch files outside your section. Do not touch `catalog/tools.json`, `catalog/INDEX.md` or `catalog/CANDIDATES.md`; `pnpm vcr catalog build` regenerates them and the reviewer runs it.
 - If a source is unreachable, record `maintenance: unknown` with the URL you tried, and move on.
 
 ## Report back

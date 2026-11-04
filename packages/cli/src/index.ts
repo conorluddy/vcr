@@ -2,7 +2,8 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { applyCaptureSetup, formatCaptureSetupPlan, planCaptureSetup, runCapture } from "./capture.js";
-import { writeCatalogIndex } from "./catalog.js";
+import { buildCatalogIndex, writeCatalogIndex } from "./catalog.js";
+import { disclosureReport, formatDisclosureReport } from "./disclosure.js";
 import { formatDoctorTable, runDoctor } from "./doctor.js";
 import { loadMachineRecord } from "./evidence.js";
 import { createExample } from "./examples.js";
@@ -173,7 +174,11 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     const outcome = writeCatalogIndex(repositoryRoot, checkOnly);
     if (!outcome.ok) return failWith(outcome.error, asJson);
     const { recordCount, wasStale, staleFiles } = outcome.value;
-    print(asJson ? outcome.value : `${recordCount} records; ${wasStale ? `${checkOnly ? "stale" : "rewrote"}: ${staleFiles.join(", ")}` : "index up to date"}`);
+    const built = buildCatalogIndex(repositoryRoot);
+    const manifests = loadExamples(repositoryRoot);
+    const disclosure = built.ok && manifests.ok ? disclosureReport(repositoryRoot, built.value, manifests.value) : undefined;
+    const summary = `${recordCount} records; ${wasStale ? `${checkOnly ? "stale" : "rewrote"}: ${staleFiles.join(", ")}` : "index up to date"}`;
+    print(asJson ? { ...outcome.value, disclosure } : disclosure ? `${summary}\n${formatDisclosureReport(disclosure)}` : summary);
     return checkOnly && wasStale ? 1 : 0;
   }
 
