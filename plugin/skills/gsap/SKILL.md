@@ -19,7 +19,7 @@ The timeline library for every browser scene in VCR. One paused timeline per sce
 npm install gsap
 node -e "console.log(require('gsap/package.json').version)"
 ```
-Validated 3.x with Chromium 156 via `examples/browser-capture`.
+Validated 3.x with Chromium 156 via `examples/browser-capture`, and 3.15.0 on Linux with a Chrome for Testing 153 stand-in (2026-11-04).
 
 ## Smoke test
 ```text

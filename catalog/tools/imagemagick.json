@@ -4,7 +4,7 @@
   "category": "A6. Image processing and colour",
   "tier": "catalogued",
   "role": "Baseline CLI for image ops, montage, compare and inspection; the validated stills toolchain",
-  "summary": "The command-line image toolbox (magick, identify, compare, montage, mogrify). Handles convert, resize, composite, draw, annotate, alpha statistics, diffs and contact sheets across nearly every format. In VCR it is the validated baseline for stills work: drawing synthetic frames, measuring alpha, and comparing output. Strength is breadth and ubiquity, not speed or colour management.",
+  "summary": "The command-line image toolbox (magick, identify, compare, montage, mogrify). Handles convert, resize, composite, draw, annotate, alpha statistics, diffs and contact sheets across nearly every format. In VCR it is the validated baseline for stills work: drawing synthetic frames, measuring alpha, and comparing output. Strength is breadth and ubiquity, not speed or colour management. It can also rasterise SVG through its SVG delegate, so output varies by build; resvg is the validated SVG route.",
   "use_when": [
     "Default for any still-image convert, resize, composite, draw or annotate",
     "Comparing frames or reading alpha stats and metadata as test evidence",

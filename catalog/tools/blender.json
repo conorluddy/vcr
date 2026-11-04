@@ -4,7 +4,7 @@
   "category": "A7. Native applications and procedural tools",
   "tier": "core",
   "role": "Headless 3D rendering, Python scene build and compositing from the macOS app bundle",
-  "summary": "Full 3D authoring suite driven in background mode: a .blend file or a Python-built scene renders one frame or a range to PNG or EXR with alpha, under Workbench for speed, EEVEE for real-time quality or Cycles for path tracing. The compositor and simulation caches cover what VCR's own layers cannot yet. Blender keeps its own clock, so frame N is frame N.",
+  "summary": "Full 3D authoring suite driven in background mode: a .blend file or a Python-built scene renders one frame or a range to PNG or EXR with alpha, under Workbench for speed, EEVEE for real-time quality or Cycles for path tracing. The compositor and simulation caches cover what VCR's own layers cannot yet. Blender keeps its own clock, so frame N is frame N. Its install line and guide assume the macOS app bundle; on Linux use the distro or blender.org build and adjust the path.",
   "use_when": [
     "Path-traced product shots, cloth, fluids, particles with baked caches",
     "An existing .blend from a designer must render in a production",
