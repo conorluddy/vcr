@@ -533,7 +533,7 @@
         "2026-10-31: Release pyproject requires Python >=3.11,<3.15 and cadquery-ocp-novtk >=8.0,<8.1 plus scientific and geometry dependencies. macOS arm64 wheels worked in the isolated fixture environment; dependency licence obligations remain unverified.",
         "2026-10-31: Skill opportunity: no skill yet. Existing Blender guidance covers rendering; a build123d toolkit guide needs a repeated CAD-generation job, a reproducible geometry/export example and troubleshooting evidence. The native fixture is available; a dedicated skill still needs a repeated production job.",
         "2026-10-31: Maintainer endorsed inclusion after reviewing the fixture result in conversation. Promoted to catalogued with partial validation scoped to build123d 0.13.0, the original product part and Blender 4.4.0 on macOS arm64; Three.js, other formats, materials and animation remain unverified. No adapter or toolkit skill.",
-        "2026-11-04: Evidence scope (CG0 audit): the 800x600 RGBA size and alpha 0–255 of the Workbench still appear only in evidence.md prose; no retained check covers them."
+        "2026-11-04: Evidence scope (capability-graph G0 audit, specifications/spikes/capability-graph-g0.md): the 800x600 RGBA size and alpha 0–255 of the Workbench still appear only in evidence.md prose; no retained check covers them."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -645,7 +645,7 @@
       "avoid_when": [
         "DOM, SVG or CSS scenes: Playwright captures the whole page",
         "Server-side or CI renders: Playwright frames into FFmpeg",
-        "Alpha PNG sequences at scale: Playwright seek-and-screenshot capture is the validated route"
+        "Alpha PNG sequences at scale: Playwright via @vcr/capture (seek, settle, screenshot) is the validated route"
       ],
       "pairs_with": [
         "canvas-2d",
@@ -825,7 +825,7 @@
         "Over canvas-record when time-hooking an unmodified sketch beats refactoring it"
       ],
       "avoid_when": [
-        "Web Audio, CSS animations or WAAPI: not frame-stepped; drive motion from a pure seek(t) and capture with Playwright",
+        "CSS animations or WAAPI: not frame-stepped; drive motion from a pure seek(t) and capture with Playwright",
         "Seekable timelines such as GSAP: Playwright seeks them exactly, no time hooking",
         "Server-side or CI capture: Playwright frames into FFmpeg"
       ],
@@ -2783,7 +2783,7 @@
       "avoid_when": [
         "Native sources (Blender, Manim) or filtergraph compositing: FFmpeg, no HTML round trip",
         "Inside VCR proper: ADR 0001 builds the compositor in-house; Playwright plus FFmpeg for capture",
-        "Alpha PNG layers for a later compositor: Playwright seek-and-screenshot capture, not an MP4 render"
+        "Alpha PNG layers for a later compositor: Playwright via @vcr/capture (seek, settle, screenshot), not an MP4 render"
       ],
       "pairs_with": [
         "gsap",
@@ -2878,7 +2878,7 @@
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
-        "2026-11-04: Evidence scope (CG0 audit): the ffmpeg-assembly frames are not retained; their count is evidenced only indirectly through the retained ffprobe probe."
+        "2026-11-04: Evidence scope (capability-graph G0 audit, specifications/spikes/capability-graph-g0.md): the ffmpeg-assembly frames are not retained; their count is evidenced only indirectly through the retained ffprobe probe."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -5416,7 +5416,7 @@
       "category": "A5. Video and capture",
       "tier": "catalogued",
       "role": "Headless browser automation; the capture route for every browser-rendered toolkit",
-      "summary": "Browser automation library for Chromium, Firefox and WebKit. In VCR it drives headless Chromium through the shared @vcr/capture harness: seek a paused timeline, settle two animation frames, then capture each frame as PNG, including alpha, with page.screenshot. HeadlessExperimental beginFrame remains an experimental, DOM-only alternative. Distinguishing strength: one capture path for any DOM, SVG, canvas or WebGL scene, validated here against a GSAP timeline with order-independent frames.",
+      "summary": "Browser automation library for Chromium, Firefox and WebKit. In VCR it drives headless Chromium through the shared @vcr/capture harness: seek a paused timeline, settle two animation frames, then capture each frame as PNG, including alpha, with page.screenshot (validated in p5-capture and three-capture). HeadlessExperimental beginFrame is an experimental, DOM-only alternative. Distinguishing strength: one capture path for any DOM, SVG, canvas or WebGL scene, with order-independent frames (a GSAP timeline matched under beginFrame; canvas and WebGL under screenshot).",
       "use_when": [
         "Capturing any browser-rendered scene frame by frame, DOM, SVG, canvas or WebGL",
         "Alpha PNG layers from HTML for a later compositor, over MP4 renderers like HyperFrames",
@@ -5465,7 +5465,7 @@
         "last_release": "2026-10-14",
         "maintenance": "active",
         "verdict": "keep",
-        "rationale": "Release 1.64.1 on 2026-10-14, Apache-2.0, pushed daily by Microsoft. Validated locally by the browser-capture example through seek, a two-frame settle and screenshot; the optional beginFrame route depends on an experimental CDP domain, is DOM-only and is not the default.",
+        "rationale": "Release 1.64.1 on 2026-10-14, Apache-2.0, pushed daily by Microsoft. The 2026-10-26 browser-capture validation ran the then-default beginFrame route (experimental CDP domain, DOM-only). The current default, seek, two-frame settle and screenshot, is evidenced by p5-capture and three-capture; browser-capture has no recorded run on it.",
         "sources": [
           "https://playwright.dev/docs/intro",
           "https://www.npmjs.com/package/playwright",
@@ -6378,7 +6378,7 @@
         "Inside VCR proper: ADR 0001 builds the compositor in-house; Playwright plus FFmpeg for capture",
         "Non-React or native sources: FFmpeg filtergraphs, or HyperFrames for plain HTML",
         "Company with more than 3 employees and no budget: a company licence is required",
-        "Alpha-layer frames for a later compositor: Playwright seek-and-screenshot capture"
+        "Alpha-layer frames for a later compositor: Playwright via @vcr/capture (seek, settle, screenshot)"
       ],
       "pairs_with": [
         "ffmpeg-ffprobe",
@@ -7488,7 +7488,7 @@
       "category": "A3. 3D, shaders and effects",
       "tier": "core",
       "role": "Browser 3D rendered once per seek with alpha: product shots, hero objects, camera moves",
-      "summary": "The standard WebGL and WebGPU scene graph for the browser, with loaders, PBR materials, lights, shadows, postprocessing and a shading language. In VCR a scene renders once per requested time with a transparent clear colour, so 3D layers composite over anything else. Real-time quality in seconds per shot rather than Blender's minutes.",
+      "summary": "The standard WebGL and WebGPU scene graph for the browser, with loaders, PBR materials, lights, shadows, postprocessing and a shading language. In VCR a scene renders once per requested time with a transparent clear colour, so 3D layers can composite over anything else (alpha is not yet asserted by a retained check). Real-time quality in seconds per shot rather than Blender's minutes.",
       "use_when": [
         "Product reveals, floating objects and camera orbits that must turn around fast",
         "Over Babylon.js for the larger ecosystem: pmndrs postprocessing, drei, glTF tooling",
@@ -7571,7 +7571,7 @@
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a",
       "notes": [
-        "2026-11-04: Evidence scope (CG0 audit): three-capture configures a transparent clear colour but does not measure alpha, and the three version that ran was not recorded (package range ^0.186.1)."
+        "2026-11-04: Evidence scope (capability-graph G0 audit, specifications/spikes/capability-graph-g0.md): three-capture configures a transparent clear colour; run.sh prints frame 30's alpha min/max but neither asserts nor retains it. The run did not log the three version; the committed lockfile resolves 0.186.1 for ^0.186.1."
       ]
     },
     {

@@ -14,7 +14,7 @@
     "Inside VCR proper: ADR 0001 builds the compositor in-house; Playwright plus FFmpeg for capture",
     "Non-React or native sources: FFmpeg filtergraphs, or HyperFrames for plain HTML",
     "Company with more than 3 employees and no budget: a company licence is required",
-    "Alpha-layer frames for a later compositor: Playwright seek-and-screenshot capture"
+    "Alpha-layer frames for a later compositor: Playwright via @vcr/capture (seek, settle, screenshot)"
   ],
   "pairs_with": [
     "ffmpeg-ffprobe",

@@ -1,7 +1,7 @@
 {
   "id": "browser-capture",
   "title": "Deterministic frame capture of a paused GSAP timeline",
-  "summary": "Playwright seeks a paused GSAP timeline per frame (seek, two-frame settle, screenshot) and captures alpha PNGs; shuffled order matches sequential. Assembled to ProRes 4444 (yuva444p10le requested). Results are fixture-reported; no expected/ retained.",
+  "summary": "Playwright seeks a paused GSAP timeline per frame and captures alpha PNGs; shuffled matched sequential in the 2026-10-26 run, which used beginFrame (now experimental). ProRes 4444: yuva444p10le requested, ffprobe reported 12le. Fixture-reported; no expected/.",
   "status": "validated",
   "tools": ["gsap", "playwright", "ffmpeg-ffprobe", "imagemagick"],
   "run": "./run.sh",

@@ -195,6 +195,20 @@ Nothing else survives. The R1 units, R5, R6, R7 and R8 answers, the readiness an
 
 This reverses PRD §5/§13's proposal of a separate graph folder for operations. That needs an owner decision.
 
+### Step 1 applied (2026-11-04)
+
+Evidence fixes landed on this branch. The go/no-go above is still a draft.
+
+- **Capture route.** Playwright and its cross-references (remotion, canvas-record, hyperframes, ccapture-js) now name the current default: Playwright via @vcr/capture (seek, settle, screenshot), evidenced by p5-capture and three-capture. The 2026-10-26 browser-capture validation is attributed to the beginFrame route it actually ran; capture.ts at commit 60159aa defaulted to `beginframe`. The first draft of this fix misattributed that run; review caught it.
+- **pix_fmt.** browser-capture states `yuva444p10le` as requested and `yuva444p12le` as probe-reported. Its outputs are marked fixture-reported, since no `expected/` is kept.
+- **Scoped claims.**
+  - build123d-product's summary is scoped to its checks. Its status stays `validated`, the schema's binary enum, so the scope lives in the summary text and a dated note.
+  - three-capture states that alpha is printed but not asserted, and that the lockfile resolves `three@0.186.1`.
+  - ffmpeg-assembly's frames are noted as evidenced only indirectly.
+- **Gap notes.** aubio and librosa note that no onset-event contract exists yet (cue/mux is #60).
+- **Historical evidence.** Existing `validation.evidence[]` entries are unchanged; scope corrections go in dated notes.
+- **Tool cards.** `vcr tools info` now prints a `Readiness:` line. It separates the catalogue's install status from `vcr doctor`'s live check and shows VCR adapter maturity.
+
 ## Remaining uncertainties and ADR ownership
 
 The following remain uncertain:

@@ -42,7 +42,7 @@
     "2026-10-31: Release pyproject requires Python >=3.11,<3.15 and cadquery-ocp-novtk >=8.0,<8.1 plus scientific and geometry dependencies. macOS arm64 wheels worked in the isolated fixture environment; dependency licence obligations remain unverified.",
     "2026-10-31: Skill opportunity: no skill yet. Existing Blender guidance covers rendering; a build123d toolkit guide needs a repeated CAD-generation job, a reproducible geometry/export example and troubleshooting evidence. The native fixture is available; a dedicated skill still needs a repeated production job.",
     "2026-10-31: Maintainer endorsed inclusion after reviewing the fixture result in conversation. Promoted to catalogued with partial validation scoped to build123d 0.13.0, the original product part and Blender 4.4.0 on macOS arm64; Three.js, other formats, materials and animation remain unverified. No adapter or toolkit skill.",
-    "2026-11-04: Evidence scope (CG0 audit): the 800x600 RGBA size and alpha 0–255 of the Workbench still appear only in evidence.md prose; no retained check covers them."
+    "2026-11-04: Evidence scope (capability-graph G0 audit, specifications/spikes/capability-graph-g0.md): the 800x600 RGBA size and alpha 0–255 of the Workbench still appear only in evidence.md prose; no retained check covers them."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

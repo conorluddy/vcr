@@ -44,7 +44,7 @@
   ],
   "notes": [
     "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
-    "2026-11-04: Evidence scope (CG0 audit): the ffmpeg-assembly frames are not retained; their count is evidenced only indirectly through the retained ffprobe probe."
+    "2026-11-04: Evidence scope (capability-graph G0 audit, specifications/spikes/capability-graph-g0.md): the ffmpeg-assembly frames are not retained; their count is evidenced only indirectly through the retained ffprobe probe."
   ],
   "assessment": {
     "date": "2026-10-26",

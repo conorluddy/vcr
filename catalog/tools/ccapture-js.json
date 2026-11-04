@@ -11,7 +11,7 @@
     "Over canvas-record when time-hooking an unmodified sketch beats refactoring it"
   ],
   "avoid_when": [
-    "Web Audio, CSS animations or WAAPI: not frame-stepped; drive motion from a pure seek(t) and capture with Playwright",
+    "CSS animations or WAAPI: not frame-stepped; drive motion from a pure seek(t) and capture with Playwright",
     "Seekable timelines such as GSAP: Playwright seeks them exactly, no time hooking",
     "Server-side or CI capture: Playwright frames into FFmpeg"
   ],
