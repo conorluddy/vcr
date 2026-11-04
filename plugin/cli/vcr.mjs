@@ -8528,6 +8528,7 @@ function versionScope(version) {
   if (/^n\/a\b/i.test(text2)) return "not-applicable";
   if (/\blatest\b|[\^~*<>≥≤]|\bx\b|\.x\b|\d\+(?:\s|$|,)|\brange\b|\bor (?:later|newer|above)\b/i.test(text2)) return "inexact";
   if (/^N-\d+-g[0-9a-f]+/.test(text2)) return "exact";
+  if (/(?:^|\s)[0-9a-f]{7,40}$/i.test(text2) && /\d/.test(text2)) return "exact";
   return versionTokens(text2).length > 0 ? "exact" : "unknown";
 }
 function loadMachineRecord(machineRoot, hostname2 = osHostname()) {

@@ -28,6 +28,8 @@ describe("versionScope", () => {
     ["4.4.0 or later", "inexact"],
     ["1.2.x", "inexact"],
     ["N-112345-gabc123", "exact"],
+    ["git 3f2a1b9", "exact"],
+    ["3f2a1b9c0d4e5f60718293a4b5c6d7e8f9012345", "exact"],
     ["n7.1", "exact"],
     ["n/a (platform)", "not-applicable"],
     ["1", "unknown"],

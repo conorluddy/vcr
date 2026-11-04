@@ -34,9 +34,9 @@ interface Vocabulary {
 /** Byte budgets for the tiers an agent reads whole. */
 export const BUDGET_BYTES = { indexMarkdown: 16 * 1024, skill: 12 * 1024 } as const;
 
-/** Tiers that must carry a tier 1 card. Every core and catalogued record carries a card since the assessment pass. */
 /** Evidence dated on or after this day must record an exact version and a scope; older entries are historical and only warn. */
 export const EXACT_EVIDENCE_FROM = "2026-11-05";
+/** Tiers that must carry a tier 1 card. Every core and catalogued record carries a card since the assessment pass. */
 const CARD_REQUIRED_TIERS = new Set(["core", "catalogued"]);
 const CARD_MISSING_SEVERITY: DiagnosticSeverity = "error";
 

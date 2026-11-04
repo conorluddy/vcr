@@ -35,6 +35,8 @@ export function versionScope(version: string | undefined | null): VersionScope {
   if (/^n\/a\b/i.test(text)) return "not-applicable";
   if (/\blatest\b|[\^~*<>≥≤]|\bx\b|\.x\b|\d\+(?:\s|$|,)|\brange\b|\bor (?:later|newer|above)\b/i.test(text)) return "inexact";
   if (/^N-\d+-g[0-9a-f]+/.test(text)) return "exact";
+  // A commit pin (git 3f2a1b9, or a bare 7–40 character hex SHA) identifies what ran exactly.
+  if (/(?:^|\s)[0-9a-f]{7,40}$/i.test(text) && /\d/.test(text)) return "exact";
   return versionTokens(text).length > 0 ? "exact" : "unknown";
 }
 
