@@ -53,7 +53,7 @@ describe("formatToolCard", () => {
     expect(card).toContain("Encodes things.");
     const lines = card.split("\n");
     const evidenceIndex = lines.findIndex((line) => line.startsWith("Evidence: "));
-    expect(lines[evidenceIndex + 1]).toBe("Readiness: catalogue install status installed · this machine unknown (run vcr doctor) · VCR adapter experimental");
+    expect(lines[evidenceIndex + 1]).toBe("Readiness: this machine: no vcr doctor record (run vcr doctor) · VCR adapter experimental");
     expect(card).toContain("- you need an mp4");
     expect(card).toContain("Pairs with: gifski");
     expect(card).toContain("Guide: skills/ffmpeg/SKILL.md (? KB) — vcr tools info ffmpeg --full");
@@ -64,11 +64,11 @@ describe("formatToolCard", () => {
     expect(card).toContain("Guide: none yet");
     expect(card).toContain("Examples: none yet");
     expect(card).not.toContain("Use when");
-    expect(card).toContain("Readiness: catalogue install status unknown · this machine unknown (run vcr doctor) · VCR adapter none");
+    expect(card).toContain("Readiness: this machine: no vcr doctor record (run vcr doctor) · VCR adapter none");
   });
   test("reports missing readiness fields as unknown", () => {
     const card = formatToolCard({ ...tool("gifski"), installation_status: undefined, adapter_maturity: "" } as unknown as ToolSummary, [], "/nonexistent");
-    expect(card).toContain("Readiness: catalogue install status unknown · this machine unknown (run vcr doctor) · VCR adapter unknown");
+    expect(card).toContain("Readiness: this machine: no vcr doctor record (run vcr doctor) · VCR adapter unknown");
   });
 });
 
@@ -77,15 +77,18 @@ describe("formatToolCard evidence and readiness", () => {
   const doctor = (version: string) => ({ schema_version: "1.0.0" as const, hostname: "h", os: { platform: "darwin", release: "1", arch: "arm64" }, checked_at: "2026-11-04T00:00:00Z", tools: [{ tool_id: "ffmpeg", status: "installed" as const, executable: "/x", version }] });
   test("flags an inexact evidence version without changing the status", () => {
     const card = formatToolCard(tool("ffmpeg", { validation: evidence("3.x via pnpm") }), [], "/nonexistent");
-    expect(card).toContain('Evidence: validated 2026-10-26 (examples/demo); version not exact: "3.x via pnpm"');
+    expect(card).toContain('Evidence: validated 2026-10-26 (examples/demo); version inexact: "3.x via pnpm"');
   });
   test("keeps readiness and evidence independent: an installed different version is untested here", () => {
     const record = tool("ffmpeg", { validation: evidence("8.0.1") });
     const card = formatToolCard(record, [], "/nonexistent", doctor("8.0.2"));
     expect(card).toContain("Evidence: validated 2026-10-26 (examples/demo)\n");
-    expect(card).toContain("this machine installed 8.0.2, differs from evidence: untested here (doctor 2026-11-04) · VCR adapter none");
+    expect(card).toContain("this machine: has 8.0.2; evidence ran 8.0.1 on another host, so this version is untested (doctor 2026-11-04) · VCR adapter none");
     expect(record.validation.status).toBe("validated");
     expect(record.adapter_maturity).toBe("none");
+  });
+  test("a platform tool says no install is needed", () => {
+    expect(formatToolCard(tool("svg", { installation_status: "not-applicable" }), [], "/nonexistent")).toContain("Readiness: no install needed · VCR adapter none");
   });
 });
 

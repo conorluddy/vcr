@@ -23,6 +23,12 @@ describe("versionScope", () => {
     ["^0.186.1", "inexact"],
     ["~1.2.0", "inexact"],
     [">=4.0", "inexact"],
+    [">4.0", "inexact"],
+    ["4.0+", "inexact"],
+    ["4.4.0 or later", "inexact"],
+    ["1.2.x", "inexact"],
+    ["N-112345-gabc123", "exact"],
+    ["n7.1", "exact"],
     ["n/a (platform)", "not-applicable"],
     ["1", "unknown"],
     ["", "unknown"],
@@ -61,6 +67,10 @@ describe("compareToEvidence", () => {
   test("a different patch is different, never verified by range", () => {
     expect(compareToEvidence("8.0.1", { version: "8.0.2" })).toBe("different-version");
   });
+  test("prefixed versions match themselves and their bare form", () => {
+    expect(compareToEvidence("n7.1", { version: "n7.1" })).toBe("same-version");
+    expect(compareToEvidence("v1.2.3", { version: "1.2.3" })).toBe("same-version");
+  });
   test("inexact evidence or an unparsed probe cannot be compared", () => {
     expect(compareToEvidence("3.x via pnpm", { version: "3.12.5" })).toBe("unknown");
     expect(compareToEvidence("8.0.1", { version: null })).toBe("unknown");
@@ -70,14 +80,18 @@ describe("compareToEvidence", () => {
 
 describe("formatReadiness", () => {
   const installed = (version: string) => assessReadiness("ffmpeg-ffprobe", machine([{ tool_id: "ffmpeg-ffprobe", status: "installed", executable: "/x", version }]));
-  test("says untested here for a different version", () => {
-    expect(formatReadiness(installed("8.0.2"), "8.0.1")).toBe("this machine installed 8.0.2, differs from evidence: untested here (doctor 2026-11-04)");
+  test("a different version on this host is untested, never verified", () => {
+    expect(formatReadiness(installed("8.0.2"), { version: "8.0.1", hostname: "test-host" })).toBe("this machine: has 8.0.2; evidence ran 8.0.1 here, so this version is untested (doctor 2026-11-04)");
   });
-  test("says same version when it matches", () => {
-    expect(formatReadiness(installed("8.0.1"), "8.0.1")).toBe("this machine installed 8.0.1, same version as evidence (doctor 2026-11-04)");
+  test("names another host instead of implying the evidence ran here", () => {
+    expect(formatReadiness(installed("8.0.2"), { version: "8.0.1", hostname: "elsewhere" })).toBe("this machine: has 8.0.2; evidence ran 8.0.1 on another host, so this version is untested (doctor 2026-11-04)");
+    expect(formatReadiness(installed("8.0.1"), { version: "8.0.1", hostname: "elsewhere" })).toBe("this machine: has 8.0.1; evidence ran this version on another host (doctor 2026-11-04)");
+  });
+  test("says when the evidence version cannot be compared", () => {
+    expect(formatReadiness(installed("3.12.5"), { version: "3.x via pnpm" })).toBe("this machine: has 3.12.5; evidence version not exact, cannot compare (doctor 2026-11-04)");
   });
   test("points at vcr doctor when there is no record", () => {
-    expect(formatReadiness({ state: "no-machine-record" }, "8.0.1")).toBe("this machine unknown (run vcr doctor)");
+    expect(formatReadiness({ state: "no-machine-record" }, { version: "8.0.1" })).toBe("this machine: no vcr doctor record (run vcr doctor)");
   });
 });
 
@@ -88,6 +102,10 @@ describe("loadMachineRecord", () => {
     mkdirSync(join(root, "environment"));
     writeFileSync(join(root, "environment/test-host.json"), "{not json");
     expect(loadMachineRecord(root, "test-host")).toBeUndefined();
+    writeFileSync(join(root, "environment/test-host.json"), JSON.stringify({ tools: [{ tool_id: "ffmpeg-ffprobe", status: "installed", version: "8.0.1" }] }));
+    expect(loadMachineRecord(root, "test-host")).toBeUndefined();
+    writeFileSync(join(root, "environment/test-host.json"), JSON.stringify({ ...machine([]), tools: [null, { tool_id: "x" }, { tool_id: "ffmpeg-ffprobe", status: "installed", executable: "/x", version: "8.0.1" }] }));
+    expect(loadMachineRecord(root, "test-host")?.tools.map((tool) => tool.tool_id)).toEqual(["ffmpeg-ffprobe"]);
     writeFileSync(join(root, "environment/test-host.json"), JSON.stringify(machine([])));
     expect(loadMachineRecord(root, "test-host")?.hostname).toBe("test-host");
   });

@@ -34,7 +34,8 @@ Copy this into a proposed example or assessment note. Fields marked unknown must
 
 When this becomes a `validation.evidence` entry:
 - Record the exact version that ran for each tool, e.g. `8.0.1` or `Chromium 156.0.8078.4`. `latest`, `3.x` and `^0.186.1` are ranges, not versions; `vcr validate` warns on them.
-- Set `scope` to what the run proves and what it does not, e.g. one operation on one host and version combination.
+- Set `scope` (one line, at most 200 characters) to what the run proves and what it does not, e.g. "encode PNG sequence to H.264 MP4; no alpha, macOS arm64".
+- Record `hostname`; tool cards use it to tell a run on this machine from one elsewhere.
 - Point `example` at a fixture that exercises this tool.
 - Never edit an earlier entry. Add a new one, and put corrections in a dated note.
 

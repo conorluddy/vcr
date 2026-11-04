@@ -213,7 +213,7 @@ function toolReferenceDiagnostics(record: ToolSummary, file: string, tools: Map<
   for (const [index, evidence] of (record.validation.evidence ?? []).entries()) {
     const scope = versionScope(evidence.version);
     if (scope === "inexact" || scope === "unknown") {
-      diagnostics.push({ severity: "warning", file, path: `/validation/evidence/${index}/version`, message: `evidence version "${evidence.version ?? ""}" is ${scope}, so it does not identify what ran`, suggestion: "Keep it as historical source; record exact versions in new evidence." });
+      diagnostics.push({ severity: "warning", file, path: `/validation/evidence/${index}/version`, message: scope === "inexact" ? `evidence version "${evidence.version ?? ""}" is a range, not the version that ran` : `evidence version "${evidence.version ?? ""}" does not identify what ran`, suggestion: "Leave this entry as is; when re-validating, append a new evidence entry with the exact version and a scope (see catalog/FIXTURE-EVIDENCE-TEMPLATE.md)." });
     }
     if (!evidence.example) continue;
     // Existing evidence records use repository-relative paths; cards use bare example ids.

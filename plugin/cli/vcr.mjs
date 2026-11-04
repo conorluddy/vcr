@@ -8526,46 +8526,66 @@ function versionScope(version) {
   const text2 = (version ?? "").trim();
   if (!text2) return "unknown";
   if (/^n\/a\b/i.test(text2)) return "not-applicable";
-  if (/\blatest\b|[\^~*]|>=|<=|\bx\b|\.x\b|\brange\b/i.test(text2)) return "inexact";
-  return /\d+\.\d+/.test(text2) ? "exact" : "unknown";
+  if (/\blatest\b|[\^~*<>≥≤]|\bx\b|\.x\b|\d\+(?:\s|$|,)|\brange\b|\bor (?:later|newer|above)\b/i.test(text2)) return "inexact";
+  if (/^N-\d+-g[0-9a-f]+/.test(text2)) return "exact";
+  return versionTokens(text2).length > 0 ? "exact" : "unknown";
 }
 function loadMachineRecord(machineRoot, hostname2 = osHostname()) {
   const path = join5(machineRoot, "environment", `${hostname2}.json`);
   if (!existsSync4(path)) return void 0;
   const parsed2 = readJsonFile(path);
-  return parsed2.ok && Array.isArray(parsed2.value.tools) ? parsed2.value : void 0;
+  if (!parsed2.ok) return void 0;
+  const record = parsed2.value;
+  if (typeof record !== "object" || record === null || typeof record.checked_at !== "string" || !Array.isArray(record.tools)) return void 0;
+  const tools = record.tools.filter(isProbeResult);
+  return { ...record, hostname: typeof record.hostname === "string" ? record.hostname : hostname2, tools };
 }
 function assessReadiness(toolId, record) {
   if (!record) return { state: "no-machine-record" };
   const probe = record.tools.find((entry) => entry.tool_id === toolId);
   if (!probe) return { state: "not-probed", checkedAt: record.checked_at };
-  if (probe.status === "installed") return { state: "installed", version: probe.version, checkedAt: record.checked_at };
+  if (probe.status === "installed") return { state: "installed", version: probe.version, checkedAt: record.checked_at, hostname: record.hostname };
   return { state: probe.status === "missing" ? "missing" : "probe-error", checkedAt: record.checked_at };
 }
 function compareToEvidence(evidenceVersion, probe) {
   if (!probe?.version || versionScope(evidenceVersion) !== "exact") return "unknown";
-  return versionTokens(evidenceVersion).includes(probe.version) ? "same-version" : "different-version";
+  const evidence = evidenceVersion.trim();
+  if (evidence === probe.version.trim()) return "same-version";
+  const evidenceTokens = new Set(versionTokens(evidence));
+  const probeTokens = versionTokens(probe.version);
+  if (probeTokens.length === 0) return "unknown";
+  return probeTokens.some((token) => evidenceTokens.has(token)) ? "same-version" : "different-version";
 }
-function formatReadiness(readiness, evidenceVersion) {
+function formatReadiness(readiness, evidence) {
   const day = (iso) => iso.slice(0, 10);
   switch (readiness.state) {
     case "no-machine-record":
-      return "this machine unknown (run vcr doctor)";
+      return "this machine: no vcr doctor record (run vcr doctor)";
     case "not-probed":
-      return "this machine not probed by vcr doctor";
+      return "this machine: vcr doctor does not check this tool (check the project's dependencies)";
     case "missing":
-      return `this machine missing (doctor ${day(readiness.checkedAt)})`;
+      return `this machine: missing (doctor ${day(readiness.checkedAt)})`;
     case "probe-error":
-      return `this machine probe failed (doctor ${day(readiness.checkedAt)})`;
-    case "installed": {
-      const match = compareToEvidence(evidenceVersion, { version: readiness.version });
-      const note = match === "same-version" ? ", same version as evidence" : match === "different-version" ? ", differs from evidence: untested here" : "";
-      return `this machine installed ${readiness.version ?? "(version unparsed)"}${note} (doctor ${day(readiness.checkedAt)})`;
-    }
+      return `this machine: probe failed (doctor ${day(readiness.checkedAt)})`;
+    case "installed":
+      return `this machine: has ${readiness.version ?? "an unparsed version"}${evidenceNote(readiness, evidence)} (doctor ${day(readiness.checkedAt)})`;
   }
+}
+function evidenceNote(readiness, evidence) {
+  if (!evidence) return "";
+  const match = compareToEvidence(evidence.version, { version: readiness.version });
+  if (match === "unknown") return "; evidence version not exact, cannot compare";
+  const where = evidence.hostname && evidence.hostname === readiness.hostname ? "here" : "on another host";
+  if (match === "same-version") return `; evidence ran this version ${where}`;
+  return `; evidence ran ${evidence.version} ${where}, so this version is untested`;
 }
 function versionTokens(version) {
   return version.match(/\d+(?:\.\d+)+(?:[-+][0-9A-Za-z.]+)?/g) ?? [];
+}
+function isProbeResult(entry) {
+  if (typeof entry !== "object" || entry === null) return false;
+  const probe = entry;
+  return typeof probe["tool_id"] === "string" && typeof probe["status"] === "string" && (typeof probe["version"] === "string" || probe["version"] === null);
 }
 
 // packages/cli/src/examples.ts
@@ -8855,8 +8875,8 @@ function formatToolCard(tool, examples, repositoryRoot, machine) {
   if (tool.license) lines.push(`Licence: ${tool.license}`);
   if (tool.install?.macos) lines.push(`Install (macOS): ${tool.install.macos}${tool.install.check_command ? `  \xB7 check: ${tool.install.check_command}` : ""}`);
   lines.push(`Evidence: ${evidenceLine(tool)}`);
-  const readiness = formatReadiness(assessReadiness(tool.id, machine), tool.validation.evidence?.at(-1)?.version);
-  lines.push(`Readiness: catalogue install status ${tool.installation_status || "unknown"} \xB7 ${readiness} \xB7 VCR adapter ${tool.adapter_maturity || "unknown"}`);
+  const readiness = tool.installation_status === "not-applicable" ? "no install needed" : formatReadiness(assessReadiness(tool.id, machine), tool.validation.evidence?.at(-1));
+  lines.push(`Readiness: ${readiness} \xB7 VCR adapter ${tool.adapter_maturity || "unknown"}`);
   lines.push(`Guide: ${tool.skill ? `${tool.skill} (${fileSizeKb(repositoryRoot, tool.skill) ?? "?"} KB) \u2014 vcr tools info ${tool.id} --full` : "none yet"}`);
   const own = examples.filter((example) => example.tools.includes(tool.id));
   lines.push(`Examples: ${own.length ? `${own.map((example) => `${example.id} (${example.status})`).join(", ")} \u2014 vcr tools examples ${tool.id}` : "none yet"}`);
@@ -8878,7 +8898,7 @@ function evidenceLine(tool) {
   const latest = tool.validation.evidence?.at(-1);
   if (!latest) return tool.validation.status;
   const scope = versionScope(latest.version);
-  const versionNote = scope === "inexact" || scope === "unknown" ? `; version not exact: "${latest.version ?? ""}"` : "";
+  const versionNote = scope === "inexact" ? `; version inexact: "${latest.version ?? ""}"` : scope === "unknown" ? "; version not recorded exactly" : "";
   return `${tool.validation.status} ${latest.date}${latest.example ? ` (${latest.example})` : ""}${versionNote}`;
 }
 
@@ -9028,7 +9048,7 @@ function toolReferenceDiagnostics(record, file, tools, examples, repositoryRoot)
   for (const [index, evidence] of (record.validation.evidence ?? []).entries()) {
     const scope = versionScope(evidence.version);
     if (scope === "inexact" || scope === "unknown") {
-      diagnostics.push({ severity: "warning", file, path: `/validation/evidence/${index}/version`, message: `evidence version "${evidence.version ?? ""}" is ${scope}, so it does not identify what ran`, suggestion: "Keep it as historical source; record exact versions in new evidence." });
+      diagnostics.push({ severity: "warning", file, path: `/validation/evidence/${index}/version`, message: scope === "inexact" ? `evidence version "${evidence.version ?? ""}" is a range, not the version that ran` : `evidence version "${evidence.version ?? ""}" does not identify what ran`, suggestion: "Leave this entry as is; when re-validating, append a new evidence entry with the exact version and a scope (see catalog/FIXTURE-EVIDENCE-TEMPLATE.md)." });
     }
     if (!evidence.example) continue;
     const exampleId = evidence.example.replace(/^examples\//, "");

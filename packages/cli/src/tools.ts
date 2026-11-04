@@ -33,7 +33,7 @@ export interface ToolSummary {
   skill?: string;
   examples?: string[];
   installation_status: string;
-  validation: { status: string; evidence?: Array<{ date: string; version?: string; example?: string; scope?: string }> };
+  validation: { status: string; evidence?: Array<{ date: string; version?: string; hostname?: string; example?: string; scope?: string }> };
   adapter_maturity: string;
   [extra: string]: unknown;
 }
@@ -117,8 +117,9 @@ export function formatToolCard(tool: ToolSummary, examples: ExampleManifest[], r
   if (tool.license) lines.push(`Licence: ${tool.license}`);
   if (tool.install?.macos) lines.push(`Install (macOS): ${tool.install.macos}${tool.install.check_command ? `  · check: ${tool.install.check_command}` : ""}`);
   lines.push(`Evidence: ${evidenceLine(tool)}`);
-  const readiness = formatReadiness(assessReadiness(tool.id, machine), tool.validation.evidence?.at(-1)?.version);
-  lines.push(`Readiness: catalogue install status ${tool.installation_status || "unknown"} · ${readiness} · VCR adapter ${tool.adapter_maturity || "unknown"}`);
+  // The catalogue never claims installation, so only its not-applicable value is worth showing.
+  const readiness = tool.installation_status === "not-applicable" ? "no install needed" : formatReadiness(assessReadiness(tool.id, machine), tool.validation.evidence?.at(-1));
+  lines.push(`Readiness: ${readiness} · VCR adapter ${tool.adapter_maturity || "unknown"}`);
   lines.push(`Guide: ${tool.skill ? `${tool.skill} (${fileSizeKb(repositoryRoot, tool.skill) ?? "?"} KB) — vcr tools info ${tool.id} --full` : "none yet"}`);
   const own = examples.filter((example) => example.tools.includes(tool.id));
   lines.push(`Examples: ${own.length ? `${own.map((example) => `${example.id} (${example.status})`).join(", ")} — vcr tools examples ${tool.id}` : "none yet"}`);
@@ -149,6 +150,6 @@ function evidenceLine(tool: ToolSummary): string {
   const latest = tool.validation.evidence?.at(-1);
   if (!latest) return tool.validation.status;
   const scope = versionScope(latest.version);
-  const versionNote = scope === "inexact" || scope === "unknown" ? `; version not exact: "${latest.version ?? ""}"` : "";
+  const versionNote = scope === "inexact" ? `; version inexact: "${latest.version ?? ""}"` : scope === "unknown" ? "; version not recorded exactly" : "";
   return `${tool.validation.status} ${latest.date}${latest.example ? ` (${latest.example})` : ""}${versionNote}`;
 }
