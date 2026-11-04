@@ -9289,7 +9289,7 @@ var USAGE = `vcr <command>
                                 Capture a browser scene frame by frame; frames and report.json go to --out
   doctor [--record]             Probe local tools and write <VCR_HOME>/environment/<hostname>.json
                                 --record also writes environment/ (harness repository only)
-  catalog build [--check]       Regenerate catalog/tools.json and catalog/INDEX.md (harness repository only)
+  catalog build [--check]       Regenerate catalog/tools.json, INDEX.md and CANDIDATES.md (harness repository only)
   plugin build                  Assemble plugin/ for Claude Code and Codex (harness repository only)
 
 Flags: --json for machine-readable output; --workspace <dir> to select a workspace.

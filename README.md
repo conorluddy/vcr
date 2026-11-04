@@ -29,7 +29,7 @@ pnpm vcr workspace init            # make a directory a VCR workspace (vcr.json)
 pnpm vcr example create <id>       # copy an example's sources into <workspace>/examples/<id>; prints next steps
 pnpm vcr setup capture [--yes]     # plan, then install, Playwright + Chromium into ~/.vcr/runtime
 pnpm vcr capture <scene.html> --width 1280 --height 720 --fps 30 [--out dir] [--verify]
-pnpm vcr catalog build [--check]   # regenerate catalog/tools.json and catalog/INDEX.md from catalog/tools/*.json
+pnpm vcr catalog build [--check]   # regenerate catalog/tools.json, INDEX.md and CANDIDATES.md from catalog/tools/*.json
 pnpm vcr plugin build              # regenerate plugin/ (bundled CLI, skills, catalogue, manifests); commit it
 pnpm test && pnpm typecheck
 ```
@@ -103,7 +103,7 @@ Media is ignored by directory, not by extension, so brand assets and fixtures ca
 
 ## Repository map
 
-- `catalog/` — one record per tool under `tools/`, retired records under `retired/`, generated `tools.json` and `INDEX.md`, the capability vocabulary, JSON Schemas, and the assessment brief.
+- `catalog/` — one record per tool under `tools/`, retired records under `retired/`, generated `tools.json`, `INDEX.md` and `CANDIDATES.md`, the capability vocabulary, JSON Schemas, and the assessment brief.
 - `environment/` — the maintainer's per-machine tool availability, written by `vcr doctor --record`. Users' records go to `~/.vcr/environment/`.
 - `packages/cli/` — the `vcr` command. `packages/timeline/` — time types. `packages/capture/` — browser frame-capture harness.
 - `skills/` — flat `skills/<name>/SKILL.md` toolkit and workflow guides in Agent Skills format.
