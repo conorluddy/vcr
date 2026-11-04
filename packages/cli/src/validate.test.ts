@@ -74,6 +74,14 @@ describe("validateRepository", () => {
     expect(report.diagnostics).toContainEqual(expect.objectContaining({ path: "/validation/evidence/0/version", severity: "warning" }));
     expect(hasErrors(report)).toBe(false);
   });
+  test("a later exact entry clears the warning without editing the earlier one", () => {
+    const evidence = [
+      { date: "2026-10-26", hostname: "test", version: "3.x via pnpm", command: "./run.sh", result: "ok" },
+      { date: "2026-11-04", hostname: "test", version: "3.15.1", command: "./run.sh", result: "ok" },
+    ];
+    const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status: "validated", evidence } }]));
+    expect(report.diagnostics.filter((diagnostic) => diagnostic.path.endsWith("/version"))).toEqual([]);
+  });
   test("an exact or not-applicable evidence version raises no version warning", () => {
     for (const version of ["8.0.1", "n/a (platform)"]) {
       const evidence = [{ date: "2026-10-26", hostname: "test", version, command: "./run.sh", result: "ok" }];

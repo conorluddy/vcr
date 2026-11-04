@@ -90,6 +90,9 @@ describe("formatReadiness", () => {
   test("says when the evidence version cannot be compared", () => {
     expect(formatReadiness(installed("3.12.5"), { version: "3.x via pnpm" })).toBe("this machine: has 3.12.5; evidence version not exact, cannot compare (doctor 2026-11-04)");
   });
+  test("blames the local version when the evidence is exact but the probe cannot be compared", () => {
+    expect(formatReadiness(installed("N-112345-gabc123"), { version: "8.0.1" })).toBe("this machine: has N-112345-gabc123; local version could not be compared with the evidence (doctor 2026-11-04)");
+  });
   test("points at vcr doctor when there is no record", () => {
     expect(formatReadiness({ state: "no-machine-record" }, { version: "8.0.1" })).toBe("this machine: no vcr doctor record (run vcr doctor)");
   });

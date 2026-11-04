@@ -210,9 +210,11 @@ function toolReferenceDiagnostics(record: ToolSummary, file: string, tools: Map<
     if (!example) error("/examples", `example "${exampleId}" has no examples/<dir>/example.json`, "Add the manifest or remove the reference.");
     else if (!example.manifest.tools.includes(record.id)) error("/examples", `example "${exampleId}" does not list ${record.id} in its tools`, "Add the tool to the example manifest so the link is two-way.");
   }
-  for (const [index, evidence] of (record.validation.evidence ?? []).entries()) {
+  const evidenceEntries = record.validation.evidence ?? [];
+  for (const [index, evidence] of evidenceEntries.entries()) {
     const scope = versionScope(evidence.version);
-    if (scope === "inexact" || scope === "unknown") {
+    // Only the latest entry is what cards show; appending an exact entry clears the warning without editing history.
+    if (index === evidenceEntries.length - 1 && (scope === "inexact" || scope === "unknown")) {
       diagnostics.push({ severity: "warning", file, path: `/validation/evidence/${index}/version`, message: scope === "inexact" ? `evidence version "${evidence.version ?? ""}" is a range, not the version that ran` : `evidence version "${evidence.version ?? ""}" does not identify what ran`, suggestion: "Leave this entry as is; when re-validating, append a new evidence entry with the exact version and a scope (see catalog/FIXTURE-EVIDENCE-TEMPLATE.md)." });
     }
     if (!evidence.example) continue;

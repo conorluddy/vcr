@@ -90,7 +90,7 @@ export function formatReadiness(readiness: Readiness, evidence: EvidenceRef | un
 function evidenceNote(readiness: Extract<Readiness, { state: "installed" }>, evidence: EvidenceRef | undefined): string {
   if (!evidence) return "";
   const match = compareToEvidence(evidence.version, { version: readiness.version });
-  if (match === "unknown") return "; evidence version not exact, cannot compare";
+  if (match === "unknown") return versionScope(evidence.version) === "exact" ? "; local version could not be compared with the evidence" : "; evidence version not exact, cannot compare";
   const where = evidence.hostname && evidence.hostname === readiness.hostname ? "here" : "on another host";
   if (match === "same-version") return `; evidence ran this version ${where}`;
   return `; evidence ran ${evidence.version} ${where}, so this version is untested`;

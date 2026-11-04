@@ -8574,7 +8574,7 @@ function formatReadiness(readiness, evidence) {
 function evidenceNote(readiness, evidence) {
   if (!evidence) return "";
   const match = compareToEvidence(evidence.version, { version: readiness.version });
-  if (match === "unknown") return "; evidence version not exact, cannot compare";
+  if (match === "unknown") return versionScope(evidence.version) === "exact" ? "; local version could not be compared with the evidence" : "; evidence version not exact, cannot compare";
   const where = evidence.hostname && evidence.hostname === readiness.hostname ? "here" : "on another host";
   if (match === "same-version") return `; evidence ran this version ${where}`;
   return `; evidence ran ${evidence.version} ${where}, so this version is untested`;
@@ -9045,9 +9045,10 @@ function toolReferenceDiagnostics(record, file, tools, examples, repositoryRoot)
     if (!example) error("/examples", `example "${exampleId}" has no examples/<dir>/example.json`, "Add the manifest or remove the reference.");
     else if (!example.manifest.tools.includes(record.id)) error("/examples", `example "${exampleId}" does not list ${record.id} in its tools`, "Add the tool to the example manifest so the link is two-way.");
   }
-  for (const [index, evidence] of (record.validation.evidence ?? []).entries()) {
+  const evidenceEntries = record.validation.evidence ?? [];
+  for (const [index, evidence] of evidenceEntries.entries()) {
     const scope = versionScope(evidence.version);
-    if (scope === "inexact" || scope === "unknown") {
+    if (index === evidenceEntries.length - 1 && (scope === "inexact" || scope === "unknown")) {
       diagnostics.push({ severity: "warning", file, path: `/validation/evidence/${index}/version`, message: scope === "inexact" ? `evidence version "${evidence.version ?? ""}" is a range, not the version that ran` : `evidence version "${evidence.version ?? ""}" does not identify what ran`, suggestion: "Leave this entry as is; when re-validating, append a new evidence entry with the exact version and a scope (see catalog/FIXTURE-EVIDENCE-TEMPLATE.md)." });
     }
     if (!evidence.example) continue;
