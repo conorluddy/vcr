@@ -18,10 +18,10 @@ Delivery path for every renderer in VCR. Native output (Blender, browser capture
 ## Install and doctor
 ```text
 brew install ffmpeg
-ffmpeg -version | head -1    # expect: ffmpeg version 8.x
+ffmpeg -version | head -1    # e.g. 8.x from Homebrew, 6.1 on Ubuntu 24.04; any recent release works
 vcr doctor                   # records it in ~/.vcr/environment/<hostname>.json
 ```
-Validated 8.0.1 on macOS arm64, see `examples/ffmpeg-assembly`.
+Validated 8.0.1 on macOS arm64 and 6.1.1 on Linux x86_64 (2026-11-04), see `examples/ffmpeg-assembly`.
 
 ## Smoke test
 ```text
@@ -36,6 +36,12 @@ ffmpeg -y -i in.mov -c:v libvpx-vp9 -b:v 0 -crf 30 -pix_fmt yuva420p out.webm   
 ffmpeg -y -i in.mov -c:v prores_ks -profile:v 4444 -pix_fmt yuva444p10le out.mov                      # intermediate with alpha
 ```
 `yuv420p` needs even dimensions: `-vf "scale=trunc(iw/2)*2:trunc(ih/2)*2"` when in doubt.
+
+## GIF
+```text
+ffmpeg -y -framerate 24 -i frames/frame-%04d.png -vf "split[a][b];[a]palettegen=stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=3" -loop 0 out.gif
+```
+Build the palette from the frames themselves; without it colours band badly. GIF has 1-bit alpha only, so soft edges need a matte colour. For higher quality, use gifski on the same frames.
 
 ## Mux
 ```text
