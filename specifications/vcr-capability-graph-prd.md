@@ -156,7 +156,7 @@ Policy defaults:
 - Permission to **run**, **modify**, **redistribute**, **bundle**, **publish generated outputs**, **host models**, and **use commercially** are separately evaluated.
 - Record OSI status, licence exceptions, and source evidence without claiming to provide legal advice.
 
-[ADR 0005](decisions/0005-recommendation-policy-and-licence-migration.md) (proposed) sets out the five policy dimensions, the eligibility rule and the deferred migration of `license` strings.
+[ADR 0005](decisions/0005-recommendation-policy-and-licence-migration.md) (accepted) sets out the five policy dimensions and the deferred migration of `license` strings, and relaxes the default below from OSI-approved to free for local and commercial use while VCR is the owner's own tool.
 
 ## 6. Search, planning and explanation
 
