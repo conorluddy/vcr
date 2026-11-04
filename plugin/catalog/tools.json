@@ -5455,6 +5455,7 @@
       "role": "Headless browser automation; the capture route for every browser-rendered toolkit",
       "summary": "Browser automation library for Chromium, Firefox and WebKit. In VCR it drives headless Chromium through the shared @vcr/capture harness: seek a paused timeline, settle two animation frames, then capture each frame as PNG, including alpha, with page.screenshot (validated in p5-capture and three-capture). HeadlessExperimental beginFrame is an experimental, DOM-only alternative. Distinguishing strength: one capture path for any DOM, SVG, canvas or WebGL scene, with order-independent frames (a GSAP timeline matched under beginFrame; canvas and WebGL under screenshot).",
       "use_when": [
+        "Frame capture: vcr capture <scene.html> --fps F --verify (first run: vcr setup capture --yes)",
         "Capturing any browser-rendered scene frame by frame, DOM, SVG, canvas or WebGL",
         "Alpha PNG layers from HTML for a later compositor, over MP4 renderers like HyperFrames",
         "Over canvas-record or CCapture.js when the scene is not a bare canvas or needs server-side runs"
@@ -8437,7 +8438,7 @@
       "category": "Native browser platform APIs",
       "tier": "catalogued",
       "role": "Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time",
-      "summary": "Node-graph audio API for oscillators, buffers, filters, gain automation and analysis. A live AudioContext plays in real time; an OfflineAudioContext renders the graph to an AudioBuffer as fast as possible, which suits VCR. Encode the buffer to WAV and mux with ffmpeg. AnalyserNode supplies FFT data for audio-reactive visuals when fed a decoded buffer.",
+      "summary": "Node-graph audio API for oscillators, buffers, filters, gain automation and analysis. A live AudioContext plays in real time; an OfflineAudioContext renders the graph to an AudioBuffer as fast as possible, which suits VCR. Encode the buffer to WAV and mux with ffmpeg. For audio-reactive visuals compute per-frame features from the decoded buffer: AnalyserNode is real-time, and under OfflineAudioContext needs suspend(t) per frame. No beat or onset detection.",
       "use_when": [
         "Rendering generated sound effects or beds offline into a WAV, no dependencies",
         "Audio analysis (FFT) feeding visuals, computed from a decoded buffer",

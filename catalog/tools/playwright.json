@@ -6,6 +6,7 @@
   "role": "Headless browser automation; the capture route for every browser-rendered toolkit",
   "summary": "Browser automation library for Chromium, Firefox and WebKit. In VCR it drives headless Chromium through the shared @vcr/capture harness: seek a paused timeline, settle two animation frames, then capture each frame as PNG, including alpha, with page.screenshot (validated in p5-capture and three-capture). HeadlessExperimental beginFrame is an experimental, DOM-only alternative. Distinguishing strength: one capture path for any DOM, SVG, canvas or WebGL scene, with order-independent frames (a GSAP timeline matched under beginFrame; canvas and WebGL under screenshot).",
   "use_when": [
+    "Frame capture: vcr capture <scene.html> --fps F --verify (first run: vcr setup capture --yes)",
     "Capturing any browser-rendered scene frame by frame, DOM, SVG, canvas or WebGL",
     "Alpha PNG layers from HTML for a later compositor, over MP4 renderers like HyperFrames",
     "Over canvas-record or CCapture.js when the scene is not a bare canvas or needs server-side runs"
