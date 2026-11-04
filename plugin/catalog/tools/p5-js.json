@@ -73,6 +73,15 @@
         "command": "examples/p5-capture/run.sh",
         "result": "90 alpha frames at 1280x720; shuffled order matches sequential",
         "example": "examples/p5-capture"
+      },
+      {
+        "date": "2026-11-04",
+        "hostname": "vm",
+        "version": "2.3.4",
+        "command": "examples/p5-capture/run.sh",
+        "result": "Shuffled order matches sequential; expected/summary.json diff passed; frame 30 alpha printed min 0 max 1 (not asserted). Env: Linux x86_64 container, Chrome for Testing 153.0.8010.12 headless shell standing in for pinned build 1248, ImageMagick 6.9.12-98 via convert shim.",
+        "example": "examples/p5-capture",
+        "scope": "noLoop sketch redrawn per seek via the @vcr/capture screenshot route, Linux container, Chromium 153 stand-in; alpha printed, not asserted."
       }
     ]
   },

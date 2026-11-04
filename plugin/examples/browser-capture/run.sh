@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Capture a paused GSAP timeline frame by frame with alpha, check an edge pixel really is
-# semi-transparent, and assemble a ProRes 4444 movie that keeps the alpha channel.
+# Capture a paused GSAP timeline frame by frame with alpha, print frame 45's alpha range
+# (not asserted), and assemble a ProRes 4444 movie that keeps the alpha channel.
 set -euo pipefail
 cd "$(dirname "$0")"
 mkdir -p output
