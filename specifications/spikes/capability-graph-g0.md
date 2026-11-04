@@ -187,6 +187,7 @@ Nothing else survives. The R1 units, R5, R6, R7 and R8 answers, the readiness an
    - A missing block means incomplete, never incompatible.
    - Validator rule: a `retained-fixture` claim must cite an example with retained outputs. This rule would have caught O8 and O13.
    - INDEX.md is untouched.
+   - The observed pilot did not justify this step on its own; see "B pilot: observed trial (2026-11-04)" below.
 3. **Curated routes (#77) as a small separate set of route records.** They are cross-tool, and each carries bindings and unknowns. The one join route is R4.
 4. **Defer CG5–CG7** (#80–#85). Revisit only if one of these happens:
    - real requests need uncurated joins or forks;
@@ -208,6 +209,56 @@ Evidence fixes landed on this branch. The go/no-go above is still a draft.
 - **Gap notes.** aubio and librosa note that no onset-event contract exists yet (cue/mux is #60).
 - **Historical evidence.** Existing `validation.evidence[]` entries are unchanged; scope corrections go in dated notes.
 - **Tool cards.** `vcr tools info` now prints a `Readiness:` line. It separates the catalogue's install status from `vcr doctor`'s live check and shows VCR adapter maturity.
+
+## B pilot: observed trial (2026-11-04)
+
+**Piloted.** [Pilot operations files](capability-graph-g0-pilot/README.md) for the 7 in-scope tools plus three-js and svg: 9 files, 12,394 B. Author hours were not reported; the estimate above is 9–12 h.
+
+**Method.** Two blind agents answered R1–R8:
+- A: catalogue text after Step 1.
+- B: the same text plus the pilot files.
+
+Each arm ran once on its own sources, so n=1 per arm. Bytes are self-reported, not measured. All results are OBSERVED.
+
+| Req | Grade A/B | False claims A/B | Missed unknowns A/B |
+|---|---|---|---|
+| R1 | yes/yes | 0/0 | 0/1 |
+| R2 | yes/yes | 0/1 | 0/0 |
+| R3 | yes/yes | 0/0 | 0/0 |
+| R4 | yes/partial | 0/0 | 4/3 |
+| R5 | yes/yes | 0/0 | 3/2 |
+| R6 | yes/yes | 0/0 | 0/0 |
+| R7 | yes/yes | 0/0 | 0/0 |
+| R8 | yes/yes | 0/0 | 1/2 |
+
+Bytes: A 94,545 and B 34,800, about 63% fewer for B.
+
+Neither arm surfaced cue/mux #60. B's two partial or false answers:
+- **R2 false claim.** It applied three-capture's seekable clock to a GSAP scene.
+- **R4 partial.** It lost `-shortest`, the codecs and the container, because mux-av does not encode them.
+
+Pairing gave B two real gains. It saw that Blender render-sequence takes `.blend`, not GLB, and that no onset format is declared.
+
+**Pilot data errors.** The pilot files contain at least 8 errors:
+- **Cross-scope borrows.** The `retained-fixture` rule passes all three.
+  - Playwright seek-capture claims alpha from the beginFrame run.
+  - The Blender GLB still claims alpha from blender-smoke, whose fixture imports no GLB.
+  - ImageMagick's dimensions come from an indirect MP4 probe.
+- **Unsupported versions.** The Chromium build and FFmpeg 8.0.1 versions are not supported by their sources.
+- **Port mismatch.** encode-sequence takes `png-sequence`, but its evidence is a single looped PNG.
+- **Missing bindings.** mux-av omits R4's bindings.
+- **Incomplete evidence entries.** 19 entries lack a version, 7 a date and 5 a scope.
+- **Missing file.** There is no gsap file.
+
+**Verdict.** B ties A on correctness and unknowns, with A slightly ahead on false claims and R4. B wins only on bytes. That figure is self-reported, and the files pre-digest this report's audit. The pilot repeated the curation errors that CG0 warned typing would make look more authoritative.
+
+**What changes.**
+- Step 1 stands.
+- Step 2 is not justified by this trial alone.
+- Before any `operations[]` rollout:
+  - add a scope-match check (the cited example must exercise the same operation);
+  - require version, date and scope on every evidence entry;
+  - rerun with n>1.
 
 ## Remaining uncertainties and ADR ownership
 
