@@ -74,6 +74,24 @@ describe("validateRepository", () => {
     expect(report.diagnostics).toContainEqual(expect.objectContaining({ path: "/validation/evidence/0/version", severity: "warning" }));
     expect(hasErrors(report)).toBe(false);
   });
+  test("new evidence with a range version is an error", () => {
+    const evidence = [{ date: "2026-11-05", hostname: "test", version: "3.x", command: "./run.sh", result: "ok", scope: "one run" }];
+    const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status: "validated", evidence } }]));
+    expect(report.diagnostics).toContainEqual(expect.objectContaining({ path: "/validation/evidence/0/version", severity: "error" }));
+  });
+  test("new evidence without a scope is an error", () => {
+    const evidence = [{ date: "2026-11-06", hostname: "test", version: "8.0.1", command: "./run.sh", result: "ok" }];
+    const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status: "validated", evidence } }]));
+    expect(report.diagnostics).toContainEqual(expect.objectContaining({ path: "/validation/evidence/0/scope", severity: "error" }));
+  });
+  test("new evidence that is exact and scoped is clean, and old entries only warn", () => {
+    const evidence = [
+      { date: "2026-10-26", hostname: "test", version: "pnpm latest", command: "./run.sh", result: "ok" },
+      { date: "2026-11-05", hostname: "test", version: "n/a (platform)", command: "./run.sh", result: "ok", scope: "platform feature" },
+    ];
+    const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status: "validated", evidence } }]));
+    expect(hasErrors(report)).toBe(false);
+  });
   test("a later exact entry clears the warning without editing the earlier one", () => {
     const evidence = [
       { date: "2026-10-26", hostname: "test", version: "3.x via pnpm", command: "./run.sh", result: "ok" },
