@@ -13,7 +13,7 @@
   "avoid_when": [
     "DOM, SVG or CSS scenes: Playwright captures the whole page",
     "Server-side or CI renders: Playwright frames into FFmpeg",
-    "Alpha PNG sequences at scale: Playwright beginFrame capture is the validated route"
+    "Alpha PNG sequences at scale: Playwright seek-and-screenshot capture is the validated route"
   ],
   "pairs_with": [
     "canvas-2d",

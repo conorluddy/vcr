@@ -1,7 +1,7 @@
 {
   "id": "three-capture",
-  "title": "Three.js scene rendered once per seek with alpha",
-  "summary": "Torus knot lit by a directional light, rendered on the animation frame the harness drives; 90 transparent frames, shuffled order matches sequential.",
+  "title": "Three.js scene rendered once per seek with a transparent clear colour",
+  "summary": "Torus knot lit by a directional light, rendered on the animation frame the harness drives; 90 frames with a transparent clear colour configured (alpha not retained or asserted), shuffled order matches sequential.",
   "status": "validated",
   "tools": ["three-js", "playwright", "imagemagick"],
   "run": "./run.sh",

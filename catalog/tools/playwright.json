@@ -4,7 +4,7 @@
   "category": "A5. Video and capture",
   "tier": "catalogued",
   "role": "Headless browser automation; the capture route for every browser-rendered toolkit",
-  "summary": "Browser automation library for Chromium, Firefox and WebKit. In VCR it drives headless Chromium to seek a paused timeline and capture frames as PNG, including alpha, via screenshots or the HeadlessExperimental beginFrame protocol under deterministic mode. Distinguishing strength: one capture path for any DOM, SVG, canvas or WebGL scene, validated here against a GSAP timeline with order-independent frames.",
+  "summary": "Browser automation library for Chromium, Firefox and WebKit. In VCR it drives headless Chromium through the shared @vcr/capture harness: seek a paused timeline, settle two animation frames, then capture each frame as PNG, including alpha, with page.screenshot. HeadlessExperimental beginFrame remains an experimental, DOM-only alternative. Distinguishing strength: one capture path for any DOM, SVG, canvas or WebGL scene, validated here against a GSAP timeline with order-independent frames.",
   "use_when": [
     "Capturing any browser-rendered scene frame by frame, DOM, SVG, canvas or WebGL",
     "Alpha PNG layers from HTML for a later compositor, over MP4 renderers like HyperFrames",
@@ -43,7 +43,7 @@
   ],
   "notes": [
     "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
-    "Use HeadlessExperimental.beginFrame under --deterministic-mode for order-independent frames; see specifications/spikes/browser-capture.md.",
+    "Use the shared @vcr/capture harness (seek, settle two animation frames, page.screenshot) for order-independent frames. HeadlessExperimental.beginFrame under --deterministic-mode is experimental and DOM-only: it hangs on canvas and WebGL pages, and an audit rerun of browser-capture exited with an unresolved await on that path; see specifications/spikes/browser-capture.md and examples/browser-capture/README.md.",
     "2026-10-26: HeadlessExperimental is a Chrome DevTools domain flagged experimental upstream and may change; re-check after Playwright or Chromium upgrades."
   ],
   "assessment": {
@@ -53,7 +53,7 @@
     "last_release": "2026-10-14",
     "maintenance": "active",
     "verdict": "keep",
-    "rationale": "Release 1.64.1 on 2026-10-14, Apache-2.0, pushed daily by Microsoft. Validated locally by the browser-capture example; the beginFrame route depends on an experimental CDP domain, which is the main risk.",
+    "rationale": "Release 1.64.1 on 2026-10-14, Apache-2.0, pushed daily by Microsoft. Validated locally by the browser-capture example through seek, a two-frame settle and screenshot; the optional beginFrame route depends on an experimental CDP domain, is DOM-only and is not the default.",
     "sources": [
       "https://playwright.dev/docs/intro",
       "https://www.npmjs.com/package/playwright",

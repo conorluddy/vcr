@@ -1,7 +1,7 @@
 {
   "id": "build123d-product",
   "title": "Parametric CAD part exported to GLB and imported into Blender",
-  "summary": "Owned filleted part with an offset hole; checks CAD dimensions, STEP roundtrip, SVG projection and Blender GLB geometry before rendering a still.",
+  "summary": "Owned filleted part with an offset hole, build123d 0.13.0 and Blender 4.4.0: checks CAD dimensions, STEP roundtrip, SVG projection and GLB geometry import into Blender, then renders one still. Three.js, materials and animation are out of scope.",
   "status": "validated",
   "tools": [
     "build123d",

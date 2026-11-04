@@ -18,7 +18,7 @@ VCR_CAPTURE=beginframe pnpm -s capture   # experimental alternative; screenshot 
 4. Recommended in scenes: `gsap.defaults({ force3D: false, lazy: false })`, so GSAP never swaps transform paths mid-tween or defers its first write to the next tick.
 5. Disable Chromium partial rasterization. Reusing raster tiles produced small pixel differences between frame orders even when the scene values matched; the shared harness includes `--disable-partial-raster`.
 
-## Expected
-`shuffled_matches_sequential=true`, 90 frames, `srgba` PNGs with alpha min 0 and max 1, `prores` `yuva444p12le` output.
+## Expected (fixture-reported)
+`shuffled_matches_sequential=true`, 90 frames, `srgba` PNGs with alpha min 0 and max 1, and a `prores` output. `run.sh` requests `yuva444p10le`; ffprobe was reported as `yuva444p12le`, likely the ProRes decoder's output format (not confirmed). These values come from runs, not retained files: this example keeps no `expected/` directory, and whether alpha survives the ProRes encode has not been retained.
 
 The fixture captures a separate, seeded shuffled run and fails if frame hashes differ or every frame is identical. A third run captures 30 frames at 4K. Capture diagnostics are kept in `output/capture.log` and printed on failure.

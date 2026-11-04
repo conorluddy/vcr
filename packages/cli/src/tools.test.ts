@@ -49,8 +49,11 @@ describe("formatToolTable", () => {
 describe("formatToolCard", () => {
   const example: ExampleManifest = { id: "demo", title: "Demo", status: "validated", tools: ["ffmpeg"], run: "./run.sh", directory: "examples/demo" };
   test("renders every tier 1 field and points at tiers 2 and 3 with their cost", () => {
-    const card = formatToolCard(tool("ffmpeg", { tier: "core", summary: "Encodes things.", use_when: ["you need an mp4"], avoid_when: ["you need a timeline"], pairs_with: ["gifski"], skill: "skills/ffmpeg/SKILL.md" }), [example], "/nonexistent");
+    const card = formatToolCard(tool("ffmpeg", { tier: "core", summary: "Encodes things.", use_when: ["you need an mp4"], avoid_when: ["you need a timeline"], pairs_with: ["gifski"], skill: "skills/ffmpeg/SKILL.md", installation_status: "installed", adapter_maturity: "cli-wrapper" }), [example], "/nonexistent");
     expect(card).toContain("Encodes things.");
+    const lines = card.split("\n");
+    const evidenceIndex = lines.findIndex((line) => line.startsWith("Evidence: "));
+    expect(lines[evidenceIndex + 1]).toBe("Readiness: installation installed · adapter cli-wrapper");
     expect(card).toContain("- you need an mp4");
     expect(card).toContain("Pairs with: gifski");
     expect(card).toContain("Guide: skills/ffmpeg/SKILL.md (? KB) — vcr tools info ffmpeg --full");
@@ -61,6 +64,11 @@ describe("formatToolCard", () => {
     expect(card).toContain("Guide: none yet");
     expect(card).toContain("Examples: none yet");
     expect(card).not.toContain("Use when");
+    expect(card).toContain("Readiness: installation unknown · adapter none");
+  });
+  test("reports missing readiness fields as unknown", () => {
+    const card = formatToolCard({ ...tool("gifski"), installation_status: undefined, adapter_maturity: "" } as unknown as ToolSummary, [], "/nonexistent");
+    expect(card).toContain("Readiness: installation unknown · adapter unknown");
   });
 });
 

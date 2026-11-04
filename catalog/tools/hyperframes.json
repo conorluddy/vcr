@@ -13,7 +13,7 @@
   "avoid_when": [
     "Native sources (Blender, Manim) or filtergraph compositing: FFmpeg, no HTML round trip",
     "Inside VCR proper: ADR 0001 builds the compositor in-house; Playwright plus FFmpeg for capture",
-    "Alpha PNG layers for a later compositor: Playwright beginFrame capture, not an MP4 render"
+    "Alpha PNG layers for a later compositor: Playwright seek-and-screenshot capture, not an MP4 render"
   ],
   "pairs_with": [
     "gsap",
