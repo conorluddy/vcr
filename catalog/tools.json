@@ -481,7 +481,8 @@
             "version": "4.4.0",
             "command": "examples/blender-smoke/run.sh",
             "result": "Workbench background render of one 320x240 RGBA frame from the app bundle",
-            "example": "examples/blender-smoke"
+            "example": "examples/blender-smoke",
+            "scope": "Backfilled 2026-11-04: Workbench render of one 320x240 RGBA still from the app bundle, macOS arm64; no Cycles, EEVEE, animation or compositing."
           }
         ]
       },
@@ -546,7 +547,8 @@
             "version": "0.13.0",
             "command": "examples/build123d-product/run.sh",
             "result": "Valid 60x40x12 mm filleted solid; analytic volume and STEP roundtrip, SVG projection, GLB scale/orientation/normals and coarse/fine tessellation passed with Blender 4.4.0 on macOS arm64. Fine mesh volume error 0.00035%; 800x600 RGBA Workbench still inspected. Blender required GPU access outside sandbox.",
-            "example": "examples/build123d-product"
+            "example": "examples/build123d-product",
+            "scope": "Backfilled 2026-11-04: one filleted solid to STEP, SVG and GLB, imported into Blender 4.4.0, macOS arm64; one part, Workbench still only."
           }
         ]
       },
@@ -1797,7 +1799,8 @@
             "version": "8.0.1",
             "command": "examples/ffmpeg-assembly/run.sh",
             "result": "48 frames at 24 fps mux to 2.000000 s with AAC; ffprobe JSON matches expected/",
-            "example": "examples/ffmpeg-assembly"
+            "example": "examples/ffmpeg-assembly",
+            "scope": "Backfilled 2026-11-04: 48 PNG frames at 24 fps to H.264 yuv420p MP4 with AAC, ffprobe matches expected/, macOS arm64; no alpha codecs."
           },
           {
             "date": "2026-11-04",
@@ -2653,7 +2656,8 @@
             "version": "3.x via pnpm",
             "command": "examples/browser-capture/run.sh",
             "result": "90 frames seeked and captured with alpha; shuffled order matches sequential; see specifications/spikes/browser-capture.md",
-            "example": "examples/browser-capture"
+            "example": "examples/browser-capture",
+            "scope": "Backfilled 2026-11-04: GSAP timeline seeked by browser-capture, alpha frames, macOS arm64; exact GSAP version not recorded; no expected/ retained."
           },
           {
             "date": "2026-11-04",
@@ -2923,7 +2927,8 @@
             "version": "7.1.2-15",
             "command": "examples/ffmpeg-assembly/run.sh",
             "result": "48 synthetic frames drawn; alpha statistics and identify used by browser-capture and blender-smoke",
-            "example": "examples/ffmpeg-assembly"
+            "example": "examples/ffmpeg-assembly",
+            "scope": "Backfilled 2026-11-04: magick drew 48 synthetic frames in ffmpeg-assembly, macOS arm64. Alpha stats and identify in other examples are claimed, not cited."
           },
           {
             "date": "2026-11-04",
@@ -5136,7 +5141,8 @@
             "version": "2.3.4",
             "command": "examples/p5-capture/run.sh",
             "result": "90 alpha frames at 1280x720; shuffled order matches sequential",
-            "example": "examples/p5-capture"
+            "example": "examples/p5-capture",
+            "scope": "Backfilled 2026-11-04: p5 sketch redrawn per seek, 90 alpha frames at 1280x720, shuffled matches sequential, macOS arm64."
           },
           {
             "date": "2026-11-04",
@@ -5521,7 +5527,8 @@
             "version": "Chromium 156.0.8078.4",
             "command": "examples/browser-capture/run.sh",
             "result": "90 alpha frames; shuffled order matches sequential",
-            "example": "examples/browser-capture"
+            "example": "examples/browser-capture",
+            "scope": "Backfilled 2026-11-04: browser-capture on Chromium 156, 90 alpha frames, shuffled matches sequential, macOS arm64; Playwright version not recorded."
           },
           {
             "date": "2026-11-04",
@@ -6538,7 +6545,8 @@
             "version": "0.47.0",
             "command": "examples/native-svg/run.sh",
             "result": "PNG hash and ffprobe metadata match expected/",
-            "example": "examples/native-svg"
+            "example": "examples/native-svg",
+            "scope": "Backfilled 2026-11-04: one static SVG (title-card.svg) rasterised to PNG; hash and ffprobe metadata match expected/, macOS arm64."
           }
         ]
       },
@@ -7282,7 +7290,8 @@
             "version": "n/a (platform)",
             "command": "examples/native-svg/run.sh",
             "result": "Static SVG rasterised by resvg",
-            "example": "examples/native-svg"
+            "example": "examples/native-svg",
+            "scope": "Backfilled 2026-11-04: one static SVG rasterised by resvg; no SVG animation and no browser rendering."
           }
         ]
       },
@@ -7610,7 +7619,8 @@
             "version": "pnpm latest, Chromium 156",
             "command": "examples/three-capture/run.sh",
             "result": "90 alpha frames at 1280x720; shuffled order matches sequential",
-            "example": "examples/three-capture"
+            "example": "examples/three-capture",
+            "scope": "Backfilled 2026-11-04: three.js scene rendered per seek, 90 alpha frames at 1280x720, shuffled matches sequential, macOS arm64; three version not recorded."
           },
           {
             "date": "2026-11-04",

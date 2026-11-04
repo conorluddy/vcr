@@ -67,7 +67,8 @@
         "version": "n/a (platform)",
         "command": "examples/native-svg/run.sh",
         "result": "Static SVG rasterised by resvg",
-        "example": "examples/native-svg"
+        "example": "examples/native-svg",
+        "scope": "Backfilled 2026-11-04: one static SVG rasterised by resvg; no SVG animation and no browser rendering."
       }
     ]
   },

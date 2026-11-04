@@ -79,7 +79,8 @@
         "version": "pnpm latest, Chromium 156",
         "command": "examples/three-capture/run.sh",
         "result": "90 alpha frames at 1280x720; shuffled order matches sequential",
-        "example": "examples/three-capture"
+        "example": "examples/three-capture",
+        "scope": "Backfilled 2026-11-04: three.js scene rendered per seek, 90 alpha frames at 1280x720, shuffled matches sequential, macOS arm64; three version not recorded."
       },
       {
         "date": "2026-11-04",
