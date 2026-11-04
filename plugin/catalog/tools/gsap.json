@@ -78,7 +78,7 @@
         "hostname": "vm",
         "version": "3.15.0",
         "command": "examples/browser-capture/run.sh",
-        "result": "Screenshot route: 90 frames at 1080p, shuffled order matches sequential; frame 45 alpha min 0 max 1; ProRes 4444 with yuva444p10le requested, ffprobe reports yuva444p12le (FFmpeg 6.1.1). Env: Linux x86_64 container, Chrome for Testing 153.0.8010.12 headless shell standing in for pinned build 1248, ImageMagick 6.9.12-98 via convert shim.",
+        "result": "Screenshot route: 90 frames at 1080p, shuffled order matches sequential; frame 45 alpha printed min 0 max 1 (not asserted); ProRes 4444 with yuva444p10le requested, ffprobe reports yuva444p12le (FFmpeg 6.1.1). Env: Linux x86_64 container, Chrome for Testing 153.0.8010.12 headless shell standing in for pinned build 1248, ImageMagick 6.9.12-98 via convert shim.",
         "example": "examples/browser-capture",
         "scope": "GSAP timeline seeked via the @vcr/capture screenshot route, Linux container, Chromium 153 stand-in. Fixture-reported: no expected/ retained."
       }

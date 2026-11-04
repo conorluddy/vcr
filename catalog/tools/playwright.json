@@ -78,7 +78,7 @@
         "hostname": "vm",
         "version": "1.64.1, Chrome for Testing 153.0.8010.12 headless shell",
         "command": "examples/browser-capture/run.sh",
-        "result": "Default screenshot route (seek, two-frame settle, screenshot): 90 alpha frames at 1080p, shuffled matches sequential, 30 frames at 4K; about 10 fps at 1080p. Env: Linux x86_64 container, Chrome for Testing 153.0.8010.12 headless shell standing in for pinned build 1248, ImageMagick 6.9.12-98 via convert shim.",
+        "result": "Default screenshot route (seek, two-frame settle, screenshot): 90 frames at 1080p, shuffled matches sequential; 30 frames at 4K hashed, not checked; frame 45 alpha printed min 0 max 1 (not asserted); about 10 fps at 1080p, single run. Env: Linux x86_64 container, Chrome for Testing 153.0.8010.12 headless shell standing in for pinned build 1248, ImageMagick 6.9.12-98 via convert shim.",
         "example": "examples/browser-capture",
         "scope": "First recorded run of the current default route (seek, settle, screenshot) for browser-capture; Linux container, Chromium 153 stand-in, not pinned Chromium 156."
       }
