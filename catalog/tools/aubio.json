@@ -12,7 +12,8 @@
   "notes": [
     "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
     "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
-    "2026-10-29: Skill opportunity: Further research first: a synthetic audio-event fixture is needed before recommending a general audio-analysis skill."
+    "2026-10-29: Skill opportunity: Further research first: a synthetic audio-event fixture is needed before recommending a general audio-analysis skill.",
+    "2026-11-04: No onset-event output format or event-to-timeline contract is declared in VCR yet, so onset-driven routes stay unknown; cue/mux runtime is tracked in #60 and not implemented."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",

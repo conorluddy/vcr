@@ -4,7 +4,7 @@
   "category": "A3. 3D, shaders and effects",
   "tier": "core",
   "role": "Browser 3D rendered once per seek with alpha: product shots, hero objects, camera moves",
-  "summary": "The standard WebGL and WebGPU scene graph for the browser, with loaders, PBR materials, lights, shadows, postprocessing and a shading language. In VCR a scene renders once per requested time with a transparent clear colour, so 3D layers composite over anything else. Real-time quality in seconds per shot rather than Blender's minutes.",
+  "summary": "The standard WebGL and WebGPU scene graph for the browser, with loaders, PBR materials, lights, shadows, postprocessing and a shading language. In VCR a scene renders once per requested time with a transparent clear colour, so 3D layers can composite over anything else (alpha is not yet asserted by a retained check). Real-time quality in seconds per shot rather than Blender's minutes.",
   "use_when": [
     "Product reveals, floating objects and camera orbits that must turn around fast",
     "Over Babylon.js for the larger ecosystem: pmndrs postprocessing, drei, glTF tooling",
@@ -85,5 +85,8 @@
   },
   "adapter_maturity": "none",
   "checked_at": "2026-10-26",
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "notes": [
+    "2026-11-04: Evidence scope (capability-graph G0 audit, specifications/spikes/capability-graph-g0.md): three-capture configures a transparent clear colour; run.sh prints frame 30's alpha min/max but neither asserts nor retains it. The run did not log the three version; the committed lockfile resolves 0.186.1 for ^0.186.1."
+  ]
 }

@@ -8805,6 +8805,7 @@ function formatToolCard(tool, examples, repositoryRoot) {
   if (tool.license) lines.push(`Licence: ${tool.license}`);
   if (tool.install?.macos) lines.push(`Install (macOS): ${tool.install.macos}${tool.install.check_command ? `  \xB7 check: ${tool.install.check_command}` : ""}`);
   lines.push(`Evidence: ${evidenceLine(tool)}`);
+  lines.push(`Readiness: catalogue install status ${tool.installation_status || "unknown"} (vcr doctor checks this machine) \xB7 VCR adapter ${tool.adapter_maturity || "unknown"}`);
   lines.push(`Guide: ${tool.skill ? `${tool.skill} (${fileSizeKb(repositoryRoot, tool.skill) ?? "?"} KB) \u2014 vcr tools info ${tool.id} --full` : "none yet"}`);
   const own = examples.filter((example) => example.tools.includes(tool.id));
   lines.push(`Examples: ${own.length ? `${own.map((example) => `${example.id} (${example.status})`).join(", ")} \u2014 vcr tools examples ${tool.id}` : "none yet"}`);
