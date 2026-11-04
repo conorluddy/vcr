@@ -8074,7 +8074,7 @@ var require_dist = __commonJS({
 
 // packages/cli/src/index.ts
 import { mkdirSync as mkdirSync5, writeFileSync as writeFileSync8 } from "node:fs";
-import { dirname as dirname4, join as join11, resolve as resolve3 } from "node:path";
+import { dirname as dirname4, join as join12, resolve as resolve3 } from "node:path";
 
 // packages/cli/src/capture.ts
 import { execFileSync } from "node:child_process";
@@ -8518,22 +8518,92 @@ async function resolveExecutable(probe) {
   return probe.fallbackPath && existsSync3(probe.fallbackPath) ? probe.fallbackPath : null;
 }
 
+// packages/cli/src/evidence.ts
+import { existsSync as existsSync4 } from "node:fs";
+import { hostname as osHostname } from "node:os";
+import { join as join5 } from "node:path";
+function versionScope(version) {
+  const text2 = (version ?? "").trim();
+  if (!text2) return "unknown";
+  if (/^n\/a\b/i.test(text2)) return "not-applicable";
+  if (/\blatest\b|[\^~*<>≥≤]|\bx\b|\.x\b|\d\+(?:\s|$|,)|\brange\b|\bor (?:later|newer|above)\b/i.test(text2)) return "inexact";
+  if (/^N-\d+-g[0-9a-f]+/.test(text2)) return "exact";
+  return versionTokens(text2).length > 0 ? "exact" : "unknown";
+}
+function loadMachineRecord(machineRoot, hostname2 = osHostname()) {
+  const path = join5(machineRoot, "environment", `${hostname2}.json`);
+  if (!existsSync4(path)) return void 0;
+  const parsed2 = readJsonFile(path);
+  if (!parsed2.ok) return void 0;
+  const record = parsed2.value;
+  if (typeof record !== "object" || record === null || typeof record.checked_at !== "string" || !Array.isArray(record.tools)) return void 0;
+  const tools = record.tools.filter(isProbeResult);
+  return { ...record, hostname: typeof record.hostname === "string" ? record.hostname : hostname2, tools };
+}
+function assessReadiness(toolId, record) {
+  if (!record) return { state: "no-machine-record" };
+  const probe = record.tools.find((entry) => entry.tool_id === toolId);
+  if (!probe) return { state: "not-probed", checkedAt: record.checked_at };
+  if (probe.status === "installed") return { state: "installed", version: probe.version, checkedAt: record.checked_at, hostname: record.hostname };
+  return { state: probe.status === "missing" ? "missing" : "probe-error", checkedAt: record.checked_at };
+}
+function compareToEvidence(evidenceVersion, probe) {
+  if (!probe?.version || versionScope(evidenceVersion) !== "exact") return "unknown";
+  const evidence = evidenceVersion.trim();
+  if (evidence === probe.version.trim()) return "same-version";
+  const evidenceTokens = new Set(versionTokens(evidence));
+  const probeTokens = versionTokens(probe.version);
+  if (probeTokens.length === 0) return "unknown";
+  return probeTokens.some((token) => evidenceTokens.has(token)) ? "same-version" : "different-version";
+}
+function formatReadiness(readiness, evidence) {
+  const day = (iso) => iso.slice(0, 10);
+  switch (readiness.state) {
+    case "no-machine-record":
+      return "this machine: no vcr doctor record (run vcr doctor)";
+    case "not-probed":
+      return "this machine: vcr doctor does not check this tool (check the project's dependencies)";
+    case "missing":
+      return `this machine: missing (doctor ${day(readiness.checkedAt)})`;
+    case "probe-error":
+      return `this machine: probe failed (doctor ${day(readiness.checkedAt)})`;
+    case "installed":
+      return `this machine: has ${readiness.version ?? "an unparsed version"}${evidenceNote(readiness, evidence)} (doctor ${day(readiness.checkedAt)})`;
+  }
+}
+function evidenceNote(readiness, evidence) {
+  if (!evidence) return "";
+  const match = compareToEvidence(evidence.version, { version: readiness.version });
+  if (match === "unknown") return versionScope(evidence.version) === "exact" ? "; local version could not be compared with the evidence" : "; evidence version not exact, cannot compare";
+  const where = evidence.hostname && evidence.hostname === readiness.hostname ? "here" : "on another host";
+  if (match === "same-version") return `; evidence ran this version ${where}`;
+  return `; evidence ran ${evidence.version} ${where}, so this version is untested`;
+}
+function versionTokens(version) {
+  return version.match(/\d+(?:\.\d+)+(?:[-+][0-9A-Za-z.]+)?/g) ?? [];
+}
+function isProbeResult(entry) {
+  if (typeof entry !== "object" || entry === null) return false;
+  const probe = entry;
+  return typeof probe["tool_id"] === "string" && typeof probe["status"] === "string" && (typeof probe["version"] === "string" || probe["version"] === null);
+}
+
 // packages/cli/src/examples.ts
-import { cpSync, existsSync as existsSync4, readFileSync as readFileSync4, writeFileSync as writeFileSync4 } from "node:fs";
-import { basename, join as join5 } from "node:path";
+import { cpSync, existsSync as existsSync5, readFileSync as readFileSync4, writeFileSync as writeFileSync4 } from "node:fs";
+import { basename, join as join6 } from "node:path";
 var GENERATED_FILES = /* @__PURE__ */ new Set(["node_modules", "output", ".cache"]);
 var BROWSER_HARNESS_FILES = /* @__PURE__ */ new Set(["capture.ts", "run.sh", "expected"]);
 function createExample(harnessRoot, workspaceRoot, exampleId, cliInvocation2) {
-  const source = join5(harnessRoot, "examples", exampleId);
-  if (!existsSync4(join5(source, "example.json"))) return fail("EXAMPLE_NOT_FOUND", `No example "${exampleId}" in ${join5(harnessRoot, "examples")}. List them with \`vcr tools examples <tool-id>\`.`);
-  const directory = join5(workspaceRoot, "examples", exampleId);
-  const manifest = JSON.parse(readFileSync4(join5(source, "example.json"), "utf8"));
+  const source = join6(harnessRoot, "examples", exampleId);
+  if (!existsSync5(join6(source, "example.json"))) return fail("EXAMPLE_NOT_FOUND", `No example "${exampleId}" in ${join6(harnessRoot, "examples")}. List them with \`vcr tools examples <tool-id>\`.`);
+  const directory = join6(workspaceRoot, "examples", exampleId);
+  const manifest = JSON.parse(readFileSync4(join6(source, "example.json"), "utf8"));
   const relativeDirectory = `examples/${exampleId}`;
-  const nextSteps = buildNextSteps(relativeDirectory, existsSync4(join5(source, "package.json")), manifest, cliInvocation2);
-  if (existsSync4(directory)) return ok({ directory, isCreated: false, nextSteps });
+  const nextSteps = buildNextSteps(relativeDirectory, existsSync5(join6(source, "package.json")), manifest, cliInvocation2);
+  if (existsSync5(directory)) return ok({ directory, isCreated: false, nextSteps });
   const isHarnessOnly = (name) => GENERATED_FILES.has(name) || name.endsWith(".test.ts") || manifest.capture !== void 0 && BROWSER_HARNESS_FILES.has(name);
   cpSync(source, directory, { recursive: true, filter: (path) => !isHarnessOnly(basename(path)) });
-  if (existsSync4(join5(source, "package.json"))) writeStandalonePackage(join5(source, "package.json"), join5(directory, "package.json"));
+  if (existsSync5(join6(source, "package.json"))) writeStandalonePackage(join6(source, "package.json"), join6(directory, "package.json"));
   return ok({ directory, isCreated: true, nextSteps });
 }
 function writeStandalonePackage(sourcePath, targetPath) {
@@ -8566,10 +8636,10 @@ function startTimer() {
 }
 
 // packages/cli/src/plugin.ts
-import { cpSync as cpSync2, existsSync as existsSync5, mkdirSync as mkdirSync3, mkdtempSync, readdirSync as readdirSync3, readFileSync as readFileSync5, rmSync, statSync as statSync3, writeFileSync as writeFileSync5 } from "node:fs";
+import { cpSync as cpSync2, existsSync as existsSync6, mkdirSync as mkdirSync3, mkdtempSync, readdirSync as readdirSync3, readFileSync as readFileSync5, rmSync, statSync as statSync3, writeFileSync as writeFileSync5 } from "node:fs";
 import { createRequire as createRequire3 } from "node:module";
 import { tmpdir } from "node:os";
-import { basename as basename2, extname as extname2, join as join6, relative as relative2 } from "node:path";
+import { basename as basename2, extname as extname2, join as join7, relative as relative2 } from "node:path";
 var PLUGIN_DIRECTORY = "plugin";
 var PLUGIN_MAX_BYTES = 5 * 1024 * 1024;
 var PLUGIN_IDENTITY = {
@@ -8590,29 +8660,29 @@ The CLI is \`node <this directory>/cli/vcr.mjs\` (Node 22 or newer). It never wr
 var CATALOG_ENTRIES = ["INDEX.md", "tools.json", "tools", "schemas", "capabilities", "CANDIDATE-INGESTION.md", "ASSESSMENT-BRIEF.md", "FIXTURE-EVIDENCE-TEMPLATE.md"];
 var SKIPPED_DIRECTORIES = /* @__PURE__ */ new Set(["node_modules", "output", ".cache", "dist"]);
 var MEDIA_EXTENSIONS = /* @__PURE__ */ new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".mp4", ".mov", ".webm", ".wav", ".mp3", ".aac", ".glb", ".gltf", ".blend", ".exr", ".woff", ".woff2"]);
-function buildPlugin(harnessRoot, outputDirectory = join6(harnessRoot, PLUGIN_DIRECTORY)) {
+function buildPlugin(harnessRoot, outputDirectory = join7(harnessRoot, PLUGIN_DIRECTORY)) {
   const version = readHarnessVersion(harnessRoot);
   if (!version.ok) return version;
   rmSync(outputDirectory, { recursive: true, force: true });
   mkdirSync3(outputDirectory, { recursive: true });
-  const bundled = bundleCli(harnessRoot, join6(outputDirectory, "cli/vcr.mjs"));
+  const bundled = bundleCli(harnessRoot, join7(outputDirectory, "cli/vcr.mjs"));
   if (!bundled.ok) return bundled;
-  for (const entry of CATALOG_ENTRIES) cpSync2(join6(harnessRoot, "catalog", entry), join6(outputDirectory, "catalog", entry), { recursive: true });
-  for (const skill of readdirSync3(join6(harnessRoot, "skills"))) {
-    if (existsSync5(join6(harnessRoot, "skills", skill, "SKILL.md"))) cpSync2(join6(harnessRoot, "skills", skill), join6(outputDirectory, "skills", skill), { recursive: true });
+  for (const entry of CATALOG_ENTRIES) cpSync2(join7(harnessRoot, "catalog", entry), join7(outputDirectory, "catalog", entry), { recursive: true });
+  for (const skill of readdirSync3(join7(harnessRoot, "skills"))) {
+    if (existsSync6(join7(harnessRoot, "skills", skill, "SKILL.md"))) cpSync2(join7(harnessRoot, "skills", skill), join7(outputDirectory, "skills", skill), { recursive: true });
   }
-  cpSync2(join6(harnessRoot, "examples"), join6(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename2(source)) });
+  cpSync2(join7(harnessRoot, "examples"), join7(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename2(source)) });
   writeManifests(outputDirectory, version.value);
-  writeFileSync5(join6(outputDirectory, "README.md"), PLUGIN_README);
+  writeFileSync5(join7(outputDirectory, "README.md"), PLUGIN_README);
   const files = listFiles(outputDirectory);
-  const totalBytes = files.reduce((sum, file) => sum + statSync3(join6(outputDirectory, file)).size, 0);
+  const totalBytes = files.reduce((sum, file) => sum + statSync3(join7(outputDirectory, file)).size, 0);
   return ok({ directory: outputDirectory, version: version.value, fileCount: files.length, totalBytes });
 }
 function pluginDiagnostics(harnessRoot) {
-  const committed = join6(harnessRoot, PLUGIN_DIRECTORY);
+  const committed = join7(harnessRoot, PLUGIN_DIRECTORY);
   const file = PLUGIN_DIRECTORY;
-  if (!existsSync5(committed)) return [{ severity: "error", file, path: "", message: "plugin/ is missing", suggestion: "Run `pnpm vcr plugin build` and commit the result." }];
-  const fresh = buildPlugin(harnessRoot, mkdtempSync(join6(tmpdir(), "vcr-plugin-")));
+  if (!existsSync6(committed)) return [{ severity: "error", file, path: "", message: "plugin/ is missing", suggestion: "Run `pnpm vcr plugin build` and commit the result." }];
+  const fresh = buildPlugin(harnessRoot, mkdtempSync(join7(tmpdir(), "vcr-plugin-")));
   if (!fresh.ok) return [{ severity: "error", file, path: "", message: fresh.error.message }];
   const diagnostics = [];
   const staleFiles = differingFiles(committed, fresh.value.directory);
@@ -8625,15 +8695,15 @@ function pluginDiagnostics(harnessRoot) {
 }
 function readHarnessVersion(harnessRoot) {
   for (const candidate of [".claude-plugin/plugin.json", "packages/cli/package.json"]) {
-    const path = join6(harnessRoot, candidate);
-    if (existsSync5(path)) return ok(JSON.parse(readFileSync5(path, "utf8")).version);
+    const path = join7(harnessRoot, candidate);
+    if (existsSync6(path)) return ok(JSON.parse(readFileSync5(path, "utf8")).version);
   }
   return fail("HARNESS_VERSION_UNKNOWN", `Neither .claude-plugin/plugin.json nor packages/cli/package.json exists under ${harnessRoot}.`);
 }
 function bundleCli(harnessRoot, outfile) {
   const esbuild = createRequire3(import.meta.url)("esbuild");
   const result = esbuild.buildSync({
-    entryPoints: [join6(harnessRoot, "packages/cli/src/index.ts")],
+    entryPoints: [join7(harnessRoot, "packages/cli/src/index.ts")],
     bundle: true,
     platform: "node",
     format: "esm",
@@ -8647,7 +8717,7 @@ function bundleCli(harnessRoot, outfile) {
   });
   const output = result.outputFiles[0];
   if (!output) return fail("PLUGIN_BUNDLE_FAILED", "esbuild produced no output for packages/cli/src/index.ts");
-  mkdirSync3(join6(outfile, ".."), { recursive: true });
+  mkdirSync3(join7(outfile, ".."), { recursive: true });
   writeFileSync5(outfile, output.text);
   return ok(outfile);
 }
@@ -8660,8 +8730,8 @@ function writeManifests(outputDirectory, version) {
     interface: { displayName: "VCR", shortDescription: "Code-first motion graphics and video", developerName: PLUGIN_IDENTITY.author.name, category: "Developer Tools" }
   };
   for (const [directory, manifest] of [[".claude-plugin", claudeManifest], [".codex-plugin", codexManifest]]) {
-    mkdirSync3(join6(outputDirectory, directory), { recursive: true });
-    writeFileSync5(join6(outputDirectory, directory, "plugin.json"), `${JSON.stringify(manifest, null, 2)}
+    mkdirSync3(join7(outputDirectory, directory), { recursive: true });
+    writeFileSync5(join7(outputDirectory, directory, "plugin.json"), `${JSON.stringify(manifest, null, 2)}
 `);
   }
 }
@@ -8669,7 +8739,7 @@ function listFiles(root) {
   const found = [];
   const walk = (directory) => {
     for (const entry of readdirSync3(directory)) {
-      const path = join6(directory, entry);
+      const path = join7(directory, entry);
       if (statSync3(path).isDirectory()) walk(path);
       else found.push(relative2(root, path));
     }
@@ -8682,17 +8752,17 @@ function differingFiles(committedRoot, freshRoot) {
   const fresh = listFiles(freshRoot);
   const all = [.../* @__PURE__ */ new Set([...committed, ...fresh])].sort();
   return all.filter((path) => {
-    const committedPath = join6(committedRoot, path);
-    const freshPath = join6(freshRoot, path);
-    if (!existsSync5(committedPath) || !existsSync5(freshPath)) return true;
+    const committedPath = join7(committedRoot, path);
+    const freshPath = join7(freshRoot, path);
+    if (!existsSync6(committedPath) || !existsSync6(freshPath)) return true;
     return !readFileSync5(committedPath).equals(readFileSync5(freshPath));
   });
 }
 
 // packages/cli/src/roots.ts
-import { existsSync as existsSync6, mkdirSync as mkdirSync4, unlinkSync as unlinkSync2, writeFileSync as writeFileSync6 } from "node:fs";
+import { existsSync as existsSync7, mkdirSync as mkdirSync4, unlinkSync as unlinkSync2, writeFileSync as writeFileSync6 } from "node:fs";
 import { homedir } from "node:os";
-import { dirname as dirname3, join as join7, resolve as resolve2 } from "node:path";
+import { dirname as dirname3, join as join8, resolve as resolve2 } from "node:path";
 import { fileURLToPath } from "node:url";
 var WORKSPACE_MARKER = "vcr.json";
 function resolveRoots({ cwd, env, workspaceFlag, cliDirectory = dirname3(fileURLToPath(import.meta.url)), canWrite = isWritableDirectory }) {
@@ -8705,7 +8775,7 @@ function resolveRoots({ cwd, env, workspaceFlag, cliDirectory = dirname3(fileURL
   return ok({ harness: harness.value, workspace, ...machine, isCodexSandbox, isDevMode: workspace === harness.value });
 }
 function requireWorkspace(roots) {
-  if (roots.workspace && existsSync6(join7(roots.workspace, WORKSPACE_MARKER))) return ok(roots.workspace);
+  if (roots.workspace && existsSync7(join8(roots.workspace, WORKSPACE_MARKER))) return ok(roots.workspace);
   const where = roots.workspace ?? "this directory or any ancestor";
   return fail("WORKSPACE_NOT_FOUND", `No ${WORKSPACE_MARKER} in ${where}. Run \`vcr workspace init\` in the directory that should hold your projects, or pass --workspace <dir>.`);
 }
@@ -8716,11 +8786,11 @@ function requireDevMode(roots, command) {
 function resolveHarness(explicitHarness, cliDirectory) {
   if (explicitHarness) {
     const harness = resolve2(explicitHarness);
-    if (existsSync6(join7(harness, "catalog"))) return ok(harness);
+    if (existsSync7(join8(harness, "catalog"))) return ok(harness);
     return fail("HARNESS_NOT_FOUND", `VCR_HARNESS=${explicitHarness} has no catalog/ directory. Point it at a VCR checkout or plugin directory, or unset it.`);
   }
   let current = resolve2(cliDirectory);
-  while (!existsSync6(join7(current, "catalog"))) {
+  while (!existsSync7(join8(current, "catalog"))) {
     const parent = dirname3(current);
     if (parent === current) return fail("HARNESS_NOT_FOUND", `No ancestor of ${cliDirectory} contains catalog/. Set VCR_HARNESS to a VCR checkout or plugin directory.`);
     current = parent;
@@ -8729,14 +8799,14 @@ function resolveHarness(explicitHarness, cliDirectory) {
 }
 function resolveMachine(explicitHome, workspace, isCodexSandbox, canWrite) {
   if (explicitHome) return { machine: resolve2(explicitHome), machineSource: "VCR_HOME" };
-  const defaultHome = join7(homedir(), ".vcr");
-  if (isCodexSandbox && workspace && !canWrite(defaultHome)) return { machine: join7(workspace, ".vcr"), machineSource: "workspace-codex-fallback" };
+  const defaultHome = join8(homedir(), ".vcr");
+  if (isCodexSandbox && workspace && !canWrite(defaultHome)) return { machine: join8(workspace, ".vcr"), machineSource: "workspace-codex-fallback" };
   return { machine: defaultHome, machineSource: "default" };
 }
 function isWritableDirectory(directory) {
   try {
     mkdirSync4(directory, { recursive: true });
-    const probe = join7(directory, `.write-probe-${process.pid}`);
+    const probe = join8(directory, `.write-probe-${process.pid}`);
     writeFileSync6(probe, "");
     unlinkSync2(probe);
     return true;
@@ -8746,7 +8816,7 @@ function isWritableDirectory(directory) {
 }
 function findAncestorWithMarker(startDirectory) {
   let current = resolve2(startDirectory);
-  while (!existsSync6(join7(current, WORKSPACE_MARKER))) {
+  while (!existsSync7(join8(current, WORKSPACE_MARKER))) {
     const parent = dirname3(current);
     if (parent === current) return null;
     current = parent;
@@ -8755,11 +8825,11 @@ function findAncestorWithMarker(startDirectory) {
 }
 
 // packages/cli/src/tools.ts
-import { existsSync as existsSync7, readFileSync as readFileSync6 } from "node:fs";
-import { join as join8 } from "node:path";
+import { existsSync as existsSync8, readFileSync as readFileSync6 } from "node:fs";
+import { join as join9 } from "node:path";
 function loadTools(repositoryRoot) {
   const tools = [];
-  for (const filePath of listJsonFiles(join8(repositoryRoot, "catalog/tools"))) {
+  for (const filePath of listJsonFiles(join9(repositoryRoot, "catalog/tools"))) {
     const parsed2 = readJsonFile(filePath);
     if (!parsed2.ok) return parsed2;
     tools.push(parsed2.value);
@@ -8768,7 +8838,7 @@ function loadTools(repositoryRoot) {
 }
 function loadExamples(repositoryRoot) {
   const examples = [];
-  for (const filePath of listFilesNamed(join8(repositoryRoot, "examples"), "example.json")) {
+  for (const filePath of listFilesNamed(join9(repositoryRoot, "examples"), "example.json")) {
     const parsed2 = readJsonFile(filePath);
     if (!parsed2.ok) return parsed2;
     const directory = filePath.slice(repositoryRoot.length + 1).replace(/\/example\.json$/, "");
@@ -8792,7 +8862,7 @@ function formatToolTable(tools) {
   const line = (row) => row.map((cell, column) => cell.padEnd(widths[column])).join("  ").trimEnd();
   return [line(header), ...rows.map(line)].join("\n");
 }
-function formatToolCard(tool, examples, repositoryRoot) {
+function formatToolCard(tool, examples, repositoryRoot, machine) {
   const lines = [];
   lines.push(`${tool.id} \u2014 ${tool.name} \xB7 ${tool.tier} \xB7 ${tool.automation_route}`);
   lines.push(tool.role, "");
@@ -8805,7 +8875,8 @@ function formatToolCard(tool, examples, repositoryRoot) {
   if (tool.license) lines.push(`Licence: ${tool.license}`);
   if (tool.install?.macos) lines.push(`Install (macOS): ${tool.install.macos}${tool.install.check_command ? `  \xB7 check: ${tool.install.check_command}` : ""}`);
   lines.push(`Evidence: ${evidenceLine(tool)}`);
-  lines.push(`Readiness: catalogue install status ${tool.installation_status || "unknown"} (vcr doctor checks this machine) \xB7 VCR adapter ${tool.adapter_maturity || "unknown"}`);
+  const readiness = tool.installation_status === "not-applicable" ? "no install needed" : formatReadiness(assessReadiness(tool.id, machine), tool.validation.evidence?.at(-1));
+  lines.push(`Readiness: ${readiness} \xB7 VCR adapter ${tool.adapter_maturity || "unknown"}`);
   lines.push(`Guide: ${tool.skill ? `${tool.skill} (${fileSizeKb(repositoryRoot, tool.skill) ?? "?"} KB) \u2014 vcr tools info ${tool.id} --full` : "none yet"}`);
   const own = examples.filter((example) => example.tools.includes(tool.id));
   lines.push(`Examples: ${own.length ? `${own.map((example) => `${example.id} (${example.status})`).join(", ")} \u2014 vcr tools examples ${tool.id}` : "none yet"}`);
@@ -8814,8 +8885,8 @@ function formatToolCard(tool, examples, repositoryRoot) {
 }
 function readToolGuide(tool, repositoryRoot) {
   if (!tool.skill) return fail("NO_GUIDE", `${tool.id} has no skill yet. Its card is the deepest tier available.`);
-  const path = join8(repositoryRoot, tool.skill);
-  if (!existsSync7(path)) return fail("GUIDE_MISSING", `${tool.skill} is referenced by ${tool.id} but does not exist.`);
+  const path = join9(repositoryRoot, tool.skill);
+  if (!existsSync8(path)) return fail("GUIDE_MISSING", `${tool.skill} is referenced by ${tool.id} but does not exist.`);
   return ok(readFileSync6(path, "utf8"));
 }
 function formatExamplesForTool(tool, examples) {
@@ -8826,33 +8897,35 @@ function formatExamplesForTool(tool, examples) {
 function evidenceLine(tool) {
   const latest = tool.validation.evidence?.at(-1);
   if (!latest) return tool.validation.status;
-  return `${tool.validation.status} ${latest.date}${latest.example ? ` (${latest.example})` : ""}`;
+  const scope = versionScope(latest.version);
+  const versionNote = scope === "inexact" ? `; version inexact: "${latest.version ?? ""}"` : scope === "unknown" ? "; version not recorded exactly" : "";
+  return `${tool.validation.status} ${latest.date}${latest.example ? ` (${latest.example})` : ""}${versionNote}`;
 }
 
 // packages/cli/src/validate.ts
 var import__ = __toESM(require__(), 1);
 var import_ajv_formats = __toESM(require_dist(), 1);
-import { existsSync as existsSync8, readFileSync as readFileSync7, statSync as statSync4 } from "node:fs";
-import { join as join9, relative as relative3 } from "node:path";
+import { existsSync as existsSync9, readFileSync as readFileSync7, statSync as statSync4 } from "node:fs";
+import { join as join10, relative as relative3 } from "node:path";
 var BUDGET_BYTES = { indexMarkdown: 16 * 1024, skill: 12 * 1024 };
 var CARD_REQUIRED_TIERS = /* @__PURE__ */ new Set(["core", "catalogued"]);
 var CARD_MISSING_SEVERITY = "error";
 function validateRepository(repositoryRoot) {
   const { check, diagnostics, report } = createChecker(loadSchemas(repositoryRoot), repositoryRoot);
-  const vocabulary = readJsonFile(join9(repositoryRoot, "catalog/capabilities/vocabulary.json"));
+  const vocabulary = readJsonFile(join10(repositoryRoot, "catalog/capabilities/vocabulary.json"));
   const knownCapabilities = new Set(vocabulary.ok ? vocabulary.value.capabilities : []);
   if (!vocabulary.ok) diagnostics.push({ severity: "error", file: "catalog/capabilities/vocabulary.json", path: "", message: vocabulary.error.message });
   const tools = /* @__PURE__ */ new Map();
   let validToolRecords = true;
-  for (const recordPath of listJsonFiles(join9(repositoryRoot, "catalog/tools"))) {
+  for (const recordPath of listJsonFiles(join10(repositoryRoot, "catalog/tools"))) {
     const record = check(recordPath, "toolRecord");
     if (record?.id) tools.set(record.id, { record, file: relative3(repositoryRoot, recordPath) });
     else validToolRecords = false;
   }
   const examples = /* @__PURE__ */ new Map();
-  for (const manifestPath of listFilesNamed(join9(repositoryRoot, "examples"), "example.json")) {
+  for (const manifestPath of listFilesNamed(join10(repositoryRoot, "examples"), "example.json")) {
     const manifest = check(manifestPath, "example");
-    if (manifest?.id) examples.set(manifest.id, { manifest: { ...manifest, directory: relative3(repositoryRoot, join9(manifestPath, "..")) }, file: relative3(repositoryRoot, manifestPath) });
+    if (manifest?.id) examples.set(manifest.id, { manifest: { ...manifest, directory: relative3(repositoryRoot, join10(manifestPath, "..")) }, file: relative3(repositoryRoot, manifestPath) });
   }
   for (const { record, file } of tools.values()) {
     diagnostics.push(...capabilityDiagnostics(record, knownCapabilities, file));
@@ -8860,11 +8933,11 @@ function validateRepository(repositoryRoot) {
     diagnostics.push(...cardDiagnostics(record, file));
   }
   for (const { manifest, file } of examples.values()) diagnostics.push(...exampleDiagnostics(manifest, file, tools, repositoryRoot));
-  check(join9(repositoryRoot, "catalog/tools.json"), "tool");
+  check(join10(repositoryRoot, "catalog/tools.json"), "tool");
   if (validToolRecords) diagnostics.push(...indexFreshnessDiagnostics(repositoryRoot));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/INDEX.md", BUDGET_BYTES.indexMarkdown));
   checkWorkspaceDocuments(check, repositoryRoot);
-  for (const environmentPath of listJsonFiles(join9(repositoryRoot, "environment"))) check(environmentPath, "environment");
+  for (const environmentPath of listJsonFiles(join10(repositoryRoot, "environment"))) check(environmentPath, "environment");
   return report();
 }
 function validateWorkspace(harnessRoot, workspaceRoot) {
@@ -8894,16 +8967,16 @@ function createChecker(schemas, displayRoot) {
   return { check, diagnostics, report: () => ({ filesChecked, diagnostics }) };
 }
 function checkWorkspaceDocuments(check, workspaceRoot) {
-  const markerPath = join9(workspaceRoot, WORKSPACE_MARKER);
-  if (existsSync8(markerPath)) check(markerPath, "workspace");
-  for (const projectPath of listFilesNamed(join9(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
-  for (const referencePath of listJsonFiles(join9(workspaceRoot, "references"))) check(referencePath, "reference");
+  const markerPath = join10(workspaceRoot, WORKSPACE_MARKER);
+  if (existsSync9(markerPath)) check(markerPath, "workspace");
+  for (const projectPath of listFilesNamed(join10(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
+  for (const referencePath of listJsonFiles(join10(workspaceRoot, "references"))) check(referencePath, "reference");
 }
 function loadSchemas(repositoryRoot) {
   const ajv = new import__.Ajv2020({ allErrors: true, strict: false });
   import_ajv_formats.default.default(ajv);
   const load = (name) => {
-    const schema = readJsonFile(join9(repositoryRoot, `catalog/schemas/${name}.schema.json`));
+    const schema = readJsonFile(join10(repositoryRoot, `catalog/schemas/${name}.schema.json`));
     if (!schema.ok) throw new Error(schema.error.message);
     return schema.value;
   };
@@ -8925,8 +8998,8 @@ function indexFreshnessDiagnostics(repositoryRoot) {
   return outcome.value.staleFiles.map((file) => ({ severity: "error", file, path: "", message: "index is stale", suggestion: "Run `pnpm vcr catalog build` and commit the result." }));
 }
 function budgetDiagnostics(repositoryRoot, relativePath, maxBytes) {
-  const absolutePath = join9(repositoryRoot, relativePath);
-  if (!existsSync8(absolutePath)) return [];
+  const absolutePath = join10(repositoryRoot, relativePath);
+  if (!existsSync9(absolutePath)) return [];
   const size = statSync4(absolutePath).size;
   if (size <= maxBytes) return [];
   return [{ severity: "error", file: relativePath, path: "", message: `${size} bytes exceeds the ${maxBytes} byte budget for a tier read whole`, suggestion: "Shorten one-liners, or move detail to the next tier down." }];
@@ -8972,7 +9045,12 @@ function toolReferenceDiagnostics(record, file, tools, examples, repositoryRoot)
     if (!example) error("/examples", `example "${exampleId}" has no examples/<dir>/example.json`, "Add the manifest or remove the reference.");
     else if (!example.manifest.tools.includes(record.id)) error("/examples", `example "${exampleId}" does not list ${record.id} in its tools`, "Add the tool to the example manifest so the link is two-way.");
   }
-  for (const [index, evidence] of (record.validation.evidence ?? []).entries()) {
+  const evidenceEntries = record.validation.evidence ?? [];
+  for (const [index, evidence] of evidenceEntries.entries()) {
+    const scope = versionScope(evidence.version);
+    if (index === evidenceEntries.length - 1 && (scope === "inexact" || scope === "unknown")) {
+      diagnostics.push({ severity: "warning", file, path: `/validation/evidence/${index}/version`, message: scope === "inexact" ? `evidence version "${evidence.version ?? ""}" is a range, not the version that ran` : `evidence version "${evidence.version ?? ""}" does not identify what ran`, suggestion: "Leave this entry as is; when re-validating, append a new evidence entry with the exact version and a scope (see catalog/FIXTURE-EVIDENCE-TEMPLATE.md)." });
+    }
     if (!evidence.example) continue;
     const exampleId = evidence.example.replace(/^examples\//, "");
     const example = examples.get(exampleId);
@@ -8981,8 +9059,8 @@ function toolReferenceDiagnostics(record, file, tools, examples, repositoryRoot)
   }
   let skillText = null;
   if (record.skill) {
-    const skillPath = join9(repositoryRoot, record.skill);
-    if (!existsSync8(skillPath)) error("/skill", `${record.skill} does not exist`, "Write the SKILL.md or remove the reference.");
+    const skillPath = join10(repositoryRoot, record.skill);
+    if (!existsSync9(skillPath)) error("/skill", `${record.skill} does not exist`, "Write the SKILL.md or remove the reference.");
     else {
       skillText = readFileSync7(skillPath, "utf8");
       diagnostics.push(...budgetDiagnostics(repositoryRoot, record.skill, BUDGET_BYTES.skill));
@@ -9010,13 +9088,13 @@ function exampleDiagnostics(manifest, file, tools, repositoryRoot) {
   const expectedDirectory = `examples/${manifest.id}`;
   if (manifest.directory !== expectedDirectory) error("/id", `manifest lives in ${manifest.directory} but its id says ${expectedDirectory}`, "Rename the directory or the id.");
   const runScript = manifest.run.replace(/^\.\//, "").split(" ")[0] ?? "";
-  if (!existsSync8(join9(repositoryRoot, manifest.directory, runScript))) error("/run", `${runScript} not found in ${manifest.directory}`, "Point run at the reproduction script.");
+  if (!existsSync9(join10(repositoryRoot, manifest.directory, runScript))) error("/run", `${runScript} not found in ${manifest.directory}`, "Point run at the reproduction script.");
   for (const toolId of manifest.tools) {
     const tool = tools.get(toolId);
     if (!tool) error("/tools", `"${toolId}" is not a catalogued tool id`, "Use an id from catalog/tools/.");
     else if (!(tool.record.examples ?? []).includes(manifest.id)) error("/tools", `${toolId} does not list this example in its examples`, `Add "${manifest.id}" to catalog/tools/${toolId}.json examples.`);
   }
-  if (manifest.report && !existsSync8(join9(repositoryRoot, manifest.report))) error("/report", `${manifest.report} does not exist`, "Fix the path or remove it.");
+  if (manifest.report && !existsSync9(join10(repositoryRoot, manifest.report))) error("/report", `${manifest.report} does not exist`, "Fix the path or remove it.");
   return diagnostics;
 }
 function hasHeading(markdown, heading) {
@@ -9024,20 +9102,20 @@ function hasHeading(markdown, heading) {
 }
 
 // packages/cli/src/workspace.ts
-import { existsSync as existsSync9, readFileSync as readFileSync8, writeFileSync as writeFileSync7 } from "node:fs";
-import { join as join10 } from "node:path";
+import { existsSync as existsSync10, readFileSync as readFileSync8, writeFileSync as writeFileSync7 } from "node:fs";
+import { join as join11 } from "node:path";
 var IGNORED_DIRECTORIES = ["output/", ".cache/", ".vcr/"];
 function ensureWorkspace(directory, harnessVersion) {
   const changes = [];
-  const markerPath = join10(directory, WORKSPACE_MARKER);
-  if (!existsSync9(markerPath)) {
+  const markerPath = join11(directory, WORKSPACE_MARKER);
+  if (!existsSync10(markerPath)) {
     const marker = { schema_version: "1.0.0", harness_version: harnessVersion, projects: [] };
     writeFileSync7(markerPath, `${JSON.stringify(marker, null, 2)}
 `);
     changes.push(WORKSPACE_MARKER);
   }
-  const gitignorePath = join10(directory, ".gitignore");
-  const existing = existsSync9(gitignorePath) ? readFileSync8(gitignorePath, "utf8") : "";
+  const gitignorePath = join11(directory, ".gitignore");
+  const existing = existsSync10(gitignorePath) ? readFileSync8(gitignorePath, "utf8") : "";
   const presentLines = new Set(existing.split("\n").map((line) => line.trim()));
   const missing = IGNORED_DIRECTORIES.filter((entry) => !presentLines.has(entry));
   if (missing.length > 0) {
@@ -9135,7 +9213,7 @@ ${USAGE}`);
         print(tool.value);
         return 0;
       }
-      const card = formatToolCard(tool.value, examples.value, repositoryRoot);
+      const card = formatToolCard(tool.value, examples.value, repositoryRoot, loadMachineRecord(roots.machine));
       if (options["full"] !== true) {
         print(card);
         return 0;
@@ -9187,7 +9265,7 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
       return failWith({ code: "INVALID_ARGUMENT", message: "capture needs positive --width, --height and --fps" }, asJson, 2);
     }
     const sceneFile = resolve3(subcommand);
-    const outputDirectory = resolve3(text(options["out"]) ?? join11(dirname4(sceneFile), "output"));
+    const outputDirectory = resolve3(text(options["out"]) ?? join12(dirname4(sceneFile), "output"));
     const report = await runCapture(roots, { sceneFile, outputDirectory, verifyDeterminism: options["verify"] === true, ...dimensions });
     if (!report.ok) return failWith(report.error, asJson);
     const { frames, frames_per_second, shuffled_matches_sequential } = report.value;
@@ -9218,7 +9296,7 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
     const devMode = requireDevMode(roots, "doctor --record");
     if (shouldRecord && !devMode.ok) return failWith(devMode.error, asJson);
     const record = await runDoctor();
-    const outputDirectories = [join11(roots.machine, "environment"), ...shouldRecord ? [join11(repositoryRoot, "environment")] : []];
+    const outputDirectories = [join12(roots.machine, "environment"), ...shouldRecord ? [join12(repositoryRoot, "environment")] : []];
     const writtenPaths = outputDirectories.map((directory) => writeEnvironmentRecord(directory, record));
     print(asJson ? record : `${formatDoctorTable(record)}
 
@@ -9258,7 +9336,7 @@ function cliInvocation(roots) {
 }
 function writeEnvironmentRecord(directory, record) {
   mkdirSync5(directory, { recursive: true });
-  const outputPath = join11(directory, `${record.hostname}.json`);
+  const outputPath = join12(directory, `${record.hostname}.json`);
   writeFileSync8(outputPath, `${JSON.stringify(record, null, 2)}
 `);
   return outputPath;
