@@ -16,4 +16,6 @@ ffmpeg -y -loglevel error \
   -c:v libx264 -pix_fmt yuv420p -c:a aac -b:a 96k -shortest -movflags +faststart output/assembly.mp4
 ffprobe -v error -show_entries stream=codec_type,codec_name,width,height,r_frame_rate,nb_frames,sample_rate,channels -show_entries format=duration -of json output/assembly.mp4 > output/ffprobe.json
 if [[ "${1:-}" == "--record" ]]; then cp output/ffprobe.json expected/; echo "recorded expected/"; exit 0; fi
-diff expected/ffprobe.json output/ffprobe.json && echo "ffmpeg-assembly: OK"
+# Compare the media facts only: ffprobe adds empty top-level keys between versions (FFmpeg 8 prints
+# "stream_groups", 6.1 does not), which says nothing about the file.
+diff <(jq -S '{streams, format}' expected/ffprobe.json) <(jq -S '{streams, format}' output/ffprobe.json) && echo "ffmpeg-assembly: OK"

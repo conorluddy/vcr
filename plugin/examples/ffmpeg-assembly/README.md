@@ -10,3 +10,5 @@ ImageMagick draws 48 frames whose hue and a marker bar encode the frame index, F
 ```
 
 Observed duration policy, feeding PRD L2-07: 48 frames at 24 fps probe as exactly 2.000000 s with `-shortest` and a 2 s tone; the AAC stream reports 95 frames at 48 kHz.
+
+2026-11-04: `run.sh` now compares only the `streams` and `format` blocks (via `jq`), because ffprobe adds empty top-level keys between versions: FFmpeg 6.1.1 omits the `stream_groups` key that 8.0.1 prints. With that change the fixture passed unchanged in a Linux x86_64 container with FFmpeg 6.1.1 and ImageMagick 6.9.12 (through a `magick` to `convert` shim); every media value matched `expected/`.

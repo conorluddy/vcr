@@ -94,6 +94,15 @@
         "command": "examples/ffmpeg-assembly/run.sh",
         "result": "48 frames at 24 fps mux to 2.000000 s with AAC; ffprobe JSON matches expected/",
         "example": "examples/ffmpeg-assembly"
+      },
+      {
+        "date": "2026-11-04",
+        "hostname": "vm",
+        "version": "6.1.1-3ubuntu5",
+        "command": "examples/ffmpeg-assembly/run.sh",
+        "result": "48 frames at 24 fps (h264 320x180) muxed with a 2 s 440 Hz AAC tone using -shortest; probed duration 2.000000 s, 95 AAC frames at 48 kHz; streams and format match expected/ffprobe.json. Env: Linux x86_64 container, ImageMagick 6.9.12-98 via convert shim.",
+        "example": "examples/ffmpeg-assembly",
+        "scope": "PNG sequence plus generated tone muxed to H.264/AAC MP4 on Linux x86_64 (Ubuntu FFmpeg 6.1.1 build); media facts compared, not ffprobe JSON layout."
       }
     ]
   },
