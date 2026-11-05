@@ -33,7 +33,7 @@ inspection. Load the selected toolkit guide for its actual commands.
 
 ## Rendering browser scenes
 
-A browser scene exposes `window.__scene = { duration, seek(t) }` with a pure seek. Capture it with `vcr capture <scene.html> --width W --height H --fps F --verify`. The first time on a machine, `vcr setup capture` shows what it will install; `vcr setup capture --yes` installs it. Assemble frames to video with the `ffmpeg` skill.
+A browser scene exposes `window.__scene = { duration, seek(t) }` with a pure seek. Capture it with `vcr capture <scene.html> --width W --height H --fps F --verify`. The first time on a machine, `vcr setup capture` shows what it will install; `vcr setup capture --yes` installs it. If `--verify` reports a mismatch, read [Determinism pitfalls](references/determinism.md). Assemble frames to video with the `ffmpeg` skill.
 
 ## Inside Codex
 

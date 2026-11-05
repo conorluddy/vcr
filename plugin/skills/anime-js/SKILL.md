@@ -47,6 +47,7 @@ window.__scene = { duration: tl.duration / 1000, seek: (t) => { tl.seek(t * 1000
 Give every element whose opacity is animated `will-change: transform, opacity` in CSS. Without it, Chromium promoted the staggered dots to compositor layers depending on seek history, which changed a neighbour's edge anti-aliasing by 2 px in frames 62 to 89 depending on frame order. The DOM values were identical; only the pixels differed. This comes from the renderer, so it probably applies to other libraries too, but that has not been tested.
 
 ## Troubleshooting
+- `--verify` reports a shuffled mismatch: see [Determinism pitfalls](../start/references/determinism.md).
 - Shuffled order differs but DOM values match: compositor layering; see the section above. Bisect by removing one tween at a time and rerunning with `--verify`.
 - `anime is not defined`: the scene loaded the ESM build with a classic script tag; use the UMD bundle.
 - Scene ends early or late: a seconds value went in as milliseconds, or the other way round.
