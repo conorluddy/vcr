@@ -1,0 +1,9 @@
+{
+  "id": "sharp-composite",
+  "title": "Sharp composite of RGBA layers and a rasterised SVG with alpha",
+  "summary": "sharp 0.35.5 composites generated RGBA layers and a tiny SVG onto a half-transparent canvas; 640x360, 4 channels, six pixel probes and stable hashes asserted against expected/summary.json.",
+  "status": "validated",
+  "tools": ["sharp"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-05", "hostname": "Conors-MacBook-Pro-2.local" }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@vcr/example-sharp-composite",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "composite": "tsx composite.ts"
+  },
+  "dependencies": {
+    "sharp": "0.35.5"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}

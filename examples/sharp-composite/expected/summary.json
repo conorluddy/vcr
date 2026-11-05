@@ -1,0 +1,49 @@
+{
+  "sharp": "0.35.5",
+  "libvips": "8.18.7",
+  "width": 640,
+  "height": 360,
+  "channels": 4,
+  "hasAlpha": true,
+  "format": "png",
+  "probes": {
+    "navy_opaque": [
+      20,
+      30,
+      90,
+      255
+    ],
+    "transparent_background": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "red_over_navy": [
+      137,
+      14,
+      44,
+      255
+    ],
+    "red_over_transparent": [
+      255,
+      0,
+      0,
+      128
+    ],
+    "svg_circle_centre": [
+      0,
+      200,
+      100,
+      255
+    ],
+    "svg_corner_transparent": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "rawPixelsSha256": "88bd2be046552c03b4a6cf766365530ad20373db36b6e37fd83eb3f9367d5eae",
+  "pngSha256": "54649cd694c5f77da8a2d8e46d4c5cb3285bded0b29857545b95eb2a5ac2ab1c"
+}
