@@ -72,5 +72,6 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/sharp/SKILL.md"
 }

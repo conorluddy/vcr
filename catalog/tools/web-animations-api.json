@@ -65,5 +65,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "waapi-capture"
-  ]
+  ],
+  "skill": "skills/web-animations-api/SKILL.md"
 }

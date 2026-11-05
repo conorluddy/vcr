@@ -658,7 +658,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "canvas2d-capture"
-      ]
+      ],
+      "skill": "skills/canvas-2d/SKILL.md"
     },
     {
       "id": "canvas-record",
@@ -6964,7 +6965,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/sharp/SKILL.md"
     },
     {
       "id": "shotstack",
@@ -8518,7 +8520,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "waapi-capture"
-      ]
+      ],
+      "skill": "skills/web-animations-api/SKILL.md"
     },
     {
       "id": "web-audio",

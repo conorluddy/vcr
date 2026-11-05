@@ -31,7 +31,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `aseprite` — Batch CLI and Lua scripts that export pixel-art animation, tags and sprite sheets · pixel-art, native-authoring
 - `babylon-js` — Full web 3D engine with built-in PBR, post effects, physics and node materials · 3d-rendering, shaders, effects, physics-simulation, model-loading
 - `build123d` ◐ — Python parametric CAD for precise product geometry and SVG technical projections · 3d-asset-processing, vector-authoring
-- `canvas-2d` ✓ — Immediate-mode 2D raster drawing; redraw each frame as a pure function of t · 2d-rendering, text-rendering
+- `canvas-2d` ✓ — Immediate-mode 2D raster drawing; redraw each frame as a pure function of t · 2d-rendering, text-rendering · guide
 - `canvas-record` — Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped · capture, video-encoding, image-sequence-processing
 - `canvas-sketch` — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture
 - `canvaskit-skia` — Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output · 2d-rendering, text-rendering, shaders
@@ -92,7 +92,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `rive-web` — Plays Rive .riv interactive animations with state machines; authoring is in the Rive app · asset-playback
 - `rough-js` — Hand-drawn, sketchy rendering of shapes and paths to Canvas or SVG · 2d-rendering, vector-authoring
 - `satori` — React-style flexbox layout to SVG without a browser; pairs with resvg for PNG · typography, vector-authoring, text-rendering
-- `sharp` ✓ — Fast Node image processing on libvips; resize, composite, convert with low memory · image-processing, compositing, svg-rasterisation
+- `sharp` ✓ — Fast Node image processing on libvips; resize, composite, convert with low memory · image-processing, compositing, svg-rasterisation · guide
 - `shotstack` — Hosted video rendering: submit a JSON edit, receive a rendered file · remote-rendering, video-composition
 - `ssam` — Canvas sketch loop with hot reload and export to PNG, GIF, PNG sequence, MP4 and WebM · generative-2d, capture, video-encoding
 - `svg-js` — Chainable SVG construction in browser or Node; animation runner is not seekable · vector-authoring, svg-animation
@@ -109,7 +109,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `vpype` — Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths · plotter-workflow, vector-authoring
 - `vsketch` — Python sketches and the vsk CLI generate plotter-oriented line art as SVG · plotter-workflow, generative-2d
 - `vtk-js` — Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering · scientific-visualisation, 3d-rendering
-- `web-animations-api` ✓ — Native element.animate() with a seekable Animation.currentTime; no library needed · tweening, timeline-animation
+- `web-animations-api` ✓ — Native element.animate() with a seekable Animation.currentTime; no library needed · tweening, timeline-animation · guide
 - `web-audio` — Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time · audio
 - `webcodecs` — Frame-exact browser video/audio encoders and decoders; pair with a muxer · video-encoding, media-inspection
 - `webgl` — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders
