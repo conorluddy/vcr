@@ -69,6 +69,22 @@ importers:
         specifier: ^4.23.15
         version: 4.23.15
 
+  examples/konva-capture:
+    dependencies:
+      '@vcr/capture':
+        specifier: workspace:*
+        version: link:../../packages/capture
+      konva:
+        specifier: 10.9.0
+        version: 10.9.0
+      playwright:
+        specifier: 1.64.1
+        version: 1.64.1
+    devDependencies:
+      tsx:
+        specifier: 4.23.15
+        version: 4.23.15
+
   examples/p5-capture:
     dependencies:
       p5:
@@ -1004,6 +1020,17 @@ packages:
   json-schema-traverse@1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
 
+  konva@10.9.0:
+    resolution: {integrity: sha512-3NOOlcbimFDp4+/DfXGTBkfn3cn3VP1BESPySQ6ayCzgMA9JSMGJNNxeIKw5jpHL6SAl6gHsrv10DUEjNRL0Qg==}
+    peerDependencies:
+      canvas: ^3.0.0
+      skia-canvas: ^3.0.0
+    peerDependenciesMeta:
+      canvas:
+        optional: true
+      skia-canvas:
+        optional: true
+
   libtess@1.2.2:
     resolution: {integrity: sha512-Nps8HPeVVcsmJxUvFLKVJcCgcz+1ajPTXDVAVPs6+giOQP4AHV31uZFFkh+CKow/bkB7GbZWKmwmit7myaqDSw==}
 
@@ -1830,6 +1857,8 @@ snapshots:
       '@babel/runtime': 7.29.10
 
   json-schema-traverse@1.0.0: {}
+
+  konva@10.9.0: {}
 
   libtess@1.2.2: {}
 

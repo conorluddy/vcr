@@ -54,7 +54,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `imagemagick` ✓ — Baseline CLI for image ops, montage, compare and inspection; the validated stills toolchain · image-processing, media-inspection, image-sequence-processing · guide
 - `inkscape` — Command-line actions export and convert SVG and other vector source to PNG, PDF and plain SVG · vector-authoring, svg-rasterisation, native-authoring
 - `jimp` — Pure-JavaScript image manipulation, no native dependencies; slow but trivially portable · image-processing
-- `konva` — Canvas 2D scene graph (stage, layers, groups, shapes) with events, tweens and export · 2d-rendering, tweening, react-integration
+- `konva` ✓ — Canvas 2D scene graph (stage, layers, groups, shapes) with events, tweens and export · 2d-rendering, tweening, react-integration · guide
 - `lottie-web` — Plays After Effects/Bodymovin Lottie JSON in the browser; frame-addressable · asset-playback, svg-animation
 - `manim-community` — Python scenes rendered by the manim CLI to video or PNG sequences for maths and diagram motion · timeline-animation, 2d-rendering, video-encoding, typography
 - `matter-js` — 2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t · physics-simulation
