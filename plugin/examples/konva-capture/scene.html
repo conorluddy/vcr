@@ -1,0 +1,20 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;overflow:hidden}#stage{width:1280px;height:720px}</style></head>
+<body><div id="stage"></div><script src="node_modules/konva/konva.min.js"></script><script>
+Konva.pixelRatio = 1;
+Konva.autoDrawEnabled = false;
+const stage = new Konva.Stage({container:'stage',width:1280,height:720});
+const back = new Konva.Layer({listening:false});
+const front = new Konva.Layer({listening:false});
+stage.add(back,front);
+back.add(new Konva.Line({points:[140,540,360,200,900,200,1140,540],stroke:'#6bc7f3',strokeWidth:12,lineJoin:'round'}));
+const group = new Konva.Group({x:640,y:360});
+const rect = new Konva.Rect({x:-100,y:-100,width:200,height:200,cornerRadius:18,fill:'#c7f36b'});
+const dot = new Konva.Circle({radius:44,fill:'#f3a86b'});
+group.add(rect);front.add(group,dot);
+window.__scene={duration:3,seek(t){requestAnimationFrame(()=>{
+ group.rotation(t*120);group.scale({x:0.8+0.2*Math.cos(t*2),y:0.8+0.2*Math.cos(t*2)});
+ dot.position({x:200+t*280,y:560-100*Math.sin(t*2)});
+ dot.opacity(0.4+0.6*(t/3));stage.draw();
+});}};
+</script></body></html>
