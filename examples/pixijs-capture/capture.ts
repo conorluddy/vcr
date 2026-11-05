@@ -1,4 +1,4 @@
-// Seek a plain canvas 2D scene per frame and check shuffled order matches sequential.
+// Seek a PixiJS WebGL scene per frame and check shuffled order matches sequential.
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { writeFileSync } from "node:fs";

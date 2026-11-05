@@ -19,8 +19,8 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `sharp-composite` | sharp | RGBA layers and a rasterised SVG composited with alpha kept; pixel probes and hashes (2026-11-05) |
 | `waapi-capture` | web-animations-api, playwright | element.animate() paused and seeked via currentTime, with alpha, deterministic in any order (2026-11-05) |
 | `canvas2d-capture` | canvas-2d, playwright | plain canvas redrawn from t with a loaded font and seeded PRNG, alpha, deterministic in any order (2026-11-05) |
-
 | `pixijs-capture` | pixijs, playwright, imagemagick | manual WebGL geometry, alpha, 90 changing frames; shuffled order matches sequential (2026-11-05) |
+| `konva-capture` | konva, playwright, imagemagick | explicit layered Canvas 2D drawing from t, alpha, shuffled equality (2026-11-05) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 
@@ -28,4 +28,3 @@ The original six were validated on the primary Mac on 2026-10-26; later rows giv
 
 `vcr example create <id>` copies an example into `<workspace>/examples/<id>` and prints the commands to run it. Browser examples arrive without `capture.ts`, `run.sh` and `expected/` (they depend on this pnpm workspace) and with a standalone `package.json`; render them with `vcr capture` using the `capture` block. Native examples (`native-svg`, `ffmpeg-assembly`, `blender-smoke`) keep their standalone `run.sh` and `expected/`. `*.test.ts`, `node_modules/` and `output/` never travel.
 
-| `konva-capture` | konva, playwright, imagemagick | explicit layered Canvas 2D drawing from t, alpha, shuffled equality (2026-11-05) |
