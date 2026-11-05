@@ -1,0 +1,17 @@
+{
+  "name": "@vcr/example-anime-capture",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx capture.ts"
+  },
+  "dependencies": {
+    "@vcr/capture": "workspace:*",
+    "animejs": "4.5.0",
+    "playwright": "^1.64.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}

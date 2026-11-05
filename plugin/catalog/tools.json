@@ -115,12 +115,25 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-05",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.5.0",
+            "command": "examples/anime-capture/run.sh",
+            "result": "90 alpha frames at 1280x720 via the @vcr/capture screenshot route (Chromium 156.0.8078.4); shuffled matches sequential; frame 45 alpha min 0 max 1. First run failed by 2 px at frames 62-89 until the stagger targets got will-change; see the example README.",
+            "example": "examples/anime-capture",
+            "scope": "v4 createTimeline (autoplay off) seeked per frame: transform tween, SVG draw, stagger; alpha; macOS arm64. Not springs, morphing or v3."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "anime-capture"
+      ]
     },
     {
       "id": "ardour",
@@ -2905,7 +2918,8 @@
         "blender-smoke",
         "browser-capture",
         "p5-capture",
-        "three-capture"
+        "three-capture",
+        "anime-capture"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -5504,7 +5518,8 @@
       "examples": [
         "browser-capture",
         "p5-capture",
-        "three-capture"
+        "three-capture",
+        "anime-capture"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",

@@ -27,7 +27,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 ## catalogued (88)
 
 - `after-effects` — Adobe's aerender CLI and ExtendScript render existing .aep projects and templates · native-authoring, compositing, timeline-animation
-- `anime-js` — Light DOM/SVG/object tweening with seekable timelines; GSAP's closest neighbour · tweening, timeline-animation, svg-animation
+- `anime-js` ✓ — Light DOM/SVG/object tweening with seekable timelines; GSAP's closest neighbour · tweening, timeline-animation, svg-animation
 - `aseprite` — Batch CLI and Lua scripts that export pixel-art animation, tags and sprite sheets · pixel-art, native-authoring
 - `babylon-js` — Full web 3D engine with built-in PBR, post effects, physics and node materials · 3d-rendering, shaders, effects, physics-simulation, model-loading
 - `build123d` ◐ — Python parametric CAD for precise product geometry and SVG technical projections · 3d-asset-processing, vector-authoring
