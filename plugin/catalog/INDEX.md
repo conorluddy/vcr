@@ -92,7 +92,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `rive-web` — Plays Rive .riv interactive animations with state machines; authoring is in the Rive app · asset-playback
 - `rough-js` — Hand-drawn, sketchy rendering of shapes and paths to Canvas or SVG · 2d-rendering, vector-authoring
 - `satori` — React-style flexbox layout to SVG without a browser; pairs with resvg for PNG · typography, vector-authoring, text-rendering
-- `sharp` — Fast Node image processing on libvips; resize, composite, convert with low memory · image-processing, compositing, svg-rasterisation
+- `sharp` ✓ — Fast Node image processing on libvips; resize, composite, convert with low memory · image-processing, compositing, svg-rasterisation
 - `shotstack` — Hosted video rendering: submit a JSON edit, receive a rendered file · remote-rendering, video-composition
 - `ssam` — Canvas sketch loop with hot reload and export to PNG, GIF, PNG sequence, MP4 and WebM · generative-2d, capture, video-encoding
 - `svg-js` — Chainable SVG construction in browser or Node; animation runner is not seekable · vector-authoring, svg-animation

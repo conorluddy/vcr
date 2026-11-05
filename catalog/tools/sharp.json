@@ -53,9 +53,22 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "sharp-composite"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-05",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.35.5",
+        "command": "examples/sharp-composite/run.sh",
+        "result": "640x360, 4 channels, hasAlpha; six pixel probes match expected/; raw-pixel and PNG hashes identical across three runs; libvips 8.18.7",
+        "example": "examples/sharp-composite",
+        "scope": "RGBA layer composite plus SVG raster to PNG with alpha kept; sharp 0.35.5, libvips 8.18.7, Node 22.19.0, macOS arm64. Not other formats, speed, ICC, streams or platforms."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,

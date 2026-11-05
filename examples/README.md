@@ -16,6 +16,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `p5-capture` | p5-js, playwright | seeded sketch, deterministic in any order |
 | `three-capture` | three-js, playwright | WebGL scene with alpha, deterministic in any order |
 | `anime-capture` | anime-js, playwright | v4 timeline seeked per frame with alpha, deterministic in any order (2026-11-05) |
+| `sharp-composite` | sharp | RGBA layers and a rasterised SVG composited with alpha kept; pixel probes and hashes (2026-11-05) |
 
 All six were validated on the primary Mac on 2026-10-26. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 
