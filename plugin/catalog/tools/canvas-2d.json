@@ -67,5 +67,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "canvas2d-capture"
-  ]
+  ],
+  "skill": "skills/canvas-2d/SKILL.md"
 }
