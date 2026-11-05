@@ -1,0 +1,22 @@
+{
+  "id": "pixijs-capture",
+  "title": "PixiJS manual WebGL geometry capture",
+  "summary": "Procedural graphics transformed from t, manually rendered to alpha PNGs; 90 frames with shuffled-order equality.",
+  "status": "validated",
+  "tools": [
+    "pixijs",
+    "playwright",
+    "imagemagick"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-05",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

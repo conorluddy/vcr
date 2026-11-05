@@ -71,7 +71,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `openimageio-oiiotool` — VFX-grade CLI for EXR, sequences and OCIO colour conversion; stack-based image operations · image-sequence-processing, image-processing, colour-management
 - `opentype-js` — Parse fonts to glyph outlines and SVG path data; text without installed fonts · font-processing, typography, vector-authoring
 - `paper-js` — Vector scene graph with Bezier path geometry and boolean path operations · vector-authoring, 2d-rendering
-- `pixijs` — GPU-accelerated 2D renderer (WebGPU and WebGL) for sprites, text and filters · 2d-rendering, effects, shaders
+- `pixijs` ✓ — GPU-accelerated 2D renderer (WebGPU and WebGL) for sprites, text and filters · 2d-rendering, effects, shaders · guide
 - `pixijs-filters` — Community filter pack for PixiJS: glow, bloom, shockwave, CRT and more · effects, 2d-rendering, shaders
 - `playcanvas-engine` — Open-source web 3D engine usable standalone; strong glTF and Gaussian splat support · 3d-rendering, game-engine, model-loading
 - `playwright` ✓ — Headless browser automation; the capture route for every browser-rendered toolkit · capture
