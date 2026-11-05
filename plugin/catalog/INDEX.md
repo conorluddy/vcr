@@ -105,7 +105,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `troika-three-text` — SDF text meshes for Three.js with font loading and Web Worker typesetting · text-rendering, 3d-rendering
 - `tween-js` — Tiny numeric property interpolator with easing; you call update(time) yourself · tweening
 - `twgl` — Tiny WebGL helper: programs, buffers, uniforms and framebuffers with less boilerplate · shaders, 2d-rendering
-- `two-js` — Scene graph for flat 2D drawing with one API across SVG, Canvas and WebGL renderers · 2d-rendering, vector-authoring
+- `two-js` ✓ — Scene graph for flat 2D drawing with one API across SVG, Canvas and WebGL renderers · 2d-rendering, vector-authoring · guide
 - `vpype` — Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths · plotter-workflow, vector-authoring
 - `vsketch` — Python sketches and the vsk CLI generate plotter-oriented line art as SVG · plotter-workflow, generative-2d
 - `vtk-js` — Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering · scientific-visualisation, 3d-rendering
