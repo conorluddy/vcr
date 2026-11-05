@@ -46,11 +46,10 @@ describe("vcr CLI", () => {
 
   test("every command answers --help --json with its own spec", async () => {
     const { COMMANDS } = await import("./commands.js");
-    for (const command of COMMANDS) {
-      const { stdout } = await runCli(...command.name.split(" "), "--help", "--json");
-      expect(JSON.parse(stdout).name).toBe(command.name);
-    }
-  });
+    // One CLI process per command; run them together so the test stays well inside its budget on a loaded CI runner.
+    const results = await Promise.all(COMMANDS.map((command) => runCli(...command.name.split(" "), "--help", "--json")));
+    results.forEach(({ stdout }, index) => expect(JSON.parse(stdout).name).toBe(COMMANDS[index]!.name));
+  }, 30_000);
 
   test("bare --help prints global usage and exits 0", async () => {
     const { stdout } = await runCli("--help");
