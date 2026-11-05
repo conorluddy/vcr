@@ -9323,6 +9323,18 @@ function capabilityDiagnostics(record, knownCapabilities, file) {
     suggestion: "Use an existing capability or add it to the vocabulary in the same change."
   }));
 }
+function scopeMatchDiagnostics(evidence, exampleId, path, file, isNew, repositoryRoot) {
+  const diagnostics = [];
+  const exampleDirectory = `examples/${exampleId}/`;
+  if (evidence.command && !evidence.command.startsWith(exampleDirectory)) {
+    diagnostics.push({ severity: "error", file, path: `${path}/command`, message: `command "${evidence.command}" does not run the cited example ${exampleDirectory}`, suggestion: "Cite the example whose run produced this result, or record the command under it." });
+  }
+  const hasRetainedOutputs = existsSync11(join12(repositoryRoot, exampleDirectory, "expected"));
+  if (!hasRetainedOutputs && !/fixture-reported/i.test(evidence.scope ?? "")) {
+    diagnostics.push({ severity: isNew ? "error" : "warning", file, path: `${path}/scope`, message: `${exampleDirectory} keeps no expected/ outputs, but the scope does not say the claim is fixture-reported`, suggestion: 'Say "Fixture-reported" in the scope, or retain the outputs under expected/ and diff them in run.sh.' });
+  }
+  return diagnostics;
+}
 function toolReferenceDiagnostics(record, file, tools, examples, repositoryRoot) {
   const diagnostics = [];
   const error = (path, message, suggestion) => diagnostics.push({ severity: "error", file, path, message, suggestion });
@@ -9341,17 +9353,18 @@ function toolReferenceDiagnostics(record, file, tools, examples, repositoryRoot)
     if (isNew && (scope === "inexact" || scope === "unknown")) {
       error(`/validation/evidence/${index}/version`, `evidence from ${EXACT_EVIDENCE_FROM} on must record the exact version that ran, not "${evidence.version ?? ""}"`, "Record the version the run reported, e.g. 8.0.1 or Chromium 156.0.8078.4; use n/a only for platform features.");
     }
-    if (isNew && !(typeof evidence.scope === "string" && evidence.scope.trim())) {
-      error(`/validation/evidence/${index}/scope`, `evidence from ${EXACT_EVIDENCE_FROM} on must set scope`, "Say in one line what the run proves and what it does not (see catalog/FIXTURE-EVIDENCE-TEMPLATE.md).");
-    }
     if (!isNew && index === evidenceEntries.length - 1 && (scope === "inexact" || scope === "unknown")) {
       diagnostics.push({ severity: "warning", file, path: `/validation/evidence/${index}/version`, message: scope === "inexact" ? `evidence version "${evidence.version ?? ""}" is a range, not the version that ran` : `evidence version "${evidence.version ?? ""}" does not identify what ran`, suggestion: "Leave this entry as is; when re-validating, append a new evidence entry with the exact version and a scope (see catalog/FIXTURE-EVIDENCE-TEMPLATE.md)." });
+    }
+    if (!(typeof evidence.scope === "string" && evidence.scope.trim())) {
+      error(`/validation/evidence/${index}/scope`, "every evidence entry must set scope", "Say in one line what the run proves and what it does not; for an old entry, start it `Backfilled <YYYY-MM-DD>:` (catalog/FIXTURE-EVIDENCE-TEMPLATE.md).");
     }
     if (!evidence.example) continue;
     const exampleId = evidence.example.replace(/^examples\//, "");
     const example = examples.get(exampleId);
     if (!example) error(`/validation/evidence/${index}/example`, `evidence example "${evidence.example}" does not exist`, "Point at an existing example id or examples/<id> path.");
     else if (!example.manifest.tools.includes(record.id)) error(`/validation/evidence/${index}/example`, `evidence example "${evidence.example}" does not list ${record.id}`, "Use an example that demonstrates this tool.");
+    else diagnostics.push(...scopeMatchDiagnostics(evidence, exampleId, `/validation/evidence/${index}`, file, isNew, repositoryRoot));
   }
   let skillText = null;
   if (record.skill) {
