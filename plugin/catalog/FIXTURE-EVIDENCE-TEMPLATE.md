@@ -38,6 +38,6 @@ When this becomes a `validation.evidence` entry:
 - Record `hostname`; tool cards use it to tell a run on this machine from one elsewhere.
 - Point `example` at a fixture that exercises this tool.
 - Never edit an earlier entry's observed fields (`date`, `hostname`, `version`, `command`, `result`, `example`). Add a new entry, and put corrections in a dated note. The one exception: a missing `scope` may be added once, starting `Backfilled <YYYY-MM-DD>:`, stating only what the recorded result supports.
-- From 2026-11-05, `vcr validate` fails a new entry that lacks an exact version or a scope. Older entries only warn, because they are history.
+- `vcr validate` fails any entry without a scope, and any entry whose `command` is not under its cited `example`. From 2026-11-05 it also fails a new entry that lacks an exact version, or that cites an example with no `expected/` directory unless the scope says "Fixture-reported". Older entries only warn on those two, because they are history.
 
 Never populate `validation.evidence` with a plan. If a tool is unavailable, report blocked/not run and retain `not-validated`; do not install silently or substitute a different tool and claim the original passed.

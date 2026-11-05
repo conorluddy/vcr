@@ -69,7 +69,7 @@ describe("validateRepository", () => {
     expect(report.diagnostics).toContainEqual(expect.objectContaining({ path: "/validation/evidence/0/example", severity: "error" }));
   });
   test("an inexact evidence version is a warning that keeps the record valid", () => {
-    const evidence = [{ date: "2026-10-26", hostname: "test", version: "3.x via pnpm", command: "./run.sh", result: "ok" }];
+    const evidence = [{ date: "2026-10-26", hostname: "test", version: "3.x via pnpm", command: "./run.sh", result: "ok", scope: "Backfilled 2026-11-04: one run" }];
     const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status: "validated", evidence } }]));
     expect(report.diagnostics).toContainEqual(expect.objectContaining({ path: "/validation/evidence/0/version", severity: "warning" }));
     expect(hasErrors(report)).toBe(false);
@@ -79,6 +79,41 @@ describe("validateRepository", () => {
     const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status: "validated", evidence } }]));
     expect(report.diagnostics).toContainEqual(expect.objectContaining({ path: "/validation/evidence/0/version", severity: "error" }));
   });
+  test("old evidence without a scope is an error too", () => {
+    const evidence = [{ date: "2026-10-26", hostname: "test", version: "8.0.1", command: "./run.sh", result: "ok" }];
+    const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status: "validated", evidence } }]));
+    expect(report.diagnostics).toContainEqual(expect.objectContaining({ path: "/validation/evidence/0/scope", severity: "error" }));
+  });
+
+  describe("scope match against the cited example", () => {
+    const withExample = (hasExpected: boolean) => {
+      const root = createFixtureRepository([]);
+      mkdirSync(join(root, "examples/demo", hasExpected ? "expected" : ""), { recursive: true });
+      writeFileSync(join(root, "examples/demo/example.json"), JSON.stringify({ id: "demo", title: "Demo", summary: "Demo run.", status: "validated", tools: ["ffmpeg"], run: "./run.sh" }));
+      return root;
+    };
+    const check = (root: string, overrides: Record<string, string>) => {
+      const evidence = [{ date: "2026-11-05", hostname: "test", version: "8.0.1", command: "examples/demo/run.sh", result: "ok", scope: "one run", example: "examples/demo", ...overrides }];
+      writeFileSync(join(root, "catalog/tools/ffmpeg.json"), JSON.stringify({ ...validTool, validation: { status: "validated", evidence } }));
+      writeCatalogIndex(root, false);
+      return validateRepository(root).diagnostics.filter((diagnostic) => diagnostic.path.startsWith("/validation/evidence/0"));
+    };
+
+    test("a command from another example is an error", () => {
+      expect(check(withExample(true), { command: "examples/other/run.sh" })).toContainEqual(expect.objectContaining({ path: "/validation/evidence/0/command", severity: "error" }));
+    });
+
+    test("an example without expected/ needs a fixture-reported scope", () => {
+      const root = withExample(false);
+      expect(check(root, {})).toContainEqual(expect.objectContaining({ path: "/validation/evidence/0/scope", severity: "error" }));
+      expect(check(root, { scope: "one run. Fixture-reported: no expected/ retained." })).toEqual([]);
+    });
+
+    test("retained outputs satisfy the check", () => {
+      expect(check(withExample(true), {})).toEqual([]);
+    });
+  });
+
   test("new evidence without a scope is an error", () => {
     const evidence = [{ date: "2026-11-06", hostname: "test", version: "8.0.1", command: "./run.sh", result: "ok" }];
     const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status: "validated", evidence } }]));
@@ -86,7 +121,7 @@ describe("validateRepository", () => {
   });
   test("new evidence that is exact and scoped is clean, and old entries only warn", () => {
     const evidence = [
-      { date: "2026-10-26", hostname: "test", version: "pnpm latest", command: "./run.sh", result: "ok" },
+      { date: "2026-10-26", hostname: "test", version: "pnpm latest", command: "./run.sh", result: "ok", scope: "Backfilled 2026-11-04: one run" },
       { date: "2026-11-05", hostname: "test", version: "n/a (platform)", command: "./run.sh", result: "ok", scope: "platform feature" },
     ];
     const report = validateRepository(createFixtureRepository([{ ...validTool, validation: { status: "validated", evidence } }]));

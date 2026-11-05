@@ -34,7 +34,7 @@ export interface ToolSummary {
   skill?: string;
   examples?: string[];
   installation_status: string;
-  validation: { status: string; evidence?: Array<{ date: string; version?: string; hostname?: string; example?: string; scope?: string }> };
+  validation: { status: string; evidence?: Array<{ date: string; version?: string; hostname?: string; command?: string; example?: string; scope?: string }> };
   adapter_maturity: string;
   [extra: string]: unknown;
 }
