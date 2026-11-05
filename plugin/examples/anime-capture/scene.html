@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  html, body { margin: 0; background: transparent; width: 100%; height: 100%; overflow: hidden; }
+  #stage { position: relative; width: 100%; height: 100%; }
+  #square { position: absolute; left: 40%; top: 30%; width: 20%; aspect-ratio: 1; background: #c7f36b; border-radius: 4%; }
+  .dot { position: absolute; top: 80%; width: 4%; aspect-ratio: 1; border-radius: 50%; background: #6bc7f3; opacity: 0; will-change: transform, opacity; }
+  svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg viewBox="0 0 1280 720"><path id="line" d="M80 600 C 360 200, 920 200, 1200 600" fill="none" stroke="#f3a86b" stroke-width="12" stroke-linecap="round" /></svg>
+  <div id="square"></div>
+  <!-- will-change pins the dots to their own layers: otherwise Chromium promotes them based on seek history, which changes the square's edge anti-aliasing (2 px) by frame order. -->
+  <div class="dot" style="left:20%"></div><div class="dot" style="left:35%"></div><div class="dot" style="left:50%"></div><div class="dot" style="left:65%"></div><div class="dot" style="left:80%"></div>
+</div>
+<script src="node_modules/animejs/dist/bundles/anime.umd.min.js"></script>
+<script>
+  // Built with autoplay off: the harness seeks it in milliseconds; nothing here reads a wall clock.
+  const { createTimeline, stagger, svg } = anime;
+  window.buildTimeline = () => {
+    const tl = createTimeline({ autoplay: false });
+    tl.add("#square", { rotate: 360, scale: 0.6, duration: 3000, ease: "inOut(2)" }, 0)
+      .add(svg.createDrawable("#line"), { draw: ["0 0", "0 1"], duration: 2000, ease: "linear" }, 0)
+      .add(".dot", { opacity: [0, 1], translateY: [-80, 0], duration: 600, delay: stagger(150), ease: "out(3)" }, 1000);
+    window.__timeline = tl;
+    return tl.duration / 1000;
+  };
+  window.__scene = { duration: window.buildTimeline(), seek: (t) => { window.__timeline.seek(t * 1000); } };
+</script>
+</body>
+</html>

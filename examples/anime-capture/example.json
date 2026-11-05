@@ -1,0 +1,18 @@
+{
+  "id": "anime-capture",
+  "title": "Anime.js v4 timeline seeked per frame with alpha",
+  "summary": "createTimeline with autoplay off drives a CSS transform tween, an SVG line draw and a stagger; 90 frames at 1280x720 with alpha, shuffled order matches sequential, asserted against expected/summary.json.",
+  "status": "validated",
+  "tools": ["anime-js", "playwright", "imagemagick"],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-05",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
