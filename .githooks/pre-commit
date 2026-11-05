@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Regenerate committed outputs when their sources are staged, and stage the result.
+# CI (`pnpm validate`) remains the backstop for --no-verify and hookless clones.
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+
+staged=$(git diff --cached --name-only --diff-filter=ACMRD)
+[[ -z "$staged" ]] && exit 0
+
+if grep -qE '^(catalog/tools/|catalog/capabilities/|README\.md$)' <<<"$staged"; then
+  echo "pre-commit: vcr catalog build"
+  pnpm -s vcr catalog build >/dev/null
+  git add catalog/tools.json catalog/INDEX.md catalog/CANDIDATES.md README.md
+fi
+
+# Runs after catalog build, because plugin/ copies the catalogue.
+if grep -qE '^(packages/cli/|packages/capture/|packages/timeline/|catalog/|skills/|examples/)' <<<"$staged"; then
+  echo "pre-commit: vcr plugin build"
+  pnpm -s vcr plugin build >/dev/null
+  git add plugin references/cli.md
+fi
