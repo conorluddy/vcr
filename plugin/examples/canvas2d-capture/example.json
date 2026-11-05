@@ -1,0 +1,18 @@
+{
+  "id": "canvas2d-capture",
+  "title": "Plain canvas 2D scene redrawn as a pure function of t, with alpha",
+  "summary": "clearRect then draw each frame: gradient, arc, path, text in a loaded font and a seeded PRNG; 90 frames at 1280x720 with alpha, shuffled order matches sequential, asserted against expected/summary.json.",
+  "status": "validated",
+  "tools": ["canvas-2d", "playwright", "imagemagick"],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-05",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
