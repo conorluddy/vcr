@@ -47,10 +47,23 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "not-applicable",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-05",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "Chromium 156.0.8078.4",
+        "command": "examples/waapi-capture/run.sh",
+        "result": "90 alpha frames at 1280x720 via the @vcr/capture screenshot route (Playwright 1.64.1); shuffled matches sequential in 3 runs; frame 45 alpha min 0 max 1. Passed first run; also passed with will-change removed.",
+        "example": "examples/waapi-capture",
+        "scope": "element.animate() paused, seeked via currentTime: transform, SVG stroke draw, staggered opacity; alpha; macOS arm64 Chromium. Not CSS animations, getAnimations(), scroll timelines."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "examples": [
+    "waapi-capture"
+  ]
 }
