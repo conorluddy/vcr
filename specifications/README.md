@@ -7,6 +7,7 @@
 - `vcr-prd.md` — product requirements. Requirement IDs (`L2-01` and so on) are the stable vocabulary; child documents quote IDs instead of restating them.
 - `vcr-plugin-prd.md` — child PRD for distribution as a Claude Code and Codex plugin, and the human review layer (review pages and storage controls). Requirement groups PL, RT, AG, RS, RV, ST, SH, PX.
 - `decisions/` — architecture decision records, numbered. See `decisions/README.md`.
+- `handoffs/` — resumable multi-session workflows an agent can pick up from a single prompt, such as `catalogue-evidence-rollout.md`.
 - `spikes/` — reports from time-boxed technical spikes: decision, numbers, limitations. A child specification cites the spike that opened it.
 - `<layer>/` — a short child specification per layer, created when work on that layer starts and not before.
 
