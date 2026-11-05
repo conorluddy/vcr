@@ -1,0 +1,16 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;overflow:hidden;background:transparent}</style></head><body>
+<script src="./node_modules/pixi.js/dist/pixi.min.js"></script>
+<script type="module">
+const app = new PIXI.Application();
+await app.init({width:1280,height:720,preference:'webgl',backgroundAlpha:0,antialias:true,resolution:1,autoStart:false,sharedTicker:false,preserveDrawingBuffer:true});
+app.stop();
+if (app.renderer.type !== PIXI.RendererType.WEBGL) throw new Error('WebGL required');
+document.body.appendChild(app.canvas);
+const group = new PIXI.Container();
+const plate = new PIXI.Graphics().roundRect(-180,-100,360,200,28).fill(0x203348).stroke({color:0x9ed8e8,width:4});
+const disc = new PIXI.Graphics().circle(0,0,62).fill(0xe8ad56);
+const bar = new PIXI.Graphics().rect(-90,-12,180,24).fill(0xa8d982);
+group.addChild(plate,bar); app.stage.addChild(group,disc);
+function renderAt(t){group.position.set(640,360);group.rotation=0.18*Math.sin(t*2);bar.scale.x=0.5+0.4*Math.cos(t*3);disc.position.set(640+300*Math.cos(t*2),360+210*Math.sin(t*2));disc.scale.set(0.8+0.2*Math.sin(t*3));app.render();}
+window.__scene={duration:3,seek:t=>requestAnimationFrame(()=>renderAt(t))};
+</script></body></html>
