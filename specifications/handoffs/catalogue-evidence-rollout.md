@@ -48,23 +48,16 @@ Lanes, by how the fixture runs. Classify any new tool by its card's `automation_
 
 One agent per tool, `isolation: worktree`, background. Give each agent this brief and change only the tool id, the lane's model example and the claim:
 
-> In this VCR worktree, run the `evidence` skill for `<id>` (read `skills/evidence/SKILL.md` and `catalog/FIXTURE-EVIDENCE-TEMPLATE.md`). Model it on `<example>`. Claim: `<one concrete job from the card>`. In-repo pinned installs are approved; anything system-wide (brew, pip) needs the user, so report it as blocked instead. Read `skills/start/references/determinism.md` before writing a browser scene. If shuffled order differs, bisect and report the cause; `run.sh` must fail on a mismatch. A failure is a valid result: record `partial` or keep `not-validated`, and write up what you found. If blocked, add a note to the record starting `rollout-deferred <YYYY-MM-DD>: <reason>` so later waves skip it. Branch `evidence/<id>`; link the example from every tool in its `tools` list; add a row to `examples/README.md`; run catalog build, plugin build, `pnpm validate && pnpm test`; push and open a PR without merging. If evidence passed, also run the `guide` skill in the same PR. Report pass/partial/fail/blocked, the PR URL, exact versions and findings in under 200 words.
+> In this VCR worktree, run the `evidence` skill for `<id>` (read `skills/evidence/SKILL.md` and `catalog/FIXTURE-EVIDENCE-TEMPLATE.md`). Model it on `<example>`. Claim: `<one concrete job from the card>`. In-repo pinned installs are approved; anything system-wide (brew, pip) needs the user, so report it as blocked instead. Read `skills/start/references/determinism.md` before writing a browser scene. If shuffled order differs, bisect and report the cause; `run.sh` must fail on a mismatch. A failure is a valid result: record `partial` or keep `not-validated`, and write up what you found. If blocked, add a note to the record starting `rollout-deferred <YYYY-MM-DD>: <reason>` so later waves skip it. Branch `evidence/<id>`; link the example from every tool in its `tools` list; add a row to `examples/README.md`; run catalog build, plugin build, `pnpm validate && pnpm test`; commit on the tool branch without opening a separate PR; the coordinator integrates the wave. If evidence passed, also run the `guide` skill in the same PR. Report pass/partial/fail/blocked, the branch name, exact versions and findings in under 200 words.
 
-## 4. Merge protocol (one at a time, in order of PR number)
+## 4. Merge protocol (one integration branch per wave)
 
-```sh
-cd <worktree> && git fetch -q origin && git rebase origin/main
-# Conflicts: list entries (tool examples arrays, examples/README rows): keep both.
-# Generated files (catalog/tools.json, INDEX.md, README.md TOC, plugin/): take main, then rebuild.
-pnpm install && pnpm vcr catalog build && pnpm vcr plugin build
-pnpm validate && pnpm test
-git push --force-with-lease
-gh pr checks <n> --watch; test $? -eq 0 && gh pr merge <n> --squash
-```
-
-- Never pipe `gh pr checks` through anything before testing its exit code. On 2026-11-05 a `| tail` hid a red check and the PR merged anyway.
-- Rebuild generated files after every merge, never by hand.
-- After the wave: `git worktree remove` each worktree, then delete the local and remote branches.
+- Each agent commits its source changes and generated outputs on its own `evidence/<id>` branch. Do not open or merge separate tool PRs.
+- Create one integration branch from current `origin/main`. Merge agent branches serially, preserving both source additions in list conflicts.
+- Resolve generated-file conflicts by rebuilding from integrated sources, never by hand. After all branches are integrated, run `pnpm install`, `pnpm vcr catalog build`, `pnpm vcr plugin build`, then `pnpm validate && pnpm test`.
+- Review AGENTS.md for stale facts. Append the wave progress row using counts from the rebuilt index, and open one wave PR.
+- Require successful PR checks before squash-merging. Never pipe `gh pr checks` before testing its exit status: a pipe previously hid a red check.
+- After merge, verify the resulting state, remove each worktree and delete merged local and remote branches. Never use `git add -A` from the main checkout while worktrees exist.
 
 ## 5. Stop and ask the user when
 
