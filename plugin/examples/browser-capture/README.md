@@ -18,12 +18,12 @@ VCR_CAPTURE=beginframe pnpm -s capture   # experimental alternative; screenshot 
 4. Recommended in scenes: `gsap.defaults({ force3D: false, lazy: false })`, so GSAP never swaps transform paths mid-tween or defers its first write to the next tick.
 5. Disable Chromium partial rasterization. Reusing raster tiles produced small pixel differences between frame orders even when the scene values matched; the shared harness includes `--disable-partial-raster`.
 
-## Expected (fixture-reported)
+## Expected (retained)
 
-Reported from the 2026-10-26 run, which used the then-default `beginFrame` route; the current screenshot default has no recorded run of this example.
+`expected/summary.json`, recorded 2026-11-05 on macOS arm64 (Playwright 1.64.1, Chromium 156.0.8078.4, GSAP 3.15.0, FFmpeg 8.0.1, ImageMagick 7.1.2-15) with the screenshot route. `./run.sh` diffs every run against it; `./run.sh --record` rewrites it.
 
-`shuffled_matches_sequential=true`, 90 frames, `srgba` PNGs with alpha min 0 and max 1, and a `prores` output. `run.sh` requests `yuva444p10le`; ffprobe was reported as `yuva444p12le`, likely the ProRes decoder's output format (not confirmed). These values come from runs, not retained files: this example keeps no `expected/` directory, and whether alpha survives the ProRes encode has not been retained.
+It asserts: capture mode, 90 frames at 1920x1080, shuffled matches sequential, frame 45 alpha min 0 and max 1, and a `prores` movie of 90 frames whose pixel format carries alpha (`yuva*`). The exact pix_fmt is printed, not retained: `yuva444p10le` is requested, and FFmpeg 6.1.1 and 8.0.1 both report `yuva444p12le`. The summary does not decode the movie's alpha back out, so it does not prove alpha survives the encode pixel for pixel. Timing figures are printed, never retained.
 
-2026-11-04: the screenshot default now has a recorded run (Linux x86_64 container, Playwright 1.64.1 with Chrome for Testing 153 standing in for the pinned Chromium 156 build): 90 frames, shuffled matches sequential, frame 45 alpha printed min 0 max 1 (not asserted). FFmpeg 6.1.1 again reported `yuva444p12le` for the requested `yuva444p10le`; that this is the ProRes decoder's output format is still not confirmed. See the latest evidence entries in `catalog/tools/playwright.json` and `gsap.json`.
+History: the 2026-10-26 run used the then-default `beginFrame` route (now experimental), and the 2026-11-04 Linux run printed alpha without asserting it. Both are fixture-reported; see the evidence entries in `catalog/tools/playwright.json` and `gsap.json`.
 
 The fixture captures a separate, seeded shuffled run and fails if frame hashes differ or every frame is identical. A third run captures 30 frames at 4K. Capture diagnostics are kept in `output/capture.log` and printed on failure.

@@ -1,0 +1,16 @@
+{
+  "capture_mode": "screenshot",
+  "frames": 90,
+  "width": 1920,
+  "height": 1080,
+  "shuffled_matches_sequential": true,
+  "frame_45_alpha": {
+    "min": 0,
+    "max": 1
+  },
+  "movie": {
+    "codec": "prores",
+    "pix_fmt_has_alpha": true,
+    "frames": 90
+  }
+}

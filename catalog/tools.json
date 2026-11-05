@@ -2667,6 +2667,15 @@
             "result": "Screenshot route: 90 frames at 1080p, shuffled order matches sequential; frame 45 alpha printed min 0 max 1 (not asserted); ProRes 4444 with yuva444p10le requested, ffprobe reports yuva444p12le (FFmpeg 6.1.1). Env: Linux x86_64 container, Chrome for Testing 153.0.8010.12 headless shell standing in for pinned build 1248, ImageMagick 6.9.12-98 via convert shim.",
             "example": "examples/browser-capture",
             "scope": "GSAP timeline seeked via the @vcr/capture screenshot route, Linux container, Chromium 153 stand-in. Fixture-reported: no expected/ retained."
+          },
+          {
+            "date": "2026-11-05",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.15.0",
+            "command": "examples/browser-capture/run.sh",
+            "result": "Screenshot route: 90 frames at 1920x1080, shuffled matches sequential; frame 45 alpha min 0 max 1 asserted; ProRes 4444 movie 90 frames, ffprobe yuva444p12le (FFmpeg 8.0.1). Diffed against expected/summary.json.",
+            "example": "examples/browser-capture",
+            "scope": "GSAP timeline seeked per frame via the @vcr/capture screenshot route, macOS arm64; alpha and frame order retained in expected/. Not beginFrame."
           }
         ]
       },
@@ -5538,6 +5547,15 @@
             "result": "Default screenshot route (seek, two-frame settle, screenshot): 90 frames at 1080p, shuffled matches sequential; 30 frames at 4K hashed, not checked; frame 45 alpha printed min 0 max 1 (not asserted); about 10 fps at 1080p, single run. Env: Linux x86_64 container, Chrome for Testing 153.0.8010.12 headless shell standing in for pinned build 1248, ImageMagick 6.9.12-98 via convert shim.",
             "example": "examples/browser-capture",
             "scope": "First recorded run of the current default route (seek, settle, screenshot) for browser-capture; Linux container, Chromium 153 stand-in, not pinned Chromium 156."
+          },
+          {
+            "date": "2026-11-05",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.64.1, Chromium 156.0.8078.4",
+            "command": "examples/browser-capture/run.sh",
+            "result": "Screenshot route: 90 frames at 1920x1080, shuffled matches sequential; frame 45 alpha min 0 max 1 asserted; ProRes 4444 movie 90 frames, ffprobe yuva444p12le (FFmpeg 8.0.1). Diffed against expected/summary.json.",
+            "example": "examples/browser-capture",
+            "scope": "Seek, settle, screenshot capture of browser-capture, macOS arm64; alpha and shuffled-order match retained in expected/. Not beginFrame."
           }
         ]
       },
