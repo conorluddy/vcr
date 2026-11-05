@@ -109,7 +109,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `vpype` — Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths · plotter-workflow, vector-authoring
 - `vsketch` — Python sketches and the vsk CLI generate plotter-oriented line art as SVG · plotter-workflow, generative-2d
 - `vtk-js` — Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering · scientific-visualisation, 3d-rendering
-- `web-animations-api` — Native element.animate() with a seekable Animation.currentTime; no library needed · tweening, timeline-animation
+- `web-animations-api` ✓ — Native element.animate() with a seekable Animation.currentTime; no library needed · tweening, timeline-animation
 - `web-audio` — Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time · audio
 - `webcodecs` — Frame-exact browser video/audio encoders and decoders; pair with a muxer · video-encoding, media-inspection
 - `webgl` — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders

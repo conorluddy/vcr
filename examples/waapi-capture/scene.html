@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  html, body { margin: 0; background: transparent; width: 100%; height: 100%; overflow: hidden; }
+  #stage { position: relative; width: 100%; height: 100%; }
+  #square { position: absolute; left: 40%; top: 30%; width: 20%; aspect-ratio: 1; background: #c7f36b; border-radius: 4%; }
+  .dot { position: absolute; top: 80%; width: 4%; aspect-ratio: 1; border-radius: 50%; background: #6bc7f3; opacity: 0; will-change: transform, opacity; }
+  svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg viewBox="0 0 1280 720"><path id="line" d="M80 600 C 360 200, 920 200, 1200 600" fill="none" stroke="#f3a86b" stroke-width="12" stroke-linecap="round" /></svg>
+  <div id="square"></div>
+  <!-- will-change pins the dots to their own layers: otherwise Chromium promotes them based on seek history, which changes the square's edge anti-aliasing by frame order (issue #57). -->
+  <div class="dot" style="left:20%"></div><div class="dot" style="left:35%"></div><div class="dot" style="left:50%"></div><div class="dot" style="left:65%"></div><div class="dot" style="left:80%"></div>
+</div>
+<script>
+  // Every animation is created, paused and seeked via currentTime; nothing reads a wall clock or the document timeline.
+  const animations = [];
+  const add = (target, keyframes, options) => {
+    const animation = target.animate(keyframes, { fill: "both", ...options });
+    animation.pause();
+    animations.push(animation);
+  };
+
+  add(document.querySelector("#square"),
+    [{ transform: "rotate(0deg) scale(1)" }, { transform: "rotate(360deg) scale(0.6)" }],
+    { duration: 3000, easing: "ease-in-out" });
+
+  const line = document.querySelector("#line");
+  const lineLength = line.getTotalLength();
+  line.style.strokeDasharray = lineLength;
+  add(line, [{ strokeDashoffset: lineLength }, { strokeDashoffset: 0 }], { duration: 2000, easing: "linear" });
+
+  document.querySelectorAll(".dot").forEach((dot, index) => {
+    add(dot, [{ opacity: 0, transform: "translateY(-80px)" }, { opacity: 1, transform: "translateY(0)" }],
+      { duration: 600, delay: 1000 + index * 150, easing: "cubic-bezier(0.215, 0.61, 0.355, 1)" });
+  });
+
+  const durationMs = Math.max(...animations.map((animation) => animation.effect.getComputedTiming().endTime));
+  window.__scene = {
+    duration: durationMs / 1000,
+    seek: (t) => { for (const animation of animations) animation.currentTime = t * 1000; },
+  };
+</script>
+</body>
+</html>
