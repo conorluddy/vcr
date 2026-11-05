@@ -37,7 +37,7 @@ Then run `pnpm vcr catalog build`, `pnpm vcr plugin build`, `pnpm validate && pn
 
 ## 5. Report
 
-State pass, partial, fail or blocked; the evidence path; what the run does not establish (other OS, other routes, quality); and whether a toolkit skill is now justified (`skills/README.md`: only once an example has produced evidence). Do not write the toolkit skill unless asked. A reviewer decides promotion to core.
+State pass, partial, fail or blocked; the evidence path; what the run does not establish (other OS, other routes, quality); and whether a toolkit skill is now justified (`skills/README.md`: only once an example has produced evidence). The `guide` skill writes it; do not start it unless asked. A reviewer decides promotion to core.
 
 ## Batches
 
