@@ -1,0 +1,22 @@
+{
+  "id": "twojs-capture",
+  "title": "Two.js SVG scene seeked from time with alpha",
+  "summary": "Procedural SVG geometry driven from t; 90 alpha frames with shuffled-order verification.",
+  "status": "validated",
+  "tools": [
+    "two-js",
+    "playwright",
+    "imagemagick"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-05",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

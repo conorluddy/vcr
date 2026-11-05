@@ -1,0 +1,17 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent}svg{display:block}</style></head>
+<body><script src="./node_modules/two.js/build/two.min.js"></script><script>
+const duration = 3;
+const two = new Two({type:Two.Types.svg,width:1280,height:720,autostart:false}).appendTo(document.body);
+const panel=two.makeRoundedRectangle(640,360,1080,440,32);panel.fill='#142946';panel.noStroke();
+const ring=two.makeCircle(360,360,138);ring.noFill();ring.stroke='#7adcf4';ring.linewidth=10;
+const square=two.makeRectangle(360,360,150,150);square.fill='#c7f36b';square.noStroke();
+const dots=[];
+for(let i=0;i<12;i++){const dot=two.makeCircle(620+i*38,360,9+i);dot.fill=i%2?'#ffb84d':'#7adcf4';dot.noStroke();dots.push(dot);}
+function seek(t){
+ square.rotation=t*Math.PI/3;square.scale=0.8+0.2*Math.cos(t*2);
+ for(let i=0;i<dots.length;i++){dots[i].translation.y=360+95*Math.sin(t*2+i*0.5);}
+ two.update();
+}
+seek(0);window.__scene={duration,seek};
+</script></body></html>

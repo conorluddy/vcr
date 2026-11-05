@@ -2939,7 +2939,8 @@
         "waapi-capture",
         "canvas2d-capture",
         "pixijs-capture",
-        "konva-capture"
+        "konva-capture",
+        "twojs-capture"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -5571,7 +5572,8 @@
         "waapi-capture",
         "canvas2d-capture",
         "pixijs-capture",
-        "konva-capture"
+        "konva-capture",
+        "twojs-capture"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
@@ -8193,12 +8195,26 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-05",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.8.24",
+            "command": "examples/twojs-capture/run.sh",
+            "result": "90 alpha frames at 1280x720; shuffled equals sequential in record and reproduction runs; frame45 alpha min0 max1; changing hashes; visually inspected frames0/45/89. Playwright1.64.1 Chromium156.0.8078.4 Node22.19.0.",
+            "example": "examples/twojs-capture",
+            "scope": "SVG renderer procedural geometry and time-derived transforms; alpha PNG capture, macOS arm64 Chromium. Not Canvas/WebGL, SVG import/export, fonts or interaction."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "twojs-capture"
+      ],
+      "skill": "skills/two-js/SKILL.md"
     },
     {
       "id": "vapoursynth",
