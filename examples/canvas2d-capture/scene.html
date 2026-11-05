@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8" /><style>html, body { margin: 0; background: transparent; } canvas { display: block; }</style></head>
+<body>
+<canvas id="stage"></canvas>
+<script>
+  // Plain canvas 2D, no library. Every frame is a pure function of t: clearRect, then draw. The seeded
+  // PRNG is recreated inside drawFrame, so random placement cannot depend on which frames were drawn before.
+  const DURATION = 3;
+  const SEED = 7;
+  const FONT_FAMILY = "VCR JetBrains Mono";
+  const canvas = document.getElementById("stage");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const context = canvas.getContext("2d");
+
+  function createSeededRandom(seed) {
+    let state = seed >>> 0; // mulberry32
+    return () => {
+      state = (state + 0x6d2b79f5) >>> 0;
+      let mixed = Math.imul(state ^ (state >>> 15), 1 | state);
+      mixed = (mixed + Math.imul(mixed ^ (mixed >>> 7), 61 | mixed)) ^ mixed;
+      return ((mixed ^ (mixed >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function drawFrame(t) {
+    const { width, height } = canvas;
+    const random = createSeededRandom(SEED);
+    context.clearRect(0, 0, width, height);
+
+    // Gradient: a translucent panel fading to fully transparent on the right, so alpha spans 0 to 1.
+    const panel = context.createLinearGradient(0, 0, width, 0);
+    panel.addColorStop(0, "rgba(18, 24, 48, 1)");
+    panel.addColorStop(0.55, "rgba(32, 52, 104, 0.6)");
+    panel.addColorStop(1, "rgba(32, 52, 104, 0)");
+    context.fillStyle = panel;
+    context.fillRect(0, 140, width, 440);
+
+    // Seeded sparks: positions and phases come from the PRNG, motion comes from t.
+    for (let index = 0; index < 90; index += 1) {
+      const phase = random() * Math.PI * 2;
+      const x = random() * width;
+      const y = 140 + random() * 440;
+      const radius = 2 + random() * 5;
+      const glow = 0.5 + 0.5 * Math.sin(t * 2.4 + phase);
+      context.fillStyle = `rgba(199, 243, 107, ${(0.15 + 0.7 * glow).toFixed(4)})`;
+      context.beginPath();
+      context.arc(x + 18 * Math.sin(t + phase), y, radius, 0, Math.PI * 2);
+      context.fill();
+    }
+
+    // Arc: a ring that sweeps round once over the duration.
+    const sweep = (t / DURATION) * Math.PI * 2;
+    context.lineWidth = 14;
+    context.lineCap = "round";
+    context.strokeStyle = "rgba(255, 184, 77, 0.95)";
+    context.beginPath();
+    context.arc(300, 360, 130, -Math.PI / 2, -Math.PI / 2 + sweep);
+    context.stroke();
+    context.lineWidth = 2;
+    context.strokeStyle = "rgba(255, 255, 255, 0.25)";
+    context.beginPath();
+    context.arc(300, 360, 130, 0, Math.PI * 2);
+    context.stroke();
+
+    // Path: a travelling sine wave drawn as a polyline with a closed, filled underside.
+    context.beginPath();
+    context.moveTo(560, 600);
+    for (let x = 560; x <= 1200; x += 8) {
+      context.lineTo(x, 560 - 40 * Math.sin((x - 560) / 70 + t * 3));
+    }
+    context.lineTo(1200, 600);
+    context.closePath();
+    context.fillStyle = "rgba(107, 200, 243, 0.35)";
+    context.fill();
+    context.lineWidth = 4;
+    context.strokeStyle = "rgba(107, 200, 243, 1)";
+    context.lineJoin = "round";
+    context.stroke();
+
+    // Text in the loaded font: a fixed title and a counter whose glyphs change every frame.
+    context.fillStyle = "#ffffff";
+    context.textBaseline = "alphabetic";
+    context.font = `700 64px "${FONT_FAMILY}"`;
+    context.fillText("canvas 2d", 560, 240);
+    context.font = `700 40px "${FONT_FAMILY}"`;
+    context.fillStyle = "rgba(199, 243, 107, 1)";
+    context.fillText(`t = ${t.toFixed(3)} s`, 560, 300);
+  }
+
+  async function start() {
+    const font = new FontFace(FONT_FAMILY, "url(./fonts/JetBrainsMono-Bold.ttf)", { weight: "700" });
+    document.fonts.add(await font.load());
+    await document.fonts.ready;
+    if (!document.fonts.check(`700 64px "${FONT_FAMILY}"`)) throw new Error("font did not load");
+    drawFrame(0);
+    window.__scene = { duration: DURATION, seek: drawFrame };
+  }
+  start();
+</script>
+</body>
+</html>

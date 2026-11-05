@@ -31,7 +31,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `aseprite` — Batch CLI and Lua scripts that export pixel-art animation, tags and sprite sheets · pixel-art, native-authoring
 - `babylon-js` — Full web 3D engine with built-in PBR, post effects, physics and node materials · 3d-rendering, shaders, effects, physics-simulation, model-loading
 - `build123d` ◐ — Python parametric CAD for precise product geometry and SVG technical projections · 3d-asset-processing, vector-authoring
-- `canvas-2d` — Immediate-mode 2D raster drawing; redraw each frame as a pure function of t · 2d-rendering, text-rendering
+- `canvas-2d` ✓ — Immediate-mode 2D raster drawing; redraw each frame as a pure function of t · 2d-rendering, text-rendering
 - `canvas-record` — Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped · capture, video-encoding, image-sequence-processing
 - `canvas-sketch` — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture
 - `canvaskit-skia` — Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output · 2d-rendering, text-rendering, shaders

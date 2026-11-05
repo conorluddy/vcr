@@ -56,6 +56,19 @@ importers:
         specifier: ^4.23.15
         version: 4.23.15
 
+  examples/canvas2d-capture:
+    dependencies:
+      '@vcr/capture':
+        specifier: workspace:*
+        version: link:../../packages/capture
+      playwright:
+        specifier: ^1.64.1
+        version: 1.64.1
+    devDependencies:
+      tsx:
+        specifier: ^4.23.15
+        version: 4.23.15
+
   examples/p5-capture:
     dependencies:
       p5:
