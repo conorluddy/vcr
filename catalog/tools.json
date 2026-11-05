@@ -133,7 +133,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "anime-capture"
-      ]
+      ],
+      "skill": "skills/anime-js/SKILL.md"
     },
     {
       "id": "ardour",
