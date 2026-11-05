@@ -9602,8 +9602,13 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
     const outputDirectory = resolve4(text(options["out"]) ?? join14(dirname5(sceneFile), "output"));
     const report = await runCapture(roots, { sceneFile, outputDirectory, verifyDeterminism: options["verify"] === true, ...dimensions });
     if (!report.ok) return failWith(report.error, asJson);
-    const { frames, frames_per_second, shuffled_matches_sequential } = report.value;
-    print(asJson ? { outputDirectory, frames, frames_per_second, shuffled_matches_sequential } : `captured ${frames} frames to ${outputDirectory}/frames (${frames_per_second} fps)${shuffled_matches_sequential === null ? "" : `; shuffled matches sequential: ${shuffled_matches_sequential}`}`);
+    const { frames, frames_per_second, shuffled_matches_sequential, mismatched_frames } = report.value;
+    if (shuffled_matches_sequential === false) {
+      const firstMismatches = mismatched_frames.slice(0, 5).join(", ") + (mismatched_frames.length > 5 ? ", \u2026" : "");
+      process.stderr.write(`${mismatched_frames.length} frames differ between sequential and shuffled order (${firstMismatches}). If the DOM matches in both orders, suspect compositor layering (pin animated elements with will-change); if not, the scene carries state between seeks. See references/determinism.md in the start skill.
+`);
+    }
+    print(asJson ? { outputDirectory, frames, frames_per_second, shuffled_matches_sequential, mismatched_frames } : `captured ${frames} frames to ${outputDirectory}/frames (${frames_per_second} fps)${shuffled_matches_sequential === null ? "" : `; shuffled matches sequential: ${shuffled_matches_sequential}`}`);
     return shuffled_matches_sequential === false ? 1 : 0;
   }
   if (command === "catalog" && subcommand === "build") {

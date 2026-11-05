@@ -63,6 +63,7 @@ Never return the timeline from code the harness evaluates; it is a cyclic object
 Capture with `vcr capture <scene.html> --width W --height H --fps F --verify`; frames and `report.json` land in `output/` beside the scene (the same engine as `@vcr/capture`'s `captureFrames` inside the repository). DOM-only scenes can set `VCR_CAPTURE_MODE=beginframe` for about 60 frames per second at 1080p; scenes with a canvas must use the default screenshot mode.
 
 ## Troubleshooting
+- `--verify` reports a shuffled mismatch: see [Determinism pitfalls](../start/references/determinism.md).
 - Frames differ between runs: a tween has `lazy` on, a CSS animation or transition is running alongside, or something reads the clock. Set `gsap.defaults({ lazy: false })` and remove CSS animations.
 - Edge anti-aliasing flickers: `force3D: "auto"` switching transform paths; pin it to `false`.
 - Text wraps differently in capture than in a browser window: the font was not loaded when SplitText ran.
