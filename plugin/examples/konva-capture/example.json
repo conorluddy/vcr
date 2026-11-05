@@ -1,0 +1,22 @@
+{
+  "id": "konva-capture",
+  "title": "Konva layered vector scene drawn explicitly from time",
+  "summary": "Two Canvas 2D layers, group rotation and scale, moving translucent circle; 90 alpha frames at 1280x720, shuffled capture equals sequential.",
+  "status": "validated",
+  "tools": [
+    "konva",
+    "playwright",
+    "imagemagick"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-05",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

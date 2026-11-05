@@ -54,7 +54,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `imagemagick` ✓ — Baseline CLI for image ops, montage, compare and inspection; the validated stills toolchain · image-processing, media-inspection, image-sequence-processing · guide
 - `inkscape` — Command-line actions export and convert SVG and other vector source to PNG, PDF and plain SVG · vector-authoring, svg-rasterisation, native-authoring
 - `jimp` — Pure-JavaScript image manipulation, no native dependencies; slow but trivially portable · image-processing
-- `konva` — Canvas 2D scene graph (stage, layers, groups, shapes) with events, tweens and export · 2d-rendering, tweening, react-integration
+- `konva` ✓ — Canvas 2D scene graph (stage, layers, groups, shapes) with events, tweens and export · 2d-rendering, tweening, react-integration · guide
 - `lottie-web` — Plays After Effects/Bodymovin Lottie JSON in the browser; frame-addressable · asset-playback, svg-animation
 - `manim-community` — Python scenes rendered by the manim CLI to video or PNG sequences for maths and diagram motion · timeline-animation, 2d-rendering, video-encoding, typography
 - `matter-js` — 2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t · physics-simulation
@@ -71,7 +71,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `openimageio-oiiotool` — VFX-grade CLI for EXR, sequences and OCIO colour conversion; stack-based image operations · image-sequence-processing, image-processing, colour-management
 - `opentype-js` — Parse fonts to glyph outlines and SVG path data; text without installed fonts · font-processing, typography, vector-authoring
 - `paper-js` — Vector scene graph with Bezier path geometry and boolean path operations · vector-authoring, 2d-rendering
-- `pixijs` — GPU-accelerated 2D renderer (WebGPU and WebGL) for sprites, text and filters · 2d-rendering, effects, shaders
+- `pixijs` ✓ — GPU-accelerated 2D renderer (WebGPU and WebGL) for sprites, text and filters · 2d-rendering, effects, shaders · guide
 - `pixijs-filters` — Community filter pack for PixiJS: glow, bloom, shockwave, CRT and more · effects, 2d-rendering, shaders
 - `playcanvas-engine` — Open-source web 3D engine usable standalone; strong glTF and Gaussian splat support · 3d-rendering, game-engine, model-loading
 - `playwright` ✓ — Headless browser automation; the capture route for every browser-rendered toolkit · capture
@@ -105,7 +105,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `troika-three-text` — SDF text meshes for Three.js with font loading and Web Worker typesetting · text-rendering, 3d-rendering
 - `tween-js` — Tiny numeric property interpolator with easing; you call update(time) yourself · tweening
 - `twgl` — Tiny WebGL helper: programs, buffers, uniforms and framebuffers with less boilerplate · shaders, 2d-rendering
-- `two-js` — Scene graph for flat 2D drawing with one API across SVG, Canvas and WebGL renderers · 2d-rendering, vector-authoring
+- `two-js` ✓ — Scene graph for flat 2D drawing with one API across SVG, Canvas and WebGL renderers · 2d-rendering, vector-authoring · guide
 - `vpype` — Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths · plotter-workflow, vector-authoring
 - `vsketch` — Python sketches and the vsk CLI generate plotter-oriented line art as SVG · plotter-workflow, generative-2d
 - `vtk-js` — Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering · scientific-visualisation, 3d-rendering

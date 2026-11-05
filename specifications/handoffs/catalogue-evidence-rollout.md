@@ -82,3 +82,6 @@ Append one row per wave. Counts come from `catalog/INDEX.md` after the merge.
 | Date | Wave | Tools (result) | PRs | Validated / guides after |
 | --- | --- | --- | --- | --- |
 | 2026-11-05 | 0 (pilot) | anime-js ✓, web-animations-api ✓, canvas-2d ✓, sharp ✓ | #106, #108–#110, #112 | 13 / 12 |
+| 2026-11-05 | 1 | pixijs ✓, konva ✓, two-js ✓ | #114 | 15 / 15 |
+
+Wave 1 counts are computed from the rebuilt catalogue: 15 validated records and 15 guides. The pilot row reported 13 validated; its actual baseline on main was 12 validated (plus partial evidence), so that historical reported total is not used as a baseline. All three wave fixtures passed record and reproduction runs, visual inspection and shuffled-order equality on macOS arm64; no cross-platform claim.
