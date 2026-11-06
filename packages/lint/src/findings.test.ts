@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { findingsForSample, mergeFindings, safeRectangle, sampleTimes } from "./findings.js";
+import { findingsForSample, markerTimes, mergeFindings, safeRectangle, sampleTimes } from "./findings.js";
 import type { PageMeasurement, SafeZone } from "./lint.types.js";
 
 const rail: SafeZone = { name: "test-9x16", width: 1080, height: 1920, inset: { top: 288, right: 192, bottom: 672, left: 65 }, tier: "heuristic", source: "test", verified: false };
@@ -15,6 +15,17 @@ describe("sample times", () => {
   test("explicit times win over markers, and markers over even sampling", () => {
     expect(sampleTimes(3, 30, 8, [1.5], [2])).toEqual([1.5]);
     expect(sampleTimes(3, 30, 8, undefined, [2, 2.9])).toEqual([2, 2.9]);
+  });
+});
+
+describe("marker times", () => {
+  test("plain seconds and named markers can be mixed", () => {
+    expect(markerTimes([1.9, { t: 3.9, id: "B02", role: "payoff" }])).toEqual([1.9, 3.9]);
+  });
+
+  test("a malformed entry rejects the whole list", () => {
+    expect(markerTimes([1.9, { id: "B02" }])).toBeUndefined();
+    expect(markerTimes("1.9")).toBeUndefined();
   });
 });
 

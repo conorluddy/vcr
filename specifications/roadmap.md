@@ -24,7 +24,7 @@ Build whatever unlocks the most later work first. Deterministic checks come befo
 
 ## Now: the rest of the contracts
 
-1. **#143: scene contract decisions** (a docs PR in `skills/start/references/scene-contract.md`). Does `regions(t)` generalise `textBounds()`? Plus named markers `{ t, id, role }` beside plain seconds, the `params` echo, the data block, the FX declarations (blend space, screen space, boil step) and the `MAT-PHYSICAL-SCOPE` tag. Settle these on paper; each check implements the fields it needs.
+1. ~~#143: scene contract decisions~~ — done: `regions(t)` beside `textBounds()`, named markers, `params`, `data` and `fx` blocks, `MAT-PHYSICAL-SCOPE` in glTF extras.
 2. **#142: the beat sheet schema and `vcr plan check`.** Plan checks before rendering, with beats exported to markers and `sound_cues` to #60.
 
 ## Next: deterministic checks, each writing findings

@@ -8554,7 +8554,7 @@ var COMMANDS = [
     flags: [
       { name: "safe-zone", value: "preset", description: "ebu-16x9, tiktok, reels, shorts, composite-9x16 (references/typography/rules.json), or none", isRequired: true },
       { name: "at", value: "t1,t2", description: "Sample at these times in seconds" },
-      { name: "markers", description: "Sample at window.__scene.markers (seconds), e.g. just before each beat ends" },
+      { name: "markers", description: "Sample at window.__scene.markers (seconds or { t, id, role }), e.g. just before each beat ends" },
       { name: "samples", value: "n", description: "Evenly spaced samples from 0 to the last frame", defaultValue: "8" },
       { name: "width", value: "n", description: "Viewport width in pixels; required with --safe-zone none", defaultValue: "the preset's canvas" },
       { name: "height", value: "n", description: "Viewport height in pixels; required with --safe-zone none", defaultValue: "the preset's canvas" },
@@ -9072,6 +9072,11 @@ import { relative as relative2 } from "node:path";
 var EDGE_TOLERANCE_PX = 0.5;
 var OVERFLOW_TOLERANCE_PX = 1;
 var TEXT_PREVIEW_CHARACTERS = 30;
+function markerTimes(markers) {
+  if (!Array.isArray(markers)) return void 0;
+  const times = markers.map((marker) => typeof marker === "object" && marker !== null ? marker.t : marker);
+  return times.every((time) => typeof time === "number" && Number.isFinite(time)) ? times : void 0;
+}
 function sampleTimes(duration, fps, samples, explicit, markers) {
   if (explicit && explicit.length > 0) return explicit;
   if (markers && markers.length > 0) return markers;
@@ -9230,7 +9235,7 @@ async function lintScene(options, scene) {
     await page.evaluate("globalThis.__name ??= (target) => target");
     await page.evaluate(() => document.fonts.ready.then(() => void 0));
     const markers = options.useMarkers ? await readMarkers(page) : void 0;
-    if (options.useMarkers && (!markers || markers.length === 0)) throw new Error(`${scene}: --markers needs window.__scene.markers, an array of times in seconds`);
+    if (options.useMarkers && (!markers || markers.length === 0)) throw new Error(`${scene}: --markers needs window.__scene.markers, an array of times in seconds or { t, id, role } entries`);
     const times = sampleTimes(duration, options.fps, options.samples, options.times, markers);
     const findings = [];
     let sawText = false;
@@ -9252,8 +9257,7 @@ async function lintScene(options, scene) {
 }
 async function readMarkers(page) {
   const markers = await page.evaluate(() => window.__scene.markers);
-  if (!Array.isArray(markers) || !markers.every((marker) => Number.isFinite(marker))) return void 0;
-  return markers;
+  return markerTimes(markers);
 }
 
 // packages/lint/src/safe-zones.ts

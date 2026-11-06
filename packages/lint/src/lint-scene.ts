@@ -1,7 +1,7 @@
 // Method from the field notes (#46, #59): seek to each sample, let it settle, then measure layout in the page.
 import { relative } from "node:path";
 import { openScenePage, settleFrame } from "@vcr/capture";
-import { findingsForSample, mergeFindings, OVERFLOW_TOLERANCE_PX, sampleTimes } from "./findings.js";
+import { findingsForSample, markerTimes, mergeFindings, OVERFLOW_TOLERANCE_PX, sampleTimes } from "./findings.js";
 import type { LintFinding, LintOptions, LintReport, PageMeasurement, UnableToAssess } from "./lint.types.js";
 import { measurePage } from "./measure-page.js";
 
@@ -35,7 +35,7 @@ export async function lintScene(options: LintOptions, scene: string): Promise<{ 
     await page.evaluate("globalThis.__name ??= (target) => target");
     await page.evaluate(() => document.fonts.ready.then(() => undefined));
     const markers = options.useMarkers ? await readMarkers(page) : undefined;
-    if (options.useMarkers && (!markers || markers.length === 0)) throw new Error(`${scene}: --markers needs window.__scene.markers, an array of times in seconds`);
+    if (options.useMarkers && (!markers || markers.length === 0)) throw new Error(`${scene}: --markers needs window.__scene.markers, an array of times in seconds or { t, id, role } entries`);
     const times = sampleTimes(duration, options.fps, options.samples, options.times, markers);
 
     const findings: LintFinding[] = [];
@@ -61,6 +61,5 @@ export async function lintScene(options: LintOptions, scene: string): Promise<{ 
 
 async function readMarkers(page: Awaited<ReturnType<typeof openScenePage>>["page"]): Promise<number[] | undefined> {
   const markers = await page.evaluate(() => (window as unknown as { __scene: { markers?: unknown } }).__scene.markers);
-  if (!Array.isArray(markers) || !markers.every((marker) => Number.isFinite(marker))) return undefined;
-  return markers as number[];
+  return markerTimes(markers);
 }
