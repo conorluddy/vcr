@@ -5,7 +5,7 @@
 import { createHash } from "node:crypto";
 import { mkdirSync, readdirSync, readFile, unlinkSync, writeFileSync } from "node:fs";
 import { createServer, type Server } from "node:http";
-import { dirname, extname, join, normalize, relative } from "node:path";
+import { dirname, extname, join, normalize, relative, resolve } from "node:path";
 import { createRequire } from "node:module";
 import type { Browser, CDPSession, Page } from "playwright";
 
@@ -50,6 +50,17 @@ export interface CaptureOptions {
 
 export type CaptureMode = "beginframe" | "screenshot";
 
+/** What opening a scene needs; frame-range and output options belong to capture alone. */
+export type ScenePageOptions = Pick<CaptureOptions, "sceneUrl" | "sceneFile" | "serveRoot" | "scripts" | "width" | "height" | "captureMode" | "playwrightRuntimeDirectory" | "chromiumArgs">;
+
+export interface OpenScenePage {
+  page: Page;
+  cdp: CDPSession;
+  /** Seconds, from `window.__scene.duration`. */
+  duration: number;
+  close: () => Promise<void>;
+}
+
 export interface CaptureReport {
   width: number;
   height: number;
@@ -82,23 +93,11 @@ export const BEGIN_FRAME_CHROMIUM_ARGS = ["--deterministic-mode", "--enable-begi
 // === PUBLIC API ===
 
 export async function captureFrames(options: CaptureOptions): Promise<CaptureReport> {
-  const root = options.sceneFile ? (options.serveRoot ?? dirname(options.sceneFile)) : null;
-  const served = root ? await serveDirectory(root) : null;
-  const sceneUrl = served ? `${served.url}/${relative(root!, options.sceneFile!)}` : options.sceneUrl;
-  if (!sceneUrl) throw new Error("captureFrames needs sceneUrl or sceneFile");
-  log("capture.scene", { url: sceneUrl });
   const captureMode: CaptureMode = options.captureMode ?? (process.env["VCR_CAPTURE_MODE"] as CaptureMode | undefined) ?? "screenshot";
-  const extraArgs = [...(options.chromiumArgs ?? []), ...(process.env["VCR_CHROMIUM_EXTRA_ARGS"] ?? "").split(" ").filter(Boolean)];
-  let browser: Browser | undefined;
+  const scene = await openScenePage({ ...options, captureMode });
   try {
-    const { chromium } = await loadPlaywright(options.playwrightRuntimeDirectory);
-    browser = await chromium.launch({ args: [...DETERMINISTIC_CHROMIUM_ARGS, ...(captureMode === "beginframe" ? BEGIN_FRAME_CHROMIUM_ARGS : []), ...extraArgs] });
+    const { page, cdp, duration } = scene;
     log("capture.mode", { captureMode });
-    const page = await browser.newPage({ viewport: { width: options.width, height: options.height } });
-    const cdp = await page.context().newCDPSession(page);
-    await cdp.send("Emulation.setDefaultBackgroundColorOverride", { color: { r: 0, g: 0, b: 0, a: 0 } });
-    const duration = await openScene(page, sceneUrl, options);
-    log("capture.ready", { duration });
     const totalFrames = Math.round(duration * options.fps);
     const frames = options.frames ?? Array.from({ length: totalFrames }, (_, index) => index);
     if (options.outputDirectory) {
@@ -135,15 +134,57 @@ export async function captureFrames(options: CaptureOptions): Promise<CaptureRep
       mismatched_frames: mismatched,
     };
   } finally {
+    await scene.close();
+  }
+}
+
+/**
+ * Serves the scene, launches deterministic Chromium and waits for `window.__scene`. Shared by capture and lint.
+ * The caller owns the page and must call `close`, which shuts the browser and the loopback server.
+ */
+export async function openScenePage(options: ScenePageOptions): Promise<OpenScenePage> {
+  // Resolved, so the server's path-traversal guard compares like with like.
+  const root = options.sceneFile ? resolve(options.serveRoot ?? dirname(options.sceneFile)) : null;
+  const served = root ? await serveDirectory(root) : null;
+  const sceneUrl = served ? `${served.url}/${relative(root!, resolve(options.sceneFile!))}` : options.sceneUrl;
+  const closeServer = async (): Promise<void> => {
+    if (served) await new Promise<void>((resolve, reject) => {
+      served.server.close((error) => error ? reject(error) : resolve());
+      served.server.closeAllConnections();
+    });
+  };
+  if (!sceneUrl) {
+    await closeServer();
+    throw new Error("openScenePage needs sceneUrl or sceneFile");
+  }
+  log("capture.scene", { url: sceneUrl });
+  const extraArgs = [...(options.chromiumArgs ?? []), ...(process.env["VCR_CHROMIUM_EXTRA_ARGS"] ?? "").split(" ").filter(Boolean)];
+  let browser: Browser | undefined;
+  const close = async (): Promise<void> => {
     try {
       await browser?.close();
     } finally {
-      if (served) await new Promise<void>((resolve, reject) => {
-        served.server.close((error) => error ? reject(error) : resolve());
-        served.server.closeAllConnections();
-      });
+      await closeServer();
     }
+  };
+  try {
+    const { chromium } = await loadPlaywright(options.playwrightRuntimeDirectory);
+    browser = await chromium.launch({ args: [...DETERMINISTIC_CHROMIUM_ARGS, ...(options.captureMode === "beginframe" ? BEGIN_FRAME_CHROMIUM_ARGS : []), ...extraArgs] });
+    const page = await browser.newPage({ viewport: { width: options.width, height: options.height } });
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send("Emulation.setDefaultBackgroundColorOverride", { color: { r: 0, g: 0, b: 0, a: 0 } });
+    const duration = await openScene(page, sceneUrl, options);
+    log("capture.ready", { duration });
+    return { page, cdp, duration, close };
+  } catch (error) {
+    await close();
+    throw error;
   }
+}
+
+/** Lets a seek's scheduled render run and reach the compositor before anything reads pixels or layout. Not for beginframe mode. */
+export async function settleFrame(page: Page): Promise<void> {
+  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(resolve, 0)))));
 }
 
 // === PRIVATE HELPERS ===
@@ -152,7 +193,7 @@ function log(event: string, fields: Record<string, unknown> = {}): void {
   process.stderr.write(`${JSON.stringify({ time: new Date().toISOString(), event, ...fields })}\n`);
 }
 
-async function openScene(page: Page, sceneUrl: string, options: CaptureOptions): Promise<number> {
+async function openScene(page: Page, sceneUrl: string, options: ScenePageOptions): Promise<number> {
   page.on("pageerror", (error) => process.stderr.write(`${JSON.stringify({ event: "page.error", message: error.message })}\n`));
   page.on("console", (message) => {
     if (message.type() === "error") process.stderr.write(`${JSON.stringify({ event: "page.console.error", text: message.text() })}\n`);
@@ -184,8 +225,7 @@ async function captureOne(page: Page, cdp: CDPSession, captureMode: CaptureMode,
     if (!result.screenshotData) throw new Error(`beginFrame produced no screenshot for frame ${frame}`);
     return Buffer.from(result.screenshotData, "base64");
   }
-  // Let the scheduled render run and reach the compositor before asking for pixels.
-  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(resolve, 0)))));
+  await settleFrame(page);
   return page.screenshot({ type: "png" });
 }
 

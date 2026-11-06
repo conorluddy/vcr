@@ -415,7 +415,7 @@ A typographic agent starts with the brief, medium, language, viewing size and de
 **Where it lands in VCR**
 - PRD §13 names a `typography` workflow skill. Layer 5 owns captions, platform safe areas and text overflow; Layer 6 owns review.
 - The split in this document maps onto the PRD's review rules. Numeric rules become automatic checks (L6-02). Judgement — tone, hierarchy, expression — becomes findings for review (L6-03). Self-review never counts as approval.
-- Neither layer has started, so the checks below are a specification, not shipped behaviour.
+- Neither layer has started, so the checks below are a specification, not shipped behaviour. The exception is `vcr lint`, which implements `TYPO-SAFE`, text overflow and text leaving the frame for browser scenes, using the presets in [rules.json](rules.json).
 
 **What to generate from this file**
 - **Workflow skill** (`skills/typography/`, about 1.5k tokens): the creation process (§12), the critique process (§11), the rules for breaking rules (§7) and the lint list, trimmed to the task's medium. It cites rule IDs instead of copying numbers.
@@ -467,7 +467,7 @@ These are proposed checks, not implemented validation. Select a profile by mediu
 
 **How the checks can measure in VCR**
 - **DOM scenes** (GSAP, Anime.js, WAAPI): after `window.__scene` seeks to a frame, read text boxes with `Range.getClientRects()` and computed styles. Run at marker frames or every frame where text changes.
-- **Canvas and WebGL scenes** (canvas-2d, p5, PixiJS, three-js) have no DOM text boxes. The scene must report its own text bounds, or the check falls back to visual review.
+- **Canvas and WebGL scenes** (canvas-2d, p5, PixiJS, three-js) have no DOM text boxes. The scene must report its own text bounds (`window.__scene.textBounds()`, returning `[{ x, y, width, height, label? }]` in CSS pixels, which `vcr lint` reads), or the check falls back to visual review.
 - **Stills** (resvg, ImageMagick, sharp): measure from source where the tool reports metrics, otherwise from the rendered pixels.
 - **Contrast:** calculate from source foreground and effective background colours, including transparency and the background beneath the glyphs. Do not treat antialiased glyph-edge pixels as the nominal foreground. Use CSS/display size, not raw export pixels, for large-text classification. For complex backgrounds, retain source layers or a text-free background render; if measurement is unreliable, report that limitation. Separately inspect source and decoded delivery frames for visual legibility (TYPO-CHROMA, TYPO-RANGE). W3C explains source-colour measurement and image sizing in [Understanding SC 1.4.3](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html).
 

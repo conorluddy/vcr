@@ -60,7 +60,7 @@ A condensed §12; read §12 itself for the full steps.
 
 ## 3. Check before capture
 
-No automated typography check exists in VCR yet. Every check below is a measurement you make and report yourself, following §14 "How the checks can measure in VCR":
+Run `vcr lint <scene.html> --safe-zone <preset|none>` first. For DOM scenes, and for canvas scenes that expose `window.__scene.textBounds()`, it checks `TYPO-SAFE`, overflowing boxes and text that leaves the frame at sampled times (`--markers` samples at `window.__scene.markers`). Its presets come from `references/typography/rules.json`, and it flags findings that rely on an unverified preset. A canvas scene with no `textBounds()` is reported as *unable to assess*, which is not a pass. Every other check below is a measurement you make and report yourself, following §14 "How the checks can measure in VCR":
 
 - **DOM scenes** (GSAP, Anime.js, WAAPI): seek `window.__scene` to the frame, then read text boxes with `Range.getClientRects()` and computed styles. Sample at markers, or wherever text enters, settles, changes or leaves.
 - **Canvas and WebGL scenes** (canvas-2d, p5, PixiJS, three-js): there are no DOM boxes. The scene must report its own text bounds; if it does not, the check falls back to visual review and the report says so.
