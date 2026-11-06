@@ -26,7 +26,7 @@ export const DEFAULT_LINT_SAMPLES = 8;
 
 // === PUBLIC API ===
 
-export async function runLint(roots: Roots, options: LintCommandOptions): Promise<Result<LintReport>> {
+export async function runLint(roots: Roots, options: LintCommandOptions): Promise<Result<{ report: LintReport; safeZone: SafeZone | null }>> {
   const sceneFiles = listScenes(resolve(options.target));
   if (!sceneFiles.ok) return sceneFiles;
   let safeZone: SafeZone | null = null;
@@ -41,7 +41,7 @@ export async function runLint(roots: Roots, options: LintCommandOptions): Promis
   const browser = prepareBrowserRuntime(roots);
   if (!browser.ok) return browser;
   const report = await lintScenes(sceneFiles.value, { width, height, safeZone, times: options.times, useMarkers: options.useMarkers, samples: options.samples, fps: options.fps, ...browser.value }, process.cwd());
-  return ok(report);
+  return ok({ report, safeZone });
 }
 
 export function formatLintReport(report: LintReport): string {

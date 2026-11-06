@@ -8524,9 +8524,11 @@ var COMMANDS = [
       { name: "samples", value: "n", description: "Evenly spaced samples from 0 to the last frame", defaultValue: "8" },
       { name: "width", value: "n", description: "Viewport width in pixels; required with --safe-zone none", defaultValue: "the preset's canvas" },
       { name: "height", value: "n", description: "Viewport height in pixels; required with --safe-zone none", defaultValue: "the preset's canvas" },
-      { name: "fps", value: "n", description: "Frames per second, for frame numbers and the last sample", defaultValue: "30" }
+      { name: "fps", value: "n", description: "Frames per second, for frame numbers and the last sample", defaultValue: "30, or the render's with --video" },
+      { name: "video", value: "project/video", description: "File each finding on a retained render of this video (idempotent; re-running adds nothing new)" },
+      { name: "render", value: "id", description: "With --video: the render the findings point at", defaultValue: "the latest" }
     ],
-    example: "vcr lint scene.html --safe-zone tiktok --markers"
+    example: "vcr lint scene.html --safe-zone tiktok --markers --video demo/teaser"
   },
   {
     name: "doctor",
@@ -9257,7 +9259,7 @@ async function runLint(roots, options) {
   const browser = prepareBrowserRuntime(roots);
   if (!browser.ok) return browser;
   const report = await lintScenes(sceneFiles.value, { width, height, safeZone, times: options.times, useMarkers: options.useMarkers, samples: options.samples, fps: options.fps, ...browser.value }, process.cwd());
-  return ok(report);
+  return ok({ report, safeZone });
 }
 function formatLintReport(report) {
   const lines = report.findings.map(formatFinding);
@@ -10418,6 +10420,47 @@ function ensureWorkspace(directory, harnessVersion) {
   return { workspace: directory, changes };
 }
 
+// packages/cli/src/lint-findings.ts
+var SEVERITY_ORDER2 = ["note", "minor", "major", "blocker"];
+function findingDraftFromLint(finding, manifest, safeZone, rulesVersion) {
+  const frame = Math.min(manifest.duration_frames - 1, Math.max(0, Math.round(finding.t * manifest.fps)));
+  const isSafeZone = finding.rule === "TYPO-SAFE";
+  const tier = isSafeZone ? safeZone?.tier : void 0;
+  return {
+    render_id: manifest.render_id,
+    frame,
+    severity: severityFor(finding, tier),
+    text: `${finding.text ? `"${finding.text}": ` : ""}${finding.problem}${finding.verified ? "" : " (preset figures unverified)"}`,
+    author: { kind: "agent", name: "vcr-lint" },
+    source: "cli",
+    selector: finding.selector,
+    ...isSafeZone ? { rule_id: "TYPO-SAFE" } : {},
+    kind: "measured",
+    severity_basis: tier === "standard" ? "standard_rule" : tier === "platform" ? "platform_rule" : tier === "heuristic" ? "heuristic_rule" : "measured_rule",
+    confidence: { value: 1, basis: "deterministic" },
+    evidence: { metric: `lint:${finding.rule} px`, value: finding.measured, threshold: finding.limit },
+    reviewer: { agent: "vcr-lint", rules_version: rulesVersion }
+  };
+}
+function writeLintFindings(videoDirectory2, workspaceRoot, report, manifest, safeZone, rulesVersion, now) {
+  const outcome = { created: [], unchanged: [], skipped: [] };
+  for (const finding of report.findings) {
+    const written = addFinding(videoDirectory2, workspaceRoot, findingDraftFromLint(finding, manifest, safeZone, rulesVersion), now);
+    if (!written.ok) outcome.skipped.push({ finding, reason: written.error.message });
+    else (written.value.isCreated ? outcome.created : outcome.unchanged).push(written.value.finding.id);
+  }
+  return outcome;
+}
+function severityFor(finding, tier) {
+  let severity = finding.rule === "overflow" ? "major" : "blocker";
+  if (finding.rule === "TYPO-SAFE" && tier === "heuristic") severity = "minor";
+  if (!finding.verified) severity = lower(severity, "major");
+  return severity;
+}
+function lower(severity, cap) {
+  return SEVERITY_ORDER2.indexOf(severity) > SEVERITY_ORDER2.indexOf(cap) ? cap : severity;
+}
+
 // packages/cli/src/render-manifest.ts
 import { existsSync as existsSync20, readFileSync as readFileSync14, renameSync as renameSync2, rmSync as rmSync2 } from "node:fs";
 import { hostname as hostname2, platform as platform2 } from "node:os";
@@ -10800,12 +10843,24 @@ render ${render.manifest.render_id} of ${render.manifest.video_id}; manifest ret
     if (!safeZoneName) return failWith({ code: "INVALID_ARGUMENT", message: "lint needs --safe-zone <preset|none>; presets are in references/typography/rules.json" }, asJson, 2);
     const times = parseSampleTimes(text2(options["at"]));
     if (!times.ok) return failWith(times.error, asJson, 2);
-    const numbers = { width: optionalPositive(options["width"]), height: optionalPositive(options["height"]), samples: optionalPositive(options["samples"]) ?? DEFAULT_LINT_SAMPLES, fps: optionalPositive(options["fps"]) ?? 30 };
+    const target2 = await lintTarget(roots, text2(options["video"]), text2(options["render"]));
+    if (!target2.ok) return failWith(target2.error, asJson);
+    const numbers = { width: optionalPositive(options["width"]), height: optionalPositive(options["height"]), samples: optionalPositive(options["samples"]) ?? DEFAULT_LINT_SAMPLES, fps: optionalPositive(options["fps"]) ?? target2.value?.manifest.fps ?? 30 };
     if (Object.values(numbers).some(Number.isNaN)) return failWith({ code: "INVALID_ARGUMENT", message: "lint's --width, --height, --samples and --fps must be positive numbers" }, asJson, 2);
-    const report = await runLint(roots, { target: subcommand, safeZoneName, times: times.value, useMarkers: options["markers"] === true, ...numbers });
-    if (!report.ok) return failWith(report.error, asJson);
-    print(asJson ? report.value : formatLintReport(report.value));
-    return report.value.findings.length > 0 ? 1 : 0;
+    const linted = await runLint(roots, { target: subcommand, safeZoneName, times: times.value, useMarkers: options["markers"] === true, ...numbers });
+    if (!linted.ok) return failWith(linted.error, asJson);
+    const { report, safeZone } = linted.value;
+    if (!target2.value) {
+      print(asJson ? report : formatLintReport(report));
+      return report.findings.length > 0 ? 1 : 0;
+    }
+    const { workspace, video, manifest } = target2.value;
+    const filed = writeLintFindings(video.directory, workspace, report, manifest, safeZone, harnessVersion.value, /* @__PURE__ */ new Date());
+    writeReviewSummary(video.directory, video.videoId, readVideoReview(video.directory, workspace));
+    const filedLine = `findings on ${video.videoId} ${manifest.render_id}: ${filed.created.length} new${filed.created.length > 0 ? ` (${filed.created.join(", ")})` : ""}, ${filed.unchanged.length} already filed${filed.skipped.length > 0 ? `, ${filed.skipped.length} skipped: ${filed.skipped.map((entry) => entry.reason).join("; ")}` : ""}`;
+    print(asJson ? { ...report, filed: { render_id: manifest.render_id, created: filed.created, unchanged: filed.unchanged, skipped: filed.skipped.map((entry) => ({ selector: entry.finding.selector, rule: entry.finding.rule, reason: entry.reason })) } } : `${formatLintReport(report)}
+${filedLine}`);
+    return report.findings.length > 0 ? 1 : 0;
   }
   if (command === "refs" || command === "rules") {
     const pillars = loadPillars(repositoryRoot);
@@ -10890,6 +10945,17 @@ function printHelp(args, asJson) {
   else if (group.length > 0) print(asJson ? group : group.map(formatCommandHelp).join("\n\n---\n\n"));
   else print(asJson ? { commands: COMMANDS, global_flags: GLOBAL_FLAGS } : formatGlobalUsage());
   return 0;
+}
+async function lintTarget(roots, videoId, renderId) {
+  if (!videoId) return renderId ? fail("INVALID_ARGUMENT", "--render needs --video <project>/<video>.") : ok(void 0);
+  const workspace = requireWorkspace(roots);
+  if (!workspace.ok) return workspace;
+  const video = resolveVideo(workspace.value, videoId);
+  if (!video.ok) return video;
+  const review = readVideoReview(video.value.directory, workspace.value);
+  const manifest = renderId ? review.manifests.find((entry) => entry.manifest.render_id === renderId)?.manifest : latestManifest(review);
+  if (!manifest) return fail("RENDER_NOT_FOUND", renderId ? `No retained render ${renderId} for ${videoId}.` : `${videoId} has no retained render. Capture one first: vcr capture <scene.html> --width \u2026 --height \u2026 --fps \u2026 --video ${videoId}`);
+  return ok({ workspace: workspace.value, video: video.value, manifest });
 }
 function parseArguments(args) {
   const flags2 = {};

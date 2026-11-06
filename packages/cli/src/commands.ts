@@ -182,9 +182,11 @@ export const COMMANDS: CommandSpec[] = [
       { name: "samples", value: "n", description: "Evenly spaced samples from 0 to the last frame", defaultValue: "8" },
       { name: "width", value: "n", description: "Viewport width in pixels; required with --safe-zone none", defaultValue: "the preset's canvas" },
       { name: "height", value: "n", description: "Viewport height in pixels; required with --safe-zone none", defaultValue: "the preset's canvas" },
-      { name: "fps", value: "n", description: "Frames per second, for frame numbers and the last sample", defaultValue: "30" },
+      { name: "fps", value: "n", description: "Frames per second, for frame numbers and the last sample", defaultValue: "30, or the render's with --video" },
+      { name: "video", value: "project/video", description: "File each finding on a retained render of this video (idempotent; re-running adds nothing new)" },
+      { name: "render", value: "id", description: "With --video: the render the findings point at", defaultValue: "the latest" },
     ],
-    example: "vcr lint scene.html --safe-zone tiktok --markers",
+    example: "vcr lint scene.html --safe-zone tiktok --markers --video demo/teaser",
   },
   {
     name: "doctor",

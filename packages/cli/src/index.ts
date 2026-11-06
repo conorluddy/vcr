@@ -17,7 +17,11 @@ import { requireDevMode, requireWorkspace, resolveRoots, type Roots } from "./ro
 import { filterTools, findTool, formatExamplesForTool, formatToolCard, formatToolTable, loadExamples, loadTools, readToolGuide } from "./tools.js";
 import { hasErrors, validateRepository, validateWorkspace } from "./validate.js";
 import { ensureWorkspace } from "./workspace.js";
-import { ensureVideo, resolveVideo } from "./video.js";
+import { ensureVideo, resolveVideo, type VideoLocation } from "./video.js";
+import { writeLintFindings } from "./lint-findings.js";
+import { writeReviewSummary } from "./review-summary.js";
+import { latestManifest, readVideoReview, type RenderManifest } from "./review.js";
+import { fail, ok, type Result } from "./result.types.js";
 import { stagingDirectoryFor, writeRender } from "./render-manifest.js";
 import { runFindingsCommand, runReviewDecision } from "./review-commands.js";
 import { briefStatus, formatBriefStatus } from "./status.js";
@@ -206,12 +210,23 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     if (!safeZoneName) return failWith({ code: "INVALID_ARGUMENT", message: "lint needs --safe-zone <preset|none>; presets are in references/typography/rules.json" }, asJson, 2);
     const times = parseSampleTimes(text(options["at"]));
     if (!times.ok) return failWith(times.error, asJson, 2);
-    const numbers = { width: optionalPositive(options["width"]), height: optionalPositive(options["height"]), samples: optionalPositive(options["samples"]) ?? DEFAULT_LINT_SAMPLES, fps: optionalPositive(options["fps"]) ?? 30 };
+    const target = await lintTarget(roots, text(options["video"]), text(options["render"]));
+    if (!target.ok) return failWith(target.error, asJson);
+    const numbers = { width: optionalPositive(options["width"]), height: optionalPositive(options["height"]), samples: optionalPositive(options["samples"]) ?? DEFAULT_LINT_SAMPLES, fps: optionalPositive(options["fps"]) ?? target.value?.manifest.fps ?? 30 };
     if (Object.values(numbers).some(Number.isNaN)) return failWith({ code: "INVALID_ARGUMENT", message: "lint's --width, --height, --samples and --fps must be positive numbers" }, asJson, 2);
-    const report = await runLint(roots, { target: subcommand, safeZoneName, times: times.value, useMarkers: options["markers"] === true, ...numbers });
-    if (!report.ok) return failWith(report.error, asJson);
-    print(asJson ? report.value : formatLintReport(report.value));
-    return report.value.findings.length > 0 ? 1 : 0;
+    const linted = await runLint(roots, { target: subcommand, safeZoneName, times: times.value, useMarkers: options["markers"] === true, ...numbers });
+    if (!linted.ok) return failWith(linted.error, asJson);
+    const { report, safeZone } = linted.value;
+    if (!target.value) {
+      print(asJson ? report : formatLintReport(report));
+      return report.findings.length > 0 ? 1 : 0;
+    }
+    const { workspace, video, manifest } = target.value;
+    const filed = writeLintFindings(video.directory, workspace, report, manifest, safeZone, harnessVersion.value, new Date());
+    writeReviewSummary(video.directory, video.videoId, readVideoReview(video.directory, workspace));
+    const filedLine = `findings on ${video.videoId} ${manifest.render_id}: ${filed.created.length} new${filed.created.length > 0 ? ` (${filed.created.join(", ")})` : ""}, ${filed.unchanged.length} already filed${filed.skipped.length > 0 ? `, ${filed.skipped.length} skipped: ${filed.skipped.map((entry) => entry.reason).join("; ")}` : ""}`;
+    print(asJson ? { ...report, filed: { render_id: manifest.render_id, created: filed.created, unchanged: filed.unchanged, skipped: filed.skipped.map((entry) => ({ selector: entry.finding.selector, rule: entry.finding.rule, reason: entry.reason })) } } : `${formatLintReport(report)}\n${filedLine}`);
+    return report.findings.length > 0 ? 1 : 0;
   }
 
   if (command === "refs" || command === "rules") {
@@ -303,6 +318,19 @@ function printHelp(args: string[], asJson: boolean): number {
 }
 
 // === HELPERS ===
+
+/** With --video, the workspace, video and retained render that lint files findings on; undefined without it. */
+async function lintTarget(roots: Roots, videoId: string | undefined, renderId: string | undefined): Promise<Result<{ workspace: string; video: VideoLocation; manifest: RenderManifest } | undefined>> {
+  if (!videoId) return renderId ? fail("INVALID_ARGUMENT", "--render needs --video <project>/<video>.") : ok(undefined);
+  const workspace = requireWorkspace(roots);
+  if (!workspace.ok) return workspace;
+  const video = resolveVideo(workspace.value, videoId);
+  if (!video.ok) return video;
+  const review = readVideoReview(video.value.directory, workspace.value);
+  const manifest = renderId ? review.manifests.find((entry) => entry.manifest.render_id === renderId)?.manifest : latestManifest(review);
+  if (!manifest) return fail("RENDER_NOT_FOUND", renderId ? `No retained render ${renderId} for ${videoId}.` : `${videoId} has no retained render. Capture one first: vcr capture <scene.html> --width … --height … --fps … --video ${videoId}`);
+  return ok({ workspace: workspace.value, video: video.value, manifest });
+}
 
 function parseArguments(args: string[]): { flags: Record<string, string | true>; positional: string[]; error?: string } {
   const flags: Record<string, string | true> = {};
