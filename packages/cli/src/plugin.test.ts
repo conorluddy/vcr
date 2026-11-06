@@ -2,7 +2,7 @@ import { existsSync, mkdtempSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, test } from "vitest";
-import { buildPlugin, PLUGIN_MAX_BYTES } from "./plugin.js";
+import { buildPlugin, listPillarReferences, PLUGIN_MAX_BYTES } from "./plugin.js";
 import { resolveRoots } from "./roots.js";
 
 describe("buildPlugin", () => {
@@ -28,7 +28,10 @@ describe("buildPlugin", () => {
       expect(readFileSync(join(directory, "catalog", reference), "utf8")).toBe(readFileSync(join(harnessRoot, "catalog", reference), "utf8"));
     }
     expect(existsSync(join(directory, "catalog/INDEX.md"))).toBe(true);
-    expect(existsSync(join(directory, "references/typography/README.md"))).toBe(true);
+    for (const pillar of listPillarReferences(harnessRoot)) expect(existsSync(join(directory, "references", pillar, "README.md"))).toBe(true);
+    expect(listPillarReferences(harnessRoot)).toEqual(expect.arrayContaining(["typography", "motion-director", "delivery", "accessibility"]));
+    expect(existsSync(join(directory, "references/README.md"))).toBe(true);
+    expect(existsSync(join(directory, "references/research-prompts"))).toBe(false);
     expect(totalBytes).toBeLessThan(PLUGIN_MAX_BYTES);
   });
 

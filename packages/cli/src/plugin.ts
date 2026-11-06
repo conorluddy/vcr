@@ -13,12 +13,15 @@ export interface PluginBuildOutcome {
   version: string;
   fileCount: number;
   totalBytes: number;
+  /** Bytes each pillar's references add, so their share of the size cap stays visible. */
+  pillarBytes: Record<string, number>;
 }
 
 export const PLUGIN_DIRECTORY = "plugin";
 export const PLUGIN_MAX_BYTES = 5 * 1024 * 1024;
 export const CLI_REFERENCE_PATH = "references/cli.md";
-export const TYPOGRAPHY_REFERENCE_PATH = "references/typography";
+/** `references/` entries that are not pillars and stay out of the plugin: research briefs and exploratory notes. */
+const NON_PILLAR_REFERENCES = new Set(["research-prompts", "ideas"]);
 
 /** One source for both host manifests (PRD §6.7). */
 const PLUGIN_IDENTITY = {
@@ -44,7 +47,7 @@ const MEDIA_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".mp
 
 // === PUBLIC API ===
 
-/** Assembles `plugin/` from the harness: bundled CLI, catalogue, skills, agents, typography reference, example sources and both manifests. Maintainer only. */
+/** Assembles `plugin/` from the harness: bundled CLI, catalogue, skills, agents, pillar references, example sources and both manifests. Maintainer only. */
 export function buildPlugin(harnessRoot: string, outputDirectory = join(harnessRoot, PLUGIN_DIRECTORY)): Result<PluginBuildOutcome> {
   const version = readHarnessVersion(harnessRoot);
   if (!version.ok) return version;
@@ -64,12 +67,14 @@ export function buildPlugin(harnessRoot: string, outputDirectory = join(harnessR
   const cliReference = renderCliReference();
   mkdirSync(join(outputDirectory, "references"), { recursive: true });
   writeFileSync(join(outputDirectory, CLI_REFERENCE_PATH), cliReference);
-  cpSync(join(harnessRoot, TYPOGRAPHY_REFERENCE_PATH), join(outputDirectory, TYPOGRAPHY_REFERENCE_PATH), { recursive: true });
+  for (const pillar of listPillarReferences(harnessRoot)) cpSync(join(harnessRoot, "references", pillar), join(outputDirectory, "references", pillar), { recursive: true });
+  if (existsSync(join(harnessRoot, "references/README.md"))) cpSync(join(harnessRoot, "references/README.md"), join(outputDirectory, "references/README.md"));
   if (outputDirectory === join(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync(join(harnessRoot, CLI_REFERENCE_PATH), cliReference);
 
   const files = listFiles(outputDirectory);
   const totalBytes = files.reduce((sum, file) => sum + statSync(join(outputDirectory, file)).size, 0);
-  return ok({ directory: outputDirectory, version: version.value, fileCount: files.length, totalBytes });
+  const pillarBytes = Object.fromEntries(listPillarReferences(harnessRoot).map((pillar) => [pillar, files.filter((file) => file.startsWith(`references/${pillar}/`)).reduce((sum, file) => sum + statSync(join(outputDirectory, file)).size, 0)]));
+  return ok({ directory: outputDirectory, version: version.value, fileCount: files.length, totalBytes, pillarBytes });
 }
 
 /** `plugin/` must equal a fresh build, stay under the size cap and carry no media. */
@@ -101,6 +106,16 @@ export function readHarnessVersion(harnessRoot: string): Result<string> {
     if (existsSync(path)) return ok((JSON.parse(readFileSync(path, "utf8")) as { version: string }).version);
   }
   return fail("HARNESS_VERSION_UNKNOWN", `Neither .claude-plugin/plugin.json nor packages/cli/package.json exists under ${harnessRoot}.`);
+}
+
+/** Pillar reference directories: every `references/<pillar>/` with a README, except research briefs and exploratory notes. */
+export function listPillarReferences(harnessRoot: string): string[] {
+  const referencesDirectory = join(harnessRoot, "references");
+  if (!existsSync(referencesDirectory)) return [];
+  return readdirSync(referencesDirectory, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && !NON_PILLAR_REFERENCES.has(entry.name) && existsSync(join(referencesDirectory, entry.name, "README.md")))
+    .map((entry) => entry.name)
+    .sort();
 }
 
 // === PRIVATE HELPERS ===

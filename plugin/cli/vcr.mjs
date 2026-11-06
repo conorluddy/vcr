@@ -9394,7 +9394,7 @@ import { basename as basename2, extname as extname2, join as join13, relative as
 var PLUGIN_DIRECTORY = "plugin";
 var PLUGIN_MAX_BYTES = 5 * 1024 * 1024;
 var CLI_REFERENCE_PATH = "references/cli.md";
-var TYPOGRAPHY_REFERENCE_PATH = "references/typography";
+var NON_PILLAR_REFERENCES = /* @__PURE__ */ new Set(["research-prompts", "ideas"]);
 var PLUGIN_IDENTITY = {
   name: "vcr",
   description: "Agent studio for code-first motion graphics and video: tool catalogue, operating guides, deterministic browser capture and a human review loop.",
@@ -9431,11 +9431,13 @@ function buildPlugin(harnessRoot, outputDirectory = join13(harnessRoot, PLUGIN_D
   const cliReference = renderCliReference();
   mkdirSync3(join13(outputDirectory, "references"), { recursive: true });
   writeFileSync6(join13(outputDirectory, CLI_REFERENCE_PATH), cliReference);
-  cpSync2(join13(harnessRoot, TYPOGRAPHY_REFERENCE_PATH), join13(outputDirectory, TYPOGRAPHY_REFERENCE_PATH), { recursive: true });
+  for (const pillar of listPillarReferences(harnessRoot)) cpSync2(join13(harnessRoot, "references", pillar), join13(outputDirectory, "references", pillar), { recursive: true });
+  if (existsSync11(join13(harnessRoot, "references/README.md"))) cpSync2(join13(harnessRoot, "references/README.md"), join13(outputDirectory, "references/README.md"));
   if (outputDirectory === join13(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync6(join13(harnessRoot, CLI_REFERENCE_PATH), cliReference);
   const files = listFiles(outputDirectory);
   const totalBytes = files.reduce((sum, file) => sum + statSync5(join13(outputDirectory, file)).size, 0);
-  return ok({ directory: outputDirectory, version: version.value, fileCount: files.length, totalBytes });
+  const pillarBytes = Object.fromEntries(listPillarReferences(harnessRoot).map((pillar) => [pillar, files.filter((file) => file.startsWith(`references/${pillar}/`)).reduce((sum, file) => sum + statSync5(join13(outputDirectory, file)).size, 0)]));
+  return ok({ directory: outputDirectory, version: version.value, fileCount: files.length, totalBytes, pillarBytes });
 }
 function pluginDiagnostics(harnessRoot) {
   const committed = join13(harnessRoot, PLUGIN_DIRECTORY);
@@ -9462,6 +9464,11 @@ function readHarnessVersion(harnessRoot) {
     if (existsSync11(path)) return ok(JSON.parse(readFileSync8(path, "utf8")).version);
   }
   return fail("HARNESS_VERSION_UNKNOWN", `Neither .claude-plugin/plugin.json nor packages/cli/package.json exists under ${harnessRoot}.`);
+}
+function listPillarReferences(harnessRoot) {
+  const referencesDirectory = join13(harnessRoot, "references");
+  if (!existsSync11(referencesDirectory)) return [];
+  return readdirSync4(referencesDirectory, { withFileTypes: true }).filter((entry) => entry.isDirectory() && !NON_PILLAR_REFERENCES.has(entry.name) && existsSync11(join13(referencesDirectory, entry.name, "README.md"))).map((entry) => entry.name).sort();
 }
 function bundleCli(harnessRoot, outfile) {
   const esbuild = createRequire3(import.meta.url)("esbuild");
@@ -10005,8 +10012,9 @@ ${formatDisclosureReport(disclosure)}` : summary);
     if (!devMode.ok) return failWith(devMode.error, asJson);
     const outcome = buildPlugin(repositoryRoot);
     if (!outcome.ok) return failWith(outcome.error, asJson);
-    const { directory, version, fileCount, totalBytes } = outcome.value;
-    print(asJson ? outcome.value : `built ${directory} v${version}: ${fileCount} files, ${(totalBytes / 1024).toFixed(0)} KB`);
+    const { directory, version, fileCount, totalBytes, pillarBytes } = outcome.value;
+    const pillarKilobytes = Object.values(pillarBytes).reduce((sum, bytes) => sum + bytes, 0) / 1024;
+    print(asJson ? outcome.value : `built ${directory} v${version}: ${fileCount} files, ${(totalBytes / 1024).toFixed(0)} KB (pillar references ${pillarKilobytes.toFixed(0)} KB across ${Object.keys(pillarBytes).length}; --json for each)`);
     return 0;
   }
   if (command === "doctor") {
