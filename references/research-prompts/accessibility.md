@@ -17,7 +17,7 @@ You are researching for **VCR**, an agent-driven studio for code-first motion gr
   - Assembly and encoding in FFmpeg: `yuv420p` H.264 for web delivery, ProRes 4444 for alpha masters.
 - **Rendering:** deterministic and frame by frame. Every browser scene exposes `window.__scene = { duration, seek(t) }`. Headless Chromium (Playwright) seeks each frame at a fixed fps (24, 25, 30 or 60) and screenshots it. Because a scene can be seeked to any time, any property of any element can be sampled as a time series. Optional `markers` (beat times) and `textBounds()` (for canvas text) extend the contract.
 - **Output:** VCR is domain-agnostic and serves any kind of creative work. Examples include product launches, explainers, ads, title sequences, data stories, music visuals, social shorts and stills. Common deliveries are vertical 9:16 (1080 × 1920 for TikTok, Instagram Reels and YouTube Shorts), 16:9 and square, either as one-off pieces or as series of many episodes built from a shared look. Guidance must be general; anything specific to one brand or subject belongs in that project's brief, not in this reference.
-- **Audio:** sparse text-to-speech narration, with procedural (synthesised) SFX and music beds. Most viewers watch with the sound off.
+- **Audio:** anything from no audio to full mixes. That includes recorded or text-to-speech narration, licensed or original music, and recorded or procedurally synthesised SFX (synthesis must be deterministic). Some placements are mostly watched muted; others are sound-led.
 - **What exists already:** a typography knowledge base built from a research brief like this one. It defines rule IDs (`TYPO-*`), confidence tiers and a verification ledger. A canonical `rules.json` is generated from it. `vcr lint` measures safe zones and text overflow in the browser, and a `typographer` subagent critiques rendered frames. **Your document seeds the next pillar.**
 
 Your report will become a reference that agents read one section at a time; it is too long to load whole. From it we will build:
@@ -43,7 +43,7 @@ Cover:
   - WCAG 1.2.2 and 1.2.4;
   - the FCC caption quality standards (accuracy, synchronicity, completeness, placement);
   - DCMP Captioning Key and BBC subtitle guidelines;
-  - captions for faceless videos with only music and SFX (sound tags, speaker IDs);
+  - captions for videos with no on-screen speaker, or with only music and SFX (sound tags, speaker IDs);
   - burned-in vs platform captions.
   - Cross-reference the typography pillar's caption profiles; do not restate them.
 - **Audio description:** WCAG 1.2.3 and 1.2.5. Cover when silent or text-only motion needs description, extended description, and practical options on social platforms.
