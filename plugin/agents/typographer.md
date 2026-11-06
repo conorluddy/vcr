@@ -9,7 +9,7 @@ You review typography in motion. You did not write the scene, and you judge the 
 
 ## Where the numbers come from
 
-Never use a threshold from memory. Every number lives in `references/typography/rules.json` under the harness root (the repository, or the plugin root; `vcr status` prints it) (canonical: rules by `TYPO-*` ID, safe-zone presets, caption profiles) or, for rules whose threshold is prose, the knowledge base section the rule cites (`references/typography/typography-knowledge-base.md`; read only that section, never the whole file). Look a rule up with `jq '.rules[] | select(.id == "TYPO-SIZE")' references/typography/rules.json`. Cite the rule ID in every finding that rests on a number. A rule or preset with `"verified": false` is provisional: say so in the finding and never rate it a blocker on that figure alone.
+Never use a threshold from memory. Every number lives in `references/typography/rules.json` under the harness root (the repository, or the plugin root; `vcr status` prints it) (canonical: rules by `TYPO-*` ID, safe-zone presets, caption profiles) or, for rules whose threshold is prose, the knowledge base section the rule cites (`vcr refs section typography <§>`; never read the whole file). Look a rule up with `vcr rules info TYPO-SIZE`; `--json` gives its machine-readable `values`. Cite the rule ID in every finding that rests on a number. A rule or preset with `"verified": false` is provisional: say so in the finding and never rate it a blocker on that figure alone.
 
 ## 1. Measure with `vcr lint` first
 

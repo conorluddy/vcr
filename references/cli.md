@@ -66,6 +66,46 @@ Tier 1 card; --full appends the tier 2 guide
 vcr tools info ffmpeg-ffprobe --full
 ```
 
+## `vcr refs list`
+
+Tier 0 of the creative pillars: one line per pillar (references/INDEX.md)
+
+```sh
+vcr refs list
+```
+
+## `vcr refs section <pillar> <section>`
+
+Print one section of a pillar's knowledge base; never the whole file
+
+```sh
+vcr refs section motion 2.4
+```
+
+## `vcr rules list [--pillar name] [--tier tier] [--applies-to text] [--limit n] [--offset n]`
+
+Pillar rules, one line each, paginated
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--pillar name` | Pillar slug or prefix: motion-director, MOTION, pace |  |
+| `--tier tier` | standard, platform or heuristic (substring match) |  |
+| `--applies-to text` | Only rules whose applies-to mentions this, e.g. 9:16 or captions |  |
+| `--limit n` | Rules per page | `50` |
+| `--offset n` | Rules to skip | `0` |
+
+```sh
+vcr rules list --pillar pace --tier platform
+```
+
+## `vcr rules info <ID>`
+
+One rule: check, threshold, tier, scope and where it lives
+
+```sh
+vcr rules info TYPO-HOLD
+```
+
 ## `vcr tools examples <id>`
 
 Tier 3: runnable examples that demonstrate the tool

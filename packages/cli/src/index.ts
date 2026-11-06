@@ -5,6 +5,7 @@ import { applyCaptureSetup, formatCaptureSetupPlan, planCaptureSetup, runCapture
 import { COMMANDS, findCommand, findCommandGroup, formatCommandHelp, formatGlobalUsage, GLOBAL_FLAGS } from "./commands.js";
 import { buildCatalogIndex, writeCatalogIndex } from "./catalog.js";
 import { writeTypographyTable } from "./typography-rules.js";
+import { filterPillarRules, findPillarRule, formatPillarRule, formatPillarRuleList, loadPillarRules, loadPillars, readKnowledgeBaseSection, renderReferencesIndex, writeReferencesIndex } from "./references.js";
 import { DEFAULT_LINT_SAMPLES, formatLintReport, parseSampleTimes, runLint } from "./lint.js";
 import { disclosureReport, formatDisclosureReport } from "./disclosure.js";
 import { formatDoctorTable, runDoctor } from "./doctor.js";
@@ -168,6 +169,37 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     return report.value.findings.length > 0 ? 1 : 0;
   }
 
+  if (command === "refs" || command === "rules") {
+    const pillars = loadPillars(repositoryRoot);
+    if (!pillars.ok) return failWith(pillars.error, asJson);
+    const rules = loadPillarRules(repositoryRoot, pillars.value);
+    if (command === "refs" && subcommand === "list") {
+      print(asJson ? pillars.value.map((pillar) => ({ ...pillar, ruleCount: rules.filter((rule) => rule.pillar === pillar.slug).length })) : renderReferencesIndex(pillars.value, rules).trimEnd());
+      return 0;
+    }
+    if (command === "refs" && subcommand === "section" && target && args[3]) {
+      const section = readKnowledgeBaseSection(repositoryRoot, pillars.value, target, args[3]);
+      if (!section.ok) return failWith(section.error, asJson);
+      print(asJson ? { pillar: target, section: args[3], markdown: section.value } : section.value);
+      return 0;
+    }
+    if (command === "rules" && subcommand === "info" && target) {
+      const rule = findPillarRule(rules, target);
+      if (!rule.ok) return failWith(rule.error, asJson);
+      print(asJson ? rule.value : formatPillarRule(rule.value));
+      return 0;
+    }
+    if (command === "rules" && subcommand === "list") {
+      const limit = optionalPositive(options["limit"]) ?? 50;
+      const offset = options["offset"] === undefined ? 0 : Number(options["offset"]);
+      if (Number.isNaN(limit) || !Number.isInteger(offset) || offset < 0) return failWith({ code: "INVALID_ARGUMENT", message: "--limit must be a positive number and --offset a whole number of 0 or more." }, asJson, 2);
+      const matching = filterPillarRules(rules, { pillar: text(options["pillar"]), tier: text(options["tier"]), appliesTo: text(options["applies-to"]) });
+      const page = matching.slice(offset, offset + limit);
+      print(asJson ? { total: matching.length, offset, limit, rules: page } : formatPillarRuleList(page, matching.length, offset));
+      return 0;
+    }
+  }
+
   if (command === "catalog" && subcommand === "build") {
     const checkOnly = options["check"] === true;
     const devMode = requireDevMode(roots, "catalog build");
@@ -176,8 +208,10 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     if (!outcome.ok) return failWith(outcome.error, asJson);
     const table = writeTypographyTable(repositoryRoot, checkOnly);
     if (!table.ok) return failWith(table.error, asJson);
+    const referencesIndex = writeReferencesIndex(repositoryRoot, checkOnly);
+    if (!referencesIndex.ok) return failWith(referencesIndex.error, asJson);
     const { recordCount } = outcome.value;
-    const staleFiles = [...outcome.value.staleFiles, ...table.value.staleFiles];
+    const staleFiles = [...outcome.value.staleFiles, ...table.value.staleFiles, ...referencesIndex.value.staleFiles];
     const wasStale = staleFiles.length > 0;
     const built = buildCatalogIndex(repositoryRoot);
     const manifests = loadExamples(repositoryRoot);

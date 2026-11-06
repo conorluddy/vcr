@@ -8,6 +8,7 @@ import { WORKSPACE_MARKER } from "./roots.js";
 import type { ExampleManifest, ToolSummary } from "./tools.js";
 import { versionScope } from "./evidence.js";
 import { TYPOGRAPHY_RULES_PATH, typographyRuleDiagnostics } from "./typography-rules.js";
+import { referencesIndexDiagnostics } from "./references.js";
 
 // === TYPES ===
 
@@ -79,6 +80,7 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
 
   const typographyRulesPath = join(repositoryRoot, TYPOGRAPHY_RULES_PATH);
   if (existsSync(typographyRulesPath) && check(typographyRulesPath, "typographyRules")) diagnostics.push(...typographyRuleDiagnostics(repositoryRoot));
+  diagnostics.push(...referencesIndexDiagnostics(repositoryRoot));
 
   checkWorkspaceDocuments(check, repositoryRoot);
   for (const environmentPath of listJsonFiles(join(repositoryRoot, "environment"))) check(environmentPath, "environment");

@@ -31,6 +31,7 @@ describe("buildPlugin", () => {
     for (const pillar of listPillarReferences(harnessRoot)) expect(existsSync(join(directory, "references", pillar, "README.md"))).toBe(true);
     expect(listPillarReferences(harnessRoot)).toEqual(expect.arrayContaining(["typography", "motion-director", "delivery", "accessibility"]));
     expect(existsSync(join(directory, "references/README.md"))).toBe(true);
+    expect(existsSync(join(directory, "references/INDEX.md"))).toBe(true);
     expect(existsSync(join(directory, "references/research-prompts"))).toBe(false);
     expect(totalBytes).toBeLessThan(PLUGIN_MAX_BYTES);
   });
