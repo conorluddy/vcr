@@ -44,7 +44,7 @@ const MEDIA_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".mp
 
 // === PUBLIC API ===
 
-/** Assembles `plugin/` from the harness: bundled CLI, catalogue, skills, typography reference, example sources and both manifests. Maintainer only. */
+/** Assembles `plugin/` from the harness: bundled CLI, catalogue, skills, agents, typography reference, example sources and both manifests. Maintainer only. */
 export function buildPlugin(harnessRoot: string, outputDirectory = join(harnessRoot, PLUGIN_DIRECTORY)): Result<PluginBuildOutcome> {
   const version = readHarnessVersion(harnessRoot);
   if (!version.ok) return version;
@@ -57,6 +57,7 @@ export function buildPlugin(harnessRoot: string, outputDirectory = join(harnessR
   for (const skill of readdirSync(join(harnessRoot, "skills"))) {
     if (existsSync(join(harnessRoot, "skills", skill, "SKILL.md"))) cpSync(join(harnessRoot, "skills", skill), join(outputDirectory, "skills", skill), { recursive: true });
   }
+  cpSync(join(harnessRoot, "agents"), join(outputDirectory, "agents"), { recursive: true });
   cpSync(join(harnessRoot, "examples"), join(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename(source)) });
   writeManifests(outputDirectory, version.value);
   writeFileSync(join(outputDirectory, "README.md"), PLUGIN_README);
