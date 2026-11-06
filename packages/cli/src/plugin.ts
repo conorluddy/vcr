@@ -18,6 +18,7 @@ export interface PluginBuildOutcome {
 export const PLUGIN_DIRECTORY = "plugin";
 export const PLUGIN_MAX_BYTES = 5 * 1024 * 1024;
 export const CLI_REFERENCE_PATH = "references/cli.md";
+export const TYPOGRAPHY_REFERENCE_PATH = "references/typography";
 
 /** One source for both host manifests (PRD §6.7). */
 const PLUGIN_IDENTITY = {
@@ -43,7 +44,7 @@ const MEDIA_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".mp
 
 // === PUBLIC API ===
 
-/** Assembles `plugin/` from the harness: bundled CLI, catalogue, skills, example sources and both manifests. Maintainer only. */
+/** Assembles `plugin/` from the harness: bundled CLI, catalogue, skills, typography reference, example sources and both manifests. Maintainer only. */
 export function buildPlugin(harnessRoot: string, outputDirectory = join(harnessRoot, PLUGIN_DIRECTORY)): Result<PluginBuildOutcome> {
   const version = readHarnessVersion(harnessRoot);
   if (!version.ok) return version;
@@ -62,6 +63,7 @@ export function buildPlugin(harnessRoot: string, outputDirectory = join(harnessR
   const cliReference = renderCliReference();
   mkdirSync(join(outputDirectory, "references"), { recursive: true });
   writeFileSync(join(outputDirectory, CLI_REFERENCE_PATH), cliReference);
+  cpSync(join(harnessRoot, TYPOGRAPHY_REFERENCE_PATH), join(outputDirectory, TYPOGRAPHY_REFERENCE_PATH), { recursive: true });
   if (outputDirectory === join(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync(join(harnessRoot, CLI_REFERENCE_PATH), cliReference);
 
   const files = listFiles(outputDirectory);

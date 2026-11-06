@@ -31,6 +31,10 @@ For native asset creation, tool-to-tool handoffs or delivery variants, read
 source and parameter separation, output-specific checks, delivery budgets and
 inspection. Load the selected toolkit guide for its actual commands.
 
+## Text, captions and titles
+
+For choosing, sizing, placing or timing text (hooks, titles, captions, lower thirds, labels), or checking text before capture, load the `typography` skill alongside the toolkit guide.
+
 ## Rendering browser scenes
 
 A browser scene exposes `window.__scene = { duration, seek(t) }` with a pure seek. Capture it with `vcr capture <scene.html> --width W --height H --fps F --verify`. The first time on a machine, `vcr setup capture` shows what it will install; `vcr setup capture --yes` installs it. If `--verify` reports a mismatch, read [Determinism pitfalls](references/determinism.md). Assemble frames to video with the `ffmpeg` skill.

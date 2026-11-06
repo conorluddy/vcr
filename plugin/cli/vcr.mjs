@@ -9042,6 +9042,7 @@ import { basename as basename2, extname as extname2, join as join10, relative as
 var PLUGIN_DIRECTORY = "plugin";
 var PLUGIN_MAX_BYTES = 5 * 1024 * 1024;
 var CLI_REFERENCE_PATH = "references/cli.md";
+var TYPOGRAPHY_REFERENCE_PATH = "references/typography";
 var PLUGIN_IDENTITY = {
   name: "vcr",
   description: "Agent studio for code-first motion graphics and video: tool catalogue, operating guides, deterministic browser capture and a human review loop.",
@@ -9077,6 +9078,7 @@ function buildPlugin(harnessRoot, outputDirectory = join10(harnessRoot, PLUGIN_D
   const cliReference = renderCliReference();
   mkdirSync3(join10(outputDirectory, "references"), { recursive: true });
   writeFileSync5(join10(outputDirectory, CLI_REFERENCE_PATH), cliReference);
+  cpSync2(join10(harnessRoot, TYPOGRAPHY_REFERENCE_PATH), join10(outputDirectory, TYPOGRAPHY_REFERENCE_PATH), { recursive: true });
   if (outputDirectory === join10(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync5(join10(harnessRoot, CLI_REFERENCE_PATH), cliReference);
   const files = listFiles(outputDirectory);
   const totalBytes = files.reduce((sum, file) => sum + statSync4(join10(outputDirectory, file)).size, 0);
