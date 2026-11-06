@@ -20,7 +20,7 @@ This file holds the conventions every pillar shares and decides which pillar own
 | Accessibility | `A11Y-` | [accessibility/](accessibility/README.md) | — | — (flash analyser first) | — | — |
 | Series brief | `BRIEF-` | [series-brief/](series-brief/README.md) | — (schema planned for Layer 1) | — | — | (read by every reviewer) |
 | Delivery | `DELIVERY-` | research pending ([brief](research-prompts/delivery.md)) | | | | |
-| Concept, script and storyboard | `STORY-` | research pending ([brief](research-prompts/story.md)) | | | | |
+| Concept, script and storyboard | `STORY-` | [story/](story/README.md) | — (beat sheet schema planned for Layer 1) | — | — | — |
 | Data visualisation | `DATA-` | research pending ([brief](research-prompts/data-visualisation.md)) | | | | |
 | Adaptation and versioning | `ADAPT-` | research pending ([brief](research-prompts/adaptation.md)) | | | | |
 
@@ -71,4 +71,7 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 | Conformance to brief tokens and budgets (easing, durations, palette, expressive moments, segment ranges) | The pillar that owns the craft check (`MOTION-*`, `ART-*`, `PACE-*`, `SOUND-*`), reading its value from the brief | The duplicating `BRIEF-*` rules are dropped (see the series brief README). |
 | Brief quality, brand assets (logos, sonic logo, third-party art), mandatories, deliverable spec, series identity, rule-breaks | `BRIEF-*` | |
 | Conflict priority between pillars | A brief's declared order (`BRIEF-PRIORITY-APPLIED`), otherwise `REVIEW-AGG-03` | |
+| Plan-stage checks (hook timing, reading time, word budget, mute test, CTA, mandatories mapped, loop seam, series slots) | The render-stage owner holds the threshold | `STORY-*` checks the beat sheet before rendering and cites that owner (see the story README). |
+| Variety across series episodes: hook type, mechanism, opening line | `STORY-SERIES-REPEAT` | `PACE-SERIES-03` is dropped. `BRIEF-SERIES-DISTINCT` stays as the render-level near-duplicate check. |
+| Single proposition | `BRIEF-PROPOSITION-SINGLE` | `STORY-SMP` is dropped. |
 | Determinism (identical output for the same input) | One generic check across picture and sound | `MOTION-SPR-001` and `SOUND-SYNTH-DETERMINISM` describe it for their own medium. |
