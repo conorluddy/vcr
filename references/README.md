@@ -31,7 +31,7 @@ This file holds the conventions every pillar shares and decides which pillar own
 
 ## Shared conventions
 
-- **Architecture.** [ADR 0006](../specifications/decisions/0006-creative-pillars-independent-of-tools.md) records the pipeline, the layers and the decisions below.
+- **Architecture.** [ADR 0006](../specifications/decisions/0006-creative-pillars-independent-of-tools.md) records the pipeline, the layers and the decisions below. [The roadmap](../specifications/roadmap.md) sequences the work (epic #152).
 - **Independent of tools.** A pillar (its references, `rules.json`, skill and agent) never names a catalogue tool or holds a tool recipe. A toolkit guide cites the pillar's rule ID and shows how its tool meets it. A check measures the output and never depends on which tool made it. The tool recipes inside the knowledge bases, such as FFmpeg filters and GSAP eases, are worked examples. When a skill is distilled, they move to the matching toolkit guides.
 - **Plan before render.** A plan check (`STORY-*`, on the beat sheet) cites the threshold owned by the check that runs on the render, so a number lives in one place.
 - **Values in the brief, checks in the pillars.** A production's palette, tokens, durations, mandatories, market profiles and claim registry live in its brief in the workspace. Pillar checks read them.
