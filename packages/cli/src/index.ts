@@ -20,6 +20,7 @@ import { ensureWorkspace } from "./workspace.js";
 import { ensureVideo, resolveVideo } from "./video.js";
 import { stagingDirectoryFor, writeRender } from "./render-manifest.js";
 import { runFindingsCommand, runReviewDecision } from "./review-commands.js";
+import { briefStatus, formatBriefStatus } from "./status.js";
 import type { TerminalIo } from "./approvals.js";
 import { createInterface } from "node:readline/promises";
 
@@ -50,6 +51,12 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
   const repositoryRoot = roots.harness;
   const harnessVersion = readHarnessVersion(roots.harness);
   if (!harnessVersion.ok) return failWith(harnessVersion.error, asJson);
+
+  if (command === "status" && options["brief"] === true) {
+    const status = briefStatus(roots.workspace, harnessVersion.value);
+    print(asJson ? status : formatBriefStatus(status));
+    return 0;
+  }
 
   if (command === "status") {
     print(asJson ? { ...roots, harness_version: harnessVersion.value } : formatRoots(roots, harnessVersion.value));

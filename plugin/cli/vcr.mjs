@@ -8382,7 +8382,12 @@ var GLOBAL_ENVIRONMENT = [
   { name: "VCR_HOME", description: "Machine state: runtime, environment records (default ~/.vcr)" }
 ];
 var COMMANDS = [
-  { name: "status", summary: "Show the harness, workspace and machine roots", flags: [], example: "vcr status" },
+  {
+    name: "status",
+    summary: "Show the harness, workspace and machine roots; --brief for videos awaiting review and open findings (under 1 KB)",
+    flags: [{ name: "brief", description: "Videos needing attention first, with open-finding counts and warnings" }],
+    example: "vcr status --brief"
+  },
   { name: "workspace init", summary: "Make this directory (or --workspace) a VCR workspace; idempotent", flags: [], example: "vcr workspace init" },
   { name: "video init", argumentsHint: "<project>/<video>", summary: "Register a video: the project in vcr.json and project.json, plus its review/ directories; idempotent", flags: [], example: "vcr video init demo/teaser" },
   { name: "validate", summary: "Validate the workspace (in the harness repository: everything)", flags: [], example: "vcr validate --json" },
@@ -10590,6 +10595,40 @@ function text(value) {
   return typeof value === "string" ? value : void 0;
 }
 
+// packages/cli/src/status.ts
+var BRIEF_VIDEO_LIMIT = 8;
+var STATE_PRIORITY = { changes_requested: 0, in_review: 1, draft: 2, approved: 3 };
+function briefStatus(workspaceRoot, harnessVersion, warnings = []) {
+  if (!workspaceRoot) return { harness_version: harnessVersion, workspace: null, video_count: 0, videos: [], warnings };
+  const videos = listVideoDirectories(workspaceRoot).map(({ videoId, directory }) => videoStatus(videoId, readVideoReview(directory, workspaceRoot)));
+  videos.sort((left, right) => STATE_PRIORITY[left.state] - STATE_PRIORITY[right.state] || openCount(right) - openCount(left) || left.video_id.localeCompare(right.video_id));
+  return { harness_version: harnessVersion, workspace: workspaceRoot, video_count: videos.length, videos: videos.slice(0, BRIEF_VIDEO_LIMIT), warnings };
+}
+function formatBriefStatus(status) {
+  if (!status.workspace) return `vcr ${status.harness_version}; no workspace (run vcr workspace init)`;
+  const lines = [`vcr ${status.harness_version}; ${status.video_count} video${status.video_count === 1 ? "" : "s"}`];
+  for (const video of status.videos) {
+    const open = ["blocker", "major", "minor", "note"].filter((severity) => video.open[severity] > 0).map((severity) => `${video.open[severity]} ${severity}`);
+    const counts = [open.length > 0 ? `open ${open.join(", ")}` : "", video.addressed > 0 ? `${video.addressed} addressed` : ""].filter(Boolean).join("; ");
+    lines.push(`${video.video_id}  ${video.state}${counts ? `  ${counts}` : ""}`);
+  }
+  if (status.video_count > status.videos.length) lines.push(`+${status.video_count - status.videos.length} more; vcr findings list <video> for detail`);
+  lines.push(...status.warnings.map((warning) => `warning: ${warning}`));
+  return lines.join("\n");
+}
+function videoStatus(videoId, review) {
+  const open = { blocker: 0, major: 0, minor: 0, note: 0 };
+  let addressed = 0;
+  for (const { finding } of review.findings) {
+    if (finding.status === "open") open[finding.severity] += 1;
+    if (finding.status === "addressed") addressed += 1;
+  }
+  return { video_id: videoId, state: videoState(review), latest_render: latestManifest(review)?.render_id ?? null, open, addressed };
+}
+function openCount(video) {
+  return Object.values(video.open).reduce((sum, count) => sum + count, 0);
+}
+
 // packages/cli/src/index.ts
 import { createInterface } from "node:readline/promises";
 var argv = process.argv.slice(2);
@@ -10613,6 +10652,11 @@ ${formatGlobalUsage()}`);
   const repositoryRoot = roots.harness;
   const harnessVersion = readHarnessVersion(roots.harness);
   if (!harnessVersion.ok) return failWith(harnessVersion.error, asJson);
+  if (command === "status" && options["brief"] === true) {
+    const status = briefStatus(roots.workspace, harnessVersion.value);
+    print(asJson ? status : formatBriefStatus(status));
+    return 0;
+  }
   if (command === "status") {
     print(asJson ? { ...roots, harness_version: harnessVersion.value } : formatRoots(roots, harnessVersion.value));
     return 0;
