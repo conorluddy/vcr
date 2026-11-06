@@ -34,7 +34,7 @@ Its core claim fits VCR well. **A version is new parameters plus automatic check
    - `regions(t)` could generalise `textBounds()`, since text is just a region with `role: "text"`. Should it replace `textBounds()` or sit beside it?
    - Named markers break the current plain array of seconds. Lint would need to accept both.
 
-   Settle both in [the scene contract](../../skills/start/references/scene-contract.md) before any check reads them.
+   **Settled (#143)** in [the scene contract](../../skills/start/references/scene-contract.md): `regions(t)` generalises `textBounds()` and sits beside it; lint accepts named and plain markers; `params` echoes at least `width`, `height`, `fps` and `seed`. `manifest()` is replaced by the render manifest, and `mandatory` by required regions plus the brief.
 2. **Settled: checks across the version set reuse the owning pillar's check** ([shared conventions](../README.md)). `ADAPT-*` owns running the owner's check on every cell of the matrix, not a second threshold:
 
    | Across-set check | Owner |

@@ -312,7 +312,7 @@ Check a browser scene's text against a safe zone, the frame edges and overflowin
 | --- | --- | --- |
 | `--safe-zone preset` (required) | ebu-16x9, tiktok, reels, shorts, composite-9x16 (references/typography/rules.json), or none |  |
 | `--at t1,t2` | Sample at these times in seconds |  |
-| `--markers` | Sample at window.__scene.markers (seconds), e.g. just before each beat ends |  |
+| `--markers` | Sample at window.__scene.markers (seconds or { t, id, role }), e.g. just before each beat ends |  |
 | `--samples n` | Evenly spaced samples from 0 to the last frame | `8` |
 | `--width n` | Viewport width in pixels; required with --safe-zone none | `the preset's canvas` |
 | `--height n` | Viewport height in pixels; required with --safe-zone none | `the preset's canvas` |

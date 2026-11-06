@@ -212,7 +212,7 @@ export const COMMANDS: CommandSpec[] = [
     flags: [
       { name: "safe-zone", value: "preset", description: "ebu-16x9, tiktok, reels, shorts, composite-9x16 (references/typography/rules.json), or none", isRequired: true },
       { name: "at", value: "t1,t2", description: "Sample at these times in seconds" },
-      { name: "markers", description: "Sample at window.__scene.markers (seconds), e.g. just before each beat ends" },
+      { name: "markers", description: "Sample at window.__scene.markers (seconds or { t, id, role }), e.g. just before each beat ends" },
       { name: "samples", value: "n", description: "Evenly spaced samples from 0 to the last frame", defaultValue: "8" },
       { name: "width", value: "n", description: "Viewport width in pixels; required with --safe-zone none", defaultValue: "the preset's canvas" },
       { name: "height", value: "n", description: "Viewport height in pixels; required with --safe-zone none", defaultValue: "the preset's canvas" },

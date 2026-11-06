@@ -19,6 +19,13 @@ const TEXT_PREVIEW_CHARACTERS = 30;
 
 // === PUBLIC API ===
 
+/** Marker times from `window.__scene.markers`: plain seconds, named `{ t, id, role? }` entries, or a mix. Undefined when any entry is malformed. */
+export function markerTimes(markers: unknown): number[] | undefined {
+  if (!Array.isArray(markers)) return undefined;
+  const times = markers.map((marker) => (typeof marker === "object" && marker !== null ? (marker as { t?: unknown }).t : marker));
+  return times.every((time): time is number => typeof time === "number" && Number.isFinite(time)) ? times : undefined;
+}
+
 /** Explicit times win, then scene markers, then `samples` evenly spaced from 0 to the last frame (duration − 1/fps). */
 export function sampleTimes(duration: number, fps: number, samples: number, explicit?: number[], markers?: number[]): number[] {
   if (explicit && explicit.length > 0) return explicit;
