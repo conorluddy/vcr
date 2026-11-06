@@ -192,8 +192,9 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     if (!devMode.ok) return failWith(devMode.error, asJson);
     const outcome = buildPlugin(repositoryRoot);
     if (!outcome.ok) return failWith(outcome.error, asJson);
-    const { directory, version, fileCount, totalBytes } = outcome.value;
-    print(asJson ? outcome.value : `built ${directory} v${version}: ${fileCount} files, ${(totalBytes / 1024).toFixed(0)} KB`);
+    const { directory, version, fileCount, totalBytes, pillarBytes } = outcome.value;
+    const pillarKilobytes = Object.values(pillarBytes).reduce((sum, bytes) => sum + bytes, 0) / 1024;
+    print(asJson ? outcome.value : `built ${directory} v${version}: ${fileCount} files, ${(totalBytes / 1024).toFixed(0)} KB (pillar references ${pillarKilobytes.toFixed(0)} KB across ${Object.keys(pillarBytes).length}; --json for each)`);
     return 0;
   }
 
