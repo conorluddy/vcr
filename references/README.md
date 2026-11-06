@@ -7,7 +7,7 @@ Each creative pillar follows the same path:
 4. a workflow skill;
 5. a reviewer agent.
 
-This file holds the conventions every pillar shares and decides which pillar owns each rule that several of them touch. A pillar's own README covers routing inside its knowledge base and the decisions that are still open.
+This file holds the conventions every pillar shares and decides which pillar owns each rule that several of them touch. A pillar's own README covers routing inside its knowledge base and the decisions that are still open. Agents start at the generated [INDEX.md](INDEX.md) (`vcr refs list`), then look up one rule with `vcr rules info <ID>` or one section with `vcr refs section <pillar> <§>`.
 
 | Pillar | Prefix | Knowledge base | Data | Checks | Skill | Agent |
 | --- | --- | --- | --- | --- | --- | --- |

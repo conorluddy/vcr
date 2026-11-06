@@ -68,7 +68,7 @@ export function buildPlugin(harnessRoot: string, outputDirectory = join(harnessR
   mkdirSync(join(outputDirectory, "references"), { recursive: true });
   writeFileSync(join(outputDirectory, CLI_REFERENCE_PATH), cliReference);
   for (const pillar of listPillarReferences(harnessRoot)) cpSync(join(harnessRoot, "references", pillar), join(outputDirectory, "references", pillar), { recursive: true });
-  if (existsSync(join(harnessRoot, "references/README.md"))) cpSync(join(harnessRoot, "references/README.md"), join(outputDirectory, "references/README.md"));
+  for (const file of ["README.md", "INDEX.md"]) if (existsSync(join(harnessRoot, "references", file))) cpSync(join(harnessRoot, "references", file), join(outputDirectory, "references", file));
   if (outputDirectory === join(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync(join(harnessRoot, CLI_REFERENCE_PATH), cliReference);
 
   const files = listFiles(outputDirectory);

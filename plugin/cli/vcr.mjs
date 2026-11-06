@@ -8073,8 +8073,8 @@ var require_dist = __commonJS({
 });
 
 // packages/cli/src/index.ts
-import { mkdirSync as mkdirSync5, writeFileSync as writeFileSync9 } from "node:fs";
-import { dirname as dirname5, join as join17, resolve as resolve6 } from "node:path";
+import { mkdirSync as mkdirSync5, writeFileSync as writeFileSync10 } from "node:fs";
+import { dirname as dirname5, join as join18, resolve as resolve6 } from "node:path";
 
 // packages/cli/src/capture.ts
 import { execFileSync } from "node:child_process";
@@ -8402,6 +8402,27 @@ var COMMANDS = [
     flags: [{ name: "full", description: "Append the tool's guide (skills/<id>/SKILL.md)" }],
     example: "vcr tools info ffmpeg-ffprobe --full"
   },
+  { name: "refs list", summary: "Tier 0 of the creative pillars: one line per pillar (references/INDEX.md)", flags: [], example: "vcr refs list" },
+  {
+    name: "refs section",
+    argumentsHint: "<pillar> <section>",
+    summary: "Print one section of a pillar's knowledge base; never the whole file",
+    flags: [],
+    example: "vcr refs section motion 2.4"
+  },
+  {
+    name: "rules list",
+    summary: "Pillar rules, one line each, paginated",
+    flags: [
+      { name: "pillar", value: "name", description: "Pillar slug or prefix: motion-director, MOTION, pace" },
+      { name: "tier", value: "tier", description: "standard, platform or heuristic (substring match)" },
+      { name: "applies-to", value: "text", description: "Only rules whose applies-to mentions this, e.g. 9:16 or captions" },
+      { name: "limit", value: "n", description: "Rules per page", defaultValue: "50" },
+      { name: "offset", value: "n", description: "Rules to skip", defaultValue: "0" }
+    ],
+    example: "vcr rules list --pillar pace --tier platform"
+  },
+  { name: "rules info", argumentsHint: "<ID>", summary: "One rule: check, threshold, tier, scope and where it lives", flags: [], example: "vcr rules info TYPO-HOLD" },
   { name: "tools examples", argumentsHint: "<id>", summary: "Tier 3: runnable examples that demonstrate the tool", flags: [], example: "vcr tools examples gsap" },
   { name: "example create", argumentsHint: "<id>", summary: "Copy an example's sources into <workspace>/examples/<id> and print next steps", flags: [], example: "vcr example create gsap-title-card" },
   {
@@ -8760,9 +8781,175 @@ ${table}
 ${kb.slice(end)}`);
 }
 
+// packages/cli/src/references.ts
+import { existsSync as existsSync4, readdirSync as readdirSync3, readFileSync as readFileSync5, writeFileSync as writeFileSync5 } from "node:fs";
+import { join as join6 } from "node:path";
+var REFERENCES_INDEX_PATH = "references/INDEX.md";
+var REFERENCES_README_PATH = "references/README.md";
+var RULES_TABLE_HEADER = /^\|\s*ID\s*\|\s*Check\s*\|\s*Threshold\s*\|\s*Tier\s*\|\s*Applies to\s*\|/;
+function loadPillars(harnessRoot) {
+  const readmePath = join6(harnessRoot, REFERENCES_README_PATH);
+  if (!existsSync4(readmePath)) return fail("REFERENCES_MISSING", `${REFERENCES_README_PATH} is missing; the pillar status table lives there.`);
+  const pillars = [];
+  for (const line of readFileSync5(readmePath, "utf8").split("\n")) {
+    const cells = splitRow(line);
+    const link = cells[2]?.match(/^\[[^\]]+\]\(([a-z0-9-]+)\/README\.md\)$/);
+    const prefix = cells[1]?.match(/^`([A-Z0-9]+-)`$/);
+    if (!link || !prefix || cells.length < 7) continue;
+    const slug = link[1];
+    pillars.push({ name: cells[0], prefix: prefix[1], slug, title: readKnowledgeBaseTitle(harnessRoot, slug), data: cells[3], checks: cells[4], skill: cells[5], agent: cells[6] });
+  }
+  return pillars.length > 0 ? ok(pillars) : fail("REFERENCES_EMPTY", `No pillar rows with a README link found in ${REFERENCES_README_PATH}.`);
+}
+function loadPillarRules(harnessRoot, pillars) {
+  return pillars.flatMap((pillar) => {
+    const rulesPath = join6(harnessRoot, "references", pillar.slug, "rules.json");
+    if (existsSync4(rulesPath)) return rulesFromData(pillar, JSON.parse(readFileSync5(rulesPath, "utf8")));
+    const knowledgeBase = knowledgeBasePath(harnessRoot, pillar.slug);
+    return knowledgeBase ? rulesFromTable(pillar, readFileSync5(knowledgeBase, "utf8")) : [];
+  });
+}
+function findPillarRule(rules, id) {
+  const wanted = id.trim().toUpperCase();
+  const rule = rules.find((candidate) => candidate.id === wanted);
+  if (rule) return ok(rule);
+  const prefix = wanted.split("-")[0];
+  const nearby = rules.filter((candidate) => candidate.id.startsWith(`${prefix}-`)).slice(0, 8).map((candidate) => candidate.id);
+  return fail("RULE_NOT_FOUND", `No rule ${wanted}.${nearby.length > 0 ? ` Rules starting ${prefix}-: ${nearby.join(", ")}\u2026` : ""} Run \`vcr rules list --pillar <prefix>\` to browse.`);
+}
+function filterPillarRules(rules, filter) {
+  const pillar = filter.pillar?.toLowerCase().replace(/-$/, "");
+  return rules.filter((rule) => (!pillar || rule.pillar === pillar || rule.id.toLowerCase().startsWith(`${pillar}-`)) && (!filter.tier || rule.tier.toLowerCase().includes(filter.tier.toLowerCase())) && (!filter.appliesTo || rule.applies_to.toLowerCase().includes(filter.appliesTo.toLowerCase())));
+}
+function readKnowledgeBaseSection(harnessRoot, pillars, pillarName, section) {
+  const pillar = matchPillar(pillars, pillarName);
+  if (!pillar) return fail("PILLAR_NOT_FOUND", `No pillar ${pillarName}. Pillars: ${pillars.map((candidate) => `${candidate.slug} (${candidate.prefix})`).join(", ")}.`);
+  const path = knowledgeBasePath(harnessRoot, pillar.slug);
+  if (!path) return fail("KNOWLEDGE_BASE_MISSING", `references/${pillar.slug}/ has no *-knowledge-base.md.`);
+  const lines = readFileSync5(path, "utf8").split("\n");
+  const number = section.replace(/^§/, "").replace(/\.$/, "");
+  const headingPattern = new RegExp(`^(#{2,4})\\s+${number.replace(/\./g, "\\.")}(?:\\.|\\s)`);
+  const start = lines.findIndex((line) => headingPattern.test(line));
+  if (start === -1) return fail("SECTION_NOT_FOUND", `No \xA7${number} in references/${pillar.slug}/. Sections: ${listSections(lines).join(", ")}.`);
+  const level = lines[start].match(/^#+/)[0].length;
+  const endOffset = lines.slice(start + 1).findIndex((line) => /^#{1,6}\s/.test(line) && line.match(/^#+/)[0].length <= level);
+  return ok(lines.slice(start, endOffset === -1 ? void 0 : start + 1 + endOffset).join("\n").trimEnd());
+}
+function renderReferencesIndex(pillars, rules) {
+  const lines = pillars.map((pillar) => {
+    const count = rules.filter((rule) => rule.pillar === pillar.slug).length;
+    const built = [["data", pillar.data], ["checks", pillar.checks], ["skill", pillar.skill], ["agent", pillar.agent]].filter(([, value]) => value && !value.startsWith("\u2014")).map(([label, value]) => `${label}: ${value}`);
+    return `- **${pillar.name}** \`${pillar.prefix}\` \xB7 ${count} rules \xB7 [${pillar.slug}/](${pillar.slug}/README.md) \xB7 ${pillar.title}${built.length > 0 ? ` \xB7 ${built.join("; ")}` : " \xB7 reference only"}`;
+  });
+  return [
+    "# Reference pillars",
+    "",
+    "Generated by `vcr catalog build` from the status table in [README.md](README.md); do not edit. Tier 0 of the pillars: pick one here, read its README, then one rule (`vcr rules info <ID>`) or one section (`vcr refs section <pillar> <\xA7>`). Never load a whole knowledge base.",
+    "",
+    ...lines,
+    ""
+  ].join("\n");
+}
+function writeReferencesIndex(harnessRoot, checkOnly) {
+  if (!existsSync4(join6(harnessRoot, REFERENCES_README_PATH))) return ok({ wasStale: false, staleFiles: [] });
+  const pillars = loadPillars(harnessRoot);
+  if (!pillars.ok) return pillars;
+  const rendered = renderReferencesIndex(pillars.value, loadPillarRules(harnessRoot, pillars.value));
+  const path = join6(harnessRoot, REFERENCES_INDEX_PATH);
+  if (existsSync4(path) && readFileSync5(path, "utf8") === rendered) return ok({ wasStale: false, staleFiles: [] });
+  if (!checkOnly) writeFileSync5(path, rendered);
+  return ok({ wasStale: true, staleFiles: [REFERENCES_INDEX_PATH] });
+}
+function referencesIndexDiagnostics(harnessRoot) {
+  const outcome = writeReferencesIndex(harnessRoot, true);
+  if (!outcome.ok) return [{ severity: "error", file: REFERENCES_README_PATH, path: "", message: outcome.error.message }];
+  return outcome.value.staleFiles.map((file) => ({ severity: "error", file, path: "", message: "references index is stale", suggestion: "Run `pnpm vcr catalog build` and commit the result." }));
+}
+function formatPillarRule(rule) {
+  const where = rule.origin === "rules.json" ? `references/${rule.pillar}/rules.json` : `references/${rule.pillar}/ knowledge base rules table`;
+  const notes = [rule.isDraftId ? "draft ID, renamed when the pillar gets rules.json" : "", rule.verified === false ? "figure unverified at source" : ""].filter(Boolean);
+  return [
+    `${rule.id}  (${where}${notes.length > 0 ? `; ${notes.join("; ")}` : ""})`,
+    `check       ${rule.check}`,
+    `threshold   ${rule.threshold}`,
+    `tier        ${rule.tier}`,
+    `applies to  ${rule.applies_to}`,
+    ...rule.source ? [`source      ${rule.source}`] : [],
+    ...rule.values ? [`values      ${JSON.stringify(rule.values)}`] : []
+  ].join("\n");
+}
+function formatPillarRuleList(rules, total, offset) {
+  if (rules.length === 0) return "no matching rules";
+  const width = Math.max(...rules.map((rule) => rule.id.length));
+  const rows = rules.map((rule) => `${rule.id.padEnd(width)}  ${truncate(rule.tier, 18).padEnd(18)}  ${truncate(rule.check, 90)}`);
+  const shown = `${offset + 1}\u2013${offset + rules.length} of ${total}`;
+  return [...rows, "", total > offset + rules.length ? `${shown}; next page: --offset ${offset + rules.length}` : shown].join("\n");
+}
+function splitRow(line) {
+  if (!line.startsWith("|")) return [];
+  return line.slice(1, line.trimEnd().endsWith("|") ? line.trimEnd().length - 1 : void 0).split(/(?<!\\)\|/).map((cell) => cell.trim().replace(/\\\|/g, "|"));
+}
+function rulesFromTable(pillar, markdown) {
+  const rules = [];
+  let isInRulesTable = false;
+  const idPattern = new RegExp(`^${pillar.prefix}[A-Z0-9]+(?:-[A-Z0-9]+)*$`);
+  for (const line of markdown.split("\n")) {
+    if (RULES_TABLE_HEADER.test(line)) {
+      isInRulesTable = true;
+      continue;
+    }
+    if (!line.startsWith("|")) {
+      isInRulesTable = false;
+      continue;
+    }
+    if (!isInRulesTable) continue;
+    const [idCell, check, threshold, tier, appliesTo] = splitRow(line);
+    const id = idCell?.replace(/`/g, "");
+    if (!id || !idPattern.test(id)) continue;
+    rules.push({ id, pillar: pillar.slug, check: check ?? "", threshold: threshold ?? "", tier: tier ?? "", applies_to: appliesTo ?? "", origin: "knowledge-base", isDraftId: /\d/.test(id) });
+  }
+  return rules;
+}
+function rulesFromData(pillar, data) {
+  return data.rules.map((rule) => ({
+    id: String(rule["id"]),
+    pillar: pillar.slug,
+    check: String(rule["check"] ?? ""),
+    threshold: String(rule["threshold"] ?? ""),
+    tier: String(rule["tier"] ?? ""),
+    applies_to: String(rule["applies_to"] ?? ""),
+    origin: "rules.json",
+    isDraftId: /\d/.test(String(rule["id"])),
+    ...rule["source"] !== void 0 ? { source: String(rule["source"]) } : {},
+    ...typeof rule["verified"] === "boolean" ? { verified: rule["verified"] } : {},
+    ...rule["values"] !== void 0 ? { values: rule["values"] } : {}
+  }));
+}
+function knowledgeBasePath(harnessRoot, slug) {
+  const directory = join6(harnessRoot, "references", slug);
+  if (!existsSync4(directory)) return void 0;
+  const file = readdirSync3(directory).find((name) => name.endsWith("-knowledge-base.md"));
+  return file ? join6(directory, file) : void 0;
+}
+function readKnowledgeBaseTitle(harnessRoot, slug) {
+  const path = knowledgeBasePath(harnessRoot, slug);
+  const heading = path ? readFileSync5(path, "utf8").split("\n").find((line) => line.startsWith("# ")) : void 0;
+  return heading ? heading.slice(2).replace(/\s*\(`[^`]*`\)\s*$/, "").trim() : slug;
+}
+function matchPillar(pillars, name) {
+  const wanted = name.toLowerCase().replace(/-$/, "");
+  return pillars.find((pillar) => pillar.slug === wanted || pillar.prefix.toLowerCase().replace(/-$/, "") === wanted || pillar.slug.startsWith(`${wanted}-`));
+}
+function listSections(lines) {
+  return lines.map((line) => line.match(/^##\s+(\d+)\./)?.[1]).filter((number) => number !== void 0);
+}
+function truncate(value, length) {
+  return value.length > length ? `${value.slice(0, length - 1)}\u2026` : value;
+}
+
 // packages/cli/src/lint.ts
-import { existsSync as existsSync4, readdirSync as readdirSync3, statSync as statSync3 } from "node:fs";
-import { join as join7, resolve as resolve3 } from "node:path";
+import { existsSync as existsSync5, readdirSync as readdirSync4, statSync as statSync3 } from "node:fs";
+import { join as join8, resolve as resolve3 } from "node:path";
 
 // packages/lint/src/lint-scene.ts
 import { relative as relative2 } from "node:path";
@@ -8956,19 +9143,19 @@ async function readMarkers(page) {
 }
 
 // packages/lint/src/safe-zones.ts
-import { readFileSync as readFileSync5 } from "node:fs";
-import { join as join6 } from "node:path";
+import { readFileSync as readFileSync6 } from "node:fs";
+import { join as join7 } from "node:path";
 var TYPOGRAPHY_RULES_PATH2 = "references/typography/rules.json";
 function loadSafeZone(harnessRoot, name) {
   const presets = readSafeZones(harnessRoot);
-  if (typeof presets === "string") return { ok: false, error: { code: "TYPOGRAPHY_RULES_UNREADABLE", message: `Cannot read safe zones from ${join6(harnessRoot, TYPOGRAPHY_RULES_PATH2)}: ${presets}`, retryable: false } };
+  if (typeof presets === "string") return { ok: false, error: { code: "TYPOGRAPHY_RULES_UNREADABLE", message: `Cannot read safe zones from ${join7(harnessRoot, TYPOGRAPHY_RULES_PATH2)}: ${presets}`, retryable: false } };
   const preset = presets[name];
   if (!preset) return { ok: false, error: { code: "UNKNOWN_SAFE_ZONE", message: `No safe-zone preset "${name}". Use one of: ${Object.keys(presets).join(", ")}, or none.`, retryable: false } };
   return { ok: true, value: { name, ...preset } };
 }
 function readSafeZones(harnessRoot) {
   try {
-    const data = JSON.parse(readFileSync5(join6(harnessRoot, TYPOGRAPHY_RULES_PATH2), "utf8"));
+    const data = JSON.parse(readFileSync6(join7(harnessRoot, TYPOGRAPHY_RULES_PATH2), "utf8"));
     return data.safe_zones ?? "the file has no safe_zones";
   } catch (cause) {
     return cause instanceof Error ? cause.message : String(cause);
@@ -9013,25 +9200,25 @@ function formatFinding(finding) {
   return `${finding.scene} t=${finding.t}s ${finding.rule}${unverified} ${finding.selector}${text2}: ${finding.problem}`;
 }
 function listScenes(target) {
-  if (!existsSync4(target)) return fail("SCENE_NOT_FOUND", `${target} does not exist.`);
+  if (!existsSync5(target)) return fail("SCENE_NOT_FOUND", `${target} does not exist.`);
   if (!statSync3(target).isDirectory()) return ok([target]);
-  const scenes = readdirSync3(target).filter((entry) => entry.endsWith(".html")).sort().map((entry) => join7(target, entry));
+  const scenes = readdirSync4(target).filter((entry) => entry.endsWith(".html")).sort().map((entry) => join8(target, entry));
   if (scenes.length === 0) return fail("SCENE_NOT_FOUND", `${target} holds no .html scenes; pass a scene file or a directory of them.`);
   return ok(scenes);
 }
 
 // packages/cli/src/disclosure.ts
-import { existsSync as existsSync8, statSync as statSync4 } from "node:fs";
-import { join as join11 } from "node:path";
+import { existsSync as existsSync9, statSync as statSync4 } from "node:fs";
+import { join as join12 } from "node:path";
 
 // packages/cli/src/tools.ts
-import { existsSync as existsSync7, readFileSync as readFileSync6 } from "node:fs";
-import { join as join10 } from "node:path";
+import { existsSync as existsSync8, readFileSync as readFileSync7 } from "node:fs";
+import { join as join11 } from "node:path";
 
 // packages/cli/src/evidence.ts
-import { existsSync as existsSync5 } from "node:fs";
+import { existsSync as existsSync6 } from "node:fs";
 import { hostname as osHostname } from "node:os";
-import { join as join8 } from "node:path";
+import { join as join9 } from "node:path";
 function versionScope(version) {
   const text2 = (version ?? "").trim();
   if (!text2) return "unknown";
@@ -9042,8 +9229,8 @@ function versionScope(version) {
   return versionTokens(text2).length > 0 ? "exact" : "unknown";
 }
 function loadMachineRecord(machineRoot, hostname2 = osHostname()) {
-  const path = join8(machineRoot, "environment", `${hostname2}.json`);
-  if (!existsSync5(path)) return void 0;
+  const path = join9(machineRoot, "environment", `${hostname2}.json`);
+  if (!existsSync6(path)) return void 0;
   const parsed2 = readJsonFile(path);
   if (!parsed2.ok) return void 0;
   const record = parsed2.value;
@@ -9100,8 +9287,8 @@ function isProbeResult(entry) {
 }
 
 // packages/cli/src/project.ts
-import { existsSync as existsSync6 } from "node:fs";
-import { dirname as dirname3, join as join9, resolve as resolve4 } from "node:path";
+import { existsSync as existsSync7 } from "node:fs";
+import { dirname as dirname3, join as join10, resolve as resolve4 } from "node:path";
 function npmPackagesFor(installCommand) {
   const first = (installCommand ?? "").split("&&")[0].trim();
   const match = /^(?:pnpm\s+add|npm\s+(?:i|install)|yarn\s+add)\s+(.+)$/.exec(first);
@@ -9114,8 +9301,8 @@ function projectPackageVersions(startDir, names, stopDir) {
   const directories = searchDirectories(resolve4(startDir), stopDir ? resolve4(stopDir) : void 0);
   return names.map((name) => {
     for (const directory of directories) {
-      const path = join9(directory, "node_modules", name, "package.json");
-      if (!existsSync6(path)) continue;
+      const path = join10(directory, "node_modules", name, "package.json");
+      if (!existsSync7(path)) continue;
       const parsed2 = readJsonFile(path);
       if (parsed2.ok && typeof parsed2.value.version === "string") return { name, version: parsed2.value.version };
       return { name, version: null, unreadable: true };
@@ -9145,7 +9332,7 @@ function searchDirectories(start, stop) {
   let directory = start;
   for (; ; ) {
     directories.push(directory);
-    if (insideStop ? directory === stop : existsSync6(join9(directory, "package.json"))) break;
+    if (insideStop ? directory === stop : existsSync7(join10(directory, "package.json"))) break;
     const parent = dirname3(directory);
     if (parent === directory) break;
     directory = parent;
@@ -9160,7 +9347,7 @@ function stripVersionSpec(word) {
 // packages/cli/src/tools.ts
 function loadTools(repositoryRoot) {
   const tools = [];
-  for (const filePath of listJsonFiles(join10(repositoryRoot, "catalog/tools"))) {
+  for (const filePath of listJsonFiles(join11(repositoryRoot, "catalog/tools"))) {
     const parsed2 = readJsonFile(filePath);
     if (!parsed2.ok) return parsed2;
     tools.push(parsed2.value);
@@ -9169,7 +9356,7 @@ function loadTools(repositoryRoot) {
 }
 function loadExamples(repositoryRoot) {
   const examples = [];
-  for (const filePath of listFilesNamed(join10(repositoryRoot, "examples"), "example.json")) {
+  for (const filePath of listFilesNamed(join11(repositoryRoot, "examples"), "example.json")) {
     const parsed2 = readJsonFile(filePath);
     if (!parsed2.ok) return parsed2;
     const directory = filePath.slice(repositoryRoot.length + 1).replace(/\/example\.json$/, "");
@@ -9218,9 +9405,9 @@ function formatToolCard(tool, examples, repositoryRoot, machine, project) {
 }
 function readToolGuide(tool, repositoryRoot) {
   if (!tool.skill) return fail("NO_GUIDE", `${tool.id} has no skill yet. Its card is the deepest tier available.`);
-  const path = join10(repositoryRoot, tool.skill);
-  if (!existsSync7(path)) return fail("GUIDE_MISSING", `${tool.skill} is referenced by ${tool.id} but does not exist.`);
-  return ok(readFileSync6(path, "utf8"));
+  const path = join11(repositoryRoot, tool.skill);
+  if (!existsSync8(path)) return fail("GUIDE_MISSING", `${tool.skill} is referenced by ${tool.id} but does not exist.`);
+  return ok(readFileSync7(path, "utf8"));
 }
 function formatExamplesForTool(tool, examples) {
   const own = examples.filter((example) => example.tools.includes(tool.id));
@@ -9269,8 +9456,8 @@ function formatDisclosureReport(report) {
   ].join("\n");
 }
 function fileBytes(repositoryRoot, relativePath) {
-  const path = join11(repositoryRoot, relativePath);
-  return existsSync8(path) ? statSync4(path).size : 0;
+  const path = join12(repositoryRoot, relativePath);
+  return existsSync9(path) ? statSync4(path).size : 0;
 }
 function stats(entries) {
   if (entries.length === 0) return { count: 0, minBytes: 0, medianBytes: 0, maxBytes: 0 };
@@ -9281,7 +9468,7 @@ function stats(entries) {
 
 // packages/cli/src/doctor.ts
 import { execFile } from "node:child_process";
-import { existsSync as existsSync9 } from "node:fs";
+import { existsSync as existsSync10 } from "node:fs";
 import { hostname, platform, release, arch } from "node:os";
 import { promisify } from "node:util";
 var execFileAsync = promisify(execFile);
@@ -9336,31 +9523,31 @@ async function resolveExecutable(probe) {
     if (found) return found;
   } catch {
   }
-  return probe.fallbackPath && existsSync9(probe.fallbackPath) ? probe.fallbackPath : null;
+  return probe.fallbackPath && existsSync10(probe.fallbackPath) ? probe.fallbackPath : null;
 }
 
 // packages/cli/src/examples.ts
-import { cpSync, existsSync as existsSync10, readFileSync as readFileSync7, writeFileSync as writeFileSync5 } from "node:fs";
-import { basename, join as join12 } from "node:path";
+import { cpSync, existsSync as existsSync11, readFileSync as readFileSync8, writeFileSync as writeFileSync6 } from "node:fs";
+import { basename, join as join13 } from "node:path";
 var GENERATED_FILES = /* @__PURE__ */ new Set(["node_modules", "output", ".cache"]);
 var BROWSER_HARNESS_FILES = /* @__PURE__ */ new Set(["capture.ts", "run.sh", "expected"]);
 function createExample(harnessRoot, workspaceRoot, exampleId, cliInvocation2) {
-  const source = join12(harnessRoot, "examples", exampleId);
-  if (!existsSync10(join12(source, "example.json"))) return fail("EXAMPLE_NOT_FOUND", `No example "${exampleId}" in ${join12(harnessRoot, "examples")}. List them with \`vcr tools examples <tool-id>\`.`);
-  const directory = join12(workspaceRoot, "examples", exampleId);
-  const manifest = JSON.parse(readFileSync7(join12(source, "example.json"), "utf8"));
+  const source = join13(harnessRoot, "examples", exampleId);
+  if (!existsSync11(join13(source, "example.json"))) return fail("EXAMPLE_NOT_FOUND", `No example "${exampleId}" in ${join13(harnessRoot, "examples")}. List them with \`vcr tools examples <tool-id>\`.`);
+  const directory = join13(workspaceRoot, "examples", exampleId);
+  const manifest = JSON.parse(readFileSync8(join13(source, "example.json"), "utf8"));
   const relativeDirectory = `examples/${exampleId}`;
-  const nextSteps = buildNextSteps(relativeDirectory, existsSync10(join12(source, "package.json")), manifest, cliInvocation2);
-  if (existsSync10(directory)) return ok({ directory, isCreated: false, nextSteps });
+  const nextSteps = buildNextSteps(relativeDirectory, existsSync11(join13(source, "package.json")), manifest, cliInvocation2);
+  if (existsSync11(directory)) return ok({ directory, isCreated: false, nextSteps });
   const isHarnessOnly = (name) => GENERATED_FILES.has(name) || name.endsWith(".test.ts") || manifest.capture !== void 0 && BROWSER_HARNESS_FILES.has(name);
   cpSync(source, directory, { recursive: true, filter: (path) => !isHarnessOnly(basename(path)) });
-  if (existsSync10(join12(source, "package.json"))) writeStandalonePackage(join12(source, "package.json"), join12(directory, "package.json"));
+  if (existsSync11(join13(source, "package.json"))) writeStandalonePackage(join13(source, "package.json"), join13(directory, "package.json"));
   return ok({ directory, isCreated: true, nextSteps });
 }
 function writeStandalonePackage(sourcePath, targetPath) {
-  const original = JSON.parse(readFileSync7(sourcePath, "utf8"));
+  const original = JSON.parse(readFileSync8(sourcePath, "utf8"));
   const standalone = { name: original.name.replace(/^@vcr\//, ""), private: true, type: "module", dependencies: original.dependencies ?? {} };
-  writeFileSync5(targetPath, `${JSON.stringify(standalone, null, 2)}
+  writeFileSync6(targetPath, `${JSON.stringify(standalone, null, 2)}
 `);
 }
 function buildNextSteps(relativeDirectory, hasPackage, manifest, cliInvocation2) {
@@ -9388,10 +9575,10 @@ function startTimer() {
 }
 
 // packages/cli/src/plugin.ts
-import { cpSync as cpSync2, existsSync as existsSync11, mkdirSync as mkdirSync3, mkdtempSync, readdirSync as readdirSync4, readFileSync as readFileSync8, rmSync, statSync as statSync5, writeFileSync as writeFileSync6 } from "node:fs";
+import { cpSync as cpSync2, existsSync as existsSync12, mkdirSync as mkdirSync3, mkdtempSync, readdirSync as readdirSync5, readFileSync as readFileSync9, rmSync, statSync as statSync5, writeFileSync as writeFileSync7 } from "node:fs";
 import { createRequire as createRequire3 } from "node:module";
 import { tmpdir } from "node:os";
-import { basename as basename2, extname as extname2, join as join13, relative as relative3 } from "node:path";
+import { basename as basename2, extname as extname2, join as join14, relative as relative3 } from "node:path";
 var PLUGIN_DIRECTORY = "plugin";
 var PLUGIN_MAX_BYTES = 5 * 1024 * 1024;
 var CLI_REFERENCE_PATH = "references/cli.md";
@@ -9414,41 +9601,41 @@ The CLI is \`node <this directory>/cli/vcr.mjs\` (Node 22 or newer). It never wr
 var CATALOG_ENTRIES = ["INDEX.md", "CANDIDATES.md", "tools.json", "tools", "schemas", "capabilities", "CANDIDATE-INGESTION.md", "ASSESSMENT-BRIEF.md", "FIXTURE-EVIDENCE-TEMPLATE.md"];
 var SKIPPED_DIRECTORIES = /* @__PURE__ */ new Set(["node_modules", "output", ".cache", "dist"]);
 var MEDIA_EXTENSIONS = /* @__PURE__ */ new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".mp4", ".mov", ".webm", ".wav", ".mp3", ".aac", ".glb", ".gltf", ".blend", ".exr", ".woff", ".woff2"]);
-function buildPlugin(harnessRoot, outputDirectory = join13(harnessRoot, PLUGIN_DIRECTORY)) {
+function buildPlugin(harnessRoot, outputDirectory = join14(harnessRoot, PLUGIN_DIRECTORY)) {
   const version = readHarnessVersion(harnessRoot);
   if (!version.ok) return version;
   rmSync(outputDirectory, { recursive: true, force: true });
   mkdirSync3(outputDirectory, { recursive: true });
-  const bundled = bundleCli(harnessRoot, join13(outputDirectory, "cli/vcr.mjs"));
+  const bundled = bundleCli(harnessRoot, join14(outputDirectory, "cli/vcr.mjs"));
   if (!bundled.ok) return bundled;
-  for (const entry of CATALOG_ENTRIES) cpSync2(join13(harnessRoot, "catalog", entry), join13(outputDirectory, "catalog", entry), { recursive: true });
-  for (const skill of readdirSync4(join13(harnessRoot, "skills"))) {
-    if (existsSync11(join13(harnessRoot, "skills", skill, "SKILL.md"))) cpSync2(join13(harnessRoot, "skills", skill), join13(outputDirectory, "skills", skill), { recursive: true });
+  for (const entry of CATALOG_ENTRIES) cpSync2(join14(harnessRoot, "catalog", entry), join14(outputDirectory, "catalog", entry), { recursive: true });
+  for (const skill of readdirSync5(join14(harnessRoot, "skills"))) {
+    if (existsSync12(join14(harnessRoot, "skills", skill, "SKILL.md"))) cpSync2(join14(harnessRoot, "skills", skill), join14(outputDirectory, "skills", skill), { recursive: true });
   }
-  cpSync2(join13(harnessRoot, "agents"), join13(outputDirectory, "agents"), { recursive: true });
-  cpSync2(join13(harnessRoot, "examples"), join13(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename2(source)) });
+  cpSync2(join14(harnessRoot, "agents"), join14(outputDirectory, "agents"), { recursive: true });
+  cpSync2(join14(harnessRoot, "examples"), join14(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename2(source)) });
   writeManifests(outputDirectory, version.value);
-  writeFileSync6(join13(outputDirectory, "README.md"), PLUGIN_README);
+  writeFileSync7(join14(outputDirectory, "README.md"), PLUGIN_README);
   const cliReference = renderCliReference();
-  mkdirSync3(join13(outputDirectory, "references"), { recursive: true });
-  writeFileSync6(join13(outputDirectory, CLI_REFERENCE_PATH), cliReference);
-  for (const pillar of listPillarReferences(harnessRoot)) cpSync2(join13(harnessRoot, "references", pillar), join13(outputDirectory, "references", pillar), { recursive: true });
-  if (existsSync11(join13(harnessRoot, "references/README.md"))) cpSync2(join13(harnessRoot, "references/README.md"), join13(outputDirectory, "references/README.md"));
-  if (outputDirectory === join13(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync6(join13(harnessRoot, CLI_REFERENCE_PATH), cliReference);
+  mkdirSync3(join14(outputDirectory, "references"), { recursive: true });
+  writeFileSync7(join14(outputDirectory, CLI_REFERENCE_PATH), cliReference);
+  for (const pillar of listPillarReferences(harnessRoot)) cpSync2(join14(harnessRoot, "references", pillar), join14(outputDirectory, "references", pillar), { recursive: true });
+  for (const file of ["README.md", "INDEX.md"]) if (existsSync12(join14(harnessRoot, "references", file))) cpSync2(join14(harnessRoot, "references", file), join14(outputDirectory, "references", file));
+  if (outputDirectory === join14(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync7(join14(harnessRoot, CLI_REFERENCE_PATH), cliReference);
   const files = listFiles(outputDirectory);
-  const totalBytes = files.reduce((sum, file) => sum + statSync5(join13(outputDirectory, file)).size, 0);
-  const pillarBytes = Object.fromEntries(listPillarReferences(harnessRoot).map((pillar) => [pillar, files.filter((file) => file.startsWith(`references/${pillar}/`)).reduce((sum, file) => sum + statSync5(join13(outputDirectory, file)).size, 0)]));
+  const totalBytes = files.reduce((sum, file) => sum + statSync5(join14(outputDirectory, file)).size, 0);
+  const pillarBytes = Object.fromEntries(listPillarReferences(harnessRoot).map((pillar) => [pillar, files.filter((file) => file.startsWith(`references/${pillar}/`)).reduce((sum, file) => sum + statSync5(join14(outputDirectory, file)).size, 0)]));
   return ok({ directory: outputDirectory, version: version.value, fileCount: files.length, totalBytes, pillarBytes });
 }
 function pluginDiagnostics(harnessRoot) {
-  const committed = join13(harnessRoot, PLUGIN_DIRECTORY);
+  const committed = join14(harnessRoot, PLUGIN_DIRECTORY);
   const file = PLUGIN_DIRECTORY;
-  if (!existsSync11(committed)) return [{ severity: "error", file, path: "", message: "plugin/ is missing", suggestion: "Run `pnpm vcr plugin build` and commit the result." }];
-  const fresh = buildPlugin(harnessRoot, mkdtempSync(join13(tmpdir(), "vcr-plugin-")));
+  if (!existsSync12(committed)) return [{ severity: "error", file, path: "", message: "plugin/ is missing", suggestion: "Run `pnpm vcr plugin build` and commit the result." }];
+  const fresh = buildPlugin(harnessRoot, mkdtempSync(join14(tmpdir(), "vcr-plugin-")));
   if (!fresh.ok) return [{ severity: "error", file, path: "", message: fresh.error.message }];
   const diagnostics = [];
-  const harnessReference = join13(harnessRoot, CLI_REFERENCE_PATH);
-  if (!existsSync11(harnessReference) || readFileSync8(harnessReference, "utf8") !== renderCliReference()) {
+  const harnessReference = join14(harnessRoot, CLI_REFERENCE_PATH);
+  if (!existsSync12(harnessReference) || readFileSync9(harnessReference, "utf8") !== renderCliReference()) {
     diagnostics.push({ severity: "error", file: CLI_REFERENCE_PATH, path: "", message: `${CLI_REFERENCE_PATH} is missing or stale against packages/cli/src/commands.ts`, suggestion: "Run `pnpm vcr plugin build` and commit the result." });
   }
   const staleFiles = differingFiles(committed, fresh.value.directory);
@@ -9461,20 +9648,20 @@ function pluginDiagnostics(harnessRoot) {
 }
 function readHarnessVersion(harnessRoot) {
   for (const candidate of [".claude-plugin/plugin.json", "packages/cli/package.json"]) {
-    const path = join13(harnessRoot, candidate);
-    if (existsSync11(path)) return ok(JSON.parse(readFileSync8(path, "utf8")).version);
+    const path = join14(harnessRoot, candidate);
+    if (existsSync12(path)) return ok(JSON.parse(readFileSync9(path, "utf8")).version);
   }
   return fail("HARNESS_VERSION_UNKNOWN", `Neither .claude-plugin/plugin.json nor packages/cli/package.json exists under ${harnessRoot}.`);
 }
 function listPillarReferences(harnessRoot) {
-  const referencesDirectory = join13(harnessRoot, "references");
-  if (!existsSync11(referencesDirectory)) return [];
-  return readdirSync4(referencesDirectory, { withFileTypes: true }).filter((entry) => entry.isDirectory() && !NON_PILLAR_REFERENCES.has(entry.name) && existsSync11(join13(referencesDirectory, entry.name, "README.md"))).map((entry) => entry.name).sort();
+  const referencesDirectory = join14(harnessRoot, "references");
+  if (!existsSync12(referencesDirectory)) return [];
+  return readdirSync5(referencesDirectory, { withFileTypes: true }).filter((entry) => entry.isDirectory() && !NON_PILLAR_REFERENCES.has(entry.name) && existsSync12(join14(referencesDirectory, entry.name, "README.md"))).map((entry) => entry.name).sort();
 }
 function bundleCli(harnessRoot, outfile) {
   const esbuild = createRequire3(import.meta.url)("esbuild");
   const result = esbuild.buildSync({
-    entryPoints: [join13(harnessRoot, "packages/cli/src/index.ts")],
+    entryPoints: [join14(harnessRoot, "packages/cli/src/index.ts")],
     bundle: true,
     platform: "node",
     format: "esm",
@@ -9488,8 +9675,8 @@ function bundleCli(harnessRoot, outfile) {
   });
   const output = result.outputFiles[0];
   if (!output) return fail("PLUGIN_BUNDLE_FAILED", "esbuild produced no output for packages/cli/src/index.ts");
-  mkdirSync3(join13(outfile, ".."), { recursive: true });
-  writeFileSync6(outfile, output.text);
+  mkdirSync3(join14(outfile, ".."), { recursive: true });
+  writeFileSync7(outfile, output.text);
   return ok(outfile);
 }
 function writeManifests(outputDirectory, version) {
@@ -9501,16 +9688,16 @@ function writeManifests(outputDirectory, version) {
     interface: { displayName: "VCR", shortDescription: "Code-first motion graphics and video", developerName: PLUGIN_IDENTITY.author.name, category: "Developer Tools" }
   };
   for (const [directory, manifest] of [[".claude-plugin", claudeManifest], [".codex-plugin", codexManifest]]) {
-    mkdirSync3(join13(outputDirectory, directory), { recursive: true });
-    writeFileSync6(join13(outputDirectory, directory, "plugin.json"), `${JSON.stringify(manifest, null, 2)}
+    mkdirSync3(join14(outputDirectory, directory), { recursive: true });
+    writeFileSync7(join14(outputDirectory, directory, "plugin.json"), `${JSON.stringify(manifest, null, 2)}
 `);
   }
 }
 function listFiles(root) {
   const found = [];
   const walk = (directory) => {
-    for (const entry of readdirSync4(directory)) {
-      const path = join13(directory, entry);
+    for (const entry of readdirSync5(directory)) {
+      const path = join14(directory, entry);
       if (statSync5(path).isDirectory()) walk(path);
       else found.push(relative3(root, path));
     }
@@ -9523,17 +9710,17 @@ function differingFiles(committedRoot, freshRoot) {
   const fresh = listFiles(freshRoot);
   const all = [.../* @__PURE__ */ new Set([...committed, ...fresh])].sort();
   return all.filter((path) => {
-    const committedPath = join13(committedRoot, path);
-    const freshPath = join13(freshRoot, path);
-    if (!existsSync11(committedPath) || !existsSync11(freshPath)) return true;
-    return !readFileSync8(committedPath).equals(readFileSync8(freshPath));
+    const committedPath = join14(committedRoot, path);
+    const freshPath = join14(freshRoot, path);
+    if (!existsSync12(committedPath) || !existsSync12(freshPath)) return true;
+    return !readFileSync9(committedPath).equals(readFileSync9(freshPath));
   });
 }
 
 // packages/cli/src/roots.ts
-import { existsSync as existsSync12, mkdirSync as mkdirSync4, unlinkSync as unlinkSync2, writeFileSync as writeFileSync7 } from "node:fs";
+import { existsSync as existsSync13, mkdirSync as mkdirSync4, unlinkSync as unlinkSync2, writeFileSync as writeFileSync8 } from "node:fs";
 import { homedir } from "node:os";
-import { dirname as dirname4, join as join14, resolve as resolve5 } from "node:path";
+import { dirname as dirname4, join as join15, resolve as resolve5 } from "node:path";
 import { fileURLToPath } from "node:url";
 var WORKSPACE_MARKER = "vcr.json";
 function resolveRoots({ cwd, env, workspaceFlag, cliDirectory = dirname4(fileURLToPath(import.meta.url)), canWrite = isWritableDirectory }) {
@@ -9546,7 +9733,7 @@ function resolveRoots({ cwd, env, workspaceFlag, cliDirectory = dirname4(fileURL
   return ok({ harness: harness.value, workspace, ...machine, isCodexSandbox, isDevMode: workspace === harness.value });
 }
 function requireWorkspace(roots) {
-  if (roots.workspace && existsSync12(join14(roots.workspace, WORKSPACE_MARKER))) return ok(roots.workspace);
+  if (roots.workspace && existsSync13(join15(roots.workspace, WORKSPACE_MARKER))) return ok(roots.workspace);
   const where = roots.workspace ?? "this directory or any ancestor";
   return fail("WORKSPACE_NOT_FOUND", `No ${WORKSPACE_MARKER} in ${where}. Run \`vcr workspace init\` in the directory that should hold your projects, or pass --workspace <dir>.`);
 }
@@ -9557,11 +9744,11 @@ function requireDevMode(roots, command) {
 function resolveHarness(explicitHarness, cliDirectory) {
   if (explicitHarness) {
     const harness = resolve5(explicitHarness);
-    if (existsSync12(join14(harness, "catalog"))) return ok(harness);
+    if (existsSync13(join15(harness, "catalog"))) return ok(harness);
     return fail("HARNESS_NOT_FOUND", `VCR_HARNESS=${explicitHarness} has no catalog/ directory. Point it at a VCR checkout or plugin directory, or unset it.`);
   }
   let current = resolve5(cliDirectory);
-  while (!existsSync12(join14(current, "catalog"))) {
+  while (!existsSync13(join15(current, "catalog"))) {
     const parent = dirname4(current);
     if (parent === current) return fail("HARNESS_NOT_FOUND", `No ancestor of ${cliDirectory} contains catalog/. Set VCR_HARNESS to a VCR checkout or plugin directory.`);
     current = parent;
@@ -9570,15 +9757,15 @@ function resolveHarness(explicitHarness, cliDirectory) {
 }
 function resolveMachine(explicitHome, workspace, isCodexSandbox, canWrite) {
   if (explicitHome) return { machine: resolve5(explicitHome), machineSource: "VCR_HOME" };
-  const defaultHome = join14(homedir(), ".vcr");
-  if (isCodexSandbox && workspace && !canWrite(defaultHome)) return { machine: join14(workspace, ".vcr"), machineSource: "workspace-codex-fallback" };
+  const defaultHome = join15(homedir(), ".vcr");
+  if (isCodexSandbox && workspace && !canWrite(defaultHome)) return { machine: join15(workspace, ".vcr"), machineSource: "workspace-codex-fallback" };
   return { machine: defaultHome, machineSource: "default" };
 }
 function isWritableDirectory(directory) {
   try {
     mkdirSync4(directory, { recursive: true });
-    const probe = join14(directory, `.write-probe-${process.pid}`);
-    writeFileSync7(probe, "");
+    const probe = join15(directory, `.write-probe-${process.pid}`);
+    writeFileSync8(probe, "");
     unlinkSync2(probe);
     return true;
   } catch {
@@ -9587,7 +9774,7 @@ function isWritableDirectory(directory) {
 }
 function findAncestorWithMarker(startDirectory) {
   let current = resolve5(startDirectory);
-  while (!existsSync12(join14(current, WORKSPACE_MARKER))) {
+  while (!existsSync13(join15(current, WORKSPACE_MARKER))) {
     const parent = dirname4(current);
     if (parent === current) return null;
     current = parent;
@@ -9598,28 +9785,28 @@ function findAncestorWithMarker(startDirectory) {
 // packages/cli/src/validate.ts
 var import__ = __toESM(require__(), 1);
 var import_ajv_formats = __toESM(require_dist(), 1);
-import { existsSync as existsSync13, readFileSync as readFileSync9, statSync as statSync6 } from "node:fs";
-import { join as join15, relative as relative4 } from "node:path";
+import { existsSync as existsSync14, readFileSync as readFileSync10, statSync as statSync6 } from "node:fs";
+import { join as join16, relative as relative4 } from "node:path";
 var BUDGET_BYTES = { indexMarkdown: 16 * 1024, skill: 12 * 1024 };
 var EXACT_EVIDENCE_FROM = "2026-11-05";
 var CARD_REQUIRED_TIERS = /* @__PURE__ */ new Set(["core", "catalogued"]);
 var CARD_MISSING_SEVERITY = "error";
 function validateRepository(repositoryRoot) {
   const { check, diagnostics, report } = createChecker(loadSchemas(repositoryRoot), repositoryRoot);
-  const vocabulary = readJsonFile(join15(repositoryRoot, "catalog/capabilities/vocabulary.json"));
+  const vocabulary = readJsonFile(join16(repositoryRoot, "catalog/capabilities/vocabulary.json"));
   const knownCapabilities = new Set(vocabulary.ok ? vocabulary.value.capabilities : []);
   if (!vocabulary.ok) diagnostics.push({ severity: "error", file: "catalog/capabilities/vocabulary.json", path: "", message: vocabulary.error.message });
   const tools = /* @__PURE__ */ new Map();
   let validToolRecords = true;
-  for (const recordPath of listJsonFiles(join15(repositoryRoot, "catalog/tools"))) {
+  for (const recordPath of listJsonFiles(join16(repositoryRoot, "catalog/tools"))) {
     const record = check(recordPath, "toolRecord");
     if (record?.id) tools.set(record.id, { record, file: relative4(repositoryRoot, recordPath) });
     else validToolRecords = false;
   }
   const examples = /* @__PURE__ */ new Map();
-  for (const manifestPath of listFilesNamed(join15(repositoryRoot, "examples"), "example.json")) {
+  for (const manifestPath of listFilesNamed(join16(repositoryRoot, "examples"), "example.json")) {
     const manifest = check(manifestPath, "example");
-    if (manifest?.id) examples.set(manifest.id, { manifest: { ...manifest, directory: relative4(repositoryRoot, join15(manifestPath, "..")) }, file: relative4(repositoryRoot, manifestPath) });
+    if (manifest?.id) examples.set(manifest.id, { manifest: { ...manifest, directory: relative4(repositoryRoot, join16(manifestPath, "..")) }, file: relative4(repositoryRoot, manifestPath) });
   }
   for (const { record, file } of tools.values()) {
     diagnostics.push(...capabilityDiagnostics(record, knownCapabilities, file));
@@ -9627,14 +9814,15 @@ function validateRepository(repositoryRoot) {
     diagnostics.push(...cardDiagnostics(record, file));
   }
   for (const { manifest, file } of examples.values()) diagnostics.push(...exampleDiagnostics(manifest, file, tools, repositoryRoot));
-  check(join15(repositoryRoot, "catalog/tools.json"), "tool");
+  check(join16(repositoryRoot, "catalog/tools.json"), "tool");
   if (validToolRecords) diagnostics.push(...indexFreshnessDiagnostics(repositoryRoot));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/INDEX.md", BUDGET_BYTES.indexMarkdown));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/CANDIDATES.md", BUDGET_BYTES.indexMarkdown));
-  const typographyRulesPath = join15(repositoryRoot, TYPOGRAPHY_RULES_PATH);
-  if (existsSync13(typographyRulesPath) && check(typographyRulesPath, "typographyRules")) diagnostics.push(...typographyRuleDiagnostics(repositoryRoot));
+  const typographyRulesPath = join16(repositoryRoot, TYPOGRAPHY_RULES_PATH);
+  if (existsSync14(typographyRulesPath) && check(typographyRulesPath, "typographyRules")) diagnostics.push(...typographyRuleDiagnostics(repositoryRoot));
+  diagnostics.push(...referencesIndexDiagnostics(repositoryRoot));
   checkWorkspaceDocuments(check, repositoryRoot);
-  for (const environmentPath of listJsonFiles(join15(repositoryRoot, "environment"))) check(environmentPath, "environment");
+  for (const environmentPath of listJsonFiles(join16(repositoryRoot, "environment"))) check(environmentPath, "environment");
   return report();
 }
 function validateWorkspace(harnessRoot, workspaceRoot) {
@@ -9664,16 +9852,16 @@ function createChecker(schemas, displayRoot) {
   return { check, diagnostics, report: () => ({ filesChecked, diagnostics }) };
 }
 function checkWorkspaceDocuments(check, workspaceRoot) {
-  const markerPath = join15(workspaceRoot, WORKSPACE_MARKER);
-  if (existsSync13(markerPath)) check(markerPath, "workspace");
-  for (const projectPath of listFilesNamed(join15(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
-  for (const referencePath of listJsonFiles(join15(workspaceRoot, "references"))) check(referencePath, "reference");
+  const markerPath = join16(workspaceRoot, WORKSPACE_MARKER);
+  if (existsSync14(markerPath)) check(markerPath, "workspace");
+  for (const projectPath of listFilesNamed(join16(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
+  for (const referencePath of listJsonFiles(join16(workspaceRoot, "references"))) check(referencePath, "reference");
 }
 function loadSchemas(repositoryRoot) {
   const ajv = new import__.Ajv2020({ allErrors: true, strict: false });
   import_ajv_formats.default.default(ajv);
   const load = (name) => {
-    const schema = readJsonFile(join15(repositoryRoot, `catalog/schemas/${name}.schema.json`));
+    const schema = readJsonFile(join16(repositoryRoot, `catalog/schemas/${name}.schema.json`));
     if (!schema.ok) throw new Error(schema.error.message);
     return schema.value;
   };
@@ -9696,8 +9884,8 @@ function indexFreshnessDiagnostics(repositoryRoot) {
   return outcome.value.staleFiles.map((file) => ({ severity: "error", file, path: "", message: "index is stale", suggestion: "Run `pnpm vcr catalog build` and commit the result." }));
 }
 function budgetDiagnostics(repositoryRoot, relativePath, maxBytes) {
-  const absolutePath = join15(repositoryRoot, relativePath);
-  if (!existsSync13(absolutePath)) return [];
+  const absolutePath = join16(repositoryRoot, relativePath);
+  if (!existsSync14(absolutePath)) return [];
   const size = statSync6(absolutePath).size;
   if (size <= maxBytes) return [];
   return [{ severity: "error", file: relativePath, path: "", message: `${size} bytes exceeds the ${maxBytes} byte budget for a tier read whole`, suggestion: "Shorten one-liners, or move detail to the next tier down." }];
@@ -9738,7 +9926,7 @@ function scopeMatchDiagnostics(evidence, exampleId, path, file, isNew, repositor
   if (evidence.command && !evidence.command.startsWith(exampleDirectory)) {
     diagnostics.push({ severity: "error", file, path: `${path}/command`, message: `command "${evidence.command}" does not run the cited example ${exampleDirectory}`, suggestion: "Cite the example whose run produced this result, or record the command under it." });
   }
-  const hasRetainedOutputs = existsSync13(join15(repositoryRoot, exampleDirectory, "expected"));
+  const hasRetainedOutputs = existsSync14(join16(repositoryRoot, exampleDirectory, "expected"));
   if (!hasRetainedOutputs && !/fixture-reported/i.test(evidence.scope ?? "")) {
     diagnostics.push({ severity: isNew ? "error" : "warning", file, path: `${path}/scope`, message: `${exampleDirectory} keeps no expected/ outputs, but the scope does not say the claim is fixture-reported`, suggestion: 'Say "Fixture-reported" in the scope, or retain the outputs under expected/ and diff them in run.sh.' });
   }
@@ -9777,10 +9965,10 @@ function toolReferenceDiagnostics(record, file, tools, examples, repositoryRoot)
   }
   let skillText = null;
   if (record.skill) {
-    const skillPath = join15(repositoryRoot, record.skill);
-    if (!existsSync13(skillPath)) error("/skill", `${record.skill} does not exist`, "Write the SKILL.md or remove the reference.");
+    const skillPath = join16(repositoryRoot, record.skill);
+    if (!existsSync14(skillPath)) error("/skill", `${record.skill} does not exist`, "Write the SKILL.md or remove the reference.");
     else {
-      skillText = readFileSync9(skillPath, "utf8");
+      skillText = readFileSync10(skillPath, "utf8");
       diagnostics.push(...budgetDiagnostics(repositoryRoot, record.skill, BUDGET_BYTES.skill));
     }
   }
@@ -9806,13 +9994,13 @@ function exampleDiagnostics(manifest, file, tools, repositoryRoot) {
   const expectedDirectory = `examples/${manifest.id}`;
   if (manifest.directory !== expectedDirectory) error("/id", `manifest lives in ${manifest.directory} but its id says ${expectedDirectory}`, "Rename the directory or the id.");
   const runScript = manifest.run.replace(/^\.\//, "").split(" ")[0] ?? "";
-  if (!existsSync13(join15(repositoryRoot, manifest.directory, runScript))) error("/run", `${runScript} not found in ${manifest.directory}`, "Point run at the reproduction script.");
+  if (!existsSync14(join16(repositoryRoot, manifest.directory, runScript))) error("/run", `${runScript} not found in ${manifest.directory}`, "Point run at the reproduction script.");
   for (const toolId of manifest.tools) {
     const tool = tools.get(toolId);
     if (!tool) error("/tools", `"${toolId}" is not a catalogued tool id`, "Use an id from catalog/tools/.");
     else if (!(tool.record.examples ?? []).includes(manifest.id)) error("/tools", `${toolId} does not list this example in its examples`, `Add "${manifest.id}" to catalog/tools/${toolId}.json examples.`);
   }
-  if (manifest.report && !existsSync13(join15(repositoryRoot, manifest.report))) error("/report", `${manifest.report} does not exist`, "Fix the path or remove it.");
+  if (manifest.report && !existsSync14(join16(repositoryRoot, manifest.report))) error("/report", `${manifest.report} does not exist`, "Fix the path or remove it.");
   return diagnostics;
 }
 function hasHeading(markdown, heading) {
@@ -9820,25 +10008,25 @@ function hasHeading(markdown, heading) {
 }
 
 // packages/cli/src/workspace.ts
-import { existsSync as existsSync14, readFileSync as readFileSync10, writeFileSync as writeFileSync8 } from "node:fs";
-import { join as join16 } from "node:path";
+import { existsSync as existsSync15, readFileSync as readFileSync11, writeFileSync as writeFileSync9 } from "node:fs";
+import { join as join17 } from "node:path";
 var IGNORED_DIRECTORIES = ["output/", ".cache/", ".vcr/"];
 function ensureWorkspace(directory, harnessVersion) {
   const changes = [];
-  const markerPath = join16(directory, WORKSPACE_MARKER);
-  if (!existsSync14(markerPath)) {
+  const markerPath = join17(directory, WORKSPACE_MARKER);
+  if (!existsSync15(markerPath)) {
     const marker = { schema_version: "1.0.0", harness_version: harnessVersion, projects: [] };
-    writeFileSync8(markerPath, `${JSON.stringify(marker, null, 2)}
+    writeFileSync9(markerPath, `${JSON.stringify(marker, null, 2)}
 `);
     changes.push(WORKSPACE_MARKER);
   }
-  const gitignorePath = join16(directory, ".gitignore");
-  const existing = existsSync14(gitignorePath) ? readFileSync10(gitignorePath, "utf8") : "";
+  const gitignorePath = join17(directory, ".gitignore");
+  const existing = existsSync15(gitignorePath) ? readFileSync11(gitignorePath, "utf8") : "";
   const presentLines = new Set(existing.split("\n").map((line) => line.trim()));
   const missing = IGNORED_DIRECTORIES.filter((entry) => !presentLines.has(entry));
   if (missing.length > 0) {
     const separator = existing === "" || existing.endsWith("\n") ? "" : "\n";
-    writeFileSync8(gitignorePath, `${existing}${separator}${missing.join("\n")}
+    writeFileSync9(gitignorePath, `${existing}${separator}${missing.join("\n")}
 `);
     changes.push(".gitignore");
   }
@@ -9965,7 +10153,7 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
       return failWith({ code: "INVALID_ARGUMENT", message: "capture needs positive --width, --height and --fps" }, asJson, 2);
     }
     const sceneFile = resolve6(subcommand);
-    const outputDirectory = resolve6(text(options["out"]) ?? join17(dirname5(sceneFile), "output"));
+    const outputDirectory = resolve6(text(options["out"]) ?? join18(dirname5(sceneFile), "output"));
     const report = await runCapture(roots, { sceneFile, outputDirectory, verifyDeterminism: options["verify"] === true, ...dimensions });
     if (!report.ok) return failWith(report.error, asJson);
     const { frames, frames_per_second, shuffled_matches_sequential, mismatched_frames } = report.value;
@@ -9989,6 +10177,36 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
     print(asJson ? report.value : formatLintReport(report.value));
     return report.value.findings.length > 0 ? 1 : 0;
   }
+  if (command === "refs" || command === "rules") {
+    const pillars = loadPillars(repositoryRoot);
+    if (!pillars.ok) return failWith(pillars.error, asJson);
+    const rules = loadPillarRules(repositoryRoot, pillars.value);
+    if (command === "refs" && subcommand === "list") {
+      print(asJson ? pillars.value.map((pillar) => ({ ...pillar, ruleCount: rules.filter((rule) => rule.pillar === pillar.slug).length })) : renderReferencesIndex(pillars.value, rules).trimEnd());
+      return 0;
+    }
+    if (command === "refs" && subcommand === "section" && target && args[3]) {
+      const section = readKnowledgeBaseSection(repositoryRoot, pillars.value, target, args[3]);
+      if (!section.ok) return failWith(section.error, asJson);
+      print(asJson ? { pillar: target, section: args[3], markdown: section.value } : section.value);
+      return 0;
+    }
+    if (command === "rules" && subcommand === "info" && target) {
+      const rule = findPillarRule(rules, target);
+      if (!rule.ok) return failWith(rule.error, asJson);
+      print(asJson ? rule.value : formatPillarRule(rule.value));
+      return 0;
+    }
+    if (command === "rules" && subcommand === "list") {
+      const limit = optionalPositive(options["limit"]) ?? 50;
+      const offset = options["offset"] === void 0 ? 0 : Number(options["offset"]);
+      if (Number.isNaN(limit) || !Number.isInteger(offset) || offset < 0) return failWith({ code: "INVALID_ARGUMENT", message: "--limit must be a positive number and --offset a whole number of 0 or more." }, asJson, 2);
+      const matching = filterPillarRules(rules, { pillar: text(options["pillar"]), tier: text(options["tier"]), appliesTo: text(options["applies-to"]) });
+      const page = matching.slice(offset, offset + limit);
+      print(asJson ? { total: matching.length, offset, limit, rules: page } : formatPillarRuleList(page, matching.length, offset));
+      return 0;
+    }
+  }
   if (command === "catalog" && subcommand === "build") {
     const checkOnly = options["check"] === true;
     const devMode = requireDevMode(roots, "catalog build");
@@ -9997,8 +10215,10 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
     if (!outcome.ok) return failWith(outcome.error, asJson);
     const table = writeTypographyTable(repositoryRoot, checkOnly);
     if (!table.ok) return failWith(table.error, asJson);
+    const referencesIndex = writeReferencesIndex(repositoryRoot, checkOnly);
+    if (!referencesIndex.ok) return failWith(referencesIndex.error, asJson);
     const { recordCount } = outcome.value;
-    const staleFiles = [...outcome.value.staleFiles, ...table.value.staleFiles];
+    const staleFiles = [...outcome.value.staleFiles, ...table.value.staleFiles, ...referencesIndex.value.staleFiles];
     const wasStale = staleFiles.length > 0;
     const built = buildCatalogIndex(repositoryRoot);
     const manifests = loadExamples(repositoryRoot);
@@ -10023,7 +10243,7 @@ ${formatDisclosureReport(disclosure)}` : summary);
     const devMode = requireDevMode(roots, "doctor --record");
     if (shouldRecord && !devMode.ok) return failWith(devMode.error, asJson);
     const record = await runDoctor();
-    const outputDirectories = [join17(roots.machine, "environment"), ...shouldRecord ? [join17(repositoryRoot, "environment")] : []];
+    const outputDirectories = [join18(roots.machine, "environment"), ...shouldRecord ? [join18(repositoryRoot, "environment")] : []];
     const writtenPaths = outputDirectories.map((directory) => writeEnvironmentRecord(directory, record));
     print(asJson ? record : `${formatDoctorTable(record)}
 
@@ -10076,8 +10296,8 @@ function cliInvocation(roots) {
 }
 function writeEnvironmentRecord(directory, record) {
   mkdirSync5(directory, { recursive: true });
-  const outputPath = join17(directory, `${record.hostname}.json`);
-  writeFileSync9(outputPath, `${JSON.stringify(record, null, 2)}
+  const outputPath = join18(directory, `${record.hostname}.json`);
+  writeFileSync10(outputPath, `${JSON.stringify(record, null, 2)}
 `);
   return outputPath;
 }

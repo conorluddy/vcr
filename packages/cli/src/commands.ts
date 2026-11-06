@@ -60,6 +60,27 @@ export const COMMANDS: CommandSpec[] = [
     flags: [{ name: "full", description: "Append the tool's guide (skills/<id>/SKILL.md)" }],
     example: "vcr tools info ffmpeg-ffprobe --full",
   },
+  { name: "refs list", summary: "Tier 0 of the creative pillars: one line per pillar (references/INDEX.md)", flags: [], example: "vcr refs list" },
+  {
+    name: "refs section",
+    argumentsHint: "<pillar> <section>",
+    summary: "Print one section of a pillar's knowledge base; never the whole file",
+    flags: [],
+    example: "vcr refs section motion 2.4",
+  },
+  {
+    name: "rules list",
+    summary: "Pillar rules, one line each, paginated",
+    flags: [
+      { name: "pillar", value: "name", description: "Pillar slug or prefix: motion-director, MOTION, pace" },
+      { name: "tier", value: "tier", description: "standard, platform or heuristic (substring match)" },
+      { name: "applies-to", value: "text", description: "Only rules whose applies-to mentions this, e.g. 9:16 or captions" },
+      { name: "limit", value: "n", description: "Rules per page", defaultValue: "50" },
+      { name: "offset", value: "n", description: "Rules to skip", defaultValue: "0" },
+    ],
+    example: "vcr rules list --pillar pace --tier platform",
+  },
+  { name: "rules info", argumentsHint: "<ID>", summary: "One rule: check, threshold, tier, scope and where it lives", flags: [], example: "vcr rules info TYPO-HOLD" },
   { name: "tools examples", argumentsHint: "<id>", summary: "Tier 3: runnable examples that demonstrate the tool", flags: [], example: "vcr tools examples gsap" },
   { name: "example create", argumentsHint: "<id>", summary: "Copy an example's sources into <workspace>/examples/<id> and print next steps", flags: [], example: "vcr example create gsap-title-card" },
   {
