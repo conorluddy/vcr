@@ -48,7 +48,8 @@ export interface RuleFilter {
 
 export const REFERENCES_INDEX_PATH = "references/INDEX.md";
 const REFERENCES_README_PATH = "references/README.md";
-const RULES_TABLE_HEADER = /^\|\s*ID\s*\|\s*Check\s*\|\s*Threshold\s*\|\s*Tier\s*\|\s*Applies to\s*\|/;
+/** Knowledge bases name the fifth column "Applies to", sometimes with a measurability note ("Applies to / measurable"). */
+const RULES_TABLE_HEADER = /^\|\s*ID\s*\|\s*Check\s*\|\s*Threshold\s*\|\s*Tier\s*\|\s*Applies to\b[^|]*\|/;
 
 // === PUBLIC API ===
 

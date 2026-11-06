@@ -25,6 +25,11 @@ describe("reference pillars", () => {
     expect(findPillarRule(rules, "motion-ease-001")).toMatchObject({ ok: true, value: { origin: "knowledge-base", isDraftId: true, pillar: "motion-director" } });
   });
 
+  test("rules tables whose scope column carries a measurability note still parse", () => {
+    expect(findPillarRule(rules, "MAT-NORMAL-CONVENTION")).toMatchObject({ ok: true, value: { pillar: "materials", origin: "knowledge-base" } });
+    expect(findPillarRule(rules, "LIGHT-KEY-FILL-RATIO")).toMatchObject({ ok: true, value: { pillar: "lighting" } });
+  });
+
   test("an unknown rule names nearby IDs and how to browse", () => {
     const missing = findPillarRule(rules, "PACE-NOPE");
     expect(missing.ok ? null : missing.error.code).toBe("RULE_NOT_FOUND");

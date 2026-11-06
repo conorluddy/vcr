@@ -8786,7 +8786,7 @@ import { existsSync as existsSync4, readdirSync as readdirSync3, readFileSync as
 import { join as join6 } from "node:path";
 var REFERENCES_INDEX_PATH = "references/INDEX.md";
 var REFERENCES_README_PATH = "references/README.md";
-var RULES_TABLE_HEADER = /^\|\s*ID\s*\|\s*Check\s*\|\s*Threshold\s*\|\s*Tier\s*\|\s*Applies to\s*\|/;
+var RULES_TABLE_HEADER = /^\|\s*ID\s*\|\s*Check\s*\|\s*Threshold\s*\|\s*Tier\s*\|\s*Applies to\b[^|]*\|/;
 function loadPillars(harnessRoot) {
   const readmePath = join6(harnessRoot, REFERENCES_README_PATH);
   if (!existsSync4(readmePath)) return fail("REFERENCES_MISSING", `${REFERENCES_README_PATH} is missing; the pillar status table lives there.`);
