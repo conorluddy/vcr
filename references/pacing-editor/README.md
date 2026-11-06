@@ -18,26 +18,16 @@ This is the pacing, structure and short-form editing knowledge base (`PACE-*`), 
 
 ## Open decisions before building `rules.json`, a measurement tool or an agent
 
-1. **Three rules for one reading hold.** Each gives a different minimum for how long static text stays on screen:
-   - `PACE-READ-01`: ≥ max(0.3 s × words, characters / 20, 5/6 s).
-   - `PACE-READ-04`: ≥ 2 × words / 3.97 + 0.5 s, for key text.
-   - `TYPO-HOLD` in `references/typography/rules.json`: ≥ max(1.2 s, 0.3 s × words + 0.5 s).
-
-   `MOTION-TIME-005` already defers to `TYPO-*`. Pick one owner for the base hold (most likely `TYPO-HOLD`). Then keep `PACE-READ-04` only as a named stricter profile for key text and `PACE-QUIZ-01` windows, defined in terms of the base rule.
-2. **Caption rules are restated, not cross-referenced.** `PACE-READ-02` (cps) and `PACE-READ-03` (event duration) repeat the `netflix-en-us` caption profile, which `TYPO-CAPTION-CPS` and `TYPO-CAPTION-DURATION` already own, and label them `standard` where typography says `platform`. Drop them and cite the typography rules.
-3. **Overlaps with motion.**
-   - `PACE-LOOP-01` (loop seam) overlaps `MOTION-RHY-004`.
-   - `PACE-BEAT-05` (at most 3 simultaneous animators) overlaps `MOTION-CHOR-003` (one lead mover).
-   - `PACE-BEAT-06` (cuts on music markers) overlaps `MOTION-RHY-001` (arrivals on markers).
-
-   Decide the split, for example: pacing owns cuts and beat lengths; motion owns movement within a beat.
-4. **Author tags (`M*` rules).** About a third of the rules need tags or markers: `promise`, `payoff`, `hold`, `montage`, `cta`, key text, and `audioLed: true`. They belong in the one scene contract reference with the motion pillar's `data-vcr-role`, not in a pacing-only convention. `window.__scene.markers` already exists and could carry the beat-level ones.
+1. **Settled: reading hold** ([shared conventions](../README.md)). `TYPO-HOLD` is the base rule and `MOTION-TIME-005` cites it. `PACE-READ-01` is dropped, and its characters ÷ 20 term is a candidate revision to `TYPO-HOLD`. `PACE-READ-04` and `PACE-QUIZ-01` stay as stricter profiles, defined as at least `TYPO-HOLD`.
+2. **Settled: captions** ([shared conventions](../README.md)). `PACE-READ-02/03` are dropped in favour of `TYPO-CAPTION-*`.
+3. **Settled: overlaps with motion** ([shared conventions](../README.md)). Pacing owns cuts, beat lengths and holds; motion owns movement inside a beat. `PACE-LOOP-01` and `PACE-BEAT-05` are dropped. Cuts on markers stay `PACE-BEAT-06`.
+4. **Settled: author tags.** They are reserved in the [scene contract](../../skills/start/references/scene-contract.md) (`data-vcr-role` `key`, `cta`, `hold`, `montage`). Beat labels (`promise`, `payoff`) become named markers when a check needs them. `audioLed` waits for the series brief.
 5. **Brief settings versus rules.** Duration targets (`PACE-DUR-01` brief ±10%), the episode ID format (`PACE-SERIES-01`), segment slots and hook rotation (`PACE-SERIES-02/03`) are only checkable against a series brief. They depend on the `BRIEF-*` research, which has not arrived yet.
-6. **Rule ID style.** `PACE-HOOK-01` is numbered, like `ART-*`, `MOTION-*` and `REVIEW-*`. Decide once for every pillar.
+6. **Settled: named rule IDs** ([shared conventions](../README.md)). The numbered IDs here are drafts, renamed when `PACE-*` gets its `rules.json`.
 7. **Unverified and uncalibrated values.**
    - The BBC dwell values come from secondary copies (§17 footnote).
    - The TikTok 21–34 s In-Feed duration is unverified.
-   - Most thresholds are heuristic starting points: the 3.0/8.0 s static gap, the beat CV of 0.15, 12 new words per beat, the 5-word hook, the SSIM 0.9 loop seam and the 1.5 s payoff hold. Tune them against human review before any of them gates anything.
+   - Most thresholds are heuristic starting points: the 3.0/8.0 s static gap, the beat CV of 0.15, 12 new words per beat, the 5-word hook and the 1.5 s payoff hold. Tune them against human review before any of them gates anything.
 
 ## Editorial notes
 

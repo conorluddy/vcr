@@ -17,9 +17,9 @@ This is the art direction knowledge base (`ART-*`), produced from [the research 
 
 ## Open decisions before building `rules.json`, lint checks or an agent
 
-1. **One owner for safe zones.** The `ART-CMP-01` union box (288 top, 672 bottom, 120 left, 192 right, plus the lower-right corner below y 840) disagrees with `composite-9x16` in `references/typography/rules.json`, which uses 65 left and no corner. Safe zones should live in one data file that both pillars reference, and `vcr lint` needs to learn excluded rectangles before it can express the corner.
-2. **Overlap with typography delivery rules.** `ART-DEL-01/02` overlap `TYPO-RANGE`, and `ART-DEL-03` overlaps `TYPO-CHROMA`. Choose one owner per rule and have the other cite it.
-3. **Rule ID style.** `ART-COL-01` is numbered, while `TYPO-SAFE` is named, and the rules schema pattern currently rejects digits. Named IDs read better in lint output, for example `ART-ACCENT-SCARCE` instead of `ART-COL-03`.
+1. **Settled: safe zones** ([shared conventions](../README.md)). `typography/rules.json` keeps the only presets. The `ART-CMP-01` union box and lower-right corner become a proposed change to those presets, plus excluded-rectangle support in `vcr lint`.
+2. **Settled: delivery rules** ([shared conventions](../README.md)). `TYPO-RANGE` and `TYPO-CHROMA` own them; `ART-DEL-01/02/03` cite them.
+3. **Settled: named rule IDs** ([shared conventions](../README.md)). The numbered IDs here are drafts, renamed when `ART-*` gets its `rules.json`.
 4. **Inconsistent and mislabelled values.**
    - The minimum stroke width differs between sections: §3 says 4 px and `ART-DEL-03` says 6 px.
    - `ART-CMP-01/07` say `platform (derived)`, but their numbers come from third-party measurements. They should be `heuristic` with `verified: false`.

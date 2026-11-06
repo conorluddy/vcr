@@ -21,7 +21,7 @@ This is the critique methodology knowledge base (`REVIEW-*`), produced from [the
 3. **Independence in practice (`REVIEW-IND-01`).** The KB asks for a reviewer from a different model family where possible. On Claude Code, the reviewer agents run on another Claude model. Decide whether a different model counts, or whether cross-family review (for example a Codex run) is required for gating.
 4. **Blinded review packets (`REVIEW-IND-02`).** The packet the reviewer sees must carry no authorship, rationale or earlier verdicts. Today a subagent inherits whatever the parent puts in its prompt. A packet builder, plus a packet lint, is a natural CLI addition next to `vcr lint`.
 5. **Calibration before gating (`REVIEW-CAL-*`, `REVIEW-ESC-03`).** No reviewer may gate anything until a gold set of 20–30 human-reviewed renders exists and its agreement is measured. Until then every reviewer is advisory. The trust gates, IoU cut-offs, the cap of 7 findings and the 30% false-positive demotion are uncalibrated proposals (§17).
-6. **Rule ID style.** `REVIEW-FMT-01` is numbered, like `ART-*` and `MOTION-*`. Decide once for every pillar.
+6. **Settled: named rule IDs** ([shared conventions](../README.md)). The numbered IDs here are drafts.
 7. **Schema sketch details to fix when it becomes real.**
    - `location.fps` allows only 24, 25, 30 and 60, which rules out 23.976, 29.97 and 50.
    - The example finding cites `TYPO-OVERFLOW-01`, which does not exist. `vcr lint` reports `overflow`, and its safe-zone rule is `TYPO-SAFE`.
