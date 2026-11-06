@@ -16,7 +16,7 @@ This file holds the conventions every pillar shares and decides which pillar own
 | Motion | `MOTION-` | [motion-director/](motion-director/README.md) | — | — | — | — |
 | Pacing | `PACE-` | [pacing-editor/](pacing-editor/README.md) | — | — | — | — |
 | Critique (shared) | `REVIEW-` | [critique-methodology/](critique-methodology/README.md) | — | — | — | (all reviewers) |
-| Sound | `SOUND-` | research pending ([brief](research-prompts/sound-design.md)) | | | | |
+| Sound | `SOUND-` | [sound-design/](sound-design/README.md) | — | — | — | — |
 | Accessibility | `A11Y-` | research pending ([brief](research-prompts/accessibility.md)) | | | | |
 | Series brief | `BRIEF-` | research pending ([brief](research-prompts/series-brief.md)) | | | | |
 
@@ -52,10 +52,14 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 | Shimmer and strobing of thin moving features | `MOTION-FPS-003` | `TYPO-RASTER-SCALE` keeps text scaled up or down. |
 | Movement inside a beat: lead mover, number of simultaneous movers | `MOTION-CHOR-003` | `PACE-BEAT-05` is dropped; its limit of 3 movers is folded into the motion rule. |
 | Cuts and beat lengths, static gaps, holds after a payoff | `PACE-BEAT-*`, `PACE-STRUCT-*` | |
-| Alignment to music markers | Cuts: `PACE-BEAT-06`. Arrivals and impacts within a shot: `MOTION-RHY-001`. | Sound owns audio onsets once it arrives. |
-| SFX on contact frames | `MOTION-RHY-002` until sound arrives, then `SOUND-*` | |
-| Loop seam continuity | `MOTION-RHY-004` | `PACE-LOOP-01` is dropped. `PACE-LOOP-02` (no fade or end card on a loop) stays with pacing. |
+| Alignment to music markers | Cuts: `PACE-BEAT-06`. Arrivals and impacts within a shot: `MOTION-RHY-001`. Markers matching the audio's detected beats, and the BPM grid: `SOUND-BEAT-ALIGN`, `SOUND-BPM-FRAME-GRID`. | All three share one frame tolerance (see the sound README). |
+| Audio sync to visual events (SFX on contacts, lip sync) | `SOUND-SYNC-LEAD`, `SOUND-SYNC-LAG`, `SOUND-SFX-PEAK-ALIGN` | `MOTION-RHY-002` is dropped. |
+| Narration rate and pauses | `SOUND-NARRATION-WPM` | `PACE-NARR-01/02` are dropped. |
+| Narration against visuals and on-screen text | `PACE-NARR-03`, `PACE-NARR-04` | `SOUND-NARRATION-VISUAL-LEAD` and `SOUND-NARRATION-TEXT-REDUNDANCY` are dropped. The visual-lead rule's 0–300 ms window is a candidate tightening of `PACE-NARR-03`. |
+| Mute test: the message survives sound off | `PACE-SOUND-01` | `SOUND-MUTE-LEGIBLE` is dropped. |
+| Loop seam continuity | Picture: `MOTION-RHY-004`. Audio: `SOUND-LOOP-SEAM`. | `PACE-LOOP-01` is dropped. `PACE-LOOP-02` (no fade or end card on a loop) stays with pacing. |
 | Vestibular triggers, reduced motion, pause controls | `MOTION-CAM-*`, `MOTION-A11Y-*` until accessibility arrives | |
 | Flashing | Accessibility (`A11Y-*`) | `MOTION-A11Y-005` and `TYPO-FLASH` cite it. Until accessibility arrives, `TYPO-FLASH` holds the number. |
 | Template sameness | Each pillar for its own medium: `MOTION-SIG-*` and art §11 | `REVIEW-HOM-*` governs reviewers: fixes stay inside the brief's look. |
-| Duration targets, episode IDs, segment slots | Values: `BRIEF-*`. Checks: `PACE-DUR-01`, `PACE-SERIES-*`. | |
+| Duration targets, episode IDs, segment slots, series loudness | Values: `BRIEF-*`. Checks: `PACE-DUR-01`, `PACE-SERIES-*`, `SOUND-SERIES-CONSISTENCY`. | |
+| Determinism (identical output for the same input) | One generic check across picture and sound | `MOTION-SPR-001` and `SOUND-SYNTH-DETERMINISM` describe it for their own medium. |
