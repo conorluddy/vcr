@@ -223,6 +223,18 @@ export const COMMANDS: CommandSpec[] = [
     example: "vcr lint scene.html --safe-zone tiktok --markers --video demo/teaser",
   },
   {
+    name: "plan check",
+    summary: "Check a video's beat sheet (beats.json) before rendering: beat sum, word budget, read time, mandatories, VO air, hook window; prints findings, writes nothing; exit 1 on blocker or major",
+    flags: [{ name: "video", value: "project/video", description: "The video whose beats.json to check", isRequired: true }],
+    example: "vcr plan check --video demo/teaser --json",
+  },
+  {
+    name: "plan markers",
+    summary: "Print the beat sheet's named markers [{ t, id, role }], each on the beat's last frame, for window.__scene.markers",
+    flags: [{ name: "video", value: "project/video", description: "The video whose beats.json to read", isRequired: true }],
+    example: "vcr plan markers --video demo/teaser --json",
+  },
+  {
     name: "doctor",
     summary: "Probe local tools and write <VCR_HOME>/environment/<hostname>.json",
     flags: [{ name: "record", description: "Also write environment/ in the harness repository (maintainer only)" }],

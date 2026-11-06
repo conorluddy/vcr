@@ -25,7 +25,7 @@ Build whatever unlocks the most later work first. Deterministic checks come befo
 ## Now: the rest of the contracts
 
 1. ~~#143: scene contract decisions~~ — done: `regions(t)` beside `textBounds()`, named markers, `params`, `data` and `fx` blocks, `MAT-PHYSICAL-SCOPE` in glTF extras.
-2. **#142: the beat sheet schema and `vcr plan check`.** Plan checks before rendering, with beats exported to markers and `sound_cues` to #60.
+2. ~~#142: the beat sheet schema and `vcr plan check`~~ — done: `beats.json` beside `brief.md`, six plan checks printed as findings, `vcr plan markers`. The `sound_cues` export waits for #60.
 
 ## Next: deterministic checks, each writing findings
 

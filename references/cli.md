@@ -324,6 +324,30 @@ Check a browser scene's text against a safe zone, the frame edges and overflowin
 vcr lint scene.html --safe-zone tiktok --markers --video demo/teaser
 ```
 
+## `vcr plan check --video project/video`
+
+Check a video's beat sheet (beats.json) before rendering: beat sum, word budget, read time, mandatories, VO air, hook window; prints findings, writes nothing; exit 1 on blocker or major
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--video project/video` (required) | The video whose beats.json to check |  |
+
+```sh
+vcr plan check --video demo/teaser --json
+```
+
+## `vcr plan markers --video project/video`
+
+Print the beat sheet's named markers [{ t, id, role }], each on the beat's last frame, for window.__scene.markers
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--video project/video` (required) | The video whose beats.json to read |  |
+
+```sh
+vcr plan markers --video demo/teaser --json
+```
+
 ## `vcr doctor [--record]`
 
 Probe local tools and write <VCR_HOME>/environment/<hostname>.json

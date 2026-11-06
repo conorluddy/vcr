@@ -15,6 +15,7 @@ export interface SeriesBrief {
   version: string;
   tokens: { file: string };
   deliverables: Array<{ width: number; height: number; fps: number }>;
+  mandatories?: Array<{ id: string; rule: string }>;
   accessibility?: { flashProfile?: FlashProfile };
 }
 
