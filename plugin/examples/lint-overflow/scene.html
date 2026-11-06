@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <!-- A deliberately broken 9:16 frame for `vcr lint`: one title crosses the right action rail,
-     one box hides overflowing copy, one label is clean. Geometry leaves ~90 px of slack either
-     side of each limit so system-font metrics on other machines do not change the outcome. -->
+     one box hides overflowing copy, one label is clean. Geometry leaves slack around each limit so a wider fallback face (e.g. DejaVu Sans where
+     Arial is missing) still crosses the rail without leaving the frame. -->
 <style>
   html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #101014; }
   #stage { position: relative; width: 100%; height: 100%; font-family: Arial, sans-serif; color: #f3f4ef; }
   #clean-label { position: absolute; left: 120px; top: 400px; font-size: 48px; }
-  #rail-title { position: absolute; left: 640px; top: 600px; font-size: 80px; font-weight: 700; white-space: nowrap; }
+  #rail-title { position: absolute; left: 620px; top: 600px; font-size: 80px; font-weight: 700; white-space: nowrap; }
   #overflow-box { position: absolute; left: 100px; top: 1000px; width: 600px; height: 100px; overflow: hidden; font-size: 40px; line-height: 1.2; }
 </style>
 </head>
