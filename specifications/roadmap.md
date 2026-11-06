@@ -6,7 +6,7 @@ Updated 2026-11-06.
 
 ## Where we are
 
-- **Layer 0 and plugin P0 and P1 are done.** The catalogue, the CLI and the plugin are installable on Claude Code and Codex.
+- **Layer 0 and plugin P0, P1 and P2 are done.** The catalogue, the CLI and the plugin are installable on Claude Code and Codex. P2 (#161, #163–#169) added the review contract: render manifests from `vcr capture --video`, one file per finding (`vcr findings`), human-only approvals at a terminal (`vcr review`), `vcr status --brief`, the series and video briefs with the `brief` skill, and `vcr storage`. `vcr lint --video` is the first check that writes findings.
 - **Typography has the whole pillar pipeline:** `rules.json`, `vcr lint`, the `typography` skill and the `typographer` agent.
 - **Fifteen reference pillars exist in `references/`:** typography, art, motion, pacing, sound, accessibility, series brief, critique, story, delivery, adaptation, data visualisation, image treatment, lighting and materials. [ADR 0006](decisions/0006-creative-pillars-independent-of-tools.md) fixes how they turn into tools, and `references/README.md` holds the rule owners.
 
@@ -22,42 +22,35 @@ Build whatever unlocks the most later work first. Deterministic checks come befo
 | Measurement and data | These unlock about half the motion, pacing and data rules. |
 | Judgement | Reviewer agents are only as good as the measurements they run first. |
 
-## Now
+## Now: the rest of the contracts
 
-1. **Round-three knowledge bases, done:** `FX-`, `LIGHT-` and `MAT-` are placed, with their rule owners settled. That makes fifteen pillars.
-2. **Ways in, done:**
-   - #139 / #159: `references/INDEX.md`, `vcr rules info|list` and `vcr refs list|section`;
-   - #140 / #156: the plugin ships every pillar's references.
-3. **Small fixes:**
-   - #151 / #158, done: the typographer's text size, plus its trial;
-   - #154: lint in the example's next steps is done (#157). The Codex run of `vcr lint` still needs a Codex session.
+1. **#143: scene contract decisions** (a docs PR in `skills/start/references/scene-contract.md`). Does `regions(t)` generalise `textBounds()`? Plus named markers `{ t, id, role }` beside plain seconds, the `params` echo, the data block, the FX declarations (blend space, screen space, boil step) and the `MAT-PHYSICAL-SCOPE` tag. Settle these on paper; each check implements the fields it needs.
+2. **#142: the beat sheet schema and `vcr plan check`.** Plan checks before rendering, with beats exported to markers and `sound_cues` to #60.
 
-## Next: contracts
+## Next: deterministic checks, each writing findings
 
-4. **Plugin P2, the contract** (`vcr-plugin-prd.md` §8): finding files, the render manifest subset, approvals, `vcr status`, `vcr findings` and `vcr brief`. Every pillar check writes the §6.4 finding, and the delivery manifest extends the render manifest, so this comes before the checks. Do it together with:
-   - #141: the series brief schema and the `briefing` skill (the P2 `brief` slice, and the front door for users without a brief).
-5. **#143: scene contract decisions.** Should `regions(t)` replace or extend `textBounds()`? Plus named markers, the `params` echo and the data block. Settle these on paper; each check implements the fields it needs.
-6. **#142: the beat sheet schema and `vcr plan check`.** Plan checks before rendering, with beats exported to `markers` and `sound_cues` to #60.
+3. **#144: the delivery `ffprobe` gate** (S). Cheap, and catches rejected uploads and washed-out colour.
+4. **#146: one determinism check** for picture and sound (S). It reuses the manifest's `frame_sha256`.
+5. **#145: the flash analyser** (M). The only failure that can harm a viewer. It reports only until it matches a reference tool.
+6. **A `MAT-*` scene-data validator over `.glb`** (S): albedo ranges, texture colour spaces, normal convention, ORM packing. It needs no render.
+7. **#63: frame selection and the contact sheet.** Dedup, settle frames, native-resolution text crops and a phone-size view. It fills each retained revision's evidence frames, and P3 and every reviewer agent need it.
 
-## Then: deterministic checks, each writing findings
+## Then: review pages, measurement and judgement
 
-7. **#144: the delivery `ffprobe` gate.** Cheap, and catches rejected uploads and washed-out colour.
-8. **#145: the flash analyser.** The only failure that can harm a viewer. It reports only until it matches a reference tool.
-9. **#146: one determinism check** for picture and sound.
-10. **#63: frame selection for agents and the contact sheet.** Dedup, settle frames, native text crops and a phone-size view.
+8. **Plugin P3 review pages** (Videos, Render, the note form, Decide, Storage), then **P4, the loop** (the `review` skill, session-start hooks, evidence pairs, Compare). By then the pages show real findings from real checks.
+9. **#147: `vcr motion sample`** (L), after #143. It unlocks most of the motion, pacing and data checks.
+10. **#148: per-pillar `rules.json`.** Rename the draft IDs and leave out the dropped rules, in the order checks land: delivery, accessibility, motion, pacing, story, brief, sound, materials, lighting, FX, art, adaptation, data, critique.
+11. **#149: workflow skills and reviewer agents**, one pillar at a time, each after its checks: a plan reviewer for story first, then motion, art and pacing. Tool recipes move from the knowledge bases to toolkit guides.
+12. **#150: a calibration gold set** of 20–30 human-reviewed renders. Only after it may a heuristic gate anything.
+13. **Plugin P5, share:** static bundle, proxy and comment import.
+14. **PRD layers**, each opened by its own spike: L1 workspace (asset store and manifest, one provenance rule for music, HDRIs, textures and fonts), L2 timeline (named markers from #143), L5 production delivery (fed by `DELIVERY-*`), L3 compositor (fed by `FX-*`, `LIGHT-*`, `MAT-*`), then L4 advanced motion and L7 reference corpus.
 
-## Later: measurement, data and judgement
-
-11. **#147: `vcr motion sample`**, the time series behind the motion, pacing and data checks.
-12. **#148: per-pillar `rules.json`.** Rename the draft IDs and leave out the dropped rules. Delivery and accessibility go first, because their checks land first.
-13. **#149: workflow skills and reviewer agents** for motion, art and pacing, plus a plan reviewer for story. Tool recipes from the knowledge bases move to the matching toolkit guides.
-14. **#150: a calibration gold set** of 20–30 human-reviewed renders. It decides which heuristics may gate.
-15. **Plugin P3 and P4:** review pages and the review loop, where humans see all of the above.
+**Fix in passing:** #154 (a Codex run of `vcr lint`), #52 (`beginframe` hang on a 1080 × 1920 DOM scene), #53 (capture timeout and progress), #49 (anchor the ignore rules: `/output/`).
 
 ## Parked
 
 - **Capability graph** (#65). CG0 kept the current workflow; #74 and #76 continue on tool records, and the rest waits for its reopen conditions.
-- **Layer 1 onwards** (workspace, timeline, compositor) beyond the P2 and brief slices above. These open with their own spikes, per `README.md`.
+- **Research on category conventions**, commissioned when the `brief` skill needs more than fit-or-break.
 - **Research not yet commissioned:** category conventions and differentiation, which would feed `briefing`. Commission it when #141 starts.
 
 ## Known bugs to fix in passing
