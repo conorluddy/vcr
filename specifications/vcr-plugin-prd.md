@@ -141,6 +141,17 @@ Workspace files, per video.
 - **Render manifest (review subset)**: `render_id`, `video_id`, `fps`, dimensions, `duration_frames`, `scenes[{id, start_frame, end_frame, frames_dir}]`, `outputs[{kind, path, sha256}]`, `created_at`, environment. This PRD needs only this subset; the L1 child specification owns the full schema (L1-05). The capture path owned by `vcr` emits it (ADR 0003).
 - **Retained revision**: `review/renders/<render_id>/` holds the manifest, a contact sheet and evidence frames under the 200 KB-per-image preview policy, and is committed. It is the evidence storage class (§6.5). Full frames and the MP4 stay in ignored `output/` and may be deleted; Compare then falls back to the contact sheet and evidence frames and says so (L6-04).
 - **Finding**: one file per note, `review/findings/F-0007.json`, so concurrent human and agent writes stay conflict-free and diffable. Fields: `id`, `render_id`, `scene_id`, `frame` (canonical composition frame), `scene_frame` (derived), optional `region {x, y, w, h}` in 0–1 units, `severity` (`blocker | major | minor | note`), `text`, `author {kind: human | agent}`, `source` (`review | cli | chat | share`), `status`, `created_at`, `resolution {render_id, note, evidence[]}`.
+- **Reviewer fields** (optional; written by `vcr lint`, other automatic checks and reviewer agents; `references/critique-methodology/` §2–3 is the method):
+  - `frame_end` (inclusive) makes the finding a range.
+  - `selector` locates it in the scene DOM.
+  - `rule_id` is the pillar rule, such as `TYPO-SAFE`.
+  - `kind` is `measured | judged | hybrid`.
+  - `severity_basis` is `measured_rule | brief_clause | standard_rule | platform_rule | heuristic_rule | taste`.
+  - `confidence {value 0–1, basis: deterministic | multi_sample_agreement | single_judgement | inferred_from_stills}`.
+  - `evidence {metric, value, threshold, artifacts[]}`: what a human checks in about 10 seconds.
+  - `reviewer {agent, model, rules_version}`.
+
+  Severity caps follow the basis. `taste` is at most `note`. `heuristic_rule` alone is at most `major`, and `major` then needs an artifact. A judged `blocker` with confidence below 0.8 is escalated to the human, not filed as a blocker. Human notes need none of these fields.
 - **Finding states**: `open` → `addressed` (the agent claims a fix and attaches evidence) → `resolved` (human only); or `wontfix` (human only). The agent may reopen only its own findings.
 - **Approval**: `review/approvals/<render_id>.json` with `decision` (`approved | changes_requested`), `manifest_sha256`, `channel` (`review | tty`), `at`, `note`.
 - **Human-only channels**: the token-gated review-page POST, or `vcr review approve|resolve`, which requires an interactive TTY and typing the video id. Agent hosts run commands without a TTY.
