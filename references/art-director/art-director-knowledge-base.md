@@ -62,7 +62,7 @@ An AI art director in VCR can reliably measure colour fidelity, gamut, delivery 
 | Ink | 1–2 | Governed by `TYPO-*` |
 | Brand primary | 1 | Exact tokens, ΔE-checked |
 | Accent/signal | 1 (max 2) | Highest chroma in the frame; reserved for the one thing to look at |
-| Semantic | 2–3 | Right/wrong and belt colours; pair with shape or icon for colour-vision deficiency (CVD) |
+| Semantic | 2–3 | Right/wrong, status and category colours; pair with shape or icon for colour-vision deficiency (CVD) |
 
 **60-30-10:**
 - The rule comes from interior decorating. A practitioner calls it "just like an old wives' tale", and a trade article admits "its origin is unclear".\[22\]\[23\] No study tests it.
@@ -100,7 +100,7 @@ An AI art director in VCR can reliably measure colour fidelity, gamut, delivery 
   - harmony rises with hue similarity;\[12\]
   - lightness contrast matters;\[27\]
   - single-colour preferences only weakly predict pair preferences.\[27\]
-- Ecological valence theory says preferences are learned from object associations (blue with sky, brown with rot).\[28\] They are cultural and contextual.\[29\] For a martial-arts audience, belt colours carry associations that override palette logic.
+- Ecological valence theory says preferences are learned from object associations (blue with sky, brown with rot).\[28\] They are cultural and contextual.\[29\] Where a subject has its own colour codes (team kits, ranks, status or category colours), those learned associations override palette logic.
 - **Agent rule:** analogous base plus one contrasting accent, separated by lightness. `heuristic`, judgement-only.
 - **Expressive break:** vibrating, high-chroma complements suit energetic hooks. They work when the clash is confined to one region or moment, the value structure still reads, and no text sits on the vibrating edge.
 
@@ -211,8 +211,8 @@ sRGB and BT.709 share primaries, so the delivery risks are range, matrix and tra
   6. size;
   7. isolation;
   8. converging lines and gaze.
-- **Hierarchy:** one primary, 1–2 secondary, the rest tertiary. Example quiz: question or position image, then options, then brand and progress.
-- **Leading lines** (limbs, belts, mat edges, arrows) should end at the focal element, not run into the UI rail.
+- **Hierarchy:** one primary, 1–2 secondary, the rest tertiary. Example quiz: question or subject image, then options, then brand and progress.
+- **Leading lines** (limbs, edges, horizons, arrows) should end at the focal element, not run into the UI rail.
 
 ### 5.4 Negative space and occupancy
 
@@ -257,7 +257,7 @@ sRGB and BT.709 share primaries, so the delivery risks are range, matrix and tra
 
 ## 7. Style and visual language
 
-- **Shape language** [T]: circles read friendly, squares stable, triangles dynamic. For martial arts: diagonal or angular energy, with rounded quiz containers for approachability.
+- **Shape language** [T]: circles read friendly, squares stable, triangles dynamic. Match the subject's energy: diagonal or angular shapes for dynamic or physical subjects, rounded containers for approachability.
 - **Tokens:**
   - strokes, e.g. 2/4/8 px at 1080 width;
   - radii, e.g. 0/12/24/full;
@@ -283,7 +283,7 @@ sRGB and BT.709 share primaries, so the delivery risks are range, matrix and tra
   - style guides and look books (palette, type, grid, shape, motion language, do/don't).
 - **Invariants:** logo lock-up, palette roles, type, grid, transition signature, sting.
 - **Variables:** hero image, per-category accent, background pattern.
-- **For 100-episode batches:**
+- **For large batches:**
   1. Freeze a series token file.
   2. Declare variation slots.
   3. Measure drift against style frames: dominant-cluster ΔE00, anchor alignment, clutter and colourfulness within mean ± 2 SD of approved episodes (*VCR default*).
@@ -335,12 +335,12 @@ sRGB and BT.709 share primaries, so the delivery risks are range, matrix and tra
 - emoji as illustration.
 
 **Push past it:**
-1. One visual metaphor per episode (the mat as a grid, belts as progress bars).
+1. One visual metaphor per episode, drawn from the subject itself (for example, a playing surface as the layout grid, or a familiar object as the progress bar).
 2. An owned palette with one unexpected hue.
 3. Scale contrast and asymmetry.
 4. Texture and imperfection.
 5. A signature easing and transition.
-6. Content-specific imagery (real positions and belts).
+6. Content-specific imagery (the real subject, not stock stand-ins).
 7. Edit by subtraction.
 
 **Proxies (weak):** token values equal to library defaults; identical entrance animations; low variance in element size. The final call is judgement.
@@ -373,7 +373,7 @@ sRGB and BT.709 share primaries, so the delivery risks are range, matrix and tra
 - Viewers watch sound-off, so hierarchy must carry the meaning.
 - **Quizzes:** options get equal weight until the reveal. The accent goes **only** on the correct answer. Wrong answers drop L or C instead of turning red.
 - **Scorecards:** panel ΔL ≥ 0.15 from ground, numbers as focal, same position across episodes.
-- **"Read the position":** vignette or darken around the hero; annotation lines in a luminance-contrasting colour with an outline.
+- **Annotated subject:** vignette or darken around the hero; annotation lines in a luminance-contrasting colour with an outline.
 - The cover must pass the 3:4 crop and the 180 px test.
 
 **16:9 explainers:**
@@ -617,7 +617,7 @@ Steps run in order of severity:
   - Google's help template (~15/35/18%) conflicts with a Google marketing page (10/25/10%).\[48\]\[56\]
   - Meta wording was taken from search snippets, not a direct fetch.
   - Re-verify the union box quarterly.
-- **VCR defaults** (ΔL 0.15, occupancy 25–60%, ΔE00 1.0/3.0, accent ≤ 15%, 180 px, 35% jump) are uncalibrated. Tune them on the first 100 reviewed episodes.
+- **VCR defaults** (ΔL 0.15, occupancy 25–60%, ΔE00 1.0/3.0, accent ≤ 15%, 180 px, 35% jump) are uncalibrated. Tune them on the first batch of reviewed renders.
 - **ΔE JND folklore:** print tolerances (≤ 2.0 brand spec; 5 for G7 Targeted solids) concern reflective media under controlled light, not phones.
 - **Saliency** is validated mainly on photographs; design models are static and text-weighted; none model motion onset.
 - **Colourfulness metric:** validated on 84 natural images with 20 observers, and hue-blind. The abstract says correlation is "over 90%". The paper itself states "the correlation of M̂(3) with the experimental data is equal to 95.3%", and that the other candidate metrics "range from 94% down to 87% of correlation."

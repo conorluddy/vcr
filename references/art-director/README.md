@@ -24,5 +24,5 @@ This is the art direction knowledge base (`ART-*`), produced from [the research 
    - The minimum stroke width differs between sections: §3 says 4 px and `ART-DEL-03` says 6 px.
    - `ART-CMP-01/07` say `platform (derived)`, but their numbers come from third-party measurements. They should be `heuristic` with `verified: false`.
    - `ART-DEL-02` mixes a standard (16–235) with a VCR tolerance (±2).
-5. **Series-specific rules.** Advice for the quiz, scorecard and "read the position" formats (§13), such as belt colours and accent only on the correct answer, belongs in each series brief (`BRIEF-*`), not in general rules.
+5. **General rules vs brief settings.** Format advice in §13, such as giving the accent only to the correct answer in a quiz, should become rules only where it holds for any production. Choices that depend on a particular production belong in that production's series brief (`BRIEF-*`). This harness stays domain-agnostic.
 6. **Uncalibrated defaults.** The ΔL 0.15, occupancy 25–60%, ΔE00 1.0/3.0, accent ≤ 15%, 180 px thumbnail and 35% jump thresholds are uncalibrated starting points. Tune them against human review of the first reviewed episodes before any of them gates anything.
