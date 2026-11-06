@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vcr.local/schemas/video-brief.schema.json",
+  "title": "VCR video brief front matter",
+  "description": "The front matter of projects/<project>/videos/<video>/brief.md. The body holds the five sections (Objective, Audience and placement, Content, Constraints, Review notes; plugin PRD AG-04). It narrows the project's series brief and never contradicts it.",
+  "type": "object",
+  "required": [
+    "video_id",
+    "deliverables"
+  ],
+  "properties": {
+    "video_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*/[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "series_brief": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*@\\d+\\.\\d+\\.\\d+$",
+      "description": "<id>@<version> of projects/<project>/brief.json"
+    },
+    "deliverables": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^\\d+x\\d+@\\d+(?:\\.\\d+)?$",
+        "description": "<width>x<height>@<fps>; with a series brief, one of its deliverables"
+      }
+    },
+    "flash_profile": {
+      "enum": [
+        "wcag",
+        "broadcast",
+        "strict"
+      ],
+      "description": "May only be stricter than the series brief's accessibility.flashProfile"
+    },
+    "route": {
+      "type": "string",
+      "description": "The name of the route card the human chose"
+    },
+    "confirmed": {
+      "type": "string",
+      "format": "date",
+      "description": "Set only after the human confirms the brief; rendering waits for it (AG-04)"
+    }
+  },
+  "additionalProperties": false
+}

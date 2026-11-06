@@ -1,0 +1,675 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vcr.local/schemas/series-brief.schema.json",
+  "title": "VCR series brief",
+  "description": "The machine-readable brief for a project or series, projects/<project>/brief.json, from references/series-brief \u00a712.1. Every reviewer judges against it; a video's brief.md narrows it and never contradicts it. Holds values, not checks: pillar rules read their thresholds from here when it declares one.",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "series",
+    "intent",
+    "mandatories",
+    "tokens",
+    "deliverables",
+    "evaluation",
+    "priorities"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semver; bump on every change. Video briefs cite <id>@<version> (BRIEF-VERSION-STAMP)"
+    },
+    "series": {
+      "type": "object",
+      "required": [
+        "name",
+        "logline",
+        "format"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "logline": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "format": {
+          "type": "object",
+          "properties": {
+            "episodeDurationS": {
+              "type": "object",
+              "properties": {
+                "min": {
+                  "type": "number"
+                },
+                "max": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false
+            },
+            "segments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "role"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "enum": [
+                      "hook",
+                      "ident",
+                      "beat",
+                      "payoff",
+                      "cta",
+                      "endcard",
+                      "bumper"
+                    ]
+                  },
+                  "durationS": {
+                    "type": "object",
+                    "properties": {
+                      "min": {
+                        "type": "number"
+                      },
+                      "max": {
+                        "type": "number"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "fixed": {
+                    "type": "boolean",
+                    "description": "A recurring set-piece rendered from a locked template"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "intent": {
+      "type": "object",
+      "required": [
+        "objective",
+        "audience",
+        "proposition"
+      ],
+      "properties": {
+        "objective": {
+          "type": "object",
+          "required": [
+            "statement",
+            "kind"
+          ],
+          "properties": {
+            "statement": {
+              "type": "string"
+            },
+            "kind": {
+              "enum": [
+                "commercial",
+                "behavioural",
+                "attitudinal"
+              ]
+            },
+            "measure": {
+              "type": "string",
+              "description": "How success is known"
+            }
+          }
+        },
+        "audience": {
+          "type": "object",
+          "required": [
+            "portrait",
+            "watchMode"
+          ],
+          "properties": {
+            "portrait": {
+              "type": "string"
+            },
+            "watchMode": {
+              "enum": [
+                "muted-first",
+                "sound-on",
+                "mixed"
+              ]
+            },
+            "familiarity": {
+              "enum": [
+                "first-time",
+                "returning",
+                "mixed"
+              ]
+            }
+          }
+        },
+        "insight": {
+          "type": "string"
+        },
+        "proposition": {
+          "type": "object",
+          "required": [
+            "text"
+          ],
+          "properties": {
+            "text": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "approvedParaphrases": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "mustAppear": {
+              "enum": [
+                "on-screen",
+                "voiced",
+                "both",
+                "either"
+              ]
+            }
+          }
+        },
+        "proofPoints": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "type": "string"
+          }
+        },
+        "tone": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "adjective",
+              "means",
+              "notMeans",
+              "parameters"
+            ],
+            "properties": {
+              "adjective": {
+                "type": "string"
+              },
+              "means": {
+                "type": "string"
+              },
+              "notMeans": {
+                "type": "string"
+              },
+              "parameters": {
+                "type": "object",
+                "description": "Per pillar: token references ({motion.easing.entrance}), rule IDs or short parameter statements",
+                "minProperties": 1,
+                "additionalProperties": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "mandatories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "rule",
+          "source",
+          "check",
+          "consumers"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "rule": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "description": "Brand guide page, legal document or contract clause (BRIEF-MANDATORY-SOURCED)"
+          },
+          "check": {
+            "type": "string",
+            "description": "A rule ID, or 'judgement'"
+          },
+          "params": {
+            "type": "object"
+          },
+          "consumers": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "typography",
+                "motion",
+                "pacing",
+                "art",
+                "sound",
+                "accessibility",
+                "story",
+                "delivery",
+                "adaptation",
+                "data",
+                "fx",
+                "lighting",
+                "materials",
+                "critique"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "preferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "statement",
+          "weight",
+          "consumers"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "statement": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "check": {
+            "type": "string"
+          },
+          "consumers": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "typography",
+                "motion",
+                "pacing",
+                "art",
+                "sound",
+                "accessibility",
+                "story",
+                "delivery",
+                "adaptation",
+                "data",
+                "fx",
+                "lighting",
+                "materials",
+                "critique"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ruleBreaks": {
+      "type": "array",
+      "description": "Declared, approved departures from a token, preference or convention (BRIEF-RULEBREAK-DECLARED)",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "breaks",
+          "scope",
+          "why",
+          "successCondition",
+          "approvedBy"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "breaks": {
+            "type": "string",
+            "description": "Path of the token, preference, rule or convention being broken"
+          },
+          "scope": {
+            "type": "object",
+            "properties": {
+              "episodes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "segments": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "timeRangeS": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            }
+          },
+          "why": {
+            "type": "string",
+            "description": "Which intent field it serves"
+          },
+          "successCondition": {
+            "type": "string"
+          },
+          "approvedBy": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "required": [
+        "file"
+      ],
+      "properties": {
+        "file": {
+          "type": "string",
+          "description": "Project-relative DTCG 2025.10 .tokens.json, conventionally under brand/"
+        },
+        "resolver": {
+          "type": "string"
+        },
+        "motion": {
+          "type": "object",
+          "properties": {
+            "expressiveBudget": {
+              "type": "object",
+              "properties": {
+                "maxMoments": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "maxRuntimeShare": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            },
+            "durationScalesWithDistance": {
+              "type": "boolean"
+            },
+            "minFramesPerTween": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    "sound": {
+      "type": "object",
+      "properties": {
+        "sonicLogo": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string"
+            },
+            "sha256": {
+              "type": "string"
+            },
+            "lengthS": {
+              "type": "number"
+            },
+            "syncMarker": {
+              "type": "string"
+            },
+            "toleranceMs": {
+              "type": "number"
+            }
+          }
+        },
+        "musicTempoBpm": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        },
+        "voice": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "enum": [
+                "none",
+                "recorded",
+                "tts"
+              ]
+            },
+            "voiceId": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "properties": {
+        "flashProfile": {
+          "enum": [
+            "wcag",
+            "broadcast",
+            "strict"
+          ],
+          "description": "A11Y-FLASH-GENERAL/-RED (wcag), A11Y-FLASH-BROADCAST or A11Y-FLASH-STRICT; the stricter profile wins when pillars disagree"
+        }
+      }
+    },
+    "fixed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Recognisers that never vary"
+    },
+    "variable": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "axis",
+          "values"
+        ],
+        "properties": {
+          "axis": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array"
+          },
+          "noRepeatWithinEpisodes": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "examples": {
+      "type": "object",
+      "properties": {
+        "do": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/exampleRef"
+          }
+        },
+        "dont": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/exampleRef"
+          }
+        }
+      }
+    },
+    "priorities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Ordered conflict resolution, highest first; overrides the REVIEW-AGG-03 default"
+    },
+    "deliverables": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/deliverable"
+      }
+    },
+    "evaluation": {
+      "type": "object",
+      "required": [
+        "criteria"
+      ],
+      "properties": {
+        "criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "question",
+              "briefRef"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "question": {
+                "type": "string"
+              },
+              "briefRef": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "scale": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "deliverable": {
+      "type": "object",
+      "required": [
+        "aspect",
+        "width",
+        "height",
+        "fps",
+        "codec"
+      ],
+      "properties": {
+        "aspect": {
+          "enum": [
+            "9:16",
+            "16:9",
+            "1:1",
+            "4:5",
+            "4:3",
+            "21:9",
+            "still"
+          ]
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "fps": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Any rate, including 23.976, 29.97 and 50"
+        },
+        "codec": {
+          "enum": [
+            "h264-yuv420p",
+            "h265-yuv420p",
+            "prores4444",
+            "prores422hq",
+            "vp9",
+            "av1",
+            "png"
+          ]
+        },
+        "durationS": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "exampleRef": {
+      "type": "object",
+      "required": [
+        "src",
+        "note"
+      ],
+      "properties": {
+        "src": {
+          "type": "string"
+        },
+        "timeRangeS": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rule": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

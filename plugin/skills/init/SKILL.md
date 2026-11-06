@@ -14,7 +14,7 @@ description: Set up a VCR workspace in the current project so videos, examples a
 3. Run `vcr workspace init --workspace <dir>`. It writes `vcr.json` and adds `output/`, `.cache/` and `.vcr/` to `.gitignore`, nothing else, and reports what it changed.
 4. Run `vcr doctor` to record which tools this machine has (written to the machine root, never the project).
 5. Run `vcr setup capture`. If it lists planned steps, show them to the user, including the Chromium download (about 150 MB, shared across projects), and ask before running `vcr setup capture --yes`. If they decline, the workspace still works; the first capture will ask again.
-6. Finish with the three roots from `vcr status`, and offer to start a first video or try an example (`vcr example create three-capture`).
+6. Finish with the three roots from `vcr status`, and offer to start a first video with the `brief` skill, or to try an example (`vcr example create three-capture`).
 
 ## Rules
 
