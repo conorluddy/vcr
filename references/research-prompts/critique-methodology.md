@@ -77,7 +77,7 @@ A single Markdown document of roughly 20–35k tokens, structured as follows:
 7. **The creation process:** how an expert approaches a new piece, from brief to verification.
 8. **Authoritative sources and canon:** the books, standards, papers and practitioners that matter, and why.
 9. **Encoding for an AI agent:**
-   - A **rules table** with columns `ID | Check | Threshold | Tier | Applies to`. Use stable IDs with the prefix given above.
+   - A **rules table** with columns `ID | Check | Threshold | Tier | Applies to`. Use stable named IDs with the prefix given above: uppercase words joined by hyphens, no digits, naming what the rule checks (for example `TYPO-SAFE` or `TYPO-CAPTION-CPS`, never `TYPO-01`).
    - Each rule gets a **tier**: `standard` (a published standard or style guide, checked against the primary source), `platform` (published by a platform or vendor; may change without notice) or `heuristic` (practitioner rule of thumb, or a secondary source).
    - For each rule, say what it **applies to**, and whether it is **measurable** (and how) or **judgement only**.
 10. **How to measure in VCR.** For each measurable rule:

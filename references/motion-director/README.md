@@ -20,14 +20,9 @@ This is the motion design and animation direction knowledge base (`MOTION-*`), p
 
 ## Open decisions before building `rules.json`, a measurement tool or an agent
 
-1. **Rule ID style.** `MOTION-EASE-001` is numbered, while `TYPO-SAFE` is named, and the typography rules schema rejects digits. Named IDs read better in tool output, for example `MOTION-LINEAR-ENTRANCE` instead of `MOTION-EASE-001`. Decide once for every pillar (the art KB raises the same question).
-2. **Owners for overlapping rules.**
-   - `MOTION-A11Y-*` overlaps the accessibility pillar; `MOTION-A11Y-005` already defers flash safety to it.
-   - `MOTION-TIME-005` (text holds long enough to read) overlaps `TYPO-HOLD`.
-   - `MOTION-FPS-003` (thin or small moving features) overlaps `TYPO-RASTER-SCALE` and the art pillar's stroke minimums.
-
-   Choose one owner per rule and have the other cite it.
-3. **Scene contract additions.** Most rules need element identity and intent: `data-vcr-id`, and `data-vcr-role` with `primary`, `shared`, `impact`, `loop` or `text`. Some rules also need declared pattern periods, signature moves, `ui` or `cinematic` tags, and timeline introspection. These belong in one scene contract reference with `duration`, `seek`, `markers` and `textBounds`, not in each pillar.
+1. **Settled: named rule IDs** ([shared conventions](../README.md)). The numbered IDs here are drafts, renamed when `MOTION-*` gets its `rules.json`.
+2. **Settled: rule owners** ([shared conventions](../README.md)). `MOTION-TIME-005` cites `TYPO-HOLD`. `MOTION-FPS-003` owns shimmer on thin moving features. `MOTION-A11Y-*` and the vestibular rules stay here until the accessibility pillar arrives, and flashing goes to accessibility. Motion owns loop seams (`MOTION-RHY-004`) and movers within a beat (`MOTION-CHOR-003`, which takes pacing's limit of 3 simultaneous movers).
+3. **Settled: tags.** `data-vcr-id` and `data-vcr-role` are reserved in the [scene contract](../../skills/start/references/scene-contract.md). Pattern periods, signature moves and `ui`/`cinematic` tags are added there when a check needs them.
 4. **A time-series sampler.** `vcr lint` samples a few times and measures text boxes. Motion rules need every transform and opacity sampled at fps or 4× fps, segmented into tweens (§9.2). That is a separate tool, for example `vcr motion sample`, with its own output format that later checks read.
 5. **The cheapest first check is not motion-specific.** `MOTION-SPR-001` (seek the same *t* twice, out of order, and get identical values) tests determinism for every scene. It may belong in `vcr capture --verify` or `vcr lint` rather than in the motion pillar.
 6. **UI numbers versus watched video.** `MOTION-TIME-002` and `MOTION-TIME-006` apply only to UI-like elements. Without a reliable tag they will flag legitimate cinematic moves (§20).
