@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { applyCaptureSetup, formatCaptureSetupPlan, planCaptureSetup, runCapture } from "./capture.js";
 import { COMMANDS, findCommand, findCommandGroup, formatCommandHelp, formatGlobalUsage, GLOBAL_FLAGS } from "./commands.js";
 import { buildCatalogIndex, writeCatalogIndex } from "./catalog.js";
-import { writeTypographyTable } from "./typography-rules.js";
 import { filterPillarRules, findPillarRule, formatPillarRule, formatPillarRuleList, loadPillarRules, loadPillars, readKnowledgeBaseSection, renderReferencesIndex, writeReferencesIndex } from "./references.js";
 import { DEFAULT_LINT_SAMPLES, formatLintReport, parseSampleTimes, runLint } from "./lint.js";
 import { disclosureReport, formatDisclosureReport } from "./disclosure.js";
@@ -15,12 +14,16 @@ import { logEvent, startTimer } from "./log.js";
 import { buildPlugin, pluginDiagnostics, readHarnessVersion } from "./plugin.js";
 import { requireDevMode, requireWorkspace, resolveRoots, type Roots } from "./roots.js";
 import { filterTools, findTool, formatExamplesForTool, formatToolCard, formatToolTable, loadExamples, loadTools, readToolGuide } from "./tools.js";
-import { hasErrors, validateRepository, validateWorkspace } from "./validate.js";
+import { beatSheetSchemaDiagnostics, hasErrors, validateRepository, validateWorkspace } from "./validate.js";
 import { ensureWorkspace } from "./workspace.js";
 import { ensureVideo, resolveVideo, type VideoLocation } from "./video.js";
 import { writeLintFindings } from "./lint-findings.js";
 import { writeReviewSummary } from "./review-summary.js";
-import { latestManifest, readVideoReview, type RenderManifest } from "./review.js";
+import { latestManifest, readVideoReview, sha256Hex, type RenderManifest } from "./review.js";
+import { BEAT_SHEET_FILE, checkPlan, defaultPlanThresholds, planMarkers, type BeatSheet, type PlanFinding, type PlanThresholds, type ReadTimeModel } from "./plan-check.js";
+import { SERIES_BRIEF_FILE, type SeriesBrief } from "./brief.js";
+import { readJsonFile } from "./repository.js";
+import { TYPOGRAPHY_RULES_PATH, writeTypographyTable, type TypographyRules } from "./typography-rules.js";
 import { fail, ok, type Result } from "./result.types.js";
 import { stagingDirectoryFor, writeRender } from "./render-manifest.js";
 import { runFindingsCommand, runReviewDecision } from "./review-commands.js";
@@ -257,6 +260,22 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     return report.findings.length > 0 ? 1 : 0;
   }
 
+  if (command === "plan" && (subcommand === "check" || subcommand === "markers")) {
+    const videoId = text(options["video"]);
+    if (!videoId) return failWith({ code: "INVALID_ARGUMENT", message: `plan ${subcommand} needs --video <project>/<video>` }, asJson, 2);
+    const workspace = requireWorkspace(roots);
+    if (!workspace.ok) return failWith(workspace.error, asJson);
+    const plan = readPlan(repositoryRoot, workspace.value, videoId);
+    if (!plan.ok) return failWith(plan.error, asJson, plan.error.code === "INVALID_ARGUMENT" ? 2 : 1);
+    if (subcommand === "markers") {
+      print(planMarkers(plan.value.sheet));
+      return 0;
+    }
+    const findings = checkPlan(plan.value.sheet, plan.value.seriesBrief, plan.value.thresholds, plan.value.sha256);
+    print(asJson ? findings : formatPlanFindings(videoId, findings));
+    return findings.some((finding) => finding.severity === "blocker" || finding.severity === "major") ? 1 : 0;
+  }
+
   if (command === "refs" || command === "rules") {
     const pillars = loadPillars(repositoryRoot);
     if (!pillars.ok) return failWith(pillars.error, asJson);
@@ -346,6 +365,31 @@ function printHelp(args: string[], asJson: boolean): number {
 }
 
 // === HELPERS ===
+
+/** A video's beat sheet, schema-checked, with its hash, series brief and the owners' thresholds. */
+function readPlan(harnessRoot: string, workspaceRoot: string, videoId: string): Result<{ sheet: BeatSheet; sha256: string; seriesBrief: SeriesBrief | undefined; thresholds: PlanThresholds }> {
+  const video = resolveVideo(workspaceRoot, videoId);
+  if (!video.ok) return video;
+  const sheetPath = join(video.value.directory, BEAT_SHEET_FILE);
+  if (!existsSync(sheetPath)) return fail("PLAN_NOT_FOUND", `${videoId} has no ${BEAT_SHEET_FILE}. Write the beat sheet beside brief.md (schema: catalog/schemas/beat-sheet.schema.json).`);
+  const sheet = readJsonFile<BeatSheet>(sheetPath);
+  if (!sheet.ok) return sheet;
+  const problems = beatSheetSchemaDiagnostics(harnessRoot, sheet.value, BEAT_SHEET_FILE);
+  if (problems.length > 0) return fail("INVALID_PLAN", `${BEAT_SHEET_FILE} does not match its schema: ${problems.map((problem) => `${problem.path} ${problem.message}`).join("; ")}. Run \`vcr validate\` for suggestions.`);
+  const seriesPath = join(workspaceRoot, "projects", videoId.split("/")[0]!, SERIES_BRIEF_FILE);
+  const seriesBrief = existsSync(seriesPath) ? readJsonFile<SeriesBrief>(seriesPath) : ok(undefined);
+  if (!seriesBrief.ok) return seriesBrief;
+  const typography = readJsonFile<TypographyRules>(join(harnessRoot, TYPOGRAPHY_RULES_PATH));
+  if (!typography.ok) return typography;
+  const hold = typography.value.rules.find((rule) => rule.id === "TYPO-HOLD")?.values as ReadTimeModel | undefined;
+  if (!hold) return fail("RULE_NOT_FOUND", `TYPO-HOLD has no values in ${TYPOGRAPHY_RULES_PATH}; STORY-TEXT-READTIME reads its reading-time model from there.`);
+  return ok({ sheet: sheet.value, sha256: sha256Hex(readFileSync(sheetPath)), seriesBrief: seriesBrief.value, thresholds: defaultPlanThresholds(hold) });
+}
+
+function formatPlanFindings(videoId: string, findings: PlanFinding[]): string {
+  if (findings.length === 0) return `${videoId}: plan checks pass`;
+  return [...findings.map((finding) => `${finding.severity.padEnd(7)} ${finding.rule_id}  ${finding.text}`), `${videoId}: ${findings.length} plan finding${findings.length === 1 ? "" : "s"}`].join("\n");
+}
 
 /** With --video, the workspace, video and retained render that lint files findings on; undefined without it. */
 async function lintTarget(roots: Roots, videoId: string | undefined, renderId: string | undefined): Promise<Result<{ workspace: string; video: VideoLocation; manifest: RenderManifest } | undefined>> {

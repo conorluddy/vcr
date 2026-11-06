@@ -1,5 +1,5 @@
 import { execFile } from "node:child_process";
-import { chmodSync, cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, realpathSync, statSync } from "node:fs";
+import { chmodSync, cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, realpathSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { promisify } from "node:util";
@@ -128,6 +128,22 @@ describe("the bundled plugin CLI outside the harness repository (P0/P1 exit evid
     expect(JSON.parse(listed.stdout)).toMatchObject({ total: 0, findings: [] });
     await expect(runFromScratch("findings", "add", "demo/teaser", "--frame", "0", "--severity", "note", "--text", "x", "--json")).rejects.toMatchObject({ code: 1, stdout: expect.stringContaining("RENDER_NOT_FOUND") });
     await expect(runFromScratch("review", "approve", "demo/teaser", "--json")).rejects.toMatchObject({ code: 1, stdout: expect.stringContaining("HUMAN_CHANNEL_REQUIRED") });
+  });
+
+  test("plan check and plan markers read a video's beat sheet, which then validates", async () => {
+    const video = join(scratch, "projects/demo/videos/teaser");
+    const sections = ["Objective", "Audience and placement", "Content", "Constraints", "Review notes"].map((section) => `## ${section}\nx\n`).join("\n");
+    writeFileSync(join(video, "brief.md"), `---\nvideo_id: demo/teaser\ndeliverables: [1080x1920@30]\n---\n\n${sections}`);
+    const beat = { purpose: "Land it.", must_show: ["a file"], on_screen_text: null, vo: null, transition_in: "cut", transition_out: "cut" };
+    const sheet = { schema_version: "1.0.0", video_id: "demo/teaser", fps: 30, target_s: 4, beats: [{ ...beat, id: "B01", role: "hook", duration_s: 2 }, { ...beat, id: "B02", duration_s: 1.9 }] };
+    writeFileSync(join(video, "beats.json"), JSON.stringify(sheet));
+    const checked = await runFromScratch("plan", "check", "--video", "demo/teaser", "--json").then(() => undefined, (cause: { code: number; stdout: string }) => cause);
+    expect(checked?.code).toBe(1);
+    expect(JSON.parse(checked!.stdout)).toEqual([expect.objectContaining({ rule_id: "STORY-BEAT-SUM", severity: "major", plan_sha256: expect.stringMatching(/^[0-9a-f]{64}$/) })]);
+    const markers = await runFromScratch("plan", "markers", "--video", "demo/teaser", "--json");
+    expect(JSON.parse(markers.stdout)).toEqual([{ t: 1.966667, id: "B01", role: "hook" }, { t: 3.866667, id: "B02" }]);
+    const validation = await runFromScratch("validate", "--json");
+    expect(JSON.parse(validation.stdout).diagnostics).toEqual([]);
   });
 
   test("doctor writes to the machine root, and --record is maintainer-only", async () => {

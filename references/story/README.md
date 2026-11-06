@@ -23,8 +23,8 @@ It is the only pillar that judges a **plan** rather than a render, so it is wher
 
 The KB recommends a **VCR beat sheet JSON** (§4.2) as the source of truth for a plan. Fountain, OTIO and EDL serve only as import and export formats (§9.2). Most `STORY-*` rules are checks on that file. Before anything is built:
 
-- The beat sheet schema sits with the series brief schema in `catalog/schemas/`, in Layer 1. A video's plan lives beside its `brief.md` in the workspace project, never in the harness.
-- Beats become the scene's `markers`. Each beat's `sound_cues` become the audio cue list that the sound pillar needs (see the [sound reference](../sound-design/README.md)). The beat `id` (`B03`) is the named marker `id` (see the [scene contract](../../skills/start/references/scene-contract.md)).
+- The beat sheet schema is `catalog/schemas/beat-sheet.schema.json`; its required beat fields are `STORY-BEAT-FIELDS`. A video's plan is `beats.json` beside its `brief.md` in the workspace project, never in the harness. `vcr validate` checks it, and `vcr plan check --video <project>/<video>` runs `STORY-BEAT-SUM`, `-WORD-BUDGET`, `-TEXT-READTIME`, `-MANDATORY-MAP`, `-VO-AIR` and `-HOOK-WINDOW`, printing findings that carry `plan_sha256` and `beat_id` instead of a render. Nothing is filed until the `STORY-GATE-*` approvals exist.
+- Beats become the scene's `markers`. Each beat's `sound_cues` become the audio cue list that the sound pillar needs (see the [sound reference](../sound-design/README.md)). The beat `id` (`B03`) is the named marker `id` (see the [scene contract](../../skills/start/references/scene-contract.md)); `vcr plan markers` prints them. The cue list export waits for #60.
 - The review gates (`STORY-GATE-SEQUENCE`: concept → script → timed plan → final) need approvals on artefacts that are not renders. The plugin PRD's approvals (§6.4) are keyed by `render_id` and manifest hash. Extend them to a plan artefact and its hash rather than invent a second approval mechanism. `STORY-GATE-REGRESSION` is the same hash comparison.
 
 ## Open decisions before building the schema, checks or an agent

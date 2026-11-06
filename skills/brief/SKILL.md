@@ -57,6 +57,7 @@ A one-off video may have only `brief.md`. A series, or any project with more tha
      *Content* holds the proposition, proof points and chosen route's beat outline. *Constraints* holds this video's mandatories and any declared breaks. *Review notes* holds the evaluation questions and what the person wants to see first.
 7. **Validate.** Run `vcr validate` and fix every error before showing the brief. A warning that the video cites an older series version means the brief must be re-read and re-confirmed.
 8. **Confirm before rendering** (AG-04). Show the person the brief: the proposition, the tone parameters, the chosen route and the deliverables. Ask them to confirm or change it. Only after an explicit yes, add `confirmed: <YYYY-MM-DD>` to the front matter. Do not build or render anything before then.
+9. **Offer the beat sheet.** Once the brief is confirmed, offer to draft `beats.json` beside `brief.md` from the route's beat outline (`vcr refs section story 4.2` for the beat record; schema `catalog/schemas/beat-sheet.schema.json`). Run `vcr validate`, then `vcr plan check --video <project>/<video>` and fix every blocker and major before building. `vcr plan markers` gives the scene its `window.__scene.markers`.
 
 ## Rules
 

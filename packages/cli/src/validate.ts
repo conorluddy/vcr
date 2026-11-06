@@ -13,6 +13,7 @@ import { listRetainedRenderIds, REVIEW_PATHS, reviewDiagnostics, sha256Hex, type
 import { listVideoDirectories } from "./video.js";
 import { loadBudgets, storageReport } from "./storage.js";
 import { REVIEW_SUMMARY_FILE, reviewSummaryDiagnostics } from "./review-summary.js";
+import { BEAT_SHEET_FILE, beatSheetDiagnostics, type BeatSheet } from "./plan-check.js";
 import { parseVideoBrief, SERIES_BRIEF_FILE, seriesBriefDiagnostics, VIDEO_BRIEF_FILE, videoBriefDiagnostics, type SeriesBrief, type VideoBriefFrontMatter } from "./brief.js";
 
 // === TYPES ===
@@ -100,6 +101,11 @@ export function validateWorkspace(harnessRoot: string, workspaceRoot: string): V
   return report();
 }
 
+/** Schema-checks one beat sheet, for commands that act on it without validating the whole workspace. */
+export function beatSheetSchemaDiagnostics(harnessRoot: string, document: unknown, file: string): Diagnostic[] {
+  return schemaDiagnostics(loadSchemas(harnessRoot).beatSheet, document, file).filter((diagnostic) => diagnostic.severity === "error");
+}
+
 export function hasErrors(report: ValidationReport): boolean {
   return report.diagnostics.some((diagnostic) => diagnostic.severity === "error");
 }
@@ -160,18 +166,27 @@ function checkWorkspaceDocuments(check: Check, checkDocument: CheckDocument, wor
   for (const { videoId, directory } of listVideoDirectories(workspaceRoot)) {
     const seriesBrief = seriesBriefFor(videoId.split("/")[0]!);
     const briefPath = join(directory, VIDEO_BRIEF_FILE);
-    if (existsSync(briefPath)) diagnostics.push(...checkVideoBrief(checkDocument, briefPath, videoId, seriesBrief, relative(workspaceRoot, briefPath)));
+    const videoBrief = existsSync(briefPath) ? checkVideoBrief(checkDocument, briefPath, videoId, seriesBrief, relative(workspaceRoot, briefPath)) : undefined;
+    if (videoBrief) diagnostics.push(...videoBrief.diagnostics);
+    const beatsPath = join(directory, BEAT_SHEET_FILE);
+    const beats = existsSync(beatsPath) ? (check(beatsPath, "beatSheet") as BeatSheet | undefined) : undefined;
+    if (beats) diagnostics.push(...beatSheetDiagnostics(beats, videoId, videoBrief?.frontMatter?.deliverables.map(deliverableFps), relative(workspaceRoot, beatsPath)));
     const review = checkVideoReview(check, directory, workspaceRoot);
     diagnostics.push(...reviewDiagnostics(review), ...reviewSummaryDiagnostics(directory, videoId, review, relative(workspaceRoot, join(directory, REVIEW_PATHS.directory, REVIEW_SUMMARY_FILE))));
   }
   return diagnostics;
 }
 
-function checkVideoBrief(checkDocument: CheckDocument, briefPath: string, videoId: string, seriesBrief: SeriesBrief | undefined, file: string): Diagnostic[] {
+function checkVideoBrief(checkDocument: CheckDocument, briefPath: string, videoId: string, seriesBrief: SeriesBrief | undefined, file: string): { diagnostics: Diagnostic[]; frontMatter?: VideoBriefFrontMatter } {
   const parsed = parseVideoBrief(readFileSync(briefPath, "utf8"));
-  if (!parsed.ok) return [{ severity: "error", file, path: "", message: parsed.error.message }];
+  if (!parsed.ok) return { diagnostics: [{ severity: "error", file, path: "", message: parsed.error.message }] };
   const frontMatter = checkDocument(parsed.value.frontMatter, file, "videoBrief") as VideoBriefFrontMatter | undefined;
-  return frontMatter ? videoBriefDiagnostics(videoId, frontMatter, parsed.value.body, seriesBrief, file) : [];
+  return frontMatter ? { diagnostics: videoBriefDiagnostics(videoId, frontMatter, parsed.value.body, seriesBrief, file), frontMatter } : { diagnostics: [] };
+}
+
+/** `1080x1920@30` → 30 */
+function deliverableFps(deliverable: string): number {
+  return Number(deliverable.split("@")[1]);
 }
 
 function checkVideoReview(check: Check, videoDirectory: string, workspaceRoot: string): VideoReview {
@@ -216,6 +231,7 @@ function loadSchemas(repositoryRoot: string) {
     approval: ajv.compile(load("approval")),
     seriesBrief: ajv.compile(load("series-brief")),
     videoBrief: ajv.compile(load("video-brief")),
+    beatSheet: ajv.compile(load("beat-sheet")),
   };
 }
 
@@ -241,11 +257,12 @@ function schemaDiagnostics(validator: ValidateFunction, document: unknown, file:
     file,
     path: error.instancePath || "/",
     message: error.message ?? "schema violation",
-    suggestion: suggestionFor(error.keyword, error.params),
+    suggestion: suggestionFor(error.keyword, error.params, error.instancePath),
   }));
 }
 
-function suggestionFor(keyword: string, params: Record<string, unknown>): string | undefined {
+function suggestionFor(keyword: string, params: Record<string, unknown>, instancePath: string): string | undefined {
+  if (keyword === "required" && /^\/beats\/\d+$/.test(instancePath)) return "STORY-BEAT-FIELDS: a beat needs id, purpose, must_show, on_screen_text, vo, duration_s, transition_in and transition_out (null text or VO is explicit), or a builder invents the missing piece.";
   if (keyword === "enum") return `Allowed: ${JSON.stringify(params["allowedValues"])}`;
   if (keyword === "maxLength") return `Budget is ${String(params["limit"])} characters; move detail to the next tier down.`;
   if (keyword === "maxItems") return `At most ${String(params["limit"])} items; keep the strongest.`;
