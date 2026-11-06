@@ -11,6 +11,7 @@ import { TYPOGRAPHY_RULES_PATH, typographyRuleDiagnostics } from "./typography-r
 import { referencesIndexDiagnostics } from "./references.js";
 import { listRetainedRenderIds, REVIEW_PATHS, reviewDiagnostics, sha256Hex, type Approval, type Finding, type RenderManifest, type VideoReview } from "./review.js";
 import { listVideoDirectories } from "./video.js";
+import { loadBudgets, storageReport } from "./storage.js";
 import { REVIEW_SUMMARY_FILE, reviewSummaryDiagnostics } from "./review-summary.js";
 import { parseVideoBrief, SERIES_BRIEF_FILE, seriesBriefDiagnostics, VIDEO_BRIEF_FILE, videoBriefDiagnostics, type SeriesBrief, type VideoBriefFrontMatter } from "./brief.js";
 
@@ -154,6 +155,8 @@ function checkWorkspaceDocuments(check: Check, checkDocument: CheckDocument, wor
     return brief;
   };
   for (const projectPath of listFilesNamed(join(workspaceRoot, "projects"), "project.json")) seriesBriefFor(basename(dirname(projectPath)));
+  const budgetReport = storageReport({ workspace: workspaceRoot, machine: workspaceRoot }, loadBudgets(workspaceRoot));
+  diagnostics.push(...budgetReport.warnings.map((warning) => ({ severity: "warning" as const, file: WORKSPACE_MARKER, path: "/storage", message: warning, suggestion: "Budgets warn and never delete; adjust storage in vcr.json if the budget is wrong." })));
   for (const { videoId, directory } of listVideoDirectories(workspaceRoot)) {
     const seriesBrief = seriesBriefFor(videoId.split("/")[0]!);
     const briefPath = join(directory, VIDEO_BRIEF_FILE);

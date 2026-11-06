@@ -27,6 +27,7 @@ pnpm doctor                        # probes local tools, writes ~/.vcr/environme
 pnpm vcr status                    # harness, workspace and machine roots; dev mode inside this repository
 pnpm vcr workspace init            # make a directory a VCR workspace (vcr.json); idempotent
 pnpm vcr video init demo/teaser    # register a video: projects/demo/videos/teaser/ with review/; idempotent
+pnpm vcr storage                   # disk use by class, video and render; `storage clear <class>` plans, --yes applies
 pnpm vcr example create <id>       # copy an example's sources into <workspace>/examples/<id>; prints next steps
 pnpm vcr setup capture [--yes]     # plan, then install, Playwright + Chromium into ~/.vcr/runtime
 pnpm vcr capture <scene.html> --width 1280 --height 720 --fps 30 [--out dir] [--verify]

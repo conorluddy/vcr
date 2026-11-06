@@ -229,6 +229,50 @@ Human only: close a finding as resolved (or --wontfix); refused without a TTY
 vcr review resolve demo/teaser F-0001
 ```
 
+## `vcr storage [--video project/video] [--limit n] [--offset n]`
+
+Disk usage by class, video and render, largest first, with budget warnings; read-only
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--video project/video` | Only this video's output and evidence |  |
+| `--limit n` | Rows per page | `50` |
+| `--offset n` | Rows to skip | `0` |
+
+```sh
+vcr storage --json
+```
+
+## `vcr storage clear <output|cache|proxies|runtime> [--video project/video] [--render id] [--older-than days] [--keep-latest n] [--yes]`
+
+Plan the deletion of regenerable files and print it; --yes applies. Never touches projects, review/ or briefs
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--video project/video` | Output only: this video's renders |  |
+| `--render id` | Output only: this render |  |
+| `--older-than days` | Output only: renders last modified more than this many days ago |  |
+| `--keep-latest n` | Output only: keep each video's newest n renders |  |
+| `--yes` | Apply the plan instead of printing it |  |
+
+```sh
+vcr storage clear output --keep-latest 1 --yes
+```
+
+## `vcr storage prune evidence --video project/video --keep n [--yes]`
+
+Reduce older retained revisions to manifest and contact sheet; keeps the latest, approved and finding-cited ones; --yes applies
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--video project/video` (required) | The video whose evidence to prune |  |
+| `--keep n` (required) | Newest revisions kept whole |  |
+| `--yes` | Apply the plan instead of printing it |  |
+
+```sh
+vcr storage prune evidence --video demo/teaser --keep 3 --yes
+```
+
 ## `vcr setup capture [--yes]`
 
 Plan (or with --yes, install) Playwright and Chromium into <VCR_HOME>/runtime

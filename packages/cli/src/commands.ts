@@ -151,6 +151,40 @@ export const COMMANDS: CommandSpec[] = [
     example: "vcr review resolve demo/teaser F-0001",
   },
   {
+    name: "storage",
+    summary: "Disk usage by class, video and render, largest first, with budget warnings; read-only",
+    flags: [
+      { name: "video", value: "project/video", description: "Only this video's output and evidence" },
+      { name: "limit", value: "n", description: "Rows per page", defaultValue: "50" },
+      { name: "offset", value: "n", description: "Rows to skip", defaultValue: "0" },
+    ],
+    example: "vcr storage --json",
+  },
+  {
+    name: "storage clear",
+    argumentsHint: "<output|cache|proxies|runtime>",
+    summary: "Plan the deletion of regenerable files and print it; --yes applies. Never touches projects, review/ or briefs",
+    flags: [
+      { name: "video", value: "project/video", description: "Output only: this video's renders" },
+      { name: "render", value: "id", description: "Output only: this render" },
+      { name: "older-than", value: "days", description: "Output only: renders last modified more than this many days ago" },
+      { name: "keep-latest", value: "n", description: "Output only: keep each video's newest n renders" },
+      { name: "yes", description: "Apply the plan instead of printing it" },
+    ],
+    example: "vcr storage clear output --keep-latest 1 --yes",
+  },
+  {
+    name: "storage prune",
+    argumentsHint: "evidence",
+    summary: "Reduce older retained revisions to manifest and contact sheet; keeps the latest, approved and finding-cited ones; --yes applies",
+    flags: [
+      { name: "video", value: "project/video", description: "The video whose evidence to prune", isRequired: true },
+      { name: "keep", value: "n", description: "Newest revisions kept whole", isRequired: true },
+      { name: "yes", description: "Apply the plan instead of printing it" },
+    ],
+    example: "vcr storage prune evidence --video demo/teaser --keep 3 --yes",
+  },
+  {
     name: "setup capture",
     summary: "Plan (or with --yes, install) Playwright and Chromium into <VCR_HOME>/runtime",
     flags: [{ name: "yes", description: "Apply the plan instead of printing it" }],

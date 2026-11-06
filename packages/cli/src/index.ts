@@ -25,6 +25,7 @@ import { fail, ok, type Result } from "./result.types.js";
 import { stagingDirectoryFor, writeRender } from "./render-manifest.js";
 import { runFindingsCommand, runReviewDecision } from "./review-commands.js";
 import { briefStatus, formatBriefStatus } from "./status.js";
+import { applyPlan, formatPlan, formatStorageReport, loadBudgets, planClear, planPruneEvidence, storageReport } from "./storage.js";
 import type { TerminalIo } from "./approvals.js";
 import { createInterface } from "node:readline/promises";
 
@@ -57,7 +58,8 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
   if (!harnessVersion.ok) return failWith(harnessVersion.error, asJson);
 
   if (command === "status" && options["brief"] === true) {
-    const status = briefStatus(roots.workspace, harnessVersion.value);
+    const storageWarnings = roots.workspace ? storageReport({ workspace: roots.workspace, machine: roots.machine }, loadBudgets(roots.workspace)).warnings : [];
+    const status = briefStatus(roots.workspace, harnessVersion.value, storageWarnings.slice(0, 1));
     print(asJson ? status : formatBriefStatus(status));
     return 0;
   }
@@ -91,6 +93,32 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
       : await runReviewDecision(workspace.value, subcommand, target, args[3], options, terminalIo(), new Date());
     if (!outcome.ok) return failWith(outcome.error, asJson, outcome.error.code === "INVALID_ARGUMENT" ? 2 : 1);
     print(asJson ? outcome.value.json : outcome.value.text);
+    return 0;
+  }
+
+  if (command === "storage") {
+    const workspace = requireWorkspace(roots);
+    if (!workspace.ok) return failWith(workspace.error, asJson);
+    const storageRoots = { workspace: workspace.value, machine: roots.machine };
+    const count = (name: string) => (options[name] === undefined ? undefined : Number(options[name]));
+    const counts = { limit: count("limit") ?? 50, offset: count("offset") ?? 0, olderThan: count("older-than"), keepLatest: count("keep-latest"), keep: count("keep") };
+    if (Object.values(counts).some((value) => value !== undefined && (!Number.isInteger(value) || value < 0))) return failWith({ code: "INVALID_ARGUMENT", message: "--limit, --offset, --older-than, --keep-latest and --keep must be whole numbers of 0 or more" }, asJson, 2);
+    if (!subcommand) {
+      const report = storageReport(storageRoots, loadBudgets(workspace.value), text(options["video"]));
+      print(asJson ? { ...report, total: report.entries.length, offset: counts.offset, limit: counts.limit, entries: report.entries.slice(counts.offset, counts.offset + counts.limit) } : formatStorageReport(report, counts.offset, counts.limit));
+      return 0;
+    }
+    let plan;
+    if (subcommand === "clear" && target) plan = planClear(storageRoots, target, { videoId: text(options["video"]), renderId: text(options["render"]), olderThanDays: counts.olderThan, keepLatest: counts.keepLatest, now: new Date() });
+    else if (subcommand === "prune" && target === "evidence") {
+      const videoId = text(options["video"]);
+      if (!videoId || counts.keep === undefined) return failWith({ code: "INVALID_ARGUMENT", message: "storage prune evidence needs --video <project>/<video> and --keep <n>" }, asJson, 2);
+      plan = planPruneEvidence(storageRoots, videoId, counts.keep);
+    } else return failWith({ code: "INVALID_ARGUMENT", message: "Use vcr storage, vcr storage clear <class> or vcr storage prune evidence." }, asJson, 2);
+    if (!plan.ok) return failWith(plan.error, asJson, plan.error.code === "INVALID_ARGUMENT" ? 2 : 1);
+    const isApplying = options["yes"] === true;
+    const result = isApplying ? applyPlan(plan.value) : plan.value;
+    print(asJson ? { applied: isApplying, ...result } : formatPlan(result, isApplying, workspace.value));
     return 0;
   }
 
