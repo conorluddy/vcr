@@ -24,6 +24,16 @@
       },
       "additionalProperties": false
     },
+    "lint": {
+      "type": "object",
+      "description": "How `vcr lint` checks this example's browser scene; `vcr example create` prints it as a next step before capture. Needs `capture` for the scene path.",
+      "required": ["safe_zone"],
+      "properties": {
+        "safe_zone": { "type": "string", "description": "A preset from references/typography/rules.json, or none." },
+        "markers": { "type": "boolean", "description": "Sample at window.__scene.markers." }
+      },
+      "additionalProperties": false
+    },
     "validated_on": {
       "type": "object",
       "required": ["date", "hostname"],

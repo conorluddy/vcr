@@ -43,6 +43,17 @@ describe("createExample", () => {
   });
 });
 
+test("an example that declares lint prints a lint step before capture", () => {
+  const workspace = mkdtempSync(join(tmpdir(), "vcr-example-lint-"));
+  const outcome = createExample(harness, workspace, "lint-overflow", "vcr");
+  if (!outcome.ok) throw new Error(outcome.error.message);
+  expect(outcome.value.nextSteps).toEqual([
+    "vcr setup capture",
+    "vcr lint examples/lint-overflow/scene.html --safe-zone tiktok --markers",
+    "vcr capture examples/lint-overflow/scene.html --width 1080 --height 1920 --fps 30 --verify",
+  ]);
+});
+
 test("the pinned capture runtime matches the Playwright the fixtures were validated with", () => {
   const capturePackage = createRequire(join(harness, "packages/capture/package.json"));
   expect((capturePackage("playwright/package.json") as { version: string }).version).toBe(PLAYWRIGHT_VERSION);

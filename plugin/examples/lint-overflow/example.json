@@ -13,6 +13,10 @@
     "height": 1920,
     "fps": 30
   },
+  "lint": {
+    "safe_zone": "tiktok",
+    "markers": true
+  },
   "validated_on": {
     "date": "2026-11-06",
     "hostname": "Conors-MacBook-Pro-2.local"

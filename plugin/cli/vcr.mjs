@@ -9364,12 +9364,13 @@ function writeStandalonePackage(sourcePath, targetPath) {
 `);
 }
 function buildNextSteps(relativeDirectory, hasPackage, manifest, cliInvocation2) {
-  const { capture, run } = manifest;
+  const { capture, lint, run } = manifest;
   const steps = [];
   if (hasPackage) steps.push(`npm install --prefix ${relativeDirectory}`);
   if (!capture && run) steps.push(`(cd ${relativeDirectory} && ${run})`);
   if (capture) {
     steps.push(`${cliInvocation2} setup capture`);
+    if (lint) steps.push(`${cliInvocation2} lint ${relativeDirectory}/${capture.scene} --safe-zone ${lint.safe_zone}${lint.markers ? " --markers" : ""}`);
     steps.push(`${cliInvocation2} capture ${relativeDirectory}/${capture.scene} --width ${capture.width} --height ${capture.height} --fps ${capture.fps} --verify`);
   }
   return steps;
