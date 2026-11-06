@@ -55,7 +55,7 @@ Before opening a follow-up, check existing issues for duplicates. Keep each acti
 - `plugin/`: generated Claude Code and Codex plugin; marketplaces at `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`.
 - `examples/`: validated fixtures with `example.json`, `run.sh` and `expected/`; browser examples also carry a `capture` block for `vcr capture`.
 - `projects/`: local products and productions following the project schema; contents are ignored except tracked reusable `templates/`.
-- `shared/`: reserved for Layer 1. `references/ideas/` holds exploratory material; production reference search is reserved for Layer 7.
+- `shared/`: reserved for Layer 1. `references/ideas/` holds exploratory material; `references/typography/` is the typography knowledge base that typography skills are generated from (read one section, never the whole file); production reference search is reserved for Layer 7.
 - `specifications/`: PRD, `decisions/` (ADRs), `spikes/` (reports).
 
 ## Current boundary
