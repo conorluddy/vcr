@@ -138,9 +138,9 @@ Mechanics:
 
 Workspace files, per video.
 
-- **Render manifest (review subset)**: `render_id`, `video_id`, `fps`, dimensions, `duration_frames`, `scenes[{id, start_frame, end_frame, frames_dir}]`, `outputs[{kind, path, sha256}]`, `created_at`, environment. This PRD needs only this subset; the L1 child specification owns the full schema (L1-05). The capture path owned by `vcr` emits it (ADR 0003).
+- **Render manifest (review subset)**: `render_id`, `video_id`, `fps`, dimensions, `duration_frames`, `scenes[{id, start_frame, end_frame, frames_dir}]`, `outputs[{kind, path, sha256}]`, `created_at`, environment. `render_id` is `r-<UTC yyyymmddThhmmss>-<first 7 hex of the frame content hash>`; an optional `frame_sha256[]` carries per-frame hashes for determinism checks. This PRD needs only this subset; the L1 child specification owns the full schema (L1-05). The capture path owned by `vcr` emits it (ADR 0003).
 - **Retained revision**: `review/renders/<render_id>/` holds the manifest, a contact sheet and evidence frames under the 200 KB-per-image preview policy, and is committed. It is the evidence storage class (§6.5). Full frames and the MP4 stay in ignored `output/` and may be deleted; Compare then falls back to the contact sheet and evidence frames and says so (L6-04).
-- **Finding**: one file per note, `review/findings/F-0007.json`, so concurrent human and agent writes stay conflict-free and diffable. Fields: `id`, `render_id`, `scene_id`, `frame` (canonical composition frame), `scene_frame` (derived), optional `region {x, y, w, h}` in 0–1 units, `severity` (`blocker | major | minor | note`), `text`, `author {kind: human | agent}`, `source` (`review | cli | chat | share`), `status`, `created_at`, `resolution {render_id, note, evidence[]}`.
+- **Finding**: one file per note, `review/findings/F-0007.json`, so concurrent human and agent writes stay conflict-free and diffable. Fields: `id`, `render_id`, `scene_id`, `frame` (canonical composition frame), `scene_frame` (derived), optional `region {x, y, w, h}` in 0–1 units, `severity` (`blocker | major | minor | note`), `text`, `author {kind: human | agent}`, `source` (`review | cli | chat | share`), `status`, `created_at`, `resolution {render_id, note, evidence[]}` (the agent's claimed fix), `closure {channel, at, note}` (the human decision; required for `resolved` and `wontfix`).
 - **Reviewer fields** (optional; written by `vcr lint`, other automatic checks and reviewer agents; `references/critique-methodology/` §2–3 is the method):
   - `frame_end` (inclusive) makes the finding a range.
   - `selector` locates it in the scene DOM.
@@ -155,6 +155,7 @@ Workspace files, per video.
 - **Finding states**: `open` → `addressed` (the agent claims a fix and attaches evidence) → `resolved` (human only); or `wontfix` (human only). The agent may reopen only its own findings.
 - **Approval**: `review/approvals/<render_id>.json` with `decision` (`approved | changes_requested`), `manifest_sha256`, `channel` (`review | tty`), `at`, `note`.
 - **Human-only channels**: the token-gated review-page POST, or `vcr review approve|resolve`, which requires an interactive TTY and typing the video id. Agent hosts run commands without a TTY.
+- **Schemas**: `catalog/schemas/render-manifest`, `finding` and `approval` (`.schema.json`); the severity caps are `if/then` rules in the finding schema.
 - **Validation**: `vcr validate` rejects an approval whose manifest hash does not match a retained render, and a `resolved` finding without a human channel. This is a guardrail against accidental self-approval, not a security boundary.
 - **Writes** are atomic (temp file, then rename) and idempotent: re-posting the same note does not duplicate it.
 - `review/REVIEW.md` is a generated human-readable summary, keeping the git-diffable narrative that `first-cut.md` provides today.

@@ -9,6 +9,8 @@ import type { ExampleManifest, ToolSummary } from "./tools.js";
 import { versionScope } from "./evidence.js";
 import { TYPOGRAPHY_RULES_PATH, typographyRuleDiagnostics } from "./typography-rules.js";
 import { referencesIndexDiagnostics } from "./references.js";
+import { listRetainedRenderIds, REVIEW_PATHS, reviewDiagnostics, sha256Hex, type Approval, type Finding, type RenderManifest, type VideoReview } from "./review.js";
+import { listVideoDirectories } from "./video.js";
 
 // === TYPES ===
 
@@ -82,7 +84,7 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
   if (existsSync(typographyRulesPath) && check(typographyRulesPath, "typographyRules")) diagnostics.push(...typographyRuleDiagnostics(repositoryRoot));
   diagnostics.push(...referencesIndexDiagnostics(repositoryRoot));
 
-  checkWorkspaceDocuments(check, repositoryRoot);
+  diagnostics.push(...checkWorkspaceDocuments(check, repositoryRoot));
   for (const environmentPath of listJsonFiles(join(repositoryRoot, "environment"))) check(environmentPath, "environment");
 
   return report();
@@ -90,8 +92,8 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
 
 /** Validates a workspace outside the harness: its marker, projects and references, against the harness schemas. */
 export function validateWorkspace(harnessRoot: string, workspaceRoot: string): ValidationReport {
-  const { check, report } = createChecker(loadSchemas(harnessRoot), workspaceRoot);
-  checkWorkspaceDocuments(check, workspaceRoot);
+  const { check, diagnostics, report } = createChecker(loadSchemas(harnessRoot), workspaceRoot);
+  diagnostics.push(...checkWorkspaceDocuments(check, workspaceRoot));
   return report();
 }
 
@@ -124,11 +126,31 @@ function createChecker(schemas: Schemas, displayRoot: string) {
   return { check, diagnostics, report: (): ValidationReport => ({ filesChecked, diagnostics }) };
 }
 
-function checkWorkspaceDocuments(check: Check, workspaceRoot: string): void {
+/** Schema-checks the workspace's own documents and returns the cross-file review diagnostics. */
+function checkWorkspaceDocuments(check: Check, workspaceRoot: string): Diagnostic[] {
   const markerPath = join(workspaceRoot, WORKSPACE_MARKER);
   if (existsSync(markerPath)) check(markerPath, "workspace");
   for (const projectPath of listFilesNamed(join(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
   for (const referencePath of listJsonFiles(join(workspaceRoot, "references"))) check(referencePath, "reference");
+  return listVideoDirectories(workspaceRoot).flatMap(({ directory }) => reviewDiagnostics(checkVideoReview(check, directory, workspaceRoot)));
+}
+
+function checkVideoReview(check: Check, videoDirectory: string, workspaceRoot: string): VideoReview {
+  const review: VideoReview = { manifests: [], findings: [], approvals: [] };
+  for (const renderId of listRetainedRenderIds(videoDirectory)) {
+    const manifestPath = join(videoDirectory, REVIEW_PATHS.renders, renderId, REVIEW_PATHS.manifestFile);
+    const manifest = check(manifestPath, "renderManifest") as RenderManifest | undefined;
+    if (manifest) review.manifests.push({ manifest, sha256: sha256Hex(readFileSync(manifestPath)), file: relative(workspaceRoot, manifestPath) });
+  }
+  for (const findingPath of listJsonFiles(join(videoDirectory, REVIEW_PATHS.findings))) {
+    const finding = check(findingPath, "finding") as Finding | undefined;
+    if (finding) review.findings.push({ finding, file: relative(workspaceRoot, findingPath) });
+  }
+  for (const approvalPath of listJsonFiles(join(videoDirectory, REVIEW_PATHS.approvals))) {
+    const approval = check(approvalPath, "approval") as Approval | undefined;
+    if (approval) review.approvals.push({ approval, file: relative(workspaceRoot, approvalPath) });
+  }
+  return review;
 }
 
 function loadSchemas(repositoryRoot: string) {
@@ -150,6 +172,9 @@ function loadSchemas(repositoryRoot: string) {
     environment: ajv.compile(load("environment")),
     workspace: ajv.compile(load("workspace")),
     typographyRules: ajv.compile(load("typography-rules")),
+    renderManifest: ajv.compile(load("render-manifest")),
+    finding: ajv.compile(load("finding")),
+    approval: ajv.compile(load("approval")),
   };
 }
 

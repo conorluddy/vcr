@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vcr.local/schemas/approval.schema.json",
+  "title": "VCR approval",
+  "description": "A human decision on one render, review/approvals/<render_id>.json. Written only through a human channel (plugin PRD §6.4, RV-03, RV-04).",
+  "type": "object",
+  "required": ["schema_version", "render_id", "decision", "manifest_sha256", "channel", "at"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "render_id": { "type": "string", "pattern": "^r-\\d{8}T\\d{6}-[0-9a-f]{7}$" },
+    "decision": { "enum": ["approved", "changes_requested"] },
+    "manifest_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$", "description": "sha256 of review/renders/<render_id>/manifest.json" },
+    "channel": { "enum": ["review", "tty"] },
+    "at": { "type": "string", "format": "date-time" },
+    "note": { "type": "string" }
+  },
+  "additionalProperties": false
+}
