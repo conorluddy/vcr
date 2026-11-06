@@ -25,12 +25,12 @@ Build whatever unlocks the most later work first. Deterministic checks come befo
 ## Now
 
 1. **Land the round-three knowledge bases** (`FX-`, `LIGHT-`, `MAT-`) on the local docs branch as they arrive, then open one PR.
-2. **Ways in:**
-   - #139: a generated `references/INDEX.md`, plus `vcr rules info|list` and `vcr refs section`;
-   - #140: the plugin ships every pillar's references.
+2. **Ways in, done:**
+   - #139 / #159: `references/INDEX.md`, `vcr rules info|list` and `vcr refs list|section`;
+   - #140 / #156: the plugin ships every pillar's references.
 3. **Small fixes:**
-   - #151: the typographer's cap-height bug, then its overdue trial on a scene with a lot of text;
-   - #154: a Codex run of `vcr lint`, and lint in the example's next steps.
+   - #151 / #158, done: the typographer's text size, plus its trial;
+   - #154: lint in the example's next steps is done (#157). The Codex run of `vcr lint` still needs a Codex session.
 
 ## Next: contracts
 
