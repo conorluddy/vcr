@@ -8073,8 +8073,8 @@ var require_dist = __commonJS({
 });
 
 // packages/cli/src/index.ts
-import { mkdirSync as mkdirSync5, writeFileSync as writeFileSync10 } from "node:fs";
-import { dirname as dirname5, join as join20, resolve as resolve6 } from "node:path";
+import { mkdirSync as mkdirSync7, writeFileSync as writeFileSync11 } from "node:fs";
+import { dirname as dirname6, join as join20, resolve as resolve6 } from "node:path";
 
 // packages/cli/src/capture.ts
 import { execFileSync } from "node:child_process";
@@ -8384,6 +8384,7 @@ var GLOBAL_ENVIRONMENT = [
 var COMMANDS = [
   { name: "status", summary: "Show the harness, workspace and machine roots", flags: [], example: "vcr status" },
   { name: "workspace init", summary: "Make this directory (or --workspace) a VCR workspace; idempotent", flags: [], example: "vcr workspace init" },
+  { name: "video init", argumentsHint: "<project>/<video>", summary: "Register a video: the project in vcr.json and project.json, plus its review/ directories; idempotent", flags: [], example: "vcr video init demo/teaser" },
   { name: "validate", summary: "Validate the workspace (in the harness repository: everything)", flags: [], example: "vcr validate --json" },
   {
     name: "tools list",
@@ -8547,12 +8548,12 @@ function markdownFlagRow(flag) {
 }
 
 // packages/cli/src/catalog.ts
-import { readFileSync as readFileSync3, statSync as statSync2, writeFileSync as writeFileSync3 } from "node:fs";
+import { readFileSync as readFileSync3, statSync as statSync2, writeFileSync as writeFileSync4 } from "node:fs";
 import { join as join4 } from "node:path";
 
 // packages/cli/src/repository.ts
-import { existsSync as existsSync2, readFileSync as readFileSync2, readdirSync as readdirSync2, statSync } from "node:fs";
-import { join as join3 } from "node:path";
+import { existsSync as existsSync2, mkdirSync as mkdirSync3, readFileSync as readFileSync2, readdirSync as readdirSync2, renameSync, statSync, writeFileSync as writeFileSync3 } from "node:fs";
+import { dirname as dirname3, join as join3 } from "node:path";
 function readJsonFile(filePath) {
   try {
     return ok(JSON.parse(readFileSync2(filePath, "utf8")));
@@ -8581,6 +8582,16 @@ function listFilesNamed(rootDirectory, fileName) {
 function listJsonFiles(directory) {
   if (!existsSync2(directory)) return [];
   return readdirSync2(directory).filter((entry) => entry.endsWith(".json")).map((entry) => join3(directory, entry)).sort();
+}
+function writeFileAtomic(filePath, content) {
+  mkdirSync3(dirname3(filePath), { recursive: true });
+  const temporaryPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
+  writeFileSync3(temporaryPath, content);
+  renameSync(temporaryPath, filePath);
+}
+function writeJsonAtomic(filePath, value) {
+  writeFileAtomic(filePath, `${JSON.stringify(value, null, 2)}
+`);
 }
 
 // packages/cli/src/catalog.ts
@@ -8701,7 +8712,7 @@ function writeCatalogIndex(repositoryRoot, checkOnly) {
     const absolutePath = join4(repositoryRoot, relativePath);
     if (safeRead(absolutePath) === next) continue;
     staleFiles.push(relativePath);
-    if (!checkOnly) writeFileSync3(absolutePath, next);
+    if (!checkOnly) writeFileSync4(absolutePath, next);
   }
   return ok({ recordCount: built.value.resources.length, wasStale: staleFiles.length > 0, staleFiles });
 }
@@ -8731,7 +8742,7 @@ function safeRead(filePath) {
 }
 
 // packages/cli/src/typography-rules.ts
-import { existsSync as existsSync3, readFileSync as readFileSync4, writeFileSync as writeFileSync4 } from "node:fs";
+import { existsSync as existsSync3, readFileSync as readFileSync4, writeFileSync as writeFileSync5 } from "node:fs";
 import { join as join5 } from "node:path";
 var TYPOGRAPHY_RULES_PATH = "references/typography/rules.json";
 var TYPOGRAPHY_KB_PATH = "references/typography/typography-knowledge-base.md";
@@ -8750,7 +8761,7 @@ function writeTypographyTable(repositoryRoot, checkOnly) {
   const spliced = spliceTable(kb, renderRulesTable(rules.value.rules));
   if (!spliced.ok) return spliced;
   if (spliced.value === kb) return ok({ wasStale: false, staleFiles: [] });
-  if (!checkOnly) writeFileSync4(kbPath, spliced.value);
+  if (!checkOnly) writeFileSync5(kbPath, spliced.value);
   return ok({ wasStale: true, staleFiles: [TYPOGRAPHY_KB_PATH] });
 }
 function typographyRuleDiagnostics(repositoryRoot) {
@@ -8782,7 +8793,7 @@ ${kb.slice(end)}`);
 }
 
 // packages/cli/src/references.ts
-import { existsSync as existsSync4, readdirSync as readdirSync3, readFileSync as readFileSync5, writeFileSync as writeFileSync5 } from "node:fs";
+import { existsSync as existsSync4, readdirSync as readdirSync3, readFileSync as readFileSync5, writeFileSync as writeFileSync6 } from "node:fs";
 import { join as join6 } from "node:path";
 var REFERENCES_INDEX_PATH = "references/INDEX.md";
 var REFERENCES_README_PATH = "references/README.md";
@@ -8857,7 +8868,7 @@ function writeReferencesIndex(harnessRoot, checkOnly) {
   const rendered = renderReferencesIndex(pillars.value, loadPillarRules(harnessRoot, pillars.value));
   const path = join6(harnessRoot, REFERENCES_INDEX_PATH);
   if (existsSync4(path) && readFileSync5(path, "utf8") === rendered) return ok({ wasStale: false, staleFiles: [] });
-  if (!checkOnly) writeFileSync5(path, rendered);
+  if (!checkOnly) writeFileSync6(path, rendered);
   return ok({ wasStale: true, staleFiles: [REFERENCES_INDEX_PATH] });
 }
 function referencesIndexDiagnostics(harnessRoot) {
@@ -9288,7 +9299,7 @@ function isProbeResult(entry) {
 
 // packages/cli/src/project.ts
 import { existsSync as existsSync7 } from "node:fs";
-import { dirname as dirname3, join as join10, resolve as resolve4 } from "node:path";
+import { dirname as dirname4, join as join10, resolve as resolve4 } from "node:path";
 function npmPackagesFor(installCommand) {
   const first = (installCommand ?? "").split("&&")[0].trim();
   const match = /^(?:pnpm\s+add|npm\s+(?:i|install)|yarn\s+add)\s+(.+)$/.exec(first);
@@ -9333,7 +9344,7 @@ function searchDirectories(start, stop) {
   for (; ; ) {
     directories.push(directory);
     if (insideStop ? directory === stop : existsSync7(join10(directory, "package.json"))) break;
-    const parent = dirname3(directory);
+    const parent = dirname4(directory);
     if (parent === directory) break;
     directory = parent;
   }
@@ -9527,7 +9538,7 @@ async function resolveExecutable(probe) {
 }
 
 // packages/cli/src/examples.ts
-import { cpSync, existsSync as existsSync11, readFileSync as readFileSync8, writeFileSync as writeFileSync6 } from "node:fs";
+import { cpSync, existsSync as existsSync11, readFileSync as readFileSync8, writeFileSync as writeFileSync7 } from "node:fs";
 import { basename, join as join13 } from "node:path";
 var GENERATED_FILES = /* @__PURE__ */ new Set(["node_modules", "output", ".cache"]);
 var BROWSER_HARNESS_FILES = /* @__PURE__ */ new Set(["capture.ts", "run.sh", "expected"]);
@@ -9547,7 +9558,7 @@ function createExample(harnessRoot, workspaceRoot, exampleId, cliInvocation2) {
 function writeStandalonePackage(sourcePath, targetPath) {
   const original = JSON.parse(readFileSync8(sourcePath, "utf8"));
   const standalone = { name: original.name.replace(/^@vcr\//, ""), private: true, type: "module", dependencies: original.dependencies ?? {} };
-  writeFileSync6(targetPath, `${JSON.stringify(standalone, null, 2)}
+  writeFileSync7(targetPath, `${JSON.stringify(standalone, null, 2)}
 `);
 }
 function buildNextSteps(relativeDirectory, hasPackage, manifest, cliInvocation2) {
@@ -9575,7 +9586,7 @@ function startTimer() {
 }
 
 // packages/cli/src/plugin.ts
-import { cpSync as cpSync2, existsSync as existsSync12, mkdirSync as mkdirSync3, mkdtempSync, readdirSync as readdirSync5, readFileSync as readFileSync9, rmSync, statSync as statSync5, writeFileSync as writeFileSync7 } from "node:fs";
+import { cpSync as cpSync2, existsSync as existsSync12, mkdirSync as mkdirSync4, mkdtempSync, readdirSync as readdirSync5, readFileSync as readFileSync9, rmSync, statSync as statSync5, writeFileSync as writeFileSync8 } from "node:fs";
 import { createRequire as createRequire3 } from "node:module";
 import { tmpdir } from "node:os";
 import { basename as basename2, extname as extname2, join as join14, relative as relative3 } from "node:path";
@@ -9605,7 +9616,7 @@ function buildPlugin(harnessRoot, outputDirectory = join14(harnessRoot, PLUGIN_D
   const version = readHarnessVersion(harnessRoot);
   if (!version.ok) return version;
   rmSync(outputDirectory, { recursive: true, force: true });
-  mkdirSync3(outputDirectory, { recursive: true });
+  mkdirSync4(outputDirectory, { recursive: true });
   const bundled = bundleCli(harnessRoot, join14(outputDirectory, "cli/vcr.mjs"));
   if (!bundled.ok) return bundled;
   for (const entry of CATALOG_ENTRIES) cpSync2(join14(harnessRoot, "catalog", entry), join14(outputDirectory, "catalog", entry), { recursive: true });
@@ -9615,13 +9626,13 @@ function buildPlugin(harnessRoot, outputDirectory = join14(harnessRoot, PLUGIN_D
   cpSync2(join14(harnessRoot, "agents"), join14(outputDirectory, "agents"), { recursive: true });
   cpSync2(join14(harnessRoot, "examples"), join14(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename2(source)) });
   writeManifests(outputDirectory, version.value);
-  writeFileSync7(join14(outputDirectory, "README.md"), PLUGIN_README);
+  writeFileSync8(join14(outputDirectory, "README.md"), PLUGIN_README);
   const cliReference = renderCliReference();
-  mkdirSync3(join14(outputDirectory, "references"), { recursive: true });
-  writeFileSync7(join14(outputDirectory, CLI_REFERENCE_PATH), cliReference);
+  mkdirSync4(join14(outputDirectory, "references"), { recursive: true });
+  writeFileSync8(join14(outputDirectory, CLI_REFERENCE_PATH), cliReference);
   for (const pillar of listPillarReferences(harnessRoot)) cpSync2(join14(harnessRoot, "references", pillar), join14(outputDirectory, "references", pillar), { recursive: true });
   for (const file of ["README.md", "INDEX.md"]) if (existsSync12(join14(harnessRoot, "references", file))) cpSync2(join14(harnessRoot, "references", file), join14(outputDirectory, "references", file));
-  if (outputDirectory === join14(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync7(join14(harnessRoot, CLI_REFERENCE_PATH), cliReference);
+  if (outputDirectory === join14(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync8(join14(harnessRoot, CLI_REFERENCE_PATH), cliReference);
   const files = listFiles(outputDirectory);
   const totalBytes = files.reduce((sum, file) => sum + statSync5(join14(outputDirectory, file)).size, 0);
   const pillarBytes = Object.fromEntries(listPillarReferences(harnessRoot).map((pillar) => [pillar, files.filter((file) => file.startsWith(`references/${pillar}/`)).reduce((sum, file) => sum + statSync5(join14(outputDirectory, file)).size, 0)]));
@@ -9675,8 +9686,8 @@ function bundleCli(harnessRoot, outfile) {
   });
   const output = result.outputFiles[0];
   if (!output) return fail("PLUGIN_BUNDLE_FAILED", "esbuild produced no output for packages/cli/src/index.ts");
-  mkdirSync3(join14(outfile, ".."), { recursive: true });
-  writeFileSync7(outfile, output.text);
+  mkdirSync4(join14(outfile, ".."), { recursive: true });
+  writeFileSync8(outfile, output.text);
   return ok(outfile);
 }
 function writeManifests(outputDirectory, version) {
@@ -9688,8 +9699,8 @@ function writeManifests(outputDirectory, version) {
     interface: { displayName: "VCR", shortDescription: "Code-first motion graphics and video", developerName: PLUGIN_IDENTITY.author.name, category: "Developer Tools" }
   };
   for (const [directory, manifest] of [[".claude-plugin", claudeManifest], [".codex-plugin", codexManifest]]) {
-    mkdirSync3(join14(outputDirectory, directory), { recursive: true });
-    writeFileSync7(join14(outputDirectory, directory, "plugin.json"), `${JSON.stringify(manifest, null, 2)}
+    mkdirSync4(join14(outputDirectory, directory), { recursive: true });
+    writeFileSync8(join14(outputDirectory, directory, "plugin.json"), `${JSON.stringify(manifest, null, 2)}
 `);
   }
 }
@@ -9718,12 +9729,12 @@ function differingFiles(committedRoot, freshRoot) {
 }
 
 // packages/cli/src/roots.ts
-import { existsSync as existsSync13, mkdirSync as mkdirSync4, unlinkSync as unlinkSync2, writeFileSync as writeFileSync8 } from "node:fs";
+import { existsSync as existsSync13, mkdirSync as mkdirSync5, unlinkSync as unlinkSync2, writeFileSync as writeFileSync9 } from "node:fs";
 import { homedir } from "node:os";
-import { dirname as dirname4, join as join15, resolve as resolve5 } from "node:path";
+import { dirname as dirname5, join as join15, resolve as resolve5 } from "node:path";
 import { fileURLToPath } from "node:url";
 var WORKSPACE_MARKER = "vcr.json";
-function resolveRoots({ cwd, env, workspaceFlag, cliDirectory = dirname4(fileURLToPath(import.meta.url)), canWrite = isWritableDirectory }) {
+function resolveRoots({ cwd, env, workspaceFlag, cliDirectory = dirname5(fileURLToPath(import.meta.url)), canWrite = isWritableDirectory }) {
   const harness = resolveHarness(env["VCR_HARNESS"], cliDirectory);
   if (!harness.ok) return harness;
   const explicitWorkspace = workspaceFlag ?? env["VCR_WORKSPACE"];
@@ -9749,7 +9760,7 @@ function resolveHarness(explicitHarness, cliDirectory) {
   }
   let current = resolve5(cliDirectory);
   while (!existsSync13(join15(current, "catalog"))) {
-    const parent = dirname4(current);
+    const parent = dirname5(current);
     if (parent === current) return fail("HARNESS_NOT_FOUND", `No ancestor of ${cliDirectory} contains catalog/. Set VCR_HARNESS to a VCR checkout or plugin directory.`);
     current = parent;
   }
@@ -9763,9 +9774,9 @@ function resolveMachine(explicitHome, workspace, isCodexSandbox, canWrite) {
 }
 function isWritableDirectory(directory) {
   try {
-    mkdirSync4(directory, { recursive: true });
+    mkdirSync5(directory, { recursive: true });
     const probe = join15(directory, `.write-probe-${process.pid}`);
-    writeFileSync8(probe, "");
+    writeFileSync9(probe, "");
     unlinkSync2(probe);
     return true;
   } catch {
@@ -9775,7 +9786,7 @@ function isWritableDirectory(directory) {
 function findAncestorWithMarker(startDirectory) {
   let current = resolve5(startDirectory);
   while (!existsSync13(join15(current, WORKSPACE_MARKER))) {
-    const parent = dirname4(current);
+    const parent = dirname5(current);
     if (parent === current) return null;
     current = parent;
   }
@@ -9802,8 +9813,8 @@ var REVIEW_PATHS = {
 function sha256Hex(content) {
   return createHash2("sha256").update(content).digest("hex");
 }
-function listRetainedRenderIds(videoDirectory) {
-  const rendersDirectory = join16(videoDirectory, REVIEW_PATHS.renders);
+function listRetainedRenderIds(videoDirectory2) {
+  const rendersDirectory = join16(videoDirectory2, REVIEW_PATHS.renders);
   if (!existsSync14(rendersDirectory)) return [];
   return readdirSync6(rendersDirectory).filter((entry) => existsSync14(join16(rendersDirectory, entry, REVIEW_PATHS.manifestFile))).sort();
 }
@@ -9844,13 +9855,56 @@ function error(file, path, message, suggestion) {
 }
 
 // packages/cli/src/video.ts
-import { existsSync as existsSync15, readdirSync as readdirSync7, statSync as statSync6 } from "node:fs";
+import { existsSync as existsSync15, mkdirSync as mkdirSync6, readdirSync as readdirSync7, statSync as statSync6 } from "node:fs";
 import { join as join17 } from "node:path";
+var SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 function listVideoDirectories(workspaceRoot) {
   const projectsRoot = join17(workspaceRoot, "projects");
   return subdirectories(projectsRoot).flatMap(
     (project) => subdirectories(join17(projectsRoot, project, "videos")).map((video) => ({ videoId: `${project}/${video}`, directory: join17(projectsRoot, project, "videos", video) }))
   );
+}
+function ensureVideo(workspaceRoot, videoId) {
+  const parts = parseVideoId(videoId);
+  if (!parts.ok) return parts;
+  const { project, video } = parts.value;
+  const changes = [];
+  const markerPath = join17(workspaceRoot, WORKSPACE_MARKER);
+  const marker = readJsonFile(markerPath);
+  if (!marker.ok) return marker;
+  if (!marker.value.projects.includes(project)) {
+    writeJsonAtomic(markerPath, { ...marker.value, projects: [...marker.value.projects, project].sort() });
+    changes.push(WORKSPACE_MARKER);
+  }
+  const projectPath = join17(workspaceRoot, "projects", project, "project.json");
+  const existing = existsSync15(projectPath) ? readJsonFile(projectPath) : ok(newProject(project));
+  if (!existing.ok) return existing;
+  if (!existsSync15(projectPath) || !existing.value.videos.includes(video)) {
+    writeJsonAtomic(projectPath, { ...existing.value, videos: [.../* @__PURE__ */ new Set([...existing.value.videos, video])].sort() });
+    changes.push(`projects/${project}/project.json`);
+  }
+  const directory = videoDirectory(workspaceRoot, videoId);
+  for (const relativePath of [REVIEW_PATHS.renders, REVIEW_PATHS.findings, REVIEW_PATHS.approvals]) {
+    const path = join17(directory, relativePath);
+    if (existsSync15(path)) continue;
+    mkdirSync6(path, { recursive: true });
+    changes.push(`projects/${project}/videos/${video}/${relativePath}/`);
+  }
+  return ok({ videoId, directory, changes });
+}
+function videoDirectory(workspaceRoot, videoId) {
+  const [project, video] = videoId.split("/");
+  return join17(workspaceRoot, "projects", project, "videos", video);
+}
+function parseVideoId(videoId) {
+  const [project, video, ...rest] = videoId.split("/");
+  if (!project || !video || rest.length > 0 || !SLUG_PATTERN.test(project) || !SLUG_PATTERN.test(video)) {
+    return fail("INVALID_ARGUMENT", `"${videoId}" is not a video id. Use <project>/<video>, both lowercase kebab-case, e.g. demo/teaser.`);
+  }
+  return ok({ project, video });
+}
+function newProject(project) {
+  return { schema_version: "1.0.0", id: project, title: project, reuse_scope: "private", dependency_policy: "unpinned", assets_manifest: "assets.json", videos: [] };
 }
 function subdirectories(directory) {
   if (!existsSync15(directory)) return [];
@@ -9929,18 +9983,18 @@ function checkWorkspaceDocuments(check, workspaceRoot) {
   for (const referencePath of listJsonFiles(join18(workspaceRoot, "references"))) check(referencePath, "reference");
   return listVideoDirectories(workspaceRoot).flatMap(({ directory }) => reviewDiagnostics(checkVideoReview(check, directory, workspaceRoot)));
 }
-function checkVideoReview(check, videoDirectory, workspaceRoot) {
+function checkVideoReview(check, videoDirectory2, workspaceRoot) {
   const review = { manifests: [], findings: [], approvals: [] };
-  for (const renderId of listRetainedRenderIds(videoDirectory)) {
-    const manifestPath = join18(videoDirectory, REVIEW_PATHS.renders, renderId, REVIEW_PATHS.manifestFile);
+  for (const renderId of listRetainedRenderIds(videoDirectory2)) {
+    const manifestPath = join18(videoDirectory2, REVIEW_PATHS.renders, renderId, REVIEW_PATHS.manifestFile);
     const manifest = check(manifestPath, "renderManifest");
     if (manifest) review.manifests.push({ manifest, sha256: sha256Hex(readFileSync10(manifestPath)), file: relative4(workspaceRoot, manifestPath) });
   }
-  for (const findingPath of listJsonFiles(join18(videoDirectory, REVIEW_PATHS.findings))) {
+  for (const findingPath of listJsonFiles(join18(videoDirectory2, REVIEW_PATHS.findings))) {
     const finding = check(findingPath, "finding");
     if (finding) review.findings.push({ finding, file: relative4(workspaceRoot, findingPath) });
   }
-  for (const approvalPath of listJsonFiles(join18(videoDirectory, REVIEW_PATHS.approvals))) {
+  for (const approvalPath of listJsonFiles(join18(videoDirectory2, REVIEW_PATHS.approvals))) {
     const approval = check(approvalPath, "approval");
     if (approval) review.approvals.push({ approval, file: relative4(workspaceRoot, approvalPath) });
   }
@@ -10100,7 +10154,7 @@ function hasHeading(markdown, heading) {
 }
 
 // packages/cli/src/workspace.ts
-import { existsSync as existsSync17, readFileSync as readFileSync11, writeFileSync as writeFileSync9 } from "node:fs";
+import { existsSync as existsSync17, readFileSync as readFileSync11, writeFileSync as writeFileSync10 } from "node:fs";
 import { join as join19 } from "node:path";
 var IGNORED_DIRECTORIES = ["output/", ".cache/", ".vcr/"];
 function ensureWorkspace(directory, harnessVersion) {
@@ -10108,7 +10162,7 @@ function ensureWorkspace(directory, harnessVersion) {
   const markerPath = join19(directory, WORKSPACE_MARKER);
   if (!existsSync17(markerPath)) {
     const marker = { schema_version: "1.0.0", harness_version: harnessVersion, projects: [] };
-    writeFileSync9(markerPath, `${JSON.stringify(marker, null, 2)}
+    writeFileSync10(markerPath, `${JSON.stringify(marker, null, 2)}
 `);
     changes.push(WORKSPACE_MARKER);
   }
@@ -10118,7 +10172,7 @@ function ensureWorkspace(directory, harnessVersion) {
   const missing = IGNORED_DIRECTORIES.filter((entry) => !presentLines.has(entry));
   if (missing.length > 0) {
     const separator = existing === "" || existing.endsWith("\n") ? "" : "\n";
-    writeFileSync9(gitignorePath, `${existing}${separator}${missing.join("\n")}
+    writeFileSync10(gitignorePath, `${existing}${separator}${missing.join("\n")}
 `);
     changes.push(".gitignore");
   }
@@ -10155,6 +10209,14 @@ ${formatGlobalUsage()}`);
     const target2 = roots.workspace ?? process.cwd();
     const outcome = ensureWorkspace(target2, harnessVersion.value);
     print(asJson ? outcome : outcome.changes.length > 0 ? `initialised ${target2}: wrote ${outcome.changes.join(", ")}` : `${target2} is already a workspace; nothing changed`);
+    return 0;
+  }
+  if (command === "video" && subcommand === "init" && target) {
+    const workspace = requireWorkspace(roots);
+    if (!workspace.ok) return failWith(workspace.error, asJson);
+    const outcome = ensureVideo(workspace.value, target);
+    if (!outcome.ok) return failWith(outcome.error, asJson, 2);
+    print(asJson ? outcome.value : outcome.value.changes.length > 0 ? `created ${outcome.value.videoId}: ${outcome.value.changes.join(", ")}` : `${outcome.value.videoId} already exists; nothing changed`);
     return 0;
   }
   if (command === "validate") {
@@ -10245,7 +10307,7 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
       return failWith({ code: "INVALID_ARGUMENT", message: "capture needs positive --width, --height and --fps" }, asJson, 2);
     }
     const sceneFile = resolve6(subcommand);
-    const outputDirectory = resolve6(text(options["out"]) ?? join20(dirname5(sceneFile), "output"));
+    const outputDirectory = resolve6(text(options["out"]) ?? join20(dirname6(sceneFile), "output"));
     const report = await runCapture(roots, { sceneFile, outputDirectory, verifyDeterminism: options["verify"] === true, ...dimensions });
     if (!report.ok) return failWith(report.error, asJson);
     const { frames, frames_per_second, shuffled_matches_sequential, mismatched_frames } = report.value;
@@ -10387,9 +10449,9 @@ function cliInvocation(roots) {
   return roots.isDevMode ? "pnpm vcr" : `node ${process.argv[1]}`;
 }
 function writeEnvironmentRecord(directory, record) {
-  mkdirSync5(directory, { recursive: true });
+  mkdirSync7(directory, { recursive: true });
   const outputPath = join20(directory, `${record.hostname}.json`);
-  writeFileSync10(outputPath, `${JSON.stringify(record, null, 2)}
+  writeFileSync11(outputPath, `${JSON.stringify(record, null, 2)}
 `);
   return outputPath;
 }

@@ -32,6 +32,14 @@ Make this directory (or --workspace) a VCR workspace; idempotent
 vcr workspace init
 ```
 
+## `vcr video init <project>/<video>`
+
+Register a video: the project in vcr.json and project.json, plus its review/ directories; idempotent
+
+```sh
+vcr video init demo/teaser
+```
+
 ## `vcr validate`
 
 Validate the workspace (in the harness repository: everything)
