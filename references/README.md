@@ -19,6 +19,10 @@ This file holds the conventions every pillar shares and decides which pillar own
 | Sound | `SOUND-` | [sound-design/](sound-design/README.md) | — | — | — | — |
 | Accessibility | `A11Y-` | research pending ([brief](research-prompts/accessibility.md)) | | | | |
 | Series brief | `BRIEF-` | [series-brief/](series-brief/README.md) | — (schema planned for Layer 1) | — | — | (read by every reviewer) |
+| Delivery | `DELIVERY-` | research pending ([brief](research-prompts/delivery.md)) | | | | |
+| Concept, script and storyboard | `STORY-` | research pending ([brief](research-prompts/story.md)) | | | | |
+| Data visualisation | `DATA-` | research pending ([brief](research-prompts/data-visualisation.md)) | | | | |
+| Adaptation and versioning | `ADAPT-` | research pending ([brief](research-prompts/adaptation.md)) | | | | |
 
 `references/ideas/` holds exploratory material and `references/cli.md` the CLI reference; neither is a pillar.
 
@@ -47,7 +51,7 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 | Stricter hold for key text and quiz windows | `PACE-READ-04`, `PACE-QUIZ-01` | Defined as at least `TYPO-HOLD`. |
 | Caption speed, duration and lines | `TYPO-CAPTION-*`, `caption_profiles` | `PACE-READ-02/03` are dropped. |
 | Speech is captioned at all | `PACE-SOUND-02` until accessibility arrives, then `A11Y-*` | |
-| Video range and chroma at delivery | `TYPO-RANGE`, `TYPO-CHROMA` | `ART-DEL-01/02/03` cite them. Move them to a delivery owner if one appears. |
+| Video range and chroma at delivery | `TYPO-RANGE`, `TYPO-CHROMA` | `ART-DEL-01/02/03` cite them. They move to `DELIVERY-*` when that research lands. |
 | Minimum stroke width, static | `ART-*` (one value; the KB disagrees with itself, 4 vs 6 px) | |
 | Shimmer and strobing of thin moving features | `MOTION-FPS-003` | `TYPO-RASTER-SCALE` keeps text scaled up or down. |
 | Movement inside a beat: lead mover, number of simultaneous movers | `MOTION-CHOR-003` | `PACE-BEAT-05` is dropped; its limit of 3 movers is folded into the motion rule. |

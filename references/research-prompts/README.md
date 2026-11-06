@@ -17,5 +17,9 @@ To run one, paste everything below the `---` line into the research agent. Save 
 | [art-director](art-director.md) | `ART-` | frame colour and composition checks, the art director agent | 4 |
 | [accessibility](accessibility.md) | `A11Y-` | flash, CVD and caption checks in `vcr lint` (checks, not an agent) | 4 |
 | [sound-design](sound-design.md) | `SOUND-` | loudness and sync checks; waits for the audio cue schema (#60) | 5 |
+| [delivery](delivery.md) | `DELIVERY-` | delivery QC on the encoded file (`ffprobe`, a simulated platform re-encode); takes over delivery rules that are scattered across other pillars today | 6 |
+| [story](story.md) | `STORY-` | plan checks before rendering (script length, beat coverage, mandatories mapped); briefing and storyboard skills | 6 |
+| [data-visualisation](data-visualisation.md) | `DATA-` | chart integrity checks from a scene's data and geometry; a data story skill | 7 |
+| [adaptation](adaptation.md) | `ADAPT-` | checks across a set of versions (every aspect, locale and cutdown); version parameters in the scene contract | 7 |
 
-The two prompts in row 1 can run in parallel; the series brief and the findings format shape every later pillar. Nothing in this directory ships in the plugin.
+The two prompts in row 1 can run in parallel; the series brief and the findings format shape every later pillar. Rows 1–5 have produced knowledge bases (accessibility is in progress); rows 6 and 7 form the second round, and every prompt in it can run in parallel. Nothing in this directory ships in the plugin.
