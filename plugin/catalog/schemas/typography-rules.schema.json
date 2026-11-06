@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vcr.local/schemas/typography-rules.schema.json",
+  "title": "VCR typography rules (references/typography/rules.json)",
+  "description": "Canonical typography thresholds. The KB §14 table is generated from `rules`; `vcr lint` reads `safe_zones`.",
+  "type": "object",
+  "required": ["schema_version", "kb_date", "rules", "safe_zones", "caption_profiles"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "schema_version": { "const": "1" },
+    "kb_date": { "type": "string", "format": "date", "description": "Date of the knowledge base these rules were extracted from." },
+    "rules": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/rule" } },
+    "safe_zones": { "type": "object", "minProperties": 1, "additionalProperties": { "$ref": "#/$defs/safeZone" } },
+    "caption_profiles": { "type": "object", "additionalProperties": { "$ref": "#/$defs/captionProfile" } }
+  },
+  "$defs": {
+    "verified": { "type": "boolean", "description": "False when a figure the rule relies on is unverified in the KB ledger; findings that rely on it carry the flag." },
+    "rule": {
+      "type": "object",
+      "required": ["id", "section", "check", "threshold", "tier", "applies_to", "source", "verified"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^TYPO-[A-Z]+(-[A-Z]+)*$" },
+        "section": { "type": "string", "pattern": "^1[45](\\.\\d+)?$", "description": "KB section that defines the rule. Only section 14 rules render into the §14 table." },
+        "check": { "type": "string", "minLength": 1 },
+        "threshold": { "type": "string", "minLength": 1, "description": "Human-readable threshold, rendered verbatim into the table. Prose-only rules point at their section." },
+        "tier": { "type": "string", "minLength": 1 },
+        "applies_to": { "type": "string", "minLength": 1 },
+        "source": { "type": "string", "minLength": 1 },
+        "verified": { "$ref": "#/$defs/verified" },
+        "values": { "type": "object", "description": "Machine-readable figures for checks that consume them." }
+      }
+    },
+    "safeZone": {
+      "type": "object",
+      "required": ["width", "height", "inset", "tier", "source", "verified"],
+      "additionalProperties": false,
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "inset": {
+          "type": "object",
+          "required": ["top", "right", "bottom", "left"],
+          "additionalProperties": false,
+          "properties": {
+            "top": { "type": "number", "minimum": 0 },
+            "right": { "type": "number", "minimum": 0 },
+            "bottom": { "type": "number", "minimum": 0 },
+            "left": { "type": "number", "minimum": 0 }
+          }
+        },
+        "tier": { "enum": ["standard", "platform", "heuristic"] },
+        "source": { "type": "string", "minLength": 1 },
+        "verified": { "$ref": "#/$defs/verified" }
+      }
+    },
+    "captionProfile": {
+      "type": "object",
+      "required": ["max_cps_adult", "max_cps_children", "max_characters_per_line", "max_lines_landscape", "max_lines_vertical", "min_duration_s", "max_duration_s", "min_gap_frames", "tier", "source", "verified", "unverified_fields"],
+      "additionalProperties": false,
+      "properties": {
+        "max_cps_adult": { "type": "number", "exclusiveMinimum": 0 },
+        "max_cps_children": { "type": "number", "exclusiveMinimum": 0 },
+        "max_characters_per_line": { "type": "integer", "minimum": 1 },
+        "max_lines_landscape": { "type": "integer", "minimum": 1 },
+        "max_lines_vertical": { "type": "integer", "minimum": 1 },
+        "min_duration_s": { "type": "number", "exclusiveMinimum": 0 },
+        "max_duration_s": { "type": "number", "exclusiveMinimum": 0 },
+        "min_gap_frames": { "type": "integer", "minimum": 0 },
+        "tier": { "enum": ["standard", "platform", "heuristic"] },
+        "source": { "type": "string", "minLength": 1 },
+        "verified": { "$ref": "#/$defs/verified" },
+        "unverified_fields": { "type": "array", "items": { "type": "string" }, "uniqueItems": true, "description": "Fields whose figures are unverified even though the profile as a whole is checked." }
+      }
+    }
+  }
+}

@@ -419,7 +419,7 @@ A typographic agent starts with the brief, medium, language, viewing size and de
 
 **What to generate from this file**
 - **Workflow skill** (`skills/typography/`, about 1.5k tokens): the creation process (§12), the critique process (§11), the rules for breaking rules (§7) and the lint list, trimmed to the task's medium. It cites rule IDs instead of copying numbers.
-- **Rules data file:** one entry per rule below, with `id`, `value`, `unit`, `applies_to`, `tier` and `source`, so numbers change in one place when platform UIs do.
+- **Rules data file:** [rules.json](rules.json), one entry per rule below plus the safe-zone presets and caption profiles, so numbers change in one place when platform UIs do. `pnpm validate` fails when this table drifts from it.
 - **Critique agent (optional):** a reviewer that hasn't seen how the work was made. Blocked on two things: confirming Codex plugins can carry agents (ADR 0003 requires both hosts), and the review layer existing to receive its findings.
 - Every generated file names the rule IDs it uses and the date of this file it was generated from.
 
@@ -439,8 +439,9 @@ A typographic agent starts with the brief, medium, language, viewing size and de
 
 **Check rules**
 
-These are proposed checks, not implemented validation. Select a profile by medium, language/script, text role, display size and client specification before applying them. A style guide is authoritative only within its own scope. Defaults produce review warnings, not automatic failures; contractual or accessibility gates require a declared target and suitable evidence. Do not autofix copy, quotations, code, identifiers or locale-specific punctuation without preserving their meaning. Record exceptions and their rationale. Use [rule-template.md](rule-template.md) when extracting a rule; keep thresholds here until a canonical rules data file exists.
+These are proposed checks, not implemented validation. Select a profile by medium, language/script, text role, display size and client specification before applying them. A style guide is authoritative only within its own scope. Defaults produce review warnings, not automatic failures; contractual or accessibility gates require a declared target and suitable evidence. Do not autofix copy, quotations, code, identifiers or locale-specific punctuation without preserving their meaning. Record exceptions and their rationale. Thresholds live in [rules.json](rules.json), which is canonical; the table below is generated from it by `vcr catalog build`, so edit the data, not the table. Use [rule-template.md](rule-template.md) when extracting a rule.
 
+<!-- typography-rules:start -->
 | ID | Check | Threshold | Tier | Applies to |
 |---|---|---|---|---|
 | `TYPO-MEASURE` | Average characters per rendered line, in text blocks of 3+ lines | 45–75; warn outside 40–90 | heuristic | Latin prose blocks; not captions, CJK or display titles |
@@ -460,6 +461,7 @@ These are proposed checks, not implemented validation. Select a profile by mediu
 | `TYPO-FLASH` | Flashes per second | conservative default: ≤3 in any one-second window; full WCAG 2.3.1 also permits flashes below general/red-flash thresholds | standard | motion |
 | `TYPO-PRINT` | Print preflight | K100 for text under ~18 pt; reverses ≥8–10 pt; hairlines ≥0.25–0.5 pt; 3–5 mm from trim; fonts embedded | heuristic (printer specs vary) | print handoff |
 | `TYPO-VISUAL` | Render at target sizes and inspect: phone-size frame, thumbnail, print at 100%; blur test | process, not a number | — | all |
+<!-- typography-rules:end -->
 
 §15 adds `TYPO-FONT-*`, `TYPO-CHROMA`, `TYPO-BITRATE`, `TYPO-RANGE`, `TYPO-RASTER-SCALE`, `TYPO-STAGGER-QUANT` and `TYPO-STILL-FORMAT`.
 
