@@ -23,9 +23,9 @@ This file holds the conventions every pillar shares and decides which pillar own
 | Concept, script and storyboard | `STORY-` | [story/](story/README.md) | — (beat sheet schema planned for Layer 1) | — | — | — |
 | Data visualisation | `DATA-` | [data-visualisation/](data-visualisation/README.md) | — | — | — | — |
 | Adaptation and versioning | `ADAPT-` | [adaptation/](adaptation/README.md) | — | — | — | — |
-| Image treatment and compositing | `FX-` | research pending ([brief](research-prompts/fx.md)) | | | | |
-| Lighting | `LIGHT-` | research pending ([brief](research-prompts/lighting.md)) | | | | |
-| Materials | `MAT-` | research pending ([brief](research-prompts/materials.md)) | | | | |
+| Image treatment and compositing | `FX-` | [fx/](fx/README.md) | — | — | — | — |
+| Lighting | `LIGHT-` | [lighting/](lighting/README.md) | — | — | — | — |
+| Materials | `MAT-` | [materials/](materials/README.md) | — | — | — | — |
 
 `references/ideas/` holds exploratory material and `references/cli.md` the CLI reference; neither is a pillar.
 
@@ -58,11 +58,18 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 | Stricter hold for key text and quiz windows | `PACE-READ-04`, `PACE-QUIZ-01` | Defined as at least `TYPO-HOLD`. |
 | Caption speed, duration and lines | `TYPO-CAPTION-*`, `caption_profiles` | `PACE-READ-02/03` and `A11Y-CAPTION-RATE` are dropped. |
 | Captions as access: presence, completeness, accuracy, sync, non-speech, speakers, lyrics, sidecars | `A11Y-CAPTION-*` | `PACE-SOUND-02` is dropped. `A11Y-CAPTION-PLACEMENT` cites `TYPO-SAFE` for platform UI. |
-| Text contrast | `TYPO-CONTRAST` | `A11Y-CONTRAST-TEXT` is dropped. Its 5th-percentile-over-lifetime method is how `TYPO-CONTRAST` is measured on moving backgrounds. |
+| Text contrast | `TYPO-CONTRAST` | `A11Y-CONTRAST-TEXT`, `FX-TEXT-CONTRAST`, `FX-KNOCKOUT-LEGIBLE` and `LIGHT-SWEEP-LEGIBILITY` are dropped. Its 5th-percentile-over-lifetime method is how `TYPO-CONTRAST` is measured on moving backgrounds. |
 | Non-text contrast, CVD distinguishability, colour as the only carrier | `A11Y-CONTRAST-GRAPHIC`, `A11Y-CVD-DISTINCT`, `A11Y-COLOR-ALONE` | Art and data visualisation cite them. `DATA-COLOUR-NOT-SOLE` is dropped. |
 | Number and date formatting by locale | `ADAPT-LOCALE-FORMAT` (`Intl`) | `DATA-THOUSANDS` is dropped. |
 | Data integrity: baselines, scales, labels matching data, object constancy, source lines on charts | `DATA-*` | `STORY-CLAIM-SOURCE` owns "every claim has a source" at plan time. `DATA-NO-OVERSHOOT` overrides `MOTION-EASE-005` for data marks. |
 | Delivery encode: range, chroma, bitrate, frame-rate contract, audio sample rate and bitrate, colour tags, stills format | `DELIVERY-*` | `TYPO-RANGE`, `TYPO-CHROMA`, `TYPO-BITRATE`, `TYPO-STILL-FORMAT`, `ART-DEL-*`, `SOUND-SAMPLE-RATE`, `SOUND-AAC-BITRATE` and `MOTION-FPS-001` move here. Each original pillar keeps the design consequence and cites the delivery number (see the delivery README). |
+| Banding, chroma subsampling and alpha masters in effects | `DELIVERY-BANDING`, `DELIVERY-RED-CHROMA`, `DELIVERY-MASTER-ALPHA` | `FX-BANDING`, `FX-CHROMA-SUBSAMPLE` and `FX-ALPHA-MASTER` are dropped. FX keeps grain and texture survival (`FX-GRAIN-SCALE`, `FX-TEXTURE-SURVIVAL`), measured with delivery's simulated re-encode. |
+| Pattern moiré against pixel and block pitch | `FX-MOIRE-RESAMPLE` | `MAT-MOIRE` cites it. Temporal aliasing of moving patterns stays `MOTION-FPS-002`. |
+| Renderer output: tone mapping and output colour space | `LIGHT-TONEMAP-*`, `LIGHT-OUTPUT-COLORSPACE` | `MAT-COLOR-MANAGEMENT-OUTPUT` and `MAT-TONEMAP-BRAND` are dropped. |
+| Texture colour spaces, normal convention, ORM packing | `MAT-TEXTURE-COLORSPACE`, `MAT-NORMAL-CONVENTION`, `MAT-ORM-PACKING` | The texture half of `LIGHT-OUTPUT-COLORSPACE` defers here. |
+| Brand colour on rendered 3D, after tone mapping | `LIGHT-BRAND-DELTAE` | `MAT-BRAND-DELTAE` is dropped. Its tolerance is the one art uses for palette conformance, read from the brief. |
+| Clipped highlights, emissives included | `LIGHT-CLIP-HIGHLIGHTS` | `MAT-EMISSIVE-CLIP` is dropped. |
+| Asset provenance and licences (music, HDRIs, textures, fonts) | One rule over the asset manifest (PRD Layer 1) | `SOUND-LICENSE-RECORD`, `LIGHT-HDRI-LICENCE` and `MAT-LICENCE-PROVENANCE` become pointers to it. |
 | Manifest, naming and checksums of delivered files | `DELIVERY-MANIFEST`, `-NAMING`, `-CHECKSUM`, extending the PRD §6.4 render manifest | `ADAPT-TRACE-MASTER` and `ADAPT-VERSION-ID` add version fields to the same manifest. |
 | Minimum stroke width, static | `ART-*` (one value; the KB disagrees with itself, 4 vs 6 px) | |
 | Shimmer and strobing of thin moving features | `MOTION-FPS-003` | `TYPO-RASTER-SCALE` keeps text scaled up or down. |
@@ -73,9 +80,9 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 | Narration rate and pauses | `SOUND-NARRATION-WPM` | `PACE-NARR-01/02` are dropped. |
 | Narration against visuals and on-screen text | `PACE-NARR-03`, `PACE-NARR-04` | `SOUND-NARRATION-VISUAL-LEAD` and `SOUND-NARRATION-TEXT-REDUNDANCY` are dropped. The visual-lead rule's 0–300 ms window is a candidate tightening of `PACE-NARR-03`. |
 | Mute test: the message survives sound off | `PACE-SOUND-01` | `SOUND-MUTE-LEGIBLE` is dropped. |
-| Loop seam continuity | Picture: `MOTION-RHY-004`. Audio: `SOUND-LOOP-SEAM`. | `PACE-LOOP-01` is dropped. `PACE-LOOP-02` (no fade or end card on a loop) stays with pacing. |
+| Loop seam continuity | Picture: `MOTION-RHY-004`. Audio: `SOUND-LOOP-SEAM`. | `PACE-LOOP-01`, `FX-LOOP-SEAM`, `LIGHT-LOOP-SEAM` and `MAT-LOOP-CLOSURE` are dropped. `PACE-LOOP-02` (no fade or end card on a loop) stays with pacing. |
 | Vestibular triggers, reduced motion, pause controls | `A11Y-MOTION-*` | `MOTION-A11Y-001/002/003/004` and `MOTION-CAM-002/003` are dropped. `MOTION-CAM-004/005` (oscillation, spin) move to `A11Y-MOTION-*`. Motion keeps `MOTION-CAM-001` (judder) and `MOTION-CAM-006` (stable anchor). |
-| Flashing and stripe patterns | `A11Y-FLASH-*`, `A11Y-PATTERN-STRIPES` | `MOTION-A11Y-005` is dropped. `TYPO-FLASH` cites them, and leaves the typography data once the `A11Y-*` data exists. The flash profile (WCAG, ITU/Ofcom or strict) is set in the brief. |
+| Flashing and stripe patterns | `A11Y-FLASH-*`, `A11Y-PATTERN-STRIPES` | `MOTION-A11Y-005`, `FX-FLASH-SAFE` and `LIGHT-FLICKER-SAFETY` are dropped. `TYPO-FLASH` cites them, and leaves the typography data once the `A11Y-*` data exists. The flash profile (WCAG, ITU/Ofcom or strict) is set in the brief. |
 | Template sameness | Each pillar for its own medium: `MOTION-SIG-*` and art §11 | `REVIEW-HOM-*` governs reviewers: fixes stay inside the brief's look. |
 | Duration targets, episode IDs, segment slots, series loudness | Values: `BRIEF-*`. Checks: `PACE-DUR-01`, `PACE-SERIES-*`, `SOUND-SERIES-CONSISTENCY`. | |
 | Conformance to brief tokens and budgets (easing, durations, palette, expressive moments, segment ranges) | The pillar that owns the craft check (`MOTION-*`, `ART-*`, `PACE-*`, `SOUND-*`), reading its value from the brief | The duplicating `BRIEF-*` rules are dropped (see the series brief README). |
@@ -84,7 +91,7 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 | Plan-stage checks (hook timing, reading time, word budget, mute test, CTA, mandatories mapped, loop seam, series slots) | The render-stage owner holds the threshold | `STORY-*` checks the beat sheet before rendering and cites that owner (see the story README). |
 | Variety across series episodes: hook type, mechanism, opening line | `STORY-SERIES-REPEAT` | `PACE-SERIES-03` is dropped. `BRIEF-SERIES-DISTINCT` stays as the render-level near-duplicate check. |
 | Single proposition | `BRIEF-PROPOSITION-SINGLE` | `STORY-SMP` is dropped. |
-| Determinism (identical output for the same input) | One generic check across picture and sound | `MOTION-SPR-001`, `SOUND-SYNTH-DETERMINISM` and `ADAPT-DETERMINISM` describe it for their own medium. `ADAPT-DETERMINISM` adds the GPU tolerance and the Chromium pin for `Intl`. |
+| Determinism (identical output for the same input) | One generic check across picture and sound | `MOTION-SPR-001`, `SOUND-SYNTH-DETERMINISM` and `ADAPT-DETERMINISM` describe it for their own medium. `FX-DETERMINISM`, `LIGHT-DETERMINISM` and `MAT-DETERMINISTIC-SHADER` are dropped. `FX-SEED-DECLARED`, `FX-NO-WALLCLOCK` and `LIGHT-SEED-FIXED` stay as authoring rules. `ADAPT-DETERMINISM` adds the GPU tolerance and the Chromium pin for `Intl`. |
 | Checks across a version set (safe zones, text fit, fonts, captions, mandatories, SFX, music, series tokens on every cell) | The owning pillar's check, run on every cell | `ADAPT-*` owns the matrix and running the checks across it, not a second threshold (see the adaptation README). |
 | Market rules for UK TV supers (hold, height) | A `uk-clearcast` market profile on `TYPO-HOLD` and `TYPO-SIZE` | `ADAPT-SUPER-HOLD-UK` and `ADAPT-SUPER-HEIGHT-UK` become that profile. |
 | Claim registry: sources, qualifiers, legal list per market | One registry in the brief | `STORY-CLAIM-SOURCE` reads it at plan time; `ADAPT-CLAIMS-MARKET` and `ADAPT-DISCLOSURE-*` read it across markets. |

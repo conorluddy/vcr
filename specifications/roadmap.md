@@ -8,7 +8,7 @@ Updated 2026-11-06.
 
 - **Layer 0 and plugin P0 and P1 are done.** The catalogue, the CLI and the plugin are installable on Claude Code and Codex.
 - **Typography has the whole pillar pipeline:** `rules.json`, `vcr lint`, the `typography` skill and the `typographer` agent.
-- **Twelve reference pillars exist in `references/`:** typography, art, motion, pacing, sound, accessibility, series brief, critique, story, delivery, adaptation and data visualisation. [ADR 0006](decisions/0006-creative-pillars-independent-of-tools.md) fixes how they turn into tools, and `references/README.md` holds the rule owners. Image treatment (`FX-`), lighting (`LIGHT-`) and materials (`MAT-`) are being researched.
+- **Fifteen reference pillars exist in `references/`:** typography, art, motion, pacing, sound, accessibility, series brief, critique, story, delivery, adaptation, data visualisation, image treatment, lighting and materials. [ADR 0006](decisions/0006-creative-pillars-independent-of-tools.md) fixes how they turn into tools, and `references/README.md` holds the rule owners.
 
 ## Sequencing principle
 
@@ -24,7 +24,7 @@ Build whatever unlocks the most later work first. Deterministic checks come befo
 
 ## Now
 
-1. **Land the round-three knowledge bases** (`FX-`, `LIGHT-`, `MAT-`) on the local docs branch as they arrive, then open one PR.
+1. **Round-three knowledge bases, done:** `FX-`, `LIGHT-` and `MAT-` are placed, with their rule owners settled. That makes fifteen pillars.
 2. **Ways in, done:**
    - #139 / #159: `references/INDEX.md`, `vcr rules info|list` and `vcr refs list|section`;
    - #140 / #156: the plugin ships every pillar's references.
