@@ -103,6 +103,13 @@ describe("the bundled plugin CLI outside the harness repository (P0/P1 exit evid
     expect(JSON.parse(stdout).diagnostics).toEqual([]);
   });
 
+  test("video init registers a video that then validates", async () => {
+    const { stdout } = await runFromScratch("video", "init", "demo/teaser", "--json");
+    expect(JSON.parse(stdout).changes).toContain("projects/demo/project.json");
+    const validation = await runFromScratch("validate", "--json");
+    expect(JSON.parse(validation.stdout).diagnostics).toEqual([]);
+  });
+
   test("doctor writes to the machine root, and --record is maintainer-only", async () => {
     await runFromScratch("doctor", "--json");
     expect(readdirSync(join(machineHome, "environment"))).toHaveLength(1);

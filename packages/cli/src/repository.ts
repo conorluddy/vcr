@@ -1,5 +1,5 @@
-import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 import { fail, ok, type Result } from "./result.types.js";
 
 // === PUBLIC API ===
@@ -38,4 +38,16 @@ export function listJsonFiles(directory: string): string[] {
     .filter((entry) => entry.endsWith(".json"))
     .map((entry) => join(directory, entry))
     .sort();
+}
+
+/** Writes through a temp file and a rename, so a reader never sees half a file (PRD §6.4 writes). */
+export function writeFileAtomic(filePath: string, content: string): void {
+  mkdirSync(dirname(filePath), { recursive: true });
+  const temporaryPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
+  writeFileSync(temporaryPath, content);
+  renameSync(temporaryPath, filePath);
+}
+
+export function writeJsonAtomic(filePath: string, value: unknown): void {
+  writeFileAtomic(filePath, `${JSON.stringify(value, null, 2)}\n`);
 }

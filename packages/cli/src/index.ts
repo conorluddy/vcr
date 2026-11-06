@@ -17,6 +17,7 @@ import { requireDevMode, requireWorkspace, resolveRoots, type Roots } from "./ro
 import { filterTools, findTool, formatExamplesForTool, formatToolCard, formatToolTable, loadExamples, loadTools, readToolGuide } from "./tools.js";
 import { hasErrors, validateRepository, validateWorkspace } from "./validate.js";
 import { ensureWorkspace } from "./workspace.js";
+import { ensureVideo } from "./video.js";
 
 
 // === ENTRY ===
@@ -55,6 +56,15 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     const target = roots.workspace ?? process.cwd();
     const outcome = ensureWorkspace(target, harnessVersion.value);
     print(asJson ? outcome : outcome.changes.length > 0 ? `initialised ${target}: wrote ${outcome.changes.join(", ")}` : `${target} is already a workspace; nothing changed`);
+    return 0;
+  }
+
+  if (command === "video" && subcommand === "init" && target) {
+    const workspace = requireWorkspace(roots);
+    if (!workspace.ok) return failWith(workspace.error, asJson);
+    const outcome = ensureVideo(workspace.value, target);
+    if (!outcome.ok) return failWith(outcome.error, asJson, 2);
+    print(asJson ? outcome.value : outcome.value.changes.length > 0 ? `created ${outcome.value.videoId}: ${outcome.value.changes.join(", ")}` : `${outcome.value.videoId} already exists; nothing changed`);
     return 0;
   }
 
