@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vcr.local/schemas/finding.schema.json",
+  "title": "VCR finding",
+  "description": "One note on one render, review/findings/F-NNNN.json (plugin PRD §6.4). Human notes need only the core fields; checks and reviewer agents add the reviewer fields and obey the severity caps (references/critique-methodology §2–3).",
+  "type": "object",
+  "required": ["schema_version", "id", "render_id", "scene_id", "frame", "scene_frame", "severity", "text", "author", "source", "status", "created_at"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "id": { "type": "string", "pattern": "^F-\\d{4,}$" },
+    "render_id": { "type": "string", "pattern": "^r-\\d{8}T\\d{6}-[0-9a-f]{7}$" },
+    "scene_id": { "type": "string", "minLength": 1 },
+    "frame": { "type": "integer", "minimum": 0, "description": "Canonical composition frame" },
+    "scene_frame": { "type": "integer", "minimum": 0, "description": "Derived: frame minus the scene's start_frame" },
+    "region": {
+      "type": "object",
+      "required": ["x", "y", "w", "h"],
+      "properties": {
+        "x": { "type": "number", "minimum": 0, "maximum": 1 },
+        "y": { "type": "number", "minimum": 0, "maximum": 1 },
+        "w": { "type": "number", "minimum": 0, "maximum": 1 },
+        "h": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "severity": { "enum": ["blocker", "major", "minor", "note"] },
+    "text": { "type": "string", "minLength": 1 },
+    "author": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": { "kind": { "enum": ["human", "agent"] }, "name": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "source": { "enum": ["review", "cli", "chat", "share"] },
+    "status": { "enum": ["open", "addressed", "resolved", "wontfix"] },
+    "created_at": { "type": "string", "format": "date-time" },
+    "resolution": {
+      "type": "object",
+      "description": "The agent's claimed fix, set when status becomes addressed",
+      "required": ["render_id", "note", "evidence"],
+      "properties": {
+        "render_id": { "type": "string", "pattern": "^r-\\d{8}T\\d{6}-[0-9a-f]{7}$" },
+        "note": { "type": "string" },
+        "evidence": { "type": "array", "items": { "type": "string" } },
+        "at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "closure": {
+      "type": "object",
+      "description": "The human decision that moved the finding to resolved or wontfix; only human channels write it",
+      "required": ["channel", "at"],
+      "properties": {
+        "channel": { "enum": ["review", "tty"] },
+        "at": { "type": "string", "format": "date-time" },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "frame_end": { "type": "integer", "minimum": 0, "description": "Inclusive; makes the finding a range" },
+    "selector": { "type": "string" },
+    "rule_id": { "type": "string", "pattern": "^[A-Z0-9]+(?:-[A-Z0-9]+)+$" },
+    "kind": { "enum": ["measured", "judged", "hybrid"] },
+    "severity_basis": { "enum": ["measured_rule", "brief_clause", "standard_rule", "platform_rule", "heuristic_rule", "taste"] },
+    "confidence": {
+      "type": "object",
+      "required": ["value", "basis"],
+      "properties": {
+        "value": { "type": "number", "minimum": 0, "maximum": 1 },
+        "basis": { "enum": ["deterministic", "multi_sample_agreement", "single_judgement", "inferred_from_stills"] }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "metric": { "type": "string" },
+        "value": {},
+        "threshold": {},
+        "artifacts": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "reviewer": {
+      "type": "object",
+      "required": ["agent"],
+      "properties": { "agent": { "type": "string" }, "model": { "type": "string" }, "rules_version": { "type": "string" } },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "description": "Severity cap: taste is at most a note",
+      "if": { "required": ["severity_basis"], "properties": { "severity_basis": { "const": "taste" } } },
+      "then": { "properties": { "severity": { "const": "note" } } }
+    },
+    {
+      "description": "Severity cap: a heuristic rule alone is at most major",
+      "if": { "required": ["severity_basis"], "properties": { "severity_basis": { "const": "heuristic_rule" } } },
+      "then": { "properties": { "severity": { "enum": ["major", "minor", "note"] } } }
+    },
+    {
+      "description": "A heuristic major needs an artifact a human can check",
+      "if": { "required": ["severity_basis", "severity"], "properties": { "severity_basis": { "const": "heuristic_rule" }, "severity": { "const": "major" } } },
+      "then": { "required": ["evidence"], "properties": { "evidence": { "required": ["artifacts"], "properties": { "artifacts": { "minItems": 1 } } } } }
+    },
+    {
+      "description": "A judged blocker below 0.8 confidence is escalated to the human, not filed as a blocker",
+      "if": { "required": ["kind", "severity"], "properties": { "kind": { "const": "judged" }, "severity": { "const": "blocker" } } },
+      "then": { "required": ["confidence"], "properties": { "confidence": { "properties": { "value": { "minimum": 0.8 } } } } }
+    },
+    {
+      "description": "An addressed finding carries the agent's claimed fix",
+      "if": { "properties": { "status": { "const": "addressed" } } },
+      "then": { "required": ["resolution"] }
+    }
+  ]
+}

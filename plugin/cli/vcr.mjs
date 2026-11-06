@@ -466,9 +466,9 @@ var require_codegen = __commonJS({
       }
     };
     var Throw = class extends Node {
-      constructor(error) {
+      constructor(error2) {
         super();
-        this.error = error;
+        this.error = error2;
       }
       render({ _n }) {
         return `throw ${this.error};` + _n;
@@ -705,9 +705,9 @@ var require_codegen = __commonJS({
       }
     };
     var Catch = class extends BlockNode {
-      constructor(error) {
+      constructor(error2) {
         super();
-        this.error = error;
+        this.error = error2;
       }
       render(opts) {
         return `catch(${this.error})` + super.render(opts);
@@ -898,9 +898,9 @@ var require_codegen = __commonJS({
         this._blockNode(node);
         this.code(tryBody);
         if (catchCode) {
-          const error = this.name("e");
-          this._currNode = node.catch = new Catch(error);
-          catchCode(error);
+          const error2 = this.name("e");
+          this._currNode = node.catch = new Catch(error2);
+          catchCode(error2);
         }
         if (finallyCode) {
           this._currNode = node.finally = new Finally();
@@ -909,8 +909,8 @@ var require_codegen = __commonJS({
         return this._endBlockNode(Catch, Finally);
       }
       // `throw` statement
-      throw(error) {
-        return this._leafNode(new Throw(error));
+      throw(error2) {
+        return this._leafNode(new Throw(error2));
       }
       // start self-balancing block
       block(body, nodeCount) {
@@ -1266,10 +1266,10 @@ var require_errors = __commonJS({
     exports.keyword$DataError = {
       message: ({ keyword, schemaType }) => schemaType ? (0, codegen_1.str)`"${keyword}" keyword must be ${schemaType} ($data)` : (0, codegen_1.str)`"${keyword}" keyword is invalid ($data)`
     };
-    function reportError(cxt, error = exports.keywordError, errorPaths, overrideAllErrors) {
+    function reportError(cxt, error2 = exports.keywordError, errorPaths, overrideAllErrors) {
       const { it } = cxt;
       const { gen, compositeRule, allErrors } = it;
-      const errObj = errorObjectCode(cxt, error, errorPaths);
+      const errObj = errorObjectCode(cxt, error2, errorPaths);
       if (overrideAllErrors !== null && overrideAllErrors !== void 0 ? overrideAllErrors : compositeRule || allErrors) {
         addError(gen, errObj);
       } else {
@@ -1277,10 +1277,10 @@ var require_errors = __commonJS({
       }
     }
     exports.reportError = reportError;
-    function reportExtraError(cxt, error = exports.keywordError, errorPaths) {
+    function reportExtraError(cxt, error2 = exports.keywordError, errorPaths) {
       const { it } = cxt;
       const { gen, compositeRule, allErrors } = it;
-      const errObj = errorObjectCode(cxt, error, errorPaths);
+      const errObj = errorObjectCode(cxt, error2, errorPaths);
       addError(gen, errObj);
       if (!(compositeRule || allErrors)) {
         returnErrors(it, names_1.default.vErrors);
@@ -1331,19 +1331,19 @@ var require_errors = __commonJS({
       schema: new codegen_1.Name("schema"),
       parentSchema: new codegen_1.Name("parentSchema")
     };
-    function errorObjectCode(cxt, error, errorPaths) {
+    function errorObjectCode(cxt, error2, errorPaths) {
       const { createErrors } = cxt.it;
       if (createErrors === false)
         return (0, codegen_1._)`{}`;
-      return errorObject(cxt, error, errorPaths);
+      return errorObject(cxt, error2, errorPaths);
     }
-    function errorObject(cxt, error, errorPaths = {}) {
+    function errorObject(cxt, error2, errorPaths = {}) {
       const { gen, it } = cxt;
       const keyValues = [
         errorInstancePath(it, errorPaths),
         errorSchemaPath(cxt, errorPaths)
       ];
-      extraErrorProps(cxt, error, keyValues);
+      extraErrorProps(cxt, error2, keyValues);
       return gen.object(...keyValues);
     }
     function errorInstancePath({ errorPath }, { instancePath }) {
@@ -5064,7 +5064,7 @@ var require_limitNumber = __commonJS({
       exclusiveMaximum: { okStr: "<", ok: ops.LT, fail: ops.GTE },
       exclusiveMinimum: { okStr: ">", ok: ops.GT, fail: ops.LTE }
     };
-    var error = {
+    var error2 = {
       message: ({ keyword, schemaCode }) => (0, codegen_1.str)`must be ${KWDs[keyword].okStr} ${schemaCode}`,
       params: ({ keyword, schemaCode }) => (0, codegen_1._)`{comparison: ${KWDs[keyword].okStr}, limit: ${schemaCode}}`
     };
@@ -5073,7 +5073,7 @@ var require_limitNumber = __commonJS({
       type: "number",
       schemaType: "number",
       $data: true,
-      error,
+      error: error2,
       code(cxt) {
         const { keyword, data, schemaCode } = cxt;
         cxt.fail$data((0, codegen_1._)`${data} ${KWDs[keyword].fail} ${schemaCode} || isNaN(${data})`);
@@ -5089,7 +5089,7 @@ var require_multipleOf = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
-    var error = {
+    var error2 = {
       message: ({ schemaCode }) => (0, codegen_1.str)`must be multiple of ${schemaCode}`,
       params: ({ schemaCode }) => (0, codegen_1._)`{multipleOf: ${schemaCode}}`
     };
@@ -5098,7 +5098,7 @@ var require_multipleOf = __commonJS({
       type: "number",
       schemaType: "number",
       $data: true,
-      error,
+      error: error2,
       code(cxt) {
         const { gen, data, schemaCode, it } = cxt;
         const prec = it.opts.multipleOfPrecision;
@@ -5145,7 +5145,7 @@ var require_limitLength = __commonJS({
     var codegen_1 = require_codegen();
     var util_1 = require_util();
     var ucs2length_1 = require_ucs2length();
-    var error = {
+    var error2 = {
       message({ keyword, schemaCode }) {
         const comp = keyword === "maxLength" ? "more" : "fewer";
         return (0, codegen_1.str)`must NOT have ${comp} than ${schemaCode} characters`;
@@ -5157,7 +5157,7 @@ var require_limitLength = __commonJS({
       type: "string",
       schemaType: "number",
       $data: true,
-      error,
+      error: error2,
       code(cxt) {
         const { keyword, data, schemaCode, it } = cxt;
         const op = keyword === "maxLength" ? codegen_1.operators.GT : codegen_1.operators.LT;
@@ -5177,7 +5177,7 @@ var require_pattern = __commonJS({
     var code_1 = require_code2();
     var util_1 = require_util();
     var codegen_1 = require_codegen();
-    var error = {
+    var error2 = {
       message: ({ schemaCode }) => (0, codegen_1.str)`must match pattern "${schemaCode}"`,
       params: ({ schemaCode }) => (0, codegen_1._)`{pattern: ${schemaCode}}`
     };
@@ -5186,7 +5186,7 @@ var require_pattern = __commonJS({
       type: "string",
       schemaType: "string",
       $data: true,
-      error,
+      error: error2,
       code(cxt) {
         const { gen, data, $data, schema, schemaCode, it } = cxt;
         const u = it.opts.unicodeRegExp ? "u" : "";
@@ -5212,7 +5212,7 @@ var require_limitProperties = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
-    var error = {
+    var error2 = {
       message({ keyword, schemaCode }) {
         const comp = keyword === "maxProperties" ? "more" : "fewer";
         return (0, codegen_1.str)`must NOT have ${comp} than ${schemaCode} properties`;
@@ -5224,7 +5224,7 @@ var require_limitProperties = __commonJS({
       type: "object",
       schemaType: "number",
       $data: true,
-      error,
+      error: error2,
       code(cxt) {
         const { keyword, data, schemaCode } = cxt;
         const op = keyword === "maxProperties" ? codegen_1.operators.GT : codegen_1.operators.LT;
@@ -5243,7 +5243,7 @@ var require_required = __commonJS({
     var code_1 = require_code2();
     var codegen_1 = require_codegen();
     var util_1 = require_util();
-    var error = {
+    var error2 = {
       message: ({ params: { missingProperty } }) => (0, codegen_1.str)`must have required property '${missingProperty}'`,
       params: ({ params: { missingProperty } }) => (0, codegen_1._)`{missingProperty: ${missingProperty}}`
     };
@@ -5252,7 +5252,7 @@ var require_required = __commonJS({
       type: "object",
       schemaType: "array",
       $data: true,
-      error,
+      error: error2,
       code(cxt) {
         const { gen, schema, schemaCode, data, $data, it } = cxt;
         const { opts } = it;
@@ -5323,7 +5323,7 @@ var require_limitItems = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
-    var error = {
+    var error2 = {
       message({ keyword, schemaCode }) {
         const comp = keyword === "maxItems" ? "more" : "fewer";
         return (0, codegen_1.str)`must NOT have ${comp} than ${schemaCode} items`;
@@ -5335,7 +5335,7 @@ var require_limitItems = __commonJS({
       type: "array",
       schemaType: "number",
       $data: true,
-      error,
+      error: error2,
       code(cxt) {
         const { keyword, data, schemaCode } = cxt;
         const op = keyword === "maxItems" ? codegen_1.operators.GT : codegen_1.operators.LT;
@@ -5366,7 +5366,7 @@ var require_uniqueItems = __commonJS({
     var codegen_1 = require_codegen();
     var util_1 = require_util();
     var equal_1 = require_equal();
-    var error = {
+    var error2 = {
       message: ({ params: { i, j } }) => (0, codegen_1.str)`must NOT have duplicate items (items ## ${j} and ${i} are identical)`,
       params: ({ params: { i, j } }) => (0, codegen_1._)`{i: ${i}, j: ${j}}`
     };
@@ -5375,7 +5375,7 @@ var require_uniqueItems = __commonJS({
       type: "array",
       schemaType: "boolean",
       $data: true,
-      error,
+      error: error2,
       code(cxt) {
         const { gen, data, $data, schema, parentSchema, schemaCode, it } = cxt;
         if (!$data && !schema)
@@ -5432,14 +5432,14 @@ var require_const = __commonJS({
     var codegen_1 = require_codegen();
     var util_1 = require_util();
     var equal_1 = require_equal();
-    var error = {
+    var error2 = {
       message: "must be equal to constant",
       params: ({ schemaCode }) => (0, codegen_1._)`{allowedValue: ${schemaCode}}`
     };
     var def = {
       keyword: "const",
       $data: true,
-      error,
+      error: error2,
       code(cxt) {
         const { gen, data, $data, schemaCode, schema } = cxt;
         if ($data || schema && typeof schema == "object") {
@@ -5461,7 +5461,7 @@ var require_enum = __commonJS({
     var codegen_1 = require_codegen();
     var util_1 = require_util();
     var equal_1 = require_equal();
-    var error = {
+    var error2 = {
       message: "must be equal to one of the allowed values",
       params: ({ schemaCode }) => (0, codegen_1._)`{allowedValues: ${schemaCode}}`
     };
@@ -5469,7 +5469,7 @@ var require_enum = __commonJS({
       keyword: "enum",
       schemaType: "array",
       $data: true,
-      error,
+      error: error2,
       code(cxt) {
         const { gen, data, $data, schema, schemaCode, it } = cxt;
         if (!$data && schema.length === 0)
@@ -5548,7 +5548,7 @@ var require_additionalItems = __commonJS({
     exports.validateAdditionalItems = void 0;
     var codegen_1 = require_codegen();
     var util_1 = require_util();
-    var error = {
+    var error2 = {
       message: ({ params: { len } }) => (0, codegen_1.str)`must NOT have more than ${len} items`,
       params: ({ params: { len } }) => (0, codegen_1._)`{limit: ${len}}`
     };
@@ -5557,7 +5557,7 @@ var require_additionalItems = __commonJS({
       type: "array",
       schemaType: ["boolean", "object"],
       before: "uniqueItems",
-      error,
+      error: error2,
       code(cxt) {
         const { parentSchema, it } = cxt;
         const { items } = parentSchema;
@@ -5676,7 +5676,7 @@ var require_items2020 = __commonJS({
     var util_1 = require_util();
     var code_1 = require_code2();
     var additionalItems_1 = require_additionalItems();
-    var error = {
+    var error2 = {
       message: ({ params: { len } }) => (0, codegen_1.str)`must NOT have more than ${len} items`,
       params: ({ params: { len } }) => (0, codegen_1._)`{limit: ${len}}`
     };
@@ -5685,7 +5685,7 @@ var require_items2020 = __commonJS({
       type: "array",
       schemaType: ["object", "boolean"],
       before: "uniqueItems",
-      error,
+      error: error2,
       code(cxt) {
         const { schema, parentSchema, it } = cxt;
         const { prefixItems } = parentSchema;
@@ -5709,7 +5709,7 @@ var require_contains = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
     var util_1 = require_util();
-    var error = {
+    var error2 = {
       message: ({ params: { min, max } }) => max === void 0 ? (0, codegen_1.str)`must contain at least ${min} valid item(s)` : (0, codegen_1.str)`must contain at least ${min} and no more than ${max} valid item(s)`,
       params: ({ params: { min, max } }) => max === void 0 ? (0, codegen_1._)`{minContains: ${min}}` : (0, codegen_1._)`{minContains: ${min}, maxContains: ${max}}`
     };
@@ -5719,7 +5719,7 @@ var require_contains = __commonJS({
       schemaType: ["object", "boolean"],
       before: "uniqueItems",
       trackErrors: true,
-      error,
+      error: error2,
       code(cxt) {
         const { gen, schema, parentSchema, data, it } = cxt;
         let min;
@@ -5897,7 +5897,7 @@ var require_propertyNames = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
     var util_1 = require_util();
-    var error = {
+    var error2 = {
       message: "property name must be valid",
       params: ({ params }) => (0, codegen_1._)`{propertyName: ${params.propertyName}}`
     };
@@ -5905,7 +5905,7 @@ var require_propertyNames = __commonJS({
       keyword: "propertyNames",
       type: "object",
       schemaType: ["object", "boolean"],
-      error,
+      error: error2,
       code(cxt) {
         const { gen, schema, data, it } = cxt;
         if ((0, util_1.alwaysValidSchema)(it, schema))
@@ -5942,7 +5942,7 @@ var require_additionalProperties = __commonJS({
     var codegen_1 = require_codegen();
     var names_1 = require_names();
     var util_1 = require_util();
-    var error = {
+    var error2 = {
       message: "must NOT have additional properties",
       params: ({ params }) => (0, codegen_1._)`{additionalProperty: ${params.additionalProperty}}`
     };
@@ -5952,7 +5952,7 @@ var require_additionalProperties = __commonJS({
       schemaType: ["boolean", "object"],
       allowUndefined: true,
       trackErrors: true,
-      error,
+      error: error2,
       code(cxt) {
         const { gen, schema, parentSchema, data, errsCount, it } = cxt;
         if (!errsCount)
@@ -6226,7 +6226,7 @@ var require_oneOf = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
     var util_1 = require_util();
-    var error = {
+    var error2 = {
       message: "must match exactly one schema in oneOf",
       params: ({ params }) => (0, codegen_1._)`{passingSchemas: ${params.passing}}`
     };
@@ -6234,7 +6234,7 @@ var require_oneOf = __commonJS({
       keyword: "oneOf",
       schemaType: "array",
       trackErrors: true,
-      error,
+      error: error2,
       code(cxt) {
         const { gen, schema, parentSchema, it } = cxt;
         if (!Array.isArray(schema))
@@ -6311,7 +6311,7 @@ var require_if = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
     var util_1 = require_util();
-    var error = {
+    var error2 = {
       message: ({ params }) => (0, codegen_1.str)`must match "${params.ifClause}" schema`,
       params: ({ params }) => (0, codegen_1._)`{failingKeyword: ${params.ifClause}}`
     };
@@ -6319,7 +6319,7 @@ var require_if = __commonJS({
       keyword: "if",
       schemaType: ["object", "boolean"],
       trackErrors: true,
-      error,
+      error: error2,
       code(cxt) {
         const { gen, parentSchema, it } = cxt;
         if (parentSchema.then === void 0 && parentSchema.else === void 0) {
@@ -6644,7 +6644,7 @@ var require_unevaluatedProperties = __commonJS({
     var codegen_1 = require_codegen();
     var util_1 = require_util();
     var names_1 = require_names();
-    var error = {
+    var error2 = {
       message: "must NOT have unevaluated properties",
       params: ({ params }) => (0, codegen_1._)`{unevaluatedProperty: ${params.unevaluatedProperty}}`
     };
@@ -6653,7 +6653,7 @@ var require_unevaluatedProperties = __commonJS({
       type: "object",
       schemaType: ["boolean", "object"],
       trackErrors: true,
-      error,
+      error: error2,
       code(cxt) {
         const { gen, schema, data, errsCount, it } = cxt;
         if (!errsCount)
@@ -6709,7 +6709,7 @@ var require_unevaluatedItems = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
     var util_1 = require_util();
-    var error = {
+    var error2 = {
       message: ({ params: { len } }) => (0, codegen_1.str)`must NOT have more than ${len} items`,
       params: ({ params: { len } }) => (0, codegen_1._)`{limit: ${len}}`
     };
@@ -6717,7 +6717,7 @@ var require_unevaluatedItems = __commonJS({
       keyword: "unevaluatedItems",
       type: "array",
       schemaType: ["boolean", "object"],
-      error,
+      error: error2,
       code(cxt) {
         const { gen, schema, data, it } = cxt;
         const items = it.items || 0;
@@ -6764,7 +6764,7 @@ var require_format = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
-    var error = {
+    var error2 = {
       message: ({ schemaCode }) => (0, codegen_1.str)`must match format "${schemaCode}"`,
       params: ({ schemaCode }) => (0, codegen_1._)`{format: ${schemaCode}}`
     };
@@ -6773,7 +6773,7 @@ var require_format = __commonJS({
       type: ["number", "string"],
       schemaType: "string",
       $data: true,
-      error,
+      error: error2,
       code(cxt, ruleType) {
         const { gen, data, $data, schema, schemaCode, it } = cxt;
         const { opts, errSchemaPath, schemaEnv, self } = it;
@@ -6934,7 +6934,7 @@ var require_discriminator = __commonJS({
     var compile_1 = require_compile();
     var ref_error_1 = require_ref_error();
     var util_1 = require_util();
-    var error = {
+    var error2 = {
       message: ({ params: { discrError, tagName } }) => discrError === types_1.DiscrError.Tag ? `tag "${tagName}" must be string` : `value of tag "${tagName}" must be in oneOf`,
       params: ({ params: { discrError, tag, tagName } }) => (0, codegen_1._)`{error: ${discrError}, tag: ${tagName}, tagValue: ${tag}}`
     };
@@ -6942,7 +6942,7 @@ var require_discriminator = __commonJS({
       keyword: "discriminator",
       type: "object",
       schemaType: "object",
-      error,
+      error: error2,
       code(cxt) {
         const { gen, data, schema, parentSchema, it } = cxt;
         const { oneOf } = parentSchema;
@@ -7973,7 +7973,7 @@ var require_limit = __commonJS({
       formatExclusiveMaximum: { okStr: "<", ok: ops.LT, fail: ops.GTE },
       formatExclusiveMinimum: { okStr: ">", ok: ops.GT, fail: ops.LTE }
     };
-    var error = {
+    var error2 = {
       message: ({ keyword, schemaCode }) => (0, codegen_1.str)`should be ${KWDs[keyword].okStr} ${schemaCode}`,
       params: ({ keyword, schemaCode }) => (0, codegen_1._)`{comparison: ${KWDs[keyword].okStr}, limit: ${schemaCode}}`
     };
@@ -7982,7 +7982,7 @@ var require_limit = __commonJS({
       type: "string",
       schemaType: "string",
       $data: true,
-      error,
+      error: error2,
       code(cxt) {
         const { gen, data, schemaCode, keyword, it } = cxt;
         const { opts, self } = it;
@@ -8074,7 +8074,7 @@ var require_dist = __commonJS({
 
 // packages/cli/src/index.ts
 import { mkdirSync as mkdirSync5, writeFileSync as writeFileSync10 } from "node:fs";
-import { dirname as dirname5, join as join18, resolve as resolve6 } from "node:path";
+import { dirname as dirname5, join as join20, resolve as resolve6 } from "node:path";
 
 // packages/cli/src/capture.ts
 import { execFileSync } from "node:child_process";
@@ -8149,7 +8149,7 @@ async function openScenePage(options) {
   const sceneUrl = served ? `${served.url}/${relative(root, resolve(options.sceneFile))}` : options.sceneUrl;
   const closeServer = async () => {
     if (served) await new Promise((resolve7, reject) => {
-      served.server.close((error) => error ? reject(error) : resolve7());
+      served.server.close((error2) => error2 ? reject(error2) : resolve7());
       served.server.closeAllConnections();
     });
   };
@@ -8176,9 +8176,9 @@ async function openScenePage(options) {
     const duration = await openScene(page, sceneUrl, options);
     log("capture.ready", { duration });
     return { page, cdp, duration, close };
-  } catch (error) {
+  } catch (error2) {
     await close();
-    throw error;
+    throw error2;
   }
 }
 async function settleFrame(page) {
@@ -8189,7 +8189,7 @@ function log(event, fields = {}) {
 `);
 }
 async function openScene(page, sceneUrl, options) {
-  page.on("pageerror", (error) => process.stderr.write(`${JSON.stringify({ event: "page.error", message: error.message })}
+  page.on("pageerror", (error2) => process.stderr.write(`${JSON.stringify({ event: "page.error", message: error2.message })}
 `));
   page.on("console", (message) => {
     if (message.type() === "error") process.stderr.write(`${JSON.stringify({ event: "page.console.error", text: message.text() })}
@@ -8257,8 +8257,8 @@ function serveDirectory(root) {
       response.writeHead(403).end();
       return;
     }
-    readFile(filePath, (error, data) => {
-      if (error) {
+    readFile(filePath, (error2, data) => {
+      if (error2) {
         response.writeHead(404).end();
         return;
       }
@@ -9785,28 +9785,99 @@ function findAncestorWithMarker(startDirectory) {
 // packages/cli/src/validate.ts
 var import__ = __toESM(require__(), 1);
 var import_ajv_formats = __toESM(require_dist(), 1);
-import { existsSync as existsSync14, readFileSync as readFileSync10, statSync as statSync6 } from "node:fs";
-import { join as join16, relative as relative4 } from "node:path";
+import { existsSync as existsSync16, readFileSync as readFileSync10, statSync as statSync7 } from "node:fs";
+import { join as join18, relative as relative4 } from "node:path";
+
+// packages/cli/src/review.ts
+import { createHash as createHash2 } from "node:crypto";
+import { existsSync as existsSync14, readdirSync as readdirSync6 } from "node:fs";
+import { join as join16 } from "node:path";
+var REVIEW_PATHS = {
+  directory: "review",
+  renders: "review/renders",
+  findings: "review/findings",
+  approvals: "review/approvals",
+  manifestFile: "manifest.json"
+};
+function sha256Hex(content) {
+  return createHash2("sha256").update(content).digest("hex");
+}
+function listRetainedRenderIds(videoDirectory) {
+  const rendersDirectory = join16(videoDirectory, REVIEW_PATHS.renders);
+  if (!existsSync14(rendersDirectory)) return [];
+  return readdirSync6(rendersDirectory).filter((entry) => existsSync14(join16(rendersDirectory, entry, REVIEW_PATHS.manifestFile))).sort();
+}
+function reviewDiagnostics(review) {
+  const diagnostics = [];
+  const manifestsById = new Map(review.manifests.map((entry) => [entry.manifest.render_id, entry]));
+  for (const { manifest, file } of review.manifests) {
+    if (!file.endsWith(`/${manifest.render_id}/${REVIEW_PATHS.manifestFile}`)) diagnostics.push(error(file, "/render_id", `render_id ${manifest.render_id} does not match its directory`, "Keep each manifest at review/renders/<render_id>/manifest.json."));
+  }
+  for (const { approval, file } of review.approvals) {
+    if (!file.endsWith(`/${approval.render_id}.json`)) diagnostics.push(error(file, "/render_id", `render_id ${approval.render_id} does not match the file name`, "Name the file review/approvals/<render_id>.json."));
+    const retained = manifestsById.get(approval.render_id);
+    if (!retained) diagnostics.push(error(file, "/render_id", `no retained render ${approval.render_id}`, "Approve a render whose manifest is in review/renders/; an approval of an unretained render is not evidence."));
+    else if (retained.sha256 !== approval.manifest_sha256) diagnostics.push(error(file, "/manifest_sha256", `manifest_sha256 does not match review/renders/${approval.render_id}/manifest.json`, "The render changed after the decision, or the approval was not written by `vcr review`; decide again through a human channel."));
+  }
+  for (const { finding, file } of review.findings) diagnostics.push(...findingDiagnostics(finding, file, manifestsById.get(finding.render_id)?.manifest));
+  return diagnostics;
+}
+function findingDiagnostics(finding, file, manifest) {
+  const diagnostics = [];
+  if (!file.endsWith(`/${finding.id}.json`)) diagnostics.push(error(file, "/id", `id ${finding.id} does not match the file name`, "Name the file review/findings/<id>.json."));
+  const isClosed = finding.status === "resolved" || finding.status === "wontfix";
+  if (isClosed && !finding.closure) diagnostics.push(error(file, "/status", `${finding.status} without a human channel`, "Only a human closes a finding, through the review page or `vcr review resolve` at a terminal; set status back to addressed."));
+  if (!isClosed && finding.closure) diagnostics.push(error(file, "/closure", `closure recorded but status is ${finding.status}`, "Remove closure, or set the status the human chose."));
+  if (finding.frame_end !== void 0 && finding.frame_end < finding.frame) diagnostics.push(error(file, "/frame_end", `frame_end ${finding.frame_end} is before frame ${finding.frame}`, "frame_end is inclusive and must be at or after frame."));
+  if (!manifest) {
+    diagnostics.push(error(file, "/render_id", `no retained render ${finding.render_id}`, "Point the finding at a render in review/renders/."));
+    return diagnostics;
+  }
+  const scene = manifest.scenes.find((candidate) => candidate.id === finding.scene_id);
+  if (!scene) diagnostics.push(error(file, "/scene_id", `scene ${finding.scene_id} is not in render ${finding.render_id}`, `Use one of: ${manifest.scenes.map((candidate) => candidate.id).join(", ")}.`));
+  else if (finding.frame < scene.start_frame || finding.frame > scene.end_frame) diagnostics.push(error(file, "/frame", `frame ${finding.frame} is outside scene ${scene.id} (${scene.start_frame}\u2013${scene.end_frame})`, "frame is the composition frame; check the scene."));
+  else if (finding.scene_frame !== finding.frame - scene.start_frame) diagnostics.push(error(file, "/scene_frame", `scene_frame ${finding.scene_frame} should be ${finding.frame - scene.start_frame}`, "scene_frame is derived from the manifest; let `vcr findings add` compute it."));
+  return diagnostics;
+}
+function error(file, path, message, suggestion) {
+  return { severity: "error", file, path, message, suggestion };
+}
+
+// packages/cli/src/video.ts
+import { existsSync as existsSync15, readdirSync as readdirSync7, statSync as statSync6 } from "node:fs";
+import { join as join17 } from "node:path";
+function listVideoDirectories(workspaceRoot) {
+  const projectsRoot = join17(workspaceRoot, "projects");
+  return subdirectories(projectsRoot).flatMap(
+    (project) => subdirectories(join17(projectsRoot, project, "videos")).map((video) => ({ videoId: `${project}/${video}`, directory: join17(projectsRoot, project, "videos", video) }))
+  );
+}
+function subdirectories(directory) {
+  if (!existsSync15(directory)) return [];
+  return readdirSync7(directory).filter((entry) => !entry.startsWith(".") && statSync6(join17(directory, entry)).isDirectory()).sort();
+}
+
+// packages/cli/src/validate.ts
 var BUDGET_BYTES = { indexMarkdown: 16 * 1024, skill: 12 * 1024 };
 var EXACT_EVIDENCE_FROM = "2026-11-05";
 var CARD_REQUIRED_TIERS = /* @__PURE__ */ new Set(["core", "catalogued"]);
 var CARD_MISSING_SEVERITY = "error";
 function validateRepository(repositoryRoot) {
   const { check, diagnostics, report } = createChecker(loadSchemas(repositoryRoot), repositoryRoot);
-  const vocabulary = readJsonFile(join16(repositoryRoot, "catalog/capabilities/vocabulary.json"));
+  const vocabulary = readJsonFile(join18(repositoryRoot, "catalog/capabilities/vocabulary.json"));
   const knownCapabilities = new Set(vocabulary.ok ? vocabulary.value.capabilities : []);
   if (!vocabulary.ok) diagnostics.push({ severity: "error", file: "catalog/capabilities/vocabulary.json", path: "", message: vocabulary.error.message });
   const tools = /* @__PURE__ */ new Map();
   let validToolRecords = true;
-  for (const recordPath of listJsonFiles(join16(repositoryRoot, "catalog/tools"))) {
+  for (const recordPath of listJsonFiles(join18(repositoryRoot, "catalog/tools"))) {
     const record = check(recordPath, "toolRecord");
     if (record?.id) tools.set(record.id, { record, file: relative4(repositoryRoot, recordPath) });
     else validToolRecords = false;
   }
   const examples = /* @__PURE__ */ new Map();
-  for (const manifestPath of listFilesNamed(join16(repositoryRoot, "examples"), "example.json")) {
+  for (const manifestPath of listFilesNamed(join18(repositoryRoot, "examples"), "example.json")) {
     const manifest = check(manifestPath, "example");
-    if (manifest?.id) examples.set(manifest.id, { manifest: { ...manifest, directory: relative4(repositoryRoot, join16(manifestPath, "..")) }, file: relative4(repositoryRoot, manifestPath) });
+    if (manifest?.id) examples.set(manifest.id, { manifest: { ...manifest, directory: relative4(repositoryRoot, join18(manifestPath, "..")) }, file: relative4(repositoryRoot, manifestPath) });
   }
   for (const { record, file } of tools.values()) {
     diagnostics.push(...capabilityDiagnostics(record, knownCapabilities, file));
@@ -9814,20 +9885,20 @@ function validateRepository(repositoryRoot) {
     diagnostics.push(...cardDiagnostics(record, file));
   }
   for (const { manifest, file } of examples.values()) diagnostics.push(...exampleDiagnostics(manifest, file, tools, repositoryRoot));
-  check(join16(repositoryRoot, "catalog/tools.json"), "tool");
+  check(join18(repositoryRoot, "catalog/tools.json"), "tool");
   if (validToolRecords) diagnostics.push(...indexFreshnessDiagnostics(repositoryRoot));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/INDEX.md", BUDGET_BYTES.indexMarkdown));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/CANDIDATES.md", BUDGET_BYTES.indexMarkdown));
-  const typographyRulesPath = join16(repositoryRoot, TYPOGRAPHY_RULES_PATH);
-  if (existsSync14(typographyRulesPath) && check(typographyRulesPath, "typographyRules")) diagnostics.push(...typographyRuleDiagnostics(repositoryRoot));
+  const typographyRulesPath = join18(repositoryRoot, TYPOGRAPHY_RULES_PATH);
+  if (existsSync16(typographyRulesPath) && check(typographyRulesPath, "typographyRules")) diagnostics.push(...typographyRuleDiagnostics(repositoryRoot));
   diagnostics.push(...referencesIndexDiagnostics(repositoryRoot));
-  checkWorkspaceDocuments(check, repositoryRoot);
-  for (const environmentPath of listJsonFiles(join16(repositoryRoot, "environment"))) check(environmentPath, "environment");
+  diagnostics.push(...checkWorkspaceDocuments(check, repositoryRoot));
+  for (const environmentPath of listJsonFiles(join18(repositoryRoot, "environment"))) check(environmentPath, "environment");
   return report();
 }
 function validateWorkspace(harnessRoot, workspaceRoot) {
-  const { check, report } = createChecker(loadSchemas(harnessRoot), workspaceRoot);
-  checkWorkspaceDocuments(check, workspaceRoot);
+  const { check, diagnostics, report } = createChecker(loadSchemas(harnessRoot), workspaceRoot);
+  diagnostics.push(...checkWorkspaceDocuments(check, workspaceRoot));
   return report();
 }
 function hasErrors(report) {
@@ -9852,16 +9923,34 @@ function createChecker(schemas, displayRoot) {
   return { check, diagnostics, report: () => ({ filesChecked, diagnostics }) };
 }
 function checkWorkspaceDocuments(check, workspaceRoot) {
-  const markerPath = join16(workspaceRoot, WORKSPACE_MARKER);
-  if (existsSync14(markerPath)) check(markerPath, "workspace");
-  for (const projectPath of listFilesNamed(join16(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
-  for (const referencePath of listJsonFiles(join16(workspaceRoot, "references"))) check(referencePath, "reference");
+  const markerPath = join18(workspaceRoot, WORKSPACE_MARKER);
+  if (existsSync16(markerPath)) check(markerPath, "workspace");
+  for (const projectPath of listFilesNamed(join18(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
+  for (const referencePath of listJsonFiles(join18(workspaceRoot, "references"))) check(referencePath, "reference");
+  return listVideoDirectories(workspaceRoot).flatMap(({ directory }) => reviewDiagnostics(checkVideoReview(check, directory, workspaceRoot)));
+}
+function checkVideoReview(check, videoDirectory, workspaceRoot) {
+  const review = { manifests: [], findings: [], approvals: [] };
+  for (const renderId of listRetainedRenderIds(videoDirectory)) {
+    const manifestPath = join18(videoDirectory, REVIEW_PATHS.renders, renderId, REVIEW_PATHS.manifestFile);
+    const manifest = check(manifestPath, "renderManifest");
+    if (manifest) review.manifests.push({ manifest, sha256: sha256Hex(readFileSync10(manifestPath)), file: relative4(workspaceRoot, manifestPath) });
+  }
+  for (const findingPath of listJsonFiles(join18(videoDirectory, REVIEW_PATHS.findings))) {
+    const finding = check(findingPath, "finding");
+    if (finding) review.findings.push({ finding, file: relative4(workspaceRoot, findingPath) });
+  }
+  for (const approvalPath of listJsonFiles(join18(videoDirectory, REVIEW_PATHS.approvals))) {
+    const approval = check(approvalPath, "approval");
+    if (approval) review.approvals.push({ approval, file: relative4(workspaceRoot, approvalPath) });
+  }
+  return review;
 }
 function loadSchemas(repositoryRoot) {
   const ajv = new import__.Ajv2020({ allErrors: true, strict: false });
   import_ajv_formats.default.default(ajv);
   const load = (name) => {
-    const schema = readJsonFile(join16(repositoryRoot, `catalog/schemas/${name}.schema.json`));
+    const schema = readJsonFile(join18(repositoryRoot, `catalog/schemas/${name}.schema.json`));
     if (!schema.ok) throw new Error(schema.error.message);
     return schema.value;
   };
@@ -9875,7 +9964,10 @@ function loadSchemas(repositoryRoot) {
     reference: ajv.compile(load("reference")),
     environment: ajv.compile(load("environment")),
     workspace: ajv.compile(load("workspace")),
-    typographyRules: ajv.compile(load("typography-rules"))
+    typographyRules: ajv.compile(load("typography-rules")),
+    renderManifest: ajv.compile(load("render-manifest")),
+    finding: ajv.compile(load("finding")),
+    approval: ajv.compile(load("approval"))
   };
 }
 function indexFreshnessDiagnostics(repositoryRoot) {
@@ -9884,20 +9976,20 @@ function indexFreshnessDiagnostics(repositoryRoot) {
   return outcome.value.staleFiles.map((file) => ({ severity: "error", file, path: "", message: "index is stale", suggestion: "Run `pnpm vcr catalog build` and commit the result." }));
 }
 function budgetDiagnostics(repositoryRoot, relativePath, maxBytes) {
-  const absolutePath = join16(repositoryRoot, relativePath);
-  if (!existsSync14(absolutePath)) return [];
-  const size = statSync6(absolutePath).size;
+  const absolutePath = join18(repositoryRoot, relativePath);
+  if (!existsSync16(absolutePath)) return [];
+  const size = statSync7(absolutePath).size;
   if (size <= maxBytes) return [];
   return [{ severity: "error", file: relativePath, path: "", message: `${size} bytes exceeds the ${maxBytes} byte budget for a tier read whole`, suggestion: "Shorten one-liners, or move detail to the next tier down." }];
 }
 function schemaDiagnostics(validator, document2, file) {
   if (validator(document2)) return unknownFieldDiagnostics(validator.schema, document2, file);
-  return (validator.errors ?? []).map((error) => ({
+  return (validator.errors ?? []).map((error2) => ({
     severity: "error",
     file,
-    path: error.instancePath || "/",
-    message: error.message ?? "schema violation",
-    suggestion: suggestionFor(error.keyword, error.params)
+    path: error2.instancePath || "/",
+    message: error2.message ?? "schema violation",
+    suggestion: suggestionFor(error2.keyword, error2.params)
   }));
 }
 function suggestionFor(keyword, params) {
@@ -9926,7 +10018,7 @@ function scopeMatchDiagnostics(evidence, exampleId, path, file, isNew, repositor
   if (evidence.command && !evidence.command.startsWith(exampleDirectory)) {
     diagnostics.push({ severity: "error", file, path: `${path}/command`, message: `command "${evidence.command}" does not run the cited example ${exampleDirectory}`, suggestion: "Cite the example whose run produced this result, or record the command under it." });
   }
-  const hasRetainedOutputs = existsSync14(join16(repositoryRoot, exampleDirectory, "expected"));
+  const hasRetainedOutputs = existsSync16(join18(repositoryRoot, exampleDirectory, "expected"));
   if (!hasRetainedOutputs && !/fixture-reported/i.test(evidence.scope ?? "")) {
     diagnostics.push({ severity: isNew ? "error" : "warning", file, path: `${path}/scope`, message: `${exampleDirectory} keeps no expected/ outputs, but the scope does not say the claim is fixture-reported`, suggestion: 'Say "Fixture-reported" in the scope, or retain the outputs under expected/ and diff them in run.sh.' });
   }
@@ -9934,51 +10026,51 @@ function scopeMatchDiagnostics(evidence, exampleId, path, file, isNew, repositor
 }
 function toolReferenceDiagnostics(record, file, tools, examples, repositoryRoot) {
   const diagnostics = [];
-  const error = (path, message, suggestion) => diagnostics.push({ severity: "error", file, path, message, suggestion });
+  const error2 = (path, message, suggestion) => diagnostics.push({ severity: "error", file, path, message, suggestion });
   for (const neighbour of record.pairs_with ?? []) {
-    if (!tools.has(neighbour)) error("/pairs_with", `"${neighbour}" is not a catalogued tool id`, "Use an id from catalog/tools/ or drop it.");
+    if (!tools.has(neighbour)) error2("/pairs_with", `"${neighbour}" is not a catalogued tool id`, "Use an id from catalog/tools/ or drop it.");
   }
   for (const exampleId of record.examples ?? []) {
     const example = examples.get(exampleId);
-    if (!example) error("/examples", `example "${exampleId}" has no examples/<dir>/example.json`, "Add the manifest or remove the reference.");
-    else if (!example.manifest.tools.includes(record.id)) error("/examples", `example "${exampleId}" does not list ${record.id} in its tools`, "Add the tool to the example manifest so the link is two-way.");
+    if (!example) error2("/examples", `example "${exampleId}" has no examples/<dir>/example.json`, "Add the manifest or remove the reference.");
+    else if (!example.manifest.tools.includes(record.id)) error2("/examples", `example "${exampleId}" does not list ${record.id} in its tools`, "Add the tool to the example manifest so the link is two-way.");
   }
   const evidenceEntries = record.validation.evidence ?? [];
   for (const [index, evidence] of evidenceEntries.entries()) {
     const scope = versionScope(evidence.version);
     const isNew = typeof evidence.date === "string" && evidence.date >= EXACT_EVIDENCE_FROM;
     if (isNew && (scope === "inexact" || scope === "unknown")) {
-      error(`/validation/evidence/${index}/version`, `evidence from ${EXACT_EVIDENCE_FROM} on must record the exact version that ran, not "${evidence.version ?? ""}"`, "Record the version the run reported, e.g. 8.0.1 or Chromium 156.0.8078.4; use n/a only for platform features.");
+      error2(`/validation/evidence/${index}/version`, `evidence from ${EXACT_EVIDENCE_FROM} on must record the exact version that ran, not "${evidence.version ?? ""}"`, "Record the version the run reported, e.g. 8.0.1 or Chromium 156.0.8078.4; use n/a only for platform features.");
     }
     if (!isNew && index === evidenceEntries.length - 1 && (scope === "inexact" || scope === "unknown")) {
       diagnostics.push({ severity: "warning", file, path: `/validation/evidence/${index}/version`, message: scope === "inexact" ? `evidence version "${evidence.version ?? ""}" is a range, not the version that ran` : `evidence version "${evidence.version ?? ""}" does not identify what ran`, suggestion: "Leave this entry as is; when re-validating, append a new evidence entry with the exact version and a scope (see catalog/FIXTURE-EVIDENCE-TEMPLATE.md)." });
     }
     if (!(typeof evidence.scope === "string" && evidence.scope.trim())) {
-      error(`/validation/evidence/${index}/scope`, "every evidence entry must set scope", "Say in one line what the run proves and what it does not; for an old entry, start it `Backfilled <YYYY-MM-DD>:` (catalog/FIXTURE-EVIDENCE-TEMPLATE.md).");
+      error2(`/validation/evidence/${index}/scope`, "every evidence entry must set scope", "Say in one line what the run proves and what it does not; for an old entry, start it `Backfilled <YYYY-MM-DD>:` (catalog/FIXTURE-EVIDENCE-TEMPLATE.md).");
     }
     if (!evidence.example) continue;
     const exampleId = evidence.example.replace(/^examples\//, "");
     const example = examples.get(exampleId);
-    if (!example) error(`/validation/evidence/${index}/example`, `evidence example "${evidence.example}" does not exist`, "Point at an existing example id or examples/<id> path.");
-    else if (!example.manifest.tools.includes(record.id)) error(`/validation/evidence/${index}/example`, `evidence example "${evidence.example}" does not list ${record.id}`, "Use an example that demonstrates this tool.");
+    if (!example) error2(`/validation/evidence/${index}/example`, `evidence example "${evidence.example}" does not exist`, "Point at an existing example id or examples/<id> path.");
+    else if (!example.manifest.tools.includes(record.id)) error2(`/validation/evidence/${index}/example`, `evidence example "${evidence.example}" does not list ${record.id}`, "Use an example that demonstrates this tool.");
     else diagnostics.push(...scopeMatchDiagnostics(evidence, exampleId, `/validation/evidence/${index}`, file, isNew, repositoryRoot));
   }
   let skillText = null;
   if (record.skill) {
-    const skillPath = join16(repositoryRoot, record.skill);
-    if (!existsSync14(skillPath)) error("/skill", `${record.skill} does not exist`, "Write the SKILL.md or remove the reference.");
+    const skillPath = join18(repositoryRoot, record.skill);
+    if (!existsSync16(skillPath)) error2("/skill", `${record.skill} does not exist`, "Write the SKILL.md or remove the reference.");
     else {
       skillText = readFileSync10(skillPath, "utf8");
       diagnostics.push(...budgetDiagnostics(repositoryRoot, record.skill, BUDGET_BYTES.skill));
     }
   }
   if ((record.documentation_status === "skill-written" || record.documentation_status === "skill-verified") && !record.skill) {
-    error("/skill", `documentation_status is ${String(record.documentation_status)} but no skill path is set`, "Set skill to skills/<id>/SKILL.md.");
+    error2("/skill", `documentation_status is ${String(record.documentation_status)} but no skill path is set`, "Set skill to skills/<id>/SKILL.md.");
   }
   for (const facet of record.facets ?? []) {
-    if (record.tier !== "core") error("/facets", "facets are reserved for the core tier", "Remove facets or promote the tool.");
-    if (facet.skill_section && skillText && !hasHeading(skillText, facet.skill_section)) error(`/facets/${facet.id}`, `no heading "${facet.skill_section}" in ${record.skill ?? "the skill"}`, "Match the heading text exactly or add the section.");
-    if (facet.example && !examples.has(facet.example)) error(`/facets/${facet.id}`, `example "${facet.example}" does not exist`, "Point at an examples/<dir>/example.json id.");
+    if (record.tier !== "core") error2("/facets", "facets are reserved for the core tier", "Remove facets or promote the tool.");
+    if (facet.skill_section && skillText && !hasHeading(skillText, facet.skill_section)) error2(`/facets/${facet.id}`, `no heading "${facet.skill_section}" in ${record.skill ?? "the skill"}`, "Match the heading text exactly or add the section.");
+    if (facet.example && !examples.has(facet.example)) error2(`/facets/${facet.id}`, `example "${facet.example}" does not exist`, "Point at an examples/<dir>/example.json id.");
   }
   return diagnostics;
 }
@@ -9990,17 +10082,17 @@ function cardDiagnostics(record, file) {
 }
 function exampleDiagnostics(manifest, file, tools, repositoryRoot) {
   const diagnostics = [];
-  const error = (path, message, suggestion) => diagnostics.push({ severity: "error", file, path, message, suggestion });
+  const error2 = (path, message, suggestion) => diagnostics.push({ severity: "error", file, path, message, suggestion });
   const expectedDirectory = `examples/${manifest.id}`;
-  if (manifest.directory !== expectedDirectory) error("/id", `manifest lives in ${manifest.directory} but its id says ${expectedDirectory}`, "Rename the directory or the id.");
+  if (manifest.directory !== expectedDirectory) error2("/id", `manifest lives in ${manifest.directory} but its id says ${expectedDirectory}`, "Rename the directory or the id.");
   const runScript = manifest.run.replace(/^\.\//, "").split(" ")[0] ?? "";
-  if (!existsSync14(join16(repositoryRoot, manifest.directory, runScript))) error("/run", `${runScript} not found in ${manifest.directory}`, "Point run at the reproduction script.");
+  if (!existsSync16(join18(repositoryRoot, manifest.directory, runScript))) error2("/run", `${runScript} not found in ${manifest.directory}`, "Point run at the reproduction script.");
   for (const toolId of manifest.tools) {
     const tool = tools.get(toolId);
-    if (!tool) error("/tools", `"${toolId}" is not a catalogued tool id`, "Use an id from catalog/tools/.");
-    else if (!(tool.record.examples ?? []).includes(manifest.id)) error("/tools", `${toolId} does not list this example in its examples`, `Add "${manifest.id}" to catalog/tools/${toolId}.json examples.`);
+    if (!tool) error2("/tools", `"${toolId}" is not a catalogued tool id`, "Use an id from catalog/tools/.");
+    else if (!(tool.record.examples ?? []).includes(manifest.id)) error2("/tools", `${toolId} does not list this example in its examples`, `Add "${manifest.id}" to catalog/tools/${toolId}.json examples.`);
   }
-  if (manifest.report && !existsSync14(join16(repositoryRoot, manifest.report))) error("/report", `${manifest.report} does not exist`, "Fix the path or remove it.");
+  if (manifest.report && !existsSync16(join18(repositoryRoot, manifest.report))) error2("/report", `${manifest.report} does not exist`, "Fix the path or remove it.");
   return diagnostics;
 }
 function hasHeading(markdown, heading) {
@@ -10008,20 +10100,20 @@ function hasHeading(markdown, heading) {
 }
 
 // packages/cli/src/workspace.ts
-import { existsSync as existsSync15, readFileSync as readFileSync11, writeFileSync as writeFileSync9 } from "node:fs";
-import { join as join17 } from "node:path";
+import { existsSync as existsSync17, readFileSync as readFileSync11, writeFileSync as writeFileSync9 } from "node:fs";
+import { join as join19 } from "node:path";
 var IGNORED_DIRECTORIES = ["output/", ".cache/", ".vcr/"];
 function ensureWorkspace(directory, harnessVersion) {
   const changes = [];
-  const markerPath = join17(directory, WORKSPACE_MARKER);
-  if (!existsSync15(markerPath)) {
+  const markerPath = join19(directory, WORKSPACE_MARKER);
+  if (!existsSync17(markerPath)) {
     const marker = { schema_version: "1.0.0", harness_version: harnessVersion, projects: [] };
     writeFileSync9(markerPath, `${JSON.stringify(marker, null, 2)}
 `);
     changes.push(WORKSPACE_MARKER);
   }
-  const gitignorePath = join17(directory, ".gitignore");
-  const existing = existsSync15(gitignorePath) ? readFileSync11(gitignorePath, "utf8") : "";
+  const gitignorePath = join19(directory, ".gitignore");
+  const existing = existsSync17(gitignorePath) ? readFileSync11(gitignorePath, "utf8") : "";
   const presentLines = new Set(existing.split("\n").map((line) => line.trim()));
   const missing = IGNORED_DIRECTORIES.filter((entry) => !presentLines.has(entry));
   if (missing.length > 0) {
@@ -10153,7 +10245,7 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
       return failWith({ code: "INVALID_ARGUMENT", message: "capture needs positive --width, --height and --fps" }, asJson, 2);
     }
     const sceneFile = resolve6(subcommand);
-    const outputDirectory = resolve6(text(options["out"]) ?? join18(dirname5(sceneFile), "output"));
+    const outputDirectory = resolve6(text(options["out"]) ?? join20(dirname5(sceneFile), "output"));
     const report = await runCapture(roots, { sceneFile, outputDirectory, verifyDeterminism: options["verify"] === true, ...dimensions });
     if (!report.ok) return failWith(report.error, asJson);
     const { frames, frames_per_second, shuffled_matches_sequential, mismatched_frames } = report.value;
@@ -10243,7 +10335,7 @@ ${formatDisclosureReport(disclosure)}` : summary);
     const devMode = requireDevMode(roots, "doctor --record");
     if (shouldRecord && !devMode.ok) return failWith(devMode.error, asJson);
     const record = await runDoctor();
-    const outputDirectories = [join18(roots.machine, "environment"), ...shouldRecord ? [join18(repositoryRoot, "environment")] : []];
+    const outputDirectories = [join20(roots.machine, "environment"), ...shouldRecord ? [join20(repositoryRoot, "environment")] : []];
     const writtenPaths = outputDirectories.map((directory) => writeEnvironmentRecord(directory, record));
     print(asJson ? record : `${formatDoctorTable(record)}
 
@@ -10267,7 +10359,7 @@ function parseArguments(args) {
   const allFlags = [...GLOBAL_FLAGS, ...COMMANDS.flatMap((command) => command.flags)];
   const booleanFlags = new Set(allFlags.filter((flag) => !flag.value).map((flag) => flag.name));
   const valueFlags = new Set(allFlags.filter((flag) => flag.value).map((flag) => flag.name));
-  let error;
+  let error2;
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index];
     if (argument === "-h") {
@@ -10282,21 +10374,21 @@ function parseArguments(args) {
     if (booleanFlags.has(name)) flags2[name] = true;
     else if (valueFlags.has(name)) {
       const next = args[index + 1];
-      if (!next || next.startsWith("--")) error ??= `--${name} requires a value`;
+      if (!next || next.startsWith("--")) error2 ??= `--${name} requires a value`;
       else {
         flags2[name] = next;
         index += 1;
       }
-    } else error ??= `Unknown option ${argument}`;
+    } else error2 ??= `Unknown option ${argument}`;
   }
-  return { flags: flags2, positional: positional2, ...error ? { error } : {} };
+  return { flags: flags2, positional: positional2, ...error2 ? { error: error2 } : {} };
 }
 function cliInvocation(roots) {
   return roots.isDevMode ? "pnpm vcr" : `node ${process.argv[1]}`;
 }
 function writeEnvironmentRecord(directory, record) {
   mkdirSync5(directory, { recursive: true });
-  const outputPath = join18(directory, `${record.hostname}.json`);
+  const outputPath = join20(directory, `${record.hostname}.json`);
   writeFileSync10(outputPath, `${JSON.stringify(record, null, 2)}
 `);
   return outputPath;
@@ -10323,7 +10415,7 @@ function print(value) {
   process.stdout.write(`${typeof value === "string" ? value : JSON.stringify(value, null, 2)}
 `);
 }
-function failWith(error, asJson, exitCode2 = 1) {
-  print(asJson ? { error } : `${error.code}: ${error.message}`);
+function failWith(error2, asJson, exitCode2 = 1) {
+  print(asJson ? { error: error2 } : `${error2.code}: ${error2.message}`);
   return exitCode2;
 }

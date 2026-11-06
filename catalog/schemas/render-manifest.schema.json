@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vcr.local/schemas/render-manifest.schema.json",
+  "title": "VCR render manifest (review subset)",
+  "description": "What one render produced, written by `vcr capture --video`. Plugin PRD §6.4; the L1 child specification owns the full schema. Findings and approvals point at it by render_id and by the sha256 of its retained copy.",
+  "type": "object",
+  "required": ["schema_version", "render_id", "video_id", "fps", "width", "height", "duration_frames", "scenes", "outputs", "created_at", "environment"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "render_id": { "type": "string", "pattern": "^r-\\d{8}T\\d{6}-[0-9a-f]{7}$", "description": "r-<UTC yyyymmddThhmmss>-<first 7 hex of the frame content hash>" },
+    "video_id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*/[a-z0-9]+(?:-[a-z0-9]+)*$", "description": "<project>/<video>" },
+    "fps": { "type": "number", "exclusiveMinimum": 0 },
+    "width": { "type": "integer", "minimum": 1 },
+    "height": { "type": "integer", "minimum": 1 },
+    "duration_frames": { "type": "integer", "minimum": 1 },
+    "scenes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "start_frame", "end_frame", "frames_dir"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "start_frame": { "type": "integer", "minimum": 0, "description": "Composition frame, inclusive" },
+          "end_frame": { "type": "integer", "minimum": 0, "description": "Composition frame, inclusive" },
+          "frames_dir": { "type": "string", "description": "Workspace-relative; may be cleared, the manifest stays" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "path", "sha256"],
+        "properties": {
+          "kind": { "enum": ["frames", "video", "audio", "report"] },
+          "path": { "type": "string", "description": "Workspace-relative" },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$", "description": "For frames: the sha256 of the newline-joined frame hashes" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "frame_sha256": { "type": "array", "items": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "description": "One per composition frame, in order; what determinism checks compare" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "environment": {
+      "type": "object",
+      "required": ["hostname", "platform", "node"],
+      "properties": {
+        "hostname": { "type": "string" },
+        "platform": { "type": "string" },
+        "node": { "type": "string" },
+        "capture_mode": { "type": "string" },
+        "tools": { "type": "object", "additionalProperties": { "type": "string" }, "description": "tool id → version, from vcr doctor" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
