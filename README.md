@@ -11,7 +11,7 @@ Layer 0 (tool suite) is complete, the plugin is installable (plugin PRD phases P
 - **Skills**: operating guides for the six core tools (SVG, GSAP, p5.js, Three.js, FFmpeg, Blender) plus ImageMagick and resvg, and workflow skills `start` (router), `init` (workspace setup) and `ingest` (candidate assessment). `.claude/skills` links there.
 - **Plugin**: `plugin/` is a generated, committed Claude Code and Codex plugin: a single-file bundled CLI, the catalogue, the skills and example sources. It works from any directory against a read-only harness; see "Install as a plugin" below and `specifications/spikes/plugin-invocation.md`.
 - **Code**: `packages/cli` (the `vcr` command), `packages/timeline` (PRD §9 time types only), `packages/capture` (deterministic browser frame capture, see `specifications/spikes/browser-capture.md`).
-- **First production**: a Grapla launch proof of concept (PRD §18) was rendered and assembled without a timeline engine, then removed. It is in git history at `a39043a`.
+- **First production**: a product launch proof of concept (PRD §18) was rendered and assembled without a timeline engine, then removed. It is in git history at `a39043a`.
 - **Decided**: the composition engine is built in-house (ADR 0001), the studio stays headless with read-only visualisers (ADR 0002), and VCR is distributed as a plugin with a bundled CLI and three roots (ADR 0003). The timeline resolver, compositor and review surface described as later layers do not exist yet.
 
 ## Commands

@@ -5,7 +5,7 @@ Status: accepted
 
 ## Context
 
-VCR works only inside its own repository. `findRepositoryRoot()` walks up to `catalog/`, `vcr doctor` writes into the repository, skills are found through the `.claude/skills` symlink, and Grapla's `render.ts` imports `@vcr/capture` through the pnpm workspace. Codex sees none of it.
+VCR works only inside its own repository. `findRepositoryRoot()` walks up to `catalog/`, `vcr doctor` writes into the repository, skills are found through the `.claude/skills` symlink, and the first product repository's `render.ts` imports `@vcr/capture` through the pnpm workspace. Codex sees none of it.
 
 The PRD (§7) allows "standalone projects depending on a versioned harness distribution" and requires that a clone works without package publication on day one. The owner has decided on full Codex parity in v1, an audience of one owner now and the public later, and a human review layer that writes only findings and approvals (ADR 0002). The full rationale is in `specifications/vcr-plugin-prd.md`.
 
