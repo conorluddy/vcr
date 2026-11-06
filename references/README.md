@@ -18,7 +18,7 @@ This file holds the conventions every pillar shares and decides which pillar own
 | Critique (shared) | `REVIEW-` | [critique-methodology/](critique-methodology/README.md) | — | — | — | (all reviewers) |
 | Sound | `SOUND-` | [sound-design/](sound-design/README.md) | — | — | — | — |
 | Accessibility | `A11Y-` | research pending ([brief](research-prompts/accessibility.md)) | | | | |
-| Series brief | `BRIEF-` | research pending ([brief](research-prompts/series-brief.md)) | | | | |
+| Series brief | `BRIEF-` | [series-brief/](series-brief/README.md) | — (schema planned for Layer 1) | — | — | (read by every reviewer) |
 
 `references/ideas/` holds exploratory material and `references/cli.md` the CLI reference; neither is a pillar.
 
@@ -62,4 +62,7 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 | Flashing | Accessibility (`A11Y-*`) | `MOTION-A11Y-005` and `TYPO-FLASH` cite it. Until accessibility arrives, `TYPO-FLASH` holds the number. |
 | Template sameness | Each pillar for its own medium: `MOTION-SIG-*` and art §11 | `REVIEW-HOM-*` governs reviewers: fixes stay inside the brief's look. |
 | Duration targets, episode IDs, segment slots, series loudness | Values: `BRIEF-*`. Checks: `PACE-DUR-01`, `PACE-SERIES-*`, `SOUND-SERIES-CONSISTENCY`. | |
+| Conformance to brief tokens and budgets (easing, durations, palette, expressive moments, segment ranges) | The pillar that owns the craft check (`MOTION-*`, `ART-*`, `PACE-*`, `SOUND-*`), reading its value from the brief | The duplicating `BRIEF-*` rules are dropped (see the series brief README). |
+| Brief quality, brand assets (logos, sonic logo, third-party art), mandatories, deliverable spec, series identity, rule-breaks | `BRIEF-*` | |
+| Conflict priority between pillars | A brief's declared order (`BRIEF-PRIORITY-APPLIED`), otherwise `REVIEW-AGG-03` | |
 | Determinism (identical output for the same input) | One generic check across picture and sound | `MOTION-SPR-001` and `SOUND-SYNTH-DETERMINISM` describe it for their own medium. |
