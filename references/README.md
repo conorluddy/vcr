@@ -19,7 +19,7 @@ This file holds the conventions every pillar shares and decides which pillar own
 | Sound | `SOUND-` | [sound-design/](sound-design/README.md) | — | — | — | — |
 | Accessibility | `A11Y-` | [accessibility/](accessibility/README.md) | — | — (flash analyser first) | — | — |
 | Series brief | `BRIEF-` | [series-brief/](series-brief/README.md) | — (schema planned for Layer 1) | — | — | (read by every reviewer) |
-| Delivery | `DELIVERY-` | research pending ([brief](research-prompts/delivery.md)) | | | | |
+| Delivery | `DELIVERY-` | [delivery/](delivery/README.md) | — | — (`ffprobe` metadata gate first) | — | — |
 | Concept, script and storyboard | `STORY-` | [story/](story/README.md) | — (beat sheet schema planned for Layer 1) | — | — | — |
 | Data visualisation | `DATA-` | research pending ([brief](research-prompts/data-visualisation.md)) | | | | |
 | Adaptation and versioning | `ADAPT-` | research pending ([brief](research-prompts/adaptation.md)) | | | | |
@@ -53,7 +53,8 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 | Captions as access: presence, completeness, accuracy, sync, non-speech, speakers, lyrics, sidecars | `A11Y-CAPTION-*` | `PACE-SOUND-02` is dropped. `A11Y-CAPTION-PLACEMENT` cites `TYPO-SAFE` for platform UI. |
 | Text contrast | `TYPO-CONTRAST` | `A11Y-CONTRAST-TEXT` is dropped. Its 5th-percentile-over-lifetime method is how `TYPO-CONTRAST` is measured on moving backgrounds. |
 | Non-text contrast, CVD distinguishability, colour as the only carrier | `A11Y-CONTRAST-GRAPHIC`, `A11Y-CVD-DISTINCT`, `A11Y-COLOR-ALONE` | Art and data visualisation cite them. |
-| Video range and chroma at delivery | `TYPO-RANGE`, `TYPO-CHROMA` | `ART-DEL-01/02/03` cite them. They move to `DELIVERY-*` when that research lands. |
+| Delivery encode: range, chroma, bitrate, frame-rate contract, audio sample rate and bitrate, colour tags, stills format | `DELIVERY-*` | `TYPO-RANGE`, `TYPO-CHROMA`, `TYPO-BITRATE`, `TYPO-STILL-FORMAT`, `ART-DEL-*`, `SOUND-SAMPLE-RATE`, `SOUND-AAC-BITRATE` and `MOTION-FPS-001` move here. Each original pillar keeps the design consequence and cites the delivery number (see the delivery README). |
+| Manifest, naming and checksums of delivered files | `DELIVERY-MANIFEST`, `-NAMING`, `-CHECKSUM`, extending the PRD §6.4 render manifest | `ADAPT-TRACE-MASTER` and `ADAPT-VERSION-ID` add version fields to the same manifest. |
 | Minimum stroke width, static | `ART-*` (one value; the KB disagrees with itself, 4 vs 6 px) | |
 | Shimmer and strobing of thin moving features | `MOTION-FPS-003` | `TYPO-RASTER-SCALE` keeps text scaled up or down. |
 | Movement inside a beat: lead mover, number of simultaneous movers | `MOTION-CHOR-003` | `PACE-BEAT-05` is dropped; its limit of 3 movers is folded into the motion rule. |
