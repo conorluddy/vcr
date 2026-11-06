@@ -1,6 +1,6 @@
 # Typography reference
 
-This directory contains reference material and proposed check definitions, not a shipped typography skill or automated validator. Read only the section needed in [the knowledge base](typography-knowledge-base.md).
+This directory contains reference material and proposed check definitions, not an automated validator. The `typography` skill (`skills/typography/SKILL.md`) is the workflow that routes into it. Read only the section needed in [the knowledge base](typography-knowledge-base.md).
 
 | Task | Read |
 | --- | --- |

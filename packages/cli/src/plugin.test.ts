@@ -27,6 +27,7 @@ describe("buildPlugin", () => {
       expect(readFileSync(join(directory, "catalog", reference), "utf8")).toBe(readFileSync(join(harnessRoot, "catalog", reference), "utf8"));
     }
     expect(existsSync(join(directory, "catalog/INDEX.md"))).toBe(true);
+    expect(existsSync(join(directory, "references/typography/README.md"))).toBe(true);
     expect(totalBytes).toBeLessThan(PLUGIN_MAX_BYTES);
   });
 
