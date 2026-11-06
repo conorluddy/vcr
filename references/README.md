@@ -17,7 +17,7 @@ This file holds the conventions every pillar shares and decides which pillar own
 | Pacing | `PACE-` | [pacing-editor/](pacing-editor/README.md) | — | — | — | — |
 | Critique (shared) | `REVIEW-` | [critique-methodology/](critique-methodology/README.md) | — | — | — | (all reviewers) |
 | Sound | `SOUND-` | [sound-design/](sound-design/README.md) | — | — | — | — |
-| Accessibility | `A11Y-` | research pending ([brief](research-prompts/accessibility.md)) | | | | |
+| Accessibility | `A11Y-` | [accessibility/](accessibility/README.md) | — | — (flash analyser first) | — | — |
 | Series brief | `BRIEF-` | [series-brief/](series-brief/README.md) | — (schema planned for Layer 1) | — | — | (read by every reviewer) |
 | Delivery | `DELIVERY-` | research pending ([brief](research-prompts/delivery.md)) | | | | |
 | Concept, script and storyboard | `STORY-` | research pending ([brief](research-prompts/story.md)) | | | | |
@@ -47,10 +47,12 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 | Concern | Owner | Others |
 | --- | --- | --- |
 | Safe zones for platform UI | `TYPO-SAFE`; presets in `typography/rules.json` `safe_zones` | `ART-CMP-01` proposes a wider union box and an excluded lower-right corner. That becomes a change to the presets plus excluded-rectangle support in `vcr lint`, not a second set of numbers. |
-| Base reading hold for static text | `TYPO-HOLD` | `MOTION-TIME-005` cites it. `PACE-READ-01` is dropped; its characters ÷ 20 term is a candidate revision to `TYPO-HOLD`. |
+| Base reading hold for static text | `TYPO-HOLD` | `MOTION-TIME-005` cites it. `PACE-READ-01`, `A11Y-MOTION-READING` and `A11Y-TEXT-DWELL` are dropped. `PACE-READ-01`'s characters ÷ 20 term is a candidate revision to `TYPO-HOLD`. |
 | Stricter hold for key text and quiz windows | `PACE-READ-04`, `PACE-QUIZ-01` | Defined as at least `TYPO-HOLD`. |
-| Caption speed, duration and lines | `TYPO-CAPTION-*`, `caption_profiles` | `PACE-READ-02/03` are dropped. |
-| Speech is captioned at all | `PACE-SOUND-02` until accessibility arrives, then `A11Y-*` | |
+| Caption speed, duration and lines | `TYPO-CAPTION-*`, `caption_profiles` | `PACE-READ-02/03` and `A11Y-CAPTION-RATE` are dropped. |
+| Captions as access: presence, completeness, accuracy, sync, non-speech, speakers, lyrics, sidecars | `A11Y-CAPTION-*` | `PACE-SOUND-02` is dropped. `A11Y-CAPTION-PLACEMENT` cites `TYPO-SAFE` for platform UI. |
+| Text contrast | `TYPO-CONTRAST` | `A11Y-CONTRAST-TEXT` is dropped. Its 5th-percentile-over-lifetime method is how `TYPO-CONTRAST` is measured on moving backgrounds. |
+| Non-text contrast, CVD distinguishability, colour as the only carrier | `A11Y-CONTRAST-GRAPHIC`, `A11Y-CVD-DISTINCT`, `A11Y-COLOR-ALONE` | Art and data visualisation cite them. |
 | Video range and chroma at delivery | `TYPO-RANGE`, `TYPO-CHROMA` | `ART-DEL-01/02/03` cite them. They move to `DELIVERY-*` when that research lands. |
 | Minimum stroke width, static | `ART-*` (one value; the KB disagrees with itself, 4 vs 6 px) | |
 | Shimmer and strobing of thin moving features | `MOTION-FPS-003` | `TYPO-RASTER-SCALE` keeps text scaled up or down. |
@@ -62,8 +64,8 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 | Narration against visuals and on-screen text | `PACE-NARR-03`, `PACE-NARR-04` | `SOUND-NARRATION-VISUAL-LEAD` and `SOUND-NARRATION-TEXT-REDUNDANCY` are dropped. The visual-lead rule's 0–300 ms window is a candidate tightening of `PACE-NARR-03`. |
 | Mute test: the message survives sound off | `PACE-SOUND-01` | `SOUND-MUTE-LEGIBLE` is dropped. |
 | Loop seam continuity | Picture: `MOTION-RHY-004`. Audio: `SOUND-LOOP-SEAM`. | `PACE-LOOP-01` is dropped. `PACE-LOOP-02` (no fade or end card on a loop) stays with pacing. |
-| Vestibular triggers, reduced motion, pause controls | `MOTION-CAM-*`, `MOTION-A11Y-*` until accessibility arrives | |
-| Flashing | Accessibility (`A11Y-*`) | `MOTION-A11Y-005` and `TYPO-FLASH` cite it. Until accessibility arrives, `TYPO-FLASH` holds the number. |
+| Vestibular triggers, reduced motion, pause controls | `A11Y-MOTION-*` | `MOTION-A11Y-001/002/003/004` and `MOTION-CAM-002/003` are dropped. `MOTION-CAM-004/005` (oscillation, spin) move to `A11Y-MOTION-*`. Motion keeps `MOTION-CAM-001` (judder) and `MOTION-CAM-006` (stable anchor). |
+| Flashing and stripe patterns | `A11Y-FLASH-*`, `A11Y-PATTERN-STRIPES` | `MOTION-A11Y-005` is dropped. `TYPO-FLASH` cites them, and leaves the typography data once the `A11Y-*` data exists. The flash profile (WCAG, ITU/Ofcom or strict) is set in the brief. |
 | Template sameness | Each pillar for its own medium: `MOTION-SIG-*` and art §11 | `REVIEW-HOM-*` governs reviewers: fixes stay inside the brief's look. |
 | Duration targets, episode IDs, segment slots, series loudness | Values: `BRIEF-*`. Checks: `PACE-DUR-01`, `PACE-SERIES-*`, `SOUND-SERIES-CONSISTENCY`. | |
 | Conformance to brief tokens and budgets (easing, durations, palette, expressive moments, segment ranges) | The pillar that owns the craft check (`MOTION-*`, `ART-*`, `PACE-*`, `SOUND-*`), reading its value from the brief | The duplicating `BRIEF-*` rules are dropped (see the series brief README). |
