@@ -3904,50 +3904,50 @@ var require_fast_uri = __commonJS({
       schemelessOptions.skipEscape = true;
       return serialize(resolved, schemelessOptions);
     }
-    function resolveComponent(base, relative5, options, skipNormalization) {
+    function resolveComponent(base, relative6, options, skipNormalization) {
       const target = {};
       if (!skipNormalization) {
         base = parse(serialize(base, options), options);
-        relative5 = parse(serialize(relative5, options), options);
+        relative6 = parse(serialize(relative6, options), options);
       }
       options = options || {};
-      if (!options.tolerant && relative5.scheme) {
-        target.scheme = relative5.scheme;
-        target.userinfo = relative5.userinfo;
-        target.host = relative5.host;
-        target.port = relative5.port;
-        target.path = removeDotSegments(relative5.path || "");
-        target.query = relative5.query;
+      if (!options.tolerant && relative6.scheme) {
+        target.scheme = relative6.scheme;
+        target.userinfo = relative6.userinfo;
+        target.host = relative6.host;
+        target.port = relative6.port;
+        target.path = removeDotSegments(relative6.path || "");
+        target.query = relative6.query;
       } else {
-        if (relative5.userinfo !== void 0 || relative5.host !== void 0 || relative5.port !== void 0) {
-          target.userinfo = relative5.userinfo;
-          target.host = relative5.host;
-          target.port = relative5.port;
-          target.path = removeDotSegments(relative5.path || "");
-          target.query = relative5.query;
+        if (relative6.userinfo !== void 0 || relative6.host !== void 0 || relative6.port !== void 0) {
+          target.userinfo = relative6.userinfo;
+          target.host = relative6.host;
+          target.port = relative6.port;
+          target.path = removeDotSegments(relative6.path || "");
+          target.query = relative6.query;
         } else {
-          if (!relative5.path) {
+          if (!relative6.path) {
             target.path = base.path;
-            if (relative5.query !== void 0) {
-              target.query = relative5.query;
+            if (relative6.query !== void 0) {
+              target.query = relative6.query;
             } else {
               target.query = base.query;
             }
           } else {
-            if (relative5.path[0] === "/") {
-              target.path = removeDotSegments(relative5.path);
+            if (relative6.path[0] === "/") {
+              target.path = removeDotSegments(relative6.path);
             } else {
               const baseHasAuthority = base.userinfo !== void 0 || base.host !== void 0 || base.port !== void 0;
               if (baseHasAuthority && !base.path) {
-                target.path = "/" + relative5.path;
+                target.path = "/" + relative6.path;
               } else if (!base.path) {
-                target.path = relative5.path;
+                target.path = relative6.path;
               } else {
-                target.path = base.path.slice(0, base.path.lastIndexOf("/") + 1) + relative5.path;
+                target.path = base.path.slice(0, base.path.lastIndexOf("/") + 1) + relative6.path;
               }
               target.path = base.scheme === void 0 && !baseHasAuthority && target.path[0] !== "/" ? removeDotSegmentsRelative(target.path) : removeDotSegments(target.path);
             }
-            target.query = relative5.query;
+            target.query = relative6.query;
           }
           target.userinfo = base.userinfo;
           target.host = base.host;
@@ -3955,7 +3955,7 @@ var require_fast_uri = __commonJS({
         }
         target.scheme = base.scheme;
       }
-      target.fragment = relative5.fragment;
+      target.fragment = relative6.fragment;
       return target;
     }
     function equal(uriA, uriB, options) {
@@ -8074,7 +8074,7 @@ var require_dist = __commonJS({
 
 // packages/cli/src/index.ts
 import { mkdirSync as mkdirSync7, writeFileSync as writeFileSync11 } from "node:fs";
-import { dirname as dirname6, join as join20, resolve as resolve6 } from "node:path";
+import { dirname as dirname6, join as join21, resolve as resolve6 } from "node:path";
 
 // packages/cli/src/capture.ts
 import { execFileSync } from "node:child_process";
@@ -8435,12 +8435,13 @@ var COMMANDS = [
   {
     name: "capture",
     argumentsHint: "<scene.html>",
-    summary: "Capture a browser scene frame by frame; frames and report.json go to --out",
+    summary: "Capture a browser scene frame by frame; frames and report.json go to --out, or with --video become a render with a manifest",
     flags: [
       { name: "width", value: "n", description: "Viewport width in pixels", isRequired: true },
       { name: "height", value: "n", description: "Viewport height in pixels", isRequired: true },
       { name: "fps", value: "n", description: "Frames per second", isRequired: true },
-      { name: "out", value: "dir", description: "Output directory", defaultValue: "<scene dir>/output" },
+      { name: "out", value: "dir", description: "Output directory; not with --video", defaultValue: "<scene dir>/output" },
+      { name: "video", value: "project/video", description: "Record a render of this video: frames under output/<video>/<render_id>/, the manifest there and in review/renders/<render_id>/" },
       { name: "verify", description: "Recapture in shuffled order and compare; exit 1 if frames differ" }
     ],
     environment: [{ name: "VCR_CAPTURE_MODE", description: "Frame grab method: screenshot (default) or beginframe" }],
@@ -9239,15 +9240,15 @@ function versionScope(version) {
   if (/(?:^|\s)[0-9a-f]{7,40}$/i.test(text2) && /\d/.test(text2)) return "exact";
   return versionTokens(text2).length > 0 ? "exact" : "unknown";
 }
-function loadMachineRecord(machineRoot, hostname2 = osHostname()) {
-  const path = join9(machineRoot, "environment", `${hostname2}.json`);
+function loadMachineRecord(machineRoot, hostname3 = osHostname()) {
+  const path = join9(machineRoot, "environment", `${hostname3}.json`);
   if (!existsSync6(path)) return void 0;
   const parsed2 = readJsonFile(path);
   if (!parsed2.ok) return void 0;
   const record = parsed2.value;
   if (typeof record !== "object" || record === null || typeof record.checked_at !== "string" || !Array.isArray(record.tools)) return void 0;
   const tools = record.tools.filter(isProbeResult);
-  return { ...record, hostname: typeof record.hostname === "string" ? record.hostname : hostname2, tools };
+  return { ...record, hostname: typeof record.hostname === "string" ? record.hostname : hostname3, tools };
 }
 function assessReadiness(toolId, record) {
   if (!record) return { state: "no-machine-record" };
@@ -9892,6 +9893,14 @@ function ensureVideo(workspaceRoot, videoId) {
   }
   return ok({ videoId, directory, changes });
 }
+function resolveVideo(workspaceRoot, videoId) {
+  const parts = parseVideoId(videoId);
+  if (!parts.ok) return parts;
+  const directory = videoDirectory(workspaceRoot, videoId);
+  if (existsSync15(directory)) return ok({ videoId, directory });
+  const known = listVideoDirectories(workspaceRoot).map((location) => location.videoId);
+  return fail("VIDEO_NOT_FOUND", `No video ${videoId} in ${workspaceRoot}. ${known.length > 0 ? `Videos: ${known.join(", ")}.` : "There are no videos yet."} Run \`vcr video init ${videoId}\` to create it.`);
+}
 function videoDirectory(workspaceRoot, videoId) {
   const [project, video] = videoId.split("/");
   return join17(workspaceRoot, "projects", project, "videos", video);
@@ -10179,6 +10188,67 @@ function ensureWorkspace(directory, harnessVersion) {
   return { workspace: directory, changes };
 }
 
+// packages/cli/src/render-manifest.ts
+import { existsSync as existsSync18, readFileSync as readFileSync12, renameSync as renameSync2, rmSync as rmSync2 } from "node:fs";
+import { hostname as hostname2, platform as platform2 } from "node:os";
+import { basename as basename3, extname as extname3, join as join20, relative as relative5 } from "node:path";
+function stagingDirectoryFor(workspaceRoot, videoId, now) {
+  return join20(renderOutputRoot(workspaceRoot, videoId), `.capturing-${now.getTime()}`);
+}
+function renderIdFor(createdAt, contentSha256) {
+  const stamp = createdAt.toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "");
+  return `r-${stamp}-${contentSha256.slice(0, 7)}`;
+}
+function writeRender(inputs) {
+  const contentSha256 = sha256Hex(inputs.report.hashes.join("\n"));
+  const renderId = renderIdFor(inputs.createdAt, contentSha256);
+  const renderDirectory = join20(renderOutputRoot(inputs.workspaceRoot, inputs.videoId), renderId);
+  if (existsSync18(renderDirectory)) rmSync2(renderDirectory, { recursive: true, force: true });
+  renameSync2(inputs.stagingDirectory, renderDirectory);
+  const toWorkspace = (path) => relative5(inputs.workspaceRoot, path);
+  const framesDirectory = toWorkspace(join20(renderDirectory, "frames"));
+  const reportPath = join20(renderDirectory, "report.json");
+  const manifest = {
+    schema_version: "1.0.0",
+    render_id: renderId,
+    video_id: inputs.videoId,
+    fps: inputs.report.fps,
+    width: inputs.report.width,
+    height: inputs.report.height,
+    duration_frames: inputs.report.frames,
+    scenes: [{ id: sceneIdFor(inputs.sceneFile), start_frame: 0, end_frame: inputs.report.frames - 1, frames_dir: framesDirectory }],
+    outputs: [
+      { kind: "frames", path: framesDirectory, sha256: contentSha256 },
+      { kind: "report", path: toWorkspace(reportPath), sha256: sha256Hex(readFileSync12(reportPath)) }
+    ],
+    frame_sha256: inputs.report.hashes,
+    created_at: inputs.createdAt.toISOString(),
+    environment: environmentFor(inputs.machineRecord)
+  };
+  const content = `${JSON.stringify(manifest, null, 2)}
+`;
+  writeFileAtomic(join20(renderDirectory, REVIEW_PATHS.manifestFile), content);
+  const retainedManifestPath = join20(inputs.videoDirectory, REVIEW_PATHS.renders, renderId, REVIEW_PATHS.manifestFile);
+  writeFileAtomic(retainedManifestPath, content);
+  return { manifest, renderDirectory, retainedManifestPath, manifestSha256: sha256Hex(content) };
+}
+function renderOutputRoot(workspaceRoot, videoId) {
+  return join20(workspaceRoot, "output", ...videoId.split("/"));
+}
+function sceneIdFor(sceneFile) {
+  return basename3(sceneFile, extname3(sceneFile)).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "scene";
+}
+function environmentFor(machineRecord) {
+  const tools = Object.fromEntries((machineRecord?.tools ?? []).filter((tool) => tool.version !== null).map((tool) => [tool.tool_id, tool.version]));
+  return {
+    hostname: hostname2(),
+    platform: platform2(),
+    node: process.version,
+    capture_mode: process.env["VCR_CAPTURE_MODE"] ?? "screenshot",
+    ...Object.keys(tools).length > 0 ? { tools } : {}
+  };
+}
+
 // packages/cli/src/index.ts
 var argv = process.argv.slice(2);
 var parsed = parseArguments(argv);
@@ -10307,16 +10377,28 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
       return failWith({ code: "INVALID_ARGUMENT", message: "capture needs positive --width, --height and --fps" }, asJson, 2);
     }
     const sceneFile = resolve6(subcommand);
-    const outputDirectory = resolve6(text(options["out"]) ?? join20(dirname6(sceneFile), "output"));
+    const videoId = text(options["video"]);
+    if (videoId && options["out"] !== void 0) return failWith({ code: "INVALID_ARGUMENT", message: "--out and --video do not combine: a video's render always goes to output/<video>/<render_id>/" }, asJson, 2);
+    const workspace = videoId ? requireWorkspace(roots) : void 0;
+    if (workspace && !workspace.ok) return failWith(workspace.error, asJson);
+    const video = workspace?.ok && videoId ? resolveVideo(workspace.value, videoId) : void 0;
+    if (video && !video.ok) return failWith(video.error, asJson);
+    const startedAt = /* @__PURE__ */ new Date();
+    const outputDirectory = video?.ok && workspace?.ok ? stagingDirectoryFor(workspace.value, video.value.videoId, startedAt) : resolve6(text(options["out"]) ?? join21(dirname6(sceneFile), "output"));
     const report = await runCapture(roots, { sceneFile, outputDirectory, verifyDeterminism: options["verify"] === true, ...dimensions });
     if (!report.ok) return failWith(report.error, asJson);
+    const render = video?.ok && workspace?.ok ? writeRender({ workspaceRoot: workspace.value, videoId: video.value.videoId, videoDirectory: video.value.directory, sceneFile, stagingDirectory: outputDirectory, report: report.value, createdAt: startedAt, machineRecord: loadMachineRecord(roots.machine) }) : void 0;
     const { frames, frames_per_second, shuffled_matches_sequential, mismatched_frames } = report.value;
     if (shuffled_matches_sequential === false) {
       const firstMismatches = mismatched_frames.slice(0, 5).join(", ") + (mismatched_frames.length > 5 ? ", \u2026" : "");
       process.stderr.write(`${mismatched_frames.length} frames differ between sequential and shuffled order (${firstMismatches}). If the DOM matches in both orders, suspect compositor layering (pin animated elements with will-change); if not, the scene carries state between seeks. See references/determinism.md in the start skill.
 `);
     }
-    print(asJson ? { outputDirectory, frames, frames_per_second, shuffled_matches_sequential, mismatched_frames } : `captured ${frames} frames to ${outputDirectory}/frames (${frames_per_second} fps)${shuffled_matches_sequential === null ? "" : `; shuffled matches sequential: ${shuffled_matches_sequential}`}`);
+    const writtenTo = render?.renderDirectory ?? outputDirectory;
+    const renderFields = render ? { render_id: render.manifest.render_id, video_id: render.manifest.video_id, manifest: render.retainedManifestPath, manifest_sha256: render.manifestSha256 } : {};
+    const renderLine = render ? `
+render ${render.manifest.render_id} of ${render.manifest.video_id}; manifest retained at ${render.retainedManifestPath}` : "";
+    print(asJson ? { outputDirectory: writtenTo, frames, frames_per_second, shuffled_matches_sequential, mismatched_frames, ...renderFields } : `captured ${frames} frames to ${writtenTo}/frames (${frames_per_second} fps)${shuffled_matches_sequential === null ? "" : `; shuffled matches sequential: ${shuffled_matches_sequential}`}${renderLine}`);
     return shuffled_matches_sequential === false ? 1 : 0;
   }
   if (command === "lint" && subcommand) {
@@ -10397,7 +10479,7 @@ ${formatDisclosureReport(disclosure)}` : summary);
     const devMode = requireDevMode(roots, "doctor --record");
     if (shouldRecord && !devMode.ok) return failWith(devMode.error, asJson);
     const record = await runDoctor();
-    const outputDirectories = [join20(roots.machine, "environment"), ...shouldRecord ? [join20(repositoryRoot, "environment")] : []];
+    const outputDirectories = [join21(roots.machine, "environment"), ...shouldRecord ? [join21(repositoryRoot, "environment")] : []];
     const writtenPaths = outputDirectories.map((directory) => writeEnvironmentRecord(directory, record));
     print(asJson ? record : `${formatDoctorTable(record)}
 
@@ -10450,7 +10532,7 @@ function cliInvocation(roots) {
 }
 function writeEnvironmentRecord(directory, record) {
   mkdirSync7(directory, { recursive: true });
-  const outputPath = join20(directory, `${record.hostname}.json`);
+  const outputPath = join21(directory, `${record.hostname}.json`);
   writeFileSync11(outputPath, `${JSON.stringify(record, null, 2)}
 `);
   return outputPath;

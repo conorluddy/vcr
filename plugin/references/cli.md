@@ -142,16 +142,17 @@ Plan (or with --yes, install) Playwright and Chromium into <VCR_HOME>/runtime
 vcr setup capture --yes
 ```
 
-## `vcr capture <scene.html> --width n --height n --fps n [--out dir] [--verify]`
+## `vcr capture <scene.html> --width n --height n --fps n [--out dir] [--video project/video] [--verify]`
 
-Capture a browser scene frame by frame; frames and report.json go to --out
+Capture a browser scene frame by frame; frames and report.json go to --out, or with --video become a render with a manifest
 
 | Flag | Description | Default |
 | --- | --- | --- |
 | `--width n` (required) | Viewport width in pixels |  |
 | `--height n` (required) | Viewport height in pixels |  |
 | `--fps n` (required) | Frames per second |  |
-| `--out dir` | Output directory | `<scene dir>/output` |
+| `--out dir` | Output directory; not with --video | `<scene dir>/output` |
+| `--video project/video` | Record a render of this video: frames under output/<video>/<render_id>/, the manifest there and in review/renders/<render_id>/ |  |
 | `--verify` | Recapture in shuffled order and compare; exit 1 if frames differ |  |
 
 - `VCR_CAPTURE_MODE`: Frame grab method: screenshot (default) or beginframe

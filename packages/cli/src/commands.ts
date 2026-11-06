@@ -93,12 +93,13 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "capture",
     argumentsHint: "<scene.html>",
-    summary: "Capture a browser scene frame by frame; frames and report.json go to --out",
+    summary: "Capture a browser scene frame by frame; frames and report.json go to --out, or with --video become a render with a manifest",
     flags: [
       { name: "width", value: "n", description: "Viewport width in pixels", isRequired: true },
       { name: "height", value: "n", description: "Viewport height in pixels", isRequired: true },
       { name: "fps", value: "n", description: "Frames per second", isRequired: true },
-      { name: "out", value: "dir", description: "Output directory", defaultValue: "<scene dir>/output" },
+      { name: "out", value: "dir", description: "Output directory; not with --video", defaultValue: "<scene dir>/output" },
+      { name: "video", value: "project/video", description: "Record a render of this video: frames under output/<video>/<render_id>/, the manifest there and in review/renders/<render_id>/" },
       { name: "verify", description: "Recapture in shuffled order and compare; exit 1 if frames differ" },
     ],
     environment: [{ name: "VCR_CAPTURE_MODE", description: "Frame grab method: screenshot (default) or beginframe" }],
