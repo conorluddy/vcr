@@ -1,16 +1,16 @@
 # Typography Knowledge Base for a Creative Design Agent (VCR)
 
-> **Status:** reference, not a skill. It is too large to load whole (about 30k tokens). Agents read the section they need; skills, agents and checks are generated from it and cite rule IDs (`TYPO-…`, defined in §14 and §15) so they can be regenerated when this file changes.
+> **Status:** reference, not a skill. It is too large to load whole (about 30k tokens). Agents read the section they need; skills, agents and checks are proposed outputs, not existing generated artifacts. Future outputs should cite rule IDs (`TYPO-…`, defined in §14 and §15) so they can be regenerated when this file changes.
 >
 > **Scope:** all media, because VCR makes stills (`svg`, `resvg`, `imagemagick`, `sharp`, `canvas-2d`) as well as motion. §15 covers what is specific to VCR's render and delivery path. Nothing here claims a check is implemented: automated checks belong to Layer 5/6, which have not started.
 >
 > **Confidence tiers** used in §14, §15 and the ledger: **standard** (a published standard or style guide, checked against the primary source), **platform** (published by a platform or vendor, may change without notice), **heuristic** (practitioner rule of thumb or a secondary source). The verification ledger under Caveats lists what was checked on 2026-11-06.
 
-A good typographic agent works from a small set of measurable constraints. It should treat these as non-negotiable unless the brief explicitly calls for breaking them: readable measure (45–75 characters), proportional leading (about 120–145% for body text), sufficient contrast (WCAG 4.5:1, or APCA Lc 75+ for body), real typographic characters, and medium-specific safe zones and reading speeds. On top of these sits a judgement layer of tone, hierarchy and expression, which professionals assess by rendering at actual size and critiquing the result.
+A typographic agent starts with the brief, medium, language, viewing size and delivery requirements. Use the ranges here as starting points, then select applicable rules from §14. Published accessibility requirements, vendor delivery specifications and practitioner preferences are different kinds of constraint. Expressive choices may depart from defaults; they do not override an agreed accessibility or delivery requirement. Verify the result at its intended viewing size.
 
 ## TL;DR
 
-- **Hard numbers exist and should be encoded as lint rules.** Line length is 45–75 characters (Bringhurst; 66 ideal). Butterick gives 45–90 characters, line spacing of 120–145%, and body size of 10–12 pt in print or 15–25 px on the web. WCAG 1.4.3 requires 4.5:1 contrast (3:1 for text at 24 px+, or about 18.66 px bold). Netflix subtitles allow 42 characters per line at 20 characters per second. The BBC targets 160–180 wpm. Meta's 9:16 safe zone leaves 14% top, 35% bottom and 6% sides clear.
+- **Numbers need scope and evidence.** §14 identifies candidate checks; its thresholds are not universal requirements. Latin prose, Netflix English subtitles, responsive web text and fixed-size video need different profiles. BBC vertical-caption guidance and Meta safe-area figures remain unverified in the ledger; treat them as provisional, not gates.
 - **Judgement is the other half, and it has a repeatable process.** Read the text, define the voice, choose type for tone and technical quality, build a system (scale, grid, roles), and set micro-typography properly. Then render at real size in the real medium, critique with a checklist and a squint test, and iterate. Rules are broken deliberately in expressive work, never by accident in functional text.
 - **Much of this can be verified by an agent.** It can compute characters per line, line-height ratios, WCAG/APCA contrast and safe-zone collisions. It can check caption CPS and duration, inspect OpenType features (Wakamai Fondue, fontTools/Font Bakery) and fix punctuation (SmartyPants, proselint). It should then render screenshots or video frames and inspect them visually.
 
@@ -19,7 +19,7 @@ A good typographic agent works from a small set of measurable constraints. It sh
 - **Numeric consensus is strong for body text, weak for display text.** Display, poster and kinetic work is governed by optical judgement: tighter leading (often 0.9–1.1), negative tracking at large sizes, and optical alignment.
 - **Classification is in flux.** ATypI de-adopted Vox-ATypI on 18 March 2021 (announced 27 April 2021), and no replacement has been adopted.\[1\] Use pragmatic buckets (serif, sans, slab, mono, script, display) plus Vox vocabulary.\[2\]
 - **Contrast standards disagree.** WCAG 2.x is the legal and conformance baseline. APCA (the WCAG 3 draft model) is better for size- and weight-aware readability and dark mode, but it is not normative.\[3\] Use WCAG as the gate and APCA as the quality target.
-- **TikTok has no official pixel safe zone.** Meta publishes percentages (14/35/6). TikTok publishes only ad templates, and third-party measurements vary widely.\[4\]\[5\] Design to the most conservative composite.
+- **TikTok has no official pixel safe zone.** The Meta percentages quoted here remain unverified (see the ledger). TikTok publishes only ad templates, and third-party measurements vary widely.\[4\]\[5\] Design to the most conservative composite.
 - **Caption reading speed is well standardised.** The Netflix English (USA) Timed Text Style Guide allows "Up to 20 characters per second" for adult programmes and 17 for children's, "42 characters per line" and "Maximum two lines". Netflix's General Requirements set each event between "5/6 (five-sixths) of a second" (20 frames at 24 fps) and "7 seconds".\[112\]\[114\] BBC (not re-verified; the site blocks automated fetches): 160–180 wpm, about 0.3 s per word, up to three lines on vertical video.
 
 ---
@@ -292,7 +292,7 @@ A good typographic agent works from a small set of measurable constraints. It sh
   - **Lottie** (AE via Bodymovin; convert text to shapes or embed fonts carefully).
   - **Rive** (state machines).
   - **CSS/WAAPI and GSAP SplitText.**
-- **Accessibility.** WCAG 2.3.3 (AAA): "Motion animation triggered by interaction can be disabled, unless the animation is essential."\[78\]\[79\] 2.2.2: auto-playing motion over 5 s must be pausable. 2.3.1: no more than 3 flashes per second. Provide fade or static alternatives under `prefers-reduced-motion`.\[80\]
+- **Accessibility.** WCAG 2.3.3 (AAA): "Motion animation triggered by interaction can be disabled, unless the animation is essential."\[78\]\[79\] 2.2.2: auto-playing motion over 5 s must be pausable. 2.3.1: use the conservative no-more-than-three-flashes default in `TYPO-FLASH`; see [the full threshold conditions](https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html). Provide fade or static alternatives under `prefers-reduced-motion`.\[80\]
 
 ### 9d. TikTok / Reels / Shorts (9:16)
 - **Canvas.** 1080 × 1920.\[81\]
@@ -300,7 +300,7 @@ A good typographic agent works from a small set of measurable constraints. It sh
 - **TikTok.** No pixel margins in its help text; it offers ad templates and notes the safe area shrinks as captions get longer. Third-party measurements disagree: top 130–240 px, bottom 422–672 px, right 120–192 px (action rail), left 60–120 px.\[4\]\[84\]\[85\]\[86\]\[87\]
 - **YouTube Shorts (one measurement):** 288 top, 672 bottom, 48 left, 192 right.\[85\]
 - **Agent default.** A conservative composite of about 288 top, 672 bottom, 65 left and 192 right. Keep critical text within x 65–888 and y 288–1248, and treat the right column and lower third as hostile.
-- **Caption styles.** Word-by-word "pop" for hooks, which tires viewers over long tutorials. Karaoke highlight on the active word. Phrase captions of 2–3 lines for explanation. The BBC allows three lines on vertical, up to 90% of frame width, placed a little higher but still in the lower third. Keep them clear of mouths and on-screen prices.\[88\]
+- **Caption styles.** Word-by-word "pop" for hooks, which tires viewers over long tutorials. Karaoke highlight on the active word. Phrase captions of 2–3 lines for explanation. Unverified BBC guidance quoted here allows three lines on vertical, up to 90% of frame width, placed a little higher but still in the lower third. Keep them clear of mouths and on-screen prices.\[88\]
 - **Size.** Burned-in captions about 48–80 px and hooks 80–140 px on 1080 × 1920 (a practitioner heuristic). Verify on a phone at arm's length.
 - **Contrast.** White or yellow text with a 4–8 px dark stroke and/or shadow, or a semi-opaque pill. DCMP Captioning Key: white, medium-weight sans with a drop or rim shadow, mixed case.\[88\]
 - **Hook.** On screen within the first 1–2 s: 3–8 words, large, high-contrast and inside the safe box. Design for sound-off viewing.\[89\]
@@ -343,7 +343,7 @@ A good typographic agent works from a small set of measurable constraints. It sh
   - No word spaces; follow kinsoku line-breaking rules (`line-break: strict`; `word-break: keep-all` for Korean).
   - Body line-height 1.7–2.0.
   - No native italics; use weight, colour or `text-emphasis`.
-  - `writing-mode: vertical-rl` for vertical text. Fonts are large, so subset them or use system fonts.
+  - `writing-mode: vertical-rl` for vertical text. Fonts are large: for reproducible renders, use a licensed local subset with the required glyphs and shaping data. Responsive applications may use intentional system-font fallbacks; test the resulting layouts on supported platforms.
 - **Mixed script.** Match the Latin companion's stroke weight and x-height. List the Latin font first in the stack, then the CJK font, and check baselines.
 - **Always declare `lang`.** It drives hyphenation, quote styles (« » in French, „ " in German), locl and screen readers.
 
@@ -435,27 +435,29 @@ A good typographic agent works from a small set of measurable constraints. It sh
 - **fontTools** (ttx, pyftsubset): read GSUB/GPOS, fvar, metrics and the cmap.
 - **Font Bakery:** "a font quality assurance tool," with universal, opentype and googlefonts profiles and JSON output. A reported migration to the Rust-based Fontspector is unverified.\[105\]\[106\]\[107\]
 - **Wakamai Fondue:** "What can my font do?" Lists features, axes and languages, and generates CSS.\[108\]
-- **axe-core `color-contrast`:** 4.5:1/3:1. It skips text over background images and rounds down (4.4988 fails).\[109\]\[110\]\[111\] It suits web pages, not rendered frames; for frames, sample pixels (TYPO-CONTRAST). `apca-w3` gives Lc scores.\[123\]
+- **axe-core `color-contrast`:** 4.5:1/3:1. It skips text over background images and rounds down (4.4988 fails).\[109\]\[110\]\[111\] It suits web pages, not rendered frames; for frames, inspect delivery legibility separately from source-colour calculations (TYPO-CONTRAST). `apca-w3` gives Lc scores.\[123\]
 
 **Check rules**
 
+These are proposed checks, not implemented validation. Select a profile by medium, language/script, text role, display size and client specification before applying them. A style guide is authoritative only within its own scope. Defaults produce review warnings, not automatic failures; contractual or accessibility gates require a declared target and suitable evidence. Do not autofix copy, quotations, code, identifiers or locale-specific punctuation without preserving their meaning. Record exceptions and their rationale. Use [rule-template.md](rule-template.md) when extracting a rule; keep thresholds here until a canonical rules data file exists.
+
 | ID | Check | Threshold | Tier | Applies to |
 |---|---|---|---|---|
-| `TYPO-MEASURE` | Average characters per rendered line, in text blocks of 3+ lines | 45–75; warn outside 40–90 | standard | stills, web, long on-screen text |
-| `TYPO-LEADING` | line-height ÷ font-size | body warn under 1.2 or over 1.8; display warn over 1.3 | standard | all |
-| `TYPO-SIZE` | Smallest text at delivered size | web body ≥16 px; iOS body ≥17 pt; nothing under 11 px/pt; 1080 × 1920 captions ≥48 px; 1080-wide social graphic body ≥36 px | standard (web, iOS) / heuristic (video, social) | all |
-| `TYPO-CONTRAST` | Worst-case pixels behind each text box | gate: WCAG ≥4.5:1, ≥3:1 at ≥24 px or ≥18.66 px bold; target: APCA Lc ≥75 body, ≥60 other, ≥45 large headlines | standard (WCAG) / heuristic (APCA, draft) | all |
-| `TYPO-CHARS` | Straight quotes, " - ", "--", "...", double spaces, digit-x-digit, quote after digit | none present | standard (style guides) | all |
+| `TYPO-MEASURE` | Average characters per rendered line, in text blocks of 3+ lines | 45–75; warn outside 40–90 | heuristic | Latin prose blocks; not captions, CJK or display titles |
+| `TYPO-LEADING` | line-height ÷ font-size | body warn under 1.2 or over 1.8; display warn over 1.3 | heuristic | Latin body/display text; check script-specific leading (§10) |
+| `TYPO-SIZE` | Smallest text at delivered size | web body ≥16 px; iOS body ≥17 pt; choose smaller labels by medium and viewing conditions; 1080 × 1920 captions ≥48 px; 1080-wide social graphic body ≥36 px | heuristic / platform default (iOS, verify) | scoped web/iOS body and fixed-size social/video defaults |
+| `TYPO-CONTRAST` | Source foreground/background colours plus displayed size; visual delivery review separately | WCAG AA target: ≥4.5:1, ≥3:1 for large text at ≥24 CSS px or ≥18.66 CSS px bold; APCA supplementary, size/weight-dependent (§8) | standard (WCAG, scoped) / heuristic (APCA) | declared web accessibility target; adapted readability target for other media, not a conformance claim |
+| `TYPO-CHARS` | Suspect punctuation and spacing in prose | flag for language-aware review; preserve code, identifiers, literal quotations and intentional notation | style preference | prose in the selected locale; never blanket replacement |
 | `TYPO-FONTS` | Family count, synthesised styles, manifest | ≤3 families; no faux bold/italic; every font listed with source, version and licence | heuristic | all |
-| `TYPO-FEATURES` | Numbers that change or align use `tnum`; small caps only if `smcp` exists; justified text has `lang` and hyphenation | — | standard | all |
+| `TYPO-FEATURES` | Numbers that change or align use `tnum`; small caps only if `smcp` exists; justified text has `lang` and hyphenation | — | style/implementation guidance | fonts and scripts supporting the feature; hyphenation only where appropriate to the language |
 | `TYPO-RUNT` | Last line of a heading or title | not a single word and not under ~15% of the measure | heuristic | all |
 | `TYPO-RESILIENCE` | 200% zoom and WCAG 1.4.12 overrides | no clipping or overflow | standard | web pages only, not fixed-size frames |
-| `TYPO-SAFE` | Text boxes against safe-area rectangles | 16:9: EBU graphics safe 5%; 9:16: composite 288 top, 672 bottom, 65 left, 192 right; Meta 14/35/6 | standard (EBU) / heuristic (composite) / platform (Meta) | video |
-| `TYPO-CAPTION-CPS` | Caption reading speed | ≤20 cps adult, ≤17 children | standard | captions |
-| `TYPO-CAPTION-LINES` | Characters per line and line count | ≤42 per line; ≤2 lines landscape; ≤3 vertical | standard (Netflix) / heuristic (BBC vertical, unverified) | captions |
-| `TYPO-CAPTION-DURATION` | Event duration and gap | 5/6 s to 7 s; gap ≥2 frames | standard (duration) / heuristic (gap; no longer on Netflix's current pages) | captions |
+| `TYPO-SAFE` | Text boxes against safe-area rectangles | 16:9: EBU graphics safe 5%; 9:16: composite 288 top, 672 bottom, 65 left, 192 right; Meta 14/35/6 | standard (EBU) / heuristic (composite) / platform (Meta, unverified) | video |
+| `TYPO-CAPTION-CPS` | Caption reading speed | ≤20 cps adult, ≤17 children | platform | Netflix English (USA) profile; other languages/deliveries need their own profile |
+| `TYPO-CAPTION-LINES` | Characters per line and line count | ≤42 per line; ≤2 lines landscape; ≤3 vertical | standard (Netflix) / heuristic (BBC vertical, unverified) | selected caption delivery profile; vertical allowance unverified |
+| `TYPO-CAPTION-DURATION` | Event duration and gap | 5/6 s to 7 s; gap ≥2 frames | standard (duration) / heuristic (gap; no longer on Netflix's current pages) | selected caption delivery profile |
 | `TYPO-HOLD` | Hold after the text settles | ≥ max(1.2 s, 0.3 s × words + 0.5 s) | heuristic | motion |
-| `TYPO-FLASH` | Flashes per second | ≤3 (WCAG 2.3.1) | standard | motion |
+| `TYPO-FLASH` | Flashes per second | conservative default: ≤3 in any one-second window; full WCAG 2.3.1 also permits flashes below general/red-flash thresholds | standard | motion |
 | `TYPO-PRINT` | Print preflight | K100 for text under ~18 pt; reverses ≥8–10 pt; hairlines ≥0.25–0.5 pt; 3–5 mm from trim; fonts embedded | heuristic (printer specs vary) | print handoff |
 | `TYPO-VISUAL` | Render at target sizes and inspect: phone-size frame, thumbnail, print at 100%; blur test | process, not a number | — | all |
 
@@ -465,14 +467,14 @@ A good typographic agent works from a small set of measurable constraints. It sh
 - **DOM scenes** (GSAP, Anime.js, WAAPI): after `window.__scene` seeks to a frame, read text boxes with `Range.getClientRects()` and computed styles. Run at marker frames or every frame where text changes.
 - **Canvas and WebGL scenes** (canvas-2d, p5, PixiJS, three-js) have no DOM text boxes. The scene must report its own text bounds, or the check falls back to visual review.
 - **Stills** (resvg, ImageMagick, sharp): measure from source where the tool reports metrics, otherwise from the rendered pixels.
-- **Contrast** is measured on the rendered source frame, then spot-checked on a decoded delivery frame (TYPO-CHROMA, TYPO-RANGE).
+- **Contrast:** calculate from source foreground and effective background colours, including transparency and the background beneath the glyphs. Do not treat antialiased glyph-edge pixels as the nominal foreground. Use CSS/display size, not raw export pixels, for large-text classification. For complex backgrounds, retain source layers or a text-free background render; if measurement is unreliable, report that limitation. Separately inspect source and decoded delivery frames for visual legibility (TYPO-CHROMA, TYPO-RANGE). W3C explains source-colour measurement and image sizing in [Understanding SC 1.4.3](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html).
 
 ## 15. Rendering and Delivery in VCR
 
 What the general rules above don't cover: how VCR's own tools set text, and what happens to text between capture and the viewer. Tool facts marked "guide" come from VCR's evidence-backed guides; everything else is unverified in VCR until a fixture proves it.
 
 ### 15.1 Font determinism (every tool)
-- **`TYPO-FONT-SHIP`:** ship the font files with the project and the licence beside them; never rely on system fonts, which differ by machine and OS version. Record family, version, file hash, source and licence in the font manifest (§3). The `canvas2d-capture` fixture keeps `fonts/OFL.txt` (guide).
+- **`TYPO-FONT-SHIP`:** for reproducible renders, bundle font files and their licences only where redistribution is permitted. Otherwise record the exact font/version and an authorised acquisition or local provisioning step; do not copy restricted fonts into a shared project. Avoid implicit system-font fallback, which differs by machine and OS version. Record family, version, file hash, source and licence in the font manifest (§3). The `canvas2d-capture` fixture keeps `fonts/OFL.txt` (guide).
 - **`TYPO-FONT-READY`:** in browser scenes, load fonts from local files (`FontFace` or `@font-face`), `await document.fonts.ready`, confirm with `document.fonts.check()`, and only then expose `window.__scene`. Build SplitText and any text measurement after that point. Symptoms of skipping it: a fallback face in early frames, or different line breaks in capture than in a browser window (guides: start/determinism, gsap, canvas-2d).\[116\]
 - **Cross-machine differences.** Text rasterisation (antialiasing, hinting, Chromium version) is the likeliest source of pixel differences between machines. Compare renders made on the same machine and browser build, or compare with a tolerance. heuristic.
 - **Outlines for portability.** When text no longer needs editing, converting it to paths removes the font dependency (`inkscape --export-text-to-path` for SVG; guide). It also removes the text from accessibility and search, so keep the source text alongside.
@@ -519,7 +521,7 @@ Convert minimums with `frames = ceil(seconds × fps)`; never round a minimum dow
 | Short motion, 200 ms | 5 | 5 | 6 | 12 |
 | Medium motion, 400 ms | 10 | 10 | 12 | 24 |
 
-- **`TYPO-STAGGER-QUANT`:** a stagger shorter than one frame collapses. Several glyphs start on the same frame and the stagger reads as uneven clumps. The 20–50 ms per-character range in §9c only works at 60 fps; at 24–30 fps use whole-frame staggers (1–2 frames per character) or stagger by word. heuristic, but follows from sampling.
+- **`TYPO-STAGGER-QUANT`:** onsets are sampled at frame boundaries. Sub-frame staggers can put several glyph onsets in one frame; non-integer frame intervals can alternate their sampled spacing. The 20–50 ms range in §9c spans different behaviours: 50 ms exceeds one frame at 24 fps, while 20 ms does not. Use whole-frame intervals when uniform onset spacing matters, or keep continuous timing and inspect the sampled result. This is a sampling heuristic, not a prohibition on sub-frame timing.
 
 ### 15.6 Stills delivery
 - **`TYPO-STILL-FORMAT`:** deliver text-heavy stills as PNG or lossless WebP. JPEG rings around glyph edges and platforms recompress it again. If JPEG is required, use quality 90 or more with 4:4:4 chroma (ImageMagick `-sampling-factor 4:4:4`; sharp `jpeg({ chromaSubsampling: '4:4:4' })`). heuristic.
@@ -531,6 +533,8 @@ Convert minimums with `frames = ceil(seconds × fps)`; never round a minimum dow
 
 ## Master Checklist — ANALYSIS
 
+Apply only the selected profile (§14); unchecked or inapplicable items are not automatically failures. Thresholds below are references to the canonical rule table, not additional requirements.
+
 **Brief & voice**
 - [ ] Tone matches the voice adjectives; genre conventions used or subverted deliberately
 - [ ] Typeface connotations appropriate; licence covers this medium
@@ -541,13 +545,13 @@ Convert minimums with `frames = ceil(seconds × fps)`; never round a minimum dow
 - [ ] Levels differ by clear scale steps
 
 **Readability**
-- [ ] Measure 45–75 chars (mobile ~35–50); body leading 1.2–1.45 print, ~1.4–1.6 screen, never under 1.2 or over 1.8; display ~0.9–1.2
-- [ ] Body ≥16 px web / 17 pt iOS / 9–12 pt print
-- [ ] Contrast ≥4.5:1 (≥3:1 at ≥24 px or ≥18.66 px bold); APCA Lc ≥75 body (90 preferred); scrim on images
+- [ ] Measure and leading suit script, role and medium (`TYPO-MEASURE`, `TYPO-LEADING`)
+- [ ] Size verified at actual viewing conditions (`TYPO-SIZE`; print handoff §9b)
+- [ ] Scoped contrast target checked from source colours and displayed size; decoded output inspected (`TYPO-CONTRAST`)
 - [ ] Dark mode: grade/weight reduced; no pure white on pure black for long text
 
 **Micro-typography**
-- [ ] Curly quotes, correct apostrophes, en/em dashes, primes, ×, …, single spaces
+- [ ] Punctuation reviewed for the locale and content type; literal content preserved (`TYPO-CHARS`)
 - [ ] Display kerned optically; caps +5–12%; large display slightly negative; no letterspaced lowercase/script
 - [ ] No faux bold/italic/small caps or stretched type; tabular figures for data and counters
 - [ ] No headline runts; balanced wraps; no rivers; ≤2 consecutive hyphens
@@ -557,17 +561,17 @@ Convert minimums with `frames = ceil(seconds × fps)`; never round a minimum dow
 - [ ] Web: rem, 200% zoom, 1.4.12 spacing, font-display, subsetting, `lang`
 - [ ] Print: K100 small text, rich black only ≥5 mm, reverse ≥8–10 pt, hairlines ≥0.25–0.5 pt, 3 mm bleed, 3–5 mm from trim/folds, fonts embedded
 - [ ] Motion: readable twice after settling; consistent easing; safe areas; reduced-motion option
-- [ ] Vertical video: text within ≈ x 65–888, y 288–1248; hook in 1–2 s; captions ≤20 CPS, ≤42 chars/line, stroke or box, proofread
+- [ ] Vertical video: current platform overlay checked; provisional margins labelled; selected caption profile checked and proofread (`TYPO-SAFE`, `TYPO-CAPTION-*`)
 - [ ] UI: text styles with Dynamic Type/sp; reflow at accessibility sizes
 - [ ] i18n: tolerates 30% to 200–300% expansion; scripts balanced; RTL mirrored
 
 **Capture & delivery (VCR, §15)**
-- [ ] Fonts shipped with the project, licences beside them, manifest complete; scene exposed only after fonts load
+- [ ] Fonts bundled where permitted or authorised provisioning documented, manifest complete; scene exposed only after fonts load
 - [ ] Text set in the tool best able to set it (DOM over canvas/WebGL where typography matters)
 - [ ] Legibility carried by luminance contrast; decoded `yuv420p` frame inspected, not only the PNG
 - [ ] Survives a low-bitrate test encode; no hairlines or thin saturated text over busy footage
 - [ ] BT.709 matrix and tags explicit; contrast spot-checked on a decoded frame
-- [ ] Scaled text sharp at its largest frame; staggers whole frames at 24–30 fps; holds counted from settle
+- [ ] Scaled text sharp at its largest frame; sampled stagger spacing inspected; holds counted from settle
 - [ ] Stills: PNG or lossless WebP (or JPEG ≥90 with 4:4:4); rendered at delivered size; checked as a thumbnail
 
 **Expression**
@@ -585,7 +589,7 @@ Convert minimums with `frames = ceil(seconds × fps)`; never round a minimum dow
 8. **Verify programmatically.** Measure, leading, contrast, safe zones, CPS and duration, font hygiene, preflight.
 9. **Verify visually.** Device screenshots, 100% print proof, phone playback with overlay, squint and zoom tests, dark mode, reduced motion.
 10. **Iterate.** Blocking issues, then major, then polish.
-11. **Ship.** Tokens and spec, subset fonts, PDF/X, validated caption files, licence manifest.
+11. **Ship.** Tokens and spec, licensed font assets or provisioning instructions, checked captions where required, and a licence manifest. Print/PDF/X requires an external verified handoff (§15.6); VCR has no validated PDF/X path.
 
 ## Caveats
 
