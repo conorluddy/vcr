@@ -1,7 +1,7 @@
 import { Ajv2020, type ValidateFunction } from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import { existsSync, readFileSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+import { basename, dirname, join, relative } from "node:path";
 import { writeCatalogIndex } from "./catalog.js";
 import { listFilesNamed, listJsonFiles, readJsonFile } from "./repository.js";
 import { WORKSPACE_MARKER } from "./roots.js";
@@ -12,6 +12,7 @@ import { referencesIndexDiagnostics } from "./references.js";
 import { listRetainedRenderIds, REVIEW_PATHS, reviewDiagnostics, sha256Hex, type Approval, type Finding, type RenderManifest, type VideoReview } from "./review.js";
 import { listVideoDirectories } from "./video.js";
 import { REVIEW_SUMMARY_FILE, reviewSummaryDiagnostics } from "./review-summary.js";
+import { parseVideoBrief, SERIES_BRIEF_FILE, seriesBriefDiagnostics, VIDEO_BRIEF_FILE, videoBriefDiagnostics, type SeriesBrief, type VideoBriefFrontMatter } from "./brief.js";
 
 // === TYPES ===
 
@@ -49,7 +50,7 @@ const CARD_MISSING_SEVERITY: DiagnosticSeverity = "error";
 
 /** Validates every catalogue, example, project, reference and environment document, plus cross-references and budgets. Dev mode only. */
 export function validateRepository(repositoryRoot: string): ValidationReport {
-  const { check, diagnostics, report } = createChecker(loadSchemas(repositoryRoot), repositoryRoot);
+  const { check, checkDocument, diagnostics, report } = createChecker(loadSchemas(repositoryRoot), repositoryRoot);
 
   const vocabulary = readJsonFile<Vocabulary>(join(repositoryRoot, "catalog/capabilities/vocabulary.json"));
   const knownCapabilities = new Set(vocabulary.ok ? vocabulary.value.capabilities : []);
@@ -85,7 +86,7 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
   if (existsSync(typographyRulesPath) && check(typographyRulesPath, "typographyRules")) diagnostics.push(...typographyRuleDiagnostics(repositoryRoot));
   diagnostics.push(...referencesIndexDiagnostics(repositoryRoot));
 
-  diagnostics.push(...checkWorkspaceDocuments(check, repositoryRoot));
+  diagnostics.push(...checkWorkspaceDocuments(check, checkDocument, repositoryRoot));
   for (const environmentPath of listJsonFiles(join(repositoryRoot, "environment"))) check(environmentPath, "environment");
 
   return report();
@@ -93,8 +94,8 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
 
 /** Validates a workspace outside the harness: its marker, projects and references, against the harness schemas. */
 export function validateWorkspace(harnessRoot: string, workspaceRoot: string): ValidationReport {
-  const { check, diagnostics, report } = createChecker(loadSchemas(harnessRoot), workspaceRoot);
-  diagnostics.push(...checkWorkspaceDocuments(check, workspaceRoot));
+  const { check, checkDocument, diagnostics, report } = createChecker(loadSchemas(harnessRoot), workspaceRoot);
+  diagnostics.push(...checkWorkspaceDocuments(check, checkDocument, workspaceRoot));
   return report();
 }
 
@@ -106,6 +107,7 @@ export function hasErrors(report: ValidationReport): boolean {
 
 type Schemas = ReturnType<typeof loadSchemas>;
 type Check = (filePath: string, schemaName: keyof Schemas) => unknown;
+type CheckDocument = (document: unknown, displayPath: string, schemaName: keyof Schemas) => unknown;
 
 /** Parses and schema-checks one file at a time, collecting diagnostics relative to `displayRoot`. Returns the document when valid. */
 function createChecker(schemas: Schemas, displayRoot: string) {
@@ -124,19 +126,49 @@ function createChecker(schemas: Schemas, displayRoot: string) {
     if (issues.some((issue) => issue.severity === "error")) return undefined;
     return parsed.value;
   };
-  return { check, diagnostics, report: (): ValidationReport => ({ filesChecked, diagnostics }) };
+  /** For documents that are not JSON files, such as brief.md front matter. */
+  const checkDocument: CheckDocument = (document, displayPath, schemaName) => {
+    filesChecked += 1;
+    const issues = schemaDiagnostics(schemas[schemaName], document, displayPath);
+    diagnostics.push(...issues);
+    return issues.some((issue) => issue.severity === "error") ? undefined : document;
+  };
+  return { check, checkDocument, diagnostics, report: (): ValidationReport => ({ filesChecked, diagnostics }) };
 }
 
 /** Schema-checks the workspace's own documents and returns the cross-file review diagnostics. */
-function checkWorkspaceDocuments(check: Check, workspaceRoot: string): Diagnostic[] {
+function checkWorkspaceDocuments(check: Check, checkDocument: CheckDocument, workspaceRoot: string): Diagnostic[] {
   const markerPath = join(workspaceRoot, WORKSPACE_MARKER);
   if (existsSync(markerPath)) check(markerPath, "workspace");
   for (const projectPath of listFilesNamed(join(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
   for (const referencePath of listJsonFiles(join(workspaceRoot, "references"))) check(referencePath, "reference");
-  return listVideoDirectories(workspaceRoot).flatMap(({ videoId, directory }) => {
+  const diagnostics: Diagnostic[] = [];
+  const seriesBriefs = new Map<string, SeriesBrief | undefined>();
+  const seriesBriefFor = (project: string): SeriesBrief | undefined => {
+    if (seriesBriefs.has(project)) return seriesBriefs.get(project);
+    const projectDirectory = join(workspaceRoot, "projects", project);
+    const path = join(projectDirectory, SERIES_BRIEF_FILE);
+    const brief = existsSync(path) ? (check(path, "seriesBrief") as SeriesBrief | undefined) : undefined;
+    if (brief) diagnostics.push(...seriesBriefDiagnostics(brief, projectDirectory, relative(workspaceRoot, path)));
+    seriesBriefs.set(project, brief);
+    return brief;
+  };
+  for (const projectPath of listFilesNamed(join(workspaceRoot, "projects"), "project.json")) seriesBriefFor(basename(dirname(projectPath)));
+  for (const { videoId, directory } of listVideoDirectories(workspaceRoot)) {
+    const seriesBrief = seriesBriefFor(videoId.split("/")[0]!);
+    const briefPath = join(directory, VIDEO_BRIEF_FILE);
+    if (existsSync(briefPath)) diagnostics.push(...checkVideoBrief(checkDocument, briefPath, videoId, seriesBrief, relative(workspaceRoot, briefPath)));
     const review = checkVideoReview(check, directory, workspaceRoot);
-    return [...reviewDiagnostics(review), ...reviewSummaryDiagnostics(directory, videoId, review, relative(workspaceRoot, join(directory, REVIEW_PATHS.directory, REVIEW_SUMMARY_FILE)))];
-  });
+    diagnostics.push(...reviewDiagnostics(review), ...reviewSummaryDiagnostics(directory, videoId, review, relative(workspaceRoot, join(directory, REVIEW_PATHS.directory, REVIEW_SUMMARY_FILE))));
+  }
+  return diagnostics;
+}
+
+function checkVideoBrief(checkDocument: CheckDocument, briefPath: string, videoId: string, seriesBrief: SeriesBrief | undefined, file: string): Diagnostic[] {
+  const parsed = parseVideoBrief(readFileSync(briefPath, "utf8"));
+  if (!parsed.ok) return [{ severity: "error", file, path: "", message: parsed.error.message }];
+  const frontMatter = checkDocument(parsed.value.frontMatter, file, "videoBrief") as VideoBriefFrontMatter | undefined;
+  return frontMatter ? videoBriefDiagnostics(videoId, frontMatter, parsed.value.body, seriesBrief, file) : [];
 }
 
 function checkVideoReview(check: Check, videoDirectory: string, workspaceRoot: string): VideoReview {
@@ -179,6 +211,8 @@ function loadSchemas(repositoryRoot: string) {
     renderManifest: ajv.compile(load("render-manifest")),
     finding: ajv.compile(load("finding")),
     approval: ajv.compile(load("approval")),
+    seriesBrief: ajv.compile(load("series-brief")),
+    videoBrief: ajv.compile(load("video-brief")),
   };
 }
 

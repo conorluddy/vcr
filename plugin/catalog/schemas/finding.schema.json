@@ -62,6 +62,7 @@
     "rule_id": { "type": "string", "pattern": "^[A-Z0-9]+(?:-[A-Z0-9]+)+$" },
     "kind": { "enum": ["measured", "judged", "hybrid"] },
     "severity_basis": { "enum": ["measured_rule", "brief_clause", "standard_rule", "platform_rule", "heuristic_rule", "taste"] },
+    "brief_ref": { "type": "string", "description": "The brief clause a brief_clause finding cites: <series id>@<version>#<path>, or brief.md#<section>" },
     "confidence": {
       "type": "object",
       "required": ["value", "basis"],
@@ -104,6 +105,11 @@
       "description": "A heuristic major needs an artifact a human can check",
       "if": { "required": ["severity_basis", "severity"], "properties": { "severity_basis": { "const": "heuristic_rule" }, "severity": { "const": "major" } } },
       "then": { "required": ["evidence"], "properties": { "evidence": { "required": ["artifacts"], "properties": { "artifacts": { "minItems": 1 } } } } }
+    },
+    {
+      "description": "A brief_clause finding cites the clause it judges against",
+      "if": { "required": ["severity_basis"], "properties": { "severity_basis": { "const": "brief_clause" } } },
+      "then": { "required": ["brief_ref"] }
     },
     {
       "description": "A judged blocker below 0.8 confidence is escalated to the human, not filed as a blocker",

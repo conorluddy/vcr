@@ -19,9 +19,10 @@ This is the series brief, brand system and series bible knowledge base (`BRIEF-*
 
 The harness stays domain-agnostic, so it holds only the brief's schema and method, never a real brief. The PRD already has the slots: a project carries `brand/` and series-level configuration, and each video carries `brief.md` (`specifications/vcr-prd.md` §7, L1-03). The proposal:
 
-- The schema is `catalog/schemas/series-brief.schema.json`, built from the §12.1 sketch when Layer 1 starts.
-- A project's brief sits in its workspace project, next to `brand/`, which holds the DTCG token files. A video's `brief.md` narrows it; it never contradicts it.
-- The fictional "Low Tide Lab" example (§12.2) can become a fixture for the schema's tests. It is invented, so it does not break the domain-agnostic rule.
+- Built (plugin P2): the schema is `catalog/schemas/series-brief.schema.json`, from the §12.1 sketch. Its fps accepts any rate, its consumers name every pillar, and it adds `accessibility.flashProfile`.
+- A project's brief is `projects/<project>/brief.json`, next to `brand/`, which holds the DTCG token files. A video's `brief.md` (front matter in `catalog/schemas/video-brief.schema.json`, plus five sections) narrows it and never contradicts it; `vcr validate` checks deliverables, the cited version and the flash profile.
+- The fictional "Low Tide Lab" example (§12.2) is the schema's test fixture, read straight from this knowledge base, so the example must stay valid.
+- The `brief` skill interviews for these fields and writes both files.
 
 ## Open decisions before building the schema, checks or an agent
 
@@ -41,7 +42,7 @@ The harness stays domain-agnostic, so it holds only the brief's schema and metho
    - Brand assets no other pillar covers: `BRIEF-LOGO-*`, `BRIEF-THIRD-PARTY-ART` and `BRIEF-SONIC-LOGO-PRESENT`.
    - Conformance across the whole brief: `BRIEF-MANDATORY-PASS`, `BRIEF-DELIVERABLE-SPEC`, `BRIEF-RULEBREAK-*` and `BRIEF-VERSION-STAMP`.
    - Series identity: `BRIEF-FIXED-PRESENT`, `BRIEF-VARIABLE-RANGE` and `BRIEF-SERIES-DISTINCT`.
-3. **Taste cap conflict.** `BRIEF-TRACE-FINDING` allows taste findings up to `minor`. The finding contract (`specifications/vcr-plugin-prd.md` §6.4) caps taste at `note`, and the contract wins. The useful part, that every finding cites a resolvable brief path or is labelled taste, maps to the contract's `severity_basis` (`brief_clause` or `taste`). It needs a field for the brief path.
+3. **Taste cap conflict.** `BRIEF-TRACE-FINDING` allows taste findings up to `minor`. The finding contract (`specifications/vcr-plugin-prd.md` §6.4) caps taste at `note`, and the contract wins. The useful part, that every finding cites a resolvable brief path or is labelled taste, maps to the contract's `severity_basis` (`brief_clause` or `taste`). It needs a field for the brief path: the finding contract now has `brief_ref`, required when `severity_basis` is `brief_clause`.
 4. **Conflict priority.** `BRIEF-PRIORITY-APPLIED` lets a brief declare its own priority order between pillars. `REVIEW-AGG-03` gives the default order. Keep both: the brief overrides, and the default applies when the brief is silent.
 5. **Colour tolerance disagreement.** This KB uses ΔE2000 ≤ 5 for palette conformance; the art KB uses 1.0 and 3.0. Art owns the check, so settle the value there.
 6. **Unverified and uncalibrated values.**

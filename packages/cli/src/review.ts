@@ -56,6 +56,7 @@ export interface Finding {
   rule_id?: string;
   kind?: "measured" | "judged" | "hybrid";
   severity_basis?: "measured_rule" | "brief_clause" | "standard_rule" | "platform_rule" | "heuristic_rule" | "taste";
+  brief_ref?: string;
   confidence?: { value: number; basis: "deterministic" | "multi_sample_agreement" | "single_judgement" | "inferred_from_stills" };
   evidence?: { metric?: string; value?: unknown; threshold?: unknown; artifacts?: string[] };
   reviewer?: { agent: string; model?: string; rules_version?: string };
