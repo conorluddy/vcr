@@ -22,7 +22,7 @@ This file holds the conventions every pillar shares and decides which pillar own
 | Delivery | `DELIVERY-` | [delivery/](delivery/README.md) | — | — (`ffprobe` metadata gate first) | — | — |
 | Concept, script and storyboard | `STORY-` | [story/](story/README.md) | — (beat sheet schema planned for Layer 1) | — | — | — |
 | Data visualisation | `DATA-` | research pending ([brief](research-prompts/data-visualisation.md)) | | | | |
-| Adaptation and versioning | `ADAPT-` | research pending ([brief](research-prompts/adaptation.md)) | | | | |
+| Adaptation and versioning | `ADAPT-` | [adaptation/](adaptation/README.md) | — | — | — | — |
 
 `references/ideas/` holds exploratory material and `references/cli.md` the CLI reference; neither is a pillar.
 
@@ -75,4 +75,7 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 | Plan-stage checks (hook timing, reading time, word budget, mute test, CTA, mandatories mapped, loop seam, series slots) | The render-stage owner holds the threshold | `STORY-*` checks the beat sheet before rendering and cites that owner (see the story README). |
 | Variety across series episodes: hook type, mechanism, opening line | `STORY-SERIES-REPEAT` | `PACE-SERIES-03` is dropped. `BRIEF-SERIES-DISTINCT` stays as the render-level near-duplicate check. |
 | Single proposition | `BRIEF-PROPOSITION-SINGLE` | `STORY-SMP` is dropped. |
-| Determinism (identical output for the same input) | One generic check across picture and sound | `MOTION-SPR-001` and `SOUND-SYNTH-DETERMINISM` describe it for their own medium. |
+| Determinism (identical output for the same input) | One generic check across picture and sound | `MOTION-SPR-001`, `SOUND-SYNTH-DETERMINISM` and `ADAPT-DETERMINISM` describe it for their own medium. `ADAPT-DETERMINISM` adds the GPU tolerance and the Chromium pin for `Intl`. |
+| Checks across a version set (safe zones, text fit, fonts, captions, mandatories, SFX, music, series tokens on every cell) | The owning pillar's check, run on every cell | `ADAPT-*` owns the matrix and running the checks across it, not a second threshold (see the adaptation README). |
+| Market rules for UK TV supers (hold, height) | A `uk-clearcast` market profile on `TYPO-HOLD` and `TYPO-SIZE` | `ADAPT-SUPER-HOLD-UK` and `ADAPT-SUPER-HEIGHT-UK` become that profile. |
+| Claim registry: sources, qualifiers, legal list per market | One registry in the brief | `STORY-CLAIM-SOURCE` reads it at plan time; `ADAPT-CLAIMS-MARKET` and `ADAPT-DISCLOSURE-*` read it across markets. |
