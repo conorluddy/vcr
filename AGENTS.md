@@ -7,6 +7,7 @@ Read `specifications/vcr-prd.md` for product intent and release gates. This repo
 - Keep native toolkit source and commands accessible. Do not imply a shared timeline or renderer exists until implemented.
 - Keep content, design, motion parameters, and production placement distinct.
 - Keep the harness domain-agnostic: VCR serves any creative output. Never name a client, brand, product or subject in skills, references, examples, specs or code. Anything specific to a production belongs in that workspace's project or series brief, outside this repository.
+- Keep craft separate from tools (ADR 0006): skills, agents and rules for a creative pillar never name a catalogue tool or restate a threshold. A toolkit guide cites the pillar rule ID it meets, and a check measures output, not the tool that made it.
 - Record tool documentation, machine installation, validation evidence, and adapter maturity as separate facts.
 - Treat the project selected by the user as the write boundary. Do not modify sibling projects or paths outside it.
 - Generated media, caches, and temporary render artifacts belong in ignored output directories.
