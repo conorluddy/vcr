@@ -19,6 +19,9 @@ import { hasErrors, validateRepository, validateWorkspace } from "./validate.js"
 import { ensureWorkspace } from "./workspace.js";
 import { ensureVideo, resolveVideo } from "./video.js";
 import { stagingDirectoryFor, writeRender } from "./render-manifest.js";
+import { runFindingsCommand, runReviewDecision } from "./review-commands.js";
+import type { TerminalIo } from "./approvals.js";
+import { createInterface } from "node:readline/promises";
 
 
 // === ENTRY ===
@@ -40,7 +43,7 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
   const asJson = options["json"] === true;
   if (options["help"] === true) return printHelp(args, asJson);
   if (parsed.error) {
-    print(asJson ? { error: { code: "INVALID_ARGUMENT", message: parsed.error } } : `${parsed.error}\n\n${formatGlobalUsage()}`);
+    print(asJson ? { error: { code: "INVALID_ARGUMENT", message: parsed.error, retryable: false } } : `${parsed.error}\n\n${formatGlobalUsage()}`);
     return 2;
   }
 
@@ -66,6 +69,17 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     const outcome = ensureVideo(workspace.value, target);
     if (!outcome.ok) return failWith(outcome.error, asJson, 2);
     print(asJson ? outcome.value : outcome.value.changes.length > 0 ? `created ${outcome.value.videoId}: ${outcome.value.changes.join(", ")}` : `${outcome.value.videoId} already exists; nothing changed`);
+    return 0;
+  }
+
+  if ((command === "findings" || command === "review") && subcommand && target) {
+    const workspace = requireWorkspace(roots);
+    if (!workspace.ok) return failWith(workspace.error, asJson);
+    const outcome = command === "findings"
+      ? runFindingsCommand(workspace.value, subcommand, target, args[3], options, new Date())
+      : await runReviewDecision(workspace.value, subcommand, target, args[3], options, terminalIo(), new Date());
+    if (!outcome.ok) return failWith(outcome.error, asJson, outcome.error.code === "INVALID_ARGUMENT" ? 2 : 1);
+    print(asJson ? outcome.value.json : outcome.value.text);
     return 0;
   }
 
@@ -343,7 +357,24 @@ function print(value: unknown): void {
   process.stdout.write(`${typeof value === "string" ? value : JSON.stringify(value, null, 2)}\n`);
 }
 
-function failWith(error: { code: string; message: string }, asJson: boolean, exitCode = 1): number {
-  print(asJson ? { error } : `${error.code}: ${error.message}`);
+/** Every error leaves as { code, message, retryable } (ADR 0004); retryable defaults to false. */
+function failWith(error: { code: string; message: string; retryable?: boolean }, asJson: boolean, exitCode = 1): number {
+  const shaped = { code: error.code, message: error.message, retryable: error.retryable ?? false };
+  print(asJson ? { error: shaped } : `${shaped.code}: ${shaped.message}`);
   return exitCode;
+}
+
+/** The human channel: both ends must be a terminal, which agent hosts never provide. */
+function terminalIo(): TerminalIo {
+  return {
+    isInteractive: process.stdin.isTTY === true && process.stdout.isTTY === true,
+    ask: async (prompt) => {
+      const readline = createInterface({ input: process.stdin, output: process.stdout });
+      try {
+        return await readline.question(prompt);
+      } finally {
+        readline.close();
+      }
+    },
+  };
 }

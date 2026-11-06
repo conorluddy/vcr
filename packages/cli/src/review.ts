@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
-import { existsSync, readdirSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { join, relative } from "node:path";
+import { listJsonFiles, readJsonFile } from "./repository.js";
 import type { Diagnostic } from "./validate.js";
 
 // The review data contract (plugin PRD §6.4): per video, retained render manifests, one file per
@@ -117,6 +118,44 @@ export function reviewDiagnostics(review: VideoReview): Diagnostic[] {
   }
   for (const { finding, file } of review.findings) diagnostics.push(...findingDiagnostics(finding, file, manifestsById.get(finding.render_id)?.manifest));
   return diagnostics;
+}
+
+/**
+ * Reads one video's review directory without schema checks, skipping unparsable files: what the
+ * CLI acts on. `vcr validate` is what reports malformed files.
+ */
+export function readVideoReview(videoDirectory: string, workspaceRoot: string): VideoReview {
+  const review: VideoReview = { manifests: [], findings: [], approvals: [] };
+  for (const renderId of listRetainedRenderIds(videoDirectory)) {
+    const path = join(videoDirectory, REVIEW_PATHS.renders, renderId, REVIEW_PATHS.manifestFile);
+    const content = readFileSync(path);
+    const parsed = readJsonFile<RenderManifest>(path);
+    if (parsed.ok) review.manifests.push({ manifest: parsed.value, sha256: sha256Hex(content), file: relative(workspaceRoot, path) });
+  }
+  for (const path of listJsonFiles(join(videoDirectory, REVIEW_PATHS.findings))) {
+    const parsed = readJsonFile<Finding>(path);
+    if (parsed.ok) review.findings.push({ finding: parsed.value, file: relative(workspaceRoot, path) });
+  }
+  for (const path of listJsonFiles(join(videoDirectory, REVIEW_PATHS.approvals))) {
+    const parsed = readJsonFile<Approval>(path);
+    if (parsed.ok) review.approvals.push({ approval: parsed.value, file: relative(workspaceRoot, path) });
+  }
+  return review;
+}
+
+/** Render ids sort by their UTC timestamp, so the last retained manifest is the latest render. */
+export function latestManifest(review: VideoReview): RenderManifest | undefined {
+  return [...review.manifests].sort((left, right) => left.manifest.render_id.localeCompare(right.manifest.render_id)).at(-1)?.manifest;
+}
+
+export type VideoState = "draft" | "in_review" | "changes_requested" | "approved";
+
+/** PRD §6.3 states, decided by the latest render: no render is a draft, and a decision on an older render no longer counts. */
+export function videoState(review: VideoReview): VideoState {
+  const latest = latestManifest(review);
+  if (!latest) return "draft";
+  const decision = review.approvals.find((entry) => entry.approval.render_id === latest.render_id)?.approval.decision;
+  return decision ?? "in_review";
 }
 
 /** The scene containing a composition frame, or undefined when it falls outside every scene. */
