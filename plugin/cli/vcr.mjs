@@ -9424,6 +9424,7 @@ function buildPlugin(harnessRoot, outputDirectory = join13(harnessRoot, PLUGIN_D
   for (const skill of readdirSync4(join13(harnessRoot, "skills"))) {
     if (existsSync11(join13(harnessRoot, "skills", skill, "SKILL.md"))) cpSync2(join13(harnessRoot, "skills", skill), join13(outputDirectory, "skills", skill), { recursive: true });
   }
+  cpSync2(join13(harnessRoot, "agents"), join13(outputDirectory, "agents"), { recursive: true });
   cpSync2(join13(harnessRoot, "examples"), join13(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename2(source)) });
   writeManifests(outputDirectory, version.value);
   writeFileSync6(join13(outputDirectory, "README.md"), PLUGIN_README);

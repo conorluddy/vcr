@@ -23,6 +23,7 @@ describe("buildPlugin", () => {
     expect(existsSync(join(directory, "cli/vcr.mjs"))).toBe(true);
     expect(existsSync(join(directory, "skills/gsap/SKILL.md"))).toBe(true);
     expect(existsSync(join(directory, "skills/ingest/SKILL.md"))).toBe(true);
+    expect(existsSync(join(directory, "agents/typographer.md"))).toBe(true);
     for (const reference of ["CANDIDATE-INGESTION.md", "ASSESSMENT-BRIEF.md", "FIXTURE-EVIDENCE-TEMPLATE.md"]) {
       expect(readFileSync(join(directory, "catalog", reference), "utf8")).toBe(readFileSync(join(harnessRoot, "catalog", reference), "utf8"));
     }
