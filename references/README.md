@@ -21,7 +21,7 @@ This file holds the conventions every pillar shares and decides which pillar own
 | Series brief | `BRIEF-` | [series-brief/](series-brief/README.md) | — (schema planned for Layer 1) | — | — | (read by every reviewer) |
 | Delivery | `DELIVERY-` | [delivery/](delivery/README.md) | — | — (`ffprobe` metadata gate first) | — | — |
 | Concept, script and storyboard | `STORY-` | [story/](story/README.md) | — (beat sheet schema planned for Layer 1) | — | — | — |
-| Data visualisation | `DATA-` | research pending ([brief](research-prompts/data-visualisation.md)) | | | | |
+| Data visualisation | `DATA-` | [data-visualisation/](data-visualisation/README.md) | — | — | — | — |
 | Adaptation and versioning | `ADAPT-` | [adaptation/](adaptation/README.md) | — | — | — | — |
 
 `references/ideas/` holds exploratory material and `references/cli.md` the CLI reference; neither is a pillar.
@@ -52,7 +52,9 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 | Caption speed, duration and lines | `TYPO-CAPTION-*`, `caption_profiles` | `PACE-READ-02/03` and `A11Y-CAPTION-RATE` are dropped. |
 | Captions as access: presence, completeness, accuracy, sync, non-speech, speakers, lyrics, sidecars | `A11Y-CAPTION-*` | `PACE-SOUND-02` is dropped. `A11Y-CAPTION-PLACEMENT` cites `TYPO-SAFE` for platform UI. |
 | Text contrast | `TYPO-CONTRAST` | `A11Y-CONTRAST-TEXT` is dropped. Its 5th-percentile-over-lifetime method is how `TYPO-CONTRAST` is measured on moving backgrounds. |
-| Non-text contrast, CVD distinguishability, colour as the only carrier | `A11Y-CONTRAST-GRAPHIC`, `A11Y-CVD-DISTINCT`, `A11Y-COLOR-ALONE` | Art and data visualisation cite them. |
+| Non-text contrast, CVD distinguishability, colour as the only carrier | `A11Y-CONTRAST-GRAPHIC`, `A11Y-CVD-DISTINCT`, `A11Y-COLOR-ALONE` | Art and data visualisation cite them. `DATA-COLOUR-NOT-SOLE` is dropped. |
+| Number and date formatting by locale | `ADAPT-LOCALE-FORMAT` (`Intl`) | `DATA-THOUSANDS` is dropped. |
+| Data integrity: baselines, scales, labels matching data, object constancy, source lines on charts | `DATA-*` | `STORY-CLAIM-SOURCE` owns "every claim has a source" at plan time. `DATA-NO-OVERSHOOT` overrides `MOTION-EASE-005` for data marks. |
 | Delivery encode: range, chroma, bitrate, frame-rate contract, audio sample rate and bitrate, colour tags, stills format | `DELIVERY-*` | `TYPO-RANGE`, `TYPO-CHROMA`, `TYPO-BITRATE`, `TYPO-STILL-FORMAT`, `ART-DEL-*`, `SOUND-SAMPLE-RATE`, `SOUND-AAC-BITRATE` and `MOTION-FPS-001` move here. Each original pillar keeps the design consequence and cites the delivery number (see the delivery README). |
 | Manifest, naming and checksums of delivered files | `DELIVERY-MANIFEST`, `-NAMING`, `-CHECKSUM`, extending the PRD §6.4 render manifest | `ADAPT-TRACE-MASTER` and `ADAPT-VERSION-ID` add version fields to the same manifest. |
 | Minimum stroke width, static | `ART-*` (one value; the KB disagrees with itself, 4 vs 6 px) | |
