@@ -13,7 +13,7 @@ interface SampleContext {
 
 /** Sub-pixel layout and antialiasing should not count as a crossing. */
 const EDGE_TOLERANCE_PX = 0.5;
-/** Grapla's lint allowed one pixel of rounding between scroll and client sizes. */
+/** The field-notes lint (#46) allowed one pixel of rounding between scroll and client sizes. */
 export const OVERFLOW_TOLERANCE_PX = 1;
 const TEXT_PREVIEW_CHARACTERS = 30;
 

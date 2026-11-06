@@ -14,7 +14,7 @@ Recorded here so the body of the PRD stays the original intent. Each amendment p
 - **Catalogue structure**: one record per tool under `catalog/tools/`, a `tier` (core, catalogued, candidate), a four-tier progressive-disclosure tree (index line, card, operating guide, example) with byte budgets enforced by `vcr validate`. `catalog/tools.json` and `catalog/INDEX.md` are generated. Two Appendix A rows that were documentation links (FFmpeg filters, Blender CLI arguments) are folded into their parent records.
 - **Assessment**: every non-core record was assessed against its official source on 2026-10-26 under `catalog/ASSESSMENT-BRIEF.md`. Nine candidates were promoted, six records demoted and sixteen retired to `catalog/retired/` with their reasoning. Playwright was added as the capture route for browser toolkits.
 - **Browser-capture spike** (`specifications/spikes/browser-capture.md`): frame-by-frame capture of a paused timeline is deterministic in any frame order for DOM, 2D canvas and WebGL. `HeadlessExperimental.beginFrame` hangs on canvases, so `packages/capture` defaults to a settle-then-screenshot path. Go for Layer 2.
-- **Grapla proof of concept removed**: the §18 proving piece (`projects/grapla/videos/launch-know-your-game`) was rendered without a timeline engine, then deleted as a proof of concept. Its lessons (hand-placed `tpad` offsets, no briefing or review workflow) are in git history at `a39043a`.
+- **Proof of concept removed**: the §18 proving piece (a product launch video) was rendered without a timeline engine, then deleted as a proof of concept. Its lessons (hand-placed `tpad` offsets, no briefing or review workflow) are in git history at `a39043a`.
 - **ADR 0003 and the plugin PRD**: VCR ships as a plugin for Claude Code and Codex (bundled CLI, harness / workspace / machine roots, no MCP in v1) with a human review layer that writes only findings and approvals, and clears regenerable output. Refines §7 (distribution) and §13 (skills), and pulls an early slice of Layer 6 forward. `specifications/decisions/0003-plugin-distribution-and-three-roots.md`, `specifications/vcr-plugin-prd.md`.
 - **Progress against §17**: M0 complete. M1 largely complete: doctor exists, three tool families (SVG/GSAP, p5.js, Three.js) plus FFmpeg and Blender render fixtures, skills exist for all six core tools. The on-demand setup command shipped as `vcr setup capture`, and the first workflow skills (`start`, `init`) with the plugin (plugin PRD P1). M2 onward not started.
 
@@ -269,9 +269,9 @@ Example conceptual scene parameters:
 ```yaml
 content:
   headline: Train with intention
-  screenshot: asset:training-log
+  screenshot: asset:app-screen
 design:
-  theme: grapla-dark
+  theme: brand-dark
   layout: portrait
 motion:
   entrance: stagger
@@ -373,11 +373,11 @@ Proposed command vocabulary; final naming is provisional:
 ```text
 motion tools list --capability typography
 motion tools info blender
-motion doctor --project grapla
+motion doctor --project acme
 motion tools setup p5
-motion example create product-orbit --project grapla
-motion project create grapla
-motion video create training-log-launch --project grapla
+motion example create product-orbit --project acme
+motion project create acme
+motion video create feature-launch --project acme
 motion validate <video>
 motion timeline resolve <video>
 motion preview <video>

@@ -20,19 +20,19 @@ Thesis: the plugin equips the editor and the review layer equips the reviewer. F
 
 ## 2. Problem and evidence
 
-- P1. VCR is unusable outside its own repository. `findRepositoryRoot()` (`packages/cli/src/repository.ts`) walks up to `catalog/`; `vcr doctor` writes into the repository; skills are found only through the `.claude/skills` symlink; Grapla's `render.ts` imports `@vcr/capture` through the pnpm workspace.
+- P1. VCR is unusable outside its own repository. `findRepositoryRoot()` (`packages/cli/src/repository.ts`) walks up to `catalog/`; `vcr doctor` writes into the repository; skills are found only through the `.claude/skills` symlink; the first product repository's `render.ts` imports `@vcr/capture` through the pnpm workspace.
 - P2. Codex sees none of it.
-- P3. There is no human review surface. The Grapla proof of concept's `review/first-cut.md` (commit `6aa0f87`; removed in #23) ends "awaiting Conor's notes" and records that "no workflow skill for briefing or review existed".
+- P3. There is no human review surface. The proof of concept's `review/first-cut.md` (commit `6aa0f87`; removed in #23) ends "awaiting Conor's notes" and records that "no workflow skill for briefing or review existed".
 - P4. Frame references are ambiguous. The brief's `product f0210` is scene-local (the product scene is 330 frames), but L6-01 requires composition frames. Notes travel through chat and lose their anchor.
 - P5. Nothing stops self-approval. L6 acceptance says "self-review does not automatically mean approved"; nothing enforces it.
-- P6. Videos eat disk fast. The Grapla proof of concept left 160 MB of ignored `output/` behind one 20-second, 30 fps video, and frame sequences, MP4s, proxies and Chromium are scattered across ignored directories that nothing reports or clears.
+- P6. Videos eat disk fast. The proof of concept left 160 MB of ignored `output/` behind one 20-second, 30 fps video, and frame sequences, MP4s, proxies and Chromium are scattered across ignored directories that nothing reports or clears.
 
 ## 3. Users and jobs
 
 The agent (Claude Code or Codex) discovers, selects, authors, renders, reads findings, revises and requests review. It never approves. The human briefs, watches, points and decides, and never has to read JSON to do so.
 
 - J1. Install VCR into any directory with one command per host. The agent picks the right tool within the existing tier budgets.
-- J2. Start a video inside a product repository (for example `~/Development/Grapla`), not only inside the harness repository.
+- J2. Start a video inside a product repository (for example `~/Development/my-product`), not only inside the harness repository.
 - J3. Watch the latest render and pin a note to frame 210 of the product scene in two clicks.
 - J4. Next session, the agent picks up open notes without being told.
 - J5. Compare revision N with N−1 at the same frames, including before/after evidence per note.
@@ -92,7 +92,7 @@ Replaces `findRepositoryRoot()`.
 - `start` (router; `/vcr:start`): the four-tier navigation from `AGENTS.md` and a pointer to `INDEX.md`. Its description triggers on VCR context (a `vcr.json` workspace, or the user naming VCR), so it does not claim every "make a video" request from HyperFrames, which is installed on the same machine.
 - Eight toolkit skills (`gsap`, `three-js` and the rest), unchanged apart from dropping the `vcr-` name prefix and path fixes. Repository-relative paths such as `examples/three-capture/run.sh` become `vcr tools examples <id>` calls.
 - `init` (new; `/vcr:init` in Claude Code): set up a workspace. Reports and stops if one already exists (`vcr status --json`); otherwise picks the git root (asking only when ambiguous), runs `vcr workspace init` and `vcr doctor`, and offers `vcr setup capture` with the download size when the capture runtime is missing. Ends with the three roots and an offer to hand off to `brief`. Agent- and human-invocable: "start a video here" outside a workspace may trigger it.
-- `brief` (new; `/vcr:brief`): interview the human, then write `brief.md` (objective, audience and placement, content, constraints, review notes), shaped on the Grapla proof-of-concept brief.
+- `brief` (new; `/vcr:brief`): interview the human, then write `brief.md` (objective, audience and placement, content, constraints, review notes), shaped on the proof-of-concept brief.
 - `review` (new; `/vcr:review`): read open findings (summary first), fix the source, re-render the affected range, attach before/after evidence, mark the finding `addressed`, then open the review pages and request review.
 
 **CLI.** A bundled single file, `cli/vcr.mjs`, committed inside the plugin. It runs on system Node 22 or newer with no install step.
@@ -291,7 +291,7 @@ Existing commands keep their behaviour. `catalog build` and `doctor --record` ar
 | P4 Loop | `review`, session-start hooks, evidence pairs, Compare | 2 | J4 and J5 on both hosts with no human restating context |
 | P5 Share | Static bundle, review proxy, artifact publish through the skill, comment import | 2 | J7 from a phone; the proxy stays under the limit |
 
-P0 and P1 are Layer 0 packaging and can start now. P2 pulls the render-manifest subset forward from L1, coordinated with the L1 child specification. P3 and P4 deliver an early slice of L6 ahead of M3, because the first production showed the need. The first production started in a product repository after P1 is the L1-01 standalone proof. The Grapla proof of concept was removed in #23 and does not migrate.
+P0 and P1 are Layer 0 packaging and can start now. P2 pulls the render-manifest subset forward from L1, coordinated with the L1 child specification. P3 and P4 deliver an early slice of L6 ahead of M3, because the first production showed the need. The first production started in a product repository after P1 is the L1-01 standalone proof. The proof of concept was removed in #23 and does not migrate.
 
 ## 9. Host parity
 
@@ -342,7 +342,7 @@ Same skills, same CLI, same files. Only packaging differs.
 
 Settled with the owner on 28 October 2026.
 
-1. The Grapla proof of concept is deleted, not migrated. The L1-01 proof is the first new production in a product repository.
+1. The proof of concept is deleted, not migrated. The L1-01 proof is the first new production in a product repository.
 2. Region boxes on notes are optional in v1. The field is in the schema from day one.
 3. Plain names: the review layer, with Videos, Render, Compare, Decide and Storage views. No "Dailies".
 4. No fixed evidence cap. Storage is a first-class feature instead (§6.5, ST): sizes always visible, clearing in CLI and UI, budgets that warn.

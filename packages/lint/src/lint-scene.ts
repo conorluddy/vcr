@@ -1,4 +1,4 @@
-// Grapla's method (#46, #59): seek to each sample, let it settle, then measure layout in the page.
+// Method from the field notes (#46, #59): seek to each sample, let it settle, then measure layout in the page.
 import { relative } from "node:path";
 import { openScenePage, settleFrame } from "@vcr/capture";
 import { findingsForSample, mergeFindings, OVERFLOW_TOLERANCE_PX, sampleTimes } from "./findings.js";

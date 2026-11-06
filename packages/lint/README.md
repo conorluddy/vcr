@@ -1,6 +1,6 @@
 # @vcr/lint
 
-Layout checks for browser scenes, driven by `vcr lint`. It opens the scene with `openScenePage` from `@vcr/capture`, seeks each sample time, lets it settle and measures layout in the page. The method comes from Grapla's lint (#46, #59).
+Layout checks for browser scenes, driven by `vcr lint`. It opens the scene with `openScenePage` from `@vcr/capture`, seeks each sample time, lets it settle and measures layout in the page. The method comes from a production lint described in the field notes (#46, #59).
 
 | Rule | What it means |
 | --- | --- |

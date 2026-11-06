@@ -16,8 +16,8 @@ You are researching for **VCR**, an agent-driven studio for code-first motion gr
   - 3D in Blender.
   - Assembly and encoding in FFmpeg: `yuv420p` H.264 for web delivery, ProRes 4444 for alpha masters.
 - **Rendering:** deterministic and frame by frame. Every browser scene exposes `window.__scene = { duration, seek(t) }`. Headless Chromium (Playwright) seeks each frame at a fixed fps (24, 25, 30 or 60) and screenshots it. Because a scene can be seeked to any time, any property of any element can be sampled as a time series. Optional `markers` (beat times) and `textBounds()` (for canvas text) extend the contract.
-- **Main output:** series of short vertical videos (1080 × 1920 for TikTok, Instagram Reels and YouTube Shorts), often faceless and educational, made in batches of up to 100 episodes. The first client is a martial-arts training app, with formats such as quizzes ("tap or wait"), scorecards, "read the position" and explainers. There are also 16:9 explainers and social stills.
-- **Audio:** sparse text-to-speech narration, with procedural (synthesised) SFX and music beds. Most viewers watch with the sound off.
+- **Output:** VCR is domain-agnostic and serves any kind of creative work. Examples include product launches, explainers, ads, title sequences, data stories, music visuals, social shorts and stills. Common deliveries are vertical 9:16 (1080 × 1920 for TikTok, Instagram Reels and YouTube Shorts), 16:9 and square, either as one-off pieces or as series of many episodes built from a shared look. Guidance must be general; anything specific to one brand or subject belongs in that project's brief, not in this reference.
+- **Audio:** anything from no audio to full mixes. That includes recorded or text-to-speech narration, licensed or original music, and recorded or procedurally synthesised SFX (synthesis must be deterministic). Some placements are mostly watched muted; others are sound-led.
 - **What exists already:** a typography knowledge base built from a research brief like this one. It defines rule IDs (`TYPO-*`), confidence tiers and a verification ledger. A canonical `rules.json` is generated from it. `vcr lint` measures safe zones and text overflow in the browser, and a `typographer` subagent critiques rendered frames. **Your document seeds the next pillar.**
 
 Your report will become a reference that agents read one section at a time; it is too long to load whole. From it we will build:
@@ -70,7 +70,7 @@ A single Markdown document of roughly 20–35k tokens, structured as follows:
 2. **TL;DR:** 5–8 bullets.
 3. **Key findings:** the ten most important, each with a citation.
 4. **Numbered sections:** the topics above, in a sensible order. Each one is dense and scannable, with concrete values, examples and failure modes.
-5. **Medium-specific guidance:** 9:16 social first, then 16:9 explainer, social stills and loops.
+5. **Medium-specific guidance:** 9:16 social, 16:9, square, stills and loops.
 6. **The analysis/critique process:** how an expert reviews work in this pillar. Give it as ordered steps, with severity guidance and the vocabulary to use in findings.
 7. **The creation process:** how an expert approaches a new piece, from brief to verification.
 8. **Authoritative sources and canon:** the books, standards, papers and practitioners that matter, and why.
