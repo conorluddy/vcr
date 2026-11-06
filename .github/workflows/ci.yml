@@ -18,6 +18,8 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      # The lint integration tests drive real Chromium; --with-deps also brings Liberation fonts (Arial metrics).
+      - run: pnpm --filter @vcr/capture exec playwright install --with-deps --only-shell chromium
       - run: pnpm typecheck
       - run: pnpm validate
       - run: pnpm test
