@@ -74,15 +74,9 @@ export function applyCaptureSetup(plan: CaptureSetupPlan, isCodexSandbox: boolea
 
 /** Captures a scene with the runtime from `vcr setup capture`, adapting Chromium to the Codex sandbox when needed. */
 export async function runCapture(roots: Roots, options: CaptureCommandOptions): Promise<Result<CaptureReport>> {
-  const runtime = runtimeDirectory(roots);
-  const hasRuntime = installedPlaywrightVersion(runtime) !== null;
-  if (!hasRuntime && !roots.isDevMode) return fail("CAPTURE_RUNTIME_MISSING", `No capture runtime in ${runtime}. Run \`vcr setup capture\` to see what it installs, then \`vcr setup capture --yes\`.`);
+  const browser = prepareBrowserRuntime(roots);
+  if (!browser.ok) return browser;
   if (!existsSync(options.sceneFile)) return fail("SCENE_NOT_FOUND", `${options.sceneFile} does not exist.`);
-  if (roots.isCodexSandbox) {
-    // Chromium writes temp profiles under TMPDIR; the seatbelt only allows the workspace and VCR_HOME (spike S1).
-    process.env["TMPDIR"] = join(roots.machine, "tmp");
-    mkdirSync(process.env["TMPDIR"], { recursive: true });
-  }
   const report = await captureFrames({
     sceneFile: resolve(options.sceneFile),
     width: options.width,
@@ -90,11 +84,26 @@ export async function runCapture(roots: Roots, options: CaptureCommandOptions): 
     fps: options.fps,
     outputDirectory: join(options.outputDirectory, "frames"),
     verifyDeterminism: options.verifyDeterminism,
-    playwrightRuntimeDirectory: hasRuntime ? runtime : undefined,
-    chromiumArgs: roots.isCodexSandbox ? ["--single-process"] : [],
+    ...browser.value,
   });
   writeFileSync(join(options.outputDirectory, "report.json"), `${JSON.stringify(report, null, 2)}\n`);
   return ok(report);
+}
+
+/**
+ * Where Playwright comes from and which Chromium flags to add, for any command that opens a scene (capture, lint).
+ * Inside the Codex sandbox it also points TMPDIR somewhere the seatbelt allows.
+ */
+export function prepareBrowserRuntime(roots: Roots): Result<{ playwrightRuntimeDirectory: string | undefined; chromiumArgs: string[] }> {
+  const runtime = runtimeDirectory(roots);
+  const hasRuntime = installedPlaywrightVersion(runtime) !== null;
+  if (!hasRuntime && !roots.isDevMode) return fail("CAPTURE_RUNTIME_MISSING", `No capture runtime in ${runtime}. Run \`vcr setup capture\` to see what it installs, then \`vcr setup capture --yes\`.`);
+  if (roots.isCodexSandbox) {
+    // Chromium writes temp profiles under TMPDIR; the seatbelt only allows the workspace and VCR_HOME (spike S1).
+    process.env["TMPDIR"] = join(roots.machine, "tmp");
+    mkdirSync(process.env["TMPDIR"], { recursive: true });
+  }
+  return ok({ playwrightRuntimeDirectory: hasRuntime ? runtime : undefined, chromiumArgs: roots.isCodexSandbox ? ["--single-process"] : [] });
 }
 
 export function formatCaptureSetupPlan(plan: CaptureSetupPlan, isApplied: boolean): string {

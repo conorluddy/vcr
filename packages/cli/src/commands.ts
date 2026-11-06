@@ -83,6 +83,21 @@ export const COMMANDS: CommandSpec[] = [
     example: "vcr capture scene.html --width 1920 --height 1080 --fps 30 --verify",
   },
   {
+    name: "lint",
+    argumentsHint: "<scene.html|dir>",
+    summary: "Check a browser scene's text against a safe zone, the frame edges and overflowing boxes at sampled times; exit 1 on findings",
+    flags: [
+      { name: "safe-zone", value: "preset", description: "ebu-16x9, tiktok, reels, shorts, composite-9x16 (references/typography/rules.json), or none", isRequired: true },
+      { name: "at", value: "t1,t2", description: "Sample at these times in seconds" },
+      { name: "markers", description: "Sample at window.__scene.markers (seconds), e.g. just before each beat ends" },
+      { name: "samples", value: "n", description: "Evenly spaced samples from 0 to the last frame", defaultValue: "8" },
+      { name: "width", value: "n", description: "Viewport width in pixels; required with --safe-zone none", defaultValue: "the preset's canvas" },
+      { name: "height", value: "n", description: "Viewport height in pixels; required with --safe-zone none", defaultValue: "the preset's canvas" },
+      { name: "fps", value: "n", description: "Frames per second, for frame numbers and the last sample", defaultValue: "30" },
+    ],
+    example: "vcr lint scene.html --safe-zone tiktok --markers",
+  },
+  {
     name: "doctor",
     summary: "Probe local tools and write <VCR_HOME>/environment/<hostname>.json",
     flags: [{ name: "record", description: "Also write environment/ in the harness repository (maintainer only)" }],
@@ -90,7 +105,7 @@ export const COMMANDS: CommandSpec[] = [
   },
   {
     name: "catalog build",
-    summary: "Regenerate catalog/tools.json, INDEX.md and CANDIDATES.md",
+    summary: "Regenerate catalog/tools.json, INDEX.md, CANDIDATES.md and the typography KB §14 table",
     flags: [{ name: "check", description: "Report stale files and exit 1 instead of rewriting" }],
     example: "vcr catalog build --check",
     isMaintainerOnly: true,

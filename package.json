@@ -10,7 +10,7 @@
     "validate": "tsx packages/cli/src/index.ts validate",
     "doctor": "tsx packages/cli/src/index.ts doctor --record",
     "test": "vitest run",
-    "typecheck": "tsc -b packages/cli packages/timeline packages/capture && tsc -p tsconfig.fixtures.json",
+    "typecheck": "tsc -b packages/cli packages/timeline packages/capture packages/lint && tsc -p tsconfig.fixtures.json",
     "prepare": "git config core.hooksPath .githooks"
   },
   "devDependencies": {

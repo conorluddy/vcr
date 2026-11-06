@@ -5,6 +5,7 @@ import { applyCaptureSetup, formatCaptureSetupPlan, planCaptureSetup, runCapture
 import { COMMANDS, findCommand, findCommandGroup, formatCommandHelp, formatGlobalUsage, GLOBAL_FLAGS } from "./commands.js";
 import { buildCatalogIndex, writeCatalogIndex } from "./catalog.js";
 import { writeTypographyTable } from "./typography-rules.js";
+import { DEFAULT_LINT_SAMPLES, formatLintReport, parseSampleTimes, runLint } from "./lint.js";
 import { disclosureReport, formatDisclosureReport } from "./disclosure.js";
 import { formatDoctorTable, runDoctor } from "./doctor.js";
 import { loadMachineRecord } from "./evidence.js";
@@ -154,6 +155,19 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     return shuffled_matches_sequential === false ? 1 : 0;
   }
 
+  if (command === "lint" && subcommand) {
+    const safeZoneName = text(options["safe-zone"]);
+    if (!safeZoneName) return failWith({ code: "INVALID_ARGUMENT", message: "lint needs --safe-zone <preset|none>; presets are in references/typography/rules.json" }, asJson, 2);
+    const times = parseSampleTimes(text(options["at"]));
+    if (!times.ok) return failWith(times.error, asJson, 2);
+    const numbers = { width: optionalPositive(options["width"]), height: optionalPositive(options["height"]), samples: optionalPositive(options["samples"]) ?? DEFAULT_LINT_SAMPLES, fps: optionalPositive(options["fps"]) ?? 30 };
+    if (Object.values(numbers).some(Number.isNaN)) return failWith({ code: "INVALID_ARGUMENT", message: "lint's --width, --height, --samples and --fps must be positive numbers" }, asJson, 2);
+    const report = await runLint(roots, { target: subcommand, safeZoneName, times: times.value, useMarkers: options["markers"] === true, ...numbers });
+    if (!report.ok) return failWith(report.error, asJson);
+    print(asJson ? report.value : formatLintReport(report.value));
+    return report.value.findings.length > 0 ? 1 : 0;
+  }
+
   if (command === "catalog" && subcommand === "build") {
     const checkOnly = options["check"] === true;
     const devMode = requireDevMode(roots, "catalog build");
@@ -257,6 +271,13 @@ function formatRoots(roots: Roots, harnessVersion: string): string {
 
 function text(value: string | true | undefined): string | undefined {
   return typeof value === "string" ? value : undefined;
+}
+
+/** A numeric flag: undefined when absent, NaN when present but not a positive number. */
+function optionalPositive(value: string | true | undefined): number | undefined {
+  if (value === undefined) return undefined;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : Number.NaN;
 }
 
 function print(value: unknown): void {

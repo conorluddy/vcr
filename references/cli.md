@@ -112,6 +112,24 @@ Capture a browser scene frame by frame; frames and report.json go to --out
 vcr capture scene.html --width 1920 --height 1080 --fps 30 --verify
 ```
 
+## `vcr lint <scene.html|dir> --safe-zone preset [--at t1,t2] [--markers] [--samples n] [--width n] [--height n] [--fps n]`
+
+Check a browser scene's text against a safe zone, the frame edges and overflowing boxes at sampled times; exit 1 on findings
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--safe-zone preset` (required) | ebu-16x9, tiktok, reels, shorts, composite-9x16 (references/typography/rules.json), or none |  |
+| `--at t1,t2` | Sample at these times in seconds |  |
+| `--markers` | Sample at window.__scene.markers (seconds), e.g. just before each beat ends |  |
+| `--samples n` | Evenly spaced samples from 0 to the last frame | `8` |
+| `--width n` | Viewport width in pixels; required with --safe-zone none | `the preset's canvas` |
+| `--height n` | Viewport height in pixels; required with --safe-zone none | `the preset's canvas` |
+| `--fps n` | Frames per second, for frame numbers and the last sample | `30` |
+
+```sh
+vcr lint scene.html --safe-zone tiktok --markers
+```
+
 ## `vcr doctor [--record]`
 
 Probe local tools and write <VCR_HOME>/environment/<hostname>.json
@@ -126,7 +144,7 @@ vcr doctor
 
 ## `vcr catalog build [--check]`
 
-Regenerate catalog/tools.json, INDEX.md and CANDIDATES.md Harness repository only.
+Regenerate catalog/tools.json, INDEX.md, CANDIDATES.md and the typography KB §14 table Harness repository only.
 
 | Flag | Description | Default |
 | --- | --- | --- |
