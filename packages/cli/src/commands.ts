@@ -40,7 +40,12 @@ export const GLOBAL_ENVIRONMENT = [
 ];
 
 export const COMMANDS: CommandSpec[] = [
-  { name: "status", summary: "Show the harness, workspace and machine roots", flags: [], example: "vcr status" },
+  {
+    name: "status",
+    summary: "Show the harness, workspace and machine roots; --brief for videos awaiting review and open findings (under 1 KB)",
+    flags: [{ name: "brief", description: "Videos needing attention first, with open-finding counts and warnings" }],
+    example: "vcr status --brief",
+  },
   { name: "workspace init", summary: "Make this directory (or --workspace) a VCR workspace; idempotent", flags: [], example: "vcr workspace init" },
   { name: "video init", argumentsHint: "<project>/<video>", summary: "Register a video: the project in vcr.json and project.json, plus its review/ directories; idempotent", flags: [], example: "vcr video init demo/teaser" },
   { name: "validate", summary: "Validate the workspace (in the harness repository: everything)", flags: [], example: "vcr validate --json" },
