@@ -5,6 +5,7 @@
 - 0003 — distribute as a plugin with a bundled CLI and three roots. Accepted.
 - 0004 — progressive disclosure and feedback are first-class, enforced by checks. Accepted.
 - 0005 — recommendation policy dimensions and licence migration; free for commercial use is eligible for now. Accepted.
+- 0006 — creative pillars: craft knowledge as rules data, independent of catalogue tools, one owner per rule. Accepted.
 
 One file per decision, `NNNN-kebab-title.md`, never edited after acceptance except to change `Status` and add a `Superseded by` line.
 
