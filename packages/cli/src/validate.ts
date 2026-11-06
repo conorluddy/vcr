@@ -7,6 +7,7 @@ import { listFilesNamed, listJsonFiles, readJsonFile } from "./repository.js";
 import { WORKSPACE_MARKER } from "./roots.js";
 import type { ExampleManifest, ToolSummary } from "./tools.js";
 import { versionScope } from "./evidence.js";
+import { TYPOGRAPHY_RULES_PATH, typographyRuleDiagnostics } from "./typography-rules.js";
 
 // === TYPES ===
 
@@ -76,6 +77,9 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/INDEX.md", BUDGET_BYTES.indexMarkdown));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/CANDIDATES.md", BUDGET_BYTES.indexMarkdown));
 
+  const typographyRulesPath = join(repositoryRoot, TYPOGRAPHY_RULES_PATH);
+  if (existsSync(typographyRulesPath) && check(typographyRulesPath, "typographyRules")) diagnostics.push(...typographyRuleDiagnostics(repositoryRoot));
+
   checkWorkspaceDocuments(check, repositoryRoot);
   for (const environmentPath of listJsonFiles(join(repositoryRoot, "environment"))) check(environmentPath, "environment");
 
@@ -143,6 +147,7 @@ function loadSchemas(repositoryRoot: string) {
     reference: ajv.compile(load("reference")),
     environment: ajv.compile(load("environment")),
     workspace: ajv.compile(load("workspace")),
+    typographyRules: ajv.compile(load("typography-rules")),
   };
 }
 

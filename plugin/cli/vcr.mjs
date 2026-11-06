@@ -8073,8 +8073,8 @@ var require_dist = __commonJS({
 });
 
 // packages/cli/src/index.ts
-import { mkdirSync as mkdirSync5, writeFileSync as writeFileSync8 } from "node:fs";
-import { dirname as dirname5, join as join14, resolve as resolve4 } from "node:path";
+import { mkdirSync as mkdirSync5, writeFileSync as writeFileSync9 } from "node:fs";
+import { dirname as dirname5, join as join15, resolve as resolve4 } from "node:path";
 
 // packages/cli/src/capture.ts
 import { execFileSync } from "node:child_process";
@@ -8668,18 +8668,69 @@ function safeRead(filePath) {
   }
 }
 
+// packages/cli/src/typography-rules.ts
+import { existsSync as existsSync3, readFileSync as readFileSync4, writeFileSync as writeFileSync4 } from "node:fs";
+import { join as join5 } from "node:path";
+var TYPOGRAPHY_RULES_PATH = "references/typography/rules.json";
+var TYPOGRAPHY_KB_PATH = "references/typography/typography-knowledge-base.md";
+var TABLE_MARKERS = { start: "<!-- typography-rules:start -->", end: "<!-- typography-rules:end -->" };
+function renderRulesTable(rules) {
+  const rows = rules.filter((rule) => rule.section === "14").map((rule) => `| \`${rule.id}\` | ${rule.check} | ${rule.threshold} | ${rule.tier} | ${rule.applies_to} |`);
+  return ["| ID | Check | Threshold | Tier | Applies to |", "|---|---|---|---|---|", ...rows].join("\n");
+}
+function writeTypographyTable(repositoryRoot, checkOnly) {
+  const kbPath = join5(repositoryRoot, TYPOGRAPHY_KB_PATH);
+  const rulesPath = join5(repositoryRoot, TYPOGRAPHY_RULES_PATH);
+  if (!existsSync3(kbPath) && !existsSync3(rulesPath)) return ok({ wasStale: false, staleFiles: [] });
+  const rules = readJsonFile(rulesPath);
+  if (!rules.ok) return rules;
+  const kb = readFileSync4(kbPath, "utf8");
+  const spliced = spliceTable(kb, renderRulesTable(rules.value.rules));
+  if (!spliced.ok) return spliced;
+  if (spliced.value === kb) return ok({ wasStale: false, staleFiles: [] });
+  if (!checkOnly) writeFileSync4(kbPath, spliced.value);
+  return ok({ wasStale: true, staleFiles: [TYPOGRAPHY_KB_PATH] });
+}
+function typographyRuleDiagnostics(repositoryRoot) {
+  const outcome = writeTypographyTable(repositoryRoot, true);
+  if (!outcome.ok) return [{ severity: "error", file: TYPOGRAPHY_KB_PATH, path: "", message: outcome.error.message }];
+  const diagnostics = outcome.value.staleFiles.map((file) => ({ severity: "error", file, path: "", message: "typography rules table is stale", suggestion: "Run `pnpm vcr catalog build` and commit the result." }));
+  const rules = readJsonFile(join5(repositoryRoot, TYPOGRAPHY_RULES_PATH));
+  if (!rules.ok) return diagnostics;
+  const dataIds = new Set(rules.value.rules.map((rule) => rule.id));
+  const kbIds = new Set(extractRuleIds(readFileSync4(join5(repositoryRoot, TYPOGRAPHY_KB_PATH), "utf8")));
+  for (const id of kbIds) {
+    if (!dataIds.has(id)) diagnostics.push({ severity: "error", file: TYPOGRAPHY_KB_PATH, path: "", message: `${id} is cited in the KB but missing from ${TYPOGRAPHY_RULES_PATH}`, suggestion: `Add ${id} to ${TYPOGRAPHY_RULES_PATH}, or fix the ID in the KB.` });
+  }
+  for (const id of dataIds) {
+    if (!kbIds.has(id)) diagnostics.push({ severity: "error", file: TYPOGRAPHY_RULES_PATH, path: "", message: `${id} is in the rules data but never appears in the KB`, suggestion: "Define the rule in KB \xA714 or \xA715, or remove it from the data." });
+  }
+  return diagnostics;
+}
+function extractRuleIds(text2) {
+  return [...text2.matchAll(/TYPO-[A-Z]+(?:-[A-Z]+)*(?!-?[A-Z*])/g)].map((match) => match[0]);
+}
+function spliceTable(kb, table) {
+  const start = kb.indexOf(TABLE_MARKERS.start);
+  const end = kb.indexOf(TABLE_MARKERS.end);
+  if (start === -1 || end === -1 || end < start) return fail("TYPOGRAPHY_MARKERS_MISSING", `${TYPOGRAPHY_KB_PATH} needs ${TABLE_MARKERS.start} and ${TABLE_MARKERS.end} around the \xA714 table.`);
+  return ok(`${kb.slice(0, start + TABLE_MARKERS.start.length)}
+${table}
+${kb.slice(end)}`);
+}
+
 // packages/cli/src/disclosure.ts
-import { existsSync as existsSync6, statSync as statSync3 } from "node:fs";
-import { join as join8 } from "node:path";
+import { existsSync as existsSync7, statSync as statSync3 } from "node:fs";
+import { join as join9 } from "node:path";
 
 // packages/cli/src/tools.ts
-import { existsSync as existsSync5, readFileSync as readFileSync4 } from "node:fs";
-import { join as join7 } from "node:path";
+import { existsSync as existsSync6, readFileSync as readFileSync5 } from "node:fs";
+import { join as join8 } from "node:path";
 
 // packages/cli/src/evidence.ts
-import { existsSync as existsSync3 } from "node:fs";
+import { existsSync as existsSync4 } from "node:fs";
 import { hostname as osHostname } from "node:os";
-import { join as join5 } from "node:path";
+import { join as join6 } from "node:path";
 function versionScope(version) {
   const text2 = (version ?? "").trim();
   if (!text2) return "unknown";
@@ -8690,8 +8741,8 @@ function versionScope(version) {
   return versionTokens(text2).length > 0 ? "exact" : "unknown";
 }
 function loadMachineRecord(machineRoot, hostname2 = osHostname()) {
-  const path = join5(machineRoot, "environment", `${hostname2}.json`);
-  if (!existsSync3(path)) return void 0;
+  const path = join6(machineRoot, "environment", `${hostname2}.json`);
+  if (!existsSync4(path)) return void 0;
   const parsed2 = readJsonFile(path);
   if (!parsed2.ok) return void 0;
   const record = parsed2.value;
@@ -8748,8 +8799,8 @@ function isProbeResult(entry) {
 }
 
 // packages/cli/src/project.ts
-import { existsSync as existsSync4 } from "node:fs";
-import { dirname as dirname3, join as join6, resolve as resolve2 } from "node:path";
+import { existsSync as existsSync5 } from "node:fs";
+import { dirname as dirname3, join as join7, resolve as resolve2 } from "node:path";
 function npmPackagesFor(installCommand) {
   const first = (installCommand ?? "").split("&&")[0].trim();
   const match = /^(?:pnpm\s+add|npm\s+(?:i|install)|yarn\s+add)\s+(.+)$/.exec(first);
@@ -8762,8 +8813,8 @@ function projectPackageVersions(startDir, names, stopDir) {
   const directories = searchDirectories(resolve2(startDir), stopDir ? resolve2(stopDir) : void 0);
   return names.map((name) => {
     for (const directory of directories) {
-      const path = join6(directory, "node_modules", name, "package.json");
-      if (!existsSync4(path)) continue;
+      const path = join7(directory, "node_modules", name, "package.json");
+      if (!existsSync5(path)) continue;
       const parsed2 = readJsonFile(path);
       if (parsed2.ok && typeof parsed2.value.version === "string") return { name, version: parsed2.value.version };
       return { name, version: null, unreadable: true };
@@ -8793,7 +8844,7 @@ function searchDirectories(start, stop) {
   let directory = start;
   for (; ; ) {
     directories.push(directory);
-    if (insideStop ? directory === stop : existsSync4(join6(directory, "package.json"))) break;
+    if (insideStop ? directory === stop : existsSync5(join7(directory, "package.json"))) break;
     const parent = dirname3(directory);
     if (parent === directory) break;
     directory = parent;
@@ -8808,7 +8859,7 @@ function stripVersionSpec(word) {
 // packages/cli/src/tools.ts
 function loadTools(repositoryRoot) {
   const tools = [];
-  for (const filePath of listJsonFiles(join7(repositoryRoot, "catalog/tools"))) {
+  for (const filePath of listJsonFiles(join8(repositoryRoot, "catalog/tools"))) {
     const parsed2 = readJsonFile(filePath);
     if (!parsed2.ok) return parsed2;
     tools.push(parsed2.value);
@@ -8817,7 +8868,7 @@ function loadTools(repositoryRoot) {
 }
 function loadExamples(repositoryRoot) {
   const examples = [];
-  for (const filePath of listFilesNamed(join7(repositoryRoot, "examples"), "example.json")) {
+  for (const filePath of listFilesNamed(join8(repositoryRoot, "examples"), "example.json")) {
     const parsed2 = readJsonFile(filePath);
     if (!parsed2.ok) return parsed2;
     const directory = filePath.slice(repositoryRoot.length + 1).replace(/\/example\.json$/, "");
@@ -8866,9 +8917,9 @@ function formatToolCard(tool, examples, repositoryRoot, machine, project) {
 }
 function readToolGuide(tool, repositoryRoot) {
   if (!tool.skill) return fail("NO_GUIDE", `${tool.id} has no skill yet. Its card is the deepest tier available.`);
-  const path = join7(repositoryRoot, tool.skill);
-  if (!existsSync5(path)) return fail("GUIDE_MISSING", `${tool.skill} is referenced by ${tool.id} but does not exist.`);
-  return ok(readFileSync4(path, "utf8"));
+  const path = join8(repositoryRoot, tool.skill);
+  if (!existsSync6(path)) return fail("GUIDE_MISSING", `${tool.skill} is referenced by ${tool.id} but does not exist.`);
+  return ok(readFileSync5(path, "utf8"));
 }
 function formatExamplesForTool(tool, examples) {
   const own = examples.filter((example) => example.tools.includes(tool.id));
@@ -8917,8 +8968,8 @@ function formatDisclosureReport(report) {
   ].join("\n");
 }
 function fileBytes(repositoryRoot, relativePath) {
-  const path = join8(repositoryRoot, relativePath);
-  return existsSync6(path) ? statSync3(path).size : 0;
+  const path = join9(repositoryRoot, relativePath);
+  return existsSync7(path) ? statSync3(path).size : 0;
 }
 function stats(entries) {
   if (entries.length === 0) return { count: 0, minBytes: 0, medianBytes: 0, maxBytes: 0 };
@@ -8929,7 +8980,7 @@ function stats(entries) {
 
 // packages/cli/src/doctor.ts
 import { execFile } from "node:child_process";
-import { existsSync as existsSync7 } from "node:fs";
+import { existsSync as existsSync8 } from "node:fs";
 import { hostname, platform, release, arch } from "node:os";
 import { promisify } from "node:util";
 var execFileAsync = promisify(execFile);
@@ -8984,31 +9035,31 @@ async function resolveExecutable(probe) {
     if (found) return found;
   } catch {
   }
-  return probe.fallbackPath && existsSync7(probe.fallbackPath) ? probe.fallbackPath : null;
+  return probe.fallbackPath && existsSync8(probe.fallbackPath) ? probe.fallbackPath : null;
 }
 
 // packages/cli/src/examples.ts
-import { cpSync, existsSync as existsSync8, readFileSync as readFileSync5, writeFileSync as writeFileSync4 } from "node:fs";
-import { basename, join as join9 } from "node:path";
+import { cpSync, existsSync as existsSync9, readFileSync as readFileSync6, writeFileSync as writeFileSync5 } from "node:fs";
+import { basename, join as join10 } from "node:path";
 var GENERATED_FILES = /* @__PURE__ */ new Set(["node_modules", "output", ".cache"]);
 var BROWSER_HARNESS_FILES = /* @__PURE__ */ new Set(["capture.ts", "run.sh", "expected"]);
 function createExample(harnessRoot, workspaceRoot, exampleId, cliInvocation2) {
-  const source = join9(harnessRoot, "examples", exampleId);
-  if (!existsSync8(join9(source, "example.json"))) return fail("EXAMPLE_NOT_FOUND", `No example "${exampleId}" in ${join9(harnessRoot, "examples")}. List them with \`vcr tools examples <tool-id>\`.`);
-  const directory = join9(workspaceRoot, "examples", exampleId);
-  const manifest = JSON.parse(readFileSync5(join9(source, "example.json"), "utf8"));
+  const source = join10(harnessRoot, "examples", exampleId);
+  if (!existsSync9(join10(source, "example.json"))) return fail("EXAMPLE_NOT_FOUND", `No example "${exampleId}" in ${join10(harnessRoot, "examples")}. List them with \`vcr tools examples <tool-id>\`.`);
+  const directory = join10(workspaceRoot, "examples", exampleId);
+  const manifest = JSON.parse(readFileSync6(join10(source, "example.json"), "utf8"));
   const relativeDirectory = `examples/${exampleId}`;
-  const nextSteps = buildNextSteps(relativeDirectory, existsSync8(join9(source, "package.json")), manifest, cliInvocation2);
-  if (existsSync8(directory)) return ok({ directory, isCreated: false, nextSteps });
+  const nextSteps = buildNextSteps(relativeDirectory, existsSync9(join10(source, "package.json")), manifest, cliInvocation2);
+  if (existsSync9(directory)) return ok({ directory, isCreated: false, nextSteps });
   const isHarnessOnly = (name) => GENERATED_FILES.has(name) || name.endsWith(".test.ts") || manifest.capture !== void 0 && BROWSER_HARNESS_FILES.has(name);
   cpSync(source, directory, { recursive: true, filter: (path) => !isHarnessOnly(basename(path)) });
-  if (existsSync8(join9(source, "package.json"))) writeStandalonePackage(join9(source, "package.json"), join9(directory, "package.json"));
+  if (existsSync9(join10(source, "package.json"))) writeStandalonePackage(join10(source, "package.json"), join10(directory, "package.json"));
   return ok({ directory, isCreated: true, nextSteps });
 }
 function writeStandalonePackage(sourcePath, targetPath) {
-  const original = JSON.parse(readFileSync5(sourcePath, "utf8"));
+  const original = JSON.parse(readFileSync6(sourcePath, "utf8"));
   const standalone = { name: original.name.replace(/^@vcr\//, ""), private: true, type: "module", dependencies: original.dependencies ?? {} };
-  writeFileSync4(targetPath, `${JSON.stringify(standalone, null, 2)}
+  writeFileSync5(targetPath, `${JSON.stringify(standalone, null, 2)}
 `);
 }
 function buildNextSteps(relativeDirectory, hasPackage, manifest, cliInvocation2) {
@@ -9035,10 +9086,10 @@ function startTimer() {
 }
 
 // packages/cli/src/plugin.ts
-import { cpSync as cpSync2, existsSync as existsSync9, mkdirSync as mkdirSync3, mkdtempSync, readdirSync as readdirSync3, readFileSync as readFileSync6, rmSync, statSync as statSync4, writeFileSync as writeFileSync5 } from "node:fs";
+import { cpSync as cpSync2, existsSync as existsSync10, mkdirSync as mkdirSync3, mkdtempSync, readdirSync as readdirSync3, readFileSync as readFileSync7, rmSync, statSync as statSync4, writeFileSync as writeFileSync6 } from "node:fs";
 import { createRequire as createRequire3 } from "node:module";
 import { tmpdir } from "node:os";
-import { basename as basename2, extname as extname2, join as join10, relative as relative2 } from "node:path";
+import { basename as basename2, extname as extname2, join as join11, relative as relative2 } from "node:path";
 var PLUGIN_DIRECTORY = "plugin";
 var PLUGIN_MAX_BYTES = 5 * 1024 * 1024;
 var CLI_REFERENCE_PATH = "references/cli.md";
@@ -9061,38 +9112,38 @@ The CLI is \`node <this directory>/cli/vcr.mjs\` (Node 22 or newer). It never wr
 var CATALOG_ENTRIES = ["INDEX.md", "CANDIDATES.md", "tools.json", "tools", "schemas", "capabilities", "CANDIDATE-INGESTION.md", "ASSESSMENT-BRIEF.md", "FIXTURE-EVIDENCE-TEMPLATE.md"];
 var SKIPPED_DIRECTORIES = /* @__PURE__ */ new Set(["node_modules", "output", ".cache", "dist"]);
 var MEDIA_EXTENSIONS = /* @__PURE__ */ new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".mp4", ".mov", ".webm", ".wav", ".mp3", ".aac", ".glb", ".gltf", ".blend", ".exr", ".woff", ".woff2"]);
-function buildPlugin(harnessRoot, outputDirectory = join10(harnessRoot, PLUGIN_DIRECTORY)) {
+function buildPlugin(harnessRoot, outputDirectory = join11(harnessRoot, PLUGIN_DIRECTORY)) {
   const version = readHarnessVersion(harnessRoot);
   if (!version.ok) return version;
   rmSync(outputDirectory, { recursive: true, force: true });
   mkdirSync3(outputDirectory, { recursive: true });
-  const bundled = bundleCli(harnessRoot, join10(outputDirectory, "cli/vcr.mjs"));
+  const bundled = bundleCli(harnessRoot, join11(outputDirectory, "cli/vcr.mjs"));
   if (!bundled.ok) return bundled;
-  for (const entry of CATALOG_ENTRIES) cpSync2(join10(harnessRoot, "catalog", entry), join10(outputDirectory, "catalog", entry), { recursive: true });
-  for (const skill of readdirSync3(join10(harnessRoot, "skills"))) {
-    if (existsSync9(join10(harnessRoot, "skills", skill, "SKILL.md"))) cpSync2(join10(harnessRoot, "skills", skill), join10(outputDirectory, "skills", skill), { recursive: true });
+  for (const entry of CATALOG_ENTRIES) cpSync2(join11(harnessRoot, "catalog", entry), join11(outputDirectory, "catalog", entry), { recursive: true });
+  for (const skill of readdirSync3(join11(harnessRoot, "skills"))) {
+    if (existsSync10(join11(harnessRoot, "skills", skill, "SKILL.md"))) cpSync2(join11(harnessRoot, "skills", skill), join11(outputDirectory, "skills", skill), { recursive: true });
   }
-  cpSync2(join10(harnessRoot, "examples"), join10(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename2(source)) });
+  cpSync2(join11(harnessRoot, "examples"), join11(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename2(source)) });
   writeManifests(outputDirectory, version.value);
-  writeFileSync5(join10(outputDirectory, "README.md"), PLUGIN_README);
+  writeFileSync6(join11(outputDirectory, "README.md"), PLUGIN_README);
   const cliReference = renderCliReference();
-  mkdirSync3(join10(outputDirectory, "references"), { recursive: true });
-  writeFileSync5(join10(outputDirectory, CLI_REFERENCE_PATH), cliReference);
-  cpSync2(join10(harnessRoot, TYPOGRAPHY_REFERENCE_PATH), join10(outputDirectory, TYPOGRAPHY_REFERENCE_PATH), { recursive: true });
-  if (outputDirectory === join10(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync5(join10(harnessRoot, CLI_REFERENCE_PATH), cliReference);
+  mkdirSync3(join11(outputDirectory, "references"), { recursive: true });
+  writeFileSync6(join11(outputDirectory, CLI_REFERENCE_PATH), cliReference);
+  cpSync2(join11(harnessRoot, TYPOGRAPHY_REFERENCE_PATH), join11(outputDirectory, TYPOGRAPHY_REFERENCE_PATH), { recursive: true });
+  if (outputDirectory === join11(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync6(join11(harnessRoot, CLI_REFERENCE_PATH), cliReference);
   const files = listFiles(outputDirectory);
-  const totalBytes = files.reduce((sum, file) => sum + statSync4(join10(outputDirectory, file)).size, 0);
+  const totalBytes = files.reduce((sum, file) => sum + statSync4(join11(outputDirectory, file)).size, 0);
   return ok({ directory: outputDirectory, version: version.value, fileCount: files.length, totalBytes });
 }
 function pluginDiagnostics(harnessRoot) {
-  const committed = join10(harnessRoot, PLUGIN_DIRECTORY);
+  const committed = join11(harnessRoot, PLUGIN_DIRECTORY);
   const file = PLUGIN_DIRECTORY;
-  if (!existsSync9(committed)) return [{ severity: "error", file, path: "", message: "plugin/ is missing", suggestion: "Run `pnpm vcr plugin build` and commit the result." }];
-  const fresh = buildPlugin(harnessRoot, mkdtempSync(join10(tmpdir(), "vcr-plugin-")));
+  if (!existsSync10(committed)) return [{ severity: "error", file, path: "", message: "plugin/ is missing", suggestion: "Run `pnpm vcr plugin build` and commit the result." }];
+  const fresh = buildPlugin(harnessRoot, mkdtempSync(join11(tmpdir(), "vcr-plugin-")));
   if (!fresh.ok) return [{ severity: "error", file, path: "", message: fresh.error.message }];
   const diagnostics = [];
-  const harnessReference = join10(harnessRoot, CLI_REFERENCE_PATH);
-  if (!existsSync9(harnessReference) || readFileSync6(harnessReference, "utf8") !== renderCliReference()) {
+  const harnessReference = join11(harnessRoot, CLI_REFERENCE_PATH);
+  if (!existsSync10(harnessReference) || readFileSync7(harnessReference, "utf8") !== renderCliReference()) {
     diagnostics.push({ severity: "error", file: CLI_REFERENCE_PATH, path: "", message: `${CLI_REFERENCE_PATH} is missing or stale against packages/cli/src/commands.ts`, suggestion: "Run `pnpm vcr plugin build` and commit the result." });
   }
   const staleFiles = differingFiles(committed, fresh.value.directory);
@@ -9105,15 +9156,15 @@ function pluginDiagnostics(harnessRoot) {
 }
 function readHarnessVersion(harnessRoot) {
   for (const candidate of [".claude-plugin/plugin.json", "packages/cli/package.json"]) {
-    const path = join10(harnessRoot, candidate);
-    if (existsSync9(path)) return ok(JSON.parse(readFileSync6(path, "utf8")).version);
+    const path = join11(harnessRoot, candidate);
+    if (existsSync10(path)) return ok(JSON.parse(readFileSync7(path, "utf8")).version);
   }
   return fail("HARNESS_VERSION_UNKNOWN", `Neither .claude-plugin/plugin.json nor packages/cli/package.json exists under ${harnessRoot}.`);
 }
 function bundleCli(harnessRoot, outfile) {
   const esbuild = createRequire3(import.meta.url)("esbuild");
   const result = esbuild.buildSync({
-    entryPoints: [join10(harnessRoot, "packages/cli/src/index.ts")],
+    entryPoints: [join11(harnessRoot, "packages/cli/src/index.ts")],
     bundle: true,
     platform: "node",
     format: "esm",
@@ -9127,8 +9178,8 @@ function bundleCli(harnessRoot, outfile) {
   });
   const output = result.outputFiles[0];
   if (!output) return fail("PLUGIN_BUNDLE_FAILED", "esbuild produced no output for packages/cli/src/index.ts");
-  mkdirSync3(join10(outfile, ".."), { recursive: true });
-  writeFileSync5(outfile, output.text);
+  mkdirSync3(join11(outfile, ".."), { recursive: true });
+  writeFileSync6(outfile, output.text);
   return ok(outfile);
 }
 function writeManifests(outputDirectory, version) {
@@ -9140,8 +9191,8 @@ function writeManifests(outputDirectory, version) {
     interface: { displayName: "VCR", shortDescription: "Code-first motion graphics and video", developerName: PLUGIN_IDENTITY.author.name, category: "Developer Tools" }
   };
   for (const [directory, manifest] of [[".claude-plugin", claudeManifest], [".codex-plugin", codexManifest]]) {
-    mkdirSync3(join10(outputDirectory, directory), { recursive: true });
-    writeFileSync5(join10(outputDirectory, directory, "plugin.json"), `${JSON.stringify(manifest, null, 2)}
+    mkdirSync3(join11(outputDirectory, directory), { recursive: true });
+    writeFileSync6(join11(outputDirectory, directory, "plugin.json"), `${JSON.stringify(manifest, null, 2)}
 `);
   }
 }
@@ -9149,7 +9200,7 @@ function listFiles(root) {
   const found = [];
   const walk = (directory) => {
     for (const entry of readdirSync3(directory)) {
-      const path = join10(directory, entry);
+      const path = join11(directory, entry);
       if (statSync4(path).isDirectory()) walk(path);
       else found.push(relative2(root, path));
     }
@@ -9162,17 +9213,17 @@ function differingFiles(committedRoot, freshRoot) {
   const fresh = listFiles(freshRoot);
   const all = [.../* @__PURE__ */ new Set([...committed, ...fresh])].sort();
   return all.filter((path) => {
-    const committedPath = join10(committedRoot, path);
-    const freshPath = join10(freshRoot, path);
-    if (!existsSync9(committedPath) || !existsSync9(freshPath)) return true;
-    return !readFileSync6(committedPath).equals(readFileSync6(freshPath));
+    const committedPath = join11(committedRoot, path);
+    const freshPath = join11(freshRoot, path);
+    if (!existsSync10(committedPath) || !existsSync10(freshPath)) return true;
+    return !readFileSync7(committedPath).equals(readFileSync7(freshPath));
   });
 }
 
 // packages/cli/src/roots.ts
-import { existsSync as existsSync10, mkdirSync as mkdirSync4, unlinkSync as unlinkSync2, writeFileSync as writeFileSync6 } from "node:fs";
+import { existsSync as existsSync11, mkdirSync as mkdirSync4, unlinkSync as unlinkSync2, writeFileSync as writeFileSync7 } from "node:fs";
 import { homedir } from "node:os";
-import { dirname as dirname4, join as join11, resolve as resolve3 } from "node:path";
+import { dirname as dirname4, join as join12, resolve as resolve3 } from "node:path";
 import { fileURLToPath } from "node:url";
 var WORKSPACE_MARKER = "vcr.json";
 function resolveRoots({ cwd, env, workspaceFlag, cliDirectory = dirname4(fileURLToPath(import.meta.url)), canWrite = isWritableDirectory }) {
@@ -9185,7 +9236,7 @@ function resolveRoots({ cwd, env, workspaceFlag, cliDirectory = dirname4(fileURL
   return ok({ harness: harness.value, workspace, ...machine, isCodexSandbox, isDevMode: workspace === harness.value });
 }
 function requireWorkspace(roots) {
-  if (roots.workspace && existsSync10(join11(roots.workspace, WORKSPACE_MARKER))) return ok(roots.workspace);
+  if (roots.workspace && existsSync11(join12(roots.workspace, WORKSPACE_MARKER))) return ok(roots.workspace);
   const where = roots.workspace ?? "this directory or any ancestor";
   return fail("WORKSPACE_NOT_FOUND", `No ${WORKSPACE_MARKER} in ${where}. Run \`vcr workspace init\` in the directory that should hold your projects, or pass --workspace <dir>.`);
 }
@@ -9196,11 +9247,11 @@ function requireDevMode(roots, command) {
 function resolveHarness(explicitHarness, cliDirectory) {
   if (explicitHarness) {
     const harness = resolve3(explicitHarness);
-    if (existsSync10(join11(harness, "catalog"))) return ok(harness);
+    if (existsSync11(join12(harness, "catalog"))) return ok(harness);
     return fail("HARNESS_NOT_FOUND", `VCR_HARNESS=${explicitHarness} has no catalog/ directory. Point it at a VCR checkout or plugin directory, or unset it.`);
   }
   let current = resolve3(cliDirectory);
-  while (!existsSync10(join11(current, "catalog"))) {
+  while (!existsSync11(join12(current, "catalog"))) {
     const parent = dirname4(current);
     if (parent === current) return fail("HARNESS_NOT_FOUND", `No ancestor of ${cliDirectory} contains catalog/. Set VCR_HARNESS to a VCR checkout or plugin directory.`);
     current = parent;
@@ -9209,15 +9260,15 @@ function resolveHarness(explicitHarness, cliDirectory) {
 }
 function resolveMachine(explicitHome, workspace, isCodexSandbox, canWrite) {
   if (explicitHome) return { machine: resolve3(explicitHome), machineSource: "VCR_HOME" };
-  const defaultHome = join11(homedir(), ".vcr");
-  if (isCodexSandbox && workspace && !canWrite(defaultHome)) return { machine: join11(workspace, ".vcr"), machineSource: "workspace-codex-fallback" };
+  const defaultHome = join12(homedir(), ".vcr");
+  if (isCodexSandbox && workspace && !canWrite(defaultHome)) return { machine: join12(workspace, ".vcr"), machineSource: "workspace-codex-fallback" };
   return { machine: defaultHome, machineSource: "default" };
 }
 function isWritableDirectory(directory) {
   try {
     mkdirSync4(directory, { recursive: true });
-    const probe = join11(directory, `.write-probe-${process.pid}`);
-    writeFileSync6(probe, "");
+    const probe = join12(directory, `.write-probe-${process.pid}`);
+    writeFileSync7(probe, "");
     unlinkSync2(probe);
     return true;
   } catch {
@@ -9226,7 +9277,7 @@ function isWritableDirectory(directory) {
 }
 function findAncestorWithMarker(startDirectory) {
   let current = resolve3(startDirectory);
-  while (!existsSync10(join11(current, WORKSPACE_MARKER))) {
+  while (!existsSync11(join12(current, WORKSPACE_MARKER))) {
     const parent = dirname4(current);
     if (parent === current) return null;
     current = parent;
@@ -9237,28 +9288,28 @@ function findAncestorWithMarker(startDirectory) {
 // packages/cli/src/validate.ts
 var import__ = __toESM(require__(), 1);
 var import_ajv_formats = __toESM(require_dist(), 1);
-import { existsSync as existsSync11, readFileSync as readFileSync7, statSync as statSync5 } from "node:fs";
-import { join as join12, relative as relative3 } from "node:path";
+import { existsSync as existsSync12, readFileSync as readFileSync8, statSync as statSync5 } from "node:fs";
+import { join as join13, relative as relative3 } from "node:path";
 var BUDGET_BYTES = { indexMarkdown: 16 * 1024, skill: 12 * 1024 };
 var EXACT_EVIDENCE_FROM = "2026-11-05";
 var CARD_REQUIRED_TIERS = /* @__PURE__ */ new Set(["core", "catalogued"]);
 var CARD_MISSING_SEVERITY = "error";
 function validateRepository(repositoryRoot) {
   const { check, diagnostics, report } = createChecker(loadSchemas(repositoryRoot), repositoryRoot);
-  const vocabulary = readJsonFile(join12(repositoryRoot, "catalog/capabilities/vocabulary.json"));
+  const vocabulary = readJsonFile(join13(repositoryRoot, "catalog/capabilities/vocabulary.json"));
   const knownCapabilities = new Set(vocabulary.ok ? vocabulary.value.capabilities : []);
   if (!vocabulary.ok) diagnostics.push({ severity: "error", file: "catalog/capabilities/vocabulary.json", path: "", message: vocabulary.error.message });
   const tools = /* @__PURE__ */ new Map();
   let validToolRecords = true;
-  for (const recordPath of listJsonFiles(join12(repositoryRoot, "catalog/tools"))) {
+  for (const recordPath of listJsonFiles(join13(repositoryRoot, "catalog/tools"))) {
     const record = check(recordPath, "toolRecord");
     if (record?.id) tools.set(record.id, { record, file: relative3(repositoryRoot, recordPath) });
     else validToolRecords = false;
   }
   const examples = /* @__PURE__ */ new Map();
-  for (const manifestPath of listFilesNamed(join12(repositoryRoot, "examples"), "example.json")) {
+  for (const manifestPath of listFilesNamed(join13(repositoryRoot, "examples"), "example.json")) {
     const manifest = check(manifestPath, "example");
-    if (manifest?.id) examples.set(manifest.id, { manifest: { ...manifest, directory: relative3(repositoryRoot, join12(manifestPath, "..")) }, file: relative3(repositoryRoot, manifestPath) });
+    if (manifest?.id) examples.set(manifest.id, { manifest: { ...manifest, directory: relative3(repositoryRoot, join13(manifestPath, "..")) }, file: relative3(repositoryRoot, manifestPath) });
   }
   for (const { record, file } of tools.values()) {
     diagnostics.push(...capabilityDiagnostics(record, knownCapabilities, file));
@@ -9266,12 +9317,14 @@ function validateRepository(repositoryRoot) {
     diagnostics.push(...cardDiagnostics(record, file));
   }
   for (const { manifest, file } of examples.values()) diagnostics.push(...exampleDiagnostics(manifest, file, tools, repositoryRoot));
-  check(join12(repositoryRoot, "catalog/tools.json"), "tool");
+  check(join13(repositoryRoot, "catalog/tools.json"), "tool");
   if (validToolRecords) diagnostics.push(...indexFreshnessDiagnostics(repositoryRoot));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/INDEX.md", BUDGET_BYTES.indexMarkdown));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/CANDIDATES.md", BUDGET_BYTES.indexMarkdown));
+  const typographyRulesPath = join13(repositoryRoot, TYPOGRAPHY_RULES_PATH);
+  if (existsSync12(typographyRulesPath) && check(typographyRulesPath, "typographyRules")) diagnostics.push(...typographyRuleDiagnostics(repositoryRoot));
   checkWorkspaceDocuments(check, repositoryRoot);
-  for (const environmentPath of listJsonFiles(join12(repositoryRoot, "environment"))) check(environmentPath, "environment");
+  for (const environmentPath of listJsonFiles(join13(repositoryRoot, "environment"))) check(environmentPath, "environment");
   return report();
 }
 function validateWorkspace(harnessRoot, workspaceRoot) {
@@ -9301,16 +9354,16 @@ function createChecker(schemas, displayRoot) {
   return { check, diagnostics, report: () => ({ filesChecked, diagnostics }) };
 }
 function checkWorkspaceDocuments(check, workspaceRoot) {
-  const markerPath = join12(workspaceRoot, WORKSPACE_MARKER);
-  if (existsSync11(markerPath)) check(markerPath, "workspace");
-  for (const projectPath of listFilesNamed(join12(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
-  for (const referencePath of listJsonFiles(join12(workspaceRoot, "references"))) check(referencePath, "reference");
+  const markerPath = join13(workspaceRoot, WORKSPACE_MARKER);
+  if (existsSync12(markerPath)) check(markerPath, "workspace");
+  for (const projectPath of listFilesNamed(join13(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
+  for (const referencePath of listJsonFiles(join13(workspaceRoot, "references"))) check(referencePath, "reference");
 }
 function loadSchemas(repositoryRoot) {
   const ajv = new import__.Ajv2020({ allErrors: true, strict: false });
   import_ajv_formats.default.default(ajv);
   const load = (name) => {
-    const schema = readJsonFile(join12(repositoryRoot, `catalog/schemas/${name}.schema.json`));
+    const schema = readJsonFile(join13(repositoryRoot, `catalog/schemas/${name}.schema.json`));
     if (!schema.ok) throw new Error(schema.error.message);
     return schema.value;
   };
@@ -9323,7 +9376,8 @@ function loadSchemas(repositoryRoot) {
     project: ajv.compile(load("project")),
     reference: ajv.compile(load("reference")),
     environment: ajv.compile(load("environment")),
-    workspace: ajv.compile(load("workspace"))
+    workspace: ajv.compile(load("workspace")),
+    typographyRules: ajv.compile(load("typography-rules"))
   };
 }
 function indexFreshnessDiagnostics(repositoryRoot) {
@@ -9332,8 +9386,8 @@ function indexFreshnessDiagnostics(repositoryRoot) {
   return outcome.value.staleFiles.map((file) => ({ severity: "error", file, path: "", message: "index is stale", suggestion: "Run `pnpm vcr catalog build` and commit the result." }));
 }
 function budgetDiagnostics(repositoryRoot, relativePath, maxBytes) {
-  const absolutePath = join12(repositoryRoot, relativePath);
-  if (!existsSync11(absolutePath)) return [];
+  const absolutePath = join13(repositoryRoot, relativePath);
+  if (!existsSync12(absolutePath)) return [];
   const size = statSync5(absolutePath).size;
   if (size <= maxBytes) return [];
   return [{ severity: "error", file: relativePath, path: "", message: `${size} bytes exceeds the ${maxBytes} byte budget for a tier read whole`, suggestion: "Shorten one-liners, or move detail to the next tier down." }];
@@ -9374,7 +9428,7 @@ function scopeMatchDiagnostics(evidence, exampleId, path, file, isNew, repositor
   if (evidence.command && !evidence.command.startsWith(exampleDirectory)) {
     diagnostics.push({ severity: "error", file, path: `${path}/command`, message: `command "${evidence.command}" does not run the cited example ${exampleDirectory}`, suggestion: "Cite the example whose run produced this result, or record the command under it." });
   }
-  const hasRetainedOutputs = existsSync11(join12(repositoryRoot, exampleDirectory, "expected"));
+  const hasRetainedOutputs = existsSync12(join13(repositoryRoot, exampleDirectory, "expected"));
   if (!hasRetainedOutputs && !/fixture-reported/i.test(evidence.scope ?? "")) {
     diagnostics.push({ severity: isNew ? "error" : "warning", file, path: `${path}/scope`, message: `${exampleDirectory} keeps no expected/ outputs, but the scope does not say the claim is fixture-reported`, suggestion: 'Say "Fixture-reported" in the scope, or retain the outputs under expected/ and diff them in run.sh.' });
   }
@@ -9413,10 +9467,10 @@ function toolReferenceDiagnostics(record, file, tools, examples, repositoryRoot)
   }
   let skillText = null;
   if (record.skill) {
-    const skillPath = join12(repositoryRoot, record.skill);
-    if (!existsSync11(skillPath)) error("/skill", `${record.skill} does not exist`, "Write the SKILL.md or remove the reference.");
+    const skillPath = join13(repositoryRoot, record.skill);
+    if (!existsSync12(skillPath)) error("/skill", `${record.skill} does not exist`, "Write the SKILL.md or remove the reference.");
     else {
-      skillText = readFileSync7(skillPath, "utf8");
+      skillText = readFileSync8(skillPath, "utf8");
       diagnostics.push(...budgetDiagnostics(repositoryRoot, record.skill, BUDGET_BYTES.skill));
     }
   }
@@ -9442,13 +9496,13 @@ function exampleDiagnostics(manifest, file, tools, repositoryRoot) {
   const expectedDirectory = `examples/${manifest.id}`;
   if (manifest.directory !== expectedDirectory) error("/id", `manifest lives in ${manifest.directory} but its id says ${expectedDirectory}`, "Rename the directory or the id.");
   const runScript = manifest.run.replace(/^\.\//, "").split(" ")[0] ?? "";
-  if (!existsSync11(join12(repositoryRoot, manifest.directory, runScript))) error("/run", `${runScript} not found in ${manifest.directory}`, "Point run at the reproduction script.");
+  if (!existsSync12(join13(repositoryRoot, manifest.directory, runScript))) error("/run", `${runScript} not found in ${manifest.directory}`, "Point run at the reproduction script.");
   for (const toolId of manifest.tools) {
     const tool = tools.get(toolId);
     if (!tool) error("/tools", `"${toolId}" is not a catalogued tool id`, "Use an id from catalog/tools/.");
     else if (!(tool.record.examples ?? []).includes(manifest.id)) error("/tools", `${toolId} does not list this example in its examples`, `Add "${manifest.id}" to catalog/tools/${toolId}.json examples.`);
   }
-  if (manifest.report && !existsSync11(join12(repositoryRoot, manifest.report))) error("/report", `${manifest.report} does not exist`, "Fix the path or remove it.");
+  if (manifest.report && !existsSync12(join13(repositoryRoot, manifest.report))) error("/report", `${manifest.report} does not exist`, "Fix the path or remove it.");
   return diagnostics;
 }
 function hasHeading(markdown, heading) {
@@ -9456,25 +9510,25 @@ function hasHeading(markdown, heading) {
 }
 
 // packages/cli/src/workspace.ts
-import { existsSync as existsSync12, readFileSync as readFileSync8, writeFileSync as writeFileSync7 } from "node:fs";
-import { join as join13 } from "node:path";
+import { existsSync as existsSync13, readFileSync as readFileSync9, writeFileSync as writeFileSync8 } from "node:fs";
+import { join as join14 } from "node:path";
 var IGNORED_DIRECTORIES = ["output/", ".cache/", ".vcr/"];
 function ensureWorkspace(directory, harnessVersion) {
   const changes = [];
-  const markerPath = join13(directory, WORKSPACE_MARKER);
-  if (!existsSync12(markerPath)) {
+  const markerPath = join14(directory, WORKSPACE_MARKER);
+  if (!existsSync13(markerPath)) {
     const marker = { schema_version: "1.0.0", harness_version: harnessVersion, projects: [] };
-    writeFileSync7(markerPath, `${JSON.stringify(marker, null, 2)}
+    writeFileSync8(markerPath, `${JSON.stringify(marker, null, 2)}
 `);
     changes.push(WORKSPACE_MARKER);
   }
-  const gitignorePath = join13(directory, ".gitignore");
-  const existing = existsSync12(gitignorePath) ? readFileSync8(gitignorePath, "utf8") : "";
+  const gitignorePath = join14(directory, ".gitignore");
+  const existing = existsSync13(gitignorePath) ? readFileSync9(gitignorePath, "utf8") : "";
   const presentLines = new Set(existing.split("\n").map((line) => line.trim()));
   const missing = IGNORED_DIRECTORIES.filter((entry) => !presentLines.has(entry));
   if (missing.length > 0) {
     const separator = existing === "" || existing.endsWith("\n") ? "" : "\n";
-    writeFileSync7(gitignorePath, `${existing}${separator}${missing.join("\n")}
+    writeFileSync8(gitignorePath, `${existing}${separator}${missing.join("\n")}
 `);
     changes.push(".gitignore");
   }
@@ -9601,7 +9655,7 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
       return failWith({ code: "INVALID_ARGUMENT", message: "capture needs positive --width, --height and --fps" }, asJson, 2);
     }
     const sceneFile = resolve4(subcommand);
-    const outputDirectory = resolve4(text(options["out"]) ?? join14(dirname5(sceneFile), "output"));
+    const outputDirectory = resolve4(text(options["out"]) ?? join15(dirname5(sceneFile), "output"));
     const report = await runCapture(roots, { sceneFile, outputDirectory, verifyDeterminism: options["verify"] === true, ...dimensions });
     if (!report.ok) return failWith(report.error, asJson);
     const { frames, frames_per_second, shuffled_matches_sequential, mismatched_frames } = report.value;
@@ -9619,12 +9673,16 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
     if (!checkOnly && !devMode.ok) return failWith(devMode.error, asJson);
     const outcome = writeCatalogIndex(repositoryRoot, checkOnly);
     if (!outcome.ok) return failWith(outcome.error, asJson);
-    const { recordCount, wasStale, staleFiles } = outcome.value;
+    const table = writeTypographyTable(repositoryRoot, checkOnly);
+    if (!table.ok) return failWith(table.error, asJson);
+    const { recordCount } = outcome.value;
+    const staleFiles = [...outcome.value.staleFiles, ...table.value.staleFiles];
+    const wasStale = staleFiles.length > 0;
     const built = buildCatalogIndex(repositoryRoot);
     const manifests = loadExamples(repositoryRoot);
     const disclosure = built.ok && manifests.ok ? disclosureReport(repositoryRoot, built.value, manifests.value) : void 0;
     const summary = `${recordCount} records; ${wasStale ? `${checkOnly ? "stale" : "rewrote"}: ${staleFiles.join(", ")}` : "index up to date"}`;
-    print(asJson ? { ...outcome.value, disclosure } : disclosure ? `${summary}
+    print(asJson ? { ...outcome.value, wasStale, staleFiles, disclosure } : disclosure ? `${summary}
 ${formatDisclosureReport(disclosure)}` : summary);
     return checkOnly && wasStale ? 1 : 0;
   }
@@ -9642,7 +9700,7 @@ ${formatDisclosureReport(disclosure)}` : summary);
     const devMode = requireDevMode(roots, "doctor --record");
     if (shouldRecord && !devMode.ok) return failWith(devMode.error, asJson);
     const record = await runDoctor();
-    const outputDirectories = [join14(roots.machine, "environment"), ...shouldRecord ? [join14(repositoryRoot, "environment")] : []];
+    const outputDirectories = [join15(roots.machine, "environment"), ...shouldRecord ? [join15(repositoryRoot, "environment")] : []];
     const writtenPaths = outputDirectories.map((directory) => writeEnvironmentRecord(directory, record));
     print(asJson ? record : `${formatDoctorTable(record)}
 
@@ -9695,8 +9753,8 @@ function cliInvocation(roots) {
 }
 function writeEnvironmentRecord(directory, record) {
   mkdirSync5(directory, { recursive: true });
-  const outputPath = join14(directory, `${record.hostname}.json`);
-  writeFileSync8(outputPath, `${JSON.stringify(record, null, 2)}
+  const outputPath = join15(directory, `${record.hostname}.json`);
+  writeFileSync9(outputPath, `${JSON.stringify(record, null, 2)}
 `);
   return outputPath;
 }

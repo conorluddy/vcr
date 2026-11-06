@@ -4,7 +4,7 @@ Use this when extracting or revising a rule from §14–15 of the knowledge base
 
 - **ID:** stable `TYPO-…` identifier; preserve existing IDs.
 - **Purpose:** the reader or production problem this addresses.
-- **Canonical definition:** knowledge-base section and rule ID; link to its threshold rather than copying it.
+- **Canonical definition:** the rule's entry in [rules.json](rules.json), which is canonical (the KB §14 table is generated from it), plus its knowledge-base section; link to the threshold rather than copying it.
 - **Scope:** medium, language/script, text role, delivery profile and viewing conditions.
 - **Units:** distinguish CSS pixels, raster pixels, points, seconds and frames; record display scaling and frame rate where relevant.
 - **Severity:** advisory or warning by default; a gate needs an explicitly selected accessibility or delivery requirement.

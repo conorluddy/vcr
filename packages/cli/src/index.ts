@@ -4,6 +4,7 @@ import { dirname, join, resolve } from "node:path";
 import { applyCaptureSetup, formatCaptureSetupPlan, planCaptureSetup, runCapture } from "./capture.js";
 import { COMMANDS, findCommand, findCommandGroup, formatCommandHelp, formatGlobalUsage, GLOBAL_FLAGS } from "./commands.js";
 import { buildCatalogIndex, writeCatalogIndex } from "./catalog.js";
+import { writeTypographyTable } from "./typography-rules.js";
 import { disclosureReport, formatDisclosureReport } from "./disclosure.js";
 import { formatDoctorTable, runDoctor } from "./doctor.js";
 import { loadMachineRecord } from "./evidence.js";
@@ -159,12 +160,16 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     if (!checkOnly && !devMode.ok) return failWith(devMode.error, asJson);
     const outcome = writeCatalogIndex(repositoryRoot, checkOnly);
     if (!outcome.ok) return failWith(outcome.error, asJson);
-    const { recordCount, wasStale, staleFiles } = outcome.value;
+    const table = writeTypographyTable(repositoryRoot, checkOnly);
+    if (!table.ok) return failWith(table.error, asJson);
+    const { recordCount } = outcome.value;
+    const staleFiles = [...outcome.value.staleFiles, ...table.value.staleFiles];
+    const wasStale = staleFiles.length > 0;
     const built = buildCatalogIndex(repositoryRoot);
     const manifests = loadExamples(repositoryRoot);
     const disclosure = built.ok && manifests.ok ? disclosureReport(repositoryRoot, built.value, manifests.value) : undefined;
     const summary = `${recordCount} records; ${wasStale ? `${checkOnly ? "stale" : "rewrote"}: ${staleFiles.join(", ")}` : "index up to date"}`;
-    print(asJson ? { ...outcome.value, disclosure } : disclosure ? `${summary}\n${formatDisclosureReport(disclosure)}` : summary);
+    print(asJson ? { ...outcome.value, wasStale, staleFiles, disclosure } : disclosure ? `${summary}\n${formatDisclosureReport(disclosure)}` : summary);
     return checkOnly && wasStale ? 1 : 0;
   }
 

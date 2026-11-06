@@ -1,0 +1,55 @@
+{
+  "$schema": "../../catalog/schemas/typography-rules.schema.json",
+  "schema_version": "1",
+  "kb_date": "2026-11-06",
+  "rules": [
+    { "id": "TYPO-MEASURE", "section": "14", "check": "Average characters per rendered line, in text blocks of 3+ lines", "threshold": "45–75; warn outside 40–90", "tier": "heuristic", "applies_to": "Latin prose blocks; not captions, CJK or display titles", "source": "§5–6", "verified": true, "values": { "target_characters": [45, 75], "warn_outside_characters": [40, 90] } },
+    { "id": "TYPO-LEADING", "section": "14", "check": "line-height ÷ font-size", "threshold": "body warn under 1.2 or over 1.8; display warn over 1.3", "tier": "heuristic", "applies_to": "Latin body/display text; check script-specific leading (§10)", "source": "§5", "verified": true, "values": { "body_ratio": [1.2, 1.8], "display_max_ratio": 1.3 } },
+    { "id": "TYPO-SIZE", "section": "14", "check": "Smallest text at delivered size", "threshold": "web body ≥16 px; iOS body ≥17 pt; choose smaller labels by medium and viewing conditions; 1080 × 1920 captions ≥48 px; 1080-wide social graphic body ≥36 px", "tier": "heuristic / platform default (iOS, verify)", "applies_to": "scoped web/iOS body and fixed-size social/video defaults", "source": "§9a, §9d, §9f", "verified": true, "values": { "web_body_min_px": 16, "ios_body_min_pt": 17, "vertical_caption_min_px": 48, "social_graphic_body_min_px": 36 } },
+    { "id": "TYPO-CONTRAST", "section": "14", "check": "Source foreground/background colours plus displayed size; visual delivery review separately", "threshold": "WCAG AA target: ≥4.5:1, ≥3:1 for large text at ≥24 CSS px or ≥18.66 CSS px bold; APCA supplementary, size/weight-dependent (§8)", "tier": "standard (WCAG, scoped) / heuristic (APCA)", "applies_to": "declared web accessibility target; adapted readability target for other media, not a conformance claim", "source": "§8, WCAG 2.2 SC 1.4.3", "verified": true, "values": { "min_ratio": 4.5, "large_text_min_ratio": 3, "large_text_min_px": 24, "large_bold_text_min_px": 18.66 } },
+    { "id": "TYPO-CHARS", "section": "14", "check": "Suspect punctuation and spacing in prose", "threshold": "flag for language-aware review; preserve code, identifiers, literal quotations and intentional notation", "tier": "style preference", "applies_to": "prose in the selected locale; never blanket replacement", "source": "§5", "verified": true },
+    { "id": "TYPO-FONTS", "section": "14", "check": "Family count, synthesised styles, manifest", "threshold": "≤3 families; no faux bold/italic; every font listed with source, version and licence", "tier": "heuristic", "applies_to": "all", "source": "§3–4", "verified": true, "values": { "max_families": 3 } },
+    { "id": "TYPO-FEATURES", "section": "14", "check": "Numbers that change or align use `tnum`; small caps only if `smcp` exists; justified text has `lang` and hyphenation", "threshold": "—", "tier": "style/implementation guidance", "applies_to": "fonts and scripts supporting the feature; hyphenation only where appropriate to the language", "source": "§5", "verified": true },
+    { "id": "TYPO-RUNT", "section": "14", "check": "Last line of a heading or title", "threshold": "not a single word and not under ~15% of the measure", "tier": "heuristic", "applies_to": "all", "source": "§6", "verified": true, "values": { "min_last_line_fraction": 0.15 } },
+    { "id": "TYPO-RESILIENCE", "section": "14", "check": "200% zoom and WCAG 1.4.12 overrides", "threshold": "no clipping or overflow", "tier": "standard", "applies_to": "web pages only, not fixed-size frames", "source": "§9a, WCAG 2.2 SC 1.4.4 and 1.4.12", "verified": true },
+    { "id": "TYPO-SAFE", "section": "14", "check": "Text boxes against safe-area rectangles", "threshold": "16:9: EBU graphics safe 5%; 9:16: composite 288 top, 672 bottom, 65 left, 192 right; Meta 14/35/6", "tier": "standard (EBU) / heuristic (composite) / platform (Meta, unverified)", "applies_to": "video", "source": "§9c, §9d; presets in safe_zones", "verified": false },
+    { "id": "TYPO-CAPTION-CPS", "section": "14", "check": "Caption reading speed", "threshold": "≤20 cps adult, ≤17 children", "tier": "platform", "applies_to": "Netflix English (USA) profile; other languages/deliveries need their own profile", "source": "Netflix English (USA) Timed Text Style Guide [112]; caption_profiles.netflix-en-us", "verified": true },
+    { "id": "TYPO-CAPTION-LINES", "section": "14", "check": "Characters per line and line count", "threshold": "≤42 per line; ≤2 lines landscape; ≤3 vertical", "tier": "standard (Netflix) / heuristic (BBC vertical, unverified)", "applies_to": "selected caption delivery profile; vertical allowance unverified", "source": "[112]; BBC vertical guidance (unverified); caption_profiles.netflix-en-us", "verified": false },
+    { "id": "TYPO-CAPTION-DURATION", "section": "14", "check": "Event duration and gap", "threshold": "5/6 s to 7 s; gap ≥2 frames", "tier": "standard (duration) / heuristic (gap; no longer on Netflix's current pages)", "applies_to": "selected caption delivery profile", "source": "Netflix Timed Text Style Guide: General Requirements [114]; caption_profiles.netflix-en-us", "verified": false },
+    { "id": "TYPO-HOLD", "section": "14", "check": "Hold after the text settles", "threshold": "≥ max(1.2 s, 0.3 s × words + 0.5 s)", "tier": "heuristic", "applies_to": "motion", "source": "§9c, §15.5", "verified": true, "values": { "min_hold_s": 1.2, "per_word_s": 0.3, "base_s": 0.5 } },
+    { "id": "TYPO-FLASH", "section": "14", "check": "Flashes per second", "threshold": "conservative default: ≤3 in any one-second window; full WCAG 2.3.1 also permits flashes below general/red-flash thresholds", "tier": "standard", "applies_to": "motion", "source": "§9c, WCAG 2.2 SC 2.3.1", "verified": true, "values": { "max_flashes_per_second": 3 } },
+    { "id": "TYPO-PRINT", "section": "14", "check": "Print preflight", "threshold": "K100 for text under ~18 pt; reverses ≥8–10 pt; hairlines ≥0.25–0.5 pt; 3–5 mm from trim; fonts embedded", "tier": "heuristic (printer specs vary)", "applies_to": "print handoff", "source": "§9b", "verified": true },
+    { "id": "TYPO-VISUAL", "section": "14", "check": "Render at target sizes and inspect: phone-size frame, thumbnail, print at 100%; blur test", "threshold": "process, not a number", "tier": "—", "applies_to": "all", "source": "§11", "verified": true },
+    { "id": "TYPO-FONT-SHIP", "section": "15.1", "check": "Font files, licences and manifest travel with the project", "threshold": "§15.1", "tier": "heuristic", "applies_to": "every tool", "source": "§15.1 (guide)", "verified": true },
+    { "id": "TYPO-FONT-READY", "section": "15.1", "check": "Fonts loaded and confirmed before window.__scene is exposed", "threshold": "§15.1", "tier": "heuristic", "applies_to": "browser scenes", "source": "§15.1 (guides: start/determinism, gsap, canvas-2d)", "verified": true },
+    { "id": "TYPO-CHROMA", "section": "15.3", "check": "Chroma subsampling smear on saturated text", "threshold": "§15.3", "tier": "standard (subsampling) / heuristic (mitigation)", "applies_to": "video delivery", "source": "§15.3 (ffmpeg guide)", "verified": true },
+    { "id": "TYPO-BITRATE", "section": "15.3", "check": "Fine detail lost to platform re-encoding", "threshold": "§15.3", "tier": "heuristic", "applies_to": "video delivery", "source": "§15.3", "verified": true },
+    { "id": "TYPO-RANGE", "section": "15.3", "check": "Colour matrix, range and tags on encode", "threshold": "§15.3", "tier": "standard", "applies_to": "video delivery", "source": "§15.3 [121][122]; not covered by the ffmpeg-ffprobe evidence", "verified": false },
+    { "id": "TYPO-RASTER-SCALE", "section": "15.4", "check": "Text softened by scaling a composited layer", "threshold": "§15.4", "tier": "heuristic", "applies_to": "browser capture", "source": "§15.4; general Chromium behaviour, not tested in VCR", "verified": false },
+    { "id": "TYPO-STAGGER-QUANT", "section": "15.5", "check": "Stagger onsets quantised to frame boundaries", "threshold": "§15.5", "tier": "heuristic", "applies_to": "motion", "source": "§15.5", "verified": true },
+    { "id": "TYPO-STILL-FORMAT", "section": "15.6", "check": "Lossless delivery format for text-heavy stills", "threshold": "§15.6", "tier": "heuristic", "applies_to": "stills", "source": "§15.6", "verified": true }
+  ],
+  "safe_zones": {
+    "ebu-16x9": { "width": 1920, "height": 1080, "inset": { "top": 54, "right": 96, "bottom": 54, "left": 96 }, "tier": "standard", "source": "EBU R 95 v1.1 graphics safe 5% [72]; §9c", "verified": true },
+    "tiktok": { "width": 1080, "height": 1920, "inset": { "top": 288, "right": 192, "bottom": 672, "left": 65 }, "tier": "heuristic", "source": "§9d agent default composite; TikTok publishes no pixel margins and third-party figures disagree [84][85][86][87]", "verified": false },
+    "reels": { "width": 1080, "height": 1920, "inset": { "top": 269, "right": 65, "bottom": 672, "left": 65 }, "tier": "platform", "source": "Meta 14% top, 35% bottom, 6% sides [82][83][115]; §9d", "verified": false },
+    "shorts": { "width": 1080, "height": 1920, "inset": { "top": 288, "right": 192, "bottom": 672, "left": 48 }, "tier": "heuristic", "source": "§9d, one third-party measurement [85]", "verified": false },
+    "composite-9x16": { "width": 1080, "height": 1920, "inset": { "top": 288, "right": 192, "bottom": 672, "left": 65 }, "tier": "heuristic", "source": "§9d agent default: the most conservative of the TikTok, Reels and Shorts figures", "verified": false }
+  },
+  "caption_profiles": {
+    "netflix-en-us": {
+      "max_cps_adult": 20,
+      "max_cps_children": 17,
+      "max_characters_per_line": 42,
+      "max_lines_landscape": 2,
+      "max_lines_vertical": 3,
+      "min_duration_s": 0.8333,
+      "max_duration_s": 7,
+      "min_gap_frames": 2,
+      "tier": "platform",
+      "source": "Netflix English (USA) Timed Text Style Guide [112] and General Requirements [114]; vertical lines from unverified BBC guidance; the gap was removed from Netflix's pages in 2020",
+      "verified": true,
+      "unverified_fields": ["max_lines_vertical", "min_gap_frames"]
+    }
+  }
+}
