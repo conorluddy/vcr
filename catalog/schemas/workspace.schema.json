@@ -7,7 +7,16 @@
   "properties": {
     "schema_version": { "type": "string" },
     "harness_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+" },
-    "projects": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+    "projects": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "storage": {
+      "type": "object",
+      "description": "Budgets that warn in vcr status, vcr validate and vcr storage; nothing is ever deleted automatically (plugin PRD §6.5)",
+      "properties": {
+        "output_warn_bytes": { "type": "integer", "minimum": 0, "description": "Default 5 GB per workspace" },
+        "evidence_warn_bytes": { "type": "integer", "minimum": 0, "description": "Default 2 MB per video" }
+      },
+      "additionalProperties": false
+    }
   },
   "additionalProperties": true
 }
