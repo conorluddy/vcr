@@ -13,7 +13,7 @@ VCR is a catalogue of code-first motion tools (GSAP, p5.js, Three.js, SVG, FFmpe
 
 ## First: is there a workspace?
 
-Run `vcr status`. If it reports `workspace  none`, use the `init` skill before anything else. All projects, examples and renders live in the workspace; never write into the plugin directory. A video lives at `projects/<project>/videos/<video>/`; create it with `vcr video init <project>/<video>`, which registers the project and is safe to re-run.
+Run `vcr status`. If it reports `workspace  none`, use the `init` skill before anything else. All projects, examples and renders live in the workspace; never write into the plugin directory. A video lives at `projects/<project>/videos/<video>/`; create it with `vcr video init <project>/<video>`, which registers the project and is safe to re-run. `vcr capture <scene.html> … --video <project>/<video>` records a render: frames under `output/<video>/<render_id>/` and a retained manifest under the video's `review/renders/`, which findings and approvals point at.
 
 ## Choosing a tool: four tiers, one at a time
 

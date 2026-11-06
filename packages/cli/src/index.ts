@@ -17,7 +17,8 @@ import { requireDevMode, requireWorkspace, resolveRoots, type Roots } from "./ro
 import { filterTools, findTool, formatExamplesForTool, formatToolCard, formatToolTable, loadExamples, loadTools, readToolGuide } from "./tools.js";
 import { hasErrors, validateRepository, validateWorkspace } from "./validate.js";
 import { ensureWorkspace } from "./workspace.js";
-import { ensureVideo } from "./video.js";
+import { ensureVideo, resolveVideo } from "./video.js";
+import { stagingDirectoryFor, writeRender } from "./render-manifest.js";
 
 
 // === ENTRY ===
@@ -154,15 +155,28 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
       return failWith({ code: "INVALID_ARGUMENT", message: "capture needs positive --width, --height and --fps" }, asJson, 2);
     }
     const sceneFile = resolve(subcommand);
-    const outputDirectory = resolve(text(options["out"]) ?? join(dirname(sceneFile), "output"));
+    const videoId = text(options["video"]);
+    if (videoId && options["out"] !== undefined) return failWith({ code: "INVALID_ARGUMENT", message: "--out and --video do not combine: a video's render always goes to output/<video>/<render_id>/" }, asJson, 2);
+    const workspace = videoId ? requireWorkspace(roots) : undefined;
+    if (workspace && !workspace.ok) return failWith(workspace.error, asJson);
+    const video = workspace?.ok && videoId ? resolveVideo(workspace.value, videoId) : undefined;
+    if (video && !video.ok) return failWith(video.error, asJson);
+    const startedAt = new Date();
+    const outputDirectory = video?.ok && workspace?.ok ? stagingDirectoryFor(workspace.value, video.value.videoId, startedAt) : resolve(text(options["out"]) ?? join(dirname(sceneFile), "output"));
     const report = await runCapture(roots, { sceneFile, outputDirectory, verifyDeterminism: options["verify"] === true, ...dimensions });
     if (!report.ok) return failWith(report.error, asJson);
+    const render = video?.ok && workspace?.ok
+      ? writeRender({ workspaceRoot: workspace.value, videoId: video.value.videoId, videoDirectory: video.value.directory, sceneFile, stagingDirectory: outputDirectory, report: report.value, createdAt: startedAt, machineRecord: loadMachineRecord(roots.machine) })
+      : undefined;
     const { frames, frames_per_second, shuffled_matches_sequential, mismatched_frames } = report.value;
     if (shuffled_matches_sequential === false) {
       const firstMismatches = mismatched_frames.slice(0, 5).join(", ") + (mismatched_frames.length > 5 ? ", …" : "");
       process.stderr.write(`${mismatched_frames.length} frames differ between sequential and shuffled order (${firstMismatches}). If the DOM matches in both orders, suspect compositor layering (pin animated elements with will-change); if not, the scene carries state between seeks. See references/determinism.md in the start skill.\n`);
     }
-    print(asJson ? { outputDirectory, frames, frames_per_second, shuffled_matches_sequential, mismatched_frames } : `captured ${frames} frames to ${outputDirectory}/frames (${frames_per_second} fps)${shuffled_matches_sequential === null ? "" : `; shuffled matches sequential: ${shuffled_matches_sequential}`}`);
+    const writtenTo = render?.renderDirectory ?? outputDirectory;
+    const renderFields = render ? { render_id: render.manifest.render_id, video_id: render.manifest.video_id, manifest: render.retainedManifestPath, manifest_sha256: render.manifestSha256 } : {};
+    const renderLine = render ? `\nrender ${render.manifest.render_id} of ${render.manifest.video_id}; manifest retained at ${render.retainedManifestPath}` : "";
+    print(asJson ? { outputDirectory: writtenTo, frames, frames_per_second, shuffled_matches_sequential, mismatched_frames, ...renderFields } : `captured ${frames} frames to ${writtenTo}/frames (${frames_per_second} fps)${shuffled_matches_sequential === null ? "" : `; shuffled matches sequential: ${shuffled_matches_sequential}`}${renderLine}`);
     return shuffled_matches_sequential === false ? 1 : 0;
   }
 
