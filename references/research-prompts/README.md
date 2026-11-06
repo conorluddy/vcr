@@ -21,5 +21,8 @@ To run one, paste everything below the `---` line into the research agent. Save 
 | [story](story.md) | `STORY-` | plan checks before rendering (script length, beat coverage, mandatories mapped); briefing and storyboard skills | 6 |
 | [data-visualisation](data-visualisation.md) | `DATA-` | chart integrity checks from a scene's data and geometry; a data story skill | 7 |
 | [adaptation](adaptation.md) | `ADAPT-` | checks across a set of versions (every aspect, locale and cutdown); version parameters in the scene contract | 7 |
+| [fx](fx.md) | `FX-` | blend modes, masks, print-process looks, textures and stylised effects, with how each behaves in motion and survives delivery; a technique library for agents | 8 |
+| [lighting](lighting.md) | `LIGHT-` | lighting for three.js and Blender scenes and for simulated light in 2D; checks on rendered frames such as ratios, clipping and separation | 8 |
+| [materials](materials.md) | `MAT-` | PBR and stylised materials, textures and colour spaces; scene-data checks such as albedo ranges and texture colour spaces | 8 |
 
-The two prompts in row 1 can run in parallel; the series brief and the findings format shape every later pillar. Rows 1–5 have produced knowledge bases (accessibility is in progress); rows 6 and 7 form the second round, and every prompt in it can run in parallel. Nothing in this directory ships in the plugin.
+The two prompts in row 1 can run in parallel; the series brief and the findings format shape every later pillar. Rows 1–5 have produced knowledge bases; rows 6 and 7 form the second round and have also produced knowledge bases. Row 8 is the third round (image treatment, lighting and materials), and its prompts can run in parallel. Nothing in this directory ships in the plugin.

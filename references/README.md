@@ -23,6 +23,9 @@ This file holds the conventions every pillar shares and decides which pillar own
 | Concept, script and storyboard | `STORY-` | [story/](story/README.md) | — (beat sheet schema planned for Layer 1) | — | — | — |
 | Data visualisation | `DATA-` | [data-visualisation/](data-visualisation/README.md) | — | — | — | — |
 | Adaptation and versioning | `ADAPT-` | [adaptation/](adaptation/README.md) | — | — | — | — |
+| Image treatment and compositing | `FX-` | research pending ([brief](research-prompts/fx.md)) | | | | |
+| Lighting | `LIGHT-` | research pending ([brief](research-prompts/lighting.md)) | | | | |
+| Materials | `MAT-` | research pending ([brief](research-prompts/materials.md)) | | | | |
 
 `references/ideas/` holds exploratory material and `references/cli.md` the CLI reference; neither is a pillar.
 
