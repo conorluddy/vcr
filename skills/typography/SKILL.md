@@ -1,6 +1,6 @@
 ---
 name: typography
-description: Set or review text in a VCR video or still — titles, hooks, captions, labels, lower thirds, social graphics. Use when choosing type, sizing and placing text, timing text holds or checking a render's text before capture or delivery. Not for choosing a toolkit (use start) or for a tool's commands (use that toolkit's guide).
+description: Typography workflow backed by a sourced knowledge base with rule IDs. Use whenever text is being designed, placed, timed or checked in video, motion graphics, stills, social graphics or web pages — titles, hooks, captions and subtitles, lower thirds, labels, counters, kinetic type, font choice and pairing, type scales, safe zones, legibility on a phone, caption reading speed, how long text should hold, text clipping or overflow, or text that looks soft, jittery or smeared after compression. Use it even when the user only asks about a font, a size or a placement. Not for choosing a VCR toolkit (start) or a tool's commands (that toolkit's guide).
 ---
 
 # Typography
@@ -20,7 +20,7 @@ Rules are scoped proposals, not gates. A rule applies only when its "Applies to"
 
 Before choosing a face or a size, write down:
 
-- **Medium:** 16:9 video, 9:16 social, still or social graphic, captions, print handoff.
+- **Medium:** 16:9 video, 9:16 social, still or social graphic, captions, web page, print handoff.
 - **Language and script:** Latin rules (measure, leading) do not transfer; read §10 for anything else.
 - **Text role:** hook, title, lower third, caption, label, body, counter.
 - **Viewing size:** the delivered pixel size and how it is seen (phone at arm's length, TV, feed thumbnail).
@@ -34,6 +34,7 @@ Then read only the rows that match:
 | 9:16 social | §9d, §15.3–15.5 | `TYPO-SAFE` (9:16 composite), `TYPO-SIZE`, `TYPO-HOLD`, `TYPO-BITRATE` |
 | Still or social graphic | §9e–9f, §15.6 | `TYPO-SIZE`, `TYPO-CONTRAST`, `TYPO-RUNT`, `TYPO-STILL-FORMAT`, `TYPO-VISUAL` |
 | Captions | §9c, §9d, §15.5 | `TYPO-CAPTION-CPS`, `TYPO-CAPTION-LINES`, `TYPO-CAPTION-DURATION`, `TYPO-SAFE` |
+| Web page | §9a, §5–6 | `TYPO-MEASURE`, `TYPO-LEADING`, `TYPO-SIZE`, `TYPO-CONTRAST`, `TYPO-RESILIENCE`, `TYPO-FEATURES` |
 | Print handoff | §9b, §15.6 | `TYPO-PRINT` (VCR has no CMYK path; this is guidance for a print designer) |
 
 `TYPO-FONTS`, `TYPO-FONT-SHIP`, `TYPO-FONT-READY` and `TYPO-VISUAL` apply to every medium.
