@@ -260,7 +260,7 @@ Capture a browser scene frame by frame; frames and report.json go to --out, or w
 vcr capture scene.html --width 1920 --height 1080 --fps 30 --verify
 ```
 
-## `vcr lint <scene.html|dir> --safe-zone preset [--at t1,t2] [--markers] [--samples n] [--width n] [--height n] [--fps n]`
+## `vcr lint <scene.html|dir> --safe-zone preset [--at t1,t2] [--markers] [--samples n] [--width n] [--height n] [--fps n] [--video project/video] [--render id]`
 
 Check a browser scene's text against a safe zone, the frame edges and overflowing boxes at sampled times; exit 1 on findings
 
@@ -272,10 +272,12 @@ Check a browser scene's text against a safe zone, the frame edges and overflowin
 | `--samples n` | Evenly spaced samples from 0 to the last frame | `8` |
 | `--width n` | Viewport width in pixels; required with --safe-zone none | `the preset's canvas` |
 | `--height n` | Viewport height in pixels; required with --safe-zone none | `the preset's canvas` |
-| `--fps n` | Frames per second, for frame numbers and the last sample | `30` |
+| `--fps n` | Frames per second, for frame numbers and the last sample | `30, or the render's with --video` |
+| `--video project/video` | File each finding on a retained render of this video (idempotent; re-running adds nothing new) |  |
+| `--render id` | With --video: the render the findings point at | `the latest` |
 
 ```sh
-vcr lint scene.html --safe-zone tiktok --markers
+vcr lint scene.html --safe-zone tiktok --markers --video demo/teaser
 ```
 
 ## `vcr doctor [--record]`
