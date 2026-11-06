@@ -28,7 +28,7 @@ export interface CommandSpec {
 // === PUBLIC API ===
 
 export const GLOBAL_FLAGS: FlagSpec[] = [
-  { name: "json", description: "Machine-readable output; errors become { error: { code, message } }" },
+  { name: "json", description: "Machine-readable output; errors become { error: { code, message, retryable } }" },
   { name: "workspace", value: "dir", description: "Select a workspace instead of discovering one from the current directory" },
   { name: "help", description: "Print help for the command (also -h) and exit 0" },
 ];
@@ -84,6 +84,67 @@ export const COMMANDS: CommandSpec[] = [
   { name: "rules info", argumentsHint: "<ID>", summary: "One rule: check, threshold, tier, scope and where it lives", flags: [], example: "vcr rules info TYPO-HOLD" },
   { name: "tools examples", argumentsHint: "<id>", summary: "Tier 3: runnable examples that demonstrate the tool", flags: [], example: "vcr tools examples gsap" },
   { name: "example create", argumentsHint: "<id>", summary: "Copy an example's sources into <workspace>/examples/<id> and print next steps", flags: [], example: "vcr example create gsap-title-card" },
+  {
+    name: "findings list",
+    argumentsHint: "<project>/<video>",
+    summary: "One line per finding on a video, paginated",
+    flags: [
+      { name: "status", value: "state", description: "open, addressed, resolved or wontfix" },
+      { name: "render", value: "id", description: "Only findings on this render" },
+      { name: "limit", value: "n", description: "Findings per page", defaultValue: "50" },
+      { name: "offset", value: "n", description: "Findings to skip", defaultValue: "0" },
+    ],
+    example: "vcr findings list demo/teaser --status open",
+  },
+  { name: "findings show", argumentsHint: "<project>/<video> <F-NNNN>", summary: "One finding in full", flags: [], example: "vcr findings show demo/teaser F-0001" },
+  {
+    name: "findings add",
+    argumentsHint: "<project>/<video>",
+    summary: "Add a note on a render frame; scene and scene frame come from the manifest; idempotent on content",
+    flags: [
+      { name: "frame", value: "n", description: "Composition frame", isRequired: true },
+      { name: "severity", value: "level", description: "blocker, major, minor or note", isRequired: true },
+      { name: "text", value: "text", description: "One issue, in a sentence", isRequired: true },
+      { name: "render", value: "id", description: "Retained render", defaultValue: "the latest" },
+      { name: "frame-end", value: "n", description: "Last frame of a range, inclusive" },
+      { name: "rule", value: "ID", description: "Pillar rule, e.g. TYPO-SAFE" },
+      { name: "selector", value: "css", description: "Where in the scene DOM" },
+      { name: "author", value: "kind", description: "agent or human", defaultValue: "agent" },
+    ],
+    example: "vcr findings add demo/teaser --frame 45 --severity major --text \"Headline crosses the safe zone\" --rule TYPO-SAFE",
+  },
+  {
+    name: "findings address",
+    argumentsHint: "<project>/<video> <F-NNNN>",
+    summary: "Claim a fix: mark a finding addressed with the render that fixes it and evidence; never resolves",
+    flags: [
+      { name: "render", value: "id", description: "Retained render that carries the fix", isRequired: true },
+      { name: "note", value: "text", description: "What changed", isRequired: true },
+      { name: "evidence", value: "a,b", description: "Comma-separated evidence paths (before/after frames)" },
+    ],
+    example: "vcr findings address demo/teaser F-0001 --render r-20261106T120000-abcdef0 --note \"Moved headline 40px left\"",
+  },
+  {
+    name: "review approve",
+    argumentsHint: "<project>/<video>",
+    summary: "Human only: approve a render at an interactive terminal by typing the video id; refused without a TTY",
+    flags: [{ name: "render", value: "id", description: "Retained render", defaultValue: "the latest" }, { name: "note", value: "text", description: "Optional note" }],
+    example: "vcr review approve demo/teaser",
+  },
+  {
+    name: "review request-changes",
+    argumentsHint: "<project>/<video>",
+    summary: "Human only: request changes on a render; refused without a TTY",
+    flags: [{ name: "render", value: "id", description: "Retained render", defaultValue: "the latest" }, { name: "note", value: "text", description: "Optional note" }],
+    example: "vcr review request-changes demo/teaser --note \"Tighten the ending\"",
+  },
+  {
+    name: "review resolve",
+    argumentsHint: "<project>/<video> <F-NNNN>",
+    summary: "Human only: close a finding as resolved (or --wontfix); refused without a TTY",
+    flags: [{ name: "wontfix", description: "Close as won't fix instead of resolved" }, { name: "note", value: "text", description: "Optional note" }],
+    example: "vcr review resolve demo/teaser F-0001",
+  },
   {
     name: "setup capture",
     summary: "Plan (or with --yes, install) Playwright and Chromium into <VCR_HOME>/runtime",

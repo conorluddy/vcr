@@ -51,6 +51,19 @@ describe("vcr CLI", () => {
     results.forEach(({ stdout }, index) => expect(JSON.parse(stdout).name).toBe(COMMANDS[index]!.name));
   }, 30_000);
 
+  test.each([
+    [["tools", "info", "does-not-exist"]],
+    [["tools", "list", "--unknown"]],
+    [["capture", "scene.html"]],
+    [["lint", "scene.html"]],
+    [["findings", "list", "nope"]],
+  ])("errors from %j carry { code, message, retryable } (ADR 0004)", async (args) => {
+    const failure = await runCli(...args, "--json").then(() => undefined, (cause: { stdout: string }) => cause);
+    expect(failure).toBeDefined();
+    const { error } = JSON.parse(failure!.stdout) as { error: Record<string, unknown> };
+    expect(error).toEqual({ code: expect.any(String), message: expect.any(String), retryable: expect.any(Boolean) });
+  });
+
   test("bare --help prints global usage and exits 0", async () => {
     const { stdout } = await runCli("--help");
     expect(stdout).toContain("vcr <command>");
@@ -108,6 +121,13 @@ describe("the bundled plugin CLI outside the harness repository (P0/P1 exit evid
     expect(JSON.parse(stdout).changes).toContain("projects/demo/project.json");
     const validation = await runFromScratch("validate", "--json");
     expect(JSON.parse(validation.stdout).diagnostics).toEqual([]);
+  });
+
+  test("an agent can list and add findings but cannot approve", async () => {
+    const listed = await runFromScratch("findings", "list", "demo/teaser", "--json");
+    expect(JSON.parse(listed.stdout)).toMatchObject({ total: 0, findings: [] });
+    await expect(runFromScratch("findings", "add", "demo/teaser", "--frame", "0", "--severity", "note", "--text", "x", "--json")).rejects.toMatchObject({ code: 1, stdout: expect.stringContaining("RENDER_NOT_FOUND") });
+    await expect(runFromScratch("review", "approve", "demo/teaser", "--json")).rejects.toMatchObject({ code: 1, stdout: expect.stringContaining("HUMAN_CHANNEL_REQUIRED") });
   });
 
   test("doctor writes to the machine root, and --record is maintainer-only", async () => {

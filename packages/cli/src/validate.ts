@@ -11,6 +11,7 @@ import { TYPOGRAPHY_RULES_PATH, typographyRuleDiagnostics } from "./typography-r
 import { referencesIndexDiagnostics } from "./references.js";
 import { listRetainedRenderIds, REVIEW_PATHS, reviewDiagnostics, sha256Hex, type Approval, type Finding, type RenderManifest, type VideoReview } from "./review.js";
 import { listVideoDirectories } from "./video.js";
+import { REVIEW_SUMMARY_FILE, reviewSummaryDiagnostics } from "./review-summary.js";
 
 // === TYPES ===
 
@@ -132,7 +133,10 @@ function checkWorkspaceDocuments(check: Check, workspaceRoot: string): Diagnosti
   if (existsSync(markerPath)) check(markerPath, "workspace");
   for (const projectPath of listFilesNamed(join(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
   for (const referencePath of listJsonFiles(join(workspaceRoot, "references"))) check(referencePath, "reference");
-  return listVideoDirectories(workspaceRoot).flatMap(({ directory }) => reviewDiagnostics(checkVideoReview(check, directory, workspaceRoot)));
+  return listVideoDirectories(workspaceRoot).flatMap(({ videoId, directory }) => {
+    const review = checkVideoReview(check, directory, workspaceRoot);
+    return [...reviewDiagnostics(review), ...reviewSummaryDiagnostics(directory, videoId, review, relative(workspaceRoot, join(directory, REVIEW_PATHS.directory, REVIEW_SUMMARY_FILE)))];
+  });
 }
 
 function checkVideoReview(check: Check, videoDirectory: string, workspaceRoot: string): VideoReview {
