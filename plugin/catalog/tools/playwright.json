@@ -39,6 +39,7 @@
   },
   "examples": [
     "browser-capture",
+    "lint-overflow",
     "p5-capture",
     "three-capture",
     "anime-capture",

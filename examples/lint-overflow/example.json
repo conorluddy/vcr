@@ -1,0 +1,20 @@
+{
+  "id": "lint-overflow",
+  "title": "vcr lint on a 9:16 frame with a safe-zone crossing and a clipped box",
+  "summary": "A DOM scene with one title over the TikTok action rail, one box hiding overflowing copy and one clean label; run.sh asserts vcr lint reports exactly the first two and exits 1.",
+  "status": "validated",
+  "tools": [
+    "playwright"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-06",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

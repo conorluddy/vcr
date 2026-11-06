@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- A deliberately broken 9:16 frame for `vcr lint`: one title crosses the right action rail,
+     one box hides overflowing copy, one label is clean. Geometry leaves ~90 px of slack either
+     side of each limit so system-font metrics on other machines do not change the outcome. -->
+<style>
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #101014; }
+  #stage { position: relative; width: 100%; height: 100%; font-family: Arial, sans-serif; color: #f3f4ef; }
+  #clean-label { position: absolute; left: 120px; top: 400px; font-size: 48px; }
+  #rail-title { position: absolute; left: 640px; top: 600px; font-size: 80px; font-weight: 700; white-space: nowrap; }
+  #overflow-box { position: absolute; left: 100px; top: 1000px; width: 600px; height: 100px; overflow: hidden; font-size: 40px; line-height: 1.2; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="clean-label">Clean label</div>
+  <div id="rail-title">Final call</div>
+  <div id="overflow-box">This caption is far too long for the box that holds it, so its last lines are clipped.</div>
+</div>
+<script>
+  // Pure seek: the label fades in over the first half second; layout never changes.
+  const label = document.getElementById("clean-label");
+  document.fonts.ready.then(() => {
+    window.__scene = { duration: 1, markers: [0.5, 0.95], seek: (t) => { label.style.opacity = String(Math.min(1, t / 0.5)); } };
+  });
+</script>
+</body>
+</html>
