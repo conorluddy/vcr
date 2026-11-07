@@ -55,4 +55,4 @@ Compare cells at the same beat: master, anchor siblings, shortest cut, longest l
 
 - Group by cell. Add `"deliverable": "<version ID>"` to every finding; use `"set"` for matrix-level findings.
 - Missing cell, missing required region, or a claim without its qualifier is a candidate blocker; as drafts, the basis must be a measurement or brief clause.
-- Report decorative grazes once per rule. Outside UK TV, label `uk-clearcast` findings a conservative default.
+- Report decorative grazes once per rule. Apply a market profile such as `uk-clearcast` only to cells whose market the brief gives that profile.
