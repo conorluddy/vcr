@@ -66,6 +66,20 @@ Before opening a follow-up, check existing issues for duplicates. Keep each acti
 Layer 0 is complete for the initial catalogue: those records are carded and assessed, and evidence counts are whatever `vcr catalog build` reports. New discovery candidates may be unassessed. The plugin is installable on Claude Code and Codex (plugin PRD P0 and P1): three roots, `vcr workspace init`, `vcr setup capture`, `vcr capture`, `vcr example create`, and the `start` and `init` skills. Plugin PRD P2, the review contract, is done: `vcr video init`, `vcr capture --video` (render manifests retained under each video's `review/renders/`), `vcr findings`, human-only `vcr review approve|request-changes|resolve` (interactive TTY), `vcr status --brief`, `vcr storage`, `vcr lint --video`, and the series and video briefs with the `brief` skill. The beat sheet (`beats.json`) and `vcr plan check|markers` check a plan before rendering; plan findings are printed, not filed, until plan approvals (#173). Schemas are in `catalog/schemas/`. The review pages (P3 onward) and Layer 1 have not started. There is no timeline resolver, compositor, review surface or reference search; do not imply one. The TypeScript toolchain, pnpm workspace and JSON Schemas are decided, not provisional. Everything beyond Layer 0 is still provisional per the PRD.
 
 
+## Open work
+
+Loose ends and later decisions, one line each. `specifications/roadmap.md` orders the large work; this list catches what falls between it. Add a line when you defer something, link the issue if there is one, and delete the line in the PR that resolves it.
+
+- **Pillar data and checks:** each pillar's `rules.json` and checks, then turn its draft agent into a calibrated reviewer (#149). Measurement gaps the drafts hit: motion trace, flash analyser, loudness and sync, `ffprobe` delivery gate, sub-frame sampling for `DATA-NO-OVERSHOOT`, word-level narration timings for `PACE-NARR-03/04`.
+- **Calibration:** a gold set of human-reviewed renders before any reviewer gates (`REVIEW-CAL-*`); decide whether a different model counts as independent (`REVIEW-IND-01`).
+- **Blind review packet:** a `vcr` command that assembles brief, measurements and contact sheet for a reviewer, with nothing about authorship (`REVIEW-IND-02`).
+- **Audio cue list** (#60): sound checks and `SOUND-*` sync rules wait on it.
+- **Plan approvals** (#173): plan findings are printed, not filed.
+- **Rule IDs still missing:** a generic determinism rule (FX, lighting and materials determinism rows have no replacement; sound has no check); the asset-manifest rule for licences and provenance; `A11Y-MOTION-*` rules for `MOTION-CAM-004/005`; a named art rule for minimum stroke width.
+- **Values to settle:** the `uk-clearcast` market profile in `references/typography/rules.json`; beat-alignment tolerance (`SOUND-BEAT-ALIGN` against `MOTION-RHY-001` and `PACE-BEAT-06`); which rule holds the brand ΔE tolerance (`ART-BRD-*` or `LIGHT-BRAND-DELTAE`).
+- **Research records:** the field list in `references/domain-exploration/research-handoff.md` becomes a JSON Schema once real research packs exist.
+- **Tests:** `lint-scene.test.ts` cannot launch Chromium in cloud sessions (Playwright build mismatch); `typography-rules.test.ts` failed once in a full run and passed on rerun.
+
 - - - - -  NEVER EDIT BELOW THIS LINE - - - - - -
 
 Keep this document in sync, check it for anything obsolete or incorrect with every PR, and prevent it from getting bloated. It should be kept to things that would apply in the majority of work sessions. Nuanced or occasionally touched parts of the codebase can be documented elsewhere.
