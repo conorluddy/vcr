@@ -35,14 +35,15 @@ vcr capture examples/browser-capture/scene.html --width 1920 --height 1080 --fps
 gsap.defaults({ force3D: false, lazy: false });   // one transform path, no deferred first write
 const tl = gsap.timeline({ paused: true });
 tl.to("#title", { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 0.2);
-window.__scene = { duration: tl.duration(), seek: (t) => { tl.seek(t, false); } };
+window.__scene = { duration: tl.duration(), seek: (t) => { tl.seek(t, true); } };
 ```
 Never return the timeline from code the harness evaluates; it is a cyclic object and serialising it hangs the call. Never use `repeat: -1`, `Date.now()` or unseeded randomness.
 
 ## Timeline
 - Position parameters are absolute seconds (`0.2`), relative (`"+=0.1"`, `"<"`, `">"`) or labels (`tl.addLabel("beat", 1.5)`). Prefer labels for anything a marker will reference.
 - `tl.duration()` is the scene's duration. Nested timelines (`tl.add(child, 0.5)`) keep their internal motion when moved, which is exactly PRD L2's rule.
-- `seek(t, false)` renders without firing callbacks; callbacks must never determine visual state (PRD §9).
+- `seek(t, true)` suppresses callbacks; `seek(t, false)` fires them. Callbacks must never determine visual state (PRD §9).
+- Derived state (a counter, a clock, text built from a value): tween a plain object, then set the DOM from it after the seek, never in `onUpdate`. `const s = { n: 0 }; tl.to(s, { n: 100, duration: 2 }, 0); seek: (t) => { tl.seek(t, true); el.textContent = Math.round(s.n); }`.
 - `timeScale` changes speed without changing authored keyframes; use it for preview, not for final timing.
 
 ## Eases
@@ -60,7 +61,7 @@ Never return the timeline from code the harness evaluates; it is a cyclic object
 - Revert with `split.revert()` only in teardown; reverting mid-timeline changes layout and breaks determinism.
 
 ## Capture
-Capture with `vcr capture <scene.html> --width W --height H --fps F --verify`; frames and `report.json` land in `output/` beside the scene (the same engine as `@vcr/capture`'s `captureFrames` inside the repository). DOM-only scenes can set `VCR_CAPTURE_MODE=beginframe` for about 60 frames per second at 1080p; scenes with a canvas must use the default screenshot mode.
+Capture with `vcr capture <scene.html> --width W --height H --fps F --verify`; frames and `report.json` land in `output/` beside the scene (the same engine as `@vcr/capture`'s `captureFrames` inside the repository). Use the default screenshot mode. `VCR_CAPTURE_MODE=beginframe` is experimental: it hangs on canvas scenes and has hung on a DOM-only scene too (#52).
 
 ## Troubleshooting
 - `--verify` reports a shuffled mismatch: see [Determinism pitfalls](../start/references/determinism.md).

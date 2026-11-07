@@ -8544,7 +8544,7 @@ var COMMANDS = [
       { name: "video", value: "project/video", description: "Record a render of this video: frames under output/<video>/<render_id>/, the manifest there and in review/renders/<render_id>/" },
       { name: "verify", description: "Recapture in shuffled order and compare; exit 1 if frames differ" }
     ],
-    environment: [{ name: "VCR_CAPTURE_MODE", description: "Frame grab method: screenshot (default) or beginframe" }],
+    environment: [{ name: "VCR_CAPTURE_MODE", description: "Frame grab method: screenshot (default) or beginframe (experimental; can hang, #52)" }],
     example: "vcr capture scene.html --width 1920 --height 1080 --fps 30 --verify"
   },
   {
