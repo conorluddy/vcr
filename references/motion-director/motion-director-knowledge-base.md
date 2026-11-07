@@ -506,7 +506,7 @@ Ordered steps; each finding cites a rule ID, a time range, the measurement, and 
 | MOTION-CAM-004 | No sustained oscillation near 0.2 Hz | Full-frame or large-element oscillation 0.1–0.3 Hz for > 2 cycles ⇒ warn | platform (Apple) | ambient motion | TS (FFT) |
 | MOTION-CAM-005 | Spin and vortex control | Continuous rotation of large or full-frame content, or infinite small spins near text ⇒ warn | heuristic (Val Head) | rotation | TS |
 | MOTION-CAM-006 | Stable anchor during big moves | During full-frame camera moves > 1 s, ≥ 1 element remains screen-fixed | heuristic (Apple) | camera moves | TS + J |
-| MOTION-FPS-001 | Delivery fps = authored fps | No resampling between authored, captured and encoded fps | heuristic | all | VID metadata |
+| MOTION-FPS-001 | Delivery fps = authored fps | Superseded: use `DELIVERY-FPS-NATIVE`, `DELIVERY-FPS-CONSTANT` and `DELIVERY-FPS-MAX`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic | all | VID metadata |
 | MOTION-FPS-002 | Periodic-pattern aliasing | Per-frame phase step < 0.5 × pattern period (spokes, stripes) | heuristic (sampling theory) | rotating or periodic | TS |
 | MOTION-FPS-003 | Thin high-contrast moving features | Strokes ≤ 2 px or text < delivery min size moving > 0 and < 1 px/frame (shimmer) or > W/(7·fps) (strobe) ⇒ warn | heuristic | lines, small text | TS + VID |
 | MOTION-FPS-004 | Synthetic blur sane | If temporal supersampling or blur is used: shutter ≤ 360°, default 180° | heuristic | fast motion | J / config |

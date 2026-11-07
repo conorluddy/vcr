@@ -481,11 +481,11 @@ Steps run in order of severity:
 | ART-BRD-01 | Brand at render | ΔE00 ≤ 1.0 token→PNG (*VCR default*) | heuristic | all · M |
 | ART-BRD-02 | Brand after encode | ΔE00 ≤ 3.0 token→decoded MP4 (*VCR default*) | heuristic | video · M |
 | ART-BRD-03 | ΔE00 code validated | Passes Sharma–Wu–Dalal test pairs | standard | tooling · M |
-| ART-DEL-01 | Delivery tags | yuv420p, BT.709 primaries/transfer/matrix, tv range | standard | video · M |
-| ART-DEL-02 | Range sanity; delivery owns the check | Refer to `DELIVERY-RANGE-LIMITED` and `DELIVERY-LEGAL-RANGE`; legacy ±2 tolerance uncalibrated | heuristic (tolerance); owner scopes range convention | Video with a declared range profile · M |
-| ART-DEL-03 | Chroma-only fine detail | Legacy 6 px stroke proposal conflicts with §3's 4 px; unresolved, advisory only. Inspect encoded edges; see `DELIVERY-RED-CHROMA` | heuristic (uncalibrated) | video · M |
-| ART-DEL-04 | Dark-gradient banding | > 20% area, L < 0.3, no dither → flag; confirm on decode | heuristic | video · M |
-| ART-DEL-05 | Alpha masters | ProRes 4444 with alpha; tags consistent | standard | masters · M |
+| ART-DEL-01 | Delivery tags | Superseded: use `DELIVERY-COLOR-TAGS`, `DELIVERY-CHROMA-SUBSAMPLING` and `DELIVERY-RANGE-LIMITED`. See the shared rule-owner table; historical proposal is not an active threshold. | standard | video · M |
+| ART-DEL-02 | Range sanity; delivery owns the check | Superseded: use `DELIVERY-RANGE-LIMITED` and `DELIVERY-LEGAL-RANGE`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (tolerance); owner scopes range convention | Video with a declared range profile · M |
+| ART-DEL-03 | Chroma-only fine detail | Inspect encoded edges of chroma-only detail; see `DELIVERY-RED-CHROMA`. Stroke width is §3's value (rule owners); the legacy 6 px figure is dropped. | heuristic (uncalibrated) | video · M |
+| ART-DEL-04 | Dark-gradient banding | Superseded: use `DELIVERY-BANDING`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic | video · M |
+| ART-DEL-05 | Alpha masters | Superseded: use `DELIVERY-MASTER-ALPHA`. See the shared rule-owner table; historical proposal is not an active threshold. | standard | masters · M |
 | ART-VAL-01 | Focal local contrast | ΔL ≥ 0.15 vs 5%-H ring (*VCR default*) | heuristic | all · M |
 | ART-VAL-02 | Grouped values | k=3 L centres ≥ 0.15 apart | heuristic | all · M |
 | ART-VAL-03 | Not muddy | Mid-L low-C pixels ≤ 50% unless intended | heuristic | all · M |
