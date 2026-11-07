@@ -4,6 +4,7 @@ This is the pacing, structure and short-form editing knowledge base (`PACE-*`), 
 
 | Task | Read |
 | --- | --- |
+| Research inputs and cross-pillar handoffs | §1, §15 |
 | Open a piece: the first 0–6 seconds | §1, then `PACE-HOOK-*` in §17 |
 | Which platform claims are official, studied or folklore | §2 |
 | Beats, shot length and cut rhythm | §3 |
@@ -22,7 +23,7 @@ This is the pacing, structure and short-form editing knowledge base (`PACE-*`), 
 2. **Settled: captions** ([shared conventions](../README.md)). `PACE-READ-02/03` are dropped in favour of `TYPO-CAPTION-*`.
 3. **Settled: overlaps with motion** ([shared conventions](../README.md)). Pacing owns cuts, beat lengths and holds; motion owns movement inside a beat. `PACE-LOOP-01` and `PACE-BEAT-05` are dropped. Cuts on markers stay `PACE-BEAT-06`.
 4. **Settled: author tags.** They are reserved in the [scene contract](../../skills/start/references/scene-contract.md) (`data-vcr-role` `key`, `cta`, `hold`, `montage`). Beat labels (`promise`, `payoff`) are the `role` of named markers (#143). `audioLed` waits for the series brief.
-5. **Brief settings versus rules.** Duration targets (`PACE-DUR-01` brief ±10%), the episode ID format (`PACE-SERIES-01`), segment slots and hook rotation (`PACE-SERIES-02/03`) are only checkable against a series brief. The [series brief reference](../series-brief/README.md) now defines the values. The checks stay here, and wait for the brief schema in Layer 1.
+5. **Brief settings versus rules.** Duration targets (`PACE-DUR-01` brief ±10%), the episode ID format (`PACE-SERIES-01`), segment slots and hook rotation (`PACE-SERIES-02/03`) are only checkable against a series brief. The [series brief reference](../series-brief/README.md) now defines the values. The brief schema and workflow exist; most pacing checks remain reference-only. Hook rotation is owned by `STORY-SERIES-REPEAT`, while Pacing consumes the plan.
 6. **Settled: named rule IDs** ([shared conventions](../README.md)). The numbered IDs here are drafts, renamed when `PACE-*` gets its `rules.json`.
 7. **Unverified and uncalibrated values.**
    - The BBC dwell values come from secondary copies (§17 footnote).
@@ -32,4 +33,4 @@ This is the pacing, structure and short-form editing knowledge base (`PACE-*`), 
 ## Editorial notes
 
 - The second sources heading was folded into §23. Escaped `\[n\]` markers in the text point to that list.
-- Rules in §17 and checklists in §20 drop the `PACE-` prefix in places (`READ-04`, `SOUND-01`). Those refer to `PACE-*` rules, not to the sound pillar.
+- Rules in §17 and checklists in §20 drop the `PACE-` prefix in places (for example `READ-04`). The mute-test references now use `PACE-SOUND-01` explicitly; other abbreviated labels refer to local `PACE-*` rules, not to the sound pillar.

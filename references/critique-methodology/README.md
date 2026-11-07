@@ -4,6 +4,7 @@ This is the critique methodology knowledge base (`REVIEW-*`), produced from [the
 
 | Task | Read |
 | --- | --- |
+| Research inputs and cross-pillar handoffs | §10 |
 | Rate a finding's severity (blocker vs taste) | §2 |
 | Write a finding; the proposed schema and envelope | §3 |
 | Merge, deduplicate or resolve conflicting reviewers | §4 |
@@ -14,7 +15,7 @@ This is the critique methodology knowledge base (`REVIEW-*`), produced from [the
 | Rules for a reviewer, as data | §13, §14 |
 | Check a claim | §17 (caveats), §18 (verification ledger) |
 
-## Open decisions before building a findings schema, calibration tooling or more reviewer agents
+## Open decisions before extending findings, calibration tooling or reviewer agents
 
 1. **Settled: one finding contract.** `specifications/vcr-plugin-prd.md` §6.4 stays the schema. Its severities stay `blocker | major | minor | note`, with the KB's `cosmetic` folded into `note`, and its states stay `open → addressed → resolved | wontfix`. The KB's fields were added there as optional reviewer fields: `frame_end`, `selector`, `rule_id`, `kind`, `severity_basis`, `confidence`, `evidence` and `reviewer`. The severity caps were added too: taste at most `note`; a heuristic rule alone at most `major`, which then needs an artifact; a judged blocker with confidence below 0.8 is escalated.
 2. **Settled: `agents/typographer.md`** reports those fields and caps.
@@ -24,7 +25,7 @@ This is the critique methodology knowledge base (`REVIEW-*`), produced from [the
 6. **Settled: named rule IDs** ([shared conventions](../README.md)). The numbered IDs here are drafts.
 7. **Schema sketch details to fix when it becomes real.**
    - `location.fps` allows only 24, 25, 30 and 60, which rules out 23.976, 29.97 and 50.
-   - The example finding cites `TYPO-OVERFLOW-01`, which does not exist. `vcr lint` reports `overflow`, and its safe-zone rule is `TYPO-SAFE`.
+   - The example finding now cites the built-in `overflow` check reported by `vcr lint`; it has no typography pillar rule ID. The safe-zone rule is `TYPO-SAFE`. The surrounding schema and envelope remain research sketches; the plugin PRD contract wins.
    - `pillar` has no entry for critique itself or for series briefs (`BRIEF-*`); it lists `brief`.
 
 ## Editorial notes

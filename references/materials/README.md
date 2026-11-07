@@ -12,6 +12,7 @@ Many of its checks run on **scene data** rather than frames, which makes them ch
 
 | Task | Read |
 | --- | --- |
+| Research inputs and cross-pillar handoffs | §14 |
 | PBR: metallic-roughness, energy conservation, plausible values | §1 |
 | glTF extensions, OpenPBR, MaterialX, Principled BSDF and three.js mapping | §2 |
 | Product materials: plastics, metals, glass, fabric, screens and more | §3 |
@@ -33,6 +34,6 @@ Many of its checks run on **scene data** rather than frames, which makes them ch
    - **Kept here:** materials owns texture colour spaces (`MAT-TEXTURE-COLORSPACE`), surface highlights in motion (`MAT-SPECULAR-CRAWL`) and texel density. `MAT-MOIRE` cites `FX-MOIRE-RESAMPLE` for the pixel-pitch threshold.
 2. **The first checks need no rendering.** `MAT-ALBEDO-*-RANGE`, `-METALLIC-BINARY`, `-TEXTURE-COLORSPACE`, `-NORMAL-CONVENTION`, `-ORM-PACKING`, `-EXTENSION-*` and `-ALPHA-VS-TRANSMISSION` read glTF, Blender or three.js scene data. That makes them the cheapest material checks to build: a validator over exported `.glb` files fits the delivery-check pattern (#144).
 3. **The physical scope tag.** `MAT-PHYSICAL-SCOPE` tags each material `pbr`, `stylised` or `unlit`, so plausibility rules skip stylised work. **Settled (#143):** it lives in glTF material `extras.vcr.scope`, so the `.glb` validator reads it without rendering (see [the scene contract](../../skills/start/references/scene-contract.md)).
-4. **Values from the brief.** `MAT-SERIES-CONSISTENCY` (the same named material keeps the same parameters across episodes) and `MAT-IMPERFECTION-BUDGET` (how clean the brief wants it) read brief values, so they join the brief schema (#141).
+4. **Values from the brief.** `MAT-SERIES-CONSISTENCY` (the same named material keeps the same parameters across episodes) and `MAT-IMPERFECTION-BUDGET` (how clean the brief wants it) read brief values; these remain workspace notes until typed schema support is designed.
 5. **Provenance in one place.** `MAT-LICENCE-PROVENANCE` belongs in one asset-manifest rule, shared with `LIGHT-HDRI-LICENCE` and `SOUND-LICENSE-RECORD` (see the lighting README).
 6. **Uncalibrated heuristics.** These stay advisory until calibrated: the roughness floor, the roughness variation, texel density bands, the outline width coefficient of variation and the specular crawl limit.

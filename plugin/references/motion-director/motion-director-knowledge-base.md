@@ -357,6 +357,8 @@ VCR can sample any property at any *t*. For each element *e* and property *p* (x
 
 ## 11. Avoiding sameness: signature motion and brand guidelines
 
+**Inputs to signature motion.** [Domain Exploration §4–5](../domain-exploration/README.md) supplies subject behaviours; [Visual Research §3–4](../visual-research/README.md) supplies inspected sequences and principles (`VREF-TEMPORAL-SPAN`, `VREF-TRANSFER-EXPLAINED`). [Cultural Context §2–5](../cultural-context/README.md) supplies audience-scoped readings of genre and gesture. Motion owns choreography and curves; Pacing owns cuts and holds, Sound owns beat evidence, and Accessibility owns vestibular constraints.
+
 **Published motion principles** (examples):
 - **Material:** "Informative, Focused, Expressive". Motion can express a brand's style: the Basil study uses customised transitions with parallax and emphasized easing [28]. Material's customisation axes are duration, easing and motion path: "For a simple and functional style, you can use short durations", standard easing and linear paths; for dramatic styles, longer durations, emphasized easing and arc motion [29].
 - **IBM Carbon:** productive versus expressive, "the duality of man and machine"; expressive reserved for important moments [4].
@@ -424,6 +426,8 @@ Ordered steps; each finding cites a rule ID, a time range, the measurement, and 
 
 ## 14. The creation process (workflow skill outline)
 
+**Check asset support before camera moves.** Use [Image Direction §5](../image-direction/README.md), `IMAGE-MOTION-COVERAGE` and `IMAGE-MOTION-RANGE-TESTED` to establish what the selected imagery can reveal. An attractive still does not supply unseen geometry or background. FX owns separation and compositing techniques; Motion owns the resulting move. Keep proposed signatures distinct from selected brief values.
+
 1. **Brief → voice.** Extract audience, placement, aspect, fps, duration, audio situation and brand constraints. Choose a voice from §2.4, or define one.
 2. **Write a motion spec** (≤ 15 lines) before coding:
    - fps;
@@ -462,6 +466,8 @@ Ordered steps; each finding cites a rule ID, a time range, the measurement, and 
 
 ## 16. Encoding for an AI agent: rules table
 
+**Scope before measurement.** UI-derived duration and easing targets are candidate defaults for UI-like elements, not universal limits for watched video. Select the applicable brief and motion intent first; thresholds adapted from UI guidance remain heuristic. See §20 and the [rule-owner table](../README.md) before using legacy rows.
+
 "Meas." = how it is measured: **TS** = time series of element properties; **PX** = rendered PNG frames; **VID** = decoded delivery video; **AUD** = audio and markers; **J** = judgement only.
 
 | ID | Check | Threshold | Tier | Applies to | Meas. |
@@ -469,13 +475,13 @@ Ordered steps; each finding cites a rule ID, a time range, the measurement, and 
 | MOTION-PROC-001 | Motion is reviewed in motion (at delivery fps) plus time series, not from stills | Required for every review | heuristic | all motion | J (process) |
 | MOTION-TIME-001 | Movement tweens shorter than perceivable motion read as cuts | Flag translate/scale/rotate tweens < 100 ms (NN/g's "lower end of perceivable motion") unless tagged `impact` | heuristic | video, all fps | TS |
 | MOTION-TIME-002 | UI-mock micro-interactions within the UI canon | 100–500 ms (NN/g); Carbon micro 90–120 ms | heuristic / platform | UI demos inside video | TS |
-| MOTION-TIME-003 | Duration grows with travel and size (non-linear) | Flag if, within one scene and the same curve, a longer travel has a shorter duration (rank inversion) | platform | all | TS |
+| MOTION-TIME-003 | Duration grows with travel and size (non-linear) | Flag if, within one scene and the same curve, a longer travel has a shorter duration (rank inversion) | heuristic (UI guidance adapted to video) | all | TS |
 | MOTION-TIME-004 | Exits not longer than paired entrances | exit ≤ entrance for the same element | heuristic | all | TS |
 | MOTION-TIME-005 | Text holds long enough to read | Hold (energy ≈ 0 in text bbox) ≥ reading time from `TYPO-*` | heuristic | any text | TS + PX |
 | MOTION-TIME-006 | UI-scale single tween ≤ 1000 ms | Flag UI-like element tweens > 1000 ms (M3's longest token) unless tagged cinematic | platform | UI-like elements | TS |
-| MOTION-EASE-001 | No linear easing on discrete entrances or exits | Endpoint velocity ratio at the arrival end must be < 0.1 × mean for entrances; linear allowed for rotation, tickers, drifts, loops | platform | discrete objects | TS |
-| MOTION-EASE-002 | Entrances decelerate, exits accelerate | Entrance peak-velocity u < 0.5; exit peak-velocity u > 0.5 | platform | enter/exit tweens | TS |
-| MOTION-EASE-003 | On-screen moves (visible start to end) ease in and out | Both endpoint velocity ratios < 0.2 | platform | in-frame moves | TS |
+| MOTION-EASE-001 | No linear easing on discrete entrances or exits | Endpoint velocity ratio at the arrival end must be < 0.1 × mean for entrances; linear allowed for rotation, tickers, drifts, loops | heuristic (UI guidance adapted to video) | discrete objects | TS |
+| MOTION-EASE-002 | Entrances decelerate, exits accelerate | Entrance peak-velocity u < 0.5; exit peak-velocity u > 0.5 | heuristic (UI guidance adapted to video) | enter/exit tweens | TS |
+| MOTION-EASE-003 | On-screen moves (visible start to end) ease in and out | Both endpoint velocity ratios < 0.2 | heuristic (UI guidance adapted to video) | in-frame moves | TS |
 | MOTION-EASE-004 | No unintended velocity kinks at keyframe joins | \|v⁻−v⁺\| > 0.5 × local peak speed flagged unless tagged `hit` | heuristic | multi-keyframe paths | TS |
 | MOTION-EASE-005 | Overshoot within voice budget | productive ≤ 2%; expressive/energetic ≤ 10%; playful per spec; bounce > 0.4 needs justification (Apple caution) | platform / heuristic | springs, back | TS |
 | MOTION-EASE-006 | Opacity, colour and blur never overshoot | overshoot = 0 (beyond ε) on effect properties | platform (M3 effects ζ = 1) | effects | TS |
@@ -490,13 +496,13 @@ Ordered steps; each finding cites a rule ID, a time range, the measurement, and 
 | MOTION-CHOR-005 | Persistent-element continuity at transitions | Tagged shared element: no position jump > 2 px between consecutive frames that isn't explained by its velocity | heuristic | transitions | TS |
 | MOTION-CHOR-006 | Causal contact timing | Driven object onset within ≤ 1 frame of contact (≤ 33 ms at 30 fps) | heuristic (lab evidence) | hits, pushes, triggers | TS (+AUD) |
 | MOTION-CHOR-007 | Morph integrity | No self-intersection mid-morph; point counts matched | heuristic | SVG morphs | TS/PX + J |
-| MOTION-RHY-001 | Beat-locked arrivals on markers | \|settle or impact frame − round(marker × fps)\| ≤ 1 frame | heuristic | sound-led, `markers` present | TS + AUD |
-| MOTION-RHY-002 | SFX on contact frames | \|SFX onset − contact frame time\| ≤ 1 frame | heuristic | SFX | AUD + TS |
+| MOTION-RHY-001 | Beat-locked arrivals on markers | Use `SOUND-BEAT-ALIGN`; report arrival offset in frames | heuristic | sound-led, `markers` present | TS + AUD |
+| MOTION-RHY-002 | SFX on contact frames | Superseded: use `SOUND-SYNC-LEAD`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | SFX | AUD + TS |
 | MOTION-RHY-003 | Energy has shape (not flat) | CV of per-second motion energy ≥ 0.3 for pieces > 10 s `[heuristic, uncalibrated]` | heuristic | whole piece | TS/PX |
 | MOTION-RHY-004 | Seamless loop | All sampled properties at t = duration equal t = 0 within ε, and velocities match within 10% | heuristic | loop deliverables | TS + PX |
 | MOTION-CAM-001 | Pan speed vs judder | Full-frame detailed layer displacement ≤ W/(7·fps) px/frame at 24 fps, scaled for fps (RED) | heuristic (vendor rule of thumb) | pans, scrolling backgrounds | TS / PX |
-| MOTION-CAM-002 | Parallax flagged | > 2 layers with differing speeds, or continuous parallax > 3 s ⇒ warn; web-interactive ⇒ reduced-motion variant required | heuristic + standard (2.3.3) | 2.5D | TS + J |
-| MOTION-CAM-003 | Large zoom flagged | Full-frame scale change > 1.5× within < 1 s ⇒ warn (number untraceable) | heuristic | pushes, zooms | TS |
+| MOTION-CAM-002 | Parallax flagged | Superseded: use `A11Y-MOTION-FULLFRAME`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | 2.5D | TS + J |
+| MOTION-CAM-003 | Large zoom flagged | Superseded: use `A11Y-MOTION-PARALLAX`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | pushes, zooms | TS |
 | MOTION-CAM-004 | No sustained oscillation near 0.2 Hz | Full-frame or large-element oscillation 0.1–0.3 Hz for > 2 cycles ⇒ warn | platform (Apple) | ambient motion | TS (FFT) |
 | MOTION-CAM-005 | Spin and vortex control | Continuous rotation of large or full-frame content, or infinite small spins near text ⇒ warn | heuristic (Val Head) | rotation | TS |
 | MOTION-CAM-006 | Stable anchor during big moves | During full-frame camera moves > 1 s, ≥ 1 element remains screen-fixed | heuristic (Apple) | camera moves | TS + J |
@@ -504,11 +510,11 @@ Ordered steps; each finding cites a rule ID, a time range, the measurement, and 
 | MOTION-FPS-002 | Periodic-pattern aliasing | Per-frame phase step < 0.5 × pattern period (spokes, stripes) | heuristic (sampling theory) | rotating or periodic | TS |
 | MOTION-FPS-003 | Thin high-contrast moving features | Strokes ≤ 2 px or text < delivery min size moving > 0 and < 1 px/frame (shimmer) or > W/(7·fps) (strobe) ⇒ warn | heuristic | lines, small text | TS + VID |
 | MOTION-FPS-004 | Synthetic blur sane | If temporal supersampling or blur is used: shutter ≤ 360°, default 180° | heuristic | fast motion | J / config |
-| MOTION-A11Y-001 | Reduced-motion variant for interactive web output | `prefers-reduced-motion: reduce` removes non-essential motion animation | standard (WCAG 2.3.3 AAA) | interactive web embeds | DOM (emulated media) |
-| MOTION-A11Y-002 | Pause/stop/hide for autoplay > 5 s | Auto-start, > 5 s, parallel content ⇒ control required | standard (WCAG 2.2.2 A) | web loops, backgrounds | DOM + TS |
-| MOTION-A11Y-003 | Reduced-motion substitution style | Spatial transitions → fades (Apple); ~100 ms crossfade (Uber) | platform | reduced variants | TS |
-| MOTION-A11Y-004 | Meaning not carried by motion alone | Information is also present at a hold or in the audio | platform (Apple) | explainers, data | J |
-| MOTION-A11Y-005 | Flash safety | Defer to the accessibility pillar (WCAG 2.3.1) | standard (cross-ref) | all | (other pillar) |
+| MOTION-A11Y-001 | Reduced-motion variant for interactive web output | Superseded: use `A11Y-MOTION-REDUCED-VARIANT`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | interactive web embeds | DOM (emulated media) |
+| MOTION-A11Y-002 | Pause/stop/hide for autoplay > 5 s | Superseded: use `A11Y-MOTION-REDUCED-VARIANT`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | web loops, backgrounds | DOM + TS |
+| MOTION-A11Y-003 | Reduced-motion substitution style | Superseded: use `A11Y-MOTION-PAUSE`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | reduced variants | TS |
+| MOTION-A11Y-004 | Meaning not carried by motion alone | Superseded: use `A11Y-AD-COVERAGE`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | explainers, data | J |
+| MOTION-A11Y-005 | Flash safety | Superseded: use `A11Y-FLASH-GENERAL`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | all | (other pillar) |
 | MOTION-SIG-001 | Motion spec exists and is followed | Spec present in brief; EASE-008 pass rate ≥ 90% | heuristic | all projects | J + TS |
 | MOTION-SIG-002 | Template detection: default ease and duration monoculture | > 70% of tweens share one (ease, duration) pair, or > 50% use the library default ease | heuristic | all | TS |
 | MOTION-SIG-003 | Template detection: fade-up monoculture | > 70% of entrances are opacity + translateY(+) from below | heuristic | all | TS |
@@ -538,7 +544,7 @@ General sampling: for each check, seek `window.__scene.seek(t)` at t = i/fps for
 | CAM-004 | TS of large elements and root | FFT of position or scale; energy in 0.1–0.3 Hz band, cycles counted | full duration | Short pieces (< 10 s) cannot resolve 0.2 Hz reliably (needs ≥ 2 cycles = 10 s) |
 | FPS-001 | Container metadata (`ffprobe`), render config | Equality | — | Variable-frame-rate re-encodes by platforms; check the platform download if possible |
 | FPS-002 | TS rotation × pattern period (from scene metadata) | Phase step per frame / period | fps | Period must be declared; auto-detection from pixels is unreliable |
-| A11Y-001/002 | DOM with emulated `prefers-reduced-motion` (Playwright `emulateMedia`) | Re-sample TS; non-essential tagged motion must be ≈ 0; detect controls for > 5 s loops | fps | Essential vs non-essential needs tags; video files themselves are out of scope |
+| MOTION-A11Y-001/002 | DOM with emulated `prefers-reduced-motion` (Playwright `emulateMedia`) | Re-sample TS; non-essential tagged motion must be ≈ 0; detect controls for > 5 s loops | fps | Essential vs non-essential needs tags; video files themselves are out of scope |
 | SIG-001/004 | Brief spec, curve fits | Pass rate; count signature-tagged occurrences per 30 s | — | Requires spec and tags; otherwise judgement only |
 
 ## 18. VCR-specific rendering and delivery notes
@@ -579,7 +585,7 @@ General sampling: for each check, seek `window.__scene.seek(t)` at t = i/fps for
 - [ ] Beat arrivals within 1 frame (RHY-001); energy has shape (RHY-003); loop seam clean (RHY-004)
 - [ ] Pans within judder limit; parallax, zoom, spin and oscillation checked; anchor present (CAM-001…006)
 - [ ] fps consistent; no aliasing or shimmer, checked on the encoded file (FPS-001…004)
-- [ ] Accessibility hooks for web outputs (A11Y-001…005)
+- [ ] Accessibility hooks for web outputs (MOTION-A11Y-001…005)
 - [ ] Template signs absent (SIG-002/003); signature rationed (SIG-004)
 
 ### Creation checklist
@@ -593,7 +599,7 @@ General sampling: for each check, seek `window.__scene.seek(t)` at t = i/fps for
 - [ ] Camera within limits with an anchor (CAM-001…006)
 - [ ] Everything a pure function of t; seeded randomness; analytic springs (SPR-001)
 - [ ] Measurable checks run; encoded delivery re-checked (FPS-001…003)
-- [ ] Reduced-motion and pause controls where web-interactive (A11Y-001/002)
+- [ ] Reduced-motion and pause controls where web-interactive (MOTION-A11Y-001/002)
 - [ ] Template self-check before handoff (SIG-002/003)
 
 ## 20. Caveats

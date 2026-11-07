@@ -2,7 +2,7 @@ import { cpSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, test } from "vitest";
-import { filterPillarRules, findPillarRule, loadPillarRules, loadPillars, readKnowledgeBaseSection, REFERENCES_INDEX_PATH, referencesIndexDiagnostics, writeReferencesIndex } from "./references.js";
+import { formatPillarRule, referenceIntegrityDiagnostics, filterPillarRules, findPillarRule, loadPillarRules, loadPillars, readKnowledgeBaseSection, REFERENCES_INDEX_PATH, referencesIndexDiagnostics, writeReferencesIndex } from "./references.js";
 import { resolveRoots } from "./roots.js";
 
 const roots = resolveRoots({ cwd: process.cwd(), env: {} });
@@ -63,10 +63,47 @@ describe("reference pillars", () => {
     expect(referencesIndexDiagnostics(harness)).toEqual([]);
     const fixture = mkdtempSync(join(tmpdir(), "vcr-references-"));
     cpSync(join(harness, "references"), join(fixture, "references"), { recursive: true });
+    cpSync(join(harness, "skills"), join(fixture, "skills"), { recursive: true });
+    cpSync(join(harness, "specifications"), join(fixture, "specifications"), { recursive: true });
     const readme = join(fixture, "references/README.md");
     writeFileSync(readme, readFileSync(readme, "utf8").replace("| Motion | `MOTION-` |", "| Motion direction | `MOTION-` |"));
     expect(referencesIndexDiagnostics(fixture).map((diagnostic) => diagnostic.message)).toEqual(["references index is stale"]);
     expect(writeReferencesIndex(fixture, false)).toEqual({ ok: true, value: { wasStale: true, staleFiles: [REFERENCES_INDEX_PATH] } });
     expect(readFileSync(join(fixture, REFERENCES_INDEX_PATH), "utf8")).toContain("**Motion direction** `MOTION-`");
   });
+});
+
+
+test("isolated candidate lookups retain ownership and evidence context", () => {
+  const old = findPillarRule(rules, "PACE-READ-01");
+  expect(old.ok && formatPillarRule(old.value)).toContain("replaced by TYPO-HOLD");
+  expect(old.ok && old.value.threshold).not.toContain("chars/20");
+  const named = findPillarRule(rules, "A11Y-AD-COVERAGE");
+  expect(named.ok && named.value.isDraftId).toBe(false);
+  const research = findPillarRule(rules, "VREF-OBSERVATION-LOCATOR");
+  const output = research.ok ? formatPillarRule(research.value) : "";
+  expect(output).toContain("reference-only candidate");
+  expect(output).toContain("Media Fragments");
+  expect(output).toContain("structural");
+});
+
+test("integrity catches dangling owners and links in a changed corpus", () => {
+  const fixture = mkdtempSync(join(tmpdir(), "vcr-integrity-"));
+  cpSync(join(harness, "references"), join(fixture, "references"), { recursive: true });
+  const path = join(fixture, "references/pacing-editor/pacing-editor-knowledge-base.md");
+  writeFileSync(path, readFileSync(path, "utf8").replace("Superseded: use `TYPO-HOLD`", "Superseded: use `TYPO-NONEXISTENT`") + "\n[missing](missing.md)\n");
+  const messages = referenceIntegrityDiagnostics(fixture).map((d) => d.message);
+  expect(messages).toContain("Unknown rule reference TYPO-NONEXISTENT");
+  expect(messages).toContain("Invalid replacement PACE-READ-01 → TYPO-NONEXISTENT");
+  expect(messages).toContain("Missing local reference missing.md");
+});
+
+test("section extraction ignores headings inside fenced examples", () => {
+  const fixture = mkdtempSync(join(tmpdir(), "vcr-fenced-section-"));
+  cpSync(join(harness, "references"), join(fixture, "references"), { recursive: true });
+  writeFileSync(join(fixture, "references/story/story-knowledge-base.md"), "# Story\n## 1. Sample\n```markdown\n## 2. Not a section\n```\nretained\n## 2. Real section\n");
+  const section = readKnowledgeBaseSection(fixture, pillars.value, "story", "1");
+  expect(section.ok && section.value).toContain("retained");
+  const second = readKnowledgeBaseSection(fixture, pillars.value, "story", "2");
+  expect(second.ok && second.value).toBe("## 2. Real section");
 });

@@ -37,6 +37,8 @@
 
 ## 1. Concept development
 
+**Research inputs.** [Domain Exploration §1–5](../domain-exploration/README.md) supplies decision-linked evidence and opportunities (`DOMAIN-OPPORTUNITY-CHAIN`); [Visual Research §4](../visual-research/README.md) supplies transferable principles and fixation management (`VREF-FIXATION-MANAGED`). Story owns the developed concept and route cards. Research opportunities are inputs, not already selected routes.
+
 ### 1.1 What a concept is (and is not)
 
 A **concept** is a single idea that makes the proposition memorable, plus the **mechanism** that dramatises it. It is not the proposition itself ("our app saves time"), not a mood ("dark, premium, kinetic"), and not a format ("three-scene explainer").
@@ -103,6 +105,8 @@ Present the routes side by side, ordered by recommendation, with the recommendat
 ---
 
 ## 2. Visual metaphor and demonstration
+
+**Bound the mapping and audience assumption.** Use `DOMAIN-ANALOGY-BREAK` to state where the analogy fails, then [Cultural Context §3–5](../cultural-context/README.md) for `CULTURE-MISS-SURVIVAL-STATED` and competing readings. `STORY-METAPHOR-LEGIBLE` judges the resulting mechanism; the cultural reference supplies evidence about recognition, not a guarantee of comprehension.
 
 ### 2.1 The six mechanisms for explaining the abstract
 
@@ -352,6 +356,8 @@ Pixar's definition of the story reel ("a rough draft of the film in video form")
 
 ## 7. Review gates
 
+**Implementation boundary.** The sequence below is proposed production practice. Plan approvals are not implemented; the current approval contract is keyed to renders. Follow the user's established review scope, use existing approval channels where applicable, and never invent approval records or treat these research steps as additional mandatory pauses.
+
 ### 7.1 Typical gates and what the human approves
 
 | Gate | Human approves | Typical rounds (practitioner, *taste*) | Cost of change after this gate |
@@ -509,6 +515,8 @@ Run these steps in order. Stop at the first blocker and report it; don't polish-
 
 ## 13. The creation process (brief to verified plan)
 
+**Before developing routes.** Consult the subject pack and annotated references only where an open decision needs them. Use [Image Direction §1–4](../image-direction/README.md) to establish the image job and acquisition needs (`IMAGE-PURPOSE-DECLARED`, `IMAGE-MEDIUM-RATIONALE`) before treating a route as buildable. Research proposes claims; `STORY-CLAIM-SOURCE` checks their plan coverage, while `DATA-*` checks any chart against its source. Art Direction owns the style-frame treatment.
+
 1. **Ingest the brief** (`BRIEF-*`): objective, audience, placement(s), aspect(s), runtime, audio mode (VO/music/muted), mandatories, claims with sources, distinctive assets.
 2. **Write the SMP** in one sentence. If the brief carries several propositions, ask the human to rank them, or propose a hierarchy (one primary, others demoted to supers or end card).
 3. **Diverge:** generate many raw ideas, then develop **at least three routes that differ in mechanism or idea**. Deliberately push away from the first, most obvious idea; it is likely the category median.
@@ -546,7 +554,7 @@ Columns: **ID | Check | Threshold | Tier | Applies to**. Each row also states *m
 
 | ID | Check | Threshold | Tier | Applies to |
 |---|---|---|---|---|
-| `STORY-SMP` | The plan states a single-minded proposition | Exactly one sentence; no conjunction joining two benefits. Measurable: sentence count + conjunction/benefit parse (flag only) | heuristic (*taste*) | All pieces with a message (ads, explainers, launches, data stories); not title sequences/art loops |
+| `STORY-SMP` | The plan states a single-minded proposition | Superseded: use `BRIEF-PROPOSITION-SINGLE`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | All pieces with a message (ads, explainers, launches, data stories); not title sequences/art loops |
 | `STORY-ONE-IDEA` | The concept passes the three-slot sentence test (proposition, mechanism, takeaway) | All three slots filled, each singular. Judgement, with schema presence check | heuristic (*taste*) | All |
 | `STORY-MECHANISM` | Concept names its mechanism | One of metaphor/demonstration/transformation/comparison/build-up/twist, or a named hybrid. Measurable: field present and in the enum | heuristic (*taste*) | All except pure abstract loops |
 | `STORY-ROUTES-COUNT` | Routes developed before convergence | ≥3 routes for a new piece or format (folklore value; the evidence supports "multiple, in parallel"). Measurable: count route cards | heuristic (*audience*: Dow et al.; number is folklore) | New pieces and new series formats; not template episodes |

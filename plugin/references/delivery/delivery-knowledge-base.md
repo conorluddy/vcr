@@ -1,6 +1,6 @@
 # DELIVERY: Delivery, Encoding and Platform Specifications for Motion Graphics and Short-Form Video
 
-> **Bottom line:** A VCR render survives every major platform if it ships as a progressive, constant-frame-rate MP4 with H.264 High Profile, 4:2:0 limited-range BT.709 video tagged explicitly (primaries, transfer and matrix all = 1), a closed GOP, the moov atom at the front, no edit lists where the platform forbids them, and AAC-LC stereo at 48 kHz. Keep a separate 10-bit or ProRes 4444 mezzanine master for everything else.
+> **Starting profile:** Progressive CFR H.264 MP4 with limited-range BT.709 and AAC-LC is a proposed SDR social-video starting point. Check the actual destination and upload route; this combination alone does not establish acceptance or visual quality. Masters, alpha, HDR and stills need their own profiles (§1, §4, §11).
 >
 > **Scope.** This pillar covers how a finished piece becomes files: masters, delivery encodes, platform upload specifications, what platforms do to uploads, colour signalling, banding, frame timing, A/V offset, captions as files, stills delivery, and measurement. It does not cover loudness targets (`SOUND-*`), caption styling (`TYPO-CAPTION-*`), safe-zone layout (`TYPO-SAFE`, `vcr lint`), motion design (`MOTION-*`) or pacing (`PACE-*`). It proposes to take ownership of the delivery rules currently scattered as `TYPO-RANGE`, `TYPO-CHROMA`, `ART-DEL-*`, `SOUND-SAMPLE-RATE`, `SOUND-AAC-BITRATE` and `MOTION-FPS-001` (see §1.3).
 >
@@ -360,7 +360,9 @@ VCR's capture is inherently CFR. The risk is the mux: an FFmpeg command that rea
 
 ## 8. Measurement
 
-### 8.1 Metadata gate (`ffprobe`), deterministic and cheap
+### 8.1 Metadata, container and timing inspection
+
+Separate these passes. Headers report declared properties; container parsing checks box layout; timestamps test cadence; frame/bitstream inspection tests GOP claims. `-show_frames` uses decoding in [FFmpeg's implementation](https://github.com/FFmpeg/FFmpeg/blob/master/fftools/ffprobe.c), so the entire pass is not a decode-free metadata check. Colour tags alone cannot establish correct pixel conversion. The commands below are worked examples, not shipped VCR checks.
 
     ffprobe -v error -show_entries format=format_name,duration,size,bit_rate:stream=codec_name,profile,level,pix_fmt,width,height,sample_aspect_ratio,r_frame_rate,avg_frame_rate,field_order,color_range,color_space,color_transfer,color_primaries,sample_rate,channels,bit_rate,start_time,nb_frames -of json delivery.mp4
 
@@ -466,6 +468,8 @@ Run the delivery file through the simulation, then compute CAMBI, `blockdetect`,
 
 ## 13. Analysis, creation, rules and measurement
 
+**Upstream asset and research handoff.** [Image Direction §4–6](../image-direction/README.md) supplies placement-fit evidence and unresolved acquisition or provenance gaps (`IMAGE-PLACEMENT-FIT`, `IMAGE-GAPS-HANDED-OFF`). Delivery owns the encoded-file checks and delivery manifest; source-asset provenance is a separate shared concern. [Domain Exploration §3](../domain-exploration/README.md) and [Cultural Context §6](../cultural-context/README.md) supply source or cultural-reference recheck triggers when applicable. A technically valid encode does not verify claims, permissions or audience meaning. These reference criteria add no automatic delivery gates.
+
 ### 13.1 The critique process (how a delivery/QC engineer reviews)
 
 Run the steps in order and stop at the first blocker.
@@ -563,7 +567,7 @@ Run the steps in order and stop at the first blocker.
 | `DELIVERY-MANIFEST` | Manifest complete | all fields in §9 | heuristic | all | Yes |
 | `DELIVERY-NAMING` | File name follows the convention | pattern in §9 | heuristic | all | Yes: regex |
 | `DELIVERY-CAPTION-SIDECAR` | Sidecar exists and is timed to the delivered file | SRT/WebVTT; first cue ≥ 0; offsets match | platform (LinkedIn, X) and heuristic | all with speech | Yes |
-| `DELIVERY-CAPTION-BURN` | Burned captions on muted-first placements; not duplicated by a sidecar display | — | heuristic | 9:16 social | Judgement plus OCR |
+| `DELIVERY-CAPTION-BURN` | Burned captions on muted-first placements; not duplicated by a sidecar display | Superseded: use `A11Y-CAPTION-SIDECAR`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | 9:16 social | Judgement plus OCR |
 | `DELIVERY-COVER-FRAME` | Explicit cover supplied; title inside the centre 1:1 of a 9:16 cover | — | platform (Instagram crops) | Reels, Shorts, TikTok | Partly: bbox vs centre square |
 | `DELIVERY-THUMB-SIZE` | Thumbnail size and format within limits | per §11 | platform | YouTube, LinkedIn, Instagram | Yes |
 | `DELIVERY-STILL-SRGB` | Stills are sRGB with an embedded profile | sRGB ICC present | platform (Instagram converts) and heuristic | stills, covers | Yes |

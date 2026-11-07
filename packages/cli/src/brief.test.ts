@@ -65,3 +65,14 @@ describe("briefs", () => {
     expect(messages(workspaceWithBriefs("video_id: demo/teaser\ndeliverables: [1080x1920@30]", sections, null))).toEqual([]);
   });
 });
+
+
+test("research pillars are accepted as mandatory and preference consumers", () => {
+  const series = lowTideLab();
+  const consumers = ["domain-exploration", "visual-research", "cultural-context", "image-direction"];
+  series.mandatories = [{ id: "M-RESEARCH", rule: "Record the selected evidence.", source: "brief", check: "judgement", consumers }];
+  series.preferences = [{ id: "P-RESEARCH", statement: "Prefer inspected references.", weight: 0.5, consumers }];
+  expect(messages(workspaceWithBriefs(validFrontMatter, sections, series))).toEqual([]);
+  consumers.push("invented-consumer");
+  expect(messages(workspaceWithBriefs(validFrontMatter, sections, series)).join(" ")).toContain("must be equal to one of the allowed values");
+});

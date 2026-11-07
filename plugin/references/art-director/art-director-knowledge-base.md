@@ -257,6 +257,8 @@ sRGB and BT.709 share primaries, so the delivery risks are range, matrix and tra
 
 ## 7. Style and visual language
 
+**Context for visual language.** Treat shape and colour associations below as scoped hypotheses, not universal meanings. For audience-specific readings use [Cultural Context §1–2](../cultural-context/README.md), especially `CULTURE-NO-UNIVERSAL-CLAIM` and `CULTURE-INTERPRETATION-SEPARATED`. Art Direction still owns palette, composition and hierarchy; `LIGHT-*` owns lighting and `MAT-*` surface appearance.
+
 - **Shape language** [T]: circles read friendly, squares stable, triangles dynamic. Match the subject's energy: diagonal or angular shapes for dynamic or physical subjects, rounded containers for approachability.
 - **Tokens:**
   - strokes, e.g. 2/4/8 px at 1080 width;
@@ -323,6 +325,8 @@ sRGB and BT.709 share primaries, so the delivery risks are range, matrix and tra
 ---
 
 ## 11. Avoiding the generic look
+
+**Inputs for distinctiveness.** Use [Domain Exploration §4–5](../domain-exploration/README.md) for subject observations and `DOMAIN-OPPORTUNITY-CHAIN`; use [Visual Research §4–5](../visual-research/README.md) and `VREF-TRANSFER-EXPLAINED` to turn references into principles with exclusions. For actual imagery, [Image Direction §3–5](../image-direction/README.md) owns `IMAGE-PLACEMENT-FIT` and `IMAGE-SET-COHERENCE`. FX executes the selected treatment; it does not choose the concept.
 
 **Tells** [T]:
 - default framework palettes (indigo/violet or cyan-magenta "tech" gradients);
@@ -414,6 +418,8 @@ Steps run in order of severity:
 
 ## 15. Creation process (skill)
 
+**Before style frames.** Consume only the research needed for the current decisions: a subject opportunity, annotated reference principle, any consequential cultural assumptions, and an image brief. Follow `VREF-QUESTION-DECISION`, `CULTURE-AUDIENCE-SCOPED` and `IMAGE-BRIEF-LAYERS-SEPARATED`. Keep chosen values in the production brief; none of these reference-only workflows adds a mandatory research pass.
+
 1. Read the brief: format, platforms, series slot variables, intended focal point per beat, mood.
 2. Load the series tokens (pre-mapped OKLCH→sRGB). For a new series, make 3–5 style frames (cover, content, reveal, end card) and get human approval first.
 3. Sketch greyscale value thumbnails per beat: 2–4 masses and one focal point.
@@ -476,24 +482,24 @@ Steps run in order of severity:
 | ART-BRD-02 | Brand after encode | ΔE00 ≤ 3.0 token→decoded MP4 (*VCR default*) | heuristic | video · M |
 | ART-BRD-03 | ΔE00 code validated | Passes Sharma–Wu–Dalal test pairs | standard | tooling · M |
 | ART-DEL-01 | Delivery tags | yuv420p, BT.709 primaries/transfer/matrix, tv range | standard | video · M |
-| ART-DEL-02 | Range sanity | Decoded black ≈ Y′ 16, white ≈ 235 (±2) | standard | video · M |
-| ART-DEL-03 | Chroma-only fine detail | Stroke < 6 px or text < 40 px with edge ΔL < 0.1 → flag | heuristic | video · M |
+| ART-DEL-02 | Range sanity; delivery owns the check | Refer to `DELIVERY-RANGE-LIMITED` and `DELIVERY-LEGAL-RANGE`; legacy ±2 tolerance uncalibrated | heuristic (tolerance); owner scopes range convention | Video with a declared range profile · M |
+| ART-DEL-03 | Chroma-only fine detail | Legacy 6 px stroke proposal conflicts with §3's 4 px; unresolved, advisory only. Inspect encoded edges; see `DELIVERY-RED-CHROMA` | heuristic (uncalibrated) | video · M |
 | ART-DEL-04 | Dark-gradient banding | > 20% area, L < 0.3, no dither → flag; confirm on decode | heuristic | video · M |
 | ART-DEL-05 | Alpha masters | ProRes 4444 with alpha; tags consistent | standard | masters · M |
 | ART-VAL-01 | Focal local contrast | ΔL ≥ 0.15 vs 5%-H ring (*VCR default*) | heuristic | all · M |
 | ART-VAL-02 | Grouped values | k=3 L centres ≥ 0.15 apart | heuristic | all · M |
 | ART-VAL-03 | Not muddy | Mid-L low-C pixels ≤ 50% unless intended | heuristic | all · M |
 | ART-VAL-04 | Shadow/highlight survival | Critical detail L ≥ 0.2; large fields ≤ 0.97 | heuristic | video · M |
-| ART-CMP-01 | Info inside union safe area | 288/672/120/192 px; lower-right excluded; every frame | platform (derived) | 9:16 · M |
+| ART-CMP-01 | Info inside union safe area; superseded by `TYPO-SAFE` | Superseded: use `TYPO-SAFE`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | 9:16 · M |
 | ART-CMP-02 | One dominant focal point per beat | Focal bbox largest saliency share, ≥ 1.5× next (*VCR default*) | heuristic | all · M (medium) |
 | ART-CMP-03 | Focal placement matches brief | Saliency/contrast centroid inside focal bbox + 5% H | heuristic | all · M |
 | ART-CMP-04 | Rule of thirds never a fail criterion | n/a | heuristic (evidence) | all · J |
 | ART-CMP-05 | Lead room for directional subjects | More space ahead than behind | heuristic | all · J |
 | ART-CMP-06 | Occupancy band | 25–60% of safe area (*VCR default*) | heuristic | 9:16, 16:9 · M |
-| ART-CMP-07 | Right rail clear | No info in right 192 px below y=840 | platform (derived) | 9:16 · M |
+| ART-CMP-07 | Right rail clear | Superseded: use `TYPO-SAFE`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | 9:16 · M |
 | ART-MOT-01 | Eye-trace continuity | Focal centroid jump ≤ 35% H between beats unless signposted (*VCR default*) | heuristic | video · M |
 | ART-MOT-02 | Focal changes on beats | Within ±2 frames of a `marker` | heuristic | video · M |
-| ART-MOT-03 | No mid-move collisions | ART-CMP-01 at every frame | platform (derived) | 9:16 · M |
+| ART-MOT-03 | No mid-move collisions | Review motion against `TYPO-SAFE`; full-frame temporal checking is not implemented | heuristic | 9:16 · M |
 | ART-CLT-01 | Clutter in series band | Feature Congestion or edge density within mean ± 2 SD | heuristic | all · M |
 | ART-CLT-02 | Colourfulness in series band | Hasler–Süsstrunk M within mean ± 2 SD | heuristic | all · M |
 | ART-STY-01 | Radii from tokens | ± 1 px | heuristic | browser · M |

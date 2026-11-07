@@ -2,13 +2,14 @@
 
 This is the adaptation, versioning and localisation knowledge base (`ADAPT-*`), produced from [the research brief](../research-prompts/adaptation.md) on 2026-11-06. It covers how one code-first master becomes many deliverables across aspect ratio, duration, locale, audience and other variant axes, and how an agent verifies the whole version set. It is reference material, not an implemented check. It is about 23k tokens, so read only the section the task needs in [the knowledge base](adaptation-knowledge-base.md). Its IDs are already named.
 
-Its core claim fits VCR well. **A version is new parameters plus automatic checks, never a re-edit.** To make that work, a master is designed from the start as a system:
+Routine versions can use new parameters and repeated checks. A change of audience, meaning or composition can require an authored re-edit or sibling master (§1.1). Design reusable masters as systems:
 - named regions with anchors and priorities;
 - copy pulled from locale tables;
 - beat markers that versions re-time to.
 
 | Task | Read |
 | --- | --- |
+| Research inputs and cross-pillar handoffs | §6, §13 |
 | Design a master that adapts | §1 |
 | Reframe between 9:16, 1:1, 4:5 and 16:9; crop or recompose | §2 |
 | Cutdowns from 60 s to 6 s; re-timing beats; music edits | §3 |
@@ -61,7 +62,7 @@ Its core claim fits VCR well. **A version is new parameters plus automatic check
    - reframing: `ADAPT-FOCAL-IN-FRAME`, `-CROP-PATH-STABLE`, `-RECOMPOSE-TRIGGER` and `-HIERARCHY-PRESERVED`;
    - localisation: `ADAPT-NO-BAKED-TEXT`, `-PSEUDO-*`, `-RTL-MIRROR`, `-LINEBREAK-LOCALE`, `-GRAPHEME-ANIMATION`, `-LOCALE-FORMAT` and `-PLATFORM-TEXT-LENGTH`;
    - voice-over: `ADAPT-VO-FIT`, `-VO-OVERRUN` and `-LIPSYNC`;
-   - markets: `ADAPT-DISCLOSURE-*`, `-CLAIMS-MARKET`, `-CULTURE-REVIEW` and `-TOPVIEW-OPENING`.
+   - markets: `ADAPT-DISCLOSURE-*`, `-CLAIMS-MARKET`, `ADAPT-CULTURE-REVIEW` and `-TOPVIEW-OPENING`.
 
    `ADAPT-CLAIMS-MARKET` and `-DISCLOSURE-CUTDOWN` use the claim registry that `STORY-CLAIM-SOURCE` needs. One registry in the brief serves both.
 6. **Proposals to calibrate.** The KB marks these as its own proposals, so use them as starting points, never gates:

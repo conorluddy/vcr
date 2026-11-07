@@ -18,16 +18,22 @@ This file holds the conventions every pillar shares and decides which pillar own
 | Critique (shared) | `REVIEW-` | [critique-methodology/](critique-methodology/README.md) | — | — | — | (all reviewers) |
 | Sound | `SOUND-` | [sound-design/](sound-design/README.md) | — | — | — | — |
 | Accessibility | `A11Y-` | [accessibility/](accessibility/README.md) | — | — (flash analyser first) | — | — |
-| Series brief | `BRIEF-` | [series-brief/](series-brief/README.md) | — (schema planned for Layer 1) | — | — | (read by every reviewer) |
+| Series brief | `BRIEF-` | [series-brief/](series-brief/README.md) | `series-brief.schema.json` (brief; no rules data) | `vcr validate` (brief schema) | `brief` | (read by every reviewer) |
 | Delivery | `DELIVERY-` | [delivery/](delivery/README.md) | — | — (`ffprobe` metadata gate first) | — | — |
-| Concept, script and storyboard | `STORY-` | [story/](story/README.md) | — (beat sheet schema planned for Layer 1) | — | — | — |
+| Concept, script and storyboard | `STORY-` | [story/](story/README.md) | `beat-sheet.schema.json` (plan; no rules data) | `vcr plan check` (six checks) | — | — |
 | Data visualisation | `DATA-` | [data-visualisation/](data-visualisation/README.md) | — | — | — | — |
 | Adaptation and versioning | `ADAPT-` | [adaptation/](adaptation/README.md) | — | — | — | — |
 | Image treatment and compositing | `FX-` | [fx/](fx/README.md) | — | — | — | — |
 | Lighting | `LIGHT-` | [lighting/](lighting/README.md) | — | — | — | — |
 | Materials | `MAT-` | [materials/](materials/README.md) | — | — | — | — |
+| Domain exploration | `DOMAIN-` | [domain-exploration/](domain-exploration/README.md) | — | — | — | — |
+| Visual research and reference literacy | `VREF-` | [visual-research/](visual-research/README.md) | — | — | — | — |
+| Cultural context and visual meaning | `CULTURE-` | [cultural-context/](cultural-context/README.md) | — | — | — | — |
+| Image direction and asset curation | `IMAGE-` | [image-direction/](image-direction/README.md) | — | — | — | — |
 
 `references/ideas/` holds exploratory material and `references/cli.md` the CLI reference; neither is a pillar.
+
+Choose pillars by the decision at hand. An unfamiliar subject may need Domain Exploration; a reference-led treatment may need Visual Research; consequential audience cues may need Cultural Context; an asset-selection decision may need Image Direction. Load the relevant craft guidance after that handoff. A small production does not need nineteen reviews or four separate research packs. Findings may reopen an earlier decision; record the change in the workspace brief or research notes.
 
 ## Shared conventions
 
@@ -45,6 +51,7 @@ This file holds the conventions every pillar shares and decides which pillar own
 - **One finding contract.** Every check and reviewer writes the finding in `specifications/vcr-plugin-prd.md` §6.4, including its optional reviewer fields and severity caps. [Critique methodology](critique-methodology/README.md) explains the method.
 - **One scene contract.** Markers, tags and `textBounds()` are defined once, in [the scene contract](../skills/start/references/scene-contract.md), never per pillar.
 - **Domain-agnostic.** Rules hold for any production. Values that depend on one production or series belong in its brief (`BRIEF-*`), outside this repository.
+- **Cross-pillar handoffs.** Load the linked README and only the section or rule needed for the current decision. Research supplies evidence and proposals; the brief records selected values; Story develops concepts; the owning craft pillar executes and judges its medium. An exact rule ID must resolve through `vcr rules info`; a prefix such as `CULTURE-*` routes to a pillar rather than an implemented check. Legacy duplicate rows remain research history until distillation; the owner table below governs which rule is retained. No research-pack schema or approval mechanism is implied.
 - **Advisory until calibrated.** A heuristic threshold, or a judged finding from a reviewer agent, informs the human but gates nothing until it has been checked against human review (`REVIEW-CAL-*`).
 
 ## Rule owners
@@ -53,12 +60,16 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 
 | Concern | Owner | Others |
 | --- | --- | --- |
+| Image purpose, medium choice, creation briefs, candidate selection and asset-set coherence | `IMAGE-*` | Story owns the concept; Art Direction owns composition and treatment; FX owns preparation techniques. Shared provenance stays with the asset-manifest concern; duplicate candidates are reconciled before rules data. |
+| Research questions, generic source evaluation, subject synthesis and evidence-to-opportunity links | `DOMAIN-*` | `VREF-*` and `CULTURE-*` apply these methods to their evidence. Shared source, locator, date, storage and provenance candidates must be deduplicated before rules data is built. |
+| Visual reference analysis, influence, fixation and transferable principles | `VREF-*` | Domain introduces visual vocabulary; Story develops concepts and Art Direction selects treatments. |
+| Audience-scoped cultural meanings, recognition assumptions and reference freshness triggers | `CULTURE-*` | Domain owns generic source freshness; Visual Research owns formal analysis; Adaptation consumes cultural dependencies. Image Direction consumes interpretation risks when selecting imagery. |
 | Safe zones for platform UI | `TYPO-SAFE`; presets in `typography/rules.json` `safe_zones` | `ART-CMP-01` proposes a wider union box and an excluded lower-right corner. That becomes a change to the presets plus excluded-rectangle support in `vcr lint`, not a second set of numbers. |
 | Base reading hold for static text | `TYPO-HOLD` | `MOTION-TIME-005` cites it. `PACE-READ-01`, `A11Y-MOTION-READING` and `A11Y-TEXT-DWELL` are dropped. `PACE-READ-01`'s characters ÷ 20 term is a candidate revision to `TYPO-HOLD`. |
 | Stricter hold for key text and quiz windows | `PACE-READ-04`, `PACE-QUIZ-01` | Defined as at least `TYPO-HOLD`. |
 | Caption speed, duration and lines | `TYPO-CAPTION-*`, `caption_profiles` | `PACE-READ-02/03` and `A11Y-CAPTION-RATE` are dropped. |
 | Captions as access: presence, completeness, accuracy, sync, non-speech, speakers, lyrics, sidecars | `A11Y-CAPTION-*` | `PACE-SOUND-02` is dropped. `A11Y-CAPTION-PLACEMENT` cites `TYPO-SAFE` for platform UI. |
-| Text contrast | `TYPO-CONTRAST` | `A11Y-CONTRAST-TEXT`, `FX-TEXT-CONTRAST`, `FX-KNOCKOUT-LEGIBLE` and `LIGHT-SWEEP-LEGIBILITY` are dropped. Its 5th-percentile-over-lifetime method is how `TYPO-CONTRAST` is measured on moving backgrounds. |
+| Text contrast | `TYPO-CONTRAST` | `A11Y-CONTRAST-TEXT`, `FX-TEXT-CONTRAST`, `FX-KNOCKOUT-LEGIBLE` and `LIGHT-SWEEP-LEGIBILITY` are dropped. Source colours and displayed size remain canonical; frame-based percentiles are supplementary diagnostics, not conformance tests. Inspect local and temporal failures rather than hiding them in an aggregate (§17.4 of accessibility). |
 | Non-text contrast, CVD distinguishability, colour as the only carrier | `A11Y-CONTRAST-GRAPHIC`, `A11Y-CVD-DISTINCT`, `A11Y-COLOR-ALONE` | Art and data visualisation cite them. `DATA-COLOUR-NOT-SOLE` is dropped. |
 | Number and date formatting by locale | `ADAPT-LOCALE-FORMAT` (`Intl`) | `DATA-THOUSANDS` is dropped. |
 | Data integrity: baselines, scales, labels matching data, object constancy, source lines on charts | `DATA-*` | `STORY-CLAIM-SOURCE` owns "every claim has a source" at plan time. `DATA-NO-OVERSHOOT` overrides `MOTION-EASE-005` for data marks. |
@@ -95,3 +106,7 @@ Where two pillars cover the same thing, the owner keeps the rule and the thresho
 | Checks across a version set (safe zones, text fit, fonts, captions, mandatories, SFX, music, series tokens on every cell) | The owning pillar's check, run on every cell | `ADAPT-*` owns the matrix and running the checks across it, not a second threshold (see the adaptation README). |
 | Market rules for UK TV supers (hold, height) | A `uk-clearcast` market profile on `TYPO-HOLD` and `TYPO-SIZE` | `ADAPT-SUPER-HOLD-UK` and `ADAPT-SUPER-HEIGHT-UK` become that profile. |
 | Claim registry: sources, qualifiers, legal list per market | One registry in the brief | `STORY-CLAIM-SOURCE` reads it at plan time; `ADAPT-CLAIMS-MARKET` and `ADAPT-DISCLOSURE-*` read it across markets. |
+
+## Research handoff and evidence use
+
+[Shared records and worked handoff](domain-exploration/research-handoff.md) defines the responsibility split for sources, observations, audience readings, selections and assets. It also scopes unresolved evidence and historical numeric proposals. [Camera direction](image-direction/camera-direction.md) extends Image Direction for viewpoint, lens, focus and continuity decisions.

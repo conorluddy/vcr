@@ -1,8 +1,8 @@
 # ADAPT: Adapting One Master into Many Versions — Reframing, Cutdowns, Localisation and Variants
 
-One master survives many deliverables only if you design it as a parameterised system from the start: named regions with anchors and priorities, copy pulled from locale tables, and beat markers that versions can re-time to. A version should be new parameters plus automatic checks. It should not be a crop or a trim applied afterwards. Platforms keep the numbers moving (Google's bumper is now "6 seconds (>=5 seconds minimum)", TikTok's safe zone shrinks as the caption grows), so every platform threshold here is tiered `platform` and dated.
+One master survives many deliverables only if you design it as a parameterised system from the start: named regions with anchors and priorities, copy pulled from locale tables, and beat markers that versions can re-time to. Routine versions can use parameters and repeated checks; changed meaning or composition may require an authored re-edit or sibling master (§1.1). Platforms keep the numbers moving (Google's bumper is now "6 seconds (>=5 seconds minimum)", TikTok's safe zone shrinks as the caption grows), so every platform threshold here is tiered `platform` and dated.
 
-> **Status.** Seed document for the `ADAPT-*` pillar of VCR. Scope: how one code-first master becomes many deliverables across aspect ratio, duration, language/locale, audience and other variant axes, and how an agent verifies the whole version set. Out of scope (owned elsewhere, cited not restated): type sizes, safe-zone values and caption reading speeds (`TYPO-*`, especially `TYPO-SAFE`, `TYPO-FONTS`, `TYPO-CAPTION-CPS`); motion curves (`MOTION-*`); pacing and beat structure (`PACE-*`); colour, composition and brand look (`ART-*`); music, VO and SFX mixing (`SOUND-*`); per-production values (`BRIEF-*`); review method (`REVIEW-*`); accessibility (`A11Y-*`, in progress).
+> **Status.** Seed document for the `ADAPT-*` pillar of VCR. Scope: how one code-first master becomes many deliverables across aspect ratio, duration, language/locale, audience and other variant axes, and how an agent verifies the whole version set. Out of scope (owned elsewhere, cited not restated): type sizes, safe-zone values and caption reading speeds (`TYPO-*`, especially `TYPO-SAFE`, `TYPO-FONTS`, `TYPO-CAPTION-CPS`); motion curves (`MOTION-*`); pacing and beat structure (`PACE-*`); colour, composition and brand look (`ART-*`); music, VO and SFX mixing (`SOUND-*`); per-production values (`BRIEF-*`); review method (`REVIEW-*`); accessibility (`A11Y-*`, reference only).
 >
 > **Confidence tiers.** `standard`: a published standard, regulator guidance or style guide, checked against the primary source on the date in the ledger. `platform`: published by a platform or vendor; may change without notice; re-check before each campaign. `heuristic`: practitioner rule of thumb, secondary source, or a VCR proposal not yet validated. Every rule also says whether it is **measurable** (and how) or **judgement only**.
 >
@@ -287,6 +287,8 @@ Microsoft's transformation recipe (`platform`, quoted):
 ---
 
 ## 6. Cultural and regulatory adaptation (guidance, not rules)
+
+**Cultural evidence and image fit.** Use [Cultural Context §1–6](../cultural-context/README.md) for scoped meanings, recognition dependencies and `CULTURE-LOCALE-DEPENDENCY-HANDED-OFF`. `ADAPT-CULTURE-REVIEW` owns coverage across the variant set; it consumes that evidence rather than defining universal symbol meanings. When imagery changes, use [Image Direction §4–5](../image-direction/README.md), especially `IMAGE-CROP-SURVIVES-VARIANTS`. Adaptation owns the reframing and version matrix; Image Direction evaluates asset suitability.
 
 ### 6.1 Cultural guidance (judgement only; `heuristic`)
 
@@ -590,6 +592,8 @@ General sampling conventions:
 
 ## 13. The creation process (brief to verification)
 
+**Inputs per affected variant.** Recheck only research whose scope changes: audience meanings through `CULTURE-AUDIENCE-SCOPED`, time-sensitive references through `CULTURE-FRESHNESS-TRIGGER-SET`, and selected imagery through `IMAGE-PLACEMENT-FIT`. Generic claim sources and freshness come from [Domain Exploration §3](../domain-exploration/README.md); `ADAPT-CLAIMS-MARKET` consumes the shared claim registry. These are advisory handoffs, not new automatic locale gates.
+
 1. **Brief intake.** Read `BRIEF-*`: matrix axes and exclusions, mandatory set per length, markets and legal lists, platform profiles, audio modes. If a matrix cell has no owner for its legal copy, stop and ask.
 2. **Choose anchors.** Decide which aspects are authored (usually 16:9 and 9:16) and which are derived. Decide whether the bumper is a separate variant (default yes).
 3. **Structure the master.** Write beats as `markers` with roles and priorities. Declare regions with anchors, priorities, `required`, `qualifies`. Put all copy in string tables. Use tokens from the brief.
@@ -627,7 +631,7 @@ General sampling conventions:
 | `ADAPT-TRACE-MASTER` | Manifest present with master commit, params, tokens, fonts, renderer, fps, encode command, audio edits, frame hashes | All fields present; commit resolves | heuristic | All deliverables. **Measurable** |
 | `ADAPT-DETERMINISM` | Re-render reproduces frames | SHA-256 equal (CPU) / SSIM ≥ 0.999 (GPU; proposal) | heuristic | All browser and Blender scenes. **Measurable** |
 | `ADAPT-DURATION-WINDOW` | Decoded video and audio durations inside the platform window | e.g. Google Ads bumper "6 seconds (>=5 seconds minimum)"; standard non-skippable "7 to 15 seconds"; CTV "16-30 seconds"; YouTube TV ":29 and :31"; TikTok TopView "5-60s"; Shorts "Up to 3 minutes" | platform | Per platform/surface. **Measurable** (ffprobe) |
-| `ADAPT-DURATION-FRAMES` | Target expressed and delivered in whole frames; A/V lengths agree | frames = target × fps (≤ for maxima); abs(audio − video) ≤ 1 frame | heuristic | All video. **Measurable** |
+| `ADAPT-DURATION-FRAMES` | Target expressed and delivered in whole frames; A/V lengths agree | Superseded: use `DELIVERY-DURATION-MATCH`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | All video. **Measurable** |
 | `ADAPT-MANDATORY-PRESENT` | Proposition, brand, CTA/end card and declared mandatory regions visible in every version | Hold ≥ brief window at effective opacity ≥ 0.9 (proposal) | heuristic | All cutdowns. **Measurable** |
 | `ADAPT-DISCLOSURE-CUTDOWN` | If a claim appears, its qualifier appears with the full market hold | claim present ⇒ qualifier hold ≥ market rule | standard (UK); heuristic elsewhere | Any version with claims. **Measurable** + legal judgement |
 | `ADAPT-SUPER-HOLD-UK` | UK TV super hold | 0.2 s/word + 2 s (≤ 9 words) or + 3 s (≥ 10 words); 0.25 s/word + 3 s for multi-line supers (Clearcast; stricter two-line reading); + 2 s significant info | standard | UK Ofcom-licensed TV only. **Measurable** |

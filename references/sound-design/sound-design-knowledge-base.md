@@ -18,7 +18,7 @@ Short-form video needs one audio master. Measure it with ITU-R BS.1770 and deliv
 
 - **One loudness-safe master beats many "platform masters."** Spotify publishes −14 LUFS playback normalisation. YouTube's player data shows loud uploads turned down to −14 LUFS and quiet ones not turned up. TikTok and Instagram publish nothing. Deliver one master at about −14 LUFS integrated (±1 LU), with true peak ≤ −1 dBTP, and nothing is lost on any of them. Never chase −9 LUFS "for TikTok": that number has no traceable source.
 - **True peak is the hard ceiling, loudness is the soft target.** EBU R 128 s1 limits short-form content to "−1 dBTP" and Spotify asks for "below −2dB" true peak on masters louder than −14 LUFS. Lossy re-encoding adds overshoot, so −1 dBTP is the bare minimum, not the goal.
-- **Voice wins, always.** Under narration, keep the music bed at least 20 dB below the voice (the WCAG 1.4.7 AAA figure).\[2\] Practitioners measure 18–31 dB.\[3\] Duck with about 10–30 ms attack and 300–600 ms release; a release that is too short causes "pumping."\[4\]\[5\]
+- **Keep narration intelligible.** `SOUND-VOICE-BED-GAP` proposes a video-mixing target, not a WCAG requirement. Practitioner gaps and ducking times vary; test the actual voice, bed and playback conditions (§2).\[3\]\[4\]\[5\]
 - **Sync is asymmetric.** Viewers notice audio that arrives *early* far sooner than audio that arrives late. ITU-R BT.1359-1 puts detectability at +45 ms early and −125 ms late. In VCR, put SFX onsets on the event frame or up to one frame after it, never before.
 - **Design for mute first, reward sound-on second.** The famous "85% watch muted" figure comes from a few publishers reporting their 2016 Facebook feed views. TikTok's own commissioned research reports 93% of users with sound on. Placement decides how much the sound has to carry, but every piece must still read with the sound off.
 - **Sound changes what people see.** In the sound-induced flash illusion (Shams et al., *Nature* 2000), one flash paired with two beeps is seen as two flashes. SFX are not decoration: they change how fast, how heavy and how numerous motion looks. That is also why over-scoring makes motion feel cheap.
@@ -108,8 +108,8 @@ Short-form video needs one audio master. Measure it with ITU-R BS.1770 and deliv
 **How to measure the gap.**
 - Compute short-term (3 s) or momentary loudness of the voice stem and the music stem separately, over windows where voice is active.
 - gap = median(voice LUFS) − median(music LUFS) over the voice-active windows.
-- Pass: ≥ 20 LU for explainers, tutorials and accessibility-required work. ≥ 15 LU is acceptable for promos and ads where music carries energy, flagged as a minor finding.
-- **Scope note.** WCAG 1.4.7 formally scopes itself to *prerecorded audio-only* content.\[41\] Applying it to video is a sensible extension, not a conformance requirement.
+- Proposed video targets: ≥ 20 LU for speech-led explanation; ≥ 15 LU for music-forward promotion, with intelligibility reviewed. These are uncalibrated heuristics, not automatic passes or failures.
+- **Scope note.** [WCAG 1.4.7](https://www.w3.org/WAI/WCAG22/Understanding/low-or-no-background-audio.html) concerns prerecorded audio-only speech and offers no background, switchable background, or a scoped dB separation criterion. It does not specify this video LU metric.
 - **Expressive break.** In music-led pieces (music visuals, sizzle reels) where the voice is a lyric or a stinger, music can sit level with or above the voice. That works when the words are redundant with on-screen text or are not load-bearing.
 
 ### 2.2 Ducking
@@ -215,6 +215,8 @@ Short-form video needs one audio master. Measure it with ITU-R BS.1770 and deliv
 ---
 
 ## 5. Music
+
+**Meaning and reference inputs.** [Domain Exploration §4](../domain-exploration/README.md) supplies subject-specific sensory observations. [Cultural Context §2–5](../cultural-context/README.md) supplies scoped genre and sonic associations (`CULTURE-INTERPRETATION-SEPARATED`); mood and tempo associations below are not universal audience facts. [Visual Research §3](../visual-research/README.md) requires inspected spans for sound-image references (`VREF-TEMPORAL-SPAN`). Sound owns music direction and mix; Pacing owns cut rhythm and Motion owns within-shot arrivals.
 
 ### 5.1 Structure for short pieces `heuristic` **[taste]**
 - **6–15 s social piece.** A hook within the first 1–2 s (no slow intro: feeds are swiped), one build, one payoff or drop aligned to the key visual reveal, and a button ending (a stinger or hard stop) on the final frame or CTA.
@@ -466,6 +468,8 @@ Findings should name the time range, the term, the measurement and a fix. Exampl
 
 ## 15. The creation process (workflow skill)
 
+**Evidence handoff.** Use only the relevant subject, reference and audience records before selecting the sonic direction, preserving their uncertainty. Provenance and licence notes go to the shared asset-manifest concern, not a separate sound-specific registry. The brief stores selected values; this pillar owns their craft checks. New research templates do not implement sourcing or audio-generation integrations.
+
 1. **Brief → audio role.** Decide placement (muted-first or sound-led), the audio's job (inform, energise, brand), and whether narration, music and SFX are each present.
 2. **Script and timing.** Count narration words, compute duration at 140–160 wpm plus pauses, and fit them to the scene `duration`. Cut words before speeding up.
 3. **Music decision.** Original or procedural (seeded) vs licensed (licence recorded). Pick BPM for frame-integer beats (§3.3) and set `markers` from the actual music file.
@@ -524,13 +528,13 @@ The books are listed from domain knowledge as canon; their contents were not fet
 | SOUND-CLIP | Sample overs | 0 samples ≥ 0 dBFS; no runs of ≥ 3 consecutive full-scale samples | heuristic | All | Yes: astats/numpy |
 | SOUND-SHORT-TERM-MAX | Loudness spikes | Max short-term ≤ integrated + 5 LU | standard (EBU R 128 s1, relative form) | Short-form ≤ ~2 min | Yes |
 | SOUND-LRA-SHORTFORM | Do not gate short-form on LRA | LRA not used as pass/fail for pieces ≤ ~2 min | standard (R 128 s1) | Short-form | Rule for the checker itself |
-| SOUND-VOICE-BED-GAP | Voice vs background during speech | ≥ 20 LU (explainer/accessibility); ≥ 15 LU (promo, minor below 20) | standard (WCAG 1.4.7, extended) / heuristic | Narrated pieces | Yes with stems |
+| SOUND-VOICE-BED-GAP | Voice vs background during speech | Proposed ≥ 20 LU for speech-led explanation; ≥ 15 LU for music-forward promotion; review intelligibility | heuristic (video target and LU method; not WCAG conformance) | Narrated video | Yes with stems; advisory |
 | SOUND-DUCK-ATTACK | Bed reaches ducked level by voice onset | Ducked within ≤ 30 ms of first phoneme (scripted: ramp starts 50–150 ms before) | heuristic | Narrated pieces with ducking | Yes with stems + VAD |
 | SOUND-DUCK-PUMP | No bed swell between words | Bed short-term rise in intra-phrase gaps (< 300 ms) ≤ 3 dB | heuristic | Ducked beds | Yes, medium reliability |
 | SOUND-LYRIC-UNDER-VOICE | No sung lyrics under narration | 0 overlap of vocal music with narration | heuristic | Narrated pieces | Partially (vocal detection); else judgement |
 | SOUND-SYNC-LEAD | Audio not early | Cue onset − visual event ≥ −15 ms (impacts); never < −45 ms | standard (ATSC IS-191 / BT.1359) | All synced cues, lip-sync | Yes: cue list vs sampled transforms |
 | SOUND-SYNC-LAG | Audio not too late | ≤ +1 frame for hits (pass); > +2 frames at 24 fps (> 83 ms) major; > 125 ms blocker | standard (BT.1359) / heuristic | All synced cues | Yes |
-| SOUND-BEAT-ALIGN | Accents land on beats | Visual accent frame within ±½ frame of round(beat × fps); markers match detected beats ±10 ms | heuristic | Music-synced pieces | Yes |
+| SOUND-BEAT-ALIGN | Accents land on beats | Report offset from rounded beat frame; brief selects tolerance and units. Historical ±½/±1-frame and ±10 ms proposals remain advisory | heuristic | Music-synced pieces | Yes |
 | SOUND-BPM-FRAME-GRID | Beat grid fits fps | Prefer BPM with integer or simple fractional frames per beat; otherwise snap per beat, no accumulation | heuristic | Music-synced pieces | Yes (arithmetic) |
 | SOUND-SFX-PEAK-ALIGN | SFX aligned by perceptual peak, not file start | Transient/peak within the sync window of the event | heuristic | SFX | Yes (onset detection on SFX file) |
 | SOUND-SFX-DENSITY | Not every event sounded | ≤ ~3 featured SFX per 5 s unless brief says hyper-sync | heuristic | Motion graphics | Yes (count); judgement on exceptions |
@@ -542,11 +546,11 @@ The books are listed from domain knowledge as canon; their contents were not fet
 | SOUND-SILENCE-UNINTENDED | No accidental dead air | Internal digital silence > 300 ms only if in cue sheet as intentional | heuristic | All | Yes (silencedetect vs cue sheet) |
 | SOUND-DYNAMIC-CONTRAST | Not wall-to-wall | ≥ 1 window ≥ 6 LU below the loudest short-term window (pieces ≥ 10 s) | heuristic | All except loops/ambient | Yes |
 | SOUND-NARRATION-WPM | Narration pace | 130–175 wpm explainers; flag > 180 or < 120 | heuristic (anchored to Brysbaert, ACX) | Narration | Yes (transcript/ASR + VAD) |
-| SOUND-NARRATION-TEXT-REDUNDANCY | No full-transcript text duplicating narration (sound-on placements) | On-screen text ≤ keywords/figures while narration speaks, unless placement is muted-first | standard-derived (Mayer, research) / heuristic | Explainers | Partially (text vs transcript overlap via DOM/textBounds) |
-| SOUND-NARRATION-VISUAL-LEAD | Narration not far ahead of its visual | Reference to element starts within 0–300 ms after the element appears; never > 1 s before | heuristic | Narrated explainers | Yes if script tags element IDs |
-| SOUND-MUTE-LEGIBLE | Message survives mute | All load-bearing info has a visual/text carrier | heuristic (from placement data) | All, mandatory for feed | Judgement (+ check that narration keywords appear as text) |
-| SOUND-SAMPLE-RATE | Delivery sample rate | 48 kHz | platform (YouTube) | All video | Yes (ffprobe) |
-| SOUND-AAC-BITRATE | Upload audio bitrate | AAC-LC ≥ 384 kbps stereo (128 mono) | platform (YouTube) | Web delivery | Yes (ffprobe) |
+| SOUND-NARRATION-TEXT-REDUNDANCY | No full-transcript text duplicating narration (sound-on placements) | Superseded: use `PACE-NARR-04`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | Explainers | Partially (text vs transcript overlap via DOM/textBounds) |
+| SOUND-NARRATION-VISUAL-LEAD | Narration not far ahead of its visual | Superseded: use `PACE-NARR-03`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | Narrated explainers | Yes if script tags element IDs |
+| SOUND-MUTE-LEGIBLE | Message survives mute | Superseded: use `PACE-SOUND-01`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | All, mandatory for feed | Judgement (+ check that narration keywords appear as text) |
+| SOUND-SAMPLE-RATE | Delivery sample rate | Superseded: use `DELIVERY-AUDIO-SAMPLE-RATE`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | All video | Yes (ffprobe) |
+| SOUND-AAC-BITRATE | Upload audio bitrate | Superseded: use `DELIVERY-AUDIO-BITRATE`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | Web delivery | Yes (ffprobe) |
 | SOUND-LOOP-SEAM | Seamless audio loop | Length = visual loop to the sample; seam jump within normal sample step; no click | heuristic | Loops | Yes |
 | SOUND-SYNTH-DETERMINISM | Procedural audio reproducible | Two renders bit-identical (or max diff ≤ 1e-6) | heuristic (VCR requirement) | Procedural SFX/music | Yes (hash) |
 | SOUND-NO-LIVE-CAPTURE | Audio not recorded from real-time tab | Audio rendered offline from cues and muxed | heuristic (VCR requirement) | Browser scenes | Yes (pipeline check) |

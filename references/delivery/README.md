@@ -2,7 +2,7 @@
 
 This is the delivery, encoding and platform specifications knowledge base (`DELIVERY-*`), produced from [the research brief](../research-prompts/delivery.md) on 2026-11-06. It covers how a finished piece becomes files that survive every platform: masters, delivery encodes, upload specifications, what platforms do to uploads, colour signalling, banding, frame timing, A/V offset, captions as files and stills. It is reference material, not an implemented check. It is about 21k tokens, so read only the section the task needs in [the knowledge base](delivery-knowledge-base.md). Its IDs are already named.
 
-Its bottom line: ship the following, and test the result against a simulated platform re-encode:
+For an SDR social-video delivery that accepts these settings, the proposed starting profile is below. Confirm the destination and upload route first; masters, HDR, alpha and stills need different profiles. Test video against a simulated platform re-encode:
 - a progressive, constant-frame-rate MP4;
 - H.264 High Profile;
 - 4:2:0 limited-range BT.709, with all three colour tags set explicitly;
@@ -11,6 +11,7 @@ Its bottom line: ship the following, and test the result against a simulated pla
 
 | Task | Read |
 | --- | --- |
+| Research inputs and cross-pillar handoffs | §13 |
 | The three files: master, mezzanine, delivery | §1 |
 | Upload specs for YouTube, TikTok, Instagram, X, LinkedIn and Vimeo | §2 (dated; the §2.7 matrix holds official figures only) |
 | What platforms do to uploads, and what survives | §3 |
@@ -45,7 +46,7 @@ Its bottom line: ship the following, and test the result against a simulated pla
    - Durations: `DELIVERY-DURATION-PLATFORM` owns upload limits, and `PACE-DUR-01` keeps the brief target. The ad-format windows (bumper, non-skippable) are `ADAPT-DURATION-WINDOW`.
 3. **Settled: one manifest.** `DELIVERY-MANIFEST`, `DELIVERY-NAMING` and `DELIVERY-CHECKSUM` extend the render manifest that `specifications/vcr-plugin-prd.md` §6.4 already defines (owned by L1-05), rather than adding a second file. `ADAPT-TRACE-MASTER` and `ADAPT-VERSION-ID` add the version fields to the same manifest.
 4. **The audio bitrate floor disagrees.** `SOUND-AAC-BITRATE` said ≥ 384 kbps stereo. Delivery gives the platform floor, ≥ 128 kbps (X, Instagram), and YouTube's 384 kbps recommendation. Use 384 kbps as VCR's default and 128 kbps as the failure floor.
-5. **The first checks to build are cheap and deterministic.** The `ffprobe` metadata gate (§8.1) covers tags, pixel format, profile, level, CFR, GOP, `faststart`, sample rate and even dimensions. It needs no decoding and catches the commonest "washed out" and rejected-upload failures. It suits `vcr capture --verify`, or a `vcr deliver check`, next to the ffmpeg assembly step.
+5. **Separate header checks from timing and signal checks.** Stream metadata can inspect declared tags, pixel format, profile, level, sample rate and dimensions. Container parsing checks `faststart`; CFR needs timestamp inspection, and GOP structure needs frame or bitstream inspection. Metadata cannot prove the pixels match their colour tags. These remain proposed delivery checks (§8.1), not implemented CLI commands.
 6. **Unverified and heuristic values.**
    - Several platform pages could be read only as search snippets: Instagram's Help Center, YouTube's thumbnail and Shorts pages, LinkedIn and Apple TN2258.
    - The ITU, SMPTE and ISO texts were not opened.

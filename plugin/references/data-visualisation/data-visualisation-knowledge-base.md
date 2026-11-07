@@ -16,7 +16,7 @@
 >
 > **Evidence labels.** **[audience evidence]** means controlled studies. **[expert practice]** means codified newsroom or statistical-body judgement. Most published guidance was written for static or interactive web charts. Every adaptation to linear video is flagged.
 
-Treat the **resting frames** of a data scene as the chart. Motion between them is a **transition that must remain a valid chart at every frame**.
+Treat the **resting frames** of a data scene as the chart. Motion between them must preserve identity and truthful encoding. Declare whether intermediate values represent data-time observations or only a transition between states (§6.2).
 
 The evidence splits two ways:
 - **Transitions between related charts help.** Heer & Robertson (2007) found that animated transitions "can significantly improve graphical perception".\[1\]
@@ -461,6 +461,8 @@ No study of count-up timing was found, so every rule here is `heuristic`.
 
 ## 7. Sourcing and provenance
 
+**Research versus chart integrity.** [Domain Exploration §3](../domain-exploration/README.md) owns generic source evaluation and `DOMAIN-SOURCE-TRACE`; `STORY-CLAIM-SOURCE` checks claims in the plan. Data owns the transform from source cells to visible values (`DATA-LABEL-MATCH`, `DATA-PROVENANCE`). A trusted source alone does not establish a correct chart. Keep source evidence and transforms linked in the workspace.
+
 - **GAF.**
   - Use the format "[publication, survey or other source of data] from the [organisation]".\[10\]
   - Don't link a bare organisation name to its homepage.\[10\]
@@ -586,6 +588,8 @@ Work in this order: data → rest frames → motion → delivery. Integrity outr
 
 ## 11. Creation process
 
+**Reference and imagery inputs.** Use [Visual Research §3–4](../visual-research/README.md) to study chart precedents with `VREF-OBSERVATION-LOCATOR`, without copying scales or encodings that do not fit the data. [Cultural Context §2–4](../cultural-context/README.md) supplies scoped readings of symbols and colours; accessibility still owns distinguishability. [Image Direction §1–2](../image-direction/README.md) can identify when a diagram should carry the message, but `DATA-*` retains quantitative integrity.
+
 1. Brief → claim → FT category → viewer task.
 2. Data → meta. Normalise, and fix the rounding.
 3. Choose a position or length encoding within the category limits.
@@ -647,7 +651,7 @@ Work in this order: data → rest frames → motion → delivery. Integrity outr
 | `DATA-OBJECT-CONSTANCY` | Each node keeps its datum key across a transition | key(t₀) = key(t₁) | heuristic (Bostock; Heer & Robertson) | M; M✓ |
 | `DATA-UNRELATED-CUT` | No interpolation between specs that share no key or field | Cut or dissolve only | heuristic | M; M✓ + J |
 | `DATA-NO-OVERSHOOT` | Data geometry and numerals never pass the target | Excess 0 (±0.5 px) | heuristic | M; M✓ |
-| `DATA-VALID-INTERMEDIATE` | Intermediate frames are valid charts | Pass ZERO-BASELINE; labels attached | heuristic (Heer & Robertson) | M; M✓ |
+| `DATA-VALID-INTERMEDIATE` | Transitions preserve truthful encoding and identity | Preserve applicable baselines and labels; do not present state-transition interpolation as observed data (§6.2) | heuristic (Heer & Robertson) | M; M✓ |
 | `DATA-STAGE-DURATION` | Each stage long enough to track | ≈1 s; flag <0.5 s for large moves | heuristic (study parameter) | M; M✓ |
 | `DATA-STAGE-COUNT` | Simple staging | Warn at >2 stages | heuristic | M; M✓ |
 | `DATA-TRACKED-MARKS` | Tracked marks highlighted and named before motion | Highlight onset < motion onset; warn at >5 | heuristic | M; M✓ |
@@ -658,7 +662,7 @@ Work in this order: data → rest frames → motion → delivery. Integrity outr
 | `DATA-COUNTUP-LAND` | Count-up lands exactly and rests | Stable ≥ `TYPO-HOLD` | heuristic | M; M✓ |
 | `DATA-COUNTUP-MONOTONIC` | Count-up moves monotonically toward the target | No reversal | heuristic | M; M✓ |
 | `DATA-UNITS` | Unit and period at first appearance | Present in frame | heuristic (GAF) | U; M✓ |
-| `DATA-THOUSANDS` | Locale grouping separators | Matches Intl output | standard (GAF, en) / heuristic | U; M✓ |
+| `DATA-THOUSANDS` | Locale grouping separators | Superseded: use `ADAPT-LOCALE-FORMAT`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | U; M✓ |
 | `DATA-PRECISION-CONSISTENT` | Equal decimals across a series | Equal | heuristic | U; M✓ |
 | `DATA-PP-VS-PERCENT` | Percentage points vs percent worded correctly | — | heuristic | U; J |
 | `DATA-RATE-NORMALISE` | Choropleths use rates | meta.transform = rate | standard (FT) | Maps; M✓ |
@@ -685,7 +689,7 @@ Work in this order: data → rest frames → motion → delivery. Integrity outr
 | `DATA-STILL-REST` | Stills taken at rest frames | t ∈ rest interval | heuristic | S; M✓ |
 | `DATA-LOOP-SEAM` | Visible reset at the loop seam | — | heuristic | Loops; M✓ partial |
 | `DATA-ISOTYPE-WHOLE` | Whole pictograms only | No fractions | standard (FT) | U; M✓ |
-| `DATA-COLOUR-NOT-SOLE` | Colour is not the only key | Label or pattern present | standard (GAF/WCAG 1.4.1; BBC) | U; M✓ |
+| `DATA-COLOUR-NOT-SOLE` | Colour is not the only key | Superseded: use `A11Y-COLOR-ALONE`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | U; M✓ |
 
 ---
 

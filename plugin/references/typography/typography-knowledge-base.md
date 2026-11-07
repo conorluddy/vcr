@@ -45,6 +45,8 @@ A typographic agent starts with the brief, medium, language, viewing size and de
 
 ## 3. Typeface Selection
 
+**Scope of connotations.** Associations in the table below are contextual heuristics. Use [Cultural Context §1–2](../cultural-context/README.md) and `CULTURE-NO-UNIVERSAL-CLAIM` when a type choice depends on audience recognition; use [Visual Research §3–4](../visual-research/README.md) and `VREF-INFLUENCE-QUALIFIED` for historical or stylistic references. Typography owns type selection and setting, while Art Direction owns the wider composition.
+
 | Skeleton | Connotations | Good for | Watch out |
 |---|---|---|---|
 | Humanist/Garalde serif (Garamond, Source Serif) | literary, trustworthy | long-form, editorial | can feel conservative |
@@ -376,6 +378,8 @@ A typographic agent starts with the brief, medium, language, viewing size and de
 **Frameworks to draw from:** Butterick's "Summary of key rules" and "Typography in ten minutes". Bringhurst's numbered rules (e.g. 2.1.2 "Choose a comfortable measure"), applied to the web by Richard Rutter at webtypography.net.\[22\]\[99\] WCAG 2.2 success criteria 1.4.3/4/6/8/11/12, 2.2.2, 2.3.1 and 2.3.3. The BDA Dyslexia Style Guide. The Netflix Timed Text Style Guide, BBC Subtitle Guidelines and DCMP Captioning Key. The Apple HIG and Material 3.
 
 ## 12. The Creation Process
+
+**Reference handoff.** Build the mood board using [Visual Research §5](../visual-research/README.md), recording `VREF-TRANSFER-EXPLAINED` and exclusions rather than collecting a look to copy. Subject-specific language or symbols come from [Domain Exploration §2–4](../domain-exploration/README.md); audience associations come from Cultural Context. Image Direction owns any accompanying image brief; Typography retains text setting and its canonical `rules.json` thresholds.
 
 1. **Brief and content.** Read all copy. Note the audience, medium, real sizes, viewing context (distance, motion, sound-off), brand, licences, languages and accessibility level.
 2. **Voice.** Write 3–5 adjectives and 2–3 anti-adjectives.

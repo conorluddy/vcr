@@ -35,6 +35,8 @@
 
 ## 1. Creative briefs: what they contain and which fields change decisions
 
+**Research informs the brief.** [Domain Exploration §1–3](../domain-exploration/README.md) supplies subject findings and uncertainty; [Cultural Context §1](../cultural-context/README.md) distinguishes evidenced audience knowledge from assumptions (`CULTURE-ASSUMPTION-LABELLED`). Preserve those distinctions when recording objectives, audience and mandatories. `DOMAIN-HANDOFF-SEPARATION` keeps proposed revisions separate from selected values.
+
 ### 1.1 Canonical structures
 
 **IPA / BetterBriefs, "The best way for a client to brief an agency"** (written by BetterBriefs and Mark Ritson in partnership with the IPA) [19]:
@@ -318,7 +320,7 @@ Use it this way: every adjective in the brief must name (a) what it *means* here
   1. **Compliance**: mandatories pass/fail; preferences scored 0–3 with brief weights; rule-breaks are checked against their own success conditions.
   2. **Effectiveness against intent**: does the piece serve the objective and land the proposition for the stated audience and context? Score 1–5 per evaluation criterion declared in the brief.
   - Never collapse the two axes into one number. A fully compliant piece can still be generic.
-- **Tie every finding to a brief field.** Each finding cites a JSON path (e.g. `brief.proposition`, `tokens.motion.easing.exit`, `ruleBreaks[2]`) (`BRIEF-TRACE-FINDING`). Findings with no field are labelled "taste" and capped at `minor`.
+- **State each finding's basis** (`BRIEF-TRACE-FINDING`). Brief-based findings cite a resolvable `brief_ref`; measured or sourced craft findings cite their rule. Unsupported preference is taste, capped at `note` by [the finding contract](../../specifications/vcr-plugin-prd.md#64-review-data-contract). A missing brief path alone does not make a finding taste.
 
 ---
 
@@ -419,6 +421,8 @@ Typical conflicts:
 
 ## 11. The creation process (creator agent)
 
+**Creative inputs.** [Visual Research §5](../visual-research/README.md) supplies annotated principles and exclusions (`VREF-EXCLUSION-STATED`); [Image Direction §3](../image-direction/README.md) supplies image briefs (`IMAGE-BRIEF-LAYERS-SEPARATED`). Record selected recognisers and values in the brief and link deeper production research in the workspace. These reference templates add no fields to the implemented brief schema. Story owns concept development and each craft pillar owns its checks.
+
 1. **Read the brief top-down in this order:** objective → audience/watch mode → proposition → mandatories → tone parameters → fixed/variable → rule-breaks → evaluation criteria. If any of the first four is missing, ask; do not invent.
 2. **Write a one-line intent statement:** "For [audience] watching [mode], this episode makes [proposition] land by [device]." Store it in the scene's metadata.
 3. **Choose the variable-axis values** for this episode. Check the continuity log so the combination is not reused (`BRIEF-SERIES-ROTATION`).
@@ -435,6 +439,8 @@ Typical conflicts:
 ## 12. Proposed machine-readable series brief schema
 
 ### 12.1 JSON Schema sketch (draft 2020-12; `x-consumers` lists reviewer pillars; `x-kind` marks hard/preference/break)
+
+Historical design sketch only. The canonical `catalog/schemas/series-brief.schema.json` also supports all four research consumers. Do not derive validation or consumer enums from this sketch.
 
 ```json
 {
@@ -785,14 +791,14 @@ The spring numbers are invented for the example. The fallback curve is what tool
 | `BRIEF-DELIVERABLE-SPEC` | Render matches declared width, height, fps, codec, pix_fmt, duration | exact; duration ±1 frame | heuristic (VCR-internal) | Delivery files; measurable (ffprobe) |
 | `BRIEF-DTCG-FORMAT` | Token file conforms to DTCG 2025.10 shapes | duration = `{value, unit∈{ms,s}}`; cubicBezier = 4 numbers; transition = duration/delay/timingFunction [2] | standard (DTCG 2025.10) | Token files; measurable |
 | `BRIEF-DTCG-EXTENSIONS` | VCR-only data lives under a vendor key in `$extensions` | key matches reverse-domain pattern [2] | standard (DTCG 2025.10) | Token files; measurable |
-| `BRIEF-TOKEN-ONLY-EASING` | Each sampled tween's progress curve matches a declared easing token (or a declared break) | RMS error ≤ 0.03 in normalised progress (heuristic) | heuristic | Browser scenes, Blender exports; measurable (time-series fit) |
+| `BRIEF-TOKEN-ONLY-EASING` | Each sampled tween's progress curve matches a declared easing token (or a declared break) | Superseded: use `MOTION-EASE-008`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | Browser scenes, Blender exports; measurable (time-series fit) |
 | `BRIEF-TOKEN-ONLY-DURATION` | Each tween's duration matches a declared duration token | \|measured − token\| ≤ 1 frame period | heuristic | Video scenes; measurable |
 | `BRIEF-DURATION-FRAMES` | No tween shorter than `minFramesPerTween` at delivery fps | default ≥ 3 frames (heuristic) | heuristic | Video; measurable |
 | `BRIEF-DURATION-DISTANCE` | Larger moves take longer (when `durationScalesWithDistance`) | Spearman ρ(distance, duration) > 0 across spatial tweens in a scene (heuristic proxy for Carbon [6]) | standard (Carbon principle) / heuristic (threshold) | Spatial tweens; measurable |
 | `BRIEF-EXIT-ACCEL` | Exits that leave permanently use exit/accelerate easing | progress curve convex (late speed > early speed) | standard (Carbon [6]); scope: brands adopting this grammar | Exiting elements; measurable |
 | `BRIEF-NO-LINEAR-SPATIAL` | No linear easing on start-stop spatial moves | max deviation from linear ≥ 0.05; exempt loops and progress bars | standard (Carbon "Strictly linear movement appears unnatural" [6]) | Spatial tweens; measurable |
-| `BRIEF-EXPRESSIVE-BUDGET` | Expressive tweens limited to declared moments | count ≤ `maxMoments`; runtime share ≤ `maxRuntimeShare` | standard (Carbon "occasional, important moments" [6]) / heuristic (numbers) | Motion; measurable |
-| `BRIEF-TOKEN-ONLY-COLOR` | Flat-region colours map to palette tokens | ΔE2000 ≤ 5 after decode (heuristic) | heuristic | Frames, delivery video; measurable |
+| `BRIEF-EXPRESSIVE-BUDGET` | Expressive tweens limited to declared moments | Superseded: use `MOTION-SIG-004`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | Motion; measurable |
+| `BRIEF-TOKEN-ONLY-COLOR` | Flat-region colours map to palette tokens | Superseded: use `ART-BRD-02`. Brief supplies selected tolerance and viewing conditions; historical values are advisory. | heuristic | Frames, delivery video; measurable |
 | `BRIEF-COLOR-ANCHOR-SHARE` | Anchor colour present within declared share range | brief-declared range | heuristic (pattern from [16]) | Frames; measurable |
 | `BRIEF-LOGO-INTEGRITY` | Logo not stretched, skewed, rotated, recoloured or re-shaped | \|scaleX/scaleY − 1\| ≤ 0.01; skew = 0; rotation = 0 unless declared; fills ∈ logo colours | platform ([18] for Spotify) / brief-declared for own brand | Logo elements; measurable |
 | `BRIEF-LOGO-CLEARSPACE` | No other element intrudes on logo clear space | 0 px intersection with declared clearspace box | heuristic (brief-declared values) | Logo frames; measurable |
@@ -811,7 +817,7 @@ The spring numbers are invented for the example. The fallback curve is what tool
 | `BRIEF-RULEBREAK-SUCCESS` | Declared break meets its success condition | judgement (sometimes measurable, e.g. colour isolation) | heuristic | Declared breaks; mostly judgement |
 | `BRIEF-LOOP-SEAM` | Loops continuous at the seam | frame(0) vs frame(N) ΔE ≤ 2 and velocity continuity | heuristic | Loops; measurable |
 | `BRIEF-NO-DEFAULT-LEAK` | No library-default eases/fonts/colours when tokens are declared | 0 occurrences of defaults | heuristic | Browser scenes; measurable (static + runtime) |
-| `BRIEF-TRACE-FINDING` | Every reviewer finding cites a resolvable brief path or is labelled taste | 100%; taste findings ≤ minor | heuristic (VCR-internal) | Review outputs; measurable |
+| `BRIEF-TRACE-FINDING` | Reviewer findings declare their basis | Brief basis requires resolvable `brief_ref`; rule basis cites the rule; taste ≤ note under the finding contract | heuristic (VCR-internal) | Review outputs; measurable |
 | `BRIEF-PRIORITY-APPLIED` | Cross-pillar conflicts resolved by declared priority order | resolution cites `priorities` | heuristic | Reviews; judgement (traceable) |
 | `BRIEF-VERSION-STAMP` | Render and review record brief version | present and equals current or flagged stale | heuristic | All; measurable |
 
@@ -872,7 +878,7 @@ General rule: **measure with dense seeks, judge with delivered frames.** `window
 
 ### `BRIEF-TOKEN-ONLY-COLOR`, `BRIEF-COLOR-ANCHOR-SHARE`
 - **Inputs:** rendered PNG frames *and* decoded delivery video.
-- **Calculation:** find flat regions (≥ 8×8 px, local variance below threshold). Convert to CIELAB from the decoded frames using the *declared* matrix (BT.709 limited range for H.264 yuv420p delivery). Take ΔE2000 to the nearest palette token. Anchor share = pixel fraction within ΔE ≤ 5 of the anchor.
+- **Calculation:** find flat regions (≥ 8×8 px, local variance below threshold). Convert to CIELAB from the decoded frames using the *declared* matrix (BT.709 limited range for H.264 yuv420p delivery). Take ΔE2000 to the nearest palette token. Anchor share uses the brief-selected tolerance under `ART-BRD-02`; no independent threshold is defined here.
 - **Sampling:** 1 frame per second plus every marker.
 - **Failure modes:**
   - Matrix/range mismatch (BT.601 vs BT.709; full vs limited range) creates false failures of several ΔE.
@@ -958,7 +964,7 @@ General rule: **measure with dense seeks, judge with delivered frames.** `window
 7. Series checks (`BRIEF-FIXED-PRESENT`, `BRIEF-VARIABLE-RANGE`, `BRIEF-SERIES-ROTATION`, `BRIEF-SERIES-DISTINCT`, `BRIEF-SEGMENT-BUDGET`, `BRIEF-LOOP-SEAM` for loops).
 8. Evaluation criteria scored 1–5, each tied to a field.
 9. Conflicts resolved by priority (`BRIEF-PRIORITY-APPLIED`).
-10. Every finding traced (`BRIEF-TRACE-FINDING`); severities assigned; no taste finding above minor.
+10. Every finding has a basis (`BRIEF-TRACE-FINDING`); brief paths and rule references resolve; no taste finding above note.
 
 ### 16.2 Creation (creator)
 

@@ -4,6 +4,7 @@ This directory contains reference material, check definitions and the canonical 
 
 | Task | Read |
 | --- | --- |
+| Research inputs and cross-pillar handoffs | §3, §12 |
 | Choose or pair fonts | §3–4 |
 | Refine spacing and layout | §5–6 |
 | Make expressive type | §7 |

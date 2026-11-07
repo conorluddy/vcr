@@ -423,6 +423,8 @@ All thresholds below are **heuristic VCR proposals**. Luminance is computed in *
 
 ## 16. The creation process (workflow skill)
 
+**Reference and asset inputs.** Use [Visual Research §3](../visual-research/README.md), `VREF-OBSERVATION-LOCATOR` and `VREF-INFERENCE-LIMITS` to describe observed light without claiming an unseen rig is known. [Image Direction §3–5](../image-direction/README.md) supplies required viewpoints and consistency constraints (`IMAGE-SET-COHERENCE`). Lighting owns the rig, exposure and tone mapping; Materials owns surface response and Art Direction owns composition. A cultural mood inference needs scoped evidence from [Cultural Context §2](../cultural-context/README.md).
+
 1. **Brief → light story.** Pick the mood (high-key/low-key, warm/cool), the motivation and the focal point. Write the rig into the brief: azimuth, elevation, size, ratio in stops, rim, HDRI and rotation, EV, tone mapper, 2D angle.
 2. **Choose the renderer:**
    - three.js for browser-native, interactive-style or data-driven 3D.
@@ -486,9 +488,9 @@ All thresholds below are **heuristic VCR proposals**. Luminance is computed in *
 | `LIGHT-TEMPORAL-NOISE` | Temporal noise and flicker below visibility | Flicker RMS ≤ 0.5% mean Y; pixel std ≤ 1.5 | heuristic | Path-traced and screen-space effects (measurable) |
 | `LIGHT-DENOISE-TEMPORAL` | Animations use a temporally stable denoising strategy | Temporal denoise, or samples high enough that `LIGHT-TEMPORAL-NOISE` passes [36] | heuristic | Cycles animation (measurable via the noise check) |
 | `LIGHT-DETERMINISM` | Re-rendering the same frame gives the same pixels | Identical hash; GPU path tracing PSNR ≥ 50 dB | heuristic | All (measurable) |
-| `LIGHT-LOOP-SEAM` | Light parameters periodic; no seam pop | Parameters equal at 0 and duration; ΔY ≤ 0.5% | heuristic | Loops (measurable) |
-| `LIGHT-FLICKER-SAFETY` | Animated light flicker within photosensitivity limits | Limits owned by `A11Y-*` | standard (via A11Y) | All (measurable: luminance time series) |
-| `LIGHT-SWEEP-LEGIBILITY` | Light sweeps do not obscure text at their peak | Text contrast stays within `TYPO-*` / `A11Y-*` limits during the sweep | heuristic | 2D/3D logos and text (measurable: frames plus textBounds) |
+| `LIGHT-LOOP-SEAM` | Light parameters periodic; no seam pop | Superseded: use `MOTION-RHY-004`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | Loops (measurable) |
+| `LIGHT-FLICKER-SAFETY` | Animated light flicker within photosensitivity limits | Superseded: use `A11Y-FLASH-GENERAL`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | All (measurable: luminance time series) |
+| `LIGHT-SWEEP-LEGIBILITY` | Light sweeps do not obscure text at their peak | Superseded: use `TYPO-CONTRAST`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | 2D/3D logos and text (measurable: frames plus textBounds) |
 | `LIGHT-EMISSIVE-HIERARCHY` | One brightest focal emitter per frame | Brightest emitter is the declared focal one | heuristic | All (measurable: Y maxima plus mask) |
 | `LIGHT-BLOOM-RESTRAINT` | Bloom not applied to text or UI; threshold above mid-tones | Defer to `FX-*` | heuristic | All (partly measurable) |
 | `LIGHT-FLARE-RESTRAINT` | Lens flares motivated by a visible bright source and not covering the brand | Judgement | heuristic | All (judgement only) |

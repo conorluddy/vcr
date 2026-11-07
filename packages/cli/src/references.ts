@@ -2,7 +2,7 @@
 // tier 0 is the generated references/INDEX.md, tier 1 a single rule by ID, tier 2 a single
 // knowledge base section. A whole knowledge base is never printed.
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 import { fail, ok, type Result } from "./result.types.js";
 import type { Diagnostic } from "./validate.js";
 
@@ -35,6 +35,8 @@ export interface PillarRule {
   /** Numbered draft IDs (`MOTION-EASE-001`) are renamed when the pillar gets its rules.json. */
   isDraftId: boolean;
   source?: string;
+  context?: string[];
+  replacements?: string[];
   verified?: boolean;
   /** Machine-readable thresholds from rules.json, such as `{ vertical_caption_min_px: 48 }`. */
   values?: Record<string, unknown>;
@@ -105,10 +107,16 @@ export function readKnowledgeBaseSection(harnessRoot: string, pillars: Pillar[],
   const lines = readFileSync(path, "utf8").split("\n");
   const number = section.replace(/^§/, "").replace(/\.$/, "");
   const headingPattern = new RegExp(`^(#{2,4})\\s+${number.replace(/\./g, "\\.")}(?:\\.|\\s)`);
-  const start = lines.findIndex((line) => headingPattern.test(line));
+  let fence = "";
+  const headings = lines.map((line) => {
+    const marker = line.match(/^\s*(`{3,}|~{3,})/)?.[1];
+    if (marker) { if (!fence) fence = marker; else if (marker[0] === fence[0] && marker.length >= fence.length) fence = ""; return false; }
+    return !fence && /^#{1,6}\s/.test(line);
+  });
+  const start = lines.findIndex((line, i) => headings[i] && headingPattern.test(line));
   if (start === -1) return fail("SECTION_NOT_FOUND", `No §${number} in references/${pillar.slug}/. Sections: ${listSections(lines).join(", ")}.`);
   const level = lines[start]!.match(/^#+/)![0].length;
-  const endOffset = lines.slice(start + 1).findIndex((line) => /^#{1,6}\s/.test(line) && line.match(/^#+/)![0].length <= level);
+  const endOffset = lines.slice(start + 1).findIndex((line, i) => headings[start + 1 + i] && line.match(/^#+/)![0].length <= level);
   return ok(lines.slice(start, endOffset === -1 ? undefined : start + 1 + endOffset).join("\n").trimEnd());
 }
 
@@ -144,16 +152,22 @@ export function writeReferencesIndex(harnessRoot: string, checkOnly: boolean): R
 export function referencesIndexDiagnostics(harnessRoot: string): Diagnostic[] {
   const outcome = writeReferencesIndex(harnessRoot, true);
   if (!outcome.ok) return [{ severity: "error", file: REFERENCES_README_PATH, path: "", message: outcome.error.message }];
-  return outcome.value.staleFiles.map((file) => ({ severity: "error", file, path: "", message: "references index is stale", suggestion: "Run `pnpm vcr catalog build` and commit the result." }));
+  return [...referenceIntegrityDiagnostics(harnessRoot), ...outcome.value.staleFiles.map((file): Diagnostic => ({ severity: "error", file, path: "", message: "references index is stale", suggestion: "Run `pnpm vcr catalog build` and commit the result." }))];
 }
 
 export function formatPillarRule(rule: PillarRule): string {
   const where = rule.origin === "rules.json" ? `references/${rule.pillar}/rules.json` : `references/${rule.pillar}/ knowledge base rules table`;
+  const planChecks = new Set(["STORY-BEAT-SUM", "STORY-WORD-BUDGET", "STORY-TEXT-READTIME", "STORY-MANDATORY-MAP", "STORY-VO-AIR", "STORY-HOOK-WINDOW"]);
   const notes = [rule.isDraftId ? "draft ID, renamed when the pillar gets rules.json" : "", rule.verified === false ? "figure unverified at source" : ""].filter(Boolean);
   return [
     `${rule.id}  (${where}${notes.length > 0 ? `; ${notes.join("; ")}` : ""})`,
     `check       ${rule.check}`,
+    `status      ${rule.replacements?.length ? "superseded; follow replacement IDs" : planChecks.has(rule.id) ? "implemented plan check; see Story README for limits" : rule.origin === "knowledge-base" ? "reference-only candidate; advisory until calibrated" : "canonical data; implementation varies by rule"}`,
     `threshold   ${rule.threshold}`,
+    ...(rule.replacements?.length ? [`replaced by ${rule.replacements.join(", ")}`] : []),
+    `guidance    references/${rule.pillar}/README.md; consult evidence ledger and measurement limits before use`,
+    ...(rule.origin === "knowledge-base" ? ["evidence    source verification is reported by the research; field presence does not establish support"] : []),
+    ...(rule.context?.length ? [`context     ${rule.context.join("; ")}`] : []),
     `tier        ${rule.tier}`,
     `applies to  ${rule.applies_to}`,
     ...(rule.source ? [`source      ${rule.source}`] : []),
@@ -164,7 +178,7 @@ export function formatPillarRule(rule: PillarRule): string {
 export function formatPillarRuleList(rules: PillarRule[], total: number, offset: number): string {
   if (rules.length === 0) return "no matching rules";
   const width = Math.max(...rules.map((rule) => rule.id.length));
-  const rows = rules.map((rule) => `${rule.id.padEnd(width)}  ${truncate(rule.tier, 18).padEnd(18)}  ${truncate(rule.check, 90)}`);
+  const rows = rules.map((rule) => `${rule.id.padEnd(width)}  ${truncate(rule.tier, 18).padEnd(18)}  ${rule.replacements?.length ? "[superseded] " : ""}${truncate(rule.check, 90)}`);
   const shown = `${offset + 1}–${offset + rules.length} of ${total}`;
   return [...rows, "", total > offset + rules.length ? `${shown}; next page: --offset ${offset + rules.length}` : shown].join("\n");
 }
@@ -185,10 +199,10 @@ function rulesFromTable(pillar: Pillar, markdown: string): PillarRule[] {
     if (RULES_TABLE_HEADER.test(line)) { isInRulesTable = true; continue; }
     if (!line.startsWith("|")) { isInRulesTable = false; continue; }
     if (!isInRulesTable) continue;
-    const [idCell, check, threshold, tier, appliesTo] = splitRow(line);
+    const [idCell, check, threshold, tier, appliesTo, ...context] = splitRow(line);
     const id = idCell?.replace(/`/g, "");
     if (!id || !idPattern.test(id)) continue;
-    rules.push({ id, pillar: pillar.slug, check: check ?? "", threshold: threshold ?? "", tier: tier ?? "", applies_to: appliesTo ?? "", origin: "knowledge-base", isDraftId: /\d/.test(id) });
+    rules.push({ id, pillar: pillar.slug, check: check ?? "", threshold: threshold ?? "", tier: tier ?? "", applies_to: appliesTo ?? "", origin: "knowledge-base", context, replacements: threshold?.startsWith("Superseded:") ? [...threshold.matchAll(/`([A-Z0-9-]+)`/g)].map((m) => m[1]!) : [], isDraftId: /\d/.test(id.slice(pillar.prefix.length)) });
   }
   return rules;
 }
@@ -196,7 +210,7 @@ function rulesFromTable(pillar: Pillar, markdown: string): PillarRule[] {
 function rulesFromData(pillar: Pillar, data: { rules: Array<Record<string, unknown>> }): PillarRule[] {
   return data.rules.map((rule) => ({
     id: String(rule["id"]), pillar: pillar.slug, check: String(rule["check"] ?? ""), threshold: String(rule["threshold"] ?? ""), tier: String(rule["tier"] ?? ""),
-    applies_to: String(rule["applies_to"] ?? ""), origin: "rules.json" as const, isDraftId: /\d/.test(String(rule["id"])),
+    applies_to: String(rule["applies_to"] ?? ""), origin: "rules.json" as const, isDraftId: /\d/.test(String(rule["id"]).slice(pillar.prefix.length)),
     ...(rule["source"] !== undefined ? { source: String(rule["source"]) } : {}), ...(typeof rule["verified"] === "boolean" ? { verified: rule["verified"] } : {}),
     ...(rule["values"] !== undefined ? { values: rule["values"] as Record<string, unknown> } : {}),
   }));
@@ -226,4 +240,41 @@ function listSections(lines: string[]): string[] {
 
 function truncate(value: string, length: number): string {
   return value.length > length ? `${value.slice(0, length - 1)}…` : value;
+}
+
+/** Cross-pillar integrity: exact IDs, replacement targets and local file links. */
+export function referenceIntegrityDiagnostics(root: string): Diagnostic[] {
+  const loaded = loadPillars(root);
+  if (!loaded.ok) return [];
+  const pillars = loaded.value, rules = loadPillarRules(root, pillars);
+  const ids = new Set(rules.map((rule) => rule.id));
+  const diagnostics: Diagnostic[] = [];
+  const report = (file: string, message: string) => diagnostics.push({ severity: "error", file: relative(root, file), path: "", message });
+  const placeholders = new Set(["MAT-ID", "MOTION-XXX-NNN", "LIGHT-RULE", "ART-ID", "STORY-REF", "ART-REF", "LIGHT-RULE-ID", "MAT-RULE-ID", "PACE-ID", "A11Y-ID", "BRIEF-ID"]);
+  const pattern = new RegExp(`\\b(?:${pillars.map((p) => p.prefix.slice(0, -1)).join("|")})-[A-Z0-9]+(?:-[A-Z0-9]+)*`, "g");
+  for (const rule of rules) {
+    for (const target of rule.replacements ?? []) if (!ids.has(target) || target === rule.id) report(join(root, "references", rule.pillar, "README.md"), `Invalid replacement ${rule.id} → ${target}`);
+    if (rules.filter((r) => r.id === rule.id).length > 1) report(join(root, "references", rule.pillar, "README.md"), `Duplicate rule ${rule.id}`);
+  }
+  for (const pillar of pillars) {
+    for (const name of readdirSync(join(root, "references", pillar.slug)).filter((n) => n === "README.md" || n.endsWith("-knowledge-base.md"))) {
+      const file = join(root, "references", pillar.slug, name), content = readFileSync(file, "utf8");
+      if (name === "README.md") {
+        for (const line of content.split("\n").filter((l) => l.startsWith("|"))) {
+          for (const m of line.matchAll(/§(\d+(?:\.\d+)*)/g)) {
+            if (!readKnowledgeBaseSection(root, pillars, pillar.slug, m[1]!).ok) report(file, `Missing section route §${m[1]}`);
+          }
+        }
+      }
+      for (const id of new Set(content.match(pattern) ?? [])) {
+        if (!ids.has(id) && !placeholders.has(id) && !rules.some((r) => r.id.startsWith(`${id}-`))) report(file, `Unknown rule reference ${id}`);
+      }
+      for (const match of content.matchAll(/\]\(([^\s)]+)(?:\s+[^)]*)?\)/g)) {
+        const link = match[1]!.replace(/^</, "").replace(/>$/, "").split("#")[0]!;
+        if (!link || /^(https?:|mailto:|plugin:)/.test(link)) continue;
+        if (!existsSync(resolve(dirname(file), link))) report(file, `Missing local reference ${link}`);
+      }
+    }
+  }
+  return diagnostics;
 }

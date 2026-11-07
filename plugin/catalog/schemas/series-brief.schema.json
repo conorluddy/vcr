@@ -279,7 +279,11 @@
                 "fx",
                 "lighting",
                 "materials",
-                "critique"
+                "critique",
+                "domain-exploration",
+                "visual-research",
+                "cultural-context",
+                "image-direction"
               ]
             }
           }
@@ -328,7 +332,11 @@
                 "fx",
                 "lighting",
                 "materials",
-                "critique"
+                "critique",
+                "domain-exploration",
+                "visual-research",
+                "cultural-context",
+                "image-direction"
               ]
             }
           }

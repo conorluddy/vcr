@@ -24,11 +24,13 @@ The core finding: the opening seconds carry most of the measurable value of a sh
 7. **Mayer's principles are strong in the lab and weaker on re-analysis.** Mayer's 2017 review gives median d values: coherence 0.70, signalling 0.46, redundancy 0.87, spatial contiguity 0.79, temporal contiguity 1.30, segmenting 0.70, pre-training 0.46, modality 0.72.\[22\] A 2025 meta-analysis of Mayer's own studies (Cromley & Chen, *Educational Research Review* 49, 100730) found non-significant effects for segmenting (g = 0.19), avoiding redundant captions with narration (g = 0.14) and contiguity, and the multimedia effect at g = 0.39, against Mayer's d = 0.68. [research; learning outcomes]
 8. **Shots got shorter and more structured.** Bordwell: classical-era ASL "hovered around eight to eleven seconds", and "Today, the average shot in a mainstream movie, in any genre, lasts three to five seconds".\[8\]\[23\] Cutting, DeLong & Nothelfer (2010, 150 films): shots "became increasingly more correlated in length with their neighbors and created power spectra approaching 1/f".\[9\]\[24\] Cutting, DeLong & Brunick's 2018 follow-up ("Temporal fractals in movies and mind", *Cognitive Research: Principles and Implications* 3:8) rejects the "shrinking attention span" reading, "for which there is no evidence". [research]
 9. **Listening comprehension degrades slowly, then fast.** Foulke & Sticht (1969, as quoted by Brysbaert): comprehension "declines at a slow rate as word rate is increased, until a rate of approximately 275 wpm is reached, and at a faster rate thereafter". Rodero (via Brysbaert): radio news is best at 170 wpm for high-density messages and 190 wpm for low-density ones.\[7\] [research]
-10. **Meta's sound guidance has flipped.** Older Meta pages say "Build for sound off. Delight with sound on." and report that "41% of videos were basically meaningless without sound".\[2\]\[25\] The newer Tailored Campaigns FAQ says "Design for sound-on viewing" and "include key messaging or branding within the first 3 seconds".\[26\] VCR therefore requires a piece to survive muted and get better with sound (SOUND-01). [platform]
+10. **Meta's sound guidance has flipped.** Older Meta pages say "Build for sound off. Delight with sound on." and report that "41% of videos were basically meaningless without sound".\[2\]\[25\] The newer Tailored Campaigns FAQ says "Design for sound-on viewing" and "include key messaging or branding within the first 3 seconds".\[26\] VCR therefore requires a piece to survive muted and get better with sound (PACE-SOUND-01). [platform]
 
 ---
 
 ## 1. Hooks: the first 0–6 seconds
+
+**Hook content and recognition.** Story owns the hook mechanism. [Domain Exploration §5](../domain-exploration/README.md) supplies grounded tensions; [Cultural Context §3](../cultural-context/README.md) supplies `CULTURE-MISS-SURVIVAL-STATED` when a hook depends on recognition. Pacing judges the timing and information load. Platform timing evidence does not establish that a particular cultural cue will be understood.
 
 **Evidence.**
 - *Platform advice:* TikTok's 3 s and 6 s windows above. The TikTok SMB Playbook adds "The first 3-6 seconds are critical".\[27\] Meta says "Keep videos under 15 seconds, grab attention in the first 3 seconds".\[28\]
@@ -200,9 +202,9 @@ Loops suit 6–30 s social pieces. Forcing a loop onto a resolved story is over-
 
 ## 9. Sound-off design
 
-- **Mute test (SOUND-01).** With sound off: is the proposition clear by 3 s, is every narrated claim captioned or shown, and are beat boundaries visible?
+- **Mute test (PACE-SOUND-01).** With sound off: is the proposition clear by 3 s, is every narrated claim captioned or shown, and are beat boundaries visible?
 - **Proxy.** 100% of author-tagged key claims have a text or visual referent within ±1.0 s.
-- **Audio-led pieces.** Declare `audioLed: true`. SOUND-01 then becomes a warning, but speech captions are still required.
+- **Audio-led pieces.** Declare `audioLed: true`. PACE-SOUND-01 then becomes a warning, but speech captions are still required.
 
 ## 10. Copy for the screen
 
@@ -266,18 +268,20 @@ Loops suit 6–30 s social pieces. Forcing a loop onto a resolved story is over-
 
 **Severity.** *error* blocks delivery: unreadable text, no proposition by 3 s in feeds, uncaptioned speech, broken promise. *warning*: fix unless intended. *info*: craft notes.
 
-Example: `[PACE-READ-01] error @ t=4.2–5.1 s — 7-word line visible 0.9 s vs 2.1 s minimum → cut to "Save 3 hours/week" or hold ≥ 2.1 s.`
+Example advisory note: `[TYPO-HOLD] major @ t=4.2–5.1 s — a 7-word line is visible for 0.9 s after settling, below the canonical hold → shorten the copy or extend the hold using TYPO-HOLD.` A filed finding also needs the evidence and fields required by the review contract.
 
 ## 15. Creation process
+
+**Sequence evidence.** Use [Visual Research §3](../visual-research/README.md) and `VREF-TEMPORAL-SPAN` for timing precedents, rather than inferring rhythm from a cover frame. [Image Direction §5](../image-direction/README.md) supplies asset continuity and motion limitations before beats are committed. Narration-rate values come from `SOUND-NARRATION-WPM`; reading holds come from `TYPO-HOLD`. `vcr lint` currently checks browser layout, not pacing; pacing measurements and reviewer steps below remain proposed/manual.
 
 1. Brief: placement, aspect, audience (20 or 17 cps), `audioLed`, duration, series bible.
 2. Write the one-sentence proposition and a ≤ 5-word hook. Choose and log the hook type.
 3. Choose the structure (§6).
-4. Write two scripts: narration at 140–170 wpm with pauses, and screen text as keywords. Tag the key spans.
+4. Write two scripts: narration paced using `SOUND-NARRATION-WPM` for the selected language and purpose, and screen text as keywords. Allow pauses and tag the key spans.
 5. Build a beat sheet with durations derived from content (dwell formula, narration plus pauses). Vary them deliberately.
 6. Emit `markers` for every beat, payoff and CTA.
 7. Build frame 0 first. Add internal motion within holds.
-8. Render, run `vcr lint` PACE, do a muted review, then run the reviewer.
+8. Render, run `vcr lint` for browser layout, do a muted pacing review and apply the proposed pacing checks manually. No pacing lint or pacing reviewer is implemented.
 9. Log hook type, beat CV, proposition time and wpm so they can be correlated with retention later.
 
 ## 16. Canon
@@ -302,34 +306,34 @@ Measurability: **M** = automatic; **M*** = needs author tags; **J** = judgement 
 | PACE-HOOK-04 | Promise has a payoff | `promise` → `payoff` marker | heuristic | all | M*+J |
 | PACE-HOOK-05 | First readable text | TTFRT ≤ 1.0 s | heuristic (derived) | muted-first feeds | M |
 | PACE-HOOK-06 | Hook line length | ≤ 5 words | heuristic (derived) | feeds | M |
-| PACE-READ-01 | Static text dwell | ≥ max(0.3 s×words, chars/20, 5/6 s) | standard (BBC*, Netflix) | all video | M |
-| PACE-READ-02 | Caption speed | ≤ 20 cps adult; ≤ 17 children | standard | captions | M |
-| PACE-READ-03 | Caption event duration | 5/6–7 s | standard | captions | M |
-| PACE-READ-04 | Key-text read-twice hold | ≥ 2×words/3.97 + 0.5 s | heuristic | all | M* |
+| PACE-READ-01 | Static text dwell | Superseded: use `TYPO-HOLD`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | all video | M |
+| PACE-READ-02 | Caption speed | Superseded: use `TYPO-CAPTION-CPS`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | captions | M |
+| PACE-READ-03 | Caption event duration | Superseded: use `TYPO-CAPTION-DURATION`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | captions | M |
+| PACE-READ-04 | Key-text read-twice hold | ≥ max(TYPO-HOLD, 2×words/3.97 + 0.5 s) | heuristic | all | M* |
 | PACE-READ-05 | New words per beat | ≤ 12 | heuristic | 9:16 social | M |
 | PACE-READ-06 | TikTok 5–10 wps never used for static dwell | ≤ 3.97 words/s sustained | heuristic | all | M |
-| PACE-NARR-01 | Narration rate per 10 s | target 140–170; warn > 190; error > 275 | heuristic (research) | narrated | M |
-| PACE-NARR-02 | Pauses | ≥ 250 ms at sentence ends; none > 1.5 s on a static frame | heuristic | narrated | M |
+| PACE-NARR-01 | Narration rate per 10 s | Superseded: use `SOUND-NARRATION-WPM`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | narrated | M |
+| PACE-NARR-02 | Pauses | Superseded: use `SOUND-NARRATION-WPM`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | narrated | M |
 | PACE-NARR-03 | AV temporal contiguity | ±1.0 s | heuristic (Mayer) | explainers | M* |
 | PACE-NARR-04 | No transcript as design text | ≥ 80% word overlap in a non-caption layer → flag | heuristic (Mayer) | narrated | M |
 | PACE-BEAT-01 | Static gap | warn > 3.0 s social / > 8.0 s 16:9 unless `hold` | heuristic | all | M |
 | PACE-BEAT-02 | Beat variation | CV < 0.15 over ≥ 6 beats → flag | heuristic | non-music-led | M |
 | PACE-BEAT-03 | Text beat length | ≥ its dwell_min | standard-derived | all | M |
 | PACE-BEAT-04 | Post-payoff hold | ≥ 1.0 s | heuristic | all | M* |
-| PACE-BEAT-05 | Simultaneous animators | ≤ 3 outside `montage` | heuristic | all | M |
-| PACE-BEAT-06 | Music cut alignment | ±1 frame of markers | heuristic | music-led | M |
+| PACE-BEAT-05 | Simultaneous animators | Superseded: use `MOTION-CHOR-003`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | all | M |
+| PACE-BEAT-06 | Music cut alignment | Use `SOUND-BEAT-ALIGN`; report cut offset in frames | heuristic | music-led | M |
 | PACE-STRUCT-01 | Ending holds payoff | ≥ 1.5 s; outro ≤ 3 s in feeds | heuristic | all | M* |
 | PACE-STRUCT-02 | Segment length | < 6 min | heuristic (Guo) | 16:9 educational | M* |
 | PACE-STRUCT-03 | One idea per beat | — | heuristic | all | J |
 | PACE-QUIZ-01 | Answer window | READ-04 + ≥ 3.0 s think; reveal ≥ 1.5 s | heuristic | participation | M* |
-| PACE-LOOP-01 | Loop seam | SSIM ≥ 0.9; integer-frame duration and cycle | heuristic | loops | M |
+| PACE-LOOP-01 | Loop seam | Superseded: use `MOTION-RHY-004`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | loops | M |
 | PACE-LOOP-02 | No fade/end card on loops | final 0.5 s luminance ≥ 5% unless frame 0 matches | heuristic | loops | M |
 | PACE-SOUND-01 | Sound-off survival | 100% of key claims covered ±1.0 s; proposition muted by 3 s | platform (Meta) | feeds, not audioLed | M*+J |
-| PACE-SOUND-02 | Speech captioned | ≥ 99% of words | platform/standard | all speech | M |
+| PACE-SOUND-02 | Speech captioned | Superseded: use `A11Y-CAPTION-COMPLETE`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | all speech | M |
 | PACE-CTA-01 | Single readable CTA | 1 tag; ≥ READ-04; ≤ 5 words | heuristic | ads, social | M* |
 | PACE-SERIES-01 | Episode ID format | regex match to bible | heuristic | series | M |
 | PACE-SERIES-02 | Segment slot stability | ±10% of series median | heuristic | series | M* |
-| PACE-SERIES-03 | Hook rotation | same type ≤ 2 consecutive episodes | heuristic | series | M* |
+| PACE-SERIES-03 | Hook rotation | Superseded: use `STORY-SERIES-REPEAT`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | series | M* |
 | PACE-DUR-01 | Duration | ≤ platform max; brief ±10% | platform + brief | all | M |
 
 *BBC values come from secondary copies; the primary page was not fetched.
@@ -352,7 +356,7 @@ Measurability: **M** = automatic; **M*** = needs author tags; **J** = judgement 
   - *Failure:* particles and shaders register as constant change, so exclude layers tagged `ambient` and use semantic events. Small three.js camera drift needs object-level thresholds.
 - **BEAT-06.** Nearest-marker offset in frames. Validate the markers against audio onset detection.
 - **LOOP-01/02.** SSIM of the first and last frames, luminance, RMS step over the last and first 50 ms, and a check that duration × fps is an integer. Re-run on the decoded delivery file, because re-encoding shifts colour and keyframes.
-- **SOUND-01/02.** Coverage ratios. Image referents need tags; without tags this check is judgement only.
+- **PACE-SOUND-01/02.** Coverage ratios. Image referents need tags; without tags this check is judgement only.
 - **DUR-01.** Compare `__scene.duration` with the ffprobe delivery duration. Watch for AAC padding mismatch.
 
 ## 19. Rendering and delivery notes
@@ -373,7 +377,7 @@ Measurability: **M** = automatic; **M*** = needs author tags; **J** = judgement 
 - [ ] NARR-01–04 (wpm, pauses, contiguity, no transcript text)
 - [ ] BEAT-01–06 (gaps, CV, text beats, holds, animators, music sync)
 - [ ] STRUCT-01–03, QUIZ-01, CTA-01
-- [ ] LOOP-01/02 if looping; SOUND-01/02; SERIES-01–03; DUR-01
+- [ ] LOOP-01/02 if looping; PACE-SOUND-01/02; SERIES-01–03; DUR-01
 - [ ] Watched in motion, with sound and muted; not judged from stills
 
 **Creation.**

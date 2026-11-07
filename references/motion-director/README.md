@@ -4,6 +4,7 @@ This is the motion design and animation direction knowledge base (`MOTION-*`), p
 
 | Task | Read |
 | --- | --- |
+| Research inputs and cross-pillar handoffs | §11, §14 |
 | Pick curves and durations | §2–3, then `MOTION-EASE-*` and `MOTION-TIME-*` in §16 |
 | Springs (closed-form, seek-safe) | §2.4, §18 |
 | Stagger, hierarchy, continuity | §4 |

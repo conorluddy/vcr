@@ -143,7 +143,7 @@ Frame.io's search and filter skip replies, so VCR stores the verdict on the find
 **Example finding:**
 
 ```json
-{"pillar":"typography","rule_id":"TYPO-OVERFLOW-01","kind":"measured",
+{"pillar":"typography","rule_id":"overflow","kind":"measured",
  "severity":{"level":4,"label":"blocker","basis":"measured_rule"},
  "location":{"fps":30,"frame_start":84,"frame_end":131,"selector":"#cta"},
  "issue":"CTA clips at right edge for 48 frames.",
@@ -309,6 +309,8 @@ Use `HH:MM:SS:FF` at the render fps plus the frame index. Export as NLE markers 
 - **Series:** consistency with the shared look is not the same as sameness. Apply REVIEW-HOM-03.
 
 ## 10. The analysis/critique process
+
+**Review the evidence appropriate to the artefact.** For subject packs use [Domain Exploration §8](../domain-exploration/README.md); for boards use [Visual Research §6](../visual-research/README.md); for cultural assumptions use [Cultural Context §8](../cultural-context/README.md); for asset selections use [Image Direction §8](../image-direction/README.md). A complete record is not proof of truth, originality, meaning or suitability. These references supply advisory criteria; this pillar owns severity and calibration. The implemented finding/approval contract remains render-based (and plan checks print findings); research-pack review is prose guidance until the shared contract supports it. Do not invent render IDs or a parallel finding schema for a research pack.
 
 1. **Load the context:** brief, rules slice, measurement report. No author rationale.
 2. **Convert every measured failure** into a `measured` finding. Don't re-argue it.

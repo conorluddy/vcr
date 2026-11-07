@@ -368,6 +368,8 @@ Each entry gives the inputs, the calculation, the sampling strategy and the meas
 
 ## 14. Creation process
 
+**Reference and asset inputs.** [Domain Exploration §4](../domain-exploration/README.md) supplies subject-specific surface observations; [Visual Research §3](../visual-research/README.md) separates visible cues from inferred properties (`VREF-INFERENCE-LIMITS`). [Image Direction §3–5](../image-direction/README.md) supplies acquisition and set constraints. Materials owns shading, texture interpretation and surface appearance; Lighting owns illumination and tone mapping, while FX owns 2D treatment. Texture provenance remains part of the shared asset-manifest concern.
+
 1. **Write a material list per object:** class, reference, finish, brand colour, imperfection level. Store it in the brief.
 2. **Decide photoreal or stylised** per object and tag scope.
 3. **Block out in clay** and approve form and light (`LIGHT-*`).
@@ -413,22 +415,22 @@ Each entry gives the inputs, the calculation, the sampling strategy and the meas
 | `MAT-DIELECTRIC-F0` | Dielectric reflectance | ≥ 2% (Filament 0.35) | platform | `pbr` dielectrics; scene data |
 | `MAT-ALBEDO-NO-LIGHTING` | No baked light in base colour | Judgement; aid: correlation with AO | platform | Textured `pbr`; judgement |
 | `MAT-TEXTURE-COLORSPACE` | Slot colour space per §4 | 0 mismatches | platform | All textures; scene data |
-| `MAT-COLOR-MANAGEMENT-OUTPUT` | sRGB output, colour management on; Blender view transform declared | Exact | platform | All renders; scene data |
+| `MAT-COLOR-MANAGEMENT-OUTPUT` | sRGB output, colour management on; Blender view transform declared | Superseded: use `LIGHT-OUTPUT-COLORSPACE`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | All renders; scene data |
 | `MAT-NORMAL-CONVENTION` | OpenGL Y+ | Manifest plus calibration render | standard | Normal maps; render test |
 | `MAT-ORM-PACKING` | R = AO, G = roughness, B = metal | Exact | standard | Packed maps; scene data |
 | `MAT-ENV-MAP-PRESENT` | Environment present for metals and Physical | Present | platform | three.js; scene data |
 | `MAT-ALPHA-VS-TRANSMISSION` | Glass via transmission; opacity 1 | 0 violations | standard/platform | Transmissive; scene data |
-| `MAT-EMISSIVE-CLIP` | Clipped emissive pixels | < 0.5% of object (h) | heuristic | Emissive; frames |
+| `MAT-EMISSIVE-CLIP` | Clipped emissive pixels | Superseded: use `LIGHT-CLIP-HIGHLIGHTS`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | Emissive; frames |
 | `MAT-EXTENSION-EXCLUSIONS` | glTF exclusions respected | 0 | standard | glTF; JSON |
-| `MAT-BRAND-DELTAE` | ΔE00 between swatch and patch | Flat ≤ 2.0 PNG / ≤ 3.0 delivery; lit ≤ 5.0 report; metals Δh report | heuristic (formula standard) | Brand surfaces; frames |
-| `MAT-TONEMAP-BRAND` | Neutral (or none for unlit) when ΔE applies | Exact unless brief overrides | standard/platform | Brand shots; scene data |
+| `MAT-BRAND-DELTAE` | ΔE00 between swatch and patch | Superseded: use `LIGHT-BRAND-DELTAE`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | Brand surfaces; frames |
+| `MAT-TONEMAP-BRAND` | Neutral (or none for unlit) when ΔE applies | Superseded: use `LIGHT-OUTPUT-COLORSPACE`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | Brand shots; scene data |
 | `MAT-SPECULAR-CRAWL` | Highlight temporal high-pass | ≤ 2× supersampled reference (h) | heuristic | Animated 3D; frames |
 | `MAT-ROUGHNESS-FLOOR` | Glossy surfaces with sub-pixel detail | Roughness ≥ 0.1 or specular AA (h) | heuristic | Fine glossy in motion; scene data |
 | `MAT-MOIRE` | On-screen pattern period | ≥ 4 px or mip-faded (h) | heuristic | Patterned textures; scene data plus FFT |
 | `MAT-MIP-ANISO` | Mips on; max anisotropy on hero textures | Exact | platform | three.js textures; scene data |
 | `MAT-TEXEL-DENSITY` | Texels per screen pixel | Hero ≥ 1.0, secondary ≥ 0.5 (h) | heuristic | Textured objects; geometry |
 | `MAT-DETERMINISTIC-SHADER` | Bit-identical re-renders; no time or random sources | Exact | heuristic (VCR contract) | All shaders; frames plus source scan |
-| `MAT-LOOP-CLOSURE` | State at 0 equals state at T | Exact params; mean ΔE00 < 0.5 (h) | heuristic | Loops; frames |
+| `MAT-LOOP-CLOSURE` | State at 0 equals state at T | Superseded: use `MOTION-RHY-004`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | Loops; frames |
 | `MAT-ROUNDTRIP-FIDELITY` | Blender→three.js look preserved | Core diff 0; mean ΔE00 ≤ 3 (h) | heuristic | Exports; frames plus JSON |
 | `MAT-EXTENSION-SUPPORT` | No non-exportable features unbaked | 0 | platform | Exports; `bpy` dump |
 | `MAT-TRANSMISSION-COST` | Transmissive count; scale 1 in finals | Report; exact | platform | three.js; scene data |

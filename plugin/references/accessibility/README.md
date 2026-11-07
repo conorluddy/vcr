@@ -2,10 +2,11 @@
 
 This is the accessibility knowledge base (`A11Y-*`) for motion graphics and short-form video, produced from [the research brief](../research-prompts/accessibility.md) on 2026-11-06. It is reference material, not an implemented check: there is no `A11Y-*` rules data file, analyser or agent yet. It is about 20k tokens, so read only the section the task needs in [the knowledge base](accessibility-knowledge-base.md). Its IDs are already named.
 
-Its headline: **flashing is the only failure in this work that can physically injure a viewer, and it is fully measurable from rendered frames.** `A11Y-FLASH-*` is the strongest candidate for VCR's first post-render check.
+Flashing has published thresholds and is a strong candidate for a post-render check. Motion can also cause physical symptoms. Frame analysis needs declared display assumptions and validation against a reference analyser; no `A11Y-*` analyser is implemented.
 
 | Task | Read |
 | --- | --- |
+| Research inputs and cross-pillar handoffs | §13 |
 | Flashing, red flash and stripe patterns (WCAG 2.3.1, ITU-R BT.1702-3, Ofcom) | §1, §17.1–17.2 |
 | Motion sensitivity, and what a reduced-motion video variant looks like | §2, §17.3 |
 | Captions: presence, accuracy, sync, non-speech, speakers, lyrics, burned-in vs sidecar | §3, §17.6 |
@@ -29,7 +30,7 @@ Its headline: **flashing is the only failure in this work that can physically in
    - **Captions as access:** presence, completeness, accuracy, sync, non-speech tags, speakers, lyrics, sidecars and the auto-caption review (`A11Y-CAPTION-*` apart from rate). These replace `PACE-SOUND-02`.
    - **Captions as text:** style, rate, lines and duration stay with `TYPO-CAPTION-*`. `A11Y-CAPTION-RATE` already defers to them and is dropped. `A11Y-CAPTION-PLACEMENT` stays, for not covering faces and featured text, and cites `TYPO-SAFE` for platform UI.
    - **Reading hold:** `A11Y-MOTION-READING` and `A11Y-TEXT-DWELL` are dropped in favour of `TYPO-HOLD`. That is now four pillars agreeing on one owner. Their "count from the end of the entrance animation" wording matches how `TYPO-HOLD` already measures.
-   - **Text contrast:** `TYPO-CONTRAST` owns it. `A11Y-CONTRAST-TEXT` is dropped, and its 5th-percentile-over-lifetime method becomes how `TYPO-CONTRAST` is measured on moving backgrounds.
+   - **Text contrast:** `TYPO-CONTRAST` owns it. `A11Y-CONTRAST-TEXT` is dropped. Its frame-based percentile is a supplementary diagnostic, not a replacement for the canonical source-colour check or a WCAG conformance test; see §17.4.
    - **Non-text contrast, CVD distinguishability and colour alone:** `A11Y-CONTRAST-GRAPHIC`, `A11Y-CVD-DISTINCT` and `A11Y-COLOR-ALONE`. The art and data visualisation pillars cite them.
    - **Plain language:** `A11Y-PLAIN-LANGUAGE` keeps literal wording for prices, steps and warnings. "One idea per beat" stays `PACE-STRUCT-03`.
 2. **Voice over music.** `SOUND-VOICE-BED-GAP` reads WCAG 1.4.7 as 20 LU for video. This KB does not take that rule on. Keep it with sound and label it an interpretation of the standard, not the standard itself.

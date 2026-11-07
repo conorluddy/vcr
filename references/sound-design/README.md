@@ -4,6 +4,7 @@ This is the sound design, music and mix knowledge base (`SOUND-*`), produced fro
 
 | Task | Read |
 | --- | --- |
+| Research inputs and cross-pillar handoffs | §5, §15 |
 | Loudness targets, platform normalisation, true peak | §1, then `SOUND-LOUDNESS-*` and `SOUND-TRUE-PEAK` in §17 |
 | Voice against a music bed, ducking, phone speakers, mono | §2 |
 | Sync tolerances, frame-accurate SFX, beats to frames | §3, §19 |
@@ -33,7 +34,7 @@ This is the sound design, music and mix knowledge base (`SOUND-*`), produced fro
    - Sound owns the audio loop seam, and motion owns the visual one.
 2. **One tolerance for accents on beats.** `SOUND-BEAT-ALIGN` asks for the exact rounded frame (±½ frame), while `MOTION-RHY-001` and `PACE-BEAT-06` allow ±1 frame. The owners stay as they are, but the tolerance should be one shared value. Exact frame as the pass, and ±1 frame as minor, fits all three.
 3. **Narration rate disagrees with pacing.** `SOUND-NARRATION-WPM` gives 130–175 wpm and flags above 180; the dropped `PACE-NARR-01` gave 140–170 and warned above 190. Keep sound's band, which is anchored to Brysbaert and ACX.
-4. **Accessibility overlap.** `SOUND-VOICE-BED-GAP` reads WCAG 1.4.7 (AAA, audio-only) as 20 LU for video, which is this document's own interpretation. Revisit it when the accessibility pillar arrives.
+4. **Accessibility overlap.** `SOUND-VOICE-BED-GAP` remains a heuristic video-mixing target. WCAG 1.4.7 is scoped to prerecorded audio-only speech; it does not prescribe VCR's LU measurement or video target. The [accessibility reference](../accessibility/README.md) keeps that distinction and delegates mixing here.
 5. **Determinism is shared.** `SOUND-SYNTH-DETERMINISM` (two renders give identical audio) and `MOTION-SPR-001` (repeated seeks give identical values) are the same idea. One generic determinism check could cover picture and sound.
 6. **Unverified and uncalibrated values.**
    - YouTube's −14 LUFS and its turn-down-only behaviour are inferred from small samples.

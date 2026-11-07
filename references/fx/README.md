@@ -8,7 +8,7 @@ This is the image treatment, blending and compositing knowledge base (`FX-*`), p
 
 It is reference material, not an implemented check. It is about 17k tokens, so read one section (`vcr refs section fx <§>`) or one rule (`vcr rules info FX-…`). Its IDs are already named.
 
-Its core point: **the W3C *Compositing and Blending Level 1* formulas are the tool-independent definition of every blend mode**, and CSS, SVG, canvas, ImageMagick, sharp, FFmpeg and Blender each implement a subset of them in their own colour space. Most failures come from motion, which tutorials for stills ignore:
+The [W3C *Compositing and Blending Level 1* draft](https://www.w3.org/TR/compositing-1/) defines a common set of blend modes and compositing operators. It does not define every mode offered by every application; matching names alone do not establish equivalent output. Colour space and grouping matter. Motion introduces further failure modes:
 - thresholds that boil;
 - screens that crawl;
 - unseeded grain;
@@ -16,6 +16,7 @@ Its core point: **the W3C *Compositing and Blending Level 1* formulas are the to
 
 | Task | Read |
 | --- | --- |
+| Research inputs and cross-pillar handoffs | §7, §15 |
 | The compositing model: blend formulas, Porter-Duff, alpha, isolation, how each tool maps | §1 |
 | Blending in sRGB against linear light | §2 |
 | Masks, mattes and knockout type | §3 |

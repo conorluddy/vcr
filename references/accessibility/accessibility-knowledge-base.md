@@ -1,6 +1,6 @@
 # Accessibility for Motion Graphics and Short-Form Video: VCR Knowledge Base (A11Y pillar)
 
-The most important and best-supported finding: **flashing is the only accessibility failure in motion graphics that can physically injure a viewer, and it is fully measurable from rendered frames.** No more than three flashes in any one-second window, unless the flashing stays below the WCAG 2.2 general and red flash thresholds (ITU-R BT.1702-3 and Ofcom use the equivalent broadcast rules).\[1\] Treat it as a hard gate on every render. Everything else in this pillar is either partly automatable, mainly captions, contrast, colour distinguishability and motion intensity, or rests on human judgement, mainly audio description need, plain language and expressive motion.
+Flashing has published thresholds and warrants full-sequence analysis. Motion can also cause physical symptoms. WCAG and broadcast profiles differ; passing an analysis is scoped to its profile and display assumptions, not a guarantee for every viewer. See [W3C flash guidance](https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html) and [motion guidance](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html). VCR has no implemented `A11Y-*` analyser; a future automatic gate needs validation against a reference analyser. Captions, contrast, colour distinguishability and audio description need their own checks and judgement.
 
 > **Status.** Scope: accessibility for code-first motion graphics, kinetic typography, short-form social video (9:16, 16:9, 1:1), loops and stills produced by VCR. The pillar seeds `rules.json` (prefix `A11Y-`), automatic checks (`vcr lint` and post-render analysers) and an `a11y-reviewer` subagent. It cross-references, and does not restate, the typography pillar's caption profiles (`TYPO-*`).
 > **Confidence tiers.** `standard`: a published standard or style guide, checked against the primary source. `platform`: published by a platform or vendor, and may change without notice. `heuristic`: a practitioner rule of thumb, a secondary source, or a VCR-derived engineering default.
@@ -9,7 +9,7 @@ The most important and best-supported finding: **flashing is the only accessibil
 
 ## TL;DR
 
-- **Flash safety is a hard, automatable gate.** WCAG 2.3.1 (Level A) fails content that flashes more than three times in any one-second period, unless the flashing is below the general flash and red flash thresholds.\[2\] A general flash is a pair of opposing relative-luminance changes of 10% or more where the darker state is below 0.80.\[3\] The area allowance is 25% of any 10-degree visual field (341 × 256 CSS px).\[1\]\[4\] ITU-R BT.1702-3 uses 20 cd/m², 25% of the screen and the same three-flash rule.\[5\]\[6\] Run it on the decoded delivery file and on loop seams.
+- **Flash thresholds need a validated analyser before automatic gating.** WCAG 2.3.1 (Level A) fails content that flashes more than three times in any one-second period, unless the flashing is below the general flash and red flash thresholds.\[2\] A general flash is a pair of opposing relative-luminance changes of 10% or more where the darker state is below 0.80.\[3\] The area allowance is 25% of any 10-degree visual field (341 × 256 CSS px).\[1\]\[4\] ITU-R BT.1702-3 uses 20 cd/m², 25% of the screen and the same three-flash rule.\[5\]\[6\] Run it on the decoded delivery file and on loop seams.
 - **Captions are mandatory for any speech or meaningful sound, and "accurate" means more than words.** WCAG 1.2.2 (Level A) requires captions for prerecorded audio.\[2\] FCC caption-quality rules (accuracy, synchronicity, completeness, placement) bind US TV programming only, but they are the best published quality vocabulary.\[7\]\[8\] Music-only and SFX-led pieces still need sound tags when the sound carries meaning (DCMP Captioning Key).\[9\]\[10\]
 - **Silent or text-only motion is not exempt.** Video with no audio falls under WCAG 1.2.1, which requires a text alternative or an audio track.\[2\] Video whose on-screen text and visuals carry information not in the soundtrack needs audio description (1.2.5, AA) or a full text alternative (1.2.3, A). If the audio already conveys all the important visual information, no description is needed.\[11\]\[12\]
 - **Motion sickness has no numeric standard.** WCAG 2.2.2 (pause control for auto-starting motion lasting more than five seconds, shown in parallel with other content) and 2.3.3 (interaction-triggered motion can be disabled, AAA) are web-player rules.\[2\]\[13\]\[14\] For rendered video, VCR's lever is a **reduced-motion variant** plus heuristic motion-intensity checks. Every motion threshold in this pillar is `heuristic`.
@@ -217,13 +217,13 @@ Energetic motion is the medium. The goal is not stillness but **control and rest
 
 ### 4.2 When VCR output needs description (decision rules)
 1. **No audio + information-bearing visuals** (silent explainer, text-only kinetic type, data viz): 1.2.1 applies. Provide a text alternative (post copy, description field or transcript) or an audio track, such as a TTS narration of the on-screen text.
-2. **Music only + on-screen text or meaningful visuals** (the most common social pattern): audio does not convey the visuals, so 1.2.3/1.2.5 apply. The cheapest compliant route is **integrated description (G226)**: have narration or a voiceover say the key on-screen text. Alternatively, a full text alternative in the description.
+2. **Music only + on-screen text or meaningful visuals:** choose the declared conformance level. A complete media alternative can satisfy 1.2.3 at Level A; 1.2.5 at Level AA requires audio description unless the soundtrack already conveys the important visual information. Integrated narration must cover relevant actions and relationships as well as text. A post description alone is not a general AA substitute. [W3C 1.2.5](https://www.w3.org/WAI/WCAG22/Understanding/audio-description-prerecorded.html).
 3. **Narrated, with narration covering every on-screen fact:** no AD needed. Check that supers, prices, dates, URLs, legal lines and chart values are *spoken*, not only shown.
 4. **Decorative abstract motion with no information** (a music visualiser): no AD is needed beyond a short descriptive identification (1.1.1's "sensory experience" exception allows "descriptive identification").
 
 ### 4.3 Practical options on social platforms
 - **YouTube:** creators with multi-language audio access can upload a descriptive audio track (the AD track must match the video length, per a secondary source).\[33\]\[34\] Captions and AD live under "Languages" in Studio.
-- **TikTok, Instagram and X:** no separate AD audio track exists. Use integrated narration (G226), on-screen text read aloud by TTS, or text in the caption or post copy.
+- **Placement without a separate AD track:** use integrated description or supply a described version. Post copy may support the Level A media-alternative route; it does not replace required Level AA audio description. Verify current platform features at delivery.
 - **Extended description** (pausing video) is impossible on feeds. Write the narration so it fits natural pauses, or lengthen the cut.
 - **[expert]** Write description scripts to the frame. Describe *what changes and matters* (actions, on-screen text, scene changes), not aesthetics.
 
@@ -235,7 +235,7 @@ Energetic motion is the medium. The goal is not stillness but **control and rest
 - **Large scale:** "with at least 18 point or 14 point bold or font size that would yield equivalent size for Chinese, Japanese and Korean (CJK) fonts". Points do not map directly to video pixels. VCR treats large-text classification as `heuristic`; see `TYPO-*` for size floors.
 - **1.4.11 Non-text Contrast (AA):** 3:1 against adjacent colours for "Parts of graphics required to understand the content". Examples: chart lines, icons that carry meaning, progress bars.
 - **Applying them to video (all [expert] / heuristic):**
-  - Text over moving footage has a contrast that varies over time. Evaluate the **worst-case percentile over the text's on-screen lifetime**, not one frame.
+  - Text over moving footage varies over time. Inspect local failures throughout its lifetime; a percentile summary is only a diagnostic (§17.4).
   - Gradients and textured backgrounds have no single "background colour". Sample the background ring immediately around glyphs (dilated glyph mask minus glyph).
   - Semi-transparent scrims: measure the composited result.
   - Anti-aliased edges and motion blur lower apparent contrast. Measure glyph cores (eroded mask).
@@ -380,7 +380,7 @@ Energetic motion is the medium. The goal is not stillness but **control and rest
 2. **Safety gate first.** Run flash, red-flash and pattern analysis on the **decoded delivery files**, at full-screen scale, including loop seams. Any 2.3.1 failure is a **Blocker**; stop and report.
 3. **Watch it twice in real time.** Once sound-on, once muted, on a phone-sized display at full brightness. **Do not judge motion from contact sheets**; vestibular and pacing problems exist only in time.
 4. **Captions.** Check presence, completeness (first to last audible content), accuracy against the script or audio, non-speech tags, speaker IDs, sync, rate, and placement against featured text, faces and platform UI.
-5. **Audio description need.** List every on-screen fact (supers, numbers, URLs, legal lines, chart values) and confirm each is spoken or provided in a text alternative.
+5. **Audio description need.** Review important visual information, including actions and relationships, against the declared level and §4.2. Token coverage is only a diagnostic; a text alternative is not a general substitute for Level AA audio description.
 6. **Contrast and colour.** Check worst-case text contrast over the text's lifetime, graphic contrast for meaningful marks, colour-alone encodings, and the CVD simulation (protan, deutan, tritan).
 7. **Motion.** Look for full-frame camera motion, parallax and spin, motion behind reading text, and duration of sustained motion. Check that a reduced variant exists and is faithful.
 8. **Cognition and pacing.** One idea per beat, dwell times, literal wording for key facts, series consistency.
@@ -432,6 +432,8 @@ Energetic motion is the medium. The goal is not stillness but **control and rest
 ---
 
 ## 13. The creation process (brief to verification)
+
+**Research and image handoff.** [Image Direction §1–4](../image-direction/README.md) declares the image role (`IMAGE-PURPOSE-DECLARED`); Accessibility determines its description and equivalent information, with Typography owning text setting. [Cultural Context §1–4](../cultural-context/README.md) supplies audience interpretation evidence, not a substitute for accessibility conformance or testing. Reference images and colour associations must not override `A11Y-COLOR-ALONE` or the owning contrast rules. Use [Domain Exploration §3](../domain-exploration/README.md) for uncertain factual content in descriptions.
 
 1. **Brief intake.** Record placements, sound-on/off expectation, jurisdictions and services, audience (children → stricter pacing and flash margins), and whether a reduced-motion variant and AD are required.
 2. **Script with access built in:**
@@ -528,12 +530,12 @@ Measurability codes: **M-frames** = rendered PNG frames or decoded video; **M-do
 | `A11Y-MOTION-REDUCED-VARIANT` | A reduced-motion variant exists and removes non-essential motion | Variant present; no translate/scale/rotate/camera motion beyond essential; flash checks pass | standard (2.3.3 AAA for interactive) / heuristic for linear video | Web placements, interactive scenes. M-dom (diff transforms between variants) |
 | `A11Y-MOTION-FULLFRAME` | Sustained full-frame camera motion (zoom, pan, orbit, spin) | Flag full-frame motion lasting > 5 s continuous, or > 1 per 5 s (VCR default) | heuristic | All. M-dom (camera transforms) / M-frames (global flow) |
 | `A11Y-MOTION-PARALLAX` | Multi-layer parallax with large relative displacement | Flag ≥ 2 layers covering > 25% of frame moving at differing velocities (VCR default) | heuristic | All. M-dom |
-| `A11Y-MOTION-READING` | Text held still while being read | Text block's transform delta ≈ 0 for at least the caption-profile dwell time | heuristic | Kinetic type, supers. M-dom |
+| `A11Y-MOTION-READING` | Text held still while being read | Superseded: use `TYPO-HOLD`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | Kinetic type, supers. M-dom |
 | `A11Y-CAPTION-PRESENCE` | Captions exist for all speech and meaningful sound | Any audio content with speech or meaningful sound → captions (burned-in or sidecar) | standard (WCAG 1.2.2, A) | All with audio. M-captions + audio VAD |
 | `A11Y-CAPTION-COMPLETE` | Captions cover first to last audible content | No uncaptioned speech span > 0 s (VCR tolerance configurable) | standard (FCC completeness vocabulary; WCAG 1.2.2) | All with speech. M-captions |
 | `A11Y-CAPTION-ACCURACY` | Caption text matches script/audio verbatim (or edited only for rate) | Word error rate vs script; FCC sets no percentage | standard (FCC wording) / heuristic (numeric) | All. M-captions (diff vs script/ASR) |
 | `A11Y-CAPTION-SYNC` | Cue timing coincides with speech/sound | Cue onset vs speech onset offset within VCR default tolerance (heuristic) | standard (FCC) / heuristic (tolerance) | All. M-captions + audio |
-| `A11Y-CAPTION-RATE` | Presentation rate within profile | Defer to `TYPO-CAPTION-CPS`; references: BBC 160–180 wpm, DCMP 130/140/160 wpm (educational), Netflix 20/17 CPS | standard / platform | All captions. M-captions |
+| `A11Y-CAPTION-RATE` | Presentation rate within profile | Superseded: use `TYPO-CAPTION-CPS`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | All captions. M-captions |
 | `A11Y-CAPTION-PLACEMENT` | Captions do not block faces, featured text, graphics, platform UI | Zero bbox intersection with `textBounds()`/DOM text and detected faces | standard (FCC placement) | All. M-dom + M-frames |
 | `A11Y-CAPTION-NONSPEECH` | Meaningful SFX/music tagged | Bracketed lowercase tags with source; no tag for background music < 5 s | standard (DCMP) | Music/SFX pieces. M-captions (presence) + J (meaning) |
 | `A11Y-CAPTION-SPEAKER` | Speaker identification for off-screen/narrator/multiple voices | ID at first appearance and on change | standard (DCMP) | Narrated/multi-voice. M-captions + J |
@@ -541,14 +543,14 @@ Measurability codes: **M-frames** = rendered PNG frames or decoded video; **M-do
 | `A11Y-CAPTION-SIDECAR` | Sidecar (.srt/.vtt) supplied where platform supports it | File present, valid, matches burned-in text | platform | YouTube, X, web. M-captions |
 | `A11Y-CAPTION-AUTO-REVIEW` | Platform auto-captions are never the only captions | Reviewed captions present | platform | All social. J |
 | `A11Y-VIDEO-ONLY-ALT` | Silent video with information has a text alternative or audio track | Present when audio track is absent/silent | standard (WCAG 1.2.1, A) | Silent motion. M-captions/metadata + J |
-| `A11Y-AD-COVERAGE` | Every essential on-screen fact is spoken or in a text alternative | On-screen text tokens ⊆ narration transcript ∪ text alternative | standard (WCAG 1.2.3 A / 1.2.5 AA) | Music-only and text-led pieces. M-dom (text) + M-captions |
-| `A11Y-AD-TRACK` | Separate AD track or described version where required | Present when AD coverage fails and placement supports it | standard / platform | YouTube, web players. J |
-| `A11Y-CONTRAST-TEXT` | Text contrast over its lifetime | Worst-case (5th percentile) ≥ 4.5:1; ≥ 3:1 for large-scale text; logos exempt | standard (WCAG 1.4.3, AA); percentile method heuristic | All text. M-frames + M-dom masks |
+| `A11Y-AD-COVERAGE` | Important visual information has an accessible equivalent at the declared level | Level A: 1.2.3 media alternative or description; Level AA: 1.2.5 audio coverage. Text-token inclusion alone is insufficient | standard (scoped WCAG); token diagnostic heuristic | Applicable prerecorded synchronized media; human review of visual meaning |
+| `A11Y-AD-TRACK` | Description supplied where required | Integrated description, supported AD track or described version; platform limitations do not waive the requirement | standard (scoped WCAG) / platform | Applicable synchronized media. J |
+| `A11Y-CONTRAST-TEXT` | Text contrast over its lifetime; superseded by `TYPO-CONTRAST` | Superseded: use `TYPO-CONTRAST`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | Applicable text; source colours and supplementary frame inspection |
 | `A11Y-CONTRAST-GRAPHIC` | Meaningful graphic parts vs adjacent colours | ≥ 3:1 | standard (WCAG 1.4.11, AA) | Charts, icons, progress UI. M-frames + J (which parts are meaningful) |
 | `A11Y-COLOR-ALONE` | Colour is not the only carrier of meaning | Redundant cue present (label, shape, pattern, position) | standard (WCAG 1.4.1, A) | Data viz, status, CTAs. J (assisted by M-dom) |
 | `A11Y-CVD-DISTINCT` | Encoded categories stay distinguishable under CVD simulation | Pairwise ΔE (CIEDE2000) under protan/deutan (Viénot) and tritan (Brettel) above VCR default | heuristic | Data viz, legends, UI. M-frames / palette |
 | `A11Y-PLAIN-LANGUAGE` | Clear, literal wording for key facts | One idea per beat; no idiom for prices/steps/warnings | standard (COGA, informative) / heuristic | Explainers, ads. J (readability score as signal) |
-| `A11Y-TEXT-DWELL` | On-screen text static and legible long enough to read | ≥ caption-profile reading time for its word count, counted from end of entrance animation | heuristic (derived from caption standards) | Supers, kinetic type. M-dom |
+| `A11Y-TEXT-DWELL` | On-screen text static and legible long enough to read | Superseded: use `TYPO-HOLD`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | Supers, kinetic type. M-dom |
 | `A11Y-SERIES-CONSISTENT` | Consistent caption position, colour meanings, tag vocabulary, CTA location across episodes | Identical tokens across series | heuristic (by analogy to WCAG 3.2.3/3.2.4) | Series. M-dom (cross-episode diff) |
 | `A11Y-ALT-TEXT` | Every informative still has alt text including verbatim on-image text | Present; contains all OCR'd text; not identical to caption | standard (WCAG 1.1.1) / heuristic (content rules) | Stills, carousels. M-frames (OCR) + J |
 | `A11Y-ALT-CAROUSEL` | Unique alt text per carousel slide | No duplicates | heuristic | Carousels. M (string compare) |
@@ -618,8 +620,8 @@ Measurability codes: **M-frames** = rendered PNG frames or decoded video; **M-do
 - **Calculation:**
   - Glyph core = mask eroded by 1 px. Background ring = mask dilated by 3–4 px minus the dilated-by-1 mask.
   - Per frame, compute luminance of the median glyph core and median ring, then the WCAG ratio (L1+0.05)/(L2+0.05).
-  - Across the text's lifetime, take the **5th percentile** of the per-frame ratio (heuristic choice). Also report the minimum.
-- **Sampling:** every frame while text is ≥ 90% opaque and static. Entrance animation is excluded and handled by `A11Y-TEXT-DWELL`.
+  - A 5th percentile may summarise diagnostics, but must not hide local or temporal failures. Median glyph/ring colours can also hide poor contrast.
+- **Scope:** this mask method is experimental. `TYPO-CONTRAST` and [W3C 1.4.3](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) govern source-colour evaluation. Inspect entrances, exits and motion separately; an opacity cutoff or reading-hold check does not exempt them from contrast review.
 - **Failure modes:**
   - outlines and drop shadows: contrast should be measured against the stroke when a stroke separates the glyph from the background. Detect strokes or measure glyph vs stroke and stroke vs background;
   - gradients inside glyphs;
@@ -658,7 +660,7 @@ Measurability codes: **M-frames** = rendered PNG frames or decoded video; **M-do
 
 ### 17.7 AD coverage (`A11Y-AD-COVERAGE`, `A11Y-VIDEO-ONLY-ALT`)
 - **Inputs:** all on-screen text from DOM and `textBounds()` over time; the narration transcript; the post copy / text alternative.
-- **Calculation:** normalise tokens (numbers, URLs, prices, dates). Report on-screen facts absent from the narration and text alternative. Detect a silent or no-audio track (RMS below a floor across the whole duration) to trigger 1.2.1.
+- **Calculation:** token comparison can flag possible omissions, but cannot establish semantic coverage. Assess the narration for Level AA and any complete media alternative for Level A separately. Inspect important non-text visuals and meaning, then apply §4.2. Silence detection only suggests a media classification for review.
 - **Failure modes:** decorative words flagged; meaning conveyed by imagery (not text) missed, which is judgement.
 
 ---

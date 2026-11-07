@@ -231,6 +231,8 @@ The most important finding is that two renders using the "same" treatment often 
 
 ## 7. Stylised effects
 
+**Choose the process before the effect stack.** [Visual Research §3–4](../visual-research/README.md) supplies observed process cues and `VREF-TRANSFER-EXPLAINED`; [Cultural Context §2–3](../cultural-context/README.md) supplies any audience-dependent genre readings. Art Direction selects the treatment. FX owns how blending, masks and texture produce it; a named effect does not establish historical authenticity or cultural meaning.
+
 | Effect | Intent | How it works | Typical parameters | Reads as cheap when |
 |---|---|---|---|---|
 | Glow / bloom | light, energy, emphasis | threshold the highlights, blur them at several radii, then add (`lighter`/screen) in linear space | 2–4 blur octaves, intensity under 1 | done in sRGB (grey halos); glow on everything; a single radius |
@@ -407,6 +409,8 @@ Details are in §18.
 
 ## 15. The creation process
 
+**Asset handoff.** Consume the image brief and preparation list from [Image Direction §3–5](../image-direction/README.md), especially `IMAGE-PREP-DECLARED` and `IMAGE-ORIGINAL-PRESERVED`. Keep source–derivative relationships with the shared provenance record. Image Direction decides whether mixed assets can form a coherent set; FX executes the agreed reconciliation and checks treatment survival. Lighting and Materials retain their respective light and surface rules.
+
 1. **From the brief:** name the reference process (riso? newsprint? CRT?) and *why* it fits (`ART-*`). Decide the ink and palette count, and the blend space.
 2. **Design for motion first:** decide each texture's attachment (frame, object or time), boil rate (none, on twos, on threes) and seed strategy before building the look.
 3. **Build the stack from bottom to top:** paper or substrate → content plates → per-plate treatment (threshold, halftone) → overprint blends → global texture → light effects (glow, in linear) → type (cleaner; `TYPO-*`). Keep type above destructive treatments.
@@ -455,22 +459,22 @@ Details are in §18.
 | FX-MISREG-RANGE | Misregistration offsets within declared range, seeded, low-frequency drift | proposed 1–4 px at 1080 width | heuristic | riso looks. Measurable (params) |
 | FX-GRAIN-SCALE | Grain feature size survives delivery | proposed ≥ 2 px correlation length at delivery resolution | heuristic | grain, noise. Measurable (autocorrelation) |
 | FX-TEXTURE-SURVIVAL | Texture energy retained after simulated platform re-encode | proposed ≥ 50% of the high-band energy retained in textured regions | heuristic | all textures for social. Measurable |
-| FX-BANDING | No visible banding in gradients after encode | proposed: no runs of identical luma >N px with step ≥1 code value in smooth ramps (calibrate) | heuristic | glows, vignettes, ramps. Measurable |
-| FX-CHROMA-SUBSAMPLE | No essential colour detail finer than 2 px (lost to 4:2:0 [24]) | colour-only features ≥ 2 px | platform (4:2:0) / heuristic (2 px) | CA, riso, coloured halftone. Measurable |
+| FX-BANDING | No visible banding in gradients after encode | Superseded: use `DELIVERY-BANDING`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | glows, vignettes, ramps. Measurable |
+| FX-CHROMA-SUBSAMPLE | No essential colour detail finer than 2 px (lost to 4:2:0 [24]) | Superseded: use `DELIVERY-RED-CHROMA`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | CA, riso, coloured halftone. Measurable |
 | FX-LUT-VALID | .cube conforms to spec [12] | N in [2,256] (3D) or [2,65536] (1D); N³ rows; LF line endings; lines ≤ 250 bytes | standard (Adobe spec) | LUT files. Measurable (parser) |
 | FX-LUT-SPACE | LUT input colour space declared and matched | declaration present | heuristic | LUT use. Measurable (metadata) |
 | FX-MASK-EDGE | Feather scaled to output resolution; feather not animating unintentionally | feather σ constant unless keyed | heuristic | masks and mattes. Measurable (sampled params) |
-| FX-KNOCKOUT-LEGIBLE | Knockout or image-filled type passes `TYPO-CONTRAST` over its lifetime | per `TYPO-CONTRAST` | (inherits) | knockout type. Measurable |
-| FX-TEXT-CONTRAST | Text over treated imagery passes `TYPO-CONTRAST` on treated frames, worst frame | per `TYPO-CONTRAST` | (inherits) | all text. Measurable |
-| FX-FLASH-SAFE | Treated output passes `A11Y-FLASH-*` | per `A11Y-FLASH-*` (WCAG 2.3.1 [27]) | standard (via A11Y) | all motion. Measurable |
+| FX-KNOCKOUT-LEGIBLE | Knockout or image-filled type passes `TYPO-CONTRAST` over its lifetime | Superseded: use `TYPO-CONTRAST`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | knockout type. Measurable |
+| FX-TEXT-CONTRAST | Text over treated imagery passes `TYPO-CONTRAST` on treated frames, worst frame | Superseded: use `TYPO-CONTRAST`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | all text. Measurable |
+| FX-FLASH-SAFE | Treated output passes `A11Y-FLASH-*` | Superseded: use `A11Y-FLASH-GENERAL`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | all motion. Measurable |
 | FX-FOCAL-PRESERVED | Treatment keeps detail and contrast on the focal subject | — | heuristic | all. Judgement only (optionally a saliency proxy) |
 | FX-RENDER-COST | Per-frame capture time within budget | proposed ≤ 3× the scene's untreated baseline (calibrate) | heuristic | browser scenes. Measurable |
 | FX-CACHE-STATIC | Time-invariant treatments are pre-rendered assets | 0 time-invariant per-frame filters | heuristic | all. Measurable (frame-hash of the treated layer is constant → should be baked) |
 | FX-BACKDROP-FILTER-BUDGET | `backdrop-filter` over animated content only where intended | flagged for review | heuristic | CSS scenes. Measurable (DOM) |
 | FX-PRESET-SMELL | No unmodified default parameters or generic stack (grain+CA+vignette) without brief reason | — | heuristic | all. Judgement (assisted by param scan) |
 | FX-INTENSITY-RESTRAINT | Effect strength proportionate; clipping limited | proposed: <0.5% of pixels clipped introduced by the treatment (calibrate) | heuristic | glows, dodge/burn, contrast. Measurable plus judgement |
-| FX-ALPHA-MASTER | Alpha masters declare straight or premultiplied, and edges verified | declaration present | heuristic | ProRes 4444 deliveries (`DELIVERY-*`). Measurable |
-| FX-LOOP-SEAM | Loop seam has no texture, noise or drift discontinuity | seam frame-pair flicker ≤ median frame-pair flicker | heuristic | loops. Measurable |
+| FX-ALPHA-MASTER | Alpha masters declare straight or premultiplied, and edges verified | Superseded: use `DELIVERY-MASTER-ALPHA`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | ProRes 4444 deliveries (`DELIVERY-*`). Measurable |
+| FX-LOOP-SEAM | Loop seam has no texture, noise or drift discontinuity | Superseded: use `MOTION-RHY-004`. See the shared rule-owner table; historical proposal is not an active threshold. | heuristic (superseded proposal) | loops. Measurable |
 
 ## 18. How to measure in VCR
 
