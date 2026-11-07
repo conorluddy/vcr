@@ -298,13 +298,13 @@ Each entry gives the inputs, the calculation, the sampling strategy and the meas
 
 - **`MAT-ALBEDO-*`.** Inputs: the scene graph at `seek(t)`; `color` (linear); `metalness`; `map` pixels read back via a canvas. Calculation: sample about 4096 texels, decode sRGB, multiply by the factor, re-encode, then compute band fractions per metal class. Sampling: t = 0, plus every frame of any material tween. Failure modes: vertex colours, custom shaders (mark as unverifiable) and compressed KTX2 textures.
 - **`MAT-METALLIC-BINARY`, `MAT-DIELECTRIC-F0`.** Calculation: effective metallic = factor × B channel, reported as the area fraction in (0.1, 0.9). Dielectric F0 = `((ior−1)/(ior+1))² × specularIntensity`, flagged below 0.02. Failure mode: UV area is not screen area, so weight by coverage when frames exist.
-- **`MAT-TEXTURE-COLORSPACE`, `MAT-COLOR-MANAGEMENT-OUTPUT`, `MAT-MIP-ANISO`.** Calculation: exact lookup against §4 of each slot's `colorSpace`, `generateMipmaps`, `minFilter` and `anisotropy`, plus `renderer.outputColorSpace`, `toneMapping` and `ColorManagement.enabled`. In Blender, read `image.colorspace_settings.name` and `view_transform` via `bpy`. Sampling: once per scene, and again whenever a texture is swapped. Failure modes: `ShaderMaterial` uniforms, and untagged Canvas or Video textures.
+- **`MAT-TEXTURE-COLORSPACE`, `MAT-COLOR-MANAGEMENT-OUTPUT` (dropped; owner `LIGHT-OUTPUT-COLORSPACE`), `MAT-MIP-ANISO`.** Calculation: exact lookup against §4 of each slot's `colorSpace`, `generateMipmaps`, `minFilter` and `anisotropy`, plus `renderer.outputColorSpace`, `toneMapping` and `ColorManagement.enabled`. In Blender, read `image.colorspace_settings.name` and `view_transform` via `bpy`. Sampling: once per scene, and again whenever a texture is swapped. Failure modes: `ShaderMaterial` uniforms, and untagged Canvas or Video textures.
 - **`MAT-NORMAL-CONVENTION`.** Inputs: the manifest's declared convention, plus a calibration render (a raised-bump normal map lit from screen-up). Calculation: the bump's upper half must be brighter than its lower half. Failure modes: image statistics alone cannot decide the convention, and mirrored UVs flip handedness.
-- **`MAT-BRAND-DELTAE`.** Inputs: the swatch, PNG frames, a material-ID mask pass, a normal pass, and delivery frames decoded with an explicit BT.709 matrix. Calculation: keep mask pixels with `n·v > 0.9`, erode 2 px, drop the top 5% of luminance (highlights), take the median sRGB, then compute ΔE00. Report the median and P90. Sampling: every frame where the region covers more than 1% of the frame, at least every 0.5 s and at markers. Failure modes: a wrong YUV matrix shifts ΔE by several units; motion blur; grain added by `FX-*`.
+- **`MAT-BRAND-DELTAE` (dropped; owner `LIGHT-BRAND-DELTAE`).** Inputs: the swatch, PNG frames, a material-ID mask pass, a normal pass, and delivery frames decoded with an explicit BT.709 matrix. Calculation: keep mask pixels with `n·v > 0.9`, erode 2 px, drop the top 5% of luminance (highlights), take the median sRGB, then compute ΔE00. Report the median and P90. Sampling: every frame where the region covers more than 1% of the frame, at least every 0.5 s and at markers. Failure modes: a wrong YUV matrix shifts ΔE by several units; motion blur; grain added by `FX-*`.
 - **`MAT-SPECULAR-CRAWL`.** Inputs: consecutive frames at delivery fps; a highlight mask (top 10% of luminance on the object); optionally a 2× supersampled reference. Calculation: temporal high-pass `|L_t − (L_{t−1}+L_{t+1})/2|` in linear luminance. Flag when the ratio to the reference exceeds 2, or, with no reference, when more than 50% of the energy sits in fewer than 1% of mask pixels (h). Sampling: segments where the transform series shows motion. Failure modes: fast legitimate motion (reproject with transforms) and Cycles sampling noise (fix the seed).
 - **`MAT-MOIRE`.** Calculation: the projected pattern period from UV scale and the camera, flagged below 4 px. Confirm with a 2D FFT on the object region: low-frequency peaks that drift between frames indicate aliasing. Run on decoded delivery too. Failure mode: procedural patterns lack metadata, so use the FFT only.
 - **`MAT-TEXEL-DENSITY`.** Calculation: per visible triangle, √(UV area × texture pixels ÷ screen pixel area). Report P10 for hero objects at the closest frame. Failure modes: exclude `n·v < 0.2`; overlapping UVs distort the result.
-- **`MAT-DETERMINISTIC-SHADER`, `MAT-LOOP-CLOSURE`.** Calculation: render the same frames in fresh contexts in forward, reverse and random seek order, and require bit-exact output on the same machine. Run a static scan for `Math.random`, `Date` and `performance.now`. For loops, compare frame 0 with frame T·fps. Failure modes: texture-load races (`seek` must await readiness) and cross-GPU differences.
+- **`MAT-DETERMINISTIC-SHADER` (dropped; one generic check, `vcr capture --verify`), `MAT-LOOP-CLOSURE` (dropped; owner `MOTION-RHY-004`).** Calculation: render the same frames in fresh contexts in forward, reverse and random seek order, and require bit-exact output on the same machine. Run a static scan for `Math.random`, `Date` and `performance.now`. For loops, compare frame 0 with frame T·fps. Failure modes: texture-load races (`seek` must await readiness) and cross-GPU differences.
 - **`MAT-ROUNDTRIP-FIDELITY`, `MAT-EXTENSION-SUPPORT`.** Inputs: a `bpy` dump of Principled inputs and node types; the glTF `materials` and `extensionsUsed`; 8-angle turntables in Blender and three.js under one HDRI with Neutral tone mapping. Calculation: a parameter diff, a list of non-exportable node types, and per-material mean ΔE00. Failure mode: the renderers differ legitimately, so calibrate on a reference sphere set first.
 - **`MAT-OUTLINE-WIDTH-STABLE`.** Calculation: the distance-transform width along the silhouette and its coefficient of variation over frames, normalised by object distance.
 
@@ -342,7 +342,7 @@ Each entry gives the inputs, the calculation, the sampling strategy and the meas
 7. **Check series consistency** (`MAT-SERIES-CONSISTENCY`).
 
 **Severity:**
-- **Blocker:** wrong colour space or normal convention; brand ΔE failure on a flat region; non-determinism; broken glass or chrome; export loss.
+- **Blocker:** wrong colour space or normal convention; brand ΔE failure on a flat region; non-determinism (dropped; one generic check, `vcr capture --verify`); broken glass or chrome; export loss.
 - **Major:** visible crawl or moiré; hard-range albedo failure on a hero object; whole-surface intermediate metallic; texel density < 0.5 on a close-up.
 - **Minor:** albedo in the warning band; missing bevels on secondary objects.
 - **Note:** taste.
@@ -357,8 +357,8 @@ Each entry gives the inputs, the calculation, the sampling strategy and the meas
 | Flat | Specular 0, roughness 1 everywhere, frontal light | Reflectance < 0.35; `LIGHT-*` |
 | Wet | Roughness < 0.1 on non-glossy classes; stray clearcoat | Mean roughness by class |
 | Chalky | Albedo > 220 with roughness ≥ 0.9 | `MAT-ALBEDO-*` |
-| Muddy | Double gamma; filmic desaturation | `MAT-TEXTURE-COLORSPACE`, `MAT-TONEMAP-BRAND` |
-| Glowy | Emissive used as fill | `MAT-EMISSIVE-CLIP` |
+| Muddy | Double gamma; filmic desaturation | `MAT-TEXTURE-COLORSPACE`, `MAT-TONEMAP-BRAND` (dropped; owner `LIGHT-OUTPUT-COLORSPACE`) |
+| Glowy | Emissive used as fill | `MAT-EMISSIVE-CLIP` (dropped; owner `LIGHT-CLIP-HIGHLIGHTS`) |
 | Crawling / swimming | Specular aliasing, moiré | `MAT-SPECULAR-CRAWL`, `MAT-MOIRE` |
 | Ghostly glass | Opacity instead of transmission | `MAT-ALPHA-VS-TRANSMISSION` |
 
@@ -448,12 +448,12 @@ Each entry gives the inputs, the calculation, the sampling strategy and the meas
 
 **Analysis:**
 1. `MAT-PHYSICAL-SCOPE`
-2. `MAT-TEXTURE-COLORSPACE`, `MAT-COLOR-MANAGEMENT-OUTPUT`, `MAT-NORMAL-CONVENTION`, `MAT-ORM-PACKING`
+2. `MAT-TEXTURE-COLORSPACE`, `MAT-COLOR-MANAGEMENT-OUTPUT` (dropped; owner `LIGHT-OUTPUT-COLORSPACE`), `MAT-NORMAL-CONVENTION`, `MAT-ORM-PACKING`
 3. `MAT-ALBEDO-DIELECTRIC-RANGE`, `MAT-ALBEDO-METAL-RANGE`, `MAT-METALLIC-BINARY`, `MAT-DIELECTRIC-F0`
 4. `MAT-ENV-MAP-PRESENT`, `MAT-ALPHA-VS-TRANSMISSION`, `MAT-EXTENSION-EXCLUSIONS`, `MAT-TRANSMISSION-COST`
-5. `MAT-DETERMINISTIC-SHADER`, `MAT-LOOP-CLOSURE`
+5. `MAT-DETERMINISTIC-SHADER` (dropped; one generic check, `vcr capture --verify`), `MAT-LOOP-CLOSURE` (dropped; owner `MOTION-RHY-004`)
 6. Watch in motion, then `MAT-SPECULAR-CRAWL`, `MAT-MOIRE`, `MAT-ROUGHNESS-FLOOR`, `MAT-OUTLINE-WIDTH-STABLE`
-7. `MAT-TONEMAP-BRAND`, `MAT-BRAND-DELTAE` (PNG and delivery), `MAT-EMISSIVE-CLIP`
+7. `MAT-TONEMAP-BRAND` (dropped; owner `LIGHT-OUTPUT-COLORSPACE`), `MAT-BRAND-DELTAE` (dropped; owner `LIGHT-BRAND-DELTAE`) (PNG and delivery), `MAT-EMISSIVE-CLIP` (dropped; owner `LIGHT-CLIP-HIGHLIGHTS`)
 8. `MAT-TEXEL-DENSITY`, `MAT-MIP-ANISO`
 9. Judgement: `MAT-EDGE-BEVEL`, `MAT-ROUGHNESS-VARIATION`, `MAT-IMPERFECTION-BUDGET`, `MAT-ALBEDO-NO-LIGHTING`
 10. `MAT-SERIES-CONSISTENCY`, `MAT-LICENCE-PROVENANCE`, `MAT-ROUNDTRIP-FIDELITY`, `MAT-EXTENSION-SUPPORT`
@@ -465,8 +465,8 @@ Each entry gives the inputs, the calculation, the sampling strategy and the meas
 4. Texture set-up (`MAT-TEXTURE-COLORSPACE`, `MAT-NORMAL-CONVENTION`, `MAT-ORM-PACKING`, `MAT-MIP-ANISO`)
 5. Environment and transmission (`MAT-ENV-MAP-PRESENT`, `MAT-ALPHA-VS-TRANSMISSION`)
 6. Bevels and imperfection (`MAT-EDGE-BEVEL`, `MAT-ROUGHNESS-VARIATION`, `MAT-IMPERFECTION-BUDGET`)
-7. Brand pass (`MAT-TONEMAP-BRAND`, `MAT-BRAND-DELTAE`)
-8. Determinism and loops (`MAT-DETERMINISTIC-SHADER`, `MAT-LOOP-CLOSURE`)
+7. Brand pass (`MAT-TONEMAP-BRAND` (dropped; owner `LIGHT-OUTPUT-COLORSPACE`), `MAT-BRAND-DELTAE` (dropped; owner `LIGHT-BRAND-DELTAE`))
+8. Determinism and loops (`MAT-DETERMINISTIC-SHADER` (dropped; one generic check, `vcr capture --verify`), `MAT-LOOP-CLOSURE` (dropped; owner `MOTION-RHY-004`))
 9. Motion test (`MAT-SPECULAR-CRAWL`, `MAT-MOIRE`, `MAT-ROUGHNESS-FLOOR`)
 10. Export, provenance and series freeze (`MAT-ROUNDTRIP-FIDELITY`, `MAT-EXTENSION-SUPPORT`, `MAT-LICENCE-PROVENANCE`, `MAT-SERIES-CONSISTENCY`)
 

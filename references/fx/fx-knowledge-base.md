@@ -9,7 +9,7 @@ The most important finding is that two renders using the "same" treatment often 
 - **Blend maths is standardised, but the colour space and the grouping are not.** W3C *Compositing and Blending Level 1* defines all 16 CSS blend modes and the 12 Porter-Duff operators plus `lighter` [1].\[1\] SVG filter primitives default to `linearRGB`, while CSS filter functions "must operate in the sRGB color space" [2].\[2\]\[3\] Blender composites in scene-linear [11].\[4\] So a multiply can render differently from one tool to the next, and every scene must declare its blend space (`FX-BLEND-SPACE-DECLARED`).
 - **Stacking contexts silently change what a blend touches.** In HTML, anything that creates a stacking context (opacity, filter, transform and so on) becomes an isolated group, and a blended element only blends inside that group [1]. Most "my multiply does nothing" bugs are isolation bugs.
 - **Motion is where treatments fail.** Thresholds, posterisation and dithers boil when input values cross a cut-off. Screens and noise crawl when the image moves under a pattern fixed to the frame. Agents that judge from single frames will miss both, so every treatment needs a time-series check (`FX-TEMPORAL-FLICKER`, `FX-SCREEN-SPACE-DECLARED`).
-- **Determinism is non-negotiable in a seek-and-capture renderer.** Noise must be seeded and a pure function of (seed, t, position). `feTurbulence` has a `seed` attribute [2]. FFmpeg's `noise` filter has a documented default seed of 123457 [23]. Capturing the same frame twice must give identical pixels (`FX-DETERMINISM`).
+- **Determinism is non-negotiable in a seek-and-capture renderer.** Noise must be seeded and a pure function of (seed, t, position). `feTurbulence` has a `seed` attribute [2]. FFmpeg's `noise` filter has a documented default seed of 123457 [23]. Capturing the same frame twice must give identical pixels (`FX-DETERMINISM` (dropped; one generic check, `vcr capture --verify`)).
 - **Fine texture rarely survives social delivery.** H.264 at platform bitrates (YouTube recommends 8 Mbps for 1080p SDR at 24–30 fps [24]; TikTok's ad floor is "More than or equal to 516 kbps" [26]) turns single-pixel grain and dither into mush or blocks.\[5\]\[6\] Build texture at a scale that survives, and verify it with a simulated re-encode (`FX-TEXTURE-SURVIVAL`).
 - **Cost is real.** Animated `filter: blur()` and `backdrop-filter` re-run convolutions on every frame. Bake static treatments into assets, and keep per-frame shaders for effects that actually change (`FX-CACHE-STATIC`, `FX-RENDER-COST`).
 - **A crafted treatment differs from a preset in four ways:** a reason tied to the brief, restraint in intensity, behaviour designed for motion, and imperfection that is controlled rather than uniform. The reviewer's words "muddy", "plasticky", "filter-y", "overcooked" and "it's a preset" each map to a measurable parameter (§14).
@@ -141,7 +141,7 @@ The most important finding is that two renders using the "same" treatment often 
   - Image showing through letters: `source-in`, or CSS `background-clip: text`.
   - Letters punched out of a plate: `destination-out`.
   - Legibility depends on what shows through. See §10 and `TYPO-CONTRAST`.
-  - `FX-KNOCKOUT-LEGIBLE`: the image inside the counters must hold contrast against the surround for the whole time the text is on screen.
+  - `FX-KNOCKOUT-LEGIBLE` (dropped; owner `TYPO-CONTRAST`): the image inside the counters must hold contrast against the surround for the whole time the text is on screen.
 - **Track mattes:** After Effects vocabulary (alpha, alpha inverted, luma, luma inverted matte). The open equivalents are CSS `mask-image` referencing an animated element, SVG `<mask>` containing animated content, canvas `destination-in`, and FFmpeg `alphamerge` or `maskedmerge` (worked examples).
 - **Feathering:** a Gaussian blur of the matte (σ in px), not of the content. The feather should scale with output resolution. A 4 px feather at 1080 wide becomes harsh after downscaling to 540 for a thumbnail.
 - **Masks in motion:**
@@ -300,7 +300,7 @@ The most important finding is that two renders using the "same" treatment often 
 - **What happens to texture:**
   - **Grain and fine noise** are spatially random, so they are expensive to code. At low bitrates the encoder smooths them away (mush) or quantises them into blocky patches that crawl between GOPs. AV1 solves this by stripping and re-synthesising grain [19]. In H.264, film-grain SEI (SMPTE RDD 5-2006) is a registered disclosure, "NOT a Standard", describing optional bit-accurate synthesis [21]. FFmpeg's support is limited, and there is no evidence platforms apply it, so do not rely on it.
   - **Single-pixel dither and halftone** suffer the same fate, and they can also beat against 8×8 transform blocks.
-  - **4:2:0 chroma** halves colour resolution in both axes, so 1 px red/blue misregistration, chromatic aberration and coloured halftone dots blur into fringes (`FX-CHROMA-SUBSAMPLE`). Put fine texture in luma, and colour texture at 2 px or more.
+  - **4:2:0 chroma** halves colour resolution in both axes, so 1 px red/blue misregistration, chromatic aberration and coloured halftone dots blur into fringes (`FX-CHROMA-SUBSAMPLE` (dropped; owner `DELIVERY-RED-CHROMA`)). Put fine texture in luma, and colour texture at 2 px or more.
   - **Banding:** smooth gradients (vignettes, glows, duotone ramps) band at 8 bits, and worse after re-encoding. A small amount of static, luma-only dither before the 8-bit conversion helps, provided the dither survives (it often doesn't at social bitrates; test it).
 - **What survives at social bitrates** (heuristic, to be confirmed by `FX-TEXTURE-SURVIVAL` on each project):
   - Coarse grain with a 2–3 px or larger feature size at delivery resolution.
@@ -314,7 +314,7 @@ The most important finding is that two renders using the "same" treatment often 
 
 ## 10. Legibility
 
-- Text over textured or treated imagery must pass `TYPO-CONTRAST`, measured on the rendered, treated frame over the text's actual footprint, and on the worst frame across the text's lifetime (`FX-TEXT-CONTRAST`).
+- Text over textured or treated imagery must pass `TYPO-CONTRAST`, measured on the rendered, treated frame over the text's actual footprint, and on the worst frame across the text's lifetime (`FX-TEXT-CONTRAST` (dropped; owner `TYPO-CONTRAST`)).
 - **Common destroyers:**
   - Overlay or soft-light texture applied above the type layer.
   - Grain on small type.
@@ -384,7 +384,7 @@ Details are in §18.
 5. **Judge craft:** restraint, coherence of space (frame-, object- or time-locked), neutral values chosen correctly, imperfection that varies without being random noise.
 6. **Write the findings.** Each finding gives the rule ID, the frames or time range, the evidence (a metric value or crop), the severity and a concrete parameter fix.
 - **Severity:**
-  - **Blocker:** `FX-FLASH-SAFE` failure, `FX-TEXT-CONTRAST` failure on required text, `FX-DETERMINISM` failure, treatment destroyed after delivery encode.
+  - **Blocker:** `FX-FLASH-SAFE` (dropped; owner `A11Y-FLASH-*`) failure, `FX-TEXT-CONTRAST` (dropped; owner `TYPO-CONTRAST`) failure on required text, `FX-DETERMINISM` (dropped; one generic check, `vcr capture --verify`) failure, treatment destroyed after delivery encode.
   - **Major:** undeclared boil or crawl on hero content, wrong blend space causing visible mismatch across a series, isolation bug removing an intended blend, render cost over budget.
   - **Minor:** cheap tells (uniform grain, tile repeats, preset CA), feather inconsistencies.
   - **Note:** taste suggestions.
@@ -478,7 +478,7 @@ Details are in §18.
 
 ## 18. How to measure in VCR
 
-- **FX-DETERMINISM:**
+- **FX-DETERMINISM:** (dropped; one generic check, `vcr capture --verify`)
   - Inputs: rendered PNGs.
   - Calculation: seek(t), capture, seek elsewhere, seek(t) again, capture, then a byte compare or per-pixel diff.
   - Sampling: 5 random t per scene plus marker times.
@@ -492,19 +492,19 @@ Details are in §18.
 - **FX-SCREEN-CRAWL:**
   - Calculation: phase correlation of the treated layer's high-pass in the object's bounding box, compared with the object's sampled transform. Object-locked means the pattern shift equals the object shift; frame-locked means zero shift.
   - Failure modes: scaling and rotation (use log-polar), low-texture regions.
-- **FX-TEXTURE-SURVIVAL / FX-GRAIN-SCALE / FX-BANDING:**
+- **FX-TEXTURE-SURVIVAL / FX-GRAIN-SCALE / FX-BANDING:** (dropped; owner `DELIVERY-BANDING`)
   - Inputs: the master render, and a simulated delivery encode. FFmpeg libx264, `yuv420p`, at the target platform's bitrate from `DELIVERY-*`, then re-encoded again at a lower bitrate to mimic platform processing.
   - Calculations:
     - Survival: high-pass (difference of Gaussians, roughly 1–4 px band) energy in textured regions, after ÷ before.
     - Grain scale: the autocorrelation half-width of the grain layer.
     - Banding: in smooth-gradient masks, detect plateaus and step edges in luma.
   - Failure modes: the platform encoder is unknown and changes, so the simulation is a proxy; motion-heavy shots fare worse than the sampled frames; the metric can't tell grain from compression noise (compare against the untreated encode).
-- **FX-TEXT-CONTRAST / FX-KNOCKOUT-LEGIBLE:**
+- **FX-TEXT-CONTRAST / FX-KNOCKOUT-LEGIBLE:** (both dropped; owner `TYPO-CONTRAST`)
   - Inputs: `textBounds()` or the DOM text rects at t, and PNG frames.
   - Calculation: the `TYPO-CONTRAST` algorithm on the treated frame. Use background percentiles (for example the 10th/90th luma in the bounds dilated by the stroke), not the mean.
   - Sampling: every 0.25 s over the text's lifetime, plus treatment-parameter peaks.
   - Failure modes: antialiasing contaminates samples; grain makes per-pixel contrast noisy (use percentiles).
-- **FX-FLASH-SAFE:** run the `A11Y-FLASH-*` analyser on the decoded delivery video. Encoding can soften flashes, but analyse the master too.
+- **FX-FLASH-SAFE:** (dropped; owner `A11Y-FLASH-*`) run the `A11Y-FLASH-*` analyser on the decoded delivery video. Encoding can soften flashes, but analyse the master too.
 - **FX-BLEND-SPACE-* / FX-SVG-FILTER-CIF / FX-ISOLATION-EXPLICIT / FX-BLEND-ANIM-DISCRETE:**
   - Inputs: DOM and computed styles at t.
   - Calculations:
@@ -519,14 +519,14 @@ Details are in §18.
 - **FX-CACHE-STATIC:** hash the treated layer's pixels across frames. If the hash is constant while a per-frame filter is active, bake it.
 - **FX-LUT-VALID:** parse the file against [12]: keyword uniqueness, size range, row count, number range ±1e+37, LF line endings, line length.
 - **FX-MOIRE-RESAMPLE:** a 2D FFT of the treated region at delivery resolution. Flag strong peaks near the Nyquist frequency or near the 1/8-pixel block frequency. Failure mode: intentional fine patterns.
-- **FX-LOOP-SEAM:** compare the flicker metric and the mean absolute difference for the pair (last, first) against the median over all consecutive pairs.
+- **FX-LOOP-SEAM:** (dropped; owner `MOTION-RHY-004`) compare the flicker metric and the mean absolute difference for the pair (last, first) against the median over all consecutive pairs.
 
 ## 19. VCR-specific rendering and delivery notes
 
 - **Seeking breaks stateful effects.** Error diffusion across time, feedback trails, hysteresis, datamosh and accumulation motion blur all depend on previous frames. Either make them pure functions of t (closed-form drift, noise seeded by `t_fx`), or render them in a sequential pre-pass to cached frames or a video, then composite that as footage.
 - **Fixed fps quantises time.** Stepped boil should be defined in frames and converted per fps. "On twos" at 24 fps is 12 updates per second; at 60 fps, choose k = 5 for a similar feel. Sub-frame motion blur needs explicit shutter sampling (render N sub-samples per frame and average them in linear space).
 - **`yuv420p` conversion.** Every RGB treatment passes through RGB→YUV with chroma halved. Run FX checks on the decoded delivery, not only on PNGs. Watch the BT.709 matrix and range tags (owned by `DELIVERY-*`), because mismatches shift duotone colours.
-- **ProRes 4444 alpha masters** keep alpha for downstream compositing. Declare the alpha convention and verify the edges (`FX-ALPHA-MASTER`).
+- **ProRes 4444 alpha masters** keep alpha for downstream compositing. Declare the alpha convention and verify the edges (`FX-ALPHA-MASTER` (dropped; owner `DELIVERY-MASTER-ALPHA`)).
 - **Platform re-encode is a second generation of loss.** Design textures for the second generation.
 - **Headless Chromium** may differ from a desktop GPU in filter precision and speed. Lock the render configuration for checks.
 
@@ -535,15 +535,15 @@ Details are in §18.
 **Analysis (reviewer)**
 - [ ] FX spec declared: blend space, attachments, seeds, boil rates, inks (`FX-BLEND-SPACE-DECLARED`, `FX-SCREEN-SPACE-DECLARED`, `FX-SEED-DECLARED`)
 - [ ] Watched in motion at delivery size (never stills only)
-- [ ] `FX-DETERMINISM`, `FX-NO-WALLCLOCK` pass
+- [ ] `FX-DETERMINISM` (dropped; one generic check, `vcr capture --verify`), `FX-NO-WALLCLOCK` pass
 - [ ] `FX-TEMPORAL-FLICKER` / `FX-BOIL-STEPPED` / `FX-SCREEN-CRAWL` pass, or the breaks are declared and intended
-- [ ] `FX-FLASH-SAFE` (A11Y) pass
-- [ ] `FX-TEXT-CONTRAST`, `FX-KNOCKOUT-LEGIBLE` pass on worst frames
-- [ ] `FX-TEXTURE-SURVIVAL`, `FX-GRAIN-SCALE`, `FX-BANDING`, `FX-CHROMA-SUBSAMPLE`, `FX-MOIRE-RESAMPLE` on simulated delivery
+- [ ] `FX-FLASH-SAFE` (dropped; owner `A11Y-FLASH-*`) (A11Y) pass
+- [ ] `FX-TEXT-CONTRAST`, `FX-KNOCKOUT-LEGIBLE` pass on worst frames (both dropped; owner `TYPO-CONTRAST`)
+- [ ] `FX-TEXTURE-SURVIVAL`, `FX-GRAIN-SCALE`, `FX-BANDING` (dropped; owner `DELIVERY-BANDING`), `FX-CHROMA-SUBSAMPLE` (dropped; owner `DELIVERY-RED-CHROMA`), `FX-MOIRE-RESAMPLE` on simulated delivery
 - [ ] `FX-ISOLATION-EXPLICIT`, `FX-SVG-FILTER-CIF`, `FX-BLEND-SPACE-CONSISTENT`
 - [ ] `FX-RENDER-COST`, `FX-CACHE-STATIC`, `FX-BACKDROP-FILTER-BUDGET`
 - [ ] Judgement: `FX-FOCAL-PRESERVED`, `FX-PRESET-SMELL`, `FX-INTENSITY-RESTRAINT`
-- [ ] Loops: `FX-LOOP-SEAM`
+- [ ] Loops: `FX-LOOP-SEAM` (dropped; owner `MOTION-RHY-004`)
 
 **Creation (author)**
 - [ ] Reference process and reason named; inks and palette from `ART-*` (`FX-INK-LIMIT`)

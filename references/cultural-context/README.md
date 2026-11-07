@@ -1,6 +1,6 @@
 # Cultural context reference
 
-The cultural context and visual meaning knowledge base (`CULTURE-*`) was supplied on 2026-11-07 from [the research brief](../research-prompts/cultural-context.md). It is reference only: no rules data, checks, skill, reviewer, trend feed or audience-testing integration exists. Read one section of [the knowledge base](cultural-context-knowledge-base.md) at a time using `vcr refs section cultural-context <section>`.
+The cultural context and visual meaning knowledge base (`CULTURE-*`) was supplied on 2026-11-07 from [the research brief](../research-prompts/cultural-context.md). It is reference only: no rules data, checks, skill, trend feed or audience-testing integration exists; the draft `cultural-reader` agent cites these criteria and is advisory until calibrated. Read one section of [the knowledge base](cultural-context-knowledge-base.md) at a time using `vcr refs section cultural-context <section>`.
 
 | Task | Read |
 | --- | --- |

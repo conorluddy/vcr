@@ -1,6 +1,6 @@
 # Domain exploration reference
 
-The domain exploration knowledge base (`DOMAIN-*`) was supplied on 2026-11-07 from [the research brief](../research-prompts/domain-exploration.md). It is reference only: no rules data, checks, skill, reviewer or research integration exists. Read one section of [the knowledge base](domain-exploration-knowledge-base.md) at a time using `vcr refs section domain-exploration <section>`.
+The domain exploration knowledge base (`DOMAIN-*`) was supplied on 2026-11-07 from [the research brief](../research-prompts/domain-exploration.md). It is reference only: no rules data, checks, skill or research integration exists; the draft `domain-researcher` agent cites these criteria and is advisory until calibrated. Read one section of [the knowledge base](domain-exploration-knowledge-base.md) at a time using `vcr refs section domain-exploration <section>`.
 
 | Task | Read |
 | --- | --- |

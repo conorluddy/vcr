@@ -359,8 +359,8 @@ All thresholds below are **heuristic VCR proposals**. Luminance is computed in *
 | **Light direction consistency (3D)** | Scene data: light transforms per shot | Key azimuth and elevation in subject-relative or camera space | Within ±15° of the rig across the series |
 | **Light direction consistency (2D)** | Computed styles at t | Angle of every shadow offset `atan2(−dy, −dx)` | All within ±5° of `brief.light.angle` |
 | **Brand ΔE** | Frame plus brand-region mask plus brief swatches | CIEDE2000 between the median Lab of the region and the swatch | Threshold owned by `ART-*` |
-| **Determinism** | Two renders of the same frame | Byte hash; fallback PSNR | Identical (browser and Eevee); PSNR ≥ 50 dB (GPU Cycles) |
-| **Loop seam** | Frame 0 and frame N (seek(duration)) | Mean ΔY and SSIM; light parameter equality from scene data | ΔY ≤ 0.5%; parameters equal |
+| **Determinism** (dropped; one generic check, `vcr capture --verify`) | Two renders of the same frame | Byte hash; fallback PSNR | Identical (browser and Eevee); PSNR ≥ 50 dB (GPU Cycles) |
+| **Loop seam** (dropped; owner `MOTION-RHY-004`) | Frame 0 and frame N (seek(duration)) | Mean ΔY and SSIM; light parameter equality from scene data | ΔY ≤ 0.5%; parameters equal |
 
 ---
 
@@ -410,7 +410,7 @@ All thresholds below are **heuristic VCR proposals**. Luminance is computed in *
 7. **Write findings** in the form `[severity] LIGHT-RULE — observation (measurement) → suggested parameter change`.
 
 **Severity guidance:**
-- **Blocker:** brand ΔE over the `ART-*` limit; flicker that breaches `A11Y-*`; non-determinism; loop-seam pop; clipped highlights on the subject's brand surface; subject not separable in a 9:16 deliverable.
+- **Blocker:** brand ΔE over the `ART-*` limit; flicker that breaches `A11Y-*`; non-determinism (dropped; one generic check, `vcr capture --verify`); loop-seam pop (dropped; owner `MOTION-RHY-004`); clipped highlights on the subject's brand surface; subject not separable in a 9:16 deliverable.
 - **Major:** "lit from nowhere" or inconsistent direction; ratio outside the brief by more than 1 stop; visible denoiser boil; shadow acne or shimmer; missing contact shadow on a grounded product.
 - **Minor:** generic look; flare or bloom overuse; slight noise; sweep timing.
 - **Note:** taste suggestions.
@@ -441,7 +441,7 @@ All thresholds below are **heuristic VCR proposals**. Luminance is computed in *
 7. **Animate lights** with deterministic functions of `t`, periodic for loops. Check that camera moves (`MOTION-*`) do not flip the key.
 8. **Lock determinism:** seed, samples, denoiser, versions.
 9. **Preview at low samples with the same lights.** Then do final renders.
-10. **Verify:** run the §12 checks, ΔE, determinism and the loop seam. Fix, then re-render.
+10. **Verify:** run the §12 checks, ΔE, determinism (dropped; one generic check, `vcr capture --verify`) and the loop seam (dropped; owner `MOTION-RHY-004`). Fix, then re-render.
 
 ---
 
@@ -545,15 +545,15 @@ General rules:
 - *Calculation:* the median Lab of masked pixels that lie in the diffuse-lit region (exclude speculars and the shadow side), then ΔE2000 against the swatch.
 - *Failure modes:* shaded 3D surfaces legitimately vary. Define *which* region represents the brand colour (the key-lit face). Coloured lighting and the white point (§1.5). Sample delivery video too, because chroma subsampling shifts small regions.
 
-**`LIGHT-DETERMINISM`**
+**`LIGHT-DETERMINISM`** (dropped; one generic check, `vcr capture --verify`)
 - *Calculation:* render frames {0, mid, last, random} twice in fresh processes and compare SHA-256. If they differ, compute PSNR.
 - *Failure modes:* GPU driver or version drift, and multithreaded GPU path-tracing reductions. Record the environment fingerprint with every render.
 
-**`LIGHT-LOOP-SEAM`**
+**`LIGHT-LOOP-SEAM`** (dropped; owner `MOTION-RHY-004`)
 - *Calculation:* compare `seek(0)` with `seek(duration)`, or with the frame after the last, depending on the loop convention in `DELIVERY-*`. Report mean ΔY and SSIM, plus scene-data equality of every animated light parameter.
 - *Failure modes:* history-dependent effects (TAA, Eevee accumulation) differ only in sequential renders, not seeked ones. Test sequentially as well.
 
-**`LIGHT-FLICKER-SAFETY`**
+**`LIGHT-FLICKER-SAFETY`** (dropped; owner `A11Y-FLASH-*`)
 - *Calculation:* the per-frame luminance time series per screen region, passed to the `A11Y-*` flash analyser.
 
 ---
@@ -591,8 +591,8 @@ General rules:
 - [ ] Direction consistency — `LIGHT-DIRECTION-CONSISTENT`, `LIGHT-TWOD-DIRECTION`
 - [ ] Grounding — `LIGHT-CONTACT-SHADOW`
 - [ ] Effects restraint — `LIGHT-BLOOM-RESTRAINT`, `LIGHT-FLARE-RESTRAINT`, `LIGHT-EMISSIVE-HIERARCHY`
-- [ ] Sweeps legible — `LIGHT-SWEEP-LEGIBILITY`
-- [ ] Loop seam, flicker safety, determinism — `LIGHT-LOOP-SEAM`, `LIGHT-FLICKER-SAFETY`, `LIGHT-DETERMINISM`
+- [ ] Sweeps legible — `LIGHT-SWEEP-LEGIBILITY` (dropped; owner `TYPO-CONTRAST`)
+- [ ] Loop seam, flicker safety, determinism — `LIGHT-LOOP-SEAM` (dropped; owner `MOTION-RHY-004`), `LIGHT-FLICKER-SAFETY` (dropped; owner `A11Y-FLASH-*`), `LIGHT-DETERMINISM` (dropped; one generic check, `vcr capture --verify`)
 - [ ] Not generic — `LIGHT-NOT-STUDIO-GREY`
 
 **Creation (agent)**
@@ -608,7 +608,7 @@ General rules:
 - [ ] 2D light angle token used everywhere — `LIGHT-TWOD-DIRECTION`, `LIGHT-TWOD-LONG-SHADOW-ANGLE`
 - [ ] Seed fixed; denoise strategy — `LIGHT-SEED-FIXED`, `LIGHT-DENOISE-TEMPORAL`
 - [ ] Preview/final parity — `LIGHT-PREVIEW-FINAL-PARITY`
-- [ ] Loops periodic — `LIGHT-LOOP-SEAM`
+- [ ] Loops periodic — `LIGHT-LOOP-SEAM` (dropped; owner `MOTION-RHY-004`)
 
 ---
 

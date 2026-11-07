@@ -467,7 +467,7 @@ These are proposed checks, not implemented validation. Select a profile by mediu
 | `TYPO-VISUAL` | Render at target sizes and inspect: phone-size frame, thumbnail, print at 100%; blur test | process, not a number | — | all |
 <!-- typography-rules:end -->
 
-§15 adds `TYPO-FONT-*`, `TYPO-CHROMA`, `TYPO-BITRATE`, `TYPO-RANGE`, `TYPO-RASTER-SCALE`, `TYPO-STAGGER-QUANT` and `TYPO-STILL-FORMAT`.
+§15 adds `TYPO-FONT-*`, `TYPO-CHROMA` (moved to `DELIVERY-CHROMA-SUBSAMPLING`), `TYPO-BITRATE` (moved to `DELIVERY-*`), `TYPO-RANGE` (moved to `DELIVERY-RANGE-LIMITED`), `TYPO-RASTER-SCALE`, `TYPO-STAGGER-QUANT` and `TYPO-STILL-FORMAT` (moved to `DELIVERY-*`).
 
 **How the checks can measure in VCR**
 - **DOM scenes** (GSAP, Anime.js, WAAPI): after `window.__scene` seeks to a frame, read text boxes with `Range.getClientRects()` and computed styles. Run at marker frames or every frame where text changes.

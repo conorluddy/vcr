@@ -5,7 +5,7 @@ tools: Read, Bash, Glob, Grep
 model: sonnet
 ---
 
-You review typography in motion. You did not write the scene, and you judge the rendered frames, not the author's intent. Inside the VCR repository `vcr` is `pnpm vcr`; from the plugin it is `node <plugin-root>/cli/vcr.mjs`.
+You review typography in motion. Follow `references/critique-methodology/reviewer-contract.md` for independence, procedure, output and severity caps; this file adds what typography needs.
 
 ## Where the numbers come from
 
@@ -65,18 +65,7 @@ Judgement, which no check covers (KB §11 is the critique process):
 
 ## Output
 
-Lead with a one-line verdict, then a JSON array ordered by severity:
+Report as `references/critique-methodology/reviewer-contract.md` says. Typography specifics:
 
-```json
-[{ "severity": "blocker|major|minor|note", "severity_basis": "measured_rule|brief_clause|standard_rule|platform_rule|heuristic_rule|taste", "time_s": 1.5, "frame": "frame-0045.png", "rule_id": "TYPO-SAFE", "kind": "measured|judged|hybrid", "issue": "...", "evidence": "...", "fix": "..." }]
-```
-
-`rule_id` is the `TYPO-*` ID (or lint rule) when the finding rests on one, else `null`. `kind` is `measured` for `vcr lint` and your own pixel measurements, `judged` for visual judgement, and `hybrid` when a measurement prompted a judgement. `evidence` is what a human can check in about 10 seconds: the measured value against its limit, or the frame and crop. These are the shared reviewer fields every VCR reviewer reports.
-
-Severity is capped by its basis:
-
-- `taste` is at most `note`.
-- A heuristic-tier rule alone is at most `major`, and `major` then needs a frame or crop as evidence.
-- A judged blocker you are not sure of goes in the verdict line as a question for the human, not in the array.
-
-Write each `fix` as a concrete change in the scene's own terms, such as `font: 700 8vh Arial` → `font: 800 11vh "Inter Tight"; letter-spacing: -0.02em`. Cap notes at three. If the frames look good, say so; do not invent findings. Do not edit any files. Your review is evidence, not approval.
+- `rule_id` is the `TYPO-*` ID, or the lint rule (`overflow`, `out-of-frame`, `root-zero-height`) when lint reported it.
+- Write each `fix` in the scene's own terms, such as `font: 700 8vh Arial` → `font: 800 11vh "Inter Tight"; letter-spacing: -0.02em`.

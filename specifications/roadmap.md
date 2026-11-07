@@ -8,6 +8,7 @@ Updated 2026-11-06.
 
 - **Layer 0 and plugin P0, P1 and P2 are done.** The catalogue, the CLI and the plugin are installable on Claude Code and Codex. P2 (#161, #163–#169) added the review contract: render manifests from `vcr capture --video`, one file per finding (`vcr findings`), human-only approvals at a terminal (`vcr review`), `vcr status --brief`, the series and video briefs with the `brief` skill, and `vcr storage`. `vcr lint --video` is the first check that writes findings.
 - **Typography has the whole pillar pipeline:** `rules.json`, `vcr lint`, the `typography` skill and the `typographer` agent.
+- **Draft agents exist for every other pillar except accessibility and delivery:** they run ahead of their checks, follow `references/critique-methodology/reviewer-contract.md`, and are advisory and uncalibrated.
 - **Fifteen reference pillars exist in `references/`:** typography, art, motion, pacing, sound, accessibility, series brief, critique, story, delivery, adaptation, data visualisation, image treatment, lighting and materials. [ADR 0006](decisions/0006-creative-pillars-independent-of-tools.md) fixes how they turn into tools, and `references/README.md` holds the rule owners.
 
 ## Sequencing principle
@@ -40,7 +41,7 @@ Build whatever unlocks the most later work first. Deterministic checks come befo
 8. **Plugin P3 review pages** (Videos, Render, the note form, Decide, Storage), then **P4, the loop** (the `review` skill, session-start hooks, evidence pairs, Compare). By then the pages show real findings from real checks.
 9. **#147: `vcr motion sample`** (L), after #143. It unlocks most of the motion, pacing and data checks.
 10. **#148: per-pillar `rules.json`.** Rename the draft IDs and leave out the dropped rules, in the order checks land: delivery, accessibility, motion, pacing, story, brief, sound, materials, lighting, FX, art, adaptation, data, critique.
-11. **#149: workflow skills and reviewer agents**, one pillar at a time, each after its checks: a plan reviewer for story first, then motion, art and pacing. Tool recipes move from the knowledge bases to toolkit guides.
+11. **#149: workflow skills and reviewer agents**, one pillar at a time, each after its checks: a plan reviewer for story first, then motion, art and pacing. Tool recipes move from the knowledge bases to toolkit guides. Draft agents for every pillar except accessibility and delivery now exist ahead of their checks, sharing the reviewer contract in `references/critique-methodology/reviewer-contract.md`. They are advisory and uncalibrated, so #149 now means turning each draft into a calibrated reviewer as its `rules.json` and checks land.
 12. **#150: a calibration gold set** of 20–30 human-reviewed renders. Only after it may a heuristic gate anything.
 13. **Plugin P5, share:** static bundle, proxy and comment import.
 14. **PRD layers**, each opened by its own spike: L1 workspace (asset store and manifest, one provenance rule for music, HDRIs, textures and fonts), L2 timeline (named markers from #143), L5 production delivery (fed by `DELIVERY-*`), L3 compositor (fed by `FX-*`, `LIGHT-*`, `MAT-*`), then L4 advanced motion and L7 reference corpus.

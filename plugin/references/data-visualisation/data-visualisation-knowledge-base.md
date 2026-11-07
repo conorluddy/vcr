@@ -716,7 +716,7 @@ Work in this order: data → rest frames → motion → delivery. Integrity outr
 | NO-OVERSHOOT, COUNTUP | Signed excess beyond the data path | Legitimate data reversals; U+2212 minus sign; NBSP grouping |
 | STAGE-DURATION/COUNT | Cluster change intervals at a 1% threshold | Overlapping eases |
 | TIME-LINEAR | Slope CV of dataTime(t) | OCR of date labels is fragile without `dataTime` |
-| LABEL-MATCH, UNITS, THOUSANDS | format(round(v)) === text | Text split across tspans; canvas needs `textBounds()` |
+| LABEL-MATCH, UNITS, THOUSANDS (dropped; owner `ADAPT-LOCALE-FORMAT`) | format(round(v)) === text | Text split across tspans; canvas needs `textBounds()` |
 | REST / STILL / COUNTUP-LAND | Marks move <0.5 px, text unchanged, opacity ≥0.9 | Decorative drift: exclude non-data layers |
 | SOURCE-LINE | Source node; bbox ⊂ safe zone; font size | Burned-in plates need OCR |
 | Layout rules | Counts, rotations, perspective matrices | Facets mistaken for dual axes |

@@ -9070,7 +9070,23 @@ function referenceIntegrityDiagnostics(root) {
       }
     }
   }
+  const superseded = new Map(rules.filter((rule) => rule.replacements?.length).map((rule) => [rule.id, rule.replacements]));
+  for (const file of agentAndSupportingFiles(root, pillars)) {
+    for (const line of readFileSync4(file, "utf8").split("\n")) {
+      const namesDropped = /\b(dropped|superseded|never cite|do not cite)\b/i.test(line);
+      for (const id of new Set(line.match(pattern) ?? [])) {
+        if (!ids.has(id) && !placeholders.has(id) && !rules.some((r) => r.id.startsWith(`${id}-`))) report(file, `Unknown rule reference ${id}`);
+        else if (superseded.has(id) && !namesDropped) report(file, `Cites superseded rule ${id}; cite ${superseded.get(id).join(", ")} instead`);
+      }
+    }
+  }
   return diagnostics;
+}
+function agentAndSupportingFiles(root, pillars) {
+  const agentsDirectory = join5(root, "agents");
+  const agents = existsSync3(agentsDirectory) ? readdirSync3(agentsDirectory).filter((name) => name.endsWith(".md")).map((name) => join5(agentsDirectory, name)) : [];
+  const supporting = pillars.flatMap((pillar) => readdirSync3(join5(root, "references", pillar.slug)).filter((name) => name.endsWith(".md") && name !== "README.md" && !name.endsWith("-knowledge-base.md") && name !== "rule-template.md").map((name) => join5(root, "references", pillar.slug, name)));
+  return [...agents, ...supporting];
 }
 
 // packages/cli/src/lint.ts

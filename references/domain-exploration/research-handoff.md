@@ -15,6 +15,19 @@ These are illustrative workspace notes, not a schema or a new approval flow. Use
 
 A source consulted for ideas is not automatically a licensed asset. A signed provenance record is not proof of a depicted claim. Preserve originals; record derivative links once. Metadata presence can be checked structurally; support, independence, permissions and creative relevance need evaluation.
 
+## Record fields
+
+Research agents (`domain-researcher`, `visual-researcher`, `cultural-reader`, `image-director`) write these fields so records can be cited and compared. It is a field list, not yet a JSON Schema, and nothing validates it. Records live in the production's workspace, in `<project>/research/`, one Markdown file per pass; each record is a heading with its ID (`S1`, `O2`, `F1`, `C1`, `I1`, `A1`) and a list of `field: value` lines. Write `unknown` rather than omitting a field; never invent a value.
+
+| Record | Fields |
+| --- | --- |
+| Source S | `id`, `creator`, `title`, `locator`, `published`, `accessed`, `read_extent` (full, passage, abstract, snippet, secondary), `verification` (what was checked, against what), `origin` (primary, secondary, shared origin with), `reuse_terms`, `refresh_trigger` |
+| Observation O | `id`, `source` (S id), `span` (page, region or time range), `inspected`, `observed`, `cannot_infer`, `reuse_status` |
+| Finding F | `id`, `claim`, `class` (fact, interpretation, speculation), `support` (S and O ids), `contrary`, `scope`, `uncertainty`, `on_screen` (yes or no, for the claim registry) |
+| Reading C | `id`, `cue`, `audience`, `links` (O and F ids), `intended`, `reported`, `inferred`, `competing_reading`, `basis` (evidenced, assumed, inference), `confidence` (low, medium, high), `survives_a_miss`, `status` (hypothesis or checked, with what check), `freshness_trigger` |
+| Selection I | `id`, `slot`, `job`, `medium`, `candidates` (with one-line discard reasons), `inspection` (placement, variants, motion), `selected`, `runner_up`, `reason`, `gaps` (each with an owner) |
+| Asset A | `id`, `original`, `acquisition`, `rights_evidence` (or `unknown`), `attribution`, `permitted_use`, `derivatives` |
+
 ## Evidence and conflicting defaults
 
 Every ledger's historical “confirmed” label is a reported research result, not a new verification by VCR. Abstract-only, snippet-only and secondary-only support remains partial. For a consequential claim, read the actual supporting passage and retain the precise claim, locator, scope and read extent; otherwise mark unresolved and omit it from factual copy or choose a treatment that does not depend on it. Current legal requirements, platform limits and renderer behaviour must be checked at time of use against the relevant primary source and version. No inherited research date guarantees currency.

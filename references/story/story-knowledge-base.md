@@ -639,7 +639,7 @@ Columns: **ID | Check | Threshold | Tier | Applies to**. Each row also states *m
 
 ### Analysis (reviewing a plan or render)
 - [ ] Brief objective restated (`BRIEF-*`)
-- [ ] SMP: one sentence, one proposition (`STORY-SMP`, `STORY-MESSAGE-COUNT`)
+- [ ] SMP: one sentence, one proposition (`STORY-SMP` (dropped; owner `BRIEF-PROPOSITION-SINGLE`), `STORY-MESSAGE-COUNT`)
 - [ ] Idea passes the three-slot test; mechanism named (`STORY-ONE-IDEA`, `STORY-MECHANISM`)
 - [ ] Not a list; turn present; shows rather than tells (`STORY-NOT-A-LIST`, `STORY-TURN`, `STORY-SHOW-NOT-TELL`)
 - [ ] Metaphor legible / literal where precision matters (`STORY-METAPHOR-LEGIBLE`, `STORY-LITERAL-PRECISION`)
@@ -655,7 +655,7 @@ Columns: **ID | Check | Threshold | Tier | Applies to**. Each row also states *m
 - [ ] Gate log intact (`STORY-GATE-SEQUENCE`, `STORY-GATE-REGRESSION`)
 
 ### Creation
-- [ ] Brief ingested; SMP written (`STORY-SMP`)
+- [ ] Brief ingested; SMP written (`STORY-SMP` (dropped; owner `BRIEF-PROPOSITION-SINGLE`))
 - [ ] ≥3 distinct routes; route cards; recommendation (`STORY-ROUTES-COUNT`, `STORY-ROUTE-DISTINCT`, `STORY-ROUTE-CARD`) → concept gate
 - [ ] AV script with on-screen text column; word budget; TTS normalised and lexicon; table read (`STORY-WORD-BUDGET`, `STORY-TTS-NORMALISE`, `STORY-TTS-LEXICON`, `STORY-TABLE-READ`) → script gate
 - [ ] Beat sheet complete; mandatories and claims mapped (`STORY-BEAT-FIELDS`, `STORY-MANDATORY-MAP`, `STORY-CLAIM-SOURCE`)
