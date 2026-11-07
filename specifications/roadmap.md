@@ -2,14 +2,14 @@
 
 What to build next, in order, and why. Status per layer lives in [README.md](README.md); requirement IDs live in the PRDs; this file only sequences the work. Update it when an item lands or the order changes.
 
-Updated 2026-11-06.
+Updated 2026-11-07.
 
 ## Where we are
 
 - **Layer 0 and plugin P0, P1 and P2 are done.** The catalogue, the CLI and the plugin are installable on Claude Code and Codex. P2 (#161, #163–#169) added the review contract: render manifests from `vcr capture --video`, one file per finding (`vcr findings`), human-only approvals at a terminal (`vcr review`), `vcr status --brief`, the series and video briefs with the `brief` skill, and `vcr storage`. `vcr lint --video` is the first check that writes findings.
 - **Typography has the whole pillar pipeline:** `rules.json`, `vcr lint`, the `typography` skill and the `typographer` agent.
 - **Draft agents exist for every other pillar except accessibility and delivery:** they run ahead of their checks, follow `references/critique-methodology/reviewer-contract.md`, and are advisory and uncalibrated.
-- **Fifteen reference pillars exist in `references/`:** typography, art, motion, pacing, sound, accessibility, series brief, critique, story, delivery, adaptation, data visualisation, image treatment, lighting and materials. [ADR 0006](decisions/0006-creative-pillars-independent-of-tools.md) fixes how they turn into tools, and `references/README.md` holds the rule owners.
+- **Nineteen reference pillars exist in `references/`:** typography, art, motion, pacing, sound, accessibility, series brief, critique, story, delivery, adaptation, data visualisation, image treatment, lighting, materials, domain exploration, visual research, cultural context and image direction. [ADR 0006](decisions/0006-creative-pillars-independent-of-tools.md) fixes how they turn into tools, [ADR 0007](decisions/0007-draft-pillar-agents-before-rules-data.md) lets advisory agents run ahead of their data, and `references/README.md` holds the rule owners.
 
 ## Sequencing principle
 
@@ -27,6 +27,8 @@ Build whatever unlocks the most later work first. Deterministic checks come befo
 
 1. ~~#143: scene contract decisions~~ — done: `regions(t)` beside `textBounds()`, named markers, `params`, `data` and `fx` blocks, `MAT-PHYSICAL-SCOPE` in glTF extras.
 2. ~~#142: the beat sheet schema and `vcr plan check`~~ — done: `beats.json` beside `brief.md`, six plan checks printed as findings, `vcr plan markers`. The `sound_cues` export waits for #60.
+
+**Alongside:** run the draft agents on two or three real renders and log where they are wrong or silent; those renders seed #150 and decide which pillar gets data and checks first. #173 (plan approvals) lets `story-editor` findings be filed rather than printed.
 
 ## Next: deterministic checks, each writing findings
 
@@ -46,7 +48,7 @@ Build whatever unlocks the most later work first. Deterministic checks come befo
 13. **Plugin P5, share:** static bundle, proxy and comment import.
 14. **PRD layers**, each opened by its own spike: L1 workspace (asset store and manifest, one provenance rule for music, HDRIs, textures and fonts), L2 timeline (named markers from #143), L5 production delivery (fed by `DELIVERY-*`), L3 compositor (fed by `FX-*`, `LIGHT-*`, `MAT-*`), then L4 advanced motion and L7 reference corpus.
 
-**Fix in passing:** #154 (a Codex run of `vcr lint`), #52 (`beginframe` hang on a 1080 × 1920 DOM scene), #53 (capture timeout and progress), #49 (anchor the ignore rules: `/output/`).
+**Fix in passing:** #154 (a Codex run of `vcr lint`), #52 and #53 (one per-frame watchdog: the `beginframe` hang and the silent capture death), #51 (expose `--root` on `vcr capture`), #49 (anchor the ignore rules: `/output/`), #50 (no CLI for `projects`).
 
 ## Parked
 
@@ -54,9 +56,3 @@ Build whatever unlocks the most later work first. Deterministic checks come befo
 - **Research on category conventions**, commissioned when the `brief` skill needs more than fit-or-break.
 - **Research not yet commissioned:** category conventions and differentiation, which would feed `briefing`. Commission it when #141 starts.
 
-## Known bugs to fix in passing
-
-- #52: `beginframe` hangs on a 1080 × 1920 DOM scene.
-- #53: capture has no timeout or progress output.
-- #49: `workspace init` writes ignore rules that are not anchored.
-- #50: no CLI for `projects`.

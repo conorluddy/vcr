@@ -18,7 +18,7 @@ Read `specifications/vcr-prd.md` for product intent and release gates. This repo
 - `plugin/` is generated and committed (bundled CLI, catalogue, skills, example sources, both host manifests). Never edit it; run `pnpm vcr plugin build` after changing the CLI, catalogue, skills or examples. `pnpm validate` fails when it is stale, over 5 MB or carries media. The `.githooks/pre-commit` hook (enabled by `pnpm install`) runs `catalog build` and `plugin build` and stages their output when sources are staged; sandboxes, `--no-verify` and hookless clones still need the manual step.
 - Inside this repository the CLI is `pnpm vcr`; from an installed plugin it is `node <plugin-root>/cli/vcr.mjs`, the plugin root being two directories above the calling SKILL.md (spike S1). Skills say `vcr` and define it once; never hard-code a versioned plugin path.
 - The harness is read-only outside this repository: user state goes to the workspace (`vcr.json`) or the machine root (`VCR_HOME`, default `~/.vcr`), never into the plugin.
-- Decisions live in `specifications/decisions/` as numbered ADRs. Read 0001 (in-house engine), 0002 (headless, no editor), 0003 (plugin distribution, three roots), 0004 (progressive disclosure and feedback as first-class) and 0006 (creative pillars independent of tools) before proposing architecture.
+- Decisions live in `specifications/decisions/` as numbered ADRs. Read 0001 (in-house engine), 0002 (headless, no editor), 0003 (plugin distribution, three roots), 0004 (progressive disclosure and feedback as first-class) 0006 (creative pillars independent of tools) and 0007 (draft pillar agents before rules data) before proposing architecture.
 - Plugin distribution (Claude Code and Codex) and the human review layer are specified in `specifications/vcr-plugin-prd.md` and ADR 0003; read them before touching root resolution, packaging, review files or storage.
 - When agents work in git worktrees, merge their branches into one integration branch, rebuild the index once, and never `git add -A` from the main checkout while worktrees exist under `.claude/worktrees/`.
 
@@ -68,18 +68,17 @@ Layer 0 is complete for the initial catalogue: those records are carded and asse
 
 ## Open work (living)
 
-This section is meant to change in most PRs; the rest of this file should rarely change. It lists loose ends and deferred decisions, one line each. `specifications/roadmap.md` orders the large work; this list catches what falls between it.
+This section is meant to change in most PRs; the rest of this file should rarely change. It lists loose ends and deferred decisions, one line each. Planned work is in GitHub issues (epic #152 for the pillars; #65, the capability graph, is parked) and `specifications/roadmap.md` orders it; this list catches what falls between them.
 
 - Add a line when you defer something, and link the issue if there is one.
 - Delete the line in the PR that resolves it. Never mark items done.
 - Keep it under about fifteen lines. When an item grows, open an issue or a roadmap entry and leave a one-line pointer.
 
-- **Pillar data and checks:** each pillar's `rules.json` and checks, then turn its draft agent into a calibrated reviewer (#149). Measurement gaps the drafts hit: motion trace, flash analyser, loudness and sync, `ffprobe` delivery gate, sub-frame sampling for `DATA-NO-OVERSHOOT`, word-level narration timings for `PACE-NARR-03/04`.
-- **Calibration:** a gold set of human-reviewed renders before any reviewer gates (`REVIEW-CAL-*`); decide whether a different model counts as independent (`REVIEW-IND-01`).
-- **Blind review packet:** a `vcr` command that assembles brief, measurements and contact sheet for a reviewer, with nothing about authorship (`REVIEW-IND-02`).
-- **Audio cue list** (#60): sound checks and `SOUND-*` sync rules wait on it.
-- **Plan approvals** (#173): plan findings are printed, not filed.
-- **Rule IDs still missing:** a generic determinism rule (FX, lighting and materials determinism rows have no replacement; sound has no check); the asset-manifest rule for licences and provenance; `A11Y-MOTION-*` rules for `MOTION-CAM-004/005`; a named art rule for minimum stroke width.
+- **Pillar data and checks:** `rules.json` per pillar (#148), then promote each draft agent (#149). Measurement the drafts lack: motion sampling (#147), flash (#145), delivery gate (#144), loudness and sync (after #60), sub-frame sampling for `DATA-NO-OVERSHOOT`, word-level narration timings for `PACE-NARR-03/04`.
+- **Calibration** (#150): run the drafts on real renders first; a gold set before any reviewer gates (`REVIEW-CAL-*`); decide whether a different model counts as independent (`REVIEW-IND-01`).
+- **Blind review packet:** a `vcr` command that assembles brief, measurements and contact sheet (#63) for a reviewer, with nothing about authorship (`REVIEW-IND-02`).
+- **Audio cue list** (#60): sound checks, `SOUND-*` sync rules and sound determinism wait on it.
+- **Rule IDs still missing:** a determinism rule (#146; FX, lighting and materials rows have no replacement); the asset-manifest rule for licences and provenance; `A11Y-MOTION-*` rules for `MOTION-CAM-004/005`; a named art rule for minimum stroke width.
 - **Values to settle:** the `uk-clearcast` market profile in `references/typography/rules.json`; beat-alignment tolerance (`SOUND-BEAT-ALIGN` against `MOTION-RHY-001` and `PACE-BEAT-06`); which rule holds the brand ΔE tolerance (`ART-BRD-*` or `LIGHT-BRAND-DELTAE`).
 - **Research records:** the field list in `references/domain-exploration/research-handoff.md` becomes a JSON Schema once real research packs exist; research-pack review has no finding contract yet (critique KB §10).
 - **Version sets:** `vcr lint` and `vcr plan check` take one scene or video, so `version-auditor` loops per cell; a matrix input would help.

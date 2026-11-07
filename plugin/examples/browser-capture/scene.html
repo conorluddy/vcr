@@ -28,7 +28,7 @@
     window.__timeline = tl;
     return tl.duration();
   };
-  document.fonts.ready.then(() => { window.__scene = { duration: window.buildTimeline(), seek: (t) => { window.__timeline.seek(t, false); } }; });
+  document.fonts.ready.then(() => { window.__scene = { duration: window.buildTimeline(), seek: (t) => { window.__timeline.seek(t, true); } }; });
 </script>
 </body>
 </html>

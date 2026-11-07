@@ -112,9 +112,11 @@ Replaces `findRepositoryRoot()`.
 - Before a tool runs: deny edits under `review/approvals/` and under the harness root.
 - Hooks only make things smoother. Every rule is also enforced in the CLI (§6.4).
 
-**Not in v1: MCP server, plugin commands, subagents.** CLI `--json` output is the tool surface on both hosts.
+**Not in v1: MCP server, plugin commands.** CLI `--json` output is the tool surface on both hosts.
 
-- Plugin commands and agents port poorly between hosts.
+**Subagents ship as advisory reviewers and researchers** (`agents/`, ADR 0007). They call the CLI like any agent and add no tool surface. Claude Code loads them as subagents; Codex support is partial, so there they are prompts a session can read. Nothing depends on them: every rule they apply is also a check or a rule ID a human can look up.
+
+- Plugin commands port poorly between hosts.
 - MCP is the fallback if S1 cannot make CLI invocation reliable, because each host launches the server with a known root. Its costs: a long-running process, tool schemas held in context, and minute-long renders that do not suit synchronous tool calls.
 - Also revisit when a target host has no shell.
 
@@ -320,7 +322,8 @@ Same skills, same CLI, same files. Only packaging differs.
 | Hooks | `hooks/hooks.json`; fire in every session | Not supported (`plugin_hooks` removed) | Claude-only conveniences; the CLI enforces the rules |
 | Persistent data | `CLAUDE_PLUGIN_DATA` | `PLUGIN_DATA` | Neither: `VCR_HOME` is shared across hosts, so one Chromium |
 | Node dependencies | Installed from the lockfile, no scripts | Undocumented | None needed: single-file bundle plus `vcr setup capture` |
-| Commands, subagents, MCP | Supported | Partial | Not used in v1 |
+| Commands, MCP | Supported | Partial | Not used in v1 |
+| Subagents | Supported | Partial | Advisory reviewers and researchers (ADR 0007); the CLI enforces every rule |
 | Share (J7) | Artifact tool | None | Claude-only, labelled as such. Codex gets the static bundle folder |
 
 ## 10. Success measures

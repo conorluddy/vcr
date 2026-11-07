@@ -298,7 +298,7 @@ Capture a browser scene frame by frame; frames and report.json go to --out, or w
 | `--video project/video` | Record a render of this video: frames under output/<video>/<render_id>/, the manifest there and in review/renders/<render_id>/ |  |
 | `--verify` | Recapture in shuffled order and compare; exit 1 if frames differ |  |
 
-- `VCR_CAPTURE_MODE`: Frame grab method: screenshot (default) or beginframe
+- `VCR_CAPTURE_MODE`: Frame grab method: screenshot (default) or beginframe (experimental; can hang, #52)
 
 ```sh
 vcr capture scene.html --width 1920 --height 1080 --fps 30 --verify

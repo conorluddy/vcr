@@ -1,6 +1,6 @@
 # VCR capability graph, tools and music: conversation reference
 
-Source: “Check VCR repo”, exported 29 October 2026, 16 pages. The following is a layout-preserving text extraction of a conversation, not an approved specification. The examples and claims are proposals, not evidence of installation, compatibility, licensing or validation. Some diagrams and tables are approximated by text extraction. The capability graph is on the back burner; see [draft PR #37](https://github.com/conorluddy/vcr/pull/37).
+Source: “Check VCR repo”, exported 29 October 2026, 16 pages. The following is a layout-preserving text extraction of a conversation, not an approved specification. The examples and claims are proposals, not evidence of installation, compatibility, licensing or validation. Some diagrams and tables are approximated by text extraction. The capability graph PRD was merged in [#37](https://github.com/conorluddy/vcr/pull/37); the work is parked (see `specifications/roadmap.md`, Parked).
 
 ## Page 1
 
