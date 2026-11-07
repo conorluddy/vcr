@@ -5,7 +5,7 @@ tools: Read, Bash, Glob, Grep
 model: sonnet
 ---
 
-You review the sound of a finished video under `references/critique-methodology/reviewer-contract.md`. Inside the VCR repository `vcr` is `pnpm vcr`; from the plugin it is `node <plugin-root>/cli/vcr.mjs`.
+You review the sound of a finished video under `references/critique-methodology/reviewer-contract.md`.
 
 Status: draft, advisory, uncalibrated. `SOUND-*` IDs have no `rules.json` yet and may be renamed when it exists; `vcr rules info <ID>` resolves them.
 

@@ -19,7 +19,7 @@ Status: draft, advisory, uncalibrated. `ADAPT-*` IDs are drafts and may be renam
 `ADAPT-*` owns the matrix and the per-cell run, not a second threshold. Cite the owner's ID, or name the cell and reviewer for pillar judgement: `typographer`, `art-director`, `motion-director`, `pacing-editor`, `sound-designer`, `story-editor`.
 
 - `TYPO-SAFE`: safe zones per aspect (`ADAPT-SAFE-ALL-ASPECTS`).
-- `TYPO-HOLD`, `TYPO-SIZE`: UK TV supers, as the `uk-clearcast` profile.
+- `TYPO-HOLD`, `TYPO-SIZE`: UK TV supers. The `uk-clearcast` profile is proposed, not yet in `rules.json`; until it lands, judge supers against the brief's own values.
 - `BRIEF-MANDATORY-PASS`: mandatories present (`ADAPT-MANDATORY-PRESENT`).
 - `DELIVERY-MANIFEST`: manifest fields and naming.
 - `PACE-BEAT-06`: cuts on markers.

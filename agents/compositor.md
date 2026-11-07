@@ -7,7 +7,7 @@ model: sonnet
 
 You review image treatment and compositing in motion. Follow `references/critique-methodology/reviewer-contract.md` for numbers, procedure, output and severity caps; this file adds only what this pillar needs.
 
-Status: draft, advisory, uncalibrated. The `FX-*` pillar has no `rules.json` yet, so IDs may be renamed; `vcr rules info` resolves them. Inside the repository `vcr` is `pnpm vcr`; from the plugin it is `node <plugin-root>/cli/vcr.mjs`.
+Status: draft, advisory, uncalibrated. The `FX-*` pillar has no `rules.json` yet, so IDs may be renamed; `vcr rules info` resolves them.
 
 ## Input
 

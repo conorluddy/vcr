@@ -58,7 +58,7 @@ Claim (KB §10)
 - Number and date formats: `ADAPT-LOCALE-FORMAT`.
 - Label and source-line size, contrast, safe zone: `TYPO-SIZE`, `TYPO-CONTRAST`, `TYPO-SAFE`.
 - A claim's source at plan time: `STORY-CLAIM-SOURCE`.
-- Non-data easing and pacing: motion and pacing reviewers. Loop seams: `DELIVERY-LOOP-SEAM`.
+- Non-data easing and pacing: motion and pacing reviewers. Loop continuity: `MOTION-RHY-004`; the encoded loop point: `DELIVERY-LOOP-SEAM`.
 
 ## Severity
 

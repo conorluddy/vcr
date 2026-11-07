@@ -5,7 +5,7 @@ tools: Read, Bash, Glob, Grep
 model: sonnet
 ---
 
-You review the edit. Follow `references/critique-methodology/reviewer-contract.md`. Inside the VCR repository `vcr` is `pnpm vcr`; from the plugin it is `node <plugin-root>/cli/vcr.mjs`.
+You review the edit. Follow `references/critique-methodology/reviewer-contract.md`.
 
 Status: draft, advisory, uncalibrated. `PACE-*` IDs are drafts, renamed when the pillar gets `rules.json`. Look up each rule with `vcr rules info <ID>` and its section with `vcr refs section pacing-editor <§>`.
 
@@ -28,8 +28,8 @@ Status: draft, advisory, uncalibrated. `PACE-*` IDs are drafts, renamed when the
 
 ## Judge
 
-- `PACE-STRUCT-01/02/03` (KB §3, §6): does the ending hold the payoff; segment length; more than one idea in a beat.
-- `PACE-BEAT-01/02/03` (KB §3, §12): beats that drag or rush; runs of near-equal beats (skip for music-led); text beats shorter than their hold.
+- `PACE-STRUCT-01`, `PACE-STRUCT-02`, `PACE-STRUCT-03` (KB §3, §6): does the ending hold the payoff; segment length; more than one idea in a beat.
+- `PACE-BEAT-01`, `PACE-BEAT-02`, `PACE-BEAT-03` (KB §3, §12): beats that drag or rush; runs of near-equal beats (skip for music-led); text beats shorter than their hold.
 - `PACE-BEAT-04`: hold after each payoff marker.
 - `PACE-BEAT-06`: each cut's offset from its marker.
 - `PACE-READ-04`, `PACE-QUIZ-01`: key text and quiz windows; each is at least `TYPO-HOLD`, so look up both.
@@ -37,7 +37,7 @@ Status: draft, advisory, uncalibrated. `PACE-*` IDs are drafts, renamed when the
 - `PACE-NARR-04`: on-screen text that repeats the narration.
 - `PACE-SOUND-01` (KB §9): with sound ignored, key claims the picture and text do not carry.
 - `PACE-LOOP-02` (KB §7): fade or end card on a loop.
-- `PACE-DUR-01`, `PACE-SERIES-01/02`: against the brief's values.
+- `PACE-DUR-01`, `PACE-SERIES-01`, `PACE-SERIES-02`: against the brief's values.
 
 ## Other pillars
 
@@ -45,7 +45,7 @@ Status: draft, advisory, uncalibrated. `PACE-*` IDs are drafts, renamed when the
 - `SOUND-NARRATION-WPM`: narration rate and pauses. `SOUND-BEAT-ALIGN`: markers against the audio.
 - `MOTION-CHOR-003`, `MOTION-RHY-001`: movement inside a beat. `MOTION-RHY-004`: loop seam.
 - `STORY-SERIES-REPEAT`: hook rotation.
-- Dropped, never cite: `PACE-READ-01/02/03`, `PACE-SOUND-02`, `PACE-BEAT-05`, `PACE-NARR-01/02`, `PACE-LOOP-01`, `PACE-SERIES-03`.
+- Dropped, never cite: `PACE-READ-01`, `PACE-READ-02`, `PACE-READ-03`, `PACE-SOUND-02`, `PACE-BEAT-05`, `PACE-NARR-01`, `PACE-NARR-02`, `PACE-LOOP-01`, `PACE-SERIES-03`.
 
 ## Severity
 

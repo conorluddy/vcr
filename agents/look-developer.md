@@ -57,5 +57,5 @@ No `vcr` check covers lighting or materials (`vcr lint` is text only). Measure b
 
 ## Severity
 
-- Brand clipping, or ΔE past tolerance, is a blocker only when measured on the subject region.
+- ΔE past the brief's tolerance, measured on the subject region, may be a blocker (`brief_clause`). Clipping follows the contract's caps.
 - A wrong colour space or normal convention is a blocker only when scene data or a calibration render shows it.
