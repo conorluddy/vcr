@@ -12,24 +12,24 @@ This file holds the conventions every pillar shares and decides which pillar own
 | Pillar | Prefix | Knowledge base | Data | Checks | Skill | Agent |
 | --- | --- | --- | --- | --- | --- | --- |
 | Typography | `TYPO-` | [typography/](typography/README.md) | `rules.json` | `vcr lint` | `typography` | `typographer` |
-| Art direction | `ART-` | [art-director/](art-director/README.md) | — | — | — | — |
-| Motion | `MOTION-` | [motion-director/](motion-director/README.md) | — | — | — | — |
-| Pacing | `PACE-` | [pacing-editor/](pacing-editor/README.md) | — | — | — | — |
-| Critique (shared) | `REVIEW-` | [critique-methodology/](critique-methodology/README.md) | — | — | — | (all reviewers) |
-| Sound | `SOUND-` | [sound-design/](sound-design/README.md) | — | — | — | — |
+| Art direction | `ART-` | [art-director/](art-director/README.md) | — | — | — | `art-director` (draft) |
+| Motion | `MOTION-` | [motion-director/](motion-director/README.md) | — | — | — | `motion-director` (draft) |
+| Pacing | `PACE-` | [pacing-editor/](pacing-editor/README.md) | — | — | — | `pacing-editor` (draft) |
+| Critique (shared) | `REVIEW-` | [critique-methodology/](critique-methodology/README.md) | — | — | — | (all reviewers; [reviewer contract](critique-methodology/reviewer-contract.md)) |
+| Sound | `SOUND-` | [sound-design/](sound-design/README.md) | — | — | — | `sound-designer` (draft) |
 | Accessibility | `A11Y-` | [accessibility/](accessibility/README.md) | — | — (flash analyser first) | — | — |
 | Series brief | `BRIEF-` | [series-brief/](series-brief/README.md) | `series-brief.schema.json` (brief; no rules data) | `vcr validate` (brief schema) | `brief` | (read by every reviewer) |
 | Delivery | `DELIVERY-` | [delivery/](delivery/README.md) | — | — (`ffprobe` metadata gate first) | — | — |
-| Concept, script and storyboard | `STORY-` | [story/](story/README.md) | `beat-sheet.schema.json` (plan; no rules data) | `vcr plan check` (six checks) | — | — |
-| Data visualisation | `DATA-` | [data-visualisation/](data-visualisation/README.md) | — | — | — | — |
-| Adaptation and versioning | `ADAPT-` | [adaptation/](adaptation/README.md) | — | — | — | — |
-| Image treatment and compositing | `FX-` | [fx/](fx/README.md) | — | — | — | — |
-| Lighting | `LIGHT-` | [lighting/](lighting/README.md) | — | — | — | — |
-| Materials | `MAT-` | [materials/](materials/README.md) | — | — | — | — |
-| Domain exploration | `DOMAIN-` | [domain-exploration/](domain-exploration/README.md) | — | — | — | — |
-| Visual research and reference literacy | `VREF-` | [visual-research/](visual-research/README.md) | — | — | — | — |
-| Cultural context and visual meaning | `CULTURE-` | [cultural-context/](cultural-context/README.md) | — | — | — | — |
-| Image direction and asset curation | `IMAGE-` | [image-direction/](image-direction/README.md) | — | — | — | — |
+| Concept, script and storyboard | `STORY-` | [story/](story/README.md) | `beat-sheet.schema.json` (plan; no rules data) | `vcr plan check` (six checks) | — | `story-editor` (draft) |
+| Data visualisation | `DATA-` | [data-visualisation/](data-visualisation/README.md) | — | — | — | `data-visualiser` (draft) |
+| Adaptation and versioning | `ADAPT-` | [adaptation/](adaptation/README.md) | — | — | — | `version-auditor` (draft) |
+| Image treatment and compositing | `FX-` | [fx/](fx/README.md) | — | — | — | `compositor` (draft) |
+| Lighting | `LIGHT-` | [lighting/](lighting/README.md) | — | — | — | `look-developer` (draft) |
+| Materials | `MAT-` | [materials/](materials/README.md) | — | — | — | `look-developer` (draft) |
+| Domain exploration | `DOMAIN-` | [domain-exploration/](domain-exploration/README.md) | — | — | — | `domain-researcher` (draft) |
+| Visual research and reference literacy | `VREF-` | [visual-research/](visual-research/README.md) | — | — | — | `visual-researcher` (draft) |
+| Cultural context and visual meaning | `CULTURE-` | [cultural-context/](cultural-context/README.md) | — | — | — | `cultural-reader` (draft) |
+| Image direction and asset curation | `IMAGE-` | [image-direction/](image-direction/README.md) | — | — | — | `image-director` (draft) |
 
 `references/ideas/` holds exploratory material and `references/cli.md` the CLI reference; neither is a pillar.
 
