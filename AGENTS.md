@@ -81,7 +81,9 @@ This section is meant to change in most PRs; the rest of this file should rarely
 - **Plan approvals** (#173): plan findings are printed, not filed.
 - **Rule IDs still missing:** a generic determinism rule (FX, lighting and materials determinism rows have no replacement; sound has no check); the asset-manifest rule for licences and provenance; `A11Y-MOTION-*` rules for `MOTION-CAM-004/005`; a named art rule for minimum stroke width.
 - **Values to settle:** the `uk-clearcast` market profile in `references/typography/rules.json`; beat-alignment tolerance (`SOUND-BEAT-ALIGN` against `MOTION-RHY-001` and `PACE-BEAT-06`); which rule holds the brand ΔE tolerance (`ART-BRD-*` or `LIGHT-BRAND-DELTAE`).
-- **Research records:** the field list in `references/domain-exploration/research-handoff.md` becomes a JSON Schema once real research packs exist.
+- **Research records:** the field list in `references/domain-exploration/research-handoff.md` becomes a JSON Schema once real research packs exist; research-pack review has no finding contract yet (critique KB §10).
+- **Version sets:** `vcr lint` and `vcr plan check` take one scene or video, so `version-auditor` loops per cell; a matrix input would help.
+- **Unassigned or uncovered rules:** `PACE-READ-05/06` have no reviewer; `story-editor` does not cover `STORY-MUTED-LEGIBLE` or `STORY-LOOP-SEAM`; pattern periods for `MOTION-FPS-002` are not in the scene contract.
 - **Tests:** `lint-scene.test.ts` cannot launch Chromium in cloud sessions (Playwright build mismatch); `typography-rules.test.ts` failed once in a full run and passed on rerun.
 
 - - - - -  NEVER EDIT BELOW THIS LINE - - - - - -
