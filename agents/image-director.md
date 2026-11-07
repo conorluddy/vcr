@@ -16,7 +16,7 @@ Status: draft, advisory. No asset browser, generation integration or research-pa
 - For viewpoint, lens, focus and continuity read `references/image-direction/camera-direction.md`.
 - Name the owning pillar for text size, safe zones, accessibility and delivery limits; supply no number.
 - Look rules up with `vcr rules info <ID>`; read one `vcr refs section image-direction <§>` at a time.
-- Your record is Selection I in `references/domain-exploration/research-handoff.md`. Cite Source, Observation and Reading records; do not restate them.
+- Your record is Selection I, with the fields in `references/domain-exploration/research-handoff.md`, "Record fields". Cite Source, Observation and Reading records; do not restate them.
 
 ## Brief and shortlist
 

@@ -583,7 +583,7 @@ Steps run in order of severity:
 ## 20. Master checklists
 
 **Analysis:**
-- ☐ ART-DEL-01/02
+- ☐ ART-DEL-01/02 (moved to `DELIVERY-*`)
 - ☐ ART-BRD-01/02/03
 - ☐ ART-CMP-01, ART-CMP-07, ART-MOT-03
 - ☐ ART-VAL-01–04
@@ -591,7 +591,7 @@ Steps run in order of severity:
 - ☐ ART-MOT-01/02
 - ☐ ART-COL-03/04/05
 - ☐ ART-CLT-01/02
-- ☐ ART-DEL-03/04
+- ☐ ART-DEL-03/04 (moved to `DELIVERY-*`)
 - ☐ ART-STY-01–05
 - ☐ ART-SER-01/02
 - ☐ ART-COV-01–03
@@ -605,12 +605,12 @@ Steps run in order of severity:
 - ☐ ART-VAL-01/02, ART-CMP-02 (greyscale thumbnails)
 - ☐ ART-CMP-01/06/07 (grid in safe box)
 - ☐ ART-COL-03/04/05 (colour by role)
-- ☐ ART-DEL-03 (luminance on fine detail)
+- ☐ ART-DEL-03 (moved to `DELIVERY-*`) (luminance on fine detail)
 - ☐ ART-MOT-01/02, ART-CMP-05 (beats, lead room)
 - ☐ ART-STY-01–04
 - ☐ ART-3D-01/02
 - ☐ ART-COV-01–03
-- ☐ ART-DEL-01/02/04, ART-BRD-02 (encode and verify)
+- ☐ ART-DEL-01/02/04 (moved to `DELIVERY-*`), ART-BRD-02 (encode and verify)
 - ☐ ART-GEN-01/02
 
 ---

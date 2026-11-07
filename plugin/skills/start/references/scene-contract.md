@@ -29,7 +29,7 @@ Each check implements the fields it needs when it lands. Until then a scene may 
 | --- | --- | --- |
 | `regions(t)` | `[{ id, role, x, y, width, height, required?, priority?, anchor? }]` in CSS pixels, rendered geometry (after transforms and clipping) | Adaptation, lighting, brand and motion checks that need a subject, logo, legal line or CTA by name |
 | `params` | `{ width, height, fps, seed, aspect?, locale?, dir?, variant? }` | A read-only echo of the version being rendered, so a finding can name the version |
-| `data` | `{ source, meta: { source, date, units, transform? }, domain?(t) }` | Data scenes: the data file path, its provenance and the scale domain at `t` |
+| `data` | `{ source, meta: { source, date, units, transform? }, domain?(t), scales?(t), marks?(t) }` | Data scenes: the data file path, its provenance and, at `t`, the scale domain; `scales(t)` returns `{ [axis]: { domain, range } }` in data units and CSS pixels; `marks(t)` returns `[{ id, value, x, y, width, height }]`, one per visible mark, `id` its datum key and `value` the number it shows |
 | `fx` | `{ blendSpace: "srgb-encoded" \| "linear", attach?: { [id]: "frame" \| "object" \| "time" }, boil?: { [id]: stepFrames } }` | `FX-BLEND-SPACE-DECLARED`, `FX-SCREEN-SPACE-DECLARED`, `FX-BOIL-STEPPED`. A series-wide blend space goes in the brief. |
 
 Decisions:
@@ -56,5 +56,9 @@ No check reads these yet. The art, motion and pacing references plan checks that
   - `key`: text that must be read twice (headline, claim, CTA);
   - `cta`: the call to action;
   - `hold`: an intentional static moment;
-  - `montage`: a deliberately busy passage.
+  - `montage`: a deliberately busy passage;
+  - `ui`: an interface-like element, held to UI timing (`MOTION-TIME-002`, `MOTION-TIME-006`);
+  - `cinematic`: a watched move, exempt from UI timing;
+  - `signature`: the series' signature move, rationed across a piece (`MOTION-SIG-004`).
 - Beat-level labels (`promise`, `payoff`) go on named markers as `role`.
+- An element with neither `ui` nor `cinematic` is judged as cinematic; a reviewer says it assumed so. Key text for reading holds and the mute test is `key`; there is no separate `proposition` role.

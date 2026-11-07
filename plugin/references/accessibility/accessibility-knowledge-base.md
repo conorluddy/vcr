@@ -695,11 +695,11 @@ Measurability codes: **M-frames** = rendered PNG frames or decoded video; **M-do
 2. `A11Y-FLASH-GENERAL`, `A11Y-FLASH-RED`, `A11Y-FLASH-BROADCAST` (if broadcast/UK), `A11Y-FLASH-HDR` (if HDR), `A11Y-FLASH-LOOP-SEAM`, `A11Y-FLASH-CUTS`, `A11Y-FLASH-EXTENDED` on decoded delivery.
 3. `A11Y-PATTERN-STRIPES` pre- and post-downscale.
 4. Real-time viewing, muted and with sound, on a phone; no judgement from stills.
-5. `A11Y-CAPTION-PRESENCE`, `-COMPLETE`, `-ACCURACY`, `-SYNC`, `-RATE`, `-PLACEMENT`, `-NONSPEECH`, `-SPEAKER`, `-LYRICS`, `-SIDECAR`, `-AUTO-REVIEW`.
+5. `A11Y-CAPTION-PRESENCE`, `-COMPLETE`, `-ACCURACY`, `-SYNC`, `-RATE` (dropped; owner `TYPO-CAPTION-CPS`), `-PLACEMENT`, `-NONSPEECH`, `-SPEAKER`, `-LYRICS`, `-SIDECAR`, `-AUTO-REVIEW`.
 6. `A11Y-VIDEO-ONLY-ALT`, `A11Y-AD-COVERAGE`, `A11Y-AD-TRACK`.
-7. `A11Y-CONTRAST-TEXT`, `A11Y-CONTRAST-GRAPHIC`, `A11Y-COLOR-ALONE`, `A11Y-CVD-DISTINCT`.
-8. `A11Y-MOTION-FULLFRAME`, `-PARALLAX`, `-READING`, `-REDUCED-VARIANT`, `-PAUSE` (web embeds).
-9. `A11Y-PLAIN-LANGUAGE`, `A11Y-TEXT-DWELL`, `A11Y-SERIES-CONSISTENT`.
+7. `A11Y-CONTRAST-TEXT` (dropped; owner `TYPO-CONTRAST`), `A11Y-CONTRAST-GRAPHIC`, `A11Y-COLOR-ALONE`, `A11Y-CVD-DISTINCT`.
+8. `A11Y-MOTION-FULLFRAME`, `-PARALLAX`, `-READING` (dropped; owner `TYPO-HOLD`), `-REDUCED-VARIANT`, `-PAUSE` (web embeds).
+9. `A11Y-PLAIN-LANGUAGE`, `A11Y-TEXT-DWELL` (dropped; owner `TYPO-HOLD`), `A11Y-SERIES-CONSISTENT`.
 10. `A11Y-ALT-TEXT`, `A11Y-ALT-CAROUSEL` for stills and carousels.
 11. `A11Y-WARNING-NOT-FIX` confirmed.
 12. Findings written with severity, criterion, evidence, remediation and retest.
@@ -707,10 +707,10 @@ Measurability codes: **M-frames** = rendered PNG frames or decoded video; **M-do
 ### Creation checklist
 1. Brief captures placements, audio mode, jurisdictions, AD and reduced-motion needs.
 2. Script speaks every essential on-screen fact (`A11Y-AD-COVERAGE`); sound tags planned (`A11Y-CAPTION-NONSPEECH`).
-3. Palette passes `A11Y-CONTRAST-TEXT`, `A11Y-CONTRAST-GRAPHIC` and `A11Y-CVD-DISTINCT`; meanings redundantly encoded (`A11Y-COLOR-ALONE`).
+3. Palette passes `A11Y-CONTRAST-TEXT` (dropped; owner `TYPO-CONTRAST`), `A11Y-CONTRAST-GRAPHIC` and `A11Y-CVD-DISTINCT`; meanings redundantly encoded (`A11Y-COLOR-ALONE`).
 4. Beat map budgets flashes (`A11Y-FLASH-*`): edges ≥ 360 ms, small areas or constant luminance, no saturated-red full-frame transitions.
 5. No large oscillating stripes (`A11Y-PATTERN-STRIPES`).
-6. Text holds still for reading (`A11Y-MOTION-READING`, `A11Y-TEXT-DWELL`).
+6. Text holds still for reading (`A11Y-MOTION-READING` (dropped; owner `TYPO-HOLD`), `A11Y-TEXT-DWELL` (dropped; owner `TYPO-HOLD`)).
 7. `reducedMotion` path authored (`A11Y-MOTION-REDUCED-VARIANT`).
 8. Captions generated from script/TTS cues, with speaker IDs and tags (`A11Y-CAPTION-*`), styled per `TYPO-CAPTION-*`, inside `TYPO-SAFE`.
 9. Post-encode re-analysis of flash, contrast and captions.

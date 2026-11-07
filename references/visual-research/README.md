@@ -1,6 +1,6 @@
 # Visual research reference
 
-The visual research and reference literacy knowledge base (`VREF-*`) was supplied on 2026-11-07 from [the research brief](../research-prompts/visual-research.md). It is reference only: no rules data, checks, skill, reviewer or retrieval integration exists. Read one section of [the knowledge base](visual-research-knowledge-base.md) at a time using `vcr refs section visual-research <section>`.
+The visual research and reference literacy knowledge base (`VREF-*`) was supplied on 2026-11-07 from [the research brief](../research-prompts/visual-research.md). It is reference only: no rules data, checks, skill or retrieval integration exists; the draft `visual-researcher` agent cites these criteria and is advisory until calibrated. Read one section of [the knowledge base](visual-research-knowledge-base.md) at a time using `vcr refs section visual-research <section>`.
 
 | Task | Read |
 | --- | --- |

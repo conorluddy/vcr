@@ -41,7 +41,8 @@ One bullet per rule: `vcr rules info <ID>`, then `vcr refs section fx <§>` for 
 - `FX-BOIL-STEPPED`: declared boil changes only on its step frames at steady amplitude. KB §8.1.
 - `FX-THRESHOLD-HYSTERESIS`: thresholds on moving footage are pre-smoothed. KB §8.1.
 - `FX-SEED-DECLARED`: every noise source has an explicit seed.
-- `FX-FOCAL-PRESERVED`, `FX-PRESET-SMELL`, `FX-INTENSITY-RESTRAINT`: judged; at most `minor` unless the brief names them. KB §14.
+- `FX-LUT-VALID`, `FX-LUT-SPACE`: each LUT file is well formed and declares the input colour space it expects; read the files, no render needed.
+- `FX-FOCAL-PRESERVED`, `FX-PRESET-SMELL`, `FX-INTENSITY-RESTRAINT` (glow and bloom strength included): judged; at most `minor` unless the brief names them. KB §14.
 
 ## Not yours
 
@@ -53,6 +54,7 @@ Cite the owner's ID, or leave it to that reviewer:
 - Loop seam: `MOTION-RHY-004`.
 - Aliasing of moving patterns: `MOTION-FPS-002`, `MOTION-FPS-003`.
 - Render cost: skip.
+- Lens flare: `LIGHT-FLARE-RESTRAINT`. Bloom on text or UI: `LIGHT-BLOOM-RESTRAINT`.
 
 ## Escalation
 

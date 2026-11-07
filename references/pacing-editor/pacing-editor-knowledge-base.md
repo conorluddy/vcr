@@ -50,7 +50,7 @@ The core finding: the opening seconds carry most of the measurable value of a sh
 
 **Agent warnings.**
 - Code-first scenes often animate in from opacity 0 or scale 0, so frame 0 is empty. Platforms may use frame 0 as the cover, so it must already carry content (HOOK-01).
-- Agents converge on one hook template. Rotate hook types and log them (SERIES-03).
+- Agents converge on one hook template. Rotate hook types and log them (SERIES-03 (dropped; owner `STORY-SERIES-REPEAT`)).
 
 **First readable frame** (derived, heuristic). A 3-word line needs about 0.9 s at 0.3 s/word. To be read, with a second-read margin, before the 3 s deadline it must land by about 1.0 s (HOOK-05).
 
@@ -132,7 +132,7 @@ Change the picture when the *information* changes. Within long holds, keep inter
 | DCMP educational | 130/140/160 wpm by level\[48\] | secondary only | heuristic |
 | TikTok overlays | "5-10 words per second" | TikTok Help | platform, **contradicted** as dwell |
 
-**The TikTok problem.** 5–10 words/s is 300–600 wpm: 1.3–2.5× average silent reading speed and up to 3.75× the BBC ceiling. It probably describes word-by-word kinetic captions running with speech. Static text dwell therefore follows READ-01, and synced captions follow narration rate.
+**The TikTok problem.** 5–10 words/s is 300–600 wpm: 1.3–2.5× average silent reading speed and up to 3.75× the BBC ceiling. It probably describes word-by-word kinetic captions running with speech. Static text dwell therefore follows READ-01 (dropped; owner `TYPO-HOLD`), and synced captions follow narration rate.
 
 **Dwell formula.**
 ```
@@ -344,19 +344,19 @@ Measurability: **M** = automatic; **M*** = needs author tags; **J** = judgement 
 
 - **HOOK-01.** *Inputs:* PNG and DOM at t=0. *Calc:* background-subtracted mask in the safe zone, thresholded on local contrast. *Failure:* full-bleed texture counts as content, so allow `subject` tags to override.
 - **HOOK-02/03.** *Inputs:* tags mapped to text layers or narration spans. *Calc:* t_prop = the earlier of (text onset + dwell_min) and (narration span end). *Failure:* untagged scripts; fall back to the first text block, mark the result `unverified`, and hand it to the reviewer.
-- **READ-01/04/05, HOOK-05.**
+- **READ-01/04/05, HOOK-05.** (READ-01 dropped; owner `TYPO-HOLD`)
   - *Inputs:* per-frame DOM text with computed opacity, transform and bbox; `textBounds()` for canvas/three.js; `getBBox()` plus CTM for SVG.
   - *Calc:* "readable" = opacity ≥ 0.9, inside the safe zone, velocity < 0.5×font-size per frame, scale ≥ 0.95 of final, not masked. Dwell is the continuous readable interval.
   - *Failure:* per-letter split nodes (group by parent); text baked into images (OCR fallback, low confidence); clip-paths ignored by bboxes (cross-check pixels); kinetic captions belong to NARR, not READ-01.
-- **READ-02/03.** cps = chars ÷ duration from SRT/VTT/TTML or the caption layer. Group per-word animated captions into phrases.
-- **NARR-01/02.** *Inputs:* TTS word timestamps (preferred) or forced alignment. *Calc:* sliding 10 s wpm, articulation rate, inter-word gaps. *Failure:* drift on music beds; numerals that expand when spoken.
+- **READ-02/03.** (dropped; owners `TYPO-CAPTION-CPS`, `TYPO-CAPTION-DURATION`) cps = chars ÷ duration from SRT/VTT/TTML or the caption layer. Group per-word animated captions into phrases.
+- **NARR-01/02.** (dropped; owner `SOUND-NARRATION-WPM`) *Inputs:* TTS word timestamps (preferred) or forced alignment. *Calc:* sliding 10 s wpm, articulation rate, inter-word gaps. *Failure:* drift on music beds; numerals that expand when spoken.
 - **NARR-03.** |onset(element) − onset(term)|. Elements present from t=0 use the onset of their highlight.
-- **BEAT-01/02/05.**
+- **BEAT-01/02/05.** (BEAT-05 dropped; owner `MOTION-CHOR-003`)
   - *Inputs:* `markers`, or change-points from frame luminance diffs above k× the rolling median plus DOM appear/disappear, text-change and motion-start events.
   - *Failure:* particles and shaders register as constant change, so exclude layers tagged `ambient` and use semantic events. Small three.js camera drift needs object-level thresholds.
 - **BEAT-06.** Nearest-marker offset in frames. Validate the markers against audio onset detection.
-- **LOOP-01/02.** SSIM of the first and last frames, luminance, RMS step over the last and first 50 ms, and a check that duration × fps is an integer. Re-run on the decoded delivery file, because re-encoding shifts colour and keyframes.
-- **PACE-SOUND-01/02.** Coverage ratios. Image referents need tags; without tags this check is judgement only.
+- **LOOP-01/02.** (LOOP-01 dropped; owner `MOTION-RHY-004`) SSIM of the first and last frames, luminance, RMS step over the last and first 50 ms, and a check that duration × fps is an integer. Re-run on the decoded delivery file, because re-encoding shifts colour and keyframes.
+- **PACE-SOUND-01/02.** (PACE-SOUND-02 dropped; owner `A11Y-CAPTION-COMPLETE`) Coverage ratios. Image referents need tags; without tags this check is judgement only.
 - **DUR-01.** Compare `__scene.duration` with the ffprobe delivery duration. Watch for AAC padding mismatch.
 
 ## 19. Rendering and delivery notes
@@ -373,19 +373,19 @@ Measurability: **M** = automatic; **M*** = needs author tags; **J** = judgement 
 
 **Analysis.**
 - [ ] HOOK-01–06 (frame 0, 3 s proposition, 6 s hook, payoff, TTFRT, ≤ 5-word hook)
-- [ ] READ-01–06 (dwell, cps, durations, read-twice, words per beat, no TikTok-rate dwell)
-- [ ] NARR-01–04 (wpm, pauses, contiguity, no transcript text)
-- [ ] BEAT-01–06 (gaps, CV, text beats, holds, animators, music sync)
+- [ ] READ-01–06 (dwell, cps, durations, read-twice, words per beat, no TikTok-rate dwell) (READ-01/02/03 dropped; owners `TYPO-HOLD`, `TYPO-CAPTION-CPS`, `TYPO-CAPTION-DURATION`)
+- [ ] NARR-01–04 (wpm, pauses, contiguity, no transcript text) (NARR-01/02 dropped; owner `SOUND-NARRATION-WPM`)
+- [ ] BEAT-01–06 (gaps, CV, text beats, holds, animators, music sync) (BEAT-05 dropped; owner `MOTION-CHOR-003`)
 - [ ] STRUCT-01–03, QUIZ-01, CTA-01
-- [ ] LOOP-01/02 if looping; PACE-SOUND-01/02; SERIES-01–03; DUR-01
+- [ ] LOOP-01/02 if looping (LOOP-01 dropped; owner `MOTION-RHY-004`); PACE-SOUND-01/02 (PACE-SOUND-02 dropped; owner `A11Y-CAPTION-COMPLETE`); SERIES-01–03 (SERIES-03 dropped; owner `STORY-SERIES-REPEAT`); DUR-01
 - [ ] Watched in motion, with sound and muted; not judged from stills
 
 **Creation.**
 - [ ] Brief fields captured (placement, audience cps, audioLed, duration, bible)
-- [ ] Proposition sentence, ≤ 5-word hook, hook type logged (HOOK-02/06, SERIES-03)
-- [ ] Two scripts: narration 140–170 wpm, keyword screen text (NARR-01/04)
-- [ ] Tags and `markers` for beats, payoff and CTA; content-derived, varied beat durations (READ-01/04, BEAT-02/04)
-- [ ] Frame 0 built first (HOOK-01); loop decision explicit (LOOP-01/02)
+- [ ] Proposition sentence, ≤ 5-word hook, hook type logged (HOOK-02/06, SERIES-03 (dropped; owner `STORY-SERIES-REPEAT`))
+- [ ] Two scripts: narration 140–170 wpm, keyword screen text (NARR-01 (dropped; owner `SOUND-NARRATION-WPM`)/04)
+- [ ] Tags and `markers` for beats, payoff and CTA; content-derived, varied beat durations (READ-01 (dropped; owner `TYPO-HOLD`)/04, BEAT-02/04)
+- [ ] Frame 0 built first (HOOK-01); loop decision explicit (LOOP-01 (dropped; owner `MOTION-RHY-004`)/02)
 - [ ] `vcr lint` PACE, muted review, reviewer pass, metrics logged
 
 ## 21. Caveats

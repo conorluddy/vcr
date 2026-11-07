@@ -30,7 +30,7 @@ No `vcr` check measures motion; there is no `vcr motion-trace`, and `vcr lint` c
 - `MOTION-EASE-001` to `-004`: entrances decelerate, exits accelerate, on-screen moves ease both ends, no kinks at joins (KB §2, §10).
 - `MOTION-EASE-005`, `-006`: overshoot against the voice; none on opacity, colour or blur.
 - `MOTION-EASE-007`: curve vocabulary.
-- `MOTION-TIME-001`, `-003`, `-004`: tweens that read as cuts; longer travel with shorter duration; exit longer than entrance (KB §3). `MOTION-TIME-002` and `-006` are for UI-like elements only.
+- `MOTION-TIME-001`, `-003`, `-004`: tweens that read as cuts; longer travel with shorter duration; exit longer than entrance (KB §3). `MOTION-TIME-002` and `-006` apply only to elements with `data-vcr-role` `ui`; untagged elements are cinematic, and say you assumed so.
 - `MOTION-SPR-002`: springs settle before the next action.
 - `MOTION-CHOR-001`, `-002`: stagger evenness and span (KB §4).
 - `MOTION-CHOR-003`: lead mover; count simultaneous movers.
@@ -44,7 +44,7 @@ No `vcr` check measures motion; there is no `vcr motion-trace`, and `vcr lint` c
 - `MOTION-FPS-002`: aliasing of periodic patterns.
 - `MOTION-FPS-003`: shimmer of thin moving features.
 - `MOTION-SIG-001`: motion spec exists and is followed; with none, infer the voice and say so (KB §11).
-- `MOTION-SIG-002`, `-003`, `-004`: one ease and duration everywhere, fade-up everywhere, signature move rationed.
+- `MOTION-SIG-002`, `-003`, `-004`: one ease and duration everywhere, fade-up everywhere, signature move (`data-vcr-role` `signature`) rationed.
 
 Do not hold cinematic moves to UI durations or flag every overshoot in a playful piece (KB §13).
 

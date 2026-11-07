@@ -98,6 +98,23 @@ test("integrity catches dangling owners and links in a changed corpus", () => {
   expect(messages).toContain("Missing local reference missing.md");
 });
 
+test("agents cite rules that resolve, and name a dropped rule only to say it is dropped", () => {
+  const fixture = mkdtempSync(join(tmpdir(), "vcr-agent-rules-"));
+  cpSync(join(harness, "references"), join(fixture, "references"), { recursive: true });
+  cpSync(join(harness, "agents"), join(fixture, "agents"), { recursive: true });
+  expect(referenceIntegrityDiagnostics(fixture).filter((d) => d.file.startsWith("agents/"))).toEqual([]);
+  writeFileSync(join(fixture, "agents/fixture-reviewer.md"), [
+    "- `PACE-READ-01`: reading hold.",
+    "- Dropped, never cite: `PACE-BEAT-05`.",
+    "- `MOTION-NOPE-001`: invented.",
+    "- Captions as access: `A11Y-CAPTION-*`.",
+  ].join("\n"));
+  const messages = referenceIntegrityDiagnostics(fixture).map((d) => d.message);
+  expect(messages).toContain("Cites superseded rule PACE-READ-01; cite TYPO-HOLD instead");
+  expect(messages).toContain("Unknown rule reference MOTION-NOPE-001");
+  expect(messages.some((m) => m.includes("PACE-BEAT-05") || m.includes("A11Y-CAPTION"))).toBe(false);
+});
+
 test("section extraction ignores headings inside fenced examples", () => {
   const fixture = mkdtempSync(join(tmpdir(), "vcr-fenced-section-"));
   cpSync(join(harness, "references"), join(fixture, "references"), { recursive: true });

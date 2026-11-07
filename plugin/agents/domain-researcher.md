@@ -16,7 +16,7 @@ Status: draft, advisory. No research-pack schema or approval mechanism exists, a
 - Return records in your reply. Write notes only if asked, and only into the production's workspace (`DOMAIN-WORKSPACE-BOUNDARY`).
 - Do not edit the brief. Route open decisions to it (`DOMAIN-HANDOFF-SEPARATION`).
 - Look up one rule (`vcr rules info <ID>`) or one section (`vcr refs section domain-exploration <§>`) at a time. Never quote a number from memory.
-- Record shapes: `references/domain-exploration/research-handoff.md`.
+- Record fields and file location: `references/domain-exploration/research-handoff.md`, "Record fields".
 
 ## Procedure
 

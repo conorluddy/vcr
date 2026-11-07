@@ -37,6 +37,7 @@ No `vcr` check covers lighting or materials (`vcr lint` is text only). Measure b
 - `LIGHT-MOTIVATED`, `LIGHT-NOT-STUDIO-GREY`, `LIGHT-CONTACT-SHADOW`: key position, default look, grounded objects.
 - `LIGHT-TWOD-DIRECTION`: 2D shadows and highlights share one angle.
 - `LIGHT-EMISSIVE-HIERARCHY`: one brightest emitter, the focal one.
+- `LIGHT-BLOOM-RESTRAINT`: no bloom on text or UI. `LIGHT-FLARE-RESTRAINT`: flares come from a visible bright source and clear the brand.
 
 ## Materials (KB §13, §16)
 
@@ -51,7 +52,7 @@ No `vcr` check covers lighting or materials (`vcr lint` is text only). Measure b
 
 ## Not yours
 
-- Moiré: `FX-MOIRE-RESAMPLE`. Flashing: `A11Y-FLASH-GENERAL`. Loop seams: `MOTION-RHY-004`. Text under a light sweep: `TYPO-CONTRAST`. Determinism: the shared check. Bloom and flare: fx. Look intent: art.
+- Moiré: `FX-MOIRE-RESAMPLE`. Flashing: `A11Y-FLASH-GENERAL`. Loop seams: `MOTION-RHY-004`. Text under a light sweep: `TYPO-CONTRAST`. Determinism: the shared check. Bloom strength: `FX-INTENSITY-RESTRAINT`. Look intent: art.
 - HDRI and texture licences: the asset manifest.
 - Never cite the dropped `MAT-COLOR-MANAGEMENT-OUTPUT`, `MAT-TONEMAP-BRAND`, `MAT-BRAND-DELTAE` or `MAT-EMISSIVE-CLIP`; use the `LIGHT-*` owner above.
 

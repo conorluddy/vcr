@@ -40,9 +40,9 @@ No `vcr` check exists for art (`vcr lint` covers text only). Measure by hand; st
 - `ART-COV-01`, `ART-COV-02`, `ART-COV-03`: cover and frame 0, for series.
 - `ART-GEN-01`, `ART-GEN-02` (KB §11): library defaults as identity, one entrance for everything, no stated visual idea.
 
-## Unresolved
+## Stroke width
 
-- Minimum stroke width: the KB gives two values (§3 and `ART-DEL-03` disagree) and the owners table does not pick one. Report thin information-carrying strokes as `note` citing `ART-DEL-03`; state no pass or fail.
+- Information-carrying strokes against the minimum in KB §3 (`vcr refs section art-director 3`); outlined strokes pass. There is no named rule yet: `rule_id` is `null`, basis `heuristic_rule`. `ART-DEL-03` covers chroma-only fine detail only.
 
 ## Not yours
 

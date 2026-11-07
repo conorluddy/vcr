@@ -573,8 +573,8 @@ The books are listed from domain knowledge as canon; their contents were not fet
 | SOUND-MONO-COMPAT | Master WAV stereo | Pearson correlation L/R per 400 ms; ebur128 of (L+R)/2 vs stereo | 400 ms windows | Intentionally wide ambience produces low correlation without real cancellation; use loudness delta as primary |
 | SOUND-HEAD-START, SOUND-TAIL-INTACT, SOUND-SILENCE-UNINTENDED | Delivery decode; cue sheet | `silencedetect` (e.g., −60 dB, 0.3 s); compare spans to intentional-silence list | Whole file | Encoder priming/padding can add silence or offset at head—measure on decoded file and compare to video t=0 |
 | SOUND-NARRATION-WPM | Narration WAV, script text | words / (speech time minus pauses > 300 ms) × 60 | Per sentence and overall | TTS numbers expand ("1080p" → 3+ words); ASR errors if no script |
-| SOUND-NARRATION-TEXT-REDUNDANCY, SOUND-NARRATION-VISUAL-LEAD | DOM text at time t / `textBounds()`; narration word timestamps (forced alignment) | Token overlap between visible text and words spoken in same window; time from element first-visible to first mention | Per narration phrase; DOM sampled at each phrase start/end | Canvas text without `textBounds()` invisible to DOM; paraphrase defeats token overlap |
-| SOUND-SAMPLE-RATE, SOUND-AAC-BITRATE | Delivery MP4 | `ffprobe -show_streams` codec_name, sample_rate, bit_rate | Once | VBR AAC reports average bitrate |
+| SOUND-NARRATION-TEXT-REDUNDANCY (dropped; owner `PACE-NARR-04`), SOUND-NARRATION-VISUAL-LEAD (dropped; owner `PACE-NARR-03`) | DOM text at time t / `textBounds()`; narration word timestamps (forced alignment) | Token overlap between visible text and words spoken in same window; time from element first-visible to first mention | Per narration phrase; DOM sampled at each phrase start/end | Canvas text without `textBounds()` invisible to DOM; paraphrase defeats token overlap |
+| SOUND-SAMPLE-RATE (moved to `DELIVERY-AUDIO-SAMPLE-RATE`), SOUND-AAC-BITRATE (moved to `DELIVERY-AUDIO-BITRATE`) | Delivery MP4 | `ffprobe -show_streams` codec_name, sample_rate, bit_rate | Once | VBR AAC reports average bitrate |
 | SOUND-LOOP-SEAM | Loop audio | length_samples == frames × 48000 / fps; |x[0] − x[−1]| vs median |Δx|; listen at seam ×3 | Seam ±50 ms | 48000/fps non-integer at some rates (e.g. 48000/24 = 2000 OK; 48000/30 = 1600 OK; 48000/25 = 1920 OK; 48000/60 = 800 OK) |
 | SOUND-SYNTH-DETERMINISM | Two renders | SHA-256 of PCM; else max abs diff | Whole file | Different hardware float paths; resampler versions |
 
@@ -598,19 +598,19 @@ The books are listed from domain knowledge as canon; their contents were not fet
 
 **Analysis (reviewer).**
 - [ ] Delivery MP4 measured: SOUND-LOUDNESS-INTEGRATED, SOUND-LOUDNESS-FLOOR, SOUND-TRUE-PEAK, SOUND-SHORT-TERM-MAX, SOUND-CLIP
-- [ ] Format: SOUND-SAMPLE-RATE, SOUND-AAC-BITRATE
-- [ ] Mute test passed: SOUND-MUTE-LEGIBLE
+- [ ] Format: SOUND-SAMPLE-RATE (moved to `DELIVERY-AUDIO-SAMPLE-RATE`), SOUND-AAC-BITRATE (moved to `DELIVERY-AUDIO-BITRATE`)
+- [ ] Mute test passed: SOUND-MUTE-LEGIBLE (dropped; owner `PACE-SOUND-01`)
 - [ ] Voice clear: SOUND-VOICE-BED-GAP, SOUND-DUCK-ATTACK, SOUND-DUCK-PUMP, SOUND-LYRIC-UNDER-VOICE
 - [ ] Sync on moving picture: SOUND-SYNC-LEAD, SOUND-SYNC-LAG, SOUND-SFX-PEAK-ALIGN, SOUND-BEAT-ALIGN
 - [ ] Design: SOUND-SFX-DENSITY, SOUND-SFX-REPEAT, SOUND-DYNAMIC-CONTRAST
 - [ ] Translation: SOUND-LOW-END-TRANSLATION, SOUND-MONO-COMPAT
 - [ ] Edges: SOUND-HEAD-START, SOUND-TAIL-INTACT, SOUND-SILENCE-UNINTENDED, SOUND-LOOP-SEAM
-- [ ] Narration: SOUND-NARRATION-WPM, SOUND-NARRATION-TEXT-REDUNDANCY, SOUND-NARRATION-VISUAL-LEAD
+- [ ] Narration: SOUND-NARRATION-WPM, SOUND-NARRATION-TEXT-REDUNDANCY (dropped; owner `PACE-NARR-04`), SOUND-NARRATION-VISUAL-LEAD (dropped; owner `PACE-NARR-03`)
 - [ ] Rights and reproducibility: SOUND-LICENSE-RECORD, SOUND-SYNTH-DETERMINISM, SOUND-NO-LIVE-CAPTURE, SOUND-SERIES-CONSISTENCY
 - [ ] Findings written with time range, term, rule ID, value, target, fix; severities assigned
 
 **Creation (workflow skill).**
-- [ ] Placement and audio role decided; muted-first carriers planned (SOUND-MUTE-LEGIBLE)
+- [ ] Placement and audio role decided; muted-first carriers planned (SOUND-MUTE-LEGIBLE (dropped; owner `PACE-SOUND-01`))
 - [ ] Script fits duration at 130–175 wpm (SOUND-NARRATION-WPM)
 - [ ] Music provenance recorded (SOUND-LICENSE-RECORD); BPM chosen for frame grid (SOUND-BPM-FRAME-GRID); markers from the audio file (SOUND-BEAT-ALIGN)
 - [ ] Cue sheet keyed to scene events; SFX aligned by peak (SOUND-SFX-PEAK-ALIGN); sparse featured cues (SOUND-SFX-DENSITY); seeded variation (SOUND-SFX-REPEAT, SOUND-SYNTH-DETERMINISM)

@@ -18,7 +18,7 @@ Status: draft, advisory. No research-pack schema exists; `CULTURE-*` rule IDs ar
 
 ## Load
 
-- Read the brief, then `references/domain-exploration/research-handoff.md`.
+- Read the brief, then `references/domain-exploration/research-handoff.md` ("Record fields" gives Reading C; your JSON below uses the same names).
 - Run `vcr refs section cultural-context <§>` for one section at a time: §1 audience, §2 codes, §3 contemporary references, §4 contexts, §5 chains, §7 workflow, §8 review lenses, §13 checklists.
 
 ## Mode A: research before production
@@ -54,7 +54,7 @@ Status: draft, advisory. No research-pack schema exists; `CULTURE-*` rule IDs ar
 First line: what you could and could not establish. Then one object per cue:
 
 ```json
-{ "cue": "...", "audience": "...", "decision_it_could_change": "...", "readings": [{ "reading": "...", "basis": "evidenced|assumed|inference", "confidence": "low|medium|high", "evidence": "source, source date, observed date, passage" }], "competing_reading": "...", "survives_a_miss": true, "durable_alternative": "...", "recheck_trigger": "..." }
+{ "cue": "...", "audience": "...", "decision_it_could_change": "...", "readings": [{ "reading": "...", "basis": "evidenced|assumed|inference", "confidence": "low|medium|high", "evidence": "source, source date, observed date, passage" }], "competing_reading": "...", "survives_a_miss": true, "durable_alternative": "...", "freshness_trigger": "..." }
 ```
 
 Then questions for the human. Cap confidence at low for abstract-only, snippet-only, secondary-only or small-sample support. Your output is evidence, not approval.

@@ -1,6 +1,6 @@
 # Art direction reference
 
-This is the art direction knowledge base (`ART-*`), produced from [the research brief](../research-prompts/art-director.md) on 2026-11-06. It is reference material, not an implemented check: there is no `ART-*` rules data file, lint step, skill or agent yet. It is too large to load whole (about 14k tokens), so read only the section the task needs in [the knowledge base](art-director-knowledge-base.md).
+This is the art direction knowledge base (`ART-*`), produced from [the research brief](../research-prompts/art-director.md) on 2026-11-06. It is reference material, not an implemented check: there is no `ART-*` rules data file, lint step or skill yet; the draft `art-director` agent cites these rules and is advisory until calibrated. It is too large to load whole (about 14k tokens), so read only the section the task needs in [the knowledge base](art-director-knowledge-base.md).
 
 | Task | Read |
 | --- | --- |
@@ -22,7 +22,7 @@ This is the art direction knowledge base (`ART-*`), produced from [the research 
 2. **Settled: delivery rules** ([shared conventions](../README.md)). `DELIVERY-*` owns encoding range and chroma requirements. `TYPO-RANGE`, `TYPO-CHROMA` and `ART-DEL-*` retain design consequences and defer delivery thresholds to that owner.
 3. **Settled: named rule IDs** ([shared conventions](../README.md)). The numbered IDs here are drafts, renamed when `ART-*` gets its `rules.json`.
 4. **Inconsistent and mislabelled values.**
-   - The minimum stroke width differs between sections: §3 says 4 px and `ART-DEL-03` says 6 px.
+   - **Settled: minimum stroke width** ([rule owners](../README.md#rule-owners)). §3's value, with outlined strokes allowed, is the one value; the legacy 6 px figure in `ART-DEL-03` is dropped, and `ART-DEL-03` keeps chroma-only fine detail. The value becomes a named rule with `rules.json`.
    - `ART-CMP-01/07` and `ART-MOT-03` now identify the legacy safe-area proposal as unverified heuristic guidance and defer to `TYPO-SAFE`.
    - `ART-DEL-02` now separates the scoped range convention from the uncalibrated ±2 tolerance; delivery owns the check.
 5. **General rules vs brief settings.** Format advice in §13, such as giving the accent only to the correct answer in a quiz, should become rules only where it holds for any production. Choices that depend on a particular production belong in that production's series brief (`BRIEF-*`). This harness stays domain-agnostic.

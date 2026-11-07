@@ -28,7 +28,7 @@ Its central idea: **resting frames carry the chart; transitions preserve identit
    - the scale domain at time `t`;
    - its rest intervals.
 
-   The datum key fits the reserved `data-vcr-id`. The rest intervals fit named `markers` (see the adaptation README's contract proposal). **Settled (#143):** the rest is the optional `data` block in [the scene contract](../../skills/start/references/scene-contract.md), and rest intervals are named markers with `role: "rest"`.
+   The datum key fits the reserved `data-vcr-id`. The rest intervals fit named `markers` (see the adaptation README's contract proposal). **Settled (#143):** the rest is the optional `data` block in [the scene contract](../../skills/start/references/scene-contract.md), and rest intervals are named markers with `role: "rest"`. The block also reserves `scales(t)` and `marks(t)`, so a check can compare each mark's geometry with its value without inferring either from the DOM.
 2. **Settled: rule owners** ([shared conventions](../README.md)).
    - `DATA-COLOUR-NOT-SOLE` is dropped in favour of `A11Y-COLOR-ALONE`.
    - `DATA-THOUSANDS` is dropped in favour of `ADAPT-LOCALE-FORMAT`, which formats numbers through `Intl`.

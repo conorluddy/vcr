@@ -540,11 +540,11 @@ General sampling: for each check, seek `window.__scene.seek(t)` at t = i/fps for
 | RHY-003 | TS energy or PNG mean absolute difference | Per-second energy, CV | fps | Full-frame colour fades register as huge energy; weight transforms over pixel diff |
 | RHY-004 | Frames at t = 0 and t = duration (seek to duration − ε and wrap) | Property equality and velocity match; PNG SSIM between frame N and frame 0 | fps + 4× near the seam | Off-by-one frame at the seam (duration exclusive vs inclusive); time-dependent noise not periodic |
 | CAM-001, FPS-003 | TS of full-frame layers; PNG optical flow for canvas/WebGL | px/frame vs W/(7·fps) | fps | Optical flow fails on flat-colour areas; the rule assumes detailed, high-contrast content |
-| CAM-002/003/005/006 | TS transforms of layers and root | Count speed classes; scale ratio over a 1 s window; angular velocity; screen-fixed element presence | fps | Camera implemented as a parent transform must be decomposed; three.js cameras need the projection read via the scene hook |
-| CAM-004 | TS of large elements and root | FFT of position or scale; energy in 0.1–0.3 Hz band, cycles counted | full duration | Short pieces (< 10 s) cannot resolve 0.2 Hz reliably (needs ≥ 2 cycles = 10 s) |
-| FPS-001 | Container metadata (`ffprobe`), render config | Equality | — | Variable-frame-rate re-encodes by platforms; check the platform download if possible |
+| CAM-002/003/005/006 (CAM-002/003 dropped; owners `A11Y-MOTION-FULLFRAME`, `A11Y-MOTION-PARALLAX`; CAM-005 moved to `A11Y-MOTION-*`) | TS transforms of layers and root | Count speed classes; scale ratio over a 1 s window; angular velocity; screen-fixed element presence | fps | Camera implemented as a parent transform must be decomposed; three.js cameras need the projection read via the scene hook |
+| CAM-004 (moved to `A11Y-MOTION-*`) | TS of large elements and root | FFT of position or scale; energy in 0.1–0.3 Hz band, cycles counted | full duration | Short pieces (< 10 s) cannot resolve 0.2 Hz reliably (needs ≥ 2 cycles = 10 s) |
+| FPS-001 (moved to `DELIVERY-FPS-*`) | Container metadata (`ffprobe`), render config | Equality | — | Variable-frame-rate re-encodes by platforms; check the platform download if possible |
 | FPS-002 | TS rotation × pattern period (from scene metadata) | Phase step per frame / period | fps | Period must be declared; auto-detection from pixels is unreliable |
-| MOTION-A11Y-001/002 | DOM with emulated `prefers-reduced-motion` (Playwright `emulateMedia`) | Re-sample TS; non-essential tagged motion must be ≈ 0; detect controls for > 5 s loops | fps | Essential vs non-essential needs tags; video files themselves are out of scope |
+| MOTION-A11Y-001/002 (dropped; owner `A11Y-MOTION-REDUCED-VARIANT`) | DOM with emulated `prefers-reduced-motion` (Playwright `emulateMedia`) | Re-sample TS; non-essential tagged motion must be ≈ 0; detect controls for > 5 s loops | fps | Essential vs non-essential needs tags; video files themselves are out of scope |
 | SIG-001/004 | Brief spec, curve fits | Pass rate; count signature-tagged occurrences per 30 s | — | Requires spec and tags; otherwise judgement only |
 
 ## 18. VCR-specific rendering and delivery notes
@@ -581,11 +581,11 @@ General sampling: for each check, seek `window.__scene.seek(t)` at t = i/fps for
 - [ ] Staggers even or intentionally ramped and not sluggish (CHOR-001/002)
 - [ ] One lead mover; hierarchy order matches priority (CHOR-003/004)
 - [ ] Continuity across transitions; morphs clean (CHOR-005/007)
-- [ ] Causal hits and SFX on contact frames (CHOR-006, RHY-002)
+- [ ] Causal hits and SFX on contact frames (CHOR-006, RHY-002 (dropped; owner `SOUND-SYNC-LEAD`))
 - [ ] Beat arrivals within 1 frame (RHY-001); energy has shape (RHY-003); loop seam clean (RHY-004)
-- [ ] Pans within judder limit; parallax, zoom, spin and oscillation checked; anchor present (CAM-001…006)
-- [ ] fps consistent; no aliasing or shimmer, checked on the encoded file (FPS-001…004)
-- [ ] Accessibility hooks for web outputs (MOTION-A11Y-001…005)
+- [ ] Pans within judder limit; parallax, zoom, spin and oscillation checked; anchor present (CAM-001…006) (CAM-002/003 dropped; owners `A11Y-MOTION-FULLFRAME`, `A11Y-MOTION-PARALLAX`; CAM-004/005 moved to `A11Y-MOTION-*`)
+- [ ] fps consistent; no aliasing or shimmer, checked on the encoded file (FPS-001…004) (FPS-001 moved to `DELIVERY-FPS-*`)
+- [ ] Accessibility hooks for web outputs (MOTION-A11Y-001…005) (dropped; owners `A11Y-MOTION-*`, `A11Y-FLASH-*`)
 - [ ] Template signs absent (SIG-002/003); signature rationed (SIG-004)
 
 ### Creation checklist
@@ -596,10 +596,10 @@ General sampling: for each check, seek `window.__scene.seek(t)` at t = i/fps for
 - [ ] Easing per role: enter/exit/move (EASE-001…003); effects critically damped (EASE-006)
 - [ ] Choreography: lead mover, offsets, overlap, follow-through (CHOR-001…004)
 - [ ] Transitions preserve shared elements (CHOR-005)
-- [ ] Camera within limits with an anchor (CAM-001…006)
+- [ ] Camera within limits with an anchor (CAM-001…006) (CAM-002/003 dropped; owners `A11Y-MOTION-FULLFRAME`, `A11Y-MOTION-PARALLAX`; CAM-004/005 moved to `A11Y-MOTION-*`)
 - [ ] Everything a pure function of t; seeded randomness; analytic springs (SPR-001)
-- [ ] Measurable checks run; encoded delivery re-checked (FPS-001…003)
-- [ ] Reduced-motion and pause controls where web-interactive (MOTION-A11Y-001/002)
+- [ ] Measurable checks run; encoded delivery re-checked (FPS-001…003) (FPS-001 moved to `DELIVERY-FPS-*`)
+- [ ] Reduced-motion and pause controls where web-interactive (MOTION-A11Y-001/002) (dropped; owner `A11Y-MOTION-REDUCED-VARIANT`)
 - [ ] Template self-check before handoff (SIG-002/003)
 
 ## 20. Caveats

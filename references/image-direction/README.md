@@ -1,6 +1,6 @@
 # Image direction reference
 
-The image direction and asset curation knowledge base (`IMAGE-*`) was supplied on 2026-11-07 from [the research brief](../research-prompts/image-direction.md). It is reference only: no rules data, checks, skill, reviewer, asset browser or generation integration exists. Read one section of [the knowledge base](image-direction-knowledge-base.md) at a time using `vcr refs section image-direction <section>`.
+The image direction and asset curation knowledge base (`IMAGE-*`) was supplied on 2026-11-07 from [the research brief](../research-prompts/image-direction.md). It is reference only: no rules data, checks, skill, asset browser or generation integration exists; the draft `image-director` agent cites these criteria and is advisory until calibrated. Read one section of [the knowledge base](image-direction-knowledge-base.md) at a time using `vcr refs section image-direction <section>`.
 
 | Task | Read |
 | --- | --- |

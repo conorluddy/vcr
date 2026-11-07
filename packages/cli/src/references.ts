@@ -276,5 +276,26 @@ export function referenceIntegrityDiagnostics(root: string): Diagnostic[] {
       }
     }
   }
+  const superseded = new Map(rules.filter((rule) => rule.replacements?.length).map((rule) => [rule.id, rule.replacements!]));
+  for (const file of agentAndSupportingFiles(root, pillars)) {
+    for (const line of readFileSync(file, "utf8").split("\n")) {
+      // A line that names a dropped rule only to say so is allowed; any other citation must use the owner.
+      const namesDropped = /\b(dropped|superseded|never cite|do not cite)\b/i.test(line);
+      for (const id of new Set(line.match(pattern) ?? [])) {
+        if (!ids.has(id) && !placeholders.has(id) && !rules.some((r) => r.id.startsWith(`${id}-`))) report(file, `Unknown rule reference ${id}`);
+        else if (superseded.has(id) && !namesDropped) report(file, `Cites superseded rule ${id}; cite ${superseded.get(id)!.join(", ")} instead`);
+      }
+    }
+  }
   return diagnostics;
+}
+
+/** Agent definitions and the shared pillar documents beside the knowledge bases (reviewer contract, research handoff). They cite rules but are not READMEs or knowledge bases. */
+function agentAndSupportingFiles(root: string, pillars: Pillar[]): string[] {
+  const agentsDirectory = join(root, "agents");
+  const agents = existsSync(agentsDirectory) ? readdirSync(agentsDirectory).filter((name) => name.endsWith(".md")).map((name) => join(agentsDirectory, name)) : [];
+  const supporting = pillars.flatMap((pillar) => readdirSync(join(root, "references", pillar.slug))
+    .filter((name) => name.endsWith(".md") && name !== "README.md" && !name.endsWith("-knowledge-base.md") && name !== "rule-template.md")
+    .map((name) => join(root, "references", pillar.slug, name)));
+  return [...agents, ...supporting];
 }

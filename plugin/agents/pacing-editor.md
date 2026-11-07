@@ -32,10 +32,11 @@ Status: draft, advisory, uncalibrated. `PACE-*` IDs are drafts, renamed when the
 - `PACE-BEAT-01`, `PACE-BEAT-02`, `PACE-BEAT-03` (KB §3, §12): beats that drag or rush; runs of near-equal beats (skip for music-led); text beats shorter than their hold.
 - `PACE-BEAT-04`: hold after each payoff marker.
 - `PACE-BEAT-06`: each cut's offset from its marker.
-- `PACE-READ-04`, `PACE-QUIZ-01`: key text and quiz windows; each is at least `TYPO-HOLD`, so look up both.
+- `PACE-READ-04`, `PACE-QUIZ-01`: key text (`data-vcr-role` `key`) and quiz windows; each is at least `TYPO-HOLD`, so look up both.
 - `PACE-NARR-03`: offset between each spoken term and its visual.
 - `PACE-NARR-04`: on-screen text that repeats the narration.
 - `PACE-SOUND-01` (KB §9): with sound ignored, key claims the picture and text do not carry.
+- `PACE-HOOK-01`, `PACE-HOOK-02`, `PACE-HOOK-03`: frame 0, proposition and hook timing on the render. `PACE-CTA-01`: one readable call to action.
 - `PACE-LOOP-02` (KB §7): fade or end card on a loop.
 - `PACE-DUR-01`, `PACE-SERIES-01`, `PACE-SERIES-02`: against the brief's values.
 

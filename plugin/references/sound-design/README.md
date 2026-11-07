@@ -1,6 +1,6 @@
 # Sound design reference
 
-This is the sound design, music and mix knowledge base (`SOUND-*`), produced from [the research brief](../research-prompts/sound-design.md) on 2026-11-06. It is reference material, not an implemented check: there is no `SOUND-*` rules data file, measurement tool, skill or agent yet. It is about 20k tokens, so read only the section the task needs in [the knowledge base](sound-design-knowledge-base.md). Its IDs are already named (`SOUND-TRUE-PEAK`), as [the shared conventions](../README.md) require.
+This is the sound design, music and mix knowledge base (`SOUND-*`), produced from [the research brief](../research-prompts/sound-design.md) on 2026-11-06. It is reference material, not an implemented check: there is no `SOUND-*` rules data file, measurement tool or skill yet; the draft `sound-designer` agent cites these rules and is advisory until calibrated. It is about 20k tokens, so read only the section the task needs in [the knowledge base](sound-design-knowledge-base.md). Its IDs are already named (`SOUND-TRUE-PEAK`), as [the shared conventions](../README.md) require.
 
 | Task | Read |
 | --- | --- |

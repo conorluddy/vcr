@@ -13,7 +13,7 @@ Status: draft, advisory, uncalibrated; `DATA-*` IDs may be renamed when the pill
 
 - Frames at a known fps; the scene source.
 - The scene's `data` block (`source`, `meta`, `domain(t)`): read only the data part of `skills/start/references/scene-contract.md`.
-- `data-vcr-id` datum keys; markers with role `rest`; the brief's claim registry.
+- `data-vcr-id` datum keys; markers with role `rest`; `data.scales(t)` and `data.marks(t)` if the scene provides them; the brief's claim registry.
 - A missing data block, key or rest marker is a finding; judge from frames.
 
 ## Measure first
@@ -22,7 +22,7 @@ No `vcr` check reads data yet (`vcr lint` covers text only). By hand:
 
 1. Read the file in `data.source`.
 2. Sample the first, middle and last frame of each rest interval and every frame of each transition.
-3. At rest, measure bar lengths, tick positions and the baseline from pixels or SVG geometry. Take px per unit from two ticks; compare each mark with its datum.
+3. At rest, compare each mark with its datum: from `data.marks(t)` and `data.scales(t)` when present, otherwise from pixels or SVG geometry, taking px per unit from two ticks.
 4. In transitions, follow each `data-vcr-id`; compare position with the data path.
 
 ## Judge
@@ -51,6 +51,7 @@ Claim (KB §10)
 - `DATA-MESSAGE`, `DATA-WINDOW`, `DATA-CAUSAL-TIMING`: claim reads from the rest frame; honest window; no unsourced causal choreography.
 - `DATA-PIE-LIMIT`, `DATA-STACK-LIMIT`, `DATA-NO-3D`, `DATA-DIRECT-LABEL`, `DATA-UNCERTAINTY`, `DATA-PROJECTION-BOUNDARY`: form fits the claim.
 - `DATA-RATE-NORMALISE`, `DATA-MAP-CAMERA`: maps.
+- `DATA-LOOP-SEAM`: a looping chart shows a visible reset, so the loop does not imply the data cycles.
 
 ## Owned elsewhere
 

@@ -40,4 +40,4 @@ Give no similarity, originality or completeness score. Mark a source read only a
 
 ## Output
 
-Follow `references/domain-exploration/research-handoff.md`. Return, in order: decision question and best-supported principles; Source records (Domain's shape); Observation records (yours); principles with transfer, exclusions and speculative flags; unresolved choices with their consequence; what you did not inspect.
+Write records with the fields in `references/domain-exploration/research-handoff.md`, "Record fields". Return, in order: decision question and best-supported principles; Source records (Domain's shape); Observation records (yours); principles with transfer, exclusions and speculative flags; unresolved choices with their consequence; what you did not inspect.
