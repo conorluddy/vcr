@@ -66,9 +66,13 @@ Before opening a follow-up, check existing issues for duplicates. Keep each acti
 Layer 0 is complete for the initial catalogue: those records are carded and assessed, and evidence counts are whatever `vcr catalog build` reports. New discovery candidates may be unassessed. The plugin is installable on Claude Code and Codex (plugin PRD P0 and P1): three roots, `vcr workspace init`, `vcr setup capture`, `vcr capture`, `vcr example create`, and the `start` and `init` skills. Plugin PRD P2, the review contract, is done: `vcr video init`, `vcr capture --video` (render manifests retained under each video's `review/renders/`), `vcr findings`, human-only `vcr review approve|request-changes|resolve` (interactive TTY), `vcr status --brief`, `vcr storage`, `vcr lint --video`, and the series and video briefs with the `brief` skill. The beat sheet (`beats.json`) and `vcr plan check|markers` check a plan before rendering; plan findings are printed, not filed, until plan approvals (#173). Schemas are in `catalog/schemas/`. The review pages (P3 onward) and Layer 1 have not started. There is no timeline resolver, compositor, review surface or reference search; do not imply one. The TypeScript toolchain, pnpm workspace and JSON Schemas are decided, not provisional. Everything beyond Layer 0 is still provisional per the PRD.
 
 
-## Open work
+## Open work (living)
 
-Loose ends and later decisions, one line each. `specifications/roadmap.md` orders the large work; this list catches what falls between it. Add a line when you defer something, link the issue if there is one, and delete the line in the PR that resolves it.
+This section is meant to change in most PRs; the rest of this file should rarely change. It lists loose ends and deferred decisions, one line each. `specifications/roadmap.md` orders the large work; this list catches what falls between it.
+
+- Add a line when you defer something, and link the issue if there is one.
+- Delete the line in the PR that resolves it. Never mark items done.
+- Keep it under about fifteen lines. When an item grows, open an issue or a roadmap entry and leave a one-line pointer.
 
 - **Pillar data and checks:** each pillar's `rules.json` and checks, then turn its draft agent into a calibrated reviewer (#149). Measurement gaps the drafts hit: motion trace, flash analyser, loudness and sync, `ffprobe` delivery gate, sub-frame sampling for `DATA-NO-OVERSHOOT`, word-level narration timings for `PACE-NARR-03/04`.
 - **Calibration:** a gold set of human-reviewed renders before any reviewer gates (`REVIEW-CAL-*`); decide whether a different model counts as independent (`REVIEW-IND-01`).
