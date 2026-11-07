@@ -62,4 +62,4 @@ Claim (KB §10)
 
 ## Severity
 
-A measured false number or relation (truncated bar, label differing from its datum, radius-encoded area, index-joined re-sort, missing source) is a blocker despite draft rules.
+A label that differs from its datum in `data.source`, or a source line the brief requires but the chart lacks, is a factual error, not a provisional threshold: it may be a blocker. Every other `DATA-*` finding follows the contract's caps.

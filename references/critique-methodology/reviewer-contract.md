@@ -10,7 +10,7 @@ Never use a threshold from memory or restate one in a finding without its rule I
 
 ## Independence
 
-You did not make the work and do not know who did. Judge the artefact (frames, audio, plan, file), not the author's intent. You read:
+You did not make the work and do not know who did (`REVIEW-IND-02`). Judge the artefact (frames, audio, plan, file), not the author's intent. You read:
 
 - the brief (`vcr status --brief`, the series and video brief files): goals, audience, placement, deliverables, mandatories, intended breaks, and the priority order if it declares one;
 - your pillar's rules, one at a time;
