@@ -114,7 +114,7 @@ Replaces `findRepositoryRoot()`.
 
 **Not in v1: MCP server, plugin commands.** CLI `--json` output is the tool surface on both hosts.
 
-**Subagents ship as advisory reviewers and researchers** (`agents/`, ADR 0007). They call the CLI like any agent and add no tool surface. Claude Code loads them as subagents; Codex support is partial, so there they are prompts a session can read. Nothing depends on them: every rule they apply is also a check or a rule ID a human can look up.
+**Subagents ship as advisory reviewers and researchers** (`agents/`, ADR 0007). They call the CLI like any agent and add no tool surface. Claude Code loads them as subagents; Codex support is partial, so there they are prompts a session can read. Nothing gates on them: their findings are advisory, and each names a rule a human can look up with `vcr rules info`.
 
 - Plugin commands port poorly between hosts.
 - MCP is the fallback if S1 cannot make CLI invocation reliable, because each host launches the server with a known root. Its costs: a long-running process, tool schemas held in context, and minute-long renders that do not suit synchronous tool calls.

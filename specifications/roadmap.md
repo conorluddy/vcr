@@ -33,7 +33,7 @@ Build whatever unlocks the most later work first. Deterministic checks come befo
 ## Next: deterministic checks, each writing findings
 
 3. **#144: the delivery `ffprobe` gate** (S). Cheap, and catches rejected uploads and washed-out colour.
-4. **#146: one determinism check** for picture and sound (S). It reuses the manifest's `frame_sha256`.
+4. **#146: one determinism rule** (S). Picture already has `vcr capture --verify`; this names the rule, writes `--verify` results as findings, adds a tolerance for GPU paths, and covers sound after #60.
 5. **#145: the flash analyser** (M). The only failure that can harm a viewer. It reports only until it matches a reference tool.
 6. **A `MAT-*` scene-data validator over `.glb`** (S): albedo ranges, texture colour spaces, normal convention, ORM packing. It needs no render.
 7. **#63: frame selection and the contact sheet.** Dedup, settle frames, native-resolution text crops and a phone-size view. It fills each retained revision's evidence frames, and P3 and every reviewer agent need it.

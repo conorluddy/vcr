@@ -5,7 +5,7 @@ Status: accepted
 
 ## Context
 
-ADR 0006 orders each creative pillar as knowledge base, `rules.json`, automatic checks, workflow skill, then reviewer agent. By November 2026 only typography had `rules.json` and a check. The other knowledge bases held about 870 rules, mostly with numbered draft IDs that `vcr rules info` already resolves. Nothing showed which pillar most needed data and checks first, and nothing had been reviewed on real renders except typography. The plugin PRD also listed subagents as not in v1, although `typographer` already shipped.
+ADR 0006 orders each creative pillar as knowledge base, `rules.json`, automatic checks, workflow skill, then reviewer agent. By November 2026 only typography had `rules.json` and a check. The other knowledge bases held about 700 rules, mostly with numbered draft IDs that `vcr rules info` already resolves. Nothing showed which pillar most needed data and checks first, and nothing had been reviewed on real renders except typography. The plugin PRD also listed subagents as not in v1, although `typographer` already shipped.
 
 ## Options considered
 
