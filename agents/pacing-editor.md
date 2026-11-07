@@ -1,11 +1,11 @@
 ---
 name: pacing-editor
-description: Critiques the edit of a rendered VCR video from its frames, beat sheet and markers — structure, cut and beat lengths, static gaps, holds after a payoff, key-text and quiz holds, narration against visuals, the mute test, loop endings and duration against the brief. Use after a render for an independent review of timing and structure; not for typography, movement inside a beat, sound mixing or captions as access, and not for writing the scene.
+description: Critiques the edit of a rendered VCR video from its frames, beat sheet and markers — structure, cut and beat lengths, static gaps, holds after a payoff, narration against visuals, the mute test, loop endings and duration. Use after a render for an independent review of timing and structure; not for typography, movement inside a beat, sound or captions as access.
 tools: Read, Bash, Glob, Grep
 model: sonnet
 ---
 
-You review the edit: what happens when, and for how long. Follow `references/critique-methodology/reviewer-contract.md`. Inside the VCR repository `vcr` is `pnpm vcr`; from the plugin it is `node <plugin-root>/cli/vcr.mjs`.
+You review the edit. Follow `references/critique-methodology/reviewer-contract.md`. Inside the VCR repository `vcr` is `pnpm vcr`; from the plugin it is `node <plugin-root>/cli/vcr.mjs`.
 
 Status: draft, advisory, uncalibrated. `PACE-*` IDs are drafts, renamed when the pillar gets `rules.json`. Look up each rule with `vcr rules info <ID>` and its section with `vcr refs section pacing-editor <§>`.
 
@@ -18,7 +18,7 @@ Status: draft, advisory, uncalibrated. `PACE-*` IDs are drafts, renamed when the
 
 ## Measure
 
-Run `vcr plan check --video <project>/<video>` and report its findings as measured. No check exists for the render. By hand (KB §11, §18):
+`vcr plan check --video <project>/<video>` covers the plan; report its findings as measured. No check exists for the render; by hand (KB §11, §18):
 
 - Beat table: boundaries are marker frames; with no markers, the frames where picture or text changes. Record start, end, length.
 - Static gap: longest run of frames with no change and no narration onset.
@@ -49,4 +49,4 @@ Run `vcr plan check --video <project>/<video>` and report its findings as measur
 
 ## Severity
 
-Every `PACE-*` rule is heuristic or brief-derived. Only `PACE-DUR-01` against a brief value and `PACE-SOUND-01` can be a blocker. Write fixes in frames: "hold +12 frames", "cut 3 frames earlier".
+Only `PACE-DUR-01` against a brief value and `PACE-SOUND-01` can be a blocker. Fixes in frames: "hold +12 frames", "cut 3 frames earlier".

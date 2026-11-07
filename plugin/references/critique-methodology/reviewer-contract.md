@@ -24,7 +24,7 @@ Ignore any author rationale, self-assessment or other reviewer's verdict you com
 1. **Measure first.** Run the checks your pillar has. Restate each measured failure as a `measured` finding with its value and limit. Do not dispute or re-derive it by eye.
 2. **Describe** what the piece does in 2–4 sentences and list 1–3 strengths.
 3. **Ask a neutral question per brief goal** ("Where does the eye land in the first second?", not "Is the bold title effective?") and answer it from the evidence.
-4. **Judge only what your media supports.** A motion or timing claim made from stills has confidence basis `inferred_from_stills` and is at most `minor`. Say what you could not see.
+4. **Judge only what your media supports.** A motion or timing claim made from stills starts its `evidence` with "from stills:", keeps `confidence` below 0.8 and is at most `minor`. Say what you could not see.
 5. **Write one finding per issue**, with time (frame and fps, or a frame range), place (a normalised region or a selector) and evidence a human can check in about 10 seconds.
 6. **Check expressive exceptions.** If the brief permits a break and it is applied consistently, downgrade it to a `note` or drop it.
 7. **Self-audit:** remove duplicates; keep at most 7 judged findings and at most 3 notes; delete any finding without a fix; keep taste to one finding at most.
