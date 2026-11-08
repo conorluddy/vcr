@@ -1,8 +1,8 @@
 # Motion direction reference
 
-The advisory `motion` workflow now ships in `skills/motion/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+The advisory `motion` workflow now ships in `skills/motion/SKILL.md`. The workflow is advisory; measurement and calibration status is described below.
 
-This is the motion design and animation direction knowledge base (`MOTION-*`), produced from [the research brief](../research-prompts/motion-director.md) on 2026-11-06. It is reference material, not an implemented check: there is no `MOTION-*` rules data file, measurement tool or skill yet; the draft `motion-director` agent cites these rules and is advisory until calibrated. It is too large to load whole (about 20k tokens), so read only the section the task needs in [the knowledge base](motion-director-knowledge-base.md).
+This is the motion design and animation direction knowledge base (`MOTION-*`), produced from [the research brief](../research-prompts/motion-director.md) on 2026-11-06. It is reference material, not an implemented check: there is no `MOTION-*` rules data file or measurement tool yet; the draft `motion-director` agent cites these rules and is advisory until calibrated. It is too large to load whole (about 20k tokens), so read only the section the task needs in [the knowledge base](motion-director-knowledge-base.md).
 
 | Task | Read |
 | --- | --- |
@@ -21,7 +21,7 @@ This is the motion design and animation direction knowledge base (`MOTION-*`), p
 | Seek-based rendering pitfalls | §18 |
 | Check a claim | §20 (caveats), §21 (verification ledger) |
 
-## Open decisions before building `rules.json`, a measurement tool or an agent
+## Open decisions for rules data, measurement and reviewer calibration
 
 1. **Settled: named rule IDs** ([shared conventions](../README.md)). The numbered IDs here are drafts, renamed when `MOTION-*` gets its `rules.json`.
 2. **Settled: rule owners** ([shared conventions](../README.md)). `MOTION-TIME-005` cites `TYPO-HOLD`. `MOTION-FPS-003` owns shimmer on thin moving features. Accessibility owns reduced-motion variants, pause controls, flashing and the vestibular triggers: `MOTION-A11Y-*` and `MOTION-CAM-002/003` are dropped, and `MOTION-CAM-004/005` move to `A11Y-MOTION-*` (see the [accessibility reference](../accessibility/README.md)). Motion keeps pan judder (`MOTION-CAM-001`) and the stable anchor (`MOTION-CAM-006`). Motion owns loop seams (`MOTION-RHY-004`) and movers within a beat (`MOTION-CHOR-003`, which takes pacing's limit of 3 simultaneous movers).

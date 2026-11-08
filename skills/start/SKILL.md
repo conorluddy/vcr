@@ -31,6 +31,12 @@ For native asset creation, tool-to-tool handoffs or delivery variants, read
 source and parameter separation, output-specific checks, delivery budgets and
 inspection. Load the selected toolkit guide for its actual commands.
 
+## Choosing craft guidance
+
+Read the [pillar index](../../references/INDEX.md) (`vcr refs list`) to select the workflow for the current decision, then load only that workflow and the selected toolkit guide. Briefing and research handoffs start with `brief`; narrative development uses `story`, editorial timing `pacing`, and movement within beats `motion`. Visual decisions route to `art-direction`, `image-treatment`, `lighting`, `materials` or `data-visualisation` as applicable. Use `sound-design` for audio decisions, `accessibility` for access requirements, `adaptation` for version transformations, `delivery` for file QC, and `review` for the current CLI review loop.
+
+These workflows are advisory. The index distinguishes available rules data and checks from reference guidance and draft reviewers; do not infer a check exists because a skill does. Keep initial making and self-checks separate from independent review and human approval.
+
 ## Text, captions and titles
 
 For choosing, sizing, placing or timing text (hooks, titles, captions, lower thirds, labels), or checking text before capture, load the `typography` skill alongside the toolkit guide.

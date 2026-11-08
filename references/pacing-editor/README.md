@@ -1,8 +1,8 @@
 # Pacing reference
 
-The advisory `pacing` workflow now ships in `skills/pacing/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+The advisory `pacing` workflow now ships in `skills/pacing/SKILL.md`. The workflow is advisory; measurement and calibration status is described below.
 
-This is the pacing, structure and short-form editing knowledge base (`PACE-*`), produced from [the research brief](../research-prompts/pacing-editor.md) on 2026-11-06. It is reference material, not an implemented check: there is no `PACE-*` rules data file, measurement tool or skill yet; the draft `pacing-editor` agent cites these rules and is advisory until calibrated. It is a condensed edition, about 12k tokens against the brief's 20–35k target, and keeps every load-bearing number in §22. Read only the section the task needs in [the knowledge base](pacing-editor-knowledge-base.md).
+This is the pacing, structure and short-form editing knowledge base (`PACE-*`), produced from [the research brief](../research-prompts/pacing-editor.md) on 2026-11-06. It is reference material, not an implemented check: there is no `PACE-*` rules data file or measurement tool yet; the draft `pacing-editor` agent cites these rules and is advisory until calibrated. It is a condensed edition, about 12k tokens against the brief's 20–35k target, and keeps every load-bearing number in §22. Read only the section the task needs in [the knowledge base](pacing-editor-knowledge-base.md).
 
 | Task | Read |
 | --- | --- |
@@ -19,7 +19,7 @@ This is the pacing, structure and short-form editing knowledge base (`PACE-*`), 
 | Create a piece | §15, §20 |
 | Check a claim | §21 (caveats), §22 (verification ledger) |
 
-## Open decisions before building `rules.json`, a measurement tool or an agent
+## Open decisions for rules data, measurement and reviewer calibration
 
 1. **Settled: reading hold** ([shared conventions](../README.md)). `TYPO-HOLD` is the base rule and `MOTION-TIME-005` cites it. `PACE-READ-01` is dropped, and its characters ÷ 20 term is a candidate revision to `TYPO-HOLD`. `PACE-READ-04` and `PACE-QUIZ-01` stay as stricter profiles, defined as at least `TYPO-HOLD`.
 2. **Settled: captions** ([shared conventions](../README.md)). `PACE-READ-02/03` are dropped in favour of `TYPO-CAPTION-*`.
