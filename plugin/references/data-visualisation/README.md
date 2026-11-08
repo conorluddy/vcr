@@ -1,6 +1,6 @@
 # Data visualisation reference
 
-The advisory `data-visualisation` workflow now ships in `skills/data-visualisation/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+The advisory `data-visualisation` workflow now ships in `skills/data-visualisation/SKILL.md`. The workflow is advisory; measurement and calibration status is described below.
 
 This is the data visualisation in motion knowledge base (`DATA-*`), produced from [the research brief](../research-prompts/data-visualisation.md) on 2026-11-06. It covers whether a chart, map, counter or ranking is accurate and readable at rest and in motion. It is reference material, not an implemented check. It is a condensed edition of about 13k tokens: §§10–17 were shortened, but the rules table is complete. Read only the section the task needs in [the knowledge base](data-visualisation-knowledge-base.md). Its IDs are already named.
 
@@ -21,7 +21,7 @@ Its central idea: **resting frames carry the chart; transitions preserve identit
 | Measure | §13–14 |
 | Check a claim | §17 (caveats), §18 (verification ledger) |
 
-## Open decisions before building `rules.json`, checks or an agent
+## Open decisions for rules data, checks and reviewer calibration
 
 1. **What a data scene must expose.** Most `DATA-*` checks compare rendered geometry with the data. A data scene therefore needs to give a check:
    - its data file;

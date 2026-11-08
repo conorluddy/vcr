@@ -1,6 +1,6 @@
 # Materials reference
 
-The advisory `materials` workflow now ships in `skills/materials/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+The advisory `materials` workflow now ships in `skills/materials/SKILL.md`. The workflow is advisory; measurement and calibration status is described below.
 
 This is the materials, shading and surface appearance knowledge base (`MAT-*`), produced from [the research brief](../research-prompts/materials.md) on 2026-11-06. It covers:
 - physically based materials and plausible values;

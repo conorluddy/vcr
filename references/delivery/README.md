@@ -1,6 +1,6 @@
 # Delivery reference
 
-The advisory `delivery` workflow now ships in `skills/delivery/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+The advisory `delivery` workflow now ships in `skills/delivery/SKILL.md`. The workflow is advisory; measurement and calibration status is described below.
 
 This is the delivery, encoding and platform specifications knowledge base (`DELIVERY-*`), produced from [the research brief](../research-prompts/delivery.md) on 2026-11-06. It covers how a finished piece becomes files that survive every platform: masters, delivery encodes, upload specifications, what platforms do to uploads, colour signalling, banding, frame timing, A/V offset, captions as files and stills. It is reference material, not an implemented check. It is about 21k tokens, so read only the section the task needs in [the knowledge base](delivery-knowledge-base.md). Its IDs are already named.
 

@@ -1,8 +1,8 @@
 # Sound design reference
 
-The advisory `sound-design` workflow now ships in `skills/sound-design/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+The advisory `sound-design` workflow now ships in `skills/sound-design/SKILL.md`. The workflow is advisory; measurement and calibration status is described below.
 
-This is the sound design, music and mix knowledge base (`SOUND-*`), produced from [the research brief](../research-prompts/sound-design.md) on 2026-11-06. It is reference material, not an implemented check: there is no `SOUND-*` rules data file, measurement tool or skill yet; the draft `sound-designer` agent cites these rules and is advisory until calibrated. It is about 20k tokens, so read only the section the task needs in [the knowledge base](sound-design-knowledge-base.md). Its IDs are already named (`SOUND-TRUE-PEAK`), as [the shared conventions](../README.md) require.
+This is the sound design, music and mix knowledge base (`SOUND-*`), produced from [the research brief](../research-prompts/sound-design.md) on 2026-11-06. It is reference material, not an implemented check: there is no `SOUND-*` rules data file or measurement tool yet; the draft `sound-designer` agent cites these rules and is advisory until calibrated. It is about 20k tokens, so read only the section the task needs in [the knowledge base](sound-design-knowledge-base.md). Its IDs are already named (`SOUND-TRUE-PEAK`), as [the shared conventions](../README.md) require.
 
 | Task | Read |
 | --- | --- |
@@ -27,7 +27,7 @@ This is the sound design, music and mix knowledge base (`SOUND-*`), produced fro
 - **Cues share the scene's clock.** Cue times reference the scene's own `markers` and timeline events, snapped to rendered frame times. The cue list format is not defined yet. It belongs beside the [scene contract](../../skills/start/references/scene-contract.md) when the first sound check needs it.
 - **Checks need stems.** `SOUND-VOICE-BED-GAP` and `SOUND-DUCK-*` read separate voice and bed stems. Without stems they fall back to source separation, which is unreliable (§18).
 
-## Open decisions before building `rules.json`, checks or an agent
+## Open decisions for rules data, checks and reviewer calibration
 
 1. **Settled: rule owners** ([shared conventions](../README.md)).
    - Sound owns sync of audio to visual events (`SOUND-SYNC-*`, `SOUND-SFX-PEAK-ALIGN`), which replaces `MOTION-RHY-002`.

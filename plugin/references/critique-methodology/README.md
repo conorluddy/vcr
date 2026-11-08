@@ -1,6 +1,6 @@
 # Critique methodology reference
 
-The advisory `review` workflow now ships in `skills/review/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+The advisory `review` workflow now ships in `skills/review/SKILL.md`. The workflow is advisory; measurement and calibration status is described below.
 
 This is the critique methodology knowledge base (`REVIEW-*`), produced from [the research brief](../research-prompts/critique-methodology.md) on 2026-11-06. Every pillar's reviewer shares it: severity, the findings format, combining reviewers, how far AI judges can be trusted, calibration and independence. It is reference material, not an implemented check, and it is about 11k tokens, so read only the section the task needs in [the knowledge base](critique-methodology-knowledge-base.md).
 

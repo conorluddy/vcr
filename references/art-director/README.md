@@ -1,8 +1,8 @@
 # Art direction reference
 
-The advisory `art-direction` workflow now ships in `skills/art-direction/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+The advisory `art-direction` workflow now ships in `skills/art-direction/SKILL.md`. The workflow is advisory; measurement and calibration status is described below.
 
-This is the art direction knowledge base (`ART-*`), produced from [the research brief](../research-prompts/art-director.md) on 2026-11-06. It is reference material, not an implemented check: there is no `ART-*` rules data file, lint step or skill yet; the draft `art-director` agent cites these rules and is advisory until calibrated. It is too large to load whole (about 14k tokens), so read only the section the task needs in [the knowledge base](art-director-knowledge-base.md).
+This is the art direction knowledge base (`ART-*`), produced from [the research brief](../research-prompts/art-director.md) on 2026-11-06. It is reference material, not an implemented check: there is no `ART-*` rules data file or lint step yet; the draft `art-director` agent cites these rules and is advisory until calibrated. It is too large to load whole (about 14k tokens), so read only the section the task needs in [the knowledge base](art-director-knowledge-base.md).
 
 | Task | Read |
 | --- | --- |
@@ -18,7 +18,7 @@ This is the art direction knowledge base (`ART-*`), produced from [the research 
 | Create a piece | §15 |
 | Check a claim | §22 (verification ledger) |
 
-## Open decisions before building `rules.json`, lint checks or an agent
+## Open decisions for rules data, checks and reviewer calibration
 
 1. **Settled: safe zones** ([shared conventions](../README.md)). `typography/rules.json` keeps the only presets. The `ART-CMP-01` union box and lower-right corner become a proposed change to those presets, plus excluded-rectangle support in `vcr lint`.
 2. **Settled: delivery rules** ([shared conventions](../README.md)). `DELIVERY-*` owns encoding range and chroma requirements. `TYPO-RANGE`, `TYPO-CHROMA` and `ART-DEL-*` retain design consequences and defer delivery thresholds to that owner.
