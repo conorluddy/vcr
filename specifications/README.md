@@ -10,6 +10,7 @@
 - `decisions/` — architecture decision records, numbered. See `decisions/README.md`.
 - `handoffs/` — resumable multi-session workflows an agent can pick up from a single prompt, such as `catalogue-evidence-rollout.md`.
 - `spikes/` — reports from time-boxed technical spikes: decision, numbers, limitations. A child specification cites the spike that opened it.
+- `research/` — discovery reports and proposals, including the [pillar extraction audit](research/pillar-extraction-audit-2026-11-08.md); recommendations are not implemented capabilities or accepted decisions.
 - `<layer>/` — a short child specification per layer, created when work on that layer starts and not before.
 
 ## Decisions and spikes so far
