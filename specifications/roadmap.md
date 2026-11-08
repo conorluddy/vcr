@@ -6,6 +6,8 @@ Updated 2026-11-07.
 
 ## Where we are
 
+- Advisory making workflows now ship for the craft pillars, with revised brief/typography workflows, a CLI-only review workflow and a draft accessibility reviewer (ADR 0008). Measurement and calibration work remains; this does not complete plugin P3/P4.
+
 - **Layer 0 and plugin P0, P1 and P2 are done.** The catalogue, the CLI and the plugin are installable on Claude Code and Codex. P2 (#161, #163–#169) added the review contract: render manifests from `vcr capture --video`, one file per finding (`vcr findings`), human-only approvals at a terminal (`vcr review`), `vcr status --brief`, the series and video briefs with the `brief` skill, and `vcr storage`. `vcr lint --video` is the first check that writes findings.
 - **Typography has the whole pillar pipeline:** `rules.json`, `vcr lint`, the `typography` skill and the `typographer` agent.
 - **Draft agents exist for every other pillar except accessibility and delivery:** they run ahead of their checks, follow `references/critique-methodology/reviewer-contract.md`, and are advisory and uncalibrated.

@@ -1,0 +1,1 @@
+Existing plan: the labels appear only during a fast zoom; final rest frame has no values. No video or measurements supplied.

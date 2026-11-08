@@ -398,7 +398,7 @@ All thresholds below are **heuristic VCR proposals**. Luminance is computed in *
 
 1. **Load context.** Read the brief's light rig, palette, exposure and tone mapper (`BRIEF-*`), and the intent from `ART-*`. A low-key brief changes every threshold.
 2. **Watch at speed first**, then scrub. Many lighting faults are temporal only: shimmer, flicker, denoiser boil, key flipping in an orbit, sweep timing. **Do not judge motion lighting from stills.**
-3. **Run the automatic checks** (§12, §19) on sampled frames and scene data. Attach the numbers to findings.
+3. **Inspect available evidence** (§12, §19). Lighting checks are not implemented; record methods, samples and missing measurements.
 4. **Read the image as a lighter would:**
    - Where is the key, and is it motivated?
    - What is the ratio?
@@ -409,11 +409,7 @@ All thresholds below are **heuristic VCR proposals**. Luminance is computed in *
 6. **Check consistency across shots and episodes:** direction, ratio, exposure.
 7. **Write findings** in the form `[severity] LIGHT-RULE — observation (measurement) → suggested parameter change`.
 
-**Severity guidance:**
-- **Blocker:** brand ΔE over the `ART-*` limit; flicker that breaches `A11Y-*`; non-determinism (dropped; one generic check, `vcr capture --verify`); loop-seam pop (dropped; owner `MOTION-RHY-004`); clipped highlights on the subject's brand surface; subject not separable in a 9:16 deliverable.
-- **Major:** "lit from nowhere" or inconsistent direction; ratio outside the brief by more than 1 stop; visible denoiser boil; shadow acne or shimmer; missing contact shadow on a grounded product.
-- **Minor:** generic look; flare or bloom overuse; slight noise; sweep timing.
-- **Note:** taste suggestions.
+**Severity and findings:** Follow the [shared reviewer contract](../critique-methodology/reviewer-contract.md), recording evidence and uncertainty.
 
 **Vocabulary:** use the §13 terms, always paired with a parameter. For example: "Flat: key-to-fill measured 0.3 stops against brief 1.5; reduce `fill.intensity` by about 2.3×".
 
@@ -554,7 +550,7 @@ General rules:
 - *Failure modes:* history-dependent effects (TAA, Eevee accumulation) differ only in sequential renders, not seeked ones. Test sequentially as well.
 
 **`LIGHT-FLICKER-SAFETY`** (dropped; owner `A11Y-FLASH-*`)
-- *Calculation:* the per-frame luminance time series per screen region, passed to the `A11Y-*` flash analyser.
+- *Calculation:* a proposed per-frame luminance analysis. No validated VCR flash analyser exists; without suitable validated evidence, flash safety is unable to assess.
 
 ---
 

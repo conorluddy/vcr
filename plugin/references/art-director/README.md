@@ -1,5 +1,7 @@
 # Art direction reference
 
+The advisory `art-direction` workflow now ships in `skills/art-direction/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+
 This is the art direction knowledge base (`ART-*`), produced from [the research brief](../research-prompts/art-director.md) on 2026-11-06. It is reference material, not an implemented check: there is no `ART-*` rules data file, lint step or skill yet; the draft `art-director` agent cites these rules and is advisory until calibrated. It is too large to load whole (about 14k tokens), so read only the section the task needs in [the knowledge base](art-director-knowledge-base.md).
 
 | Task | Read |

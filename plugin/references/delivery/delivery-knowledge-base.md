@@ -472,21 +472,17 @@ Run the delivery file through the simulation, then compute CAMBI, `blockdetect`,
 
 ### 13.1 The critique process (how a delivery/QC engineer reviews)
 
-Run the steps in order and stop at the first blocker.
+Use these as manual QC steps; no delivery gate is implemented. Record evidence and unassessed checks, and use the shared reviewer contract for findings.
 
 1. **Identify the target.** Which platforms and placements, which account tier (X Premium?), which upload route (TikTok Studio vs API). Specs differ by route.
-2. **Metadata gate (`ffprobe`).** Container, codec, profile/level, pix_fmt, dimensions, SAR, fps/CFR, scan, colour tags, audio codec/profile/rate/channels, duration, size, faststart, edit lists. Any hard-limit failure is a **Blocker**.
+2. **Metadata inspection (`ffprobe`).** Inspect container, codec, profile/level, pix_fmt, dimensions, SAR, fps/CFR, scan, colour tags, audio codec/profile/rate/channels, duration, size, faststart and edit lists. Metadata does not establish decoded-signal quality.
 3. **Signal checks on the decoded file.** Range (YMIN/YMAX), `brng`, `idet`, frame count, black/frozen frames at head and tail, A/V offset with a sync marker, loudness via `SOUND-*`.
 4. **Simulated platform re-encode.** CAMBI on gradient shots, `blockdetect` delta on fast shots, chroma-smear check on saturated text (zoomed crops).
 5. **Watch at speed, full screen, on a phone-sized viewport, twice:** once for picture and once for sync. Judder, strobing and loop seams are only visible in motion. Never sign off motion from stills.
 6. **Cover and sidecars.** Cover crop safety, caption timing on the delivered file, manifest checksums.
 7. **Write findings** with severity, timecode or frame range, measurement and rule ID.
 
-**Severity:**
-- **Blocker:** platform will reject or mis-process (wrong codec, > size cap, > 60 fps, HE-AAC on X, VFR, interlaced, edit list on YouTube/Instagram if it causes offset, HDR-tagged SDR, wrong range tag).
-- **Major:** visible to most viewers after the platform re-encode (CAMBI ≥ 5 on a hero shot, A/V offset > 1 frame, matrix error on brand colours, caption cues off by > 1 frame, cover cropping the title).
-- **Minor:** visible only to trained eyes or on some devices (light blocking in a 6-frame transition, slight softness on 1-px rules).
-- **Note:** preference or future-proofing (missing manifest field, non-standard name).
+**Severity and findings:** Follow the [shared reviewer contract](../critique-methodology/reviewer-contract.md); report the target, evidence and uncertainty.
 
 **Vocabulary → measurement map:**
 
@@ -629,7 +625,7 @@ Run the steps in order and stop at the first blocker.
 7. `DELIVERY-AUDIO-CODEC`, `DELIVERY-AUDIO-SAMPLE-RATE`, `DELIVERY-AUDIO-CHANNELS`, `DELIVERY-AUDIO-BITRATE`, `DELIVERY-AV-OFFSET`, `DELIVERY-DURATION-MATCH`; loudness via `SOUND-*`.
 8. `DELIVERY-REENCODE-PREVIEW` → `DELIVERY-BANDING`, `DELIVERY-BLOCKING`, `DELIVERY-SOFTNESS`, `DELIVERY-RED-CHROMA`.
 9. Watch at speed on a phone-sized viewport: judder, strobing, `DELIVERY-LOOP-SEAM`, `DELIVERY-FLASH-FRAME`.
-10. `DELIVERY-COVER-FRAME`, `DELIVERY-THUMB-SIZE`, `DELIVERY-STILL-SRGB`, `DELIVERY-CAPTION-SIDECAR`, `DELIVERY-CAPTION-BURN`.
+10. `DELIVERY-COVER-FRAME`, `DELIVERY-THUMB-SIZE`, `DELIVERY-STILL-SRGB`, `DELIVERY-CAPTION-SIDECAR`; caption presentation choice belongs to `A11Y-CAPTION-SIDECAR`.
 11. `DELIVERY-CHECKSUM`, `DELIVERY-MANIFEST`, `DELIVERY-NAMING`.
 12. Write findings: severity, frame range, measurement, rule ID, fix.
 
@@ -643,7 +639,7 @@ Run the steps in order and stop at the first blocker.
 6. Encode with explicit BT.709 tv conversion and tags (`DELIVERY-COLOR-TAGS`, `DELIVERY-RANGE-LIMITED`), H.264 High, 2 B-frames, closed GOP of fps/2, CRF ≤ 18 with floor and cap, `+faststart`, edit-list policy, AAC-LC 48 kHz stereo.
 7. Per-platform variants only where a hard limit differs.
 8. Export the cover still (sRGB, centre-square-safe) and caption sidecars.
-9. Run the analysis checklist; fix; re-render only failing shots.
+9. Run applicable checks; isolate the defect, make the supported source or export change and retest the affected output.
 10. Write the manifest with checksums and QC values.
 
 ---

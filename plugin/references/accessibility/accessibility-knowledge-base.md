@@ -377,7 +377,7 @@ Energetic motion is the medium. The goal is not stillness but **control and rest
 
 **Ordered steps:**
 1. **Establish context.** Placement(s), audience, sound-on or sound-off, jurisdiction and service (EAA, ADA, broadcast?), deliverables (master, social cuts, loops, stills), and whether a reduced-motion variant is required.
-2. **Safety gate first.** Run flash, red-flash and pattern analysis on the **decoded delivery files**, at full-screen scale, including loop seams. Any 2.3.1 failure is a **Blocker**; stop and report.
+2. **Flash and pattern evidence.** Analyse the decoded delivery, including loop seams, with a suitable validated method. VCR has no such analyser; without validated evidence report unable to assess, not a pass.
 3. **Watch it twice in real time.** Once sound-on, once muted, on a phone-sized display at full brightness. **Do not judge motion from contact sheets**; vestibular and pacing problems exist only in time.
 4. **Captions.** Check presence, completeness (first to last audible content), accuracy against the script or audio, non-speech tags, speaker IDs, sync, rate, and placement against featured text, faces and platform UI.
 5. **Audio description need.** Review important visual information, including actions and relationships, against the declared level and §4.2. Token coverage is only a diagnostic; a text alternative is not a general substitute for Level AA audio description.
@@ -387,26 +387,7 @@ Energetic motion is the medium. The goal is not stillness but **control and rest
 9. **Stills and metadata.** Alt text per image, post copy carrying essential info, captions uploaded where supported.
 10. **Report** each finding with severity, criterion, evidence, impact and fix, and give a re-test instruction.
 
-**Severity guidance** (aligned with common auditor practice; the labels are [expert] conventions, not a standard):
-- **Blocker:**
-  - fails WCAG 2.3.1 or the ITU/Ofcom flash or pattern rules (physical harm);
-  - a speech-led piece with no captions at all.
-- **Critical:** information unavailable to a disability group. Examples:
-  - essential on-screen facts never spoken in a music-only piece with no text alternative;
-  - a chart readable only by colour;
-  - captions missing for a whole section.
-- **Serious:**
-  - caption rate far over profile;
-  - captions covering featured text;
-  - text contrast below 3:1;
-  - sustained full-frame camera motion with no reduced variant for web placement.
-- **Moderate:**
-  - contrast between 3:1 and 4.5:1 for small text;
-  - missing sound tags for meaningful SFX;
-  - inconsistent caption position across a series.
-- **Minor:**
-  - style deviations (tag case, ♪ usage);
-  - alt text verbose or duplicative.
+**Severity and findings:** Follow the [shared reviewer contract](../critique-methodology/reviewer-contract.md); cite evidence and uncertainty rather than applying a separate blocker policy.
 
 **Finding vocabulary (use these words):**
 - general flash, red flash, flash area, leading-edge spacing, extended flashing, regular pattern;
@@ -451,7 +432,7 @@ Energetic motion is the medium. The goal is not stillness but **control and rest
    - hold text still while it is read;
    - author a `reducedMotion` code path from the start.
 5. **Captions:** generate from the script or TTS cue times (deterministic), not ASR; add speaker IDs and tags; time to audio; check rate against the profile.
-6. **Render and check:** run `vcr lint` (DOM/time-series checks), the frame analysers (flash, pattern, contrast, CVD), the caption checks, and the AD-coverage diff.
+6. **Render and check:** use applicable implemented typography checks and manual review; VCR has no accessibility analysers, caption checks or AD-coverage diff. Record missing evidence.
 7. **Encode and re-check:** analyse the decoded `yuv420p` H.264 delivery, and a simulated platform re-encode if available.
 8. **Human review:** real-time, sound-off and sound-on, on a phone.
 9. **Deliver:** the master, captions as burned-in and/or sidecar (.srt/.vtt), the reduced-motion variant if web, alt text and post copy, and a short access note (what was checked, with versions).

@@ -8,6 +8,8 @@
 - 0006 — creative pillars: craft knowledge as rules data, independent of catalogue tools, one owner per rule. Accepted.
 - 0007 — draft pillar agents may ship before rules data: advisory, rule IDs only, one reviewer contract, citations checked by validate. Accepted.
 
+- 0008 — advisory making workflows may ship before checks; limits stay sourced and approval remains human. Accepted.
+
 One file per decision, `NNNN-kebab-title.md`, never edited after acceptance except to change `Status` and add a `Superseded by` line.
 
 ```markdown

@@ -1,0 +1,1 @@
+Scene: stationary sphere and ground; soft focal form, left-side light; matte surface; neutral background.

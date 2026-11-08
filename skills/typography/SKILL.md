@@ -1,89 +1,26 @@
 ---
 name: typography
-description: Typography workflow backed by a sourced knowledge base with rule IDs. Use whenever text is being designed, placed, timed or checked in video, motion graphics, stills, social graphics or web pages — titles, hooks, captions and subtitles, lower thirds, labels, counters, kinetic type, font choice and pairing, type scales, safe zones, legibility on a phone, caption reading speed, how long text should hold, text clipping or overflow, or text that looks soft, jittery or smeared after compression. Use it even when the user only asks about a font, a size or a placement. Not for choosing a VCR toolkit (start) or a tool's commands (that toolkit's guide).
+description: Design or revise text, type systems, captions and their placement or timing for a specific medium. Use for type choice, hierarchy, legibility and text layout; use independent critique when a review is requested.
 ---
 
 # Typography
 
-A workflow over VCR's typography knowledge base (KB). This skill holds the process; the KB holds every number. Cite rule IDs (`TYPO-…`) and KB sections; never copy a threshold into code, comments or a report from memory.
+Advisory and uncalibrated.
 
-## Where the knowledge lives
+Look up applicable rule definitions in the referenced section or canonical rules data before applying a limit; never use thresholds from memory. Read one section at a time and preserve provisional status.
 
-- Routing table: [references/typography/README.md](../../references/typography/README.md), under the plugin root (two directories above this SKILL.md). Read it first.
-- Knowledge base: [typography-knowledge-base.md](../../references/typography/typography-knowledge-base.md). Read one section at a time, found by its `§` heading. Never load the whole file.
-- Rule definitions: the check table and "How the checks can measure in VCR" in §14, plus §15 for rendering and delivery.
-- Recording a rule or finding: [rule-template.md](../../references/typography/rule-template.md).
+Scale the work to the request: inspect the affected text in its composition for a local revision; establish a broader system when the brief calls for one. Profile the real copy, audience, medium, viewing size, languages and scripts, text roles, duration and delivery requirements. Choose applicable rules and the relevant profile; do not treat every heuristic as a universal gate. Test candidate faces with actual text, including needed characters and numerals, and check licensing and available font features. Establish a hierarchy and type system suited to the content, then refine spacing, line breaks, placement and contrast at intended size.
 
-Rules are scoped proposals, not gates. A rule applies only when its "Applies to" column matches the profile below. Platform figures marked unverified stay unverified.
+For feedback such as “hard to read”, inspect the actual text at intended size and identify whether hierarchy, contrast, spacing, placement or dwell is implicated. Change the supported cause and compare again in context.
 
-## 1. Profile first
+Keep the intended font reproducible: record the exact face and available licence, retain permitted font files or acquisition details, and verify the intended face is ready before measuring or rendering (`TYPO-FONT-SHIP`, `TYPO-FONT-READY`). When no face or file is supplied, give a concrete acquisition plan: identify a candidate and its authoritative distribution, record the exact family, style and version to obtain, inspect and record its licence and permitted use, and retain the permitted file or precise acquisition details. Mark all unverified until acquired and checked; verify loading and glyph coverage before measuring. Missing or substituted glyphs need investigation before layout changes.
 
-Before choosing a face or a size, write down:
+For moving text, design readable settled holds and inspect entrances and exits at the delivery frame rate. For captions, coordinate wording, timing, placement and access requirements with the accessibility workflow. Record font choices, licences, roles, placement, timing and uncertainties in the existing workspace notes or spec.
 
-- **Medium:** 16:9 video, 9:16 social, still or social graphic, captions, web page, print handoff.
-- **Language and script:** Latin rules (measure, leading) do not transfer; read §10 for anything else.
-- **Text role:** hook, title, lower third, caption, label, body, counter.
-- **Viewing size:** the delivered pixel size and how it is seen (phone at arm's length, TV, feed thumbnail).
-- **Delivery spec:** platform, frame rate, pixel format, any client or accessibility target. No declared target means findings are advisory.
+Read only the needed route in [typography](../../references/typography/README.md): §3–6 for faces and layout, §8 for contrast, the relevant §9 medium section for captions or motion, §10 for scripts, §12 for creation and §15.5 for frame timing. [Rules data](../../references/typography/rules.json) is canonical for thresholds and presets: consult `TYPO-SIZE`, `TYPO-HOLD`, `TYPO-SAFE`, `TYPO-CONTRAST` and `TYPO-CAPTION-*` as applicable rather than copying values. Accessibility owns caption access and motion alternatives; motion owns choreography; delivery owns encoding requirements.
 
-Then read only the rows that match:
+Inside this repository `vcr` means `pnpm vcr`; in an installed plugin it means `node <plugin-root>/cli/vcr.mjs`, with the plugin root two directories above this skill. For supported browser scenes, use `vcr lint` with the applicable safe-zone preset; it measures sampled placement and overflow, not every moment or typography rule. Treat an inability to assess as missing evidence. Inspect rendered text at intended viewing size, including holds, font rendering and encoded output when available; other typography checks remain manual. Report measurements, visual judgement and provisional assumptions separately, and hand off text roles, font and layout choices, timing and unresolved issues for independent review when useful.
 
-| Medium | KB sections | Rule IDs |
-| --- | --- | --- |
-| 16:9 video | §9c, §15.3–15.5 | `TYPO-SAFE` (EBU), `TYPO-SIZE`, `TYPO-HOLD`, `TYPO-FLASH`, `TYPO-CHROMA`, `TYPO-BITRATE` |
-| 9:16 social | §9d, §15.3–15.5 | `TYPO-SAFE` (9:16 composite), `TYPO-SIZE`, `TYPO-HOLD`, `TYPO-BITRATE` |
-| Still or social graphic | §9e–9f, §15.6 | `TYPO-SIZE`, `TYPO-CONTRAST`, `TYPO-RUNT`, `TYPO-STILL-FORMAT`, `TYPO-VISUAL` |
-| Captions | §9c, §9d, §15.5 | `TYPO-CAPTION-CPS`, `TYPO-CAPTION-LINES`, `TYPO-CAPTION-DURATION`, `TYPO-SAFE` |
-| Web page | §9a, §5–6 | `TYPO-MEASURE`, `TYPO-LEADING`, `TYPO-SIZE`, `TYPO-CONTRAST`, `TYPO-RESILIENCE`, `TYPO-FEATURES` |
-| Print handoff | §9b, §15.6 | `TYPO-PRINT` (VCR has no CMYK path; this is guidance for a print designer) |
+## Evidence and scope
 
-`TYPO-FONTS`, `TYPO-FONT-SHIP`, `TYPO-FONT-READY` and `TYPO-VISUAL` apply to every medium.
-
-## 2. Make
-
-A condensed §12; read §12 itself for the full steps.
-
-1. **Brief.** Read all the copy. Note audience, viewing context (sound-off, distance, motion), brand, licences and languages.
-2. **Voice.** Three to five adjectives and two or three anti-adjectives. Every type choice is justified against them.
-3. **Faces.** Shortlist per role (§3–4) and set the real copy at the real delivered size. Check licence, character set, figures and features. Keep within `TYPO-FONTS`.
-4. **System.** Scale and roles, line-height and tracking per size, safe zones for the medium, colour tokens, motion grammar (easing, stagger, holds; §9c).
-5. **Compose.** Hierarchy, optical kerning on display type, balanced wraps, no runts (`TYPO-RUNT`). Expressive type follows §7's rules for breaking rules.
-
-**Fonts are deterministic or the render is not** (§15.1):
-
-- `TYPO-FONT-SHIP`: font files and licences travel with the project where redistribution is allowed; otherwise record the exact font, version and how to obtain it. No implicit system fallback. Keep a font manifest.
-- `TYPO-FONT-READY`: in browser scenes, load fonts from local files, wait for `document.fonts.ready`, confirm with `document.fonts.check()`, and only then expose `window.__scene`. Split or measure text after that point.
-
-**How the chosen tool sets text** is in §15.2: DOM is the strongest typesetter VCR has, canvas-2d and SVG do not wrap, resvg and ImageMagick need explicit fonts, three-js has three routes. Read the entry for your tool, then the tool's own guide for commands.
-
-**Text in motion** (§15.4): watch for `TYPO-RASTER-SCALE`, shimmer on slow drifts, lost kerning when text is split per character, and reflow when animating variable-font width or weight.
-
-## 3. Check before capture
-
-Run `vcr lint <scene.html> --safe-zone <preset|none>` first. For DOM scenes, and for canvas scenes that expose `window.__scene.textBounds()`, it checks `TYPO-SAFE`, overflowing boxes and text that leaves the frame at sampled times (`--markers` samples at `window.__scene.markers`). Its presets come from `references/typography/rules.json`, and it flags findings that rely on an unverified preset. A canvas scene with no `textBounds()` is reported as *unable to assess*, which is not a pass. Add `--video <project>/<video>` once the scene has a render, and each finding is filed on it (re-running files nothing twice). Every other check below is a measurement you make and report yourself, following §14 "How the checks can measure in VCR":
-
-- **DOM scenes** (GSAP, Anime.js, WAAPI): seek `window.__scene` to the frame, then read text boxes with `Range.getClientRects()` and computed styles. Sample at markers, or wherever text enters, settles, changes or leaves.
-- **Canvas and WebGL scenes** (canvas-2d, p5, PixiJS, three-js): there are no DOM boxes. The scene must report its own text bounds; if it does not, the check falls back to visual review and the report says so.
-- **Stills** (resvg, ImageMagick, sharp): measure from source where the tool reports metrics, otherwise from the rendered pixels.
-
-Then check, for the rules your profile selected:
-
-- **Safe areas** (`TYPO-SAFE`): every text box inside the safe rectangle for the medium, at every sampled frame, including mid-animation overshoot.
-- **Overflow:** no text box wider than its container or clipped by the frame.
-- **Captions:** reading speed, characters per line, line count, event duration and gaps under the selected caption profile (`TYPO-CAPTION-*`).
-- **Holds** (`TYPO-HOLD`): counted in frames from the frame the text settles, converted as §15.5 says (never round a minimum down). Stagger spacing against `TYPO-STAGGER-QUANT`.
-- **Contrast** (`TYPO-CONTRAST`): from source colours, as §14 describes, not from antialiased edge pixels.
-- **Decoded frame** (§15.3): encode, decode and inspect a delivery frame, not the PNG. Look for `TYPO-CHROMA` smear and `TYPO-BITRATE` loss of thin strokes; check `TYPO-RANGE` tagging.
-- **At viewing size** (`TYPO-VISUAL`): look at the frame at phone or thumbnail size, not 100% on a monitor.
-
-## 4. Report
-
-One line per finding:
-
-`TYPO-ID · measured value vs the KB threshold (cite the section) · frame (t or frame number) or still · profile · outcome`
-
-- **Outcome** is one of pass, finding, not applicable or unable to assess (from the rule template). Use "unable to assess" when the measurement is unreliable, for example a canvas scene with no reported bounds, and say why.
-- Separate content, design choice, motion timing and placement when recording a finding.
-- List the frames and stills you actually inspected.
-- Your own inspection is evidence, not approval. The human approves.
-- Never auto-fix copy: quotations, names, code, identifiers and locale-specific punctuation keep their literal content. Propose the change; do not make it silently.
+For a local request, preserve settled decisions and identify the specific proposed change and its downstream effects. Separate supplied facts from assumptions and recommendations; state what was actually inspected, what is missing and which decisions need a person. Do not treat a draft, a plan check or a static description as proof of rendered behaviour or approval.

@@ -1,0 +1,1 @@
+Stack: original → mask → monochrome → grain. Observation: light fringe on transparent edge; other layers approved. No decoded file supplied.
