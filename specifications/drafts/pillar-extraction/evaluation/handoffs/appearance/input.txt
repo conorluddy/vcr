@@ -1,0 +1,1 @@
+Scene: matte sphere, broad left key, soft monochrome texture. No render supplied. Issue: shape disappears as light sweeps; roughness is not established.

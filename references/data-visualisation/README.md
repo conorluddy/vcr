@@ -1,5 +1,7 @@
 # Data visualisation reference
 
+The advisory `data-visualisation` workflow now ships in `skills/data-visualisation/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+
 This is the data visualisation in motion knowledge base (`DATA-*`), produced from [the research brief](../research-prompts/data-visualisation.md) on 2026-11-06. It covers whether a chart, map, counter or ranking is accurate and readable at rest and in motion. It is reference material, not an implemented check. It is a condensed edition of about 13k tokens: §§10–17 were shortened, but the rules table is complete. Read only the section the task needs in [the knowledge base](data-visualisation-knowledge-base.md). Its IDs are already named.
 
 Its central idea: **resting frames carry the chart; transitions preserve identity and truthful encoding without presenting interpolation as observed data (§6.2).** The evidence splits two ways. Animated transitions between related charts improve graphical perception (Heer & Robertson 2007). Trend playback presents fastest, but viewers make more errors (Robertson et al. 2008).

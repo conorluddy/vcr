@@ -1,5 +1,7 @@
 # Story reference
 
+The advisory `story` workflow now ships in `skills/story/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+
 This is the concept, script and storyboard knowledge base (`STORY-*`), produced from [the research brief](../research-prompts/story.md) on 2026-11-06. It owns concept, script and plan development, consuming research inputs from the newer references. Its knowledge base is reference material; the beat sheet schema and six plan checks are implemented as described below, and it is about 19k tokens, so read only the section the task needs in [the knowledge base](story-knowledge-base.md). Its IDs are already named.
 
 It judges a **plan** before a render. Domain Exploration, Visual Research, Cultural Context and Image Direction also evaluate upstream research or selection artefacts; their criteria remain reference only. Few of its rules are numeric thresholds. Most are structural: does the plan contain X? The creative-effectiveness evidence is mostly correlational (§1.4, §19).

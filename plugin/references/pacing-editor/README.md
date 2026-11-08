@@ -1,5 +1,7 @@
 # Pacing reference
 
+The advisory `pacing` workflow now ships in `skills/pacing/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+
 This is the pacing, structure and short-form editing knowledge base (`PACE-*`), produced from [the research brief](../research-prompts/pacing-editor.md) on 2026-11-06. It is reference material, not an implemented check: there is no `PACE-*` rules data file, measurement tool or skill yet; the draft `pacing-editor` agent cites these rules and is advisory until calibrated. It is a condensed edition, about 12k tokens against the brief's 20–35k target, and keeps every load-bearing number in §22. Read only the section the task needs in [the knowledge base](pacing-editor-knowledge-base.md).
 
 | Task | Read |

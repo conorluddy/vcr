@@ -1,5 +1,7 @@
 # Lighting reference
 
+The advisory `lighting` workflow now ships in `skills/lighting/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+
 This is the lighting knowledge base (`LIGHT-*`), produced from [the research brief](../research-prompts/lighting.md) on 2026-11-06. It covers lighting as a craft:
 - for code-first 3D (three.js and Blender): product shots, abstract 3D and logo stings;
 - for 2D motion graphics that simulate light.

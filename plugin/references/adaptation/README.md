@@ -1,5 +1,7 @@
 # Adaptation reference
 
+The advisory `adaptation` workflow now ships in `skills/adaptation/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+
 This is the adaptation, versioning and localisation knowledge base (`ADAPT-*`), produced from [the research brief](../research-prompts/adaptation.md) on 2026-11-06. It covers how one code-first master becomes many deliverables across aspect ratio, duration, locale, audience and other variant axes, and how an agent verifies the whole version set. It is reference material, not an implemented check. It is about 23k tokens, so read only the section the task needs in [the knowledge base](adaptation-knowledge-base.md). Its IDs are already named.
 
 Routine versions can use new parameters and repeated checks. A change of audience, meaning or composition can require an authored re-edit or sibling master (§1.1). Design reusable masters as systems:

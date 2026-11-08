@@ -1,0 +1,1 @@
+R1 finding F1: label overlaps graphic at 00:02. Author proposes moving label. No revised render supplied.

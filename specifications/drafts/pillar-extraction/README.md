@@ -1,6 +1,6 @@
-# Pillar workflow drafts
+# Pillar workflow drafts — promoted snapshot
 
-Unpublished drafts prepared by Terra subagents on 2026-11-08 from the [extraction audit](../../research/pillar-extraction-audit-2026-11-08.md). These files are proposals for review, not installed skills, plugin features, calibrated reviewers or accepted changes to ADR 0006.
+Historical drafts prepared by Terra subagents on 2026-11-08 from the [extraction audit](../../research/pillar-extraction-audit-2026-11-08.md). These files are proposals for review, not installed skills, plugin features, calibrated reviewers or accepted changes to ADR 0006.
 
 ## Draft set
 
@@ -51,3 +51,15 @@ Art direction and motion were reviewed individually and revised, followed by a T
 - Review includes initial check/reviewer selection as well as finding triage and evidence-backed revision.
 
 Lighting/materials packaging remains unresolved. This pass improves the written workflows; representative task evaluation and source-reference cleanup remain outstanding before promotion.
+
+## Focused evaluation pass
+
+The [evaluation cases and results](evaluation/README.md) supersede the earlier desk-review-only status above. They cover all fifteen skills, the accessibility reviewer and three cross-pillar handoffs. Raw requests and expected observations are separate. Generated artifacts remain in ignored output directories; reports retain their methods, observations and limitations.
+
+This pass includes independent initial trials, corrective reruns and supplemental synthetic artifacts. These are distinguished in the reports; a rerun by an agent that has seen expectations is not another blind evaluation. Source contradictions directly affecting the drafts were corrected in accessibility, adaptation, delivery, image treatment, lighting and materials; their generated plugin copies were rebuilt without activating any draft.
+
+The recommendation is to retain separate lighting and materials entries: focused routing selected the appropriate owners, and joint work needs both. This is a draft packaging recommendation, not a claim about production performance. Promotion still requires the early-skill policy decision and acceptance of the scoped evidence limitations. No workflow or reviewer has acquired approval powers or calibrated status.
+
+## Publication
+
+The reviewed workflows now ship under `skills/`, and the accessibility reviewer under `agents/`. This directory retains the drafting and evaluation history; use the live files for future edits. ADR 0008 authorises advisory workflow publication ahead of checks. The CLI-only review skill does not complete plugin P3/P4.

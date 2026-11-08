@@ -22,3 +22,7 @@ Treat feedback such as “floaty”, “abrupt” or “too busy” as a hypothe
 Keep scene evaluation repeatable at a requested time, including springs and procedural variation; use §18 and `MOTION-SPR-001` for the applicable guidance. Inside this repository `vcr` means `pnpm vcr`; in an installed plugin it means `node <plugin-root>/cli/vcr.mjs`, with the plugin root two directories above this skill. For supported browser scenes, `vcr capture --verify` checks captured frames in shuffled seek order. Consult command help for scene and capture arguments. Its result is evidence for the tested frames and environment, not proof of motion quality or every authoring property.
 
 Inspect the relevant consecutive frames at known fps and watch the result at delivery speed, including loop seams and thin moving details in the encoded output where available. No motion sampler or automated motion-quality check is implemented; frame inspection and judgement are manual and cannot establish unmeasured safety. Record frame ranges, assumptions and missing evidence. Hand off the spec, poses, marker relationships and inspection notes; request independent advisory review when useful.
+
+## Evidence and scope
+
+For a local request, preserve settled decisions and identify the specific proposed change and its downstream effects. Separate supplied facts from assumptions and recommendations; state what was actually inspected, what is missing and which decisions need a person. Do not treat a draft, a plan check or a static description as proof of rendered behaviour or approval.

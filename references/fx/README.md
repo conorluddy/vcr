@@ -1,5 +1,7 @@
 # Image treatment reference
 
+The advisory `image-treatment` workflow now ships in `skills/image-treatment/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+
 This is the image treatment, blending and compositing knowledge base (`FX-*`), produced from [the research brief](../research-prompts/fx.md) on 2026-11-06. It covers the layer techniques that give stills and motion a crafted, graphic look:
 - blend modes, masks and colour treatments;
 - print-process looks (halftone, risograph, dithering);

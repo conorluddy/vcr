@@ -1,5 +1,7 @@
 # Accessibility reference
 
+The advisory `accessibility` workflow now ships in `skills/accessibility/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+
 This is the accessibility knowledge base (`A11Y-*`) for motion graphics and short-form video, produced from [the research brief](../research-prompts/accessibility.md) on 2026-11-06. It is reference material, not an implemented check: there is no `A11Y-*` rules data file, analyser or agent yet. It is about 20k tokens, so read only the section the task needs in [the knowledge base](accessibility-knowledge-base.md). Its IDs are already named.
 
 Flashing has published thresholds and is a strong candidate for a post-render check. Motion can also cause physical symptoms. Frame analysis needs declared display assumptions and validation against a reference analyser; no `A11Y-*` analyser is implemented.

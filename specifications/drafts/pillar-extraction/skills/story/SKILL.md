@@ -18,3 +18,7 @@ When feedback says the story is “unclear” or “does not land”, trace the 
 Read only the needed route in [story](../../references/story/README.md): §1–2 for routes and mechanism, §3–5 for script, beats and boards, §6 for animatics and blocking, §13 and §18 for creation. `STORY-ONE-IDEA`, `STORY-MECHANISM`, `STORY-BEAT-FIELDS` and `STORY-BOARD-COVERAGE` address plan quality. Pacing owns beat timing, typography reading holds, and data visualisation fidelity to source.
 
 Inside this repository `vcr` means `pnpm vcr`; in an installed plugin it means `node <plugin-root>/cli/vcr.mjs`, with the plugin root two directories above this skill. Use `vcr plan check --video <project>/<video>` for its implemented subset and `vcr plan markers --video <project>/<video>` for marker handoff. Findings are printed, not filed; plan approvals are not implemented. Manually inspect claim coverage, visual logic, mute legibility and loop intent as applicable; report gaps and uncertainty. Keep the script, beat plan, boards and evidence in the selected workspace and hand their locations and affected beats to pacing and the relevant craft workflows, with decisions reserved for the human.
+
+## Evidence and scope
+
+For a local request, preserve settled decisions and identify the specific proposed change and its downstream effects. Separate supplied facts from assumptions and recommendations; state what was actually inspected, what is missing and which decisions need a person. Do not treat a draft, a plan check or a static description as proof of rendered behaviour or approval.

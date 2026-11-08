@@ -355,7 +355,7 @@ There is no published industry standard sampling rate for creative versioning QC
 
 ### 8.1 Parameters a scene should expose (proposal; `heuristic`)
 
-Extend the existing contract `window.__scene = { duration, seek(t), markers, textBounds() }` with:
+The following is a proposal, not the current scene contract. `mandatory` and `manifest()` are not supported scene members; keep mandatory content and provenance in existing workspace records. An illustrative future extension is:
 
 ```js
 window.__scene = {
@@ -543,7 +543,7 @@ General sampling conventions:
 ### 12.1 Ordered steps
 
 1. **Read the matrix and brief.** Confirm the expected set, mandatory elements per length, market legal list and safe-zone profiles. Check `ADAPT-MATRIX-COMPLETE` first: missing versions are the cheapest defect to find.
-2. **Run all automatic checks on 100% of versions** and triage by rule and severity.
+2. **Check each version** with applicable implemented checks and manual inspection; record missing coverage. No matrix-wide check exists.
 3. **Review the master** (16:9 or primary anchor) in motion, at speed, with sound. This is the reference.
 4. **Review the anchor siblings** (e.g. 9:16) in motion, side by side with the master at the same beats: subject, hierarchy, logo, type rhythm.
 5. **Review the shortest cut per anchor** (6 s/15 s): proposition clear, brand present, end card intact, music resolves, legal holds.
@@ -597,12 +597,12 @@ General sampling conventions:
 1. **Brief intake.** Read `BRIEF-*`: matrix axes and exclusions, mandatory set per length, markets and legal lists, platform profiles, audio modes. If a matrix cell has no owner for its legal copy, stop and ask.
 2. **Choose anchors.** Decide which aspects are authored (usually 16:9 and 9:16) and which are derived. Decide whether the bumper is a separate variant (default yes).
 3. **Structure the master.** Write beats as `markers` with roles and priorities. Declare regions with anchors, priorities, `required`, `qualifies`. Put all copy in string tables. Use tokens from the brief.
-4. **Pseudo-localise early.** Run `pseudo-40`, `pseudo-tiered` and `pseudo-rtl` on the first animatic. Fix layouts before any translation is ordered.
+4. **Pseudo-localise early.** Manually test expansion and direction on the first animatic; no pseudo-localisation automation is implemented. Fix layouts before translation.
 5. **Author anchor overrides.** Write the layout override blocks for the second anchor and re-render Blender cameras per aspect where needed.
 6. **Plan cutdowns.** Select beats per length. Re-time within `PACE-*`. Request music edits per length (`SOUND-*`). Pair every claim with its qualifier, and drop claims whose qualifier cannot hold in the shorter length.
 7. **Localise.** Commission transcreation with *duration budgets per line* and character guidance for boxes. Generate or record VO. Align. Run the VO decision ladder (section 5.1). Regenerate captions per language and aspect.
 8. **Render the matrix** deterministically with manifests and version IDs.
-9. **Verify** with all automatic checks on 100%, then a stratified human sample. Fix by parameter or source change and re-render. Never patch files.
+9. **Verify** applicable checks per version and inspect a stratified human sample. Record missing coverage and retest changes in the relevant output.
 10. **Deliver** with the manifest bundle and a QC report keyed by version ID and rule ID.
 
 ---
@@ -706,7 +706,7 @@ General sampling conventions:
 ### 17.2 Creation (author)
 - [ ] Matrix, exclusions, mandatory set, markets and legal lists read from `BRIEF-*`
 - [ ] Anchors chosen; bumper authored as its own variant
-- [ ] Scene exposes `params`, `regions(t)`, `mandatory`, `markers`, `manifest()`
+- [ ] Version parameters, required content and provenance recorded in the workspace; use supported scene members where applicable
 - [ ] Regions declare anchors (logical sides), priorities, `required`, `qualifies`
 - [ ] All copy in string tables; no baked text (`ADAPT-NO-BAKED-TEXT`)
 - [ ] Pseudo passes (+40%, tiered, mirrored) clean before translation (`ADAPT-PSEUDO-EXPANSION`, `ADAPT-PSEUDO-BIDI`)
@@ -716,7 +716,7 @@ General sampling conventions:
 - [ ] Captions regenerated from alignment per language and aspect (`ADAPT-CAPTION-RETIME`, `ADAPT-CAPTION-ASPECT`)
 - [ ] SFX bound to events (`ADAPT-SFX-SYNC`)
 - [ ] Deterministic render with pinned Chromium, fonts and seeds; manifests written (`ADAPT-DETERMINISM`, `ADAPT-TRACE-MASTER`)
-- [ ] All automatic checks green; sample reviewed; fixes made by re-render only
+- [ ] Applicable checks and human sample reviewed; missing coverage recorded and affected output retested
 
 ---
 

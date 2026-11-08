@@ -18,3 +18,7 @@ For feedback such as “rushed” or “drags”, locate the affected span and c
 Read only the needed route in [pacing](../../references/pacing-editor/README.md): §3–5 for rhythm and load, §9 for sound-off, §11–12 for measurement and critique, and §15 and §20 for creation and checks. `PACE-BEAT-*` owns beat and cut rhythm, `PACE-NARR-03` and `PACE-NARR-04` the visual relationship to narration and `PACE-SOUND-01` the mute test; `TYPO-HOLD` and `TYPO-CAPTION-*` own text and caption timing, `SOUND-NARRATION-WPM` narration rate, and `MOTION-CHOR-003` movement within a beat.
 
 Compare beat boundaries, holds and total duration with the brief and inspect the result at known fps. Plan checks cover only a subset; there is no pacing render check, and word-level narration timings may be unavailable. Report manual observations, missing timing evidence and uncalibrated heuristics without presenting them as gates. Record revised durations and holds in the existing beat plan, regenerate markers when needed, and hand affected ranges and unresolved tradeoffs to story, motion, typography and sound.
+
+## Evidence and scope
+
+For a local request, preserve settled decisions and identify the specific proposed change and its downstream effects. Separate supplied facts from assumptions and recommendations; state what was actually inspected, what is missing and which decisions need a person. Do not treat a draft, a plan check or a static description as proof of rendered behaviour or approval.

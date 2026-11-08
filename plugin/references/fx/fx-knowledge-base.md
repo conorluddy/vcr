@@ -354,7 +354,7 @@ The most important finding is that two renders using the "same" treatment often 
 | Contrast over treatment | `TYPO-CONTRAST` computed on treated frames |
 | Blend space declared and consistent | scene metadata plus a static scan of computed styles and SVG attributes |
 | Render cost | wall-clock capture time per frame versus a baseline |
-| Flash | the `A11Y-FLASH-*` analyser run on treated output |
+| Flash | Requires validated full-sequence `A11Y-FLASH-*` analysis; no VCR analyser exists |
 
 Details are in §18.
 
@@ -379,15 +379,12 @@ Details are in §18.
 
 1. **Read the brief and the declared FX spec**: blend space, texture attachments, boil rates, seeds, ink count. Missing declarations are findings in themselves.
 2. **Watch in motion at delivery size, then at 2×.** Never judge a treatment from stills alone. Boil, crawl and seam pops exist only over time. Then step through frames at the hot spots the metrics flag.
-3. **Run the measurable checks** (§18): determinism, flicker, flash, contrast, texture survival on a simulated re-encode, and cost.
+3. **Inspect available evidence** (§18): texture survival, contrast and temporal behaviour. General FX checks and a validated VCR flash analyser are not implemented; record gaps.
 4. **Judge purpose:** does the treatment serve the brief's intent (`ART-*`), or is it decoration? Does it keep the focal point?
 5. **Judge craft:** restraint, coherence of space (frame-, object- or time-locked), neutral values chosen correctly, imperfection that varies without being random noise.
 6. **Write the findings.** Each finding gives the rule ID, the frames or time range, the evidence (a metric value or crop), the severity and a concrete parameter fix.
-- **Severity:**
-  - **Blocker:** `FX-FLASH-SAFE` (dropped; owner `A11Y-FLASH-*`) failure, `FX-TEXT-CONTRAST` (dropped; owner `TYPO-CONTRAST`) failure on required text, `FX-DETERMINISM` (dropped; one generic check, `vcr capture --verify`) failure, treatment destroyed after delivery encode.
-  - **Major:** undeclared boil or crawl on hero content, wrong blend space causing visible mismatch across a series, isolation bug removing an intended blend, render cost over budget.
-  - **Minor:** cheap tells (uniform grain, tile repeats, preset CA), feather inconsistencies.
-  - **Note:** taste suggestions.
+**Severity and findings:** Follow the [shared reviewer contract](../critique-methodology/reviewer-contract.md), recording evidence and uncertainty.
+
 - **Vocabulary for findings, and what each maps to:**
 
 | Term | Usually means | Parameter or measurement |
@@ -504,7 +501,7 @@ Details are in §18.
   - Calculation: the `TYPO-CONTRAST` algorithm on the treated frame. Use background percentiles (for example the 10th/90th luma in the bounds dilated by the stroke), not the mean.
   - Sampling: every 0.25 s over the text's lifetime, plus treatment-parameter peaks.
   - Failure modes: antialiasing contaminates samples; grain makes per-pixel contrast noisy (use percentiles).
-- **FX-FLASH-SAFE:** (dropped; owner `A11Y-FLASH-*`) run the `A11Y-FLASH-*` analyser on the decoded delivery video. Encoding can soften flashes, but analyse the master too.
+- **FX-FLASH-SAFE:** (dropped; owner `A11Y-FLASH-*`) requires validated `A11Y-FLASH-*` analysis of decoded delivery, including loop seams. No VCR flash analyser exists; absent suitable evidence report unable to assess.
 - **FX-BLEND-SPACE-* / FX-SVG-FILTER-CIF / FX-ISOLATION-EXPLICIT / FX-BLEND-ANIM-DISCRETE:**
   - Inputs: DOM and computed styles at t.
   - Calculations:

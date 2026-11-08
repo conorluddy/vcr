@@ -341,11 +341,7 @@ Each entry gives the inputs, the calculation, the sampling strategy and the meas
 6. **Make judgement calls** using the vocabulary below.
 7. **Check series consistency** (`MAT-SERIES-CONSISTENCY`).
 
-**Severity:**
-- **Blocker:** wrong colour space or normal convention; brand ΔE failure on a flat region; non-determinism (dropped; one generic check, `vcr capture --verify`); broken glass or chrome; export loss.
-- **Major:** visible crawl or moiré; hard-range albedo failure on a hero object; whole-surface intermediate metallic; texel density < 0.5 on a close-up.
-- **Minor:** albedo in the warning band; missing bevels on secondary objects.
-- **Note:** taste.
+**Severity and findings:** Follow the [shared reviewer contract](../critique-methodology/reviewer-contract.md), recording evidence and uncertainty.
 
 **Finding format:** `[MAT-ID] severity, frames a–b, object/material: observation → cause → fix.`
 

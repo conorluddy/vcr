@@ -1,5 +1,7 @@
 # Motion direction reference
 
+The advisory `motion` workflow now ships in `skills/motion/SKILL.md`. No additional checks or calibrated gates are implied; earlier reference-only descriptions below refer to measurement maturity.
+
 This is the motion design and animation direction knowledge base (`MOTION-*`), produced from [the research brief](../research-prompts/motion-director.md) on 2026-11-06. It is reference material, not an implemented check: there is no `MOTION-*` rules data file, measurement tool or skill yet; the draft `motion-director` agent cites these rules and is advisory until calibrated. It is too large to load whole (about 20k tokens), so read only the section the task needs in [the knowledge base](motion-director-knowledge-base.md).
 
 | Task | Read |

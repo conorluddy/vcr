@@ -26,7 +26,7 @@ A one-off video may have only `brief.md`. A series, or any project with more tha
 2. **Interview for the decision fields only** (`vcr refs section series-brief 1.2`). Ask a manageable group of questions at a time, fill in what the notes already answer, and confirm rather than re-ask. In order:
    - **Objective**: exactly one, with its kind and a success measure (`BRIEF-OBJECTIVE-SINGLE`, `BRIEF-OBJECTIVE-MEASURE`).
    - **Audience and viewing context**: a portrait beyond demographics, and the watch mode, muted-first, sound-on or mixed (`BRIEF-AUDIENCE-SPECIFIC`).
-   - **Proposition**: one sentence, no "and" joining two benefits, plus any approved paraphrases and where it must appear (`BRIEF-PROPOSITION-SINGLE`).
+   - **Proposition**: one sentence, no "and" joining two benefits, plus any approved paraphrases and where it must appear (`BRIEF-PROPOSITION-SINGLE`). If the underlying process is incomplete, offer a bounded, explicitly unconfirmed hypothesis for the person to correct; do not invent process facts or present it as evidence.
    - **Proof points**: select those that support the proposition; consult the applicable story rules.
    - **Tone**: choose decision-useful adjectives. See step 3.
    - **Mandatories**: each with its source and the rule that checks it, or "judgement" (`BRIEF-MANDATORY-SOURCED`). They constrain ends, not means (`BRIEF-NO-PRESCRIBE`): "the logo holds at rest at the end" is a mandatory, but "use a slide-in" is not.
@@ -72,3 +72,7 @@ A one-off video may have only `brief.md`. A series, or any project with more tha
 - Never invent a mandatory, a claim or a source. Ask, or leave it out and say so.
 - A video brief never contradicts its series brief. If the video needs something the series forbids, change the series brief first (a new version, with the person's approval), or record a declared break.
 - Never write a real client, brand or product name into the harness. Briefs live in the workspace.
+
+## Evidence and scope
+
+For a local request, preserve settled decisions and identify the specific proposed change and its downstream effects. Separate supplied facts from assumptions and recommendations; state what was actually inspected, what is missing and which decisions need a person. Do not treat a draft, a plan check or a static description as proof of rendered behaviour or approval.
