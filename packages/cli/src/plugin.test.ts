@@ -36,6 +36,12 @@ describe("buildPlugin", () => {
     expect(totalBytes).toBeLessThan(PLUGIN_MAX_BYTES);
   });
 
+  test("ships the exact distribution license and notice files", () => {
+    for (const file of ["LICENSE", "NOTICE", "THIRD_PARTY_NOTICES"]) {
+      expect(readFileSync(join(directory, file))).toEqual(readFileSync(join(harnessRoot, file)));
+    }
+  });
+
   test("leaves out node_modules and output from example sources", () => {
     expect(existsSync(join(directory, "examples/three-capture/scene.html"))).toBe(true);
     expect(existsSync(join(directory, "examples/three-capture/node_modules"))).toBe(false);

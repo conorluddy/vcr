@@ -14,5 +14,6 @@
     "ajv-formats": "^3.0.1",
     "@vcr/capture": "workspace:*",
     "@vcr/lint": "workspace:*"
-  }
+  },
+  "license": "Apache-2.0"
 }

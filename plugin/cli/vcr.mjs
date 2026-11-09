@@ -9744,16 +9744,21 @@ Install: \`claude plugin install vcr@vcr\` or \`codex plugin add vcr@vcr\` after
 
 The CLI is \`node <this directory>/cli/vcr.mjs\` (Node 22 or newer). It never writes here: projects live in the workspace (\`vcr.json\`), machine state in \`VCR_HOME\` (default \`~/.vcr\`).
 `;
+var LICENSE_FILES = ["LICENSE", "NOTICE", "THIRD_PARTY_NOTICES"];
 var CATALOG_ENTRIES = ["INDEX.md", "CANDIDATES.md", "tools.json", "tools", "schemas", "capabilities", "CANDIDATE-INGESTION.md", "ASSESSMENT-BRIEF.md", "FIXTURE-EVIDENCE-TEMPLATE.md"];
 var SKIPPED_DIRECTORIES = /* @__PURE__ */ new Set(["node_modules", "output", ".cache", "dist"]);
 var MEDIA_EXTENSIONS = /* @__PURE__ */ new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".mp4", ".mov", ".webm", ".wav", ".mp3", ".aac", ".glb", ".gltf", ".blend", ".exr", ".woff", ".woff2"]);
 function buildPlugin(harnessRoot, outputDirectory = join13(harnessRoot, PLUGIN_DIRECTORY)) {
   const version = readHarnessVersion(harnessRoot);
   if (!version.ok) return version;
+  for (const file of LICENSE_FILES) {
+    if (!existsSync11(join13(harnessRoot, file))) return fail("PLUGIN_LICENSE_MISSING", `Required distribution file ${file} is missing from ${harnessRoot}.`);
+  }
   rmSync(outputDirectory, { recursive: true, force: true });
   mkdirSync4(outputDirectory, { recursive: true });
   const bundled = bundleCli(harnessRoot, join13(outputDirectory, "cli/vcr.mjs"));
   if (!bundled.ok) return bundled;
+  for (const file of LICENSE_FILES) cpSync2(join13(harnessRoot, file), join13(outputDirectory, file));
   for (const entry of CATALOG_ENTRIES) cpSync2(join13(harnessRoot, "catalog", entry), join13(outputDirectory, "catalog", entry), { recursive: true });
   for (const skill of readdirSync5(join13(harnessRoot, "skills"))) {
     if (existsSync11(join13(harnessRoot, "skills", skill, "SKILL.md"))) cpSync2(join13(harnessRoot, "skills", skill), join13(outputDirectory, "skills", skill), { recursive: true });
@@ -9815,7 +9820,7 @@ function bundleCli(harnessRoot, outfile) {
     external: ["esbuild", "playwright"],
     // CommonJS dependencies (ajv) call require(); give the ESM bundle one.
     banner: { js: 'import { createRequire as __vcrCreateRequire } from "node:module"; const require = __vcrCreateRequire(import.meta.url);' },
-    legalComments: "none",
+    legalComments: "inline",
     logLevel: "silent",
     write: false
   });
