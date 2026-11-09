@@ -33,6 +33,19 @@ Use the live skills on two or three real renders in a user-selected production w
 
 **Alongside:** #144 remains the next engineering implementation, followed by #146 and #145. #173 (plan approvals) would let plan findings be filed rather than printed. Sound-cue export still waits for #60.
 
+## Production usability runway
+
+[Field notes #183](https://github.com/conorluddy/vcr/issues/183) collect the installed-plugin pilot evidence. Work in small independently verified slices:
+
+1. **#51: asset/readiness diagnostics first.** Name serving root, failing resource/status and page error in lint/capture. Shared-root configuration remains a separate slice in the existing issue.
+2. **#185: refresh review summaries after capture.** Normal successful operations should not leave generated-state warnings.
+3. **#63: selected timestamp/marker previews and contact sheets.** Inspect critical poses and transitions before full capture; previews never imply complete renders or approval.
+4. **#184: validate and explain social safe-zone geometry.** Retain evidence and uncertainty before changing presets; show an overlay from shared data.
+5. **#186: selected-video dependency readiness.** Check the actual package root without reopening the parked capability graph.
+6. **#187: separate capture and verification timings.** Coordinate progress with #53; preserve verification coverage semantics.
+
+Each fix links its PR and verification back to #183. Re-run a fresh-workspace fixture with a shared font, nested package and short scene; compare time to first useful inspected frame, missing-asset diagnosis and full-render count. #144 remains the parallel next engineering implementation; this runway adds no new renderer, editor or calibrated gate.
+
 ## Next: deterministic checks, each writing findings
 
 3. **#144: the delivery `ffprobe` gate** (S). Cheap, and catches rejected uploads and washed-out colour.
