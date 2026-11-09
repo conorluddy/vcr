@@ -2,7 +2,7 @@
 
 What to build next, in order, and why. Status per layer lives in [README.md](README.md); requirement IDs live in the PRDs; this file only sequences the work. Update it when an item lands or the order changes.
 
-Updated 2026-11-07.
+Updated 2026-11-09.
 
 ## Where we are
 
@@ -10,7 +10,7 @@ Updated 2026-11-07.
 
 - **Layer 0 and plugin P0, P1 and P2 are done.** The catalogue, the CLI and the plugin are installable on Claude Code and Codex. P2 (#161, #163–#169) added the review contract: render manifests from `vcr capture --video`, one file per finding (`vcr findings`), human-only approvals at a terminal (`vcr review`), `vcr status --brief`, the series and video briefs with the `brief` skill, and `vcr storage`. `vcr lint --video` is the first check that writes findings.
 - **Typography has the whole pillar pipeline:** `rules.json`, `vcr lint`, the `typography` skill and the `typographer` agent.
-- **Draft agents exist for every other pillar except accessibility and delivery:** they run ahead of their checks, follow `references/critique-methodology/reviewer-contract.md`, and are advisory and uncalibrated.
+- **Draft agents exist for every other pillar except delivery:** they run ahead of their checks, follow `references/critique-methodology/reviewer-contract.md`, and are advisory and uncalibrated.
 - **Nineteen reference pillars exist in `references/`:** typography, art, motion, pacing, sound, accessibility, series brief, critique, story, delivery, adaptation, data visualisation, image treatment, lighting, materials, domain exploration, visual research, cultural context and image direction. [ADR 0006](decisions/0006-creative-pillars-independent-of-tools.md) fixes how they turn into tools, [ADR 0007](decisions/0007-draft-pillar-agents-before-rules-data.md) lets advisory agents run ahead of their data, and `references/README.md` holds the rule owners.
 
 ## Sequencing principle
@@ -25,12 +25,13 @@ Build whatever unlocks the most later work first. Deterministic checks come befo
 | Measurement and data | These unlock about half the motion, pacing and data rules. |
 | Judgement | Reviewer agents are only as good as the measurements they run first. |
 
-## Now: the rest of the contracts
+## Now: real-production workflow evidence
 
-1. ~~#143: scene contract decisions~~ — done: `regions(t)` beside `textBounds()`, named markers, `params`, `data` and `fx` blocks, `MAT-PHYSICAL-SCOPE` in glTF extras.
-2. ~~#142: the beat sheet schema and `vcr plan check`~~ — done: `beats.json` beside `brief.md`, six plan checks printed as findings, `vcr plan markers`. The `sound_cues` export waits for #60.
+The scene contract (#143), beat sheet and plan checks (#142), and advisory workflow extraction (#179–#180) have shipped. Continue from the [pillar workflow handoff](handoffs/pillar-workflow-publication.md).
 
-**Alongside:** run the draft agents on two or three real renders and log where they are wrong or silent; those renders seed #150 and decide which pillar gets data and checks first. #173 (plan approvals) lets `story-editor` findings be filed rather than printed.
+Use the live skills on two or three real renders in a user-selected production workspace. Record where workflows or reviewers are wrong, silent or difficult to use; link focused follow-ups to production field notes. Synthetic cases in `specifications/drafts/pillar-extraction/evaluation/` support scoped workflow decisions, not production performance or calibration. Keep production-specific material outside this repository.
+
+**Alongside:** #144 remains the next engineering implementation, followed by #146 and #145. #173 (plan approvals) would let plan findings be filed rather than printed. Sound-cue export still waits for #60.
 
 ## Next: deterministic checks, each writing findings
 
@@ -42,10 +43,10 @@ Build whatever unlocks the most later work first. Deterministic checks come befo
 
 ## Then: review pages, measurement and judgement
 
-8. **Plugin P3 review pages** (Videos, Render, the note form, Decide, Storage), then **P4, the loop** (the `review` skill, session-start hooks, evidence pairs, Compare). By then the pages show real findings from real checks.
+8. **Plugin P3 review pages** (Videos, Render, the note form, Decide, Storage), then **P4, the loop** (extend the shipped CLI-only `review` skill with session-start hooks, evidence pairs and Compare). By then the pages show real findings from real checks.
 9. **#147: `vcr motion sample`** (L), after #143. It unlocks most of the motion, pacing and data checks.
 10. **#148: per-pillar `rules.json`.** Rename the draft IDs and leave out the dropped rules, in the order checks land: delivery, accessibility, motion, pacing, story, brief, sound, materials, lighting, FX, art, adaptation, data, critique.
-11. **#149: workflow skills and reviewer agents**, one pillar at a time, each after its checks: a plan reviewer for story first, then motion, art and pacing. Tool recipes move from the knowledge bases to toolkit guides. Draft agents for every pillar except accessibility and delivery now exist ahead of their checks, sharing the reviewer contract in `references/critique-methodology/reviewer-contract.md`. They are advisory and uncalibrated, so #149 now means turning each draft into a calibrated reviewer as its `rules.json` and checks land.
+11. **#149: strengthen workflow skills and calibrate reviewers**, one pillar at a time as data and checks land. Advisory making workflows already ship under ADR 0008; draft reviewers exist except for delivery. Improve them from production evidence, migrate renamed rule citations together, and keep tool recipes in toolkit guides. Publication does not make reviewers calibrated or permit heuristic gates.
 12. **#150: a calibration gold set** of 20–30 human-reviewed renders. Only after it may a heuristic gate anything.
 13. **Plugin P5, share:** static bundle, proxy and comment import.
 14. **PRD layers**, each opened by its own spike: L1 workspace (asset store and manifest, one provenance rule for music, HDRIs, textures and fonts), L2 timeline (named markers from #143), L5 production delivery (fed by `DELIVERY-*`), L3 compositor (fed by `FX-*`, `LIGHT-*`, `MAT-*`), then L4 advanced motion and L7 reference corpus.
@@ -55,6 +56,5 @@ Build whatever unlocks the most later work first. Deterministic checks come befo
 ## Parked
 
 - **Capability graph** (#65). CG0 kept the current workflow; #74 and #76 continue on tool records, and the rest waits for its reopen conditions.
-- **Research on category conventions**, commissioned when the `brief` skill needs more than fit-or-break.
-- **Research not yet commissioned:** category conventions and differentiation, which would feed `briefing`. Commission it when #141 starts.
+- **Category conventions and differentiation research:** commission when the existing `brief` workflow needs more than fit-or-break.
 
