@@ -22,3 +22,7 @@ Inside this repository `vcr` means `pnpm vcr`; in an installed plugin it means `
 ## Evidence and scope
 
 For a local request, preserve settled decisions and identify the specific proposed change and its downstream effects. Separate supplied facts from assumptions and recommendations; state what was actually inspected, what is missing and which decisions need a person. Do not treat a draft, a plan check or a static description as proof of rendered behaviour or approval.
+
+## Early visual feedback
+
+For a new visual system, move from the selected route and rough beats to a representative style frame before implementing the full piece. Use real content at delivery aspect ratio, testing recurring hierarchy and difficult copy; inspect a sparse state when it tests a different requirement. Explain inherited choices, proposed choices and open questions alongside the image. Iterate from visual feedback, then test a short representative motion interval before extending the system. Concept selection does not select a visual treatment, and a still does not establish motion quality or publication approval. Reuse settled series direction unless content or delivery introduces a meaningful exception. Keep frame purpose, revision links and feedback in existing workspace notes.

@@ -40,6 +40,8 @@ export const GLOBAL_ENVIRONMENT = [
 ];
 
 export const COMMANDS: CommandSpec[] = [
+  { name: "preview still", argumentsHint: "<scene.html>", summary: "Export one selected frame; motion and full scene remain untested", flags: ["width", "height", "fps", "at", "marker"].map(name => ({ name, value: "value", description: name })), example: "vcr preview still scene.html --width 1080 --height 1920 --fps 30 --at 2" },
+
   {
     name: "status",
     summary: "Show the harness, workspace and machine roots; --brief for videos awaiting review and open findings (under 1 KB)",

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { previewStill } from "./preview.js";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { applyCaptureSetup, formatCaptureSetupPlan, planCaptureSetup, runCapture } from "./capture.js";
@@ -203,6 +204,16 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     if (!applied.ok) return failWith(applied.error, asJson);
     print(asJson ? { applied: applied.value, remaining: planCaptureSetup(roots).steps } : formatCaptureSetupPlan(applied.value, true));
     return 0;
+  }
+
+  if (command === "preview" && subcommand === "still" && target) {
+    const workspace = requireWorkspace(roots);
+    if (!workspace.ok) return failWith(workspace.error, asJson);
+    try {
+      const result = await previewStill(roots, workspace.value, resolve(target), Number(options["width"]), Number(options["height"]), Number(options["fps"]), text(options["at"]), text(options["marker"]));
+      print(asJson ? result : `Still: ${result.image}\nMetadata: ${result.sidecar}\nMotion and full scene untested.`);
+      return 0;
+    } catch (error) { return failWith({ code: "PREVIEW_FAILED", message: String(error) }, asJson, 2); }
   }
 
   if (command === "capture" && subcommand) {

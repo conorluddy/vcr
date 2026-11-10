@@ -8072,16 +8072,6 @@ var require_dist = __commonJS({
   }
 });
 
-// packages/cli/src/index.ts
-import { existsSync as existsSync23, mkdirSync as mkdirSync8, readFileSync as readFileSync15, writeFileSync as writeFileSync12 } from "node:fs";
-import { dirname as dirname8, join as join26, resolve as resolve8 } from "node:path";
-
-// packages/cli/src/capture.ts
-import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync as mkdirSync2, readFileSync, writeFileSync as writeFileSync2 } from "node:fs";
-import { createRequire as createRequire2 } from "node:module";
-import { dirname as dirname2, join as join2, resolve as resolve2 } from "node:path";
-
 // packages/capture/src/capture-frames.ts
 import { createHash } from "node:crypto";
 import { mkdirSync, readdirSync, readFile, unlinkSync, writeFileSync } from "node:fs";
@@ -8275,6 +8265,17 @@ function serveDirectory(root) {
   });
 }
 
+// packages/cli/src/preview.ts
+import { createHash as createHash2, randomUUID } from "node:crypto";
+import { mkdirSync as mkdirSync3, readFileSync as readFileSync2, writeFileSync as writeFileSync3 } from "node:fs";
+import { dirname as dirname3, join as join3 } from "node:path";
+
+// packages/cli/src/capture.ts
+import { execFileSync } from "node:child_process";
+import { existsSync, mkdirSync as mkdirSync2, readFileSync, writeFileSync as writeFileSync2 } from "node:fs";
+import { createRequire as createRequire2 } from "node:module";
+import { dirname as dirname2, join as join2, resolve as resolve2 } from "node:path";
+
 // packages/cli/src/result.types.ts
 function ok(value) {
   return { ok: true, value };
@@ -8370,6 +8371,43 @@ function isChromiumInstalled(runtime) {
   }
 }
 
+// packages/cli/src/preview.ts
+async function previewStill(roots, workspace, sceneFile, width, height, fps, at, marker) {
+  if (at === void 0 === (marker === void 0)) throw new Error("Specify exactly one of --at or --marker");
+  if (![width, height, fps].every((n) => Number.isFinite(n) && n > 0)) throw new Error("Positive width, height and fps required");
+  const browser = prepareBrowserRuntime(roots);
+  if (!browser.ok) throw new Error(browser.error.message);
+  const scene = await openScenePage({ sceneFile, width, height, captureMode: "screenshot", ...browser.value });
+  try {
+    const requested = at !== void 0 ? Number(at) : await scene.page.evaluate((id) => {
+      const markers = window.__scene.markers ?? [];
+      const matches = markers.filter((m) => typeof m !== "number" && m.id === id);
+      if (matches.length !== 1) throw new Error("Marker must match exactly once");
+      return matches[0].t;
+    }, marker);
+    const frame = Math.round(requested * fps);
+    if (!Number.isFinite(requested) || requested < 0 || requested >= scene.duration || frame >= Math.round(scene.duration * fps)) throw new Error("Selection outside scene duration");
+    await scene.page.evaluate((t) => window.__scene.seek(t), frame / fps);
+    await settleFrame(scene.page);
+    const png = await scene.page.screenshot({ type: "png" });
+    const directory = join3(workspace, "output", "previews", randomUUID());
+    mkdirSync3(directory, { recursive: true });
+    const image = join3(directory, "still.png");
+    const hash = (data) => createHash2("sha256").update(data).digest("hex");
+    const metadata = { kind: "still", sceneFile, source_sha256: hash(readFileSync2(sceneFile)), source_hash_scope: "entry file only", marker, requested_time: requested, frame, time: frame / fps, width, height, fps, capture_mode: "screenshot", workspace, runtime: runtimeDirectory(roots), serving_root: dirname3(sceneFile), png_sha256: hash(png), motion_verified: false, full_scene_verified: false };
+    writeFileSync3(image, png);
+    const sidecar = join3(directory, "still.json");
+    writeFileSync3(sidecar, JSON.stringify(metadata, null, 2) + "\n");
+    return { image, sidecar, ...metadata };
+  } finally {
+    await scene.close();
+  }
+}
+
+// packages/cli/src/index.ts
+import { existsSync as existsSync23, mkdirSync as mkdirSync9, readFileSync as readFileSync16, writeFileSync as writeFileSync13 } from "node:fs";
+import { dirname as dirname9, join as join27, resolve as resolve8 } from "node:path";
+
 // packages/cli/src/commands.ts
 var GLOBAL_FLAGS = [
   { name: "json", description: "Machine-readable output; errors become { error: { code, message, retryable } }" },
@@ -8382,6 +8420,7 @@ var GLOBAL_ENVIRONMENT = [
   { name: "VCR_HOME", description: "Machine state: runtime, environment records (default ~/.vcr)" }
 ];
 var COMMANDS = [
+  { name: "preview still", argumentsHint: "<scene.html>", summary: "Export one selected frame; motion and full scene remain untested", flags: ["width", "height", "fps", "at", "marker"].map((name) => ({ name, value: "value", description: name })), example: "vcr preview still scene.html --width 1080 --height 1920 --fps 30 --at 2" },
   {
     name: "status",
     summary: "Show the harness, workspace and machine roots; --brief for videos awaiting review and open findings (under 1 KB)",
@@ -8663,15 +8702,15 @@ function markdownFlagRow(flag) {
 }
 
 // packages/cli/src/catalog.ts
-import { readFileSync as readFileSync3, statSync as statSync2, writeFileSync as writeFileSync4 } from "node:fs";
-import { join as join4 } from "node:path";
+import { readFileSync as readFileSync4, statSync as statSync2, writeFileSync as writeFileSync5 } from "node:fs";
+import { join as join5 } from "node:path";
 
 // packages/cli/src/repository.ts
-import { existsSync as existsSync2, mkdirSync as mkdirSync3, readFileSync as readFileSync2, readdirSync as readdirSync2, renameSync, statSync, writeFileSync as writeFileSync3 } from "node:fs";
-import { dirname as dirname3, join as join3 } from "node:path";
+import { existsSync as existsSync2, mkdirSync as mkdirSync4, readFileSync as readFileSync3, readdirSync as readdirSync2, renameSync, statSync, writeFileSync as writeFileSync4 } from "node:fs";
+import { dirname as dirname4, join as join4 } from "node:path";
 function readJsonFile(filePath) {
   try {
-    return ok(JSON.parse(readFileSync2(filePath, "utf8")));
+    return ok(JSON.parse(readFileSync3(filePath, "utf8")));
   } catch (cause) {
     const message = cause instanceof Error ? cause.message : String(cause);
     return fail("INVALID_JSON", `${filePath}: ${message}`);
@@ -8683,7 +8722,7 @@ function listFilesNamed(rootDirectory, fileName) {
   const found = [];
   const walk = (directory) => {
     for (const entry of readdirSync2(directory)) {
-      const fullPath = join3(directory, entry);
+      const fullPath = join4(directory, entry);
       if (statSync(fullPath).isDirectory()) {
         if (!ignoredDirectories.has(entry)) walk(fullPath);
       } else if (entry === fileName) {
@@ -8696,12 +8735,12 @@ function listFilesNamed(rootDirectory, fileName) {
 }
 function listJsonFiles(directory) {
   if (!existsSync2(directory)) return [];
-  return readdirSync2(directory).filter((entry) => entry.endsWith(".json")).map((entry) => join3(directory, entry)).sort();
+  return readdirSync2(directory).filter((entry) => entry.endsWith(".json")).map((entry) => join4(directory, entry)).sort();
 }
 function writeFileAtomic(filePath, content) {
-  mkdirSync3(dirname3(filePath), { recursive: true });
+  mkdirSync4(dirname4(filePath), { recursive: true });
   const temporaryPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
-  writeFileSync3(temporaryPath, content);
+  writeFileSync4(temporaryPath, content);
   renameSync(temporaryPath, filePath);
 }
 function writeJsonAtomic(filePath, value) {
@@ -8735,7 +8774,7 @@ Generated by \`vcr catalog build\`. Candidates were surfaced during discovery an
 `;
 function buildCatalogIndex(repositoryRoot) {
   const resources = [];
-  for (const filePath of listJsonFiles(join4(repositoryRoot, "catalog/tools"))) {
+  for (const filePath of listJsonFiles(join5(repositoryRoot, "catalog/tools"))) {
     const record = readJsonFile(filePath);
     if (!record.ok) return record;
     const expectedFile = `${record.value.id}.json`;
@@ -8816,7 +8855,7 @@ function writeCatalogIndex(repositoryRoot, checkOnly) {
     ["catalog/INDEX.md", renderMarkdownIndex(built.value, repositoryRoot)],
     ["catalog/CANDIDATES.md", renderCandidatesIndex(built.value, repositoryRoot)]
   ];
-  const readme = safeRead(join4(repositoryRoot, "README.md"));
+  const readme = safeRead(join5(repositoryRoot, "README.md"));
   if (readme !== null) {
     const spliced = spliceReadmeToc(readme, renderReadmeToc(built.value));
     if (!spliced.ok) return spliced;
@@ -8824,16 +8863,16 @@ function writeCatalogIndex(repositoryRoot, checkOnly) {
   }
   const staleFiles = [];
   for (const [relativePath, next] of outputs) {
-    const absolutePath = join4(repositoryRoot, relativePath);
+    const absolutePath = join5(repositoryRoot, relativePath);
     if (safeRead(absolutePath) === next) continue;
     staleFiles.push(relativePath);
-    if (!checkOnly) writeFileSync4(absolutePath, next);
+    if (!checkOnly) writeFileSync5(absolutePath, next);
   }
   return ok({ recordCount: built.value.resources.length, wasStale: staleFiles.length > 0, staleFiles });
 }
 function fileSizeKb(repositoryRoot, relativePath) {
   try {
-    return Math.max(1, Math.round(statSync2(join4(repositoryRoot, relativePath)).size / 1024));
+    return Math.max(1, Math.round(statSync2(join5(repositoryRoot, relativePath)).size / 1024));
   } catch {
     return null;
   }
@@ -8850,23 +8889,23 @@ function cardLink(tool) {
 }
 function safeRead(filePath) {
   try {
-    return readFileSync3(filePath, "utf8");
+    return readFileSync4(filePath, "utf8");
   } catch {
     return null;
   }
 }
 
 // packages/cli/src/references.ts
-import { existsSync as existsSync3, readdirSync as readdirSync3, readFileSync as readFileSync4, writeFileSync as writeFileSync5 } from "node:fs";
-import { dirname as dirname4, join as join5, relative as relative2, resolve as resolve3 } from "node:path";
+import { existsSync as existsSync3, readdirSync as readdirSync3, readFileSync as readFileSync5, writeFileSync as writeFileSync6 } from "node:fs";
+import { dirname as dirname5, join as join6, relative as relative2, resolve as resolve3 } from "node:path";
 var REFERENCES_INDEX_PATH = "references/INDEX.md";
 var REFERENCES_README_PATH = "references/README.md";
 var RULES_TABLE_HEADER = /^\|\s*ID\s*\|\s*Check\s*\|\s*Threshold\s*\|\s*Tier\s*\|\s*Applies to\b[^|]*\|/;
 function loadPillars(harnessRoot) {
-  const readmePath = join5(harnessRoot, REFERENCES_README_PATH);
+  const readmePath = join6(harnessRoot, REFERENCES_README_PATH);
   if (!existsSync3(readmePath)) return fail("REFERENCES_MISSING", `${REFERENCES_README_PATH} is missing; the pillar status table lives there.`);
   const pillars = [];
-  for (const line of readFileSync4(readmePath, "utf8").split("\n")) {
+  for (const line of readFileSync5(readmePath, "utf8").split("\n")) {
     const cells = splitRow(line);
     const link = cells[2]?.match(/^\[[^\]]+\]\(([a-z0-9-]+)\/README\.md\)$/);
     const prefix = cells[1]?.match(/^`([A-Z0-9]+-)`$/);
@@ -8878,10 +8917,10 @@ function loadPillars(harnessRoot) {
 }
 function loadPillarRules(harnessRoot, pillars) {
   return pillars.flatMap((pillar) => {
-    const rulesPath = join5(harnessRoot, "references", pillar.slug, "rules.json");
-    if (existsSync3(rulesPath)) return rulesFromData(pillar, JSON.parse(readFileSync4(rulesPath, "utf8")));
+    const rulesPath = join6(harnessRoot, "references", pillar.slug, "rules.json");
+    if (existsSync3(rulesPath)) return rulesFromData(pillar, JSON.parse(readFileSync5(rulesPath, "utf8")));
     const knowledgeBase = knowledgeBasePath(harnessRoot, pillar.slug);
-    return knowledgeBase ? rulesFromTable(pillar, readFileSync4(knowledgeBase, "utf8")) : [];
+    return knowledgeBase ? rulesFromTable(pillar, readFileSync5(knowledgeBase, "utf8")) : [];
   });
 }
 function findPillarRule(rules, id) {
@@ -8901,7 +8940,7 @@ function readKnowledgeBaseSection(harnessRoot, pillars, pillarName, section) {
   if (!pillar) return fail("PILLAR_NOT_FOUND", `No pillar ${pillarName}. Pillars: ${pillars.map((candidate) => `${candidate.slug} (${candidate.prefix})`).join(", ")}.`);
   const path = knowledgeBasePath(harnessRoot, pillar.slug);
   if (!path) return fail("KNOWLEDGE_BASE_MISSING", `references/${pillar.slug}/ has no *-knowledge-base.md.`);
-  const lines = readFileSync4(path, "utf8").split("\n");
+  const lines = readFileSync5(path, "utf8").split("\n");
   const number = section.replace(/^§/, "").replace(/\.$/, "");
   const headingPattern = new RegExp(`^(#{2,4})\\s+${number.replace(/\./g, "\\.")}(?:\\.|\\s)`);
   let fence = "";
@@ -8936,13 +8975,13 @@ function renderReferencesIndex(pillars, rules) {
   ].join("\n");
 }
 function writeReferencesIndex(harnessRoot, checkOnly) {
-  if (!existsSync3(join5(harnessRoot, REFERENCES_README_PATH))) return ok({ wasStale: false, staleFiles: [] });
+  if (!existsSync3(join6(harnessRoot, REFERENCES_README_PATH))) return ok({ wasStale: false, staleFiles: [] });
   const pillars = loadPillars(harnessRoot);
   if (!pillars.ok) return pillars;
   const rendered = renderReferencesIndex(pillars.value, loadPillarRules(harnessRoot, pillars.value));
-  const path = join5(harnessRoot, REFERENCES_INDEX_PATH);
-  if (existsSync3(path) && readFileSync4(path, "utf8") === rendered) return ok({ wasStale: false, staleFiles: [] });
-  if (!checkOnly) writeFileSync5(path, rendered);
+  const path = join6(harnessRoot, REFERENCES_INDEX_PATH);
+  if (existsSync3(path) && readFileSync5(path, "utf8") === rendered) return ok({ wasStale: false, staleFiles: [] });
+  if (!checkOnly) writeFileSync6(path, rendered);
   return ok({ wasStale: true, staleFiles: [REFERENCES_INDEX_PATH] });
 }
 function referencesIndexDiagnostics(harnessRoot) {
@@ -9017,14 +9056,14 @@ function rulesFromData(pillar, data) {
   }));
 }
 function knowledgeBasePath(harnessRoot, slug) {
-  const directory = join5(harnessRoot, "references", slug);
+  const directory = join6(harnessRoot, "references", slug);
   if (!existsSync3(directory)) return void 0;
   const file = readdirSync3(directory).find((name) => name.endsWith("-knowledge-base.md"));
-  return file ? join5(directory, file) : void 0;
+  return file ? join6(directory, file) : void 0;
 }
 function readKnowledgeBaseTitle(harnessRoot, slug) {
   const path = knowledgeBasePath(harnessRoot, slug);
-  const heading = path ? readFileSync4(path, "utf8").split("\n").find((line) => line.startsWith("# ")) : void 0;
+  const heading = path ? readFileSync5(path, "utf8").split("\n").find((line) => line.startsWith("# ")) : void 0;
   return heading ? heading.slice(2).replace(/\s*\(`[^`]*`\)\s*$/, "").trim() : slug;
 }
 function matchPillar(pillars, name) {
@@ -9047,12 +9086,12 @@ function referenceIntegrityDiagnostics(root) {
   const placeholders = /* @__PURE__ */ new Set(["MAT-ID", "MOTION-XXX-NNN", "LIGHT-RULE", "ART-ID", "STORY-REF", "ART-REF", "LIGHT-RULE-ID", "MAT-RULE-ID", "PACE-ID", "A11Y-ID", "BRIEF-ID"]);
   const pattern = new RegExp(`\\b(?:${pillars.map((p) => p.prefix.slice(0, -1)).join("|")})-[A-Z0-9]+(?:-[A-Z0-9]+)*`, "g");
   for (const rule of rules) {
-    for (const target of rule.replacements ?? []) if (!ids.has(target) || target === rule.id) report(join5(root, "references", rule.pillar, "README.md"), `Invalid replacement ${rule.id} \u2192 ${target}`);
-    if (rules.filter((r) => r.id === rule.id).length > 1) report(join5(root, "references", rule.pillar, "README.md"), `Duplicate rule ${rule.id}`);
+    for (const target of rule.replacements ?? []) if (!ids.has(target) || target === rule.id) report(join6(root, "references", rule.pillar, "README.md"), `Invalid replacement ${rule.id} \u2192 ${target}`);
+    if (rules.filter((r) => r.id === rule.id).length > 1) report(join6(root, "references", rule.pillar, "README.md"), `Duplicate rule ${rule.id}`);
   }
   for (const pillar of pillars) {
-    for (const name of readdirSync3(join5(root, "references", pillar.slug)).filter((n) => n === "README.md" || n.endsWith("-knowledge-base.md"))) {
-      const file = join5(root, "references", pillar.slug, name), content = readFileSync4(file, "utf8");
+    for (const name of readdirSync3(join6(root, "references", pillar.slug)).filter((n) => n === "README.md" || n.endsWith("-knowledge-base.md"))) {
+      const file = join6(root, "references", pillar.slug, name), content = readFileSync5(file, "utf8");
       if (name === "README.md") {
         for (const line of content.split("\n").filter((l) => l.startsWith("|"))) {
           for (const m of line.matchAll(/§(\d+(?:\.\d+)*)/g)) {
@@ -9066,13 +9105,13 @@ function referenceIntegrityDiagnostics(root) {
       for (const match of content.matchAll(/\]\(([^\s)]+)(?:\s+[^)]*)?\)/g)) {
         const link = match[1].replace(/^</, "").replace(/>$/, "").split("#")[0];
         if (!link || /^(https?:|mailto:|plugin:)/.test(link)) continue;
-        if (!existsSync3(resolve3(dirname4(file), link))) report(file, `Missing local reference ${link}`);
+        if (!existsSync3(resolve3(dirname5(file), link))) report(file, `Missing local reference ${link}`);
       }
     }
   }
   const superseded = new Map(rules.filter((rule) => rule.replacements?.length).map((rule) => [rule.id, rule.replacements]));
   for (const file of agentAndSupportingFiles(root, pillars)) {
-    for (const line of readFileSync4(file, "utf8").split("\n")) {
+    for (const line of readFileSync5(file, "utf8").split("\n")) {
       const namesDropped = /\b(dropped|superseded|never cite|do not cite)\b/i.test(line);
       for (const id of new Set(line.match(pattern) ?? [])) {
         if (!ids.has(id) && !placeholders.has(id) && !rules.some((r) => r.id.startsWith(`${id}-`))) report(file, `Unknown rule reference ${id}`);
@@ -9083,15 +9122,15 @@ function referenceIntegrityDiagnostics(root) {
   return diagnostics;
 }
 function agentAndSupportingFiles(root, pillars) {
-  const agentsDirectory = join5(root, "agents");
-  const agents = existsSync3(agentsDirectory) ? readdirSync3(agentsDirectory).filter((name) => name.endsWith(".md")).map((name) => join5(agentsDirectory, name)) : [];
-  const supporting = pillars.flatMap((pillar) => readdirSync3(join5(root, "references", pillar.slug)).filter((name) => name.endsWith(".md") && name !== "README.md" && !name.endsWith("-knowledge-base.md") && name !== "rule-template.md").map((name) => join5(root, "references", pillar.slug, name)));
+  const agentsDirectory = join6(root, "agents");
+  const agents = existsSync3(agentsDirectory) ? readdirSync3(agentsDirectory).filter((name) => name.endsWith(".md")).map((name) => join6(agentsDirectory, name)) : [];
+  const supporting = pillars.flatMap((pillar) => readdirSync3(join6(root, "references", pillar.slug)).filter((name) => name.endsWith(".md") && name !== "README.md" && !name.endsWith("-knowledge-base.md") && name !== "rule-template.md").map((name) => join6(root, "references", pillar.slug, name)));
   return [...agents, ...supporting];
 }
 
 // packages/cli/src/lint.ts
 import { existsSync as existsSync4, readdirSync as readdirSync4, statSync as statSync3 } from "node:fs";
-import { join as join7, resolve as resolve4 } from "node:path";
+import { join as join8, resolve as resolve4 } from "node:path";
 
 // packages/lint/src/lint-scene.ts
 import { relative as relative3 } from "node:path";
@@ -9289,19 +9328,19 @@ async function readMarkers(page) {
 }
 
 // packages/lint/src/safe-zones.ts
-import { readFileSync as readFileSync5 } from "node:fs";
-import { join as join6 } from "node:path";
+import { readFileSync as readFileSync6 } from "node:fs";
+import { join as join7 } from "node:path";
 var TYPOGRAPHY_RULES_PATH = "references/typography/rules.json";
 function loadSafeZone(harnessRoot, name) {
   const presets = readSafeZones(harnessRoot);
-  if (typeof presets === "string") return { ok: false, error: { code: "TYPOGRAPHY_RULES_UNREADABLE", message: `Cannot read safe zones from ${join6(harnessRoot, TYPOGRAPHY_RULES_PATH)}: ${presets}`, retryable: false } };
+  if (typeof presets === "string") return { ok: false, error: { code: "TYPOGRAPHY_RULES_UNREADABLE", message: `Cannot read safe zones from ${join7(harnessRoot, TYPOGRAPHY_RULES_PATH)}: ${presets}`, retryable: false } };
   const preset = presets[name];
   if (!preset) return { ok: false, error: { code: "UNKNOWN_SAFE_ZONE", message: `No safe-zone preset "${name}". Use one of: ${Object.keys(presets).join(", ")}, or none.`, retryable: false } };
   return { ok: true, value: { name, ...preset } };
 }
 function readSafeZones(harnessRoot) {
   try {
-    const data = JSON.parse(readFileSync5(join6(harnessRoot, TYPOGRAPHY_RULES_PATH), "utf8"));
+    const data = JSON.parse(readFileSync6(join7(harnessRoot, TYPOGRAPHY_RULES_PATH), "utf8"));
     return data.safe_zones ?? "the file has no safe_zones";
   } catch (cause) {
     return cause instanceof Error ? cause.message : String(cause);
@@ -9348,23 +9387,23 @@ function formatFinding(finding) {
 function listScenes(target) {
   if (!existsSync4(target)) return fail("SCENE_NOT_FOUND", `${target} does not exist.`);
   if (!statSync3(target).isDirectory()) return ok([target]);
-  const scenes = readdirSync4(target).filter((entry) => entry.endsWith(".html")).sort().map((entry) => join7(target, entry));
+  const scenes = readdirSync4(target).filter((entry) => entry.endsWith(".html")).sort().map((entry) => join8(target, entry));
   if (scenes.length === 0) return fail("SCENE_NOT_FOUND", `${target} holds no .html scenes; pass a scene file or a directory of them.`);
   return ok(scenes);
 }
 
 // packages/cli/src/disclosure.ts
 import { existsSync as existsSync8, statSync as statSync4 } from "node:fs";
-import { join as join11 } from "node:path";
+import { join as join12 } from "node:path";
 
 // packages/cli/src/tools.ts
-import { existsSync as existsSync7, readFileSync as readFileSync6 } from "node:fs";
-import { join as join10 } from "node:path";
+import { existsSync as existsSync7, readFileSync as readFileSync7 } from "node:fs";
+import { join as join11 } from "node:path";
 
 // packages/cli/src/evidence.ts
 import { existsSync as existsSync5 } from "node:fs";
 import { hostname as osHostname } from "node:os";
-import { join as join8 } from "node:path";
+import { join as join9 } from "node:path";
 function versionScope(version) {
   const text3 = (version ?? "").trim();
   if (!text3) return "unknown";
@@ -9375,7 +9414,7 @@ function versionScope(version) {
   return versionTokens(text3).length > 0 ? "exact" : "unknown";
 }
 function loadMachineRecord(machineRoot, hostname3 = osHostname()) {
-  const path = join8(machineRoot, "environment", `${hostname3}.json`);
+  const path = join9(machineRoot, "environment", `${hostname3}.json`);
   if (!existsSync5(path)) return void 0;
   const parsed2 = readJsonFile(path);
   if (!parsed2.ok) return void 0;
@@ -9434,7 +9473,7 @@ function isProbeResult(entry) {
 
 // packages/cli/src/project.ts
 import { existsSync as existsSync6 } from "node:fs";
-import { dirname as dirname5, join as join9, resolve as resolve5 } from "node:path";
+import { dirname as dirname6, join as join10, resolve as resolve5 } from "node:path";
 function npmPackagesFor(installCommand) {
   const first = (installCommand ?? "").split("&&")[0].trim();
   const match = /^(?:pnpm\s+add|npm\s+(?:i|install)|yarn\s+add)\s+(.+)$/.exec(first);
@@ -9447,7 +9486,7 @@ function projectPackageVersions(startDir, names, stopDir) {
   const directories = searchDirectories(resolve5(startDir), stopDir ? resolve5(stopDir) : void 0);
   return names.map((name) => {
     for (const directory of directories) {
-      const path = join9(directory, "node_modules", name, "package.json");
+      const path = join10(directory, "node_modules", name, "package.json");
       if (!existsSync6(path)) continue;
       const parsed2 = readJsonFile(path);
       if (parsed2.ok && typeof parsed2.value.version === "string") return { name, version: parsed2.value.version };
@@ -9478,8 +9517,8 @@ function searchDirectories(start, stop) {
   let directory = start;
   for (; ; ) {
     directories.push(directory);
-    if (insideStop ? directory === stop : existsSync6(join9(directory, "package.json"))) break;
-    const parent = dirname5(directory);
+    if (insideStop ? directory === stop : existsSync6(join10(directory, "package.json"))) break;
+    const parent = dirname6(directory);
     if (parent === directory) break;
     directory = parent;
   }
@@ -9493,7 +9532,7 @@ function stripVersionSpec(word) {
 // packages/cli/src/tools.ts
 function loadTools(repositoryRoot) {
   const tools = [];
-  for (const filePath of listJsonFiles(join10(repositoryRoot, "catalog/tools"))) {
+  for (const filePath of listJsonFiles(join11(repositoryRoot, "catalog/tools"))) {
     const parsed2 = readJsonFile(filePath);
     if (!parsed2.ok) return parsed2;
     tools.push(parsed2.value);
@@ -9502,7 +9541,7 @@ function loadTools(repositoryRoot) {
 }
 function loadExamples(repositoryRoot) {
   const examples = [];
-  for (const filePath of listFilesNamed(join10(repositoryRoot, "examples"), "example.json")) {
+  for (const filePath of listFilesNamed(join11(repositoryRoot, "examples"), "example.json")) {
     const parsed2 = readJsonFile(filePath);
     if (!parsed2.ok) return parsed2;
     const directory = filePath.slice(repositoryRoot.length + 1).replace(/\/example\.json$/, "");
@@ -9551,9 +9590,9 @@ function formatToolCard(tool, examples, repositoryRoot, machine, project) {
 }
 function readToolGuide(tool, repositoryRoot) {
   if (!tool.skill) return fail("NO_GUIDE", `${tool.id} has no skill yet. Its card is the deepest tier available.`);
-  const path = join10(repositoryRoot, tool.skill);
+  const path = join11(repositoryRoot, tool.skill);
   if (!existsSync7(path)) return fail("GUIDE_MISSING", `${tool.skill} is referenced by ${tool.id} but does not exist.`);
-  return ok(readFileSync6(path, "utf8"));
+  return ok(readFileSync7(path, "utf8"));
 }
 function formatExamplesForTool(tool, examples) {
   const own = examples.filter((example) => example.tools.includes(tool.id));
@@ -9602,7 +9641,7 @@ function formatDisclosureReport(report) {
   ].join("\n");
 }
 function fileBytes(repositoryRoot, relativePath) {
-  const path = join11(repositoryRoot, relativePath);
+  const path = join12(repositoryRoot, relativePath);
   return existsSync8(path) ? statSync4(path).size : 0;
 }
 function stats(entries) {
@@ -9673,27 +9712,27 @@ async function resolveExecutable(probe) {
 }
 
 // packages/cli/src/examples.ts
-import { cpSync, existsSync as existsSync10, readFileSync as readFileSync7, writeFileSync as writeFileSync6 } from "node:fs";
-import { basename, join as join12 } from "node:path";
+import { cpSync, existsSync as existsSync10, readFileSync as readFileSync8, writeFileSync as writeFileSync7 } from "node:fs";
+import { basename, join as join13 } from "node:path";
 var GENERATED_FILES = /* @__PURE__ */ new Set(["node_modules", "output", ".cache"]);
 var BROWSER_HARNESS_FILES = /* @__PURE__ */ new Set(["capture.ts", "run.sh", "expected"]);
 function createExample(harnessRoot, workspaceRoot, exampleId, cliInvocation2) {
-  const source = join12(harnessRoot, "examples", exampleId);
-  if (!existsSync10(join12(source, "example.json"))) return fail("EXAMPLE_NOT_FOUND", `No example "${exampleId}" in ${join12(harnessRoot, "examples")}. List them with \`vcr tools examples <tool-id>\`.`);
-  const directory = join12(workspaceRoot, "examples", exampleId);
-  const manifest = JSON.parse(readFileSync7(join12(source, "example.json"), "utf8"));
+  const source = join13(harnessRoot, "examples", exampleId);
+  if (!existsSync10(join13(source, "example.json"))) return fail("EXAMPLE_NOT_FOUND", `No example "${exampleId}" in ${join13(harnessRoot, "examples")}. List them with \`vcr tools examples <tool-id>\`.`);
+  const directory = join13(workspaceRoot, "examples", exampleId);
+  const manifest = JSON.parse(readFileSync8(join13(source, "example.json"), "utf8"));
   const relativeDirectory = `examples/${exampleId}`;
-  const nextSteps = buildNextSteps(relativeDirectory, existsSync10(join12(source, "package.json")), manifest, cliInvocation2);
+  const nextSteps = buildNextSteps(relativeDirectory, existsSync10(join13(source, "package.json")), manifest, cliInvocation2);
   if (existsSync10(directory)) return ok({ directory, isCreated: false, nextSteps });
   const isHarnessOnly = (name) => GENERATED_FILES.has(name) || name.endsWith(".test.ts") || manifest.capture !== void 0 && BROWSER_HARNESS_FILES.has(name);
   cpSync(source, directory, { recursive: true, filter: (path) => !isHarnessOnly(basename(path)) });
-  if (existsSync10(join12(source, "package.json"))) writeStandalonePackage(join12(source, "package.json"), join12(directory, "package.json"));
+  if (existsSync10(join13(source, "package.json"))) writeStandalonePackage(join13(source, "package.json"), join13(directory, "package.json"));
   return ok({ directory, isCreated: true, nextSteps });
 }
 function writeStandalonePackage(sourcePath, targetPath) {
-  const original = JSON.parse(readFileSync7(sourcePath, "utf8"));
+  const original = JSON.parse(readFileSync8(sourcePath, "utf8"));
   const standalone = { name: original.name.replace(/^@vcr\//, ""), private: true, type: "module", dependencies: original.dependencies ?? {} };
-  writeFileSync6(targetPath, `${JSON.stringify(standalone, null, 2)}
+  writeFileSync7(targetPath, `${JSON.stringify(standalone, null, 2)}
 `);
 }
 function buildNextSteps(relativeDirectory, hasPackage, manifest, cliInvocation2) {
@@ -9721,10 +9760,10 @@ function startTimer() {
 }
 
 // packages/cli/src/plugin.ts
-import { cpSync as cpSync2, existsSync as existsSync11, mkdirSync as mkdirSync4, mkdtempSync, readdirSync as readdirSync5, readFileSync as readFileSync8, rmSync, statSync as statSync5, writeFileSync as writeFileSync7 } from "node:fs";
+import { cpSync as cpSync2, existsSync as existsSync11, mkdirSync as mkdirSync5, mkdtempSync, readdirSync as readdirSync5, readFileSync as readFileSync9, rmSync, statSync as statSync5, writeFileSync as writeFileSync8 } from "node:fs";
 import { createRequire as createRequire3 } from "node:module";
 import { tmpdir } from "node:os";
-import { basename as basename2, extname as extname2, join as join13, relative as relative4 } from "node:path";
+import { basename as basename2, extname as extname2, join as join14, relative as relative4 } from "node:path";
 var PLUGIN_DIRECTORY = "plugin";
 var PLUGIN_MAX_BYTES = 5 * 1024 * 1024;
 var CLI_REFERENCE_PATH = "references/cli.md";
@@ -9748,45 +9787,45 @@ var LICENSE_FILES = ["LICENSE", "NOTICE", "THIRD_PARTY_NOTICES"];
 var CATALOG_ENTRIES = ["INDEX.md", "CANDIDATES.md", "tools.json", "tools", "schemas", "capabilities", "CANDIDATE-INGESTION.md", "ASSESSMENT-BRIEF.md", "FIXTURE-EVIDENCE-TEMPLATE.md"];
 var SKIPPED_DIRECTORIES = /* @__PURE__ */ new Set(["node_modules", "output", ".cache", "dist"]);
 var MEDIA_EXTENSIONS = /* @__PURE__ */ new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".mp4", ".mov", ".webm", ".wav", ".mp3", ".aac", ".glb", ".gltf", ".blend", ".exr", ".woff", ".woff2"]);
-function buildPlugin(harnessRoot, outputDirectory = join13(harnessRoot, PLUGIN_DIRECTORY)) {
+function buildPlugin(harnessRoot, outputDirectory = join14(harnessRoot, PLUGIN_DIRECTORY)) {
   const version = readHarnessVersion(harnessRoot);
   if (!version.ok) return version;
   for (const file of LICENSE_FILES) {
-    if (!existsSync11(join13(harnessRoot, file))) return fail("PLUGIN_LICENSE_MISSING", `Required distribution file ${file} is missing from ${harnessRoot}.`);
+    if (!existsSync11(join14(harnessRoot, file))) return fail("PLUGIN_LICENSE_MISSING", `Required distribution file ${file} is missing from ${harnessRoot}.`);
   }
   rmSync(outputDirectory, { recursive: true, force: true });
-  mkdirSync4(outputDirectory, { recursive: true });
-  const bundled = bundleCli(harnessRoot, join13(outputDirectory, "cli/vcr.mjs"));
+  mkdirSync5(outputDirectory, { recursive: true });
+  const bundled = bundleCli(harnessRoot, join14(outputDirectory, "cli/vcr.mjs"));
   if (!bundled.ok) return bundled;
-  for (const file of LICENSE_FILES) cpSync2(join13(harnessRoot, file), join13(outputDirectory, file));
-  for (const entry of CATALOG_ENTRIES) cpSync2(join13(harnessRoot, "catalog", entry), join13(outputDirectory, "catalog", entry), { recursive: true });
-  for (const skill of readdirSync5(join13(harnessRoot, "skills"))) {
-    if (existsSync11(join13(harnessRoot, "skills", skill, "SKILL.md"))) cpSync2(join13(harnessRoot, "skills", skill), join13(outputDirectory, "skills", skill), { recursive: true });
+  for (const file of LICENSE_FILES) cpSync2(join14(harnessRoot, file), join14(outputDirectory, file));
+  for (const entry of CATALOG_ENTRIES) cpSync2(join14(harnessRoot, "catalog", entry), join14(outputDirectory, "catalog", entry), { recursive: true });
+  for (const skill of readdirSync5(join14(harnessRoot, "skills"))) {
+    if (existsSync11(join14(harnessRoot, "skills", skill, "SKILL.md"))) cpSync2(join14(harnessRoot, "skills", skill), join14(outputDirectory, "skills", skill), { recursive: true });
   }
-  cpSync2(join13(harnessRoot, "agents"), join13(outputDirectory, "agents"), { recursive: true });
-  cpSync2(join13(harnessRoot, "examples"), join13(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename2(source)) });
+  cpSync2(join14(harnessRoot, "agents"), join14(outputDirectory, "agents"), { recursive: true });
+  cpSync2(join14(harnessRoot, "examples"), join14(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename2(source)) });
   writeManifests(outputDirectory, version.value);
-  writeFileSync7(join13(outputDirectory, "README.md"), PLUGIN_README);
+  writeFileSync8(join14(outputDirectory, "README.md"), PLUGIN_README);
   const cliReference = renderCliReference();
-  mkdirSync4(join13(outputDirectory, "references"), { recursive: true });
-  writeFileSync7(join13(outputDirectory, CLI_REFERENCE_PATH), cliReference);
-  for (const pillar of listPillarReferences(harnessRoot)) cpSync2(join13(harnessRoot, "references", pillar), join13(outputDirectory, "references", pillar), { recursive: true });
-  for (const file of ["README.md", "INDEX.md"]) if (existsSync11(join13(harnessRoot, "references", file))) cpSync2(join13(harnessRoot, "references", file), join13(outputDirectory, "references", file));
-  if (outputDirectory === join13(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync7(join13(harnessRoot, CLI_REFERENCE_PATH), cliReference);
+  mkdirSync5(join14(outputDirectory, "references"), { recursive: true });
+  writeFileSync8(join14(outputDirectory, CLI_REFERENCE_PATH), cliReference);
+  for (const pillar of listPillarReferences(harnessRoot)) cpSync2(join14(harnessRoot, "references", pillar), join14(outputDirectory, "references", pillar), { recursive: true });
+  for (const file of ["README.md", "INDEX.md"]) if (existsSync11(join14(harnessRoot, "references", file))) cpSync2(join14(harnessRoot, "references", file), join14(outputDirectory, "references", file));
+  if (outputDirectory === join14(harnessRoot, PLUGIN_DIRECTORY)) writeFileSync8(join14(harnessRoot, CLI_REFERENCE_PATH), cliReference);
   const files = listFiles(outputDirectory);
-  const totalBytes = files.reduce((sum, file) => sum + statSync5(join13(outputDirectory, file)).size, 0);
-  const pillarBytes = Object.fromEntries(listPillarReferences(harnessRoot).map((pillar) => [pillar, files.filter((file) => file.startsWith(`references/${pillar}/`)).reduce((sum, file) => sum + statSync5(join13(outputDirectory, file)).size, 0)]));
+  const totalBytes = files.reduce((sum, file) => sum + statSync5(join14(outputDirectory, file)).size, 0);
+  const pillarBytes = Object.fromEntries(listPillarReferences(harnessRoot).map((pillar) => [pillar, files.filter((file) => file.startsWith(`references/${pillar}/`)).reduce((sum, file) => sum + statSync5(join14(outputDirectory, file)).size, 0)]));
   return ok({ directory: outputDirectory, version: version.value, fileCount: files.length, totalBytes, pillarBytes });
 }
 function pluginDiagnostics(harnessRoot) {
-  const committed = join13(harnessRoot, PLUGIN_DIRECTORY);
+  const committed = join14(harnessRoot, PLUGIN_DIRECTORY);
   const file = PLUGIN_DIRECTORY;
   if (!existsSync11(committed)) return [{ severity: "error", file, path: "", message: "plugin/ is missing", suggestion: "Run `pnpm vcr plugin build` and commit the result." }];
-  const fresh = buildPlugin(harnessRoot, mkdtempSync(join13(tmpdir(), "vcr-plugin-")));
+  const fresh = buildPlugin(harnessRoot, mkdtempSync(join14(tmpdir(), "vcr-plugin-")));
   if (!fresh.ok) return [{ severity: "error", file, path: "", message: fresh.error.message }];
   const diagnostics = [];
-  const harnessReference = join13(harnessRoot, CLI_REFERENCE_PATH);
-  if (!existsSync11(harnessReference) || readFileSync8(harnessReference, "utf8") !== renderCliReference()) {
+  const harnessReference = join14(harnessRoot, CLI_REFERENCE_PATH);
+  if (!existsSync11(harnessReference) || readFileSync9(harnessReference, "utf8") !== renderCliReference()) {
     diagnostics.push({ severity: "error", file: CLI_REFERENCE_PATH, path: "", message: `${CLI_REFERENCE_PATH} is missing or stale against packages/cli/src/commands.ts`, suggestion: "Run `pnpm vcr plugin build` and commit the result." });
   }
   const staleFiles = differingFiles(committed, fresh.value.directory);
@@ -9799,20 +9838,20 @@ function pluginDiagnostics(harnessRoot) {
 }
 function readHarnessVersion(harnessRoot) {
   for (const candidate of [".claude-plugin/plugin.json", "packages/cli/package.json"]) {
-    const path = join13(harnessRoot, candidate);
-    if (existsSync11(path)) return ok(JSON.parse(readFileSync8(path, "utf8")).version);
+    const path = join14(harnessRoot, candidate);
+    if (existsSync11(path)) return ok(JSON.parse(readFileSync9(path, "utf8")).version);
   }
   return fail("HARNESS_VERSION_UNKNOWN", `Neither .claude-plugin/plugin.json nor packages/cli/package.json exists under ${harnessRoot}.`);
 }
 function listPillarReferences(harnessRoot) {
-  const referencesDirectory = join13(harnessRoot, "references");
+  const referencesDirectory = join14(harnessRoot, "references");
   if (!existsSync11(referencesDirectory)) return [];
-  return readdirSync5(referencesDirectory, { withFileTypes: true }).filter((entry) => entry.isDirectory() && !NON_PILLAR_REFERENCES.has(entry.name) && existsSync11(join13(referencesDirectory, entry.name, "README.md"))).map((entry) => entry.name).sort();
+  return readdirSync5(referencesDirectory, { withFileTypes: true }).filter((entry) => entry.isDirectory() && !NON_PILLAR_REFERENCES.has(entry.name) && existsSync11(join14(referencesDirectory, entry.name, "README.md"))).map((entry) => entry.name).sort();
 }
 function bundleCli(harnessRoot, outfile) {
   const esbuild = createRequire3(import.meta.url)("esbuild");
   const result = esbuild.buildSync({
-    entryPoints: [join13(harnessRoot, "packages/cli/src/index.ts")],
+    entryPoints: [join14(harnessRoot, "packages/cli/src/index.ts")],
     bundle: true,
     platform: "node",
     format: "esm",
@@ -9826,8 +9865,8 @@ function bundleCli(harnessRoot, outfile) {
   });
   const output = result.outputFiles[0];
   if (!output) return fail("PLUGIN_BUNDLE_FAILED", "esbuild produced no output for packages/cli/src/index.ts");
-  mkdirSync4(join13(outfile, ".."), { recursive: true });
-  writeFileSync7(outfile, output.text);
+  mkdirSync5(join14(outfile, ".."), { recursive: true });
+  writeFileSync8(outfile, output.text);
   return ok(outfile);
 }
 function writeManifests(outputDirectory, version) {
@@ -9839,8 +9878,8 @@ function writeManifests(outputDirectory, version) {
     interface: { displayName: "VCR", shortDescription: "Code-first motion graphics and video", developerName: PLUGIN_IDENTITY.author.name, category: "Developer Tools" }
   };
   for (const [directory, manifest] of [[".claude-plugin", claudeManifest], [".codex-plugin", codexManifest]]) {
-    mkdirSync4(join13(outputDirectory, directory), { recursive: true });
-    writeFileSync7(join13(outputDirectory, directory, "plugin.json"), `${JSON.stringify(manifest, null, 2)}
+    mkdirSync5(join14(outputDirectory, directory), { recursive: true });
+    writeFileSync8(join14(outputDirectory, directory, "plugin.json"), `${JSON.stringify(manifest, null, 2)}
 `);
   }
 }
@@ -9848,7 +9887,7 @@ function listFiles(root) {
   const found = [];
   const walk = (directory) => {
     for (const entry of readdirSync5(directory)) {
-      const path = join13(directory, entry);
+      const path = join14(directory, entry);
       if (statSync5(path).isDirectory()) walk(path);
       else found.push(relative4(root, path));
     }
@@ -9861,20 +9900,20 @@ function differingFiles(committedRoot, freshRoot) {
   const fresh = listFiles(freshRoot);
   const all = [.../* @__PURE__ */ new Set([...committed, ...fresh])].sort();
   return all.filter((path) => {
-    const committedPath = join13(committedRoot, path);
-    const freshPath = join13(freshRoot, path);
+    const committedPath = join14(committedRoot, path);
+    const freshPath = join14(freshRoot, path);
     if (!existsSync11(committedPath) || !existsSync11(freshPath)) return true;
-    return !readFileSync8(committedPath).equals(readFileSync8(freshPath));
+    return !readFileSync9(committedPath).equals(readFileSync9(freshPath));
   });
 }
 
 // packages/cli/src/roots.ts
-import { existsSync as existsSync12, mkdirSync as mkdirSync5, unlinkSync as unlinkSync2, writeFileSync as writeFileSync8 } from "node:fs";
+import { existsSync as existsSync12, mkdirSync as mkdirSync6, unlinkSync as unlinkSync2, writeFileSync as writeFileSync9 } from "node:fs";
 import { homedir } from "node:os";
-import { dirname as dirname6, join as join14, resolve as resolve6 } from "node:path";
+import { dirname as dirname7, join as join15, resolve as resolve6 } from "node:path";
 import { fileURLToPath } from "node:url";
 var WORKSPACE_MARKER = "vcr.json";
-function resolveRoots({ cwd, env, workspaceFlag, cliDirectory = dirname6(fileURLToPath(import.meta.url)), canWrite = isWritableDirectory }) {
+function resolveRoots({ cwd, env, workspaceFlag, cliDirectory = dirname7(fileURLToPath(import.meta.url)), canWrite = isWritableDirectory }) {
   const harness = resolveHarness(env["VCR_HARNESS"], cliDirectory);
   if (!harness.ok) return harness;
   const explicitWorkspace = workspaceFlag ?? env["VCR_WORKSPACE"];
@@ -9884,7 +9923,7 @@ function resolveRoots({ cwd, env, workspaceFlag, cliDirectory = dirname6(fileURL
   return ok({ harness: harness.value, workspace, ...machine, isCodexSandbox, isDevMode: workspace === harness.value });
 }
 function requireWorkspace(roots) {
-  if (roots.workspace && existsSync12(join14(roots.workspace, WORKSPACE_MARKER))) return ok(roots.workspace);
+  if (roots.workspace && existsSync12(join15(roots.workspace, WORKSPACE_MARKER))) return ok(roots.workspace);
   const where = roots.workspace ?? "this directory or any ancestor";
   return fail("WORKSPACE_NOT_FOUND", `No ${WORKSPACE_MARKER} in ${where}. Run \`vcr workspace init\` in the directory that should hold your projects, or pass --workspace <dir>.`);
 }
@@ -9895,12 +9934,12 @@ function requireDevMode(roots, command) {
 function resolveHarness(explicitHarness, cliDirectory) {
   if (explicitHarness) {
     const harness = resolve6(explicitHarness);
-    if (existsSync12(join14(harness, "catalog"))) return ok(harness);
+    if (existsSync12(join15(harness, "catalog"))) return ok(harness);
     return fail("HARNESS_NOT_FOUND", `VCR_HARNESS=${explicitHarness} has no catalog/ directory. Point it at a VCR checkout or plugin directory, or unset it.`);
   }
   let current = resolve6(cliDirectory);
-  while (!existsSync12(join14(current, "catalog"))) {
-    const parent = dirname6(current);
+  while (!existsSync12(join15(current, "catalog"))) {
+    const parent = dirname7(current);
     if (parent === current) return fail("HARNESS_NOT_FOUND", `No ancestor of ${cliDirectory} contains catalog/. Set VCR_HARNESS to a VCR checkout or plugin directory.`);
     current = parent;
   }
@@ -9908,15 +9947,15 @@ function resolveHarness(explicitHarness, cliDirectory) {
 }
 function resolveMachine(explicitHome, workspace, isCodexSandbox, canWrite) {
   if (explicitHome) return { machine: resolve6(explicitHome), machineSource: "VCR_HOME" };
-  const defaultHome = join14(homedir(), ".vcr");
-  if (isCodexSandbox && workspace && !canWrite(defaultHome)) return { machine: join14(workspace, ".vcr"), machineSource: "workspace-codex-fallback" };
+  const defaultHome = join15(homedir(), ".vcr");
+  if (isCodexSandbox && workspace && !canWrite(defaultHome)) return { machine: join15(workspace, ".vcr"), machineSource: "workspace-codex-fallback" };
   return { machine: defaultHome, machineSource: "default" };
 }
 function isWritableDirectory(directory) {
   try {
-    mkdirSync5(directory, { recursive: true });
-    const probe = join14(directory, `.write-probe-${process.pid}`);
-    writeFileSync8(probe, "");
+    mkdirSync6(directory, { recursive: true });
+    const probe = join15(directory, `.write-probe-${process.pid}`);
+    writeFileSync9(probe, "");
     unlinkSync2(probe);
     return true;
   } catch {
@@ -9925,8 +9964,8 @@ function isWritableDirectory(directory) {
 }
 function findAncestorWithMarker(startDirectory) {
   let current = resolve6(startDirectory);
-  while (!existsSync12(join14(current, WORKSPACE_MARKER))) {
-    const parent = dirname6(current);
+  while (!existsSync12(join15(current, WORKSPACE_MARKER))) {
+    const parent = dirname7(current);
     if (parent === current) return null;
     current = parent;
   }
@@ -9936,12 +9975,12 @@ function findAncestorWithMarker(startDirectory) {
 // packages/cli/src/validate.ts
 var import__ = __toESM(require__(), 1);
 var import_ajv_formats = __toESM(require_dist(), 1);
-import { existsSync as existsSync20, readFileSync as readFileSync12, statSync as statSync7 } from "node:fs";
-import { basename as basename3, dirname as dirname7, join as join22, relative as relative7 } from "node:path";
+import { existsSync as existsSync20, readFileSync as readFileSync13, statSync as statSync7 } from "node:fs";
+import { basename as basename3, dirname as dirname8, join as join23, relative as relative7 } from "node:path";
 
 // packages/cli/src/typography-rules.ts
-import { existsSync as existsSync13, readFileSync as readFileSync9, writeFileSync as writeFileSync9 } from "node:fs";
-import { join as join15 } from "node:path";
+import { existsSync as existsSync13, readFileSync as readFileSync10, writeFileSync as writeFileSync10 } from "node:fs";
+import { join as join16 } from "node:path";
 var TYPOGRAPHY_RULES_PATH2 = "references/typography/rules.json";
 var TYPOGRAPHY_KB_PATH = "references/typography/typography-knowledge-base.md";
 var TABLE_MARKERS = { start: "<!-- typography-rules:start -->", end: "<!-- typography-rules:end -->" };
@@ -9950,26 +9989,26 @@ function renderRulesTable(rules) {
   return ["| ID | Check | Threshold | Tier | Applies to |", "|---|---|---|---|---|", ...rows].join("\n");
 }
 function writeTypographyTable(repositoryRoot, checkOnly) {
-  const kbPath = join15(repositoryRoot, TYPOGRAPHY_KB_PATH);
-  const rulesPath = join15(repositoryRoot, TYPOGRAPHY_RULES_PATH2);
+  const kbPath = join16(repositoryRoot, TYPOGRAPHY_KB_PATH);
+  const rulesPath = join16(repositoryRoot, TYPOGRAPHY_RULES_PATH2);
   if (!existsSync13(kbPath) && !existsSync13(rulesPath)) return ok({ wasStale: false, staleFiles: [] });
   const rules = readJsonFile(rulesPath);
   if (!rules.ok) return rules;
-  const kb = readFileSync9(kbPath, "utf8");
+  const kb = readFileSync10(kbPath, "utf8");
   const spliced = spliceTable(kb, renderRulesTable(rules.value.rules));
   if (!spliced.ok) return spliced;
   if (spliced.value === kb) return ok({ wasStale: false, staleFiles: [] });
-  if (!checkOnly) writeFileSync9(kbPath, spliced.value);
+  if (!checkOnly) writeFileSync10(kbPath, spliced.value);
   return ok({ wasStale: true, staleFiles: [TYPOGRAPHY_KB_PATH] });
 }
 function typographyRuleDiagnostics(repositoryRoot) {
   const outcome = writeTypographyTable(repositoryRoot, true);
   if (!outcome.ok) return [{ severity: "error", file: TYPOGRAPHY_KB_PATH, path: "", message: outcome.error.message }];
   const diagnostics = outcome.value.staleFiles.map((file) => ({ severity: "error", file, path: "", message: "typography rules table is stale", suggestion: "Run `pnpm vcr catalog build` and commit the result." }));
-  const rules = readJsonFile(join15(repositoryRoot, TYPOGRAPHY_RULES_PATH2));
+  const rules = readJsonFile(join16(repositoryRoot, TYPOGRAPHY_RULES_PATH2));
   if (!rules.ok) return diagnostics;
   const dataIds = new Set(rules.value.rules.map((rule) => rule.id));
-  const kbIds = new Set(extractRuleIds(readFileSync9(join15(repositoryRoot, TYPOGRAPHY_KB_PATH), "utf8")));
+  const kbIds = new Set(extractRuleIds(readFileSync10(join16(repositoryRoot, TYPOGRAPHY_KB_PATH), "utf8")));
   for (const id of kbIds) {
     if (!dataIds.has(id)) diagnostics.push({ severity: "error", file: TYPOGRAPHY_KB_PATH, path: "", message: `${id} is cited in the KB but missing from ${TYPOGRAPHY_RULES_PATH2}`, suggestion: `Add ${id} to ${TYPOGRAPHY_RULES_PATH2}, or fix the ID in the KB.` });
   }
@@ -9991,9 +10030,9 @@ ${kb.slice(end)}`);
 }
 
 // packages/cli/src/review.ts
-import { createHash as createHash2 } from "node:crypto";
-import { existsSync as existsSync14, readdirSync as readdirSync6, readFileSync as readFileSync10 } from "node:fs";
-import { join as join16, relative as relative5 } from "node:path";
+import { createHash as createHash3 } from "node:crypto";
+import { existsSync as existsSync14, readdirSync as readdirSync6, readFileSync as readFileSync11 } from "node:fs";
+import { join as join17, relative as relative5 } from "node:path";
 var REVIEW_PATHS = {
   directory: "review",
   renders: "review/renders",
@@ -10002,12 +10041,12 @@ var REVIEW_PATHS = {
   manifestFile: "manifest.json"
 };
 function sha256Hex(content) {
-  return createHash2("sha256").update(content).digest("hex");
+  return createHash3("sha256").update(content).digest("hex");
 }
 function listRetainedRenderIds(videoDirectory2) {
-  const rendersDirectory = join16(videoDirectory2, REVIEW_PATHS.renders);
+  const rendersDirectory = join17(videoDirectory2, REVIEW_PATHS.renders);
   if (!existsSync14(rendersDirectory)) return [];
-  return readdirSync6(rendersDirectory).filter((entry) => existsSync14(join16(rendersDirectory, entry, REVIEW_PATHS.manifestFile))).sort();
+  return readdirSync6(rendersDirectory).filter((entry) => existsSync14(join17(rendersDirectory, entry, REVIEW_PATHS.manifestFile))).sort();
 }
 function reviewDiagnostics(review) {
   const diagnostics = [];
@@ -10027,16 +10066,16 @@ function reviewDiagnostics(review) {
 function readVideoReview(videoDirectory2, workspaceRoot) {
   const review = { manifests: [], findings: [], approvals: [] };
   for (const renderId of listRetainedRenderIds(videoDirectory2)) {
-    const path = join16(videoDirectory2, REVIEW_PATHS.renders, renderId, REVIEW_PATHS.manifestFile);
-    const content = readFileSync10(path);
+    const path = join17(videoDirectory2, REVIEW_PATHS.renders, renderId, REVIEW_PATHS.manifestFile);
+    const content = readFileSync11(path);
     const parsed2 = readJsonFile(path);
     if (parsed2.ok) review.manifests.push({ manifest: parsed2.value, sha256: sha256Hex(content), file: relative5(workspaceRoot, path) });
   }
-  for (const path of listJsonFiles(join16(videoDirectory2, REVIEW_PATHS.findings))) {
+  for (const path of listJsonFiles(join17(videoDirectory2, REVIEW_PATHS.findings))) {
     const parsed2 = readJsonFile(path);
     if (parsed2.ok) review.findings.push({ finding: parsed2.value, file: relative5(workspaceRoot, path) });
   }
-  for (const path of listJsonFiles(join16(videoDirectory2, REVIEW_PATHS.approvals))) {
+  for (const path of listJsonFiles(join17(videoDirectory2, REVIEW_PATHS.approvals))) {
     const parsed2 = readJsonFile(path);
     if (parsed2.ok) review.approvals.push({ approval: parsed2.value, file: relative5(workspaceRoot, path) });
   }
@@ -10076,13 +10115,13 @@ function error(file, path, message, suggestion) {
 }
 
 // packages/cli/src/video.ts
-import { existsSync as existsSync15, mkdirSync as mkdirSync6, readdirSync as readdirSync7, statSync as statSync6 } from "node:fs";
-import { join as join17 } from "node:path";
+import { existsSync as existsSync15, mkdirSync as mkdirSync7, readdirSync as readdirSync7, statSync as statSync6 } from "node:fs";
+import { join as join18 } from "node:path";
 var SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 function listVideoDirectories(workspaceRoot) {
-  const projectsRoot = join17(workspaceRoot, "projects");
+  const projectsRoot = join18(workspaceRoot, "projects");
   return subdirectories(projectsRoot).flatMap(
-    (project) => subdirectories(join17(projectsRoot, project, "videos")).map((video) => ({ videoId: `${project}/${video}`, directory: join17(projectsRoot, project, "videos", video) }))
+    (project) => subdirectories(join18(projectsRoot, project, "videos")).map((video) => ({ videoId: `${project}/${video}`, directory: join18(projectsRoot, project, "videos", video) }))
   );
 }
 function ensureVideo(workspaceRoot, videoId) {
@@ -10090,14 +10129,14 @@ function ensureVideo(workspaceRoot, videoId) {
   if (!parts.ok) return parts;
   const { project, video } = parts.value;
   const changes = [];
-  const markerPath = join17(workspaceRoot, WORKSPACE_MARKER);
+  const markerPath = join18(workspaceRoot, WORKSPACE_MARKER);
   const marker = readJsonFile(markerPath);
   if (!marker.ok) return marker;
   if (!marker.value.projects.includes(project)) {
     writeJsonAtomic(markerPath, { ...marker.value, projects: [...marker.value.projects, project].sort() });
     changes.push(WORKSPACE_MARKER);
   }
-  const projectPath = join17(workspaceRoot, "projects", project, "project.json");
+  const projectPath = join18(workspaceRoot, "projects", project, "project.json");
   const existing = existsSync15(projectPath) ? readJsonFile(projectPath) : ok(newProject(project));
   if (!existing.ok) return existing;
   if (!existsSync15(projectPath) || !existing.value.videos.includes(video)) {
@@ -10106,9 +10145,9 @@ function ensureVideo(workspaceRoot, videoId) {
   }
   const directory = videoDirectory(workspaceRoot, videoId);
   for (const relativePath of [REVIEW_PATHS.renders, REVIEW_PATHS.findings, REVIEW_PATHS.approvals]) {
-    const path = join17(directory, relativePath);
+    const path = join18(directory, relativePath);
     if (existsSync15(path)) continue;
-    mkdirSync6(path, { recursive: true });
+    mkdirSync7(path, { recursive: true });
     changes.push(`projects/${project}/videos/${video}/${relativePath}/`);
   }
   return ok({ videoId, directory, changes });
@@ -10123,7 +10162,7 @@ function resolveVideo(workspaceRoot, videoId) {
 }
 function videoDirectory(workspaceRoot, videoId) {
   const [project, video] = videoId.split("/");
-  return join17(workspaceRoot, "projects", project, "videos", video);
+  return join18(workspaceRoot, "projects", project, "videos", video);
 }
 function parseVideoId(videoId) {
   const [project, video, ...rest] = videoId.split("/");
@@ -10137,12 +10176,12 @@ function newProject(project) {
 }
 function subdirectories(directory) {
   if (!existsSync15(directory)) return [];
-  return readdirSync7(directory).filter((entry) => !entry.startsWith(".") && statSync6(join17(directory, entry)).isDirectory()).sort();
+  return readdirSync7(directory).filter((entry) => !entry.startsWith(".") && statSync6(join18(directory, entry)).isDirectory()).sort();
 }
 
 // packages/cli/src/storage.ts
 import { existsSync as existsSync16, lstatSync, readdirSync as readdirSync8, rmSync as rmSync2 } from "node:fs";
-import { join as join18, relative as relative6, resolve as resolve7, sep } from "node:path";
+import { join as join19, relative as relative6, resolve as resolve7, sep } from "node:path";
 var CLEARABLE_CLASSES = ["output", "cache", "proxies", "runtime"];
 var DEFAULT_BUDGETS = { outputWarnBytes: 5 * 1024 ** 3, evidenceWarnBytes: 2 * 1024 ** 2 };
 var KEPT_WHEN_PRUNED = /* @__PURE__ */ new Set([REVIEW_PATHS.manifestFile, "contact-sheet.png", "contact-sheet.jpg", "contact-sheet.webp"]);
@@ -10150,11 +10189,11 @@ function storageReport(roots, budgets, videoId) {
   const entries = [];
   const videos = listVideoDirectories(roots.workspace).filter((video) => !videoId || video.videoId === videoId);
   for (const { videoId: id, directory } of videos) {
-    for (const render of renderDirectories(join18(roots.workspace, "output", ...id.split("/")))) entries.push({ storageClass: "output", path: render.path, bytes: directoryBytes(render.path), videoId: id, renderId: render.renderId });
-    for (const render of renderDirectories(join18(directory, REVIEW_PATHS.renders))) entries.push({ storageClass: "evidence", path: render.path, bytes: directoryBytes(render.path), videoId: id, renderId: render.renderId });
+    for (const render of renderDirectories(join19(roots.workspace, "output", ...id.split("/")))) entries.push({ storageClass: "output", path: render.path, bytes: directoryBytes(render.path), videoId: id, renderId: render.renderId });
+    for (const render of renderDirectories(join19(directory, REVIEW_PATHS.renders))) entries.push({ storageClass: "evidence", path: render.path, bytes: directoryBytes(render.path), videoId: id, renderId: render.renderId });
   }
   if (!videoId) {
-    const outputRoot = join18(roots.workspace, "output");
+    const outputRoot = join19(roots.workspace, "output");
     const attributed = entries.filter((entry) => entry.storageClass === "output").reduce((sum, entry) => sum + entry.bytes, 0);
     const unattributed = directoryBytes(outputRoot) - attributed;
     if (unattributed > 0) entries.push({ storageClass: "output", path: outputRoot, bytes: unattributed });
@@ -10166,7 +10205,7 @@ function storageReport(roots, budgets, videoId) {
   return { totals, entries: entries.filter((entry) => entry.bytes > 0), warnings: budgetWarnings(entries, totals, budgets, videoId !== void 0) };
 }
 function loadBudgets(workspaceRoot) {
-  const marker = readJsonFile(join18(workspaceRoot, WORKSPACE_MARKER));
+  const marker = readJsonFile(join19(workspaceRoot, WORKSPACE_MARKER));
   const storage = marker.ok ? marker.value.storage : void 0;
   return { outputWarnBytes: storage?.output_warn_bytes ?? DEFAULT_BUDGETS.outputWarnBytes, evidenceWarnBytes: storage?.evidence_warn_bytes ?? DEFAULT_BUDGETS.evidenceWarnBytes };
 }
@@ -10184,7 +10223,7 @@ function planClear(roots, storageClass, options) {
     paths = [];
     for (const video of videos) {
       if (!video.ok) return video;
-      const renders = renderDirectories(join18(root, ...video.value.videoId.split("/"))).sort((left, right) => left.renderId.localeCompare(right.renderId));
+      const renders = renderDirectories(join19(root, ...video.value.videoId.split("/"))).sort((left, right) => left.renderId.localeCompare(right.renderId));
       const kept = new Set(options.keepLatest !== void 0 ? renders.slice(-options.keepLatest).map((render) => render.renderId) : []);
       const cutoffMs = options.olderThanDays !== void 0 ? options.now.getTime() - options.olderThanDays * 864e5 : void 0;
       for (const render of renders) {
@@ -10202,7 +10241,7 @@ function planPruneEvidence(roots, videoId, keep) {
   if (!video.ok) return video;
   const review = readVideoReview(video.value.directory, roots.workspace);
   const protectedIds = protectedRenderIds(review);
-  const renders = renderDirectories(join18(video.value.directory, REVIEW_PATHS.renders)).sort((left, right) => left.renderId.localeCompare(right.renderId));
+  const renders = renderDirectories(join19(video.value.directory, REVIEW_PATHS.renders)).sort((left, right) => left.renderId.localeCompare(right.renderId));
   const prunable = renders.slice(0, Math.max(0, renders.length - keep)).filter((render) => !protectedIds.has(render.renderId));
   const paths = prunable.flatMap((render) => childPaths(render.path).filter((path) => !KEPT_WHEN_PRUNED.has(relative6(render.path, path))));
   return ok(toPlan("evidence", paths));
@@ -10238,16 +10277,16 @@ function formatBytes(bytes) {
 }
 function classRoots(roots) {
   return /* @__PURE__ */ new Map([
-    ["output", join18(roots.workspace, "output")],
-    ["cache", join18(roots.workspace, ".cache")],
-    ["proxies", join18(roots.machine, "proxies")],
-    ["runtime", join18(roots.machine, "runtime")]
+    ["output", join19(roots.workspace, "output")],
+    ["cache", join19(roots.workspace, ".cache")],
+    ["proxies", join19(roots.machine, "proxies")],
+    ["runtime", join19(roots.machine, "runtime")]
   ]);
 }
 function isSafeToClear(path, classRoot, workspaceRoot) {
   const absolute = resolve7(path);
   if (!isInside(absolute, resolve7(classRoot)) || absolute === resolve7(classRoot)) return false;
-  const protectedRoots = [join18(workspaceRoot, "projects"), join18(workspaceRoot, WORKSPACE_MARKER)].map((entry) => resolve7(entry));
+  const protectedRoots = [join19(workspaceRoot, "projects"), join19(workspaceRoot, WORKSPACE_MARKER)].map((entry) => resolve7(entry));
   return !protectedRoots.some((protectedRoot) => isInside(absolute, protectedRoot) || isInside(protectedRoot, absolute)) && !absolute.split(sep).includes(REVIEW_PATHS.directory);
 }
 function protectedRenderIds(review) {
@@ -10272,10 +10311,10 @@ function budgetWarnings(entries, totals, budgets, isFiltered) {
 }
 function renderDirectories(directory) {
   if (!existsSync16(directory)) return [];
-  return readdirSync8(directory).filter((entry) => /^r-\d{8}T\d{6}-[0-9a-f]{7}$/.test(entry)).map((renderId) => ({ renderId, path: join18(directory, renderId) }));
+  return readdirSync8(directory).filter((entry) => /^r-\d{8}T\d{6}-[0-9a-f]{7}$/.test(entry)).map((renderId) => ({ renderId, path: join19(directory, renderId) }));
 }
 function childPaths(directory) {
-  return existsSync16(directory) ? readdirSync8(directory).map((entry) => join18(directory, entry)) : [];
+  return existsSync16(directory) ? readdirSync8(directory).map((entry) => join19(directory, entry)) : [];
 }
 function toPlan(storageClass, paths) {
   const deletions = paths.map((path) => ({ path, bytes: directoryBytes(path) })).sort((left, right) => right.bytes - left.bytes);
@@ -10285,7 +10324,7 @@ function directoryBytes(path) {
   if (!existsSync16(path) && !isSymbolicLink(path)) return 0;
   const stats2 = lstatSync(path);
   if (!stats2.isDirectory()) return stats2.isFile() ? stats2.size : 0;
-  return readdirSync8(path).reduce((sum, entry) => sum + directoryBytes(join18(path, entry)), 0);
+  return readdirSync8(path).reduce((sum, entry) => sum + directoryBytes(join19(path, entry)), 0);
 }
 function isSymbolicLink(path) {
   try {
@@ -10303,12 +10342,12 @@ function displayPath(path, workspaceRoot) {
 }
 
 // packages/cli/src/review-summary.ts
-import { existsSync as existsSync18, readFileSync as readFileSync11 } from "node:fs";
-import { join as join20 } from "node:path";
+import { existsSync as existsSync18, readFileSync as readFileSync12 } from "node:fs";
+import { join as join21 } from "node:path";
 
 // packages/cli/src/findings.ts
-import { existsSync as existsSync17, linkSync, mkdirSync as mkdirSync7, unlinkSync as unlinkSync3, writeFileSync as writeFileSync10 } from "node:fs";
-import { join as join19 } from "node:path";
+import { existsSync as existsSync17, linkSync, mkdirSync as mkdirSync8, unlinkSync as unlinkSync3, writeFileSync as writeFileSync11 } from "node:fs";
+import { join as join20 } from "node:path";
 function listFindings(review, filter = {}) {
   return review.findings.map((entry) => entry.finding).filter((finding) => (!filter.status || finding.status === filter.status) && (!filter.renderId || finding.render_id === filter.renderId)).sort((left, right) => left.id.localeCompare(right.id));
 }
@@ -10323,11 +10362,11 @@ function addFinding(videoDirectory2, workspaceRoot, draft, now) {
   const candidate = { ...fields, render_id: manifest.render_id, scene_id: scene.id, scene_frame: draft.frame - scene.start_frame };
   const duplicate = listFindings(review).find((existing) => contentKey(existing) === contentKey(candidate));
   if (duplicate) return ok({ finding: duplicate, isCreated: false });
-  const findingsDirectory = join19(videoDirectory2, REVIEW_PATHS.findings);
-  mkdirSync7(findingsDirectory, { recursive: true });
+  const findingsDirectory = join20(videoDirectory2, REVIEW_PATHS.findings);
+  mkdirSync8(findingsDirectory, { recursive: true });
   for (let number = nextFindingNumber(review); ; number += 1) {
     const finding = { schema_version: "1.0.0", id: formatFindingId(number), ...candidate, status: "open", created_at: now.toISOString() };
-    if (claimFile(join19(findingsDirectory, `${finding.id}.json`), `${JSON.stringify(finding, null, 2)}
+    if (claimFile(join20(findingsDirectory, `${finding.id}.json`), `${JSON.stringify(finding, null, 2)}
 `)) return ok({ finding, isCreated: true });
   }
 }
@@ -10341,7 +10380,7 @@ function addressFinding(videoDirectory2, workspaceRoot, id, resolution, now) {
   const previous = finding.resolution;
   if (finding.status === "addressed" && previous && previous.render_id === resolution.render_id && previous.note === resolution.note && previous.evidence.join("\n") === resolution.evidence.join("\n")) return ok({ finding, isCreated: false });
   const updated = { ...finding, status: "addressed", resolution: { ...resolution, at: now.toISOString() } };
-  writeJsonAtomic(join19(videoDirectory2, REVIEW_PATHS.findings, `${id}.json`), updated);
+  writeJsonAtomic(join20(videoDirectory2, REVIEW_PATHS.findings, `${id}.json`), updated);
   return ok({ finding: updated, isCreated: true });
 }
 function closeFinding(videoDirectory2, workspaceRoot, id, status, channel, note, now) {
@@ -10349,7 +10388,7 @@ function closeFinding(videoDirectory2, workspaceRoot, id, status, channel, note,
   if (!found.ok) return found;
   if (found.value.status === status) return ok({ finding: found.value, isCreated: false });
   const updated = { ...found.value, status, closure: { channel, at: now.toISOString(), ...note ? { note } : {} } };
-  writeJsonAtomic(join19(videoDirectory2, REVIEW_PATHS.findings, `${id}.json`), updated);
+  writeJsonAtomic(join20(videoDirectory2, REVIEW_PATHS.findings, `${id}.json`), updated);
   return ok({ finding: updated, isCreated: true });
 }
 function findFinding(videoDirectory2, workspaceRoot, id) {
@@ -10372,7 +10411,7 @@ function contentKey(finding) {
 }
 function claimFile(path, content) {
   const temporaryPath = `${path}.${process.pid}.${Date.now()}.tmp`;
-  writeFileSync10(temporaryPath, content);
+  writeFileSync11(temporaryPath, content);
   try {
     linkSync(temporaryPath, path);
     return true;
@@ -10421,15 +10460,15 @@ function renderReviewSummary(videoId, review) {
 `;
 }
 function writeReviewSummary(videoDirectory2, videoId, review) {
-  const path = join20(videoDirectory2, REVIEW_PATHS.directory, REVIEW_SUMMARY_FILE);
+  const path = join21(videoDirectory2, REVIEW_PATHS.directory, REVIEW_SUMMARY_FILE);
   const rendered = renderReviewSummary(videoId, review);
-  if (existsSync18(path) && readFileSync11(path, "utf8") === rendered) return false;
+  if (existsSync18(path) && readFileSync12(path, "utf8") === rendered) return false;
   writeFileAtomic(path, rendered);
   return true;
 }
 function reviewSummaryDiagnostics(videoDirectory2, videoId, review, file) {
-  const path = join20(videoDirectory2, REVIEW_PATHS.directory, REVIEW_SUMMARY_FILE);
-  if (!existsSync18(path) || readFileSync11(path, "utf8") === renderReviewSummary(videoId, review)) return [];
+  const path = join21(videoDirectory2, REVIEW_PATHS.directory, REVIEW_SUMMARY_FILE);
+  if (!existsSync18(path) || readFileSync12(path, "utf8") === renderReviewSummary(videoId, review)) return [];
   return [{ severity: "warning", file, path: "", message: "REVIEW.md is stale or was hand-edited", suggestion: "It is regenerated by the next `vcr findings` or `vcr review` write; edit findings, not the summary." }];
 }
 
@@ -10554,7 +10593,7 @@ function beatStarts(sheet) {
 
 // packages/cli/src/brief.ts
 import { existsSync as existsSync19 } from "node:fs";
-import { join as join21 } from "node:path";
+import { join as join22 } from "node:path";
 var SERIES_BRIEF_FILE = "brief.json";
 var VIDEO_BRIEF_FILE = "brief.md";
 var VIDEO_BRIEF_SECTIONS = ["Objective", "Audience and placement", "Content", "Constraints", "Review notes"];
@@ -10610,7 +10649,7 @@ function videoBriefDiagnostics(videoId, brief, body, seriesBrief, file) {
   return diagnostics;
 }
 function seriesBriefDiagnostics(brief, projectDirectory, file) {
-  if (existsSync19(join21(projectDirectory, brief.tokens.file))) return [];
+  if (existsSync19(join22(projectDirectory, brief.tokens.file))) return [];
   return [{ severity: "warning", file, path: "/tokens/file", message: `token file ${brief.tokens.file} does not exist`, suggestion: "Write the DTCG tokens under the project's brand/ directory, or fix the path (it is relative to the project)." }];
 }
 function unquote(value) {
@@ -10624,20 +10663,20 @@ var CARD_REQUIRED_TIERS = /* @__PURE__ */ new Set(["core", "catalogued"]);
 var CARD_MISSING_SEVERITY = "error";
 function validateRepository(repositoryRoot) {
   const { check, checkDocument, diagnostics, report } = createChecker(loadSchemas(repositoryRoot), repositoryRoot);
-  const vocabulary = readJsonFile(join22(repositoryRoot, "catalog/capabilities/vocabulary.json"));
+  const vocabulary = readJsonFile(join23(repositoryRoot, "catalog/capabilities/vocabulary.json"));
   const knownCapabilities = new Set(vocabulary.ok ? vocabulary.value.capabilities : []);
   if (!vocabulary.ok) diagnostics.push({ severity: "error", file: "catalog/capabilities/vocabulary.json", path: "", message: vocabulary.error.message });
   const tools = /* @__PURE__ */ new Map();
   let validToolRecords = true;
-  for (const recordPath of listJsonFiles(join22(repositoryRoot, "catalog/tools"))) {
+  for (const recordPath of listJsonFiles(join23(repositoryRoot, "catalog/tools"))) {
     const record = check(recordPath, "toolRecord");
     if (record?.id) tools.set(record.id, { record, file: relative7(repositoryRoot, recordPath) });
     else validToolRecords = false;
   }
   const examples = /* @__PURE__ */ new Map();
-  for (const manifestPath of listFilesNamed(join22(repositoryRoot, "examples"), "example.json")) {
+  for (const manifestPath of listFilesNamed(join23(repositoryRoot, "examples"), "example.json")) {
     const manifest = check(manifestPath, "example");
-    if (manifest?.id) examples.set(manifest.id, { manifest: { ...manifest, directory: relative7(repositoryRoot, join22(manifestPath, "..")) }, file: relative7(repositoryRoot, manifestPath) });
+    if (manifest?.id) examples.set(manifest.id, { manifest: { ...manifest, directory: relative7(repositoryRoot, join23(manifestPath, "..")) }, file: relative7(repositoryRoot, manifestPath) });
   }
   for (const { record, file } of tools.values()) {
     diagnostics.push(...capabilityDiagnostics(record, knownCapabilities, file));
@@ -10645,15 +10684,15 @@ function validateRepository(repositoryRoot) {
     diagnostics.push(...cardDiagnostics(record, file));
   }
   for (const { manifest, file } of examples.values()) diagnostics.push(...exampleDiagnostics(manifest, file, tools, repositoryRoot));
-  check(join22(repositoryRoot, "catalog/tools.json"), "tool");
+  check(join23(repositoryRoot, "catalog/tools.json"), "tool");
   if (validToolRecords) diagnostics.push(...indexFreshnessDiagnostics(repositoryRoot));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/INDEX.md", BUDGET_BYTES.indexMarkdown));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/CANDIDATES.md", BUDGET_BYTES.indexMarkdown));
-  const typographyRulesPath = join22(repositoryRoot, TYPOGRAPHY_RULES_PATH2);
+  const typographyRulesPath = join23(repositoryRoot, TYPOGRAPHY_RULES_PATH2);
   if (existsSync20(typographyRulesPath) && check(typographyRulesPath, "typographyRules")) diagnostics.push(...typographyRuleDiagnostics(repositoryRoot));
   diagnostics.push(...referencesIndexDiagnostics(repositoryRoot));
   diagnostics.push(...checkWorkspaceDocuments(check, checkDocument, repositoryRoot));
-  for (const environmentPath of listJsonFiles(join22(repositoryRoot, "environment"))) check(environmentPath, "environment");
+  for (const environmentPath of listJsonFiles(join23(repositoryRoot, "environment"))) check(environmentPath, "environment");
   return report();
 }
 function validateWorkspace(harnessRoot, workspaceRoot) {
@@ -10692,39 +10731,39 @@ function createChecker(schemas, displayRoot) {
   return { check, checkDocument, diagnostics, report: () => ({ filesChecked, diagnostics }) };
 }
 function checkWorkspaceDocuments(check, checkDocument, workspaceRoot) {
-  const markerPath = join22(workspaceRoot, WORKSPACE_MARKER);
+  const markerPath = join23(workspaceRoot, WORKSPACE_MARKER);
   if (existsSync20(markerPath)) check(markerPath, "workspace");
-  for (const projectPath of listFilesNamed(join22(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
-  for (const referencePath of listJsonFiles(join22(workspaceRoot, "references"))) check(referencePath, "reference");
+  for (const projectPath of listFilesNamed(join23(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
+  for (const referencePath of listJsonFiles(join23(workspaceRoot, "references"))) check(referencePath, "reference");
   const diagnostics = [];
   const seriesBriefs = /* @__PURE__ */ new Map();
   const seriesBriefFor = (project) => {
     if (seriesBriefs.has(project)) return seriesBriefs.get(project);
-    const projectDirectory = join22(workspaceRoot, "projects", project);
-    const path = join22(projectDirectory, SERIES_BRIEF_FILE);
+    const projectDirectory = join23(workspaceRoot, "projects", project);
+    const path = join23(projectDirectory, SERIES_BRIEF_FILE);
     const brief = existsSync20(path) ? check(path, "seriesBrief") : void 0;
     if (brief) diagnostics.push(...seriesBriefDiagnostics(brief, projectDirectory, relative7(workspaceRoot, path)));
     seriesBriefs.set(project, brief);
     return brief;
   };
-  for (const projectPath of listFilesNamed(join22(workspaceRoot, "projects"), "project.json")) seriesBriefFor(basename3(dirname7(projectPath)));
+  for (const projectPath of listFilesNamed(join23(workspaceRoot, "projects"), "project.json")) seriesBriefFor(basename3(dirname8(projectPath)));
   const budgetReport = storageReport({ workspace: workspaceRoot, machine: workspaceRoot }, loadBudgets(workspaceRoot));
   diagnostics.push(...budgetReport.warnings.map((warning) => ({ severity: "warning", file: WORKSPACE_MARKER, path: "/storage", message: warning, suggestion: "Budgets warn and never delete; adjust storage in vcr.json if the budget is wrong." })));
   for (const { videoId, directory } of listVideoDirectories(workspaceRoot)) {
     const seriesBrief = seriesBriefFor(videoId.split("/")[0]);
-    const briefPath = join22(directory, VIDEO_BRIEF_FILE);
+    const briefPath = join23(directory, VIDEO_BRIEF_FILE);
     const videoBrief = existsSync20(briefPath) ? checkVideoBrief(checkDocument, briefPath, videoId, seriesBrief, relative7(workspaceRoot, briefPath)) : void 0;
     if (videoBrief) diagnostics.push(...videoBrief.diagnostics);
-    const beatsPath = join22(directory, BEAT_SHEET_FILE);
+    const beatsPath = join23(directory, BEAT_SHEET_FILE);
     const beats = existsSync20(beatsPath) ? check(beatsPath, "beatSheet") : void 0;
     if (beats) diagnostics.push(...beatSheetDiagnostics(beats, videoId, videoBrief?.frontMatter?.deliverables.map(deliverableFps), relative7(workspaceRoot, beatsPath)));
     const review = checkVideoReview(check, directory, workspaceRoot);
-    diagnostics.push(...reviewDiagnostics(review), ...reviewSummaryDiagnostics(directory, videoId, review, relative7(workspaceRoot, join22(directory, REVIEW_PATHS.directory, REVIEW_SUMMARY_FILE))));
+    diagnostics.push(...reviewDiagnostics(review), ...reviewSummaryDiagnostics(directory, videoId, review, relative7(workspaceRoot, join23(directory, REVIEW_PATHS.directory, REVIEW_SUMMARY_FILE))));
   }
   return diagnostics;
 }
 function checkVideoBrief(checkDocument, briefPath, videoId, seriesBrief, file) {
-  const parsed2 = parseVideoBrief(readFileSync12(briefPath, "utf8"));
+  const parsed2 = parseVideoBrief(readFileSync13(briefPath, "utf8"));
   if (!parsed2.ok) return { diagnostics: [{ severity: "error", file, path: "", message: parsed2.error.message }] };
   const frontMatter = checkDocument(parsed2.value.frontMatter, file, "videoBrief");
   return frontMatter ? { diagnostics: videoBriefDiagnostics(videoId, frontMatter, parsed2.value.body, seriesBrief, file), frontMatter } : { diagnostics: [] };
@@ -10735,15 +10774,15 @@ function deliverableFps(deliverable) {
 function checkVideoReview(check, videoDirectory2, workspaceRoot) {
   const review = { manifests: [], findings: [], approvals: [] };
   for (const renderId of listRetainedRenderIds(videoDirectory2)) {
-    const manifestPath = join22(videoDirectory2, REVIEW_PATHS.renders, renderId, REVIEW_PATHS.manifestFile);
+    const manifestPath = join23(videoDirectory2, REVIEW_PATHS.renders, renderId, REVIEW_PATHS.manifestFile);
     const manifest = check(manifestPath, "renderManifest");
-    if (manifest) review.manifests.push({ manifest, sha256: sha256Hex(readFileSync12(manifestPath)), file: relative7(workspaceRoot, manifestPath) });
+    if (manifest) review.manifests.push({ manifest, sha256: sha256Hex(readFileSync13(manifestPath)), file: relative7(workspaceRoot, manifestPath) });
   }
-  for (const findingPath of listJsonFiles(join22(videoDirectory2, REVIEW_PATHS.findings))) {
+  for (const findingPath of listJsonFiles(join23(videoDirectory2, REVIEW_PATHS.findings))) {
     const finding = check(findingPath, "finding");
     if (finding) review.findings.push({ finding, file: relative7(workspaceRoot, findingPath) });
   }
-  for (const approvalPath of listJsonFiles(join22(videoDirectory2, REVIEW_PATHS.approvals))) {
+  for (const approvalPath of listJsonFiles(join23(videoDirectory2, REVIEW_PATHS.approvals))) {
     const approval = check(approvalPath, "approval");
     if (approval) review.approvals.push({ approval, file: relative7(workspaceRoot, approvalPath) });
   }
@@ -10753,7 +10792,7 @@ function loadSchemas(repositoryRoot) {
   const ajv = new import__.Ajv2020({ allErrors: true, strict: false });
   import_ajv_formats.default.default(ajv);
   const load = (name) => {
-    const schema = readJsonFile(join22(repositoryRoot, `catalog/schemas/${name}.schema.json`));
+    const schema = readJsonFile(join23(repositoryRoot, `catalog/schemas/${name}.schema.json`));
     if (!schema.ok) throw new Error(schema.error.message);
     return schema.value;
   };
@@ -10782,7 +10821,7 @@ function indexFreshnessDiagnostics(repositoryRoot) {
   return outcome.value.staleFiles.map((file) => ({ severity: "error", file, path: "", message: "index is stale", suggestion: "Run `pnpm vcr catalog build` and commit the result." }));
 }
 function budgetDiagnostics(repositoryRoot, relativePath, maxBytes) {
-  const absolutePath = join22(repositoryRoot, relativePath);
+  const absolutePath = join23(repositoryRoot, relativePath);
   if (!existsSync20(absolutePath)) return [];
   const size = statSync7(absolutePath).size;
   if (size <= maxBytes) return [];
@@ -10825,7 +10864,7 @@ function scopeMatchDiagnostics(evidence, exampleId, path, file, isNew, repositor
   if (evidence.command && !evidence.command.startsWith(exampleDirectory)) {
     diagnostics.push({ severity: "error", file, path: `${path}/command`, message: `command "${evidence.command}" does not run the cited example ${exampleDirectory}`, suggestion: "Cite the example whose run produced this result, or record the command under it." });
   }
-  const hasRetainedOutputs = existsSync20(join22(repositoryRoot, exampleDirectory, "expected"));
+  const hasRetainedOutputs = existsSync20(join23(repositoryRoot, exampleDirectory, "expected"));
   if (!hasRetainedOutputs && !/fixture-reported/i.test(evidence.scope ?? "")) {
     diagnostics.push({ severity: isNew ? "error" : "warning", file, path: `${path}/scope`, message: `${exampleDirectory} keeps no expected/ outputs, but the scope does not say the claim is fixture-reported`, suggestion: 'Say "Fixture-reported" in the scope, or retain the outputs under expected/ and diff them in run.sh.' });
   }
@@ -10864,10 +10903,10 @@ function toolReferenceDiagnostics(record, file, tools, examples, repositoryRoot)
   }
   let skillText = null;
   if (record.skill) {
-    const skillPath = join22(repositoryRoot, record.skill);
+    const skillPath = join23(repositoryRoot, record.skill);
     if (!existsSync20(skillPath)) error2("/skill", `${record.skill} does not exist`, "Write the SKILL.md or remove the reference.");
     else {
-      skillText = readFileSync12(skillPath, "utf8");
+      skillText = readFileSync13(skillPath, "utf8");
       diagnostics.push(...budgetDiagnostics(repositoryRoot, record.skill, BUDGET_BYTES.skill));
     }
   }
@@ -10893,13 +10932,13 @@ function exampleDiagnostics(manifest, file, tools, repositoryRoot) {
   const expectedDirectory = `examples/${manifest.id}`;
   if (manifest.directory !== expectedDirectory) error2("/id", `manifest lives in ${manifest.directory} but its id says ${expectedDirectory}`, "Rename the directory or the id.");
   const runScript = manifest.run.replace(/^\.\//, "").split(" ")[0] ?? "";
-  if (!existsSync20(join22(repositoryRoot, manifest.directory, runScript))) error2("/run", `${runScript} not found in ${manifest.directory}`, "Point run at the reproduction script.");
+  if (!existsSync20(join23(repositoryRoot, manifest.directory, runScript))) error2("/run", `${runScript} not found in ${manifest.directory}`, "Point run at the reproduction script.");
   for (const toolId of manifest.tools) {
     const tool = tools.get(toolId);
     if (!tool) error2("/tools", `"${toolId}" is not a catalogued tool id`, "Use an id from catalog/tools/.");
     else if (!(tool.record.examples ?? []).includes(manifest.id)) error2("/tools", `${toolId} does not list this example in its examples`, `Add "${manifest.id}" to catalog/tools/${toolId}.json examples.`);
   }
-  if (manifest.report && !existsSync20(join22(repositoryRoot, manifest.report))) error2("/report", `${manifest.report} does not exist`, "Fix the path or remove it.");
+  if (manifest.report && !existsSync20(join23(repositoryRoot, manifest.report))) error2("/report", `${manifest.report} does not exist`, "Fix the path or remove it.");
   return diagnostics;
 }
 function hasHeading(markdown, heading) {
@@ -10907,25 +10946,25 @@ function hasHeading(markdown, heading) {
 }
 
 // packages/cli/src/workspace.ts
-import { existsSync as existsSync21, readFileSync as readFileSync13, writeFileSync as writeFileSync11 } from "node:fs";
-import { join as join23 } from "node:path";
+import { existsSync as existsSync21, readFileSync as readFileSync14, writeFileSync as writeFileSync12 } from "node:fs";
+import { join as join24 } from "node:path";
 var IGNORED_DIRECTORIES = ["output/", ".cache/", ".vcr/"];
 function ensureWorkspace(directory, harnessVersion) {
   const changes = [];
-  const markerPath = join23(directory, WORKSPACE_MARKER);
+  const markerPath = join24(directory, WORKSPACE_MARKER);
   if (!existsSync21(markerPath)) {
     const marker = { schema_version: "1.0.0", harness_version: harnessVersion, projects: [] };
-    writeFileSync11(markerPath, `${JSON.stringify(marker, null, 2)}
+    writeFileSync12(markerPath, `${JSON.stringify(marker, null, 2)}
 `);
     changes.push(WORKSPACE_MARKER);
   }
-  const gitignorePath = join23(directory, ".gitignore");
-  const existing = existsSync21(gitignorePath) ? readFileSync13(gitignorePath, "utf8") : "";
+  const gitignorePath = join24(directory, ".gitignore");
+  const existing = existsSync21(gitignorePath) ? readFileSync14(gitignorePath, "utf8") : "";
   const presentLines = new Set(existing.split("\n").map((line) => line.trim()));
   const missing = IGNORED_DIRECTORIES.filter((entry) => !presentLines.has(entry));
   if (missing.length > 0) {
     const separator = existing === "" || existing.endsWith("\n") ? "" : "\n";
-    writeFileSync11(gitignorePath, `${existing}${separator}${missing.join("\n")}
+    writeFileSync12(gitignorePath, `${existing}${separator}${missing.join("\n")}
 `);
     changes.push(".gitignore");
   }
@@ -10974,11 +11013,11 @@ function lower(severity, cap) {
 }
 
 // packages/cli/src/render-manifest.ts
-import { existsSync as existsSync22, readFileSync as readFileSync14, renameSync as renameSync2, rmSync as rmSync3 } from "node:fs";
+import { existsSync as existsSync22, readFileSync as readFileSync15, renameSync as renameSync2, rmSync as rmSync3 } from "node:fs";
 import { hostname as hostname2, platform as platform2 } from "node:os";
-import { basename as basename4, extname as extname3, join as join24, relative as relative8 } from "node:path";
+import { basename as basename4, extname as extname3, join as join25, relative as relative8 } from "node:path";
 function stagingDirectoryFor(workspaceRoot, videoId, now) {
-  return join24(renderOutputRoot(workspaceRoot, videoId), `.capturing-${now.getTime()}`);
+  return join25(renderOutputRoot(workspaceRoot, videoId), `.capturing-${now.getTime()}`);
 }
 function renderIdFor(createdAt, contentSha256) {
   const stamp = createdAt.toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "");
@@ -10987,12 +11026,12 @@ function renderIdFor(createdAt, contentSha256) {
 function writeRender(inputs) {
   const contentSha256 = sha256Hex(inputs.report.hashes.join("\n"));
   const renderId = renderIdFor(inputs.createdAt, contentSha256);
-  const renderDirectory = join24(renderOutputRoot(inputs.workspaceRoot, inputs.videoId), renderId);
+  const renderDirectory = join25(renderOutputRoot(inputs.workspaceRoot, inputs.videoId), renderId);
   if (existsSync22(renderDirectory)) rmSync3(renderDirectory, { recursive: true, force: true });
   renameSync2(inputs.stagingDirectory, renderDirectory);
   const toWorkspace = (path) => relative8(inputs.workspaceRoot, path);
-  const framesDirectory = toWorkspace(join24(renderDirectory, "frames"));
-  const reportPath = join24(renderDirectory, "report.json");
+  const framesDirectory = toWorkspace(join25(renderDirectory, "frames"));
+  const reportPath = join25(renderDirectory, "report.json");
   const manifest = {
     schema_version: "1.0.0",
     render_id: renderId,
@@ -11004,7 +11043,7 @@ function writeRender(inputs) {
     scenes: [{ id: sceneIdFor(inputs.sceneFile), start_frame: 0, end_frame: inputs.report.frames - 1, frames_dir: framesDirectory }],
     outputs: [
       { kind: "frames", path: framesDirectory, sha256: contentSha256 },
-      { kind: "report", path: toWorkspace(reportPath), sha256: sha256Hex(readFileSync14(reportPath)) }
+      { kind: "report", path: toWorkspace(reportPath), sha256: sha256Hex(readFileSync15(reportPath)) }
     ],
     frame_sha256: inputs.report.hashes,
     created_at: inputs.createdAt.toISOString(),
@@ -11012,13 +11051,13 @@ function writeRender(inputs) {
   };
   const content = `${JSON.stringify(manifest, null, 2)}
 `;
-  writeFileAtomic(join24(renderDirectory, REVIEW_PATHS.manifestFile), content);
-  const retainedManifestPath = join24(inputs.videoDirectory, REVIEW_PATHS.renders, renderId, REVIEW_PATHS.manifestFile);
+  writeFileAtomic(join25(renderDirectory, REVIEW_PATHS.manifestFile), content);
+  const retainedManifestPath = join25(inputs.videoDirectory, REVIEW_PATHS.renders, renderId, REVIEW_PATHS.manifestFile);
   writeFileAtomic(retainedManifestPath, content);
   return { manifest, renderDirectory, retainedManifestPath, manifestSha256: sha256Hex(content) };
 }
 function renderOutputRoot(workspaceRoot, videoId) {
-  return join24(workspaceRoot, "output", ...videoId.split("/"));
+  return join25(workspaceRoot, "output", ...videoId.split("/"));
 }
 function sceneIdFor(sceneFile) {
   return basename4(sceneFile, extname3(sceneFile)).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "scene";
@@ -11035,7 +11074,7 @@ function environmentFor(machineRecord) {
 }
 
 // packages/cli/src/approvals.ts
-import { join as join25 } from "node:path";
+import { join as join26 } from "node:path";
 async function confirmHumanAtTerminal(io, videoId, action) {
   if (!io.isInteractive) {
     return fail("HUMAN_CHANNEL_REQUIRED", `"${action}" is a human decision and needs an interactive terminal; this one has none, and agent hosts never do. Ask the person to run the same command in their own terminal.`);
@@ -11052,7 +11091,7 @@ function writeApprovalDecision(videoDirectory2, workspaceRoot, decision, renderI
   const existing = review.approvals.find((entry) => entry.approval.render_id === target.manifest.render_id)?.approval;
   if (existing && existing.decision === decision && existing.manifest_sha256 === target.sha256 && (note === void 0 || existing.note === note)) return ok({ approval: existing, isCreated: false });
   const approval = { schema_version: "1.0.0", render_id: target.manifest.render_id, decision, manifest_sha256: target.sha256, channel: "tty", at: now.toISOString(), ...note ? { note } : {} };
-  writeJsonAtomic(join25(videoDirectory2, REVIEW_PATHS.approvals, `${approval.render_id}.json`), approval);
+  writeJsonAtomic(join26(videoDirectory2, REVIEW_PATHS.approvals, `${approval.render_id}.json`), approval);
   return ok({ approval, isCreated: true });
 }
 
@@ -11346,6 +11385,19 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
     print(asJson ? { applied: applied.value, remaining: planCaptureSetup(roots).steps } : formatCaptureSetupPlan(applied.value, true));
     return 0;
   }
+  if (command === "preview" && subcommand === "still" && target) {
+    const workspace = requireWorkspace(roots);
+    if (!workspace.ok) return failWith(workspace.error, asJson);
+    try {
+      const result = await previewStill(roots, workspace.value, resolve8(target), Number(options["width"]), Number(options["height"]), Number(options["fps"]), text2(options["at"]), text2(options["marker"]));
+      print(asJson ? result : `Still: ${result.image}
+Metadata: ${result.sidecar}
+Motion and full scene untested.`);
+      return 0;
+    } catch (error2) {
+      return failWith({ code: "PREVIEW_FAILED", message: String(error2) }, asJson, 2);
+    }
+  }
   if (command === "capture" && subcommand) {
     const dimensions = { width: Number(options["width"]), height: Number(options["height"]), fps: Number(options["fps"]) };
     if (!Object.values(dimensions).every((value) => Number.isFinite(value) && value > 0)) {
@@ -11359,7 +11411,7 @@ ${nextSteps.map((step) => `  ${step}`).join("\n")}`);
     const video = workspace?.ok && videoId ? resolveVideo(workspace.value, videoId) : void 0;
     if (video && !video.ok) return failWith(video.error, asJson);
     const startedAt = /* @__PURE__ */ new Date();
-    const outputDirectory = video?.ok && workspace?.ok ? stagingDirectoryFor(workspace.value, video.value.videoId, startedAt) : resolve8(text2(options["out"]) ?? join26(dirname8(sceneFile), "output"));
+    const outputDirectory = video?.ok && workspace?.ok ? stagingDirectoryFor(workspace.value, video.value.videoId, startedAt) : resolve8(text2(options["out"]) ?? join27(dirname9(sceneFile), "output"));
     const report = await runCapture(roots, { sceneFile, outputDirectory, verifyDeterminism: options["verify"] === true, ...dimensions });
     if (!report.ok) return failWith(report.error, asJson);
     const render = video?.ok && workspace?.ok ? writeRender({ workspaceRoot: workspace.value, videoId: video.value.videoId, videoDirectory: video.value.directory, sceneFile, stagingDirectory: outputDirectory, report: report.value, createdAt: startedAt, machineRecord: loadMachineRecord(roots.machine) }) : void 0;
@@ -11481,7 +11533,7 @@ ${formatDisclosureReport(disclosure)}` : summary);
     const devMode = requireDevMode(roots, "doctor --record");
     if (shouldRecord && !devMode.ok) return failWith(devMode.error, asJson);
     const record = await runDoctor();
-    const outputDirectories = [join26(roots.machine, "environment"), ...shouldRecord ? [join26(repositoryRoot, "environment")] : []];
+    const outputDirectories = [join27(roots.machine, "environment"), ...shouldRecord ? [join27(repositoryRoot, "environment")] : []];
     const writtenPaths = outputDirectories.map((directory) => writeEnvironmentRecord(directory, record));
     print(asJson ? record : `${formatDoctorTable(record)}
 
@@ -11502,20 +11554,20 @@ function printHelp(args, asJson) {
 function readPlan(harnessRoot, workspaceRoot, videoId) {
   const video = resolveVideo(workspaceRoot, videoId);
   if (!video.ok) return video;
-  const sheetPath = join26(video.value.directory, BEAT_SHEET_FILE);
+  const sheetPath = join27(video.value.directory, BEAT_SHEET_FILE);
   if (!existsSync23(sheetPath)) return fail("PLAN_NOT_FOUND", `${videoId} has no ${BEAT_SHEET_FILE}. Write the beat sheet beside brief.md (schema: catalog/schemas/beat-sheet.schema.json).`);
   const sheet = readJsonFile(sheetPath);
   if (!sheet.ok) return sheet;
   const problems = beatSheetSchemaDiagnostics(harnessRoot, sheet.value, BEAT_SHEET_FILE);
   if (problems.length > 0) return fail("INVALID_PLAN", `${BEAT_SHEET_FILE} does not match its schema: ${problems.map((problem) => `${problem.path} ${problem.message}`).join("; ")}. Run \`vcr validate\` for suggestions.`);
-  const seriesPath = join26(workspaceRoot, "projects", videoId.split("/")[0], SERIES_BRIEF_FILE);
+  const seriesPath = join27(workspaceRoot, "projects", videoId.split("/")[0], SERIES_BRIEF_FILE);
   const seriesBrief = existsSync23(seriesPath) ? readJsonFile(seriesPath) : ok(void 0);
   if (!seriesBrief.ok) return seriesBrief;
-  const typography = readJsonFile(join26(harnessRoot, TYPOGRAPHY_RULES_PATH2));
+  const typography = readJsonFile(join27(harnessRoot, TYPOGRAPHY_RULES_PATH2));
   if (!typography.ok) return typography;
   const hold = typography.value.rules.find((rule) => rule.id === "TYPO-HOLD")?.values;
   if (!hold) return fail("RULE_NOT_FOUND", `TYPO-HOLD has no values in ${TYPOGRAPHY_RULES_PATH2}; STORY-TEXT-READTIME reads its reading-time model from there.`);
-  return ok({ sheet: sheet.value, sha256: sha256Hex(readFileSync15(sheetPath)), seriesBrief: seriesBrief.value, thresholds: defaultPlanThresholds(hold) });
+  return ok({ sheet: sheet.value, sha256: sha256Hex(readFileSync16(sheetPath)), seriesBrief: seriesBrief.value, thresholds: defaultPlanThresholds(hold) });
 }
 function formatPlanFindings(videoId, findings) {
   if (findings.length === 0) return `${videoId}: plan checks pass`;
@@ -11566,9 +11618,9 @@ function cliInvocation(roots) {
   return roots.isDevMode ? "pnpm vcr" : `node ${process.argv[1]}`;
 }
 function writeEnvironmentRecord(directory, record) {
-  mkdirSync8(directory, { recursive: true });
-  const outputPath = join26(directory, `${record.hostname}.json`);
-  writeFileSync12(outputPath, `${JSON.stringify(record, null, 2)}
+  mkdirSync9(directory, { recursive: true });
+  const outputPath = join27(directory, `${record.hostname}.json`);
+  writeFileSync13(outputPath, `${JSON.stringify(record, null, 2)}
 `);
   return outputPath;
 }
