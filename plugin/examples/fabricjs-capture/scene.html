@@ -1,0 +1,22 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;overflow:hidden}#stage{display:block;width:1280px;height:720px}</style></head>
+<body><canvas id="stage" width="1280" height="720"></canvas><script src="node_modules/fabric/dist/index.min.js"></script><script>
+// Fabric objects are built once; every seek sets their properties from t and draws with renderAll().
+const canvas = new fabric.StaticCanvas('stage', { width: 1280, height: 720, enableRetinaScaling: false, renderOnAddRemove: false });
+const trail = new fabric.Path('M 140 540 L 360 200 L 900 200 L 1140 540', { originX: 'center', originY: 'center', left: 640, top: 370, fill: null, stroke: '#6bc7f3', strokeWidth: 12, strokeLineJoin: 'round' });
+const square = new fabric.Rect({ originX: 'center', originY: 'center', left: 0, top: 0, width: 200, height: 200, rx: 18, ry: 18, fill: '#c7f36b' });
+const chevron = new fabric.Path('M -40 -10 L 0 30 L 40 -10', { originX: 'center', originY: 'center', left: 0, top: 0, fill: null, stroke: '#1e2a10', strokeWidth: 8 });
+const group = new fabric.Group([square, chevron], { originX: 'center', originY: 'center', left: 640, top: 360 });
+const dot = new fabric.Circle({ originX: 'center', originY: 'center', left: 200, top: 560, radius: 44, fill: '#f3a86b' });
+canvas.add(trail, group, dot);
+
+function drawFrame(t) {
+  group.set({ angle: t * 120, scaleX: 0.8 + 0.2 * Math.cos(t * 2), scaleY: 0.8 + 0.2 * Math.cos(t * 2) });
+  group.setCoords();
+  dot.set({ left: 200 + t * 280, top: 560 - 100 * Math.sin(t * 2), opacity: 0.4 + 0.6 * (t / 3) });
+  dot.setCoords();
+  canvas.renderAll();
+}
+
+window.__scene = { duration: 3, seek(t) { requestAnimationFrame(() => drawFrame(t)); } };
+</script></body></html>

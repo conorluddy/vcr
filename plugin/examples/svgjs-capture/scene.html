@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;overflow:hidden}#stage{width:1280px;height:720px}</style></head>
+<body><div id="stage"></div><script src="node_modules/@svgdotjs/svg.js/dist/svg.min.js"></script><script>
+// Built once with SVG.js calls; seek(t) only rewrites attributes from t, so any frame order gives the same pixels.
+const draw = SVG().addTo('#stage').size(1280, 720);
+const gradient = draw.gradient('linear', (add) => {
+  add.stop(0, '#6bc7f3');
+  add.stop(1, '#c7f36b');
+});
+const wave = draw.path('M140 540 Q640 200 1140 540').fill('none').stroke({ color: '#6bc7f3', width: 12, linejoin: 'round' });
+const group = draw.group();
+const square = draw.rect(200, 200).radius(18).move(-100, -100).fill(gradient);
+const dot = draw.circle(88).fill('#f3a86b');
+group.add(square);
+window.__scene = { duration: 3, seek(t) {
+  requestAnimationFrame(() => {
+    const scale = 0.8 + 0.2 * Math.cos(t * 2);
+    gradient.from(0, 0).to(1, 0.5 + 0.5 * Math.cos(t * 2));
+    wave.plot(`M140 540 Q640 ${200 + 120 * Math.sin(t * 2)} 1140 540`);
+    group.transform({ rotate: t * 120, scale, translate: [640, 360] });
+    dot.center(200 + t * 280, 560 - 100 * Math.sin(t * 2));
+    dot.opacity(0.4 + 0.6 * (t / 3));
+  });
+} };
+</script></body></html>

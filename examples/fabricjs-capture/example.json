@@ -1,0 +1,22 @@
+{
+  "id": "fabricjs-capture",
+  "title": "Fabric.js StaticCanvas scene drawn explicitly from time",
+  "summary": "Rect, Circle, Path and group; left, top, angle, scaleX, opacity set from t and drawn with renderAll; 90 alpha frames at 1280x720, shuffled capture equals sequential.",
+  "status": "validated",
+  "tools": [
+    "fabric-js",
+    "imagemagick",
+    "playwright"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-11",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

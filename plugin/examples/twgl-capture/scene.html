@@ -1,0 +1,50 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;overflow:hidden}canvas{display:block;width:1280px;height:720px}</style></head>
+<body><canvas id="stage" width="1280" height="720"></canvas><script src="node_modules/twgl.js/dist/7.x/twgl.js"></script><script>
+// TWGL core build (no primitives, so no Math.random). One fullscreen quad, one fragment shader.
+// seek(t) sets the `time` uniform from t and draws once on the animation frame the harness drives.
+const WIDTH = 1280, HEIGHT = 720, DURATION = 3;
+const canvas = document.getElementById('stage');
+const gl = twgl.getWebGLContext(canvas, { alpha: true, premultipliedAlpha: true, preserveDrawingBuffer: true, antialias: false });
+const vertexSource = `
+attribute vec2 position;
+void main() { gl_Position = vec4(position, 0.0, 1.0); }`;
+const fragmentSource = `
+precision mediump float;
+uniform float time;
+uniform vec2 resolution;
+float boxDistance(vec2 p, vec2 halfSize, float radius) {
+  vec2 q = abs(p) - halfSize + radius;
+  return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - radius;
+}
+void main() {
+  vec2 uv = (gl_FragCoord.xy - 0.5 * resolution) / resolution.y;
+  float angle = time * 1.2;
+  vec2 rotated = mat2(cos(angle), -sin(angle), sin(angle), cos(angle)) * uv;
+  float ring = 1.0 - smoothstep(0.0, 0.006, abs(boxDistance(rotated, vec2(0.22), 0.04)) - 0.025);
+  vec2 discCentre = uv - vec2(0.3 * sin(time * 2.0), 0.0);
+  float disc = 1.0 - smoothstep(0.08, 0.085, length(discCentre));
+  float alpha = max(ring, disc * 0.85);
+  vec3 ringColour = vec3(0.78, 0.95, 0.42);
+  vec3 discColour = vec3(0.95, 0.66, 0.42);
+  vec3 colour = ring >= disc * 0.85 ? ringColour : discColour;
+  gl_FragColor = vec4(colour * alpha, alpha);
+}`;
+const programInfo = twgl.createProgramInfo(gl, [vertexSource, fragmentSource]);
+const quad = twgl.createBufferInfoFromArrays(gl, {
+  position: { numComponents: 2, data: [-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1] },
+});
+const renderAt = (t) => {
+  gl.viewport(0, 0, WIDTH, HEIGHT);
+  gl.clearColor(0, 0, 0, 0);
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.useProgram(programInfo.program);
+  twgl.setBuffersAndAttributes(gl, programInfo, quad);
+  twgl.setUniforms(programInfo, { time: t, resolution: [WIDTH, HEIGHT] });
+  twgl.drawBufferInfo(gl, quad);
+};
+window.__scene = {
+  duration: DURATION,
+  seek: (t) => requestAnimationFrame(() => renderAt(t)),
+};
+</script></body></html>

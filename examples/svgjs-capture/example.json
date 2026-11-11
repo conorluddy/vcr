@@ -1,0 +1,22 @@
+{
+  "id": "svgjs-capture",
+  "title": "SVG.js scene built and mutated explicitly from time",
+  "summary": "SVG.js gradient, rect in a group, path, circle; attributes set from t in seek(), no animate runner; 90 alpha frames at 1280x720, shuffled capture equals sequential.",
+  "status": "validated",
+  "tools": [
+    "imagemagick",
+    "playwright",
+    "svg-js"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-11",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

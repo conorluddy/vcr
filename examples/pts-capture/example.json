@@ -1,0 +1,22 @@
+{
+  "id": "pts-capture",
+  "title": "Pts geometry drawn with CanvasForm from time",
+  "summary": "Pts Pt, Group, Line, Polygon, Circle and Create helpers drawn via CanvasForm onto a CanvasSpace; 90 alpha frames at 1280x720, shuffled capture equals sequential.",
+  "status": "validated",
+  "tools": [
+    "imagemagick",
+    "playwright",
+    "pts"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-11",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

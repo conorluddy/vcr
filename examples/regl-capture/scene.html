@@ -1,0 +1,87 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;overflow:hidden}canvas{display:block;width:1280px;height:720px}</style></head>
+<body><canvas id="stage" width="1280" height="720"></canvas><script src="node_modules/regl/dist/regl.min.js"></script><script>
+// regl draws two commands per seek: a fragment-shader gradient quad, then twelve triangles
+// in one non-instanced draw. Every uniform and attribute is derived from t; regl.frame() is never called, and
+// regl.now() (the only clock regl reads) is never called either.
+// Output is premultiplied because the canvas uses premultipliedAlpha (the WebGL default).
+const canvas = document.getElementById('stage');
+const regl = createREGL({
+  canvas,
+  pixelRatio: 1,
+  attributes: { alpha: true, premultipliedAlpha: true, preserveDrawingBuffer: true, antialias: false }
+});
+const TRIANGLE_COUNT = 12;
+const triangleVertices = [];
+const triangleIndices = [];
+for (let index = 0; index < TRIANGLE_COUNT; index += 1) {
+  triangleVertices.push([0, 1], [-0.87, -0.5], [0.87, -0.5]);
+  triangleIndices.push(index, index, index);
+}
+const triangleIndexBuffer = regl.buffer(triangleIndices);
+const drawGradient = regl({
+  vert: `
+    precision mediump float;
+    attribute vec2 position;
+    varying vec2 uv;
+    void main() { uv = position * 0.5 + 0.5; gl_Position = vec4(position, 0.0, 1.0); }`,
+  frag: `
+    precision mediump float;
+    uniform float time;
+    varying vec2 uv;
+    void main() {
+      vec2 p = uv * 2.0 - 1.0;
+      float radial = length(p * vec2(1.0, 0.56));
+      float wave = 0.5 + 0.5 * sin(time * 2.0 + p.x * 3.0);
+      vec3 colour = mix(vec3(0.12, 0.35, 0.78), vec3(0.95, 0.45, 0.20), wave);
+      float alpha = smoothstep(1.0, 0.2, radial) * 0.85;
+      gl_FragColor = vec4(colour * alpha, alpha);
+    }`,
+  attributes: { position: [[-1, -1], [1, -1], [-1, 1], [1, 1]] },
+  count: 4,
+  primitive: 'triangle strip',
+  depth: { enable: false },
+  blend: { enable: true, func: { src: 'one', dst: 'one minus src alpha' } },
+  uniforms: { time: regl.prop('time') }
+});
+const drawTriangles = regl({
+  vert: `
+    precision mediump float;
+    attribute vec2 position;
+    attribute float triangleIndex;
+    uniform float time;
+    varying vec3 colour;
+    void main() {
+      float phase = triangleIndex * 0.5235988 + time * 1.7;
+      vec2 centre = vec2(cos(phase), sin(phase)) * 0.55;
+      float spin = time * 1.3 + triangleIndex;
+      mat2 rotation = mat2(cos(spin), -sin(spin), sin(spin), cos(spin));
+      vec2 local = rotation * position * 0.09;
+      local.x *= 720.0 / 1280.0;
+      gl_Position = vec4(centre + local, 0.0, 1.0);
+      colour = 0.5 + 0.5 * cos(6.2831853 * triangleIndex / 12.0 + vec3(0.0, 2.1, 4.2));
+    }`,
+  frag: `
+    precision mediump float;
+    varying vec3 colour;
+    void main() { gl_FragColor = vec4(colour, 1.0); }`,
+  attributes: {
+    position: triangleVertices,
+    triangleIndex: triangleIndexBuffer
+  },
+  count: triangleVertices.length,
+  uniforms: { time: regl.prop('time') },
+  depth: { enable: false },
+  blend: { enable: true, func: { src: 'one', dst: 'one minus src alpha' } }
+});
+const DURATION = 3;
+const renderAt = (t) => {
+  regl.clear({ color: [0, 0, 0, 0], depth: 1 });
+  drawGradient({ time: t });
+  drawTriangles({ time: t });
+};
+window.__scene = {
+  duration: DURATION,
+  seek(t) { requestAnimationFrame(() => renderAt(t)); }
+};
+</script></body></html>

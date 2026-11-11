@@ -28,6 +28,11 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `paperjs-capture` | paper-js, playwright, imagemagick | smoothed path, boolean union and radial gradient set from t with explicit view.update(), alpha, shuffled equals sequential (2026-11-11) |
 | `matterjs-capture` | matter-js, playwright, imagemagick | rigid bodies seeked by fixed-step re-simulation, drawn with Canvas 2D, alpha, shuffled equals sequential (2026-11-11) |
 | `tweenjs-capture` | tween-js, playwright, imagemagick | chained, yoyo and eased tweens rebuilt and stepped by explicit time per seek, alpha, shuffled equals sequential (2026-11-11) |
+| `fabricjs-capture` | fabric-js, playwright, imagemagick | StaticCanvas Rect, Circle, Path and Group set from t with explicit renderAll, no animate(), alpha, shuffled equals sequential (2026-11-11) |
+| `svgjs-capture` | svg-js, playwright, imagemagick | rect, circle, path, group transform and gradient set from t, no animate runner, alpha, shuffled equals sequential (2026-11-11) |
+| `regl-capture` | regl, playwright, imagemagick | gradient quad and triangles from a time uniform, no regl.frame(), premultiplied WebGL alpha, shuffled equals sequential (2026-11-11) |
+| `twgl-capture` | twgl, playwright, imagemagick | shader from a time uniform via twgl core helpers, WebGL1 with preserveDrawingBuffer, alpha, shuffled equals sequential (2026-11-11) |
+| `pts-capture` | pts, playwright, imagemagick | Pt, Group and polygon ops drawn by CanvasForm from t after the space's ready callback, no play(), alpha, shuffled equals sequential (2026-11-11) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 
