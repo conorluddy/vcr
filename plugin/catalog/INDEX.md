@@ -40,7 +40,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `deck-gl` — WebGL layers for large geospatial and point-cloud data; view state as props · geospatial, data-visualisation
 - `dotlottie` — .lottie container plus ThorVG WASM canvas player with frame seeking · asset-playback
 - `drei` — Helper components for React Three Fiber: controls, loaders, text, environments · 3d-rendering, react-integration, model-loading
-- `fabric-js` — Canvas object model with selection, serialisation and SVG import/export · 2d-rendering, vector-authoring
+- `fabric-js` ✓ — Canvas object model with selection, serialisation and SVG import/export · 2d-rendering, vector-authoring
 - `ffmpeg-wasm` — FFmpeg compiled to WebAssembly for in-browser transcodes; slower, size-limited · video-encoding, media-inspection, audio
 - `g-mic` — CLI filter language with ~1000 procedural filters; stylised and generative looks · image-processing, effects
 - `gifski` — Highest-quality GIF encoder from PNG frames or y4m; palette per frame, AGPL · gif-encoding, image-sequence-processing
@@ -78,7 +78,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `postprocessing` — pmndrs effects pipeline for Three.js: merged passes for bloom, DOF, SMAA, SSAO · effects, 3d-rendering, shaders
 - `potrace` — Single-colour bitmap tracing to SVG paths; stable but unreleased since 2019 · vector-tracing
 - `pov-ray` — povray renders text scene files and INI settings from the CLI; procedural ray tracing · ray-tracing, 3d-rendering
-- `pts` — TypeScript creative-coding library centred on points, geometry and vector math · generative-2d, 2d-rendering, math-utilities
+- `pts` ✓ — TypeScript creative-coding library centred on points, geometry and vector math · generative-2d, 2d-rendering, math-utilities
 - `pyscenedetect` — Shot boundary detection CLI and Python library over OpenCV; splits video via FFmpeg · shot-detection, media-inspection, computer-vision
 - `rapier` — Rust/WASM 2D and 3D physics with optional cross-platform determinism and world snapshots · physics-simulation
 - `rawtherapee-cli` — Headless RAW development with .pp3 profiles; camera RAW to TIFF or PNG for the pipeline · raw-processing
@@ -86,7 +86,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `react-three-fiber` — React renderer for Three.js: declarative JSX scenes with hooks for the frame loop · 3d-rendering, react-integration
 - `react-three-postprocessing` — Declarative post effects (bloom, DOF, SSAO, LUTs) for R3F, wrapping postprocessing · effects, react-integration
 - `react-three-rapier` — Rapier physics for R3F as components: bodies, colliders, joints, manual stepping · physics-simulation, react-integration
-- `regl` — Functional WebGL: declarative draw commands with state as data · shaders, 2d-rendering, 3d-rendering
+- `regl` ✓ — Functional WebGL: declarative draw commands with state as data · shaders, 2d-rendering, 3d-rendering
 - `remotion` — React-component video renderer with CLI and Lambda; company licence above 3 employees · video-composition, video-encoding, react-integration, capture
 - `resvg` ✓ — Static SVG rasterisation · svg-rasterisation · guide
 - `rive-web` — Plays Rive .riv interactive animations with state machines; authoring is in the Rive app · asset-playback
@@ -95,7 +95,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `sharp` ✓ — Fast Node image processing on libvips; resize, composite, convert with low memory · image-processing, compositing, svg-rasterisation · guide
 - `shotstack` — Hosted video rendering: submit a JSON edit, receive a rendered file · remote-rendering, video-composition
 - `ssam` — Canvas sketch loop with hot reload and export to PNG, GIF, PNG sequence, MP4 and WebM · generative-2d, capture, video-encoding
-- `svg-js` — Chainable SVG construction in browser or Node; animation runner is not seekable · vector-authoring, svg-animation
+- `svg-js` ✓ — Chainable SVG construction in browser or Node; animation runner is not seekable · vector-authoring, svg-animation
 - `svgo` — SVG optimisation; preserve IDs needed by animation · svg-optimisation
 - `synfig` — synfig CLI renders .sif and .sifz 2D vector animation projects to frames or video · native-authoring, 2d-rendering, timeline-animation, vector-authoring
 - `theatre-js` — Visual keyframe editor (Studio) with a code runtime; sequence position is settable · timeline-animation, parameter-ui
@@ -104,7 +104,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `tone-js` — Web Audio framework for synths, sequencing and effects; Tone.Offline renders faster than real time · audio
 - `troika-three-text` — SDF text meshes for Three.js with font loading and Web Worker typesetting · text-rendering, 3d-rendering
 - `tween-js` ✓ — Tiny numeric property interpolator with easing; you call update(time) yourself · tweening
-- `twgl` — Tiny WebGL helper: programs, buffers, uniforms and framebuffers with less boilerplate · shaders, 2d-rendering
+- `twgl` ✓ — Tiny WebGL helper: programs, buffers, uniforms and framebuffers with less boilerplate · shaders, 2d-rendering
 - `two-js` ✓ — Scene graph for flat 2D drawing with one API across SVG, Canvas and WebGL renderers · 2d-rendering, vector-authoring · guide
 - `vpype` — Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths · plotter-workflow, vector-authoring
 - `vsketch` — Python sketches and the vsk CLI generate plotter-oriented line art as SVG · plotter-workflow, generative-2d

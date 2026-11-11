@@ -1,0 +1,22 @@
+# Fabric.js StaticCanvas capture
+
+## Intent and scope
+Claim: Fabric.js 7.4.0 `StaticCanvas` holding a Rect, a Circle, a Path and a Text-free Group, with `left`, `top`, `angle`, `scaleX`, `scaleY` and `opacity` set from time `t` on each seek and drawn by an explicit `canvas.renderAll()`, captures 90 alpha frames at 1280×720 and 30 fps, with shuffled capture equal to sequential. No `animate()`, no `requestRenderAll` loop, no interaction, no SVG or JSON round-trip, no filters, no Text, no other browser. Each seek rebuilds every property from `t` (no tween state), so a jump across a boundary cannot mis-seek. Procedural original shapes only; no fonts, images or media. Excluded features that reach unseeded randomness or clocks in the browser build: SprayBrush (`Math.random` via an integer helper), the WebGL Noise filter (`Math.random` seed), the WebGL filter-backend timing (`performance.now`), and the animation module (`requestAnimationFrame` and `+new Date` start time). None of these is used. Code MIT, checked 2026-11-11 from the installed package's LICENSE and `license` field (fabric 7.4.0); docs https://fabricjs.com/ and API https://fabricjs.com/docs/ . No codec, model or asset dependency.
+
+## Plan, before running
+On macOS arm64, install pinned fabric 7.4.0 locally in this example's package.json (approved rollout); reuse Playwright 1.64.1 and tsx 4.23.15 from the template. Run `pnpm install`, then `examples/fabricjs-capture/run.sh --record`, visually inspect frame 45 at 1280×720, then `examples/fabricjs-capture/run.sh`. The browser build is `node_modules/fabric/dist/index.min.js` (UMD, global `fabric`), loaded by a relative script tag. `enableRetinaScaling` is off and `renderOnAddRemove` is off, so only the explicit `renderAll()` draws. Record the exact Chromium version from the capture report.
+
+Predeclared checks: 90 frames at 30 fps, 1280×720, at least two distinct frame hashes, every shuffled hash equal to sequential, frame 45 alpha minimum 0 and maximum 1. Stop on missing browser build, blank output, clipped shapes or any mismatch. Intended consumer is the existing browser capture harness; units are seconds and pixels. Transparent PNG sequence only; no delivery byte budget or compression claim. Outputs and reports in ignored output/; delete that directory to clean up. No cross-machine byte equality asserted.
+
+## Observation, after running
+2026-11-11, evidence agent on Conors-MacBook-Pro-2.local, macOS Darwin 25.6.0 arm64, Node 22.19.0, fabric 7.4.0 (UMD `dist/index.min.js`), Playwright 1.64.1, Chromium 156.0.8078.4 (read from a launched browser; the capture report does not carry a browser version), tsx 4.23.15, ImageMagick 7.1.2-15. Screenshot capture route, Canvas 2D backend, no WebGL filter path. GPU details unknown and not claimed.
+
+Record run and verification run both exited 0. Measured: 90 frames, 1280×720, 90 distinct SHA-256 frame hashes, `mismatched_frames` empty, `shuffled_matches_sequential` true, frame 45 alpha min 0 and max 1. The verification run printed `fabricjs-capture: OK`.
+
+Contact sheet at output/contact.png (frames 0, 15, 30, 45, 60, 75). What it shows: the blue Path polyline is complete and unclipped in every frame; the lime rounded Rect rotates and scales with its chevron Path inside the Group (square axis-aligned at frame 0, about 60° by frame 15, rotated further in later frames, scale visibly varying); the orange Circle travels left to right along a wave, rising and falling, and grows more opaque from frame 0 (faint) to frame 75 (solid). Background is transparent (grey is the montage backdrop only). No blank frames, no clipping, no defects seen.
+
+Montage note: `magick montage` without an explicit font failed on this machine (`unable to read font`, exit 1) even though it wrote the file. The sheet was regenerated with `-font /System/Library/Fonts/Supplemental/Arial.ttf`, which exits 0. Frame content is unaffected.
+
+Fixture note: the template's `run.sh` printed a hard-coded `konva-capture: OK`; this copy prints `fabricjs-capture: OK`, and the check itself is unchanged.
+
+Result: pass for the stated claim (seeked StaticCanvas with Rect, Circle, Path and Group, properties set from t, explicit renderAll, 90 alpha frames, shuffled equals sequential). Not established: `animate()` or `requestRenderAll` paths (not exercised, by design), Text, SVG or JSON round-trip, interaction, filters, other browsers or OSes, or byte equality across machines. Revalidate on Fabric, Playwright or Chromium changes.

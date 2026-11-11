@@ -52,7 +52,12 @@
     "d3-capture",
     "paperjs-capture",
     "matterjs-capture",
-    "tweenjs-capture"
+    "tweenjs-capture",
+    "fabricjs-capture",
+    "svgjs-capture",
+    "regl-capture",
+    "twgl-capture",
+    "pts-capture"
   ],
   "notes": [
     "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
