@@ -1,0 +1,28 @@
+{
+  "id": "svt-av1",
+  "name": "SVT-AV1",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Production AV1 encoder",
+  "official_url": "https://gitlab.com/AOMediaCodec/SVT-AV1",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "video-encoding"
+  ],
+  "notes": [
+    "2026-11-01: AV1 encoder via FFmpeg libsvtav1 or SvtAv1EncApp. rav1e considered and skipped in its favour.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: BSD-3-Clause-Clear plus AOM patent licence (unverified).",
+    "2026-11-01: No alpha; may be recorded as an FFmpeg capability.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it a strong candidate."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}

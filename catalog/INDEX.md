@@ -115,6 +115,6 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `webgl` — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders
 - `webgpu` — Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking · 3d-rendering, shaders
 
-## candidate (52)
+## candidate (88)
 
 Seen during discovery, not assessed; do not route production work to them. List: `CANDIDATES.md` or `vcr tools list --tier candidate`.

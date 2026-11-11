@@ -1,0 +1,28 @@
+{
+  "id": "glslviewer",
+  "name": "glslViewer",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Headless GLSL renderer",
+  "official_url": "https://github.com/patriciogonzalezvivo/glslViewer",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "shaders"
+  ],
+  "notes": [
+    "2026-11-01: Renders fragment shaders or shaded models to PNG sequences with explicit time stepping.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: BSD-3-Clause.",
+    "2026-11-01: GPU float differences can break bit-identical fixtures; use perceptual tolerances.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}

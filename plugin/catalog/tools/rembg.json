@@ -1,0 +1,29 @@
+{
+  "id": "rembg",
+  "name": "rembg",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Background removal",
+  "official_url": "https://github.com/danielgatis/rembg",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "computer-vision",
+    "image-processing"
+  ],
+  "notes": [
+    "2026-11-01: Background removal to alpha PNG via CLI, library or server with several model backends.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: Code MIT; per-model weight terms.",
+    "2026-11-01: Record model terms per backend.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it a strong candidate."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}

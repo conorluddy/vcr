@@ -1,0 +1,28 @@
+{
+  "id": "piper",
+  "name": "Piper (piper1-gpl)",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Fast local TTS, many voices",
+  "official_url": "https://github.com/OHF-Voice/piper1-gpl",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-11-01: Neural TTS engine with many languages and voices.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: GPL-3.0 since v1.3.0; per-voice model licences.",
+    "2026-11-01: Project is seeking maintainers; old rhasspy/piper archived 2025-10.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}

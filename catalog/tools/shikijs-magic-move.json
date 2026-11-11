@@ -1,0 +1,29 @@
+{
+  "id": "shikijs-magic-move",
+  "name": "@shikijs/magic-move",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Animated code diffs",
+  "official_url": "https://shiki.style/packages/magic-move",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "text-rendering",
+    "tweening"
+  ],
+  "notes": [
+    "2026-11-01: Shiki-highlighted code-state transitions; replaces the archived shiki-magic-move package.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: MIT.",
+    "2026-11-01: CSS transitions are not seekable; needs a GSAP-driven adapter and odiff gating before promotion.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it a strong candidate."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}

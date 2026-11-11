@@ -1,0 +1,27 @@
+{
+  "id": "mpfb",
+  "name": "MPFB (MakeHuman for Blender)",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Human figures",
+  "official_url": "https://static.makehumancommunity.org/mpfb.html",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "3d-rendering",
+    "native-authoring"
+  ],
+  "notes": [
+    "2026-11-01: Blender extension generating parametric rigged humans; proposed route is Blender Python in background mode. Rigify ships with Blender and needs no separate record.",
+    "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "conversation 2026-11-01: character and figure tooling gap"
+}

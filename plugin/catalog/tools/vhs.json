@@ -1,0 +1,29 @@
+{
+  "id": "vhs",
+  "name": "VHS",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Scripted terminal recordings",
+  "official_url": "https://github.com/charmbracelet/vhs",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "capture",
+    "video-encoding"
+  ],
+  "notes": [
+    "2026-11-01: Renders .tape scripts of terminal sessions to GIF, MP4, WebM or frames via ttyd and Chromium.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified).",
+    "2026-11-01: Records in real time, so output is NOT a pure function of t; treat as a source asset.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it a strong candidate."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}

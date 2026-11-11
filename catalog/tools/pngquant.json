@@ -1,0 +1,28 @@
+{
+  "id": "pngquant",
+  "name": "pngquant",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Lossy PNG quantisation",
+  "official_url": "https://pngquant.org/",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "image-processing"
+  ],
+  "notes": [
+    "2026-11-01: Palette quantisation with alpha for small web PNGs.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: GPL-3.0-or-later (commercial licence offered).",
+    "2026-11-01: Lossy: never for fixtures or masters.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}

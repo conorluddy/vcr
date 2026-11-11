@@ -1,0 +1,28 @@
+{
+  "id": "depth-anything-v2",
+  "name": "Depth Anything V2",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Monocular depth maps",
+  "official_url": "https://github.com/DepthAnything/Depth-Anything-V2",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "computer-vision"
+  ],
+  "notes": [
+    "2026-11-01: Depth maps for 2.5D parallax moves.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: Small model Apache-2.0; Base/Large/Giant CC-BY-NC-4.0.",
+    "2026-11-01: Only the Small model is safe for commercial use.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}

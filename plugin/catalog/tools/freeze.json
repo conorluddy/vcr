@@ -1,0 +1,29 @@
+{
+  "id": "freeze",
+  "name": "freeze",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Code and terminal stills",
+  "official_url": "https://github.com/charmbracelet/freeze",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "vector-authoring",
+    "text-rendering"
+  ],
+  "notes": [
+    "2026-11-01: Code or ANSI output to PNG, SVG or WebP with window chrome; the SVG output suits GSAP layers.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified).",
+    "2026-11-01: Maintenance may be slow.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}

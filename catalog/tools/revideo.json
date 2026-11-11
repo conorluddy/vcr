@@ -1,0 +1,29 @@
+{
+  "id": "revideo",
+  "name": "Revideo",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Reference: headless Motion Canvas fork",
+  "official_url": "https://github.com/midrender/revideo",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "timeline-animation",
+    "video-composition"
+  ],
+  "notes": [
+    "2026-11-01: TypeScript Motion Canvas fork with headless rendering and an HTTP render server.",
+    "2026-11-01: Licence as reported by the source research, not yet verified: MIT.",
+    "2026-11-01: Reference only per ADR 0001; no GitHub releases, moved organisations.",
+    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
+    "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-01",
+  "source": "references/ideas/new-candidate-tools-2026-11.md"
+}
