@@ -1,0 +1,18 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;overflow:hidden}#stage{display:block;width:1280px;height:720px}</style></head>
+<body><canvas id="stage" width="1280" height="720"></canvas><script src="node_modules/roughjs/bundled/rough.js"></script><script>
+const canvas = document.getElementById('stage');
+const context = canvas.getContext('2d');
+const sketch = rough.canvas(canvas);
+const SKETCH_SEED = 7;
+const frameOptions = {seed:SKETCH_SEED, roughness:1.4, bowing:1.2, strokeWidth:3};
+function drawFrame(t){
+ context.clearRect(0,0,1280,720);
+ const sway = Math.sin(t*2);
+ sketch.rectangle(120+t*120, 170, 300, 200, {...frameOptions, stroke:'#6bc7f3', fill:'#6bc7f3', fillStyle:'hachure', hachureGap:14});
+ sketch.ellipse(920, 260, 220+60*sway, 150, {...frameOptions, stroke:'#f3a86b', fill:'rgba(243,168,107,0.55)', fillStyle:'solid'});
+ const tipY = 560 - 80*sway;
+ sketch.path(`M140 540 L420 ${tipY} L640 560 L860 ${tipY} L1140 540 Z`, {...frameOptions, stroke:'#c7f36b', fill:'rgba(199,243,107,0.6)', fillStyle:'solid', strokeWidth:6});
+}
+window.__scene={duration:3,seek(t){requestAnimationFrame(()=>drawFrame(t));}};
+</script></body></html>

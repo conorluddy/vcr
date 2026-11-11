@@ -1,0 +1,49 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;overflow:hidden}#stage{display:block;width:1280px;height:720px}</style></head>
+<body><canvas id="stage" width="1280" height="720"></canvas><script src="node_modules/paper/dist/paper-core.min.js"></script><script>
+// Paper.js owns no clock here: view.autoUpdate is off and view.onFrame is never set, so the
+// only redraw is the explicit update in seek(t). update(true) redraws even when no property changed.
+paper.setup(document.getElementById('stage'));
+paper.view.autoUpdate = false;
+const { Path, Point, Color } = paper;
+
+const smoothedPath = new Path({
+  segments: [[140, 540], [360, 200], [900, 200], [1140, 540]],
+  strokeColor: '#6bc7f3',
+  strokeWidth: 12,
+  strokeCap: 'round',
+});
+const gradientCircle = new Path.Circle({ center: [1000, 420], radius: 80 });
+let unionShape = null;
+
+function drawAt(t) {
+  smoothedPath.segments[1].point = new Point(360, 200 + 60 * Math.sin(t * 2));
+  smoothedPath.smooth({ type: 'continuous' });
+
+  if (unionShape) unionShape.remove();
+  const box = new Path.Rectangle({ point: [80, 80], size: [260, 160], radius: 24 });
+  const movingCircle = new Path.Circle({ center: [210 + 80 * Math.cos(t * 1.5), 160 + 30 * Math.sin(t * 1.5)], radius: 90 });
+  unionShape = box.unite(movingCircle);
+  unionShape.fillColor = '#c7f36b';
+  box.remove();
+  movingCircle.remove();
+
+  const center = new Point(1000 + 60 * Math.cos(t), 420 + 40 * Math.sin(t));
+  gradientCircle.position = center;
+  gradientCircle.fillColor = new Color({
+    gradient: { stops: ['#f3a86b', 'rgba(243,168,107,0)'], radial: true },
+    origin: center,
+    destination: center.add(new Point(80, 0)),
+  });
+}
+
+window.__scene = {
+  duration: 3,
+  seek(t) {
+    requestAnimationFrame(() => {
+      drawAt(t);
+      paper.view.update(true);
+    });
+  },
+};
+</script></body></html>

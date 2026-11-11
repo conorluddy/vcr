@@ -1,0 +1,17 @@
+{
+  "name": "@vcr/example-d3-capture",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx capture.ts"
+  },
+  "dependencies": {
+    "@vcr/capture": "workspace:*",
+    "playwright": "1.64.1",
+    "d3": "7.9.2"
+  },
+  "devDependencies": {
+    "tsx": "4.23.15"
+  }
+}

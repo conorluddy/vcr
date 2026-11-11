@@ -1,0 +1,17 @@
+{
+  "name": "@vcr/example-roughjs-capture",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx capture.ts"
+  },
+  "dependencies": {
+    "@vcr/capture": "workspace:*",
+    "playwright": "1.64.1",
+    "roughjs": "4.6.6"
+  },
+  "devDependencies": {
+    "tsx": "4.23.15"
+  }
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;overflow:hidden}canvas{display:block}</style></head>
+<body><canvas id="stage" width="1280" height="720"></canvas><script src="node_modules/matter-js/build/matter.min.js"></script><script>
+const FIXED_STEP_MS = 1000 / 60;
+const STEPS_PER_SECOND = 60;
+const canvas = document.getElementById('stage');
+const context = canvas.getContext('2d');
+
+// Same initial state on every build: no randomness, no clock.
+function buildWorld() {
+  const engine = Matter.Engine.create();
+  const ground = Matter.Bodies.rectangle(640, 690, 1280, 100, { isStatic: true, render: { fillStyle: '#6bc7f3' } });
+  const boxes = [
+    Matter.Bodies.rectangle(260, 120, 80, 80, { angle: 0.3, restitution: 0.4 }),
+    Matter.Bodies.rectangle(470, 60, 60, 110, { angle: -0.2, restitution: 0.3 }),
+    Matter.Bodies.rectangle(700, 180, 96, 64, { angle: 0.6, restitution: 0.5 }),
+    Matter.Bodies.rectangle(930, 90, 72, 72, { angle: 0.1, restitution: 0.2 }),
+  ];
+  const circles = [
+    Matter.Bodies.circle(360, 240, 40, { restitution: 0.7 }),
+    Matter.Bodies.circle(580, 40, 30, { restitution: 0.8 }),
+    Matter.Bodies.circle(820, 300, 46, { restitution: 0.6 }),
+    Matter.Bodies.circle(1080, 150, 34, { restitution: 0.9 }),
+  ];
+  const bodies = [ground, ...boxes, ...circles];
+  Matter.Composite.add(engine.world, bodies);
+  return { engine, bodies: [...boxes, ...circles], ground };
+}
+
+const palette = { box: '#c7f36b', circle: '#f3a86b', ground: '#6bc7f3' };
+
+function drawBody(body, fillStyle) {
+  context.beginPath();
+  body.vertices.forEach((vertex, index) => {
+    if (index === 0) context.moveTo(vertex.x, vertex.y);
+    else context.lineTo(vertex.x, vertex.y);
+  });
+  context.closePath();
+  context.fillStyle = fillStyle;
+  context.fill();
+}
+
+window.__scene = { duration: 3, seek(t) {
+  requestAnimationFrame(() => {
+    const { engine, bodies, ground } = buildWorld();
+    const stepCount = Math.floor(t * STEPS_PER_SECOND);
+    for (let step = 0; step < stepCount; step++) Matter.Engine.update(engine, FIXED_STEP_MS);
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawBody(ground, palette.ground);
+    bodies.forEach((body, index) => drawBody(body, index < 4 ? palette.box : palette.circle));
+  });
+} };
+</script></body></html>

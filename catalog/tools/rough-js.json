@@ -53,10 +53,23 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-11",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.6.6",
+        "command": "examples/roughjs-capture/run.sh",
+        "result": "90 distinct 1280x720 alpha frames at 30 fps; all shuffled hashes equal sequential; frame 45 alpha min 0 max 1. Playwright 1.64.1, Chromium 156.0.8078.4, Node 22.19.0; screenshot route. Contact sheet inspected at native size.",
+        "example": "examples/roughjs-capture",
+        "scope": "Rough.js seeded rectangle (hachure), solid ellipse and closed path via rough.canvas, redrawn from t; alpha PNG; macOS arm64 Chromium. No SVG, other fills, interaction or export."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "examples": [
+    "roughjs-capture"
+  ]
 }

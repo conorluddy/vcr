@@ -1,0 +1,22 @@
+{
+  "id": "tweenjs-capture",
+  "title": "tween.js chained, yoyo tweens driven by explicit time",
+  "summary": "tween.js 25.0.0 chained and yoyo tweens in a Group stepped by explicit update times, drawn to Canvas 2D; 90 alpha frames at 1280x720, shuffled capture equals sequential.",
+  "status": "validated",
+  "tools": [
+    "imagemagick",
+    "playwright",
+    "tween-js"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-11",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "roughjs-capture",
+  "title": "Rough.js seeded hand-drawn shapes redrawn from time",
+  "summary": "rough.canvas rectangle with hachure fill, solid ellipse and closed path with fixed seed; 90 alpha frames at 1280x720, shuffled capture equals sequential.",
+  "status": "validated",
+  "tools": [
+    "imagemagick",
+    "playwright",
+    "rough-js"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-11",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

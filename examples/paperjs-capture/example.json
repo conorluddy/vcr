@@ -1,0 +1,22 @@
+{
+  "id": "paperjs-capture",
+  "title": "Paper.js vector paths drawn explicitly from time",
+  "summary": "Smoothed path, boolean-united shape and radial-gradient circle set from t with explicit view.update(); 90 alpha frames at 1280x720, shuffled capture equals sequential.",
+  "status": "validated",
+  "tools": [
+    "imagemagick",
+    "paper-js",
+    "playwright"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-11",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

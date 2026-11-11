@@ -50,9 +50,22 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-11",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.20.0",
+        "command": "examples/matterjs-capture/run.sh",
+        "result": "90 distinct 1280x720 alpha frames at 30 fps; all shuffled hashes equal sequential; frame 45 alpha min 0 max 1. matter-js 0.20.0, Playwright 1.64.1, Chromium 156.0.8078.4, Node 22.19.0; screenshot route. Contact sheet of six frames inspected: bodies fall, land and settle.",
+        "example": "examples/matterjs-capture",
+        "scope": "Boxes and circles re-simulated per seek with fixed 1000/60 ms steps, drawn by Canvas 2D; alpha PNG; macOS arm64 Chromium. No Matter.Render/Runner, sleeping, collision events or cross-machine equality."
+      }
+    ]
   },
+  "examples": [
+    "matterjs-capture"
+  ],
   "adapter_maturity": "none",
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"

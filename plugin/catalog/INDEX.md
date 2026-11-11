@@ -36,7 +36,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `canvas-sketch` — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture
 - `canvaskit-skia` — Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output · 2d-rendering, text-rendering, shaders
 - `ccapture-js` — Fixed-framerate canvas capture by hooking browser time; 2.x rewrite on WebCodecs · capture, video-encoding, image-sequence-processing
-- `d3` — Data-driven scales, layouts and shapes; use its geometry, not its transitions · data-visualisation, vector-authoring, svg-animation
+- `d3` ✓ — Data-driven scales, layouts and shapes; use its geometry, not its transitions · data-visualisation, vector-authoring, svg-animation
 - `deck-gl` — WebGL layers for large geospatial and point-cloud data; view state as props · geospatial, data-visualisation
 - `dotlottie` — .lottie container plus ThorVG WASM canvas player with frame seeking · asset-playback
 - `drei` — Helper components for React Three Fiber: controls, loaders, text, environments · 3d-rendering, react-integration, model-loading
@@ -57,7 +57,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `konva` ✓ — Canvas 2D scene graph (stage, layers, groups, shapes) with events, tweens and export · 2d-rendering, tweening, react-integration · guide
 - `lottie-web` — Plays After Effects/Bodymovin Lottie JSON in the browser; frame-addressable · asset-playback, svg-animation
 - `manim-community` — Python scenes rendered by the manim CLI to video or PNG sequences for maths and diagram motion · timeline-animation, 2d-rendering, video-encoding, typography
-- `matter-js` — 2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t · physics-simulation
+- `matter-js` ✓ — 2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t · physics-simulation
 - `mediabunny` — Pure-TypeScript media toolkit: read, write, convert, WebCodecs-backed; browser and Node · video-encoding, media-inspection, audio
 - `mediabunny-server-extension` — Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno · video-encoding, audio
 - `mermaid-cli` — Text diagrams (flowchart, sequence, gantt) to SVG/PNG via headless Chromium · diagram-generation, vector-authoring
@@ -70,7 +70,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `opencv-js` — OpenCV compiled to WASM: feature detection, filtering, tracking, analysis in browser or Node · computer-vision, image-processing
 - `openimageio-oiiotool` — VFX-grade CLI for EXR, sequences and OCIO colour conversion; stack-based image operations · image-sequence-processing, image-processing, colour-management
 - `opentype-js` — Parse fonts to glyph outlines and SVG path data; text without installed fonts · font-processing, typography, vector-authoring
-- `paper-js` — Vector scene graph with Bezier path geometry and boolean path operations · vector-authoring, 2d-rendering
+- `paper-js` ✓ — Vector scene graph with Bezier path geometry and boolean path operations · vector-authoring, 2d-rendering
 - `pixijs` ✓ — GPU-accelerated 2D renderer (WebGPU and WebGL) for sprites, text and filters · 2d-rendering, effects, shaders · guide
 - `pixijs-filters` — Community filter pack for PixiJS: glow, bloom, shockwave, CRT and more · effects, 2d-rendering, shaders
 - `playcanvas-engine` — Open-source web 3D engine usable standalone; strong glTF and Gaussian splat support · 3d-rendering, game-engine, model-loading
@@ -90,7 +90,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `remotion` — React-component video renderer with CLI and Lambda; company licence above 3 employees · video-composition, video-encoding, react-integration, capture
 - `resvg` ✓ — Static SVG rasterisation · svg-rasterisation · guide
 - `rive-web` — Plays Rive .riv interactive animations with state machines; authoring is in the Rive app · asset-playback
-- `rough-js` — Hand-drawn, sketchy rendering of shapes and paths to Canvas or SVG · 2d-rendering, vector-authoring
+- `rough-js` ✓ — Hand-drawn, sketchy rendering of shapes and paths to Canvas or SVG · 2d-rendering, vector-authoring
 - `satori` — React-style flexbox layout to SVG without a browser; pairs with resvg for PNG · typography, vector-authoring, text-rendering
 - `sharp` ✓ — Fast Node image processing on libvips; resize, composite, convert with low memory · image-processing, compositing, svg-rasterisation · guide
 - `shotstack` — Hosted video rendering: submit a JSON edit, receive a rendered file · remote-rendering, video-composition
@@ -103,7 +103,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `three-meshline` — Thick camera-facing lines for Three.js; npm three.meshline, pmndrs fork is meshline · 3d-rendering, effects
 - `tone-js` — Web Audio framework for synths, sequencing and effects; Tone.Offline renders faster than real time · audio
 - `troika-three-text` — SDF text meshes for Three.js with font loading and Web Worker typesetting · text-rendering, 3d-rendering
-- `tween-js` — Tiny numeric property interpolator with easing; you call update(time) yourself · tweening
+- `tween-js` ✓ — Tiny numeric property interpolator with easing; you call update(time) yourself · tweening
 - `twgl` — Tiny WebGL helper: programs, buffers, uniforms and framebuffers with less boilerplate · shaders, 2d-rendering
 - `two-js` ✓ — Scene graph for flat 2D drawing with one API across SVG, Canvas and WebGL renderers · 2d-rendering, vector-authoring · guide
 - `vpype` — Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths · plotter-workflow, vector-authoring
