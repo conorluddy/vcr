@@ -66,7 +66,9 @@
   },
   "skill": "skills/three-js/SKILL.md",
   "examples": [
-    "three-capture"
+    "three-capture",
+    "meshline-capture",
+    "postprocessing-capture"
   ],
   "documentation_status": "skill-verified",
   "installation_status": "unknown",

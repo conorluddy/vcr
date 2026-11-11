@@ -1,0 +1,23 @@
+{
+  "id": "meshline-capture",
+  "title": "THREE.MeshLine thick camera-facing lines rendered once per seek with a transparent clear colour",
+  "summary": "Closed trefoil with animated dashOffset, a tilted tapered orbit ring rebuilt from t, and a spiral revealed by visibility; 90 frames at 1280x720 with alpha, shuffled order matches sequential.",
+  "status": "validated",
+  "tools": [
+    "imagemagick",
+    "playwright",
+    "three-js",
+    "three-meshline"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-11",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

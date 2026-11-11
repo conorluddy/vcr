@@ -1,0 +1,87 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;overflow:hidden}canvas{display:block;width:1280px;height:720px}</style></head>
+<body><canvas id="stage"></canvas>
+<script type="module">
+  // OGL scene: a Box and a Sphere under a rotating Transform, drawn with two custom shaders.
+  // Everything is set from t inside the frame callback; there is no render loop of its own.
+  import { Renderer, Camera, Transform, Program, Mesh, Box, Sphere } from "./node_modules/ogl/src/index.js";
+  const DURATION = 3;
+  const WIDTH = 1280;
+  const HEIGHT = 720;
+  // Premultiplied output matches the WebGL default and OGL's transparent blend (ONE, ONE_MINUS_SRC_ALPHA)
+  // when renderer.premultipliedAlpha is set; the fragment shader writes premultiplied colour.
+  const renderer = new Renderer({
+    canvas: document.getElementById("stage"),
+    width: WIDTH,
+    height: HEIGHT,
+    dpr: 1,
+    alpha: true,
+    premultipliedAlpha: true,
+    preserveDrawingBuffer: true,
+    antialias: false,
+  });
+  const gl = renderer.gl;
+  const camera = new Camera(gl, { fov: 34, aspect: WIDTH / HEIGHT, near: 0.1, far: 50 });
+  camera.position.set(0, 0.7, 6.5);
+  camera.lookAt([0, 0, 0]);
+  const scene = new Transform();
+  const orbit = new Transform();
+  orbit.setParent(scene);
+  const timeUniform = { value: 0 };
+  const vertexShader = `
+    precision highp float;
+    attribute vec3 position;
+    attribute vec3 normal;
+    uniform mat4 modelViewMatrix;
+    uniform mat4 projectionMatrix;
+    uniform mat3 normalMatrix;
+    varying vec3 vNormal;
+    varying vec3 vPosition;
+    void main() {
+      vNormal = normalize(normalMatrix * normal);
+      vPosition = position;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }`;
+  const fragmentShader = `
+    precision highp float;
+    uniform float uTime;
+    uniform vec3 uBaseColor;
+    varying vec3 vNormal;
+    varying vec3 vPosition;
+    void main() {
+      float light = 0.35 + 0.65 * max(dot(normalize(vNormal), normalize(vec3(0.4, 0.7, 0.6))), 0.0);
+      float alpha = 0.5 + 0.5 * sin(uTime * 2.0 + vPosition.y * 3.0);
+      gl_FragColor = vec4(uBaseColor * light * alpha, alpha);
+    }`;
+  const makeProgram = (baseColor) => new Program(gl, {
+    vertex: vertexShader,
+    fragment: fragmentShader,
+    uniforms: { uTime: timeUniform, uBaseColor: { value: baseColor } },
+    transparent: true,
+    depthWrite: false,
+  });
+  const boxMesh = new Mesh(gl, {
+    geometry: new Box(gl, { width: 1.2, height: 1.2, depth: 1.2 }),
+    program: makeProgram([0.78, 0.95, 0.42]),
+  });
+  boxMesh.setParent(orbit);
+  const sphereMesh = new Mesh(gl, {
+    geometry: new Sphere(gl, { radius: 0.75, widthSegments: 48 }),
+    program: makeProgram([0.95, 0.66, 0.42]),
+  });
+  sphereMesh.setParent(orbit);
+  // seek sets state only in the frame callback; the draw happens there too, as in the template.
+  const renderAt = (t) => {
+    timeUniform.value = t;
+    orbit.rotation.set(0, t * 0.9, 0);
+    boxMesh.position.set(-1.0, 0, 0);
+    boxMesh.rotation.set(t * 1.1, t * 0.7, 0);
+    sphereMesh.position.set(1.0, Math.sin(t * 2) * 0.35, 0);
+    renderer.render({ scene, camera });
+  };
+  window.__scene = {
+    duration: DURATION,
+    seek: (t) => requestAnimationFrame(() => renderAt(t)),
+  };
+</script>
+</body></html>

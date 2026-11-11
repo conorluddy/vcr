@@ -1,0 +1,22 @@
+{
+  "id": "babylonjs-capture",
+  "title": "Babylon.js scene drawn explicitly from time",
+  "summary": "Babylon.js 9.35.0 Scene with box, sphere and torus meshes, hemispheric and directional lights, transforms set from t, one scene.render() per seek; 90 alpha frames at 1280x720, shuffled capture equals sequential.",
+  "status": "validated",
+  "tools": [
+    "babylon-js",
+    "imagemagick",
+    "playwright"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-11",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@vcr/example-meshline-capture",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx capture.ts"
+  },
+  "dependencies": {
+    "three": "0.186.1",
+    "three.meshline": "2.0.0"
+  },
+  "devDependencies": {
+    "@vcr/capture": "workspace:*",
+    "tsx": "^4.23.15"
+  }
+}

@@ -29,7 +29,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `after-effects` — Adobe's aerender CLI and ExtendScript render existing .aep projects and templates · native-authoring, compositing, timeline-animation
 - `anime-js` ✓ — Light DOM/SVG/object tweening with seekable timelines; GSAP's closest neighbour · tweening, timeline-animation, svg-animation · guide
 - `aseprite` — Batch CLI and Lua scripts that export pixel-art animation, tags and sprite sheets · pixel-art, native-authoring
-- `babylon-js` — Full web 3D engine with built-in PBR, post effects, physics and node materials · 3d-rendering, shaders, effects, physics-simulation, model-loading
+- `babylon-js` ✓ — Full web 3D engine with built-in PBR, post effects, physics and node materials · 3d-rendering, shaders, effects, physics-simulation, model-loading
 - `build123d` ◐ — Python parametric CAD for precise product geometry and SVG technical projections · 3d-asset-processing, vector-authoring
 - `canvas-2d` ✓ — Immediate-mode 2D raster drawing; redraw each frame as a pure function of t · 2d-rendering, text-rendering · guide
 - `canvas-record` — Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped · capture, video-encoding, image-sequence-processing
@@ -65,7 +65,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `motion` — Motion (ex Framer Motion): hybrid JS/React animation, springs, layout and scroll · tweening, react-integration, svg-animation
 - `motion-canvas` — TypeScript generator-based 2D animation editor and renderer for explainers · timeline-animation, 2d-rendering, video-encoding
 - `msdfgen` — Signed distance-field generation · sdf-generation, font-processing
-- `ogl` — Tiny zero-dependency WebGL library with a Three.js-like API, about 29 KB · 3d-rendering, shaders
+- `ogl` ✓ — Tiny zero-dependency WebGL library with a Three.js-like API, about 29 KB · 3d-rendering, shaders
 - `opencolorio` — Colour-management engine for ACES and config-driven transforms; library plus ocio* CLI utilities · colour-management
 - `opencv-js` — OpenCV compiled to WASM: feature detection, filtering, tracking, analysis in browser or Node · computer-vision, image-processing
 - `openimageio-oiiotool` — VFX-grade CLI for EXR, sequences and OCIO colour conversion; stack-based image operations · image-sequence-processing, image-processing, colour-management
@@ -73,9 +73,9 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `paper-js` ✓ — Vector scene graph with Bezier path geometry and boolean path operations · vector-authoring, 2d-rendering
 - `pixijs` ✓ — GPU-accelerated 2D renderer (WebGPU and WebGL) for sprites, text and filters · 2d-rendering, effects, shaders · guide
 - `pixijs-filters` — Community filter pack for PixiJS: glow, bloom, shockwave, CRT and more · effects, 2d-rendering, shaders
-- `playcanvas-engine` — Open-source web 3D engine usable standalone; strong glTF and Gaussian splat support · 3d-rendering, game-engine, model-loading
+- `playcanvas-engine` ✓ — Open-source web 3D engine usable standalone; strong glTF and Gaussian splat support · 3d-rendering, game-engine, model-loading
 - `playwright` ✓ — Headless browser automation; the capture route for every browser-rendered toolkit · capture
-- `postprocessing` — pmndrs effects pipeline for Three.js: merged passes for bloom, DOF, SMAA, SSAO · effects, 3d-rendering, shaders
+- `postprocessing` ✓ — pmndrs effects pipeline for Three.js: merged passes for bloom, DOF, SMAA, SSAO · effects, 3d-rendering, shaders
 - `potrace` — Single-colour bitmap tracing to SVG paths; stable but unreleased since 2019 · vector-tracing
 - `pov-ray` — povray renders text scene files and INI settings from the CLI; procedural ray tracing · ray-tracing, 3d-rendering
 - `pts` ✓ — TypeScript creative-coding library centred on points, geometry and vector math · generative-2d, 2d-rendering, math-utilities
@@ -100,7 +100,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `synfig` — synfig CLI renders .sif and .sifz 2D vector animation projects to frames or video · native-authoring, 2d-rendering, timeline-animation, vector-authoring
 - `theatre-js` — Visual keyframe editor (Studio) with a code runtime; sequence position is settable · timeline-animation, parameter-ui
 - `three-js-shading-language` — Node-based shader authoring in JavaScript that compiles to WGSL or GLSL · shaders, effects
-- `three-meshline` — Thick camera-facing lines for Three.js; npm three.meshline, pmndrs fork is meshline · 3d-rendering, effects
+- `three-meshline` ✓ — Thick camera-facing lines for Three.js; npm three.meshline, pmndrs fork is meshline · 3d-rendering, effects
 - `tone-js` — Web Audio framework for synths, sequencing and effects; Tone.Offline renders faster than real time · audio
 - `troika-three-text` — SDF text meshes for Three.js with font loading and Web Worker typesetting · text-rendering, 3d-rendering
 - `tween-js` ✓ — Tiny numeric property interpolator with easing; you call update(time) yourself · tweening

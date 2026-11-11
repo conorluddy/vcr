@@ -30,11 +30,24 @@
   "install": {
     "macos": "pnpm add three.meshline"
   },
+  "examples": [
+    "meshline-capture"
+  ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-11",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "2.0.0",
+        "command": "examples/meshline-capture/run.sh",
+        "result": "90 alpha frames at 1280x720, 90 distinct hashes; shuffled order matches sequential; frame 45 alpha min 0 max 1; expected/summary.json diff passed three 0.186.1, Chromium 156.0.8078.4, Playwright 1.64.1, Node 22.19.0, screenshot route.",
+        "example": "examples/meshline-capture",
+        "scope": "MeshLine + MeshLineMaterial lines (lineWidth, color, dashOffset, visibility, rebuilt points) per seek in three.js; headless Chromium, macOS arm64; no pmndrs fork."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "notes": [

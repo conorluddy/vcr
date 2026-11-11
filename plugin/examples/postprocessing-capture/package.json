@@ -1,0 +1,17 @@
+{
+  "name": "@vcr/example-postprocessing-capture",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx capture.ts"
+  },
+  "dependencies": {
+    "postprocessing": "6.39.6",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@vcr/capture": "workspace:*",
+    "tsx": "^4.23.15"
+  }
+}

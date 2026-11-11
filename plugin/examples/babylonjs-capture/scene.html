@@ -1,0 +1,56 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;overflow:hidden}#stage{display:block;width:1280px;height:720px}</style></head>
+<body><canvas id="stage" width="1280" height="720"></canvas><script src="node_modules/babylonjs/babylon.js"></script><script>
+// Babylon.js 9.35.0 engine, scene and meshes. No engine.runRenderLoop: each seek sets every
+// transform and the camera from t, then makes one explicit scene.render() on an animation frame.
+const canvas = document.getElementById('stage');
+// preserveDrawingBuffer keeps the frame readable after compositing; premultipliedAlpha stays at the
+// Babylon default (true), which is correct because the clear colour is (0,0,0,0) and meshes are opaque.
+const engine = new BABYLON.Engine(canvas, false, {preserveDrawingBuffer:true, premultipliedAlpha:true, antialias:false, stencil:false, alpha:true}, false);
+engine.setHardwareScalingLevel(1);
+const scene = new BABYLON.Scene(engine);
+scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
+scene.ambientColor = new BABYLON.Color3(0, 0, 0);
+
+const camera = new BABYLON.ArcRotateCamera('camera', -Math.PI / 2, 1.1, 7, BABYLON.Vector3.Zero(), scene);
+camera.fov = 0.7;
+new BABYLON.HemisphericLight('hemi', new BABYLON.Vector3(0, 1, 0), scene).intensity = 0.6;
+const key = new BABYLON.DirectionalLight('key', new BABYLON.Vector3(-1, -2, -1), scene);
+key.position = new BABYLON.Vector3(4, 8, 4);
+key.intensity = 0.9;
+
+const material = (hex) => {
+  const m = new BABYLON.StandardMaterial('m' + hex, scene);
+  m.diffuseColor = BABYLON.Color3.FromHexString(hex);
+  m.specularColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+  return m;
+};
+const box = BABYLON.MeshBuilder.CreateBox('box', {size: 1.2}, scene);
+box.material = material('#6bc7f3');
+const sphere = BABYLON.MeshBuilder.CreateSphere('sphere', {diameter: 1.1, segments: 32}, scene);
+sphere.material = material('#f3a86b');
+const torus = BABYLON.MeshBuilder.CreateTorus('torus', {diameter: 1.6, thickness: 0.5, tessellation: 48}, scene);
+torus.material = material('#c7f36b');
+
+const DURATION = 3;
+const applyStateAt = (t) => {
+  camera.alpha = -Math.PI / 2 + 0.5 * Math.sin(t * 1.2);
+  camera.beta = 1.1 + 0.1 * Math.sin(t * 2);
+  box.position.set(-1.7, 0, 0);
+  box.rotation.set(0, t * 1.1, 0);
+  sphere.position.set(0, 0.2 + 0.4 * Math.sin(t * 2), 0);
+  torus.position.set(1.7, 0, 0);
+  torus.rotation.set(t * 0.9, 0, 0.6);
+};
+
+// Scene is exposed only once every material has compiled, so the harness never captures a blank first frame.
+scene.executeWhenReady(() => {
+  window.__scene = {
+    duration: DURATION,
+    seek: (t) => requestAnimationFrame(() => {
+      applyStateAt(t);
+      scene.render();
+    }),
+  };
+});
+</script></body></html>

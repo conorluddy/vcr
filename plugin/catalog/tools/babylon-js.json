@@ -36,9 +36,22 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-11",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "9.35.0",
+        "command": "examples/babylonjs-capture/run.sh",
+        "result": "babylonjs 9.35.0 UMD build (not @babylonjs/core). 90 distinct 1280x720 alpha frames at 30 fps; 90 distinct hashes; all shuffled hashes equal sequential in two runs; frame 45 alpha min 0 max 1. babylonjs UMD build, Playwright 1.64.1, Chromium 156.0.8078.4, Node 22.19.0; screenshot route. Contact sheet inspected.",
+        "example": "examples/babylonjs-capture",
+        "scope": "babylonjs 9.35.0 UMD, not @babylonjs/core: Scene, ArcRotateCamera, box/sphere/torus set from t, one render per seek; alpha PNG; macOS arm64 Chromium. No runRenderLoop, post, PBR, particles."
+      }
+    ]
   },
+  "examples": [
+    "babylonjs-capture"
+  ],
   "adapter_maturity": "none",
   "assessment": {
     "date": "2026-10-26",

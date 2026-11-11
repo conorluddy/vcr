@@ -1,0 +1,11 @@
+{
+  "frames": 90,
+  "width": 1280,
+  "height": 720,
+  "distinct_hashes": 90,
+  "shuffled_matches_sequential": true,
+  "frame30_alpha_min_max_0_255": [
+    0,
+    255
+  ]
+}

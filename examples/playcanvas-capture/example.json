@@ -1,0 +1,22 @@
+{
+  "id": "playcanvas-capture",
+  "title": "PlayCanvas engine primitives drawn explicitly from time",
+  "summary": "PlayCanvas 2.24.0 Application on WebGL2 with a transparent camera clear, one light and box, sphere and cylinder entities set from t, rendered once per seek; 90 alpha frames at 1280x720, shuffled capture equals sequential.",
+  "status": "validated",
+  "tools": [
+    "imagemagick",
+    "playcanvas-engine",
+    "playwright"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-11",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

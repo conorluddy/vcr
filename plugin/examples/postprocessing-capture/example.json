@@ -1,0 +1,23 @@
+{
+  "id": "postprocessing-capture",
+  "title": "Three.js scene through a postprocessing EffectComposer, rendered once per seek",
+  "summary": "Torus knot and orbs drawn by RenderPass, then one merged EffectPass with Bloom, Vignette and ChromaticAberration; 90 frames at 1280x720, shuffled order matches sequential, frame 30 alpha 0-255. No Noise or Glitch effects.",
+  "status": "validated",
+  "tools": [
+    "imagemagick",
+    "playwright",
+    "postprocessing",
+    "three-js"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-11",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
