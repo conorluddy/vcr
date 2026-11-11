@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>html, body { margin: 0; background: transparent; overflow: hidden; }</style>
+<!-- three.meshline imports the bare specifier "three"; map it to the same file the scene imports so there is one copy. -->
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js"}}</script>
+</head>
+<body>
+<script type="module">
+  // THREE.MeshLine (three.meshline 2.0.0) draws three lines as camera-facing ribbons with MeshLineMaterial.
+  // No animation loop: the harness asks for time t and seek sets every animated value from t alone.
+  import * as THREE from "./node_modules/three/build/three.module.js";
+  import { MeshLine, MeshLineMaterial } from "./node_modules/three.meshline/src/THREE.MeshLine.js";
+
+  const DURATION = 3;
+  const TAU = Math.PI * 2;
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+  document.body.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 6);
+  camera.lookAt(0, 0, 0);
+
+  // A: closed trefoil path, width 0.08, dashes that slide along the path with t.
+  const knotPoints = [];
+  for (let index = 0; index < 240; index += 1) {
+    const s = (index / 240) * TAU;
+    knotPoints.push(new THREE.Vector3((Math.sin(s) + 2 * Math.sin(2 * s)) * 0.3, (Math.cos(s) - 2 * Math.cos(2 * s)) * 0.3, -Math.sin(3 * s) * 0.3));
+  }
+  const knotGeometry = new MeshLine();
+  knotGeometry.setPoints(knotPoints);
+  const knotMaterial = new MeshLineMaterial({ lineWidth: 0.08, color: new THREE.Color(0xc7f36b), dashArray: 0.12, dashRatio: 0.5, transparent: true });
+  const knot = new THREE.Mesh(knotGeometry, knotMaterial);
+  scene.add(knot);
+
+  // B: tilted orbit ring, width tapered to a point at both ends; its points are rebuilt from t on every seek.
+  const RING_SEGMENTS = 180;
+  const ringGeometry = new MeshLine();
+  const ringWidth = (progress) => 0.03 + 0.16 * Math.sin(Math.PI * progress);
+  const ringMaterial = new MeshLineMaterial({ lineWidth: 1, color: new THREE.Color(0xff8a3d), transparent: true });
+  const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+  scene.add(ring);
+
+  // C: three-turn spiral whose visibility (0..1 along its length) grows from t, so it draws itself in.
+  const spiralPoints = [];
+  for (let index = 0; index < 200; index += 1) {
+    const progress = index / 199;
+    const angle = progress * TAU * 3;
+    const radius = 0.3 + progress * 2.1;
+    spiralPoints.push(new THREE.Vector3(Math.cos(angle) * radius, Math.sin(angle) * radius, 0));
+  }
+  const spiralGeometry = new MeshLine();
+  spiralGeometry.setPoints(spiralPoints);
+  const spiralMaterial = new MeshLineMaterial({ lineWidth: 0.05, color: new THREE.Color(0x6bd6f3), visibility: 0, transparent: true });
+  const spiral = new THREE.Mesh(spiralGeometry, spiralMaterial);
+  spiral.position.set(-2.4, 0, -0.5);
+  scene.add(spiral);
+
+  const renderAt = (t) => {
+    const progress = t / DURATION;
+    knot.rotation.y = t * 0.4;
+    knot.rotation.x = 0.25;
+    knotMaterial.dashOffset = -t * 0.3;
+    knotMaterial.color.setHSL((0.22 + progress * 0.3) % 1, 0.7, 0.6);
+
+    const tilt = t * 0.6;
+    const ringPoints = [];
+    for (let index = 0; index < RING_SEGMENTS; index += 1) {
+      const progressAround = index / (RING_SEGMENTS - 1);
+      const angle = progressAround * TAU;
+      const x = Math.cos(angle) * 1.9;
+      const y = Math.sin(angle) * 1.9;
+      ringPoints.push(new THREE.Vector3(x, y * Math.cos(tilt), y * Math.sin(tilt)));
+    }
+    ringGeometry.setPoints(ringPoints, ringWidth);
+    ring.position.x = 0.5;
+
+    spiralMaterial.visibility = Math.min(1, Math.max(0, progress));
+    renderer.render(scene, camera);
+  };
+
+  // seek sets state only; the draw happens on the animation frame that the harness's beginFrame drives.
+  // A synchronous WebGL render inside seek would block on the compositor, which is waiting for us.
+  window.__scene = {
+    duration: DURATION,
+    seek: (t) => requestAnimationFrame(() => renderAt(t)),
+  };
+</script>
+</body>
+</html>

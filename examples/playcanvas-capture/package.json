@@ -1,0 +1,17 @@
+{
+  "name": "@vcr/example-playcanvas-capture",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx capture.ts"
+  },
+  "dependencies": {
+    "@vcr/capture": "workspace:*",
+    "playwright": "1.64.1",
+    "playcanvas": "2.24.0"
+  },
+  "devDependencies": {
+    "tsx": "4.23.15"
+  }
+}

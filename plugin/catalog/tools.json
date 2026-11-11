@@ -445,9 +445,22 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-11",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "9.35.0",
+            "command": "examples/babylonjs-capture/run.sh",
+            "result": "babylonjs 9.35.0 UMD build (not @babylonjs/core). 90 distinct 1280x720 alpha frames at 30 fps; 90 distinct hashes; all shuffled hashes equal sequential in two runs; frame 45 alpha min 0 max 1. babylonjs UMD build, Playwright 1.64.1, Chromium 156.0.8078.4, Node 22.19.0; screenshot route. Contact sheet inspected.",
+            "example": "examples/babylonjs-capture",
+            "scope": "babylonjs 9.35.0 UMD, not @babylonjs/core: Scene, ArcRotateCamera, box/sphere/torus set from t, one render per seek; alpha PNG; macOS arm64 Chromium. No runRenderLoop, post, PBR, particles."
+          }
+        ]
       },
+      "examples": [
+        "babylonjs-capture"
+      ],
       "adapter_maturity": "none",
       "assessment": {
         "date": "2026-10-26",
@@ -3337,7 +3350,12 @@
         "svgjs-capture",
         "regl-capture",
         "twgl-capture",
-        "pts-capture"
+        "pts-capture",
+        "babylonjs-capture",
+        "ogl-capture",
+        "playcanvas-capture",
+        "meshline-capture",
+        "postprocessing-capture"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -5324,9 +5342,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "ogl-capture"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-11",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.0.11",
+            "command": "examples/ogl-capture/run.sh",
+            "result": "90 distinct 1280x720 alpha frames at 30 fps; all shuffled hashes equal sequential; frame 45 alpha min 0 max 1. Playwright 1.64.1, Chromium 156.0.8078.4, Node 22.19.0; screenshot route. Contact sheet inspected.",
+            "example": "examples/ogl-capture",
+            "scope": "OGL Renderer (alpha, premultiplied), Camera, Transform, custom-shader Program, Box and Sphere; time uniform from t; no unseeded clocks. macOS arm64 Chromium 156 only; no export."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "notes": [
@@ -6203,9 +6234,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "playcanvas-capture"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-11",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.24.0",
+            "command": "examples/playcanvas-capture/run.sh",
+            "result": "90 distinct 1280x720 alpha frames at 30 fps; all shuffled hashes equal sequential in two runs; hashes identical across runs; frame 45 alpha min 0 max 1. Playwright 1.64.1, Chromium 156.0.8078.4, Node 22.19.0; screenshot route, WebGL2 context. Contact sheet inspected at native size.",
+            "example": "examples/playcanvas-capture",
+            "scope": "PlayCanvas box, sphere and cylinder set from t per seek, lit, transparent camera; alpha PNG on WebGL2, macOS arm64. No app.start(), WebGPU, splats or scripts."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "notes": [
@@ -6286,7 +6330,12 @@
         "svgjs-capture",
         "regl-capture",
         "twgl-capture",
-        "pts-capture"
+        "pts-capture",
+        "babylonjs-capture",
+        "ogl-capture",
+        "playcanvas-capture",
+        "meshline-capture",
+        "postprocessing-capture"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
@@ -6409,9 +6458,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "postprocessing-capture"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-11",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "6.39.6",
+            "command": "examples/postprocessing-capture/run.sh",
+            "result": "90 distinct 1280x720 frames at 30 fps; all shuffled hashes equal sequential; frame 30 alpha min 0 max 255. postprocessing 6.39.6 with three 0.186.1, Playwright 1.64.1, Chromium 156.0.8078.4, Node 22.19.0; screenshot route. Contact sheet inspected. Alpha min 0 reached only after scene tuning (emissive lowered); a brighter bloom left a faint alpha 2-4 haze.",
+            "example": "examples/postprocessing-capture",
+            "scope": "Bloom+ChromaticAberration EffectPass over three.js (Vignette set, not visibly confirmed); composer.render(0) per seek; deterministic; alpha 0-255 on a tuned scene; no Noise/Glitch; macOS arm64."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "notes": [
@@ -8669,7 +8731,9 @@
       },
       "skill": "skills/three-js/SKILL.md",
       "examples": [
-        "three-capture"
+        "three-capture",
+        "meshline-capture",
+        "postprocessing-capture"
       ],
       "documentation_status": "skill-verified",
       "installation_status": "unknown",
@@ -8790,11 +8854,24 @@
       "install": {
         "macos": "pnpm add three.meshline"
       },
+      "examples": [
+        "meshline-capture"
+      ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-11",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.0.0",
+            "command": "examples/meshline-capture/run.sh",
+            "result": "90 alpha frames at 1280x720, 90 distinct hashes; shuffled order matches sequential; frame 45 alpha min 0 max 1; expected/summary.json diff passed three 0.186.1, Chromium 156.0.8078.4, Playwright 1.64.1, Node 22.19.0, screenshot route.",
+            "example": "examples/meshline-capture",
+            "scope": "MeshLine + MeshLineMaterial lines (lineWidth, color, dashOffset, visibility, rebuilt points) per seek in three.js; headless Chromium, macOS arm64; no pmndrs fork."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "notes": [
