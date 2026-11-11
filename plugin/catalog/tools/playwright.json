@@ -47,7 +47,12 @@
     "canvas2d-capture",
     "pixijs-capture",
     "konva-capture",
-    "twojs-capture"
+    "twojs-capture",
+    "roughjs-capture",
+    "d3-capture",
+    "paperjs-capture",
+    "matterjs-capture",
+    "tweenjs-capture"
   ],
   "notes": [
     "Not in PRD Appendix A; added because the browser-capture spike depends on it.",

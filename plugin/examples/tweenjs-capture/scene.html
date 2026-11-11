@@ -1,0 +1,54 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;overflow:hidden}#stage{display:block;width:1280px;height:720px}</style></head>
+<body><canvas id="stage" width="1280" height="720"></canvas><script src="node_modules/@tweenjs/tween.js/dist/tween.umd.js"></script><script>
+const { Group, Tween, Easing } = TWEEN;
+const context = document.getElementById('stage').getContext('2d');
+const DURATION_S = 3;
+// tween.js applies one repeat or yoyo step per update call, so a single update across a repeat boundary is wrong; step explicitly.
+const STEP_MS = 10;
+
+function buildTweens(group, state) {
+  const move = new Tween(state, group).to({ x: 1120 }, 1000).easing(Easing.Cubic.InOut).yoyo(true).repeat(1);
+  const lift = new Tween(state, group).to({ y: 260 }, 800).easing(Easing.Back.Out);
+  move.chain(lift);
+  move.start(0);
+  new Tween(state, group).to({ radius: 120 }, 2000).easing(Easing.Quadratic.Out).start(0);
+  new Tween(state, group).to({ alpha: 1 }, 3000).easing(Easing.Linear.None).start(0);
+}
+
+function stepGroupTo(group, targetMs) {
+  for (let time = STEP_MS; time < targetMs; time += STEP_MS) group.update(time);
+  group.update(targetMs);
+}
+
+function drawState(state) {
+  context.clearRect(0, 0, 1280, 720);
+  context.lineCap = 'round';
+  context.strokeStyle = '#6bc7f3';
+  context.lineWidth = 8;
+  context.beginPath();
+  context.moveTo(140, 600);
+  context.lineTo(1140, 600);
+  context.stroke();
+  context.strokeStyle = '#c7f36b';
+  context.lineWidth = 10;
+  context.beginPath();
+  context.arc(640, 360, state.radius, 0, 2 * Math.PI);
+  context.stroke();
+  context.globalAlpha = state.alpha;
+  context.fillStyle = '#f3a86b';
+  context.beginPath();
+  context.arc(state.x, state.y, 36, 0, 2 * Math.PI);
+  context.fill();
+  context.globalAlpha = 1;
+}
+
+window.__scene = { duration: DURATION_S, seek(seconds) { requestAnimationFrame(() => {
+  // A fresh group per seek: completed tweens leave the group, so rewinding needs a rebuild.
+  const group = new Group();
+  const state = { x: 140, y: 600, radius: 20, alpha: 0.2 };
+  buildTweens(group, state);
+  stepGroupTo(group, seconds * 1000);
+  drawState(state);
+});}};
+</script></body></html>

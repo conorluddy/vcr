@@ -1,0 +1,37 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;overflow:hidden}svg{display:block;font:20px sans-serif}</style></head>
+<body><svg id="chart" width="1280" height="720"></svg><script src="node_modules/d3/dist/d3.min.js"></script><script>
+const DURATION_S = 3;
+const CATEGORIES = ['A', 'B', 'C', 'D', 'E', 'F'];
+const KEYFRAME_START = { bars: [30, 55, 20, 70, 45, 60], line: [40, 35, 50, 30, 45, 55] };
+const KEYFRAME_END = { bars: [80, 25, 65, 40, 75, 35], line: [70, 60, 30, 65, 20, 50] };
+const PLOT = { left: 120, top: 40, width: 1040, height: 600 };
+const svg = d3.select('#chart');
+const x = d3.scaleBand().domain(CATEGORIES).range([PLOT.left, PLOT.left + PLOT.width]).padding(0.3);
+const y = d3.scaleLinear().domain([0, 100]).range([PLOT.top + PLOT.height, PLOT.top]);
+const barLayer = svg.append('g');
+const lineLayer = svg.append('g');
+const xAxisGroup = svg.append('g').attr('transform', `translate(0,${PLOT.top + PLOT.height})`);
+const yAxisGroup = svg.append('g').attr('transform', `translate(${PLOT.left},0)`);
+function interpolateValues(startValues, endValues, progress) {
+  return startValues.map((start, index) => d3.interpolate(start, endValues[index])(progress));
+}
+function draw(t) {
+  const progress = t / DURATION_S;
+  const barValues = interpolateValues(KEYFRAME_START.bars, KEYFRAME_END.bars, progress);
+  const lineValues = interpolateValues(KEYFRAME_START.line, KEYFRAME_END.line, progress);
+  barLayer.selectAll('rect').data(barValues).join('rect')
+    .attr('x', (_, index) => x(CATEGORIES[index]))
+    .attr('width', x.bandwidth())
+    .attr('y', (value) => y(value))
+    .attr('height', (value) => y(0) - y(value))
+    .attr('fill', '#6bc7f3');
+  const linePoints = lineValues.map((value, index) => [x(CATEGORIES[index]) + x.bandwidth() / 2, y(value)]);
+  lineLayer.selectAll('path').data([linePoints]).join('path')
+    .attr('d', (points) => d3.line()(points))
+    .attr('fill', 'none').attr('stroke', '#f3a86b').attr('stroke-width', 8);
+  xAxisGroup.call(d3.axisBottom(x));
+  yAxisGroup.call(d3.axisLeft(y));
+}
+window.__scene = { duration: DURATION_S, seek(t) { requestAnimationFrame(() => draw(t)); } };
+</script></body></html>

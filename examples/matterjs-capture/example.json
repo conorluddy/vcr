@@ -1,0 +1,22 @@
+{
+  "id": "matterjs-capture",
+  "title": "Matter.js rigid bodies stepped from t with a fixed delta",
+  "summary": "Engine.update at a constant 1000/60 ms, rebuilt and stepped floor(t*60) times per seek; boxes and circles fall onto a static ground; 90 alpha frames at 1280x720, shuffled capture equals sequential.",
+  "status": "validated",
+  "tools": [
+    "imagemagick",
+    "matter-js",
+    "playwright"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-11",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

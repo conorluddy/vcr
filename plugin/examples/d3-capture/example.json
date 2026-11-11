@@ -1,0 +1,22 @@
+{
+  "id": "d3-capture",
+  "title": "D3 bar and line chart seeked from time",
+  "summary": "d3-scale, d3-shape and d3-axis draw an SVG bar-and-line chart; values interpolated with d3.interpolate from t; 90 alpha frames at 1280x720, shuffled capture equals sequential.",
+  "status": "validated",
+  "tools": [
+    "d3",
+    "imagemagick",
+    "playwright"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-11",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
