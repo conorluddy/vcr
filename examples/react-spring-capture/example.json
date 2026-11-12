@@ -1,0 +1,18 @@
+{
+  "id": "react-spring-capture",
+  "title": "react-spring DOM scene with set-driven springs, seeked through a flushed commit",
+  "summary": "animated.div elements from react-spring 10.1.2: closed-form values from t applied with SpringValue.set in a flushSync commit, harness-driven frame loop; 90 alpha frames, shuffled order matches sequential. Spring physics not seeked.",
+  "status": "not-validated",
+  "tools": [
+    "react-spring",
+    "playwright",
+    "imagemagick"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@vcr/example-rapier-capture",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx capture.ts"
+  },
+  "dependencies": {
+    "@dimforge/rapier3d-compat": "0.19.2",
+    "@react-three/fiber": "9.8.2",
+    "@react-three/rapier": "2.2.0",
+    "@vcr/capture": "workspace:*",
+    "playwright": "1.64.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "tsx": "4.23.15"
+  }
+}

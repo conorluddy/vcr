@@ -1647,8 +1647,18 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-12",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "10.7.9",
+            "command": "examples/drei-capture/run.sh",
+            "result": "90 frames at 1280x720, shuffled order matches sequential, distinct hashes, frame 45 alpha 0..1; RoundedBox, Center, Line; @react-three/fiber 9.8.2, react 19.3.1, three 0.186.1, Playwright 1.64.1, Chromium 156.0.8078.4.",
+            "example": "examples/drei-capture",
+            "scope": "RoundedBox, Center, Line in R3F via flushSync + advance; alpha; no Float, Text, Environment or assets; Sparkles unused; macOS arm64, repo-only."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "assessment": {
@@ -1665,7 +1675,10 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "drei-capture"
+      ]
     },
     {
       "id": "dssim",
@@ -3355,7 +3368,13 @@
         "ogl-capture",
         "playcanvas-capture",
         "meshline-capture",
-        "postprocessing-capture"
+        "postprocessing-capture",
+        "react-capture",
+        "drei-capture",
+        "react-postprocessing-capture",
+        "rapier-capture",
+        "react-spring-capture",
+        "motion-capture"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -4955,9 +4974,22 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-12",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "14.12.0",
+            "command": "examples/motion-capture/run.sh",
+            "result": "90 distinct 1280x720 alpha frames at 30 fps; all shuffled hashes equal sequential; frame 45 alpha min 0 max 1. motion 14.12.0 (framer-motion 14.12.0), React 19.3.1, Playwright 1.64.1, Chromium 156.0.8078.4, Node 22.19.0; screenshot route. Idle probe: 0 rAF and 0 performance.now calls per 500 ms after seeks; without stop() the loop runs at 60 Hz. Contact sheet inspected.",
+            "example": "examples/motion-capture",
+            "scope": "motion.div bound to motion values, seeked by stopped animate() controls with .time = t; DOM only, transparent, idle after seek. No layout, springs, gestures, WAAPI or random stagger; macOS arm64."
+          }
+        ]
       },
+      "examples": [
+        "motion-capture"
+      ],
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
@@ -6335,7 +6367,13 @@
         "ogl-capture",
         "playcanvas-capture",
         "meshline-capture",
-        "postprocessing-capture"
+        "postprocessing-capture",
+        "react-capture",
+        "drei-capture",
+        "react-postprocessing-capture",
+        "rapier-capture",
+        "react-spring-capture",
+        "motion-capture"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
@@ -6459,7 +6497,8 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "examples": [
-        "postprocessing-capture"
+        "postprocessing-capture",
+        "react-postprocessing-capture"
       ],
       "validation": {
         "status": "validated",
@@ -7024,12 +7063,25 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-12",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "10.1.2",
+            "command": "examples/react-spring-capture/run.sh",
+            "result": "90 frames at 1280x720, shuffled order matches sequential, distinct hashes, frame 45 alpha 0..1, no page errors; react 19.3.1, esbuild 0.25.12, Playwright 1.64.1, Chromium 156.0.8078.4.",
+            "example": "examples/react-spring-capture",
+            "scope": "animated.div set via SpringValue.set in flushSync from closed-form t; no spring started or seeked, harness-driven frames; macOS arm64, repo-only; spring physics unproven."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "react-spring-capture"
+      ]
     },
     {
       "id": "react-three-fiber",
@@ -7068,12 +7120,23 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-12",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "9.8.2",
+            "command": "examples/react-capture/run.sh",
+            "result": "90 frames at 1280x720, shuffled order matches sequential, distinct hashes, frame 45 alpha 0..1; react 19.3.1, three 0.186.1, esbuild 0.25.12, Playwright 1.64.1, Chromium 156.0.8078.4.",
+            "example": "examples/react-capture",
+            "scope": "R3F Canvas frameloop never, seek via flushSync state + advance, esbuild-bundled TSX; alpha; no events, useFrame clocks or loaded assets; repo-only, macOS arm64."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "notes": [
-        "2026-10-26: frameloop never with advance() for seek-driven capture is from memory of the docs and was not verified."
+        "2026-10-26: frameloop never with advance() for seek-driven capture is from memory of the docs and was not verified.",
+        "2026-11-12: frameloop never with advance() verified in examples/react-capture; flushSync before advance was sufficient."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -7089,7 +7152,13 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "react-capture",
+        "drei-capture",
+        "react-postprocessing-capture",
+        "rapier-capture"
+      ]
     },
     {
       "id": "react-three-postprocessing",
@@ -7128,8 +7197,18 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-12",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.2.2",
+            "command": "examples/react-postprocessing-capture/run.sh",
+            "result": "90 frames at 1280x720, shuffled order matches sequential, 90 distinct hashes, frame 45 alpha min 0 max 1; postprocessing 6.39.6, three 0.186.1, R3F 9.8.2, Playwright 1.64.1, Chromium 156.0.8078.4.",
+            "example": "examples/react-postprocessing-capture",
+            "scope": "R3F EffectComposer, Bloom + ChromaticAberration, seek via flushSync + advance; Bloom leaves alpha haze, not a clean matte; no time-uniform effects (Noise, Glitch); macOS arm64."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "assessment": {
@@ -7149,7 +7228,10 @@
         "2026-10-26: official_url points at the react-postprocessing repo; not independently checked beyond npm metadata."
       ],
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "react-postprocessing-capture"
+      ]
     },
     {
       "id": "react-three-rapier",
@@ -7188,8 +7270,18 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-12",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.2.0",
+            "command": "examples/rapier-capture/run.sh",
+            "result": "90 frames at 1280x720, shuffled order matches sequential (0 mismatched), distinct hashes, frame 45 alpha 0..1; @dimforge/rapier3d-compat 0.19.2, @react-three/fiber 9.8.2, three 0.186.1, react 19.3.1, Playwright 1.64.1, Chromium 156.0.8078.4.",
+            "example": "examples/rapier-capture",
+            "scope": "Paused Rapier world restored from snapshot, stepped 1/60 s per seek; 90 alpha frames, shuffled matches sequential; no joints, events or independent loop; MIT per upstream repo; macOS arm64."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "assessment": {
@@ -7209,7 +7301,10 @@
         "2026-10-26: determinism across runs not tested; npm metadata lists no licence field, MIT taken from the repository page. Borderline on the 12-month maintenance line."
       ],
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "rapier-capture"
+      ]
     },
     {
       "id": "real-esrgan",
@@ -8733,7 +8828,11 @@
       "examples": [
         "three-capture",
         "meshline-capture",
-        "postprocessing-capture"
+        "postprocessing-capture",
+        "react-capture",
+        "drei-capture",
+        "react-postprocessing-capture",
+        "rapier-capture"
       ],
       "documentation_status": "skill-verified",
       "installation_status": "unknown",

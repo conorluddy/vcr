@@ -35,7 +35,8 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "examples": [
-    "postprocessing-capture"
+    "postprocessing-capture",
+    "react-postprocessing-capture"
   ],
   "validation": {
     "status": "validated",
