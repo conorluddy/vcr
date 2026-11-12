@@ -4,7 +4,7 @@ Status: validated on macOS arm64, 2026-11-12. The template for React libraries: 
 
 `capture.ts` bundles `scene.tsx` into `output/bundle/scene.js` (git-ignored) with esbuild, then captures `scene.html` with `captureFrames`. The scene is a React Three Fiber `<Canvas frameloop="never">`. Every transform is a pure function of a `t` state value. `seek(t)` commits `t` with `flushSync`, then calls `advance(t * 1000)` once on the next animation frame, which the harness settles before each screenshot.
 
-Repo-only: outside the repo a `.tsx` scene needs a build that `vcr capture` lacks (follow-up issue).
+Repo-only: outside the repo a `.tsx` scene needs a build that `vcr capture` lacks (#196). `vcr plugin build` skips any example with a `scene.tsx`, and `vcr tools examples` in the plugin links to it on GitHub instead.
 
 ```text
 ./run.sh            # expect: react-capture: OK (~14 fps)

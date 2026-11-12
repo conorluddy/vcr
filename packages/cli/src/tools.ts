@@ -139,13 +139,17 @@ export function readToolGuide(tool: ToolSummary, repositoryRoot: string): Result
   return ok(readFileSync(path, "utf8"));
 }
 
+const REPOSITORY_EXAMPLES_URL = "https://github.com/conorluddy/vcr/tree/main/examples";
+
 /** Tier 3 listing for one tool. */
 export function formatExamplesForTool(tool: ToolSummary, examples: ExampleManifest[]): string {
   const own = examples.filter((example) => example.tools.includes(tool.id));
-  if (own.length === 0) return `No examples list ${tool.id} yet.`;
-  return own
-    .map((example) => [`${example.id} (${example.status}) — ${example.title}`, example.summary ? `  ${example.summary}` : null, `  run: cd ${example.directory} && ${example.run}`, example.report ? `  report: ${example.report}` : null].filter(Boolean).join("\n"))
-    .join("\n\n");
+  const repoOnly = (tool.examples ?? []).filter((id) => !examples.some((example) => example.id === id));
+  if (own.length === 0 && repoOnly.length === 0) return `No examples list ${tool.id} yet.`;
+  const listed = own.map((example) => [`${example.id} (${example.status}) — ${example.title}`, example.summary ? `  ${example.summary}` : null, `  run: cd ${example.directory} && ${example.run}`, example.report ? `  report: ${example.report}` : null].filter(Boolean).join("\n"));
+  // React examples need the repository's esbuild step, so the plugin does not ship them (#196).
+  const notInstalled = repoOnly.map((id) => `${id} (repo-only, not in this install) — ${REPOSITORY_EXAMPLES_URL}/${id}`);
+  return [...listed, ...notInstalled].join("\n\n");
 }
 
 // === PRIVATE HELPERS ===
