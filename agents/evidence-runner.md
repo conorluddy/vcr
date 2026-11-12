@@ -17,6 +17,7 @@ You validate exactly one tool against exactly one claim, given in your brief. Yo
 - Touch only: `examples/<example>/**` and `catalog/tools/<tool>.json`. Never commit `pnpm-lock.yaml`, `examples/README.md`, `catalog/INDEX.md`, `catalog/tools.json`, `catalog/CANDIDATES.md` or anything under `plugin/`. Do not run `vcr catalog build` or `vcr plugin build`.
 - Never substitute another tool or route and credit this one. Never weaken a predeclared check to make it pass.
 - Load a browser library from `node_modules/<package>/...` with a relative `<script>` tag, as the template does. If the package ships no browser build, stop and report `blocked`. Do not add a bundler.
+- React libraries are the one exception: copy `examples/react-capture`, write the scene in `scene.tsx`, and keep its esbuild step in `capture.ts` unchanged. Add no other bundler, plugin or config file. Seek only through props or state committed with `flushSync`, never a library's own clock: R3F `frameloop="never"` + `advance`, react-spring `immediate: true` or `SpringValue.set`, motion `MotionValue.set` or a paused `animate(...)` with `.time = t`, rapier a paused world re-stepped with a fixed step from rest to t. Read `examples/react-capture/README.md` first.
 
 ## Order of work
 

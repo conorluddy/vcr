@@ -3355,7 +3355,8 @@
         "ogl-capture",
         "playcanvas-capture",
         "meshline-capture",
-        "postprocessing-capture"
+        "postprocessing-capture",
+        "react-capture"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -6335,7 +6336,8 @@
         "ogl-capture",
         "playcanvas-capture",
         "meshline-capture",
-        "postprocessing-capture"
+        "postprocessing-capture",
+        "react-capture"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
@@ -7068,12 +7070,23 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-12",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "9.8.2",
+            "command": "examples/react-capture/run.sh",
+            "result": "90 frames at 1280x720, shuffled order matches sequential, distinct hashes, frame 45 alpha 0..1; react 19.3.1, three 0.186.1, esbuild 0.25.12, Playwright 1.64.1, Chromium 156.0.8078.4.",
+            "example": "examples/react-capture",
+            "scope": "R3F Canvas frameloop never, seek via flushSync state + advance, esbuild-bundled TSX; alpha; no events, useFrame clocks or loaded assets; repo-only, macOS arm64."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "notes": [
-        "2026-10-26: frameloop never with advance() for seek-driven capture is from memory of the docs and was not verified."
+        "2026-10-26: frameloop never with advance() for seek-driven capture is from memory of the docs and was not verified.",
+        "2026-11-12: frameloop never with advance() verified in examples/react-capture; flushSync before advance was sufficient."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -7089,7 +7102,10 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "react-capture"
+      ]
     },
     {
       "id": "react-three-postprocessing",
@@ -8733,7 +8749,8 @@
       "examples": [
         "three-capture",
         "meshline-capture",
-        "postprocessing-capture"
+        "postprocessing-capture",
+        "react-capture"
       ],
       "documentation_status": "skill-verified",
       "installation_status": "unknown",

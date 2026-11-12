@@ -83,7 +83,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `rapier` — Rust/WASM 2D and 3D physics with optional cross-platform determinism and world snapshots · physics-simulation
 - `rawtherapee-cli` — Headless RAW development with .pp3 profiles; camera RAW to TIFF or PNG for the pipeline · raw-processing
 - `react-spring` — Physics-based spring animation for React; velocity-aware, not time-seekable · tweening, physics-simulation, react-integration
-- `react-three-fiber` — React renderer for Three.js: declarative JSX scenes with hooks for the frame loop · 3d-rendering, react-integration
+- `react-three-fiber` ✓ — React renderer for Three.js: declarative JSX scenes with hooks for the frame loop · 3d-rendering, react-integration
 - `react-three-postprocessing` — Declarative post effects (bloom, DOF, SSAO, LUTs) for R3F, wrapping postprocessing · effects, react-integration
 - `react-three-rapier` — Rapier physics for R3F as components: bodies, colliders, joints, manual stepping · physics-simulation, react-integration
 - `regl` ✓ — Functional WebGL: declarative draw commands with state as data · shaders, 2d-rendering, 3d-rendering

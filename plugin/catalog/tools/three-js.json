@@ -68,7 +68,8 @@
   "examples": [
     "three-capture",
     "meshline-capture",
-    "postprocessing-capture"
+    "postprocessing-capture",
+    "react-capture"
   ],
   "documentation_status": "skill-verified",
   "installation_status": "unknown",
