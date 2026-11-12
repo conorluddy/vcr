@@ -42,9 +42,10 @@ describe("buildPlugin", () => {
     }
   });
 
-  test("leaves out node_modules and output from example sources", () => {
+  test("leaves out node_modules, output and repo-only (scene.tsx) examples", () => {
     expect(existsSync(join(directory, "examples/three-capture/scene.html"))).toBe(true);
     expect(existsSync(join(directory, "examples/three-capture/node_modules"))).toBe(false);
     expect(existsSync(join(directory, "examples/three-capture/output"))).toBe(false);
+    expect(existsSync(join(directory, "examples/react-capture"))).toBe(false);
   });
 });

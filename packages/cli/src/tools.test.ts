@@ -124,4 +124,9 @@ describe("formatExamplesForTool", () => {
     expect(listing).toContain("run: cd examples/a && ./run.sh");
     expect(listing).not.toContain("b (");
   });
+
+  test("names examples the tool record cites that this install does not ship", () => {
+    const listing = formatExamplesForTool(tool("drei", { examples: ["drei-capture"] }), []);
+    expect(listing).toContain("drei-capture (repo-only, not in this install) — https://github.com/conorluddy/vcr/tree/main/examples/drei-capture");
+  });
 });

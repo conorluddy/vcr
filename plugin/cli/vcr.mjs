@@ -9555,10 +9555,14 @@ function readToolGuide(tool, repositoryRoot) {
   if (!existsSync7(path)) return fail("GUIDE_MISSING", `${tool.skill} is referenced by ${tool.id} but does not exist.`);
   return ok(readFileSync6(path, "utf8"));
 }
+var REPOSITORY_EXAMPLES_URL = "https://github.com/conorluddy/vcr/tree/main/examples";
 function formatExamplesForTool(tool, examples) {
   const own = examples.filter((example) => example.tools.includes(tool.id));
-  if (own.length === 0) return `No examples list ${tool.id} yet.`;
-  return own.map((example) => [`${example.id} (${example.status}) \u2014 ${example.title}`, example.summary ? `  ${example.summary}` : null, `  run: cd ${example.directory} && ${example.run}`, example.report ? `  report: ${example.report}` : null].filter(Boolean).join("\n")).join("\n\n");
+  const repoOnly = (tool.examples ?? []).filter((id) => !examples.some((example) => example.id === id));
+  if (own.length === 0 && repoOnly.length === 0) return `No examples list ${tool.id} yet.`;
+  const listed = own.map((example) => [`${example.id} (${example.status}) \u2014 ${example.title}`, example.summary ? `  ${example.summary}` : null, `  run: cd ${example.directory} && ${example.run}`, example.report ? `  report: ${example.report}` : null].filter(Boolean).join("\n"));
+  const notInstalled = repoOnly.map((id) => `${id} (repo-only, not in this install) \u2014 ${REPOSITORY_EXAMPLES_URL}/${id}`);
+  return [...listed, ...notInstalled].join("\n\n");
 }
 function readinessText(tool, machine, project) {
   if (tool.installation_status === "not-applicable") return "no install needed";
@@ -9764,7 +9768,8 @@ function buildPlugin(harnessRoot, outputDirectory = join13(harnessRoot, PLUGIN_D
     if (existsSync11(join13(harnessRoot, "skills", skill, "SKILL.md"))) cpSync2(join13(harnessRoot, "skills", skill), join13(outputDirectory, "skills", skill), { recursive: true });
   }
   cpSync2(join13(harnessRoot, "agents"), join13(outputDirectory, "agents"), { recursive: true });
-  cpSync2(join13(harnessRoot, "examples"), join13(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename2(source)) });
+  const examplesRoot = join13(harnessRoot, "examples");
+  cpSync2(examplesRoot, join13(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename2(source)) && !isRepoOnlyExample(examplesRoot, source) });
   writeManifests(outputDirectory, version.value);
   writeFileSync7(join13(outputDirectory, "README.md"), PLUGIN_README);
   const cliReference = renderCliReference();
@@ -9808,6 +9813,9 @@ function listPillarReferences(harnessRoot) {
   const referencesDirectory = join13(harnessRoot, "references");
   if (!existsSync11(referencesDirectory)) return [];
   return readdirSync5(referencesDirectory, { withFileTypes: true }).filter((entry) => entry.isDirectory() && !NON_PILLAR_REFERENCES.has(entry.name) && existsSync11(join13(referencesDirectory, entry.name, "README.md"))).map((entry) => entry.name).sort();
+}
+function isRepoOnlyExample(examplesRoot, source) {
+  return relative4(examplesRoot, source).split(/[\\/]/).length === 1 && existsSync11(join13(source, "scene.tsx"));
 }
 function bundleCli(harnessRoot, outfile) {
   const esbuild = createRequire3(import.meta.url)("esbuild");

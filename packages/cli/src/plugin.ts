@@ -66,7 +66,8 @@ export function buildPlugin(harnessRoot: string, outputDirectory = join(harnessR
     if (existsSync(join(harnessRoot, "skills", skill, "SKILL.md"))) cpSync(join(harnessRoot, "skills", skill), join(outputDirectory, "skills", skill), { recursive: true });
   }
   cpSync(join(harnessRoot, "agents"), join(outputDirectory, "agents"), { recursive: true });
-  cpSync(join(harnessRoot, "examples"), join(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename(source)) });
+  const examplesRoot = join(harnessRoot, "examples");
+  cpSync(examplesRoot, join(outputDirectory, "examples"), { recursive: true, filter: (source) => !SKIPPED_DIRECTORIES.has(basename(source)) && !isRepoOnlyExample(examplesRoot, source) });
   writeManifests(outputDirectory, version.value);
   writeFileSync(join(outputDirectory, "README.md"), PLUGIN_README);
   const cliReference = renderCliReference();
@@ -124,6 +125,11 @@ export function listPillarReferences(harnessRoot: string): string[] {
 }
 
 // === PRIVATE HELPERS ===
+
+/** A top-level example with a `scene.tsx` needs the repo's esbuild step, which `vcr capture` lacks (#196), so the plugin does not ship it. */
+function isRepoOnlyExample(examplesRoot: string, source: string): boolean {
+  return relative(examplesRoot, source).split(/[\\/]/).length === 1 && existsSync(join(source, "scene.tsx"));
+}
 
 function bundleCli(harnessRoot: string, outfile: string): Result<string> {
   // esbuild is a maintainer-only dev dependency: required lazily so the bundle never needs it.
