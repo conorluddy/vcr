@@ -63,7 +63,12 @@
     "playcanvas-capture",
     "meshline-capture",
     "postprocessing-capture",
-    "react-capture"
+    "react-capture",
+    "drei-capture",
+    "react-postprocessing-capture",
+    "rapier-capture",
+    "react-spring-capture",
+    "motion-capture"
   ],
   "notes": [
     "Not in PRD Appendix A; added because the browser-capture spike depends on it.",

@@ -35,8 +35,18 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-12",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.2.2",
+        "command": "examples/react-postprocessing-capture/run.sh",
+        "result": "90 frames at 1280x720, shuffled order matches sequential, 90 distinct hashes, frame 45 alpha min 0 max 1; postprocessing 6.39.6, three 0.186.1, R3F 9.8.2, Playwright 1.64.1, Chromium 156.0.8078.4.",
+        "example": "examples/react-postprocessing-capture",
+        "scope": "R3F EffectComposer, Bloom + ChromaticAberration, seek via flushSync + advance; Bloom leaves alpha haze, not a clean matte; no time-uniform effects (Noise, Glitch); macOS arm64."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "assessment": {
@@ -56,5 +66,8 @@
     "2026-10-26: official_url points at the react-postprocessing repo; not independently checked beyond npm metadata."
   ],
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "examples": [
+    "react-postprocessing-capture"
+  ]
 }

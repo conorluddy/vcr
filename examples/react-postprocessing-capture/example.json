@@ -1,0 +1,25 @@
+{
+  "id": "react-postprocessing-capture",
+  "title": "R3F scene through react-three/postprocessing EffectComposer with Bloom and ChromaticAberration",
+  "summary": "Bloom and ChromaticAberration in an EffectComposer over an R3F scene, bundled by esbuild, seeked through a flushed prop with advance; 90 frames, shuffled order matches sequential; alpha haze under Bloom.",
+  "status": "validated",
+  "tools": [
+    "react-three-postprocessing",
+    "react-three-fiber",
+    "three-js",
+    "postprocessing",
+    "playwright",
+    "imagemagick"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-12",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

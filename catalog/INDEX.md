@@ -39,7 +39,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `d3` ✓ — Data-driven scales, layouts and shapes; use its geometry, not its transitions · data-visualisation, vector-authoring, svg-animation
 - `deck-gl` — WebGL layers for large geospatial and point-cloud data; view state as props · geospatial, data-visualisation
 - `dotlottie` — .lottie container plus ThorVG WASM canvas player with frame seeking · asset-playback
-- `drei` — Helper components for React Three Fiber: controls, loaders, text, environments · 3d-rendering, react-integration, model-loading
+- `drei` ✓ — Helper components for React Three Fiber: controls, loaders, text, environments · 3d-rendering, react-integration, model-loading
 - `fabric-js` ✓ — Canvas object model with selection, serialisation and SVG import/export · 2d-rendering, vector-authoring
 - `ffmpeg-wasm` — FFmpeg compiled to WebAssembly for in-browser transcodes; slower, size-limited · video-encoding, media-inspection, audio
 - `g-mic` — CLI filter language with ~1000 procedural filters; stylised and generative looks · image-processing, effects
@@ -62,7 +62,7 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `mediabunny-server-extension` — Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno · video-encoding, audio
 - `mermaid-cli` — Text diagrams (flowchart, sequence, gantt) to SVG/PNG via headless Chromium · diagram-generation, vector-authoring
 - `mlt-melt` — MLT multitrack framework with melt CLI and XML projects; the engine behind Kdenlive and Shotcut · video-composition, video-encoding, audio
-- `motion` — Motion (ex Framer Motion): hybrid JS/React animation, springs, layout and scroll · tweening, react-integration, svg-animation
+- `motion` ✓ — Motion (ex Framer Motion): hybrid JS/React animation, springs, layout and scroll · tweening, react-integration, svg-animation
 - `motion-canvas` — TypeScript generator-based 2D animation editor and renderer for explainers · timeline-animation, 2d-rendering, video-encoding
 - `msdfgen` — Signed distance-field generation · sdf-generation, font-processing
 - `ogl` ✓ — Tiny zero-dependency WebGL library with a Three.js-like API, about 29 KB · 3d-rendering, shaders
@@ -82,10 +82,10 @@ Tiers: core = operational target with a skill and example; catalogued = real opt
 - `pyscenedetect` — Shot boundary detection CLI and Python library over OpenCV; splits video via FFmpeg · shot-detection, media-inspection, computer-vision
 - `rapier` — Rust/WASM 2D and 3D physics with optional cross-platform determinism and world snapshots · physics-simulation
 - `rawtherapee-cli` — Headless RAW development with .pp3 profiles; camera RAW to TIFF or PNG for the pipeline · raw-processing
-- `react-spring` — Physics-based spring animation for React; velocity-aware, not time-seekable · tweening, physics-simulation, react-integration
+- `react-spring` ◐ — Physics-based spring animation for React; velocity-aware, not time-seekable · tweening, physics-simulation, react-integration
 - `react-three-fiber` ✓ — React renderer for Three.js: declarative JSX scenes with hooks for the frame loop · 3d-rendering, react-integration
-- `react-three-postprocessing` — Declarative post effects (bloom, DOF, SSAO, LUTs) for R3F, wrapping postprocessing · effects, react-integration
-- `react-three-rapier` — Rapier physics for R3F as components: bodies, colliders, joints, manual stepping · physics-simulation, react-integration
+- `react-three-postprocessing` ✓ — Declarative post effects (bloom, DOF, SSAO, LUTs) for R3F, wrapping postprocessing · effects, react-integration
+- `react-three-rapier` ✓ — Rapier physics for R3F as components: bodies, colliders, joints, manual stepping · physics-simulation, react-integration
 - `regl` ✓ — Functional WebGL: declarative draw commands with state as data · shaders, 2d-rendering, 3d-rendering
 - `remotion` — React-component video renderer with CLI and Lambda; company licence above 3 employees · video-composition, video-encoding, react-integration, capture
 - `resvg` ✓ — Static SVG rasterisation · svg-rasterisation · guide
