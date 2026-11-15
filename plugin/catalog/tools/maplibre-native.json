@@ -1,0 +1,53 @@
+{
+  "id": "maplibre-native",
+  "name": "MapLibre Native",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "GPU-accelerated C++ vector-tile map rendering SDK for native applications",
+  "official_url": "https://github.com/maplibre/maplibre-native",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "geospatial",
+    "2d-rendering"
+  ],
+  "notes": [
+    "2026-11-15: Assess because stateless map-frame rendering could make camera paths usable as frame sequences without browser capture. Revisit after verifying the CLI/binding and local tile, glyph and sprite inputs.",
+    "2026-11-15: Assessment uncertainty: official pages read did not establish release recency; verify a headless rendering automation route and current release history before promotion."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-15",
+  "source": "prospects/inbox/2026-11-03-discovery.md",
+  "summary": "Native library for rendering vector-tile maps in mobile and desktop applications using GPU acceleration. The official project documents platform SDK integration; a general headless frame-rendering CLI route was not established.",
+  "use_when": [
+    "Embed interactive vector-tile maps in a native application",
+    "Use its platform SDK when browser map rendering is unsuitable"
+  ],
+  "avoid_when": [
+    "Use MapLibre GL JS for browser-based map scenes and capture",
+    "Use a static map renderer when you need a documented batch CLI"
+  ],
+  "pairs_with": [],
+  "license": "BSD-2-Clause",
+  "install": {
+    "macos": "Build for the target platform using the official platform-specific instructions and toolchain",
+    "check_command": "Not applicable; no general CLI documented"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "assessment_batch_a",
+    "version_seen": "Current repository documentation; release version/date not confirmed",
+    "last_release": "unknown (release date not established from pages read)",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official project documents an actively scoped native SDK and BSD-2-Clause licence, but the pages read do not establish a general CLI or headless frame-rendering path. Release recency is unverified; retain as a candidate pending automation evidence.",
+    "sources": [
+      "https://github.com/maplibre/maplibre-native"
+    ]
+  }
+}

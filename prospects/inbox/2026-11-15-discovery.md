@@ -14,7 +14,7 @@ Stars, licences and last-push dates come from GitHub search metadata on the run 
 ## Leads
 
 ### 🆕 new category: app-preview and device capture — Frames CLI (`frames-cli`) — strong candidate
-- [x] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/viticci/frames-cli
 - Role: adds Apple device bezels to screenshots and screen recordings from the command line. It auto-detects the device from the pixel size and supports colours, merging several shots, batch runs, `--alpha` output and HEVC-with-alpha video.
 - Category: new category "app-preview and device capture". `sim-use` (2026-11-02) and `baguette` (2026-11-14) proposed it; it is not yet in the catalogue.
@@ -28,7 +28,7 @@ Stars, licences and last-push dates come from GitHub search metadata on the run 
 - Found via: GitHub keyword search "device frame screenshot".
 
 ### dawn.node / `webgpu` on npm (`dawn-node-webgpu`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/dawn-gpu/node-webgpu (upstream: https://dawn.googlesource.com/dawn/+/refs/heads/main/src/dawn/node/)
 - Role: Google Dawn's WebGPU implementation as a Node.js addon. It gives Node `navigator.gpu`, so you can render to textures and read them back, or run compute shaders, with no browser.
 - Category: A3. 3D, shaders and effects.
@@ -42,7 +42,7 @@ Stars, licences and last-push dates come from GitHub search metadata on the run 
 - Found via: GitHub topic search `wgsl`.
 
 ### TanStack Charts (`tanstack-charts`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/TanStack/charts
 - Role: a TypeScript visualisation grammar. A chart definition compiles to a renderer-neutral, keyed scene, which renders as static SVG on the server, in the DOM or on Canvas. Animation and accessibility are built in.
 - Category: A4. Vector, typography, diagrams and stills.
@@ -56,7 +56,7 @@ Stars, licences and last-push dates come from GitHub search metadata on the run 
 - Found via: GitHub topic search `data-visualization` + `svg`.
 
 ### Stabilo (`stabilo`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/rfonod/stabilo
 - Role: Python library and CLI (`stabilo video`, `stabilo tracks`) that registers every frame of a video to one chosen reference frame, using homography or affine registration with exclusion masks for moving objects. It can also stabilise tracked object trajectories.
 - Category: A5. Video and capture. It fills the lower-priority gap for stabilisation and proxies.
@@ -70,7 +70,7 @@ Stars, licences and last-push dates come from GitHub search metadata on the run 
 - Found via: GitHub topic search `video-stabilization`.
 
 ### generativepy (`generativepy`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/martinmcbride/generativepy (docs: https://generativepy.com)
 - Role: Python library for generative art, maths graphs and animations. It draws frames with Pycairo and writes video through moviepy, and includes graph axes, formula rendering and colour schemes.
 - Category: A1. Creative coding and 2D.
@@ -84,7 +84,7 @@ Stars, licences and last-push dates come from GitHub search metadata on the run 
 - Found via: GitHub topic search `generative-art` + `python`.
 
 ### vedo (`vedo`) — worth cataloguing
-- [x] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/marcomusy/vedo
 - Role: Python module on VTK and NumPy for building, analysing and rendering 3D meshes, volumes and point clouds, with offscreen screenshots and video export.
 - Category: A8. Physics, audio and 3D assets.
@@ -98,7 +98,7 @@ Stars, licences and last-push dates come from GitHub search metadata on the run 
 - Found via: GitHub topic search `mesh` + `python`.
 
 ### HyperWeave (`hyperweave`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/InnerAura/hyperweave
 - Role: takes a structured spec (diagram topologies such as pipeline, DAG, state machine and sequence, plus charts and tables) and writes a self-contained SVG with optional SMIL motion, with the spec and a hash digest embedded. Has a CLI, an HTTP server and an MCP server.
 - Category: A4. Vector, typography, diagrams and stills.
@@ -112,7 +112,7 @@ Stars, licences and last-push dates come from GitHub search metadata on the run 
 - Found via: GitHub topic search `data-visualization` + `svg`.
 
 ### CCExtractor (`ccextractor`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://www.ccextractor.org (repo: https://github.com/CCExtractor/ccextractor)
 - Role: extracts embedded closed captions (CEA-608/708, DVB, teletext) from video files into SRT, WebVTT and other formats. Tesseract OCR handles bitmap subtitles.
 - Category: A5. Video and capture. It fits the caption-standards gap.
@@ -126,7 +126,7 @@ Stars, licences and last-push dates come from GitHub search metadata on the run 
 - Found via: GitHub topic search `subtitles`.
 
 ### wesl-rs (`wesl`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/webgpu-tools/wesl-rs (spec: https://github.com/webgpu-tools/wesl-spec)
 - Role: compiler for WESL, a superset of WGSL with imports, conditional compilation and modules. It turns shared shader modules into plain WGSL.
 - Category: A3. 3D, shaders and effects.

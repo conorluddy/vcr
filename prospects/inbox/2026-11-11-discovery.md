@@ -11,7 +11,7 @@ Summary line: 10 leads (0 in new categories; 3 join categories proposed in earli
 
 ## Leads
 ### VlConvert (`vl-convert`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/vega/vl-convert
 - Role: converts Vega-Lite and Vega chart specs to SVG, PNG, JPEG, PDF or HTML from a CLI, a Python package or a Rust crate, with no browser and no Node (Vega runs in an embedded V8). Also converts SVG to PNG/JPEG/PDF.
 - Category: A4. Vector, typography, diagrams and stills.
@@ -25,7 +25,7 @@ Summary line: 10 leads (0 in new categories; 3 join categories proposed in earli
 - Found via: reverse dependencies of `resvg` on crates.io (`vl-convert-rs`).
 
 ### Typst (`typst`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/typst/typst
 - Role: markup-based typesetting system with a single-binary CLI that compiles documents to PDF, PNG or SVG (output formats from prior knowledge of the project, not re-read this run).
 - Category: A4. Vector, typography, diagrams and stills.
@@ -39,7 +39,7 @@ Summary line: 10 leads (0 in new categories; 3 join categories proposed in earli
 - Found via: GitHub topic search (typesetting) surfaced Typst tooling; `typst-render` also depends on `resvg`.
 
 ### mermaid-rs-renderer (`mermaid-rs-renderer`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/1jehuang/mermaid-rs-renderer
 - Role: native Rust renderer for Mermaid diagrams (23 diagram types) to SVG or PNG; CLI `mmdr`, no browser.
 - Category: A4. Vector, typography, diagrams and stills.
@@ -53,7 +53,7 @@ Summary line: 10 leads (0 in new categories; 3 join categories proposed in earli
 - Found via: reverse dependencies of `resvg` on crates.io.
 
 ### three-globe (`three-globe`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/vasturiano/three-globe
 - Role: a globe as a Three.js object with data layers: points, arcs, polygons, paths, hex bins, heatmaps, tiles, rings, labels and custom objects.
 - Category: maps and geo motion (proposed 2026-11-01 via `pmtiles`); otherwise A3. 3D, shaders and effects.
@@ -67,7 +67,7 @@ Summary line: 10 leads (0 in new categories; 3 join categories proposed in earli
 - Found via: GitHub topic search (globe).
 
 ### heerich (`heerich`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/meodai/heerich
 - Role: small JavaScript engine that builds voxel scenes with boolean operations and renders them to SVG under oblique, isometric, orthographic or perspective cameras.
 - Category: A4. Vector, typography, diagrams and stills.
@@ -81,7 +81,7 @@ Summary line: 10 leads (0 in new categories; 3 join categories proposed in earli
 - Found via: GitHub topic search (generative-art).
 
 ### OSM2World (`osm2world`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/tordanik/OSM2World
 - Role: converts OpenStreetMap data into 3D models of buildings, roads and terrain, exported as glTF/GLB, OBJ, POV-Ray or 3D Tiles.
 - Category: maps and geo motion (proposed 2026-11-01); otherwise A8. Physics, audio and 3D assets.
@@ -95,7 +95,7 @@ Summary line: 10 leads (0 in new categories; 3 join categories proposed in earli
 - Found via: GitHub topic search (gltf).
 
 ### cadmpeg (`cadmpeg`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/cadmpeg/cadmpeg
 - Role: CLI that inspects, measures, diffs and converts native CAD files (Fusion 360, SolidWorks, Inventor, Rhino, FreeCAD, CATIA, IGES, OpenUSD and more) to STEP.
 - Category: A8. Physics, audio and 3D assets.
@@ -109,7 +109,7 @@ Summary line: 10 leads (0 in new categories; 3 join categories proposed in earli
 - Found via: GitHub topic search (cad).
 
 ### agent-screenplay (`agent-screenplay`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/gmpetrov/agent-screenplay
 - Role: plays a JSON scenario against a website (Playwright, headless Chromium) or a desktop app and edits the take into an MP4 with cursor smoothing, zooms, callouts and captions; also writes a storyboard PNG per take.
 - Category: app-preview and device capture (proposed 2026-11-02 via `sim-use`); otherwise A5. Video and capture.
@@ -123,7 +123,7 @@ Summary line: 10 leads (0 in new categories; 3 join categories proposed in earli
 - Found via: GitHub topic search (screen-recording).
 
 ### sand3d (`sand3d`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/Sandflow-ai/sand3d
 - Role: Python library for writing 3D objects as short programs over Blender's `bpy` module, exporting GLB, USD, OBJ, STL, URDF and IFC.
 - Category: A8. Physics, audio and 3D assets.
@@ -137,7 +137,7 @@ Summary line: 10 leads (0 in new categories; 3 join categories proposed in earli
 - Found via: GitHub topic search (cad).
 
 ### Context Free (`context-free`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/MtnViewJohn/context-free
 - Role: `cfdg` CLI that renders images from a context-free shape grammar.
 - Category: A1. Creative coding and 2D.

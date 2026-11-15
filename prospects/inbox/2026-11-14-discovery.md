@@ -14,7 +14,7 @@ Stars and last-push dates come from GitHub search metadata. Versions and dates c
 ## Leads
 
 ### 🆕 new category: app-preview and device capture — baguette (`baguette`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/tddworks/baguette (docs: https://tddworks.github.io/baguette/)
 - Role: headless control of Apple's iOS Simulators from a CLI: boot, tap, swipe, multi-finger gestures, accessibility-tree reads, `screenshot` and `record`, with an output-size option for App Store dimensions.
 - Category: new category "app-preview and device capture". The category was proposed by `sim-use` (2026-11-02 digest) and is not yet in the catalogue.
@@ -28,7 +28,7 @@ Stars and last-push dates come from GitHub search metadata. Versions and dates c
 - Found via: GitHub topic search `simulator` + `ios` + `cli`.
 
 ### claude-real-video (`claude-real-video`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/HUANGCHIHHUNGLeo/claude-real-video
 - Role: turns a video into keyframes chosen by scene change, with a density floor and dedupe, plus `frames.json` timestamps, a transcript and optional 3×3 contact-sheet grids (`--grid`). Has a CLI (`crv`), a Python API and an MCP server (`crv-mcp`).
 - Category: A5. Video and capture. It fits the lower-priority gap "agent-facing visual review (contact sheets, frame sampling, MCP servers)".
@@ -42,7 +42,7 @@ Stars and last-push dates come from GitHub search metadata. Versions and dates c
 - Found via: GitHub topic search `ffmpeg` + `cli`.
 
 ### Pymunk (`pymunk`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://www.pymunk.org/ (repo: https://github.com/viblo/pymunk)
 - Role: Python 2D rigid-body physics on Chipmunk2D, stepped manually with a fixed `dt`. Space state can be copied and pickled.
 - Category: A8. Physics, audio and 3D assets.
@@ -56,7 +56,7 @@ Stars and last-push dates come from GitHub search metadata. Versions and dates c
 - Found via: GitHub topic search `physics-simulation` + `python`.
 
 ### Salva (`salva`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/dimforge/salva
 - Role: 2D and 3D particle-based (SPH) fluid simulation library in Rust, from the same organisation as Rapier, with optional Rapier coupling.
 - Category: A8. Physics, audio and 3D assets. It joins the proposed "fluid / particle simulation" grouping from `splishsplash` (inbox).
@@ -70,7 +70,7 @@ Stars and last-push dates come from GitHub search metadata. Versions and dates c
 - Found via: GitHub topic search `sph`.
 
 ### colour-science (`colour-science`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://www.colour-science.org/ (repo: https://github.com/colour-science/colour)
 - Role: Python library of colour-science algorithms covering colour-space conversions, colour-difference (ΔE) metrics, transfer functions and colour appearance models.
 - Category: A6. Image processing and colour.
@@ -84,7 +84,7 @@ Stars and last-push dates come from GitHub search metadata. Versions and dates c
 - Found via: GitHub topic search `color-science`.
 
 ### drawsvg (`drawsvg`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/cduck/drawsvg
 - Role: Python library that writes SVG programmatically. It supports SVG-native (SMIL-style) animation and frame-by-frame export to GIF, MP4 or a PNG spritesheet.
 - Category: A4. Vector, typography, diagrams and stills.
@@ -98,7 +98,7 @@ Stars and last-push dates come from GitHub search metadata. Versions and dates c
 - Found via: GitHub topic search `svg` + `animation`.
 
 ### termframe (`termframe`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/pamburus/termframe
 - Role: non-interactive terminal emulator. It runs one command in a virtual session and writes the output as an SVG screenshot, with themes, ANSI and truecolour support, and optional font embedding.
 - Category: A4. Vector, typography, diagrams and stills.
@@ -112,7 +112,7 @@ Stars and last-push dates come from GitHub search metadata. Versions and dates c
 - Found via: GitHub topic search `screenshot` + `cli`.
 
 ### FontCollector (`fontcollector`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/moi15moi/FontCollector
 - Role: CLI that finds and collects the fonts an ASS subtitle file references, and can mux them as attachments, so styled subtitles render the same on another machine.
 - Category: A5. Video and capture (subtitle delivery).
@@ -126,7 +126,7 @@ Stars and last-push dates come from GitHub search metadata. Versions and dates c
 - Found via: GitHub topic search `variable-fonts`.
 
 ### GeoVista (`geovista`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/bjlittle/geovista
 - Role: cartographic rendering and mesh analytics on PyVista/VTK. It renders globes, projections and geospatial meshes, with off-screen screenshots through PyVista.
 - Category: joins proposed category "maps and geo motion" (`pmtiles`, `planetiler`, `maplibre-native` in the inbox).

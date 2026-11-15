@@ -13,7 +13,7 @@ Summary line: 5 leads (1 in a new category). Third W45 run; earlier digests alre
 ## Leads
 
 ### dovi_tool + hdr10plus_tool (`dovi-tool`) — 🆕 new category: HDR delivery metadata — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/quietvoid/dovi_tool (companion: https://github.com/quietvoid/hdr10plus_tool)
 - Role: Rust CLIs that inspect, generate, convert, extract and inject Dolby Vision RPU and HDR10+ dynamic metadata in HEVC streams; both can plot metadata to PNG.
 - Category: new category: HDR delivery metadata.
@@ -28,7 +28,7 @@ Summary line: 5 leads (1 in a new category). Third W45 run; earlier digests alre
 - Found via: WebSearch (HDR metadata CLI)
 
 ### Kinocut, formerly mcp-video (`kinocut`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/KyaniteLabs/kinocut
 - Role: guardrailed FFmpeg video-editing MCP server, Python library and `kino` CLI (trim, caption, resize, repurpose) with preflight checks, provenance receipts and quality gates before export.
 - Category: existing (video-encoding / agent-facing review); agent-facing tooling.
@@ -43,7 +43,7 @@ Summary line: 5 leads (1 in a new category). Third W45 run; earlier digests alre
 - Found via: WebSearch (MCP servers for video editing)
 
 ### MCP for Blender (`blender-mcp`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/ahujasid/blender-mcp (page title reads "mcp-for-blender")
 - Role: Blender addon with a socket server plus an MCP server so agents run Blender Python, inspect scenes, check viewport/render and import assets (Poly Haven, Sketchfab).
 - Category: existing (3d-rendering / native-authoring); agent-facing tooling.
@@ -58,7 +58,7 @@ Summary line: 5 leads (1 in a new category). Third W45 run; earlier digests alre
 - Found via: WebSearch (MCP servers for Blender)
 
 ### Gyroflow (`gyroflow`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/gyroflow/gyroflow
 - Role: gyroscope-based video stabilisation with a CLI (`--preset`, `--export-metadata`, `--export-stmap`) and a watch-folder mode.
 - Category: new category candidate: stabilisation / footage prep (single lead, so filed as existing video-processing for now).
@@ -73,7 +73,7 @@ Summary line: 5 leads (1 in a new category). Third W45 run; earlier digests alre
 - Found via: WebSearch (video stabilisation CLI)
 
 ### threejs-particle-fluids (`threejs-particle-fluids`) — joins proposed category "fluid / particle simulation" — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/dgreenheck/threejs-particle-fluids
 - Role: WebGPU particle physics for three.js: liquids, soft bodies, cloth and smoke, with a `Simulation` class and renderer.
 - Category: joins proposed "fluid / particle simulation" (see `splishsplash` in the 2026-11-01 digest).

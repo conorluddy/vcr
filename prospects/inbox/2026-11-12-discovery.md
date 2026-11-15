@@ -14,7 +14,7 @@ Release dates below carry the year 2026 by inference: GitHub's release pages omi
 ## Leads
 
 ### ThorVG (`thorvg`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/thorvg/thorvg
 - Role: C++ vector graphics engine that renders SVG and Lottie without a browser, with a software (CPU/SIMD) backend plus OpenGL/ES, WebGL and WebGPU.
 - Category: A4. Vector, typography, diagrams and stills (also touches A2 through Lottie).
@@ -28,7 +28,7 @@ Release dates below carry the year 2026 by inference: GitHub's release pages omi
 - Found via: GitHub topic `lottie`.
 
 ### GL Transitions (`gl-transitions`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/gl-transitions/gl-transitions
 - Role: open collection of 100+ GLSL transitions between two images, written to one small spec: `vec4 transition(vec2 uv)` with `progress` (0 to 1), `ratio`, `getFromColor` and `getToColor`.
 - Category: A3. 3D, shaders and effects.
@@ -42,7 +42,7 @@ Release dates below carry the year 2026 by inference: GitHub's release pages omi
 - Found via: GitHub topic `glsl`.
 
 ### lutgen (`lutgen`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/ozwaldorf/lutgen-rs
 - Role: Rust CLI and crate that generates interpolated Hald CLUTs for an arbitrary colour palette and applies them to images.
 - Category: A6. Image processing and colour.
@@ -56,7 +56,7 @@ Release dates below carry the year 2026 by inference: GitHub's release pages omi
 - Found via: GitHub topic `color-grading`.
 
 ### Color.js (`color-js`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/color-js/color.js
 - Role: colour conversion and manipulation library by the editors of the CSS Color specifications: wide-gamut spaces (OKLab/OKLCH, Display P3, Rec. 2020), interpolation, gamut mapping and DeltaE (76, CMC, 2000, Jz).
 - Category: A6. Image processing and colour.
@@ -70,7 +70,7 @@ Release dates below carry the year 2026 by inference: GitHub's release pages omi
 - Found via: GitHub topic `color-palette`.
 
 ### chiitiler (`chiitiler`) — worth cataloguing (joins proposed category "maps and geo motion")
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/Kanahiro/chiitiler
 - Role: small Node raster renderer for MapLibre styles. Beyond tiles it renders a still for an explicit camera (`/camera/{zoom}/{lat}/{lon}/{bearing}/{pitch}/{width}x{height}.{ext}`) or bounding box (`/clip.{ext}`), and exposes `getRenderedCameraBuffer` and `getRenderedClipBuffer` as library calls.
 - Category: joins proposed category "maps and geo motion".
@@ -84,7 +84,7 @@ Release dates below carry the year 2026 by inference: GitHub's release pages omi
 - Found via: GitHub topic `vector-tiles`.
 
 ### ExifTool (`exiftool`) — worth cataloguing (joins proposed category "provenance and metadata")
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/exiftool/exiftool
 - Role: Perl CLI and library that reads and writes EXIF, IPTC, XMP and container metadata across image and video formats.
 - Category: joins proposed category "provenance and metadata".
@@ -98,7 +98,7 @@ Release dates below carry the year 2026 by inference: GitHub's release pages omi
 - Found via: GitHub topics `exif` and `xmp` (through the `exiftool-vendored.js` wrapper).
 
 ### lottie-converter (`lottie-converter`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/ed-asriyan/lottie-converter
 - Role: CLI scripts that convert Lottie JSON (and Telegram `.tgs`) to PNG frames, GIF, APNG, WebP or WebM with `--width`, `--height`, `--fps`, `--quality` and `--background`.
 - Category: A2. Animation and authored assets.
@@ -112,7 +112,7 @@ Release dates below carry the year 2026 by inference: GitHub's release pages omi
 - Found via: GitHub topic `lottie`.
 
 ### BeatScope (`beatscope`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/chosuicide/beatscope
 - Role: local music analysis for video timing: beats, bars, tempo changes, onsets (unsnapped), energy changes, LOW/MID/HIGH spectral activity and repeated sections, exported as `rhythm-map.json`, MIDI and CSV.
 - Category: A8. Physics, audio and 3D assets (audio analysis).
@@ -126,7 +126,7 @@ Release dates below carry the year 2026 by inference: GitHub's release pages omi
 - Found via: GitHub topic `audio-visualization`.
 
 ### FilmCraft (`filmcraft`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/storytold/filmcraft
 - Role: nonlinear video editor in Rust whose engine has no UI dependency; `filmcraft-cli` exposes the command set (650+ engine commands) and a headless MCP server, and the desktop app has a JSON-lines control port.
 - Category: A5. Video and capture.

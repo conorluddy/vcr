@@ -1,0 +1,54 @@
+{
+  "id": "caption-checker",
+  "name": "caption-checker",
+  "category": "Caption compliance",
+  "tier": "candidate",
+  "role": "Checks SRT and WebVTT captions against named captioning limits",
+  "official_url": "https://github.com/markksantos/caption-checker",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "text-rendering"
+  ],
+  "notes": [
+    "2026-11-08: Triage: A machine-checking route for caption rules is distinct from conversion and rendering; revisit after independent validation and rule coverage review.",
+    "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-15",
+  "source": "prospects/inbox/2026-11-08-discovery.md",
+  "summary": "Zero-dependency CLI and library checks SRT/WebVTT captions against Netflix, BBC and DCMP limits for reading speed, line length, line count, duration, gaps and overlaps. It reports compliance issues rather than rendering or translating captions.",
+  "license": "MIT",
+  "install": {
+    "macos": "npm install -g caption-checker",
+    "check_command": "caption-checker --help"
+  },
+  "use_when": [
+    "Check subtitle reading speed, line length and gaps against its named SRT/WebVTT rule sets",
+    "Use a report-only caption compliance pass after timing and authoring"
+  ],
+  "avoid_when": [
+    "Use ttconv for subtitle format conversion rather than compliance checks",
+    "Use FFmpeg when you need to render subtitles into video frames"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe"
+  ],
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "assessment_batch_b",
+    "version_seen": "Not established from reviewed source",
+    "last_release": "Unknown from reviewed source",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Repository documents a zero-dependency CLI/library and named rule sets for SRT/WebVTT; recent repository activity is visible. Package release/version and exact install command need confirmation before promotion.",
+    "sources": [
+      "https://github.com/markksantos/caption-checker"
+    ]
+  }
+}

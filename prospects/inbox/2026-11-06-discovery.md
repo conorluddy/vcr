@@ -12,7 +12,7 @@ Summary line: 3 leads (1 in new categories). Yield is thin: the gap areas were m
 
 ## Leads
 ### syncalong (`syncalong`) — 🆕 new category: speech and lyric alignment — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/wickeddoc/syncalong
 - Role: aligns known lyrics/transcript text to an audio file using Whisper word timestamps plus fuzzy matching, emits LRC to stdout; optional Demucs vocal separation.
 - Category: new category: speech and lyric alignment (feeds captions/kinetic type timing). Nearest neighbours: `whisper-cpp`, `demucs`, `ttconv`.
@@ -26,7 +26,7 @@ Summary line: 3 leads (1 in new categories). Yield is thin: the gap areas were m
 - Found via: WebSearch (forced alignment, captions)
 
 ### svg-to-video (`svg-to-video`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/xangelix/svg-to-video
 - Role: Rust CLI that renders animated SVG (CSS/SMIL/JS) to video by pausing animations, stepping a virtual playhead per frame in headless Chrome, screenshotting PNGs, then encoding via FFmpeg (ProRes default).
 - Category: existing (browser capture). Neighbours: `svg`, `web-animations-api`, `playwright`, `ffmpeg-ffprobe`.
@@ -40,7 +40,7 @@ Summary line: 3 leads (1 in new categories). Yield is thin: the gap areas were m
 - Found via: WebSearch (SVG to video CLI)
 
 ### Video Flows (`video-flows`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: retire
 - URL: https://github.com/p-chops/video-flows
 - Role: Python pipeline and `vf` CLI that generates or processes footage through GLSL shader stacks, temporal effects, compositing and transitions, headless on an OpenGL 3.3+ GPU, encoded with ffmpeg.
 - Category: existing (shader/GL video). Neighbours: `webgl`, `libplacebo`, `frei0r`, `ffmpeg-ffprobe`.

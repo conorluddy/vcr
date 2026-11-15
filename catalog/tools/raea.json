@@ -1,0 +1,53 @@
+{
+  "id": "raea",
+  "name": "raea",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "React/TypeScript project with Rust/Bevy renderer",
+  "official_url": "https://github.com/shinyobjectz/raea",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "video-encoding",
+    "3d-rendering",
+    "react-integration"
+  ],
+  "notes": [
+    "2026-11-15: Triage reason: Assess source-available licence fit, deterministic display-free rendering and API stability. Revisit after those constraints are documented.",
+    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-15",
+  "source": "prospects/inbox/2026-11-13-discovery.md",
+  "summary": "React-authored GPU renderer for video and 3D",
+  "license": "FSL-1.1-ALv2",
+  "use_when": [
+    "Use when authoring scenes in React/TypeScript for GPU-rendered video."
+  ],
+  "avoid_when": [
+    "Avoid for unrestricted commercial redistribution; compare a permissively licensed renderer such as Blender."
+  ],
+  "pairs_with": [],
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "assessment_batch_c",
+    "version_seen": "unknown",
+    "last_release": "unknown",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "React/TypeScript-authored GPU creative engine uses Rust and Bevy for video, motion graphics and 3D output. FSL-1.1-ALv2 restricts competing products; third-party notices apply. Need release/version evidence and headless determinism details.",
+    "sources": [
+      "https://github.com/shinyobjectz/raea",
+      "https://github.com/shinyobjectz/raea"
+    ]
+  },
+  "install": {
+    "macos": "See official repository install instructions; no verified Homebrew route",
+    "check_command": "raea --version"
+  }
+}

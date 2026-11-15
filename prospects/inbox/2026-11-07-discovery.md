@@ -11,7 +11,7 @@ Summary line: 5 leads (0 in new categories).
 
 ## Leads
 ### Mayo (`mayo`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/fougue/mayo
 - Role: Qt + OpenCascade CAD viewer and converter with a batch command-line conversion mode (STEP, IGES, glTF, STL, OBJ, PLY).
 - Category: existing 3D / CAD interchange (neighbours `build123d`, `gltf-transform`, `trimesh`)
@@ -25,7 +25,7 @@ Summary line: 5 leads (0 in new categories).
 - Found via: GitHub topic `gltf`
 
 ### 3DTilesRendererJS (`3d-tiles-renderer`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/NASA-AMMOS/3DTilesRendererJS
 - Role: renders OGC 3D Tiles (photogrammetry, terrain, cities) in three.js, Babylon.js and r3f.
 - Category: existing 3D scene libraries / maps and geo motion (proposed; neighbours `three-js`, `maplibre-native` in earlier digests)
@@ -39,7 +39,7 @@ Summary line: 5 leads (0 in new categories).
 - Found via: GitHub topic `gltf`
 
 ### FastNoise2 (`fastnoise2`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/Auburn/FastNoise2
 - Role: SIMD node-graph noise library (C++17) with C API and a NoiseTool node editor; seed-deterministic.
 - Category: existing procedural / generative
@@ -53,7 +53,7 @@ Summary line: 5 leads (0 in new categories).
 - Found via: GitHub topic `procedural-generation`
 
 ### libopenshot (`libopenshot`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/OpenShot/libopenshot
 - Role: C++ video editing/compositing library with Python and Ruby bindings (the engine behind OpenShot).
 - Category: existing editing/assembly (neighbours `mlt-melt`, `editly`, `opentimelineio`)
@@ -67,7 +67,7 @@ Summary line: 5 leads (0 in new categories).
 - Found via: GitHub topic `video-processing`
 
 ### VFX-JS (`vfx-js`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/fand/vfx-js
 - Role: WebGL shader effects applied to DOM elements (images, video, text).
 - Category: existing browser shader effects (neighbours `glfx-js` in retired, `pixijs-filters`, `ogl`)

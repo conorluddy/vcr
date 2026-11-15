@@ -1,0 +1,55 @@
+{
+  "id": "mayo",
+  "name": "Mayo",
+  "category": "3D CAD interchange",
+  "tier": "candidate",
+  "role": "CAD viewer and converter based on Qt and OpenCascade",
+  "official_url": "https://github.com/fougue/mayo",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "3d-asset-processing"
+  ],
+  "notes": [
+    "2026-11-07: Triage: Direct CAD interchange conversion is a concrete job without writing a script; revisit after confirming headless CLI operation and macOS build route.",
+    "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-15",
+  "source": "prospects/inbox/2026-11-07-discovery.md",
+  "summary": "Qt/OpenCascade CAD viewer with a documented batch conversion CLI for CAD and mesh formats. It targets interchange and inspection of engineering geometry, rather than scene authoring or rendering.",
+  "license": "MIT",
+  "install": {
+    "macos": "brew install --cask mayo",
+    "check_command": "mayo --help"
+  },
+  "use_when": [
+    "Batch convert engineering CAD and mesh formats through a documented CLI",
+    "Inspect CAD files with a desktop viewer before converting them"
+  ],
+  "avoid_when": [
+    "Use Blender for scene authoring, materials and creative rendering",
+    "Use a dedicated mesh converter when only a simple format conversion is required"
+  ],
+  "pairs_with": [
+    "blender"
+  ],
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "assessment_batch_b",
+    "version_seen": "0.10.0",
+    "last_release": "Unknown from reviewed official page",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Official project describes CAD viewing/conversion and batch CLI; repository shows current development and MIT licensing. macOS build route and headless operation should be confirmed before promotion.",
+    "sources": [
+      "https://github.com/fougue/mayo",
+      "https://github.com/fougue/mayo/releases"
+    ]
+  }
+}

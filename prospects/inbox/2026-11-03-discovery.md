@@ -15,7 +15,7 @@ Second run this ISO week; the 2026-11-02 digest (#47) is already merged, so this
 ## Leads
 
 ### MapLibre Native (`maplibre-native`) — joins proposed category "maps and geo motion" — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/maplibre/maplibre-native
 - Role: C++ vector-map renderer with an offscreen render CLI/bindings; can draw a styled map frame without a browser (unverified exact CLI name, believed `mbgl-render`).
 - Category: new category: maps and geo motion (proposed 2026-11-01)
@@ -29,7 +29,7 @@ Second run this ISO week; the 2026-11-02 digest (#47) is already merged, so this
 - Found via: GitHub topic search `vector-tiles`.
 
 ### ttconv (`ttconv`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/sandflow/ttconv
 - Role: Python library and CLI converting between caption/subtitle formats (SRT, WebVTT, TTML/IMSC, SCC, EBU STL), with timing and style handling.
 - Category: subtitles / captions (check for existing category)
@@ -43,7 +43,7 @@ Second run this ISO week; the 2026-11-02 digest (#47) is already merged, so this
 - Found via: GitHub topic search `caption`.
 
 ### libass (`libass`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/libass/libass
 - Role: portable ASS/SSA subtitle renderer, the engine behind FFmpeg's `ass`/`subtitles` filters and mpv.
 - Category: subtitles / text rendering (existing neighbours: `ffmpeg-ffprobe`, `opentype-js`)

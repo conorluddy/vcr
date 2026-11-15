@@ -12,7 +12,7 @@ Summary line: 3 leads (1 in a new category). Fifth W45 run; earlier digests alre
 
 ## Leads
 ### VHS (`vhs`) — 🆕 new category: terminal capture — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/charmbracelet/vhs
 - Role: scripts terminal sessions as declarative `.tape` files and renders them to GIF, MP4, WebM, a PNG frame directory, a PNG screenshot, or text for golden-file tests.
 - Category: new category: terminal capture (no terminal recorder is catalogued; the A5 neighbour set is `ffmpeg-ffprobe`, `gifski`, `playwright`)
@@ -26,7 +26,7 @@ Summary line: 3 leads (1 in a new category). Fifth W45 run; earlier digests alre
 - Found via: WebSearch (terminal-recording topic).
 
 ### MoGen (`mogen`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/krazyjakee/MoGen
 - Role: Rust CLI that compiles a compact declarative `.mog` DSL (primitives, CSG, arrays/mirrors, skeletons, skinning, animation, PBR, procedural generators) to `.glb` or FBX. Built to be the deterministic backend of an LLM pipeline.
 - Category: A8. Physics, audio and 3D assets
@@ -40,7 +40,7 @@ Summary line: 3 leads (1 in a new category). Fifth W45 run; earlier digests alre
 - Found via: WebSearch (Show HN style query, procedural glTF).
 
 ### ebur128 (`ebur128`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/sdroege/ebur128
 - Role: Rust port of libebur128 for EBU R128 loudness (momentary, short-term, integrated, loudness range, true peak), with an optional C API.
 - Category: A8. Physics, audio and 3D assets

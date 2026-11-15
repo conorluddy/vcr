@@ -1,0 +1,59 @@
+{
+  "id": "splishsplash",
+  "name": "SPlisHSPlasH + splashsurf",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "SPH fluid simulator paired with splashsurf CLI/library for particle-to-mesh surface reconstruction",
+  "official_url": "https://github.com/InteractiveComputerGraphics/SPlisHSPlasH",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "physics-simulation",
+    "3d-asset-processing"
+  ],
+  "notes": [
+    "2026-11-15: Assess because the digest describes a bakeable particle simulation and mesh-sequence workflow beyond rigid-body solvers. Revisit after confirming build and Python/CLI support on target machines and cross-machine reproducibility.",
+    "2026-11-15: Assessment uncertainty: release recency and reproducible SPlisHSPlasH build/export steps on target machines were not established; assess the GPL simulator and MIT reconstruction component separately."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-15",
+  "source": "prospects/inbox/2026-11-01-discovery.md",
+  "summary": "SPlisHSPlasH simulates particle based fluids; the companion splashsurf project reconstructs SPH particle data as surface meshes, with Rust CLI/library and Python bindings. Together they support a scriptable simulation-to-mesh workflow, while simulation build and export settings remain environment dependent.",
+  "use_when": [
+    "Bake particle fluid simulations and reconstruct a mesh sequence",
+    "Choose SPH particle workflows over rigid-body solvers",
+    "Use splashsurf to turn SPlisHSPlasH particle output into surface meshes"
+  ],
+  "avoid_when": [
+    "Use a rigid-body solver for primarily solid-object dynamics",
+    "Use Blender fluid tools when an integrated scene authoring workflow matters more"
+  ],
+  "pairs_with": [
+    "blender",
+    "ffmpeg-ffprobe"
+  ],
+  "license": "SPlisHSPlasH: MIT; splashsurf: MIT",
+  "install": {
+    "macos": "Build SPlisHSPlasH from its official source; install splashsurf with `cargo install splashsurf` or Python bindings with `pip install pysplashsurf`",
+    "check_command": "splashsurf --help"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "assessment_batch_a",
+    "version_seen": "Current source repositories; release versions/dates not confirmed",
+    "last_release": "unknown (release dates not established from pages read)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Official repositories document the simulator and separate splashsurf CLI/library/Python surface reconstruction route. Both projects state MIT; the official org page lists SPlisHSPlasH updated 2026-10-28, while release dates and reproducible target-machine builds remain unverified.",
+    "sources": [
+      "https://github.com/InteractiveComputerGraphics/SPlisHSPlasH",
+      "https://github.com/InteractiveComputerGraphics/splashsurf",
+      "https://github.com/interactivecomputergraphics"
+    ]
+  }
+}

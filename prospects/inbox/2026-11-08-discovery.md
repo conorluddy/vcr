@@ -11,7 +11,7 @@ Summary line: 2 leads (0 in new categories). A thin run: the week's earlier dige
 
 ## Leads
 ### caption-checker (`caption-checker`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/markksantos/caption-checker
 - Role: lints, fixes, converts and retimes SRT/WebVTT captions against Netflix English, BBC and DCMP Captioning Key rules (reading speed, line length, lines, duration, gaps, overlaps).
 - Category: joins proposed category "accessibility and compliance" (first reported by `video-safety-check`).
@@ -25,7 +25,7 @@ Summary line: 2 leads (0 in new categories). A thin run: the week's earlier dige
 - Found via: WebSearch (caption standards gap area).
 
 ### Tissu / pytissu (`tissu`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/evanrock520-ciencias/Tissu (PyPI: pytissu) — per search result; unverified.
 - Role: C++ cloth simulation SDK with a Python API; example script simulates and exports directly to Alembic (.abc).
 - Category: joins proposed category "fluid / particle sim" (cloth and soft body; proposed earlier for `splishsplash`), so not counted as new.

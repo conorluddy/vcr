@@ -15,7 +15,7 @@ Stars, last push and licence come from GitHub repository search (unauthenticated
 ## Leads
 
 ### node-av (`node-av`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/seydx/node-av
 - Role: FFmpeg bindings for Node.js with low-level and high-level APIs, including hardware acceleration; in-process decode/encode/filter without spawning `ffmpeg`.
 - Category: media (existing); neighbours in the encode/mux path.
@@ -29,7 +29,7 @@ Stars, last push and licence come from GitHub repository search (unauthenticated
 - Found via: GitHub topic search `ffmpeg-wrapper`.
 
 ### typed-ffmpeg (`typed-ffmpeg`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/lucemia/typed-ffmpeg
 - Role: type-safe Python and TypeScript builders for FFmpeg filtergraphs, with filter docs and typing; compiles to a plain `ffmpeg` command line.
 - Category: media (existing)
@@ -43,7 +43,7 @@ Stars, last push and licence come from GitHub repository search (unauthenticated
 - Found via: GitHub topic search `ffmpeg-wrapper`.
 
 ### sdf (`fogleman-sdf`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/fogleman/sdf
 - Role: signed-distance-function mesh generation in Python; compose primitives and boolean ops, then mesh to STL.
 - Category: 3d / procedural modelling (existing)
@@ -57,7 +57,7 @@ Stars, last push and licence come from GitHub repository search (unauthenticated
 - Found via: GitHub topic search `sdf`.
 
 ### Shader Park (`shader-park-core`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/shader-park/shader-park-core
 - Role: JavaScript-to-shader language for raymarched SDF scenes, with a three.js integration.
 - Category: shaders (existing)
@@ -71,7 +71,7 @@ Stars, last push and licence come from GitHub repository search (unauthenticated
 - Found via: GitHub topic search `sdf`.
 
 ### CrossTL (`crosstl`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/CrossGL/crosstl
 - Role: translator for shaders and compute kernels between GLSL, HLSL, Metal, SPIR-V and Slang.
 - Category: shaders (existing)
@@ -85,7 +85,7 @@ Stars, last push and licence come from GitHub repository search (unauthenticated
 - Found via: GitHub topic search `wgsl`.
 
 ### Exiv2 (`exiv2`) — 🆕 joins proposed category "provenance and metadata" — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/Exiv2/exiv2
 - Role: C++ library and `exiv2` CLI to read and write EXIF, IPTC and XMP metadata in images (and some video containers).
 - Category: provenance and metadata (new category first proposed 2026-11-01, via `c2pa`)
@@ -99,7 +99,7 @@ Stars, last push and licence come from GitHub repository search (unauthenticated
 - Found via: GitHub topic search `xmp`, `exif`.
 
 ### Planetiler (`planetiler`) — joins proposed category "maps and geo motion" — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/onthegomap/planetiler
 - Role: builds vector tilesets (MBTiles / PMTiles) from OpenStreetMap data, fast, from a single Java jar.
 - Category: maps and geo motion (proposed 2026-11-01 via `pmtiles`)
@@ -113,7 +113,7 @@ Stars, last push and licence come from GitHub repository search (unauthenticated
 - Found via: GitHub topic search `openstreetmap`, `pmtiles`.
 
 ### sim-use (`sim-use`) — 🆕 new category: app-preview and device capture — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/lycorp-jp/sim-use
 - Role: CLI to drive and observe iOS Simulator and Android emulators/devices (tap, type, screenshot), built for agents.
 - Category: new category: app-preview and device capture

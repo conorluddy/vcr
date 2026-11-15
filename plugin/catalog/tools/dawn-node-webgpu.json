@@ -1,0 +1,54 @@
+{
+  "id": "dawn-node-webgpu",
+  "name": "Dawn Node WebGPU",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Node.js WebGPU binding for offscreen GPU rendering and compute",
+  "official_url": "https://github.com/dawnjs/node-webgpu",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "3d-rendering",
+    "shaders"
+  ],
+  "notes": [
+    "2026-11-15: Triage: assess; Node-based WebGPU may provide a headless shader and compute route beyond browser capture. Revisit after verifying supported platforms, pixel readback and cross-run stability.",
+    "2026-11-15: Skill opportunity: no skill yet; run a scoped GPU availability and texture-readback fixture before considering toolkit guidance."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-15",
+  "source": "prospects/inbox/2026-11-15-discovery.md",
+  "summary": "Node.js binding to Dawn exposes WebGPU devices, textures and compute without a browser DOM. It can support GPU rendering and readback in a Node process, but it does not provide HTML canvas, video-frame or image-element integration; device lifetime and host GPU support need testing.",
+  "use_when": [
+    "Run WebGPU compute or render-to-texture work from a Node process",
+    "Integrate a WebGPU library that needs explicit texture readback without browser APIs"
+  ],
+  "avoid_when": [
+    "Use Three.js browser capture when the scene relies on DOM, HTML media or browser loaders",
+    "Use CPU rendering when GPU and driver portability are more important than WebGPU access"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "npm install webgpu",
+    "check_command": "npm view webgpu version"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "root",
+    "version_seen": "0.6.2",
+    "last_release": "2026-10-02",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Official Node binding v0.6.2 was released 2026-10-02 and documents WebGPU texture readback and compute without browser DOM/media APIs. MIT; runtime GPU availability, deterministic capture and macOS setup are not yet validated.",
+    "sources": [
+      "https://github.com/dawnjs/node-webgpu",
+      "https://github.com/dawnjs/node-webgpu/releases",
+      "https://www.npmjs.com/package/webgpu"
+    ]
+  }
+}

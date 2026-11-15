@@ -1,0 +1,54 @@
+{
+  "id": "drawsvg",
+  "name": "drawsvg",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Python library for generating editable SVG drawings and animations",
+  "official_url": "https://tangled.org/cduck.me/drawsvg",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "vector-authoring",
+    "svg-animation"
+  ],
+  "notes": [
+    "2026-11-15: Triage: assess; Python-authored SVG frames provide a distinct language route to existing vector renderers. Revisit after checking seekable animation and resvg compatibility in a fixture.",
+    "2026-11-15: Skill opportunity: existing VCR SVG guidance covers the vector workflow; revisit a drawsvg-specific guide only if a repeated Python animation route needs operating details."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-15",
+  "source": "prospects/inbox/2026-11-14-discovery.md",
+  "summary": "Python library builds SVG drawings and frame-based or SVG-native animations from code, with Jupyter display support. The vector-first output stays editable and can be rasterised separately; optional raster and video export paths add dependencies.",
+  "use_when": [
+    "Generate editable SVG diagrams or title artwork from Python data",
+    "Build SVG or frame-based animation while keeping vector source",
+    "Use a Python-native alternative to assembling SVG strings manually"
+  ],
+  "avoid_when": [
+    "Use SVG CLI tools for a static logo conversion or optimization task",
+    "Use GSAP or browser capture for DOM-rich motion with browser layout and typography"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "python3 -m pip install drawsvg",
+    "check_command": "python3 -m pip show drawsvg"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "root",
+    "version_seen": "2.4.2",
+    "last_release": "2026-08-12",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "The maintained project moved from GitHub to Tangled and tags 2.4.2; PyPI documents Python SVG drawing and animation, with raster formats requiring optional support. MIT terms are reported by the package metadata; exact current licence text should be reconfirmed before redistribution.",
+    "sources": [
+      "https://tangled.org/cduck.me/drawsvg",
+      "https://pypi.org/project/drawsvg/"
+    ]
+  }
+}

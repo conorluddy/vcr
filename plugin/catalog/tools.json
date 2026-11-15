@@ -535,6 +535,59 @@
       "skill": "skills/babylon-js/SKILL.md"
     },
     {
+      "id": "baguette",
+      "name": "Baguette",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Apple Simulator control and capture CLI with multi-device orchestration",
+      "official_url": "https://github.com/tddworks/baguette",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "capture"
+      ],
+      "notes": [
+        "2026-11-15: Triage: assess; scripted simulator gestures and capture fill a distinct native-app preview route. Revisit if supported macOS/Xcode requirements exceed the target environment or capture cannot be repeated reliably.",
+        "2026-11-15: Skill opportunity: consider a VCR simulator-capture guide if this becomes a recurring app-capture workflow; assess Xcode and host constraints in a scoped fixture."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-14-discovery.md",
+      "summary": "Native macOS CLI for headless Apple Simulator control, screenshots, video recording, UI descriptions and multi-device sessions. Its broad simulator input and capture commands make it useful for repeatable app capture; it requires Apple Silicon and Xcode 26 private simulator frameworks.",
+      "use_when": [
+        "Automate taps, gestures and screenshots in Apple Simulator without driving the GUI",
+        "Record or stream simulator sessions alongside scripted UI input",
+        "Coordinate multiple simulator devices from a CLI"
+      ],
+      "avoid_when": [
+        "Use XCUITest when you need Apple’s supported test framework and assertions",
+        "Use iOS Simulator UI automation when accessibility-driven app interaction is sufficient"
+      ],
+      "license": "Apache-2.0",
+      "install": {
+        "macos": "brew install baguette",
+        "check_command": "baguette --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "root",
+        "version_seen": "0.2.14",
+        "last_release": "2026-11-07",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Official docs describe a native CLI for Apple Simulator control, recording and multi-device sessions; v0.2.14 was released 2026-11-07. Install requires Apple Silicon, Xcode 26 and private SimulatorKit/CoreSimulator frameworks, so portability is limited.",
+        "sources": [
+          "https://github.com/tddworks/baguette",
+          "https://github.com/tddworks/baguette/releases"
+        ]
+      }
+    },
+    {
       "id": "blender",
       "name": "Blender",
       "category": "A7. Native applications and procedural tools",
@@ -1089,6 +1142,60 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "caption-checker",
+      "name": "caption-checker",
+      "category": "Caption compliance",
+      "tier": "candidate",
+      "role": "Checks SRT and WebVTT captions against named captioning limits",
+      "official_url": "https://github.com/markksantos/caption-checker",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "text-rendering"
+      ],
+      "notes": [
+        "2026-11-08: Triage: A machine-checking route for caption rules is distinct from conversion and rendering; revisit after independent validation and rule coverage review.",
+        "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-08-discovery.md",
+      "summary": "Zero-dependency CLI and library checks SRT/WebVTT captions against Netflix, BBC and DCMP limits for reading speed, line length, line count, duration, gaps and overlaps. It reports compliance issues rather than rendering or translating captions.",
+      "license": "MIT",
+      "install": {
+        "macos": "npm install -g caption-checker",
+        "check_command": "caption-checker --help"
+      },
+      "use_when": [
+        "Check subtitle reading speed, line length and gaps against its named SRT/WebVTT rule sets",
+        "Use a report-only caption compliance pass after timing and authoring"
+      ],
+      "avoid_when": [
+        "Use ttconv for subtitle format conversion rather than compliance checks",
+        "Use FFmpeg when you need to render subtitles into video frames"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_b",
+        "version_seen": "Not established from reviewed source",
+        "last_release": "Unknown from reviewed source",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Repository documents a zero-dependency CLI/library and named rule sets for SRT/WebVTT; recent repository activity is visible. Package release/version and exact install command need confirmation before promotion.",
+        "sources": [
+          "https://github.com/markksantos/caption-checker"
+        ]
+      }
+    },
+    {
       "id": "ccapture-js",
       "name": "CCapture.js",
       "category": "A5. Video and capture",
@@ -1201,6 +1308,59 @@
       }
     },
     {
+      "id": "chiitiler",
+      "name": "chiitiler",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Node.js library or CLI server",
+      "official_url": "https://github.com/Kanahiro/chiitiler",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "geospatial",
+        "image-processing"
+      ],
+      "notes": [
+        "2026-11-15: Triage reason: Assess local tile support, platform requirements and label stability across frames. Revisit when repeatable map animation is needed.",
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+        "2026-11-15: Release date or maintenance cadence could not be established from the inspected official pages."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-12-discovery.md",
+      "summary": "MapLibre style raster renderer for tiles, clips and camera shots",
+      "license": "MIT",
+      "use_when": [
+        "Use to render MapLibre styles into camera views or raster clips."
+      ],
+      "avoid_when": [
+        "Avoid for interactive maps or temporal map animation; use MapLibre directly."
+      ],
+      "pairs_with": [],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_c",
+        "version_seen": "latest",
+        "last_release": "unknown",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Node library and server render MapLibre styles into raster tiles, clips or camera images. MIT; runtime requires Node 24.12+ and sharp system dependencies. Remote style sources require trusted inputs because fetching can reach internal resources.",
+        "sources": [
+          "https://github.com/Kanahiro/chiitiler",
+          "https://github.com/Kanahiro/chiitiler"
+        ]
+      },
+      "install": {
+        "macos": "npm install chiitiler",
+        "check_command": "npm view chiitiler version"
+      }
+    },
+    {
       "id": "clap",
       "name": "CLAP",
       "category": "Discovery: conversation candidates",
@@ -1248,6 +1408,60 @@
         "rationale": "Official repository describes an audio plugin API and MIT licence. A runnable host is separate; release and recent activity dates not verified.",
         "sources": [
           "https://github.com/free-audio/clap"
+        ]
+      }
+    },
+    {
+      "id": "claude-real-video",
+      "name": "Claude Real Video",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Local video analysis CLI producing scene-aware keyframes and transcripts",
+      "official_url": "https://github.com/HUANGCHIHHUNGLeo/claude-real-video",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "capture",
+        "media-inspection"
+      ],
+      "notes": [
+        "2026-11-15: Triage: assess; selected keyframes and contact sheets could support agent-facing render review. Revisit when #63 frame sampling is exercised and frame selection repeatability is checked.",
+        "2026-11-15: Skill opportunity: a focused review-packet workflow may merit a VCR skill if the tool reliably produces the needed keyframes and transcript; fixture retrieval and transcription separately."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-14-discovery.md",
+      "summary": "Python CLI and API analyse a local video or URL and emit deduplicated scene-aware keyframes plus a transcript. Its analysis window and contact-sheet workflow can prepare compact visual evidence for human or agent review; URL downloads and transcription add external dependency and model variability.",
+      "use_when": [
+        "Create scene-aware keyframes and a transcript for a review packet",
+        "Analyse only a selected time window instead of sampling the full video",
+        "Use its combined visual and speech output rather than extracting frames alone"
+      ],
+      "avoid_when": [
+        "Use FFmpeg when you need exact deterministic frame extraction or media transformation",
+        "Use a dedicated transcription tool when transcript accuracy and word timing are the main job"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "python3 -m pip install claude-real-video",
+        "check_command": "claude-real-video --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "root",
+        "version_seen": "0.10.7",
+        "last_release": "2026-09-26",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Official release 0.10.7 (2026-09-26) documents scene-aware, deduplicated keyframes and transcript output for local files or URLs. MIT; download and transcription dependencies can vary, so review reproducibility before relying on it as a measurement tool.",
+        "sources": [
+          "https://github.com/HUANGCHIHHUNGLeo/claude-real-video",
+          "https://github.com/HUANGCHIHHUNGLeo/claude-real-video/releases"
         ]
       }
     },
@@ -1304,6 +1518,113 @@
           "https://github.com/colmap/colmap/releases"
         ],
         "version_seen": "4.2.1 (release page; release year not verified)"
+      }
+    },
+    {
+      "id": "color-js",
+      "name": "color-js",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "JavaScript library",
+      "official_url": "https://github.com/color-js/color.js",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "colour-management",
+        "math-utilities"
+      ],
+      "notes": [
+        "2026-11-15: Triage reason: Assess scope for palette and colour-conformance workflows, including unsupported contrast algorithms. Revisit when a colour-check workflow is scoped.",
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-12-discovery.md",
+      "summary": "JavaScript colour conversion and manipulation library",
+      "license": "MIT",
+      "use_when": [
+        "Use for wide-gamut conversion, interpolation, gamut mapping and DeltaE."
+      ],
+      "avoid_when": [
+        "Avoid when you need a complete accessibility contrast audit; use a dedicated checker."
+      ],
+      "pairs_with": [],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_c",
+        "version_seen": "0.7.0",
+        "last_release": "2026-07-14",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "JavaScript colour library supports conversion, interpolation, gamut mapping and DeltaE across modern colour spaces. MIT; npm library. Check contrast algorithm coverage separately.",
+        "sources": [
+          "https://github.com/color-js/color.js",
+          "https://github.com/color-js/color.js/releases"
+        ]
+      },
+      "install": {
+        "macos": "npm install colorjs.io",
+        "check_command": "npm view colorjs.io version"
+      }
+    },
+    {
+      "id": "colour-science",
+      "name": "Colour Science for Python",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Python colour-science library for conversions, models and colour-difference analysis",
+      "official_url": "https://github.com/colour-science/colour",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "colour-management",
+        "math-utilities"
+      ],
+      "notes": [
+        "2026-11-15: Triage: assess; colour difference and transfer-function calculations may support measurable palette and delivery checks. Revisit after mapping its functions to a concrete VCR check and scope.",
+        "2026-11-15: Skill opportunity: further research first; define which colour checks VCR needs and how to interpret model outputs before writing a guide."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-14-discovery.md",
+      "summary": "Python package with colour-space conversions, appearance models, spectral data, colour-difference functions, transfer functions and LUT operations. Its breadth supports technical colour calculations beyond palette manipulation, but a specific VCR colour conformance check and its tolerances are not yet defined.",
+      "use_when": [
+        "Calculate colour differences or conversions with named colour-science models",
+        "Work with spectral data, appearance models or transfer functions in Python",
+        "Use a broader scientific API than a lightweight colour manipulation library"
+      ],
+      "avoid_when": [
+        "Use color.js for JavaScript colour conversion and interpolation in a web scene",
+        "Use a dedicated image tool when the task is visual grading rather than numeric analysis"
+      ],
+      "license": "BSD-3-Clause",
+      "install": {
+        "macos": "python3 -m pip install colour-science",
+        "check_command": "python3 -m pip show colour-science"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "root",
+        "version_seen": "0.4.7",
+        "last_release": "2025-12-06",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "PyPI lists 0.4.7 (2025-12-06) under BSD-3-Clause; the official project documents extensive colour models, datasets and calculations. Recent repository activity is visible, but a VCR measurement workflow and tolerances remain undefined.",
+        "sources": [
+          "https://github.com/colour-science/colour",
+          "https://github.com/colour-science/colour/releases",
+          "https://pypi.org/project/colour-science/"
+        ]
       }
     },
     {
@@ -1536,6 +1857,60 @@
         "d3-capture"
       ],
       "skill": "skills/d3/SKILL.md"
+    },
+    {
+      "id": "dawn-node-webgpu",
+      "name": "Dawn Node WebGPU",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Node.js WebGPU binding for offscreen GPU rendering and compute",
+      "official_url": "https://github.com/dawnjs/node-webgpu",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-rendering",
+        "shaders"
+      ],
+      "notes": [
+        "2026-11-15: Triage: assess; Node-based WebGPU may provide a headless shader and compute route beyond browser capture. Revisit after verifying supported platforms, pixel readback and cross-run stability.",
+        "2026-11-15: Skill opportunity: no skill yet; run a scoped GPU availability and texture-readback fixture before considering toolkit guidance."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-15-discovery.md",
+      "summary": "Node.js binding to Dawn exposes WebGPU devices, textures and compute without a browser DOM. It can support GPU rendering and readback in a Node process, but it does not provide HTML canvas, video-frame or image-element integration; device lifetime and host GPU support need testing.",
+      "use_when": [
+        "Run WebGPU compute or render-to-texture work from a Node process",
+        "Integrate a WebGPU library that needs explicit texture readback without browser APIs"
+      ],
+      "avoid_when": [
+        "Use Three.js browser capture when the scene relies on DOM, HTML media or browser loaders",
+        "Use CPU rendering when GPU and driver portability are more important than WebGPU access"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "npm install webgpu",
+        "check_command": "npm view webgpu version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "root",
+        "version_seen": "0.6.2",
+        "last_release": "2026-10-02",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Official Node binding v0.6.2 was released 2026-10-02 and documents WebGPU texture readback and compute without browser DOM/media APIs. MIT; runtime GPU availability, deterministic capture and macOS setup are not yet validated.",
+        "sources": [
+          "https://github.com/dawnjs/node-webgpu",
+          "https://github.com/dawnjs/node-webgpu/releases",
+          "https://www.npmjs.com/package/webgpu"
+        ]
+      }
     },
     {
       "id": "deck-gl",
@@ -1810,6 +2185,118 @@
         ]
       },
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "dovi-tool",
+      "name": "dovi_tool and hdr10plus_tool",
+      "category": "HDR delivery metadata",
+      "tier": "candidate",
+      "role": "Rust CLIs for Dolby Vision RPU and HDR10+ dynamic metadata in HEVC streams",
+      "official_url": "https://github.com/quietvoid/dovi_tool",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection",
+        "video-encoding"
+      ],
+      "notes": [
+        "2026-11-04: Triage: Concrete metadata inspection and editing gap beyond FFmpeg and MediaInfo HDR signalling; revisit after official automation route and profile coverage are checked.",
+        "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-04-discovery.md",
+      "summary": "Native Rust command line tools for extracting, editing, generating and injecting Dolby Vision RPU or HDR10+ metadata in HEVC streams. Use them for metadata operations where FFmpeg probing alone is insufficient; they do not encode video.",
+      "license": "MIT",
+      "install": {
+        "macos": "brew install dovi_tool hdr10plus_tool",
+        "check_command": "dovi_tool --version"
+      },
+      "use_when": [
+        "Extract, inspect or modify Dolby Vision RPU or HDR10+ metadata in HEVC streams",
+        "Generate dynamic metadata when stream metadata work must remain separate from encoding"
+      ],
+      "avoid_when": [
+        "Use FFmpeg for decoding, filtering or encoding rather than dynamic metadata edits",
+        "Use MediaInfo for a broad read-only technical report"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "mediainfo"
+      ],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_b",
+        "version_seen": "dovi_tool 2.3.3; hdr10plus_tool latest release not verified",
+        "last_release": "2026-07-12 (dovi_tool); hdr10plus_tool date unknown",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "dovi_tool 2.3.3 released 2026-07-12 with export/editor fixes and libdovi updates; paired HDR10+ utility has separate release history. Native CLI route and macOS binary are documented.",
+        "sources": [
+          "https://github.com/quietvoid/dovi_tool",
+          "https://github.com/quietvoid/dovi_tool/releases",
+          "https://github.com/quietvoid/hdr10plus_tool"
+        ]
+      }
+    },
+    {
+      "id": "drawsvg",
+      "name": "drawsvg",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Python library for generating editable SVG drawings and animations",
+      "official_url": "https://tangled.org/cduck.me/drawsvg",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring",
+        "svg-animation"
+      ],
+      "notes": [
+        "2026-11-15: Triage: assess; Python-authored SVG frames provide a distinct language route to existing vector renderers. Revisit after checking seekable animation and resvg compatibility in a fixture.",
+        "2026-11-15: Skill opportunity: existing VCR SVG guidance covers the vector workflow; revisit a drawsvg-specific guide only if a repeated Python animation route needs operating details."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-14-discovery.md",
+      "summary": "Python library builds SVG drawings and frame-based or SVG-native animations from code, with Jupyter display support. The vector-first output stays editable and can be rasterised separately; optional raster and video export paths add dependencies.",
+      "use_when": [
+        "Generate editable SVG diagrams or title artwork from Python data",
+        "Build SVG or frame-based animation while keeping vector source",
+        "Use a Python-native alternative to assembling SVG strings manually"
+      ],
+      "avoid_when": [
+        "Use SVG CLI tools for a static logo conversion or optimization task",
+        "Use GSAP or browser capture for DOM-rich motion with browser layout and typography"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "python3 -m pip install drawsvg",
+        "check_command": "python3 -m pip show drawsvg"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "root",
+        "version_seen": "2.4.2",
+        "last_release": "2026-08-12",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "The maintained project moved from GitHub to Tangled and tags 2.4.2; PyPI documents Python SVG drawing and animation, with raster formats requiring optional support. MIT terms are reported by the package metadata; exact current licence text should be reconfirmed before redistribution.",
+        "sources": [
+          "https://tangled.org/cduck.me/drawsvg",
+          "https://pypi.org/project/drawsvg/"
+        ]
+      }
     },
     {
       "id": "drei",
@@ -2106,6 +2593,115 @@
         "sources": [
           "https://essentia.upf.edu/",
           "https://github.com/MTG/essentia"
+        ]
+      }
+    },
+    {
+      "id": "exiftool",
+      "name": "exiftool",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Native Perl CLI or library",
+      "official_url": "https://github.com/exiftool/exiftool",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection"
+      ],
+      "notes": [
+        "2026-11-15: Triage reason: Assess official licence terms and video write coverage. Revisit when delivery metadata handling is scoped.",
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+        "2026-11-15: Release date or maintenance cadence could not be established from the inspected official pages."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-12-discovery.md",
+      "summary": "Perl CLI and library for media metadata",
+      "license": "GPL-3.0-or-later OR Artistic-1.0-Perl",
+      "use_when": [
+        "Use for broad metadata inspection and batch metadata edits."
+      ],
+      "avoid_when": [
+        "Avoid for media transcoding or content inspection; use FFmpeg or media-specific analysis."
+      ],
+      "pairs_with": [],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_c",
+        "version_seen": "13.59",
+        "last_release": "unknown",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Mature Perl CLI/library reads and writes extensive image and video metadata; automation is straightforward through commands. GPL-3.0-or-later with Artistic option; verify distribution implications and format-specific write support.",
+        "sources": [
+          "https://github.com/exiftool/exiftool",
+          "https://github.com/exiftool/exiftool"
+        ]
+      },
+      "install": {
+        "macos": "brew install exiftool",
+        "check_command": "exiftool -ver"
+      }
+    },
+    {
+      "id": "exiv2",
+      "name": "Exiv2",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "C++ CLI and library for editing EXIF, IPTC, XMP and ICC image metadata",
+      "official_url": "https://github.com/Exiv2/exiv2",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection",
+        "image-processing"
+      ],
+      "notes": [
+        "2026-11-15: Assess because writing or stripping EXIF, IPTC and XMP fills a metadata workflow gap beside read-only inspection and C2PA provenance. Revisit after verifying licence and video-container coverage.",
+        "2026-11-15: Assessment uncertainty: official pages read did not establish release recency; confirm the current release history before promotion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-02-discovery.md",
+      "summary": "C++ library and command-line utility for inspecting, editing, deleting and copying common image metadata (EXIF, IPTC, XMP and ICC). It provides direct metadata operations without re-encoding image pixels.",
+      "use_when": [
+        "Read, edit or strip image metadata in batch workflows",
+        "Choose metadata mutation over read-only media inspection"
+      ],
+      "avoid_when": [
+        "Use MediaInfo for broad audio/video technical metadata",
+        "Use C2PA tools for content credentials and provenance assertions"
+      ],
+      "pairs_with": [
+        "mediainfo",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "GPL-2.0-or-later",
+      "install": {
+        "macos": "brew install exiv2",
+        "check_command": "exiv2 --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_a",
+        "version_seen": "Current repository README; release version/date not confirmed",
+        "last_release": "unknown (release date not established from pages read)",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official README documents the library and CLI for reading, writing and deleting image metadata and states GPLv2-or-later. Release recency was not established from the official pages read, so maintenance remains unknown.",
+        "sources": [
+          "https://github.com/Exiv2/exiv2",
+          "https://github.com/Exiv2/exiv2/security/"
         ]
       }
     },
@@ -2523,6 +3119,61 @@
       }
     },
     {
+      "id": "fogleman-sdf",
+      "name": "fogleman/sdf",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Python library for composing signed-distance fields and generating 3D meshes",
+      "official_url": "https://github.com/fogleman/sdf",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-asset-processing",
+        "sdf-generation"
+      ],
+      "notes": [
+        "2026-11-15: Assess because it offers implicit-shape generation distinct from B-rep CAD and mesh processing. Revisit after confirming the repository-to-package relationship and current install route.",
+        "2026-11-15: Assessment uncertainty: no current release date or published package route was established; documented installation is from the GitHub source repository."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-02-discovery.md",
+      "summary": "Python library for defining signed-distance functions with composable primitives and Boolean operations, then generating mesh files such as STL. It offers a compact code-first route to implicit geometry; it is not a general CAD modeller or renderer.",
+      "use_when": [
+        "Generate procedural STL geometry from SDF primitives in Python",
+        "Use implicit unions, intersections and differences for code-defined shapes"
+      ],
+      "avoid_when": [
+        "Use Blender for general mesh modelling, materials and rendering",
+        "Use a CAD tool when dimensioned parametric solids and assemblies are required"
+      ],
+      "pairs_with": [
+        "blender"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "Clone the official repository and install in a Python virtual environment with `pip install -e .`",
+        "check_command": "python -c \"import sdf\""
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_a",
+        "version_seen": "Current repository README; no release version confirmed",
+        "last_release": "unknown (release date not established from pages read)",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official README documents Python SDF composition and mesh export, repository identifies MIT licence and installation from source with dependencies. Release recency was not established, so maintenance remains unknown.",
+        "sources": [
+          "https://github.com/fogleman/sdf"
+        ]
+      }
+    },
+    {
       "id": "fonttools",
       "name": "fonttools",
       "category": "Discovery: research candidates",
@@ -2812,6 +3463,62 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "generativepy",
+      "name": "generativepy",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Python framework for procedural 2D graphics, plots and frame-based animation",
+      "official_url": "https://github.com/martinmcbride/generativepy",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering",
+        "data-visualisation"
+      ],
+      "notes": [
+        "2026-11-15: Triage: assess; plain Python frame generation for mathematical graphics differs from scene-oriented animation tools. Revisit if repeated VCR work establishes a need and Cairo/font dependencies are understood.",
+        "2026-11-15: Skill opportunity: further research first; compare a small Python frame-sequence fixture with existing code-first tools before proposing a guide."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-15-discovery.md",
+      "summary": "Python library authors procedural 2D graphics, function plots and frame sequences, with GIF and movie-building routes. Its Python frame model is approachable for data-driven graphics, while movie output depends on additional libraries and it overlaps with other code-first creative tools.",
+      "use_when": [
+        "Create procedural 2D graphics or function plots directly from Python",
+        "Render a frame sequence from a Python animation or data source",
+        "Use an approachable drawing API rather than building a browser scene"
+      ],
+      "avoid_when": [
+        "Use Manim for explanatory mathematics with an established animation framework",
+        "Use matplotlib for static scientific plots and mature data analysis",
+        "Use p5.js when a JavaScript/browser sketch is the natural runtime"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "python3 -m pip install generativepy",
+        "check_command": "python3 -m pip show generativepy"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "root",
+        "version_seen": "50.0",
+        "last_release": "2026-08-16",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Official PyPI release 50.0 (2026-08-16) documents procedural 2D graphics, frame-based animation and movie tools under MIT. Movie output depends on optional libraries; the incremental value over existing Python and browser creative tools needs a fixture.",
+        "sources": [
+          "https://github.com/martinmcbride/generativepy",
+          "https://pypi.org/project/generativepy/"
+        ]
+      }
+    },
+    {
       "id": "gifsicle",
       "name": "gifsicle",
       "category": "Discovery: research candidates",
@@ -3043,6 +3750,60 @@
       },
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "gl-transitions",
+      "name": "gl-transitions",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "GLSL image-transition shader collection",
+      "official_url": "https://github.com/gl-transitions/gl-transitions",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "shaders",
+        "effects"
+      ],
+      "notes": [
+        "2026-11-15: Triage reason: Assess source-specific licenses and host-renderer integration. Revisit when a seekable shader transition workflow is needed.",
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-12-discovery.md",
+      "summary": "Progress-driven GLSL image transition collection",
+      "license": "MIT",
+      "use_when": [
+        "Use its progress-parameterized transition shaders across supported render targets",
+        "Choose a ready-made wipe or dissolve shader before writing a custom effect"
+      ],
+      "avoid_when": [
+        "Use a renderer-specific shader when the transition needs custom scene data",
+        "Use FFmpeg transitions for a command-line filtergraph rather than GLSL shaders"
+      ],
+      "pairs_with": [],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_c",
+        "version_seen": "latest",
+        "last_release": "2026-11-15",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Collection of progress-parameterized GLSL transitions with generated shader targets and CI render comparisons. MIT collection with some BSD individual transitions; select per-file licence.",
+        "sources": [
+          "https://github.com/gl-transitions/gl-transitions",
+          "https://github.com/gl-transitions/gl-transitions/blob/master/README.md"
+        ]
+      },
+      "install": {
+        "macos": "npm install gl-transitions",
+        "check_command": "npm view gl-transitions version"
+      }
     },
     {
       "id": "glmatrix",
@@ -3674,6 +4435,62 @@
       }
     },
     {
+      "id": "heerich",
+      "name": "heerich",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "JavaScript voxel scene engine with SVG output",
+      "official_url": "https://github.com/meodai/heerich",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring",
+        "3d-asset-processing"
+      ],
+      "notes": [
+        "2026-11-15: Triage reason: Assess Node/server-side route, API stability and deterministic output. Revisit after a stable API or repeat workflow.",
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-11-discovery.md",
+      "summary": "Small JavaScript engine for defining voxel scenes, boolean geometry operations and SVG rendering from oblique or perspective cameras. Its vector output suits compact isometric illustrations; the API and server-side determinism need a scoped check.",
+      "license": "MIT",
+      "install": {
+        "macos": "npm install heerich",
+        "check_command": "node -e \"require('heerich')\""
+      },
+      "use_when": [
+        "Generate compact voxel scenes and SVG views from JavaScript",
+        "Use boolean voxel operations for small isometric illustrations"
+      ],
+      "avoid_when": [
+        "Use Three.js for interactive 3D scenes, animation or broad model support",
+        "Use Blender when a full 3D editor and offline renderer are required"
+      ],
+      "pairs_with": [
+        "resvg",
+        "three-js"
+      ],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_b",
+        "version_seen": "Not verified",
+        "last_release": "Unknown from reviewed repository",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Official repository describes a zero-dependency JavaScript voxel-to-SVG engine with boolean operations and camera projections. A stable Node API and release cadence remain unconfirmed.",
+        "sources": [
+          "https://github.com/meodai/heerich"
+        ]
+      }
+    },
+    {
       "id": "houdini",
       "name": "Houdini",
       "category": "A7. Native applications and procedural tools",
@@ -4037,6 +4854,59 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "kinetograph",
+      "name": "kinetograph",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Node CLI and library",
+      "official_url": "https://github.com/0xS4N4TG/kinetograph",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "video-encoding",
+        "video-composition",
+        "3d-rendering"
+      ],
+      "notes": [
+        "2026-11-15: Triage reason: Assess HTML/CSS coverage, determinism and beta API stability. Revisit when browser-free frame rendering is documented and repeatable.",
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-13-discovery.md",
+      "summary": "Node and Rust GPU renderer for Remotion-style TSX or HTML video",
+      "license": "PolyForm-Small-Business-1.0.0",
+      "use_when": [
+        "Use for offline frame rendering of supported Remotion or HTML projects."
+      ],
+      "avoid_when": [
+        "Avoid for larger commercial deployments without commercial licence; compare Chromium capture or native tools."
+      ],
+      "pairs_with": [],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_c",
+        "version_seen": "0.3.0",
+        "last_release": "2026-11-15",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Beta Node/Rust GPU video engine renders Remotion-style TypeScript or HTML offline to MP4/stills. Requires Node 22+, prebuilt macOS Apple Silicon package available. PolyForm Small Business terms restrict larger commercial users; beta APIs may change.",
+        "sources": [
+          "https://github.com/0xS4N4TG/kinetograph",
+          "https://github.com/0xS4N4TG/kinetograph/blob/main/CHANGELOG.md"
+        ]
+      },
+      "install": {
+        "macos": "npm install kinetograph",
+        "check_command": "npx kinetograph doctor"
+      }
     },
     {
       "id": "kokoro-onnx",
@@ -4842,6 +5712,59 @@
       }
     },
     {
+      "id": "maplibre-native",
+      "name": "MapLibre Native",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "GPU-accelerated C++ vector-tile map rendering SDK for native applications",
+      "official_url": "https://github.com/maplibre/maplibre-native",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "geospatial",
+        "2d-rendering"
+      ],
+      "notes": [
+        "2026-11-15: Assess because stateless map-frame rendering could make camera paths usable as frame sequences without browser capture. Revisit after verifying the CLI/binding and local tile, glyph and sprite inputs.",
+        "2026-11-15: Assessment uncertainty: official pages read did not establish release recency; verify a headless rendering automation route and current release history before promotion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-03-discovery.md",
+      "summary": "Native library for rendering vector-tile maps in mobile and desktop applications using GPU acceleration. The official project documents platform SDK integration; a general headless frame-rendering CLI route was not established.",
+      "use_when": [
+        "Embed interactive vector-tile maps in a native application",
+        "Use its platform SDK when browser map rendering is unsuitable"
+      ],
+      "avoid_when": [
+        "Use MapLibre GL JS for browser-based map scenes and capture",
+        "Use a static map renderer when you need a documented batch CLI"
+      ],
+      "pairs_with": [],
+      "license": "BSD-2-Clause",
+      "install": {
+        "macos": "Build for the target platform using the official platform-specific instructions and toolchain",
+        "check_command": "Not applicable; no general CLI documented"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_a",
+        "version_seen": "Current repository documentation; release version/date not confirmed",
+        "last_release": "unknown (release date not established from pages read)",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official project documents an actively scoped native SDK and BSD-2-Clause licence, but the pages read do not establish a general CLI or headless frame-rendering path. Release recency is unverified; retain as a candidate pending automation evidence.",
+        "sources": [
+          "https://github.com/maplibre/maplibre-native"
+        ]
+      }
+    },
+    {
       "id": "matter-js",
       "name": "Matter.js",
       "category": "A8. Physics, audio and 3D assets",
@@ -4913,6 +5836,61 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "mayo",
+      "name": "Mayo",
+      "category": "3D CAD interchange",
+      "tier": "candidate",
+      "role": "CAD viewer and converter based on Qt and OpenCascade",
+      "official_url": "https://github.com/fougue/mayo",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "3d-asset-processing"
+      ],
+      "notes": [
+        "2026-11-07: Triage: Direct CAD interchange conversion is a concrete job without writing a script; revisit after confirming headless CLI operation and macOS build route.",
+        "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-07-discovery.md",
+      "summary": "Qt/OpenCascade CAD viewer with a documented batch conversion CLI for CAD and mesh formats. It targets interchange and inspection of engineering geometry, rather than scene authoring or rendering.",
+      "license": "MIT",
+      "install": {
+        "macos": "brew install --cask mayo",
+        "check_command": "mayo --help"
+      },
+      "use_when": [
+        "Batch convert engineering CAD and mesh formats through a documented CLI",
+        "Inspect CAD files with a desktop viewer before converting them"
+      ],
+      "avoid_when": [
+        "Use Blender for scene authoring, materials and creative rendering",
+        "Use a dedicated mesh converter when only a simple format conversion is required"
+      ],
+      "pairs_with": [
+        "blender"
+      ],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_b",
+        "version_seen": "0.10.0",
+        "last_release": "Unknown from reviewed official page",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Official project describes CAD viewing/conversion and batch CLI; repository shows current development and MIT licensing. macOS build route and headless operation should be confirmed before promotion.",
+        "sources": [
+          "https://github.com/fougue/mayo",
+          "https://github.com/fougue/mayo/releases"
+        ]
+      }
     },
     {
       "id": "mediabunny",
@@ -5256,6 +6234,65 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "mermaid-rs-renderer",
+      "name": "mermaid-rs-renderer",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Native Rust Mermaid diagram renderer",
+      "official_url": "https://github.com/1jehuang/mermaid-rs-renderer",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "diagram-generation",
+        "vector-authoring",
+        "svg-rasterisation"
+      ],
+      "notes": [
+        "2026-11-15: Triage reason: Assess documented coverage, output fidelity and stability against mermaid-cli. Revisit if upstream parity becomes important.",
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-11-discovery.md",
+      "summary": "Rust CLI and library render Mermaid text to SVG, with optional PNG output via resvg. Its browser-free native path is useful for scripts needing low startup and memory; layout and syntax coverage should be checked against mermaid-cli.",
+      "license": "MIT",
+      "install": {
+        "macos": "cargo install mermaid-rs-renderer",
+        "check_command": "mmdr --help"
+      },
+      "use_when": [
+        "Render Mermaid text to SVG without launching a browser",
+        "Prefer a Rust-native CLI for scripts where browser startup is undesirable"
+      ],
+      "avoid_when": [
+        "Use mermaid-cli when you need broader Mermaid compatibility and browser-based themes",
+        "Use Graphviz when the graph needs layout controls Mermaid does not expose"
+      ],
+      "pairs_with": [
+        "resvg",
+        "svgo"
+      ],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_b",
+        "version_seen": "0.3.1",
+        "last_release": "Unknown from reviewed release page",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Cargo metadata lists 0.3.1, MIT and CLI/PNG features; README documents SVG/PNG output and notes a native pipeline. Mermaid feature fidelity remains distinct from mermaid-cli.",
+        "sources": [
+          "https://github.com/1jehuang/mermaid-rs-renderer",
+          "https://github.com/1jehuang/mermaid-rs-renderer/releases",
+          "https://github.com/1jehuang/mermaid-rs-renderer/blob/master/Cargo.toml"
+        ]
+      }
     },
     {
       "id": "meshoptimizer",
@@ -5951,6 +6988,65 @@
         ],
         "version_seen": "1.1.5 (PyPI); repository release page lists 1.1.1",
         "last_release": "2024-11-11"
+      }
+    },
+    {
+      "id": "node-av",
+      "name": "node-av",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Node.js FFmpeg bindings for in-process audio/video decoding, filtering and encoding",
+      "official_url": "https://github.com/seydx/node-av",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio",
+        "video-encoding",
+        "video-composition"
+      ],
+      "notes": [
+        "2026-11-15: Assess because the digest identifies in-process FFmpeg from a Node render loop as a distinct route from CLI and WebCodecs neighbours. Revisit after checking native binaries, FFmpeg build flags, bundled codecs and determinism.",
+        "2026-11-15: Assessment uncertainty: bundled FFmpeg build flags, enabled codecs and their licence implications vary by published platform package; verify the selected binary before redistribution."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-02-discovery.md",
+      "summary": "Node.js bindings exposing low and high level FFmpeg APIs for decode, filter and encode workflows, with platform-specific native packages and bundled FFmpeg binaries. This provides in-process media operations and hardware acceleration options; FFmpeg build and codec availability are version and platform specific.",
+      "use_when": [
+        "Call FFmpeg media APIs from a Node.js application without shelling out",
+        "Use its documented native bindings and platform packages in Node/Electron workflows"
+      ],
+      "avoid_when": [
+        "Use ffmpeg-ffprobe for portable CLI based encoding and probing",
+        "Use WebCodecs for browser-native media operations"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "playwright"
+      ],
+      "license": "MIT (project code; bundled FFmpeg binary and codec licensing depend on build contents)",
+      "install": {
+        "macos": "npm install node-av",
+        "check_command": "node -e \"require('node-av')\""
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_a",
+        "version_seen": "7.0.4-beta.1 (pre-release); 7.0.3 latest stable shown",
+        "last_release": "2026-11-13 (v7.0.4-beta.1 pre-release)",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Official release page shows v7.0.4-beta.1 on 2026-11-13 and platform-specific native and FFmpeg packages. The prebuilt FFmpeg build/codec terms and exact determinism remain platform-specific.",
+        "sources": [
+          "https://github.com/seydx/node-av",
+          "https://github.com/seydx/node-av/releases",
+          "https://github.com/seydx/node-av/blob/main/LICENSE.md"
+        ]
       }
     },
     {
@@ -7603,6 +8699,59 @@
       }
     },
     {
+      "id": "pymunk",
+      "name": "Pymunk",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Python 2D rigid-body physics engine with fixed-step simulation",
+      "official_url": "https://github.com/viblo/pymunk",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "physics-simulation"
+      ],
+      "notes": [
+        "2026-11-15: Triage: assess; manual fixed-step Python simulation offers a distinct bake route beside the JavaScript physics tools. Revisit after an owned fixture checks state serialization and repeatability.",
+        "2026-11-15: Skill opportunity: no standalone skill yet; consider a VCR toolkit guide only if a reproducible fixed-step simulation fixture is adopted."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-14-discovery.md",
+      "summary": "Python binding to the Chipmunk 2D rigid-body engine, driven through simulation spaces, bodies and constraints. It supports fixed-step updates and serializable spaces, offering a Python bake route distinct from JavaScript-first physics libraries; deterministic behavior still depends on callbacks and environment.",
+      "use_when": [
+        "Bake repeatable 2D rigid-body motion from Python using a fixed step",
+        "Use Chipmunk constraints and collision callbacks in a Python pipeline"
+      ],
+      "avoid_when": [
+        "Use Rapier when you need a maintained cross-platform 2D/3D physics engine with bindings",
+        "Use Matter.js when the scene and physics are already browser-based"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "python3 -m pip install pymunk",
+        "check_command": "python3 -c \"import pymunk; print(pymunk.version)\""
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "root",
+        "version_seen": "7.3.1",
+        "last_release": "2026-10-11",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Pymunk 7.3.1 was released 2026-10-11; official documentation describes fixed-step simulation and pickle support. MIT Python bindings to Chipmunk; repeatability across callbacks, versions and machines remains unverified.",
+        "sources": [
+          "https://github.com/viblo/pymunk",
+          "https://github.com/viblo/pymunk/blob/master/CHANGELOG.rst",
+          "https://www.pymunk.org/en/latest/"
+        ]
+      }
+    },
+    {
       "id": "pyscenedetect",
       "name": "PySceneDetect",
       "category": "A5. Video and capture",
@@ -7660,6 +8809,59 @@
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "raea",
+      "name": "raea",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "React/TypeScript project with Rust/Bevy renderer",
+      "official_url": "https://github.com/shinyobjectz/raea",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "video-encoding",
+        "3d-rendering",
+        "react-integration"
+      ],
+      "notes": [
+        "2026-11-15: Triage reason: Assess source-available licence fit, deterministic display-free rendering and API stability. Revisit after those constraints are documented.",
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-13-discovery.md",
+      "summary": "React-authored GPU renderer for video and 3D",
+      "license": "FSL-1.1-ALv2",
+      "use_when": [
+        "Use when authoring scenes in React/TypeScript for GPU-rendered video."
+      ],
+      "avoid_when": [
+        "Avoid for unrestricted commercial redistribution; compare a permissively licensed renderer such as Blender."
+      ],
+      "pairs_with": [],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_c",
+        "version_seen": "unknown",
+        "last_release": "unknown",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "React/TypeScript-authored GPU creative engine uses Rust and Bevy for video, motion graphics and 3D output. FSL-1.1-ALv2 restricts competing products; third-party notices apply. Need release/version evidence and headless determinism details.",
+        "sources": [
+          "https://github.com/shinyobjectz/raea",
+          "https://github.com/shinyobjectz/raea"
+        ]
+      },
+      "install": {
+        "macos": "See official repository install instructions; no verified Homebrew route",
+        "check_command": "raea --version"
+      }
     },
     {
       "id": "rapier",
@@ -9097,6 +10299,120 @@
       }
     },
     {
+      "id": "splat-transform",
+      "name": "splat-transform",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "CLI and JavaScript library for processing and converting 3D Gaussian splats",
+      "official_url": "https://github.com/playcanvas/splat-transform",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "3d-asset-processing",
+        "model-loading"
+      ],
+      "notes": [
+        "2026-11-15: Assess because the digest identifies a conversion and filtering gap between splat producers and mesh-only tools. Revisit after confirming the official automation interface and supported formats."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-01-discovery.md",
+      "summary": "Node.js CLI and library for transforming and converting Gaussian splat assets. It handles splat-oriented workflows directly, including conversion and filtering, where general mesh tools do not preserve splat data.",
+      "use_when": [
+        "Convert or filter Gaussian splat assets in a scriptable pipeline",
+        "Choose a splat-native processor over mesh-only tools"
+      ],
+      "avoid_when": [
+        "Use Blender for general mesh modelling or scene rendering",
+        "Use a splat viewer when you only need interactive inspection"
+      ],
+      "pairs_with": [
+        "playwright"
+      ],
+      "license": "MIT (per official PlayCanvas open-source listing)",
+      "install": {
+        "macos": "npm install -g @playcanvas/splat-transform",
+        "check_command": "splat-transform --help"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_a",
+        "version_seen": "3.6.6",
+        "last_release": "2026-09-25",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Official release page shows v3.6.6 on 2026-09-25; the project documents CLI and library use for splat conversion and processing. Distinct from mesh tools.",
+        "sources": [
+          "https://github.com/playcanvas/splat-transform",
+          "https://github.com/playcanvas/splat-transform/releases"
+        ]
+      }
+    },
+    {
+      "id": "splishsplash",
+      "name": "SPlisHSPlasH + splashsurf",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "SPH fluid simulator paired with splashsurf CLI/library for particle-to-mesh surface reconstruction",
+      "official_url": "https://github.com/InteractiveComputerGraphics/SPlisHSPlasH",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "physics-simulation",
+        "3d-asset-processing"
+      ],
+      "notes": [
+        "2026-11-15: Assess because the digest describes a bakeable particle simulation and mesh-sequence workflow beyond rigid-body solvers. Revisit after confirming build and Python/CLI support on target machines and cross-machine reproducibility.",
+        "2026-11-15: Assessment uncertainty: release recency and reproducible SPlisHSPlasH build/export steps on target machines were not established; assess the GPL simulator and MIT reconstruction component separately."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-01-discovery.md",
+      "summary": "SPlisHSPlasH simulates particle based fluids; the companion splashsurf project reconstructs SPH particle data as surface meshes, with Rust CLI/library and Python bindings. Together they support a scriptable simulation-to-mesh workflow, while simulation build and export settings remain environment dependent.",
+      "use_when": [
+        "Bake particle fluid simulations and reconstruct a mesh sequence",
+        "Choose SPH particle workflows over rigid-body solvers",
+        "Use splashsurf to turn SPlisHSPlasH particle output into surface meshes"
+      ],
+      "avoid_when": [
+        "Use a rigid-body solver for primarily solid-object dynamics",
+        "Use Blender fluid tools when an integrated scene authoring workflow matters more"
+      ],
+      "pairs_with": [
+        "blender",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "SPlisHSPlasH: MIT; splashsurf: MIT",
+      "install": {
+        "macos": "Build SPlisHSPlasH from its official source; install splashsurf with `cargo install splashsurf` or Python bindings with `pip install pysplashsurf`",
+        "check_command": "splashsurf --help"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_a",
+        "version_seen": "Current source repositories; release versions/dates not confirmed",
+        "last_release": "unknown (release dates not established from pages read)",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Official repositories document the simulator and separate splashsurf CLI/library/Python surface reconstruction route. Both projects state MIT; the official org page lists SPlisHSPlasH updated 2026-10-28, while release dates and reproducible target-machine builds remain unverified.",
+        "sources": [
+          "https://github.com/InteractiveComputerGraphics/SPlisHSPlasH",
+          "https://github.com/InteractiveComputerGraphics/splashsurf",
+          "https://github.com/interactivecomputergraphics"
+        ]
+      }
+    },
+    {
       "id": "ssam",
       "name": "Ssam",
       "category": "A1. Creative coding and 2D",
@@ -9533,6 +10849,62 @@
       }
     },
     {
+      "id": "syncalong",
+      "name": "syncalong",
+      "category": "Speech and lyric alignment",
+      "tier": "candidate",
+      "role": "Aligns supplied lyrics or transcript text to audio and emits LRC timing",
+      "official_url": "https://github.com/wickeddoc/syncalong",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-11-06: Triage: Distinct timing job for supplied text, though documented output is line-level and project is very small; revisit after stability and word-timing support are established.",
+        "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-06-discovery.md",
+      "summary": "Python CLI and library aligns supplied lyric text to audio using Whisper word timestamps and sequence alignment, then emits timestamped LRC lines. Supports local or remote transcription; local Whisper and optional Demucs add substantial dependencies.",
+      "license": "MIT",
+      "install": {
+        "macos": "python3 -m pip install syncalong",
+        "check_command": "syncalong --help"
+      },
+      "use_when": [
+        "Align provided lyrics to audio and export timestamped LRC lines",
+        "Create line timings from Whisper word timestamps without manually syncing each line"
+      ],
+      "avoid_when": [
+        "Use a transcription tool when you need a verbatim transcript without supplied lyrics",
+        "Use caption editors when you need interactive correction and subtitle authoring"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_b",
+        "version_seen": "2.0+ (current release number not resolved)",
+        "last_release": "Unknown; release date not exposed in reviewed source",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Current README documents 2.0 remote transcription, local Whisper extras, CLI and importable API; MIT. Release metadata did not expose an exact latest version/date in reviewed page.",
+        "sources": [
+          "https://github.com/wickeddoc/syncalong",
+          "https://github.com/wickeddoc/syncalong/releases",
+          "https://syncalong.readthedocs.io/"
+        ]
+      }
+    },
+    {
       "id": "synfig",
       "name": "Synfig",
       "category": "A7. Native applications and procedural tools",
@@ -9652,6 +11024,118 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
+    },
+    {
+      "id": "thorvg",
+      "name": "thorvg",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "C++ renderer for SVG and Lottie scenes",
+      "official_url": "https://github.com/thorvg/thorvg",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring",
+        "svg-rasterisation",
+        "asset-playback"
+      ],
+      "notes": [
+        "2026-11-15: Triage reason: Assess frame-addressed Lottie rendering route and feature coverage. Revisit when a reproducible image-sequence workflow is documented.",
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-12-discovery.md",
+      "summary": "C++ vector renderer for SVG and Lottie",
+      "license": "MIT",
+      "use_when": [
+        "Render SVG or Lottie assets natively without a browser runtime",
+        "Use CPU or GPU backends for vector playback in a native application"
+      ],
+      "avoid_when": [
+        "Use Chromium capture for scenes that depend on DOM, CSS or browser APIs",
+        "Use resvg when you only need deterministic rasterisation of a static SVG"
+      ],
+      "pairs_with": [],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_c",
+        "version_seen": "1.1.0",
+        "last_release": "2026-07-22",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "C++ vector engine supports SVG and Lottie, including CPU and GPU backends. MIT; native library/build route. Lottie feature coverage varies by spec.",
+        "sources": [
+          "https://github.com/thorvg/thorvg",
+          "https://github.com/thorvg/thorvg/releases"
+        ]
+      },
+      "install": {
+        "macos": "brew install thorvg",
+        "check_command": "pkg-config --modversion thorvg"
+      }
+    },
+    {
+      "id": "three-globe",
+      "name": "three-globe",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Three.js geographic globe layers",
+      "official_url": "https://github.com/vasturiano/three-globe",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "geospatial",
+        "3d-rendering"
+      ],
+      "notes": [
+        "2026-11-15: Triage reason: Assess compatibility with frame-driven Three.js scenes and determine whether time-based layer animation can be controlled. Revisit when globe scenes are in scope.",
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-11-discovery.md",
+      "summary": "Three.js object for spherical geographic visualisation with data layers for points, arcs, polygons, paths, heatmaps, tiles, labels and custom objects. Configure layer data through JavaScript accessors; it is a scene component, not a standalone renderer.",
+      "license": "MIT",
+      "install": {
+        "macos": "npm install three-globe three",
+        "check_command": "node -e \"require('three-globe')\""
+      },
+      "use_when": [
+        "Add globe layers for arcs, points, polygons, paths, heatmaps or labels to a Three.js scene",
+        "Drive a geographic globe as one component in a larger Three.js composition"
+      ],
+      "avoid_when": [
+        "Use deck.gl when the main task is large scale 2D geospatial data visualisation",
+        "Use MapLibre GL JS for interactive maps with tiled basemaps rather than a globe scene"
+      ],
+      "pairs_with": [
+        "three-js",
+        "ffmpeg-ffprobe"
+      ],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_b",
+        "version_seen": "Current npm version not established",
+        "last_release": "Release date not found on reviewed releases page",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "README documents a Three.js class, numerous geographic layers and explicit pause/resume controls. It fits frame-driven Three.js scenes, while transition helpers require deterministic-time review.",
+        "sources": [
+          "https://github.com/vasturiano/three-globe",
+          "https://github.com/vasturiano/three-globe/releases"
+        ]
+      }
     },
     {
       "id": "three-js",
@@ -10117,6 +11601,62 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "ttconv",
+      "name": "ttconv",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Python library and CLI for converting timed-text subtitle and caption formats",
+      "official_url": "https://github.com/sandflow/ttconv",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection"
+      ],
+      "notes": [
+        "2026-11-15: Assess because deterministic conversion to delivery caption formats fills a distinct gap beyond subtitle authoring and burn-in. Revisit after checking standards conformance coverage.",
+        "2026-11-15: Assessment uncertainty: official pages read did not establish release recency; verify the exact licence text and standards coverage before promotion."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-03-discovery.md",
+      "summary": "Python library and `tt` command-line tool for converting timed-text files across formats including STL, SRT, TTML, SCC and WebVTT. It automates format conversion; standards conformance and preservation of format-specific features need workflow-specific checks.",
+      "use_when": [
+        "Convert timed-text captions between supported delivery formats",
+        "Choose scripted conversion over authoring captions from scratch"
+      ],
+      "avoid_when": [
+        "Use subtitle-editing tools for interactive timing and text authoring",
+        "Use FFmpeg subtitle filters to burn captions into video"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "libass"
+      ],
+      "license": "BSD-3-Clause (PyPI classifier identifies BSD; verify exact terms in repository licence before redistribution)",
+      "install": {
+        "macos": "python3 -m pip install ttconv",
+        "check_command": "tt --help"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_a",
+        "version_seen": "1.2.3-dev.1 in official setup.py; current release not confirmed",
+        "last_release": "unknown (release date not established from pages read)",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official repository describes format conversion and setup.py defines the `tt` CLI entry point and Python package. The checked package metadata labels the licence BSD, but exact licence terms and release recency need confirmation before promotion.",
+        "sources": [
+          "https://github.com/sandflow/ttconv",
+          "https://github.com/sandflow/ttconv/blob/master/setup.py"
+        ]
+      }
+    },
+    {
       "id": "tween-js",
       "name": "tween.js",
       "category": "A2. Animation and authored assets",
@@ -10333,6 +11873,62 @@
         "twojs-capture"
       ],
       "skill": "skills/two-js/SKILL.md"
+    },
+    {
+      "id": "typed-ffmpeg",
+      "name": "typed-ffmpeg",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Typed Python and experimental TypeScript APIs for building FFmpeg commands",
+      "official_url": "https://github.com/lucemia/typed-ffmpeg",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "video-composition",
+        "video-encoding"
+      ],
+      "notes": [
+        "2026-11-15: Assess because typed filtergraph construction could reduce hand-written FFmpeg command errors. Revisit after checking TypeScript package maturity and official supported-filter coverage.",
+        "2026-11-15: Assessment uncertainty: release recency and complete TypeScript supported-filter/version coverage were not established; TypeScript route is documented as experimental."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-02-discovery.md",
+      "summary": "Typed Python API and experimental TypeScript packages construct FFmpeg commands and filtergraphs with filter types, documentation and compile-to-argument output. The library helps author pipelines but does not include FFmpeg; execution still depends on a compatible system FFmpeg binary.",
+      "use_when": [
+        "Build FFmpeg filtergraphs with typed Python APIs and IDE support",
+        "Use TypeScript bindings when their experimental maturity is acceptable",
+        "Generate FFmpeg arguments in code rather than hand-writing filtergraph strings"
+      ],
+      "avoid_when": [
+        "Use ffmpeg-ffprobe directly for simple CLI commands and probing",
+        "Use node-av for in-process FFmpeg bindings rather than command construction"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "python3 -m pip install typed-ffmpeg (requires FFmpeg separately); TypeScript packages are experimental",
+        "check_command": "python3 -c \"import typed_ffmpeg\""
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assessment_batch_a",
+        "version_seen": "Current README documents Python packages and experimental TypeScript packages; release version/date not confirmed",
+        "last_release": "unknown (release date not established from pages read)",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official README documents typed Python and experimental TypeScript FFmpeg bindings, FFmpeg-version-specific packages and external FFmpeg dependency. The repository identifies MIT licence; current release recency was not established.",
+        "sources": [
+          "https://github.com/lucemia/typed-ffmpeg"
+        ]
+      }
     },
     {
       "id": "typst",

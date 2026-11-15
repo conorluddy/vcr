@@ -14,7 +14,7 @@ Facts below come from GitHub search metadata (stars, licence, last push) and the
 ## Leads
 
 ### raea — Render Anything Engine (`raea`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/shinyobjectz/raea
 - Role: Rust/Bevy GPU engine that renders videos, motion graphics and 3D scenes authored as React/TypeScript, from the CLI to MP4 or a single PNG frame (`--frame N`).
 - Category: A5. Video and capture (neighbours: `remotion`, `revideo`, `hyperframes`).
@@ -28,7 +28,7 @@ Facts below come from GitHub search metadata (stars, licence, last push) and the
 - Found via: GitHub topic `motion-graphics`.
 
 ### kinetograph (`kinetograph`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/0xS4N4TG/kinetograph
 - Role: programmatic video engine for agents; renders from TypeScript (Remotion-style API) or plain HTML without a browser, with a Rust GPU compositor driven from Node.
 - Category: A5. Video and capture.
@@ -42,7 +42,7 @@ Facts below come from GitHub search metadata (stars, licence, last push) and the
 - Found via: GitHub topic `motion-graphics`.
 
 ### SPZ (`spz`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/nianticlabs/spz
 - Role: compressed file format and C++ library for 3D Gaussian splats (`.spz`, about 10x smaller than PLY), with Python bindings, a WASM/TypeScript build and CLI tools.
 - Category: A8. Physics, audio and 3D assets.
@@ -56,7 +56,7 @@ Facts below come from GitHub search metadata (stars, licence, last push) and the
 - Found via: GitHub topic `gaussian-splatting`.
 
 ### dgenerate (`dgenerate`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/Teriks/dgenerate
 - Role: scriptable CLI and library for batch image and animation generation with diffusion models, including per-frame processing of existing animations.
 - Category: A9. Adjacent resources mentioned during discovery (generative image/video; neighbours `comfyui`, `rembg`).

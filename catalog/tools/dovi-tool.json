@@ -1,0 +1,58 @@
+{
+  "id": "dovi-tool",
+  "name": "dovi_tool and hdr10plus_tool",
+  "category": "HDR delivery metadata",
+  "tier": "candidate",
+  "role": "Rust CLIs for Dolby Vision RPU and HDR10+ dynamic metadata in HEVC streams",
+  "official_url": "https://github.com/quietvoid/dovi_tool",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "media-inspection",
+    "video-encoding"
+  ],
+  "notes": [
+    "2026-11-04: Triage: Concrete metadata inspection and editing gap beyond FFmpeg and MediaInfo HDR signalling; revisit after official automation route and profile coverage are checked.",
+    "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-15",
+  "source": "prospects/inbox/2026-11-04-discovery.md",
+  "summary": "Native Rust command line tools for extracting, editing, generating and injecting Dolby Vision RPU or HDR10+ metadata in HEVC streams. Use them for metadata operations where FFmpeg probing alone is insufficient; they do not encode video.",
+  "license": "MIT",
+  "install": {
+    "macos": "brew install dovi_tool hdr10plus_tool",
+    "check_command": "dovi_tool --version"
+  },
+  "use_when": [
+    "Extract, inspect or modify Dolby Vision RPU or HDR10+ metadata in HEVC streams",
+    "Generate dynamic metadata when stream metadata work must remain separate from encoding"
+  ],
+  "avoid_when": [
+    "Use FFmpeg for decoding, filtering or encoding rather than dynamic metadata edits",
+    "Use MediaInfo for a broad read-only technical report"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "mediainfo"
+  ],
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "assessment_batch_b",
+    "version_seen": "dovi_tool 2.3.3; hdr10plus_tool latest release not verified",
+    "last_release": "2026-07-12 (dovi_tool); hdr10plus_tool date unknown",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "dovi_tool 2.3.3 released 2026-07-12 with export/editor fixes and libdovi updates; paired HDR10+ utility has separate release history. Native CLI route and macOS binary are documented.",
+    "sources": [
+      "https://github.com/quietvoid/dovi_tool",
+      "https://github.com/quietvoid/dovi_tool/releases",
+      "https://github.com/quietvoid/hdr10plus_tool"
+    ]
+  }
+}

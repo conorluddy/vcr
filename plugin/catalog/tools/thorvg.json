@@ -1,0 +1,55 @@
+{
+  "id": "thorvg",
+  "name": "thorvg",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "C++ renderer for SVG and Lottie scenes",
+  "official_url": "https://github.com/thorvg/thorvg",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "vector-authoring",
+    "svg-rasterisation",
+    "asset-playback"
+  ],
+  "notes": [
+    "2026-11-15: Triage reason: Assess frame-addressed Lottie rendering route and feature coverage. Revisit when a reproducible image-sequence workflow is documented.",
+    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-15",
+  "source": "prospects/inbox/2026-11-12-discovery.md",
+  "summary": "C++ vector renderer for SVG and Lottie",
+  "license": "MIT",
+  "use_when": [
+    "Render SVG or Lottie assets natively without a browser runtime",
+    "Use CPU or GPU backends for vector playback in a native application"
+  ],
+  "avoid_when": [
+    "Use Chromium capture for scenes that depend on DOM, CSS or browser APIs",
+    "Use resvg when you only need deterministic rasterisation of a static SVG"
+  ],
+  "pairs_with": [],
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "assessment_batch_c",
+    "version_seen": "1.1.0",
+    "last_release": "2026-07-22",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "C++ vector engine supports SVG and Lottie, including CPU and GPU backends. MIT; native library/build route. Lottie feature coverage varies by spec.",
+    "sources": [
+      "https://github.com/thorvg/thorvg",
+      "https://github.com/thorvg/thorvg/releases"
+    ]
+  },
+  "install": {
+    "macos": "brew install thorvg",
+    "check_command": "pkg-config --modversion thorvg"
+  }
+}

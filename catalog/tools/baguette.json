@@ -1,0 +1,53 @@
+{
+  "id": "baguette",
+  "name": "Baguette",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Apple Simulator control and capture CLI with multi-device orchestration",
+  "official_url": "https://github.com/tddworks/baguette",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "capture"
+  ],
+  "notes": [
+    "2026-11-15: Triage: assess; scripted simulator gestures and capture fill a distinct native-app preview route. Revisit if supported macOS/Xcode requirements exceed the target environment or capture cannot be repeated reliably.",
+    "2026-11-15: Skill opportunity: consider a VCR simulator-capture guide if this becomes a recurring app-capture workflow; assess Xcode and host constraints in a scoped fixture."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-15",
+  "source": "prospects/inbox/2026-11-14-discovery.md",
+  "summary": "Native macOS CLI for headless Apple Simulator control, screenshots, video recording, UI descriptions and multi-device sessions. Its broad simulator input and capture commands make it useful for repeatable app capture; it requires Apple Silicon and Xcode 26 private simulator frameworks.",
+  "use_when": [
+    "Automate taps, gestures and screenshots in Apple Simulator without driving the GUI",
+    "Record or stream simulator sessions alongside scripted UI input",
+    "Coordinate multiple simulator devices from a CLI"
+  ],
+  "avoid_when": [
+    "Use XCUITest when you need Apple’s supported test framework and assertions",
+    "Use iOS Simulator UI automation when accessibility-driven app interaction is sufficient"
+  ],
+  "license": "Apache-2.0",
+  "install": {
+    "macos": "brew install baguette",
+    "check_command": "baguette --version"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "root",
+    "version_seen": "0.2.14",
+    "last_release": "2026-11-07",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "Official docs describe a native CLI for Apple Simulator control, recording and multi-device sessions; v0.2.14 was released 2026-11-07. Install requires Apple Silicon, Xcode 26 and private SimulatorKit/CoreSimulator frameworks, so portability is limited.",
+    "sources": [
+      "https://github.com/tddworks/baguette",
+      "https://github.com/tddworks/baguette/releases"
+    ]
+  }
+}

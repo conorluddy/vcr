@@ -1,0 +1,52 @@
+{
+  "id": "exiftool",
+  "name": "exiftool",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Native Perl CLI or library",
+  "official_url": "https://github.com/exiftool/exiftool",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "media-inspection"
+  ],
+  "notes": [
+    "2026-11-15: Triage reason: Assess official licence terms and video write coverage. Revisit when delivery metadata handling is scoped.",
+    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+    "2026-11-15: Release date or maintenance cadence could not be established from the inspected official pages."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-15",
+  "source": "prospects/inbox/2026-11-12-discovery.md",
+  "summary": "Perl CLI and library for media metadata",
+  "license": "GPL-3.0-or-later OR Artistic-1.0-Perl",
+  "use_when": [
+    "Use for broad metadata inspection and batch metadata edits."
+  ],
+  "avoid_when": [
+    "Avoid for media transcoding or content inspection; use FFmpeg or media-specific analysis."
+  ],
+  "pairs_with": [],
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "assessment_batch_c",
+    "version_seen": "13.59",
+    "last_release": "unknown",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Mature Perl CLI/library reads and writes extensive image and video metadata; automation is straightforward through commands. GPL-3.0-or-later with Artistic option; verify distribution implications and format-specific write support.",
+    "sources": [
+      "https://github.com/exiftool/exiftool",
+      "https://github.com/exiftool/exiftool"
+    ]
+  },
+  "install": {
+    "macos": "brew install exiftool",
+    "check_command": "exiftool -ver"
+  }
+}

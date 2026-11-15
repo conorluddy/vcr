@@ -15,7 +15,7 @@ Metadata below comes from GitHub repository search results (stars, last push, li
 ## Leads
 
 ### splat-transform (`splat-transform`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/playcanvas/splat-transform
 - Role: CLI and library for 3D Gaussian splat processing and conversion (ply, compressed ply, sog and similar).
 - Category: 3d / asset-processing (existing); sits beside the Gaussian-splat pipeline.
@@ -29,7 +29,7 @@ Metadata below comes from GitHub repository search results (stars, last push, li
 - Found via: GitHub topic search `gaussian-splatting`.
 
 ### SPlisHSPlasH + splashsurf (`splishsplash`) — 🆕 new category: fluid / particle simulation — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/InteractiveComputerGraphics/SPlisHSPlasH (companion: https://github.com/InteractiveComputerGraphics/splashsurf)
 - Role: SPH fluid simulation library with a Python binding and CLI. splashsurf is a Rust CLI that reconstructs surface meshes from the particle output, so a bake becomes a mesh sequence.
 - Category: new category: simulation (fluid, beyond rigid bodies)
@@ -43,7 +43,7 @@ Metadata below comes from GitHub repository search results (stars, last push, li
 - Found via: GitHub topic search `fluid-simulation`.
 
 ### c2pa-rs / c2patool (`c2pa`) — 🆕 new category: provenance and metadata — worth cataloguing
-- [x] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/contentauth/c2pa-rs (CLI: https://github.com/contentauth/c2patool, 159 stars)
 - Role: Rust SDK and CLI to read, sign and verify C2PA Content Credentials in images and video.
 - Category: new category: provenance and metadata
@@ -57,7 +57,7 @@ Metadata below comes from GitHub repository search results (stars, last push, li
 - Found via: GitHub topic search `c2pa`.
 
 ### PMTiles / go-pmtiles (`pmtiles`) — 🆕 new category: maps and geo motion — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/protomaps/go-pmtiles (spec: https://github.com/protomaps/PMTiles, 3099 stars)
 - Role: single-file executable to create, extract and serve PMTiles vector-tile archives. An offline basemap source for map-based motion graphics.
 - Category: new category: maps and geo motion
@@ -72,7 +72,7 @@ Metadata below comes from GitHub repository search results (stars, last push, li
 - Found via: GitHub search `pmtiles`, `maplibre video export`.
 
 ### video-safety-check (`video-safety-check`) — 🆕 new category: accessibility and compliance — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/CosLynxAI/video-safety-check
 - Role: finds seizure-risk flashes (WCAG 2.3.1), unreadable captions and loudness jumps (EBU R128) in rendered video.
 - Category: new category: accessibility and compliance
@@ -86,7 +86,7 @@ Metadata below comes from GitHub repository search results (stars, last push, li
 - Found via: GitHub search `WCAG video flashing`.
 
 ### SILE (`sile`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
 - URL: https://github.com/sile-typesetter/sile
 - Role: programmable typesetting engine producing PDF from Lua or XML-like input.
 - Category: typesetting (check for existing category)

@@ -1,0 +1,56 @@
+{
+  "id": "typed-ffmpeg",
+  "name": "typed-ffmpeg",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Typed Python and experimental TypeScript APIs for building FFmpeg commands",
+  "official_url": "https://github.com/lucemia/typed-ffmpeg",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "video-composition",
+    "video-encoding"
+  ],
+  "notes": [
+    "2026-11-15: Assess because typed filtergraph construction could reduce hand-written FFmpeg command errors. Revisit after checking TypeScript package maturity and official supported-filter coverage.",
+    "2026-11-15: Assessment uncertainty: release recency and complete TypeScript supported-filter/version coverage were not established; TypeScript route is documented as experimental."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-15",
+  "source": "prospects/inbox/2026-11-02-discovery.md",
+  "summary": "Typed Python API and experimental TypeScript packages construct FFmpeg commands and filtergraphs with filter types, documentation and compile-to-argument output. The library helps author pipelines but does not include FFmpeg; execution still depends on a compatible system FFmpeg binary.",
+  "use_when": [
+    "Build FFmpeg filtergraphs with typed Python APIs and IDE support",
+    "Use TypeScript bindings when their experimental maturity is acceptable",
+    "Generate FFmpeg arguments in code rather than hand-writing filtergraph strings"
+  ],
+  "avoid_when": [
+    "Use ffmpeg-ffprobe directly for simple CLI commands and probing",
+    "Use node-av for in-process FFmpeg bindings rather than command construction"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "python3 -m pip install typed-ffmpeg (requires FFmpeg separately); TypeScript packages are experimental",
+    "check_command": "python3 -c \"import typed_ffmpeg\""
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "assessment_batch_a",
+    "version_seen": "Current README documents Python packages and experimental TypeScript packages; release version/date not confirmed",
+    "last_release": "unknown (release date not established from pages read)",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official README documents typed Python and experimental TypeScript FFmpeg bindings, FFmpeg-version-specific packages and external FFmpeg dependency. The repository identifies MIT licence; current release recency was not established.",
+    "sources": [
+      "https://github.com/lucemia/typed-ffmpeg"
+    ]
+  }
+}
