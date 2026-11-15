@@ -1,0 +1,8 @@
+{
+  "id": "gltf-transform-center",
+  "title": "Center a minimal GLB scene at the origin",
+  "summary": "Uses glTF Transform's center command on a fixture-owned triangle GLB and checks the resulting world-space bounds and repeatability.",
+  "status": "validated",
+  "tools": ["gltf-transform"],
+  "run": "./run.sh"
+}
