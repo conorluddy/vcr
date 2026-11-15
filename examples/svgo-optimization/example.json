@@ -1,0 +1,14 @@
+{
+  "id": "svgo-optimization",
+  "title": "SVGO optimisation preserves selected SVG anchors",
+  "summary": "Optimises a small owned SVG with explicit ID and viewBox preservation, then checks XML validity, size reduction and repeat output.",
+  "status": "validated",
+  "tools": [
+    "svgo"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-15",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

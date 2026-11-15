@@ -1,0 +1,12 @@
+{
+  "ids": [
+    "motion-target",
+    "paint-gradient",
+    "title"
+  ],
+  "input_bytes": 462,
+  "output_bytes": 399,
+  "sha256": "80c801705f100e5bab393cea5d56ef36582194312bff5e1584b6a3c959a13e29",
+  "version": "4.0.1",
+  "viewBox": "0 0 100 100"
+}

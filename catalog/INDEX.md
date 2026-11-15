@@ -108,7 +108,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `shotstack` — Hosted video rendering: submit a JSON edit, receive a rendered file · remote-rendering, video-composition
 - `ssam` — Canvas sketch loop with hot reload and export to PNG, GIF, PNG sequence, MP4 and WebM · generative-2d, capture, video-encoding
 - `svg-js` ✓ — Chainable SVG construction in browser or Node; animation runner is not seekable · vector-authoring, svg-animation · guide
-- `svgo` — SVG optimisation; preserve IDs needed by animation · svg-optimisation
+- `svgo` ✓ — SVG optimisation; preserve IDs needed by animation · svg-optimisation
 - `synfig` — synfig CLI renders .sif and .sifz 2D vector animation projects to frames or video · native-authoring, 2d-rendering, timeline-animation, vector-authoring
 - `theatre-js` — Visual keyframe editor (Studio) with a code runtime; sequence position is settable · timeline-animation, parameter-ui
 - `three-js-shading-language` — Node-based shader authoring in JavaScript that compiles to WGSL or GLSL · shaders, effects
