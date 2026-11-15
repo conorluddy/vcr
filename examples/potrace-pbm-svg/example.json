@@ -1,0 +1,8 @@
+{
+  "id": "potrace-pbm-svg",
+  "title": "Potrace traces a generated monochrome bitmap to SVG",
+  "summary": "Creates a small binary PBM diamond ring, traces it to a tight SVG, and checks path structure and repeatable bytes.",
+  "status": "validated",
+  "tools": ["potrace"],
+  "run": "./run.sh"
+}
