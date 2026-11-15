@@ -1,0 +1,14 @@
+{
+  "id": "gifski-sequence",
+  "title": "Gifski encodes an owned PNG sequence as a GIF",
+  "summary": "Generates three owned RGB frames and checks GIF dimensions, frame count, duration, version and repeat output.",
+  "status": "validated",
+  "tools": [
+    "gifski"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-15",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
