@@ -3,12 +3,12 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { applyCaptureSetup, formatCaptureSetupPlan, planCaptureSetup, runCapture } from "./capture.js";
 import { COMMANDS, findCommand, findCommandGroup, formatCommandHelp, formatGlobalUsage, GLOBAL_FLAGS } from "./commands.js";
-import { buildCatalogIndex, writeCatalogIndex } from "./catalog.js";
+import { buildCatalogIndex, formatToolStatusTable, writeCatalogIndex } from "./catalog.js";
 import { filterPillarRules, findPillarRule, formatPillarRule, formatPillarRuleList, loadPillarRules, loadPillars, readKnowledgeBaseSection, renderReferencesIndex, writeReferencesIndex } from "./references.js";
 import { DEFAULT_LINT_SAMPLES, formatLintReport, parseSampleTimes, runLint } from "./lint.js";
 import { disclosureReport, formatDisclosureReport } from "./disclosure.js";
 import { formatDoctorTable, runDoctor } from "./doctor.js";
-import { loadMachineRecord } from "./evidence.js";
+import { assessReadiness, loadMachineRecord } from "./evidence.js";
 import { createExample } from "./examples.js";
 import { logEvent, startTimer } from "./log.js";
 import { buildPlugin, pluginDiagnostics, readHarnessVersion } from "./plugin.js";
@@ -152,6 +152,19 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     if (subcommand === "list") {
       const matching = filterTools(tools.value, { capability: text(options["capability"]), tier: text(options["tier"]), category: text(options["category"]) });
       print(asJson ? matching : formatToolTable(matching));
+      return 0;
+    }
+    if (subcommand === "status") {
+      const index = buildCatalogIndex(repositoryRoot);
+      if (!index.ok) return failWith(index.error, asJson);
+      const matching = index.value.resources.filter((tool) =>
+        (!text(options["tier"]) || tool.tier === text(options["tier"])) &&
+        (!text(options["validation"]) || tool.validation.status === text(options["validation"])) &&
+        (!text(options["documentation"]) || tool.documentation_status === text(options["documentation"])) &&
+        (!text(options["adapter"]) || tool.adapter_maturity === text(options["adapter"])),
+      );
+      const machine = loadMachineRecord(roots.machine);
+      print(asJson ? matching.map((tool) => ({ id: tool.id, tier: tool.tier, documentation_status: tool.documentation_status, installation: assessReadiness(tool.id, machine), validation: tool.validation, adapter_maturity: tool.adapter_maturity })) : formatToolStatusTable({ ...index.value, resources: matching }, machine));
       return 0;
     }
     const examples = loadExamples(repositoryRoot);

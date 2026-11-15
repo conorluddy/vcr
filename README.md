@@ -6,7 +6,7 @@ VCR is an agent-friendly studio for code-first motion graphics, images and video
 
 | Area | What exists |
 | --- | --- |
-| **Tool catalogue** | 146 records (6 core, 88 catalogued, 52 candidates); 15 carry validation evidence from fixtures under `examples/`. Routed through `catalog/INDEX.md` and `vcr tools`. |
+| **Tool catalogue** | 146 records (6 core, 88 catalogued, 52 candidates); 15 carry validation evidence from fixtures under `examples/`. Routed through `catalog/INDEX.md` and `vcr tools`; cross-catalogue progress and coverage are shown by `vcr tools status`. |
 | **Creative pillars** | Knowledge bases and rule tables for typography, motion, pacing, story, sound, art, accessibility, delivery and more, under `references/`. Read with `vcr refs` and `vcr rules`, one section or rule at a time. |
 | **Capture** | Deterministic browser frame capture (`vcr capture`, with `--verify` to recapture in shuffled order). `--video` records a render with a retained manifest. |
 | **Briefs and plans** | A series brief (`brief.json`) and a video brief (`brief.md`), written with the `brief` skill. A beat sheet (`beats.json`) is checked before anything renders (`vcr plan check`) and gives scenes their markers (`vcr plan markers`). |
@@ -61,8 +61,11 @@ A video lives at `projects/<project>/videos/<video>/` in the user's workspace, n
 2. **Brief it:** the `brief` skill interviews for the series brief and the video brief. The person confirms the brief before anything is built.
 3. **Plan it:** write `beats.json`, then run `vcr plan check --video demo/teaser` until there are no blockers or majors. `vcr plan markers` gives the scene its `window.__scene.markers`.
 4. **Choose tools:** `vcr tools list`, then `vcr tools info <id>`, then `--full` for the guide, then `vcr tools examples <id>`. Read one tier at a time.
+
 5. **Build and capture:** `vcr capture scene.html --width 1080 --height 1920 --fps 30 --video demo/teaser`.
 6. **Review:** `vcr lint scene.html --safe-zone tiktok --markers --video demo/teaser` files findings. Agents fix them and run `vcr findings address`. A person approves or requests changes with `vcr review approve demo/teaser`.
+
+For catalogue-wide progress, run `vcr tools status`. It shows documentation status, this machine's installation/readiness, validation evidence and adapter maturity; filter with `--tier`, `--validation`, `--documentation` or `--adapter`, or use `--json` for structured output. Tool records and environment records are the sources of truth; agents run this view when answering progress or coverage questions.
 
 `vcr status --brief` shows what is waiting at any point. [`references/cli.md`](references/cli.md) is the full command reference, generated from the CLI. Every command also answers `--help`, and `--json` turns errors into `{ code, message, retryable }`.
 
@@ -73,6 +76,7 @@ You need Node 22 and pnpm. Run `pnpm install`, then:
 ```text
 pnpm vcr status                    # roots: harness, workspace, machine; "dev" mode inside this repository
 pnpm vcr tools list --tier core    # or any command: pnpm vcr <command> --help
+pnpm vcr tools status              # catalogue-wide progress and coverage
 pnpm doctor                        # probe local tools; writes ~/.vcr/environment/ and environment/<hostname>.json
 pnpm vcr catalog build             # regenerate tools.json, INDEX.md, CANDIDATES.md and generated tables
 pnpm vcr plugin build              # regenerate plugin/ and references/cli.md; commit the result

@@ -8402,6 +8402,17 @@ var COMMANDS = [
     example: "vcr tools list --capability video-encoding"
   },
   {
+    name: "tools status",
+    summary: "Show documentation, current-machine installation, validation evidence and adapter maturity for catalogue tools",
+    flags: [
+      { name: "tier", value: "tier", description: "Filter by candidate, catalogued or core" },
+      { name: "validation", value: "status", description: "Filter by not-validated, partial, validated or blocked" },
+      { name: "documentation", value: "status", description: "Filter by documentation status" },
+      { name: "adapter", value: "maturity", description: "Filter by adapter maturity" }
+    ],
+    example: "vcr tools status --validation not-validated"
+  },
+  {
     name: "tools info",
     argumentsHint: "<id>",
     summary: "Tier 1 card; --full appends the tier 2 guide",
@@ -8664,7 +8675,7 @@ function markdownFlagRow(flag) {
 
 // packages/cli/src/catalog.ts
 import { readFileSync as readFileSync3, statSync as statSync2, writeFileSync as writeFileSync4 } from "node:fs";
-import { join as join4 } from "node:path";
+import { join as join5 } from "node:path";
 
 // packages/cli/src/repository.ts
 import { existsSync as existsSync2, mkdirSync as mkdirSync3, readFileSync as readFileSync2, readdirSync as readdirSync2, renameSync, statSync, writeFileSync as writeFileSync3 } from "node:fs";
@@ -8709,6 +8720,77 @@ function writeJsonAtomic(filePath, value) {
 `);
 }
 
+// packages/cli/src/evidence.ts
+import { existsSync as existsSync3 } from "node:fs";
+import { hostname as osHostname } from "node:os";
+import { join as join4 } from "node:path";
+function versionScope(version) {
+  const text3 = (version ?? "").trim();
+  if (!text3) return "unknown";
+  if (/^n\/a\b/i.test(text3)) return "not-applicable";
+  if (/\blatest\b|[\^~*<>≥≤]|\bx\b|\.x\b|\d\+(?:\s|$|,)|\brange\b|\bor (?:later|newer|above)\b/i.test(text3)) return "inexact";
+  if (/^N-\d+-g[0-9a-f]+/.test(text3)) return "exact";
+  if (/(?:^|\s)[0-9a-f]{7,40}$/i.test(text3) && /\d/.test(text3)) return "exact";
+  return versionTokens(text3).length > 0 ? "exact" : "unknown";
+}
+function loadMachineRecord(machineRoot, hostname3 = osHostname()) {
+  const path = join4(machineRoot, "environment", `${hostname3}.json`);
+  if (!existsSync3(path)) return void 0;
+  const parsed2 = readJsonFile(path);
+  if (!parsed2.ok) return void 0;
+  const record = parsed2.value;
+  if (typeof record !== "object" || record === null || typeof record.checked_at !== "string" || !Array.isArray(record.tools)) return void 0;
+  const tools = record.tools.filter(isProbeResult);
+  return { ...record, hostname: typeof record.hostname === "string" ? record.hostname : hostname3, tools };
+}
+function assessReadiness(toolId, record) {
+  if (!record) return { state: "no-machine-record" };
+  const probe = record.tools.find((entry) => entry.tool_id === toolId);
+  if (!probe) return { state: "not-probed", checkedAt: record.checked_at };
+  if (probe.status === "installed") return { state: "installed", version: probe.version, checkedAt: record.checked_at, hostname: record.hostname };
+  return { state: probe.status === "missing" ? "missing" : "probe-error", checkedAt: record.checked_at };
+}
+function compareToEvidence(evidenceVersion, probe) {
+  if (!probe?.version || versionScope(evidenceVersion) !== "exact") return "unknown";
+  const evidence = evidenceVersion.trim();
+  if (evidence === probe.version.trim()) return "same-version";
+  const evidenceTokens = new Set(versionTokens(evidence));
+  const probeTokens = versionTokens(probe.version);
+  if (probeTokens.length === 0) return "unknown";
+  return probeTokens.some((token) => evidenceTokens.has(token)) ? "same-version" : "different-version";
+}
+function formatReadiness(readiness, evidence) {
+  const day = (iso) => iso.slice(0, 10);
+  switch (readiness.state) {
+    case "no-machine-record":
+      return "this machine: no vcr doctor record (run vcr doctor)";
+    case "not-probed":
+      return "this machine: vcr doctor does not check this tool (check the project's dependencies)";
+    case "missing":
+      return `this machine: missing (doctor ${day(readiness.checkedAt)})`;
+    case "probe-error":
+      return `this machine: probe failed (doctor ${day(readiness.checkedAt)})`;
+    case "installed":
+      return `this machine: has ${readiness.version ?? "an unparsed version"}${evidenceNote(readiness, evidence)} (doctor ${day(readiness.checkedAt)})`;
+  }
+}
+function evidenceNote(readiness, evidence) {
+  if (!evidence) return "";
+  const match = compareToEvidence(evidence.version, { version: readiness.version });
+  if (match === "unknown") return versionScope(evidence.version) === "exact" ? "; local version could not be compared with the evidence" : "; evidence version not exact, cannot compare";
+  const where = evidence.hostname && evidence.hostname === readiness.hostname ? "here" : "on another host";
+  if (match === "same-version") return `; evidence ran this version ${where}`;
+  return `; evidence ran ${evidence.version} ${where}, so this version is untested`;
+}
+function versionTokens(version) {
+  return version.match(/\d+(?:\.\d+)+(?:[-+][0-9A-Za-z.]+)?/g) ?? [];
+}
+function isProbeResult(entry) {
+  if (typeof entry !== "object" || entry === null) return false;
+  const probe = entry;
+  return typeof probe["tool_id"] === "string" && typeof probe["status"] === "string" && (typeof probe["version"] === "string" || probe["version"] === null);
+}
+
 // packages/cli/src/catalog.ts
 var ROUTABLE_TIERS = ["core", "catalogued"];
 var INDEX_HEADER = `# VCR tool index
@@ -8733,9 +8815,21 @@ var CANDIDATES_HEADER = `# VCR candidate tools
 
 Generated by \`vcr catalog build\`. Candidates remain unpromoted discovery leads; their cards may contain assessments and recommendations, but none are validated here. Route production work through \`INDEX.md\` instead. Use this list for gap research or review; promotion follows \`CANDIDATE-INGESTION.md\`. Cards and guides work the same way: \`vcr tools info <id>\`.
 `;
+function formatToolStatusTable(index, machine, filter = {}) {
+  const header = ["id", "tier", "docs", "this-machine", "evidence", "adapter"];
+  const rows = index.resources.filter((tool) => (!filter.tier || tool.tier === filter.tier) && (!filter.validation || tool.validation.status === filter.validation) && (!filter.documentation || tool.documentation_status === filter.documentation) && (!filter.adapter || tool.adapter_maturity === filter.adapter)).map((tool) => {
+    const evidence = tool.validation.evidence?.at(-1);
+    const ready = assessReadiness(tool.id, machine);
+    const install = ready.state === "installed" ? ready.version ?? "installed" : ready.state;
+    return [tool.id, tool.tier, tool.documentation_status, install, evidence ? `${tool.validation.status} ${evidence.date}` : tool.validation.status, tool.adapter_maturity];
+  });
+  const widths = header.map((_, i) => Math.max(header[i].length, ...rows.map((row) => row[i].length)));
+  const line = (row) => row.map((cell, i) => cell.padEnd(widths[i])).join("  ").trimEnd();
+  return [line(header), ...rows.map(line)].join("\n");
+}
 function buildCatalogIndex(repositoryRoot) {
   const resources = [];
-  for (const filePath of listJsonFiles(join4(repositoryRoot, "catalog/tools"))) {
+  for (const filePath of listJsonFiles(join5(repositoryRoot, "catalog/tools"))) {
     const record = readJsonFile(filePath);
     if (!record.ok) return record;
     const expectedFile = `${record.value.id}.json`;
@@ -8816,7 +8910,7 @@ function writeCatalogIndex(repositoryRoot, checkOnly) {
     ["catalog/INDEX.md", renderMarkdownIndex(built.value, repositoryRoot)],
     ["catalog/CANDIDATES.md", renderCandidatesIndex(built.value, repositoryRoot)]
   ];
-  const readme = safeRead(join4(repositoryRoot, "README.md"));
+  const readme = safeRead(join5(repositoryRoot, "README.md"));
   if (readme !== null) {
     const spliced = spliceReadmeToc(readme, renderReadmeToc(built.value));
     if (!spliced.ok) return spliced;
@@ -8824,7 +8918,7 @@ function writeCatalogIndex(repositoryRoot, checkOnly) {
   }
   const staleFiles = [];
   for (const [relativePath, next] of outputs) {
-    const absolutePath = join4(repositoryRoot, relativePath);
+    const absolutePath = join5(repositoryRoot, relativePath);
     if (safeRead(absolutePath) === next) continue;
     staleFiles.push(relativePath);
     if (!checkOnly) writeFileSync4(absolutePath, next);
@@ -8833,7 +8927,7 @@ function writeCatalogIndex(repositoryRoot, checkOnly) {
 }
 function fileSizeKb(repositoryRoot, relativePath) {
   try {
-    return Math.max(1, Math.round(statSync2(join4(repositoryRoot, relativePath)).size / 1024));
+    return Math.max(1, Math.round(statSync2(join5(repositoryRoot, relativePath)).size / 1024));
   } catch {
     return null;
   }
@@ -8857,14 +8951,14 @@ function safeRead(filePath) {
 }
 
 // packages/cli/src/references.ts
-import { existsSync as existsSync3, readdirSync as readdirSync3, readFileSync as readFileSync4, writeFileSync as writeFileSync5 } from "node:fs";
-import { dirname as dirname4, join as join5, relative as relative2, resolve as resolve3 } from "node:path";
+import { existsSync as existsSync4, readdirSync as readdirSync3, readFileSync as readFileSync4, writeFileSync as writeFileSync5 } from "node:fs";
+import { dirname as dirname4, join as join6, relative as relative2, resolve as resolve3 } from "node:path";
 var REFERENCES_INDEX_PATH = "references/INDEX.md";
 var REFERENCES_README_PATH = "references/README.md";
 var RULES_TABLE_HEADER = /^\|\s*ID\s*\|\s*Check\s*\|\s*Threshold\s*\|\s*Tier\s*\|\s*Applies to\b[^|]*\|/;
 function loadPillars(harnessRoot) {
-  const readmePath = join5(harnessRoot, REFERENCES_README_PATH);
-  if (!existsSync3(readmePath)) return fail("REFERENCES_MISSING", `${REFERENCES_README_PATH} is missing; the pillar status table lives there.`);
+  const readmePath = join6(harnessRoot, REFERENCES_README_PATH);
+  if (!existsSync4(readmePath)) return fail("REFERENCES_MISSING", `${REFERENCES_README_PATH} is missing; the pillar status table lives there.`);
   const pillars = [];
   for (const line of readFileSync4(readmePath, "utf8").split("\n")) {
     const cells = splitRow(line);
@@ -8878,8 +8972,8 @@ function loadPillars(harnessRoot) {
 }
 function loadPillarRules(harnessRoot, pillars) {
   return pillars.flatMap((pillar) => {
-    const rulesPath = join5(harnessRoot, "references", pillar.slug, "rules.json");
-    if (existsSync3(rulesPath)) return rulesFromData(pillar, JSON.parse(readFileSync4(rulesPath, "utf8")));
+    const rulesPath = join6(harnessRoot, "references", pillar.slug, "rules.json");
+    if (existsSync4(rulesPath)) return rulesFromData(pillar, JSON.parse(readFileSync4(rulesPath, "utf8")));
     const knowledgeBase = knowledgeBasePath(harnessRoot, pillar.slug);
     return knowledgeBase ? rulesFromTable(pillar, readFileSync4(knowledgeBase, "utf8")) : [];
   });
@@ -8936,12 +9030,12 @@ function renderReferencesIndex(pillars, rules) {
   ].join("\n");
 }
 function writeReferencesIndex(harnessRoot, checkOnly) {
-  if (!existsSync3(join5(harnessRoot, REFERENCES_README_PATH))) return ok({ wasStale: false, staleFiles: [] });
+  if (!existsSync4(join6(harnessRoot, REFERENCES_README_PATH))) return ok({ wasStale: false, staleFiles: [] });
   const pillars = loadPillars(harnessRoot);
   if (!pillars.ok) return pillars;
   const rendered = renderReferencesIndex(pillars.value, loadPillarRules(harnessRoot, pillars.value));
-  const path = join5(harnessRoot, REFERENCES_INDEX_PATH);
-  if (existsSync3(path) && readFileSync4(path, "utf8") === rendered) return ok({ wasStale: false, staleFiles: [] });
+  const path = join6(harnessRoot, REFERENCES_INDEX_PATH);
+  if (existsSync4(path) && readFileSync4(path, "utf8") === rendered) return ok({ wasStale: false, staleFiles: [] });
   if (!checkOnly) writeFileSync5(path, rendered);
   return ok({ wasStale: true, staleFiles: [REFERENCES_INDEX_PATH] });
 }
@@ -9017,10 +9111,10 @@ function rulesFromData(pillar, data) {
   }));
 }
 function knowledgeBasePath(harnessRoot, slug) {
-  const directory = join5(harnessRoot, "references", slug);
-  if (!existsSync3(directory)) return void 0;
+  const directory = join6(harnessRoot, "references", slug);
+  if (!existsSync4(directory)) return void 0;
   const file = readdirSync3(directory).find((name) => name.endsWith("-knowledge-base.md"));
-  return file ? join5(directory, file) : void 0;
+  return file ? join6(directory, file) : void 0;
 }
 function readKnowledgeBaseTitle(harnessRoot, slug) {
   const path = knowledgeBasePath(harnessRoot, slug);
@@ -9047,12 +9141,12 @@ function referenceIntegrityDiagnostics(root) {
   const placeholders = /* @__PURE__ */ new Set(["MAT-ID", "MOTION-XXX-NNN", "LIGHT-RULE", "ART-ID", "STORY-REF", "ART-REF", "LIGHT-RULE-ID", "MAT-RULE-ID", "PACE-ID", "A11Y-ID", "BRIEF-ID"]);
   const pattern = new RegExp(`\\b(?:${pillars.map((p) => p.prefix.slice(0, -1)).join("|")})-[A-Z0-9]+(?:-[A-Z0-9]+)*`, "g");
   for (const rule of rules) {
-    for (const target of rule.replacements ?? []) if (!ids.has(target) || target === rule.id) report(join5(root, "references", rule.pillar, "README.md"), `Invalid replacement ${rule.id} \u2192 ${target}`);
-    if (rules.filter((r) => r.id === rule.id).length > 1) report(join5(root, "references", rule.pillar, "README.md"), `Duplicate rule ${rule.id}`);
+    for (const target of rule.replacements ?? []) if (!ids.has(target) || target === rule.id) report(join6(root, "references", rule.pillar, "README.md"), `Invalid replacement ${rule.id} \u2192 ${target}`);
+    if (rules.filter((r) => r.id === rule.id).length > 1) report(join6(root, "references", rule.pillar, "README.md"), `Duplicate rule ${rule.id}`);
   }
   for (const pillar of pillars) {
-    for (const name of readdirSync3(join5(root, "references", pillar.slug)).filter((n) => n === "README.md" || n.endsWith("-knowledge-base.md"))) {
-      const file = join5(root, "references", pillar.slug, name), content = readFileSync4(file, "utf8");
+    for (const name of readdirSync3(join6(root, "references", pillar.slug)).filter((n) => n === "README.md" || n.endsWith("-knowledge-base.md"))) {
+      const file = join6(root, "references", pillar.slug, name), content = readFileSync4(file, "utf8");
       if (name === "README.md") {
         for (const line of content.split("\n").filter((l) => l.startsWith("|"))) {
           for (const m of line.matchAll(/§(\d+(?:\.\d+)*)/g)) {
@@ -9066,7 +9160,7 @@ function referenceIntegrityDiagnostics(root) {
       for (const match of content.matchAll(/\]\(([^\s)]+)(?:\s+[^)]*)?\)/g)) {
         const link = match[1].replace(/^</, "").replace(/>$/, "").split("#")[0];
         if (!link || /^(https?:|mailto:|plugin:)/.test(link)) continue;
-        if (!existsSync3(resolve3(dirname4(file), link))) report(file, `Missing local reference ${link}`);
+        if (!existsSync4(resolve3(dirname4(file), link))) report(file, `Missing local reference ${link}`);
       }
     }
   }
@@ -9083,15 +9177,15 @@ function referenceIntegrityDiagnostics(root) {
   return diagnostics;
 }
 function agentAndSupportingFiles(root, pillars) {
-  const agentsDirectory = join5(root, "agents");
-  const agents = existsSync3(agentsDirectory) ? readdirSync3(agentsDirectory).filter((name) => name.endsWith(".md")).map((name) => join5(agentsDirectory, name)) : [];
-  const supporting = pillars.flatMap((pillar) => readdirSync3(join5(root, "references", pillar.slug)).filter((name) => name.endsWith(".md") && name !== "README.md" && !name.endsWith("-knowledge-base.md") && name !== "rule-template.md").map((name) => join5(root, "references", pillar.slug, name)));
+  const agentsDirectory = join6(root, "agents");
+  const agents = existsSync4(agentsDirectory) ? readdirSync3(agentsDirectory).filter((name) => name.endsWith(".md")).map((name) => join6(agentsDirectory, name)) : [];
+  const supporting = pillars.flatMap((pillar) => readdirSync3(join6(root, "references", pillar.slug)).filter((name) => name.endsWith(".md") && name !== "README.md" && !name.endsWith("-knowledge-base.md") && name !== "rule-template.md").map((name) => join6(root, "references", pillar.slug, name)));
   return [...agents, ...supporting];
 }
 
 // packages/cli/src/lint.ts
-import { existsSync as existsSync4, readdirSync as readdirSync4, statSync as statSync3 } from "node:fs";
-import { join as join7, resolve as resolve4 } from "node:path";
+import { existsSync as existsSync5, readdirSync as readdirSync4, statSync as statSync3 } from "node:fs";
+import { join as join8, resolve as resolve4 } from "node:path";
 
 // packages/lint/src/lint-scene.ts
 import { relative as relative3 } from "node:path";
@@ -9290,18 +9384,18 @@ async function readMarkers(page) {
 
 // packages/lint/src/safe-zones.ts
 import { readFileSync as readFileSync5 } from "node:fs";
-import { join as join6 } from "node:path";
+import { join as join7 } from "node:path";
 var TYPOGRAPHY_RULES_PATH = "references/typography/rules.json";
 function loadSafeZone(harnessRoot, name) {
   const presets = readSafeZones(harnessRoot);
-  if (typeof presets === "string") return { ok: false, error: { code: "TYPOGRAPHY_RULES_UNREADABLE", message: `Cannot read safe zones from ${join6(harnessRoot, TYPOGRAPHY_RULES_PATH)}: ${presets}`, retryable: false } };
+  if (typeof presets === "string") return { ok: false, error: { code: "TYPOGRAPHY_RULES_UNREADABLE", message: `Cannot read safe zones from ${join7(harnessRoot, TYPOGRAPHY_RULES_PATH)}: ${presets}`, retryable: false } };
   const preset = presets[name];
   if (!preset) return { ok: false, error: { code: "UNKNOWN_SAFE_ZONE", message: `No safe-zone preset "${name}". Use one of: ${Object.keys(presets).join(", ")}, or none.`, retryable: false } };
   return { ok: true, value: { name, ...preset } };
 }
 function readSafeZones(harnessRoot) {
   try {
-    const data = JSON.parse(readFileSync5(join6(harnessRoot, TYPOGRAPHY_RULES_PATH), "utf8"));
+    const data = JSON.parse(readFileSync5(join7(harnessRoot, TYPOGRAPHY_RULES_PATH), "utf8"));
     return data.safe_zones ?? "the file has no safe_zones";
   } catch (cause) {
     return cause instanceof Error ? cause.message : String(cause);
@@ -9346,9 +9440,9 @@ function formatFinding(finding) {
   return `${finding.scene} t=${finding.t}s ${finding.rule}${unverified} ${finding.selector}${text3}: ${finding.problem}`;
 }
 function listScenes(target) {
-  if (!existsSync4(target)) return fail("SCENE_NOT_FOUND", `${target} does not exist.`);
+  if (!existsSync5(target)) return fail("SCENE_NOT_FOUND", `${target} does not exist.`);
   if (!statSync3(target).isDirectory()) return ok([target]);
-  const scenes = readdirSync4(target).filter((entry) => entry.endsWith(".html")).sort().map((entry) => join7(target, entry));
+  const scenes = readdirSync4(target).filter((entry) => entry.endsWith(".html")).sort().map((entry) => join8(target, entry));
   if (scenes.length === 0) return fail("SCENE_NOT_FOUND", `${target} holds no .html scenes; pass a scene file or a directory of them.`);
   return ok(scenes);
 }
@@ -9360,77 +9454,6 @@ import { join as join11 } from "node:path";
 // packages/cli/src/tools.ts
 import { existsSync as existsSync7, readFileSync as readFileSync6 } from "node:fs";
 import { join as join10 } from "node:path";
-
-// packages/cli/src/evidence.ts
-import { existsSync as existsSync5 } from "node:fs";
-import { hostname as osHostname } from "node:os";
-import { join as join8 } from "node:path";
-function versionScope(version) {
-  const text3 = (version ?? "").trim();
-  if (!text3) return "unknown";
-  if (/^n\/a\b/i.test(text3)) return "not-applicable";
-  if (/\blatest\b|[\^~*<>≥≤]|\bx\b|\.x\b|\d\+(?:\s|$|,)|\brange\b|\bor (?:later|newer|above)\b/i.test(text3)) return "inexact";
-  if (/^N-\d+-g[0-9a-f]+/.test(text3)) return "exact";
-  if (/(?:^|\s)[0-9a-f]{7,40}$/i.test(text3) && /\d/.test(text3)) return "exact";
-  return versionTokens(text3).length > 0 ? "exact" : "unknown";
-}
-function loadMachineRecord(machineRoot, hostname3 = osHostname()) {
-  const path = join8(machineRoot, "environment", `${hostname3}.json`);
-  if (!existsSync5(path)) return void 0;
-  const parsed2 = readJsonFile(path);
-  if (!parsed2.ok) return void 0;
-  const record = parsed2.value;
-  if (typeof record !== "object" || record === null || typeof record.checked_at !== "string" || !Array.isArray(record.tools)) return void 0;
-  const tools = record.tools.filter(isProbeResult);
-  return { ...record, hostname: typeof record.hostname === "string" ? record.hostname : hostname3, tools };
-}
-function assessReadiness(toolId, record) {
-  if (!record) return { state: "no-machine-record" };
-  const probe = record.tools.find((entry) => entry.tool_id === toolId);
-  if (!probe) return { state: "not-probed", checkedAt: record.checked_at };
-  if (probe.status === "installed") return { state: "installed", version: probe.version, checkedAt: record.checked_at, hostname: record.hostname };
-  return { state: probe.status === "missing" ? "missing" : "probe-error", checkedAt: record.checked_at };
-}
-function compareToEvidence(evidenceVersion, probe) {
-  if (!probe?.version || versionScope(evidenceVersion) !== "exact") return "unknown";
-  const evidence = evidenceVersion.trim();
-  if (evidence === probe.version.trim()) return "same-version";
-  const evidenceTokens = new Set(versionTokens(evidence));
-  const probeTokens = versionTokens(probe.version);
-  if (probeTokens.length === 0) return "unknown";
-  return probeTokens.some((token) => evidenceTokens.has(token)) ? "same-version" : "different-version";
-}
-function formatReadiness(readiness, evidence) {
-  const day = (iso) => iso.slice(0, 10);
-  switch (readiness.state) {
-    case "no-machine-record":
-      return "this machine: no vcr doctor record (run vcr doctor)";
-    case "not-probed":
-      return "this machine: vcr doctor does not check this tool (check the project's dependencies)";
-    case "missing":
-      return `this machine: missing (doctor ${day(readiness.checkedAt)})`;
-    case "probe-error":
-      return `this machine: probe failed (doctor ${day(readiness.checkedAt)})`;
-    case "installed":
-      return `this machine: has ${readiness.version ?? "an unparsed version"}${evidenceNote(readiness, evidence)} (doctor ${day(readiness.checkedAt)})`;
-  }
-}
-function evidenceNote(readiness, evidence) {
-  if (!evidence) return "";
-  const match = compareToEvidence(evidence.version, { version: readiness.version });
-  if (match === "unknown") return versionScope(evidence.version) === "exact" ? "; local version could not be compared with the evidence" : "; evidence version not exact, cannot compare";
-  const where = evidence.hostname && evidence.hostname === readiness.hostname ? "here" : "on another host";
-  if (match === "same-version") return `; evidence ran this version ${where}`;
-  return `; evidence ran ${evidence.version} ${where}, so this version is untested`;
-}
-function versionTokens(version) {
-  return version.match(/\d+(?:\.\d+)+(?:[-+][0-9A-Za-z.]+)?/g) ?? [];
-}
-function isProbeResult(entry) {
-  if (typeof entry !== "object" || entry === null) return false;
-  const probe = entry;
-  return typeof probe["tool_id"] === "string" && typeof probe["status"] === "string" && (typeof probe["version"] === "string" || probe["version"] === null);
-}
 
 // packages/cli/src/project.ts
 import { existsSync as existsSync6 } from "node:fs";
@@ -11297,6 +11320,16 @@ ${formatGlobalUsage()}`);
     if (subcommand === "list") {
       const matching = filterTools(tools.value, { capability: text2(options["capability"]), tier: text2(options["tier"]), category: text2(options["category"]) });
       print(asJson ? matching : formatToolTable(matching));
+      return 0;
+    }
+    if (subcommand === "status") {
+      const index = buildCatalogIndex(repositoryRoot);
+      if (!index.ok) return failWith(index.error, asJson);
+      const matching = index.value.resources.filter(
+        (tool) => (!text2(options["tier"]) || tool.tier === text2(options["tier"])) && (!text2(options["validation"]) || tool.validation.status === text2(options["validation"])) && (!text2(options["documentation"]) || tool.documentation_status === text2(options["documentation"])) && (!text2(options["adapter"]) || tool.adapter_maturity === text2(options["adapter"]))
+      );
+      const machine = loadMachineRecord(roots.machine);
+      print(asJson ? matching.map((tool) => ({ id: tool.id, tier: tool.tier, documentation_status: tool.documentation_status, installation: assessReadiness(tool.id, machine), validation: tool.validation, adapter_maturity: tool.adapter_maturity })) : formatToolStatusTable({ ...index.value, resources: matching }, machine));
       return 0;
     }
     const examples = loadExamples(repositoryRoot);

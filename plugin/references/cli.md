@@ -66,6 +66,21 @@ Tier 0: one line per tool
 vcr tools list --capability video-encoding
 ```
 
+## `vcr tools status [--tier tier] [--validation status] [--documentation status] [--adapter maturity]`
+
+Show documentation, current-machine installation, validation evidence and adapter maturity for catalogue tools
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--tier tier` | Filter by candidate, catalogued or core |  |
+| `--validation status` | Filter by not-validated, partial, validated or blocked |  |
+| `--documentation status` | Filter by documentation status |  |
+| `--adapter maturity` | Filter by adapter maturity |  |
+
+```sh
+vcr tools status --validation not-validated
+```
+
 ## `vcr tools info <id> [--full]`
 
 Tier 1 card; --full appends the tier 2 guide

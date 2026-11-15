@@ -60,6 +60,17 @@ export const COMMANDS: CommandSpec[] = [
     example: "vcr tools list --capability video-encoding",
   },
   {
+    name: "tools status",
+    summary: "Show documentation, current-machine installation, validation evidence and adapter maturity for catalogue tools",
+    flags: [
+      { name: "tier", value: "tier", description: "Filter by candidate, catalogued or core" },
+      { name: "validation", value: "status", description: "Filter by not-validated, partial, validated or blocked" },
+      { name: "documentation", value: "status", description: "Filter by documentation status" },
+      { name: "adapter", value: "maturity", description: "Filter by adapter maturity" },
+    ],
+    example: "vcr tools status --validation not-validated",
+  },
+  {
     name: "tools info",
     argumentsHint: "<id>",
     summary: "Tier 1 card; --full appends the tier 2 guide",
