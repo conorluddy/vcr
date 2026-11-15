@@ -15,6 +15,11 @@ Creative-coding library. In VCR a sketch never runs its own loop: `noLoop()`, th
 - Not for text layout, vector export or complex scene graphs. SVG output needs the p5.svg community renderer, unverified here.
 - Licence LGPL-2.1: linking from an app is fine; modifying p5 itself carries obligations.
 
+## Capability map
+The p5.js reference groups its public surface into core sketch lifecycle and environment, 2D canvas drawing and shape primitives, colour, typography, image and pixel operations, input/events, math and random, curves, DOM helpers, and WebGL geometry, camera, lights and materials. The full [reference](https://p5js.org/reference/) and [WebGL reference](https://p5js.org/reference/#WebGL) describe these entrypoint families; availability and details can vary by release.
+
+VCR fixture evidence covers a noLoop/redraw sketch using canvas drawing, seeded `noise()`/randomness and transparent capture. Other reference groups—including input, DOM, typography, image loading, and WebGL—are documented discovery surfaces, not tested VCR support.
+
 ## Install and doctor
 ```text
 npm install p5
@@ -28,7 +33,8 @@ vcr example create p5-capture                 # copies the scene into examples/p
 npm install --prefix examples/p5-capture
 vcr setup capture --yes                 # once per machine: Playwright + Chromium into ~/.vcr
 vcr capture examples/p5-capture/scene.html --width 1280 --height 720 --fps 30 --verify
-# expect: captured 90 frames, alpha min 0 max 1; shuffled matches sequential: true
+# expect: captured 90 frames; shuffled matches sequential: true; alpha min 0 max 1
+# FPS is an observed capture rate and varies by machine/runtime; it is not a target.
 ```
 
 ## Draw loop and seeding

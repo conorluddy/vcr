@@ -14,7 +14,7 @@ Stars, licences and last-push dates come from GitHub search metadata on the run 
 ## Leads
 
 ### 🆕 new category: app-preview and device capture — Frames CLI (`frames-cli`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess | defer | retire
 - URL: https://github.com/viticci/frames-cli
 - Role: adds Apple device bezels to screenshots and screen recordings from the command line. It auto-detects the device from the pixel size and supports colours, merging several shots, batch runs, `--alpha` output and HEVC-with-alpha video.
 - Category: new category "app-preview and device capture". `sim-use` (2026-11-02) and `baguette` (2026-11-14) proposed it; it is not yet in the catalogue.
@@ -84,7 +84,7 @@ Stars, licences and last-push dates come from GitHub search metadata on the run 
 - Found via: GitHub topic search `generative-art` + `python`.
 
 ### vedo (`vedo`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess | defer | retire
 - URL: https://github.com/marcomusy/vedo
 - Role: Python module on VTK and NumPy for building, analysing and rendering 3D meshes, volumes and point clouds, with offscreen screenshots and video export.
 - Category: A8. Physics, audio and 3D assets.

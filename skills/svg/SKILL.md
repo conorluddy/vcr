@@ -14,6 +14,11 @@ The one source format every tool here can read. Static SVG rasterises determinis
 - Over a canvas library when the asset must stay editable by a designer; over bitmap when it must scale to any delivery size.
 - Not for photographic content, 3D, or heavy filter effects at 4K (SVG filters are slow in browsers).
 
+## Capability map
+- **Document structure and graphics** — SVG 2 elements, groups, paths, shapes, text, paint, gradients, patterns, clipping, masks, filters and coordinate systems; authoring/reference surface is the SVG specification. Fixture uses a static title-card subset only.
+- **Animation and interaction** — SMIL animation elements and browser scripting/events can animate SVG; this guide uses inline SVG with GSAP for seekable animation. Neither animation route has VCR evidence here; the retained fixture only rasterises one static SVG through resvg.
+- **Evidence boundary** — the spec describes format capabilities, not VCR support. Validated scope is static SVG rasterisation by resvg; browser rendering and animation remain untested.
+
 ## Install and doctor
 Nothing to install. Rasterisation needs resvg (`skills/resvg`) or the capture harness.
 
@@ -45,4 +50,5 @@ vcr example create native-svg && (cd examples/native-svg && ./run.sh)
 - An animation plays in the browser but not in capture: it is SMIL or CSS; move it to GSAP.
 
 ## Official docs
-https://developer.mozilla.org/en-US/docs/Web/SVG · https://www.w3.org/TR/SVG2/
+- Overview and element/API references: https://developer.mozilla.org/en-US/docs/Web/SVG
+- SVG 2 specification: https://www.w3.org/TR/SVG2/

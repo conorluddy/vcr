@@ -15,6 +15,10 @@ Delivery path for every renderer in VCR. Native output (Blender, browser capture
 - Output bytes differ across FFmpeg builds; verify with ffprobe metadata and frame hashes, not container hashes.
 - Licence LGPL-2.1, or GPL when built with GPL components; Homebrew's build is GPL.
 
+## Capability map
+- Command groups: `ffmpeg` handles input/output options, codecs (`libavcodec`), containers and streams (`libavformat`), filters (`libavfilter`), devices (`libavdevice`), scaling/resampling, and protocols; `ffprobe` inspects streams, packets, frames, and containers ([FFmpeg documentation](https://ffmpeg.org/documentation.html), [filters](https://ffmpeg.org/ffmpeg-filters.html)).
+- VCR evidence covers numbered PNG sequence input, H.264/yuv420p encoding, AAC audio mux with `-shortest`, and ffprobe metadata. Alpha codecs, GIF palettes, overlays/crossfades, trims/concat, frame/packet inspection, device IO, and other codec/filter families are not exercised by the fixture.
+
 ## Install and doctor
 ```text
 brew install ffmpeg

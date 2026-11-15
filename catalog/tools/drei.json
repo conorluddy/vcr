@@ -33,7 +33,7 @@
   "install": {
     "macos": "pnpm add @react-three/drei"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -67,5 +67,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "drei-capture"
-  ]
+  ],
+  "skill": "skills/drei/SKILL.md"
 }

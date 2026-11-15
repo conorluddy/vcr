@@ -43,7 +43,7 @@ Metadata below comes from GitHub repository search results (stars, last push, li
 - Found via: GitHub topic search `fluid-simulation`.
 
 ### c2pa-rs / c2patool (`c2pa`) — 🆕 new category: provenance and metadata — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess | defer | retire
 - URL: https://github.com/contentauth/c2pa-rs (CLI: https://github.com/contentauth/c2patool, 159 stars)
 - Role: Rust SDK and CLI to read, sign and verify C2PA Content Credentials in images and video.
 - Category: new category: provenance and metadata

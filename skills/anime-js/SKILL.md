@@ -15,6 +15,11 @@ A small v4 timeline driven by the harness: built with autoplay off, seeked in mi
 - Nested timelines with labels, or plugins like SplitText and MotionPath that are already validated: use `gsap`.
 - v4 only. v3 snippets (`anime({...})`, `anime.timeline`) do not run on v4.
 
+## Capability map
+- Core: `animate()` for standalone targets; `createTimeline()` plus timeline controls (`add`, `seek`, `refresh`) for orchestration; utilities include `stagger`, `utils`, and `easings` ([v4 docs](https://animejs.com/documentation/)).
+- SVG helpers: `svg.createDrawable()` for stroke drawing and `svg.morphTo()` for shape morphing. Also documented: springs, WAAPI integration, text splitting, and observers.
+- VCR evidence covers only a paused `createTimeline()` with transform tweening, `svg.createDrawable()`, and staggered CSS properties, with alpha and shuffled-order capture. Standalone `animate()`, morphing, springs, WAAPI, text splitting, and observers remain untested here.
+
 ## Install and doctor
 ```text
 pnpm add animejs@4.5.0
@@ -26,7 +31,7 @@ Load the UMD bundle in a plain scene: `node_modules/animejs/dist/bundles/anime.u
 ```text
 vcr setup capture --yes      # once per machine
 vcr capture examples/anime-capture/scene.html --width 1280 --height 720 --fps 30 --verify
-# expect: captured 90 frames to …/output/frames (… fps); shuffled matches sequential: true
+# expect: 90 frames; this recorded run measured 19.5 capture fps (host and load dependent); shuffled matches sequential: true
 ```
 In the VCR repository, `examples/anime-capture/run.sh` also asserts frame 45 alpha against `expected/summary.json` and prints `anime-capture: OK`.
 

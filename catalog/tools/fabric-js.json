@@ -49,11 +49,12 @@
       "https://registry.npmjs.org/fabric"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "fabricjs-capture"
   ],
+  "skill": "skills/fabric-js/SKILL.md",
   "validation": {
     "status": "validated",
     "evidence": [

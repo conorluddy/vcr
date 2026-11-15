@@ -12,6 +12,11 @@ Evidence: Konva 10.9.0, Chromium 156.0.8078.4 via Playwright 1.64.1 on macOS arm
 
 Interaction, tweens, caching, filters, framework bindings, Node rendering and export APIs are untested here. Use PixiJS for GPU sprite/filter work, Fabric.js for SVG round trips, and GSAP for timeline orchestration; these neighbour routes need their own evidence.
 
+## Capability map
+Konva's documented scene graph is `Stage` → `Layer` → `Group` and `Shape` nodes. Core API families include node attributes/transforms and z-order, events, `Animation`/`Tween`, caching and filters, drag and transform helpers, and serialization/export (`toCanvas`, `toDataURL`, `toBlob`). Framework integrations are documented separately. See the [API reference](https://konvajs.org/api/) and [documentation](https://konvajs.org/docs/).
+
+VCR evidence covers Stage/Layer/Group/shape construction, transforms, opacity, explicit `draw()` and transparent browser capture. The other API families above are documented discovery surfaces only; the fixture does not validate their behavior or establish adapter support.
+
 ## Install and doctor
 Install the fixture dependencies with `pnpm install` inside the VCR repository. For a selected standalone project, pin `pnpm add konva@10.9.0`. Run `vcr doctor` to check machine availability; a guide does not establish installation. Browser capture additionally needs the capture runtime (`vcr setup capture`). Do not infer Node canvas backend support from this browser fixture.
 

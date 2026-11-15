@@ -442,7 +442,7 @@
       "install": {
         "macos": "pnpm add @babylonjs/core"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -476,7 +476,8 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/babylon-js/SKILL.md"
     },
     {
       "id": "blender",
@@ -683,6 +684,70 @@
       "adapter_maturity": "none",
       "checked_at": "2026-11-01",
       "source": "conversation 2026-11-01: character and figure tooling gap"
+    },
+    {
+      "id": "c2patool",
+      "name": "c2patool",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "CLI for inspecting and adding C2PA manifests to media assets",
+      "official_url": "https://github.com/contentauth/c2patool",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection"
+      ],
+      "summary": "Standalone CLI for inspecting C2PA manifests and adding signed Content Credentials to supported image, audio and video files. JSON reports expose manifest assertions for review; signature and trust checks do not establish that assertions are factually true or provenance is complete.",
+      "use_when": [
+        "Inspect or create C2PA manifests on supported media files",
+        "Produce machine-readable reports of signed provenance assertions",
+        "Add a credentials step to a separately designed asset handoff"
+      ],
+      "avoid_when": [
+        "Need ordinary container and codec metadata: use ffprobe or MediaInfo",
+        "Need to prove an assertion is true or provenance is complete: C2PA cannot establish that",
+        "Need byte-reproducible signed output: signing and timestamps change file bytes"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "mediainfo"
+      ],
+      "license": "Apache-2.0 OR MIT (project code). Certificates, trust lists and signer policy are separate operational requirements.",
+      "install": {
+        "macos": "brew install c2patool",
+        "check_command": "c2patool -V"
+      },
+      "notes": [
+        "2026-11-15: listed-in-prd is a legacy schema status for surfaced candidates; it does not mean this tool appeared in the PRD.",
+        "2026-11-15: Current upstream CLI is contentauth/c2patool; the original discovery URL contentauth/c2pa-rs is stale for the standalone CLI.",
+        "2026-11-15: C2PA signatures establish integrity and association under configured trust lists, not truth of assertions or completeness of provenance.",
+        "2026-11-15: Signed output and embedded timestamps are not byte-reproducible. Supported container/codec combinations need checking against VCR delivery formats.",
+        "2026-11-15: A future provenance-specific capability may be useful; not added because it is absent from the current capability vocabulary.",
+        "2026-11-15: Skill opportunity: further research first; no VCR asset-manifest workflow or fixture exists yet."
+      ],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assess-c2patool",
+        "version_seen": "0.29.0",
+        "last_release": "2026-11-12",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Active standalone CLI with current macOS binaries and dual permissive licensing; it provides scriptable C2PA reports and manifest creation for supported media. Integrity and trust checks do not establish the truth of assertions or complete provenance.",
+        "sources": [
+          "https://github.com/contentauth/c2patool",
+          "https://github.com/contentauth/c2patool/blob/main/docs/usage.md",
+          "https://github.com/contentauth/c2patool/releases",
+          "https://spec.c2pa.org/specifications/specifications/2.3/explainer/Explainer.html"
+        ]
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-01-discovery.md"
     },
     {
       "id": "canvas-2d",
@@ -1338,7 +1403,7 @@
           "https://github.com/d3/d3"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -1359,7 +1424,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "d3-capture"
-      ]
+      ],
+      "skill": "skills/d3/SKILL.md"
     },
     {
       "id": "deck-gl",
@@ -1644,7 +1710,7 @@
       "install": {
         "macos": "pnpm add @react-three/drei"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -1678,7 +1744,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "drei-capture"
-      ]
+      ],
+      "skill": "skills/drei/SKILL.md"
     },
     {
       "id": "dssim",
@@ -1956,11 +2023,12 @@
           "https://registry.npmjs.org/fabric"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "fabricjs-capture"
       ],
+      "skill": "skills/fabric-js/SKILL.md",
       "validation": {
         "status": "validated",
         "evidence": [
@@ -2258,6 +2326,70 @@
       "adapter_maturity": "none",
       "checked_at": "2026-11-01",
       "source": "references/ideas/new-candidate-tools-2026-11.md"
+    },
+    {
+      "id": "frames-cli",
+      "name": "Frames CLI",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "CLI for framing device screenshots and recordings with bezels",
+      "official_url": "https://github.com/viticci/frames-cli",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing",
+        "video-composition",
+        "video-encoding"
+      ],
+      "summary": "Python CLI that frames screenshots and recordings with device-specific bezels. It supports batch processing, merges, JSON inspection and video exports, including transparent formats on supported macOS and FFmpeg setups. It adds device-aware masks and sizing after capture; it does not capture or animate the app itself.",
+      "use_when": [
+        "Apply device-specific frames to simulator screenshots or recordings",
+        "Use the same bezel treatment on stills and video",
+        "Batch and merge app-preview captures through a CLI"
+      ],
+      "avoid_when": [
+        "Need to control or capture a simulator: use a simulator tool",
+        "A generic image composite is enough: use ImageMagick",
+        "Need general video assembly or encoding: use FFmpeg"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "imagemagick"
+      ],
+      "license": "MIT for CLI code. The separate Apple bezel pack includes Apple's Design Resources License; review its terms for the intended use and redistribution.",
+      "install": {
+        "macos": "git clone https://github.com/viticci/frames-cli.git && cd frames-cli && python3 -m pip install Pillow",
+        "check_command": "frames --version"
+      },
+      "notes": [
+        "2026-11-15: listed-in-prd is a legacy schema status for surfaced candidates; it does not mean this tool appeared in the PRD.",
+        "2026-11-15: GitHub Releases lists 1.7.0 as latest, while the discovery digest and project changelog mention 1.7.3; version discrepancy remains unresolved.",
+        "2026-11-15: Video framing requires FFmpeg and ffprobe 5.1+. HEVC-alpha output depends on a compatible macOS and FFmpeg build.",
+        "2026-11-15: frames setup downloads a separate Apple bezel asset pack. Its Design Resources License terms were not reviewed for a specific production or redistribution case.",
+        "2026-11-15: Skill opportunity: further research first; no VCR fixture or repeated workflow evidence yet."
+      ],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assess-frames",
+        "version_seen": "1.7.0 (latest GitHub release; changelog mentions 1.7.3)",
+        "last_release": "2026-11-04",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Frames adds device-aware framing to captured stills and recordings through a documented CLI, JSON inspection and batch workflows. The code is MIT; the separate bezel pack has its own Design Resources License, which needs review for the intended delivery use.",
+        "sources": [
+          "https://github.com/viticci/frames-cli/blob/main/README.md",
+          "https://github.com/viticci/frames-cli/releases",
+          "https://github.com/viticci/frames-cli/blob/main/LICENSE"
+        ]
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-15-discovery.md"
     },
     {
       "id": "freeze",
@@ -4260,6 +4392,7 @@
         "physics-simulation"
       ],
       "license": "MIT",
+      "skill": "skills/matter-js/SKILL.md",
       "install": {
         "macos": "pnpm add matter-js"
       },
@@ -4279,7 +4412,7 @@
           "https://registry.npmjs.org/matter-js"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -4971,7 +5104,7 @@
           "https://www.npmjs.com/package/motion"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -4992,7 +5125,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/motion-js/SKILL.md"
     },
     {
       "id": "motion-canvas",
@@ -5372,7 +5506,8 @@
       "install": {
         "macos": "pnpm add ogl"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/ogl/SKILL.md",
       "installation_status": "unknown",
       "examples": [
         "ogl-capture"
@@ -5992,7 +6127,7 @@
           "https://registry.npmjs.org/paper"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6013,7 +6148,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/paper-js/SKILL.md"
     },
     {
       "id": "pedalboard",
@@ -6264,7 +6400,7 @@
       "install": {
         "macos": "pnpm add playcanvas"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "playcanvas-capture"
@@ -6301,7 +6437,8 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/playcanvas-engine/SKILL.md"
     },
     {
       "id": "playwright",
@@ -6394,7 +6531,8 @@
           "https://github.com/microsoft/playwright"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/playwright/SKILL.md",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6494,7 +6632,7 @@
       "install": {
         "macos": "pnpm add postprocessing"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "postprocessing-capture",
@@ -6532,7 +6670,8 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/postprocessing/SKILL.md"
     },
     {
       "id": "potrace",
@@ -6758,7 +6897,8 @@
           "https://registry.npmjs.org/pts"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/pts/SKILL.md",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7117,7 +7257,8 @@
       "install": {
         "macos": "pnpm add @react-three/fiber three"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/react-three-fiber/SKILL.md",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7194,7 +7335,7 @@
         "macos": "pnpm add @react-three/postprocessing postprocessing",
         "check_command": "pnpm list @react-three/postprocessing"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7231,7 +7372,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "react-postprocessing-capture"
-      ]
+      ],
+      "skill": "skills/react-three-postprocessing/SKILL.md"
     },
     {
       "id": "react-three-rapier",
@@ -7267,7 +7409,7 @@
         "macos": "pnpm add @react-three/rapier",
         "check_command": "pnpm list @react-three/rapier"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7304,7 +7446,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "rapier-capture"
-      ]
+      ],
+      "skill": "skills/react-three-rapier/SKILL.md"
     },
     {
       "id": "real-esrgan",
@@ -7391,7 +7534,8 @@
       "install": {
         "macos": "pnpm add regl"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/regl/SKILL.md",
       "installation_status": "unknown",
       "examples": [
         "regl-capture"
@@ -7760,7 +7904,7 @@
           "https://registry.npmjs.org/roughjs"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7781,7 +7925,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "roughjs-capture"
-      ]
+      ],
+      "skill": "skills/rough-js/SKILL.md"
     },
     {
       "id": "rubber-band",
@@ -8528,7 +8673,8 @@
           "https://github.com/svgdotjs/svg.js"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/svg-js/SKILL.md",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -8956,7 +9102,7 @@
       "examples": [
         "meshline-capture"
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -8992,7 +9138,8 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/three-meshline/SKILL.md"
     },
     {
       "id": "three-vrm",
@@ -9240,7 +9387,8 @@
           "https://www.npmjs.com/package/@tweenjs/tween.js"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/tween-js/SKILL.md",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -9296,7 +9444,8 @@
       "install": {
         "macos": "pnpm add twgl.js"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/twgl/SKILL.md",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -9488,6 +9637,74 @@
         "version_seen": "R81",
         "last_release": "2026-10-22"
       }
+    },
+    {
+      "id": "vedo",
+      "name": "vedo",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Scientific 3D visualisation and analysis with VTK and NumPy",
+      "official_url": "https://vedo.embl.es/docs/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-asset-processing",
+        "3d-rendering",
+        "scientific-visualisation",
+        "model-loading"
+      ],
+      "summary": "Python library and CLI built on VTK and NumPy for loading, analysing and rendering meshes, point clouds and volumes. Its CLI can write images noninteractively, including in explicit offscreen mode; it covers scientific visualisation without requiring a browser scene.",
+      "use_when": [
+        "Render scientific meshes, point clouds or volumes from Python",
+        "Produce a static view from a VTK, STL, OBJ or volume input",
+        "Add analysis and presentation to mesh data before delivery"
+      ],
+      "avoid_when": [
+        "Build a complete animated production scene: Blender",
+        "Do lightweight triangle-mesh processing only: Trimesh",
+        "Render an interactive browser-based VTK scene: vtk.js"
+      ],
+      "pairs_with": [
+        "build123d",
+        "trimesh",
+        "blender",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "MIT for project code; bundled fonts have a separate licence and dependencies retain their own terms.",
+      "install": {
+        "macos": "uv add vedo",
+        "check_command": "python -c \"import vedo; print(vedo.__version__)\""
+      },
+      "notes": [
+        "2026-11-15: listed-in-prd is a legacy schema status for surfaced candidates; it does not mean this tool appeared in the PRD.",
+        "2026-11-15: Official documentation demonstrates noninteractive image output and explicit offscreen rendering; server setup examples depend on Mesa/OpenGL and Xvfb.",
+        "2026-11-15: Whether offscreen rendering works reliably on macOS arm64 without a window and whether output is repeatable across VTK/OpenGL drivers are unverified.",
+        "2026-11-15: Skill opportunity: further research first; no VCR fixture or repeated workflow evidence yet."
+      ],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assess-vedo",
+        "version_seen": "2026.6.3",
+        "last_release": "2026-10-26",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Official docs establish a Python and CLI route, including noninteractive image output and explicit offscreen rendering. It adds scientific mesh, point-cloud and volume visualization; macOS headless behavior and render reproducibility still need fixture evidence.",
+        "sources": [
+          "https://vedo.embl.es/docs/",
+          "https://github.com/marcomusy/vedo",
+          "https://github.com/marcomusy/vedo/releases",
+          "https://github.com/marcomusy/vedo/blob/master/pyproject.toml",
+          "https://github.com/marcomusy/vedo/blob/master/FONT.LICENSE"
+        ]
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-15-discovery.md"
     },
     {
       "id": "vhs",

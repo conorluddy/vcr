@@ -14,13 +14,17 @@ Immediate-mode drawing with no library: `seek(t)` clears the canvas and redraws 
 - Untested here: `drawImage` and images, `getImageData` and pixel access, `globalCompositeOperation` modes, filters, `OffscreenCanvas`, `devicePixelRatio` above 1, system fonts.
 - No scene graph or easing: you write the maths. For generative sketches with helpers use `p5-js`; for DOM or SVG elements use `gsap` or `web-animations-api`.
 
+## Capability map
+- `HTMLCanvasElement` creates the surface; `getContext("2d")` exposes `CanvasRenderingContext2D`. Major documented areas include paths and shapes, text, images, gradients/patterns, compositing, transforms, and pixel access (`ImageData`) ([MDN Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API), [2D context](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)). `OffscreenCanvas` is a separate worker-capable surface.
+- VCR evidence covers a 2D context redrawn from time and a fixed seed: gradients, arcs, paths, loaded-font text, and alpha capture with shuffled frames. Images/`drawImage`, `ImageData`, compositing modes, `OffscreenCanvas`, high device-pixel ratios, and system fonts remain untested here.
+
 ## Install and doctor
 Nothing to install beyond the capture browser: `vcr setup capture --yes` once per machine, then `vcr doctor`. Evidence is tied to the Chromium version that ran.
 
 ## Smoke test
 ```text
 vcr capture examples/canvas2d-capture/scene.html --width 1280 --height 720 --fps 30 --verify
-# expect: captured 90 frames to …/output/frames (… fps); shuffled matches sequential: true
+# expect: 90 frames; this recorded run measured 8.9 capture fps (host and load dependent); shuffled matches sequential: true
 ```
 In the VCR repository, `examples/canvas2d-capture/run.sh` also asserts frame 45 alpha and prints `canvas2d-capture: OK`.
 

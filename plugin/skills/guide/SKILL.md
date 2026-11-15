@@ -18,6 +18,8 @@ A guide is tier 2 of the catalogue tree: how to operate one tool once it has bee
 
 Read, in order: the card, every evidence entry's `scope` and `result`, the example's `README.md`, `run.sh` and scene source, then the official docs for the version that ran. Every rule in the guide is either shown by the fixture or cited from official docs for that version. Mark anything else as untested. Never generalise beyond the evidence scope; say which OS and version it covers.
 
+Add a compact **capability map** of the tool's major documented modules, command groups or endpoints, with links to the authoritative reference for each. Treat this as discovery, not an API mirror: do not enumerate every function or option, and do not imply documentation coverage is VCR validation. Mark which parts the fixture exercises and which remain untested. If the official reference is extensive or changes often, link its index and map only its stable top-level areas.
+
 ## 3. Write `skills/<id>/SKILL.md`
 
 The directory is usually the tool id; a shorter, clearer name is allowed (`ffmpeg`, `blender-background`). Frontmatter: `name` matching the directory, and a `description` that says when to load it in one or two sentences. Under 12 KB; existing guides run 2 to 5 KB, so aim there.
@@ -25,8 +27,9 @@ The directory is usually the tool id; a shorter, clearer name is allowed (`ffmpe
 Sections, in this order (add tool-specific ones between Smoke test and Troubleshooting):
 
 - `## Use cases and limits`: what it does in VCR and where it stops; name the neighbour to use instead.
+- `## Capability map`: the major documented surface and official entry points, with tested VCR areas distinguished from documented-but-untested areas.
 - `## Install and doctor`: install command and the `vcr doctor` check. Never claim the tool is installed.
-- `## Smoke test`: the example's run command and its exact expected output, as a `# expect:` line.
+- `## Smoke test`: the example's run command and its expected output, as a `# expect:` line. Exact output is preferred; if the fixture prints a variable metric, show one recorded sample and say which part varies.
 - Tool-specific sections: for browser tools a `## Scene contract` (`window.__scene = { duration, seek }`, everything a pure function of `t` and seed); then recipes and clock rules.
 - `## Troubleshooting`: failures actually seen in runs, with fixes.
 - `## Official docs`: links for the version that ran.

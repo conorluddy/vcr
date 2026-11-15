@@ -30,7 +30,8 @@
   "install": {
     "macos": "pnpm add ogl"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
+  "skill": "skills/ogl/SKILL.md",
   "installation_status": "unknown",
   "examples": [
     "ogl-capture"

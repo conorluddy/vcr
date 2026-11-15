@@ -11,6 +11,11 @@ description: Generate, convert, inspect, compare and montage images from the CLI
 - Synthetic frames for fixtures, contact sheets for review, pixel and alpha inspection, format conversion, perceptual diffs.
 - Not for video: hand sequences to FFmpeg. Text rendering needs an explicit `-font` on macOS (no default font is configured).
 
+## Capability map
+ImageMagick 7's CLI surface is grouped around `magick` (read, transform, compose, draw and write images), `identify` (image properties), `compare` (image differences), `montage` (contact sheets), and `mogrify` (in-place batch transforms). The broad `magick` command covers format conversion, resize/crop, colour, layers, masks, drawing, annotations and metadata; consult the [command-line tools guide](https://imagemagick.org/script/command-line-tools.php/) and [command-line options](https://imagemagick.org/script/command-line-options.php/) for exact syntax and delegates.
+
+Existing VCR evidence directly exercises synthetic drawing via `magick` in `ffmpeg-assembly`. The card also records `identify` and alpha-statistics use in other fixtures, but those operations are not directly cited in retained evidence; compare, montage, mogrify, broad transforms, delegates and colour-managed workflows remain untested by VCR evidence. Discovery of a CLI command does not imply VCR support.
+
 ## Install and doctor
 ```text
 brew install imagemagick
