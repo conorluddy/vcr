@@ -1,0 +1,8 @@
+{
+  "name": "@vcr/example-jimp-invert",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "run": "node run.mjs" },
+  "dependencies": { "jimp": "1.6.1" }
+}
