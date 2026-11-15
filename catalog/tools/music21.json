@@ -1,8 +1,8 @@
 {
   "id": "music21",
   "name": "music21",
-  "category": "Discovery: conversation candidates",
-  "tier": "candidate",
+  "category": "A8. Physics, audio and 3D assets",
+  "tier": "catalogued",
   "role": "Music analysis",
   "official_url": "https://www.music21.org/",
   "automation_route": "library-or-runtime",

@@ -1,8 +1,8 @@
 {
   "id": "colmap",
   "name": "COLMAP",
-  "category": "Discovery: conversation candidates",
-  "tier": "candidate",
+  "category": "A8. Physics, audio and 3D assets",
+  "tier": "catalogued",
   "role": "Reconstruction",
   "official_url": "https://colmap.github.io/",
   "automation_route": "native-cli-or-scripting",

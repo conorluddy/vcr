@@ -1,8 +1,8 @@
 {
   "id": "c2patool",
   "name": "c2patool",
-  "category": "Discovery: research candidates",
-  "tier": "candidate",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
   "role": "CLI for inspecting and adding C2PA manifests to media assets",
   "official_url": "https://github.com/contentauth/c2patool",
   "automation_route": "native-cli-or-scripting",

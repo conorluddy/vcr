@@ -3,7 +3,7 @@
   "name": "Piper (piper1-gpl)",
   "category": "Discovery: research candidates",
   "tier": "candidate",
-  "role": "Fast local TTS, many voices",
+  "role": "Local neural text-to-speech engine",
   "official_url": "https://github.com/OHF-Voice/piper1-gpl",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
@@ -11,10 +11,8 @@
   ],
   "notes": [
     "2026-11-01: Neural TTS engine with many languages and voices.",
-    "2026-11-01: Licence as reported by the source research, not yet verified: GPL-3.0 since v1.3.0; per-voice model licences.",
     "2026-11-01: Project is seeking maintainers; old rhasspy/piper archived 2025-10.",
-    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-    "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+    "2026-11-15: Project README says it is looking for maintainers; release activity is recent, but long-term ownership remains uncertain. Voice-model permissions require each model card review."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -23,6 +21,38 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-01",
-  "source": "references/ideas/new-candidate-tools-2026-11.md"
+  "checked_at": "2026-11-15",
+  "source": "references/ideas/new-candidate-tools-2026-11.md",
+  "summary": "Local neural TTS engine exposed through a Python package, CLI, C/C++ API and web server. It embeds espeak-ng for phonemization and synthesizes audio from separately obtained ONNX voice models. Its strength is a fast local workflow with many community voices and multiple language phonemizers; voice licensing is model-specific.",
+  "use_when": [
+    "Synthesize speech locally through a CLI or Python pipeline with supported Piper voices",
+    "Use instead of hosted TTS when local inference and voice choice matter"
+  ],
+  "avoid_when": [
+    "Use Kokoro ONNX for its specific voice/model family and permissive code licence",
+    "Use hosted speech services when a voice’s model card or GPL code terms do not fit"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe"
+  ],
+  "license": "GPL-3.0-or-later (engine); each voice model has its own MODEL_CARD licence; bundled phonemizer resources may carry separate terms",
+  "install": {
+    "macos": "python3 -m pip install piper-tts; download a voice model and its JSON config",
+    "check_command": "python3 -m piper --version"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "candidate_batch_b",
+    "version_seen": "1.8.0",
+    "last_release": "2026-09-04",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Piper v1.8.0 released 2026-09-04 with active release work, though upstream explicitly seeks maintainers. The engine is GPL-3.0-or-later; project makes no licence grant for voice models, whose MODEL_CARD terms must be checked individually. Embeds espeak-ng.",
+    "sources": [
+      "https://github.com/OHF-Voice/piper1-gpl",
+      "https://github.com/OHF-Voice/piper1-gpl/releases",
+      "https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/LICENSING.md",
+      "https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/BUILDING.md"
+    ]
+  }
 }

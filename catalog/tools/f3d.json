@@ -12,8 +12,6 @@
   ],
   "notes": [
     "2026-11-01: Minimal 3D viewer with headless rendering on macOS; glTF, USD, STEP, OBJ and Gaussian splats.",
-    "2026-11-01: Licence as reported by the source research, not yet verified: BSD-3-Clause (unverified).",
-    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
     "2026-11-01: Triage: assess. Report rates it a strong candidate."
   ],
   "documentation_status": "listed-in-prd",
@@ -23,6 +21,36 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-01",
-  "source": "references/ideas/new-candidate-tools-2026-11.md"
+  "checked_at": "2026-11-15",
+  "source": "references/ideas/new-candidate-tools-2026-11.md",
+  "summary": "A lightweight 3D viewer with CLI rendering and headless EGL builds, accepting many CAD and graphics formats. It is a quick route from model assets to review images or video, without building a scene in a full 3D package.",
+  "use_when": [
+    "Render a broad set of 3D asset formats to review images",
+    "Use for quick asset inspection over opening Blender"
+  ],
+  "avoid_when": [
+    "Use Blender for authored scenes, materials, lighting or animation",
+    "Use a format-specific renderer when fidelity is uncertain"
+  ],
+  "pairs_with": [
+    "blender"
+  ],
+  "license": "BSD-3-Clause",
+  "install": {
+    "macos": "brew install f3d",
+    "check_command": "f3d --version"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "candidate_batch_a",
+    "version_seen": "4.0.1-RC1 (latest release page entry)",
+    "last_release": "2026-10-30",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Official release page lists 4.0.1-RC1 dated 2026-10-30 and stable 4.0.0 dated 2026-10-20. F3D documentation advertises multiple supported platforms and formats.",
+    "sources": [
+      "https://github.com/f3d-app/f3d/releases",
+      "https://f3d.app/download/"
+    ]
+  }
 }

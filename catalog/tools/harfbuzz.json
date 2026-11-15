@@ -7,8 +7,7 @@
   "official_url": "https://github.com/harfbuzz/harfbuzz",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
-    "font-processing",
-    "text-rendering"
+    "font-processing"
   ],
   "notes": [
     "2026-11-01: hb-shape, hb-view and hb-subset for shaping checks and shaped-text stills.",
@@ -23,6 +22,35 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-01",
-  "source": "references/ideas/new-candidate-tools-2026-11.md"
+  "checked_at": "2026-11-15",
+  "source": "references/ideas/new-candidate-tools-2026-11.md",
+  "summary": "Text shaping engine with native libraries and utilities such as hb-shape and hb-view; turns text plus a font into positioned glyph output and supports subset operations.",
+  "use_when": [
+    "When you need script-aware shaping diagnostics",
+    "When comparing glyph positioning across fonts or shaping settings"
+  ],
+  "avoid_when": [
+    "For font editing, subsetting and instancing: fonttools",
+    "For final scene text rendering: browser or renderer"
+  ],
+  "pairs_with": [
+    "fonttools"
+  ],
+  "license": "Old MIT (MIT-like; verify exact notice)",
+  "install": {
+    "macos": "brew install harfbuzz",
+    "check_command": "hb-shape --version"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "/root/candidate_batch_c",
+    "version_seen": "15.1.0",
+    "last_release": "2026-11-04",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Latest upstream news reports version 15.1.0; maintained upstream and the documented automation route supports the stated job.",
+    "sources": [
+      "https://github.com/harfbuzz/harfbuzz"
+    ]
+  }
 }
