@@ -1,0 +1,8 @@
+{
+  "id": "meshoptimizer-grid",
+  "title": "Meshoptimizer simplifies a generated welded grid",
+  "summary": "Simplifies one generated triangle grid, then checks index reduction, index validity, reported error and repeatability.",
+  "status": "validated",
+  "tools": ["meshoptimizer"],
+  "run": "./run.sh"
+}
