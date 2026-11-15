@@ -1,0 +1,8 @@
+{
+  "id": "mediainfo-wav",
+  "title": "MediaInfo reports metadata for a generated PCM WAV",
+  "summary": "Generate a one-second mono PCM WAV, read MediaInfo JSON, and assert container and audio properties.",
+  "status": "validated",
+  "tools": ["mediainfo"],
+  "run": "./run.sh"
+}

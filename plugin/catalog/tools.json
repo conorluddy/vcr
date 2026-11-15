@@ -4886,9 +4886,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "jimp-invert"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-15",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.6.1",
+            "command": "examples/jimp-invert/run.sh",
+            "result": "Generated 2x1 RGBA PNG inverted and reopened; exact RGB, alpha and dimensions passed; repeated PNG SHA-256 35161837d908fdef5735828db3656c365f54d8035a9987b1fe70e0d8e0001a43.",
+            "example": "examples/jimp-invert",
+            "scope": "One generated 2x1 RGBA invert and PNG reopen on macOS arm64; no other operations, formats, sizes, performance or hosts."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
@@ -6070,8 +6083,18 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-15",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "26.10",
+            "command": "examples/mediainfo-wav/run.sh",
+            "result": "JSON reported Wave, PCM, 8000 Hz mono, 16-bit, 1.000 s; file size 16044 B. Fixture passed twice.",
+            "example": "examples/mediainfo-wav",
+            "scope": "Generated PCM WAV JSON metadata on macOS arm64; no compressed formats, tags, malformed inputs or cross-tool agreement."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": "2026-10-29",
@@ -6088,6 +6111,9 @@
       "pairs_with": [
         "ffmpeg-ffprobe",
         "imagemagick"
+      ],
+      "examples": [
+        "mediainfo-wav"
       ],
       "license": "BSD-2-Clause (repository licence; dependencies and build-specific components require review)",
       "assessment": {
@@ -6455,8 +6481,18 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-15",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.3.2",
+            "command": "examples/mido-roundtrip/run.sh",
+            "result": "Type-1, 480 TPB, two tracks and two note events; 500000 µs/beat tempo and 480-tick note-off preserved; 54-byte repeat saves identical (SHA-256 dfde7981717f295a00b1959fe1010fd5d0b37f6063e3022e4ec23324f33ac5b9).",
+            "example": "examples/mido-roundtrip",
+            "scope": "Mido 1.3.2 type-1 MIDI read/write round trip on macOS arm64; preserves declared tempo/note events and repeat bytes; no playback, ports or synthesis."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": "2026-10-29",
@@ -6473,6 +6509,9 @@
       "pairs_with": [
         "music21",
         "fluidsynth"
+      ],
+      "examples": [
+        "mido-roundtrip"
       ],
       "license": "MIT (library code; backends and musical content require separate review)",
       "assessment": {

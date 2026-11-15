@@ -17,8 +17,18 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-15",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "26.10",
+        "command": "examples/mediainfo-wav/run.sh",
+        "result": "JSON reported Wave, PCM, 8000 Hz mono, 16-bit, 1.000 s; file size 16044 B. Fixture passed twice.",
+        "example": "examples/mediainfo-wav",
+        "scope": "Generated PCM WAV JSON metadata on macOS arm64; no compressed formats, tags, malformed inputs or cross-tool agreement."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-10-29",
@@ -35,6 +45,9 @@
   "pairs_with": [
     "ffmpeg-ffprobe",
     "imagemagick"
+  ],
+  "examples": [
+    "mediainfo-wav"
   ],
   "license": "BSD-2-Clause (repository licence; dependencies and build-specific components require review)",
   "assessment": {

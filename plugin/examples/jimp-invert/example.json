@@ -1,0 +1,9 @@
+{
+  "id": "jimp-invert",
+  "title": "Jimp invert known pixels",
+  "summary": "Jimp 1.6.1 inverts a generated 2x1 RGBA image; assert dimensions, alpha, pixel values and repeatable decoded pixels.",
+  "status": "validated",
+  "tools": ["jimp"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-15", "hostname": "Conors-MacBook-Pro-2.local" }
+}

@@ -56,7 +56,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `hyperframes` — HTML-to-MP4 renderer seeking a paused timeline in headless Chrome; reference, not a VCR dependency · video-composition, video-encoding, capture, timeline-animation
 - `imagemagick` ✓ — Baseline CLI for image ops, montage, compare and inspection; the validated stills toolchain · image-processing, media-inspection, image-sequence-processing · guide
 - `inkscape` — Command-line actions export and convert SVG and other vector source to PNG, PDF and plain SVG · vector-authoring, svg-rasterisation, native-authoring
-- `jimp` — Pure-JavaScript image manipulation, no native dependencies; slow but trivially portable · image-processing
+- `jimp` ✓ — Pure-JavaScript image manipulation, no native dependencies; slow but trivially portable · image-processing
 - `konva` ✓ — Canvas 2D scene graph (stage, layers, groups, shapes) with events, tweens and export · 2d-rendering, tweening, react-integration · guide
 - `lottie-web` — Plays After Effects/Bodymovin Lottie JSON in the browser; frame-addressable · asset-playback, svg-animation
 - `lv2` — Plugin standard · audio
@@ -64,12 +64,12 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `matter-js` ✓ — 2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t · physics-simulation · guide
 - `mediabunny` — Pure-TypeScript media toolkit: read, write, convert, WebCodecs-backed; browser and Node · video-encoding, media-inspection, audio
 - `mediabunny-server-extension` — Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno · video-encoding, audio
-- `mediainfo` — Media metadata · media-inspection
+- `mediainfo` ✓ — Media metadata · media-inspection
 - `mediapipe` — Vision and tracking · computer-vision
 - `mermaid-cli` — Text diagrams (flowchart, sequence, gantt) to SVG/PNG via headless Chromium · diagram-generation, vector-authoring
 - `meshoptimizer` — Mesh optimisation · 3d-asset-processing
 - `meyda` — Audio features · audio
-- `mido` — MIDI processing · audio
+- `mido` ✓ — MIDI processing · audio
 - `mlt-melt` — MLT multitrack framework with melt CLI and XML projects; the engine behind Kdenlive and Shotcut · video-composition, video-encoding, audio
 - `motion` ✓ — Motion (ex Framer Motion): hybrid JS/React animation, springs, layout and scroll · tweening, react-integration, svg-animation · guide
 - `motion-canvas` — TypeScript generator-based 2D animation editor and renderer for explainers · timeline-animation, 2d-rendering, video-encoding

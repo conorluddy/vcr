@@ -69,6 +69,10 @@ All four lanes completed independent fixtures in worktrees on 2026-11-15: SVGO 4
 
 Other Tier 1 tools can follow in similar disjoint lanes. Keep the partially validated browser and CAD records out of this first wave: their remaining claims need more coordination around capture or consumer checks.
 
+## Second parallel wave
+
+On 2026-11-15, three more Tier 1 fixtures completed in separate worktrees: MediaInfo 26.10 for a generated WAV metadata read, Jimp 1.6.1 for an RGBA invert with exact pixel and repeatability checks, and Mido 1.3.2 for a MIDI 1.0 file round-trip. OpenType.js was deferred because no redistributable font fixture was available and network access to install FontTools failed; its catalogue record remains unchanged. These fixtures are integrated together and do not broaden claims beyond their recorded operations.
+
 ## Candidate gate and fixture contract
 
 Candidate records need a review decision before they enter this queue. In particular, the two promotion recommendations should be reviewed as catalogue decisions first; only then choose a validation claim and effort tier. The other candidates can remain discoverable without implying operational support.

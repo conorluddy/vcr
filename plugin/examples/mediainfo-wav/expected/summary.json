@@ -1,0 +1,9 @@
+{
+  "general_format": "Wave",
+  "file_size_bytes": 16044,
+  "audio_format": "PCM",
+  "sampling_rate_hz": 8000,
+  "channels": 1,
+  "bit_depth": 16,
+  "duration_seconds": 1.0
+}
