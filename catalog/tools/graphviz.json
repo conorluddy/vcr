@@ -53,10 +53,23 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-15",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "16.1.1",
+        "command": "examples/graphviz-dot-svg/run.sh",
+        "result": "Generated a 3436-byte SVG; XML parsed with four expected node titles and three directed edge titles; viewBox 0.00 0.00 366.00 65.00; repeat output byte-identical; visual inspection at 960 px showed all nodes and arrows without clipping.",
+        "example": "examples/graphviz-dot-svg",
+        "scope": "One four-node DOT graph to SVG with Graphviz 16.1.1 on macOS 26.6 arm64; structure and repeat output pass. Does not establish other graphs, layouts, formats or platforms."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "checked_at": "2026-11-15",
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "examples": [
+    "graphviz-dot-svg"
+  ]
 }
