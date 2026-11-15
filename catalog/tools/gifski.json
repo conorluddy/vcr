@@ -50,10 +50,23 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-15",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.34.0",
+        "command": "examples/gifski-sequence/run.sh",
+        "result": "Encoded three owned RGB PNGs to a 64x64 GIF (552 B); FFprobe 9.0.2 reported 3 frames at 0.00/0.33/0.67s and 1.000000s duration. Repeated GIFs were byte-identical; coalesced visual inspection showed all three positions.",
+        "example": "examples/gifski-sequence",
+        "scope": "Three opaque 64x64 RGB PNGs encoded to GIF by Gifski 1.34.0 on macOS arm64; 3 frames at 0/0.33/0.67s, 1.0s total. No alpha or other rates."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-10-26",
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "checked_at": "2026-11-15",
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "examples": [
+    "gifski-sequence"
+  ]
 }

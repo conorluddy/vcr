@@ -1,0 +1,17 @@
+{
+  "average_frame_rate": "100/33",
+  "codec": "gif",
+  "duration_seconds": 1.0,
+  "ffprobe_version": "ffprobe version 9.0.2 Copyright (c) 2007-2026 the FFmpeg developers",
+  "frame_count": 3,
+  "frame_timestamps_seconds": [
+    0.0,
+    0.33,
+    0.67
+  ],
+  "gif_bytes": 552,
+  "gifski_version": "gifski 1.34.0",
+  "height": 64,
+  "sha256": "c44369abe83a54f23730b16fc59072f0fdfdc68b38bb1f7a8f1166bb78e86705",
+  "width": 64
+}
