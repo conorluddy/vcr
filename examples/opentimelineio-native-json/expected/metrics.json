@@ -1,0 +1,10 @@
+{
+  "version": "0.18.1",
+  "tracks": 1,
+  "clips": 1,
+  "duration_frames": 48,
+  "rate": 24,
+  "media_reference": "media/sample.mov",
+  "repeat_equal": true,
+  "sha256": "a567ca427ce4edf2d249f78aacf90b508fb02d8d19fc04a3e0e32caebcd7df07"
+}
