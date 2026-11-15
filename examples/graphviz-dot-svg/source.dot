@@ -1,0 +1,13 @@
+digraph dependency_fixture {
+  graph [rankdir=LR, bgcolor="white", pad="0.2"];
+  node [shape=box, style=rounded, fontname="Helvetica"];
+
+  source [label="Source"];
+  layout [label="Layout"];
+  render [label="SVG"];
+  inspect [label="Inspect"];
+
+  source -> layout;
+  layout -> render;
+  render -> inspect;
+}
