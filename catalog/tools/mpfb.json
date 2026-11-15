@@ -4,7 +4,7 @@
   "category": "Discovery: conversation candidates",
   "tier": "candidate",
   "role": "Human figures",
-  "official_url": "https://static.makehumancommunity.org/mpfb.html",
+  "official_url": "https://github.com/makehumancommunity/mpfb2",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "3d-rendering",
@@ -13,7 +13,8 @@
   "notes": [
     "2026-11-01: Blender extension generating parametric rigged humans; proposed route is Blender Python in background mode. Rigify ships with Blender and needs no separate record.",
     "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
-    "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
+    "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue.",
+    "2026-11-15: MPFB2 release v2.0.18 dated 2026-10-11. Source code is GPLv3; core bundled assets are CC0. Check third-party asset packs separately."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -22,6 +23,34 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-01",
-  "source": "conversation 2026-11-01: character and figure tooling gap"
+  "checked_at": "2026-11-15",
+  "source": "conversation 2026-11-01: character and figure tooling gap",
+  "summary": "MakeHuman Community Blender add-on for parameterized human creation and rigging; produces editable Blender characters that can be exported or rendered through Blender.",
+  "use_when": [
+    "When Blender-based parametric human creation is needed",
+    "When a rigged editable character is preferable to a runtime avatar"
+  ],
+  "avoid_when": [
+    "For lightweight procedural figures: mannequin-js",
+    "For runtime VRM loading: three-vrm"
+  ],
+  "pairs_with": [
+    "blender"
+  ],
+  "license": "GPL-3.0 source; core assets CC0; check third-party packs separately",
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "/root/candidate_batch_c",
+    "version_seen": "2.0.18",
+    "last_release": "2026-10-11",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "MPFB2 is an open-source Blender human generator; upstream release v2.0.18 is dated 2026-10-11. Source is GPLv3 while core assets are CC0, according to the project license pages. The documented Blender extension workflow is a plausible native authoring route; retain as a candidate.",
+    "sources": [
+      "https://github.com/makehumancommunity/mpfb2",
+      "https://github.com/makehumancommunity/mpfb2/releases/tag/v2.0.18",
+      "https://github.com/makehumancommunity/mpfb2/blob/master/LICENSE.md",
+      "https://static.makehumancommunity.org/about/license.html"
+    ]
+  }
 }

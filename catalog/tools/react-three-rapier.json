@@ -32,7 +32,7 @@
     "macos": "pnpm add @react-three/rapier",
     "check_command": "pnpm list @react-three/rapier"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -69,5 +69,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "rapier-capture"
-  ]
+  ],
+  "skill": "skills/react-three-rapier/SKILL.md"
 }

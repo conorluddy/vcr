@@ -12,8 +12,6 @@
   ],
   "notes": [
     "2026-11-01: Diagram language with a Go CLI producing SVG, PNG and PDF; native SVG labels rasterise cleanly with resvg.",
-    "2026-11-01: Licence as reported by the source research, not yet verified: MPL-2.0 (TALA layout now open source).",
-    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
     "2026-11-01: Triage: assess. Report rates it a strong candidate."
   ],
   "documentation_status": "listed-in-prd",
@@ -23,6 +21,33 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-01",
-  "source": "references/ideas/new-candidate-tools-2026-11.md"
+  "checked_at": "2026-11-15",
+  "source": "references/ideas/new-candidate-tools-2026-11.md",
+  "summary": "A text-based diagram language and CLI that lays out diagrams and exports SVG, PNG or PDF. Its main advantage is editable source with automatic layout for architecture and flow diagrams.",
+  "use_when": [
+    "Generate editable diagrams from concise text descriptions",
+    "Prefer over Graphviz when D2 syntax and layout are a better fit"
+  ],
+  "avoid_when": [
+    "Use Graphviz for DOT compatibility or its mature layout options",
+    "Use Mermaid for diagrams embedded in Markdown"
+  ],
+  "pairs_with": [],
+  "license": "MPL-2.0",
+  "install": {
+    "macos": "unknown",
+    "check_command": "d2 --version"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "candidate_batch_a",
+    "version_seen": "unknown",
+    "last_release": "unknown",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Official repository was reviewed, but a current release or dated maintenance signal could not be established from the sources read; retain as a candidate pending version/maintenance confirmation.",
+    "sources": [
+      "https://github.com/terrastruct/d2"
+    ]
+  }
 }

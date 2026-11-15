@@ -1,8 +1,8 @@
 {
   "id": "mediainfo",
   "name": "MediaInfo",
-  "category": "Discovery: conversation candidates",
-  "tier": "candidate",
+  "category": "A5. Video and capture",
+  "tier": "catalogued",
   "role": "Media metadata",
   "official_url": "https://mediaarea.net/en/MediaInfo",
   "automation_route": "native-cli-or-scripting",

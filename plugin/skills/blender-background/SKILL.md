@@ -13,6 +13,11 @@ description: Render Blender scenes headlessly from the macOS app bundle with a P
 - Not on PATH on macOS; call the bundle executable directly. GPU backend and colour management vary per machine; record them in evidence.
 - Licence GPL-3.0 for Blender itself; renders are yours.
 
+## Capability map
+- Command line: background startup and file selection, render stills/ranges (`-f`, `-s`, `-e`, `-a`), output format/path, Python execution, and device/engine options are documented in the [command-line reference](https://docs.blender.org/manual/en/4.4/advanced/command_line/arguments.html).
+- Python API: `bpy.data` for datablocks, `bpy.context` for active state, `bpy.ops` for operations, `bpy.types` for data types; render settings and compositor nodes are in the [API reference](https://docs.blender.org/api/4.4/).
+- VCR evidence covers a Python-built cube rendered as one transparent RGBA PNG with Workbench on Blender 4.4.0. Range/animation rendering, EEVEE, Cycles, compositor/passes, simulation caches, model loading, and other `bpy` areas are documented but untested by this fixture.
+
 ## Install and doctor
 ```text
 brew install --cask blender

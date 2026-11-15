@@ -11,6 +11,12 @@ description: Drive Two.js SVG geometry from requested time and capture transpare
 
 Proven: Two.js 0.8.24 SVG renderer, geometric primitives and transforms assigned from time, captured to alpha PNGs on macOS arm64 with Chromium156.0.8078.4 / Playwright1.64.1. No shared timeline or adapter is implied. Use Paper.js for path booleans, Konva for interactive objects, PixiJS for GPU-heavy effects. Canvas/WebGL renderers, SVG import/export, fonts, event handling and cross-platform equality are untested here.
 
+## Capability map
+- **Scene graph and shapes** — `Two`, groups, paths, vertices, anchors, primitives, text and transforms form the documented drawing API. Fixture covers SVG renderer setup, rectangle creation and rotation/scale transforms; other shape and text APIs are untested.
+- **Renderers and update** — SVG, Canvas and WebGL renderers share the scene model; `update()` draws explicitly when `autostart:false`. Fixture covers SVG and explicit update only; Canvas/WebGL remain untested.
+- **Import and interaction** — SVG interpretation and event/bounds APIs are documented; this fixture uses neither. Do not infer SVG export support from the import surface.
+- **Evidence boundary** — API availability is discovery only. VCR evidence covers time-derived geometry, SVG rendering and alpha PNG capture under the listed environment; no adapter is implied.
+
 ## Install and doctor
 
 Inspect `vcr tools examples two-js`, then `vcr doctor`. For a selected workspace install `pnpm add --save-exact two.js@0.8.24`. Capture needs an available Playwright/Chromium runtime (`vcr setup capture` when missing). This guide does not claim any dependency is installed. The tested fixture uses Node22.19.0 and ImageMagick7.1.2-15 for alpha probes.

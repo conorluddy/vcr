@@ -24,6 +24,35 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-01",
-  "source": "references/ideas/new-candidate-tools-2026-11.md"
+  "checked_at": "2026-11-15",
+  "source": "references/ideas/new-candidate-tools-2026-11.md",
+  "summary": "Python CLI and library for background removal using local ONNX models or optional remote APIs; produces image cutouts with alpha, with model and service terms varying by backend.",
+  "use_when": [
+    "When still-image subject cutouts are needed",
+    "When a chosen local model and its terms suit the workflow"
+  ],
+  "avoid_when": [
+    "For vector tracing: potrace",
+    "For manual compositing: imagemagick"
+  ],
+  "pairs_with": [
+    "imagemagick"
+  ],
+  "license": "MIT (model weights have separate terms)",
+  "install": {
+    "macos": "python3 -m pip install \"rembg[cpu]\"",
+    "check_command": "rembg --help"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "/root/candidate_batch_c",
+    "version_seen": "2.0.85",
+    "last_release": "2026-10-31",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Latest upstream news reports version 2.0.85; maintained upstream and the documented automation route supports the stated job.",
+    "sources": [
+      "https://github.com/danielgatis/rembg"
+    ]
+  }
 }

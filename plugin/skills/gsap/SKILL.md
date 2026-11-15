@@ -14,6 +14,11 @@ The timeline library for every browser scene in VCR. One paused timeline per sce
 - Not a renderer: it writes CSS transforms and attributes; the browser rasterises. Pixel output depends on Chromium, which the capture harness pins.
 - Licence: GSAP standard licence, free including the former club plugins since 3.13. Recheck before commercial use.
 
+## Capability map
+- Core API: `gsap.to()`, `from()`, `fromTo()`, and `set()` create tweens; `gsap.timeline()` composes, labels, nests, and seeks them. Utilities include `utils`, `quickTo`, and `matchMedia` ([GSAP docs v3](https://gsap.com/docs/v3/)).
+- Plugin surface includes MotionPath, SplitText, DrawSVG, MorphSVG, CustomEase, Observer, and ScrollTrigger, among others; use each plugin's own documentation and check the installed version.
+- VCR evidence covers a paused core timeline with CSS transforms/opacity, deterministic seeking, alpha capture, shuffled frame comparison, and ProRes output. MotionPath, SplitText, plugin features, labels/nested timelines, and non-DOM targets remain untested by this fixture.
+
 ## Install and doctor
 ```text
 npm install gsap

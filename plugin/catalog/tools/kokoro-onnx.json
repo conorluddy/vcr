@@ -3,7 +3,7 @@
   "name": "Kokoro (kokoro-onnx)",
   "category": "Discovery: research candidates",
   "tier": "candidate",
-  "role": "Local TTS voiceover",
+  "role": "Local neural text-to-speech runtime",
   "official_url": "https://github.com/thewh1teagle/kokoro-onnx",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -11,10 +11,8 @@
   ],
   "notes": [
     "2026-11-01: 82M-parameter TTS on ONNX Runtime for offline scratch or final voiceover.",
-    "2026-11-01: Licence as reported by the source research, not yet verified: Code MIT; Kokoro model Apache-2.0.",
     "2026-11-01: Pin onnxruntime and cache WAVs as fixtures. Python >=3.10,<3.14.",
-    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-    "2026-11-01: Triage: assess. Report rates it a strong candidate."
+    "2026-11-15: Official release page labels model-files-v1.1 as latest; assets show August 2026 upload times. Release page does not state a package release version/date for current code; 0.6.0 is referenced in model notes."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -23,6 +21,37 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-01",
-  "source": "references/ideas/new-candidate-tools-2026-11.md"
+  "checked_at": "2026-11-15",
+  "source": "references/ideas/new-candidate-tools-2026-11.md",
+  "summary": "Python interface to Kokoro TTS models through ONNX Runtime. Given text, a voice bank and model files, it synthesizes waveform samples that can be written as WAV; model weights and voices are separate downloads. It offers a compact local inference route, with multiple voice and precision variants, without requiring a hosted speech service.",
+  "use_when": [
+    "Generate local speech audio from text with ONNX models and selectable voices",
+    "Use over hosted TTS when offline inference and local model control matter"
+  ],
+  "avoid_when": [
+    "Use Piper when broader voice and language coverage matters and GPL-3.0 is acceptable",
+    "Use Kokoro upstream when ONNX export/runtime is not required"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe"
+  ],
+  "license": "MIT (kokoro-onnx code); Apache-2.0 (Kokoro model, per project README)",
+  "install": {
+    "macos": "python3 -m pip install kokoro-onnx; download matching ONNX model and voice bank from project releases",
+    "check_command": "python3 -m pip show kokoro-onnx"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "candidate_batch_b",
+    "version_seen": "0.6.0 (release notes); model-files-v1.1 (latest release page)",
+    "last_release": "2025-03-01 (latest release label; assets updated 2026-08-18)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "The project documents Kokoro ONNX 0.6.0 functionality and showed 2026 activity/issues; latest model-files-v1.1 assets include 2026-08-18 uploads. Code is MIT and README identifies the Kokoro model as Apache-2.0. Models and voice banks remain separate downloads.",
+    "sources": [
+      "https://github.com/thewh1teagle/kokoro-onnx",
+      "https://github.com/thewh1teagle/kokoro-onnx/releases",
+      "https://github.com/thewh1teagle/kokoro-onnx/blob/main/LICENSE"
+    ]
+  }
 }

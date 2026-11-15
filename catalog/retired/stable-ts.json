@@ -1,0 +1,59 @@
+{
+  "id": "stable-ts",
+  "name": "stable-ts",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Whisper timestamp refinement and forced alignment",
+  "official_url": "https://github.com/jianfch/stable-ts",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-11-01: Stabilised Whisper word timestamps and forced alignment of known text; SRT, VTT, ASS and JSON output.",
+    "2026-11-01: Last release reported 2025-08, so maintenance may be slow.",
+    "2026-11-15: Repository archived by owner 2026-05-30; repository README states development is indefinitely paused. PyPI latest version found is 2.19.1 (2024-05-14)."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-15",
+  "source": "references/ideas/new-candidate-tools-2026-11.md",
+  "summary": "Python library and CLI that modifies Whisper transcription to refine word and segment timestamps, force-align supplied text, and export subtitle or structured timing files. It depends on PyTorch and FFmpeg and can also refine output from another ASR engine. The project is archived and indefinitely paused, so new workflows should compare WhisperX before adopting it.",
+  "use_when": [
+    "Refine existing Whisper timings when an established stable-ts workflow must be retained",
+    "Use its editing and silence-suppression functions for a pinned legacy pipeline"
+  ],
+  "avoid_when": [
+    "Prefer WhisperX for maintained ASR, word alignment and optional diarization",
+    "Use FFmpeg subtitles or libass when rendering an existing subtitle track"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "whisperx"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "python3 -m pip install stable-ts (requires PyTorch and FFmpeg)",
+    "check_command": "stable-ts --version"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "candidate_batch_b",
+    "version_seen": "2.19.1",
+    "last_release": "2024-05-14",
+    "maintenance": "unmaintained",
+    "verdict": "drop",
+    "rationale": "The GitHub repository was archived on 2026-05-30 and says development is indefinitely paused. PyPI shows stable-ts 2.19.1 dated 2024-05-14; MIT. WhisperX remains a maintained overlapping option for word timestamps and forced alignment.",
+    "sources": [
+      "https://github.com/jianfch/stable-ts",
+      "https://github.com/jianfch/stable-ts/blob/main/LICENSE",
+      "https://pypi.org/project/stable-ts/2.19.1/",
+      "https://github.com/m-bain/whisperX"
+    ]
+  }
+}

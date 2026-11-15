@@ -89,7 +89,8 @@
       "https://github.com/microsoft/playwright"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
+  "skill": "skills/playwright/SKILL.md",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",

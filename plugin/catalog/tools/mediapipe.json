@@ -1,8 +1,8 @@
 {
   "id": "mediapipe",
   "name": "MediaPipe",
-  "category": "Discovery: conversation candidates",
-  "tier": "candidate",
+  "category": "A8. Physics, audio and 3D assets",
+  "tier": "catalogued",
   "role": "Vision and tracking",
   "official_url": "https://ai.google.dev/edge/mediapipe",
   "automation_route": "library-or-runtime",

@@ -16,8 +16,6 @@
       ],
       "notes": [
         "2026-11-01: Searches for the CRF that meets a target VMAF, then encodes; JSON output and atomic writes.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified).",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it a strong candidate."
       ],
       "documentation_status": "listed-in-prd",
@@ -27,8 +25,39 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Chooses CRF against a target VMAF/XPSNR threshold, then encodes through FFmpeg. The Rust CLI exposes search, encode and quality-measurement commands; its distinctive value is automating quality/size trade-offs across FFmpeg encoders.",
+      "use_when": [
+        "Search CRF settings to meet a VMAF target before encoding",
+        "Compare video quality with VMAF or XPSNR from a CLI",
+        "Prefer over raw FFmpeg when repeatable quality targeting matters"
+      ],
+      "avoid_when": [
+        "Use FFmpeg directly for a fixed encoder configuration",
+        "Use a dedicated perceptual metric workflow when exact metric methodology is required"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "brew install ab-av1",
+        "check_command": "ab-av1 --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_a",
+        "version_seen": "0.10.2",
+        "last_release": "unknown",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "The official changelog shows v0.10.2 and the repository has current issue activity through 2026-11-08. Release date was not established from the sources read; documentation assessment only.",
+        "sources": [
+          "https://github.com/alexheretic/ab-av1",
+          "https://github.com/alexheretic/ab-av1/blob/main/CHANGELOG.md"
+        ]
+      }
     },
     {
       "id": "after-effects",
@@ -98,12 +127,10 @@
       "official_url": "https://github.com/asciinema/agg",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
-        "gif-encoding"
+        "image-processing"
       ],
       "notes": [
         "2026-11-01: Renders asciicast recordings to GIF via gifski, deterministically from event timestamps.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: GPL-3.0-or-later.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it worth cataloguing."
       ],
       "documentation_status": "listed-in-prd",
@@ -113,8 +140,36 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Turns asciicast event recordings into timestamped GIFs, with frame selection, themes and font rendering. The CLI preserves recording timing and supports excerpt or marker selection.",
+      "use_when": [
+        "Render asciicast recordings as GIF with event timing",
+        "Select time ranges or markers from terminal recordings"
+      ],
+      "avoid_when": [
+        "For arbitrary GIF assembly from images, use FFmpeg",
+        "For GIF size optimization, use gifsicle"
+      ],
+      "pairs_with": [],
+      "license": "GPL-3.0-or-later",
+      "install": {
+        "macos": "brew install agg",
+        "check_command": "agg --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_a",
+        "version_seen": "1.9.0",
+        "last_release": "2026-05-29",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Official project sources identify 1.9.0 as the latest available version/release (2026-05-29); maintenance assessed from release evidence. Documentation assessment only; no local installation or fixture evidence.",
+        "sources": [
+          "https://github.com/asciinema/agg",
+          "https://github.com/asciinema/agg/releases"
+        ]
+      }
     },
     {
       "id": "anime-js",
@@ -442,7 +497,7 @@
       "install": {
         "macos": "pnpm add @babylonjs/core"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -476,7 +531,8 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/babylon-js/SKILL.md"
     },
     {
       "id": "blender",
@@ -666,13 +722,14 @@
       "official_url": "https://threejs.org/docs/#examples/en/loaders/BVHLoader",
       "automation_route": "library-or-runtime",
       "capabilities": [
-        "timeline-animation",
-        "model-loading"
+        "model-loading",
+        "timeline-animation"
       ],
       "notes": [
         "2026-11-01: Three.js BVHLoader plays BVH motion capture through AnimationMixer.setTime(t). Proposed data source: CMU Graphics Lab Motion Capture Database (http://mocap.cs.cmu.edu/); data terms are separate from code and unverified.",
         "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
+        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue.",
+        "2026-11-15: Three.js dev package.json reports 0.187.0; no separate BVHLoader release is available in reviewed sources. CMU site describes its data as free for research projects only; rights for other uses remain unverified."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -681,8 +738,101 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "conversation 2026-11-01: character and figure tooling gap"
+      "checked_at": "2026-11-15",
+      "source": "conversation 2026-11-01: character and figure tooling gap",
+      "summary": "Three.js BVHLoader parses BVH skeleton animation into an AnimationClip for playback by AnimationMixer; the data and loader are separate choices, so BVHLoader adds motion import without supplying motion capture.",
+      "use_when": [
+        "When a Three.js scene needs BVH motion clips",
+        "When AnimationMixer can sample a clip at a requested time"
+      ],
+      "avoid_when": [
+        "When you need authored or rigged humans: mpfb",
+        "When you need a VRM avatar: three-vrm"
+      ],
+      "pairs_with": [
+        "three-js",
+        "three-vrm"
+      ],
+      "license": "Three.js / BVHLoader: MIT. CMU motion data is stated free for research projects; other use terms unverified.",
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "/root/candidate_batch_c",
+        "version_seen": "Three.js dev package 0.187.0; BVHLoader has no separate version established",
+        "last_release": "Not established for BVHLoader separately; Three.js releases independently",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "BVHLoader is a Three.js addon loader, not a standalone toolkit; Three.js package.json on dev reports 0.187.0 and its code is MIT. CMU says its motion data is free for research projects, so that dataset is not cleared here for general production. Keep the loader candidate for user-supplied/licensed BVH clips.",
+        "sources": [
+          "https://threejs.org/docs/#examples/en/loaders/BVHLoader",
+          "https://github.com/mrdoob/three.js/blob/dev/package.json",
+          "https://github.com/mrdoob/three.js/blob/dev/LICENSE",
+          "https://mocap.cs.cmu.edu/"
+        ]
+      }
+    },
+    {
+      "id": "c2patool",
+      "name": "c2patool",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "CLI for inspecting and adding C2PA manifests to media assets",
+      "official_url": "https://github.com/contentauth/c2patool",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection"
+      ],
+      "summary": "Standalone CLI for inspecting C2PA manifests and adding signed Content Credentials to supported image, audio and video files. JSON reports expose manifest assertions for review; signature and trust checks do not establish that assertions are factually true or provenance is complete.",
+      "use_when": [
+        "Inspect or create C2PA manifests on supported media files",
+        "Produce machine-readable reports of signed provenance assertions",
+        "Add a credentials step to a separately designed asset handoff"
+      ],
+      "avoid_when": [
+        "Need ordinary container and codec metadata: use ffprobe or MediaInfo",
+        "Need to prove an assertion is true or provenance is complete: C2PA cannot establish that",
+        "Need byte-reproducible signed output: signing and timestamps change file bytes"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "mediainfo"
+      ],
+      "license": "Apache-2.0 OR MIT (project code). Certificates, trust lists and signer policy are separate operational requirements.",
+      "install": {
+        "macos": "brew install c2patool",
+        "check_command": "c2patool -V"
+      },
+      "notes": [
+        "2026-11-15: listed-in-prd is a legacy schema status for surfaced candidates; it does not mean this tool appeared in the PRD.",
+        "2026-11-15: Current upstream CLI is contentauth/c2patool; the original discovery URL contentauth/c2pa-rs is stale for the standalone CLI.",
+        "2026-11-15: C2PA signatures establish integrity and association under configured trust lists, not truth of assertions or completeness of provenance.",
+        "2026-11-15: Signed output and embedded timestamps are not byte-reproducible. Supported container/codec combinations need checking against VCR delivery formats.",
+        "2026-11-15: A future provenance-specific capability may be useful; not added because it is absent from the current capability vocabulary.",
+        "2026-11-15: Skill opportunity: further research first; no VCR asset-manifest workflow or fixture exists yet."
+      ],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assess-c2patool",
+        "version_seen": "0.29.0",
+        "last_release": "2026-11-12",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Active standalone CLI with current macOS binaries and dual permissive licensing; it provides scriptable C2PA reports and manifest creation for supported media. Integrity and trust checks do not establish the truth of assertions or complete provenance.",
+        "sources": [
+          "https://github.com/contentauth/c2patool",
+          "https://github.com/contentauth/c2patool/blob/main/docs/usage.md",
+          "https://github.com/contentauth/c2patool/releases",
+          "https://spec.c2pa.org/specifications/specifications/2.3/explainer/Explainer.html"
+        ]
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-01-discovery.md"
     },
     {
       "id": "canvas-2d",
@@ -1104,8 +1254,8 @@
     {
       "id": "colmap",
       "name": "COLMAP",
-      "category": "Discovery: conversation candidates",
-      "tier": "candidate",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
       "role": "Reconstruction",
       "official_url": "https://colmap.github.io/",
       "automation_route": "native-cli-or-scripting",
@@ -1273,8 +1423,6 @@
       ],
       "notes": [
         "2026-11-01: Diagram language with a Go CLI producing SVG, PNG and PDF; native SVG labels rasterise cleanly with resvg.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: MPL-2.0 (TALA layout now open source).",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it a strong candidate."
       ],
       "documentation_status": "listed-in-prd",
@@ -1284,8 +1432,35 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "A text-based diagram language and CLI that lays out diagrams and exports SVG, PNG or PDF. Its main advantage is editable source with automatic layout for architecture and flow diagrams.",
+      "use_when": [
+        "Generate editable diagrams from concise text descriptions",
+        "Prefer over Graphviz when D2 syntax and layout are a better fit"
+      ],
+      "avoid_when": [
+        "Use Graphviz for DOT compatibility or its mature layout options",
+        "Use Mermaid for diagrams embedded in Markdown"
+      ],
+      "pairs_with": [],
+      "license": "MPL-2.0",
+      "install": {
+        "macos": "unknown",
+        "check_command": "d2 --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_a",
+        "version_seen": "unknown",
+        "last_release": "unknown",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official repository was reviewed, but a current release or dated maintenance signal could not be established from the sources read; retain as a candidate pending version/maintenance confirmation.",
+        "sources": [
+          "https://github.com/terrastruct/d2"
+        ]
+      }
     },
     {
       "id": "d3",
@@ -1338,7 +1513,7 @@
           "https://github.com/d3/d3"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -1359,7 +1534,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "d3-capture"
-      ]
+      ],
+      "skill": "skills/d3/SKILL.md"
     },
     {
       "id": "deck-gl",
@@ -1480,9 +1656,7 @@
       ],
       "notes": [
         "2026-11-01: Depth maps for 2.5D parallax moves.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: Small model Apache-2.0; Base/Large/Giant CC-BY-NC-4.0.",
         "2026-11-01: Only the Small model is safe for commercial use.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it worth cataloguing."
       ],
       "documentation_status": "listed-in-prd",
@@ -1492,8 +1666,36 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Monocular depth-estimation model with Python inference and downloaded checkpoints. It produces relative depth maps for still images; only the Small checkpoint is Apache-2.0, while larger checkpoints carry non-commercial terms.",
+      "use_when": [
+        "Generate relative depth maps for 2.5D still-image moves",
+        "Use the Small checkpoint where commercial-use licensing is required"
+      ],
+      "avoid_when": [
+        "Use a maintained video-depth model for temporally consistent sequences",
+        "Avoid larger checkpoints for commercial work absent separate rights"
+      ],
+      "pairs_with": [],
+      "license": "Apache-2.0 (Small model); CC-BY-NC-4.0 (Base/Large/Giant weights)",
+      "install": {
+        "macos": "unknown",
+        "check_command": "unknown"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_a",
+        "version_seen": "no tagged releases",
+        "last_release": "2024-06-14 initial public release",
+        "maintenance": "slow",
+        "verdict": "keep",
+        "rationale": "Official project sources identify no tagged releases as the latest available version/release (2024-06-14 initial public release); maintenance assessed from release evidence. Documentation assessment only; no local installation or fixture evidence.",
+        "sources": [
+          "https://github.com/DepthAnything/Depth-Anything-V2",
+          "https://github.com/DepthAnything/Depth-Anything-V2/releases"
+        ]
+      }
     },
     {
       "id": "diffusion-studio-core",
@@ -1644,7 +1846,7 @@
       "install": {
         "macos": "pnpm add @react-three/drei"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -1678,7 +1880,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "drei-capture"
-      ]
+      ],
+      "skill": "skills/drei/SKILL.md"
     },
     {
       "id": "dssim",
@@ -1693,9 +1896,7 @@
       ],
       "notes": [
         "2026-11-01: Rust CLI scoring multi-scale SSIM dissimilarity with an optional difference map; tolerance gating for stills.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: AGPL-3.0 (commercial licence offered).",
         "2026-11-01: Run as an external CLI only; never link into shipped code.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it worth cataloguing."
       ],
       "documentation_status": "listed-in-prd",
@@ -1705,8 +1906,39 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "A command-line perceptual image comparison utility that computes multi-scale SSIM dissimilarity and can emit a difference map. Useful for tolerance-based still-image comparisons; its AGPL licensing and commercial licensing option need review for deployment.",
+      "use_when": [
+        "Score perceptual differences between still images",
+        "Use when perceptual similarity matters more than exact pixel equality"
+      ],
+      "avoid_when": [
+        "Use odiff for fast strict pixel-level regression checks",
+        "Use ImageMagick compare for a general-purpose image toolbox"
+      ],
+      "pairs_with": [
+        "odiff",
+        "imagemagick"
+      ],
+      "license": "AGPL-3.0",
+      "install": {
+        "macos": "python3 -m pip install dssim",
+        "check_command": "dssim --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_a",
+        "version_seen": "1.3.0 (PyPI)",
+        "last_release": "2026-06-18",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Official project sources identify 1.3.0 (PyPI) as the latest available version/release (2026-06-18); maintenance assessed from release evidence. Documentation assessment only; no local installation or fixture evidence.",
+        "sources": [
+          "https://github.com/kornelski/dssim",
+          "https://pypi.org/project/dssim/"
+        ]
+      }
     },
     {
       "id": "easeljs",
@@ -1891,8 +2123,6 @@
       ],
       "notes": [
         "2026-11-01: Minimal 3D viewer with headless rendering on macOS; glTF, USD, STEP, OBJ and Gaussian splats.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-3-Clause (unverified).",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it a strong candidate."
       ],
       "documentation_status": "listed-in-prd",
@@ -1902,8 +2132,38 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "A lightweight 3D viewer with CLI rendering and headless EGL builds, accepting many CAD and graphics formats. It is a quick route from model assets to review images or video, without building a scene in a full 3D package.",
+      "use_when": [
+        "Render a broad set of 3D asset formats to review images",
+        "Use for quick asset inspection over opening Blender"
+      ],
+      "avoid_when": [
+        "Use Blender for authored scenes, materials, lighting or animation",
+        "Use a format-specific renderer when fidelity is uncertain"
+      ],
+      "pairs_with": [
+        "blender"
+      ],
+      "license": "BSD-3-Clause",
+      "install": {
+        "macos": "brew install f3d",
+        "check_command": "f3d --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_a",
+        "version_seen": "4.0.1-RC1 (latest release page entry)",
+        "last_release": "2026-10-30",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Official release page lists 4.0.1-RC1 dated 2026-10-30 and stable 4.0.0 dated 2026-10-20. F3D documentation advertises multiple supported platforms and formats.",
+        "sources": [
+          "https://github.com/f3d-app/f3d/releases",
+          "https://f3d.app/download/"
+        ]
+      }
     },
     {
       "id": "fabric-js",
@@ -1956,11 +2216,12 @@
           "https://registry.npmjs.org/fabric"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "fabricjs-capture"
       ],
+      "skill": "skills/fabric-js/SKILL.md",
       "validation": {
         "status": "validated",
         "evidence": [
@@ -2097,7 +2358,7 @@
       "name": "ffmpeg-normalize",
       "category": "Discovery: research candidates",
       "tier": "candidate",
-      "role": "Loudness normalisation",
+      "role": "Audio loudness normalisation CLI",
       "official_url": "https://github.com/slhck/ffmpeg-normalize",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
@@ -2105,9 +2366,7 @@
       ],
       "notes": [
         "2026-11-01: EBU R128 two-pass loudness normalisation CLI with presets and batch mode.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified; libraries.io shows Other).",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-15: Release page identifies 1.43.0 (2026-10-14) as latest; current repository pyproject reports 1.44.0. Release tag/date for 1.44.0 not confirmed."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -2116,8 +2375,40 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Python CLI and API built on FFmpeg for batch EBU R128, RMS or peak loudness normalisation. It can preserve video streams and selectively process audio tracks; output is re-encoded media with configurable codecs and metadata. Its distinguishing strength is album-style batch normalisation that preserves relative levels.",
+      "use_when": [
+        "Normalise audio loudness in batches with EBU R128, RMS or peak targets",
+        "Over raw FFmpeg filters when batch handling and preset reuse matter"
+      ],
+      "avoid_when": [
+        "Use FFmpeg directly for custom filtergraphs or when only measuring loudness",
+        "Use a DAW when manual mix decisions or mastering are required"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "uv tool install ffmpeg-normalize (requires Python >=3.10 and FFmpeg)",
+        "check_command": "ffmpeg-normalize --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_b",
+        "version_seen": "1.43.0 (release page); upstream main pyproject reports 1.44.0",
+        "last_release": "2026-10-14",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "The release page lists v1.43.0 (2026-10-14), while current main pyproject reports 1.44.0; MIT and active development. Batch R128/RMS/peak normalization adds a focused audio workflow beyond FFmpeg itself.",
+        "sources": [
+          "https://github.com/slhck/ffmpeg-normalize/releases",
+          "https://github.com/slhck/ffmpeg-normalize/blob/master/pyproject.toml",
+          "https://github.com/slhck/ffmpeg-normalize",
+          "https://github.com/slhck/ffmpeg-normalize/docs/usage/cli-options.md"
+        ]
+      }
     },
     {
       "id": "ffmpeg-wasm",
@@ -2256,8 +2547,101 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Python library and CLI utilities for reading, building, subsetting, and instancing OpenType fonts; pyftsubset can make reproducible subsets and varLib can instantiate variable fonts.",
+      "use_when": [
+        "When you need scripted font subsetting or variable-font instancing",
+        "When font file transformation belongs in a Python pipeline"
+      ],
+      "avoid_when": [
+        "For shaping behavior and glyph positioning checks: harfbuzz",
+        "For visual text rendering: browser or renderer"
+      ],
+      "pairs_with": [
+        "harfbuzz"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "python3 -m pip install fonttools",
+        "check_command": "pyftsubset --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "/root/candidate_batch_c",
+        "version_seen": "4.68.0",
+        "last_release": "2026-10-27",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Latest upstream news reports version 4.68.0; maintained upstream and the documented automation route supports the stated job.",
+        "sources": [
+          "https://github.com/fonttools/fonttools"
+        ]
+      }
+    },
+    {
+      "id": "frames-cli",
+      "name": "Frames CLI",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
+      "role": "CLI for framing device screenshots and recordings with bezels",
+      "official_url": "https://github.com/viticci/frames-cli",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing",
+        "video-composition",
+        "video-encoding"
+      ],
+      "summary": "Python CLI that frames screenshots and recordings with device-specific bezels. It supports batch processing, merges, JSON inspection and video exports, including transparent formats on supported macOS and FFmpeg setups. It adds device-aware masks and sizing after capture; it does not capture or animate the app itself.",
+      "use_when": [
+        "Apply device-specific frames to simulator screenshots or recordings",
+        "Use the same bezel treatment on stills and video",
+        "Batch and merge app-preview captures through a CLI"
+      ],
+      "avoid_when": [
+        "Need to control or capture a simulator: use a simulator tool",
+        "A generic image composite is enough: use ImageMagick",
+        "Need general video assembly or encoding: use FFmpeg"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "imagemagick"
+      ],
+      "license": "MIT for CLI code. The separate Apple bezel pack includes Apple's Design Resources License; review its terms for the intended use and redistribution.",
+      "install": {
+        "macos": "git clone https://github.com/viticci/frames-cli.git && cd frames-cli && python3 -m pip install Pillow",
+        "check_command": "frames --version"
+      },
+      "notes": [
+        "2026-11-15: listed-in-prd is a legacy schema status for surfaced candidates; it does not mean this tool appeared in the PRD.",
+        "2026-11-15: GitHub Releases lists 1.7.0 as latest, while the discovery digest and project changelog mention 1.7.3; version discrepancy remains unresolved.",
+        "2026-11-15: Video framing requires FFmpeg and ffprobe 5.1+. HEVC-alpha output depends on a compatible macOS and FFmpeg build.",
+        "2026-11-15: frames setup downloads a separate Apple bezel asset pack. Its Design Resources License terms were not reviewed for a specific production or redistribution case.",
+        "2026-11-15: Skill opportunity: further research first; no VCR fixture or repeated workflow evidence yet."
+      ],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assess-frames",
+        "version_seen": "1.7.0 (latest GitHub release; changelog mentions 1.7.3)",
+        "last_release": "2026-11-04",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Frames adds device-aware framing to captured stills and recordings through a documented CLI, JSON inspection and batch workflows. The code is MIT; the separate bezel pack has its own Design Resources License, which needs review for the intended delivery use.",
+        "sources": [
+          "https://github.com/viticci/frames-cli/blob/main/README.md",
+          "https://github.com/viticci/frames-cli/releases",
+          "https://github.com/viticci/frames-cli/blob/main/LICENSE"
+        ]
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-15-discovery.md"
     },
     {
       "id": "freeze",
@@ -2268,14 +2652,12 @@
       "official_url": "https://github.com/charmbracelet/freeze",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
-        "vector-authoring",
-        "text-rendering"
+        "text-rendering",
+        "image-processing"
       ],
       "notes": [
         "2026-11-01: Code or ANSI output to PNG, SVG or WebP with window chrome; the SVG output suits GSAP layers.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified).",
         "2026-11-01: Maintenance may be slow.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it worth cataloguing."
       ],
       "documentation_status": "listed-in-prd",
@@ -2285,8 +2667,36 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "CLI that renders source code or terminal output to PNG, SVG and WebP, with configurable themes and framing. It is useful for polished, repeatable code and terminal stills without a manual screenshot.",
+      "use_when": [
+        "Create styled code or terminal-output stills from scripts",
+        "Export SVG when downstream vector composition is useful"
+      ],
+      "avoid_when": [
+        "Use browser capture for dynamic UI states or web typography",
+        "Use a text rasterizer for precise typesetting control"
+      ],
+      "pairs_with": [],
+      "license": "MIT",
+      "install": {
+        "macos": "brew install freeze",
+        "check_command": "freeze --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_a",
+        "version_seen": "0.2.2",
+        "last_release": "2025-04-01",
+        "maintenance": "slow",
+        "verdict": "keep",
+        "rationale": "Official project sources identify 0.2.2 as the latest available version/release (2025-04-01); maintenance assessed from release evidence. Documentation assessment only; no local installation or fixture evidence.",
+        "sources": [
+          "https://github.com/charmbracelet/freeze",
+          "https://github.com/charmbracelet/freeze/releases"
+        ]
+      }
     },
     {
       "id": "frei0r",
@@ -2410,12 +2820,10 @@
       "official_url": "https://github.com/kohler/gifsicle",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
-        "gif-encoding"
+        "image-processing"
       ],
       "notes": [
         "2026-11-01: GIF optimisation and editing; post-processes gifski or agg output.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: GPL-2.0.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it worth cataloguing."
       ],
       "documentation_status": "listed-in-prd",
@@ -2425,8 +2833,39 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Command-line GIF optimizer and editor for reducing file size, inspecting, combining and modifying animated GIFs. It is a focused post-processing step after GIF generation.",
+      "use_when": [
+        "Optimize or edit an existing animated GIF",
+        "Post-process GIF output from agg or another encoder"
+      ],
+      "avoid_when": [
+        "Use gifski for high-quality GIF encoding from video or frames",
+        "Use FFmpeg for broader animated-image and video workflows"
+      ],
+      "pairs_with": [
+        "agg",
+        "gifski"
+      ],
+      "license": "GPL-2.0",
+      "install": {
+        "macos": "brew install gifsicle",
+        "check_command": "gifsicle --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_a",
+        "version_seen": "1.99",
+        "last_release": "unknown",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "The upstream repository identifies 1.99; its NEWS lists 1.98 dated 2026-10-15, but the date for 1.99 was not established. It remains a focused GIF optimization/editor beside encoder tools.",
+        "sources": [
+          "https://github.com/kohler/gifsicle",
+          "https://github.com/kohler/gifsicle/blob/master/NEWS.md"
+        ]
+      }
     },
     {
       "id": "gifski",
@@ -2732,13 +3171,12 @@
       "official_url": "https://github.com/patriciogonzalezvivo/glslViewer",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
-        "shaders"
+        "shaders",
+        "3d-rendering"
       ],
       "notes": [
         "2026-11-01: Renders fragment shaders or shaded models to PNG sequences with explicit time stepping.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-3-Clause.",
         "2026-11-01: GPU float differences can break bit-identical fixtures; use perceptual tolerances.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it worth cataloguing."
       ],
       "documentation_status": "listed-in-prd",
@@ -2748,8 +3186,36 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Interactive and command-line GLSL shader viewer that can render shader output to image sequences with time input. It offers a small native route for capturing shader sketches; GPU and driver differences affect reproducibility.",
+      "use_when": [
+        "Render GLSL shader sketches from the command line",
+        "Capture time-stepped shader output as image sequences"
+      ],
+      "avoid_when": [
+        "Use Three.js for richer browser-based shader scenes",
+        "Use glslang for shader compilation and validation only"
+      ],
+      "pairs_with": [],
+      "license": "BSD-3-Clause",
+      "install": {
+        "macos": "unknown",
+        "check_command": "glslViewer --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_a",
+        "version_seen": "3.5.2",
+        "last_release": "2026-02-07",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Official GitHub releases list 3.5.2 dated 2026-02-07. The README documents headless rendering and image/PNG-sequence export; documentation assessment only.",
+        "sources": [
+          "https://github.com/patriciogonzalezvivo/glslViewer",
+          "https://github.com/patriciogonzalezvivo/glslViewer/releases"
+        ]
+      }
     },
     {
       "id": "gltf-transform",
@@ -3160,8 +3626,7 @@
       "official_url": "https://github.com/harfbuzz/harfbuzz",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
-        "font-processing",
-        "text-rendering"
+        "font-processing"
       ],
       "notes": [
         "2026-11-01: hb-shape, hb-view and hb-subset for shaping checks and shaped-text stills.",
@@ -3176,8 +3641,37 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Text shaping engine with native libraries and utilities such as hb-shape and hb-view; turns text plus a font into positioned glyph output and supports subset operations.",
+      "use_when": [
+        "When you need script-aware shaping diagnostics",
+        "When comparing glyph positioning across fonts or shaping settings"
+      ],
+      "avoid_when": [
+        "For font editing, subsetting and instancing: fonttools",
+        "For final scene text rendering: browser or renderer"
+      ],
+      "pairs_with": [
+        "fonttools"
+      ],
+      "license": "Old MIT (MIT-like; verify exact notice)",
+      "install": {
+        "macos": "brew install harfbuzz",
+        "check_command": "hb-shape --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "/root/candidate_batch_c",
+        "version_seen": "15.1.0",
+        "last_release": "2026-11-04",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Latest upstream news reports version 15.1.0; maintained upstream and the documented automation route supports the stated job.",
+        "sources": [
+          "https://github.com/harfbuzz/harfbuzz"
+        ]
+      }
     },
     {
       "id": "houdini",
@@ -3545,37 +4039,11 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
-      "id": "kalidokit",
-      "name": "Kalidokit",
-      "category": "Discovery: conversation candidates",
-      "tier": "candidate",
-      "role": "Pose to rig",
-      "official_url": "https://github.com/yeemachine/kalidokit",
-      "automation_route": "library-or-runtime",
-      "capabilities": [
-        "computer-vision"
-      ],
-      "notes": [
-        "2026-11-01: Solves MediaPipe landmarks into rig rotations for VRM or other humanoid rigs. Proposed pairing: mediapipe, three-vrm. Maintenance unverified; activity appears quiet.",
-        "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
-      ],
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "conversation 2026-11-01: character and figure tooling gap"
-    },
-    {
       "id": "kokoro-onnx",
       "name": "Kokoro (kokoro-onnx)",
       "category": "Discovery: research candidates",
       "tier": "candidate",
-      "role": "Local TTS voiceover",
+      "role": "Local neural text-to-speech runtime",
       "official_url": "https://github.com/thewh1teagle/kokoro-onnx",
       "automation_route": "library-or-runtime",
       "capabilities": [
@@ -3583,10 +4051,8 @@
       ],
       "notes": [
         "2026-11-01: 82M-parameter TTS on ONNX Runtime for offline scratch or final voiceover.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: Code MIT; Kokoro model Apache-2.0.",
         "2026-11-01: Pin onnxruntime and cache WAVs as fixtures. Python >=3.10,<3.14.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-15: Official release page labels model-files-v1.1 as latest; assets show August 2026 upload times. Release page does not state a package release version/date for current code; 0.6.0 is referenced in model notes."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -3595,8 +4061,39 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Python interface to Kokoro TTS models through ONNX Runtime. Given text, a voice bank and model files, it synthesizes waveform samples that can be written as WAV; model weights and voices are separate downloads. It offers a compact local inference route, with multiple voice and precision variants, without requiring a hosted speech service.",
+      "use_when": [
+        "Generate local speech audio from text with ONNX models and selectable voices",
+        "Use over hosted TTS when offline inference and local model control matter"
+      ],
+      "avoid_when": [
+        "Use Piper when broader voice and language coverage matters and GPL-3.0 is acceptable",
+        "Use Kokoro upstream when ONNX export/runtime is not required"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "license": "MIT (kokoro-onnx code); Apache-2.0 (Kokoro model, per project README)",
+      "install": {
+        "macos": "python3 -m pip install kokoro-onnx; download matching ONNX model and voice bank from project releases",
+        "check_command": "python3 -m pip show kokoro-onnx"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_b",
+        "version_seen": "0.6.0 (release notes); model-files-v1.1 (latest release page)",
+        "last_release": "2025-03-01 (latest release label; assets updated 2026-08-18)",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "The project documents Kokoro ONNX 0.6.0 functionality and showed 2026 activity/issues; latest model-files-v1.1 assets include 2026-08-18 uploads. Code is MIT and README identifies the Kokoro model as Apache-2.0. Models and voice banks remain separate downloads.",
+        "sources": [
+          "https://github.com/thewh1teagle/kokoro-onnx",
+          "https://github.com/thewh1teagle/kokoro-onnx/releases",
+          "https://github.com/thewh1teagle/kokoro-onnx/blob/main/LICENSE"
+        ]
+      }
     },
     {
       "id": "konva",
@@ -3679,7 +4176,7 @@
       "name": "libass",
       "category": "Discovery: research candidates",
       "tier": "candidate",
-      "role": "ASS subtitle renderer",
+      "role": "ASS/SSA subtitle rendering library",
       "official_url": "https://github.com/libass/libass",
       "automation_route": "library-or-runtime",
       "capabilities": [
@@ -3688,10 +4185,7 @@
       ],
       "notes": [
         "2026-11-01: Reference ASS/SSA renderer behind FFmpeg's ass and subtitles filters; styled and karaoke-timed burn-in.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: ISC (unverified).",
-        "2026-11-01: Pin font files; system font fallback breaks reproducibility. May be better recorded as an FFmpeg capability.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+        "2026-11-01: Pin font files; system font fallback breaks reproducibility. May be better recorded as an FFmpeg capability."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -3700,8 +4194,39 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Portable C library that renders Advanced SubStation Alpha subtitles, including styled text and timed events, to video frames. It is commonly consumed through FFmpeg’s ass/subtitles filters or embedded by media applications rather than used as a standalone authoring tool. Strength: mature ASS rendering with shaping and font-provider integration.",
+      "use_when": [
+        "Render an existing ASS/SSA subtitle track through an FFmpeg filter or a native application",
+        "Use for ASS-specific subtitle styling and timed events rather than HTML text overlays"
+      ],
+      "avoid_when": [
+        "Use FFmpeg when the task is a complete transcode and subtitle filter is already available",
+        "Use browser typography or SVG when subtitles are authored as scene graphics"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "license": "ISC",
+      "install": {
+        "macos": "brew install libass",
+        "check_command": "pkg-config --modversion libass"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_b",
+        "version_seen": "0.17.5",
+        "last_release": "2026-06-24",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "libass 0.17.5 released 2026-06-24; official project describes the library and build options. ISC licensed. A focused ASS renderer behind FFmpeg and native integrations; font selection and shaping dependencies affect reproducibility.",
+        "sources": [
+          "https://github.com/libass/libass",
+          "https://github.com/libass/libass/releases",
+          "https://github.com/libass/libass/blob/master/meson.build"
+        ]
+      }
     },
     {
       "id": "libavif",
@@ -3717,9 +4242,7 @@
       ],
       "notes": [
         "2026-11-01: AVIF still and animated encoding with alpha from PNG sequences.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-2-Clause (unverified).",
         "2026-11-01: Pin codec and speed for byte-stable output.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it a strong candidate."
       ],
       "documentation_status": "listed-in-prd",
@@ -3729,8 +4252,40 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "C implementation of AVIF encoding and decoding, including the avifenc and avifdec CLIs. It supports stills and sequences with alpha, with encoder behavior depending on the enabled AV1 codec backend.",
+      "use_when": [
+        "Encode AVIF stills or image sequences with explicit codec controls",
+        "Use when AVIF-specific options matter beyond a generic image CLI"
+      ],
+      "avoid_when": [
+        "Use libwebp for WebP output",
+        "Use FFmpeg for broad audio/video muxing and sequence handling"
+      ],
+      "pairs_with": [
+        "libwebp",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "BSD-2-Clause",
+      "install": {
+        "macos": "brew install libavif",
+        "check_command": "avifenc --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_a",
+        "version_seen": "1.2.1",
+        "last_release": "2025-03-17",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Latest release v1.2.1 is dated 2025-03-17; official repository activity and release checklist updates continued in 2026, supporting active maintenance. Includes avifenc/avifdec; backend codecs remain configurable.",
+        "sources": [
+          "https://github.com/AOMediaCodec/libavif",
+          "https://github.com/AOMediaCodec/libavif/releases",
+          "https://github.com/AOMediaCodec/libavif/wiki/Release-Checklist"
+        ]
+      }
     },
     {
       "id": "libplacebo",
@@ -3908,8 +4463,6 @@
       ],
       "notes": [
         "2026-11-01: img2webp, gif2webp and cwebp for still and animated WebP with alpha.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-3-Clause (unverified).",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it worth cataloguing."
       ],
       "documentation_status": "listed-in-prd",
@@ -3919,8 +4472,38 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "The WebP reference codec distribution includes cwebp, dwebp, gif2webp and img2webp for still and animated WebP conversion. Dedicated tools expose WebP-specific quality and animation controls.",
+      "use_when": [
+        "Encode still or animated WebP with native codec tools",
+        "Convert GIF animation to WebP with gif2webp"
+      ],
+      "avoid_when": [
+        "Use libavif for AVIF output",
+        "Use FFmpeg for broader video conversion and muxing"
+      ],
+      "pairs_with": [
+        "libavif"
+      ],
+      "license": "BSD-3-Clause",
+      "install": {
+        "macos": "unknown",
+        "check_command": "cwebp -version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_a",
+        "version_seen": "1.6.0",
+        "last_release": "2025-06-30",
+        "maintenance": "slow",
+        "verdict": "keep",
+        "rationale": "Official Google source tag identifies libwebp 1.6.0, dated 2025-06-30. No newer release was found in sources read; tools cover still and animated WebP conversion.",
+        "sources": [
+          "https://chromium.googlesource.com/webm/libwebp",
+          "https://chromium.googlesource.com/webm/libwebp/+/refs/tags/v1.6.0"
+        ]
+      }
     },
     {
       "id": "lmms",
@@ -4039,8 +4622,8 @@
     {
       "id": "lv2",
       "name": "LV2",
-      "category": "Discovery: conversation candidates",
-      "tier": "candidate",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
       "role": "Plugin standard",
       "official_url": "https://lv2plug.in/",
       "automation_route": "library-or-runtime",
@@ -4218,7 +4801,8 @@
       "notes": [
         "2026-11-01: Procedural jointed human figure on Three.js; poses are joint angles, so a pose can be a pure function of t. Proposed route: render through the three-js capture path.",
         "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
+        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue.",
+        "2026-11-15: Latest upstream release v5.2.3 dated 2026-10-06; repository LICENSE is GPL-3, not MIT."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -4227,8 +4811,35 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "conversation 2026-11-01: character and figure tooling gap"
+      "checked_at": "2026-11-15",
+      "source": "conversation 2026-11-01: character and figure tooling gap",
+      "summary": "Three.js procedural articulated human figures with joint-angle posing, suited to simple pose-driven scenes without importing a character asset.",
+      "use_when": [
+        "When a lightweight posed human figure is enough",
+        "When pose values can be generated directly in a Three.js scene"
+      ],
+      "avoid_when": [
+        "When you need realistic custom characters or rigging: mpfb",
+        "When you need VRM avatars: three-vrm"
+      ],
+      "pairs_with": [
+        "three-js"
+      ],
+      "license": "GPL-3.0",
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "/root/candidate_batch_c",
+        "version_seen": "v5.2.3",
+        "last_release": "2026-10-06",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Upstream describes a simple articulated human figure and latest release v5.2.3 (2026-10-06), upgraded to Three.js r169; the repository license is GPL-3. Keep as a lightweight procedural figure option, with the copyleft license visible in the card.",
+        "sources": [
+          "https://github.com/boytchev/mannequin.js/blob/main/README.md",
+          "https://github.com/boytchev/mannequin.js/releases",
+          "https://github.com/boytchev/mannequin.js/blob/main/LICENSE"
+        ]
+      }
     },
     {
       "id": "matter-js",
@@ -4260,6 +4871,7 @@
         "physics-simulation"
       ],
       "license": "MIT",
+      "skill": "skills/matter-js/SKILL.md",
       "install": {
         "macos": "pnpm add matter-js"
       },
@@ -4279,7 +4891,7 @@
           "https://registry.npmjs.org/matter-js"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -4425,8 +5037,8 @@
     {
       "id": "mediainfo",
       "name": "MediaInfo",
-      "category": "Discovery: conversation candidates",
-      "tier": "candidate",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
       "role": "Media metadata",
       "official_url": "https://mediaarea.net/en/MediaInfo",
       "automation_route": "native-cli-or-scripting",
@@ -4477,8 +5089,8 @@
     {
       "id": "mediapipe",
       "name": "MediaPipe",
-      "category": "Discovery: conversation candidates",
-      "tier": "candidate",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
       "role": "Vision and tracking",
       "official_url": "https://ai.google.dev/edge/mediapipe",
       "automation_route": "library-or-runtime",
@@ -4648,8 +5260,8 @@
     {
       "id": "meshoptimizer",
       "name": "meshoptimizer",
-      "category": "Discovery: conversation candidates",
-      "tier": "candidate",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
       "role": "Mesh optimisation",
       "official_url": "https://github.com/zeux/meshoptimizer",
       "automation_route": "library-or-runtime",
@@ -4700,8 +5312,8 @@
     {
       "id": "meyda",
       "name": "Meyda",
-      "category": "Discovery: conversation candidates",
-      "tier": "candidate",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
       "role": "Audio features",
       "official_url": "https://meyda.js.org/",
       "automation_route": "library-or-runtime",
@@ -4751,8 +5363,8 @@
     {
       "id": "mido",
       "name": "Mido",
-      "category": "Discovery: conversation candidates",
-      "tier": "candidate",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
       "role": "MIDI processing",
       "official_url": "https://mido.readthedocs.io/",
       "automation_route": "library-or-runtime",
@@ -4971,7 +5583,7 @@
           "https://www.npmjs.com/package/motion"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -4992,7 +5604,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/motion-js/SKILL.md"
     },
     {
       "id": "motion-canvas",
@@ -5061,7 +5674,7 @@
       "category": "Discovery: conversation candidates",
       "tier": "candidate",
       "role": "Human figures",
-      "official_url": "https://static.makehumancommunity.org/mpfb.html",
+      "official_url": "https://github.com/makehumancommunity/mpfb2",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
         "3d-rendering",
@@ -5070,7 +5683,8 @@
       "notes": [
         "2026-11-01: Blender extension generating parametric rigged humans; proposed route is Blender Python in background mode. Rigify ships with Blender and needs no separate record.",
         "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
+        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue.",
+        "2026-11-15: MPFB2 release v2.0.18 dated 2026-10-11. Source code is GPLv3; core bundled assets are CC0. Check third-party asset packs separately."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -5079,8 +5693,36 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "conversation 2026-11-01: character and figure tooling gap"
+      "checked_at": "2026-11-15",
+      "source": "conversation 2026-11-01: character and figure tooling gap",
+      "summary": "MakeHuman Community Blender add-on for parameterized human creation and rigging; produces editable Blender characters that can be exported or rendered through Blender.",
+      "use_when": [
+        "When Blender-based parametric human creation is needed",
+        "When a rigged editable character is preferable to a runtime avatar"
+      ],
+      "avoid_when": [
+        "For lightweight procedural figures: mannequin-js",
+        "For runtime VRM loading: three-vrm"
+      ],
+      "pairs_with": [
+        "blender"
+      ],
+      "license": "GPL-3.0 source; core assets CC0; check third-party packs separately",
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "/root/candidate_batch_c",
+        "version_seen": "2.0.18",
+        "last_release": "2026-10-11",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "MPFB2 is an open-source Blender human generator; upstream release v2.0.18 is dated 2026-10-11. Source is GPLv3 while core assets are CC0, according to the project license pages. The documented Blender extension workflow is a plausible native authoring route; retain as a candidate.",
+        "sources": [
+          "https://github.com/makehumancommunity/mpfb2",
+          "https://github.com/makehumancommunity/mpfb2/releases/tag/v2.0.18",
+          "https://github.com/makehumancommunity/mpfb2/blob/master/LICENSE.md",
+          "https://static.makehumancommunity.org/about/license.html"
+        ]
+      }
     },
     {
       "id": "msdfgen",
@@ -5144,8 +5786,8 @@
     {
       "id": "music21",
       "name": "music21",
-      "category": "Discovery: conversation candidates",
-      "tier": "candidate",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
       "role": "Music analysis",
       "official_url": "https://www.music21.org/",
       "automation_route": "library-or-runtime",
@@ -5258,8 +5900,8 @@
     {
       "id": "nerfstudio",
       "name": "Nerfstudio",
-      "category": "Discovery: conversation candidates",
-      "tier": "candidate",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
       "role": "Reconstruction",
       "official_url": "https://docs.nerf.studio/",
       "automation_route": "native-cli-or-scripting",
@@ -5325,9 +5967,7 @@
       ],
       "notes": [
         "2026-11-01: SIMD image diff CLI and Node binding; exit codes distinguish match from pixel difference, suited to golden-frame gating.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: MIT.",
         "2026-11-01: Use threshold 0 with anti-aliasing off for strict determinism.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it a strong candidate."
       ],
       "documentation_status": "listed-in-prd",
@@ -5337,8 +5977,39 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "SIMD-optimized image comparison CLI, also distributed as a Node package with platform binaries. It returns distinct exit statuses for differences and supports configurable thresholds, making it useful in scripted visual regression checks.",
+      "use_when": [
+        "Gate exact or thresholded still-image comparisons in scripts",
+        "Use Node package distribution when integrating visual checks in JS"
+      ],
+      "avoid_when": [
+        "Use dssim for perceptual structural similarity scoring",
+        "Use ImageMagick compare for broad image manipulation and diff output"
+      ],
+      "pairs_with": [
+        "dssim",
+        "imagemagick"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "npm install -g odiff-bin",
+        "check_command": "odiff --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_a",
+        "version_seen": "unknown",
+        "last_release": "unknown",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official repository was reviewed, but a current release or dated maintenance signal could not be established from the sources read; retain as a candidate pending version/maintenance confirmation.",
+        "sources": [
+          "https://github.com/dmtrKovalenko/odiff",
+          "https://github.com/dmtrKovalenko/odiff/blob/main/README.md"
+        ]
+      }
     },
     {
       "id": "ogl",
@@ -5372,7 +6043,8 @@
       "install": {
         "macos": "pnpm add ogl"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/ogl/SKILL.md",
       "installation_status": "unknown",
       "examples": [
         "ogl-capture"
@@ -5649,8 +6321,8 @@
     {
       "id": "opentimelineio",
       "name": "OpenTimelineIO",
-      "category": "Discovery: conversation candidates",
-      "tier": "candidate",
+      "category": "A5. Video and capture",
+      "tier": "catalogued",
       "role": "Timeline exchange",
       "official_url": "https://opentimelineio.readthedocs.io/",
       "automation_route": "library-or-runtime",
@@ -5846,8 +6518,38 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Rust CLI and library that recompresses PNG data and may reduce bit depth or colour type while retaining decoded image appearance; its lossless optimization makes it suitable for asset-size reduction.",
+      "use_when": [
+        "When lossless PNG size reduction is useful",
+        "When preserving decoded pixels matters more than encoding time"
+      ],
+      "avoid_when": [
+        "For lossy palette reduction: pngquant",
+        "For general image transforms: imagemagick"
+      ],
+      "pairs_with": [
+        "pngquant",
+        "imagemagick"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "brew install oxipng",
+        "check_command": "oxipng --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "/root/candidate_batch_c",
+        "version_seen": "Not established from sources read",
+        "last_release": "Not established from sources read",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official project/docs describe a plausible automation route and concrete VCR job; release recency was not established from the sources read, so maintenance remains unknown.",
+        "sources": [
+          "https://github.com/oxipng/oxipng"
+        ]
+      }
     },
     {
       "id": "p5-js",
@@ -5992,7 +6694,7 @@
           "https://registry.npmjs.org/paper"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6013,7 +6715,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/paper-js/SKILL.md"
     },
     {
       "id": "pedalboard",
@@ -6072,7 +6775,7 @@
       "name": "Piper (piper1-gpl)",
       "category": "Discovery: research candidates",
       "tier": "candidate",
-      "role": "Fast local TTS, many voices",
+      "role": "Local neural text-to-speech engine",
       "official_url": "https://github.com/OHF-Voice/piper1-gpl",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
@@ -6080,10 +6783,8 @@
       ],
       "notes": [
         "2026-11-01: Neural TTS engine with many languages and voices.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: GPL-3.0 since v1.3.0; per-voice model licences.",
         "2026-11-01: Project is seeking maintainers; old rhasspy/piper archived 2025-10.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+        "2026-11-15: Project README says it is looking for maintainers; release activity is recent, but long-term ownership remains uncertain. Voice-model permissions require each model card review."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -6092,8 +6793,40 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Local neural TTS engine exposed through a Python package, CLI, C/C++ API and web server. It embeds espeak-ng for phonemization and synthesizes audio from separately obtained ONNX voice models. Its strength is a fast local workflow with many community voices and multiple language phonemizers; voice licensing is model-specific.",
+      "use_when": [
+        "Synthesize speech locally through a CLI or Python pipeline with supported Piper voices",
+        "Use instead of hosted TTS when local inference and voice choice matter"
+      ],
+      "avoid_when": [
+        "Use Kokoro ONNX for its specific voice/model family and permissive code licence",
+        "Use hosted speech services when a voice’s model card or GPL code terms do not fit"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "license": "GPL-3.0-or-later (engine); each voice model has its own MODEL_CARD licence; bundled phonemizer resources may carry separate terms",
+      "install": {
+        "macos": "python3 -m pip install piper-tts; download a voice model and its JSON config",
+        "check_command": "python3 -m piper --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_b",
+        "version_seen": "1.8.0",
+        "last_release": "2026-09-04",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Piper v1.8.0 released 2026-09-04 with active release work, though upstream explicitly seeks maintainers. The engine is GPL-3.0-or-later; project makes no licence grant for voice models, whose MODEL_CARD terms must be checked individually. Embeds espeak-ng.",
+        "sources": [
+          "https://github.com/OHF-Voice/piper1-gpl",
+          "https://github.com/OHF-Voice/piper1-gpl/releases",
+          "https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/LICENSING.md",
+          "https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/BUILDING.md"
+        ]
+      }
     },
     {
       "id": "pixijs",
@@ -6264,7 +6997,7 @@
       "install": {
         "macos": "pnpm add playcanvas"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "playcanvas-capture"
@@ -6301,7 +7034,8 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/playcanvas-engine/SKILL.md"
     },
     {
       "id": "playwright",
@@ -6394,7 +7128,8 @@
           "https://github.com/microsoft/playwright"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/playwright/SKILL.md",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6448,7 +7183,8 @@
         "2026-11-01: Licence as reported by the source research, not yet verified: GPL-3.0-or-later (commercial licence offered).",
         "2026-11-01: Lossy: never for fixtures or masters.",
         "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+        "2026-11-15: snapcraft.yaml declares version 3.0.4; GitHub releases page is empty, so release date and maintenance recency remain unverified."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -6457,8 +7193,40 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "CLI library for lossy PNG palette quantization with alpha; trades colour precision for smaller indexed PNG files.",
+      "use_when": [
+        "When smaller palette PNGs justify controlled colour loss",
+        "When alpha transparency must remain available"
+      ],
+      "avoid_when": [
+        "For pixel-preserving recompression: oxipng",
+        "For broader image editing: imagemagick"
+      ],
+      "pairs_with": [
+        "oxipng"
+      ],
+      "license": "GPL-3.0-or-later with additional legacy copyright notice; commercial license offered",
+      "install": {
+        "macos": "brew install pngquant",
+        "check_command": "pngquant --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "/root/candidate_batch_c",
+        "version_seen": "3.0.4 (version declared in upstream snapcraft.yaml)",
+        "last_release": "Not established; GitHub releases page has no releases",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Official README documents a CLI and embeddable library for lossy RGBA palette quantization, and dual licensing under GPL-3-or-later or commercial terms. Upstream snapcraft.yaml declares 3.0.4, but GitHub has no release entries and the release date/activity could not be established from reviewed sources.",
+        "sources": [
+          "https://github.com/kornelski/pngquant/blob/main/README.md",
+          "https://github.com/kornelski/pngquant/blob/main/COPYRIGHT",
+          "https://github.com/kornelski/pngquant/blob/main/snapcraft.yaml",
+          "https://github.com/kornelski/pngquant/releases"
+        ]
+      }
     },
     {
       "id": "postprocessing",
@@ -6494,7 +7262,7 @@
       "install": {
         "macos": "pnpm add postprocessing"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "postprocessing-capture",
@@ -6532,7 +7300,8 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/postprocessing/SKILL.md"
     },
     {
       "id": "potrace",
@@ -6758,7 +7527,8 @@
           "https://registry.npmjs.org/pts"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/pts/SKILL.md",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7117,7 +7887,8 @@
       "install": {
         "macos": "pnpm add @react-three/fiber three"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/react-three-fiber/SKILL.md",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7194,7 +7965,7 @@
         "macos": "pnpm add @react-three/postprocessing postprocessing",
         "check_command": "pnpm list @react-three/postprocessing"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7231,7 +8002,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "react-postprocessing-capture"
-      ]
+      ],
+      "skill": "skills/react-three-postprocessing/SKILL.md"
     },
     {
       "id": "react-three-rapier",
@@ -7267,7 +8039,7 @@
         "macos": "pnpm add @react-three/rapier",
         "check_command": "pnpm list @react-three/rapier"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7304,7 +8076,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "rapier-capture"
-      ]
+      ],
+      "skill": "skills/react-three-rapier/SKILL.md"
     },
     {
       "id": "real-esrgan",
@@ -7391,7 +8164,8 @@
       "install": {
         "macos": "pnpm add regl"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/regl/SKILL.md",
       "installation_status": "unknown",
       "examples": [
         "regl-capture"
@@ -7453,8 +8227,37 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Python CLI and library for background removal using local ONNX models or optional remote APIs; produces image cutouts with alpha, with model and service terms varying by backend.",
+      "use_when": [
+        "When still-image subject cutouts are needed",
+        "When a chosen local model and its terms suit the workflow"
+      ],
+      "avoid_when": [
+        "For vector tracing: potrace",
+        "For manual compositing: imagemagick"
+      ],
+      "pairs_with": [
+        "imagemagick"
+      ],
+      "license": "MIT (model weights have separate terms)",
+      "install": {
+        "macos": "python3 -m pip install \"rembg[cpu]\"",
+        "check_command": "rembg --help"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "/root/candidate_batch_c",
+        "version_seen": "2.0.85",
+        "last_release": "2026-10-31",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Latest upstream news reports version 2.0.85; maintained upstream and the documented automation route supports the stated job.",
+        "sources": [
+          "https://github.com/danielgatis/rembg"
+        ]
+      }
     },
     {
       "id": "remotion",
@@ -7611,7 +8414,8 @@
         "2026-11-01: Licence as reported by the source research, not yet verified: MIT.",
         "2026-11-01: Reference only per ADR 0001; no GitHub releases, moved organisations.",
         "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+        "2026-11-15: GitHub release list is empty; project docs describe npm releases/canaries. Current published package version and last release date were not established."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -7620,15 +8424,42 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "TypeScript rendering engine for programmatic video creation with a Motion Canvas-like authoring model and headless rendering route.",
+      "use_when": [
+        "For reference when comparing code-driven video engine approaches"
+      ],
+      "avoid_when": [
+        "For VCR production: native VCR capture and ffmpeg-ffprobe",
+        "For browser scene capture: playwright"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "license": "MIT",
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "/root/candidate_batch_c",
+        "version_seen": "Not established from official sources reviewed",
+        "last_release": "Not established; GitHub releases page has no releases",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "README documents TypeScript scenes, programmatic headless renderVideo(), and a browser player; releasing docs describe npm release/canary workflows. Repository activity was indexed within the last few days, but GitHub has no release entries and the current package version was not established. Keep as a reference candidate only; VCR has its own in-house engine decision.",
+        "sources": [
+          "https://github.com/midrender/revideo",
+          "https://github.com/midrender/revideo/blob/main/README.md",
+          "https://github.com/midrender/revideo/blob/main/RELEASING.md",
+          "https://github.com/midrender/revideo/releases"
+        ]
+      }
     },
     {
       "id": "rhubarb-lip-sync",
       "name": "Rhubarb Lip Sync",
       "category": "Discovery: conversation candidates",
       "tier": "candidate",
-      "role": "Lip-sync timing",
+      "role": "Audio-to-mouth-shape timing CLI",
       "official_url": "https://github.com/DanielSWolf/rhubarb-lip-sync",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
@@ -7636,8 +8467,7 @@
       ],
       "notes": [
         "2026-11-01: CLI that turns a voice recording into timed mouth shapes (JSON/TSV); proposed driver for avatar or 2D mouth animation.",
-        "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
+        "2026-11-15: GitHub release page omits the year in its April 3 timestamp; year 2025 is corroborated by a release index. Latest release tag remains v1.14.0."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -7646,8 +8476,40 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "conversation 2026-11-01: character and figure tooling gap"
+      "checked_at": "2026-11-15",
+      "source": "conversation 2026-11-01: character and figure tooling gap",
+      "summary": "Desktop CLI analyzes WAV or Ogg audio and produces timestamped mouth-shape cues in TSV, XML or JSON, with integrations for several animation applications. English recognition uses PocketSphinx; a phonetic recognizer is available for other languages with lower precision. Strength: turns existing dialogue recordings into lightweight cues that can drive 2D mouth animation.",
+      "use_when": [
+        "Create timestamped mouth-shape cues from recorded dialogue for a 2D character",
+        "Use over manual cueing when timing can be generated from WAV or Ogg audio"
+      ],
+      "avoid_when": [
+        "Use a general audio alignment tool for word-level transcript timing rather than viseme cues",
+        "Use a runtime face tracker for live webcam or real-time speech animation"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "license": "MIT (project); bundled third-party dependencies have their own permissive licences, including BSD and Boost",
+      "install": {
+        "macos": "Download and unpack the macOS archive from the official GitHub release",
+        "check_command": "rhubarb --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_b",
+        "version_seen": "1.14.0",
+        "last_release": "2025-04-03",
+        "maintenance": "slow",
+        "verdict": "keep",
+        "rationale": "The official release page marks v1.14.0 as latest and lists an April 3 release; date year is not shown there, though 2025 is corroborated by a release index. MIT project with separately listed third-party licences. Native CLI emits timestamped mouth-shape data from WAV/Ogg.",
+        "sources": [
+          "https://github.com/DanielSWolf/rhubarb-lip-sync",
+          "https://github.com/DanielSWolf/rhubarb-lip-sync/releases/tag/v1.14.0",
+          "https://github.com/DanielSWolf/rhubarb-lip-sync/blob/master/LICENSE.md",
+          "https://talking-avatar.dev/alternatives/7-best-ovrlipsync-alternatives-2026"
+        ]
+      }
     },
     {
       "id": "rive-web",
@@ -7760,7 +8622,7 @@
           "https://registry.npmjs.org/roughjs"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7781,7 +8643,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "roughjs-capture"
-      ]
+      ],
+      "skill": "skills/rough-js/SKILL.md"
     },
     {
       "id": "rubber-band",
@@ -8029,10 +8892,9 @@
       "category": "Discovery: research candidates",
       "tier": "candidate",
       "role": "Animated code diffs",
-      "official_url": "https://shiki.style/packages/magic-move",
+      "official_url": "https://github.com/shikijs/shiki/tree/main/packages/magic-move",
       "automation_route": "library-or-runtime",
       "capabilities": [
-        "text-rendering",
         "tweening"
       ],
       "notes": [
@@ -8040,7 +8902,8 @@
         "2026-11-01: Licence as reported by the source research, not yet verified: MIT.",
         "2026-11-01: CSS transitions are not seekable; needs a GSAP-driven adapter and odiff gating before promotion.",
         "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-01: Triage: assess. Report rates it a strong candidate.",
+        "2026-11-15: @shikijs/magic-move 4.6.0 published 2026-11-11 (npm reported four days before assessment). Former shiki-magic-move repository archived 2026-06-03; since v4.2.0 it re-exports the maintained package. Seekable animation/capture behavior not validated."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -8049,8 +8912,37 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "@shikijs/magic-move turns Shiki-highlighted code states into animated diffs, with framework wrappers and a precompiled-token path; unlike ordinary code highlighting, it includes token matching and transition rendering.",
+      "use_when": [
+        "When code-state transitions are the focus of a scene",
+        "When syntax-highlighted snippets need token-aware diffs",
+        "When code states can be precompiled and supplied as steps"
+      ],
+      "avoid_when": [
+        "For general kinetic text: gsap",
+        "When transitions must be fully seekable without a custom capture strategy"
+      ],
+      "pairs_with": [
+        "gsap"
+      ],
+      "license": "MIT",
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "/root/candidate_batch_c",
+        "version_seen": "4.6.0",
+        "last_release": "2026-11-11",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "The maintained package is @shikijs/magic-move; npm reports 4.6.0 published four days before assessment and MIT. Upstream says the old shiki-magic-move repo is archived and a thin re-export since v4.2.0; future work is in shikijs/shiki. It offers precompiled token steps, though seekable capture still needs a deterministic route.",
+        "sources": [
+          "https://www.npmjs.com/package/@shikijs/magic-move?activeTab=versions",
+          "https://github.com/shikijs/shiki-magic-move",
+          "https://github.com/shikijs/shiki/tree/main/packages/magic-move",
+          "https://github.com/shikijs/shiki/blob/main/packages/magic-move/package.json"
+        ]
+      }
     },
     {
       "id": "shotstack",
@@ -8266,34 +9158,6 @@
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
-    },
-    {
-      "id": "stable-ts",
-      "name": "stable-ts",
-      "category": "Discovery: research candidates",
-      "tier": "candidate",
-      "role": "Script-to-audio alignment",
-      "official_url": "https://github.com/jianfch/stable-ts",
-      "automation_route": "native-cli-or-scripting",
-      "capabilities": [
-        "audio"
-      ],
-      "notes": [
-        "2026-11-01: Stabilised Whisper word timestamps and forced alignment of known text; SRT, VTT, ASS and JSON output.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified).",
-        "2026-11-01: Last release reported 2025-08, so maintenance may be slow.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
-      ],
-      "documentation_status": "listed-in-prd",
-      "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
-      },
-      "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
     },
     {
       "id": "supercollider",
@@ -8528,7 +9392,8 @@
           "https://github.com/svgdotjs/svg.js"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/svg-js/SKILL.md",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -8614,7 +9479,7 @@
       "name": "SVT-AV1",
       "category": "Discovery: research candidates",
       "tier": "candidate",
-      "role": "Production AV1 encoder",
+      "role": "AV1 video encoder",
       "official_url": "https://gitlab.com/AOMediaCodec/SVT-AV1",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
@@ -8622,10 +9487,7 @@
       ],
       "notes": [
         "2026-11-01: AV1 encoder via FFmpeg libsvtav1 or SvtAv1EncApp. rav1e considered and skipped in its favour.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-3-Clause-Clear plus AOM patent licence (unverified).",
-        "2026-11-01: No alpha; may be recorded as an FFmpeg capability.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-01: No alpha; may be recorded as an FFmpeg capability."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -8634,8 +9496,41 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "AOMedia software AV1 encoder library, used standalone or through FFmpeg’s libsvtav1 encoder. It produces AV1 elementary streams or containerized output via a host muxer. Its strength is production-oriented speed and quality tuning across offline VOD and real-time modes; output has no alpha channel.",
+      "use_when": [
+        "Encode opaque video to AV1 with explicit speed, quality or latency tradeoffs",
+        "Use with FFmpeg when an established transcode and mux pipeline is needed"
+      ],
+      "avoid_when": [
+        "Use FFmpeg/libx264 or libx265 for broader playback compatibility",
+        "Use an alpha-capable codec when transparency must survive encoding"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "vmaf"
+      ],
+      "license": "BSD-3-Clause-Clear (code); AOM Patent License 1.0 applies",
+      "install": {
+        "macos": "brew install svt-av1 (or use FFmpeg built with libsvtav1)",
+        "check_command": "SvtAv1EncApp --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_b",
+        "version_seen": "4.2.0",
+        "last_release": "2026-07-14",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "SVT-AV1 v4.2.0 is dated 2026-07-14 and the canonical GitLab project shows commits in November 2026. Code is BSD-3-Clause-Clear; AOM Patent License 1.0 is separately relevant. Provides an encoder option beyond FFmpeg’s default codecs.",
+        "sources": [
+          "https://gitlab.com/AOMediaCodec/SVT-AV1/",
+          "https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/CHANGELOG.md",
+          "https://gitlab.com/AOMediaCodec/SVT-AV1/-/tags/v4.2.0",
+          "https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/LICENSE.md"
+        ]
+      }
     },
     {
       "id": "synfig",
@@ -8956,7 +9851,7 @@
       "examples": [
         "meshline-capture"
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -8992,7 +9887,8 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/three-meshline/SKILL.md"
     },
     {
       "id": "three-vrm",
@@ -9009,7 +9905,8 @@
       "notes": [
         "2026-11-01: Loads VRM avatars into Three.js with humanoid bones and expression blendshapes; candidate route for faces and lip-sync.",
         "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue."
+        "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue.",
+        "2026-11-15: Latest release is v3.6.0-beta.0 (2026-09-29); stable release listed as v3.5.5."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -9018,8 +9915,36 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "conversation 2026-11-01: character and figure tooling gap"
+      "checked_at": "2026-11-15",
+      "source": "conversation 2026-11-01: character and figure tooling gap",
+      "summary": "Three.js ecosystem loader and extensions for VRM humanoid avatar models, including humanoid bone access and expressions; supplies a runtime avatar rather than a model authoring tool.",
+      "use_when": [
+        "When a Three.js scene needs a VRM avatar",
+        "When humanoid bones or expressions must be driven in runtime"
+      ],
+      "avoid_when": [
+        "For creating editable human models: mpfb",
+        "For BVH motion clips: bvh-mocap"
+      ],
+      "pairs_with": [
+        "three-js",
+        "bvh-mocap"
+      ],
+      "license": "MIT",
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "/root/candidate_batch_c",
+        "version_seen": "3.6.0-beta.0 (latest release); latest stable 3.5.5",
+        "last_release": "2026-09-29 (beta release page date; stable date not established)",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Official README documents loading VRM through Three.js GLTFLoader and VRMLoaderPlugin; repository license is MIT. Releases list v3.6.0-beta.0 dated 2026-09-29 and stable v3.5.5, indicating current maintenance. Runtime loading role and library-or-runtime route are accurate.",
+        "sources": [
+          "https://github.com/pixiv/three-vrm",
+          "https://github.com/pixiv/three-vrm/releases",
+          "https://github.com/pixiv/three-vrm/blob/release/LICENSE"
+        ]
+      }
     },
     {
       "id": "tone-js",
@@ -9240,7 +10165,8 @@
           "https://www.npmjs.com/package/@tweenjs/tween.js"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/tween-js/SKILL.md",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -9296,7 +10222,8 @@
       "install": {
         "macos": "pnpm add twgl.js"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "skill": "skills/twgl/SKILL.md",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -9412,7 +10339,7 @@
       "name": "Typst",
       "category": "Discovery: research candidates",
       "tier": "candidate",
-      "role": "Deterministic typesetting CLI",
+      "role": "Programmable typesetting and vector export CLI",
       "official_url": "https://github.com/typst/typst",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
@@ -9421,10 +10348,7 @@
       ],
       "notes": [
         "2026-11-01: Typesetting to PDF, PNG and SVG for title cards, equations, tables and data-driven stills.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: Apache-2.0.",
-        "2026-11-01: Pass --font-path to avoid system font variation.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-01: Pass --font-path to avoid system font variation."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -9433,8 +10357,41 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Open-source typesetting language and compiler for programmatic documents. The CLI compiles source into PDF, PNG or SVG and supports HTML export; it can render data-driven layouts, equations and precise text compositions. Strength: a compact, scriptable typesetting system that emits crisp vector or raster assets without a browser-based design application.",
+      "use_when": [
+        "Generate typeset title cards, diagrams or data-driven stills from source files",
+        "Use over SVG hand-authoring when rich text layout, equations or reusable document templates matter"
+      ],
+      "avoid_when": [
+        "Use SVG directly for small hand-authored vector graphics with exact element-level control",
+        "Use Typst packages only after checking each package’s separate licence and version"
+      ],
+      "pairs_with": [
+        "vl-convert",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "Apache-2.0 (compiler; packages and fonts may have separate licences)",
+      "install": {
+        "macos": "brew install typst",
+        "check_command": "typst --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_b",
+        "version_seen": "0.15.1",
+        "last_release": "2026-07-17",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Typst 0.15.1 released 2026-07-17; official README and Cargo metadata document current CLI and Apache-2.0. It produces PDF, PNG and SVG as well as HTML, complementing rather than replacing SVG authoring for typeset graphics.",
+        "sources": [
+          "https://github.com/typst/typst",
+          "https://github.com/typst/typst/releases",
+          "https://github.com/typst/typst/blob/main/README.md",
+          "https://github.com/typst/typst/blob/main/Cargo.toml"
+        ]
+      }
     },
     {
       "id": "vapoursynth",
@@ -9490,11 +10447,79 @@
       }
     },
     {
+      "id": "vedo",
+      "name": "vedo",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
+      "role": "Scientific 3D visualisation and analysis with VTK and NumPy",
+      "official_url": "https://vedo.embl.es/docs/",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-asset-processing",
+        "3d-rendering",
+        "scientific-visualisation",
+        "model-loading"
+      ],
+      "summary": "Python library and CLI built on VTK and NumPy for loading, analysing and rendering meshes, point clouds and volumes. Its CLI can write images noninteractively, including in explicit offscreen mode; it covers scientific visualisation without requiring a browser scene.",
+      "use_when": [
+        "Render scientific meshes, point clouds or volumes from Python",
+        "Produce a static view from a VTK, STL, OBJ or volume input",
+        "Add analysis and presentation to mesh data before delivery"
+      ],
+      "avoid_when": [
+        "Build a complete animated production scene: Blender",
+        "Do lightweight triangle-mesh processing only: Trimesh",
+        "Render an interactive browser-based VTK scene: vtk.js"
+      ],
+      "pairs_with": [
+        "build123d",
+        "trimesh",
+        "blender",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "MIT for project code; bundled fonts have a separate licence and dependencies retain their own terms.",
+      "install": {
+        "macos": "uv add vedo",
+        "check_command": "python -c \"import vedo; print(vedo.__version__)\""
+      },
+      "notes": [
+        "2026-11-15: listed-in-prd is a legacy schema status for surfaced candidates; it does not mean this tool appeared in the PRD.",
+        "2026-11-15: Official documentation demonstrates noninteractive image output and explicit offscreen rendering; server setup examples depend on Mesa/OpenGL and Xvfb.",
+        "2026-11-15: Whether offscreen rendering works reliably on macOS arm64 without a window and whether output is repeatable across VTK/OpenGL drivers are unverified.",
+        "2026-11-15: Skill opportunity: further research first; no VCR fixture or repeated workflow evidence yet."
+      ],
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "assess-vedo",
+        "version_seen": "2026.6.3",
+        "last_release": "2026-10-26",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Official docs establish a Python and CLI route, including noninteractive image output and explicit offscreen rendering. It adds scientific mesh, point-cloud and volume visualization; macOS headless behavior and render reproducibility still need fixture evidence.",
+        "sources": [
+          "https://vedo.embl.es/docs/",
+          "https://github.com/marcomusy/vedo",
+          "https://github.com/marcomusy/vedo/releases",
+          "https://github.com/marcomusy/vedo/blob/master/pyproject.toml",
+          "https://github.com/marcomusy/vedo/blob/master/FONT.LICENSE"
+        ]
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-15",
+      "source": "prospects/inbox/2026-11-15-discovery.md"
+    },
+    {
       "id": "vhs",
       "name": "VHS",
       "category": "Discovery: research candidates",
       "tier": "candidate",
-      "role": "Scripted terminal recordings",
+      "role": "Scripted terminal recording and capture",
       "official_url": "https://github.com/charmbracelet/vhs",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
@@ -9503,10 +10528,7 @@
       ],
       "notes": [
         "2026-11-01: Renders .tape scripts of terminal sessions to GIF, MP4, WebM or frames via ttyd and Chromium.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified).",
-        "2026-11-01: Records in real time, so output is NOT a pure function of t; treat as a source asset.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-01: Records in real time, so output is NOT a pure function of t; treat as a source asset."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -9515,15 +10537,47 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Go CLI that executes .tape scripts in a virtual terminal and records terminal output to GIF, MP4, WebM or still/text outputs. Tapes set dimensions, font and framerate and issue keystrokes, commands and waits. Its strength is repeatable scripted terminal demonstrations and golden-file capture; it records a real-time session rather than a frame-seekable animation.",
+      "use_when": [
+        "Capture a CLI walkthrough from a scripted terminal session",
+        "Use over manual screen recording when the terminal sequence can be scripted"
+      ],
+      "avoid_when": [
+        "Use VCR browser capture for deterministic browser scenes",
+        "Use direct terminal rendering for static terminal artwork without timed interaction"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "license": "MIT (project)",
+      "install": {
+        "macos": "brew install vhs ttyd ffmpeg",
+        "check_command": "vhs --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_b",
+        "version_seen": "0.12.1",
+        "last_release": "2026-09-24",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "VHS v0.12.1 released 2026-09-24; repository documents current CI and installation. Requires ttyd and FFmpeg; MIT. Scripted terminal demos fill a distinct capture job, though real-time execution is not seek-safe.",
+        "sources": [
+          "https://github.com/charmbracelet/vhs/releases",
+          "https://github.com/charmbracelet/vhs/blob/main/README.md",
+          "https://github.com/charmbracelet/vhs/blob/main/examples/demo.tape",
+          "https://github.com/charmbracelet/vhs/blob/main/LICENSE"
+        ]
+      }
     },
     {
       "id": "vl-convert",
       "name": "vl-convert",
       "category": "Discovery: research candidates",
       "tier": "candidate",
-      "role": "Vega-Lite to SVG/PNG",
+      "role": "Vega and Vega-Lite static export runtime",
       "official_url": "https://github.com/vega/vl-convert",
       "automation_route": "library-or-runtime",
       "capabilities": [
@@ -9532,9 +10586,7 @@
       ],
       "notes": [
         "2026-11-01: Dependency-free Vega and Vega-Lite rendering to SVG, PNG and PDF from Python or CLI.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-3-Clause.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-15: 2.0.0-rc7 is a prerelease; stable release is 1.9.0. v2 API and behavior may change before stable release."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -9543,15 +10595,47 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Rust-based converter available as a library, CLI/server and Python package. It compiles Vega-Lite or Vega specifications and exports SVG, PNG, JPEG, PDF, HTML and scenegraphs without requiring a browser or Node.js. It embeds the official Vega JavaScript libraries and runs them in V8; local and remote resource access is configurable and relevant when processing external specs.",
+      "use_when": [
+        "Render Vega-Lite specifications to SVG, PNG or PDF in a scripted pipeline",
+        "Use when a browser or Node runtime should not be required for chart export"
+      ],
+      "avoid_when": [
+        "Use Vega or Vega-Lite directly when interactive browser output is the deliverable",
+        "Use Matplotlib or Altair when authoring and statistical plotting ergonomics matter more than Vega interchange"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "typst"
+      ],
+      "license": "BSD-3-Clause",
+      "install": {
+        "macos": "python3 -m pip install vl-convert-python (or cargo install vl-convert --locked)",
+        "check_command": "vl-convert --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_b",
+        "version_seen": "2.0.0-rc7 (latest prerelease); stable release 1.9.0",
+        "last_release": "2026-09-14",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Official releases show active v2 development through 2.0.0-rc7 (2026-09-14); stable release listed is 1.9.0. BSD-3-Clause. Its embedded Vega/Vega-Lite runtime offers reproducible server-side export without browser/Node dependencies.",
+        "sources": [
+          "https://github.com/vega/vl-convert",
+          "https://github.com/vega/vl-convert/releases",
+          "https://github.com/vega/vl-convert/blob/main/README.md"
+        ]
+      }
     },
     {
       "id": "vmaf",
       "name": "VMAF (libvmaf)",
       "category": "Discovery: research candidates",
       "tier": "candidate",
-      "role": "Perceptual video quality score",
+      "role": "Full-reference perceptual video quality measurement",
       "official_url": "https://github.com/Netflix/vmaf",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
@@ -9560,10 +10644,7 @@
       ],
       "notes": [
         "2026-11-01: Netflix full-reference video quality metric via the vmaf CLI or FFmpeg libvmaf filter.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-2-Clause-Patent.",
-        "2026-11-01: Luma only; pin the model version in fixtures. Homebrew formula name unverified.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-15: Homebrew package route not confirmed; model use depends on selected model, input alignment, preprocessing and version."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -9572,8 +10653,42 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Netflix video quality metric exposed as a CLI, C/Python libraries, or FFmpeg libvmaf filter. It compares aligned reference and distorted video and writes pooled and per-frame scores/logs. New v1 models broaden model choices for display resolution and viewing distance; results depend on model, alignment and preprocessing.",
+      "use_when": [
+        "Compare an encode to its source using a documented full-reference metric",
+        "Use libvmaf in FFmpeg when the encode workflow already uses filtergraphs"
+      ],
+      "avoid_when": [
+        "Use ffprobe for stream metadata without a reference comparison",
+        "Use subjective review for aesthetic judgement or artifacts outside model scope"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "svt-av1"
+      ],
+      "license": "BSD-2-Clause-Patent",
+      "install": {
+        "macos": "Build/install libvmaf and an FFmpeg build configured with --enable-libvmaf; formula availability unverified",
+        "check_command": "vmaf --version"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_b",
+        "version_seen": "3.2.1",
+        "last_release": "2026-09-14",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "libvmaf v3.2.1 released 2026-09-14; repository documents active model work in 2026. BSD-2-Clause-Patent. Distinct full-reference quality scoring and FFmpeg integration provide a measurable comparison workflow.",
+        "sources": [
+          "https://github.com/Netflix/vmaf/releases",
+          "https://github.com/Netflix/vmaf",
+          "https://github.com/Netflix/vmaf/blob/master/LICENSE",
+          "https://github.com/Netflix/vmaf/blob/master/resource/doc/ffmpeg.md",
+          "https://github.com/Netflix/vmaf/blob/master/libvmaf/tools/README.md"
+        ]
+      }
     },
     {
       "id": "vpype",
@@ -10152,7 +11267,7 @@
       "name": "WhisperX",
       "category": "Discovery: research candidates",
       "tier": "candidate",
-      "role": "Word-timed ASR",
+      "role": "Word-timed speech recognition and diarization",
       "official_url": "https://github.com/m-bain/whisperX",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
@@ -10160,10 +11275,8 @@
       ],
       "notes": [
         "2026-11-01: faster-whisper ASR with forced alignment for word timestamps and optional diarisation.",
-        "2026-11-01: Licence as reported by the source research, not yet verified: BSD-2-Clause; diarisation uses gated pyannote models.",
         "2026-11-01: CPU-only on Apple Silicon; ML output drifts across versions, so commit alignment JSON as fixtures.",
-        "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-15: v3.8.7rc1 is newer but prerelease; card and last_release identify the latest stable release. Diarization requires separate gated model access; model terms are not the code licence."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
@@ -10172,8 +11285,41 @@
         "evidence": []
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-01",
-      "source": "references/ideas/new-candidate-tools-2026-11.md"
+      "checked_at": "2026-11-15",
+      "source": "references/ideas/new-candidate-tools-2026-11.md",
+      "summary": "Python CLI and library for batched automatic speech recognition with word-level timestamps, forced alignment, VAD and optional speaker diarization. It uses faster-whisper/Whisper and wav2vec2 alignment models; model downloads, accelerator stack and gated pyannote access for diarization add setup constraints. Its distinguishing strength is combining transcription and word alignment in one local workflow.",
+      "use_when": [
+        "Generate word-timed transcripts from audio with local model inference",
+        "Use when forced alignment and optional speaker diarization justify the larger model stack"
+      ],
+      "avoid_when": [
+        "Need lightweight transcription without word alignment: use whisper-cpp",
+        "Use Rhubarb Lip Sync when output should be mouth-shape cues rather than transcript words"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe"
+      ],
+      "license": "BSD-2-Clause (code); pretrained models and gated diarization models carry separate terms/access requirements",
+      "install": {
+        "macos": "uv tool install whisperx (follow upstream platform and PyTorch guidance; model downloads required)",
+        "check_command": "whisperx --help"
+      },
+      "assessment": {
+        "date": "2026-11-15",
+        "assessed_by": "candidate_batch_b",
+        "version_seen": "3.8.6 (latest stable); 3.8.7rc1 prerelease",
+        "last_release": "2026-05-25",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "WhisperX v3.8.6 released 2026-05-25 and the official repository shows active 2026 issues and pull requests; v3.8.7rc1 is a later prerelease. Code is BSD-2-Clause; pretrained and gated diarization models have separate terms/access.",
+        "sources": [
+          "https://github.com/m-bain/whisperX",
+          "https://github.com/m-bain/whisperX/releases",
+          "https://github.com/m-bain/whisperX/blob/main/LICENSE",
+          "https://github.com/m-bain/whisperX/issues?state=open",
+          "https://github.com/m-bain/whisperX/pulls"
+        ]
+      }
     }
   ]
 }

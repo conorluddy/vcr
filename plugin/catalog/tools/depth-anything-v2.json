@@ -11,9 +11,7 @@
   ],
   "notes": [
     "2026-11-01: Depth maps for 2.5D parallax moves.",
-    "2026-11-01: Licence as reported by the source research, not yet verified: Small model Apache-2.0; Base/Large/Giant CC-BY-NC-4.0.",
     "2026-11-01: Only the Small model is safe for commercial use.",
-    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
     "2026-11-01: Triage: assess. Report rates it worth cataloguing."
   ],
   "documentation_status": "listed-in-prd",
@@ -23,6 +21,34 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-01",
-  "source": "references/ideas/new-candidate-tools-2026-11.md"
+  "checked_at": "2026-11-15",
+  "source": "references/ideas/new-candidate-tools-2026-11.md",
+  "summary": "Monocular depth-estimation model with Python inference and downloaded checkpoints. It produces relative depth maps for still images; only the Small checkpoint is Apache-2.0, while larger checkpoints carry non-commercial terms.",
+  "use_when": [
+    "Generate relative depth maps for 2.5D still-image moves",
+    "Use the Small checkpoint where commercial-use licensing is required"
+  ],
+  "avoid_when": [
+    "Use a maintained video-depth model for temporally consistent sequences",
+    "Avoid larger checkpoints for commercial work absent separate rights"
+  ],
+  "pairs_with": [],
+  "license": "Apache-2.0 (Small model); CC-BY-NC-4.0 (Base/Large/Giant weights)",
+  "install": {
+    "macos": "unknown",
+    "check_command": "unknown"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "candidate_batch_a",
+    "version_seen": "no tagged releases",
+    "last_release": "2024-06-14 initial public release",
+    "maintenance": "slow",
+    "verdict": "keep",
+    "rationale": "Official project sources identify no tagged releases as the latest available version/release (2024-06-14 initial public release); maintenance assessed from release evidence. Documentation assessment only; no local installation or fixture evidence.",
+    "sources": [
+      "https://github.com/DepthAnything/Depth-Anything-V2",
+      "https://github.com/DepthAnything/Depth-Anything-V2/releases"
+    ]
+  }
 }

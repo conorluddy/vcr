@@ -47,7 +47,8 @@
       "https://www.npmjs.com/package/@tweenjs/tween.js"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
+  "skill": "skills/tween-js/SKILL.md",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",

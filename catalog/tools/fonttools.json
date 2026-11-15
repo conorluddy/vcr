@@ -23,6 +23,35 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-01",
-  "source": "references/ideas/new-candidate-tools-2026-11.md"
+  "checked_at": "2026-11-15",
+  "source": "references/ideas/new-candidate-tools-2026-11.md",
+  "summary": "Python library and CLI utilities for reading, building, subsetting, and instancing OpenType fonts; pyftsubset can make reproducible subsets and varLib can instantiate variable fonts.",
+  "use_when": [
+    "When you need scripted font subsetting or variable-font instancing",
+    "When font file transformation belongs in a Python pipeline"
+  ],
+  "avoid_when": [
+    "For shaping behavior and glyph positioning checks: harfbuzz",
+    "For visual text rendering: browser or renderer"
+  ],
+  "pairs_with": [
+    "harfbuzz"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "python3 -m pip install fonttools",
+    "check_command": "pyftsubset --version"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "/root/candidate_batch_c",
+    "version_seen": "4.68.0",
+    "last_release": "2026-10-27",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Latest upstream news reports version 4.68.0; maintained upstream and the documented automation route supports the stated job.",
+    "sources": [
+      "https://github.com/fonttools/fonttools"
+    ]
+  }
 }

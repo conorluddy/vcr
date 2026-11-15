@@ -14,6 +14,12 @@ Native browser animation with no library: every animation is created paused and 
 - Untested here: CSS animations and transitions found through `document.getAnimations()`, `ScrollTimeline` and `ViewTimeline`, `commitStyles`, composite modes, browsers other than Chromium.
 - No timeline object, labels or nesting: you keep the list of animations yourself. For orchestration use `gsap`; for a small library with timelines and SVG helpers use `anime-js`.
 
+## Capability map
+- **Create and control** — `Element.animate()` returns an `Animation`; `pause()`, `play()`, `cancel()`, `finish()`, `currentTime`, `playbackRate`, `effect` and `finished` provide control/status. Fixture uses animate, pause, effect timing and currentTime; remaining controls are untested.
+- **Effects and timing** — `KeyframeEffect`, keyframes, easing, delay, duration, fill, iterations, direction, composite and `getComputedTiming()` describe the effect surface. Fixture covers transforms, opacity, stroke offset, easing, delay and fill; iteration/direction/composite options untested.
+- **Discovery and timelines** — `document.getAnimations()` and document/scroll timelines are documented platform APIs; fixture creates and retains its own animation list and does not exercise discovery or scroll timelines.
+- **Evidence boundary** — API documentation does not imply VCR adapter support. Evidence is limited to the paused/currentTime-driven Chromium fixture and its tested animation cases above.
+
 ## Install and doctor
 Nothing to install beyond the capture browser: `vcr setup capture --yes` once per machine, then `vcr doctor`. Evidence is tied to the Chromium version that ran, so record it with any new evidence.
 
@@ -56,3 +62,6 @@ add(line, [{ strokeDashoffset: length }, { strokeDashoffset: 0 }], { duration: 2
 - Web Animations API: https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API
 - Element.animate(): https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
 - Animation.currentTime: https://developer.mozilla.org/en-US/docs/Web/API/Animation/currentTime
+- Animation interface: https://developer.mozilla.org/en-US/docs/Web/API/Animation
+- KeyframeEffect: https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect
+- Document.getAnimations(): https://developer.mozilla.org/en-US/docs/Web/API/Document/getAnimations

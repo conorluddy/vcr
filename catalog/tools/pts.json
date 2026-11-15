@@ -51,7 +51,8 @@
       "https://registry.npmjs.org/pts"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
+  "skill": "skills/pts/SKILL.md",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",

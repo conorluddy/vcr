@@ -15,6 +15,12 @@ The browser 3D renderer for VCR. A scene is a pure function of time: `seek(t)` s
 - Not for path-traced quality, physics that must be simulated step by step (use fixed-step replay, PRD L4-04), or anything that needs the Blender compositor.
 - Licence MIT.
 
+## Capability map
+- **Core scene/rendering** — `Scene`, cameras, geometries, `Object3D`, materials, lights, `WebGLRenderer`/`WebGPURenderer`, animation system and math. Documented in the Three.js API; fixture exercises a basic WebGL scene, mesh transform and renderer only.
+- **Assets and effects** — `examples/jsm/loaders` (including `GLTFLoader`/`DRACOLoader`), textures, `PMREMGenerator`, shadows, and postprocessing via the separate `postprocessing` package. Fixture does not exercise these.
+- **Shaders and output** — TSL node materials/WebGPU and lower-level shader materials; render targets and output/color management are documented, but untested here.
+- **Evidence boundary** — official API breadth is discoverable, not a VCR adapter claim. Existing evidence covers seek-driven basic rendering and shuffled-frame determinism; alpha is configured/observed but not asserted.
+
 ## Install and doctor
 ```text
 npm install three

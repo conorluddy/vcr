@@ -3,7 +3,7 @@
   "name": "ffmpeg-normalize",
   "category": "Discovery: research candidates",
   "tier": "candidate",
-  "role": "Loudness normalisation",
+  "role": "Audio loudness normalisation CLI",
   "official_url": "https://github.com/slhck/ffmpeg-normalize",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
@@ -11,9 +11,7 @@
   ],
   "notes": [
     "2026-11-01: EBU R128 two-pass loudness normalisation CLI with presets and batch mode.",
-    "2026-11-01: Licence as reported by the source research, not yet verified: MIT (unverified; libraries.io shows Other).",
-    "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-    "2026-11-01: Triage: assess. Report rates it a strong candidate."
+    "2026-11-15: Release page identifies 1.43.0 (2026-10-14) as latest; current repository pyproject reports 1.44.0. Release tag/date for 1.44.0 not confirmed."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -22,6 +20,38 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-01",
-  "source": "references/ideas/new-candidate-tools-2026-11.md"
+  "checked_at": "2026-11-15",
+  "source": "references/ideas/new-candidate-tools-2026-11.md",
+  "summary": "Python CLI and API built on FFmpeg for batch EBU R128, RMS or peak loudness normalisation. It can preserve video streams and selectively process audio tracks; output is re-encoded media with configurable codecs and metadata. Its distinguishing strength is album-style batch normalisation that preserves relative levels.",
+  "use_when": [
+    "Normalise audio loudness in batches with EBU R128, RMS or peak targets",
+    "Over raw FFmpeg filters when batch handling and preset reuse matter"
+  ],
+  "avoid_when": [
+    "Use FFmpeg directly for custom filtergraphs or when only measuring loudness",
+    "Use a DAW when manual mix decisions or mastering are required"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "uv tool install ffmpeg-normalize (requires Python >=3.10 and FFmpeg)",
+    "check_command": "ffmpeg-normalize --version"
+  },
+  "assessment": {
+    "date": "2026-11-15",
+    "assessed_by": "candidate_batch_b",
+    "version_seen": "1.43.0 (release page); upstream main pyproject reports 1.44.0",
+    "last_release": "2026-10-14",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "The release page lists v1.43.0 (2026-10-14), while current main pyproject reports 1.44.0; MIT and active development. Batch R128/RMS/peak normalization adds a focused audio workflow beyond FFmpeg itself.",
+    "sources": [
+      "https://github.com/slhck/ffmpeg-normalize/releases",
+      "https://github.com/slhck/ffmpeg-normalize/blob/master/pyproject.toml",
+      "https://github.com/slhck/ffmpeg-normalize",
+      "https://github.com/slhck/ffmpeg-normalize/docs/usage/cli-options.md"
+    ]
+  }
 }

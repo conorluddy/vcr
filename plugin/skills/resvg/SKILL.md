@@ -12,6 +12,11 @@ description: Rasterise static SVG to PNG deterministically with resvg. Use for t
 - No animation, no scripting, no CSS beyond presentation attributes and inline styles. Animated SVG goes through browser capture instead.
 - Fonts resolve from the system; embed outlines or ship font files to make renders portable.
 
+## Capability map
+The documented command-line surface exposes input/output plus sizing (`--width`, `--height`, `--zoom`), background, font discovery/selection, and rendering controls such as `--dpi`, `--query-all`, and `--skip-system-fonts`; see the [resvg CLI documentation](https://github.com/linebender/resvg#command-line-interface) and the [versioned 0.47.0 release](https://github.com/linebender/resvg/tree/v0.47.0). The Rust `resvg`/`usvg` crates are a separate programmatic surface and are not covered by this CLI guide.
+
+VCR evidence covers one static SVG rasterized to PNG at a requested width, with a retained hash and media metadata check. Other sizing, font, background and rendering options, SVG feature classes, and Rust APIs remain untested in VCR; documented availability does not mean validated VCR support.
+
 ## Install and doctor
 ```text
 brew install resvg

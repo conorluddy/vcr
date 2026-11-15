@@ -31,7 +31,8 @@
   "install": {
     "macos": "pnpm add twgl.js"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
+  "skill": "skills/twgl/SKILL.md",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",

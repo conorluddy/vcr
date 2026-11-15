@@ -14,6 +14,12 @@ Fast Node image processing on libvips, scripted from TypeScript. Evidence: sharp
 - Untested here: JPEG, WebP, AVIF and GIF output, ICC and colour management, streams, large images and speed, SVG beyond one filled circle, frame-sequence pipelines.
 - For one-off CLI work, montage, compare and inspection use `imagemagick`; for SVG rasterisation alone `resvg` is the validated route.
 
+## Capability map
+- **Pipeline and input** — `sharp(input, options)`, `metadata()`, `toBuffer()`, `toFile()` and stream output; constructor supports buffers, paths, create/raw input and density. Documented surface; fixture exercises create/input, density, metadata and buffer output only.
+- **Transforms and colour** — resize, extract, extend, rotate, flip/flop, affine, tint, grayscale, normalize, gamma, colourspace and profiles. Documented, untested by this fixture.
+- **Composition and output** — `composite()` layers; format encoders include PNG/JPEG/WebP/AVIF/TIFF/GIF and raw output. Fixture covers composite and PNG; other formats and options remain untested.
+- **Evidence boundary** — these are documented sharp APIs, not VCR adapters or blanket support claims. Validated scope is the RGBA/SVG-to-PNG workflow above.
+
 ## Install and doctor
 ```text
 pnpm add sharp@0.35.5
@@ -54,3 +60,4 @@ const png = await sharp(background)
 - Documentation: https://sharp.pixelplumbing.com/
 - Compositing: https://sharp.pixelplumbing.com/api-composite
 - Constructor (create, density): https://sharp.pixelplumbing.com/api-constructor
+- API index (pipeline operations and output): https://sharp.pixelplumbing.com/api-operation/

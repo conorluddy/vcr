@@ -11,6 +11,11 @@ description: Operate PixiJS manual WebGL scenes for VCR browser capture once GPU
 
 The fixture proves procedural Graphics geometry, container transforms, manual WebGL drawing and alpha capture with PixiJS 8.22.0, Chromium 156.0.8078.4 and Playwright 1.64.1 on macOS arm64. It is not evidence for WebGPU, sprite throughput, filters, text, texture loading, export APIs or other machines. Use Konva for small interactive Canvas scenes; use Three.js for real 3D.
 
+## Capability map
+PixiJS v8's documented entrypoint families include `Application` and renderers; scene containers and display objects (including `Graphics`, sprites, meshes and text); `Assets` and texture sources; events; ticker; masks and filters; and renderer extraction. See the versioned [API docs](https://pixijs.download/v8.22.0/docs/) and [guides](https://pixijs.com/8.x/guides).
+
+The fixture exercises asynchronous `Application` setup, a `Container`, `Graphics`, transforms and explicit WebGL render/canvas capture. Sprite/mesh workloads, asset loading, text, events, ticker animation, masks, filters, extraction and WebGPU are discovery surfaces only; no VCR evidence or adapter support is established for them.
+
 ## Install and doctor
 
 Install `pixi.js@8.22.0` in the selected workspace with pnpm. Run `vcr doctor` to inspect machine availability, and set up capture with `vcr setup capture --yes` if required. A card or this guide does not establish that dependencies are installed. The fixture loads the local package's `dist/pixi.min.js`; do not replace it with an unpinned CDN URL.
@@ -21,7 +26,7 @@ Find the fixture with `vcr tools examples pixijs`. Outside the repository, copy 
 
 ```sh
 examples/pixijs-capture/run.sh
-# expect: pixijs-capture: OK (<measured fps> fps)
+# expect: pixijs-capture: OK (<sampled fps> fps); the measured rate varies by machine/runtime
 ```
 
 The FPS is measured, not a performance target. Expected facts are in `expected/summary.json`.
