@@ -1,0 +1,8 @@
+{
+  "id": "vpype-scale",
+  "title": "vpype scales and writes SVG line geometry",
+  "summary": "Scales a small owned SVG path and checks the exact written polyline and repeatable output.",
+  "status": "validated",
+  "tools": ["vpype"],
+  "run": "./run.sh"
+}
