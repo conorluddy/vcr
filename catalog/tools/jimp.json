@@ -47,9 +47,20 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": ["jimp-invert"],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-15",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.6.1",
+        "command": "examples/jimp-invert/run.sh",
+        "result": "Generated 2x1 RGBA PNG inverted and reopened; exact RGB, alpha and dimensions passed; repeated PNG SHA-256 35161837d908fdef5735828db3656c365f54d8035a9987b1fe70e0d8e0001a43.",
+        "example": "examples/jimp-invert",
+        "scope": "One generated 2x1 RGBA invert and PNG reopen on macOS arm64; no other operations, formats, sizes, performance or hosts."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,
