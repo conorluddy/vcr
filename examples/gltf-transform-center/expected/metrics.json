@@ -1,0 +1,22 @@
+{
+  "glb_version": 2,
+  "meshes": 1,
+  "nodes": 1,
+  "output_bytes": 564,
+  "scenes": 1,
+  "sha256": "d985cb033fdab722adb62479eda32b4262e8156b3e47ec32795c6add1f471984",
+  "version": "4.5.1",
+  "vertices": 3,
+  "world_bounds": [
+    [
+      -1.0,
+      -1.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.0,
+      0.0
+    ]
+  ]
+}
