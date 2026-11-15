@@ -73,6 +73,10 @@ Other Tier 1 tools can follow in similar disjoint lanes. Keep the partially vali
 
 On 2026-11-15, three more Tier 1 fixtures completed in separate worktrees: MediaInfo 26.10 for a generated WAV metadata read, Jimp 1.6.1 for an RGBA invert with exact pixel and repeatability checks, and Mido 1.3.2 for a MIDI 1.0 file round-trip. OpenType.js was deferred because no redistributable font fixture was available and network access to install FontTools failed; its catalogue record remains unchanged. These fixtures are integrated together and do not broaden claims beyond their recorded operations.
 
+## Third parallel wave
+
+On 2026-11-15, Potrace 1.16 traced an owned PBM bitmap to repeatable SVG with checked path/contour structure and visual inspection; Meshoptimizer 1.3.0 simplified a generated grid from 32 to 15 triangles with structural and repeatability checks; vpype 1.15.0 scaled an owned SVG path with exact coordinate and repeat-output checks. All three fixtures passed in separate worktrees and are integrated together; their evidence remains limited to those operations.
+
 ## Candidate gate and fixture contract
 
 Candidate records need a review decision before they enter this queue. In particular, the two promotion recommendations should be reviewed as catalogue decisions first; only then choose a validation claim and effort tier. The other candidates can remain discoverable without implying operational support.

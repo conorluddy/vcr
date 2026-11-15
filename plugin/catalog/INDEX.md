@@ -67,7 +67,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `mediainfo` ✓ — Media metadata · media-inspection
 - `mediapipe` — Vision and tracking · computer-vision
 - `mermaid-cli` — Text diagrams (flowchart, sequence, gantt) to SVG/PNG via headless Chromium · diagram-generation, vector-authoring
-- `meshoptimizer` — Mesh optimisation · 3d-asset-processing
+- `meshoptimizer` ✓ — Mesh optimisation · 3d-asset-processing
 - `meyda` — Audio features · audio
 - `mido` ✓ — MIDI processing · audio
 - `mlt-melt` — MLT multitrack framework with melt CLI and XML projects; the engine behind Kdenlive and Shotcut · video-composition, video-encoding, audio
@@ -88,7 +88,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `playcanvas-engine` ✓ — Open-source web 3D engine usable standalone; strong glTF and Gaussian splat support · 3d-rendering, game-engine, model-loading · guide
 - `playwright` ✓ — Headless browser automation; the capture route for every browser-rendered toolkit · capture · guide
 - `postprocessing` ✓ — pmndrs effects pipeline for Three.js: merged passes for bloom, DOF, SMAA, SSAO · effects, 3d-rendering, shaders · guide
-- `potrace` — Single-colour bitmap tracing to SVG paths; stable but unreleased since 2019 · vector-tracing
+- `potrace` ✓ — Single-colour bitmap tracing to SVG paths; stable but unreleased since 2019 · vector-tracing
 - `pov-ray` — povray renders text scene files and INI settings from the CLI; procedural ray tracing · ray-tracing, 3d-rendering
 - `pts` ✓ — TypeScript creative-coding library centred on points, geometry and vector math · generative-2d, 2d-rendering, math-utilities · guide
 - `pyscenedetect` — Shot boundary detection CLI and Python library over OpenCV; splits video via FFmpeg · shot-detection, media-inspection, computer-vision
@@ -119,7 +119,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `twgl` ✓ — Tiny WebGL helper: programs, buffers, uniforms and framebuffers with less boilerplate · shaders, 2d-rendering · guide
 - `two-js` ✓ — Scene graph for flat 2D drawing with one API across SVG, Canvas and WebGL renderers · 2d-rendering, vector-authoring · guide
 - `vedo` — Scientific 3D visualisation and analysis with VTK and NumPy · 3d-asset-processing, 3d-rendering, scientific-visualisation, model-loading
-- `vpype` — Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths · plotter-workflow, vector-authoring
+- `vpype` ✓ — Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths · plotter-workflow, vector-authoring
 - `vsketch` — Python sketches and the vsk CLI generate plotter-oriented line art as SVG · plotter-workflow, generative-2d
 - `vtk-js` — Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering · scientific-visualisation, 3d-rendering
 - `web-animations-api` ✓ — Native element.animate() with a seekable Animation.currentTime; no library needed · tweening, timeline-animation · guide

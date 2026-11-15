@@ -1,0 +1,13 @@
+{
+  "package": "meshoptimizer",
+  "source_vertices": 25,
+  "source_triangles": 32,
+  "requested_indices": 48,
+  "output_indices": 45,
+  "output_triangles": 15,
+  "reported_error": 0.00007905693928478286,
+  "indices_in_range": true,
+  "repeated_indices_identical": true,
+  "repeated_error_identical": true,
+  "output_sha256": "16b2e537842e0a98ad025d477c85c072a45a7a434908b9e173dba4641a240037"
+}

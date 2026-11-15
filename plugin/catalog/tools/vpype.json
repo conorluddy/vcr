@@ -39,8 +39,18 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-15",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.15.0",
+        "command": "examples/vpype-scale/run.sh",
+        "result": "Scaled one SVG path 2x and translated it 10 units: points (10,10),(50,10),(50,50), viewBox 100x80. XML parsed; repeat output hash matched.",
+        "example": "examples/vpype-scale",
+        "scope": "vpype 1.15.0 scales and translates one SVG polyline on macOS arm64; output coordinates and repeat hash checked. No arbitrary SVG features or plotter formats."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "assessment": {
@@ -57,5 +67,8 @@
     ]
   },
   "checked_at": "2026-10-26",
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "examples": [
+    "vpype-scale"
+  ]
 }

@@ -4,6 +4,5 @@
   "summary": "Writes, reopens and saves a small owned type-1 MIDI file, checking tempo, note events, tick timing and repeatable bytes.",
   "status": "validated",
   "tools": ["mido"],
-  "run": "./run.sh",
-  "report": "expected/metrics.json"
+  "run": "./run.sh"
 }
