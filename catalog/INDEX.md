@@ -46,12 +46,12 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `ffmpeg-wasm` — FFmpeg compiled to WebAssembly for in-browser transcodes; slower, size-limited · video-encoding, media-inspection, audio
 - `frames-cli` — CLI for framing device screenshots and recordings with bezels · image-processing, video-composition, video-encoding
 - `g-mic` — CLI filter language with ~1000 procedural filters; stylised and generative looks · image-processing, effects
-- `gifski` — Highest-quality GIF encoder from PNG frames or y4m; palette per frame, AGPL · gif-encoding, image-sequence-processing
+- `gifski` ✓ — Highest-quality GIF encoder from PNG frames or y4m; palette per frame, AGPL · gif-encoding, image-sequence-processing
 - `gimp-batch` — Headless GIMP via --batch with Script-Fu or Python; heavyweight, version-specific procedures · image-processing
 - `gl-react` — React components that compose GLSL shaders as a node graph over textures · shaders, react-integration, effects
-- `gltf-transform` — Node CLI and library to inspect, optimise and compress glTF/GLB before a scene loads them · 3d-asset-processing
+- `gltf-transform` ✓ — Node CLI and library to inspect, optimise and compress glTF/GLB before a scene loads them · 3d-asset-processing
 - `godot` — Godot headless and --write-movie runs scripted scenes to frames or video, in 2D and 3D · game-engine, 3d-rendering, native-authoring
-- `graphviz` — DOT graph layout to SVG/PNG from one native binary; automatic layout · diagram-generation, vector-authoring
+- `graphviz` ✓ — DOT graph layout to SVG/PNG from one native binary; automatic layout · diagram-generation, vector-authoring
 - `houdini` — hython and hbatch drive procedural and simulation scenes; commercial, Apprentice is capped · native-authoring, physics-simulation, 3d-rendering
 - `hyperframes` — HTML-to-MP4 renderer seeking a paused timeline in headless Chrome; reference, not a VCR dependency · video-composition, video-encoding, capture, timeline-animation
 - `imagemagick` ✓ — Baseline CLI for image ops, montage, compare and inspection; the validated stills toolchain · image-processing, media-inspection, image-sequence-processing · guide

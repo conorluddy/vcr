@@ -1,0 +1,18 @@
+{
+  "edge_titles": [
+    "layout->render",
+    "render->inspect",
+    "source->layout"
+  ],
+  "input_sha256": "841c838beb2082232bc7b21899088b0c328d65ef630b73fb885b55945cd257cf",
+  "node_titles": [
+    "inspect",
+    "layout",
+    "render",
+    "source"
+  ],
+  "svg_bytes": 3436,
+  "svg_sha256": "c3625c4a3dbc085d25d2f43378f1216ff76aafb296c8c56b42af8bcaf2a3557d",
+  "version": "16.1.1",
+  "viewBox": "0.00 0.00 366.00 65.00"
+}

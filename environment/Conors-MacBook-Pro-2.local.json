@@ -3,16 +3,16 @@
   "hostname": "Conors-MacBook-Pro-2.local",
   "os": {
     "platform": "darwin",
-    "release": "25.6.0",
+    "release": "26.6",
     "arch": "arm64"
   },
-  "checked_at": "2026-10-26T12:29:05.598Z",
+  "checked_at": "2026-11-15T17:44:48.082Z",
   "tools": [
     {
       "tool_id": "ffmpeg-ffprobe",
       "status": "installed",
       "executable": "/opt/homebrew/bin/ffmpeg",
-      "version": "8.0.1"
+      "version": "9.0.2"
     },
     {
       "tool_id": "imagemagick",
@@ -34,9 +34,9 @@
     },
     {
       "tool_id": "gifski",
-      "status": "missing",
-      "executable": null,
-      "version": null
+      "status": "installed",
+      "executable": "/opt/homebrew/bin/gifski",
+      "version": "1.34.0"
     },
     {
       "tool_id": "inkscape",
@@ -46,9 +46,9 @@
     },
     {
       "tool_id": "graphviz",
-      "status": "missing",
-      "executable": null,
-      "version": null
+      "status": "installed",
+      "executable": "/opt/homebrew/bin/dot",
+      "version": "16.1.1"
     },
     {
       "tool_id": "manim-community",

@@ -20,5 +20,3 @@ info: No infos found.
  HINT
  ────────────────────────────────────────────
 info: No hints found.
-
-

@@ -6,7 +6,7 @@
 - VCR job and exact claim being tested: optimise one small authored SVG while retaining its declared `viewBox` and `motion-target` ID.
 - Explicit exclusions: other SVGO versions, custom plugin combinations, arbitrary SVG feature preservation, browser animation and raster equivalence.
 - Tool documentation and licence sources, checked 2026-11-15: [SVGO usage documentation](https://svgo.dev/docs/usage/); MIT, as recorded on the tool card.
-- Environment: macOS 15.6 arm64, Node.js 22.19.0; SVGO 4.0.1. `resvg` 0.47.0 is used only to inspect the rasterised output.
+- Environment: macOS 26.6 arm64, Node.js 22.19.0; SVGO 4.0.1. `resvg` 0.47.0 is used only to inspect the rasterised output.
 - Input: fixture-owned `source.svg`; no external assets.
 - Dependencies, installation plan, permissions, network and expected side effects: SVGO is already available on the selected machine. No installation or network access is required. Output is written under ignored `output/`.
 - Selected workspace, generated output and cleanup paths: this example directory; generated files under `output/`.
@@ -21,7 +21,5 @@
 - Reproduction: `./run.sh --record` records expectations after inspection; `./run.sh` compares against the committed baseline.
 
 ## Observation, after running
-
-Pending execution and review.
 
 Pass on 2026-11-15: SVGO 4.0.1 reduced the input from 462 bytes to 399 bytes (13.6%), preserved the `viewBox` and `motion-target` ID, and produced byte-identical output on repetition. XML parsing passed. Raster inspection with resvg 0.47.0 at 512 px showed the gradient and shape intact. This does not establish visual equivalence for arbitrary SVGs or animated browser use.

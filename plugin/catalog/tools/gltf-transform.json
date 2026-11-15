@@ -53,10 +53,23 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-15",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.5.1",
+        "command": "examples/gltf-transform-center/run.sh",
+        "result": "One scene/node/mesh, three vertices; centered world bounds [-1,-1,0]..[1,1,0]. gltf-transform validate: no errors, warnings, infos or hints. Two centered outputs byte-identical; 564 bytes, SHA-256 d985cb033fdab722adb62479eda32b4262e8156b3e47ec32795c6add1f471984.",
+        "example": "examples/gltf-transform-center",
+        "scope": "One static GLB triangle centered to bounds [-1,-1,0]..[1,1,0] by CLI 4.5.1 on macOS arm64; no other asset, animation, extension, renderer or command claims."
+      }
+    ]
   },
+  "examples": [
+    "gltf-transform-center"
+  ],
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-11-15",
   "source": "specifications/vcr-prd.md#appendix-a"
 }

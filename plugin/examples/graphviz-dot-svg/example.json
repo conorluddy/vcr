@@ -1,0 +1,14 @@
+{
+  "id": "graphviz-dot-svg",
+  "title": "Graphviz renders a small directed dependency graph to SVG",
+  "summary": "Checks DOT input parsing, SVG structure, four node labels, three directed edges and repeatable output for one Graphviz version.",
+  "status": "validated",
+  "tools": [
+    "graphviz"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-15",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
