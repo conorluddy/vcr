@@ -67,5 +67,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "canvaskit-skia-raster"
-  ]
+  ],
+  "skill": "skills/canvaskit-skia/SKILL.md"
 }
