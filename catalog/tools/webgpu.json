@@ -42,7 +42,7 @@
       "https://unpkg.com/@mdn/browser-compat-data/data.json"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "not-applicable",
   "examples": [
     "webgpu-map-async"
@@ -63,5 +63,6 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/webgpu/SKILL.md"
 }
