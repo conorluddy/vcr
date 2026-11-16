@@ -1,0 +1,8 @@
+{
+  "id": "gl-react-shader",
+  "title": "gl-react Surface and Node shader pixels",
+  "summary": "Mounts the real gl-react-dom Surface with a gl-react Node gradient shader and checks captured browser pixels and repeatability.",
+  "status": "validated",
+  "tools": ["gl-react", "playwright"],
+  "run": "./run.sh"
+}
