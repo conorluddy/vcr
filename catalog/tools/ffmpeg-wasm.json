@@ -50,9 +50,20 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": ["ffmpeg-wasm-pcm-trim"],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.12.15",
+        "command": "examples/ffmpeg-wasm-pcm-trim/run.sh",
+        "result": "@ffmpeg/core 0.12.10 / FFmpeg 5.1.4 trimmed generated mono PCM s16le WAV from 8,000 to 4,000 samples (0.5 s) in-browser. All 4,000 output samples exactly matched input indices 2000-5999; repeated run matched. Core package metadata reports GPL-2.0-or-later.",
+        "example": "examples/ffmpeg-wasm-pcm-trim",
+        "scope": "Browser FFmpeg.wasm 5.1.4 ESM single-thread PCM WAV trim; exact 8 kHz sample slice and repeat checked. No video, other codecs, multithreading, or native route."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-10-26",
