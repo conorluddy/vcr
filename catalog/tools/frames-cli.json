@@ -61,7 +61,7 @@
         "date": "2026-11-16",
         "hostname": "Conors-MacBook-Pro-2.local",
         "version": "Frames CLI 1.7.0",
-        "command": "FRAMES_ASSETS=\"$PWD/output/assets/Frames\" ./run.sh --record && FRAMES_ASSETS=\"$PWD/output/assets/Frames\" ./run.sh",
+        "command": "examples/frames-cli-ios-mockup/run.sh --record output/assets/Frames && examples/frames-cli-ios-mockup/run.sh output/assets/Frames",
         "result": "Framed one generated 1206x2622 UI mock-up; CLI selected iPhone 18 Pro Portrait (primary match iPhone 17 Portrait), output was RGBA 1318x2717, and two independent output files matched byte-for-byte (SHA-256 9894b050bf58a88d7bc5eefa00d9364b00119a284da7b41a5d56ad0d5d896be5). Python 3.12.13, Pillow 12.0.0, macOS 26.6 arm64. Asset pack hash verified and bundled license reviewed.",
         "example": "examples/frames-cli-ios-mockup",
         "scope": "One generated local iOS UI mock-up framed with one separately obtained licensed device asset; no general rights, asset redistribution, other command, device or platform claim."
