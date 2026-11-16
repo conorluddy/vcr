@@ -51,9 +51,20 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": ["canvas-record-webm"],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "6.0.0",
+        "command": "examples/canvas-record-webm/run.sh",
+        "result": "Canvas Record Recorder start/step/stop produced VP9 WebM. FFprobe 9.0.2: 3 frames, 32x32, 3/1 fps, PTS 0/0.333/0.667 s, 1.000000 s. Browser readback colors red/green/blue with max channel errors 1/0/1. Two runs matched semantically; VP8 unsupported, VP9 passed.",
+        "example": "examples/canvas-record-webm",
+        "scope": "Canvas Record 6.0.0 stepped WebCodecs VP9 WebM, 32x32 3-frame canvas; ffprobe timing and browser colors/repeat checked. No other encoders or formats."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-10-26",
