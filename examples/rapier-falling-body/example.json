@@ -1,0 +1,8 @@
+{
+  "id": "rapier-falling-body",
+  "title": "Rapier fixed-step body settles on a floor",
+  "summary": "Runs a generated 3D rigid-body scene for a fixed number of steps and checks settled numerical state and repeatability.",
+  "status": "validated",
+  "tools": ["rapier"],
+  "run": "./run.sh"
+}

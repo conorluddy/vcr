@@ -50,9 +50,20 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.21.0",
+        "command": "examples/rapier-falling-body/run.sh",
+        "result": "120 fixed steps at 1/60 s; final y=0.599931, vertical velocity=0; two runs match state SHA-256 dd1c2f3d20b67dfb1310589cf7ed422ef55a09d319b05289a52be855438e69a5",
+        "example": "examples/rapier-falling-body",
+        "scope": "3D cuboid falls onto static floor for 120 fixed steps; same-host numeric repeatability only, no rendering or cross-platform determinism."
+      }
+    ]
   },
+  "examples": ["rapier-falling-body"],
   "adapter_maturity": "none",
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"

@@ -1,0 +1,16 @@
+{
+  "rapier_version": "0.21.0",
+  "steps": 120,
+  "timestep": 0.016666666666666666,
+  "position": [
+    0.001382,
+    0.599931,
+    0.000536
+  ],
+  "velocity": [
+    0,
+    0,
+    0
+  ],
+  "state_sha256": "dd1c2f3d20b67dfb1310589cf7ed422ef55a09d319b05289a52be855438e69a5"
+}
