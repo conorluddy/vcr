@@ -56,7 +56,7 @@
       "https://github.com/marcomusy/vedo/blob/master/FONT.LICENSE"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "vedo-vtp-roundtrip"
@@ -77,5 +77,6 @@
   },
   "adapter_maturity": "none",
   "checked_at": "2026-11-15",
-  "source": "prospects/inbox/2026-11-15-discovery.md"
+  "source": "prospects/inbox/2026-11-15-discovery.md",
+  "skill": "skills/vedo/SKILL.md"
 }

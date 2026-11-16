@@ -32,7 +32,7 @@
     "macos": "pnpm add troika-three-text",
     "check_command": "pnpm list troika-three-text"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -70,5 +70,6 @@
     "2026-11-16: Synchronized Text and measured layout in a fixture; GPU backend is headless Chromium ANGLE SwiftShader, not hardware."
   ],
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/troika-three-text/SKILL.md"
 }
