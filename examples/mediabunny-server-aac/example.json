@@ -1,0 +1,8 @@
+{
+  "id": "mediabunny-server-aac",
+  "title": "Mediabunny server extension decodes and transcodes AAC",
+  "summary": "Register the NodeAV-backed server extension, decode generated AAC, force an AAC transcode, and check decoded tone metrics.",
+  "status": "validated",
+  "tools": ["mediabunny-server-extension"],
+  "run": "./run.sh"
+}
