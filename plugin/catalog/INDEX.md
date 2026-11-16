@@ -27,100 +27,100 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 
 - `anime-js` ✓ — DOM/SVG/object tweening with seekable timelines · tweening, timeline-animation, svg-animation · guide
 - `babylon-js` ✓ — Full web 3D engine with built-in PBR, post effects, physics and node materials · 3d-rendering, shaders, effects, physics-simulation, model-loading · guide
-- `build123d` ◐ — Python parametric CAD for precise product geometry and SVG technical projections · 3d-asset-processing, vector-authoring
-- `c2patool` ✓ — CLI for inspecting and adding C2PA manifests to media assets · media-inspection
+- `build123d` ◐ — Python parametric CAD for precise product geometry and SVG technical projections · 3d-asset-processing, vector-authoring · guide
+- `c2patool` ✓ — CLI for inspecting and adding C2PA manifests to media assets · media-inspection · guide
 - `canvas-2d` ✓ — Immediate-mode 2D raster drawing; redraw each frame as a pure function of t · 2d-rendering, text-rendering · guide
-- `canvas-record` ✓ — Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped · capture, video-encoding, image-sequence-processing
-- `canvas-sketch` ✓ — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture
-- `canvaskit-skia` ✓ — Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output · 2d-rendering, text-rendering, shaders
-- `ccapture-js` ✓ — Fixed-framerate canvas capture by hooking browser time; 2.x rewrite on WebCodecs · capture, video-encoding, image-sequence-processing
-- `colmap` ✓ — Reconstruction · 3d-asset-processing
+- `canvas-record` ✓ — Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped · capture, video-encoding, image-sequence-processing · guide
+- `canvas-sketch` ✓ — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture · guide
+- `canvaskit-skia` ✓ — Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output · 2d-rendering, text-rendering, shaders · guide
+- `ccapture-js` ✓ — Fixed-framerate canvas capture by hooking browser time; 2.x rewrite on WebCodecs · capture, video-encoding, image-sequence-processing · guide
+- `colmap` ✓ — Reconstruction · 3d-asset-processing · guide
 - `d3` ✓ — Data-driven scales, layouts and shapes; use its geometry, not its transitions · data-visualisation, vector-authoring, svg-animation · guide
-- `deck-gl` ✓ — WebGL layers for large geospatial and point-cloud data; view state as props · geospatial, data-visualisation
-- `dotlottie` ✓ — .lottie container plus ThorVG WASM canvas player with frame seeking · asset-playback
+- `deck-gl` ✓ — WebGL layers for large geospatial and point-cloud data; view state as props · geospatial, data-visualisation · guide
+- `dotlottie` ✓ — .lottie container plus ThorVG WASM canvas player with frame seeking · asset-playback · guide
 - `drei` ✓ — Helper components for React Three Fiber: controls, loaders, text, environments · 3d-rendering, react-integration, model-loading · guide
 - `fabric-js` ✓ — Canvas object model with selection, serialisation and SVG import/export · 2d-rendering, vector-authoring · guide
-- `ffmpeg-wasm` ✓ — FFmpeg compiled to WebAssembly for in-browser transcodes; slower, size-limited · video-encoding, media-inspection, audio
-- `frames-cli` ✓ — CLI for framing device screenshots and recordings with bezels · image-processing, video-composition, video-encoding
-- `g-mic` ✓ — CLI filter language with ~1000 procedural filters; stylised and generative looks · image-processing, effects
-- `gifski` ✓ — Highest-quality GIF encoder from PNG frames or y4m; palette per frame, AGPL · gif-encoding, image-sequence-processing
-- `gimp-batch` ✓ — Headless GIMP via --batch and a selected interpreter; heavyweight, version-specific procedures · image-processing
-- `gl-react` ✓ — React components that compose GLSL shaders as a node graph over textures · shaders, react-integration, effects
-- `gltf-transform` ✓ — Node CLI and library to inspect, optimise and compress glTF/GLB before a scene loads them · 3d-asset-processing
-- `godot` ✓ — Godot headless and --write-movie runs scripted scenes to frames or video, in 2D and 3D · game-engine, 3d-rendering, native-authoring
-- `graphviz` ✓ — DOT graph layout to SVG/PNG from one native binary; automatic layout · diagram-generation, vector-authoring
-- `hyperframes` ✓ — HTML-to-MP4 renderer seeking a paused timeline in headless Chrome; reference, not a VCR dependency · video-composition, video-encoding, capture, timeline-animation
+- `ffmpeg-wasm` ✓ — FFmpeg compiled to WebAssembly for in-browser transcodes; slower, size-limited · video-encoding, media-inspection, audio · guide
+- `frames-cli` ✓ — CLI for framing device screenshots and recordings with bezels · image-processing, video-composition, video-encoding · guide
+- `g-mic` ✓ — CLI filter language with ~1000 procedural filters; stylised and generative looks · image-processing, effects · guide
+- `gifski` ✓ — Highest-quality GIF encoder from PNG frames or y4m; palette per frame, AGPL · gif-encoding, image-sequence-processing · guide
+- `gimp-batch` ✓ — Headless GIMP via --batch and a selected interpreter; heavyweight, version-specific procedures · image-processing · guide
+- `gl-react` ✓ — React components that compose GLSL shaders as a node graph over textures · shaders, react-integration, effects · guide
+- `gltf-transform` ✓ — Node CLI and library to inspect, optimise and compress glTF/GLB before a scene loads them · 3d-asset-processing · guide
+- `godot` ✓ — Godot headless and --write-movie runs scripted scenes to frames or video, in 2D and 3D · game-engine, 3d-rendering, native-authoring · guide
+- `graphviz` ✓ — DOT graph layout to SVG/PNG from one native binary; automatic layout · diagram-generation, vector-authoring · guide
+- `hyperframes` ✓ — HTML-to-MP4 renderer seeking a paused timeline in headless Chrome; reference, not a VCR dependency · video-composition, video-encoding, capture, timeline-animation · guide
 - `imagemagick` ✓ — Baseline CLI for image ops, montage, compare and inspection; the validated stills toolchain · image-processing, media-inspection, image-sequence-processing · guide
-- `inkscape` ✓ — Command-line actions export and convert SVG and other vector source to PNG, PDF and plain SVG · vector-authoring, svg-rasterisation, native-authoring
-- `jimp` ✓ — Pure-JavaScript image manipulation, no native dependencies; slow but trivially portable · image-processing
+- `inkscape` ✓ — Command-line actions export and convert SVG and other vector source to PNG, PDF and plain SVG · vector-authoring, svg-rasterisation, native-authoring · guide
+- `jimp` ✓ — Pure-JavaScript image manipulation, no native dependencies; slow but trivially portable · image-processing · guide
 - `konva` ✓ — Canvas 2D scene graph (stage, layers, groups, shapes) with events, tweens and export · 2d-rendering, tweening, react-integration · guide
-- `lottie-web` ✓ — Plays frame-addressable Lottie JSON animations in the browser · asset-playback, svg-animation
-- `lv2` ✓ — Plugin standard · audio
-- `manim-community` ✓ — Python scenes rendered by the manim CLI to video or PNG sequences for maths and diagram motion · timeline-animation, 2d-rendering, video-encoding, typography
+- `lottie-web` ✓ — Plays frame-addressable Lottie JSON animations in the browser · asset-playback, svg-animation · guide
+- `lv2` ✓ — Plugin standard · audio · guide
+- `manim-community` ✓ — Python scenes rendered by the manim CLI to video or PNG sequences for maths and diagram motion · timeline-animation, 2d-rendering, video-encoding, typography · guide
 - `matter-js` ✓ — 2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t · physics-simulation · guide
-- `mediabunny` ✓ — Pure-TypeScript media toolkit: read, write, convert, WebCodecs-backed; browser and Node · video-encoding, media-inspection, audio
-- `mediabunny-server-extension` ✓ — Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno · video-encoding, audio
-- `mediainfo` ✓ — Media metadata · media-inspection
-- `mediapipe` ✓ — Vision and tracking · computer-vision
-- `mermaid-cli` ✓ — Text diagrams (flowchart, sequence, gantt) to SVG/PNG via headless Chromium · diagram-generation, vector-authoring
-- `meshoptimizer` ✓ — Mesh optimisation · 3d-asset-processing
-- `meyda` ✓ — Audio features · audio
-- `mido` ✓ — MIDI processing · audio
-- `mlt-melt` ✓ — MLT multitrack framework with melt CLI and XML projects; the engine behind Kdenlive and Shotcut · video-composition, video-encoding, audio
+- `mediabunny` ✓ — Pure-TypeScript media toolkit: read, write, convert, WebCodecs-backed; browser and Node · video-encoding, media-inspection, audio · guide
+- `mediabunny-server-extension` ✓ — Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno · video-encoding, audio · guide
+- `mediainfo` ✓ — Media metadata · media-inspection · guide
+- `mediapipe` ✓ — Vision and tracking · computer-vision · guide
+- `mermaid-cli` ✓ — Text diagrams (flowchart, sequence, gantt) to SVG/PNG via headless Chromium · diagram-generation, vector-authoring · guide
+- `meshoptimizer` ✓ — Mesh optimisation · 3d-asset-processing · guide
+- `meyda` ✓ — Audio features · audio · guide
+- `mido` ✓ — MIDI processing · audio · guide
+- `mlt-melt` ✓ — MLT multitrack framework with melt CLI and XML projects; the engine behind Kdenlive and Shotcut · video-composition, video-encoding, audio · guide
 - `motion` ✓ — Motion (ex Framer Motion): hybrid JS/React animation, springs, layout and scroll · tweening, react-integration, svg-animation · guide
-- `motion-canvas` ✓ — TypeScript generator-based 2D animation editor and renderer for explainers · timeline-animation, 2d-rendering, video-encoding
-- `msdfgen` ✓ — Signed distance-field generation · sdf-generation, font-processing
-- `music21` ✓ — Music analysis · audio
+- `motion-canvas` ✓ — TypeScript generator-based 2D animation editor and renderer for explainers · timeline-animation, 2d-rendering, video-encoding · guide
+- `msdfgen` ✓ — Signed distance-field generation · sdf-generation, font-processing · guide
+- `music21` ✓ — Music analysis · audio · guide
 - `nerfstudio` — Reconstruction · 3d-asset-processing
 - `ogl` ✓ — Tiny zero-dependency WebGL library with a Three.js-like API, about 29 KB · 3d-rendering, shaders · guide
-- `opencolorio` ✓ — Colour-management engine for ACES and config-driven transforms; library plus ocio* CLI utilities · colour-management
-- `opencv-js` ✓ — OpenCV compiled to WASM: feature detection, filtering, tracking, analysis in browser or Node · computer-vision, image-processing
-- `openimageio-oiiotool` ✓ — VFX-grade CLI for EXR, sequences and OCIO colour conversion; stack-based image operations · image-sequence-processing, image-processing, colour-management
-- `opentimelineio` ✓ — Timeline exchange · media-inspection
-- `opentype-js` ✓ — Parse fonts to glyph outlines and SVG path data; text without installed fonts · font-processing, typography, vector-authoring
+- `opencolorio` ✓ — Colour-management engine for ACES and config-driven transforms; library plus ocio* CLI utilities · colour-management · guide
+- `opencv-js` ✓ — OpenCV compiled to WASM: feature detection, filtering, tracking, analysis in browser or Node · computer-vision, image-processing · guide
+- `openimageio-oiiotool` ✓ — VFX-grade CLI for EXR, sequences and OCIO colour conversion; stack-based image operations · image-sequence-processing, image-processing, colour-management · guide
+- `opentimelineio` ✓ — Timeline exchange · media-inspection · guide
+- `opentype-js` ✓ — Parse fonts to glyph outlines and SVG path data; text without installed fonts · font-processing, typography, vector-authoring · guide
 - `paper-js` ✓ — Vector scene graph with Bezier path geometry and boolean path operations · vector-authoring, 2d-rendering · guide
 - `pixijs` ✓ — GPU-accelerated 2D renderer (WebGPU and WebGL) for sprites, text and filters · 2d-rendering, effects, shaders · guide
-- `pixijs-filters` ✓ — Community filter pack for PixiJS: glow, bloom, shockwave, CRT and more · effects, 2d-rendering, shaders
+- `pixijs-filters` ✓ — Community filter pack for PixiJS: glow, bloom, shockwave, CRT and more · effects, 2d-rendering, shaders · guide
 - `playcanvas-engine` ✓ — Open-source web 3D engine usable standalone; strong glTF and Gaussian splat support · 3d-rendering, game-engine, model-loading · guide
 - `playwright` ✓ — Headless browser automation; the capture route for every browser-rendered toolkit · capture · guide
 - `postprocessing` ✓ — pmndrs effects pipeline for Three.js: merged passes for bloom, DOF, SMAA, SSAO · effects, 3d-rendering, shaders · guide
-- `potrace` ✓ — Single-colour bitmap tracing to SVG paths; stable but unreleased since 2019 · vector-tracing
-- `pov-ray` ✓ — povray renders text scene files and INI settings from the CLI; procedural ray tracing · ray-tracing, 3d-rendering
+- `potrace` ✓ — Single-colour bitmap tracing to SVG paths; stable but unreleased since 2019 · vector-tracing · guide
+- `pov-ray` ✓ — povray renders text scene files and INI settings from the CLI; procedural ray tracing · ray-tracing, 3d-rendering · guide
 - `pts` ✓ — TypeScript creative-coding library centred on points, geometry and vector math · generative-2d, 2d-rendering, math-utilities · guide
-- `pyscenedetect` ✓ — Shot boundary detection CLI and Python library over OpenCV; splits video via FFmpeg · shot-detection, media-inspection, computer-vision
-- `rapier` ✓ — Rust/WASM 2D and 3D physics with optional cross-platform determinism and world snapshots · physics-simulation
-- `rawtherapee-cli` ✓ — Headless RAW development with .pp3 profiles; camera RAW to TIFF or PNG for the pipeline · raw-processing
-- `react-spring` ◐ — Physics-based spring animation for React; velocity-aware, not time-seekable · tweening, physics-simulation, react-integration
+- `pyscenedetect` ✓ — Shot boundary detection CLI and Python library over OpenCV; splits video via FFmpeg · shot-detection, media-inspection, computer-vision · guide
+- `rapier` ✓ — Rust/WASM 2D and 3D physics with optional cross-platform determinism and world snapshots · physics-simulation · guide
+- `rawtherapee-cli` ✓ — Headless RAW development with .pp3 profiles; camera RAW to TIFF or PNG for the pipeline · raw-processing · guide
+- `react-spring` ◐ — Physics-based spring animation for React; velocity-aware, not time-seekable · tweening, physics-simulation, react-integration · guide
 - `react-three-fiber` ✓ — React renderer for Three.js: declarative JSX scenes with hooks for the frame loop · 3d-rendering, react-integration · guide
 - `react-three-postprocessing` ✓ — Declarative post effects (bloom, DOF, SSAO, LUTs) for R3F, wrapping postprocessing · effects, react-integration · guide
 - `react-three-rapier` ✓ — Rapier physics for R3F as components: bodies, colliders, joints, manual stepping · physics-simulation, react-integration · guide
 - `regl` ✓ — Functional WebGL: declarative draw commands with state as data · shaders, 2d-rendering, 3d-rendering · guide
 - `resvg` ✓ — Static SVG rasterisation · svg-rasterisation · guide
-- `rive-web` ✓ — Plays Rive .riv interactive animations with state machines; authoring is in the Rive app · asset-playback
+- `rive-web` ✓ — Plays Rive .riv interactive animations with state machines; authoring is in the Rive app · asset-playback · guide
 - `rough-js` ✓ — Hand-drawn, sketchy rendering of shapes and paths to Canvas or SVG · 2d-rendering, vector-authoring · guide
-- `satori` ✓ — React-style flexbox layout to SVG without a browser; pairs with resvg for PNG · typography, vector-authoring, text-rendering
+- `satori` ✓ — React-style flexbox layout to SVG without a browser; pairs with resvg for PNG · typography, vector-authoring, text-rendering · guide
 - `sharp` ✓ — Fast Node image processing on libvips; resize, composite, convert with low memory · image-processing, compositing, svg-rasterisation · guide
-- `ssam` ✓ — Canvas sketch loop with hot reload and export to PNG, GIF, PNG sequence, MP4 and WebM · generative-2d, capture, video-encoding
+- `ssam` ✓ — Canvas sketch loop with hot reload and export to PNG, GIF, PNG sequence, MP4 and WebM · generative-2d, capture, video-encoding · guide
 - `svg-js` ✓ — Chainable SVG construction in browser or Node; animation runner is not seekable · vector-authoring, svg-animation · guide
-- `svgo` ✓ — SVG optimisation; preserve IDs needed by animation · svg-optimisation
-- `synfig` ✓ — synfig CLI renders .sif and .sifz 2D vector animation projects to frames or video · native-authoring, 2d-rendering, timeline-animation, vector-authoring
-- `theatre-js` ✓ — Visual keyframe editor (Studio) with a code runtime; sequence position is settable · timeline-animation, parameter-ui
-- `three-js-shading-language` ✓ — Node-based shader authoring in JavaScript that compiles to WGSL or GLSL · shaders, effects
+- `svgo` ✓ — SVG optimisation; preserve IDs needed by animation · svg-optimisation · guide
+- `synfig` ✓ — synfig CLI renders .sif and .sifz 2D vector animation projects to frames or video · native-authoring, 2d-rendering, timeline-animation, vector-authoring · guide
+- `theatre-js` ✓ — Visual keyframe editor (Studio) with a code runtime; sequence position is settable · timeline-animation, parameter-ui · guide
+- `three-js-shading-language` ✓ — Node-based shader authoring in JavaScript that compiles to WGSL or GLSL · shaders, effects · guide
 - `three-meshline` ✓ — Thick camera-facing lines for Three.js; npm three.meshline, pmndrs fork is meshline · 3d-rendering, effects · guide
-- `tone-js` ✓ — Web Audio framework for synths, sequencing and effects; Tone.Offline renders faster than real time · audio
-- `troika-three-text` ✓ — SDF text meshes for Three.js with font loading and Web Worker typesetting · text-rendering, 3d-rendering
+- `tone-js` ✓ — Web Audio framework for synths, sequencing and effects; Tone.Offline renders faster than real time · audio · guide
+- `troika-three-text` ✓ — SDF text meshes for Three.js with font loading and Web Worker typesetting · text-rendering, 3d-rendering · guide
 - `tween-js` ✓ — Tiny numeric property interpolator with easing; you call update(time) yourself · tweening · guide
 - `twgl` ✓ — Tiny WebGL helper: programs, buffers, uniforms and framebuffers with less boilerplate · shaders, 2d-rendering · guide
 - `two-js` ✓ — Scene graph for flat 2D drawing with one API across SVG, Canvas and WebGL renderers · 2d-rendering, vector-authoring · guide
-- `vedo` ✓ — Scientific 3D visualisation and analysis with VTK and NumPy · 3d-asset-processing, 3d-rendering, scientific-visualisation, model-loading
-- `vpype` ✓ — Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths · plotter-workflow, vector-authoring
-- `vsketch` ✓ — Python sketches and the vsk CLI generate plotter-oriented line art as SVG · plotter-workflow, generative-2d
-- `vtk-js` ✓ — Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering · scientific-visualisation, 3d-rendering
+- `vedo` ✓ — Scientific 3D visualisation and analysis with VTK and NumPy · 3d-asset-processing, 3d-rendering, scientific-visualisation, model-loading · guide
+- `vpype` ✓ — Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths · plotter-workflow, vector-authoring · guide
+- `vsketch` ✓ — Python sketches and the vsk CLI generate plotter-oriented line art as SVG · plotter-workflow, generative-2d · guide
+- `vtk-js` ✓ — Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering · scientific-visualisation, 3d-rendering · guide
 - `web-animations-api` ✓ — Native element.animate() with a seekable Animation.currentTime; no library needed · tweening, timeline-animation · guide
-- `web-audio` ✓ — Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time · audio
-- `webcodecs` ✓ — Frame-exact browser video/audio encoders and decoders; pair with a muxer · video-encoding, media-inspection
-- `webgl` ✓ — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders
-- `webgpu` ✓ — Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking · 3d-rendering, shaders
+- `web-audio` ✓ — Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time · audio · guide
+- `webcodecs` ✓ — Frame-exact browser video/audio encoders and decoders; pair with a muxer · video-encoding, media-inspection · guide
+- `webgl` ✓ — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders · guide
+- `webgpu` ✓ — Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking · 3d-rendering, shaders · guide
 
 ## candidate (104)
 

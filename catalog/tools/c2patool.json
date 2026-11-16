@@ -52,7 +52,7 @@
       "https://spec.c2pa.org/specifications/specifications/2.3/explainer/Explainer.html"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "c2patool-test-signer"

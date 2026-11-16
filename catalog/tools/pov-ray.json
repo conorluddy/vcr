@@ -35,7 +35,7 @@
   "notes": [
     "2026-10-26: GitHub releases show 3.7.0.10 (8 Jul 2021) and 3.8.0-beta.2 (Aug 2021); repo pushed 2026-10-07 but the substance of recent commits was not inspected. The Homebrew formula is bottled; arm64 bottle not checked. povray.org returned 403."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "pov-ray-sphere"

@@ -38,7 +38,7 @@
   "notes": [
     "2026-10-26: Official 1.4 and 1.4.1 platform pages list an arm64 dmg; Homebrew cask currently reports 1.4.4. Startup time per invocation is not measured; use --shell or actions for batches."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
