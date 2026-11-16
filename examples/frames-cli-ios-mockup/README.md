@@ -1,0 +1,28 @@
+# Frames CLI screenshot mock-up evidence
+
+## Intent and scope
+
+- Tool ID and version/build: Frames CLI 1.7.0, official source tag commit `b30bc4f728b922f0fe48a68ec1b6bdb680e70286`; Python 3.12.13 and Pillow 12.0.0 on macOS arm64.
+- VCR job and exact claim: use the native `frames` CLI to frame one owned, generated phone-screen UI mock-up with the matching bezel from the official asset pack; check device match, output dimensions, visible frame pixels and repeatable output bytes.
+- Explicit exclusions: no video, simulator capture, real app/user screenshot, other device, video codec, other OS/Python/CLI versions, or general right to redistribute device artwork.
+- Runtime source: https://github.com/viticci/frames-cli/releases/tag/1.7.0 and the repository MIT `LICENSE`; source is unpacked under ignored `output/source/frames-cli-1.7.0` from the official tag archive.
+- Asset source and terms: the 1.7.0 release points to asset pack 4.2.0 at `https://cdn.macstories.net/images/uploads/2026/11/04/appleframes420-1793823397151-4b30e2106a.zip`, SHA-256 `44e8416a12379e93defcdc85a5cb164aea45b12aaebd9a92f88ee0c954bca79a`. The pack contains `Apple Design Resources License.rtf` dated 2023-06. It limits these resources to UI mock-ups for software that runs only on macOS, iOS, watchOS, tvOS or visionOS; bars other artwork/documentation uses, embedding and unauthorized redistribution; and requires recipients of shared mock-ups to be told the restrictions. This local mock-up is designed for iOS-only software. The asset pack, generated input and framed output remain ignored and are not distributed.
+- Environment: macOS arm64, CPython 3.12.13; Pillow runs the native CLI's image processing. No FFmpeg or GPU is used.
+- Input: generated 1206 × 2622 PNG mock-up containing simple UI shapes only; no third-party art, fonts, real apps or users.
+- Dependencies and install plan: exact `Pillow==12.0.0` in an isolated `output/venv`; exact Frames 1.7.0 source archive under `output/source/frames-cli-1.7.0`. The separately obtained, license-reviewed pack is passed by `FRAMES_ASSETS`; the fixture never changes `~/.config/frames` and never downloads/commits the pack itself.
+- Output and cleanup: generated mock-up, CLI JSON, framed images, pack and source clone under ignored `output/`; commit source recipe and numeric metrics only.
+
+## Plan, before running
+
+- Exact commands: download `https://github.com/viticci/frames-cli/archive/refs/tags/1.7.0.zip` to `output/frames-cli-1.7.0.zip` (SHA-256 `0cc581940f954cf03aa0440dd02712e2b293fb71b881d0772e3fe8584cbd4c00`) and extract into `output/source/`; separately download the cited asset pack to `output/appleframes420.zip` (SHA-256 below) and extract to `output/assets/`. Create `output/venv` with Python 3.12.13 and install `requirements.lock` (for example: `uv venv output/venv --python 3.12.13`, then `uv pip install --python output/venv/bin/python --requirement requirements.lock`). Then run `FRAMES_ASSETS="$PWD/output/assets/Frames" ./run.sh --record` and `FRAMES_ASSETS="$PWD/output/assets/Frames" ./run.sh`.
+- Fixture input: draw a generic screen mock-up with Pillow at exactly 1206 × 2622 pixels, the portrait size documented for the corresponding current device frame. The screen contains a status row, header, two cards and bottom navigation, made only from shapes.
+- Predeclared checks: `frames --json` selects the matching portrait device and reports 1206 × 2622 source dimensions; output is a decodable RGBA PNG, larger than the screen in at least one dimension, with non-uniform pixels; repeat output SHA-256 matches. Record exact framed dimensions and hash in `expected/metrics.json` after the declared checks pass.
+- Expected artifacts: `output/input-screen.png`, the two `output/run-*/input-screen_framed.png` images and CLI JSON, plus `expected/metrics.json`. No bezel or media is committed.
+- Intended use and stop conditions: output is only a local UI mock-up for software designed to run on iOS, within the cited asset license's permitted operating-system category. Stop if the exact asset pack/license is unavailable, if its terms do not cover that use, or if the source CLI cannot frame the generated 1206 × 2622 input. Do not draw or substitute a bezel.
+- Reproduction and inspection: separately obtain the cited pack and review its included license, extract it so `FRAMES_ASSETS` points to the directory with `NewFrames.json`, then run `./run.sh`. Inspect the framed PNG in ignored output at fit-to-window size.
+
+## Observation, after running
+
+- Result: pass. Frames CLI 1.7.0 selected `iPhone 18 Pro Portrait` (primary match `iPhone 17 Portrait`) for the generated 1206×2622 screen and produced a decodable RGBA PNG at 1318×2717. Two independent renders were byte-identical (SHA-256 `9894b050bf58a88d7bc5eefa00d9364b00119a284da7b41a5d56ad0d5d896be5`). The output was visually inspected at fit-to-window size; it shows the generated UI inside the selected device artwork.
+- Runtime: Frames CLI source tag 1.7.0 (commit `b30bc4f728b922f0fe48a68ec1b6bdb680e70286`), Python 3.12.13, Pillow 12.0.0, macOS 26.6 arm64. The downloaded asset pack SHA-256 matched `44e8416a12379e93defcdc85a5cb164aea45b12aaebd9a92f88ee0c954bca79a`; the bundled Apple Design Resources License RTF was inspected. The pack and framed images remain in ignored output and are not distributed with this repository.
+- Limits: this validates one generated iOS UI mock-up with this device match and local asset pack. It does not establish rights for other uses or redistribution, validate other CLI commands or devices, or test another platform.

@@ -1,0 +1,8 @@
+{
+  "id": "frames-cli-ios-mockup",
+  "title": "Frames CLI screenshot mock-up",
+  "summary": "Frame an owned generated screen mock-up with the native CLI and a separately supplied licensed asset pack.",
+  "status": "validated",
+  "tools": ["frames-cli"],
+  "run": "./run.sh"
+}
