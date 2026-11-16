@@ -31,7 +31,7 @@
     "macos": "pnpm add @techstark/opencv-js",
     "check_command": "pnpm list @techstark/opencv-js"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -47,7 +47,9 @@
       }
     ]
   },
-  "examples": ["opencv-js-contours"],
+  "examples": [
+    "opencv-js-contours"
+  ],
   "adapter_maturity": "none",
   "assessment": {
     "date": "2026-10-26",
@@ -66,5 +68,6 @@
     "2026-10-26: official_url is the OpenCV docs hub; the JS build is a third-party package (TechStark). Subset of OpenCV exposed; check needed functions before relying on them."
   ],
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/opencv-js/SKILL.md"
 }
