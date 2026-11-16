@@ -37,9 +37,22 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "pov-ray-sphere"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.7.0.10.unofficial (Homebrew formula 3.7.0.10_17)",
+        "command": "examples/pov-ray-sphere/run.sh",
+        "result": "Rendered 128x96 RGB; 11,880 changed pixels; 4,128 sphere-red pixels, bounds [28,12,99,83]. Repeated RGB SHA-256 82608128b713798b4a9e4dba39791a6fe27c449cb163eaf43c4ec52b453f109e.",
+        "example": "examples/pov-ray-sphere",
+        "scope": "Text-authored primitive scene rendered to repeatable RGB PNG on macOS arm64; no CSG, animation, antialiasing, alpha or other platforms."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "assessment": {

@@ -1,0 +1,8 @@
+{
+  "id": "oiiotool-ppm-mulc",
+  "title": "oiiotool PPM multiply by zero",
+  "summary": "Runs oiiotool on an owned 2x2 RGB image and asserts exact output pixels, metadata, and repeatability.",
+  "status": "validated",
+  "tools": ["openimageio-oiiotool"],
+  "run": "./run.sh"
+}

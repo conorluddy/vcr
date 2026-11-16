@@ -1,0 +1,21 @@
+{
+  "povRayVersion": "POV-Ray 3.7.0.10.unofficial",
+  "width": 128,
+  "height": 96,
+  "channels": "RGB",
+  "changedPixels": 11880,
+  "changedBounds": [
+    0,
+    3,
+    127,
+    95
+  ],
+  "sphereRedPixels": 4128,
+  "sphereRedBounds": [
+    28,
+    12,
+    99,
+    83
+  ],
+  "rgbSha256": "82608128b713798b4a9e4dba39791a6fe27c449cb163eaf43c4ec52b453f109e"
+}

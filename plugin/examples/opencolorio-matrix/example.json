@@ -1,0 +1,12 @@
+{
+  "id": "opencolorio-matrix",
+  "title": "OpenColorIO CPU matrix transform",
+  "summary": "Applies an explicit OCIO MatrixTransform to four known RGB pixels and checks output values and repeatability.",
+  "status": "validated",
+  "tools": ["opencolorio"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

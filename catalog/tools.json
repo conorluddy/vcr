@@ -7463,10 +7463,11 @@
       "license": "BSD-3-Clause",
       "install": {
         "macos": "brew install opencolorio",
-        "check_command": "ociocheck -h"
+        "check_command": "ociocheck --help"
       },
       "notes": [
-        "2026-10-26: Homebrew opencolorio is at 2.6.0, matching upstream. The check_command ociocheck -h was not verified. The repo page fetched did not list bindings or CLIs; those are from general knowledge and should be confirmed against opencolorio.readthedocs.io."
+        "2026-10-26: Homebrew opencolorio is at 2.6.0, matching upstream. The repo page fetched did not list bindings or CLIs; those were unverified at the time.",
+        "2026-11-16: The opencolorio 2.6.0 PyPI wheel for CPython 3.14 macOS arm64 imports as PyOpenColorIO and includes ocio CLI commands. ociocheck --help works; -h is invalid. Evidence validates only the explicit MatrixTransform CPU path, not ACES."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -7484,12 +7485,25 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.6.0",
+            "command": "examples/opencolorio-matrix/run.sh",
+            "result": "Config.CreateRaw + MatrixTransform + default CPUProcessor.applyRGB transformed four RGB pixels; max error 2.384185793236071e-08 at 1e-6 tolerance; independent output exact; float32 SHA-256 039177e3093b05b2952de75faa5597182f459e4027ec812975edf3bf32f3bd12. CPython 3.14.8; isolated ociocheck --help worked.",
+            "example": "examples/opencolorio-matrix",
+            "scope": "Explicit OpenColorIO MatrixTransform via raw Config and CPUProcessor.applyRGB on four float RGB pixels; repeatable on macOS arm64/Python 3.14. No ACES, files, or GPU."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "opencolorio-matrix"
+      ]
     },
     {
       "id": "opencv-js",
@@ -7619,9 +7633,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "oiiotool-ppm-mulc"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.2.2.0",
+            "command": "examples/oiiotool-ppm-mulc/run.sh",
+            "result": "oiiotool --mulc 0.5 transformed a generated P6 2x2 uint8 RGB PPM to exact samples [10,20,30],[40,50,60],[10,20,30],[40,50,60]. Output metadata remained P6, 2x2, 3 channels, max 255. Repeated files matched byte-for-byte (SHA-256 0274406f50e14af03f177a7800c8d4528959a3aa6c128bb6f9e5adbf30c7027d).",
+            "example": "examples/oiiotool-ppm-mulc",
+            "scope": "oiiotool 3.2.2.0 --mulc 0.5 on generated 2x2 8-bit RGB PPM; exact pixels/metadata/repeat checked. No EXR, OCIO, sequences or other formats."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
@@ -8766,9 +8793,22 @@
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "pov-ray-sphere"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.7.0.10.unofficial (Homebrew formula 3.7.0.10_17)",
+            "command": "examples/pov-ray-sphere/run.sh",
+            "result": "Rendered 128x96 RGB; 11,880 changed pixels; 4,128 sphere-red pixels, bounds [28,12,99,83]. Repeated RGB SHA-256 82608128b713798b4a9e4dba39791a6fe27c449cb163eaf43c4ec52b453f109e.",
+            "example": "examples/pov-ray-sphere",
+            "scope": "Text-authored primitive scene rendered to repeatable RGB PNG on macOS arm64; no CSG, animation, antialiasing, alpha or other platforms."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "assessment": {
