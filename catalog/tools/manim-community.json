@@ -40,9 +40,20 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": ["manim-cairo-square"],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.22.1",
+        "command": "examples/manim-cairo-square/run.sh",
+        "result": "Manim Cairo CLI rendered two caching-disabled PNG sequences; each had 12 frames at 192x108/12 fps (1 s). Pillow readback: square centroid moved x=68.5 to 122.5 px, and final 3 hold frames were identical. All pixel hashes matched across runs.",
+        "example": "examples/manim-cairo-square",
+        "scope": "Manim Community 0.22.1 Cairo renderer, 192x108 12 fps square translation to PNG sequence; geometry and repeat checked. No TeX, OpenGL, video, or 3D."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "assessment": {
