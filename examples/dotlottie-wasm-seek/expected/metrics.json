@@ -1,0 +1,96 @@
+{
+  "toolVersion": "0.83.2",
+  "nodeVersion": "v25.6.1",
+  "chromiumVersion": "156.0.8078.4",
+  "host": "Conors-MacBook-Pro-2.local (darwin 25.6.0 arm64)",
+  "animation": "owned .lottie archive; 64x64, 30 fps, 31 frames",
+  "sampledFrames": {
+    "0": {
+      "width": 64,
+      "height": 64,
+      "foreground": {
+        "color": "red",
+        "pixels": 256,
+        "bbox": [
+          8,
+          24,
+          24,
+          40
+        ]
+      },
+      "redSample": [
+        255,
+        0,
+        0,
+        255
+      ],
+      "transparentSample": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pngSha256": "702413b08e106ffe3a149b69ba6d77c73723b16cbf3bda0bab59c06d58d80975"
+    },
+    "15": {
+      "width": 64,
+      "height": 64,
+      "foreground": {
+        "color": "red",
+        "pixels": 256,
+        "bbox": [
+          24,
+          24,
+          40,
+          40
+        ]
+      },
+      "redSample": [
+        255,
+        0,
+        0,
+        255
+      ],
+      "transparentSample": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pngSha256": "4b23f15252ff28c9297ced06641069557feddb746c35cd79652bd6d4d58cfb0c"
+    },
+    "30": {
+      "width": 64,
+      "height": 64,
+      "foreground": {
+        "color": "red",
+        "pixels": 256,
+        "bbox": [
+          40,
+          24,
+          56,
+          40
+        ]
+      },
+      "redSample": [
+        255,
+        0,
+        0,
+        255
+      ],
+      "transparentSample": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pngSha256": "21c51b00d1fbbbfd8c6df701f9c0ea6befc032833eeb479734c5bbb5e9cd1cae"
+    }
+  },
+  "shuffledHashesMatch": {
+    "0": true,
+    "15": true,
+    "30": true
+  },
+  "browserErrors": []
+}
