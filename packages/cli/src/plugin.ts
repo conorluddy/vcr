@@ -149,6 +149,7 @@ function bundleCli(harnessRoot: string, outfile: string): Result<string> {
     platform: "node",
     format: "esm",
     target: "node22",
+    minifyWhitespace: true,
     external: ["esbuild", "playwright"],
     // CommonJS dependencies (ajv) call require(); give the ESM bundle one.
     banner: { js: 'import { createRequire as __vcrCreateRequire } from "node:module"; const require = __vcrCreateRequire(import.meta.url);' },

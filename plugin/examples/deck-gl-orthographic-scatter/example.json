@@ -1,0 +1,12 @@
+{
+  "id": "deck-gl-orthographic-scatter",
+  "title": "deck.gl orthographic ScatterplotLayer pixels",
+  "summary": "Renders two owned Cartesian points through Deck, OrthographicView and ScatterplotLayer, checking projected centers, colors and redraw repeatability.",
+  "status": "validated",
+  "tools": ["deck-gl"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

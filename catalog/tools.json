@@ -2012,8 +2012,18 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "9.4.0",
+            "command": "examples/deck-gl-orthographic-scatter/run.sh",
+            "result": "@deck.gl/core and @deck.gl/layers 9.4.0 rendered an actual Deck OrthographicView/ScatterplotLayer through luma WebGL2 on Chromium 156.0.8078.4, macOS 26.6 arm64 (Node 25.6.1); SwiftShader renderer ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver). 64x32, projected point centers [20,16] and [44,16], opaque red/blue samples and transparent background passed. Forced redraw SHA-256 matched: 507bc5b3f9985897963c15801ae79e070a0fafd31d355ea24d609cfc04722106. No errors/external requests.",
+            "example": "examples/deck-gl-orthographic-scatter",
+            "scope": "deck.gl 9.4.0 Deck/OrthographicView/ScatterplotLayer drew two Cartesian points in WebGL2 SwiftShader; deterministic redraw on Chromium/macOS arm64. No map/provider/geospatial claim."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
@@ -2031,7 +2041,10 @@
           "https://github.com/visgl/deck.gl"
         ]
       },
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "deck-gl-orthographic-scatter"
+      ]
     },
     {
       "id": "demucs",
@@ -5820,9 +5833,22 @@
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "manim-cairo-square"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.22.1",
+            "command": "examples/manim-cairo-square/run.sh",
+            "result": "Manim Cairo CLI rendered two caching-disabled PNG sequences; each had 12 frames at 192x108/12 fps (1 s). Pillow readback: square centroid moved x=68.5 to 122.5 px, and final 3 hold frames were identical. All pixel hashes matched across runs.",
+            "example": "examples/manim-cairo-square",
+            "scope": "Manim Community 0.22.1 Cairo renderer, 192x108 12 fps square translation to PNG sequence; geometry and repeat checked. No TeX, OpenGL, video, or 3D."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "assessment": {
@@ -13018,9 +13044,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "vtk-js-vtp-roundtrip"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "vtk.js 37.4.6; Node.js 25.6.1",
+            "command": "examples/vtk-js-vtp-roundtrip/run.sh",
+            "result": "Two independent Node processes wrote and reloaded ASCII VTP; each preserved 4 points, 2 polygons, bounds [0,2,0,3,-1,4] and connectivity. Geometry SHA-256 0c8338058212ee51c04ef30ad854dce87420fcc0e3256e011132065a6ffb30e0.",
+            "example": "examples/vtk-js-vtp-roundtrip",
+            "scope": "vtk.js ASCII VTP write/read preserves this 4-point/2-triangle PolyData on Node 25.6.1/macOS arm64; no rendering, binary VTP, other formats or platforms."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "assessment": {

@@ -1,6 +1,7 @@
 import { existsSync, mkdtempSync, readFileSync, readdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { execFileSync } from "node:child_process";
 import { describe, expect, test } from "vitest";
 import { buildPlugin, listPillarReferences, PLUGIN_MAX_BYTES } from "./plugin.js";
 import { resolveRoots } from "./roots.js";
@@ -50,6 +51,15 @@ describe("buildPlugin", () => {
       expect(JSON.parse(bundled)).toEqual(JSON.parse(readFileSync(join(harnessRoot, "catalog", file), "utf8")));
       expect(bundled.trim().split("\n")).toHaveLength(1);
     }
+  });
+
+  test("bundled CLI reads a catalogue card outside the repository", () => {
+    const stdout = execFileSync(process.execPath, [join(directory, "cli/vcr.mjs"), "tools", "info", "ffmpeg-ffprobe", "--json"], {
+      cwd: tmpdir(),
+      env: { ...process.env, VCR_HARNESS: directory },
+      encoding: "utf8",
+    });
+    expect(JSON.parse(stdout)).toEqual(JSON.parse(readFileSync(join(harnessRoot, "catalog/tools/ffmpeg-ffprobe.json"), "utf8")));
   });
 
   test("leaves out node_modules, output and repo-only (scene.tsx) examples", () => {

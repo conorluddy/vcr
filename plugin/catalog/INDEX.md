@@ -39,7 +39,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `ccapture-js` ✓ — Fixed-framerate canvas capture by hooking browser time; 2.x rewrite on WebCodecs · capture, video-encoding, image-sequence-processing
 - `colmap` — Reconstruction · 3d-asset-processing
 - `d3` ✓ — Data-driven scales, layouts and shapes; use its geometry, not its transitions · data-visualisation, vector-authoring, svg-animation · guide
-- `deck-gl` — WebGL layers for large geospatial and point-cloud data; view state as props · geospatial, data-visualisation
+- `deck-gl` ✓ — WebGL layers for large geospatial and point-cloud data; view state as props · geospatial, data-visualisation
 - `dotlottie` ✓ — .lottie container plus ThorVG WASM canvas player with frame seeking · asset-playback
 - `drei` ✓ — Helper components for React Three Fiber: controls, loaders, text, environments · 3d-rendering, react-integration, model-loading · guide
 - `fabric-js` ✓ — Canvas object model with selection, serialisation and SVG import/export · 2d-rendering, vector-authoring · guide
@@ -60,7 +60,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `konva` ✓ — Canvas 2D scene graph (stage, layers, groups, shapes) with events, tweens and export · 2d-rendering, tweening, react-integration · guide
 - `lottie-web` ✓ — Plays After Effects/Bodymovin Lottie JSON in the browser; frame-addressable · asset-playback, svg-animation
 - `lv2` — Plugin standard · audio
-- `manim-community` — Python scenes rendered by the manim CLI to video or PNG sequences for maths and diagram motion · timeline-animation, 2d-rendering, video-encoding, typography
+- `manim-community` ✓ — Python scenes rendered by the manim CLI to video or PNG sequences for maths and diagram motion · timeline-animation, 2d-rendering, video-encoding, typography
 - `matter-js` ✓ — 2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t · physics-simulation · guide
 - `mediabunny` ✓ — Pure-TypeScript media toolkit: read, write, convert, WebCodecs-backed; browser and Node · video-encoding, media-inspection, audio
 - `mediabunny-server-extension` ✓ — Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno · video-encoding, audio
@@ -121,7 +121,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `vedo` ✓ — Scientific 3D visualisation and analysis with VTK and NumPy · 3d-asset-processing, 3d-rendering, scientific-visualisation, model-loading
 - `vpype` ✓ — Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths · plotter-workflow, vector-authoring
 - `vsketch` ✓ — Python sketches and the vsk CLI generate plotter-oriented line art as SVG · plotter-workflow, generative-2d
-- `vtk-js` — Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering · scientific-visualisation, 3d-rendering
+- `vtk-js` ✓ — Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering · scientific-visualisation, 3d-rendering
 - `web-animations-api` ✓ — Native element.animate() with a seekable Animation.currentTime; no library needed · tweening, timeline-animation · guide
 - `web-audio` ✓ — Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time · audio
 - `webcodecs` ✓ — Frame-exact browser video/audio encoders and decoders; pair with a muxer · video-encoding, media-inspection
