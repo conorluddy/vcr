@@ -33,8 +33,18 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.83.2",
+        "command": "examples/dotlottie-wasm-seek/run.sh",
+        "result": "dotLottie Web loaded the fixture-owned .lottie archive and local ThorVG WASM in Chromium 156.0.8078.4 (Node 25.6.1, Playwright 1.64.1). Frames 0/15/30 yielded exact 64x64 transparent canvas pixels: 256 red pixels at bounds [8,24,24,40], [24,24,40,40], [40,24,56,40]; sequential/shuffled PNG SHA-256 matched at every frame. No browser errors.",
+        "example": "examples/dotlottie-wasm-seek",
+        "scope": "dotLottie Web 0.83.2 ThorVG WASM rendered an owned 64x64 .lottie shape with exact repeatable frame pixels in Chromium on macOS arm64; no broad Lottie compatibility claim."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,
@@ -52,5 +62,8 @@
       "https://github.com/LottieFiles/dotlottie-web"
     ]
   },
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "examples": [
+    "dotlottie-wasm-seek"
+  ]
 }

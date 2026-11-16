@@ -1,0 +1,12 @@
+{
+  "id": "dotlottie-wasm-seek",
+  "title": "dotLottie WASM frame seek and pixel capture",
+  "summary": "Seeks an owned .lottie rectangle animation in dotLottie Web and compares exact canvas pixels across seek orders.",
+  "status": "validated",
+  "tools": ["dotlottie", "playwright"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
