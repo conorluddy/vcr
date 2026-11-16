@@ -1,0 +1,8 @@
+{
+  "id": "c2patool-test-signer",
+  "title": "c2patool reads a development-signed fixture manifest",
+  "summary": "Generate a PNG, add a C2PA manifest with c2patool's built-in test signer, and assert its title and custom assertion on readback.",
+  "status": "validated",
+  "tools": ["c2patool"],
+  "run": "./run.sh"
+}
