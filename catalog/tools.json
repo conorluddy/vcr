@@ -10319,7 +10319,8 @@
         "check_command": "pnpm list @rive-app/canvas --depth 0"
       },
       "notes": [
-        "2026-10-26: frame-exact seeking for capture not verified; the runtime is clocked by requestAnimationFrame."
+        "2026-10-26: frame-exact seeking for capture not verified; the runtime is clocked by requestAnimationFrame.",
+        "2026-11-16: Canvas runtime playback and nested boolean inputs validated with Rive's MIT-licensed runtime example asset; this does not establish frame-exact seeking or repeatable animation frames."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -10338,11 +10339,24 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.49.1 (@rive-app/canvas)",
+            "command": "examples/rive-web-state-machine/run.sh",
+            "result": "Loaded MainStateMachine and toggled nested booleans; active center/ring pixels were [253,27,108]/[31,253,46], while the false state returned to neutral [116,116,116].",
+            "example": "examples/rive-web-state-machine",
+            "scope": "Canvas runtime playback and nested input response on macOS arm64 with Rive's MIT-licensed sample asset; no authoring, time seeking, deterministic frames, other runtimes or platforms."
+          }
+        ]
       },
+      "examples": [
+        "rive-web-state-machine"
+      ],
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-11-16",
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {

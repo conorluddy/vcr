@@ -101,7 +101,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `regl` ✓ — Functional WebGL: declarative draw commands with state as data · shaders, 2d-rendering, 3d-rendering · guide
 - `remotion` ✓ — React-component video renderer with CLI and Lambda; company licence above 3 employees · video-composition, video-encoding, react-integration, capture
 - `resvg` ✓ — Static SVG rasterisation · svg-rasterisation · guide
-- `rive-web` — Plays Rive .riv interactive animations with state machines; authoring is in the Rive app · asset-playback
+- `rive-web` ✓ — Plays Rive .riv interactive animations with state machines; authoring is in the Rive app · asset-playback
 - `rough-js` ✓ — Hand-drawn, sketchy rendering of shapes and paths to Canvas or SVG · 2d-rendering, vector-authoring · guide
 - `satori` ✓ — React-style flexbox layout to SVG without a browser; pairs with resvg for PNG · typography, vector-authoring, text-rendering
 - `sharp` ✓ — Fast Node image processing on libvips; resize, composite, convert with low memory · image-processing, compositing, svg-rasterisation · guide

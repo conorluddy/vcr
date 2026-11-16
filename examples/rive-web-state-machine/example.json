@@ -1,0 +1,12 @@
+{
+  "id": "rive-web-state-machine",
+  "title": "Rive Web nested state machine playback",
+  "summary": "Load a licensed Rive asset in the Canvas runtime, toggle nested state machine inputs and compare rendered canvas pixels.",
+  "status": "validated",
+  "tools": ["rive-web"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

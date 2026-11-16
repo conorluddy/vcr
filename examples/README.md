@@ -46,6 +46,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `playcanvas-capture` | playcanvas-engine, playwright, imagemagick | WebGL2 Application driven by app.update(0) + app.render() per seek, never app.start(), alpha, shuffled equals sequential (2026-11-11) |
 | `meshline-capture` | three-meshline, three-js, playwright, imagemagick | THREE.MeshLine width taper, dash offset, visibility and rebuilt points per seek, alpha, shuffled equals sequential (2026-11-11) |
 | `postprocessing-capture` | postprocessing, three-js, playwright, imagemagick | EffectComposer with Bloom and ChromaticAberration via composer.render(0) per seek; vignette not visible on alpha; shuffled equals sequential (2026-11-11) |
+| `rive-web-state-machine` | rive-web | MIT-licensed sample, nested boolean inputs drive visible state colors (2026-11-16) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 

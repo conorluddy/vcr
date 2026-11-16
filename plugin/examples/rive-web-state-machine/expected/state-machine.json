@@ -1,0 +1,56 @@
+{
+  "tool": "@rive-app/canvas",
+  "version": "2.49.1",
+  "browser": "157.0.8103.51",
+  "viewport": [
+    256,
+    256
+  ],
+  "checks": {
+    "bothInputsTrueChangesInnerCircle": true,
+    "bothInputsTrueChangesOuterRing": true,
+    "bothInputsFalseRestoresNeutralInnerCircle": true
+  },
+  "samples": {
+    "initial": {
+      "name": "initial",
+      "centerRgb": [
+        116,
+        116,
+        116
+      ],
+      "ringRgb": [
+        116,
+        116,
+        116
+      ]
+    },
+    "bothInputsTrue": {
+      "name": "both-inputs-true",
+      "centerRgb": [
+        253,
+        27,
+        108
+      ],
+      "ringRgb": [
+        31,
+        253,
+        46
+      ]
+    },
+    "bothInputsFalse": {
+      "name": "both-inputs-false",
+      "centerRgb": [
+        116,
+        116,
+        116
+      ],
+      "ringRgb": [
+        116,
+        116,
+        116
+      ]
+    }
+  },
+  "limits": "State-machine playback and nested boolean input response only; not a seekable or frame-deterministic capture route."
+}
