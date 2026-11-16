@@ -1,0 +1,8 @@
+{
+  "id": "godot-headless-physics",
+  "title": "Godot headless scene loading and 2D physics",
+  "summary": "Load an owned scene, assert collision geometry and a rigid body resting on a static floor, and compare two independent runs.",
+  "status": "validated",
+  "tools": ["godot"],
+  "run": "./run.sh"
+}

@@ -1,0 +1,12 @@
+; Engine configuration file.
+config_version=5
+
+[application]
+config/name="Godot Headless Physics Fixture"
+
+[physics]
+2d/physics_ticks_per_second=60
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
