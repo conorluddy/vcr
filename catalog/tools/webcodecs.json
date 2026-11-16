@@ -45,9 +45,20 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "not-applicable",
+  "examples": ["webcodecs-vp8-roundtrip"],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "Chrome for Testing 156.0.8078.4",
+        "command": "examples/webcodecs-vp8-roundtrip/run.sh",
+        "result": "VP8 encoder/decoder supported. Two passes each round-tripped 3 32x32 frames at (timestamp,duration) (0,33333),(33333,33333),(66666,33333) us; decoded mean RGB exactly red/green/blue (max channel error 0, tolerance 20). Functional metrics matched on repeat.",
+        "example": "examples/webcodecs-vp8-roundtrip",
+        "scope": "Native WebCodecs VP8 encode/decode of three 32x32 solid frames in Chrome 156; exact timestamps/durations, dimensions and color checked. No muxing or other codecs."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,

@@ -1,0 +1,8 @@
+{
+  "id": "webcodecs-vp8-roundtrip",
+  "title": "WebCodecs VP8 frame round trip",
+  "summary": "Encodes and decodes three generated color VideoFrames with native WebCodecs and checks timing, dimensions, colors, and repeat metrics.",
+  "status": "validated",
+  "tools": ["webcodecs"],
+  "run": "./run.sh"
+}
