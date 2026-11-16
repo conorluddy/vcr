@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, resolve } from "node:path";
-import { openScenePage, settleFrame } from "../../packages/capture/src/capture-frames.ts";
+import { openScenePage, settleFrame } from "../../packages/capture/src/capture-frames.js";
 
 async function main() {
 const exampleRoot = resolve("examples/lottie-web-seek");
@@ -34,7 +34,7 @@ try {
     }, frame);
     await settleFrame(scene.page);
     const geometry = await scene.page.evaluate(() => {
-      const path = document.querySelector("svg path");
+      const path = document.querySelector("svg path") as SVGGraphicsElement | null;
       if (!path) throw new Error("Lottie SVG path not found");
       const local = path.getBBox();
       const matrix = path.getScreenCTM();
