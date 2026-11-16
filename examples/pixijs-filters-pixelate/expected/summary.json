@@ -1,0 +1,19 @@
+{
+  "pixi_version": "8.23.0",
+  "filters_version": "6.1.5",
+  "playwright_version": "1.64.1",
+  "chromium_version": "156.0.8078.4",
+  "filter": "PixelateFilter",
+  "baseline_sha256": "a6add09c113dae7d2a883d69d8f22acdd0a5f1cb652dab8a6d63f7e58820facb",
+  "effect_sha256": "e795ad73365efe1ad04c684314f44d838cd1867713052b36a08e22894acbbe2c",
+  "repeated_effect_sha256": "e795ad73365efe1ad04c684314f44d838cd1867713052b36a08e22894acbbe2c",
+  "repeated_effect_equal": true,
+  "canvas": "128x128",
+  "webgl": {
+    "renderer": "WebKit WebGL",
+    "vendor": "WebKit",
+    "unmasked_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+    "unmasked_vendor": "Google Inc. (Google)"
+  },
+  "differing_pixels": 15365
+}
