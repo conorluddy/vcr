@@ -1,0 +1,9 @@
+{
+  "name": "vcr-example-mediabunny-server-aac",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@mediabunny/server": "1.66.0",
+    "mediabunny": "1.66.0"
+  }
+}

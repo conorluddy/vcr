@@ -1,0 +1,42 @@
+{
+  "packages": {
+    "mediabunny": "1.66.0",
+    "serverExtension": "1.66.0",
+    "nodeAv": "6.2.0"
+  },
+  "nodeVersion": "v25.6.1",
+  "platform": "darwin arm64",
+  "hostRelease": "25.6.0",
+  "nodeAvFfmpegVersion": "8.1",
+  "sourceFfmpegVersion": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+  "extensionRegistered": true,
+  "sourceCanDecodeBeforeRegistration": false,
+  "sourceCanDecodeAfterRegistration": true,
+  "forcedTranscode": true,
+  "utilizedInputTracks": 1,
+  "discardedInputTracks": 0,
+  "sourceWavSha256": "72f5cc120696e11ed82e561b972b9b1549fc9700cb2c7815e279b895219ab2f6",
+  "sourceMediabunnyDecode": {
+    "codec": "aac",
+    "durationSeconds": 1,
+    "sampleRate": 48000,
+    "channels": 1,
+    "decodedFrames": 49152,
+    "decodedDurationSeconds": 1.024,
+    "rms": 0.174804,
+    "peak": 0.308553,
+    "zeroCrossingHz": 446.289063
+  },
+  "transcodedMediabunnyDecode": {
+    "codec": "aac",
+    "durationSeconds": 1.002667,
+    "sampleRate": 48000,
+    "channels": 1,
+    "decodedFrames": 49152,
+    "decodedDurationSeconds": 1.024,
+    "rms": 0.175801,
+    "peak": 0.461866,
+    "zeroCrossingHz": 454.589844
+  },
+  "transcodedFileBytes": 13435
+}
