@@ -1,0 +1,9 @@
+{
+  "name": "canvas-record-webm-fixture",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "canvas-record": "6.0.0",
+    "vite": "8.3.5"
+  }
+}

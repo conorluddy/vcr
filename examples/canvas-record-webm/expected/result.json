@@ -1,0 +1,126 @@
+{
+  "canvas_record": "6.0.0",
+  "vite": "8.3.5",
+  "node": "v25.6.1",
+  "playwright": "1.64.1",
+  "browser": "Chrome for Testing 156.0.8078.4",
+  "host": "Darwin 25.6.0 arm64",
+  "hostname": "Conors-MacBook-Pro-2.local",
+  "codec": "VP9",
+  "extension": "webm",
+  "target": "in-browser",
+  "recording_passes": 2,
+  "semantic_repeat_matches": true,
+  "first": {
+    "width": 32,
+    "height": 32,
+    "duration": 1,
+    "ffprobe": [
+      {
+        "codec_name": "vp9",
+        "width": 32,
+        "height": 32,
+        "r_frame_rate": "3/1",
+        "avg_frame_rate": "3/1",
+        "nb_read_frames": "3",
+        "format_duration": "1.000000",
+        "frame_timestamps": [
+          0,
+          0.333,
+          0.667
+        ]
+      }
+    ],
+    "decoded_samples": [
+      {
+        "requested_time": 0.05,
+        "decoded_time": 0.05,
+        "rgba": [
+          254,
+          0,
+          0,
+          255
+        ],
+        "max_channel_error": 1
+      },
+      {
+        "requested_time": 0.4,
+        "decoded_time": 0.4,
+        "rgba": [
+          0,
+          255,
+          0,
+          255
+        ],
+        "max_channel_error": 0
+      },
+      {
+        "requested_time": 0.75,
+        "decoded_time": 0.75,
+        "rgba": [
+          0,
+          1,
+          255,
+          255
+        ],
+        "max_channel_error": 1
+      }
+    ]
+  },
+  "second": {
+    "width": 32,
+    "height": 32,
+    "duration": 1,
+    "ffprobe": [
+      {
+        "codec_name": "vp9",
+        "width": 32,
+        "height": 32,
+        "r_frame_rate": "3/1",
+        "avg_frame_rate": "3/1",
+        "nb_read_frames": "3",
+        "format_duration": "1.000000",
+        "frame_timestamps": [
+          0,
+          0.333,
+          0.667
+        ]
+      }
+    ],
+    "decoded_samples": [
+      {
+        "requested_time": 0.05,
+        "decoded_time": 0.05,
+        "rgba": [
+          254,
+          0,
+          0,
+          255
+        ],
+        "max_channel_error": 1
+      },
+      {
+        "requested_time": 0.4,
+        "decoded_time": 0.4,
+        "rgba": [
+          0,
+          255,
+          0,
+          255
+        ],
+        "max_channel_error": 0
+      },
+      {
+        "requested_time": 0.75,
+        "decoded_time": 0.75,
+        "rgba": [
+          0,
+          1,
+          255,
+          255
+        ],
+        "max_channel_error": 1
+      }
+    ]
+  }
+}
