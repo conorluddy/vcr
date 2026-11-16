@@ -1,0 +1,8 @@
+{
+  "id": "pyscenedetect-hard-cuts",
+  "title": "PySceneDetect detects synthetic hard cuts",
+  "summary": "Detects known cut points in a generated four-shot video using a fixed ContentDetector threshold.",
+  "status": "validated",
+  "tools": ["pyscenedetect"],
+  "run": "./run.sh"
+}
