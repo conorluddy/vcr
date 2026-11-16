@@ -29,7 +29,7 @@
   "install": {
     "macos": "pnpm add gl-react"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -66,5 +66,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "gl-react-shader"
-  ]
+  ],
+  "skill": "skills/gl-react/SKILL.md"
 }

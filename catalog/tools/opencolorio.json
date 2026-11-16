@@ -47,7 +47,7 @@
       "https://formulae.brew.sh/api/formula/opencolorio.json"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -68,5 +68,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "opencolorio-matrix"
-  ]
+  ],
+  "skill": "skills/opencolorio/SKILL.md"
 }

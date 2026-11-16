@@ -51,7 +51,7 @@
       "https://registry.npmjs.org/ssam"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "ssam-static-canvas"
@@ -72,5 +72,6 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/ssam/SKILL.md"
 }

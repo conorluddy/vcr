@@ -48,7 +48,7 @@
       "https://formulae.brew.sh/api/cask/rawtherapee.json"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -64,8 +64,11 @@
       }
     ]
   },
-  "examples": ["rawtherapee-cli-png-export"],
+  "examples": [
+    "rawtherapee-cli-png-export"
+  ],
   "adapter_maturity": "none",
   "checked_at": "2026-11-16",
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/rawtherapee-cli/SKILL.md"
 }

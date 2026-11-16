@@ -46,7 +46,7 @@
       "https://github.com/mltframework/mlt"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -62,8 +62,11 @@
       }
     ]
   },
-  "examples": ["mlt-color-render"],
+  "examples": [
+    "mlt-color-render"
+  ],
   "adapter_maturity": "none",
   "checked_at": "2026-11-16",
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/mlt-melt/SKILL.md"
 }

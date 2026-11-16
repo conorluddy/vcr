@@ -31,7 +31,7 @@
   "install": {
     "macos": "pnpm add pixi-filters"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -68,5 +68,6 @@
     ]
   },
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/pixijs-filters/SKILL.md"
 }

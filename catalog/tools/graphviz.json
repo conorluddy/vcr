@@ -50,7 +50,7 @@
       "https://gitlab.com/graphviz/graphviz/-/releases"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -71,5 +71,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "graphviz-dot-svg"
-  ]
+  ],
+  "skill": "skills/graphviz/SKILL.md"
 }

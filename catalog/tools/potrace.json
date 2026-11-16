@@ -47,7 +47,7 @@
       "https://potrace.sourceforge.net/"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -63,8 +63,11 @@
       }
     ]
   },
-  "examples": ["potrace-pbm-svg"],
+  "examples": [
+    "potrace-pbm-svg"
+  ],
   "adapter_maturity": "none",
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/potrace/SKILL.md"
 }

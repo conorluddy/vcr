@@ -14,7 +14,7 @@
     "2026-10-29: Skill opportunity: Further research first: an owned multi-view dataset and reconstruction fixture would establish whether a VCR or standalone skill is worthwhile.",
     "2026-11-16: CPU SIFT feature extraction validated on three generated PPM views; no image matching or reconstruction was attempted."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -30,7 +30,9 @@
       }
     ]
   },
-  "examples": ["colmap-feature-extraction"],
+  "examples": [
+    "colmap-feature-extraction"
+  ],
   "adapter_maturity": "none",
   "checked_at": "2026-11-16",
   "source": "references/ideas/check-vcr-repo-conversation.md",
@@ -61,5 +63,6 @@
       "https://github.com/colmap/colmap/releases"
     ],
     "version_seen": "4.2.1 (release page; release year not verified)"
-  }
+  },
+  "skill": "skills/colmap/SKILL.md"
 }

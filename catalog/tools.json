@@ -163,7 +163,7 @@
           "https://www.npmjs.com/package/animejs"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -607,7 +607,7 @@
         "2026-10-31: Maintainer endorsed inclusion after reviewing the fixture result in conversation. Promoted to catalogued with partial validation scoped to build123d 0.13.0, the original product part and Blender 4.4.0 on macOS arm64; Three.js, other formats, materials and animation remain unverified. No adapter or toolkit skill.",
         "2026-11-04: Evidence scope (capability-graph G0 audit, specifications/spikes/capability-graph-g0.md): the 800x600 RGBA size and alpha 0–255 of the Workbench still appear only in evidence.md prose; no retained check covers them."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "partial",
@@ -644,7 +644,8 @@
       },
       "examples": [
         "build123d-product"
-      ]
+      ],
+      "skill": "skills/build123d/SKILL.md"
     },
     {
       "id": "bvh-mocap",
@@ -757,7 +758,7 @@
           "https://spec.c2pa.org/specifications/specifications/2.3/explainer/Explainer.html"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "c2patool-test-signer"
@@ -778,7 +779,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": "2026-11-15",
-      "source": "prospects/inbox/2026-11-01-discovery.md"
+      "source": "prospects/inbox/2026-11-01-discovery.md",
+      "skill": "skills/c2patool/SKILL.md"
     },
     {
       "id": "canvas-2d",
@@ -828,7 +830,7 @@
           "https://unpkg.com/@mdn/browser-compat-data/data.json"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "not-applicable",
       "validation": {
         "status": "validated",
@@ -903,7 +905,7 @@
           "https://www.npmjs.com/package/canvas-record"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "canvas-record-webm"
@@ -924,7 +926,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/canvas-record/SKILL.md"
     },
     {
       "id": "canvas-sketch",
@@ -979,7 +982,7 @@
           "https://www.npmjs.com/package/canvas-sketch"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -1000,7 +1003,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "canvas-sketch-capture"
-      ]
+      ],
+      "skill": "skills/canvas-sketch/SKILL.md"
     },
     {
       "id": "canvaskit-skia",
@@ -1036,7 +1040,7 @@
       "install": {
         "macos": "pnpm add canvaskit-wasm"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -1071,7 +1075,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "canvaskit-skia-raster"
-      ]
+      ],
+      "skill": "skills/canvaskit-skia/SKILL.md"
     },
     {
       "id": "caption-checker",
@@ -1179,7 +1184,7 @@
           "https://www.npmjs.com/package/ccapture.js"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "ccapture-js-png-tar"
@@ -1200,7 +1205,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/ccapture-js/SKILL.md"
     },
     {
       "id": "chainner",
@@ -1426,7 +1432,7 @@
         "2026-10-29: Skill opportunity: Further research first: an owned multi-view dataset and reconstruction fixture would establish whether a VCR or standalone skill is worthwhile.",
         "2026-11-16: CPU SIFT feature extraction validated on three generated PPM views; no image matching or reconstruction was attempted."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -1475,7 +1481,8 @@
           "https://github.com/colmap/colmap/releases"
         ],
         "version_seen": "4.2.1 (release page; release year not verified)"
-      }
+      },
+      "skill": "skills/colmap/SKILL.md"
     },
     {
       "id": "color-js",
@@ -1901,7 +1908,7 @@
       "install": {
         "macos": "pnpm add deck.gl"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -1936,7 +1943,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "deck-gl-orthographic-scatter"
-      ]
+      ],
+      "skill": "skills/deck-gl/SKILL.md"
     },
     {
       "id": "demucs",
@@ -2131,7 +2139,7 @@
       "install": {
         "macos": "pnpm add @lottiefiles/dotlottie-web"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -2166,7 +2174,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "dotlottie-wasm-seek"
-      ]
+      ],
+      "skill": "skills/dotlottie/SKILL.md"
     },
     {
       "id": "dovi-tool",
@@ -3038,7 +3047,7 @@
           "https://www.npmjs.com/package/@ffmpeg/ffmpeg"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "ffmpeg-wasm-pcm-trim"
@@ -3059,7 +3068,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/ffmpeg-wasm/SKILL.md"
     },
     {
       "id": "fluidsynth",
@@ -3279,7 +3289,7 @@
           "https://github.com/viticci/frames-cli/blob/main/LICENSE"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -3300,7 +3310,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": "2026-11-15",
-      "source": "prospects/inbox/2026-11-15-discovery.md"
+      "source": "prospects/inbox/2026-11-15-discovery.md",
+      "skill": "skills/frames-cli/SKILL.md"
     },
     {
       "id": "freeze",
@@ -3463,7 +3474,7 @@
           "https://formulae.brew.sh/api/formula/gmic.json"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -3481,7 +3492,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/g-mic/SKILL.md"
     },
     {
       "id": "generativepy",
@@ -3644,7 +3656,7 @@
           "https://github.com/ImageOptim/gifski/releases"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -3665,7 +3677,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "gifski-sequence"
-      ]
+      ],
+      "skill": "skills/gifski/SKILL.md"
     },
     {
       "id": "gimp-batch",
@@ -3718,7 +3731,7 @@
           "https://formulae.brew.sh/api/cask/gimp.json"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -3738,6 +3751,7 @@
         "gimp-batch-image-roundtrip"
       ],
       "adapter_maturity": "none",
+      "skill": "skills/gimp-batch/SKILL.md",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
     },
@@ -3772,7 +3786,7 @@
       "install": {
         "macos": "pnpm add gl-react"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -3809,7 +3823,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "gl-react-shader"
-      ]
+      ],
+      "skill": "skills/gl-react/SKILL.md"
     },
     {
       "id": "gl-transitions",
@@ -4090,7 +4105,7 @@
           "https://registry.npmjs.org/@gltf-transform/cli"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -4111,7 +4126,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": "2026-11-15",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/gltf-transform/SKILL.md"
     },
     {
       "id": "gltfjsx",
@@ -4211,7 +4227,7 @@
       "notes": [
         "2026-10-26: Movie Maker mode behaviour on Apple Silicon and with --headless was not tested; only the command-line documentation was consulted."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -4245,7 +4261,8 @@
         ]
       },
       "checked_at": "2026-10-26",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/godot/SKILL.md"
     },
     {
       "id": "graphviz",
@@ -4299,7 +4316,7 @@
           "https://gitlab.com/graphviz/graphviz/-/releases"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -4320,7 +4337,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "graphviz-dot-svg"
-      ]
+      ],
+      "skill": "skills/graphviz/SKILL.md"
     },
     {
       "id": "gstreamer",
@@ -4541,7 +4559,7 @@
           "https://github.com/heygen-com/hyperframes"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -4562,7 +4580,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/hyperframes/SKILL.md"
     },
     {
       "id": "imagemagick",
@@ -4724,7 +4743,7 @@
       "notes": [
         "2026-10-26: Official 1.4 and 1.4.1 platform pages list an arm64 dmg; Homebrew cask currently reports 1.4.4. Startup time per invocation is not measured; use --shell or actions for batches."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -4744,6 +4763,7 @@
         "inkscape-svg-export"
       ],
       "adapter_maturity": "none",
+      "skill": "skills/inkscape/SKILL.md",
       "assessment": {
         "date": "2026-10-26",
         "assessed_by": "assess-a7",
@@ -4808,7 +4828,7 @@
           "https://registry.npmjs.org/jimp"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "jimp-invert"
@@ -4829,7 +4849,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/jimp/SKILL.md"
     },
     {
       "id": "kokoro-onnx",
@@ -4940,7 +4961,7 @@
           "https://registry.npmjs.org/konva"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -5405,7 +5426,7 @@
           "https://www.npmjs.com/package/lottie-web"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -5424,7 +5445,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/lottie-web/SKILL.md"
     },
     {
       "id": "lv2",
@@ -5442,7 +5464,7 @@
         "2026-10-29: A plugin standard is not an audio-processing executable; host and plugin support is a separate fact.",
         "2026-11-16: A locally authored mono gain plugin was discovered and run with Lilv 0.28.0 on LV2 headers/spec 1.18.10. This is a bounded Lilv host pairing, not evidence for other hosts or user plugins."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -5489,7 +5511,8 @@
           "https://github.com/lv2/lv2"
         ],
         "version_seen": "1.18.10 (project download page)"
-      }
+      },
+      "skill": "skills/lv2/SKILL.md"
     },
     {
       "id": "magenta-studio",
@@ -5583,7 +5606,7 @@
       "notes": [
         "2026-10-26: Install needs Cairo, Pango and ffmpeg via Homebrew, plus a TeX distribution for MathTex; not verified whether uv alone suffices on macOS arm64."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "manim-cairo-square"
@@ -5617,7 +5640,8 @@
         ]
       },
       "checked_at": "2026-10-26",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/manim-community/SKILL.md"
     },
     {
       "id": "mannequin-js",
@@ -5907,7 +5931,7 @@
           "https://www.npmjs.com/package/mediabunny"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "mediabunny-wav"
@@ -5928,7 +5952,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/mediabunny/SKILL.md"
     },
     {
       "id": "mediabunny-server-extension",
@@ -5978,7 +6003,7 @@
           "https://www.npmjs.com/package/@mediabunny/server"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "mediabunny-server-aac"
@@ -5999,7 +6024,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/mediabunny-server-extension/SKILL.md"
     },
     {
       "id": "mediainfo",
@@ -6017,7 +6043,7 @@
         "2026-10-29: The MediaInfo repository lists more than one licence file; verify components and distribution terms for the chosen build.",
         "2026-10-29: Skill opportunity: existing FFmpeg guidance may cover the job; compare reports on a fixture before adding a VCR skill."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6064,7 +6090,8 @@
           "https://github.com/MediaArea/MediaInfo",
           "https://github.com/MediaArea/MediaInfo/blob/master/LICENSE"
         ]
-      }
+      },
+      "skill": "skills/mediainfo/SKILL.md"
     },
     {
       "id": "mediapipe",
@@ -6083,7 +6110,7 @@
         "2026-10-29: Skill opportunity: further research first; a standalone landmark extraction workflow needs a pinned task, model and fixture.",
         "2026-11-16: One Python Image Segmenter CPU route validated with a generated silhouette and an Apache-2.0 model; landmark extraction remains untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6133,7 +6160,8 @@
         ],
         "version_seen": "1.2.0 (PyPI)",
         "last_release": "2026-10-27"
-      }
+      },
+      "skill": "skills/mediapipe/SKILL.md"
     },
     {
       "id": "mediarecorder",
@@ -6241,7 +6269,7 @@
           "https://www.npmjs.com/package/@mermaid-js/mermaid-cli"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6262,7 +6290,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "mermaid-cli-svg"
-      ]
+      ],
+      "skill": "skills/mermaid-cli/SKILL.md"
     },
     {
       "id": "mermaid-rs-renderer",
@@ -6339,7 +6368,7 @@
         "2026-10-29: Simplification and compression can change geometry or require decoder support; validate the exact target.",
         "2026-10-29: Skill opportunity: existing glTF Transform guidance may be enough; test a representative mesh and fidelity before creating a standalone skill."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6386,7 +6415,8 @@
           "https://github.com/zeux/meshoptimizer/releases"
         ],
         "version_seen": "v1.3 (release page; date year unverified)"
-      }
+      },
+      "skill": "skills/meshoptimizer/SKILL.md"
     },
     {
       "id": "meyda",
@@ -6404,7 +6434,7 @@
         "2026-10-29: Feature extraction is not beat tracking or proof of deterministic capture; verify any specific workflow.",
         "2026-10-29: Skill opportunity: further research first; test a seekable audio-reactive scene before proposing a VCR guide."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6451,7 +6481,8 @@
           "https://meyda.js.org/",
           "https://github.com/meyda/meyda"
         ]
-      }
+      },
+      "skill": "skills/meyda/SKILL.md"
     },
     {
       "id": "mido",
@@ -6469,7 +6500,7 @@
         "2026-10-29: Port backends and devices are separately required; reading a MIDI file does not render its sound.",
         "2026-10-29: Skill opportunity: possible standalone MIDI manipulation skill after a reproducible round-trip fixture and an existing-skill check."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6519,7 +6550,8 @@
         ],
         "version_seen": "1.3.3 (PyPI); stable documentation 1.3.2",
         "last_release": "2024-10-25"
-      }
+      },
+      "skill": "skills/mido/SKILL.md"
     },
     {
       "id": "mlt-melt",
@@ -6569,7 +6601,7 @@
           "https://github.com/mltframework/mlt"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6590,7 +6622,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": "2026-11-16",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/mlt-melt/SKILL.md"
     },
     {
       "id": "mo-js",
@@ -6776,7 +6809,7 @@
           "https://www.npmjs.com/package/@motion-canvas/core"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6797,7 +6830,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/motion-canvas/SKILL.md"
     },
     {
       "id": "mpfb",
@@ -6907,7 +6941,7 @@
           "https://github.com/Chlumsky/msdfgen"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6925,7 +6959,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/msdfgen/SKILL.md"
     },
     {
       "id": "music21",
@@ -6943,7 +6978,7 @@
         "2026-10-29: The project identifies separate copyright and licence terms for the corpus and external materials.",
         "2026-10-29: Skill opportunity: possible standalone composition-analysis skill after a rights-clear score fixture and existing-skill review."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -6993,7 +7028,8 @@
         ],
         "version_seen": "10.5.2 (PyPI)",
         "last_release": "2026-10-28"
-      }
+      },
+      "skill": "skills/music21/SKILL.md"
     },
     {
       "id": "natron",
@@ -7402,7 +7438,7 @@
           "https://formulae.brew.sh/api/formula/opencolorio.json"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7423,7 +7459,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "opencolorio-matrix"
-      ]
+      ],
+      "skill": "skills/opencolorio/SKILL.md"
     },
     {
       "id": "opencv-js",
@@ -7458,7 +7495,7 @@
         "macos": "pnpm add @techstark/opencv-js",
         "check_command": "pnpm list @techstark/opencv-js"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7495,7 +7532,8 @@
         "2026-10-26: official_url is the OpenCV docs hub; the JS build is a third-party package (TechStark). Subset of OpenCV exposed; check needed functions before relying on them."
       ],
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/opencv-js/SKILL.md"
     },
     {
       "id": "openimageio-oiiotool",
@@ -7550,7 +7588,7 @@
           "https://formulae.brew.sh/api/formula/openimageio.json"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "oiiotool-ppm-mulc"
@@ -7571,7 +7609,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/openimageio-oiiotool/SKILL.md"
     },
     {
       "id": "opentimelineio",
@@ -7590,7 +7629,7 @@
         "2026-10-29: Existing vocabulary lacks editorial timeline interchange; media-inspection reflects its inspection tools, not rendering or animation. Optional format adapters need separate assessment.",
         "2026-10-29: Skill opportunity: possible standalone editorial interchange skill; first run a scoped timeline round-trip fixture and check existing skills and ownership."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7644,7 +7683,8 @@
           "https://github.com/AcademySoftwareFoundation/OpenTimelineIO/releases",
           "https://github.com/AcademySoftwareFoundation/OpenTimelineIO/blob/main/LICENSE.txt"
         ]
-      }
+      },
+      "skill": "skills/opentimelineio/SKILL.md"
     },
     {
       "id": "opentype-js",
@@ -7701,7 +7741,7 @@
           "https://github.com/opentypejs/opentype.js"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -7719,7 +7759,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/opentype-js/SKILL.md"
     },
     {
       "id": "openusd",
@@ -8162,7 +8203,7 @@
           "https://registry.npmjs.org/pixi.js"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -8220,7 +8261,7 @@
       "install": {
         "macos": "pnpm add pixi-filters"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -8257,7 +8298,8 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/pixijs-filters/SKILL.md"
     },
     {
       "id": "playcanvas-engine",
@@ -8652,7 +8694,7 @@
           "https://potrace.sourceforge.net/"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -8673,7 +8715,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/potrace/SKILL.md"
     },
     {
       "id": "pov-ray",
@@ -8712,7 +8755,7 @@
       "notes": [
         "2026-10-26: GitHub releases show 3.7.0.10 (8 Jul 2021) and 3.8.0-beta.2 (Aug 2021); repo pushed 2026-10-07 but the substance of recent commits was not inspected. The Homebrew formula is bottled; arm64 bottle not checked. povray.org returned 403."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "pov-ray-sphere"
@@ -8732,6 +8775,7 @@
         ]
       },
       "adapter_maturity": "none",
+      "skill": "skills/pov-ray/SKILL.md",
       "assessment": {
         "date": "2026-10-26",
         "assessed_by": "assess-a7",
@@ -9030,7 +9074,7 @@
           "https://pypi.org/project/scenedetect/"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -9051,7 +9095,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/pyscenedetect/SKILL.md"
     },
     {
       "id": "raea",
@@ -9155,7 +9200,7 @@
           "https://registry.npmjs.org/@dimforge/rapier3d-compat"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -9176,7 +9221,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/rapier/SKILL.md"
     },
     {
       "id": "rawtherapee-cli",
@@ -9228,7 +9274,7 @@
           "https://formulae.brew.sh/api/cask/rawtherapee.json"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -9249,7 +9295,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": "2026-11-16",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/rawtherapee-cli/SKILL.md"
     },
     {
       "id": "react-spring",
@@ -9302,7 +9349,7 @@
           "https://www.npmjs.com/package/@react-spring/web"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "partial",
@@ -9323,7 +9370,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "react-spring-capture"
-      ]
+      ],
+      "skill": "skills/react-spring/SKILL.md"
     },
     {
       "id": "react-three-fiber",
@@ -9970,7 +10018,7 @@
           "https://www.npmjs.com/package/@rive-app/canvas"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -9991,7 +10039,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": "2026-11-16",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/rive-web/SKILL.md"
     },
     {
       "id": "rough-js",
@@ -10174,7 +10223,7 @@
           "https://www.npmjs.com/package/satori"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -10192,7 +10241,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/satori/SKILL.md"
     },
     {
       "id": "segment-anything",
@@ -10298,7 +10348,7 @@
           "https://registry.npmjs.org/sharp"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "sharp-composite"
@@ -10646,7 +10696,7 @@
           "https://registry.npmjs.org/ssam"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "ssam-static-canvas"
@@ -10667,7 +10717,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/ssam/SKILL.md"
     },
     {
       "id": "supercollider",
@@ -10974,7 +11025,7 @@
           "https://www.npmjs.com/package/svgo"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -10998,7 +11049,8 @@
       ],
       "notes": [
         "2026-11-15: Official preset-default docs (https://svgo.dev/docs/preset-default/) list cleanupIds but not removeViewBox; the viewBox caveat in the older card wording did not apply to this SVGO 4.0.1 fixture."
-      ]
+      ],
+      "skill": "skills/svgo/SKILL.md"
     },
     {
       "id": "svt-av1",
@@ -11153,7 +11205,7 @@
       "notes": [
         "2026-11-16: Homebrew formula 1.5.5_4 installs the standalone Synfig CLI on macOS arm64. One static SIF-to-PNG render passed; a missing optional mod_jpeg module warning appeared, but the PNG target worked. This does not validate Studio GUI, animation ranges or video output."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -11187,7 +11239,8 @@
         ]
       },
       "checked_at": "2026-11-16",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/synfig/SKILL.md"
     },
     {
       "id": "theatre-js",
@@ -11239,7 +11292,7 @@
           "https://www.npmjs.com/package/@theatre/core"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -11260,7 +11313,8 @@
       ],
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/theatre-js/SKILL.md"
     },
     {
       "id": "thorvg",
@@ -11512,7 +11566,7 @@
         "effects"
       ],
       "license": "MIT (part of three)",
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -11549,7 +11603,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "three-js-shading-language-node"
-      ]
+      ],
+      "skill": "skills/three-js-shading-language/SKILL.md"
     },
     {
       "id": "three-meshline",
@@ -11728,7 +11783,7 @@
           "https://registry.npmjs.org/tone"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -11749,7 +11804,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "tone-js-offline"
-      ]
+      ],
+      "skill": "skills/tone-js/SKILL.md"
     },
     {
       "id": "trimesh",
@@ -11838,7 +11894,7 @@
         "macos": "pnpm add troika-three-text",
         "check_command": "pnpm list troika-three-text"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -11876,7 +11932,8 @@
         "2026-11-16: Synchronized Text and measured layout in a fixture; GPU backend is headless Chromium ANGLE SwiftShader, not hardware."
       ],
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/troika-three-text/SKILL.md"
     },
     {
       "id": "ttconv",
@@ -12128,7 +12185,7 @@
           "https://registry.npmjs.org/two.js"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -12378,7 +12435,7 @@
           "https://github.com/marcomusy/vedo/blob/master/FONT.LICENSE"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "vedo-vtp-roundtrip"
@@ -12399,7 +12456,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": "2026-11-15",
-      "source": "prospects/inbox/2026-11-15-discovery.md"
+      "source": "prospects/inbox/2026-11-15-discovery.md",
+      "skill": "skills/vedo/SKILL.md"
     },
     {
       "id": "vhs",
@@ -12615,7 +12673,7 @@
       "notes": [
         "2026-10-26: Install on macOS arm64 was not tested; some plugins need compiled wheels."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -12649,7 +12707,8 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "vpype-scale"
-      ]
+      ],
+      "skill": "skills/vpype/SKILL.md"
     },
     {
       "id": "vsketch",
@@ -12691,7 +12750,7 @@
       "notes": [
         "2026-11-16: vsketch 1.2.0 was exercised through its CLI on Python 3.12.13/macOS arm64; see the seeded SVG fixture. Plotter hardware and HPGL output remain unverified."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "validated",
@@ -12722,7 +12781,8 @@
         ]
       },
       "checked_at": "2026-10-26",
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/vsketch/SKILL.md"
     },
     {
       "id": "vtk-js",
@@ -12757,7 +12817,7 @@
         "macos": "pnpm add @kitware/vtk.js",
         "check_command": "pnpm list @kitware/vtk.js"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "examples": [
         "vtk-js-vtp-roundtrip"
@@ -12794,7 +12854,8 @@
         "2026-10-26: headless WebGL capture of volume rendering not tested."
       ],
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/vtk-js/SKILL.md"
     },
     {
       "id": "vtracer",
@@ -12894,7 +12955,7 @@
           "https://unpkg.com/@mdn/browser-compat-data/data.json"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "not-applicable",
       "validation": {
         "status": "validated",
@@ -12963,7 +13024,7 @@
           "https://unpkg.com/@mdn/browser-compat-data/data.json"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "not-applicable",
       "examples": [
         "web-audio-offline"
@@ -12984,7 +13045,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/web-audio/SKILL.md"
     },
     {
       "id": "webcodecs",
@@ -13031,7 +13093,7 @@
           "https://unpkg.com/@mdn/browser-compat-data/data.json"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "not-applicable",
       "examples": [
         "webcodecs-vp8-roundtrip"
@@ -13052,7 +13114,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/webcodecs/SKILL.md"
     },
     {
       "id": "webgl",
@@ -13100,7 +13163,7 @@
           "https://unpkg.com/@mdn/browser-compat-data/data.json"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "not-applicable",
       "examples": [
         "webgl-readpixels"
@@ -13121,7 +13184,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/webgl/SKILL.md"
     },
     {
       "id": "webgpu",
@@ -13167,7 +13231,7 @@
           "https://unpkg.com/@mdn/browser-compat-data/data.json"
         ]
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "not-applicable",
       "examples": [
         "webgpu-map-async"
@@ -13188,7 +13252,8 @@
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "skill": "skills/webgpu/SKILL.md"
     },
     {
       "id": "whisper-cpp",

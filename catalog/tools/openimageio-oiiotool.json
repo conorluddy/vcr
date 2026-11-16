@@ -51,7 +51,7 @@
       "https://formulae.brew.sh/api/formula/openimageio.json"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "oiiotool-ppm-mulc"
@@ -72,5 +72,6 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/openimageio-oiiotool/SKILL.md"
 }

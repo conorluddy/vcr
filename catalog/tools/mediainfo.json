@@ -14,7 +14,7 @@
     "2026-10-29: The MediaInfo repository lists more than one licence file; verify components and distribution terms for the chosen build.",
     "2026-10-29: Skill opportunity: existing FFmpeg guidance may cover the job; compare reports on a fixture before adding a VCR skill."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -61,5 +61,6 @@
       "https://github.com/MediaArea/MediaInfo",
       "https://github.com/MediaArea/MediaInfo/blob/master/LICENSE"
     ]
-  }
+  },
+  "skill": "skills/mediainfo/SKILL.md"
 }

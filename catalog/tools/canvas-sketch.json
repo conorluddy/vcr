@@ -51,7 +51,7 @@
       "https://www.npmjs.com/package/canvas-sketch"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -72,5 +72,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "canvas-sketch-capture"
-  ]
+  ],
+  "skill": "skills/canvas-sketch/SKILL.md"
 }

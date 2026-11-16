@@ -37,7 +37,7 @@
   "notes": [
     "2026-11-16: Homebrew formula 1.5.5_4 installs the standalone Synfig CLI on macOS arm64. One static SIF-to-PNG render passed; a missing optional mod_jpeg module warning appeared, but the PNG target worked. This does not validate Studio GUI, animation ranges or video output."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -71,5 +71,6 @@
     ]
   },
   "checked_at": "2026-11-16",
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/synfig/SKILL.md"
 }

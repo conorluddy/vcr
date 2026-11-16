@@ -51,7 +51,7 @@
       "https://registry.npmjs.org/sharp"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "sharp-composite"

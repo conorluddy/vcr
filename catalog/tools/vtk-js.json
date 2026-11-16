@@ -31,7 +31,7 @@
     "macos": "pnpm add @kitware/vtk.js",
     "check_command": "pnpm list @kitware/vtk.js"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "vtk-js-vtp-roundtrip"
@@ -68,5 +68,6 @@
     "2026-10-26: headless WebGL capture of volume rendering not tested."
   ],
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/vtk-js/SKILL.md"
 }

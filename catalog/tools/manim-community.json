@@ -38,7 +38,7 @@
   "notes": [
     "2026-10-26: Install needs Cairo, Pango and ffmpeg via Homebrew, plus a TeX distribution for MathTex; not verified whether uv alone suffices on macOS arm64."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "manim-cairo-square"
@@ -72,5 +72,6 @@
     ]
   },
   "checked_at": "2026-10-26",
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/manim-community/SKILL.md"
 }
