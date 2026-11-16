@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lottie Web deterministic seek fixture</title>
+  <style>
+    html, body { margin: 0; width: 128px; height: 128px; background: #fff; }
+    #animation { width: 64px; height: 64px; }
+  </style>
+</head>
+<body>
+  <div id="animation"></div>
+  <script src="./node_modules/lottie-web/build/player/lottie.min.js"></script>
+  <script>
+    fetch("./animation.json").then((response) => response.json()).then((animationData) => {
+      const animation = bodymovin.loadAnimation({
+        container: document.getElementById("animation"),
+        renderer: "svg",
+        loop: false,
+        autoplay: false,
+        animationData,
+      });
+      animation.addEventListener("DOMLoaded", () => {
+        window.__scene = {
+          duration: 31 / 30,
+          seek(seconds) { animation.goToAndStop(seconds * 30, true); },
+        };
+      });
+    });
+  </script>
+</body>
+</html>
