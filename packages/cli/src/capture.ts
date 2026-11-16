@@ -77,17 +77,21 @@ export async function runCapture(roots: Roots, options: CaptureCommandOptions): 
   const browser = prepareBrowserRuntime(roots);
   if (!browser.ok) return browser;
   if (!existsSync(options.sceneFile)) return fail("SCENE_NOT_FOUND", `${options.sceneFile} does not exist.`);
-  const report = await captureFrames({
-    sceneFile: resolve(options.sceneFile),
-    width: options.width,
-    height: options.height,
-    fps: options.fps,
-    outputDirectory: join(options.outputDirectory, "frames"),
-    verifyDeterminism: options.verifyDeterminism,
-    ...browser.value,
-  });
-  writeFileSync(join(options.outputDirectory, "report.json"), `${JSON.stringify(report, null, 2)}\n`);
-  return ok(report);
+  try {
+    const report = await captureFrames({
+      sceneFile: resolve(options.sceneFile),
+      width: options.width,
+      height: options.height,
+      fps: options.fps,
+      outputDirectory: join(options.outputDirectory, "frames"),
+      verifyDeterminism: options.verifyDeterminism,
+      ...browser.value,
+    });
+    writeFileSync(join(options.outputDirectory, "report.json"), `${JSON.stringify(report, null, 2)}\n`);
+    return ok(report);
+  } catch (cause) {
+    return fail("CAPTURE_FAILED", cause instanceof Error ? cause.message : String(cause));
+  }
 }
 
 /**
