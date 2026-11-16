@@ -106,3 +106,4 @@ OpenType.js 2.0.0 now parses an original FontTools-generated TrueType glyph with
 - **Rive Web:** the official runtime quickstart links a public `.riv` sample, but its redistribution terms could not be confirmed and no owned neutral asset is available. No fixture asset was retained; the tool remains unvalidated until a permitted input is available.
 - **Synfig:** the Homebrew 1.5.5 CLI renderer is not installed and has 25 direct formula dependencies, including MLT. With the MLT installation already deferred above, no Synfig installation or render was attempted; the tool remains unvalidated.
 - **Aseprite:** no executable or app bundle was present, and Homebrew has no Aseprite cask. No paid purchase or alternate installer was attempted; the tool remains unvalidated.
+- **COLMAP:** Homebrew 4.2.1_5 would install 18 dependencies and upgrade 8 existing formulas, including GCC and Qt. No installation or reconstruction was attempted; the tool remains unvalidated.
