@@ -3136,9 +3136,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "ffmpeg-wasm-pcm-trim"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.12.15",
+            "command": "examples/ffmpeg-wasm-pcm-trim/run.sh",
+            "result": "@ffmpeg/core 0.12.10 / FFmpeg 5.1.4 trimmed generated mono PCM s16le WAV from 8,000 to 4,000 samples (0.5 s) in-browser. All 4,000 output samples exactly matched input indices 2000-5999; repeated run matched. Core package metadata reports GPL-2.0-or-later.",
+            "example": "examples/ffmpeg-wasm-pcm-trim",
+            "scope": "Browser FFmpeg.wasm 5.1.4 ESM single-thread PCM WAV trim; exact 8 kHz sample slice and repeat checked. No video, other codecs, multithreading, or native route."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
@@ -11761,8 +11774,18 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.187.0",
+            "command": "examples/three-js-shading-language-node/run.sh",
+            "result": "Three.js 0.187.0 TSL uv/uniform nodes in MeshBasicNodeMaterial rendered via native WebGPU backend of WebGPURenderer on Chromium 156.0.8078.4, macOS 26.6 arm64 (Node 25.6.1). 32x24 RenderTarget readback matched all UV/sRGB samples within 2 bytes; uniform 0.25/0.5 changed blue as expected. Repeated/shuffled SHA-256 matched per uniform: 66bfe4fdda4b1c2980c31902001492117ef262001e2c869b135d6e7cd1ae43fe and e50240db6a2e6608c6f154b46b56925a2942b824299de6beea4e9b49bd21fbb0. No browser errors or external requests.",
+            "example": "examples/three-js-shading-language-node",
+            "scope": "Three.js 0.187.0 TSL NodeMaterial via native WebGPURenderer WebGPU; 32x24 gradient readback and repeatable uniform updates on Chromium/macOS arm64. No broader TSL/GPU scope."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "notes": [
@@ -11782,7 +11805,10 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "three-js-shading-language-node"
+      ]
     },
     {
       "id": "three-meshline",
@@ -12613,9 +12639,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "vedo-vtp-roundtrip"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "vedo 2026.6.3; VTK 9.7.2; CPython 3.12.13",
+            "command": "examples/vedo-vtp-roundtrip/run.sh",
+            "result": "Two separate Python processes wrote and reloaded VTP; each preserved 4 points, 2 triangles, bounds [0,2,0,3,0,4], connectivity and point coordinates. Geometry SHA-256 e65e2cc8e13535e9c695f1def112a362c4e55077deb05af4f03a7cdec952765f.",
+            "example": "examples/vedo-vtp-roundtrip",
+            "scope": "VTP mesh write/load via Vedo 2026.6.3 and VTK 9.7.2 on macOS arm64; 4 points/2 triangles and bounds preserved; no rendering or other formats/platforms."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": "2026-11-15",

@@ -1,0 +1,12 @@
+{
+  "id": "vedo-vtp-roundtrip",
+  "title": "Vedo VTP mesh round trip",
+  "summary": "Construct and export a triangle mesh with Vedo, reload its VTP file, and verify geometry counts and bounds.",
+  "status": "validated",
+  "tools": ["vedo"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

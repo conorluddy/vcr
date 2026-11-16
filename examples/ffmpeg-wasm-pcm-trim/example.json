@@ -1,0 +1,8 @@
+{
+  "id": "ffmpeg-wasm-pcm-trim",
+  "title": "FFmpeg WASM trims generated PCM audio",
+  "summary": "Uses the browser WASM core to trim a known PCM sample slice and checks exact decoded samples and repeatability.",
+  "status": "validated",
+  "tools": ["ffmpeg-wasm"],
+  "run": "./run.sh"
+}

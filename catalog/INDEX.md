@@ -43,7 +43,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `dotlottie` ✓ — .lottie container plus ThorVG WASM canvas player with frame seeking · asset-playback
 - `drei` ✓ — Helper components for React Three Fiber: controls, loaders, text, environments · 3d-rendering, react-integration, model-loading · guide
 - `fabric-js` ✓ — Canvas object model with selection, serialisation and SVG import/export · 2d-rendering, vector-authoring · guide
-- `ffmpeg-wasm` — FFmpeg compiled to WebAssembly for in-browser transcodes; slower, size-limited · video-encoding, media-inspection, audio
+- `ffmpeg-wasm` ✓ — FFmpeg compiled to WebAssembly for in-browser transcodes; slower, size-limited · video-encoding, media-inspection, audio
 - `frames-cli` — CLI for framing device screenshots and recordings with bezels · image-processing, video-composition, video-encoding
 - `g-mic` ✓ — CLI filter language with ~1000 procedural filters; stylised and generative looks · image-processing, effects
 - `gifski` ✓ — Highest-quality GIF encoder from PNG frames or y4m; palette per frame, AGPL · gif-encoding, image-sequence-processing
@@ -111,14 +111,14 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `svgo` ✓ — SVG optimisation; preserve IDs needed by animation · svg-optimisation
 - `synfig` — synfig CLI renders .sif and .sifz 2D vector animation projects to frames or video · native-authoring, 2d-rendering, timeline-animation, vector-authoring
 - `theatre-js` ✓ — Visual keyframe editor (Studio) with a code runtime; sequence position is settable · timeline-animation, parameter-ui
-- `three-js-shading-language` — Node-based shader authoring in JavaScript that compiles to WGSL or GLSL · shaders, effects
+- `three-js-shading-language` ✓ — Node-based shader authoring in JavaScript that compiles to WGSL or GLSL · shaders, effects
 - `three-meshline` ✓ — Thick camera-facing lines for Three.js; npm three.meshline, pmndrs fork is meshline · 3d-rendering, effects · guide
 - `tone-js` ✓ — Web Audio framework for synths, sequencing and effects; Tone.Offline renders faster than real time · audio
 - `troika-three-text` ✓ — SDF text meshes for Three.js with font loading and Web Worker typesetting · text-rendering, 3d-rendering
 - `tween-js` ✓ — Tiny numeric property interpolator with easing; you call update(time) yourself · tweening · guide
 - `twgl` ✓ — Tiny WebGL helper: programs, buffers, uniforms and framebuffers with less boilerplate · shaders, 2d-rendering · guide
 - `two-js` ✓ — Scene graph for flat 2D drawing with one API across SVG, Canvas and WebGL renderers · 2d-rendering, vector-authoring · guide
-- `vedo` — Scientific 3D visualisation and analysis with VTK and NumPy · 3d-asset-processing, 3d-rendering, scientific-visualisation, model-loading
+- `vedo` ✓ — Scientific 3D visualisation and analysis with VTK and NumPy · 3d-asset-processing, 3d-rendering, scientific-visualisation, model-loading
 - `vpype` ✓ — Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths · plotter-workflow, vector-authoring
 - `vsketch` ✓ — Python sketches and the vsk CLI generate plotter-oriented line art as SVG · plotter-workflow, generative-2d
 - `vtk-js` — Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering · scientific-visualisation, 3d-rendering
