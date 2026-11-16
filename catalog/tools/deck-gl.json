@@ -65,5 +65,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "deck-gl-orthographic-scatter"
-  ]
+  ],
+  "skill": "skills/deck-gl/SKILL.md"
 }

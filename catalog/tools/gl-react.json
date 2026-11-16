@@ -66,5 +66,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "gl-react-shader"
-  ]
+  ],
+  "skill": "skills/gl-react/SKILL.md"
 }
