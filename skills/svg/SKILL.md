@@ -1,11 +1,11 @@
 ---
 name: svg
-description: Static and scripted SVG as a native, dependency-free source format for title cards, logos, diagrams and vector motion in VCR, with the choice between SMIL, GSAP and rasterisation by resvg or the browser. Use when the source should stay editable vector.
+description: Static and scripted SVG as a native, dependency-free source format for title cards, logos, diagrams and vector motion in VCR, with the choice between SMIL, Web Animations API and rasterisation by resvg or the browser. Use when the source should stay editable vector.
 ---
 
 # SVG
 
-The one source format every tool here can read. Static SVG rasterises deterministically with resvg; animated SVG runs through a browser with GSAP.
+The one source format every tool here can read. Static SVG rasterises deterministically with resvg; scripted motion runs through a browser with Web Animations API or Anime.js.
 
 
 `vcr` below means `node <plugin-root>/cli/vcr.mjs`, where the plugin root is two directories above this SKILL.md; inside the VCR repository it is `pnpm vcr`. Run it from the workspace (the directory holding `vcr.json`).
@@ -16,7 +16,7 @@ The one source format every tool here can read. Static SVG rasterises determinis
 
 ## Capability map
 - **Document structure and graphics** — SVG 2 elements, groups, paths, shapes, text, paint, gradients, patterns, clipping, masks, filters and coordinate systems; authoring/reference surface is the SVG specification. Fixture uses a static title-card subset only.
-- **Animation and interaction** — SMIL animation elements and browser scripting/events can animate SVG; this guide uses inline SVG with GSAP for seekable animation. Neither animation route has VCR evidence here; the retained fixture only rasterises one static SVG through resvg.
+- **Animation and interaction** — SMIL elements and browser scripting can animate SVG. Web Animations API and Anime.js can be driven by the VCR scene clock; this guide's retained fixture only rasterises one static SVG through resvg.
 - **Evidence boundary** — the spec describes format capabilities, not VCR support. Validated scope is static SVG rasterisation by resvg; browser rendering and animation remain untested.
 
 ## Install and doctor
@@ -36,7 +36,7 @@ vcr example create native-svg && (cd examples/native-svg && ./run.sh)
 
 ## SMIL versus script
 - SMIL (`<animate>`, `<animateTransform>`) is declarative and plays in browsers, but cannot be seeked reliably from outside and is ignored by resvg. Do not use it for VCR renders.
-- Script: load the SVG inline in a scene page and animate with GSAP (`skills/gsap`). `DrawSVGPlugin` for stroke reveals, `MorphSVGPlugin` for shape morphs, `MotionPathPlugin` to move along a path.
+- Script: load the SVG inline in a scene page and animate with Anime.js (`skills/anime-js`) or paused Web Animations API (`skills/web-animations-api`).
 - Stroke-draw by hand: set `stroke-dasharray` and tween `stroke-dashoffset` from the path length (`path.getTotalLength()`).
 
 ## Rasterisation
@@ -47,7 +47,7 @@ vcr example create native-svg && (cd examples/native-svg && ./run.sh)
 ## Troubleshooting
 - Blurry output: the root has a fixed small `width`/`height` and was scaled up; use `viewBox` and let the rasteriser size it.
 - Missing glyphs in resvg: the font is not installed; convert to paths.
-- An animation plays in the browser but not in capture: it is SMIL or CSS; move it to GSAP.
+- An animation plays in the browser but not in capture: ensure every `Animation` is paused and its `currentTime` is set from the requested scene time.
 
 ## Official docs
 - Overview and element/API references: https://developer.mozilla.org/en-US/docs/Web/SVG

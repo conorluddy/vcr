@@ -1,0 +1,8 @@
+{
+  "id": "hyperframes-static-square",
+  "title": "HyperFrames local static square render",
+  "summary": "Uses the HyperFrames CLI to render a one-second static square composition to PNG frames and verifies dimensions, geometry and repeatability.",
+  "status": "validated",
+  "tools": ["hyperframes"],
+  "run": "./run.sh"
+}

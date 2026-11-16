@@ -11,14 +11,14 @@
     "Interactive mascots and animated UI controls"
   ],
   "avoid_when": [
-    "Source is After Effects: Lottie Web",
+    "Source is Lottie: Lottie Web",
     "Linear exported loops with a tiny player: dotLottie",
-    "Generating animation from code: GSAP, Anime.js or Motion Canvas"
+    "Generating animation from code: Anime.js, Anime.js or Motion Canvas"
   ],
   "pairs_with": [
     "lottie-web",
     "playwright",
-    "gsap"
+    "anime-js"
   ],
   "official_url": "https://rive.app/docs/runtimes/web/web-js",
   "automation_route": "library-or-runtime",
@@ -64,7 +64,9 @@
       }
     ]
   },
-  "examples": ["rive-web-state-machine"],
+  "examples": [
+    "rive-web-state-machine"
+  ],
   "adapter_maturity": "none",
   "checked_at": "2026-11-16",
   "source": "specifications/vcr-prd.md#appendix-a"

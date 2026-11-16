@@ -29,7 +29,7 @@ const PLUGIN_IDENTITY = {
   description: "Agent studio for code-first motion graphics and video: tool catalogue, operating guides, deterministic browser capture and a human review loop.",
   author: { name: "Conor Luddy", url: "https://github.com/conorluddy" },
   repository: "https://github.com/conorluddy/vcr",
-  keywords: ["video", "motion-graphics", "gsap", "three-js", "p5", "ffmpeg", "capture"],
+  keywords: ["video", "motion-graphics", "web-animations-api", "three-js", "p5", "ffmpeg", "capture"],
 };
 
 const PLUGIN_README = `# VCR plugin

@@ -12,14 +12,14 @@
   ],
   "avoid_when": [
     "Extruded 3D letterforms: Three.js TextGeometry with a typeface JSON",
-    "HTML titles over video: GSAP on DOM text is simpler and sharper",
+    "HTML titles over video: Anime.js on DOM text is simpler and sharper",
     "Pre-baked SDF atlases: msdfgen"
   ],
   "pairs_with": [
     "three-js",
     "drei",
     "react-three-fiber",
-    "gsap"
+    "anime-js"
   ],
   "official_url": "https://github.com/protectwise/troika/tree/main/packages/troika-three-text",
   "automation_route": "library-or-runtime",
@@ -48,7 +48,9 @@
       }
     ]
   },
-  "examples": ["troika-three-text-sync"],
+  "examples": [
+    "troika-three-text-sync"
+  ],
   "adapter_maturity": "none",
   "assessment": {
     "date": "2026-10-26",

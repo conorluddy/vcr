@@ -12,7 +12,7 @@
   ],
   "avoid_when": [
     "A handful of 2D bodies with no WASM wanted: Matter.js",
-    "Scripted motion with no collisions: GSAP or Theatre.js",
+    "Scripted motion with no collisions: Anime.js or Theatre.js",
     "Soft bodies and cloth: Rapier does not provide them"
   ],
   "pairs_with": [
@@ -63,7 +63,9 @@
       }
     ]
   },
-  "examples": ["rapier-falling-body"],
+  "examples": [
+    "rapier-falling-body"
+  ],
   "adapter_maturity": "none",
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"

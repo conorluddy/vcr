@@ -7,12 +7,12 @@
   "summary": "Python animation library and CLI. A Scene subclass builds mobjects, text and LaTeX and animates them, and manim renders to MP4, GIF, or PNG frames with transparency, using Cairo or OpenGL. Strength is mathematical and explanatory motion, such as equations, graphs and transforms, as readable code. Needs system libraries and a TeX install for maths text.",
   "use_when": [
     "Equation, graph or geometry explainers with LaTeX typography",
-    "Over GSAP when the content is mathematical and Python-authored",
+    "Over Anime.js when the content is mathematical and Python-authored",
     "Over Blender when 2D explanation matters more than 3D look",
     "Deterministic scripted scenes that render to alpha PNG frames"
   ],
   "avoid_when": [
-    "UI, titles or DOM-style motion: GSAP",
+    "UI, titles or DOM-style motion: Anime.js",
     "Photoreal 3D: Blender",
     "Real-time or interactive output: Three.js or p5.js"
   ],
@@ -40,7 +40,9 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
-  "examples": ["manim-cairo-square"],
+  "examples": [
+    "manim-cairo-square"
+  ],
   "validation": {
     "status": "validated",
     "evidence": [
@@ -63,7 +65,7 @@
     "last_release": "2026-10-08",
     "maintenance": "active",
     "verdict": "keep",
-    "rationale": "v0.22.0 released 2026-10-08, marked latest on GitHub. Python scene API with CLI renders is documented. Distinct from Blender and GSAP for maths-led explainers.",
+    "rationale": "v0.22.0 released 2026-10-08, marked latest on GitHub. Python scene API with CLI renders is documented. Distinct from Blender and browser-oriented Anime.js timelines for maths-led explainers.",
     "sources": [
       "https://github.com/ManimCommunity/manim/releases",
       "https://docs.manim.community/en/stable/"

@@ -50,7 +50,7 @@ describe("assessReadiness", () => {
     expect(assessReadiness("ffmpeg-ffprobe", undefined)).toEqual({ state: "no-machine-record" });
   });
   test("a tool doctor does not probe is not-probed, not missing", () => {
-    expect(assessReadiness("gsap", record)).toMatchObject({ state: "not-probed" });
+    expect(assessReadiness("d3", record)).toMatchObject({ state: "not-probed" });
   });
   test.each([
     ["ffmpeg-ffprobe", "installed"],

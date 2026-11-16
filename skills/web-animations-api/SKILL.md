@@ -12,7 +12,7 @@ Native browser animation with no library: every animation is created paused and 
 ## Use cases and limits
 - Proven: CSS transform keyframes, SVG line drawing via `stroke-dashoffset`, staggered opacity and translate with `delay`, all captured with alpha.
 - Untested here: CSS animations and transitions found through `document.getAnimations()`, `ScrollTimeline` and `ViewTimeline`, `commitStyles`, composite modes, browsers other than Chromium.
-- No timeline object, labels or nesting: you keep the list of animations yourself. For orchestration use `gsap`; for a small library with timelines and SVG helpers use `anime-js`.
+- No timeline object, labels or nesting: you keep the list of animations yourself. For orchestration use `anime-js`; for a small library with timelines and SVG helpers use `anime-js`.
 
 ## Capability map
 - **Create and control** — `Element.animate()` returns an `Animation`; `pause()`, `play()`, `cancel()`, `finish()`, `currentTime`, `playbackRate`, `effect` and `finished` provide control/status. Fixture uses animate, pause, effect timing and currentTime; remaining controls are untested.

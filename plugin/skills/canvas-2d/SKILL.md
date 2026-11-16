@@ -12,7 +12,7 @@ Immediate-mode drawing with no library: `seek(t)` clears the canvas and redraws 
 ## Use cases and limits
 - Proven: linear gradients fading to transparent, arcs, filled and stroked paths, many small seeded shapes, text in a loaded font, all captured with alpha.
 - Untested here: `drawImage` and images, `getImageData` and pixel access, `globalCompositeOperation` modes, filters, `OffscreenCanvas`, `devicePixelRatio` above 1, system fonts.
-- No scene graph or easing: you write the maths. For generative sketches with helpers use `p5-js`; for DOM or SVG elements use `gsap` or `web-animations-api`.
+- No scene graph or easing: you write the maths. For generative sketches with helpers use `p5-js`; for DOM or SVG elements use `anime-js` or `web-animations-api`.
 
 ## Capability map
 - `HTMLCanvasElement` creates the surface; `getContext("2d")` exposes `CanvasRenderingContext2D`. Major documented areas include paths and shapes, text, images, gradients/patterns, compositing, transforms, and pixel access (`ImageData`) ([MDN Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API), [2D context](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)). `OffscreenCanvas` is a separate worker-capable surface.

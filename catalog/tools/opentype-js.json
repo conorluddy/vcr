@@ -12,13 +12,13 @@
   ],
   "avoid_when": [
     "Complex scripts needing full shaping (Arabic, Indic): HarfBuzz-based tooling",
-    "Text in a normal browser scene: use CSS fonts and GSAP SplitText",
+    "Text in a normal browser scene: use CSS fonts and Anime.js SplitText",
     "Whole HTML-like layouts to SVG: Satori"
   ],
   "pairs_with": [
     "svg",
     "resvg",
-    "gsap",
+    "anime-js",
     "satori",
     "msdfgen"
   ],
@@ -33,7 +33,9 @@
   "install": {
     "macos": "pnpm add opentype.js"
   },
-  "examples": ["opentype-js-generated"],
+  "examples": [
+    "opentype-js-generated"
+  ],
   "notes": [
     "2026-10-26: shaping support is basic (kerning and ligature tables); complex-script behaviour and variable-font claims in 2.0.0 not verified from source."
   ],
@@ -55,15 +57,17 @@
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
-    "evidence": [{
-      "date": "2026-11-16",
-      "hostname": "Conors-MacBook-Pro-2.local",
-      "version": "2.0.0",
-      "command": "examples/opentype-js-generated/run.sh",
-      "result": "Parsed an original one-glyph TTF and matched family, units per em, glyph index, advance width, and outline commands across repeat runs.",
-      "example": "examples/opentype-js-generated",
-      "scope": "OpenType.js 2.0.0 on Node 25.6.1/macOS 26.6 arm64: parse a FontTools-generated TTF and read one glyph outline; no shaping, variable fonts, WOFF or complex scripts."
-    }]
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "2.0.0",
+        "command": "examples/opentype-js-generated/run.sh",
+        "result": "Parsed an original one-glyph TTF and matched family, units per em, glyph index, advance width, and outline commands across repeat runs.",
+        "example": "examples/opentype-js-generated",
+        "scope": "OpenType.js 2.0.0 on Node 25.6.1/macOS 26.6 arm64: parse a FontTools-generated TTF and read one glyph outline; no shaping, variable fonts, WOFF or complex scripts."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,

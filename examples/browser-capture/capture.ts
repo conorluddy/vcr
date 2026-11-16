@@ -1,4 +1,4 @@
-// Exercise the shared capture harness with a paused GSAP scene at HD and 4K.
+// Exercise the shared capture harness with paused Web Animations API tracks at HD and 4K.
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";

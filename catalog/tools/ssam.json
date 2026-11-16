@@ -15,7 +15,7 @@
     "p5.js sketches: p5-js with an external capture harness",
     "Frame-exact capture driven from outside: Playwright seeking, not in-page recording",
     "Mature, large community and docs: canvas-sketch or p5.js",
-    "Non-canvas DOM or SVG motion: GSAP"
+    "Non-canvas DOM or SVG motion: Anime.js"
   ],
   "pairs_with": [
     "three-js",
@@ -53,7 +53,9 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
-  "examples": ["ssam-static-canvas"],
+  "examples": [
+    "ssam-static-canvas"
+  ],
   "validation": {
     "status": "validated",
     "evidence": [

@@ -4,7 +4,7 @@
   "category": "A5. Video and capture",
   "tier": "catalogued",
   "role": "Headless browser automation; the capture route for every browser-rendered toolkit",
-  "summary": "Browser automation library for Chromium, Firefox and WebKit. In VCR it drives headless Chromium through the shared @vcr/capture harness: seek a paused timeline, settle two animation frames, then capture each frame as PNG, including alpha, with page.screenshot (validated in p5-capture and three-capture). HeadlessExperimental beginFrame is an experimental, DOM-only alternative. Distinguishing strength: one capture path for any DOM, SVG, canvas or WebGL scene, with order-independent frames (a GSAP timeline matched under beginFrame; canvas and WebGL under screenshot).",
+  "summary": "Browser automation library for Chromium, Firefox and WebKit. In VCR it drives headless Chromium through the shared @vcr/capture harness: seek a paused timeline, settle two animation frames, then capture each frame as PNG, including alpha, with page.screenshot (validated in p5-capture and three-capture). HeadlessExperimental beginFrame is an experimental, DOM-only alternative. Distinguishing strength: one capture path for any DOM, SVG, canvas or WebGL scene, with order-independent frames (a Anime.js timeline matched under beginFrame; canvas and WebGL under screenshot).",
   "use_when": [
     "Frame capture: vcr capture <scene.html> --width W --height H --fps F --verify (first run: vcr setup capture --yes)",
     "Capturing any browser-rendered scene frame by frame, DOM, SVG, canvas or WebGL",
@@ -19,7 +19,7 @@
   ],
   "pairs_with": [
     "ffmpeg-ffprobe",
-    "gsap",
+    "anime-js",
     "three-js",
     "p5-js",
     "gifski"

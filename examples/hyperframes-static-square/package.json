@@ -1,0 +1,9 @@
+{
+  "name": "hyperframes-static-square-fixture",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "hyperframes": "0.9.33",
+    "pngjs": "7.0.0"
+  }
+}

@@ -3,15 +3,15 @@
   "name": "Anime.js",
   "category": "A2. Animation and authored assets",
   "tier": "catalogued",
-  "role": "Light DOM/SVG/object tweening with seekable timelines; GSAP's closest neighbour",
-  "summary": "Small JavaScript animation engine (v4, modular ESM) that animates CSS properties, SVG attributes and plain JS objects. createTimeline with autoplay off exposes seek, so a harness can drive it frame by frame like a GSAP timeline. Includes stagger, SVG path drawing and morphing helpers, springs and scroll observers. Outputs nothing itself; a capture tool records the page.",
+  "role": "DOM/SVG/object tweening with seekable timelines",
+  "summary": "Small JavaScript animation engine (v4, modular ESM) that animates CSS properties, SVG attributes and plain JS objects. createTimeline with autoplay off exposes seek, so a harness can drive it frame by frame. Includes stagger, SVG path drawing and morphing helpers, springs and scroll observers. Outputs nothing itself; a capture tool records the page.",
   "use_when": [
-    "Light DOM/SVG motion where GSAP's plugin set and size are not needed",
+    "Light DOM/SVG motion with a composable timeline and no field-restricted licence",
     "SVG line drawing and stagger effects with a small dependency",
     "Animating plain JS object values that then feed a canvas draw call"
   ],
   "avoid_when": [
-    "Complex nested timelines with labels and plugins: GSAP",
+    "Native DOM motion with no dependency: Web Animations API",
     "Spring-first React UI motion: Motion or React Spring",
     "v3 snippets: v4 API differs (createTimeline, animate); check installed major"
   ],
@@ -42,7 +42,7 @@
     "last_release": "2026-06-22",
     "maintenance": "active",
     "verdict": "keep",
-    "rationale": "Active: v4.5.0 released 2026-06-22, MIT, npm modified 2026-08. Direct GSAP neighbour with seekable timelines; useful lighter alternative, GSAP stays the core clock.",
+    "rationale": "Active: v4.5.0 released 2026-06-22, MIT, npm modified 2026-08. Provides a seekable timeline for DOM, SVG and object properties without a restricted-use licence.",
     "sources": [
       "https://animejs.com/documentation",
       "https://github.com/juliangarnier/anime/releases",

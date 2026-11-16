@@ -138,7 +138,7 @@ vcr rules info TYPO-HOLD
 Tier 3: runnable examples that demonstrate the tool
 
 ```sh
-vcr tools examples gsap
+vcr tools examples web-animations-api
 ```
 
 ## `vcr example create <id>`
@@ -146,7 +146,7 @@ vcr tools examples gsap
 Copy an example's sources into <workspace>/examples/<id> and print next steps
 
 ```sh
-vcr example create gsap-title-card
+vcr example create waapi-capture
 ```
 
 ## `vcr findings list <project>/<video> [--status state] [--render id] [--limit n] [--offset n]`

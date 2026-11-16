@@ -12,14 +12,14 @@
     "Image or text overlays with filters on a canvas"
   ],
   "avoid_when": [
-    "Deterministic frame-by-frame motion graphics: GSAP on SVG or p5.js",
+    "Deterministic frame-by-frame motion graphics: Anime.js on SVG or p5.js",
     "GPU-heavy sprite scenes: PixiJS",
     "Pure vector geometry and boolean path ops: Paper.js",
     "Lightweight interactive scene graph with React bindings: Konva"
   ],
   "pairs_with": [
     "svg",
-    "gsap",
+    "anime-js",
     "playwright"
   ],
   "official_url": "https://fabricjs.com/",

@@ -11,9 +11,9 @@
     "Frame-range renders of a 2D project to PNG with alpha"
   ],
   "avoid_when": [
-    "Code-authored 2D motion: GSAP or Manim",
+    "Code-authored 2D motion: Anime.js or Manim",
     "3D or lighting: Blender",
-    "Need a code-authored vector scene: SVG, GSAP or Motion Canvas"
+    "Need a code-authored vector scene: SVG, Anime.js or Motion Canvas"
   ],
   "pairs_with": [
     "inkscape",
@@ -53,7 +53,9 @@
       }
     ]
   },
-  "examples": ["synfig-static-render"],
+  "examples": [
+    "synfig-static-render"
+  ],
   "adapter_maturity": "none",
   "assessment": {
     "date": "2026-10-26",

@@ -13,7 +13,7 @@
   "avoid_when": [
     "Anything new on Apple Silicon: Blender's compositor or OpenImageIO",
     "Single-pass layer ops: ImageMagick or libvips",
-    "You need current OpenFX and plugin support: Nuke or After Effects"
+    "A current OpenFX ecosystem: verify plugin host licence and availability"
   ],
   "pairs_with": [
     "blender",

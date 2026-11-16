@@ -8,7 +8,7 @@ Status: Active specification. Layer 0 is complete; see "Amendments and progress"
 
 Recorded here so the body of the PRD stays the original intent. Each amendment points at its evidence.
 
-- **ADR 0001**: the composition engine (Layers 2 to 4) is built in-house. HyperFrames and Remotion are catalogued references, not dependencies. `specifications/decisions/0001-in-house-composition-engine.md`.
+- **ADR 0001**: the composition engine (Layers 2 to 4) is built in-house. HyperFrames remains a free-software reference, not a dependency; Remotion was retired by ADR 0009. `specifications/decisions/0001-in-house-composition-engine.md`.
 - **ADR 0002**: headless first. Visual surfaces are generated and read-only; no editor. `specifications/decisions/0002-headless-first-no-editor.md`.
 - **Manifests are JSON**, not YAML (`project.json`, `video.json`, `assets/manifest.json`), validated by JSON Schema with unknown-field diagnostics per §8.
 - **Catalogue structure**: one record per tool under `catalog/tools/`, a `tier` (core, catalogued, candidate), a four-tier progressive-disclosure tree (index line, card, operating guide, example) with byte budgets enforced by `vcr validate`. `catalog/tools.json` and `catalog/INDEX.md` are generated. Two Appendix A rows that were documentation links (FFmpeg filters, Blender CLI arguments) are folded into their parent records.
@@ -16,7 +16,8 @@ Recorded here so the body of the PRD stays the original intent. Each amendment p
 - **Browser-capture spike** (`specifications/spikes/browser-capture.md`): frame-by-frame capture of a paused timeline is deterministic in any frame order for DOM, 2D canvas and WebGL. `HeadlessExperimental.beginFrame` hangs on canvases, so `packages/capture` defaults to a settle-then-screenshot path. Go for Layer 2.
 - **Proof of concept removed**: the §18 proving piece (a product launch video) was rendered without a timeline engine, then deleted as a proof of concept. Its lessons (hand-placed `tpad` offsets, no briefing or review workflow) are in git history at `a39043a`.
 - **ADR 0003 and the plugin PRD**: VCR ships as a plugin for Claude Code and Codex (bundled CLI, harness / workspace / machine roots, no MCP in v1) with a human review layer that writes only findings and approvals, and clears regenerable output. Refines §7 (distribution) and §13 (skills), and pulls an early slice of Layer 6 forward. `specifications/decisions/0003-plugin-distribution-and-three-roots.md`, `specifications/vcr-plugin-prd.md`.
-- **Progress against §17**: M0 complete. M1 largely complete: doctor exists, three tool families (SVG/GSAP, p5.js, Three.js) plus FFmpeg and Blender render fixtures, skills exist for all six core tools. The on-demand setup command shipped as `vcr setup capture`, and the first workflow skills (`start`, `init`) with the plugin (plugin PRD P1). M2 onward not started.
+- **ADR 0009**: the routable catalogue is limited to free/libre software. Proprietary, source-available, field-restricted and paid-service records are retired; historical technique citations may remain. `specifications/decisions/0009-free-software-catalogue.md` supersedes ADR 0005's broader eligibility rule.
+- **Progress against §17**: M0 complete. M1 largely complete: doctor exists, three tool families (SVG/Web Animations API, p5.js, Three.js) plus FFmpeg and Blender render fixtures, skills exist for all current core tools. The on-demand setup command shipped as `vcr setup capture`, and the first workflow skills (`start`, `init`) with the plugin (plugin PRD P1). M2 onward not started.
 
 ## 1. Product definition
 
@@ -52,7 +53,7 @@ Key jobs:
 
 ### Goals
 
-- Comprehensive discovery across JS/TS libraries and tools with useful CLI or scripting interfaces.
+- Comprehensive discovery across free/libre JS/TS libraries and tools with useful CLI or scripting interfaces.
 - Useful first release before a universal timeline exists.
 - Progressive disclosure of skills, examples and reference projects.
 - Explicit, repeatable time and rendering behaviour.
@@ -63,7 +64,7 @@ Key jobs:
 
 ### Non-goals for initial releases
 
-- Replacing Blender, After Effects or other native authoring applications.
+- Replacing Blender or other native authoring applications.
 - A full graphical nonlinear editor.
 - Universal translation between native scene formats.
 - Shared 3D depth, lighting or geometry across unrelated renderers.
@@ -101,7 +102,7 @@ Requirements:
 - L0-05: Unvalidated tools remain discoverable but are clearly labelled.
 - L0-06: Toolkit-specific rendering commands remain supported without the shared timeline.
 
-Acceptance: search tools for SVG animation, 3D product shots or video assembly; inspect missing dependencies; scaffold and render verified examples from at least three distinct tool families. All Appendix A resources are catalogued; initial operational targets are SVG/GSAP, p5.js, Three.js and FFmpeg, with Blender as the first native application spike.
+Acceptance: search tools for SVG animation, 3D product shots or video assembly; inspect missing dependencies; scaffold and render verified examples from at least three distinct tool families. All Appendix A resources are catalogued; initial operational targets are SVG/Anime.js, p5.js, Three.js and FFmpeg, with Blender as the first native application spike.
 
 ### Layer 1 — Project workspace
 
@@ -478,7 +479,6 @@ These are official project/documentation links or original repositories previous
 
 | Resource | Role and planning note | Canonical starting point |
 | --- | --- | --- |
-| GSAP | Timelines and animation; external-clock integration | https://gsap.com/docs/v3/ |
 | Anime.js | DOM/SVG/object animation; verify installed major API | https://animejs.com/documentation |
 | Motion | React/JS motion and layout animation | https://motion.dev/docs |
 | React Spring | Spring animation; evaluate offline sampling | https://www.react-spring.dev/ |
@@ -526,7 +526,6 @@ These are official project/documentation links or original repositories previous
 
 | Resource | Role and planning note | Canonical starting point |
 | --- | --- | --- |
-| Remotion | React video composition/export; check applicable license | https://www.remotion.dev/docs |
 | Diffusion Studio Core | Browser compositing engine | https://github.com/diffusionstudio/core |
 | Editly | Declarative Node/CLI editing | https://github.com/mifi/editly |
 | Mediabunny | TS media I/O and conversion | https://mediabunny.dev/guide/introduction |
@@ -564,10 +563,7 @@ These are official project/documentation links or original repositories previous
 | Synfig | Native animation project + CLI render | https://wiki.synfig.org/Render_options |
 | Natron | Background renderer + Python; verify current build/API | https://natron.readthedocs.io/en/v2.3.15/devel/natronexecution.html |
 | POV-Ray | Text scene/INI + CLI; procedural ray tracing | https://www.povray.org/documentation/ |
-| Houdini | hython/hbatch; commercial procedural/simulation workflows | https://www.sidefx.com/docs/houdini/render/batch.html |
-| After Effects | Application scripting + aerender; render existing projects/templates | https://helpx.adobe.com/after-effects/desktop/render-and-export/automate-rendering/automated-rendering-network-rendering.html |
 | Godot | Scene scripts + movie CLI; visual rendering needs suitable backend | https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html |
-| Aseprite | Batch CLI + scripts; pixel animation and sheets | https://www.aseprite.org/docs/cli/ |
 | vsketch | Python + vsk CLI; plotter-oriented generative vectors | https://vsketch.readthedocs.io/ |
 | vpype | CLI vector pipelines | https://vpype.readthedocs.io/ |
 
@@ -613,7 +609,6 @@ These are discovery candidates or context tools, not baseline commitments. Some 
 | maath | Graphics math helpers | https://github.com/pmndrs/maath |
 | react-three/gpu-pathtracer | Path-traced output candidate | https://github.com/pmndrs/react-three-gpu-pathtracer |
 | SVGator | Visual authoring reference; no CLI commitment | https://www.svgator.com/ |
-| Shotstack | Remote rendering service candidate; optional API route | https://shotstack.io/ |
 | VPython | Python educational 3D; assess export route | https://vpython.org/ |
 | Hyperframes | Existing workflow/inspiration; assess interoperability separately | https://hyperframes.heygen.com/catalog |
 | Dear ImGui | Native UI infrastructure; outside primary scope | https://github.com/ocornut/imgui |
@@ -628,7 +623,7 @@ Native browser primitives also belong in capability guidance: Canvas 2D, SVG, We
 - [ ] All Appendix A entries exist with role and honest validation status.
 - [ ] Root instructions use progressive disclosure.
 - [ ] Selected toolkit skills contain install, doctor, smoke test and recovery guidance.
-- [ ] SVG/GSAP, p5.js and Three.js produce known outputs.
+- [ ] SVG/Anime.js, p5.js and Three.js produce known outputs.
 - [ ] FFmpeg assembles an example sequence and inspects the result.
 - [ ] Blender automation spike records environment and limitations.
 - [ ] In-repo and standalone project scaffolds use the same project schema.

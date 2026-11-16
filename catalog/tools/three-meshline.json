@@ -11,7 +11,7 @@
     "Stylised trails and orbit lines in a Three.js scene"
   ],
   "avoid_when": [
-    "Flat 2D stroke animation: SVG with GSAP or Paper.js",
+    "Flat 2D stroke animation: SVG with Anime.js or Paper.js",
     "Screen-space lines without a separate package: Line2 in Three.js examples/jsm",
     "Text or glyph outlines: troika-three-text"
   ],

@@ -3,7 +3,7 @@ import { dirname, join, resolve } from "node:path";
 import { compareToEvidence, versionScope, type EvidenceRef } from "./evidence.js";
 import { readJsonFile } from "./repository.js";
 
-// Libraries installed per project (pnpm add gsap) are not machine tools, so `vcr doctor` never
+// Libraries installed per project (pnpm add d3) are not machine tools, so `vcr doctor` never
 // probes them. Their readiness is a property of the current project: can it resolve the package,
 // and at which version? Lookup follows Node: from the current directory up through parents, but
 // never above the VCR workspace root (or, with no workspace, above the nearest package.json). Read-only.
@@ -79,7 +79,7 @@ function searchDirectories(start: string, stop: string | undefined): string[] {
   return directories;
 }
 
-/** "gsap@3.15.0" → "gsap", "@scope/pkg@^1" → "@scope/pkg". */
+/** "d3@7.9.0" → "d3", "@scope/pkg@^1" → "@scope/pkg". */
 function stripVersionSpec(word: string): string {
   const at = word.lastIndexOf("@");
   return at > 0 ? word.slice(0, at) : word;

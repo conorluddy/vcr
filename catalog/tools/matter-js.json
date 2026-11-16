@@ -13,14 +13,14 @@
   "avoid_when": [
     "Large piles, 3D, or snapshot/restore: Rapier is faster and has takeSnapshot",
     "Cross-machine reproducible results: Rapier documents an opt-in determinism mode",
-    "Hand-keyed motion with no collisions: GSAP"
+    "Hand-keyed motion with no collisions: Anime.js"
   ],
   "pairs_with": [
     "pixijs",
     "canvas-2d",
     "p5-js",
     "svg",
-    "gsap"
+    "anime-js"
   ],
   "official_url": "https://brm.io/matter-js/",
   "automation_route": "library-or-runtime",

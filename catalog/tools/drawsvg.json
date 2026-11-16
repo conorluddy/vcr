@@ -31,7 +31,7 @@
   ],
   "avoid_when": [
     "Use SVG CLI tools for a static logo conversion or optimization task",
-    "Use GSAP or browser capture for DOM-rich motion with browser layout and typography"
+    "Use Anime.js or browser capture for DOM-rich motion with browser layout and typography"
   ],
   "license": "MIT",
   "install": {

@@ -13,14 +13,14 @@
   ],
   "avoid_when": [
     "Real 3D with lights, materials and loaders: Three.js",
-    "Vector output that a designer must edit afterwards: SVG with GSAP",
+    "Vector output that a designer must edit afterwards: SVG with Anime.js",
     "Sprite-heavy scenes with thousands of objects: PixiJS",
     "Typography layout: SVG or Satori"
   ],
   "pairs_with": [
     "playwright",
     "ffmpeg-ffprobe",
-    "gsap"
+    "anime-js"
   ],
   "official_url": "https://p5js.org/",
   "automation_route": "library-or-runtime",

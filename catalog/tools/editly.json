@@ -12,7 +12,7 @@
   "avoid_when": [
     "Alpha-aware layering or exact timing control: write the FFmpeg filtergraph directly",
     "Browser-authored scenes: Playwright capture into FFmpeg",
-    "Anything needing long-term support: Remotion or MLT/melt are maintained",
+    "Anything needing long-term support: MLT/melt is maintained",
     "Sequence-accurate edits from a VCR timeline: FFmpeg gets resolved intervals"
   ],
   "pairs_with": [

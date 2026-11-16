@@ -21,7 +21,6 @@
     "opencolorio",
     "imagemagick",
     "blender",
-    "natron",
     "ffmpeg-ffprobe"
   ],
   "official_url": "https://openimageio.readthedocs.io/en/latest/oiiotool.html",
@@ -54,7 +53,9 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
-  "examples": ["oiiotool-ppm-mulc"],
+  "examples": [
+    "oiiotool-ppm-mulc"
+  ],
   "validation": {
     "status": "validated",
     "evidence": [

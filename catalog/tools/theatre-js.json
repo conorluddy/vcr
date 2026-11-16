@@ -7,18 +7,18 @@
   "summary": "Animation toolkit with a browser Studio for editing sheets, objects and keyframe curves, and a core runtime that plays the resulting sequence. Sequence position can be set from code, so a harness can scrub it, and the project state is a JSON file you commit. Works with Three.js and React via adapters. Strength: designer-friendly curve editing tied to code values.",
   "use_when": [
     "Hand-tuned camera or object curves in Three.js scenes",
-    "Over GSAP when someone must edit curves in a visual timeline",
+    "Over Anime.js when someone must edit curves in a visual timeline",
     "Exporting committed keyframe JSON for a reproducible render"
   ],
   "avoid_when": [
-    "Purely scripted DOM motion: GSAP",
+    "Purely scripted DOM motion: Anime.js",
     "Fast-changing dependency choice: last release is May 2024",
     "Light scenes where the Studio UI is overhead: Anime.js"
   ],
   "pairs_with": [
     "three-js",
     "react-three-fiber",
-    "gsap"
+    "anime-js"
   ],
   "official_url": "https://www.theatrejs.com/docs/latest",
   "automation_route": "library-or-runtime",
@@ -64,7 +64,9 @@
       }
     ]
   },
-  "examples": ["theatre-js-seek"],
+  "examples": [
+    "theatre-js-seek"
+  ],
   "adapter_maturity": "none",
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"

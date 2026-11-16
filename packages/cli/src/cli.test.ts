@@ -97,8 +97,8 @@ describe("the bundled plugin CLI outside the harness repository (P0/P1 exit evid
   afterAll(() => setWritable(harnessCopy, true));
 
   test("tools info works against a read-only harness", async () => {
-    const { stdout } = await runFromScratch("tools", "info", "gsap", "--json");
-    expect(JSON.parse(stdout).id).toBe("gsap");
+    const { stdout } = await runFromScratch("tools", "info", "d3", "--json");
+    expect(JSON.parse(stdout).id).toBe("d3");
   });
 
   test("status reports user mode and no workspace before init", async () => {

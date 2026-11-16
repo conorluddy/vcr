@@ -11,12 +11,12 @@
     "Scroll-linked or gesture-driven motion in a captured page"
   ],
   "avoid_when": [
-    "Frame-exact multi-element choreography: GSAP timelines",
-    "Non-React sequencing with labels and plugins: GSAP",
+    "Frame-exact multi-element choreography: Anime.js timelines",
+    "Non-React sequencing with labels and plugins: Anime.js",
     "Physics-style springs on arbitrary values: React Spring"
   ],
   "pairs_with": [
-    "gsap",
+    "anime-js",
     "playwright",
     "react-spring",
     "web-animations-api"
@@ -43,7 +43,7 @@
     "last_release": "2026-10-22",
     "maintenance": "active",
     "verdict": "keep",
-    "rationale": "Active: motion 14.6.0 published 2026-10-22, MIT. Large React/vanilla user base; complements GSAP for React UI and springs.",
+    "rationale": "Active: motion 14.6.0 published 2026-10-22, MIT. Large React/vanilla user base; complements Anime.js for React UI and springs.",
     "sources": [
       "https://motion.dev/docs",
       "https://www.npmjs.com/package/motion"

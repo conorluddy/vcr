@@ -17,7 +17,7 @@
   ],
   "pairs_with": [
     "pixijs",
-    "gsap",
+    "anime-js",
     "playwright"
   ],
   "official_url": "https://github.com/pixijs/filters",
@@ -47,7 +47,9 @@
       }
     ]
   },
-  "examples": ["pixijs-filters-pixelate"],
+  "examples": [
+    "pixijs-filters-pixelate"
+  ],
   "adapter_maturity": "none",
   "notes": [
     "2026-10-26: package name is pixi-filters while the repository is pixijs/filters; compatibility had not yet been verified. 2026-11-16: pixi-filters 6.1.5 peer supports pixi.js >=8.0.0-0; fixture verified it with pixi.js 8.23.0."

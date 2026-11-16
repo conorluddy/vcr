@@ -19,7 +19,7 @@
   ],
   "pairs_with": [
     "pixijs-filters",
-    "gsap",
+    "anime-js",
     "matter-js",
     "playwright"
   ],

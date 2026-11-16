@@ -10,7 +10,7 @@
     "Reading its API as a reference for a WebCodecs-based layer compositor"
   ],
   "avoid_when": [
-    "Server-side or CI rendering: its own README recommends Remotion; Playwright into FFmpeg for VCR",
+    "Server-side or CI rendering: Playwright into FFmpeg for VCR",
     "Unwatermarked output without paying: FFmpeg or Mediabunny directly",
     "Alpha overlays and deliverables: FFmpeg filtergraph is the compositor today"
   ],

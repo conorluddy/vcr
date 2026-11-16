@@ -4,11 +4,12 @@
 - 0002 — headless first; read-only visualisers, no editor. Accepted.
 - 0003 — distribute as a plugin with a bundled CLI and three roots. Accepted.
 - 0004 — progressive disclosure and feedback are first-class, enforced by checks. Accepted.
-- 0005 — recommendation policy dimensions and licence migration; free for commercial use is eligible for now. Accepted.
+- 0005 — recommendation policy dimensions and licence migration; superseded by the stricter free-software catalogue scope in 0009.
 - 0006 — creative pillars: craft knowledge as rules data, independent of catalogue tools, one owner per rule. Accepted.
 - 0007 — draft pillar agents may ship before rules data: advisory, rule IDs only, one reviewer contract, citations checked by validate. Accepted.
 
 - 0008 — advisory making workflows may ship before checks; limits stay sourced and approval remains human. Accepted.
+- 0009 — free/libre software is the only routable catalogue scope; retire proprietary and source-available records. Accepted.
 
 One file per decision, `NNNN-kebab-title.md`, never edited after acceptance except to change `Status` and add a `Superseded by` line.
 

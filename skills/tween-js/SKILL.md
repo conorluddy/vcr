@@ -1,6 +1,6 @@
 ---
 name: tween-js
-description: Use tween.js 25 for interpolating numeric object properties with explicit update times. Load for small, time-controlled tweens feeding canvas or 3D state; use GSAP or another timeline system for DOM/SVG animation and complex sequencing.
+description: Use tween.js 25 for interpolating numeric object properties with explicit update times. Load for small, time-controlled tweens feeding canvas or 3D state; use Anime.js or another free timeline system for DOM/SVG animation and complex sequencing.
 ---
 
 # tween.js
@@ -9,7 +9,7 @@ description: Use tween.js 25 for interpolating numeric object properties with ex
 
 ## Use cases and limits
 - Interpolate numeric properties on JavaScript objects and feed the result to a renderer such as Canvas 2D or Three.js. The caller owns rendering and the clock: pass explicit milliseconds to `update(time)` for reproducible state.
-- tween.js is not itself a renderer. It has no DOM/SVG helpers. For DOM/SVG animation, labelled timelines or complex sequences, use GSAP.
+- tween.js is not itself a renderer. It has no DOM/SVG helpers. For DOM/SVG animation, labelled timelines or complex sequences, use Anime.js.
 - The VCR fixture exercises `Group`, `Tween`, easing, chaining and yoyo in a Canvas 2D capture. It rebuilds and steps the group per seek because completed tweens leave the group and one large update crossing a yoyo boundary produced an incorrect position in a probe.
 
 ## Capability map

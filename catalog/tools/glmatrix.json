@@ -13,7 +13,7 @@
   "avoid_when": [
     "Three.js scenes: its own Matrix4 and Quaternion are built in",
     "Lightweight WebGL: OGL and twgl ship their own maths",
-    "Animated values over time: GSAP, not matrices"
+    "Animated values over time: Anime.js, not matrices"
   ],
   "pairs_with": [
     "webgl",

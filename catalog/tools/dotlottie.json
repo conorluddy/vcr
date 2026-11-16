@@ -8,16 +8,15 @@
   "use_when": [
     "Over lottie-web for .lottie packages, themes or state machines",
     "Canvas playback with exact frame seeking for capture",
-    "Lottie assets exported from After Effects or LottieFiles"
+    "Existing Lottie JSON or .lottie assets from a compatible authoring tool"
   ],
   "avoid_when": [
-    "Authoring motion: GSAP or Motion; Lottie only plays finished files",
+    "Authoring motion: Anime.js or Motion; Lottie only plays finished files",
     "Interactive vector state graphics: Rive",
     "Legacy SVG-renderer feature coverage: lottie-web"
   ],
   "pairs_with": [
     "lottie-web",
-    "after-effects",
     "playwright",
     "rive-web"
   ],

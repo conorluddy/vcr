@@ -9,7 +9,7 @@ description: Use Rough.js to add hand-sketched Canvas or SVG shapes to a browser
 
 ## Use cases and limits
 - Add a hand-drawn appearance to 2D shapes and paths. Rough.js generates drawing instructions; Canvas or SVG renders them.
-- In VCR, use it inside a browser scene and derive every frame from the requested time. It is not a scene graph, animation loop, or renderer. Use Two.js or Konva for interactive scene objects; use GSAP to animate SVG output.
+- In VCR, use it inside a browser scene and derive every frame from the requested time. It is not a scene graph, animation loop, or renderer. Use Two.js or Konva for interactive scene objects; use Anime.js to animate SVG output.
 - The recipe and validation below cover only Canvas on macOS arm64 with Rough.js 4.6.6. SVG, interaction, export, other browsers, and cross-platform byte equality are untested.
 
 ## Install and doctor

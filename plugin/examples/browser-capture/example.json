@@ -1,10 +1,10 @@
 {
   "id": "browser-capture",
-  "title": "Deterministic frame capture of a paused GSAP timeline",
-  "summary": "Playwright seeks a paused GSAP timeline per frame (screenshot route) and captures alpha PNGs; run.sh asserts frame 45 alpha, frame order and a ProRes 4444 movie whose pixel format carries alpha against expected/summary.json.",
-  "status": "validated",
+  "title": "Deterministic frame capture of paused Web Animations",
+  "summary": "Playwright seeks paused Web Animations per frame (screenshot route) and captures alpha PNGs; run.sh asserts frame 45 alpha, frame order and a ProRes 4444 movie whose pixel format carries alpha against expected/summary.json.",
+  "status": "not-validated",
   "tools": [
-    "gsap",
+    "web-animations-api",
     "playwright",
     "ffmpeg-ffprobe",
     "imagemagick"
@@ -15,10 +15,6 @@
     "width": 1920,
     "height": 1080,
     "fps": 30
-  },
-  "validated_on": {
-    "date": "2026-11-05",
-    "hostname": "Conors-MacBook-Pro-2.local"
   },
   "report": "specifications/spikes/browser-capture.md"
 }

@@ -11,7 +11,7 @@
   ],
   "avoid_when": [
     "New scenes needing a scene graph: Konva for Canvas, PixiJS for GPU",
-    "Maintained tweening and timelines: GSAP over TweenJS",
+    "Maintained tweening and timelines: Anime.js over TweenJS",
     "Anything needing modern TypeScript types or ESM: Konva or Fabric.js"
   ],
   "pairs_with": [

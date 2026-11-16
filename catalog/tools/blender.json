@@ -13,7 +13,7 @@
   ],
   "avoid_when": [
     "Fast iteration on a web-native look: Three.js in seconds",
-    "Simple 2D or typography: SVG, GSAP or p5.js",
+    "Simple 2D or typography: SVG, Anime.js or p5.js",
     "You need a scriptable 2D animation app: Synfig or Manim"
   ],
   "pairs_with": [

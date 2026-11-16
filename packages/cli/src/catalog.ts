@@ -36,7 +36,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 
 ## Common chains
 
-- Browser motion: \`gsap\`, \`p5-js\` or \`three-js\` scene → \`vcr capture\` (setup Playwright once) → \`ffmpeg-ffprobe\`. For alpha, use a transparent page and deliver ProRes 4444 or VP9 yuva420p.
+- Browser motion: \`web-animations-api\`, \`p5-js\` or \`three-js\` scene → \`vcr capture\` (setup Playwright once) → \`ffmpeg-ffprobe\`. For alpha, use a transparent page and deliver ProRes 4444 or VP9 yuva420p.
 - GIF: PNG frames → \`gifski\` (AGPL; see card for evidence scope).
 - Native 3D: \`blender\` frames → \`ffmpeg-ffprobe\`. Static vector: \`svg\` → \`resvg\` → PNG.
 - Audio: mux and mix with \`ffmpeg-ffprobe\`; synthesise with \`web-audio\` or \`tone-js\`. No assessed tool does beat or onset detection; see \`aubio\`, \`meyda\` and \`essentia\` in \`CANDIDATES.md\`.

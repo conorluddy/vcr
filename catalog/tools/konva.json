@@ -15,10 +15,10 @@
     "Thousands of sprites or shader filters: PixiJS",
     "SVG import/export round-trip: Fabric.js",
     "Procedural, noise-driven visuals: p5.js",
-    "Seekable timeline motion: GSAP over Konva tweens"
+    "Seekable timeline motion: Anime.js over Konva tweens"
   ],
   "pairs_with": [
-    "gsap",
+    "anime-js",
     "playwright",
     "pixijs"
   ],

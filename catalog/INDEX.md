@@ -10,25 +10,22 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 
 ## Common chains
 
-- Browser motion: `gsap`, `p5-js` or `three-js` scene → `vcr capture` (setup Playwright once) → `ffmpeg-ffprobe`. For alpha, use a transparent page and deliver ProRes 4444 or VP9 yuva420p.
+- Browser motion: `web-animations-api`, `p5-js` or `three-js` scene → `vcr capture` (setup Playwright once) → `ffmpeg-ffprobe`. For alpha, use a transparent page and deliver ProRes 4444 or VP9 yuva420p.
 - GIF: PNG frames → `gifski` (AGPL; see card for evidence scope).
 - Native 3D: `blender` frames → `ffmpeg-ffprobe`. Static vector: `svg` → `resvg` → PNG.
 - Audio: mux and mix with `ffmpeg-ffprobe`; synthesise with `web-audio` or `tone-js`. No assessed tool does beat or onset detection; see `aubio`, `meyda` and `essentia` in `CANDIDATES.md`.
 
-## core (6)
+## core (5)
 
 - `blender` ✓ — Headless 3D rendering, Python scene build and compositing from the macOS app bundle · 3d-rendering, native-authoring, compositing, physics-simulation, model-loading · guide
 - `ffmpeg-ffprobe` ✓ — Native encoding, muxing, filtergraphs, probing and sequence assembly; every renderer's delivery path · video-encoding, video-composition, media-inspection, audio, gif-encoding, image-sequence-processing · guide
-- `gsap` ✓ — Paused, seekable timelines for DOM and SVG motion; the clock for every browser scene · tweening, timeline-animation, svg-animation · guide
 - `p5-js` ✓ — Generative 2D and WebGL sketches written as a pure function of time and seed · generative-2d, 2d-rendering, 3d-rendering · guide
 - `svg` ◐ — Dependency-free vector source for cards, logos and diagrams; rasterised by resvg or a browser · vector-authoring, svg-animation · guide
 - `three-js` ✓ — Browser 3D rendered once per seek with alpha: product shots, hero objects, camera moves · 3d-rendering, shaders, effects, model-loading · guide
 
-## catalogued (101)
+## catalogued (96)
 
-- `after-effects` — Adobe's aerender CLI and ExtendScript render existing .aep projects and templates · native-authoring, compositing, timeline-animation
-- `anime-js` ✓ — Light DOM/SVG/object tweening with seekable timelines; GSAP's closest neighbour · tweening, timeline-animation, svg-animation · guide
-- `aseprite` — Batch CLI and Lua scripts that export pixel-art animation, tags and sprite sheets · pixel-art, native-authoring
+- `anime-js` ✓ — DOM/SVG/object tweening with seekable timelines · tweening, timeline-animation, svg-animation · guide
 - `babylon-js` ✓ — Full web 3D engine with built-in PBR, post effects, physics and node materials · 3d-rendering, shaders, effects, physics-simulation, model-loading · guide
 - `build123d` ◐ — Python parametric CAD for precise product geometry and SVG technical projections · 3d-asset-processing, vector-authoring
 - `c2patool` ✓ — CLI for inspecting and adding C2PA manifests to media assets · media-inspection
@@ -52,13 +49,12 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `gltf-transform` ✓ — Node CLI and library to inspect, optimise and compress glTF/GLB before a scene loads them · 3d-asset-processing
 - `godot` ✓ — Godot headless and --write-movie runs scripted scenes to frames or video, in 2D and 3D · game-engine, 3d-rendering, native-authoring
 - `graphviz` ✓ — DOT graph layout to SVG/PNG from one native binary; automatic layout · diagram-generation, vector-authoring
-- `houdini` — hython and hbatch drive procedural and simulation scenes; commercial, Apprentice is capped · native-authoring, physics-simulation, 3d-rendering
 - `hyperframes` ✓ — HTML-to-MP4 renderer seeking a paused timeline in headless Chrome; reference, not a VCR dependency · video-composition, video-encoding, capture, timeline-animation
 - `imagemagick` ✓ — Baseline CLI for image ops, montage, compare and inspection; the validated stills toolchain · image-processing, media-inspection, image-sequence-processing · guide
 - `inkscape` ✓ — Command-line actions export and convert SVG and other vector source to PNG, PDF and plain SVG · vector-authoring, svg-rasterisation, native-authoring
 - `jimp` ✓ — Pure-JavaScript image manipulation, no native dependencies; slow but trivially portable · image-processing
 - `konva` ✓ — Canvas 2D scene graph (stage, layers, groups, shapes) with events, tweens and export · 2d-rendering, tweening, react-integration · guide
-- `lottie-web` ✓ — Plays After Effects/Bodymovin Lottie JSON in the browser; frame-addressable · asset-playback, svg-animation
+- `lottie-web` ✓ — Plays frame-addressable Lottie JSON animations in the browser · asset-playback, svg-animation
 - `lv2` ✓ — Plugin standard · audio
 - `manim-community` ✓ — Python scenes rendered by the manim CLI to video or PNG sequences for maths and diagram motion · timeline-animation, 2d-rendering, video-encoding, typography
 - `matter-js` ✓ — 2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t · physics-simulation · guide
@@ -99,13 +95,11 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `react-three-postprocessing` ✓ — Declarative post effects (bloom, DOF, SSAO, LUTs) for R3F, wrapping postprocessing · effects, react-integration · guide
 - `react-three-rapier` ✓ — Rapier physics for R3F as components: bodies, colliders, joints, manual stepping · physics-simulation, react-integration · guide
 - `regl` ✓ — Functional WebGL: declarative draw commands with state as data · shaders, 2d-rendering, 3d-rendering · guide
-- `remotion` ✓ — React-component video renderer with CLI and Lambda; company licence above 3 employees · video-composition, video-encoding, react-integration, capture
 - `resvg` ✓ — Static SVG rasterisation · svg-rasterisation · guide
 - `rive-web` ✓ — Plays Rive .riv interactive animations with state machines; authoring is in the Rive app · asset-playback
 - `rough-js` ✓ — Hand-drawn, sketchy rendering of shapes and paths to Canvas or SVG · 2d-rendering, vector-authoring · guide
 - `satori` ✓ — React-style flexbox layout to SVG without a browser; pairs with resvg for PNG · typography, vector-authoring, text-rendering
 - `sharp` ✓ — Fast Node image processing on libvips; resize, composite, convert with low memory · image-processing, compositing, svg-rasterisation · guide
-- `shotstack` — Hosted video rendering: submit a JSON edit, receive a rendered file · remote-rendering, video-composition
 - `ssam` ✓ — Canvas sketch loop with hot reload and export to PNG, GIF, PNG sequence, MP4 and WebM · generative-2d, capture, video-encoding
 - `svg-js` ✓ — Chainable SVG construction in browser or Node; animation runner is not seekable · vector-authoring, svg-animation · guide
 - `svgo` ✓ — SVG optimisation; preserve IDs needed by animation · svg-optimisation
@@ -128,6 +122,6 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `webgl` ✓ — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders
 - `webgpu` ✓ — Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking · 3d-rendering, shaders
 
-## candidate (105)
+## candidate (104)
 
 Discovery leads that remain unpromoted; cards show any assessments and recommendations. Do not route production work to them. List: `CANDIDATES.md` or `vcr tools list --tier candidate`.

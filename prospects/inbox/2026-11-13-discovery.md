@@ -27,19 +27,20 @@ Facts below come from GitHub search metadata (stars, licence, last push) and the
 - Caveats: determinism and display-free rendering not stated (unverified). Windows build least tested. Early version, API likely to move.
 - Found via: GitHub topic `motion-graphics`.
 
-### kinetograph (`kinetograph`) — worth cataloguing
-- [x] triage: assess
+### kinetograph (`kinetograph`) — retired under the free-software policy
+- [x] triage: retire
 - URL: https://github.com/0xS4N4TG/kinetograph
 - Role: programmatic video engine for agents; renders from TypeScript (Remotion-style API) or plain HTML without a browser, with a Rust GPU compositor driven from Node.
 - Category: A5. Video and capture.
 - Gap vs neighbours: same niche as `raea`, but npm-delivered with prebuilt macOS arm64 binaries, so it is the easier of the two to trial on the target platform. Overlaps `remotion`, `revideo`, `diffusion-studio-core`.
 - Route: library-or-runtime.
-- Licence: Apache-2.0.
+- Licence: PolyForm Small Business 1.0.0; restricts use by organisation size and revenue.
 - Version: 0.3.0 (beta); release date unverified (Releases section empty).
 - Stars: ~512. Last push: 2026-11-13.
 - Install: `npm install kinetograph && npx kinetograph doctor` (Node 22+; prebuilt for macOS Apple Silicon, Linux x64, Windows x64).
 - Caveats: determinism not stated; "plain HTML without a browser" implies a partial CSS/HTML implementation whose coverage is unverified; Web Audio is rendered offline as a side input. APIs may change between versions.
 - Found via: GitHub topic `motion-graphics`.
+- Decision: source-available terms do not meet ADR 0009's free-software boundary. Retain this note for historical discovery only.
 
 ### SPZ (`spz`) — niche-keep-in-mind
 - [x] triage: defer

@@ -11,14 +11,14 @@
     "Sampling spring curves offline to bake into keyframes"
   ],
   "avoid_when": [
-    "Exact-time seek for capture: GSAP timelines",
-    "Sequenced multi-step choreography: GSAP or Motion",
-    "Non-React DOM or SVG animation: Anime.js or GSAP"
+    "Exact-time seek for capture: Anime.js timelines",
+    "Sequenced multi-step choreography: Anime.js or Motion",
+    "Non-React DOM or SVG animation: Anime.js or Anime.js"
   ],
   "pairs_with": [
     "motion",
     "react-three-fiber",
-    "gsap"
+    "anime-js"
   ],
   "official_url": "https://www.react-spring.dev/",
   "automation_route": "library-or-runtime",
@@ -42,7 +42,7 @@
     "last_release": "2026-06-24",
     "maintenance": "active",
     "verdict": "keep",
-    "rationale": "Active: v10.1.2 released 2026-06-24, MIT. Well maintained, but spring clock is not externally seekable; keep as catalogued React option behind Motion and GSAP.",
+    "rationale": "Active: v10.1.2 released 2026-06-24, MIT. Well maintained, but spring clock is not externally seekable; keep as catalogued React option alongside Motion and Anime.js.",
     "sources": [
       "https://www.react-spring.dev/",
       "https://github.com/pmndrs/react-spring/releases",

@@ -52,7 +52,7 @@ export function createExample(harnessRoot: string, workspaceRoot: string, exampl
 
 // === PRIVATE HELPERS ===
 
-/** Keeps runtime dependencies (three, gsap, p5) and drops workspace links and repository scripts. */
+/** Keeps runtime dependencies (three, animejs, p5) and drops workspace links and repository scripts. */
 function writeStandalonePackage(sourcePath: string, targetPath: string): void {
   const original = JSON.parse(readFileSync(sourcePath, "utf8")) as { name: string; dependencies?: Record<string, string> };
   const standalone = { name: original.name.replace(/^@vcr\//, ""), private: true, type: "module", dependencies: original.dependencies ?? {} };

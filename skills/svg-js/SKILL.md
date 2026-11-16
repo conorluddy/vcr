@@ -9,7 +9,7 @@ description: Use SVG.js 3.2 to construct or manipulate SVG elements with its cha
 
 ## Use cases and limits
 - Build SVG shapes, paths, text, groups, gradients, transforms and attributes from JavaScript; output is an SVG DOM or serialized SVG, not a rendered video.
-- In VCR browser scenes, set every visual attribute from the requested time in `window.__scene.seek(t)`. The built-in `.animate()` runner uses its own real-time clock and is not seekable. Use GSAP for timeline-driven VCR animation; use D3 for data-driven scales and layouts.
+- In VCR browser scenes, set every visual attribute from the requested time in `window.__scene.seek(t)`. The built-in `.animate()` runner uses its own real-time clock and is not seekable. Use Anime.js for timeline-driven VCR animation; use D3 for data-driven scales and layouts.
 - Node use requires an SVG DOM implementation such as svgdom; this combination was not validated here.
 
 ## Capability map

@@ -7,7 +7,7 @@ description: Write or revise the toolkit guide (tier 2, skills/<id>/SKILL.md) fo
 
 Inside the VCR repository `vcr` is `pnpm vcr`. Guides live only in this repository's `skills/`; from an installed plugin, draft the guide in the workspace and say it is not part of the shared catalogue.
 
-A guide is tier 2 of the catalogue tree: how to operate one tool once it has been chosen. The card (tier 1) already says what it is and when to pick it, so don't repeat that here. Read `skills/README.md` for the rules, then one existing guide as a model: `skills/resvg/SKILL.md` for a small CLI, `skills/gsap/SKILL.md` for a browser library with facets.
+A guide is tier 2 of the catalogue tree: how to operate one tool once it has been chosen. The card (tier 1) already says what it is and when to pick it, so don't repeat that here. Read `skills/README.md` for the rules, then one existing guide as a model: `skills/resvg/SKILL.md` for a small CLI, `skills/anime-js/SKILL.md` for a browser library.
 
 ## 1. Check it is justified
 

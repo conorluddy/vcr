@@ -42,7 +42,7 @@ Lanes, by how the fixture runs. Classify any new tool by its card's `automation_
 | A-react | Same, but scenes need React | `examples/three-capture` plus a bundler | react-three-fiber, drei, react-three-postprocessing, react-three-rapier, gl-react, motion, react-spring |
 | B, Node and npm CLI | Node script or npm CLI, deterministic files | `examples/sharp-composite` | jimp, satori, opentype-js, gltf-transform, svgo, mermaid-cli, canvaskit-skia, mediabunny, ffmpeg-wasm, opencv-js, web-audio and tone-js (offline render, hash the PCM) |
 | C, native CLI | Homebrew or pip binary on macOS | `examples/native-svg`, `ffmpeg-assembly` | graphviz, potrace, gifski, inkscape, g-mic, openimageio-oiiotool, msdfgen, vpype, vsketch, mlt-melt, pyscenedetect, rawtherapee-cli, manim-community, pov-ray, synfig, godot, opencolorio |
-| D, needs the user | Paid app, account, licence decision or authored asset | — | after-effects, houdini, shotstack, aseprite (paid), rive-web (needs a `.riv`), remotion (company licence), hyperframes (reference only, not a dependency), gimp-batch, motion-canvas, canvas-sketch, ssam, canvas-record, ccapture-js (their own capture loops: decide whether VCR evidence means their recorder or ours), deck-gl and vtk-js (need data sets) |
+| D, needs the user | Account or authored asset | — | rive-web (needs a `.riv`), hyperframes, gimp-batch, motion-canvas, canvas-sketch, ssam, canvas-record, ccapture-js (their own capture loops: decide whether VCR evidence means their recorder or ours), deck-gl and vtk-js (need data sets) |
 
 ## 3. Brief each agent
 

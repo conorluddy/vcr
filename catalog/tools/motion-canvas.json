@@ -11,13 +11,12 @@
     "Narration-synced vector sequences rendered to frames"
   ],
   "avoid_when": [
-    "Animating an existing DOM page: GSAP with Playwright",
+    "Animating an existing DOM page: Anime.js with Playwright",
     "Math-heavy scenes: Manim Community",
-    "Timeline plus composition in HTML: Remotion or HyperFrames"
+    "Timeline plus composition in HTML: HyperFrames"
   ],
   "pairs_with": [
     "ffmpeg-ffprobe",
-    "remotion",
     "manim-community"
   ],
   "official_url": "https://motioncanvas.io/docs/",
@@ -65,7 +64,9 @@
       }
     ]
   },
-  "examples": ["motion-canvas-render"],
+  "examples": [
+    "motion-canvas-render"
+  ],
   "adapter_maturity": "none",
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"

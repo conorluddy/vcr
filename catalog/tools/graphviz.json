@@ -12,7 +12,7 @@
   ],
   "avoid_when": [
     "Simple flowcharts or sequence diagrams: Mermaid CLI has friendlier syntax",
-    "Diagram parts must animate individually with design polish: hand-author SVG and use GSAP",
+    "Diagram parts must animate individually with design polish: hand-author SVG and use Anime.js",
     "Fully custom visual style: D3 or hand-built SVG"
   ],
   "pairs_with": [
@@ -20,7 +20,7 @@
     "resvg",
     "svgo",
     "mermaid-cli",
-    "gsap"
+    "anime-js"
   ],
   "official_url": "https://www.graphviz.org/doc/info/command.html",
   "automation_route": "native-cli-or-scripting",

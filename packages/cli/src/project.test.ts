@@ -6,7 +6,7 @@ import { formatProjectReadiness, npmPackagesFor, projectPackageVersions } from "
 
 describe("npmPackagesFor", () => {
   test.each([
-    ["pnpm add gsap", ["gsap"]],
+    ["pnpm add d3", ["d3"]],
     ["pnpm add -D playwright && npx playwright install chromium", ["playwright"]],
     ["pnpm add mediabunny @mediabunny/server", ["mediabunny", "@mediabunny/server"]],
     ["npm install --save-dev three@0.186.1", ["three"]],
@@ -40,42 +40,42 @@ describe("project readiness", () => {
   test("resolves from a project below the workspace root, as Node does", () => {
     const workspace = project({});
     const example = join(workspace, "examples", "g");
-    mkdirSync(join(example, "node_modules", "gsap"), { recursive: true });
+    mkdirSync(join(example, "node_modules", "d3"), { recursive: true });
     writeFileSync(join(example, "package.json"), "{}");
-    writeFileSync(join(example, "node_modules", "gsap", "package.json"), JSON.stringify({ version: "3.15.0" }));
-    expect(projectPackageVersions(join(example, "src"), ["gsap"], workspace)).toEqual([{ name: "gsap", version: "3.15.0" }]);
-    expect(projectPackageVersions(workspace, ["gsap"], workspace)).toEqual([{ name: "gsap", version: null }]);
+    writeFileSync(join(example, "node_modules", "d3", "package.json"), JSON.stringify({ version: "9.9.9" }));
+    expect(projectPackageVersions(join(example, "src"), ["d3"], workspace)).toEqual([{ name: "d3", version: "9.9.9" }]);
+    expect(projectPackageVersions(workspace, ["d3"], workspace)).toEqual([{ name: "d3", version: null }]);
   });
   test("never looks above the workspace root", () => {
-    const outer = project({ gsap: "9.9.9" });
+    const outer = project({ d3: "9.9.9" });
     const workspace = join(outer, "ws");
     mkdirSync(workspace);
-    expect(projectPackageVersions(workspace, ["gsap"], workspace)).toEqual([{ name: "gsap", version: null }]);
+    expect(projectPackageVersions(workspace, ["d3"], workspace)).toEqual([{ name: "d3", version: null }]);
   });
   test("without a workspace, stops at the nearest package.json", () => {
-    const outer = project({ gsap: "9.9.9" });
+    const outer = project({ d3: "9.9.9" });
     const app = join(outer, "app");
     mkdirSync(app);
     writeFileSync(join(app, "package.json"), "{}");
-    expect(projectPackageVersions(app, ["gsap"])).toEqual([{ name: "gsap", version: null }]);
+    expect(projectPackageVersions(app, ["d3"])).toEqual([{ name: "d3", version: null }]);
   });
   test("reports an unreadable package.json instead of not installed", () => {
     const root = project({});
-    mkdirSync(join(root, "node_modules", "gsap"), { recursive: true });
-    writeFileSync(join(root, "node_modules", "gsap", "package.json"), "{bad");
-    const packages = projectPackageVersions(root, ["gsap"], root);
-    expect(formatProjectReadiness(packages, "pnpm add gsap", undefined)).toBe("this project: gsap present but its package.json is unreadable");
+    mkdirSync(join(root, "node_modules", "d3"), { recursive: true });
+    writeFileSync(join(root, "node_modules", "d3", "package.json"), "{bad");
+    const packages = projectPackageVersions(root, ["d3"], root);
+    expect(formatProjectReadiness(packages, "pnpm add d3", undefined)).toBe("this project: d3 present but its package.json is unreadable");
   });
   test("reads installed versions and reports missing packages as null", () => {
-    expect(projectPackageVersions(stopAtRoot(project({ gsap: "3.15.0" })), ["gsap", "three"], lastRoot)).toEqual([{ name: "gsap", version: "3.15.0" }, { name: "three", version: null }]);
+    expect(projectPackageVersions(stopAtRoot(project({ d3: "9.9.9" })), ["d3", "three"], lastRoot)).toEqual([{ name: "d3", version: "9.9.9" }, { name: "three", version: null }]);
   });
   test("same version as the evidence", () => {
-    const packages = projectPackageVersions(stopAtRoot(project({ gsap: "3.15.0" })), ["gsap"], lastRoot);
-    expect(formatProjectReadiness(packages, "pnpm add gsap", { version: "3.15.0" })).toBe("this project: has gsap 3.15.0; same version as evidence");
+    const packages = projectPackageVersions(stopAtRoot(project({ d3: "9.9.9" })), ["d3"], lastRoot);
+    expect(formatProjectReadiness(packages, "pnpm add d3", { version: "9.9.9" })).toBe("this project: has d3 9.9.9; same version as evidence");
   });
   test("a different version is untested, never verified", () => {
-    const packages = projectPackageVersions(stopAtRoot(project({ gsap: "3.16.0" })), ["gsap"], lastRoot);
-    expect(formatProjectReadiness(packages, "pnpm add gsap", { version: "3.15.0" })).toBe("this project: has gsap 3.16.0; evidence ran 3.15.0, so this version is untested");
+    const packages = projectPackageVersions(stopAtRoot(project({ d3: "9.9.10" })), ["d3"], lastRoot);
+    expect(formatProjectReadiness(packages, "pnpm add d3", { version: "9.9.9" })).toBe("this project: has d3 9.9.10; evidence ran 9.9.9, so this version is untested");
   });
   test("matches a version inside free-text evidence", () => {
     const packages = projectPackageVersions(stopAtRoot(project({ playwright: "1.64.1" })), ["playwright"], lastRoot);

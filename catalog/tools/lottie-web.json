@@ -3,25 +3,27 @@
   "name": "Lottie Web",
   "category": "A2. Animation and authored assets",
   "tier": "catalogued",
-  "role": "Plays After Effects/Bodymovin Lottie JSON in the browser; frame-addressable",
-  "summary": "Airbnb's browser player for Lottie JSON exported from After Effects via Bodymovin. Renders to SVG, canvas or HTML and can be paused and set to an exact frame with goToAndStop, so playback is addressable by time for capture. It plays authored assets; it does not author or edit them. Strength: reuse of designer-made vector animation with no re-implementation.",
+  "role": "Plays frame-addressable Lottie JSON animations in the browser",
+  "summary": "Airbnb's browser player for Lottie JSON exported by compatible authoring tools. Renders to SVG, canvas or HTML and can be paused and set to an exact frame with goToAndStop, so playback is addressable by time for capture. It plays authored assets; it does not author or edit them. Strength: reuse of vector animation with no re-implementation.",
   "use_when": [
     "A designer or marketplace supplies a Lottie JSON that must appear in a scene",
-    "Over Rive when the source is After Effects, not Rive",
+    "Over Rive when the source is Lottie JSON, not a Rive file",
     "Vector icon and character loops that must be frame-seeked for capture"
   ],
   "avoid_when": [
-    "Authoring new motion in code: GSAP or Anime.js",
+    "Authoring new motion in code: Anime.js or Anime.js",
     "Smaller runtime for .lottie bundles: dotLottie player",
     "Interactive state-machine assets: Rive Web"
   ],
   "pairs_with": [
-    "gsap",
+    "anime-js",
     "playwright",
     "dotlottie",
     "svg"
   ],
-  "examples": ["lottie-web-seek"],
+  "examples": [
+    "lottie-web-seek"
+  ],
   "official_url": "https://github.com/airbnb/lottie-web",
   "automation_route": "library-or-runtime",
   "capabilities": [
@@ -43,7 +45,7 @@
     "last_release": "2025-05-21",
     "maintenance": "slow",
     "verdict": "keep",
-    "rationale": "Last npm release 5.13.0 on 2025-05-21, last push 2025-09-01; MIT, not archived. Still the reference Lottie player and the only route for After Effects exports here.",
+    "rationale": "Last npm release 5.13.0 on 2025-05-21, last push 2025-09-01; MIT, not archived. Still a well-established browser player for frame-addressable Lottie assets.",
     "sources": [
       "https://github.com/airbnb/lottie-web",
       "https://www.npmjs.com/package/lottie-web"

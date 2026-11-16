@@ -12,7 +12,7 @@
   ],
   "avoid_when": [
     "Full CSS (grid, many selectors, filters) or interactive content: Playwright with a real page",
-    "Motion: it produces a single still; use GSAP in a browser scene",
+    "Motion: it produces a single still; use Anime.js in a browser scene",
     "Hand-tuned vector artwork: author SVG directly"
   ],
   "pairs_with": [

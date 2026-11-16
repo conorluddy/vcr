@@ -4,7 +4,7 @@ This is the lifecycle for a lead, not a promise to install or support it. Keep t
 
 ## 1. Capture and triage
 
-Search live and retired records first. Add one `candidate` record with an official starting URL, brief role, source, proposed automation route and appropriate existing vocabulary. State unknowns explicitly; the current `listed-in-prd` schema value also represents a listed-only candidate and is not proof it appeared in the PRD. Don't invent an adapter, skill, installation status, validation evidence or licence.
+Search live and retired records first. Add one `candidate` record with an official starting URL, brief role, source, proposed automation route and appropriate existing vocabulary. State unknowns explicitly; the current `listed-in-prd` schema value also represents a listed-only candidate and is not proof it appeared in the PRD. Don't invent an adapter, skill, installation status, validation evidence or licence. Apply the free-software gate in [ASSESSMENT-BRIEF.md](ASSESSMENT-BRIEF.md): non-free and source-available leads stay in `prospects/inbox/` for context, not in the routable catalogue.
 
 Choose **assess**, **defer** or **retire** based on a concrete VCR job, overlap, likely automation and scope. Music-specific or other adjacent leads can stay candidates without becoming roadmap commitments. Record the reason and revisit trigger. Retire according to the existing catalogue process; never hide prior reasoning.
 

@@ -12,7 +12,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `native-svg` | svg, resvg, ffmpeg-ffprobe | PNG hash and ffprobe metadata |
 | `ffmpeg-assembly` | imagemagick, ffmpeg-ffprobe | 48 frames at 24 fps mux to exactly 2.000000 s |
 | `blender-smoke` | blender | one 320x240 RGBA frame from the app bundle |
-| `browser-capture` | gsap, playwright | shuffled-order capture matches sequential; spike report |
+| `browser-capture` | web-animations-api, playwright | shuffled-order capture matches sequential; spike report |
 | `p5-capture` | p5-js, playwright | seeded sketch, deterministic in any order |
 | `three-capture` | three-js, playwright | WebGL scene with alpha, deterministic in any order |
 | `anime-capture` | anime-js, playwright | v4 timeline seeked per frame with alpha, deterministic in any order (2026-11-05) |
@@ -51,6 +51,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `mlt-color-render` | mlt-melt | Built-in color to FFV1: five 64x48 frames, repeated decoded RGB hash (2026-11-16) |
 | `synfig-static-render` | synfig | Static SIF rectangle to 160x120 PNG; pixel probes and repeated file hash (2026-11-16) |
 | `inkscape-svg-export` | inkscape | SVG page to 128x96 PNG; pixel probes and repeated file hash (2026-11-16) |
+| `hyperframes-static-square` | hyperframes | Static HTML composition to 12 PNG frames; exact square bounds and repeated pixel hashes (2026-11-16) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 

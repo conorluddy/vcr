@@ -11,7 +11,7 @@ Motion is a JavaScript and React animation library (`motion`, imported as `motio
 
 ## Use cases and limits
 - Use Motion for React DOM/SVG components, imperative animation controls and motion values.
-- The VCR example uses stopped imperative controls for three DOM elements. For native SVG animation or low-level tweening, see GSAP or the Web Animations API guides.
+- The VCR example uses stopped imperative controls for three DOM elements. For native SVG animation or low-level tweening, see Anime.js or the Web Animations API guides.
 - Motion remains the renderer's native API; VCR supplies capture, not a Motion adapter or shared timeline.
 
 ## Validated VCR route

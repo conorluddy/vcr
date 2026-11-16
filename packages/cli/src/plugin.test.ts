@@ -22,7 +22,7 @@ describe("buildPlugin", () => {
 
   test("ships the bundled CLI, flat skills and the catalogue, under the size cap", () => {
     expect(existsSync(join(directory, "cli/vcr.mjs"))).toBe(true);
-    expect(existsSync(join(directory, "skills/gsap/SKILL.md"))).toBe(true);
+    expect(existsSync(join(directory, "skills/web-animations-api/SKILL.md"))).toBe(true);
     expect(existsSync(join(directory, "skills/ingest/SKILL.md"))).toBe(true);
     expect(existsSync(join(directory, "agents/typographer.md"))).toBe(true);
     for (const reference of ["CANDIDATE-INGESTION.md", "ASSESSMENT-BRIEF.md", "FIXTURE-EVIDENCE-TEMPLATE.md"]) {

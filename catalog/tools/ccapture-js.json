@@ -12,7 +12,7 @@
   ],
   "avoid_when": [
     "CSS animations or WAAPI: not frame-stepped; drive motion from a pure seek(t) and capture with Playwright",
-    "Seekable timelines such as GSAP: Playwright seeks them exactly, no time hooking",
+    "Seekable timelines such as Anime.js: Playwright seeks them exactly, no time hooking",
     "Server-side or CI capture: Playwright frames into FFmpeg"
   ],
   "pairs_with": [
@@ -52,7 +52,9 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
-  "examples": ["ccapture-js-png-tar"],
+  "examples": [
+    "ccapture-js-png-tar"
+  ],
   "validation": {
     "status": "validated",
     "evidence": [

@@ -35,7 +35,6 @@ Chromium promotes elements whose opacity or transform is animating to compositor
 
 ## 4. Library defaults that defer or switch
 
-- GSAP: `gsap.defaults({ force3D: false, lazy: false })`. `force3D: "auto"` swaps between 2D and 3D transforms mid-tween; `lazy` defers the first write past the screenshot.
 - Anime.js: seek in milliseconds (`tl.seek(t * 1000)`); a seconds value lands on the wrong frame without failing.
 
 ## 5. Anything with its own clock

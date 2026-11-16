@@ -14,12 +14,12 @@
   "avoid_when": [
     "Interactive scene graph with events: Konva",
     "GPU sprite scenes: PixiJS",
-    "Animated SVG on a timeline: GSAP with svg",
+    "Animated SVG on a timeline: Anime.js with svg",
     "Plotter-ready paths and optimisation: vpype"
   ],
   "pairs_with": [
     "svg",
-    "gsap",
+    "anime-js",
     "vpype"
   ],
   "official_url": "https://paperjs.org/",

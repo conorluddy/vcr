@@ -8,7 +8,7 @@
   "use_when": [
     "Whiteboard or diagram look on shapes and paths",
     "Over Paper.js or Two.js when the sketchy style is the point",
-    "Adding a hand-drawn style to SVG output that GSAP then animates",
+    "Adding a hand-drawn style to SVG output that Anime.js then animates",
     "Small footprint, no scene graph needed"
   ],
   "avoid_when": [
@@ -19,7 +19,7 @@
   ],
   "pairs_with": [
     "svg",
-    "gsap",
+    "anime-js",
     "canvas-2d"
   ],
   "official_url": "https://roughjs.com/",

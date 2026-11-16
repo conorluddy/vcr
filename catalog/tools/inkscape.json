@@ -14,7 +14,7 @@
   "avoid_when": [
     "Plain SVG to PNG at scale: resvg is faster and lighter",
     "Optimising SVG size: svgo",
-    "Motion of any kind: GSAP, Synfig or Blender"
+    "Motion of any kind: Anime.js, Synfig or Blender"
   ],
   "pairs_with": [
     "svgo",
@@ -54,7 +54,9 @@
       }
     ]
   },
-  "examples": ["inkscape-svg-export"],
+  "examples": [
+    "inkscape-svg-export"
+  ],
   "adapter_maturity": "none",
   "assessment": {
     "date": "2026-10-26",

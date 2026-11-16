@@ -86,11 +86,11 @@ describe("formatToolCard evidence and readiness", () => {
   });
   test("reads a library's readiness from the project, not the machine", () => {
     const root = mkdtempSync(join(tmpdir(), "vcr-card-project-"));
-    mkdirSync(join(root, "node_modules", "gsap"), { recursive: true });
-    writeFileSync(join(root, "node_modules", "gsap", "package.json"), JSON.stringify({ version: "3.15.0" }));
+    mkdirSync(join(root, "node_modules", "d3"), { recursive: true });
+    writeFileSync(join(root, "node_modules", "d3", "package.json"), JSON.stringify({ version: "3.15.0" }));
     const validation = { status: "validated", evidence: [{ date: "2026-11-04", version: "3.15.0" }] };
-    const card = formatToolCard(tool("gsap", { install: { macos: "pnpm add gsap" }, validation }), [], "/nonexistent", undefined, { cwd: root, stopAt: root });
-    expect(card).toContain("Readiness: this project: has gsap 3.15.0; same version as evidence · VCR adapter none");
+    const card = formatToolCard(tool("d3", { install: { macos: "pnpm add d3" }, validation }), [], "/nonexistent", undefined, { cwd: root, stopAt: root });
+    expect(card).toContain("Readiness: this project: has d3 3.15.0; same version as evidence · VCR adapter none");
   });
   test("omits the scope line for legacy entries without a scope", () => {
     const validation = { status: "validated", evidence: [{ date: "2026-10-26", version: "8.0.1" }] };

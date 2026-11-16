@@ -11,7 +11,7 @@
     "image-processing"
   ],
   "notes": [
-    "2026-11-01: Code or ANSI output to PNG, SVG or WebP with window chrome; the SVG output suits GSAP layers.",
+    "2026-11-01: Code or ANSI output to PNG, SVG or WebP with window chrome; the SVG output suits browser motion layers.",
     "2026-11-01: Maintenance may be slow.",
     "2026-11-01: Triage: assess. Report rates it worth cataloguing."
   ],

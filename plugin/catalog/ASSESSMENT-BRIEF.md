@@ -23,6 +23,7 @@ One brief for every assessor so every record answers the same questions. Assess 
 
 ## Rules
 
+- **Free-software gate:** a tool may enter `catalog/tools/` only when its software licence permits use, study, modification and redistribution for any purpose, including commercial use. Do not treat free-of-charge access, source visibility, a small-business allowance, or a proprietary hosted API as free software. Assess models, assets, services and dependencies separately; an unknown software licence must be resolved before promotion or fixture installation.
 - Never claim a tool is installed, tested or validated. You read documentation; that is all the evidence you have.
 - Uncertainty goes in `notes` as a dated sentence, never softened into the card.
 - Do not paraphrase upstream docs into `summary`. Say what an agent choosing between tools needs.

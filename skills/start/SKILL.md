@@ -5,7 +5,7 @@ description: Entry point for VCR, the code-first motion graphics and video studi
 
 # VCR: start here
 
-VCR is a catalogue of code-first motion tools (GSAP, p5.js, Three.js, SVG, FFmpeg, Blender and more), a CLI that drives them, and deterministic frame-by-frame browser capture. The agent edits source; the human reviews renders.
+VCR is a catalogue of code-first motion tools (Anime.js, p5.js, Three.js, SVG, FFmpeg, Blender and more), a CLI that drives them, and deterministic frame-by-frame browser capture. The agent edits source; the human reviews renders.
 
 ## Calling the CLI
 
@@ -19,7 +19,7 @@ Run `vcr status --brief`: it lists videos awaiting review and their open finding
 
 1. Route: `vcr tools list` (or read `<plugin-root>/catalog/INDEX.md` whole). One line per routable tool; unassessed candidates are in `CANDIDATES.md`; filter with `--capability`, `--tier`, `--category`.
 2. Shortlist: `vcr tools info <id>` for two or three candidates. Summary, use when, avoid when, pairs with, evidence.
-3. Commit: `vcr tools info <id> --full`, or load that tool's skill (`gsap`, `three-js`, `p5-js`, `svg`, `resvg`, `ffmpeg`, `imagemagick`, `blender-background`). One guide at a time.
+3. Commit: `vcr tools info <id> --full`, or load that tool's skill (`anime-js`, `three-js`, `p5-js`, `svg`, `resvg`, `ffmpeg`, `imagemagick`, `blender-background`). One guide at a time.
 4. Do: `vcr tools examples <id>`, then `vcr example create <example-id>` and follow the steps it prints.
 
 A card or guide never claims the tool is installed on this machine; `vcr doctor` does. Prefer `core` tier tools: they carry validation evidence.

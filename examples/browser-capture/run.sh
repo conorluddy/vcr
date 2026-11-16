@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Capture a paused GSAP timeline frame by frame with alpha, assert frame 45's alpha range,
+# Capture paused Web Animations frame by frame with alpha, assert frame 45's alpha range,
 # assemble a ProRes 4444 movie that keeps alpha, and diff the facts against expected/summary.json.
 # --record rewrites expected/ from this run.
 set -euo pipefail

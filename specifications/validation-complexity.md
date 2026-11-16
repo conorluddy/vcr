@@ -34,7 +34,7 @@ Keep each claim narrow: for example, a single metadata read, vector conversion, 
 
 These need a controlled scene, media sample, browser capture, or a measured output with visual/listening inspection:
 
-`canvas-record`, `canvas-sketch`, `canvaskit-skia`, `ccapture-js`, `deck-gl`, `dotlottie`, `ffmpeg-wasm`, `gimp-batch`, `gl-react`, `hyperframes`, `lottie-web`, `manim-community`, `mediabunny`, `mediabunny-server-extension`, `mermaid-cli`, `meyda`, `motion-canvas`, `music21`, `opencolorio`, `opencv-js`, `openimageio-oiiotool`, `pixijs-filters`, `pov-ray`, `pyscenedetect`, `rapier`, `remotion`, `rive-web`, `satori`, `ssam`, `theatre-js`, `three-js-shading-language`, `tone-js`, `troika-three-text`, `vedo`, `vtk-js`, `web-audio`, `webgl`.
+`canvas-record`, `canvas-sketch`, `canvaskit-skia`, `ccapture-js`, `deck-gl`, `dotlottie`, `ffmpeg-wasm`, `gimp-batch`, `gl-react`, `hyperframes`, `lottie-web`, `manim-community`, `mediabunny`, `mediabunny-server-extension`, `mermaid-cli`, `meyda`, `motion-canvas`, `music21`, `opencolorio`, `opencv-js`, `openimageio-oiiotool`, `pixijs-filters`, `pov-ray`, `pyscenedetect`, `rapier`, `rive-web`, `satori`, `ssam`, `theatre-js`, `three-js-shading-language`, `tone-js`, `troika-three-text`, `vedo`, `vtk-js`, `web-audio`, `webgl`.
 
 Split capture, rendering and encoding into separate claims where possible. For browser/GPU outputs, include frame-order checks or an explicit tolerance and inspect the rendered artifact at its intended scale. For audio, inspect both stream metadata and the sound; a successful process exit is not enough.
 
@@ -42,9 +42,9 @@ Split capture, rendering and encoding into separate claims where possible. For b
 
 Plan these separately after checking licenses, host requirements, hardware, model/assets and any network or account needs:
 
-`after-effects`, `aseprite`, `c2patool`, `colmap`, `godot`, `houdini`, `inkscape`, `lv2`, `mediapipe`, `mlt-melt`, `nerfstudio`, `rawtherapee-cli`, `shotstack`, `synfig`, `webcodecs`, `webgpu`.
+`c2patool`, `colmap`, `godot`, `inkscape`, `lv2`, `mediapipe`, `mlt-melt`, `nerfstudio`, `rawtherapee-cli`, `synfig`, `webcodecs`, `webgpu`.
 
-For a remote service such as Shotstack, settle credentials, cost and data handling before fixture design. For GPU/model tools, pin the model and record runtime, backend and device. For desktop tools, prove the documented headless or batch route before relying on GUI automation. A blocked environment check leaves the tool unvalidated; do not substitute a neighbour.
+For GPU/model tools, pin the model and record runtime, backend and device. For desktop tools, prove the documented headless or batch route before relying on GUI automation. A blocked environment check leaves the tool unvalidated; do not substitute a neighbour.
 
 ## Existing partial evidence to extend deliberately
 
@@ -114,8 +114,6 @@ Inkscape 1.4.4's previously stalled version check now exits cleanly. Its CLI exp
 ## Unattended validation notes — 2026-11-16
 
 
-- **After Effects / Houdini:** no matching app bundles were found under `/Applications/`, and neither `aerender` nor `hython` was on PATH. No licensed application runtime was available for a fixture; records remain unvalidated.
-- **Shotstack:** neither `SHOTSTACK_API_KEY` nor `SHOTSTACK_KEY` was available in this process. No account setup or paid remote render was attempted; record remains unvalidated. This is an environment preflight result, not proof that the user has no account or credentials elsewhere.
 - **GIMP batch:** validated GIMP 3.2.8 Python batch on macOS arm64. The fixture imports an owned PPM, exports PNG through `file-png-export`, and checks exact samples. GIMP startup attempted to write its normal user configuration directory, which the sandbox denied; the image operation still completed. Scope is limited to this import/export path.
-- **Aseprite:** no executable or app bundle was present, and Homebrew has no Aseprite cask. No paid purchase or alternate installer was attempted; the tool remains unvalidated.
 - **Nerfstudio:** this host is macOS arm64 with no `nvidia-smi`; the official installation guide documents Linux/Windows setup and a CUDA/Tiny-CUDA-NN training stack, with no macOS route documented. No training stack, model or dataset was installed; the tool remains unvalidated on this machine.
+- **Free-software scope:** After Effects, Aseprite, GSAP, Houdini, Kinetograph, Remotion and Shotstack were retired under ADR 0009. Their validation status no longer counts toward current coverage.

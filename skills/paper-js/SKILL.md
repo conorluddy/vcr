@@ -9,7 +9,7 @@ description: Use Paper.js for browser scenes that need editable vector paths and
 
 ## Use cases and limits
 - Author and compute vector scene geometry with paths, segments and curves. The validated VCR use captures Canvas output in Chromium; Paper.js itself is the scene library, not a VCR timeline or renderer.
-- For interactive event-driven scenes use [Konva](../konva/SKILL.md); for GPU sprite scenes use PixiJS. For animated SVG timelines, use GSAP with SVG.
+- For interactive event-driven scenes use [Konva](../konva/SKILL.md); for GPU sprite scenes use PixiJS. For animated SVG timelines, use Anime.js with SVG.
 - Evidence covers Paper.js 0.17.0's JavaScript API, a smoothed path, boolean union, radial gradient, explicit view update and alpha PNG capture on macOS arm64 / Chromium 156. It does not validate the broader API map below.
 
 ## Install and doctor

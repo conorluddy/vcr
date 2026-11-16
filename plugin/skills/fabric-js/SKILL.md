@@ -9,7 +9,7 @@ description: Use Fabric.js when a browser canvas needs an editable object model 
 
 ## Use cases and limits
 - Fabric.js places shapes, paths, text and images on an object canvas, with groups, transforms, serialization and SVG import/export. Use it when those editable objects and interchange matter.
-- It draws through the browser Canvas 2D API; it is not a VCR renderer or timeline. For authored, seekable motion timelines, use GSAP; for a lightweight scene graph, consider Konva.
+- It draws through the browser Canvas 2D API; it is not a VCR renderer or timeline. For authored, seekable motion timelines, use Anime.js; for a lightweight scene graph, consider Konva.
 - The VCR fixture uses `StaticCanvas` with Rect, Circle, Path and Group. It does not validate the full library surface or interactive `Canvas`.
 
 ## Install and doctor

@@ -1,7 +1,9 @@
 # 0005. Recommendation policy and licence migration
 
 Date: 2026-11-04
-Status: accepted
+Status: superseded by 0009
+
+Superseded by: 0009
 
 ## Context
 

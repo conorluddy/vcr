@@ -13,13 +13,12 @@
   ],
   "avoid_when": [
     "Offline-quality lighting or path tracing: Blender Cycles",
-    "Pure DOM or SVG motion: GSAP",
+    "Pure DOM or SVG motion: Anime.js",
     "Headless CI without a GPU or display: Blender Workbench or Three.js"
   ],
   "pairs_with": [
     "blender",
-    "ffmpeg-ffprobe",
-    "aseprite"
+    "ffmpeg-ffprobe"
   ],
   "official_url": "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html",
   "automation_route": "native-cli-or-scripting",
@@ -52,7 +51,9 @@
       }
     ]
   },
-  "examples": ["godot-headless-physics"],
+  "examples": [
+    "godot-headless-physics"
+  ],
   "adapter_maturity": "none",
   "assessment": {
     "date": "2026-10-26",

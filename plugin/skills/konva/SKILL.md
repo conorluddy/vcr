@@ -10,7 +10,7 @@ description: Draw small layered Konva Canvas 2D scenes from an explicit capture 
 ## Use cases and limits
 Evidence: Konva 10.9.0, Chromium 156.0.8078.4 via Playwright 1.64.1 on macOS arm64, 2026-11-05. The fixture proves two layers, group transforms, shape opacity and transparent capture. It establishes no shared timeline or adapter.
 
-Interaction, tweens, caching, filters, framework bindings, Node rendering and export APIs are untested here. Use PixiJS for GPU sprite/filter work, Fabric.js for SVG round trips, and GSAP for timeline orchestration; these neighbour routes need their own evidence.
+Interaction, tweens, caching, filters, framework bindings, Node rendering and export APIs are untested here. Use PixiJS for GPU sprite/filter work, Fabric.js for SVG round trips, and Anime.js for timeline orchestration; these neighbour routes need their own evidence.
 
 ## Capability map
 Konva's documented scene graph is `Stage` → `Layer` → `Group` and `Shape` nodes. Core API families include node attributes/transforms and z-order, events, `Animation`/`Tween`, caching and filters, drag and transform helpers, and serialization/export (`toCanvas`, `toDataURL`, `toBlob`). Framework integrations are documented separately. See the [API reference](https://konvajs.org/api/) and [documentation](https://konvajs.org/docs/).

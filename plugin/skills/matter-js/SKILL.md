@@ -8,7 +8,7 @@ description: Use Matter.js for 2D rigid-body simulation in a browser scene, step
 `vcr` below means `node <plugin-root>/cli/vcr.mjs`, where the plugin root is two directories above this SKILL.md; inside the VCR repository it is `pnpm vcr`. Run it from the workspace (the directory holding `vcr.json`).
 
 ## Use cases and limits
-- Use for small 2D rigid-body scenes where bodies fall, collide and settle. For hand-authored motion without collisions, use GSAP; for 3D or large simulations, consider Rapier.
+- Use for small 2D rigid-body scenes where bodies fall, collide and settle. For hand-authored motion without collisions, use Anime.js; for 3D or large simulations, consider Rapier.
 - Matter.js supplies simulation APIs and an optional canvas renderer. The fixture draws body vertices itself with Canvas 2D; it does not validate `Matter.Render` or `Matter.Runner`.
 - Validation is scoped to Matter.js 0.20.0, macOS arm64, Playwright 1.64.1 and Chromium 156.0.8078.4. It establishes shuffled-versus-sequential equality in that browser build, not cross-machine determinism.
 

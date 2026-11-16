@@ -14,12 +14,12 @@
   "avoid_when": [
     "Boolean path operations: Paper.js",
     "Many sprites or GPU filters: PixiJS",
-    "Seekable timelines on DOM or SVG: GSAP",
+    "Seekable timelines on DOM or SVG: Anime.js",
     "Interactive object editing: Konva or Fabric.js"
   ],
   "pairs_with": [
     "svg",
-    "gsap",
+    "anime-js",
     "playwright"
   ],
   "official_url": "https://two.js.org/",
