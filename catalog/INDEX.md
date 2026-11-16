@@ -34,7 +34,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `c2patool` — CLI for inspecting and adding C2PA manifests to media assets · media-inspection
 - `canvas-2d` ✓ — Immediate-mode 2D raster drawing; redraw each frame as a pure function of t · 2d-rendering, text-rendering · guide
 - `canvas-record` — Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped · capture, video-encoding, image-sequence-processing
-- `canvas-sketch` — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture
+- `canvas-sketch` ✓ — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture
 - `canvaskit-skia` — Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output · 2d-rendering, text-rendering, shaders
 - `ccapture-js` — Fixed-framerate canvas capture by hooking browser time; 2.x rewrite on WebCodecs · capture, video-encoding, image-sequence-processing
 - `colmap` — Reconstruction · 3d-asset-processing
@@ -66,7 +66,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `mediabunny-server-extension` — Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno · video-encoding, audio
 - `mediainfo` ✓ — Media metadata · media-inspection
 - `mediapipe` — Vision and tracking · computer-vision
-- `mermaid-cli` — Text diagrams (flowchart, sequence, gantt) to SVG/PNG via headless Chromium · diagram-generation, vector-authoring
+- `mermaid-cli` ✓ — Text diagrams (flowchart, sequence, gantt) to SVG/PNG via headless Chromium · diagram-generation, vector-authoring
 - `meshoptimizer` ✓ — Mesh optimisation · 3d-asset-processing
 - `meyda` ✓ — Audio features · audio
 - `mido` ✓ — MIDI processing · audio
@@ -84,7 +84,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `opentype-js` ✓ — Parse fonts to glyph outlines and SVG path data; text without installed fonts · font-processing, typography, vector-authoring
 - `paper-js` ✓ — Vector scene graph with Bezier path geometry and boolean path operations · vector-authoring, 2d-rendering · guide
 - `pixijs` ✓ — GPU-accelerated 2D renderer (WebGPU and WebGL) for sprites, text and filters · 2d-rendering, effects, shaders · guide
-- `pixijs-filters` — Community filter pack for PixiJS: glow, bloom, shockwave, CRT and more · effects, 2d-rendering, shaders
+- `pixijs-filters` ✓ — Community filter pack for PixiJS: glow, bloom, shockwave, CRT and more · effects, 2d-rendering, shaders
 - `playcanvas-engine` ✓ — Open-source web 3D engine usable standalone; strong glTF and Gaussian splat support · 3d-rendering, game-engine, model-loading · guide
 - `playwright` ✓ — Headless browser automation; the capture route for every browser-rendered toolkit · capture · guide
 - `postprocessing` ✓ — pmndrs effects pipeline for Three.js: merged passes for bloom, DOF, SMAA, SSAO · effects, 3d-rendering, shaders · guide

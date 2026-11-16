@@ -71,7 +71,8 @@
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
-    "pixijs-capture"
+    "pixijs-capture",
+    "pixijs-filters-pixelate"
   ],
   "skill": "skills/pixijs/SKILL.md"
 }

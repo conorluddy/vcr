@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+const m = JSON.parse(await readFile(new URL('./output/metrics.json', import.meta.url), 'utf8'));
+assert.equal(m.pixi_version, '8.23.0');
+assert.equal(m.filters_version, '6.1.5');
+assert.equal(m.playwright_version, '1.64.1');
+assert.equal(m.filter, 'PixelateFilter');
+assert.equal(m.canvas, '128x128');
+assert.notEqual(m.baseline_sha256, m.effect_sha256);
+assert.equal(m.effect_sha256, m.repeated_effect_sha256);
+assert.ok(m.webgl.unmasked_renderer.includes('SwiftShader'), m.webgl.unmasked_renderer);

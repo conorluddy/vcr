@@ -1076,12 +1076,25 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.7.8",
+            "command": "examples/canvas-sketch-capture/run.sh",
+            "result": "Two 64x48 manager renders; expected rectangle and transparent background pixels matched; RGBA SHA-256 7e19a4c5a318793273a98514d1d85166d8e3889b7d6e0b1a882d0c64ae1628aa; independent renders matched. Playwright 1.64.1, Chromium 156.0.8078.4, Node 25.6.1; native-size output inspected.",
+            "example": "examples/canvas-sketch-capture",
+            "scope": "Static 64x48 Canvas2D via canvasSketch manager in Chromium; two fresh renders match; macOS arm64. No CLI export/hot reload, animation or WebGL."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "canvas-sketch-capture"
+      ]
     },
     {
       "id": "canvaskit-skia",
@@ -4738,7 +4751,8 @@
         "rapier-capture",
         "react-spring-capture",
         "motion-capture",
-        "troika-three-text-sync"
+        "troika-three-text-sync",
+        "pixijs-filters-pixelate"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -6321,12 +6335,25 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "12.0.0",
+            "command": "examples/mermaid-cli-svg/run.sh",
+            "result": "Actual mmdc CLI generated two byte-identical SVGs (SHA-256 7dbe8b1e325a1f682d25756549dbdd7f38aeeaea5348a849081dd8a6a45c1228); XML checks found 4 node groups, 4 edge paths, all six labels, and viewBox 4 4 654.546875 187. Chromium screenshot visually inspected.",
+            "example": "examples/mermaid-cli-svg",
+            "scope": "Mermaid CLI 12.0.0 SVG flowchart with four nodes and four edges on macOS 26.6 arm64; Node 25.6.1, Playwright 1.64.1, Chromium 156.0.8078.4. No other diagram types or formats."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "mermaid-cli-svg"
+      ]
     },
     {
       "id": "mermaid-rs-renderer",
@@ -8196,7 +8223,8 @@
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
-        "pixijs-capture"
+        "pixijs-capture",
+        "pixijs-filters-pixelate"
       ],
       "skill": "skills/pixijs/SKILL.md"
     },
@@ -8236,12 +8264,25 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "6.1.5 (PixiJS 8.23.0)",
+            "command": "examples/pixijs-filters-pixelate/run.sh",
+            "result": "PixelateFilter size driven 1→12 by t; baseline/effect differed at 15,365 pixels; repeated effect PNG SHA-256 e795ad73365efe1ad04c684314f44d838cd1867713052b36a08e22894acbbe2c; Chromium 156 ANGLE SwiftShader",
+            "example": "examples/pixijs-filters-pixelate",
+            "scope": "PixelateFilter on a generated 128x128 checker in PixiJS 8 WebGL; baseline/effect and repeated output checked under Chromium ANGLE SwiftShader; no hardware GPU claim."
+          }
+        ]
       },
+      "examples": [
+        "pixijs-filters-pixelate"
+      ],
       "adapter_maturity": "none",
       "notes": [
-        "2026-10-26: package name is pixi-filters while the repo is pixijs/filters; compatibility with the current pixi.js major was not verified."
+        "2026-10-26: package name is pixi-filters while the repository is pixijs/filters; compatibility had not yet been verified. 2026-11-16: pixi-filters 6.1.5 peer supports pixi.js >=8.0.0-0; fixture verified it with pixi.js 8.23.0."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -8404,7 +8445,8 @@
         "react-spring-capture",
         "motion-capture",
         "lottie-web-seek",
-        "troika-three-text-sync"
+        "troika-three-text-sync",
+        "pixijs-filters-pixelate"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",

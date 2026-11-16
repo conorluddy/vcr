@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;overflow:hidden;background:#000}</style></head><body>
+<script src="./node_modules/pixi.js/dist/pixi.min.js"></script>
+<script src="./node_modules/pixi-filters/dist/pixi-filters.js"></script>
+<script>
+  (async () => {
+    const app = new PIXI.Application();
+    await app.init({ width: 128, height: 128, preference: 'webgl', background: 0x202020, antialias: false, resolution: 1, autoStart: false, sharedTicker: false, preserveDrawingBuffer: true });
+    app.stop();
+    if (app.renderer.type !== PIXI.RendererType.WEBGL) throw new Error('WebGL renderer required');
+    document.body.appendChild(app.canvas);
+    const grid = new PIXI.Container();
+    const graphics = new PIXI.Graphics();
+    for (let y = 0; y < 128; y += 4) for (let x = 0; x < 128; x += 4) {
+      graphics.rect(x, y, 4, 4).fill(((x / 4 + y / 4) % 2) ? 0xffffff : 0x000000);
+    }
+    grid.addChild(graphics);
+    app.stage.addChild(grid);
+    const filter = new PIXI.filters.PixelateFilter(12);
+    grid.filters = [filter];
+    window.__scene = {
+      filter_name: 'PixelateFilter',
+      seek: (t) => {
+        filter.enabled = true;
+        filter.size = [1 + 11 * t, 1 + 11 * t];
+        app.render();
+      },
+    };
+    window.__scene.seek(0);
+  })().catch((error) => { window.__sceneError = error.stack || error.message; });
+</script>
+</body></html>

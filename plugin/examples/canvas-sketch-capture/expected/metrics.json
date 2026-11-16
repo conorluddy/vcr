@@ -1,0 +1,26 @@
+{
+  "width": 64,
+  "height": 48,
+  "canvas_width": 64,
+  "canvas_height": 48,
+  "interior_rgba": [
+    255,
+    64,
+    32,
+    255
+  ],
+  "far_interior_rgba": [
+    255,
+    64,
+    32,
+    255
+  ],
+  "outside_rgba": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "pixel_sha256": "7e19a4c5a318793273a98514d1d85166d8e3889b7d6e0b1a882d0c64ae1628aa",
+  "second_render_matches": true
+}
