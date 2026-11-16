@@ -1,0 +1,8 @@
+{
+  "id": "meyda-rms",
+  "title": "Meyda RMS on a constant generated signal",
+  "summary": "Extracts RMS from 512 unit samples using the documented default Hann window and checks the independently calculated result and cross-process repeatability.",
+  "status": "validated",
+  "tools": ["meyda"],
+  "run": "./run.sh"
+}
