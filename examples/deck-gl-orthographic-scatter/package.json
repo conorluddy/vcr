@@ -1,0 +1,12 @@
+{
+  "name": "deck-gl-orthographic-scatter",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@deck.gl/core": "9.4.0",
+    "@deck.gl/layers": "9.4.0",
+    "esbuild": "0.27.0",
+    "playwright": "1.64.1",
+    "pngjs": "7.0.0"
+  }
+}
