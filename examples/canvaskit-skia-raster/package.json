@@ -1,0 +1,13 @@
+{
+  "name": "vcr-canvaskit-skia-raster-fixture",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "run": "node run.mjs"
+  },
+  "dependencies": {
+    "canvaskit-wasm": "0.42.0",
+    "pngjs": "7.0.0"
+  }
+}
