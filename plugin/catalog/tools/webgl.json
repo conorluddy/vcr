@@ -46,9 +46,22 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "not-applicable",
+  "examples": [
+    "webgl-readpixels"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "WebGL 1.0 on Chromium 156.0.8078.4 (Playwright 1.64.1)",
+        "command": "examples/webgl-readpixels/run.sh",
+        "result": "ANGLE SwiftShader; 96x72 RGBA readPixels, 1,442 triangle pixels, bounds [17,13,78,58]. Sequential hashes d475c5d5/12446f99/3de97401 matched shuffled order; identical across three browser launches.",
+        "example": "examples/webgl-readpixels",
+        "scope": "Native WebGL 1 readPixels triangle under Chromium SwiftShader on macOS arm64; no hardware GPU, WebGL 2, other browsers or platforms."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,

@@ -1,0 +1,53 @@
+{
+  "canvaskit_version": "0.42.0",
+  "backend": "Node CPU WASM; CanvasKit.MakeSurface/SkSurface",
+  "width": 64,
+  "height": 48,
+  "counts": {
+    "orange_pixels": 192,
+    "blue_pixels": 64,
+    "transparent_pixels": 2816,
+    "unexpected_pixels": 0
+  },
+  "expected_color_counts": {
+    "orange_pixels": 192,
+    "blue_pixels": 64,
+    "transparent_pixels": 2816
+  },
+  "probes": {
+    "orange": [
+      255,
+      128,
+      0,
+      255
+    ],
+    "blue": [
+      32,
+      96,
+      224,
+      255
+    ],
+    "transparent": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "orange_outer_edge": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "blue_outer_edge": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "rgba_sha256": "790c8df515cd17b854be308fb1ab4e133d90615b86387aca73b96ee3eaceeb3d",
+  "png_sha256": "4026f7edc0effa233ad0f81f74c379aa1f757cbdb61d28a463f85a38b8a35847",
+  "repeat_rgba_matches": true,
+  "repeat_png_matches": true
+}

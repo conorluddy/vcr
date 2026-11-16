@@ -1133,8 +1133,18 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.42.0",
+            "command": "examples/canvaskit-skia-raster/run.sh",
+            "result": "Node CPU WASM MakeSurface/SkSurface rendered 64x48 PNG: 192 orange pixels, 64 blue, 2816 transparent, no unexpected; probes matched. RGBA SHA-256 790c8df515cd17b854be308fb1ab4e133d90615b86387aca73b96ee3eaceeb3d; PNG SHA-256 4026f7edc0effa233ad0f81f74c379aa1f757cbdb61d28a463f85a38b8a35847; both repeated. PNG inspected at native size; Node 25.6.1.",
+            "example": "examples/canvaskit-skia-raster",
+            "scope": "Node CPU WASM SkSurface: two non-AA RGBA rectangles, PNG encode, exact dimensions/pixel coverage and repeatable hashes on macOS arm64. No browser/GPU/text/PDF/SVG claim."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
@@ -1152,7 +1162,10 @@
           "https://github.com/google/skia"
         ]
       },
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "canvaskit-skia-raster"
+      ]
     },
     {
       "id": "caption-checker",
@@ -13133,9 +13146,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "not-applicable",
+      "examples": [
+        "webcodecs-vp8-roundtrip"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "Chrome for Testing 156.0.8078.4",
+            "command": "examples/webcodecs-vp8-roundtrip/run.sh",
+            "result": "VP8 encoder/decoder supported. Two passes each round-tripped 3 32x32 frames at (timestamp,duration) (0,33333),(33333,33333),(66666,33333) us; decoded mean RGB exactly red/green/blue (max channel error 0, tolerance 20). Functional metrics matched on repeat.",
+            "example": "examples/webcodecs-vp8-roundtrip",
+            "scope": "Native WebCodecs VP8 encode/decode of three 32x32 solid frames in Chrome 156; exact timestamps/durations, dimensions and color checked. No muxing or other codecs."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
@@ -13189,9 +13215,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "not-applicable",
+      "examples": [
+        "webgl-readpixels"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "WebGL 1.0 on Chromium 156.0.8078.4 (Playwright 1.64.1)",
+            "command": "examples/webgl-readpixels/run.sh",
+            "result": "ANGLE SwiftShader; 96x72 RGBA readPixels, 1,442 triangle pixels, bounds [17,13,78,58]. Sequential hashes d475c5d5/12446f99/3de97401 matched shuffled order; identical across three browser launches.",
+            "example": "examples/webgl-readpixels",
+            "scope": "Native WebGL 1 readPixels triangle under Chromium SwiftShader on macOS arm64; no hardware GPU, WebGL 2, other browsers or platforms."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,

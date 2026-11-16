@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-webgl-readpixels",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "playwright": "1.64.1"
+  }
+}

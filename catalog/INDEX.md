@@ -35,7 +35,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `canvas-2d` ✓ — Immediate-mode 2D raster drawing; redraw each frame as a pure function of t · 2d-rendering, text-rendering · guide
 - `canvas-record` — Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped · capture, video-encoding, image-sequence-processing
 - `canvas-sketch` ✓ — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture
-- `canvaskit-skia` — Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output · 2d-rendering, text-rendering, shaders
+- `canvaskit-skia` ✓ — Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output · 2d-rendering, text-rendering, shaders
 - `ccapture-js` — Fixed-framerate canvas capture by hooking browser time; 2.x rewrite on WebCodecs · capture, video-encoding, image-sequence-processing
 - `colmap` — Reconstruction · 3d-asset-processing
 - `d3` ✓ — Data-driven scales, layouts and shapes; use its geometry, not its transitions · data-visualisation, vector-authoring, svg-animation · guide
@@ -124,8 +124,8 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `vtk-js` — Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering · scientific-visualisation, 3d-rendering
 - `web-animations-api` ✓ — Native element.animate() with a seekable Animation.currentTime; no library needed · tweening, timeline-animation · guide
 - `web-audio` ✓ — Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time · audio
-- `webcodecs` — Frame-exact browser video/audio encoders and decoders; pair with a muxer · video-encoding, media-inspection
-- `webgl` — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders
+- `webcodecs` ✓ — Frame-exact browser video/audio encoders and decoders; pair with a muxer · video-encoding, media-inspection
+- `webgl` ✓ — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders
 - `webgpu` — Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking · 3d-rendering, shaders
 
 ## candidate (105)
