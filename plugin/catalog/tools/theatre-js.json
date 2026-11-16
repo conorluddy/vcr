@@ -51,9 +51,20 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.7.2",
+        "command": "examples/theatre-js-seek/run.sh",
+        "result": "Saved state produced x=0, 2.5, 5, 7.5, 10 at t=0, 0.5, 1, 1.5, 2; shuffled seeks matched",
+        "example": "examples/theatre-js-seek",
+        "scope": "Loads saved numeric keyframe state and scrubs exact/interpolated values in shuffled order; core runtime only, no Studio or browser rendering."
+      }
+    ]
   },
+  "examples": ["theatre-js-seek"],
   "adapter_maturity": "none",
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"

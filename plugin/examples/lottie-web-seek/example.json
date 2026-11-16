@@ -1,0 +1,8 @@
+{
+  "id": "lottie-web-seek",
+  "title": "Lottie Web seekable animated rectangle",
+  "summary": "Seeks an owned vector animation to three frames and checks SVG geometry plus sequential/shuffled browser capture equality.",
+  "status": "validated",
+  "tools": ["lottie-web", "playwright"],
+  "run": "./run.sh"
+}

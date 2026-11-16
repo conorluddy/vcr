@@ -58,7 +58,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `inkscape` — Command-line actions export and convert SVG and other vector source to PNG, PDF and plain SVG · vector-authoring, svg-rasterisation, native-authoring
 - `jimp` ✓ — Pure-JavaScript image manipulation, no native dependencies; slow but trivially portable · image-processing
 - `konva` ✓ — Canvas 2D scene graph (stage, layers, groups, shapes) with events, tweens and export · 2d-rendering, tweening, react-integration · guide
-- `lottie-web` — Plays After Effects/Bodymovin Lottie JSON in the browser; frame-addressable · asset-playback, svg-animation
+- `lottie-web` ✓ — Plays After Effects/Bodymovin Lottie JSON in the browser; frame-addressable · asset-playback, svg-animation
 - `lv2` — Plugin standard · audio
 - `manim-community` — Python scenes rendered by the manim CLI to video or PNG sequences for maths and diagram motion · timeline-animation, 2d-rendering, video-encoding, typography
 - `matter-js` ✓ — 2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t · physics-simulation · guide
@@ -110,11 +110,11 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `svg-js` ✓ — Chainable SVG construction in browser or Node; animation runner is not seekable · vector-authoring, svg-animation · guide
 - `svgo` ✓ — SVG optimisation; preserve IDs needed by animation · svg-optimisation
 - `synfig` — synfig CLI renders .sif and .sifz 2D vector animation projects to frames or video · native-authoring, 2d-rendering, timeline-animation, vector-authoring
-- `theatre-js` — Visual keyframe editor (Studio) with a code runtime; sequence position is settable · timeline-animation, parameter-ui
+- `theatre-js` ✓ — Visual keyframe editor (Studio) with a code runtime; sequence position is settable · timeline-animation, parameter-ui
 - `three-js-shading-language` — Node-based shader authoring in JavaScript that compiles to WGSL or GLSL · shaders, effects
 - `three-meshline` ✓ — Thick camera-facing lines for Three.js; npm three.meshline, pmndrs fork is meshline · 3d-rendering, effects · guide
 - `tone-js` — Web Audio framework for synths, sequencing and effects; Tone.Offline renders faster than real time · audio
-- `troika-three-text` — SDF text meshes for Three.js with font loading and Web Worker typesetting · text-rendering, 3d-rendering
+- `troika-three-text` ✓ — SDF text meshes for Three.js with font loading and Web Worker typesetting · text-rendering, 3d-rendering
 - `tween-js` ✓ — Tiny numeric property interpolator with easing; you call update(time) yourself · tweening · guide
 - `twgl` ✓ — Tiny WebGL helper: programs, buffers, uniforms and framebuffers with less boilerplate · shaders, 2d-rendering · guide
 - `two-js` ✓ — Scene graph for flat 2D drawing with one API across SVG, Canvas and WebGL renderers · 2d-rendering, vector-authoring · guide

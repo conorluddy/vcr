@@ -1,0 +1,8 @@
+{
+  "id": "theatre-js-seek",
+  "title": "Theatre.js restores and seeks committed keyframes",
+  "summary": "Loads a small saved project state and checks keyframed and interpolated values under out-of-order sequence seeks.",
+  "status": "validated",
+  "tools": ["theatre-js"],
+  "run": "./run.sh"
+}

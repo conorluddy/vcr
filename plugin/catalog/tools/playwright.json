@@ -68,7 +68,9 @@
     "react-postprocessing-capture",
     "rapier-capture",
     "react-spring-capture",
-    "motion-capture"
+    "motion-capture",
+    "lottie-web-seek",
+    "troika-three-text-sync"
   ],
   "notes": [
     "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
