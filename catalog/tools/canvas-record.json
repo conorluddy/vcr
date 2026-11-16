@@ -51,7 +51,9 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
-  "examples": ["canvas-record-webm"],
+  "examples": [
+    "canvas-record-webm"
+  ],
   "validation": {
     "status": "validated",
     "evidence": [
@@ -68,5 +70,6 @@
   },
   "adapter_maturity": "none",
   "checked_at": "2026-10-26",
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/canvas-record/SKILL.md"
 }

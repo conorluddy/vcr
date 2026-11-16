@@ -68,8 +68,11 @@
       }
     ]
   },
-  "examples": ["frames-cli-ios-mockup"],
+  "examples": [
+    "frames-cli-ios-mockup"
+  ],
   "adapter_maturity": "none",
   "checked_at": "2026-11-15",
-  "source": "prospects/inbox/2026-11-15-discovery.md"
+  "source": "prospects/inbox/2026-11-15-discovery.md",
+  "skill": "skills/frames-cli/SKILL.md"
 }
