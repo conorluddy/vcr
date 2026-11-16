@@ -53,9 +53,20 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": ["ssam-static-canvas"],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.22.0",
+        "command": "examples/ssam-static-canvas/run.sh",
+        "result": "Ssam sketch manager rendered an owned 32x32 Canvas 2D image. Four quadrants each contained 256 exact RGBA pixels; full raw RGBA SHA-256 e475cc69aec40975bbd44f97ef666b712d959f4342f2f1a5a0bbf5779237312b. Two fresh manager renders matched dimensions and pixels.",
+        "example": "examples/ssam-static-canvas",
+        "scope": "Ssam 0.22.0 static 2D canvas sketch manager in Vite/Chrome; dimensions and exact RGBA repeat checked. No export, hot reload or animation."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,
