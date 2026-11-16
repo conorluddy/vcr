@@ -14,7 +14,7 @@
     "2026-10-29: Feature extraction is not beat tracking or proof of deterministic capture; verify any specific workflow.",
     "2026-10-29: Skill opportunity: further research first; test a seekable audio-reactive scene before proposing a VCR guide."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -47,7 +47,9 @@
     "web-audio",
     "p5-js"
   ],
-  "examples": ["meyda-rms"],
+  "examples": [
+    "meyda-rms"
+  ],
   "license": "MIT (project code; dependencies and audio assets require separate review)",
   "assessment": {
     "date": "2026-10-29",
@@ -59,5 +61,6 @@
       "https://meyda.js.org/",
       "https://github.com/meyda/meyda"
     ]
-  }
+  },
+  "skill": "skills/meyda/SKILL.md"
 }
