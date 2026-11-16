@@ -1,0 +1,8 @@
+{
+  "id": "msdfgen-svg",
+  "title": "msdfgen generates a distance field from an SVG path",
+  "summary": "Generate a multi-channel distance field from the last path in an owned SVG and check dimensions, channel data and repeatability.",
+  "status": "validated",
+  "tools": ["msdfgen"],
+  "run": "./run.sh"
+}
