@@ -47,7 +47,7 @@
       "https://pypi.org/project/scenedetect/"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -63,8 +63,11 @@
       }
     ]
   },
-  "examples": ["pyscenedetect-hard-cuts"],
+  "examples": [
+    "pyscenedetect-hard-cuts"
+  ],
   "adapter_maturity": "none",
   "checked_at": "2026-10-26",
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/pyscenedetect/SKILL.md"
 }
