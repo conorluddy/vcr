@@ -58,9 +58,22 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "vedo-vtp-roundtrip"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "vedo 2026.6.3; VTK 9.7.2; CPython 3.12.13",
+        "command": "examples/vedo-vtp-roundtrip/run.sh",
+        "result": "Two separate Python processes wrote and reloaded VTP; each preserved 4 points, 2 triangles, bounds [0,2,0,3,0,4], connectivity and point coordinates. Geometry SHA-256 e65e2cc8e13535e9c695f1def112a362c4e55077deb05af4f03a7cdec952765f.",
+        "example": "examples/vedo-vtp-roundtrip",
+        "scope": "VTP mesh write/load via Vedo 2026.6.3 and VTK 9.7.2 on macOS arm64; 4 points/2 triangles and bounds preserved; no rendering or other formats/platforms."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-11-15",
