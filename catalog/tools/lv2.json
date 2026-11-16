@@ -12,14 +12,25 @@
   "notes": [
     "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
     "2026-10-29: A plugin standard is not an audio-processing executable; host and plugin support is a separate fact.",
-    "2026-10-29: Skill opportunity: further research first; a host-specific standalone workflow would need an actual plugin and tested host."
+    "2026-11-16: A locally authored mono gain plugin was discovered and run with Lilv 0.28.0 on LV2 headers/spec 1.18.10. This is a bounded Lilv host pairing, not evidence for other hosts or user plugins."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "LV2 1.18.10; Lilv 0.28.0",
+        "command": "examples/lv2-lilv-gain/run.sh --record && examples/lv2-lilv-gain/run.sh",
+        "result": "Lilv discovered the owned mono gain LV2 bundle and reported its metadata. lv2apply processed 256 mono samples at 48 kHz with gain 0.5; decoded output matched half the input within 1/32768 and two independent WAV files matched byte-for-byte (SHA-256 ca26870d0c1ba96871d20ec19045ee0087e913b4419d05d4b9da1a577214ec1a).",
+        "example": "examples/lv2-lilv-gain",
+        "scope": "One locally authored mono control/audio plugin hosted by Lilv; no other hosts, extensions, plugins or realtime playback claim."
+      }
+    ]
   },
+  "examples": ["lv2-lilv-gain"],
   "adapter_maturity": "none",
   "checked_at": "2026-10-29",
   "source": "references/ideas/check-vcr-repo-conversation.md",

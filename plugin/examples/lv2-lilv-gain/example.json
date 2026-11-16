@@ -1,0 +1,8 @@
+{
+  "id": "lv2-lilv-gain",
+  "title": "LV2 plugin bundle hosted with Lilv",
+  "summary": "Build an owned mono gain plugin, discover it through Lilv and compare two native host outputs.",
+  "status": "validated",
+  "tools": ["lv2"],
+  "run": "./run.sh"
+}

@@ -1,0 +1,24 @@
+{
+  "lv2_spec_headers": "1.18.10",
+  "lilv": "0.28.0",
+  "plugin_uri": "https://example.org/vcr/mono-gain",
+  "host": "macOS-26.6-arm64-arm-64bit-Mach-O",
+  "operation": "mono gain 0.5 via lv2apply",
+  "outputs": [
+    {
+      "frames": 256,
+      "sample_rate": 48000,
+      "channels": 1,
+      "max_sample_error": 1.52587890625e-05,
+      "sha256": "ca26870d0c1ba96871d20ec19045ee0087e913b4419d05d4b9da1a577214ec1a"
+    },
+    {
+      "frames": 256,
+      "sample_rate": 48000,
+      "channels": 1,
+      "max_sample_error": 1.52587890625e-05,
+      "sha256": "ca26870d0c1ba96871d20ec19045ee0087e913b4419d05d4b9da1a577214ec1a"
+    }
+  ],
+  "repeat_bytes_match": true
+}
