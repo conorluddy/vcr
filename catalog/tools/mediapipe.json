@@ -15,7 +15,7 @@
     "2026-10-29: Skill opportunity: further research first; a standalone landmark extraction workflow needs a pinned task, model and fixture.",
     "2026-11-16: One Python Image Segmenter CPU route validated with a generated silhouette and an Apache-2.0 model; landmark extraction remains untested."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -63,5 +63,6 @@
     ],
     "version_seen": "1.2.0 (PyPI)",
     "last_release": "2026-10-27"
-  }
+  },
+  "skill": "skills/mediapipe/SKILL.md"
 }

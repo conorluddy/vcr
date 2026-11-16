@@ -14,7 +14,7 @@
     "2026-10-29: The project identifies separate copyright and licence terms for the corpus and external materials.",
     "2026-10-29: Skill opportunity: possible standalone composition-analysis skill after a rights-clear score fixture and existing-skill review."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -62,5 +62,6 @@
     ],
     "version_seen": "10.5.2 (PyPI)",
     "last_release": "2026-10-28"
-  }
+  },
+  "skill": "skills/music21/SKILL.md"
 }
