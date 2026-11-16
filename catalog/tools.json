@@ -4999,9 +4999,22 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.4.4",
+            "command": "examples/inkscape-svg-export/run.sh",
+            "result": "Exported an owned SVG page twice to 128x96 PNG; blue center [21,101,192,255], red sample [229,57,53,255], transparent corner, and identical PNG SHA-256.",
+            "example": "examples/inkscape-svg-export",
+            "scope": "Inkscape CLI SVG page export to PNG on macOS arm64; no object-id exports, PDF/EPS conversion, actions, text conversion or other platforms."
+          }
+        ]
       },
+      "examples": [
+        "inkscape-svg-export"
+      ],
       "adapter_maturity": "none",
       "assessment": {
         "date": "2026-10-26",

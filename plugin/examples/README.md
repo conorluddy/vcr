@@ -50,6 +50,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `colmap-feature-extraction` | colmap | CPU SIFT database records for three generated 384x288 views; 853 keypoints each (2026-11-16) |
 | `mlt-color-render` | mlt-melt | Built-in color to FFV1: five 64x48 frames, repeated decoded RGB hash (2026-11-16) |
 | `synfig-static-render` | synfig | Static SIF rectangle to 160x120 PNG; pixel probes and repeated file hash (2026-11-16) |
+| `inkscape-svg-export` | inkscape | SVG page to 128x96 PNG; pixel probes and repeated file hash (2026-11-16) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 

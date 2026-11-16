@@ -107,9 +107,12 @@ MLT 7.42.0_1 was installed from its prebuilt Homebrew bottle; after COLMAP's ins
 
 Synfig 1.5.5_4 was installed from its prebuilt Homebrew bottle after MLT reduced the plan to six dependencies and two upgrades. The CLI rendered an authored static SIF rectangle to a 160×120 PNG with exact center and transparent-corner samples and repeated file hashes. The fixture does not validate animation or video output.
 
+## Tenth wave
+
+Inkscape 1.4.4's previously stalled version check now exits cleanly. Its CLI exported an authored SVG page twice to identical 128×96 PNGs with checked color and transparency samples. This covers basic page export only, not object actions or conversion workflows.
+
 ## Unattended validation notes — 2026-11-16
 
-- **Inkscape:** Homebrew cask 1.4.4 installed at `/Applications/Inkscape.app`. Both the app CLI and `/opt/homebrew/bin/inkscape --version` produced no output during bounded 10–20 second attempts and were interrupted. SVG export was not attempted; the catalogue remains unvalidated. Revisit CLI startup before designing a render fixture.
 
 - **After Effects / Houdini:** no matching app bundles were found under `/Applications/`, and neither `aerender` nor `hython` was on PATH. No licensed application runtime was available for a fixture; records remain unvalidated.
 - **Shotstack:** neither `SHOTSTACK_API_KEY` nor `SHOTSTACK_KEY` was available in this process. No account setup or paid remote render was attempted; record remains unvalidated. This is an environment preflight result, not proof that the user has no account or credentials elsewhere.

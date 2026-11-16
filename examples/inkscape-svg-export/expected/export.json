@@ -1,0 +1,54 @@
+{
+  "tool": "Inkscape",
+  "version": "1.4.4",
+  "command": "CLI SVG page export to PNG",
+  "renders": [
+    {
+      "width": 128,
+      "height": 96,
+      "center_rgba": [
+        21,
+        101,
+        192,
+        255
+      ],
+      "red_rgba": [
+        229,
+        57,
+        53,
+        255
+      ],
+      "corner_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "png_sha256": "21cc85c081a6ad91391b6bfa302228f88503759d42b0f6409e2f052a8b9ccf95"
+    },
+    {
+      "width": 128,
+      "height": 96,
+      "center_rgba": [
+        21,
+        101,
+        192,
+        255
+      ],
+      "red_rgba": [
+        229,
+        57,
+        53,
+        255
+      ],
+      "corner_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "png_sha256": "21cc85c081a6ad91391b6bfa302228f88503759d42b0f6409e2f052a8b9ccf95"
+    }
+  ],
+  "repeat_equal": true
+}

@@ -1,0 +1,12 @@
+{
+  "id": "inkscape-svg-export",
+  "title": "Inkscape CLI SVG to PNG export",
+  "summary": "Export an owned SVG page through Inkscape's CLI and check dimensions, colors, transparency and repeatability.",
+  "status": "validated",
+  "tools": ["inkscape"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

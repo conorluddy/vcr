@@ -55,7 +55,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `houdini` — hython and hbatch drive procedural and simulation scenes; commercial, Apprentice is capped · native-authoring, physics-simulation, 3d-rendering
 - `hyperframes` ✓ — HTML-to-MP4 renderer seeking a paused timeline in headless Chrome; reference, not a VCR dependency · video-composition, video-encoding, capture, timeline-animation
 - `imagemagick` ✓ — Baseline CLI for image ops, montage, compare and inspection; the validated stills toolchain · image-processing, media-inspection, image-sequence-processing · guide
-- `inkscape` — Command-line actions export and convert SVG and other vector source to PNG, PDF and plain SVG · vector-authoring, svg-rasterisation, native-authoring
+- `inkscape` ✓ — Command-line actions export and convert SVG and other vector source to PNG, PDF and plain SVG · vector-authoring, svg-rasterisation, native-authoring
 - `jimp` ✓ — Pure-JavaScript image manipulation, no native dependencies; slow but trivially portable · image-processing
 - `konva` ✓ — Canvas 2D scene graph (stage, layers, groups, shapes) with events, tweens and export · 2d-rendering, tweening, react-integration · guide
 - `lottie-web` ✓ — Plays After Effects/Bodymovin Lottie JSON in the browser; frame-addressable · asset-playback, svg-animation
