@@ -21,7 +21,7 @@
     "openimageio-oiiotool",
     "opencolorio"
   ],
-  "official_url": "https://rawtherapee.com/",
+  "official_url": "https://rawpedia.pixls.us/command-line_options/",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "raw-processing"
@@ -29,10 +29,10 @@
   "license": "GPL-3.0-or-later",
   "install": {
     "macos": "brew install --cask rawtherapee",
-    "check_command": "rawtherapee-cli -v"
+    "check_command": "rawtherapee-cli -v 2>&1 | head -1"
   },
   "notes": [
-    "2026-10-26: Upstream site shows 5.13 (2026-07-26) with a macOS universal zip; it does not document the CLI, and rawtherapee.com/documentation returned 404. The path of rawtherapee-cli inside the macOS app bundle was not verified, so the check_command may not be on PATH."
+    "2026-11-16: RawPedia documents rawtherapee-cli and its -c batch flow. Homebrew links the macOS app's CLI onto PATH. The -v probe prints the version and full help but exits 255, so use the first output line as a version check."
   ],
   "assessment": {
     "date": "2026-10-26",
@@ -43,6 +43,7 @@
     "verdict": "keep",
     "rationale": "Version 5.13 released 2026-07-26 per rawtherapee.com; Homebrew cask matches. Only RAW developer in the catalogue; CLI docs were not reachable so the automation route rests on general knowledge.",
     "sources": [
+      "https://rawpedia.pixls.us/command-line_options/",
       "https://rawtherapee.com/",
       "https://formulae.brew.sh/api/cask/rawtherapee.json"
     ]
@@ -50,10 +51,21 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "RawTherapee CLI 5.13",
+        "command": "examples/rawtherapee-cli-png-export/run.sh --record && examples/rawtherapee-cli-png-export/run.sh",
+        "result": "The native CLI exported one generated 64x48 RGB PNG to compressed 8-bit PNG. Both outputs stayed 64x48 with 2434 distinct colors and identical SHA-256 579020089175ba9a0bf88e33ac49fa636c63d21656b862282e3297c7f2a3fb56. ImageMagick identify checked dimensions and color count.",
+        "example": "examples/rawtherapee-cli-png-export",
+        "scope": "One local non-RAW PNG batch export with same-host repeatability; excludes RAW development, PP3 profiles, color accuracy and other formats or platforms."
+      }
+    ]
   },
+  "examples": ["rawtherapee-cli-png-export"],
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-11-16",
   "source": "specifications/vcr-prd.md#appendix-a"
 }

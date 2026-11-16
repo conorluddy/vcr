@@ -93,7 +93,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `pts` ✓ — TypeScript creative-coding library centred on points, geometry and vector math · generative-2d, 2d-rendering, math-utilities · guide
 - `pyscenedetect` ✓ — Shot boundary detection CLI and Python library over OpenCV; splits video via FFmpeg · shot-detection, media-inspection, computer-vision
 - `rapier` ✓ — Rust/WASM 2D and 3D physics with optional cross-platform determinism and world snapshots · physics-simulation
-- `rawtherapee-cli` — Headless RAW development with .pp3 profiles; camera RAW to TIFF or PNG for the pipeline · raw-processing
+- `rawtherapee-cli` ✓ — Headless RAW development with .pp3 profiles; camera RAW to TIFF or PNG for the pipeline · raw-processing
 - `react-spring` ◐ — Physics-based spring animation for React; velocity-aware, not time-seekable · tweening, physics-simulation, react-integration
 - `react-three-fiber` ✓ — React renderer for Three.js: declarative JSX scenes with hooks for the frame loop · 3d-rendering, react-integration · guide
 - `react-three-postprocessing` ✓ — Declarative post effects (bloom, DOF, SSAO, LUTs) for R3F, wrapping postprocessing · effects, react-integration · guide

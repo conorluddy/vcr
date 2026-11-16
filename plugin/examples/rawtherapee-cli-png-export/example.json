@@ -1,0 +1,8 @@
+{
+  "id": "rawtherapee-cli-png-export",
+  "title": "RawTherapee CLI PNG export",
+  "summary": "Batch-export one generated RGB PNG with the native CLI and verify dimensions, color count and repeatability.",
+  "status": "validated",
+  "tools": ["rawtherapee-cli"],
+  "run": "./run.sh"
+}

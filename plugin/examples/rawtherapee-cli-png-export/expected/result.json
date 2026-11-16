@@ -1,0 +1,28 @@
+{
+  "rawtherapee_cli": "RawTherapee, version 5.13, command line.",
+  "host": "macOS-26.6-arm64-arm-64bit-Mach-O",
+  "input_dimensions": [
+    64,
+    48
+  ],
+  "output_format": "PNG, 8-bit per channel",
+  "runs": [
+    {
+      "dimensions": [
+        64,
+        48
+      ],
+      "distinct_colors": 2434,
+      "sha256": "579020089175ba9a0bf88e33ac49fa636c63d21656b862282e3297c7f2a3fb56"
+    },
+    {
+      "dimensions": [
+        64,
+        48
+      ],
+      "distinct_colors": 2434,
+      "sha256": "579020089175ba9a0bf88e33ac49fa636c63d21656b862282e3297c7f2a3fb56"
+    }
+  ],
+  "repeat_bytes_match": true
+}

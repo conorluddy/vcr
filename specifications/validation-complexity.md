@@ -101,3 +101,5 @@ OpenType.js 2.0.0 now parses an original FontTools-generated TrueType glyph with
 
 - **After Effects / Houdini:** no matching app bundles were found under `/Applications/`, and neither `aerender` nor `hython` was on PATH. No licensed application runtime was available for a fixture; records remain unvalidated.
 - **Shotstack:** neither `SHOTSTACK_API_KEY` nor `SHOTSTACK_KEY` was available in this process. No account setup or paid remote render was attempted; record remains unvalidated. This is an environment preflight result, not proof that the user has no account or credentials elsewhere.
+- **GIMP batch:** GIMP 3.2.8 installed successfully, but both `gimp --version`/`--help` and the dedicated `gimp-console --version` startup attempt produced no output and stalled through bounded waits; no image operation was attempted. Tool remains unvalidated until its native console startup is resolved.
+- **MLT / melt:** Homebrew 7.42.0_1 proposed installing 43 dependencies and upgrading 12 existing formulas. Installation was stopped while fetching bottles, before package installation; no MLT command was run and the tool remains unvalidated.
