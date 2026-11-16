@@ -1,0 +1,8 @@
+{
+  "id": "opentype-js-generated",
+  "title": "OpenType.js parses a generated TrueType glyph",
+  "summary": "Generates a one-glyph font and checks parsed font metadata and outline commands.",
+  "status": "validated",
+  "tools": ["opentype-js"],
+  "run": "./run.sh"
+}
