@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-vtk-js-vtp-roundtrip",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@kitware/vtk.js": "37.4.6"
+  }
+}

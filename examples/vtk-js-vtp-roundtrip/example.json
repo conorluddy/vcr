@@ -1,0 +1,12 @@
+{
+  "id": "vtk-js-vtp-roundtrip",
+  "title": "vtk.js VTP mesh round trip",
+  "summary": "Build vtkPolyData with vtk.js, serialize VTP, reload it, and verify geometry metrics.",
+  "status": "validated",
+  "tools": ["vtk-js"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
