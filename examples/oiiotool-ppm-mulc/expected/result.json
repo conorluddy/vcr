@@ -1,0 +1,91 @@
+{
+  "expected_mulc_half_pixels_rgb": [
+    [
+      10,
+      20,
+      30
+    ],
+    [
+      40,
+      50,
+      60
+    ],
+    [
+      10,
+      20,
+      30
+    ],
+    [
+      40,
+      50,
+      60
+    ]
+  ],
+  "host": "Darwin 25.6.0 arm64",
+  "hostname": "Conors-MacBook-Pro-2.local",
+  "input": {
+    "bytes_sha256": "f03fcd4be1e5ebe74b419a3d5cb759d76faccca22426db4562d170f43be8e800",
+    "channels": 3,
+    "format": "P6",
+    "height": 2,
+    "max_value": 255,
+    "pixels_rgb": [
+      [
+        20,
+        40,
+        60
+      ],
+      [
+        80,
+        100,
+        120
+      ],
+      [
+        20,
+        40,
+        60
+      ],
+      [
+        80,
+        100,
+        120
+      ]
+    ],
+    "width": 2
+  },
+  "oiiotool_info_contains_dimensions": true,
+  "output": {
+    "bytes_sha256": "0274406f50e14af03f177a7800c8d4528959a3aa6c128bb6f9e5adbf30c7027d",
+    "channels": 3,
+    "format": "P6",
+    "height": 2,
+    "max_value": 255,
+    "pixels_rgb": [
+      [
+        10,
+        20,
+        30
+      ],
+      [
+        40,
+        50,
+        60
+      ],
+      [
+        10,
+        20,
+        30
+      ],
+      [
+        40,
+        50,
+        60
+      ]
+    ],
+    "width": 2
+  },
+  "python": "3.15.2",
+  "repeat_matches": true,
+  "repeat_sha256": "0274406f50e14af03f177a7800c8d4528959a3aa6c128bb6f9e5adbf30c7027d",
+  "tool_version": "3.2.2.0"
+}
