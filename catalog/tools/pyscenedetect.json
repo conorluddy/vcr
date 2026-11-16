@@ -50,9 +50,20 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.7.3",
+        "command": "examples/pyscenedetect-hard-cuts/run.sh",
+        "result": "96 frames at 24 fps; ContentDetector returned cut frames 24, 48, 72 (exact); 96 frames processed; repeat run matched",
+        "example": "examples/pyscenedetect-hard-cuts",
+        "scope": "ContentDetector finds three authored hard cuts in a synthetic clip within ±1 frame; no semantic or arbitrary-footage accuracy claim."
+      }
+    ]
   },
+  "examples": ["pyscenedetect-hard-cuts"],
   "adapter_maturity": "none",
   "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"

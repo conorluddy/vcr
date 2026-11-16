@@ -1,0 +1,21 @@
+{
+  "content_threshold": 10.0,
+  "detected_cut_frames": [
+    24,
+    48,
+    72
+  ],
+  "expected_cut_frames": [
+    24,
+    48,
+    72
+  ],
+  "fps": "24/1",
+  "frames": 96,
+  "height": 64,
+  "min_scene_len_frames": 1,
+  "opencv_version": "5.0.0.93",
+  "processed_frames": 96,
+  "scenedetect_version": "0.7.3",
+  "width": 96
+}
