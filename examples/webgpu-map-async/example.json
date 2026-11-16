@@ -1,0 +1,8 @@
+{
+  "id": "webgpu-map-async",
+  "title": "WebGPU compute buffer mapAsync readback",
+  "summary": "Dispatch a WGSL compute shader on WebGPU and verify exact storage-buffer results through GPUBuffer.mapAsync.",
+  "status": "validated",
+  "tools": ["webgpu"],
+  "run": "./run.sh"
+}
