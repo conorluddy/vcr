@@ -1,0 +1,21 @@
+{
+  "music21_version": "10.5.2",
+  "python_version": "3.12.13",
+  "platform": "darwin",
+  "score": {
+    "measures": 1,
+    "notes": 3,
+    "pitches": [
+      "C4",
+      "D4",
+      "E-4"
+    ],
+    "quarter_lengths": [
+      1.0,
+      0.5,
+      1.5
+    ],
+    "total_quarter_length": 3.0
+  },
+  "normalized_musicxml_sha256": "8c2ceb4e18e03eeed3f1b8d5932253aba63ff1d40a406c560a10ca3ab475f8b8"
+}
