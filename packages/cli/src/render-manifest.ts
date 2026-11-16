@@ -4,7 +4,8 @@ import { basename, extname, join, relative } from "node:path";
 import type { CaptureReport } from "@vcr/capture";
 import type { EnvironmentRecord } from "./doctor.js";
 import { writeFileAtomic } from "./repository.js";
-import { REVIEW_PATHS, sha256Hex, type RenderManifest } from "./review.js";
+import { readVideoReview, REVIEW_PATHS, sha256Hex, type RenderManifest } from "./review.js";
+import { refreshReviewSummary, renderReviewSummary } from "./review-summary.js";
 
 // `vcr capture --video` turns a capture into a render: frames under output/<video>/<render_id>/,
 // a manifest beside them, and a retained copy under review/renders/<render_id>/ (plugin PRD §6.4).
@@ -28,6 +29,7 @@ export interface WrittenRender {
   renderDirectory: string;
   retainedManifestPath: string;
   manifestSha256: string;
+  reviewSummary: "updated" | "unchanged" | "preserved";
 }
 
 // === PUBLIC API ===
@@ -45,6 +47,7 @@ export function renderIdFor(createdAt: Date, contentSha256: string): string {
 
 /** Moves the staged capture to output/<video>/<render_id>/ and writes the manifest there and in review/renders/. */
 export function writeRender(inputs: RenderInputs): WrittenRender {
+  const previousSummary = renderReviewSummary(inputs.videoId, readVideoReview(inputs.videoDirectory, inputs.workspaceRoot));
   const contentSha256 = sha256Hex(inputs.report.hashes.join("\n"));
   const renderId = renderIdFor(inputs.createdAt, contentSha256);
   const renderDirectory = join(renderOutputRoot(inputs.workspaceRoot, inputs.videoId), renderId);
@@ -76,7 +79,8 @@ export function writeRender(inputs: RenderInputs): WrittenRender {
   writeFileAtomic(join(renderDirectory, REVIEW_PATHS.manifestFile), content);
   const retainedManifestPath = join(inputs.videoDirectory, REVIEW_PATHS.renders, renderId, REVIEW_PATHS.manifestFile);
   writeFileAtomic(retainedManifestPath, content);
-  return { manifest, renderDirectory, retainedManifestPath, manifestSha256: sha256Hex(content) };
+  const reviewSummary = refreshReviewSummary(inputs.videoDirectory, inputs.videoId, previousSummary, readVideoReview(inputs.videoDirectory, inputs.workspaceRoot));
+  return { manifest, renderDirectory, retainedManifestPath, manifestSha256: sha256Hex(content), reviewSummary };
 }
 
 // === PRIVATE HELPERS ===
