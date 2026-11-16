@@ -33,9 +33,22 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "vtk-js-vtp-roundtrip"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "vtk.js 37.4.6; Node.js 25.6.1",
+        "command": "examples/vtk-js-vtp-roundtrip/run.sh",
+        "result": "Two independent Node processes wrote and reloaded ASCII VTP; each preserved 4 points, 2 polygons, bounds [0,2,0,3,-1,4] and connectivity. Geometry SHA-256 0c8338058212ee51c04ef30ad854dce87420fcc0e3256e011132065a6ffb30e0.",
+        "example": "examples/vtk-js-vtp-roundtrip",
+        "scope": "vtk.js ASCII VTP write/read preserves this 4-point/2-triangle PolyData on Node 25.6.1/macOS arm64; no rendering, binary VTP, other formats or platforms."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "assessment": {

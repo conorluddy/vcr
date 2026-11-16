@@ -1,0 +1,42 @@
+{
+  "vtkJsVersion": "37.4.6",
+  "nodeVersion": "v25.6.1",
+  "inputPolyData": true,
+  "writerFormat": "ascii VTP",
+  "readerResult": "success",
+  "pointCount": 4,
+  "polygonCount": 2,
+  "points": [
+    0,
+    0,
+    -1,
+    2,
+    0,
+    -1,
+    2,
+    3,
+    4,
+    0,
+    3,
+    4
+  ],
+  "cells": [
+    3,
+    0,
+    1,
+    2,
+    3,
+    0,
+    2,
+    3
+  ],
+  "bounds": [
+    0,
+    2,
+    0,
+    3,
+    -1,
+    4
+  ],
+  "geometrySha256": "0c8338058212ee51c04ef30ad854dce87420fcc0e3256e011132065a6ffb30e0"
+}
