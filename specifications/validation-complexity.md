@@ -94,3 +94,7 @@ For every fixture, use the [evidence template](../catalog/FIXTURE-EVIDENCE-TEMPL
 ## Sixth wave
 
 OpenType.js 2.0.0 now parses an original FontTools-generated TrueType glyph with exact metadata and outline checks, resolving the earlier font-asset blocker. OpenTimelineIO 0.18.1 preserves a one-clip native JSON timeline and media reference across repeat serializations. Both fixtures are integrated on top of the merged discovery PR #204; their recorded claims exclude shaping, editorial adapters and rendering.
+
+## Unattended validation notes — 2026-11-16
+
+- **Inkscape:** Homebrew cask 1.4.4 installed at `/Applications/Inkscape.app`. Both the app CLI and `/opt/homebrew/bin/inkscape --version` produced no output during bounded 10–20 second attempts and were interrupted. SVG export was not attempted; the catalogue remains unvalidated. Revisit CLI startup before designing a render fixture.

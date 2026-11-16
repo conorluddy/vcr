@@ -1,0 +1,25 @@
+{
+  "c2patoolVersion": "c2patool 0.29.0",
+  "sourceWidth": 64,
+  "sourceHeight": 48,
+  "sourceSha256": "39ff3143b0443688d31663e7aaef82a6090a62adb5761f7e4399a2b1c9104fa7",
+  "title": "VCR c2patool fixture",
+  "claimGeneratorInfo": [
+    {
+      "name": "VCRFixture",
+      "org.contentauth.c2pa_rs": "0.92.0",
+      "version": "1.0"
+    }
+  ],
+  "customAssertionLabel": "org.contentauth.test",
+  "customAssertionData": {
+    "claim": "local test asset only",
+    "fixture": "c2patool-test-signer"
+  },
+  "assertionCount": 2,
+  "ingredientFormat": "image/png",
+  "testSignerCommonName": "C2PA Signer",
+  "testSignerIssuer": "C2PA Test Signing Cert",
+  "signatureValidated": true,
+  "signerUntrusted": true
+}

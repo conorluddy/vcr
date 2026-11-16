@@ -31,7 +31,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `aseprite` — Batch CLI and Lua scripts that export pixel-art animation, tags and sprite sheets · pixel-art, native-authoring
 - `babylon-js` ✓ — Full web 3D engine with built-in PBR, post effects, physics and node materials · 3d-rendering, shaders, effects, physics-simulation, model-loading · guide
 - `build123d` ◐ — Python parametric CAD for precise product geometry and SVG technical projections · 3d-asset-processing, vector-authoring
-- `c2patool` — CLI for inspecting and adding C2PA manifests to media assets · media-inspection
+- `c2patool` ✓ — CLI for inspecting and adding C2PA manifests to media assets · media-inspection
 - `canvas-2d` ✓ — Immediate-mode 2D raster drawing; redraw each frame as a pure function of t · 2d-rendering, text-rendering · guide
 - `canvas-record` — Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped · capture, video-encoding, image-sequence-processing
 - `canvas-sketch` ✓ — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture
@@ -106,7 +106,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `satori` ✓ — React-style flexbox layout to SVG without a browser; pairs with resvg for PNG · typography, vector-authoring, text-rendering
 - `sharp` ✓ — Fast Node image processing on libvips; resize, composite, convert with low memory · image-processing, compositing, svg-rasterisation · guide
 - `shotstack` — Hosted video rendering: submit a JSON edit, receive a rendered file · remote-rendering, video-composition
-- `ssam` — Canvas sketch loop with hot reload and export to PNG, GIF, PNG sequence, MP4 and WebM · generative-2d, capture, video-encoding
+- `ssam` ✓ — Canvas sketch loop with hot reload and export to PNG, GIF, PNG sequence, MP4 and WebM · generative-2d, capture, video-encoding
 - `svg-js` ✓ — Chainable SVG construction in browser or Node; animation runner is not seekable · vector-authoring, svg-animation · guide
 - `svgo` ✓ — SVG optimisation; preserve IDs needed by animation · svg-optimisation
 - `synfig` — synfig CLI renders .sif and .sifz 2D vector animation projects to frames or video · native-authoring, 2d-rendering, timeline-animation, vector-authoring

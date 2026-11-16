@@ -54,9 +54,22 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "c2patool-test-signer"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.29.0",
+        "command": "examples/c2patool-test-signer/run.sh",
+        "result": "Read title and VCRFixture 1.0 claim generator info; org.contentauth.test assertion matched. 64x48 RGB source SHA-256 39ff3143b0443688d31663e7aaef82a6090a62adb5761f7e4399a2b1c9104fa7. Signature validated; built-in development signer untrusted.",
+        "example": "examples/c2patool-test-signer",
+        "scope": "Read a PNG claim signed with c2patool's built-in development key; signature validates but cert is untrusted; no trusted signer or factual provenance claim."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-11-15",
