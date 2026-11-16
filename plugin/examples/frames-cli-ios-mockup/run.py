@@ -12,7 +12,10 @@ ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "output"
 EXPECTED = ROOT / "expected" / "metrics.json"
 FRAMES_CLI = Path(os.environ.get("FRAMES_CLI", OUTPUT / "source/frames-cli-1.7.0/frames")).resolve()
-FRAMES_ASSETS = Path(os.environ["FRAMES_ASSETS"]).resolve()
+FRAMES_ASSETS = Path(os.environ["FRAMES_ASSETS"])
+if not FRAMES_ASSETS.is_absolute():
+    FRAMES_ASSETS = ROOT / FRAMES_ASSETS
+FRAMES_ASSETS = FRAMES_ASSETS.resolve()
 PYTHON = Path(sys.executable)
 
 
