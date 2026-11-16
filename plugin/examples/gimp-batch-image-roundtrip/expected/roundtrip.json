@@ -1,0 +1,27 @@
+{
+  "tool": "GIMP",
+  "version": "3.2.8",
+  "batch_interpreter": "python-fu-eval",
+  "operation": "load PPM and export PNG",
+  "width": 16,
+  "height": 12,
+  "samples": {
+    "red": [
+      231,
+      76,
+      60
+    ],
+    "blue": [
+      52,
+      152,
+      219
+    ],
+    "background": [
+      18,
+      26,
+      34
+    ]
+  },
+  "decoded_rgb_sha256": "6e0d31736aedb668c066a03586be58151e5037d18c1e7750c3d6ae8970874140",
+  "exit_code": 0
+}

@@ -47,7 +47,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `frames-cli` ✓ — CLI for framing device screenshots and recordings with bezels · image-processing, video-composition, video-encoding
 - `g-mic` ✓ — CLI filter language with ~1000 procedural filters; stylised and generative looks · image-processing, effects
 - `gifski` ✓ — Highest-quality GIF encoder from PNG frames or y4m; palette per frame, AGPL · gif-encoding, image-sequence-processing
-- `gimp-batch` — Headless GIMP via --batch with Script-Fu or Python; heavyweight, version-specific procedures · image-processing
+- `gimp-batch` ✓ — Headless GIMP via --batch and a selected interpreter; heavyweight, version-specific procedures · image-processing
 - `gl-react` ✓ — React components that compose GLSL shaders as a node graph over textures · shaders, react-integration, effects
 - `gltf-transform` ✓ — Node CLI and library to inspect, optimise and compress glTF/GLB before a scene loads them · 3d-asset-processing
 - `godot` ✓ — Godot headless and --write-movie runs scripted scenes to frames or video, in 2D and 3D · game-engine, 3d-rendering, native-authoring

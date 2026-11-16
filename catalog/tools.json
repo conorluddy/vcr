@@ -3793,12 +3793,12 @@
       "name": "GIMP batch",
       "category": "A6. Image processing and colour",
       "tier": "catalogued",
-      "role": "Headless GIMP via --batch with Script-Fu or Python; heavyweight, version-specific procedures",
-      "summary": "GIMP's non-interactive mode: gimp-console (or gimp -i) with -b/--batch commands and --batch-interpreter selecting Script-Fu (default) or another interpreter, then --quit. Gives access to GIMP's full procedure database, layers and plug-ins from scripts. Script procedures differ between GIMP 2 and 3, so every script is version-specific. Distinguishing strength: reproducing GIMP-only operations without the GUI.",
+      "role": "Headless GIMP via --batch and a selected interpreter; heavyweight, version-specific procedures",
+      "summary": "GIMP's non-interactive mode uses --batch and --batch-interpreter, then --quit. GIMP 3's python-fu-eval interpreter exposes the Gimp and Gio APIs, while the procedure database provides format-specific import and export operations. Procedure signatures differ between GIMP 2 and 3, so scripts are version-specific. Distinguishing strength: reproducing GIMP-only operations without the GUI.",
       "use_when": [
         "A GIMP-specific operation (layer modes, plug-in filter, XCF layers) has no CLI equivalent elsewhere",
         "Batch-converting or editing existing .xcf files with layers intact",
-        "Reusing an existing Script-Fu routine unchanged"
+        "Reusing an existing batch routine unchanged after confirming its GIMP major version"
       ],
       "avoid_when": [
         "Resize, crop, convert, annotate: ImageMagick starts faster and is the validated baseline",
@@ -3822,8 +3822,8 @@
         "check_command": "gimp --version"
       },
       "notes": [
-        "2026-10-26: The official_url man page documents GIMP 3 (data dir 3.0, config dir 3.2): -b/--batch, --batch-interpreter (default Script-Fu), --quit, -i; GIMP_BATCH_INTERPRETER is legacy and --pdb-compat-mode exists for deprecated procedures. GIMP 2 scripts used different procedure names and python-fu-eval; whether python-fu-eval is registered in GIMP 3 was not verified. Python is not covered on that page.",
-        "2026-10-26: Homebrew cask gimp is at 3.2.6 (upstream 2026-09-10); the gimp CLI path inside the macOS app bundle was not verified."
+        "2026-11-16: GIMP 3.2.8 on macOS ran python-fu-eval with --no-interface and loaded Gimp.file_load plus the file-png-export PDB procedure. The example validates one PPM-to-PNG roundtrip; startup also logged attempts to write the user's GIMP config directory, which the sandbox denied.",
+        "2026-11-16: GIMP 3 Python batch execution is confirmed on this host. Python-Fu and PDB procedure signatures remain version-specific; no cross-platform or GIMP 2 claim is made."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -3842,9 +3842,22 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.2.8",
+            "command": "examples/gimp-batch-image-roundtrip/run.sh",
+            "result": "Loaded an owned 16x12 PPM through Gimp.file_load, exported it through the file-png-export PDB procedure, and verified three exact pixel samples in the PNG.",
+            "example": "examples/gimp-batch-image-roundtrip",
+            "scope": "GIMP 3.2.8 Python batch on macOS arm64 for PPM import and PNG export; does not cover XCF editing, other PDB procedures, or other platforms."
+          }
+        ]
       },
+      "examples": [
+        "gimp-batch-image-roundtrip"
+      ],
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"
