@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+
+const m = JSON.parse(await readFile(new URL('./output/metrics.json', import.meta.url), 'utf8'));
+assert.equal(m.troika_version, '0.53.1');
+assert.equal(m.three_version, '0.187.0');
+assert.equal(m.playwright_version, '1.64.1');
+assert.equal(m.canvas, '640x360');
+assert.equal(m.sync_complete, true);
+assert.equal(m.text, 'VCRTOOLS');
+assert.equal(m.fontSize, 0.8);
+assert.equal(m.glyphBounds.length, 32);
+assert.equal(m.caretPositions.length, 32);
+assert.ok(m.blockBounds.every(Number.isFinite));
+assert.ok(m.visibleBounds.every(Number.isFinite));
+assert.ok(m.blockBounds[2] > m.blockBounds[0]);
+assert.ok(m.visibleBounds[3] > m.visibleBounds[1]);
+assert.ok(m.unmaskedWebGLRenderer && m.unmaskedWebGLVendor);
+assert.equal(m.repeated_capture_equal, true);
+assert.equal(m.capture_sha256, m.repeated_capture_sha256);

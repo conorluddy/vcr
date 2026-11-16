@@ -35,9 +35,20 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.53.1 (Three.js 0.187.0)",
+        "command": "examples/troika-three-text-sync/run.sh",
+        "result": "Troika sync completed for VCRTOOLS (8 glyphs; 32 glyph-bound and caret values); block/visible bounds checked. Chromium 156.0.8078.4 on ANGLE SwiftShader; repeated 640x360 PNGs matched SHA-256 eb52d454b08412850ff2f85f7f7f5591443e4b2b49b479c520f86acc50d68058",
+        "example": "examples/troika-three-text-sync",
+        "scope": "Troika 0.53.1 SDF text sync/layout with local OFL font and Three 0.187.0 in headless Chromium SwiftShader; no hardware-GPU, other fonts, or complex-script claims."
+      }
+    ]
   },
+  "examples": ["troika-three-text-sync"],
   "adapter_maturity": "none",
   "assessment": {
     "date": "2026-10-26",
@@ -53,7 +64,8 @@
     ]
   },
   "notes": [
-    "2026-10-26: sync() is async, so capture must wait for it; not tested. official_url is a monorepo subpath."
+    "2026-10-26: official_url is a monorepo subpath.",
+    "2026-11-16: Synchronized Text and measured layout in a fixture; GPU backend is headless Chromium ANGLE SwiftShader, not hardware."
   ],
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
