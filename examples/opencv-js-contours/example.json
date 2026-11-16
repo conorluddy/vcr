@@ -1,0 +1,8 @@
+{
+  "id": "opencv-js-contours",
+  "title": "OpenCV.js thresholds a matrix and finds contours",
+  "summary": "Threshold a generated grayscale matrix and check exact external-contour bounds, areas and repeatability in Node WASM.",
+  "status": "validated",
+  "tools": ["opencv-js"],
+  "run": "./run.sh"
+}

@@ -1,0 +1,32 @@
+{
+  "package_version": "5.0.0-release.1",
+  "opencv_core_version": "5.0.0",
+  "runtime": "Node WASM",
+  "input": {
+    "rows": 10,
+    "cols": 12,
+    "foreground": 29
+  },
+  "threshold": {
+    "threshold": 127,
+    "max_value": 255,
+    "foreground": 29,
+    "sha256": "b41e650dbf81149323bfe4ecbfa1a4ebc814639575ed2db39daf4da6520ae55c"
+  },
+  "contours": [
+    {
+      "x": 1,
+      "y": 1,
+      "width": 3,
+      "height": 3,
+      "area": 4
+    },
+    {
+      "x": 7,
+      "y": 2,
+      "width": 4,
+      "height": 5,
+      "area": 12
+    }
+  ]
+}
