@@ -55,6 +55,7 @@
     ]
   },
   "adapter_maturity": "none",
+  "skill": "skills/pov-ray/SKILL.md",
   "assessment": {
     "date": "2026-10-26",
     "assessed_by": "assess-a7",

@@ -58,6 +58,7 @@
     "inkscape-svg-export"
   ],
   "adapter_maturity": "none",
+  "skill": "skills/inkscape/SKILL.md",
   "assessment": {
     "date": "2026-10-26",
     "assessed_by": "assess-a7",

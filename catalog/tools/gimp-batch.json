@@ -67,6 +67,7 @@
   },
   "examples": ["gimp-batch-image-roundtrip"],
   "adapter_maturity": "none",
+  "skill": "skills/gimp-batch/SKILL.md",
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a"
 }
