@@ -48,7 +48,7 @@
       "https://www.npmjs.com/package/@ffmpeg/ffmpeg"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": ["ffmpeg-wasm-pcm-trim"],
   "validation": {
@@ -67,5 +67,6 @@
   },
   "adapter_maturity": "none",
   "checked_at": "2026-10-26",
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/ffmpeg-wasm/SKILL.md"
 }
