@@ -50,7 +50,7 @@
       "https://www.npmjs.com/package/mediabunny"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "mediabunny-wav"
@@ -71,5 +71,6 @@
   },
   "adapter_maturity": "none",
   "checked_at": "2026-10-26",
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/mediabunny/SKILL.md"
 }
