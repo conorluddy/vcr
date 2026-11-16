@@ -17,8 +17,19 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "5.6.3",
+        "command": "examples/meyda-rms/run.sh",
+        "result": "RMS 0.6117741220995089 matched the independent Hann-window calculation (absolute error 0); two Node processes emitted identical results.",
+        "output_hash": "d8152aa3610017a6d1dd41187bf2a30f793397eb5088df3e7cdc111064f48697",
+        "example": "examples/meyda-rms",
+        "scope": "Offline RMS on 512 unit Float32 samples with default Hanning; exact numeric match and repeatability. No audio I/O, Web Audio, or other features."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-10-29",
@@ -36,6 +47,7 @@
     "web-audio",
     "p5-js"
   ],
+  "examples": ["meyda-rms"],
   "license": "MIT (project code; dependencies and audio assets require separate review)",
   "assessment": {
     "date": "2026-10-29",

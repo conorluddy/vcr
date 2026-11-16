@@ -1,0 +1,9 @@
+{
+  "name": "vcr-example-satori-flex",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "react": "19.2.0",
+    "satori": "0.63.2"
+  }
+}

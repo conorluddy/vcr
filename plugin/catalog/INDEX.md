@@ -68,7 +68,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `mediapipe` — Vision and tracking · computer-vision
 - `mermaid-cli` — Text diagrams (flowchart, sequence, gantt) to SVG/PNG via headless Chromium · diagram-generation, vector-authoring
 - `meshoptimizer` ✓ — Mesh optimisation · 3d-asset-processing
-- `meyda` — Audio features · audio
+- `meyda` ✓ — Audio features · audio
 - `mido` ✓ — MIDI processing · audio
 - `mlt-melt` — MLT multitrack framework with melt CLI and XML projects; the engine behind Kdenlive and Shotcut · video-composition, video-encoding, audio
 - `motion` ✓ — Motion (ex Framer Motion): hybrid JS/React animation, springs, layout and scroll · tweening, react-integration, svg-animation · guide
@@ -92,7 +92,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `pov-ray` — povray renders text scene files and INI settings from the CLI; procedural ray tracing · ray-tracing, 3d-rendering
 - `pts` ✓ — TypeScript creative-coding library centred on points, geometry and vector math · generative-2d, 2d-rendering, math-utilities · guide
 - `pyscenedetect` — Shot boundary detection CLI and Python library over OpenCV; splits video via FFmpeg · shot-detection, media-inspection, computer-vision
-- `rapier` — Rust/WASM 2D and 3D physics with optional cross-platform determinism and world snapshots · physics-simulation
+- `rapier` ✓ — Rust/WASM 2D and 3D physics with optional cross-platform determinism and world snapshots · physics-simulation
 - `rawtherapee-cli` — Headless RAW development with .pp3 profiles; camera RAW to TIFF or PNG for the pipeline · raw-processing
 - `react-spring` ◐ — Physics-based spring animation for React; velocity-aware, not time-seekable · tweening, physics-simulation, react-integration
 - `react-three-fiber` ✓ — React renderer for Three.js: declarative JSX scenes with hooks for the frame loop · 3d-rendering, react-integration · guide
@@ -103,7 +103,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `resvg` ✓ — Static SVG rasterisation · svg-rasterisation · guide
 - `rive-web` — Plays Rive .riv interactive animations with state machines; authoring is in the Rive app · asset-playback
 - `rough-js` ✓ — Hand-drawn, sketchy rendering of shapes and paths to Canvas or SVG · 2d-rendering, vector-authoring · guide
-- `satori` — React-style flexbox layout to SVG without a browser; pairs with resvg for PNG · typography, vector-authoring, text-rendering
+- `satori` ✓ — React-style flexbox layout to SVG without a browser; pairs with resvg for PNG · typography, vector-authoring, text-rendering
 - `sharp` ✓ — Fast Node image processing on libvips; resize, composite, convert with low memory · image-processing, compositing, svg-rasterisation · guide
 - `shotstack` — Hosted video rendering: submit a JSON edit, receive a rendered file · remote-rendering, video-composition
 - `ssam` — Canvas sketch loop with hot reload and export to PNG, GIF, PNG sequence, MP4 and WebM · generative-2d, capture, video-encoding
