@@ -1,0 +1,8 @@
+{
+  "id": "music21-musicxml",
+  "title": "music21 exports and reopens a generated score",
+  "summary": "Checks pitches and quarter lengths survive a MusicXML write and parse round trip, with identical output across runs.",
+  "status": "validated",
+  "tools": ["music21"],
+  "run": "./run.sh"
+}

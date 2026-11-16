@@ -74,11 +74,11 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `motion` ✓ — Motion (ex Framer Motion): hybrid JS/React animation, springs, layout and scroll · tweening, react-integration, svg-animation · guide
 - `motion-canvas` — TypeScript generator-based 2D animation editor and renderer for explainers · timeline-animation, 2d-rendering, video-encoding
 - `msdfgen` ✓ — Signed distance-field generation · sdf-generation, font-processing
-- `music21` — Music analysis · audio
+- `music21` ✓ — Music analysis · audio
 - `nerfstudio` — Reconstruction · 3d-asset-processing
 - `ogl` ✓ — Tiny zero-dependency WebGL library with a Three.js-like API, about 29 KB · 3d-rendering, shaders · guide
 - `opencolorio` — Colour-management engine for ACES and config-driven transforms; library plus ocio* CLI utilities · colour-management
-- `opencv-js` — OpenCV compiled to WASM: feature detection, filtering, tracking, analysis in browser or Node · computer-vision, image-processing
+- `opencv-js` ✓ — OpenCV compiled to WASM: feature detection, filtering, tracking, analysis in browser or Node · computer-vision, image-processing
 - `openimageio-oiiotool` — VFX-grade CLI for EXR, sequences and OCIO colour conversion; stack-based image operations · image-sequence-processing, image-processing, colour-management
 - `opentimelineio` ✓ — Timeline exchange · media-inspection
 - `opentype-js` ✓ — Parse fonts to glyph outlines and SVG path data; text without installed fonts · font-processing, typography, vector-authoring
@@ -91,7 +91,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `potrace` ✓ — Single-colour bitmap tracing to SVG paths; stable but unreleased since 2019 · vector-tracing
 - `pov-ray` — povray renders text scene files and INI settings from the CLI; procedural ray tracing · ray-tracing, 3d-rendering
 - `pts` ✓ — TypeScript creative-coding library centred on points, geometry and vector math · generative-2d, 2d-rendering, math-utilities · guide
-- `pyscenedetect` — Shot boundary detection CLI and Python library over OpenCV; splits video via FFmpeg · shot-detection, media-inspection, computer-vision
+- `pyscenedetect` ✓ — Shot boundary detection CLI and Python library over OpenCV; splits video via FFmpeg · shot-detection, media-inspection, computer-vision
 - `rapier` ✓ — Rust/WASM 2D and 3D physics with optional cross-platform determinism and world snapshots · physics-simulation
 - `rawtherapee-cli` — Headless RAW development with .pp3 profiles; camera RAW to TIFF or PNG for the pipeline · raw-processing
 - `react-spring` ◐ — Physics-based spring animation for React; velocity-aware, not time-seekable · tweening, physics-simulation, react-integration

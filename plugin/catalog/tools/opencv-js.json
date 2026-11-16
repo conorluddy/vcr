@@ -34,9 +34,20 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "5.0.0-release.1 (OpenCV core 5.0.0)",
+        "command": "examples/opencv-js-contours/run.sh",
+        "result": "Node WASM thresholded generated 12x10 matrix: 29 foreground pixels; 2 external contours at (1,1,3,3) area 4 and (7,2,4,5) area 12; separate-process metrics matched",
+        "example": "examples/opencv-js-contours",
+        "scope": "Node WASM threshold and external contours on a generated 12x10 matrix; exact bounds and areas checked; no image decoding or browser/video input."
+      }
+    ]
   },
+  "examples": ["opencv-js-contours"],
   "adapter_maturity": "none",
   "assessment": {
     "date": "2026-10-26",

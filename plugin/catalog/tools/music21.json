@@ -17,8 +17,19 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "10.5.2",
+        "command": "examples/music21-musicxml/run.sh",
+        "result": "Generated 1-measure score reopened with C4/D4/E-4, quarter lengths 1.0/0.5/1.5, total 3.0; normalized XML matched across runs (random part ID excluded).",
+        "output_hash": "8c2ceb4e18e03eeed3f1b8d5932253aba63ff1d40a406c560a10ca3ab475f8b8",
+        "example": "examples/music21-musicxml",
+        "scope": "Owned 3-note score MusicXML write/reopen preserves pitches and durations; repeat semantics match after random part-ID normalization. No corpus/playback/engraving claim."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-10-29",
@@ -36,6 +47,7 @@
     "mido",
     "librosa"
   ],
+  "examples": ["music21-musicxml"],
   "license": "BSD-3-Clause (code; bundled scores and external materials have separate rights)",
   "assessment": {
     "date": "2026-10-29",

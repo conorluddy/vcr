@@ -6970,8 +6970,19 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "10.5.2",
+            "command": "examples/music21-musicxml/run.sh",
+            "result": "Generated 1-measure score reopened with C4/D4/E-4, quarter lengths 1.0/0.5/1.5, total 3.0; normalized XML matched across runs (random part ID excluded).",
+            "output_hash": "8c2ceb4e18e03eeed3f1b8d5932253aba63ff1d40a406c560a10ca3ab475f8b8",
+            "example": "examples/music21-musicxml",
+            "scope": "Owned 3-note score MusicXML write/reopen preserves pitches and durations; repeat semantics match after random part-ID normalization. No corpus/playback/engraving claim."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": "2026-10-29",
@@ -6988,6 +6999,9 @@
       "pairs_with": [
         "mido",
         "librosa"
+      ],
+      "examples": [
+        "music21-musicxml"
       ],
       "license": "BSD-3-Clause (code; bundled scores and external materials have separate rights)",
       "assessment": {
@@ -7458,9 +7472,22 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "5.0.0-release.1 (OpenCV core 5.0.0)",
+            "command": "examples/opencv-js-contours/run.sh",
+            "result": "Node WASM thresholded generated 12x10 matrix: 29 foreground pixels; 2 external contours at (1,1,3,3) area 4 and (7,2,4,5) area 12; separate-process metrics matched",
+            "example": "examples/opencv-js-contours",
+            "scope": "Node WASM threshold and external contours on a generated 12x10 matrix; exact bounds and areas checked; no image decoding or browser/video input."
+          }
+        ]
       },
+      "examples": [
+        "opencv-js-contours"
+      ],
       "adapter_maturity": "none",
       "assessment": {
         "date": "2026-10-26",
@@ -8973,9 +9000,22 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.7.3",
+            "command": "examples/pyscenedetect-hard-cuts/run.sh",
+            "result": "96 frames at 24 fps; ContentDetector returned cut frames 24, 48, 72 (exact); 96 frames processed; repeat run matched",
+            "example": "examples/pyscenedetect-hard-cuts",
+            "scope": "ContentDetector finds three authored hard cuts in a synthetic clip within ±1 frame; no semantic or arbitrary-footage accuracy claim."
+          }
+        ]
       },
+      "examples": [
+        "pyscenedetect-hard-cuts"
+      ],
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"

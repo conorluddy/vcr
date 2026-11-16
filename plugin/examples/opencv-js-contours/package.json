@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-opencv-js-contours",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@techstark/opencv-js": "5.0.0-release.1"
+  }
+}
