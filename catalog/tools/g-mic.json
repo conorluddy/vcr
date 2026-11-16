@@ -52,8 +52,16 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [{
+      "date": "2026-11-16",
+      "hostname": "Conors-MacBook-Pro-2.local",
+      "version": "4.0.7",
+      "command": "examples/g-mic-negate/run.sh",
+      "result": "Negated a generated 2×2 P5 grayscale image to exact samples [255, 191, 127, 0]; repeated output bytes matched (SHA-256 715dca0aaabb14961e016aa79778edaf40d87db258400f07453a3737c954e033).",
+      "example": "examples/g-mic-negate",
+      "scope": "G'MIC 4.0.7, macOS 26.6 arm64: one 8-bit grayscale PGM negate operation with exact pixel and repeat-byte checks; no other filters, color images or bit depths."
+    }]
   },
   "adapter_maturity": "none",
   "checked_at": null,

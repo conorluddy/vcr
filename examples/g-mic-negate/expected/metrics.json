@@ -1,0 +1,15 @@
+{
+  "format": "P5",
+  "width": 2,
+  "height": 2,
+  "maxval": 255,
+  "pixels": [
+    255,
+    191,
+    127,
+    0
+  ],
+  "gmic_version": "4.0.7",
+  "sha256": "715dca0aaabb14961e016aa79778edaf40d87db258400f07453a3737c954e033",
+  "repeat_match": true
+}
