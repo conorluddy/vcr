@@ -1,0 +1,95 @@
+{
+  "browser": "Chrome for Testing 156.0.8078.4",
+  "node": "v25.6.1",
+  "playwright": "1.64.1",
+  "host": "Darwin 25.6.0 arm64",
+  "hostname": "Conors-MacBook-Pro-2.local",
+  "codec": "vp8",
+  "width": 32,
+  "height": 32,
+  "target_timestamps": [
+    0,
+    33333,
+    66666
+  ],
+  "target_duration": 33333,
+  "passes_match": true,
+  "pass": {
+    "encoder_supported": true,
+    "decoder_supported": true,
+    "config": {
+      "alpha": "discard",
+      "bitrate": 100000,
+      "bitrateMode": "variable",
+      "codec": "vp8",
+      "contentHint": "",
+      "framerate": 30,
+      "hardwareAcceleration": "no-preference",
+      "height": 32,
+      "latencyMode": "quality",
+      "width": 32
+    },
+    "source_durations": [
+      33333,
+      33333,
+      33333
+    ],
+    "encoded_chunks": [
+      {
+        "type": "key",
+        "timestamp": 0,
+        "duration": 33333
+      },
+      {
+        "type": "key",
+        "timestamp": 33333,
+        "duration": 33333
+      },
+      {
+        "type": "key",
+        "timestamp": 66666,
+        "duration": 33333
+      }
+    ],
+    "decoded_frames": [
+      {
+        "timestamp": 0,
+        "duration": 33333,
+        "width": 32,
+        "height": 32,
+        "mean_rgb": [
+          255,
+          0,
+          0
+        ]
+      },
+      {
+        "timestamp": 33333,
+        "duration": 33333,
+        "width": 32,
+        "height": 32,
+        "mean_rgb": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "timestamp": 66666,
+        "duration": 33333,
+        "width": 32,
+        "height": 32,
+        "mean_rgb": [
+          0,
+          0,
+          255
+        ]
+      }
+    ],
+    "max_color_errors": [
+      0,
+      0,
+      0
+    ]
+  }
+}
