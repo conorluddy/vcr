@@ -7,7 +7,7 @@
 - **Exclusions:** no Markdown fences, themes, CSS, icons, PNG/PDF output, large diagrams, or broad Mermaid syntax coverage.
 - **Environment:** macOS 26.6 arm64; Node 25.6.1; npm 11.9.0; VCR Playwright 1.64.1; Chrome for Testing 156.0.8078.4.
 - **Input/rights:** `source.mmd` is authored here; no external source or diagram assets.
-- **Dependencies:** fixture-local Mermaid CLI. `PUPPETEER_SKIP_DOWNLOAD=1` prevents its Puppeteer install from fetching a browser; the runner points Puppeteer to the already installed VCR Chromium executable through `--puppeteerConfigFile`. Generated browser config, SVG and checks live under ignored `output/`.
+- **Dependencies/install effect:** `PUPPETEER_SKIP_DOWNLOAD=1 npm ci --prefix examples/mermaid-cli-svg --ignore-scripts` installs the pinned CLI and its fixture-local dependencies (npm lockfile 89,461 bytes); `node_modules` is ignored. Puppeteer browser download is disabled. The runner points Puppeteer to the already installed VCR Chromium executable through `--puppeteerConfigFile`. No global install. Generated browser config, SVG and checks live under ignored `output/`.
 - **Documentation:** Mermaid CLI's [official existing-Chromium guide](https://github.com/mermaid-js/mermaid-cli/blob/master/docs/already-installed-chromium.md) documents the Puppeteer config flag and explicit `executablePath`; [official CLI README](https://github.com/mermaid-js/mermaid-cli) documents `.mmd` to SVG conversion. Checked 2026-11-16.
 
 ## Plan, before running
