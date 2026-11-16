@@ -1,0 +1,8 @@
+{
+  "id": "ssam-static-canvas",
+  "title": "Ssam static Canvas 2D sketch",
+  "summary": "Uses Ssam's sketch manager to render an owned four-color canvas and checks exact pixels, size, and repeatability.",
+  "status": "validated",
+  "tools": ["ssam"],
+  "run": "./run.sh"
+}
