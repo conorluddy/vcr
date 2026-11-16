@@ -46,7 +46,7 @@
       "https://www.npmjs.com/package/svgo"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -70,5 +70,6 @@
   ],
   "notes": [
     "2026-11-15: Official preset-default docs (https://svgo.dev/docs/preset-default/) list cleanupIds but not removeViewBox; the viewBox caveat in the older card wording did not apply to this SVGO 4.0.1 fixture."
-  ]
+  ],
+  "skill": "skills/svgo/SKILL.md"
 }
