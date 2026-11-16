@@ -1,0 +1,8 @@
+{
+  "id": "ccapture-js-png-tar",
+  "title": "CCapture.js PNG TAR frame capture",
+  "summary": "Uses CCapture.js 2.x start/capture/stop/save to capture three canvas frames as PNG TAR and checks extracted pixels.",
+  "status": "validated",
+  "tools": ["ccapture-js"],
+  "run": "./run.sh"
+}

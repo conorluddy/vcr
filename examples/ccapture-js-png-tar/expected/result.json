@@ -1,0 +1,100 @@
+{
+  "ccapture_js": "2.0.0",
+  "vite": "8.3.5",
+  "node": "v25.6.1",
+  "playwright": "1.64.1",
+  "browser": "Chrome for Testing 156.0.8078.4",
+  "host": "Darwin 25.6.0 arm64",
+  "hostname": "Conors-MacBook-Pro-2.local",
+  "format": "png TAR",
+  "captures": 2,
+  "semantic_repeat_matches": true,
+  "first": {
+    "member_count": 3,
+    "frames": [
+      {
+        "index": 0,
+        "width": 32,
+        "height": 32,
+        "rgba": [
+          255,
+          0,
+          0,
+          255
+        ],
+        "exact_pixels": 1024,
+        "raw_pixel_sha256": "4ab589b8423c13f8f33994356d5b696d9b3b56d968e1939f2088c53b5149e6cf"
+      },
+      {
+        "index": 1,
+        "width": 32,
+        "height": 32,
+        "rgba": [
+          0,
+          255,
+          0,
+          255
+        ],
+        "exact_pixels": 1024,
+        "raw_pixel_sha256": "56419a079049271b37eea3515c12bbafb46578e6ac4db012c61395ef8b2e5a68"
+      },
+      {
+        "index": 2,
+        "width": 32,
+        "height": 32,
+        "rgba": [
+          0,
+          0,
+          255,
+          255
+        ],
+        "exact_pixels": 1024,
+        "raw_pixel_sha256": "590d140f13d7c4fac61d0745e2ece4e5afc4ce50af80f4a8470f5fcf00495101"
+      }
+    ]
+  },
+  "second": {
+    "member_count": 3,
+    "frames": [
+      {
+        "index": 0,
+        "width": 32,
+        "height": 32,
+        "rgba": [
+          255,
+          0,
+          0,
+          255
+        ],
+        "exact_pixels": 1024,
+        "raw_pixel_sha256": "4ab589b8423c13f8f33994356d5b696d9b3b56d968e1939f2088c53b5149e6cf"
+      },
+      {
+        "index": 1,
+        "width": 32,
+        "height": 32,
+        "rgba": [
+          0,
+          255,
+          0,
+          255
+        ],
+        "exact_pixels": 1024,
+        "raw_pixel_sha256": "56419a079049271b37eea3515c12bbafb46578e6ac4db012c61395ef8b2e5a68"
+      },
+      {
+        "index": 2,
+        "width": 32,
+        "height": 32,
+        "rgba": [
+          0,
+          0,
+          255,
+          255
+        ],
+        "exact_pixels": 1024,
+        "raw_pixel_sha256": "590d140f13d7c4fac61d0745e2ece4e5afc4ce50af80f4a8470f5fcf00495101"
+      }
+    ]
+  }
+}
