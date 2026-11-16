@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, rm } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -10,6 +10,8 @@ import { chromium } from 'playwright';
 import { PNG } from 'pngjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
+const expectedPath = path.join(here, 'expected', 'frames.json');
+const record = process.argv.includes('--record');
 const outputDir = path.join(here, 'output');
 const bundleDir = path.join(outputDir, 'bundle');
 const pngDir = path.join(outputDir, 'frames');
@@ -99,7 +101,7 @@ for (const order of [[0, 15, 30], [30, 0, 15]]) {
   }
 }
 
-console.log(JSON.stringify({
+const observation = {
   status: 'pass',
   remotion: '4.0.544',
   react: '19.3.1',
@@ -107,4 +109,16 @@ console.log(JSON.stringify({
   os: `${os.type()} ${os.release()} (${os.arch()})`,
   browser: browserVersion,
   sequentialThenShuffled: Object.fromEntries([...results.entries()].map(([frame, result]) => [frame, result])),
-}, null, 2));
+};
+
+if (record) {
+  await mkdir(path.dirname(expectedPath), { recursive: true });
+  await writeFile(expectedPath, `${JSON.stringify(observation, null, 2)}\n`);
+} else {
+  const expectedEvidence = JSON.parse(await readFile(expectedPath, 'utf8'));
+  if (JSON.stringify(observation) !== JSON.stringify(expectedEvidence)) {
+    throw new Error('Observed frame evidence differs from expected/frames.json; rerun with --record only after reviewing the change.');
+  }
+}
+
+console.log(JSON.stringify(observation, null, 2));
