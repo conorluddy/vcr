@@ -1,0 +1,158 @@
+{
+  "status": "pass",
+  "motionCanvas": "3.17.2",
+  "vite": "4.5.14",
+  "node": "v25.6.1",
+  "os": "Darwin 25.6.0 (arm64)",
+  "browser": "Chrome 157.0.8103.51",
+  "resolution": [
+    64,
+    48
+  ],
+  "frameCount": 11,
+  "frames": [
+    {
+      "name": "000000.png",
+      "width": 64,
+      "height": 48,
+      "alphaPixels": 476,
+      "alphaBounds": {
+        "left": 20,
+        "top": 12,
+        "right": 44,
+        "bottom": 36
+      },
+      "sha256": "9c3e07ff760bed04a47635449ceb60931dcf88e0720f644164ea6513fa860042"
+    },
+    {
+      "name": "000001.png",
+      "width": 64,
+      "height": 48,
+      "alphaPixels": 476,
+      "alphaBounds": {
+        "left": 20,
+        "top": 12,
+        "right": 44,
+        "bottom": 36
+      },
+      "sha256": "9c3e07ff760bed04a47635449ceb60931dcf88e0720f644164ea6513fa860042"
+    },
+    {
+      "name": "000002.png",
+      "width": 64,
+      "height": 48,
+      "alphaPixels": 476,
+      "alphaBounds": {
+        "left": 20,
+        "top": 12,
+        "right": 44,
+        "bottom": 36
+      },
+      "sha256": "9c3e07ff760bed04a47635449ceb60931dcf88e0720f644164ea6513fa860042"
+    },
+    {
+      "name": "000003.png",
+      "width": 64,
+      "height": 48,
+      "alphaPixels": 476,
+      "alphaBounds": {
+        "left": 20,
+        "top": 12,
+        "right": 44,
+        "bottom": 36
+      },
+      "sha256": "9c3e07ff760bed04a47635449ceb60931dcf88e0720f644164ea6513fa860042"
+    },
+    {
+      "name": "000004.png",
+      "width": 64,
+      "height": 48,
+      "alphaPixels": 476,
+      "alphaBounds": {
+        "left": 20,
+        "top": 12,
+        "right": 44,
+        "bottom": 36
+      },
+      "sha256": "9c3e07ff760bed04a47635449ceb60931dcf88e0720f644164ea6513fa860042"
+    },
+    {
+      "name": "000005.png",
+      "width": 64,
+      "height": 48,
+      "alphaPixels": 476,
+      "alphaBounds": {
+        "left": 20,
+        "top": 12,
+        "right": 44,
+        "bottom": 36
+      },
+      "sha256": "9c3e07ff760bed04a47635449ceb60931dcf88e0720f644164ea6513fa860042"
+    },
+    {
+      "name": "000006.png",
+      "width": 64,
+      "height": 48,
+      "alphaPixels": 476,
+      "alphaBounds": {
+        "left": 20,
+        "top": 12,
+        "right": 44,
+        "bottom": 36
+      },
+      "sha256": "9c3e07ff760bed04a47635449ceb60931dcf88e0720f644164ea6513fa860042"
+    },
+    {
+      "name": "000007.png",
+      "width": 64,
+      "height": 48,
+      "alphaPixels": 476,
+      "alphaBounds": {
+        "left": 20,
+        "top": 12,
+        "right": 44,
+        "bottom": 36
+      },
+      "sha256": "9c3e07ff760bed04a47635449ceb60931dcf88e0720f644164ea6513fa860042"
+    },
+    {
+      "name": "000008.png",
+      "width": 64,
+      "height": 48,
+      "alphaPixels": 476,
+      "alphaBounds": {
+        "left": 20,
+        "top": 12,
+        "right": 44,
+        "bottom": 36
+      },
+      "sha256": "9c3e07ff760bed04a47635449ceb60931dcf88e0720f644164ea6513fa860042"
+    },
+    {
+      "name": "000009.png",
+      "width": 64,
+      "height": 48,
+      "alphaPixels": 476,
+      "alphaBounds": {
+        "left": 20,
+        "top": 12,
+        "right": 44,
+        "bottom": 36
+      },
+      "sha256": "9c3e07ff760bed04a47635449ceb60931dcf88e0720f644164ea6513fa860042"
+    },
+    {
+      "name": "000010.png",
+      "width": 64,
+      "height": 48,
+      "alphaPixels": 476,
+      "alphaBounds": {
+        "left": 20,
+        "top": 12,
+        "right": 44,
+        "bottom": 36
+      },
+      "sha256": "9c3e07ff760bed04a47635449ceb60931dcf88e0720f644164ea6513fa860042"
+    }
+  ]
+}

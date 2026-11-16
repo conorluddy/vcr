@@ -27,6 +27,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `rapier-capture` | react-three-rapier, react-three-fiber, three-js, playwright, imagemagick | rigid bodies re-stepped at fixed 1/60 from a world snapshot each seek, alpha, shuffled equals sequential (2026-11-12) |
 | `react-spring-capture` | react-spring, playwright, imagemagick | partial: animated.div set via SpringValue.set from closed-form t, alpha, shuffled equals sequential; spring solver not seeked (2026-11-12) |
 | `motion-capture` | motion, playwright, imagemagick | motion.div via stopped animate() controls with .time = t, alpha, shuffled equals sequential, idle after seek (2026-11-12) |
+| `motion-canvas-render` | motion-canvas | editor UI PNG sequence; repeated same-host hashes, 64x48 alpha bounds (2026-11-16) |
 | `twojs-capture` | two-js, playwright, imagemagick | SVG renderer geometry seeked from t, alpha, shuffled equals sequential (2026-11-05) |
 | `lint-overflow` | playwright, `vcr lint` | 9:16 DOM frame: exactly one TYPO-SAFE crossing and one overflow, exit 1 (2026-11-06) |
 | `roughjs-capture` | rough-js, playwright, imagemagick | seeded hand-drawn rectangle, ellipse and path redrawn from t (hachure fill only; other fills use unseeded Math.random), alpha, shuffled equals sequential (2026-11-11) |

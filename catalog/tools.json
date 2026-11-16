@@ -7034,7 +7034,7 @@
         "check_command": "pnpm list @motion-canvas/core --depth 0"
       },
       "notes": [
-        "2026-10-26: headless CLI rendering route unverified; docs describe rendering from the editor UI. Last release 3.17.2 is 2024-12-14."
+        "2026-11-16: editor UI image-sequence export validated; no headless CLI rendering command established. Last release 3.17.2 is 2024-12-14."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -7053,9 +7053,22 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.17.2",
+            "command": "examples/motion-canvas-render/run.sh",
+            "result": "Editor exported 11 transparent 64x48 PNG frames; 476 nontransparent pixels in bounds [20,12,44,36], identical SHA-256 across repeated renders",
+            "example": "examples/motion-canvas-render",
+            "scope": "Editor UI PNG-sequence export on macOS arm64 with same-host repeatability; no video export, arbitrary projects, other OSes, or headless CLI route."
+          }
+        ]
       },
+      "examples": [
+        "motion-canvas-render"
+      ],
       "adapter_maturity": "none",
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a"

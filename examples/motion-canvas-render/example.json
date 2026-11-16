@@ -1,0 +1,12 @@
+{
+  "id": "motion-canvas-render",
+  "title": "Motion Canvas editor image sequence render",
+  "summary": "Render a small TypeScript scene through the Motion Canvas editor and verify the PNG sequence output.",
+  "status": "validated",
+  "tools": ["motion-canvas"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
