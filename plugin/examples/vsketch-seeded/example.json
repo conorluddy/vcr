@@ -1,0 +1,8 @@
+{
+  "id": "vsketch-seeded",
+  "title": "vsketch exports seeded SVG geometry",
+  "summary": "Runs the vsk CLI with a fixed seed and checks the exported SVG line coordinates and viewBox.",
+  "status": "validated",
+  "tools": ["vsketch"],
+  "run": "./run.sh"
+}

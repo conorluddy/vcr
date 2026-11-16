@@ -77,6 +77,10 @@ On 2026-11-15, three more Tier 1 fixtures completed in separate worktrees: Media
 
 On 2026-11-15, Potrace 1.16 traced an owned PBM bitmap to repeatable SVG with checked path/contour structure and visual inspection; Meshoptimizer 1.3.0 simplified a generated grid from 32 to 15 triangles with structural and repeatability checks; vpype 1.15.0 scaled an owned SVG path with exact coordinate and repeat-output checks. All three fixtures passed in separate worktrees and are integrated together; their evidence remains limited to those operations.
 
+## Fourth parallel wave
+
+On 2026-11-16, G'MIC 4.0.7 negated an owned 2×2 grayscale PGM to exact sample values and repeatable bytes, and vsketch 1.2.0 exported a fixed-seed two-line SVG with exact geometry checks. Both fixtures passed in separate worktrees and are integrated together; these claims do not cover other filters, sketches, or output formats.
+
 ## Candidate gate and fixture contract
 
 Candidate records need a review decision before they enter this queue. In particular, the two promotion recommendations should be reviewed as catalogue decisions first; only then choose a validation claim and effort tier. The other candidates can remain discoverable without implying operational support.

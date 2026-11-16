@@ -21,6 +21,7 @@
     "resvg",
     "inkscape"
   ],
+  "examples": ["vsketch-seeded"],
   "official_url": "https://vsketch.readthedocs.io/",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [

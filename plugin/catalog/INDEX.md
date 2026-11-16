@@ -45,7 +45,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `fabric-js` ✓ — Canvas object model with selection, serialisation and SVG import/export · 2d-rendering, vector-authoring · guide
 - `ffmpeg-wasm` — FFmpeg compiled to WebAssembly for in-browser transcodes; slower, size-limited · video-encoding, media-inspection, audio
 - `frames-cli` — CLI for framing device screenshots and recordings with bezels · image-processing, video-composition, video-encoding
-- `g-mic` — CLI filter language with ~1000 procedural filters; stylised and generative looks · image-processing, effects
+- `g-mic` ✓ — CLI filter language with ~1000 procedural filters; stylised and generative looks · image-processing, effects
 - `gifski` ✓ — Highest-quality GIF encoder from PNG frames or y4m; palette per frame, AGPL · gif-encoding, image-sequence-processing
 - `gimp-batch` — Headless GIMP via --batch with Script-Fu or Python; heavyweight, version-specific procedures · image-processing
 - `gl-react` — React components that compose GLSL shaders as a node graph over textures · shaders, react-integration, effects
@@ -120,7 +120,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `two-js` ✓ — Scene graph for flat 2D drawing with one API across SVG, Canvas and WebGL renderers · 2d-rendering, vector-authoring · guide
 - `vedo` — Scientific 3D visualisation and analysis with VTK and NumPy · 3d-asset-processing, 3d-rendering, scientific-visualisation, model-loading
 - `vpype` ✓ — Command-line pipelines that load, transform, optimise and write plotter-ready SVG paths · plotter-workflow, vector-authoring
-- `vsketch` — Python sketches and the vsk CLI generate plotter-oriented line art as SVG · plotter-workflow, generative-2d
+- `vsketch` ✓ — Python sketches and the vsk CLI generate plotter-oriented line art as SVG · plotter-workflow, generative-2d
 - `vtk-js` — Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering · scientific-visualisation, 3d-rendering
 - `web-animations-api` ✓ — Native element.animate() with a seekable Animation.currentTime; no library needed · tweening, timeline-animation · guide
 - `web-audio` — Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time · audio

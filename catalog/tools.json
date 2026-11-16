@@ -3425,6 +3425,9 @@
         "ffmpeg-ffprobe",
         "openimageio-oiiotool"
       ],
+      "examples": [
+        "g-mic-negate"
+      ],
       "official_url": "https://gmic.eu/",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
@@ -3455,8 +3458,18 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.0.7",
+            "command": "examples/g-mic-negate/run.sh",
+            "result": "Negated a generated 2×2 P5 grayscale image to exact samples [255, 191, 127, 0]; repeated output bytes matched (SHA-256 715dca0aaabb14961e016aa79778edaf40d87db258400f07453a3737c954e033).",
+            "example": "examples/g-mic-negate",
+            "scope": "G'MIC 4.0.7, macOS 26.6 arm64: one 8-bit grayscale PGM negate operation with exact pixel and repeat-byte checks; no other filters, color images or bit depths."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
@@ -12503,6 +12516,9 @@
         "resvg",
         "inkscape"
       ],
+      "examples": [
+        "vsketch-seeded"
+      ],
       "official_url": "https://vsketch.readthedocs.io/",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
@@ -12515,13 +12531,23 @@
         "check_command": "vsk --version"
       },
       "notes": [
-        "2026-10-26: The vsk --version flag and macOS arm64 install were not verified; vsketch pulls vpype as a dependency."
+        "2026-11-16: vsketch 1.2.0 was exercised through its CLI on Python 3.12.13/macOS arm64; see the seeded SVG fixture. Plotter hardware and HPGL output remain unverified."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.2.0",
+            "command": "examples/vsketch-seeded/run.sh",
+            "result": "A fixed-seed sketch exported two SVG lines with exact checked coordinates and viewBox; repeated output geometry matched (SHA-256 9ec35f451c7c5c5662d8355980d827405d8632a2a979e01f68cdc1454e01579a).",
+            "example": "examples/vsketch-seeded",
+            "scope": "vsketch 1.2.0 on Python 3.12.13, macOS 26.6 arm64: one seeded SVG sketch and geometry/repeatability checks; no plotter hardware or HPGL output."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "assessment": {

@@ -22,6 +22,7 @@
     "ffmpeg-ffprobe",
     "openimageio-oiiotool"
   ],
+  "examples": ["g-mic-negate"],
   "official_url": "https://gmic.eu/",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [

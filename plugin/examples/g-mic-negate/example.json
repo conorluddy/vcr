@@ -1,0 +1,8 @@
+{
+  "id": "g-mic-negate",
+  "title": "G'MIC negates an owned 8-bit grayscale image",
+  "summary": "Applies -negate to four known PGM samples and checks exact pixels and repeated output bytes.",
+  "status": "validated",
+  "tools": ["g-mic"],
+  "run": "./run.sh"
+}
