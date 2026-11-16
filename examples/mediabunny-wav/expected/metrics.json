@@ -1,0 +1,27 @@
+{
+  "mediabunnyVersion": "1.62.1",
+  "format": "WAVE",
+  "durationSeconds": 0.1,
+  "audioTracks": 1,
+  "videoTracks": 0,
+  "sampleRate": 8000,
+  "channels": 1,
+  "decodedFrames": 800,
+  "sampleChunks": [
+    {
+      "timestamp": 0,
+      "frames": 800
+    }
+  ],
+  "firstEightDecodedF32": [
+    0,
+    0.25,
+    -0.25,
+    0.5,
+    -0.5,
+    0.999969482421875,
+    -1,
+    0
+  ],
+  "decodedF32Sha256": "2b59354ab3065e00f0c6b820a44cfbc7ae266c7039228ebffd96298e6ec77fe2"
+}

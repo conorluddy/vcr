@@ -1,0 +1,8 @@
+{
+  "id": "mediabunny-wav",
+  "title": "Mediabunny reads and decodes a PCM WAV",
+  "summary": "Read metadata and extract deterministic decoded samples from a generated PCM WAV using Mediabunny in Node.",
+  "status": "validated",
+  "tools": ["mediabunny"],
+  "run": "./run.sh"
+}

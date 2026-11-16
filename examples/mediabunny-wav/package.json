@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-mediabunny-wav",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "mediabunny": "1.62.1"
+  }
+}
