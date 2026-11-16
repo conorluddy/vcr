@@ -54,9 +54,20 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": ["oiiotool-ppm-mulc"],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.2.2.0",
+        "command": "examples/oiiotool-ppm-mulc/run.sh",
+        "result": "oiiotool --mulc 0.5 transformed a generated P6 2x2 uint8 RGB PPM to exact samples [10,20,30],[40,50,60],[10,20,30],[40,50,60]. Output metadata remained P6, 2x2, 3 channels, max 255. Repeated files matched byte-for-byte (SHA-256 0274406f50e14af03f177a7800c8d4528959a3aa6c128bb6f9e5adbf30c7027d).",
+        "example": "examples/oiiotool-ppm-mulc",
+        "scope": "oiiotool 3.2.2.0 --mulc 0.5 on generated 2x2 8-bit RGB PPM; exact pixels/metadata/repeat checked. No EXR, OCIO, sequences or other formats."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,
