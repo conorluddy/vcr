@@ -32,6 +32,9 @@
   "install": {
     "macos": "pnpm add satori"
   },
+  "examples": [
+    "satori-flex"
+  ],
   "notes": [
     "2026-10-26: supported CSS subset and font format limits recalled from upstream docs, not re-read."
   ],
@@ -51,8 +54,18 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.63.2",
+        "command": "examples/satori-flex/run.sh",
+        "result": "Fontless rectangle layout generated 320x180 SVG with exact child rectangles; resvg PNG dimensions matched; repeated SVG SHA-256 c4420667620f1c53e4701a2ee512deb91b8c862d62e5663b68f2769fdfb3d8bd",
+        "example": "examples/satori-flex",
+        "scope": "Fontless rectangle-only React tree to SVG; exact flexbox geometry and resvg raster checked; no text, fonts, or broader CSS fidelity."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,

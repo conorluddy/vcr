@@ -1,0 +1,8 @@
+{
+  "id": "satori-flex",
+  "title": "Satori fontless flexbox rectangle layout",
+  "summary": "Render a generated rectangle-only React tree as SVG and check exact flexbox geometry and repeatability.",
+  "status": "validated",
+  "tools": ["satori"],
+  "run": "./run.sh"
+}
