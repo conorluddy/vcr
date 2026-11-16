@@ -52,9 +52,20 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": ["ccapture-js-png-tar"],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "2.0.0",
+        "command": "examples/ccapture-js-png-tar/run.sh",
+        "result": "Two CCapture.js PNG TAR captures each contained 3 ordered 32x32 PNGs: opaque red, green, blue; all 1,024 pixels per frame matched exactly. Semantic pixel metrics matched across captures.",
+        "example": "examples/ccapture-js-png-tar",
+        "scope": "CCapture.js 2.0.0 PNG TAR capture of three 32x32 generated canvas frames; exact pixels, order and repeat checked. No timing metadata or video/GIF codecs."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-10-26",
