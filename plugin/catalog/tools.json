@@ -1025,9 +1025,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "canvas-record-webm"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "6.0.0",
+            "command": "examples/canvas-record-webm/run.sh",
+            "result": "Canvas Record Recorder start/step/stop produced VP9 WebM. FFprobe 9.0.2: 3 frames, 32x32, 3/1 fps, PTS 0/0.333/0.667 s, 1.000000 s. Browser readback colors red/green/blue with max channel errors 1/0/1. Two runs matched semantically; VP8 unsupported, VP9 passed.",
+            "example": "examples/canvas-record-webm",
+            "scope": "Canvas Record 6.0.0 stepped WebCodecs VP9 WebM, 32x32 3-frame canvas; ffprobe timing and browser colors/repeat checked. No other encoders or formats."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
@@ -2204,8 +2217,18 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.83.2",
+            "command": "examples/dotlottie-wasm-seek/run.sh",
+            "result": "dotLottie Web loaded the fixture-owned .lottie archive and local ThorVG WASM in Chromium 156.0.8078.4 (Node 25.6.1, Playwright 1.64.1). Frames 0/15/30 yielded exact 64x64 transparent canvas pixels: 256 red pixels at bounds [8,24,24,40], [24,24,40,40], [40,24,56,40]; sequential/shuffled PNG SHA-256 matched at every frame. No browser errors.",
+            "example": "examples/dotlottie-wasm-seek",
+            "scope": "dotLottie Web 0.83.2 ThorVG WASM rendered an owned 64x64 .lottie shape with exact repeatable frame pixels in Chromium on macOS arm64; no broad Lottie compatibility claim."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
@@ -2223,7 +2246,10 @@
           "https://github.com/LottieFiles/dotlottie-web"
         ]
       },
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "dotlottie-wasm-seek"
+      ]
     },
     {
       "id": "dovi-tool",
@@ -6137,9 +6163,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "mediabunny-server-aac"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.66.0 (@mediabunny/server); NodeAV 6.2.0 / FFmpeg 8.1",
+            "command": "examples/mediabunny-server-aac/run.sh",
+            "result": "canDecode() changed false→true after registration. Decoded and force-transcoded AAC: source/output 48 kHz mono, 49,152 frames; RMS 0.174804/0.175801; zero-crossing 446.289/454.590 Hz; three runs matched.",
+            "example": "examples/mediabunny-server-aac",
+            "scope": "Node server extension decoded and force-transcoded mono AAC via NodeAV 6.2.0/FFmpeg 8.1 on macOS arm64; no video, other codecs, hardware or platforms."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
@@ -8512,7 +8551,8 @@
         "motion-capture",
         "lottie-web-seek",
         "troika-three-text-sync",
-        "pixijs-filters-pixelate"
+        "pixijs-filters-pixelate",
+        "dotlottie-wasm-seek"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",

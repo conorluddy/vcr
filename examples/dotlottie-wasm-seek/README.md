@@ -20,7 +20,7 @@
 
 ## Observation, after running
 
-- **Date/executor:** 2026-11-16; Codex on `Conors-MacBook-Pro-2.local`, macOS 25.6.0 arm64; Node 25.6.1, Playwright 1.64.1, Chromium 156.0.8078.4.
+- **Date/executor:** 2026-11-16; Codex on `Conors-MacBook-Pro-2.local`, macOS 26.6 arm64 (Darwin 25.6.0); Node 25.6.1, Playwright 1.64.1, Chromium 156.0.8078.4.
 - **Commands:** `./run.sh --record` and `./run.sh`; both passed using `@lottiefiles/dotlottie-web` 0.83.2 and the package-local `dotlottie-player.wasm` served from the fixture server. No remote runtime assets were requested.
 - **Observed:** the 64×64 transparent canvas contained exactly 256 opaque red pixels at frames 0/15/30, with bounds `[8,24,24,40]`, `[24,24,40,40]`, `[40,24,56,40]`; sequential and shuffled PNG hashes matched for all three frames. See `expected/metrics.json`.
 - **Visual inspection:** midpoint image showed the expected centered 16×16 red square on transparent canvas at native and 8× enlarged scales; no visible defects.

@@ -71,7 +71,8 @@
     "motion-capture",
     "lottie-web-seek",
     "troika-three-text-sync",
-    "pixijs-filters-pixelate"
+    "pixijs-filters-pixelate",
+    "dotlottie-wasm-seek"
   ],
   "notes": [
     "Not in PRD Appendix A; added because the browser-capture spike depends on it.",

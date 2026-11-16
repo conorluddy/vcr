@@ -98,3 +98,6 @@ OpenType.js 2.0.0 now parses an original FontTools-generated TrueType glyph with
 ## Unattended validation notes — 2026-11-16
 
 - **Inkscape:** Homebrew cask 1.4.4 installed at `/Applications/Inkscape.app`. Both the app CLI and `/opt/homebrew/bin/inkscape --version` produced no output during bounded 10–20 second attempts and were interrupted. SVG export was not attempted; the catalogue remains unvalidated. Revisit CLI startup before designing a render fixture.
+
+- **After Effects / Houdini:** no matching app bundles were found under `/Applications/`, and neither `aerender` nor `hython` was on PATH. No licensed application runtime was available for a fixture; records remain unvalidated.
+- **Shotstack:** neither `SHOTSTACK_API_KEY` nor `SHOTSTACK_KEY` was available in this process. No account setup or paid remote render was attempted; record remains unvalidated. This is an environment preflight result, not proof that the user has no account or credentials elsewhere.

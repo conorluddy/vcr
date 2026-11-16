@@ -48,9 +48,22 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "mediabunny-server-aac"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.66.0 (@mediabunny/server); NodeAV 6.2.0 / FFmpeg 8.1",
+        "command": "examples/mediabunny-server-aac/run.sh",
+        "result": "canDecode() changed false→true after registration. Decoded and force-transcoded AAC: source/output 48 kHz mono, 49,152 frames; RMS 0.174804/0.175801; zero-crossing 446.289/454.590 Hz; three runs matched.",
+        "example": "examples/mediabunny-server-aac",
+        "scope": "Node server extension decoded and force-transcoded mono AAC via NodeAV 6.2.0/FFmpeg 8.1 on macOS arm64; no video, other codecs, hardware or platforms."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-10-26",

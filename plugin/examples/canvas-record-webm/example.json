@@ -1,0 +1,8 @@
+{
+  "id": "canvas-record-webm",
+  "title": "Canvas Record stepped VP8 WebM",
+  "summary": "Uses Canvas Record's Recorder start/step/stop API to encode three generated canvas frames and checks WebM readback.",
+  "status": "validated",
+  "tools": ["canvas-record"],
+  "run": "./run.sh"
+}

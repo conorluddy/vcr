@@ -33,14 +33,14 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `build123d` ◐ — Python parametric CAD for precise product geometry and SVG technical projections · 3d-asset-processing, vector-authoring
 - `c2patool` ✓ — CLI for inspecting and adding C2PA manifests to media assets · media-inspection
 - `canvas-2d` ✓ — Immediate-mode 2D raster drawing; redraw each frame as a pure function of t · 2d-rendering, text-rendering · guide
-- `canvas-record` — Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped · capture, video-encoding, image-sequence-processing
+- `canvas-record` ✓ — Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped · capture, video-encoding, image-sequence-processing
 - `canvas-sketch` ✓ — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture
 - `canvaskit-skia` ✓ — Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output · 2d-rendering, text-rendering, shaders
 - `ccapture-js` — Fixed-framerate canvas capture by hooking browser time; 2.x rewrite on WebCodecs · capture, video-encoding, image-sequence-processing
 - `colmap` — Reconstruction · 3d-asset-processing
 - `d3` ✓ — Data-driven scales, layouts and shapes; use its geometry, not its transitions · data-visualisation, vector-authoring, svg-animation · guide
 - `deck-gl` — WebGL layers for large geospatial and point-cloud data; view state as props · geospatial, data-visualisation
-- `dotlottie` — .lottie container plus ThorVG WASM canvas player with frame seeking · asset-playback
+- `dotlottie` ✓ — .lottie container plus ThorVG WASM canvas player with frame seeking · asset-playback
 - `drei` ✓ — Helper components for React Three Fiber: controls, loaders, text, environments · 3d-rendering, react-integration, model-loading · guide
 - `fabric-js` ✓ — Canvas object model with selection, serialisation and SVG import/export · 2d-rendering, vector-authoring · guide
 - `ffmpeg-wasm` — FFmpeg compiled to WebAssembly for in-browser transcodes; slower, size-limited · video-encoding, media-inspection, audio
@@ -63,7 +63,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `manim-community` — Python scenes rendered by the manim CLI to video or PNG sequences for maths and diagram motion · timeline-animation, 2d-rendering, video-encoding, typography
 - `matter-js` ✓ — 2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t · physics-simulation · guide
 - `mediabunny` ✓ — Pure-TypeScript media toolkit: read, write, convert, WebCodecs-backed; browser and Node · video-encoding, media-inspection, audio
-- `mediabunny-server-extension` — Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno · video-encoding, audio
+- `mediabunny-server-extension` ✓ — Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno · video-encoding, audio
 - `mediainfo` ✓ — Media metadata · media-inspection
 - `mediapipe` — Vision and tracking · computer-vision
 - `mermaid-cli` ✓ — Text diagrams (flowchart, sequence, gantt) to SVG/PNG via headless Chromium · diagram-generation, vector-authoring
