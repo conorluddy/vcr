@@ -14,7 +14,7 @@
     "2026-10-29: A plugin standard is not an audio-processing executable; host and plugin support is a separate fact.",
     "2026-11-16: A locally authored mono gain plugin was discovered and run with Lilv 0.28.0 on LV2 headers/spec 1.18.10. This is a bounded Lilv host pairing, not evidence for other hosts or user plugins."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -30,7 +30,9 @@
       }
     ]
   },
-  "examples": ["lv2-lilv-gain"],
+  "examples": [
+    "lv2-lilv-gain"
+  ],
   "adapter_maturity": "none",
   "checked_at": "2026-10-29",
   "source": "references/ideas/check-vcr-repo-conversation.md",
@@ -59,5 +61,6 @@
       "https://github.com/lv2/lv2"
     ],
     "version_seen": "1.18.10 (project download page)"
-  }
+  },
+  "skill": "skills/lv2/SKILL.md"
 }
