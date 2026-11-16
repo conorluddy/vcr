@@ -36,7 +36,7 @@
   "notes": [
     "2026-10-26: Install on macOS arm64 was not tested; some plugins need compiled wheels."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -70,5 +70,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "vpype-scale"
-  ]
+  ],
+  "skill": "skills/vpype/SKILL.md"
 }
