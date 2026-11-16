@@ -45,9 +45,11 @@
       "https://registry.npmjs.org/jimp"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
-  "examples": ["jimp-invert"],
+  "examples": [
+    "jimp-invert"
+  ],
   "validation": {
     "status": "validated",
     "evidence": [
@@ -64,5 +66,6 @@
   },
   "adapter_maturity": "none",
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/jimp/SKILL.md"
 }
