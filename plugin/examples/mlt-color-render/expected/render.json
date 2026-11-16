@@ -1,0 +1,21 @@
+{
+  "tool": "MLT",
+  "version": "7.42.0",
+  "producer": "colour:red",
+  "consumer": "avformat + FFV1",
+  "render": {
+    "codec": "ffv1",
+    "width": 64,
+    "height": 48,
+    "frame_rate": "25/1",
+    "frames": 5,
+    "duration_seconds": 0.2
+  },
+  "center_rgb": [
+    254,
+    0,
+    0
+  ],
+  "decoded_rgb_sha256": "4b914e23d014c3fcfba6fd46b59ed324bbac561a7ef7e8910f80bb7e07c212b0",
+  "repeat_pixels_equal": true
+}

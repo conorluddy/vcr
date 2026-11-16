@@ -37,7 +37,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `canvas-sketch` ✓ — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture
 - `canvaskit-skia` ✓ — Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output · 2d-rendering, text-rendering, shaders
 - `ccapture-js` ✓ — Fixed-framerate canvas capture by hooking browser time; 2.x rewrite on WebCodecs · capture, video-encoding, image-sequence-processing
-- `colmap` — Reconstruction · 3d-asset-processing
+- `colmap` ✓ — Reconstruction · 3d-asset-processing
 - `d3` ✓ — Data-driven scales, layouts and shapes; use its geometry, not its transitions · data-visualisation, vector-authoring, svg-animation · guide
 - `deck-gl` ✓ — WebGL layers for large geospatial and point-cloud data; view state as props · geospatial, data-visualisation
 - `dotlottie` ✓ — .lottie container plus ThorVG WASM canvas player with frame seeking · asset-playback
@@ -70,7 +70,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `meshoptimizer` ✓ — Mesh optimisation · 3d-asset-processing
 - `meyda` ✓ — Audio features · audio
 - `mido` ✓ — MIDI processing · audio
-- `mlt-melt` — MLT multitrack framework with melt CLI and XML projects; the engine behind Kdenlive and Shotcut · video-composition, video-encoding, audio
+- `mlt-melt` ✓ — MLT multitrack framework with melt CLI and XML projects; the engine behind Kdenlive and Shotcut · video-composition, video-encoding, audio
 - `motion` ✓ — Motion (ex Framer Motion): hybrid JS/React animation, springs, layout and scroll · tweening, react-integration, svg-animation · guide
 - `motion-canvas` ✓ — TypeScript generator-based 2D animation editor and renderer for explainers · timeline-animation, 2d-rendering, video-encoding
 - `msdfgen` ✓ — Signed distance-field generation · sdf-generation, font-processing
@@ -109,7 +109,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `ssam` ✓ — Canvas sketch loop with hot reload and export to PNG, GIF, PNG sequence, MP4 and WebM · generative-2d, capture, video-encoding
 - `svg-js` ✓ — Chainable SVG construction in browser or Node; animation runner is not seekable · vector-authoring, svg-animation · guide
 - `svgo` ✓ — SVG optimisation; preserve IDs needed by animation · svg-optimisation
-- `synfig` — synfig CLI renders .sif and .sifz 2D vector animation projects to frames or video · native-authoring, 2d-rendering, timeline-animation, vector-authoring
+- `synfig` ✓ — synfig CLI renders .sif and .sifz 2D vector animation projects to frames or video · native-authoring, 2d-rendering, timeline-animation, vector-authoring
 - `theatre-js` ✓ — Visual keyframe editor (Studio) with a code runtime; sequence position is settable · timeline-animation, parameter-ui
 - `three-js-shading-language` ✓ — Node-based shader authoring in JavaScript that compiles to WGSL or GLSL · shaders, effects
 - `three-meshline` ✓ — Thick camera-facing lines for Three.js; npm three.meshline, pmndrs fork is meshline · 3d-rendering, effects · guide

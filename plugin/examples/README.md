@@ -47,6 +47,9 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `meshline-capture` | three-meshline, three-js, playwright, imagemagick | THREE.MeshLine width taper, dash offset, visibility and rebuilt points per seek, alpha, shuffled equals sequential (2026-11-11) |
 | `postprocessing-capture` | postprocessing, three-js, playwright, imagemagick | EffectComposer with Bloom and ChromaticAberration via composer.render(0) per seek; vignette not visible on alpha; shuffled equals sequential (2026-11-11) |
 | `rive-web-state-machine` | rive-web | MIT-licensed sample, nested boolean inputs drive visible state colors (2026-11-16) |
+| `colmap-feature-extraction` | colmap | CPU SIFT database records for three generated 384x288 views; 853 keypoints each (2026-11-16) |
+| `mlt-color-render` | mlt-melt | Built-in color to FFV1: five 64x48 frames, repeated decoded RGB hash (2026-11-16) |
+| `synfig-static-render` | synfig | Static SIF rectangle to 160x120 PNG; pixel probes and repeated file hash (2026-11-16) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 

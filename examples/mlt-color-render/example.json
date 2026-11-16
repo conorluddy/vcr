@@ -1,0 +1,12 @@
+{
+  "id": "mlt-color-render",
+  "title": "MLT color producer and FFV1 render",
+  "summary": "Render a five-frame red clip through MLT's avformat consumer and verify stream metadata and decoded pixels.",
+  "status": "validated",
+  "tools": ["mlt-melt"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

@@ -31,7 +31,7 @@
     "check_command": "melt -version"
   },
   "notes": [
-    "2026-10-26: Homebrew formula name 'mlt' assumed from the record; melt installation was not tested and a Homebrew build includes whatever modules the formula enables."
+    "2026-11-16: Homebrew MLT 7.42.0_1 color producer and avformat/FFV1 render validated with repeated decoded pixels; this does not establish timeline XML, filters, transitions or audio support."
   ],
   "assessment": {
     "date": "2026-10-26",
@@ -49,10 +49,21 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "7.42.0 (Homebrew 7.42.0_1)",
+        "command": "examples/mlt-color-render/run.sh",
+        "result": "Rendered 5 FFV1 frames at 64x48 and 25 fps (0.2 s); center decoded as [254,0,0] and repeated decoded RGB SHA-256 matched.",
+        "example": "examples/mlt-color-render",
+        "scope": "Built-in colour producer to avformat FFV1 consumer on macOS arm64; no XML projects, filters, transitions, audio, other consumers or platforms."
+      }
+    ]
   },
+  "examples": ["mlt-color-render"],
   "adapter_maturity": "none",
-  "checked_at": "2026-10-26",
+  "checked_at": "2026-11-16",
   "source": "specifications/vcr-prd.md#appendix-a"
 }

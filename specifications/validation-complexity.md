@@ -95,6 +95,18 @@ For every fixture, use the [evidence template](../catalog/FIXTURE-EVIDENCE-TEMPL
 
 OpenType.js 2.0.0 now parses an original FontTools-generated TrueType glyph with exact metadata and outline checks, resolving the earlier font-asset blocker. OpenTimelineIO 0.18.1 preserves a one-clip native JSON timeline and media reference across repeat serializations. Both fixtures are integrated on top of the merged discovery PR #204; their recorded claims exclude shaping, editorial adapters and rendering.
 
+## Seventh wave
+
+COLMAP 4.2.1_5 was installed from its prebuilt Homebrew bottle after checking the current formula plan (18 dependencies and 8 formula upgrades). CPU SIFT feature extraction stored 853 features for each of three generated views on repeat runs. The fixture validates extraction and database records only; it does not claim image matching or 3D reconstruction.
+
+## Eighth wave
+
+MLT 7.42.0_1 was installed from its prebuilt Homebrew bottle; after COLMAP's install, the remaining plan was 26 formulae and 4 upgrades. The built-in color producer rendered five 64×48 FFV1 frames, and decoded pixels matched across repeated renders. This is a producer/consumer smoke fixture, not validation of multitrack projects or filters.
+
+## Ninth wave
+
+Synfig 1.5.5_4 was installed from its prebuilt Homebrew bottle after MLT reduced the plan to six dependencies and two upgrades. The CLI rendered an authored static SIF rectangle to a 160×120 PNG with exact center and transparent-corner samples and repeated file hashes. The fixture does not validate animation or video output.
+
 ## Unattended validation notes — 2026-11-16
 
 - **Inkscape:** Homebrew cask 1.4.4 installed at `/Applications/Inkscape.app`. Both the app CLI and `/opt/homebrew/bin/inkscape --version` produced no output during bounded 10–20 second attempts and were interrupted. SVG export was not attempted; the catalogue remains unvalidated. Revisit CLI startup before designing a render fixture.
@@ -102,8 +114,5 @@ OpenType.js 2.0.0 now parses an original FontTools-generated TrueType glyph with
 - **After Effects / Houdini:** no matching app bundles were found under `/Applications/`, and neither `aerender` nor `hython` was on PATH. No licensed application runtime was available for a fixture; records remain unvalidated.
 - **Shotstack:** neither `SHOTSTACK_API_KEY` nor `SHOTSTACK_KEY` was available in this process. No account setup or paid remote render was attempted; record remains unvalidated. This is an environment preflight result, not proof that the user has no account or credentials elsewhere.
 - **GIMP batch:** GIMP 3.2.8 installed successfully, but both `gimp --version`/`--help` and the dedicated `gimp-console --version` startup attempt produced no output and stalled through bounded waits; no image operation was attempted. Tool remains unvalidated until its native console startup is resolved.
-- **MLT / melt:** Homebrew 7.42.0_1 proposed installing 43 dependencies and upgrading 12 existing formulas. Installation was stopped while fetching bottles, before package installation; no MLT command was run and the tool remains unvalidated.
-- **Synfig:** the Homebrew 1.5.5 CLI renderer is not installed and has 25 direct formula dependencies, including MLT. With the MLT installation already deferred above, no Synfig installation or render was attempted; the tool remains unvalidated.
 - **Aseprite:** no executable or app bundle was present, and Homebrew has no Aseprite cask. No paid purchase or alternate installer was attempted; the tool remains unvalidated.
-- **COLMAP:** Homebrew 4.2.1_5 would install 18 dependencies and upgrade 8 existing formulas, including GCC and Qt. No installation or reconstruction was attempted; the tool remains unvalidated.
 - **Nerfstudio:** this host is macOS arm64 with no `nvidia-smi`; the official installation guide documents Linux/Windows setup and a CUDA/Tiny-CUDA-NN training stack, with no macOS route documented. No training stack, model or dataset was installed; the tool remains unvalidated on this machine.

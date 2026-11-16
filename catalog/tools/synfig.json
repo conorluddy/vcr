@@ -4,7 +4,7 @@
   "category": "A7. Native applications and procedural tools",
   "tier": "catalogued",
   "role": "synfig CLI renders .sif and .sifz 2D vector animation projects to frames or video",
-  "summary": "Open-source 2D vector and bitmap animation studio. The synfig CLI renders .sif, .sifz and .sfg project files to PNG sequences, GIF or video at chosen size and frame range, with tweened vertices, bones and layers. Strength is cut-out and vector tweening authored visually and rendered headlessly. macOS packaging is the weak spot; Homebrew disabled its cask.",
+  "summary": "Open-source 2D vector and bitmap animation system. The synfig CLI renders .sif, .sifz and .sfg project files to PNG sequences, GIF or video at chosen size and frame range. The Homebrew formula provides a standalone renderer on macOS; the Studio GUI and broader animation workflows are separate from this CLI validation.",
   "use_when": [
     "An existing .sif project from an animator must render headlessly",
     "Vector tweening and bone rigs authored visually, over Blender grease pencil",
@@ -13,7 +13,7 @@
   "avoid_when": [
     "Code-authored 2D motion: GSAP or Manim",
     "3D or lighting: Blender",
-    "Reliable macOS arm64 install today: Blender or Inkscape"
+    "Need a code-authored vector scene: SVG, GSAP or Motion Canvas"
   ],
   "pairs_with": [
     "inkscape",
@@ -31,17 +31,29 @@
   ],
   "license": "GPL-3.0",
   "install": {
-    "check_command": "/Applications/SynfigStudio.app/Contents/MacOS/synfig --version"
+    "macos": "brew install synfig",
+    "check_command": "synfig --version"
   },
   "notes": [
-    "2026-10-26: Homebrew cask synfigstudio (1.4.5) was disabled 2026-09-01 for failing Gatekeeper, so install.macos was removed. Release 1.5.5 ships SynfigStudio-1.5.5-20260315.dmg; its CPU architecture is not stated in the asset name, so arm64 support is unverified. App-bundle CLI path is assumed."
+    "2026-11-16: Homebrew formula 1.5.5_4 installs the standalone Synfig CLI on macOS arm64. One static SIF-to-PNG render passed; a missing optional mod_jpeg module warning appeared, but the PNG target worked. This does not validate Studio GUI, animation ranges or video output."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.5.5 (Homebrew 1.5.5_4)",
+        "command": "examples/synfig-static-render/run.sh",
+        "result": "Rendered a 160x120 PNG with a red center pixel [255,0,0,255], transparent corner [0,0,0,0], and identical repeated file SHA-256.",
+        "example": "examples/synfig-static-render",
+        "scope": "Static SIF rectangle rendered to PNG at 0s on macOS arm64; no animation, GUI, video output or other render targets."
+      }
+    ]
   },
+  "examples": ["synfig-static-render"],
   "adapter_maturity": "none",
   "assessment": {
     "date": "2026-10-26",
@@ -50,12 +62,12 @@
     "last_release": "2026-03-16",
     "maintenance": "active",
     "verdict": "keep",
-    "rationale": "1.5.5 released 2026-03-16 with a macOS dmg and the repo was pushed 2026-10-25. The Homebrew cask is disabled for Gatekeeper and dmg architecture is unstated, so macOS arm64 is unverified; keep tier but flag install.",
+    "rationale": "1.5.5 released 2026-03-16. The cask is disabled, but a Homebrew formula provides the CLI; one static PNG render is now validated on macOS arm64.",
     "sources": [
       "https://github.com/synfig/synfig/releases",
       "https://wiki.synfig.org/Render_options"
     ]
   },
-  "checked_at": "2026-10-26",
+  "checked_at": "2026-11-16",
   "source": "specifications/vcr-prd.md#appendix-a"
 }

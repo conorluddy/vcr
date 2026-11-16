@@ -1,0 +1,33 @@
+{
+  "tool": "COLMAP",
+  "version": "4.2.1_5",
+  "image_count": 3,
+  "feature_type": "SIFT",
+  "use_gpu": false,
+  "images": [
+    {
+      "image": "view-01.ppm",
+      "camera_id": 1,
+      "keypoints": 853,
+      "keypoint_columns": 6,
+      "descriptor_rows": 853,
+      "descriptor_columns": 128
+    },
+    {
+      "image": "view-02.ppm",
+      "camera_id": 1,
+      "keypoints": 853,
+      "keypoint_columns": 6,
+      "descriptor_rows": 853,
+      "descriptor_columns": 128
+    },
+    {
+      "image": "view-03.ppm",
+      "camera_id": 1,
+      "keypoints": 853,
+      "keypoint_columns": 6,
+      "descriptor_rows": 853,
+      "descriptor_columns": 128
+    }
+  ]
+}

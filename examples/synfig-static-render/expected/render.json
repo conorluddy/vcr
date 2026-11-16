@@ -1,0 +1,24 @@
+{
+  "tool": "Synfig",
+  "version": "1.5.5",
+  "renderer": "CLI PNG target",
+  "time": "0s",
+  "render": {
+    "width": 160,
+    "height": 120,
+    "center_rgba": [
+      255,
+      0,
+      0,
+      255
+    ],
+    "corner_rgba": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "png_sha256": "e8c48e45f10183e8f41bf91a2c9f2281e6aa84e48e43c62443b9e2da0b4cec01"
+  },
+  "repeat_sha256_equal": true
+}

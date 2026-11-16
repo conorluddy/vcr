@@ -1543,18 +1543,30 @@
       ],
       "notes": [
         "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
-        "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
         "2026-10-29: Skill opportunity: Further research first: an owned multi-view dataset and reconstruction fixture would establish whether a VCR or standalone skill is worthwhile.",
-        "2026-10-29: GPU availability and reconstruction fidelity are environment and dataset dependent; no VCR fixture run."
+        "2026-11-16: CPU SIFT feature extraction validated on three generated PPM views; no image matching or reconstruction was attempted."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.2.1 (Homebrew 4.2.1_5)",
+            "command": "examples/colmap-feature-extraction/run.sh",
+            "result": "CPU SIFT extraction stored 853 keypoints and matching 128-column descriptors for each of three 384x288 generated views; repeated run matched the per-image counts.",
+            "example": "examples/colmap-feature-extraction",
+            "scope": "COLMAP feature_extractor with CPU SIFT and shared SIMPLE_RADIAL camera on macOS arm64; no matching, camera reconstruction, dense stereo or reconstruction quality claim."
+          }
+        ]
       },
+      "examples": [
+        "colmap-feature-extraction"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-16",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Structure-from-motion and multi-view stereo software driven through a GUI, CLI or Python bindings. It reconstructs camera poses and 3D geometry from image collections; suitable capture input and compute resources matter.",
       "use_when": [
@@ -6854,7 +6866,7 @@
         "check_command": "melt -version"
       },
       "notes": [
-        "2026-10-26: Homebrew formula name 'mlt' assumed from the record; melt installation was not tested and a Homebrew build includes whatever modules the formula enables."
+        "2026-11-16: Homebrew MLT 7.42.0_1 color producer and avformat/FFV1 render validated with repeated decoded pixels; this does not establish timeline XML, filters, transitions or audio support."
       ],
       "assessment": {
         "date": "2026-10-26",
@@ -6872,11 +6884,24 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "7.42.0 (Homebrew 7.42.0_1)",
+            "command": "examples/mlt-color-render/run.sh",
+            "result": "Rendered 5 FFV1 frames at 64x48 and 25 fps (0.2 s); center decoded as [254,0,0] and repeated decoded RGB SHA-256 matched.",
+            "example": "examples/mlt-color-render",
+            "scope": "Built-in colour producer to avformat FFV1 consumer on macOS arm64; no XML projects, filters, transitions, audio, other consumers or platforms."
+          }
+        ]
       },
+      "examples": [
+        "mlt-color-render"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-10-26",
+      "checked_at": "2026-11-16",
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
@@ -11539,7 +11564,7 @@
       "category": "A7. Native applications and procedural tools",
       "tier": "catalogued",
       "role": "synfig CLI renders .sif and .sifz 2D vector animation projects to frames or video",
-      "summary": "Open-source 2D vector and bitmap animation studio. The synfig CLI renders .sif, .sifz and .sfg project files to PNG sequences, GIF or video at chosen size and frame range, with tweened vertices, bones and layers. Strength is cut-out and vector tweening authored visually and rendered headlessly. macOS packaging is the weak spot; Homebrew disabled its cask.",
+      "summary": "Open-source 2D vector and bitmap animation system. The synfig CLI renders .sif, .sifz and .sfg project files to PNG sequences, GIF or video at chosen size and frame range. The Homebrew formula provides a standalone renderer on macOS; the Studio GUI and broader animation workflows are separate from this CLI validation.",
       "use_when": [
         "An existing .sif project from an animator must render headlessly",
         "Vector tweening and bone rigs authored visually, over Blender grease pencil",
@@ -11548,7 +11573,7 @@
       "avoid_when": [
         "Code-authored 2D motion: GSAP or Manim",
         "3D or lighting: Blender",
-        "Reliable macOS arm64 install today: Blender or Inkscape"
+        "Need a code-authored vector scene: SVG, GSAP or Motion Canvas"
       ],
       "pairs_with": [
         "inkscape",
@@ -11566,17 +11591,31 @@
       ],
       "license": "GPL-3.0",
       "install": {
-        "check_command": "/Applications/SynfigStudio.app/Contents/MacOS/synfig --version"
+        "macos": "brew install synfig",
+        "check_command": "synfig --version"
       },
       "notes": [
-        "2026-10-26: Homebrew cask synfigstudio (1.4.5) was disabled 2026-09-01 for failing Gatekeeper, so install.macos was removed. Release 1.5.5 ships SynfigStudio-1.5.5-20260315.dmg; its CPU architecture is not stated in the asset name, so arm64 support is unverified. App-bundle CLI path is assumed."
+        "2026-11-16: Homebrew formula 1.5.5_4 installs the standalone Synfig CLI on macOS arm64. One static SIF-to-PNG render passed; a missing optional mod_jpeg module warning appeared, but the PNG target worked. This does not validate Studio GUI, animation ranges or video output."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.5.5 (Homebrew 1.5.5_4)",
+            "command": "examples/synfig-static-render/run.sh",
+            "result": "Rendered a 160x120 PNG with a red center pixel [255,0,0,255], transparent corner [0,0,0,0], and identical repeated file SHA-256.",
+            "example": "examples/synfig-static-render",
+            "scope": "Static SIF rectangle rendered to PNG at 0s on macOS arm64; no animation, GUI, video output or other render targets."
+          }
+        ]
       },
+      "examples": [
+        "synfig-static-render"
+      ],
       "adapter_maturity": "none",
       "assessment": {
         "date": "2026-10-26",
@@ -11585,13 +11624,13 @@
         "last_release": "2026-03-16",
         "maintenance": "active",
         "verdict": "keep",
-        "rationale": "1.5.5 released 2026-03-16 with a macOS dmg and the repo was pushed 2026-10-25. The Homebrew cask is disabled for Gatekeeper and dmg architecture is unstated, so macOS arm64 is unverified; keep tier but flag install.",
+        "rationale": "1.5.5 released 2026-03-16. The cask is disabled, but a Homebrew formula provides the CLI; one static PNG render is now validated on macOS arm64.",
         "sources": [
           "https://github.com/synfig/synfig/releases",
           "https://wiki.synfig.org/Render_options"
         ]
       },
-      "checked_at": "2026-10-26",
+      "checked_at": "2026-11-16",
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {

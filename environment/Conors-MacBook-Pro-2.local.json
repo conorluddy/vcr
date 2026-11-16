@@ -3,10 +3,10 @@
   "hostname": "Conors-MacBook-Pro-2.local",
   "os": {
     "platform": "darwin",
-    "release": "26.6",
+    "release": "25.6.0",
     "arch": "arm64"
   },
-  "checked_at": "2026-11-15T17:44:48.082Z",
+  "checked_at": "2026-11-16T18:51:34.533Z",
   "tools": [
     {
       "tool_id": "ffmpeg-ffprobe",
@@ -18,7 +18,7 @@
       "tool_id": "imagemagick",
       "status": "installed",
       "executable": "/opt/homebrew/bin/magick",
-      "version": "7.1.2-15"
+      "version": "7.1.2-35"
     },
     {
       "tool_id": "resvg",
@@ -40,9 +40,9 @@
     },
     {
       "tool_id": "inkscape",
-      "status": "missing",
-      "executable": null,
-      "version": null
+      "status": "installed",
+      "executable": "/opt/homebrew/bin/inkscape",
+      "version": "1.4.4"
     },
     {
       "tool_id": "graphviz",
@@ -65,14 +65,14 @@
     {
       "tool_id": "node",
       "status": "installed",
-      "executable": "/Users/conor/.nvm/versions/node/v22.19.0/bin/node",
-      "version": "22.19.0"
+      "executable": "/opt/homebrew/bin/node",
+      "version": "25.6.1"
     },
     {
       "tool_id": "python",
       "status": "installed",
-      "executable": "/Users/conor/.pyenv/shims/python3",
-      "version": "3.12.2"
+      "executable": "/opt/homebrew/bin/python3",
+      "version": "3.15.2"
     }
   ]
 }

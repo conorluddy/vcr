@@ -1,0 +1,12 @@
+{
+  "id": "synfig-static-render",
+  "title": "Synfig CLI single-frame PNG render",
+  "summary": "Render an authored SIF rectangle at time zero and check pixels and repeated PNG output.",
+  "status": "validated",
+  "tools": ["synfig"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
