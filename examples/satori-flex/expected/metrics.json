@@ -1,0 +1,11 @@
+{
+  "version": "0.63.2",
+  "canvas": "320x180",
+  "fontless": true,
+  "rectangles": [
+    "background 0,0 360x220 #102030",
+    "red 20,20 80x60",
+    "green 112,20 120x100"
+  ],
+  "svg_sha256": "c4420667620f1c53e4701a2ee512deb91b8c862d62e5663b68f2769fdfb3d8bd"
+}
