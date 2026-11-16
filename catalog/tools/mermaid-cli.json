@@ -52,8 +52,18 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "12.0.0",
+        "command": "examples/mermaid-cli-svg/run.sh",
+        "result": "Actual mmdc CLI generated two byte-identical SVGs (SHA-256 7dbe8b1e325a1f682d25756549dbdd7f38aeeaea5348a849081dd8a6a45c1228); XML checks found 4 node groups, 4 edge paths, all six labels, and viewBox 4 4 654.546875 187. Chromium screenshot visually inspected.",
+        "example": "examples/mermaid-cli-svg",
+        "scope": "Mermaid CLI 12.0.0 SVG flowchart with four nodes and four edges on macOS 26.6 arm64; Node 25.6.1, Playwright 1.64.1, Chromium 156.0.8078.4. No other diagram types or formats."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,

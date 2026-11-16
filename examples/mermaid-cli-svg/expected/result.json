@@ -1,0 +1,16 @@
+{
+  "edges": 4,
+  "labels": [
+    "Done",
+    "Draft",
+    "Review",
+    "Start",
+    "pass",
+    "revise"
+  ],
+  "nodes": 4,
+  "repeat_matches": true,
+  "sha256": "7dbe8b1e325a1f682d25756549dbdd7f38aeeaea5348a849081dd8a6a45c1228",
+  "viewBox": "4 4 654.546875 187",
+  "width": "100%"
+}

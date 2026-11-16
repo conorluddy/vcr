@@ -1,0 +1,8 @@
+{
+  "id": "mermaid-cli-svg",
+  "title": "Mermaid CLI flowchart to SVG",
+  "summary": "Runs mmdc on an owned four-node graph and checks labels, graph structure, dimensions and deterministic SVG output.",
+  "status": "validated",
+  "tools": ["mermaid-cli"],
+  "run": "./run.sh"
+}
