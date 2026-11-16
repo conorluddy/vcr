@@ -65,7 +65,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `mediabunny` ✓ — Pure-TypeScript media toolkit: read, write, convert, WebCodecs-backed; browser and Node · video-encoding, media-inspection, audio
 - `mediabunny-server-extension` ✓ — Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno · video-encoding, audio
 - `mediainfo` ✓ — Media metadata · media-inspection
-- `mediapipe` — Vision and tracking · computer-vision
+- `mediapipe` ✓ — Vision and tracking · computer-vision
 - `mermaid-cli` ✓ — Text diagrams (flowchart, sequence, gantt) to SVG/PNG via headless Chromium · diagram-generation, vector-authoring
 - `meshoptimizer` ✓ — Mesh optimisation · 3d-asset-processing
 - `meyda` ✓ — Audio features · audio

@@ -1,0 +1,34 @@
+{
+  "status": "pass",
+  "mediapipe": "1.2.3",
+  "python": "3.15.2",
+  "os": "Darwin 25.6.0 (arm64)",
+  "runtime": "Tasks ImageSegmenter / IMAGE / CPU",
+  "model": {
+    "source": "https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite",
+    "license": "Apache-2.0 (official model card)",
+    "sha256": "191ac9529ae506ee0beefa6b2c945a172dab9d07d1e802a290a4e4038226658b"
+  },
+  "input": {
+    "source": "generated 256x256 RGB geometric silhouette",
+    "sha256": "8d1a31720fbd49bfd5878c3810b174c891aa4ec12b7c5bb2f2e59492bfd56e78"
+  },
+  "mask": {
+    "width": 256,
+    "height": 256,
+    "labels": {
+      "0": 15073,
+      "255": 50463
+    },
+    "foregroundLabel": 0,
+    "foregroundPixels": 15073,
+    "foregroundBounds": [
+      66,
+      33,
+      192,
+      246
+    ],
+    "rawSha256": "0a25295ef7b7d59998a7576a777e8c5d5c2ef833dc64d061fedb66e3b3de2ee0",
+    "repeatMatches": true
+  }
+}

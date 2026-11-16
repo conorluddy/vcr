@@ -1,0 +1,12 @@
+{
+  "id": "mediapipe-image-segmentation",
+  "title": "MediaPipe single-image segmentation",
+  "summary": "Run the Image Segmenter Tasks API with its CPU delegate on a generated silhouette and check the output mask.",
+  "status": "validated",
+  "tools": ["mediapipe"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

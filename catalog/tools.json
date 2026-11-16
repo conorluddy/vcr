@@ -6380,14 +6380,28 @@
       "notes": [
         "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
         "2026-10-29: Framework code licence does not establish the terms of individual models or downloaded assets.",
-        "2026-10-29: Skill opportunity: further research first; a standalone landmark extraction workflow needs a pinned task, model and fixture."
+        "2026-10-29: Skill opportunity: further research first; a standalone landmark extraction workflow needs a pinned task, model and fixture.",
+        "2026-11-16: One Python Image Segmenter CPU route validated with a generated silhouette and an Apache-2.0 model; landmark extraction remains untested."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.2.3",
+            "command": "examples/mediapipe-image-segmentation/run.sh",
+            "result": "CPU ImageSegmenter returned a 256x256 mask; 15,073 figure pixels in bounds [66,33,192,246], exact repeated raw-mask hash",
+            "example": "examples/mediapipe-image-segmentation",
+            "scope": "Python ImageSegmenter single-image CPU run on macOS arm64 with the Apache-2.0 selfie model; no natural-image quality, video, landmarks, GPU or other models/platforms."
+          }
+        ]
       },
+      "examples": [
+        "mediapipe-image-segmentation"
+      ],
       "adapter_maturity": "none",
       "checked_at": "2026-10-29",
       "source": "references/ideas/check-vcr-repo-conversation.md",
