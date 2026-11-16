@@ -62,7 +62,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `lv2` — Plugin standard · audio
 - `manim-community` — Python scenes rendered by the manim CLI to video or PNG sequences for maths and diagram motion · timeline-animation, 2d-rendering, video-encoding, typography
 - `matter-js` ✓ — 2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t · physics-simulation · guide
-- `mediabunny` — Pure-TypeScript media toolkit: read, write, convert, WebCodecs-backed; browser and Node · video-encoding, media-inspection, audio
+- `mediabunny` ✓ — Pure-TypeScript media toolkit: read, write, convert, WebCodecs-backed; browser and Node · video-encoding, media-inspection, audio
 - `mediabunny-server-extension` — Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno · video-encoding, audio
 - `mediainfo` ✓ — Media metadata · media-inspection
 - `mediapipe` — Vision and tracking · computer-vision
@@ -113,7 +113,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `theatre-js` ✓ — Visual keyframe editor (Studio) with a code runtime; sequence position is settable · timeline-animation, parameter-ui
 - `three-js-shading-language` — Node-based shader authoring in JavaScript that compiles to WGSL or GLSL · shaders, effects
 - `three-meshline` ✓ — Thick camera-facing lines for Three.js; npm three.meshline, pmndrs fork is meshline · 3d-rendering, effects · guide
-- `tone-js` — Web Audio framework for synths, sequencing and effects; Tone.Offline renders faster than real time · audio
+- `tone-js` ✓ — Web Audio framework for synths, sequencing and effects; Tone.Offline renders faster than real time · audio
 - `troika-three-text` ✓ — SDF text meshes for Three.js with font loading and Web Worker typesetting · text-rendering, 3d-rendering
 - `tween-js` ✓ — Tiny numeric property interpolator with easing; you call update(time) yourself · tweening · guide
 - `twgl` ✓ — Tiny WebGL helper: programs, buffers, uniforms and framebuffers with less boilerplate · shaders, 2d-rendering · guide
@@ -123,7 +123,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `vsketch` ✓ — Python sketches and the vsk CLI generate plotter-oriented line art as SVG · plotter-workflow, generative-2d
 - `vtk-js` — Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering · scientific-visualisation, 3d-rendering
 - `web-animations-api` ✓ — Native element.animate() with a seekable Animation.currentTime; no library needed · tweening, timeline-animation · guide
-- `web-audio` — Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time · audio
+- `web-audio` ✓ — Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time · audio
 - `webcodecs` — Frame-exact browser video/audio encoders and decoders; pair with a muxer · video-encoding, media-inspection
 - `webgl` — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders
 - `webgpu` — Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking · 3d-rendering, shaders

@@ -1,0 +1,12 @@
+{
+  "id": "tone-js-offline",
+  "title": "Tone.js offline scheduled note render",
+  "summary": "Tone.Offline renders a three-note schedule into 48 kHz mono PCM; timing, pitch, envelope and repeatability are asserted.",
+  "status": "validated",
+  "tools": ["tone-js"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

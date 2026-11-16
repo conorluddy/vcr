@@ -1,0 +1,8 @@
+{
+  "id": "web-audio-offline",
+  "title": "Web Audio offline oscillator tone",
+  "summary": "Renders a generated sine tone and gain envelope with OfflineAudioContext; checks metrics and repeatability.",
+  "status": "validated",
+  "tools": ["web-audio"],
+  "run": "./run.sh"
+}

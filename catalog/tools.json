@@ -6040,9 +6040,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "mediabunny-wav"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.62.1",
+            "command": "examples/mediabunny-wav/run.sh",
+            "result": "Read WAVE metadata: 1 audio/0 video tracks, 0.1 s; extracted 800 mono 8 kHz frames. First eight decoded float samples matched expected PCM; repeated SHA-256 2b59354ab3065e00f0c6b820a44cfbc7ae266c7039228ebffd96298e6ec77fe2.",
+            "example": "examples/mediabunny-wav",
+            "scope": "Generated PCM WAVE metadata and decoded samples via AudioSampleSink in Node on macOS arm64; no compressed codecs, video, encoding, browser or other platforms."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
@@ -11805,12 +11818,25 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "15.1.22",
+            "command": "examples/tone-js-offline/run.sh",
+            "result": "Tone.Offline rendered three scheduled sine Synth notes to mono 48 kHz, 57,600 samples / 1.2 s; onset errors <2 ms, pitch estimates within 0.001 Hz, RMS 0.3398/0.3399/0.3398; two Float32 sample hashes matched (9fc2439d7d01f1af2378feab87872c44d13a9de3d84ddfb41ee4763b53ab911c). Playwright 1.64.1, Chromium 156.0.8078.4, Node 25.6.1.",
+            "example": "examples/tone-js-offline",
+            "scope": "Tone.Offline + Transport scheduled three sine Synth notes to mono 48 kHz buffer; exact samples repeat in Chromium on macOS arm64. No live playback, effects, sample instruments or perceptual claim."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "tone-js-offline"
+      ]
     },
     {
       "id": "trimesh",
@@ -12999,9 +13025,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "not-applicable",
+      "examples": [
+        "web-audio-offline"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "Chrome for Testing 156.0.8078.4",
+            "command": "examples/web-audio-offline/run.sh",
+            "result": "OfflineAudioContext rendered 48,000 mono samples at 48 kHz; measured 440 Hz. Attack/sustain/release/tail RMS 0.173235/0.353553/0.183994/0.021141. Two buffers and WAVs matched; WAV SHA-256 e9971bd52252fc57655ddff3178222e040c75b6ca669ccaf56a31c84dda8e9a5; ffprobe: pcm_s16le, mono, 48 kHz, 1.000000 s. Not auditioned.",
+            "example": "examples/web-audio-offline",
+            "scope": "Chrome 156 OfflineAudioContext, 48 kHz mono 440 Hz sine with gain envelope; repeat buffer/WAV checks. No live playback, other browsers or audio sources."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,

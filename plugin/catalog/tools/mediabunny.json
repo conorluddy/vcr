@@ -52,9 +52,22 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "mediabunny-wav"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.62.1",
+        "command": "examples/mediabunny-wav/run.sh",
+        "result": "Read WAVE metadata: 1 audio/0 video tracks, 0.1 s; extracted 800 mono 8 kHz frames. First eight decoded float samples matched expected PCM; repeated SHA-256 2b59354ab3065e00f0c6b820a44cfbc7ae266c7039228ebffd96298e6ec77fe2.",
+        "example": "examples/mediabunny-wav",
+        "scope": "Generated PCM WAVE metadata and decoded samples via AudioSampleSink in Node on macOS arm64; no compressed codecs, video, encoding, browser or other platforms."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-10-26",

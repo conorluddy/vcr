@@ -1,0 +1,36 @@
+{
+  "tone_version": "15.1.22",
+  "sample_rate_hz": 48000,
+  "channels": 1,
+  "duration_seconds": 1.2,
+  "sample_count": 57600,
+  "peak_amplitude": 0.7999858856201172,
+  "notes": [
+    {
+      "note": "C4",
+      "expected_onset_seconds": 0.1,
+      "onset_seconds": 0.10145833333333333,
+      "frequency_hz": 261.6255742501581,
+      "expected_frequency_hz": 261.6256,
+      "rms": 0.33983546841219653
+    },
+    {
+      "note": "E4",
+      "expected_onset_seconds": 0.45,
+      "onset_seconds": 0.4504166666666667,
+      "frequency_hz": 329.6275537628398,
+      "expected_frequency_hz": 329.6276,
+      "rms": 0.33992041425450215
+    },
+    {
+      "note": "G4",
+      "expected_onset_seconds": 0.8,
+      "onset_seconds": 0.8003541666666667,
+      "frequency_hz": 391.99541531145377,
+      "expected_frequency_hz": 391.9954,
+      "rms": 0.339809299819031
+    }
+  ],
+  "float32_samples_sha256": "9fc2439d7d01f1af2378feab87872c44d13a9de3d84ddfb41ee4763b53ab911c",
+  "repeated_render_matches": true
+}

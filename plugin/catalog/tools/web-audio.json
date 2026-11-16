@@ -44,9 +44,20 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "not-applicable",
+  "examples": ["web-audio-offline"],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "Chrome for Testing 156.0.8078.4",
+        "command": "examples/web-audio-offline/run.sh",
+        "result": "OfflineAudioContext rendered 48,000 mono samples at 48 kHz; measured 440 Hz. Attack/sustain/release/tail RMS 0.173235/0.353553/0.183994/0.021141. Two buffers and WAVs matched; WAV SHA-256 e9971bd52252fc57655ddff3178222e040c75b6ca669ccaf56a31c84dda8e9a5; ffprobe: pcm_s16le, mono, 48 kHz, 1.000000 s. Not auditioned.",
+        "example": "examples/web-audio-offline",
+        "scope": "Chrome 156 OfflineAudioContext, 48 kHz mono 440 Hz sine with gain envelope; repeat buffer/WAV checks. No live playback, other browsers or audio sources."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,
