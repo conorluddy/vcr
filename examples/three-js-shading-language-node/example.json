@@ -1,0 +1,12 @@
+{
+  "id": "three-js-shading-language-node",
+  "title": "Three.js TSL NodeMaterial render and readback",
+  "summary": "Renders an owned TSL uv/uniform gradient with MeshBasicNodeMaterial and WebGPURenderer, then checks target pixels across shuffled uniform updates.",
+  "status": "validated",
+  "tools": ["three-js-shading-language"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
