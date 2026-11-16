@@ -1,0 +1,29 @@
+# FFmpeg.wasm PCM WAV trim
+
+## Intent and scope
+
+- **Tool/version:** `@ffmpeg/ffmpeg` 0.12.15 with single-thread `@ffmpeg/core` 0.12.10. These are exact package versions; official docs' usage example loads core 0.12.10. The FFmpeg build/version reported by the core will be recorded after execution.
+- **Claim:** actual browser FFmpeg.wasm worker reads a generated PCM WAV, trims it by sample indices, and writes a new PCM WAV whose sample count and sample values match the selected input range; repeat output is semantically identical.
+- **Exclusions:** video, codecs other than PCM s16le, multi-thread/shared-memory mode, non-browser runtimes, large files, performance, metadata other than WAV rate/channel/count, and native FFmpeg processing.
+- **Documentation/license:** official [installation](https://ffmpegwasm.netlify.app/docs/getting-started/installation/), [usage/API](https://ffmpegwasm.netlify.app/docs/getting-started/usage/), [API reference](https://ffmpegwasm.netlify.app/docs/api/ffmpeg/classes/ffmpeg/), [migration guide](https://ffmpegwasm.netlify.app/docs/migration/), [repository/release](https://github.com/ffmpegwasm/ffmpeg.wasm/releases), and [npm wrapper](https://www.npmjs.com/package/@ffmpeg/ffmpeg), checked 2026-11-16. Wrapper is MIT; the selected core's license/build flags will be recorded from its reported configuration/docs, not inferred from the wrapper.
+- **Environment plan:** macOS arm64; exact Node, Vite, Playwright, Chromium and FFmpeg core runtime versions will be recorded from execution.
+- **Input/rights:** generated mono PCM WAV, 8 kHz, 16-bit, 8,000 deterministic signed samples. Each sample is `((index * 37) % 20001) - 10000`; no external media.
+- **Install/side effects:** fixture-local exact `@ffmpeg/ffmpeg@0.12.15`, `@ffmpeg/core@0.12.10`, and Vite; use existing local Playwright/Chromium without downloading a browser. Package dependencies and wasm assets remain under ignored `node_modules/`; the runner copies the core JS/WASM to ignored `output/public/` for same-origin serving. Generated input/output and logs remain in ignored `output/`. The single-thread core avoids COOP/COEP and SharedArrayBuffer.
+
+## Plan, before running
+
+- **Commands:** `npm ci --prefix examples/ffmpeg-wasm-pcm-trim`; `examples/ffmpeg-wasm-pcm-trim/run.sh --record`; then `examples/ffmpeg-wasm-pcm-trim/run.sh`.
+- **Operation:** in Chromium, construct WAV bytes in the page; load the pinned single-thread ESM core from same-origin ignored output assets; call its `writeFile`, `exec(['-i','input.wav','-af','atrim=start_sample=2000:end_sample=6000,asetpts=PTS-STARTPTS','-c:a','pcm_s16le','output.wav'])`, and `readFile`. Use explicit timeouts for core load and command execution. Execute twice in one FFmpeg instance.
+- **Expected checks:** output WAV is mono, PCM s16le, 8 kHz and contains exactly 4,000 samples; its PCM samples equal input samples `[2000,6000)`, with expected sample count/duration 4,000 / 8,000 = 0.5 s; repeat output sample arrays match. Record a SHA-256 of the semantic PCM payload, not just a successful exit.
+- **Inspection:** parse output WAV header and payload in the runner; retain no media. Optionally run native `ffprobe` as a read-only verifier if present, never as the processing path.
+- **Stop conditions:** unavailable pinned packages/browser/core assets, core load or FFmpeg command exceeds bounds, operation errors, unsupported trim/filter/PCM components, wrong WAV metadata/sample count/sample data, or repeat mismatch. Keep evidence `not-validated` if blocked.
+- **Output paths:** generated input/output bytes and runtime logs under ignored `output/`; only README, scripts, package lock and expected metrics stay in source control.
+
+## Observation, after running
+
+- **Date/executor:** 2026-11-16, Codex. `npm ci --prefix examples/ffmpeg-wasm-pcm-trim` installed 19 fixture-local packages and reported 0 vulnerabilities; no global/machine install or browser download. The core WASM asset is 31 MB in `node_modules/` and is copied only to ignored `output/public/` while the fixture runs.
+- **Environment/versions:** macOS 26.6 arm64 (`Darwin 25.6.0`), Node 25.6.1, `@ffmpeg/ffmpeg` 0.12.15 (MIT), `@ffmpeg/core` 0.12.10 (package metadata: GPL-2.0-or-later; FFmpeg reports 5.1.4), Vite 8.3.5, Playwright 1.64.1, Chrome for Testing 156.0.8078.4. Single-thread core; no COOP/COEP requirement for this path.
+- **Commands/result:** `examples/ffmpeg-wasm-pcm-trim/run.sh --record`, followed by `examples/ffmpeg-wasm-pcm-trim/run.sh`; both passed. The real browser worker ran `atrim` and `asetpts` in FFmpeg.wasm, reading generated 8 kHz mono PCM s16le with 8,000 samples and writing 4,000 samples (0.5 seconds) from indices `[2000,6000)`. Output WAV was mono, 8 kHz, 16-bit; every output sample matched the expected input slice exactly. Repeat semantic sample arrays matched; PCM payload SHA-256: `587aab7acf9e91a65467c856ec1f39ccb14d5f98bc2231df288473c63618543b`. Expected metrics are in `expected/result.json`; generated binaries/logs remain ignored under `output/`.
+- **Route adjustment:** the initial attempt to load the UMD core from the module worker failed with `failed to import ffmpeg-core.js`; switched to the same pinned core package's ESM build, loaded from same-origin ignored files. The successful evidence covers only that ESM/single-thread route. Vite's runner now has a 90 s overall bound, 10 s server bound, 15 s page readiness bound, and FFmpeg command timeout of 30 s.
+- **Inspection/status:** WAV header and every decoded PCM sample were asserted numerically; no listening claim. Pass for this bounded browser audio trim route. Does not establish video processing, other codecs, multi-thread/SAB mode, large media, performance, another browser/host, or native FFmpeg.
+- **Reviewer/follow-up:** not independently reviewed; toolkit guide eligibility can be considered for this narrow route.
