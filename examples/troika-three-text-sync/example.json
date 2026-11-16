@@ -1,0 +1,8 @@
+{
+  "id": "troika-three-text-sync",
+  "title": "Troika Three Text synced glyph layout and WebGL render",
+  "summary": "Wait for Troika text synchronization, check glyph/layout metrics, and compare repeated headless WebGL screenshots.",
+  "status": "validated",
+  "tools": ["troika-three-text", "three-js", "playwright", "imagemagick"],
+  "run": "./run.sh"
+}

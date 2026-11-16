@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#14202b}</style></head>
+<body>
+<script type="importmap">
+  {"imports":{
+    "three":"./node_modules/three/build/three.module.js",
+    "troika-three-utils":"./node_modules/troika-three-utils/dist/troika-three-utils.esm.js",
+    "troika-worker-utils":"./node_modules/troika-worker-utils/dist/troika-worker-utils.esm.js",
+    "bidi-js":"./node_modules/bidi-js/dist/bidi.mjs",
+    "webgl-sdf-generator":"./node_modules/webgl-sdf-generator/dist/webgl-sdf-generator.mjs"
+  }}
+</script>
+<script type="module">
+  import * as THREE from './node_modules/three/build/three.module.js';
+  import { Text } from './node_modules/troika-three-text/dist/troika-three-text.esm.js';
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(640, 360);
+  renderer.setClearColor(0x14202b, 1);
+  document.body.appendChild(renderer.domElement);
+  const scene = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-4.2, 4.2, 2.3625, -2.3625, 0.1, 10);
+  camera.position.z = 2;
+  const text = new Text();
+  text.text = 'VCRTOOLS';
+  text.font = './fonts/JetBrainsMono-Bold.ttf';
+  text.fontSize = 0.8;
+  text.anchorX = 'center';
+  text.anchorY = 'middle';
+  text.color = '#f4f4f4';
+  text.position.set(0, 0, 0);
+  scene.add(text);
+
+  text.sync(() => {
+    const info = text.textRenderInfo;
+    const gl = renderer.getContext();
+    const debug = gl.getExtension('WEBGL_debug_renderer_info');
+    window.__scene = {
+      duration: 1,
+      metrics: {
+        text: text.text,
+        fontSize: text.fontSize,
+        glyphBounds: Array.from(info.glyphBounds),
+        caretPositions: Array.from(info.caretPositions),
+        blockBounds: info.blockBounds,
+        visibleBounds: info.visibleBounds,
+        ascender: info.ascender,
+        descender: info.descender,
+        capHeight: info.capHeight,
+        browserWebGLRenderer: gl.getParameter(gl.RENDERER),
+        browserWebGLVendor: gl.getParameter(gl.VENDOR),
+        unmaskedWebGLRenderer: debug ? gl.getParameter(debug.UNMASKED_RENDERER_WEBGL) : 'unavailable',
+        unmaskedWebGLVendor: debug ? gl.getParameter(debug.UNMASKED_VENDOR_WEBGL) : 'unavailable',
+        maxTextureSize: gl.getParameter(gl.MAX_TEXTURE_SIZE),
+      },
+      seek: () => renderer.render(scene, camera),
+    };
+    renderer.render(scene, camera);
+  });
+</script>
+</body>
+</html>
