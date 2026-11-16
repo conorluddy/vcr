@@ -73,7 +73,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `mlt-melt` — MLT multitrack framework with melt CLI and XML projects; the engine behind Kdenlive and Shotcut · video-composition, video-encoding, audio
 - `motion` ✓ — Motion (ex Framer Motion): hybrid JS/React animation, springs, layout and scroll · tweening, react-integration, svg-animation · guide
 - `motion-canvas` — TypeScript generator-based 2D animation editor and renderer for explainers · timeline-animation, 2d-rendering, video-encoding
-- `msdfgen` — Signed distance-field generation · sdf-generation, font-processing
+- `msdfgen` ✓ — Signed distance-field generation · sdf-generation, font-processing
 - `music21` — Music analysis · audio
 - `nerfstudio` — Reconstruction · 3d-asset-processing
 - `ogl` ✓ — Tiny zero-dependency WebGL library with a Three.js-like API, about 29 KB · 3d-rendering, shaders · guide

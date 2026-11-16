@@ -6888,6 +6888,9 @@
         "webgl",
         "opentype-js"
       ],
+      "examples": [
+        "msdfgen-svg"
+      ],
       "official_url": "https://github.com/Chlumsky/msdfgen",
       "automation_route": "native-cli-or-scripting",
       "capabilities": [
@@ -6917,8 +6920,18 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.13.1",
+            "command": "examples/msdfgen-svg/run.sh",
+            "result": "Generated a nonconstant 64×64 sRGB distance field and 256×256 grayscale test render from an owned SVG path; repeated field SHA-256 5f725b755e71ed579ef84b75379726ee360b0f7c98297a2385064d443dd22982.",
+            "example": "examples/msdfgen-svg",
+            "scope": "msdfgen 1.13.1 on macOS 26.6 arm64: one SVG path to MSDF operation and test render; no font loading, atlas generation, shader sampling quality or other builds."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,

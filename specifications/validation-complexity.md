@@ -81,6 +81,10 @@ On 2026-11-15, Potrace 1.16 traced an owned PBM bitmap to repeatable SVG with ch
 
 On 2026-11-16, G'MIC 4.0.7 negated an owned 2×2 grayscale PGM to exact sample values and repeatable bytes, and vsketch 1.2.0 exported a fixed-seed two-line SVG with exact geometry checks. Both fixtures passed in separate worktrees and are integrated together; these claims do not cover other filters, sketches, or output formats.
 
+## Fifth parallel wave
+
+On 2026-11-16, msdfgen 1.13.1 generated a nonconstant 64×64 MSDF and 256×256 test render from an owned SVG path, with repeatable output checks and visual inspection. Scope excludes font loading and atlas generation.
+
 ## Candidate gate and fixture contract
 
 Candidate records need a review decision before they enter this queue. In particular, the two promotion recommendations should be reviewed as catalogue decisions first; only then choose a validation claim and effort tier. The other candidates can remain discoverable without implying operational support.
