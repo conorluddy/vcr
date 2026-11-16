@@ -1,0 +1,8 @@
+{
+  "id": "webgl-readpixels",
+  "title": "Native WebGL triangle readPixels fixture",
+  "summary": "Render a small uniform-driven triangle with WebGL 1 and assert readPixels geometry and shuffled-time determinism.",
+  "status": "validated",
+  "tools": ["webgl"],
+  "run": "./run.sh"
+}

@@ -1,0 +1,42 @@
+{
+  "playwrightVersion": "1.64.1",
+  "chromiumVersion": "156.0.8078.4",
+  "width": 96,
+  "height": 72,
+  "glVersion": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+  "shadingLanguageVersion": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)",
+  "vendor": "Google Inc. (Google)",
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+  "contextAttributes": {
+    "alpha": false,
+    "antialias": false,
+    "depth": false,
+    "desynchronized": false,
+    "failIfMajorPerformanceCaveat": false,
+    "powerPreference": "default",
+    "premultipliedAlpha": false,
+    "preserveDrawingBuffer": true,
+    "stencil": false,
+    "xrCompatible": false
+  },
+  "sequentialHashes": [
+    "d475c5d5",
+    "12446f99",
+    "3de97401"
+  ],
+  "shuffledHashes": [
+    "3de97401",
+    "d475c5d5",
+    "12446f99"
+  ],
+  "readPixelsBytes": 27648,
+  "changedPixels": 1442,
+  "trianglePixels": 1442,
+  "triangleBoundsBottomLeft": [
+    17,
+    13,
+    78,
+    58
+  ],
+  "middleFrameReadPixelsHash": "12446f99"
+}
