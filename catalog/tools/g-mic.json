@@ -22,7 +22,9 @@
     "ffmpeg-ffprobe",
     "openimageio-oiiotool"
   ],
-  "examples": ["g-mic-negate"],
+  "examples": [
+    "g-mic-negate"
+  ],
   "official_url": "https://gmic.eu/",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
@@ -50,21 +52,24 @@
       "https://formulae.brew.sh/api/formula/gmic.json"
     ]
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
-    "evidence": [{
-      "date": "2026-11-16",
-      "hostname": "Conors-MacBook-Pro-2.local",
-      "version": "4.0.7",
-      "command": "examples/g-mic-negate/run.sh",
-      "result": "Negated a generated 2×2 P5 grayscale image to exact samples [255, 191, 127, 0]; repeated output bytes matched (SHA-256 715dca0aaabb14961e016aa79778edaf40d87db258400f07453a3737c954e033).",
-      "example": "examples/g-mic-negate",
-      "scope": "G'MIC 4.0.7, macOS 26.6 arm64: one 8-bit grayscale PGM negate operation with exact pixel and repeat-byte checks; no other filters, color images or bit depths."
-    }]
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.0.7",
+        "command": "examples/g-mic-negate/run.sh",
+        "result": "Negated a generated 2×2 P5 grayscale image to exact samples [255, 191, 127, 0]; repeated output bytes matched (SHA-256 715dca0aaabb14961e016aa79778edaf40d87db258400f07453a3737c954e033).",
+        "example": "examples/g-mic-negate",
+        "scope": "G'MIC 4.0.7, macOS 26.6 arm64: one 8-bit grayscale PGM negate operation with exact pixel and repeat-byte checks; no other filters, color images or bit depths."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "skill": "skills/g-mic/SKILL.md"
 }

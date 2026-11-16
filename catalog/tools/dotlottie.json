@@ -29,7 +29,7 @@
   "install": {
     "macos": "pnpm add @lottiefiles/dotlottie-web"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -64,5 +64,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "dotlottie-wasm-seek"
-  ]
+  ],
+  "skill": "skills/dotlottie/SKILL.md"
 }
