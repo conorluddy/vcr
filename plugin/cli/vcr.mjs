@@ -9787,6 +9787,15 @@ function buildPlugin(harnessRoot, outputDirectory = join13(harnessRoot, PLUGIN_D
   if (!bundled.ok) return bundled;
   for (const file of LICENSE_FILES) cpSync2(join13(harnessRoot, file), join13(outputDirectory, file));
   for (const entry of CATALOG_ENTRIES) cpSync2(join13(harnessRoot, "catalog", entry), join13(outputDirectory, "catalog", entry), { recursive: true });
+  for (const file of listFiles(join13(outputDirectory, "catalog")).filter((file2) => file2.endsWith(".json"))) {
+    const path = join13(outputDirectory, "catalog", file);
+    try {
+      writeFileSync7(path, `${JSON.stringify(JSON.parse(readFileSync8(path, "utf8")))}
+`);
+    } catch {
+      return fail("PLUGIN_CATALOG_JSON_INVALID", `Cannot package invalid JSON: catalog/${file}`);
+    }
+  }
   for (const skill of readdirSync5(join13(harnessRoot, "skills"))) {
     if (existsSync11(join13(harnessRoot, "skills", skill, "SKILL.md"))) cpSync2(join13(harnessRoot, "skills", skill), join13(outputDirectory, "skills", skill), { recursive: true });
   }

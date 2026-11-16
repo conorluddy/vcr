@@ -72,7 +72,8 @@
     "lottie-web-seek",
     "troika-three-text-sync",
     "pixijs-filters-pixelate",
-    "dotlottie-wasm-seek"
+    "dotlottie-wasm-seek",
+    "gl-react-shader"
   ],
   "notes": [
     "Not in PRD Appendix A; added because the browser-capture spike depends on it.",

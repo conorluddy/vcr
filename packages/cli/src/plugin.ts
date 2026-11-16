@@ -62,6 +62,15 @@ export function buildPlugin(harnessRoot: string, outputDirectory = join(harnessR
   if (!bundled.ok) return bundled;
   for (const file of LICENSE_FILES) cpSync(join(harnessRoot, file), join(outputDirectory, file));
   for (const entry of CATALOG_ENTRIES) cpSync(join(harnessRoot, "catalog", entry), join(outputDirectory, "catalog", entry), { recursive: true });
+  // Distribution data stays equivalent to the readable source catalogue without its indentation cost.
+  for (const file of listFiles(join(outputDirectory, "catalog")).filter((file) => file.endsWith(".json"))) {
+    const path = join(outputDirectory, "catalog", file);
+    try {
+      writeFileSync(path, `${JSON.stringify(JSON.parse(readFileSync(path, "utf8")))}\n`);
+    } catch {
+      return fail("PLUGIN_CATALOG_JSON_INVALID", `Cannot package invalid JSON: catalog/${file}`);
+    }
+  }
   for (const skill of readdirSync(join(harnessRoot, "skills"))) {
     if (existsSync(join(harnessRoot, "skills", skill, "SKILL.md"))) cpSync(join(harnessRoot, "skills", skill), join(outputDirectory, "skills", skill), { recursive: true });
   }

@@ -211,6 +211,7 @@ Existing commands keep their behaviour. `catalog build` and `doctor --record` ar
 
 - `vcr plugin build` assembles a generated, committed `plugin/` directory, the same convention as `catalog/INDEX.md`. Contents: skills; catalogue (`INDEX.md`, `tools.json`, cards, vocabulary); example sources without `node_modules`, `output/` or media; `cli/vcr.mjs`; review-page templates; `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json`.
 - `vcr validate` fails on a stale `plugin/`, as on a stale index. It also checks tier budgets, no media, total size under 5 MB, and manifest versions equal to the harness version.
+- Bundled catalogue JSON is compacted without changing parsed data; source records and schemas remain formatted in the repository.
 - Examples become runnable outside the repository through `vcr example create <id>`, which scaffolds into the workspace (parent §14). They are no longer run in place against the pnpm workspace.
 - Marketplaces: `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json` at the repository root, both with source `./plugin`. Precedent: `ios-simulator-skill`, installed from one repository into both hosts today.
 - The repository stays private. "Public later" means a licence plus either flipping visibility or splitting `plugin/` into its own repository, since clones currently carry `projects/` media.

@@ -1,4 +1,4 @@
-import { existsSync, mkdtempSync, readFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, readdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, test } from "vitest";
@@ -39,6 +39,16 @@ describe("buildPlugin", () => {
   test("ships the exact distribution license and notice files", () => {
     for (const file of ["LICENSE", "NOTICE", "THIRD_PARTY_NOTICES"]) {
       expect(readFileSync(join(directory, file))).toEqual(readFileSync(join(harnessRoot, file)));
+    }
+  });
+
+  test("compact catalogue JSON preserves every source record, index and schema", () => {
+    const files = readdirSync(join(directory, "catalog"), { recursive: true }).filter((file) => file.endsWith(".json"));
+    expect(files.length).toBeGreaterThan(0);
+    for (const file of files) {
+      const bundled = readFileSync(join(directory, "catalog", file), "utf8");
+      expect(JSON.parse(bundled)).toEqual(JSON.parse(readFileSync(join(harnessRoot, "catalog", file), "utf8")));
+      expect(bundled.trim().split("\n")).toHaveLength(1);
     }
   });
 

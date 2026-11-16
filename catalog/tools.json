@@ -1301,9 +1301,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
+      "examples": [
+        "ccapture-js-png-tar"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.0.0",
+            "command": "examples/ccapture-js-png-tar/run.sh",
+            "result": "Two CCapture.js PNG TAR captures each contained 3 ordered 32x32 PNGs: opaque red, green, blue; all 1,024 pixels per frame matched exactly. Semantic pixel metrics matched across captures.",
+            "example": "examples/ccapture-js-png-tar",
+            "scope": "CCapture.js 2.0.0 PNG TAR capture of three 32x32 generated canvas frames; exact pixels, order and repeat checked. No timing metadata or video/GIF codecs."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
@@ -3819,8 +3832,18 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "6.0.0",
+            "command": "examples/gl-react-shader/run.sh",
+            "result": "gl-react/gl-react-dom 6.0.0 with React/React DOM 18.3.1 rendered an actual Surface/Node GLSL gradient on Chromium 156.0.8078.4, WebGL 2.0 ANGLE SwiftShader, macOS 26.6 arm64 (Node 25.6.1). 32x24; pixels (4,4)=[36,207,64,255], (16,12)=[131,122,64,255], (27,19)=[219,48,64,255]. Two fresh-context PNG hashes matched (6750e37716dc31c02fbe917707c6ce7b166d5afafb2cd367da8235db5e9305d8); no browser errors or external requests.",
+            "example": "examples/gl-react-shader",
+            "scope": "gl-react 6 + gl-react-dom 6 Surface/Node rendered an exact 32x24 GLSL gradient repeatably in Chromium SwiftShader on macOS arm64; no other backends or graphs."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "notes": [
@@ -3840,7 +3863,10 @@
         ]
       },
       "checked_at": null,
-      "source": "specifications/vcr-prd.md#appendix-a"
+      "source": "specifications/vcr-prd.md#appendix-a",
+      "examples": [
+        "gl-react-shader"
+      ]
     },
     {
       "id": "gl-transitions",
@@ -8552,7 +8578,8 @@
         "lottie-web-seek",
         "troika-three-text-sync",
         "pixijs-filters-pixelate",
-        "dotlottie-wasm-seek"
+        "dotlottie-wasm-seek",
+        "gl-react-shader"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
@@ -13348,9 +13375,22 @@
       },
       "documentation_status": "listed-in-prd",
       "installation_status": "not-applicable",
+      "examples": [
+        "webgpu-map-async"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "Chromium 156.0.8078.4 (Playwright 1.64.1)",
+            "command": "examples/webgpu-map-async/run.sh",
+            "result": "SwiftShader adapter; three dispatches mapped [0.5,3.5,-5.5,1.25,11,-4,7.25,0.125] exactly with GPUBuffer.mapAsync. Repeated SHA-256 cd43e5ea6f9d17b3feeb3cc73a61d7a4c174a121654401f420a58342762cae89.",
+            "example": "examples/webgpu-map-async",
+            "scope": "WebGPU compute/mapAsync on Chromium 156 SwiftShader software adapter, macOS arm64; no hardware GPU, render pass, other browsers or platforms."
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": null,

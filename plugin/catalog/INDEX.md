@@ -36,7 +36,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `canvas-record` ✓ — Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped · capture, video-encoding, image-sequence-processing
 - `canvas-sketch` ✓ — Browser sketch workbench with hot reload, fixed-size canvases and high-resolution PNG export · generative-2d, 2d-rendering, capture
 - `canvaskit-skia` ✓ — Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output · 2d-rendering, text-rendering, shaders
-- `ccapture-js` — Fixed-framerate canvas capture by hooking browser time; 2.x rewrite on WebCodecs · capture, video-encoding, image-sequence-processing
+- `ccapture-js` ✓ — Fixed-framerate canvas capture by hooking browser time; 2.x rewrite on WebCodecs · capture, video-encoding, image-sequence-processing
 - `colmap` — Reconstruction · 3d-asset-processing
 - `d3` ✓ — Data-driven scales, layouts and shapes; use its geometry, not its transitions · data-visualisation, vector-authoring, svg-animation · guide
 - `deck-gl` — WebGL layers for large geospatial and point-cloud data; view state as props · geospatial, data-visualisation
@@ -48,7 +48,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `g-mic` ✓ — CLI filter language with ~1000 procedural filters; stylised and generative looks · image-processing, effects
 - `gifski` ✓ — Highest-quality GIF encoder from PNG frames or y4m; palette per frame, AGPL · gif-encoding, image-sequence-processing
 - `gimp-batch` — Headless GIMP via --batch with Script-Fu or Python; heavyweight, version-specific procedures · image-processing
-- `gl-react` — React components that compose GLSL shaders as a node graph over textures · shaders, react-integration, effects
+- `gl-react` ✓ — React components that compose GLSL shaders as a node graph over textures · shaders, react-integration, effects
 - `gltf-transform` ✓ — Node CLI and library to inspect, optimise and compress glTF/GLB before a scene loads them · 3d-asset-processing
 - `godot` — Godot headless and --write-movie runs scripted scenes to frames or video, in 2D and 3D · game-engine, 3d-rendering, native-authoring
 - `graphviz` ✓ — DOT graph layout to SVG/PNG from one native binary; automatic layout · diagram-generation, vector-authoring
@@ -126,7 +126,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `web-audio` ✓ — Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time · audio
 - `webcodecs` ✓ — Frame-exact browser video/audio encoders and decoders; pair with a muxer · video-encoding, media-inspection
 - `webgl` ✓ — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders
-- `webgpu` — Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking · 3d-rendering, shaders
+- `webgpu` ✓ — Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking · 3d-rendering, shaders
 
 ## candidate (105)
 
