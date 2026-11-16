@@ -39,9 +39,20 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.7.2-stable (official, ed1daf0bf)",
+        "command": "examples/godot-headless-physics/run.sh",
+        "result": "Loaded one owned 2D scene in Godot headless, checked 200x10 floor and 16x16 body collision shapes, and stepped 120 physics frames at 60 Hz. Body settled at [0.0007,87.3] with zero velocity; two independent process outputs matched byte-for-byte and verify matched the retained JSON.",
+        "example": "examples/godot-headless-physics",
+        "scope": "One headless 2D scene/resource and physics run with same-machine repeatability; no rendering, movie, 3D or cross-platform claim."
+      }
+    ]
   },
+  "examples": ["godot-headless-physics"],
   "adapter_maturity": "none",
   "assessment": {
     "date": "2026-10-26",
