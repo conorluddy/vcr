@@ -1,0 +1,46 @@
+{
+  "lottie_web_version": "5.13.0",
+  "node_version": "v25.6.1",
+  "playwright_version": "1.64.1",
+  "chromium_version": "156.0.8078.4",
+  "dimensions": [
+    128,
+    128
+  ],
+  "sequential_and_shuffled_equal": true,
+  "frames": {
+    "0": {
+      "geometry": {
+        "left": 8,
+        "top": 24,
+        "width": 16,
+        "height": 16,
+        "d": " M8,-8 C8,-8 8,8 8,8 C8,8 -8,8 -8,8 C-8,8 -8,-8 -8,-8 C-8,-8 8,-8 8,-8z",
+        "fill": "rgb(255, 0, 0)"
+      },
+      "screenshotSha256": "b5f3b1307f935cb2a761245bb86d16ced640c0b6cd515ae888e9190a075a2a5d"
+    },
+    "15": {
+      "geometry": {
+        "left": 24,
+        "top": 24,
+        "width": 16,
+        "height": 16,
+        "d": " M8,-8 C8,-8 8,8 8,8 C8,8 -8,8 -8,8 C-8,8 -8,-8 -8,-8 C-8,-8 8,-8 8,-8z",
+        "fill": "rgb(255, 0, 0)"
+      },
+      "screenshotSha256": "e745bb6d4ca066b9177cecac7d9cdd4b1aa86d71bbdc7bb3702d3497016e11df"
+    },
+    "30": {
+      "geometry": {
+        "left": 40,
+        "top": 24,
+        "width": 16,
+        "height": 16,
+        "d": " M8,-8 C8,-8 8,8 8,8 C8,8 -8,8 -8,8 C-8,8 -8,-8 -8,-8 C-8,-8 8,-8 8,-8z",
+        "fill": "rgb(255, 0, 0)"
+      },
+      "screenshotSha256": "099296acdf020430a77e8a8157730c3baa32ca52a8a81946a6130f2d9ffb8b41"
+    }
+  }
+}
