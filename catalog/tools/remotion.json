@@ -54,9 +54,20 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.0.544",
+        "command": "examples/remotion-still-frames/run.sh",
+        "result": "Remotion/bundler/renderer 4.0.544, React 19.3.1; renderStill frames 0/15/30 twice in sequential/shuffled order. 64x48 RGBA, 144 red pixels each; bounds as planned. Verify reproduced hashes: 0 aacb08ee48029a83ab4938a3b9eb2db810410f4c584e12a3d91c4521470fbbd0; 15 47f6de39fa264de8f9a1c4d12e123058fc413a107fade5489c3d80037bf1c0e7; 30 bd31dba70246e7163a41e42d31ffa25a67dc9022c3edff8fb025c6e69dfef354. Node v25.6.1, macOS 26.6 arm64, Chrome for Testing 156.0.8078.4.",
+        "example": "examples/remotion-still-frames",
+        "scope": "One owned React Composition via Remotion renderStill; same-host frame geometry and repeatability only, no encoding, Studio, cloud, external assets or cross-platform claim."
+      }
+    ]
   },
+  "examples": ["remotion-still-frames"],
   "adapter_maturity": "none",
   "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"
