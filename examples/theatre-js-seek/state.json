@@ -1,0 +1,33 @@
+{
+  "sheetsById": {
+    "Motion": {
+      "staticOverrides": {
+        "byObject": {}
+      },
+      "sequence": {
+        "subUnitsPerUnit": 30,
+        "length": 2,
+        "type": "PositionalSequence",
+        "tracksByObject": {
+          "Marker": {
+            "trackData": {
+              "xTrack": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Marker:[\"x\"]",
+                "keyframes": [
+                  {"id":"x0","position":0,"connectedRight":true,"handles":[0.5,0.5,0.5,0.5],"value":0},
+                  {"id":"x2","position":2,"connectedRight":true,"handles":[0.5,0.5,0.5,0.5],"value":10}
+                ]
+              }
+            },
+            "trackIdByPropPath": {
+              "[\"x\"]": "xTrack"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitionVersion": "0.4.0",
+  "revisionHistory": ["fixture-state-001"]
+}
