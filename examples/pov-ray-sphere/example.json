@@ -1,0 +1,8 @@
+{
+  "id": "pov-ray-sphere",
+  "title": "POV-Ray renders a text-authored sphere scene",
+  "summary": "Render a low-resolution primitive scene to PNG and check image dimensions, non-background geometry, and repeatability.",
+  "status": "validated",
+  "tools": ["pov-ray"],
+  "run": "./run.sh"
+}
