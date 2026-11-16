@@ -1,0 +1,12 @@
+{
+  "id": "canvas-sketch-capture",
+  "title": "canvas-sketch fixed-size Canvas2D render",
+  "summary": "Calls canvas-sketch's manager on an owned 64×48 sketch and checks exact pixels and repeatability.",
+  "status": "validated",
+  "tools": ["canvas-sketch"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-16",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

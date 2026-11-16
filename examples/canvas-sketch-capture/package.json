@@ -1,0 +1,15 @@
+{
+  "name": "vcr-canvas-sketch-capture-fixture",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild sketch.js --bundle --platform=browser --format=iife --outfile=output/sketch.bundle.js",
+    "run": "node run.mjs"
+  },
+  "dependencies": {
+    "canvas-sketch": "0.7.8",
+    "esbuild": "0.25.12",
+    "playwright": "1.64.1"
+  }
+}
