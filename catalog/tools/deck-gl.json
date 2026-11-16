@@ -33,8 +33,18 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "9.4.0",
+        "command": "examples/deck-gl-orthographic-scatter/run.sh",
+        "result": "@deck.gl/core and @deck.gl/layers 9.4.0 rendered an actual Deck OrthographicView/ScatterplotLayer through luma WebGL2 on Chromium 156.0.8078.4, macOS 26.6 arm64 (Node 25.6.1); SwiftShader renderer ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver). 64x32, projected point centers [20,16] and [44,16], opaque red/blue samples and transparent background passed. Forced redraw SHA-256 matched: 507bc5b3f9985897963c15801ae79e070a0fafd31d355ea24d609cfc04722106. No errors/external requests.",
+        "example": "examples/deck-gl-orthographic-scatter",
+        "scope": "deck.gl 9.4.0 Deck/OrthographicView/ScatterplotLayer drew two Cartesian points in WebGL2 SwiftShader; deterministic redraw on Chromium/macOS arm64. No map/provider/geospatial claim."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": null,
@@ -52,5 +62,8 @@
       "https://github.com/visgl/deck.gl"
     ]
   },
-  "source": "specifications/vcr-prd.md#appendix-a"
+  "source": "specifications/vcr-prd.md#appendix-a",
+  "examples": [
+    "deck-gl-orthographic-scatter"
+  ]
 }

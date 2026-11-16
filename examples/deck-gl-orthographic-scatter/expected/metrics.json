@@ -1,0 +1,55 @@
+{
+  "packageVersions": {
+    "@deck.gl/core": "9.4.0",
+    "@deck.gl/layers": "9.4.0"
+  },
+  "nodeVersion": "v25.6.1",
+  "chromiumVersion": "156.0.8078.4",
+  "osVersion": "26.6",
+  "host": "Conors-MacBook-Pro-2.local (darwin arm64)",
+  "renderer": {
+    "deviceType": "webgl",
+    "contextVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "vendor": "Google Inc. (Google)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+    "canvasSize": [
+      64,
+      32
+    ]
+  },
+  "projectedCenters": [
+    20,
+    16,
+    44,
+    16
+  ],
+  "capture": {
+    "dimensions": [
+      64,
+      32
+    ],
+    "redCenter": [
+      255,
+      0,
+      0,
+      255
+    ],
+    "blueCenter": [
+      0,
+      0,
+      255,
+      255
+    ],
+    "transparentBackground": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "sha256": "507bc5b3f9985897963c15801ae79e070a0fafd31d355ea24d609cfc04722106"
+  },
+  "redrawSha256": "507bc5b3f9985897963c15801ae79e070a0fafd31d355ea24d609cfc04722106",
+  "redrawMatches": true,
+  "errors": [],
+  "outsideRequests": []
+}
