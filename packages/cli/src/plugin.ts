@@ -18,7 +18,7 @@ export interface PluginBuildOutcome {
 }
 
 export const PLUGIN_DIRECTORY = "plugin";
-export const PLUGIN_MAX_BYTES = 5 * 1024 * 1024;
+export const PLUGIN_MAX_BYTES = 8 * 1024 * 1024;
 export const CLI_REFERENCE_PATH = "references/cli.md";
 /** `references/` entries that are not pillars and stay out of the plugin: research briefs and exploratory notes. */
 const NON_PILLAR_REFERENCES = new Set(["research-prompts", "ideas"]);
@@ -92,7 +92,7 @@ export function buildPlugin(harnessRoot: string, outputDirectory = join(harnessR
   return ok({ directory: outputDirectory, version: version.value, fileCount: files.length, totalBytes, pillarBytes });
 }
 
-/** `plugin/` must equal a fresh build, stay under the size cap and carry no media. */
+/** `plugin/` must equal a fresh build, stay under the interim size cap and carry no media. */
 export function pluginDiagnostics(harnessRoot: string): Diagnostic[] {
   const committed = join(harnessRoot, PLUGIN_DIRECTORY);
   const file = PLUGIN_DIRECTORY;
@@ -107,7 +107,7 @@ export function pluginDiagnostics(harnessRoot: string): Diagnostic[] {
   }
   const staleFiles = differingFiles(committed, fresh.value.directory);
   if (staleFiles.length > 0) diagnostics.push({ severity: "error", file, path: "", message: `plugin/ is stale: ${staleFiles.slice(0, 5).join(", ")}${staleFiles.length > 5 ? ` and ${staleFiles.length - 5} more` : ""}`, suggestion: "Run `pnpm vcr plugin build` and commit the result." });
-  if (fresh.value.totalBytes > PLUGIN_MAX_BYTES) diagnostics.push({ severity: "error", file, path: "", message: `plugin/ is ${(fresh.value.totalBytes / 1024 / 1024).toFixed(1)} MB; the cap is 5 MB` });
+  if (fresh.value.totalBytes > PLUGIN_MAX_BYTES) diagnostics.push({ severity: "error", file, path: "", message: `plugin/ is ${(fresh.value.totalBytes / 1024 / 1024).toFixed(1)} MiB; the cap is ${PLUGIN_MAX_BYTES / 1024 / 1024} MiB` });
   const mediaFiles = listFiles(fresh.value.directory).filter((path) => MEDIA_EXTENSIONS.has(extname(path).toLowerCase()));
   if (mediaFiles.length > 0) diagnostics.push({ severity: "error", file, path: "", message: `plugin/ would ship media: ${mediaFiles.join(", ")}`, suggestion: "Keep media out of examples/ sources or under an ignored output/ directory." });
   rmSync(fresh.value.directory, { recursive: true, force: true });

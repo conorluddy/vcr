@@ -3371,8 +3371,8 @@
         "2026-11-15: listed-in-prd is a legacy schema status for surfaced candidates; it does not mean this tool appeared in the PRD.",
         "2026-11-15: GitHub Releases lists 1.7.0 as latest, while the discovery digest and project changelog mention 1.7.3; version discrepancy remains unresolved.",
         "2026-11-15: Video framing requires FFmpeg and ffprobe 5.1+. HEVC-alpha output depends on a compatible macOS and FFmpeg build.",
-        "2026-11-15: frames setup downloads a separate Apple bezel asset pack. Its Design Resources License terms were not reviewed for a specific production or redistribution case.",
-        "2026-11-15: Skill opportunity: further research first; no VCR fixture or repeated workflow evidence yet."
+        "2026-11-16: The bundled Apple Design Resources License was checked for a local generated iOS UI mock-up. Its stated platform, artwork, embedding and redistribution limits remain; this is not a general legal conclusion.",
+        "2026-11-16: The scoped local fixture uses the separately obtained asset pack in ignored output only; the pack and device artwork are not redistributed."
       ],
       "assessment": {
         "date": "2026-11-15",
@@ -3391,9 +3391,22 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "Frames CLI 1.7.0",
+            "command": "FRAMES_ASSETS=<licensed asset directory> examples/frames-cli-ios-mockup/run.sh --record && FRAMES_ASSETS=<licensed asset directory> examples/frames-cli-ios-mockup/run.sh",
+            "result": "Framed one generated 1206x2622 UI mock-up; CLI selected iPhone 18 Pro Portrait (primary match iPhone 17 Portrait), output was RGBA 1318x2717, and two independent output files matched byte-for-byte (SHA-256 9894b050bf58a88d7bc5eefa00d9364b00119a284da7b41a5d56ad0d5d896be5). Python 3.12.13, Pillow 12.0.0, macOS 26.6 arm64. Asset pack hash verified and bundled license reviewed.",
+            "example": "examples/frames-cli-ios-mockup",
+            "scope": "One generated local iOS UI mock-up framed with one separately obtained licensed device asset; no general rights, asset redistribution, other command, device or platform claim."
+          }
+        ]
       },
+      "examples": [
+        "frames-cli-ios-mockup"
+      ],
       "adapter_maturity": "none",
       "checked_at": "2026-11-15",
       "source": "prospects/inbox/2026-11-15-discovery.md"
@@ -4298,9 +4311,22 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.7.2-stable (official, ed1daf0bf)",
+            "command": "examples/godot-headless-physics/run.sh",
+            "result": "Loaded one owned 2D scene in Godot headless, checked 200x10 floor and 16x16 body collision shapes, and stepped 120 physics frames at 60 Hz. Body settled at [0.0007,87.3] with zero velocity; two independent process outputs matched byte-for-byte and verify matched the retained JSON.",
+            "example": "examples/godot-headless-physics",
+            "scope": "One headless 2D scene/resource and physics run with same-machine repeatability; no rendering, movie, 3D or cross-platform claim."
+          }
+        ]
       },
+      "examples": [
+        "godot-headless-physics"
+      ],
       "adapter_maturity": "none",
       "assessment": {
         "date": "2026-10-26",
@@ -4778,9 +4804,22 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.9.33",
+            "command": "examples/hyperframes-gsap-square/run.sh",
+            "result": "HyperFrames local CLI rendered the owned 1-second HTML/GSAP composition to 12 192x108 PNG frames at 12 fps. Every frame contained a 24x24 red square moving 10 px per frame; two independent renders had identical pixel hashes. GSAP 3.15.1, Node v25.6.1, Chrome for Testing 152.0.7977.30, FFmpeg 9.0.2.",
+            "example": "examples/hyperframes-gsap-square",
+            "scope": "One local HTML/GSAP composition rendered to PNG sequence with same-host repeatability; no video encoding, audio, registry blocks, hosted rendering or cross-platform claim."
+          }
+        ]
       },
+      "examples": [
+        "hyperframes-gsap-square"
+      ],
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"
@@ -9984,9 +10023,22 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-16",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.0.544",
+            "command": "examples/remotion-still-frames/run.sh",
+            "result": "Remotion/bundler/renderer 4.0.544, React 19.3.1; renderStill frames 0/15/30 twice in sequential/shuffled order. 64x48 RGBA, 144 red pixels each; bounds as planned. Verify reproduced hashes: 0 aacb08ee48029a83ab4938a3b9eb2db810410f4c584e12a3d91c4521470fbbd0; 15 47f6de39fa264de8f9a1c4d12e123058fc413a107fade5489c3d80037bf1c0e7; 30 bd31dba70246e7163a41e42d31ffa25a67dc9022c3edff8fb025c6e69dfef354. Node v25.6.1, macOS 26.6 arm64, Chrome for Testing 156.0.8078.4.",
+            "example": "examples/remotion-still-frames",
+            "scope": "One owned React Composition via Remotion renderStill; same-host frame geometry and repeatability only, no encoding, Studio, cloud, external assets or cross-platform claim."
+          }
+        ]
       },
+      "examples": [
+        "remotion-still-frames"
+      ],
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a"

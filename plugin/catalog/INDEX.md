@@ -44,16 +44,16 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `drei` ✓ — Helper components for React Three Fiber: controls, loaders, text, environments · 3d-rendering, react-integration, model-loading · guide
 - `fabric-js` ✓ — Canvas object model with selection, serialisation and SVG import/export · 2d-rendering, vector-authoring · guide
 - `ffmpeg-wasm` ✓ — FFmpeg compiled to WebAssembly for in-browser transcodes; slower, size-limited · video-encoding, media-inspection, audio
-- `frames-cli` — CLI for framing device screenshots and recordings with bezels · image-processing, video-composition, video-encoding
+- `frames-cli` ✓ — CLI for framing device screenshots and recordings with bezels · image-processing, video-composition, video-encoding
 - `g-mic` ✓ — CLI filter language with ~1000 procedural filters; stylised and generative looks · image-processing, effects
 - `gifski` ✓ — Highest-quality GIF encoder from PNG frames or y4m; palette per frame, AGPL · gif-encoding, image-sequence-processing
 - `gimp-batch` — Headless GIMP via --batch with Script-Fu or Python; heavyweight, version-specific procedures · image-processing
 - `gl-react` ✓ — React components that compose GLSL shaders as a node graph over textures · shaders, react-integration, effects
 - `gltf-transform` ✓ — Node CLI and library to inspect, optimise and compress glTF/GLB before a scene loads them · 3d-asset-processing
-- `godot` — Godot headless and --write-movie runs scripted scenes to frames or video, in 2D and 3D · game-engine, 3d-rendering, native-authoring
+- `godot` ✓ — Godot headless and --write-movie runs scripted scenes to frames or video, in 2D and 3D · game-engine, 3d-rendering, native-authoring
 - `graphviz` ✓ — DOT graph layout to SVG/PNG from one native binary; automatic layout · diagram-generation, vector-authoring
 - `houdini` — hython and hbatch drive procedural and simulation scenes; commercial, Apprentice is capped · native-authoring, physics-simulation, 3d-rendering
-- `hyperframes` — HTML-to-MP4 renderer seeking a paused timeline in headless Chrome; reference, not a VCR dependency · video-composition, video-encoding, capture, timeline-animation
+- `hyperframes` ✓ — HTML-to-MP4 renderer seeking a paused timeline in headless Chrome; reference, not a VCR dependency · video-composition, video-encoding, capture, timeline-animation
 - `imagemagick` ✓ — Baseline CLI for image ops, montage, compare and inspection; the validated stills toolchain · image-processing, media-inspection, image-sequence-processing · guide
 - `inkscape` — Command-line actions export and convert SVG and other vector source to PNG, PDF and plain SVG · vector-authoring, svg-rasterisation, native-authoring
 - `jimp` ✓ — Pure-JavaScript image manipulation, no native dependencies; slow but trivially portable · image-processing
@@ -99,7 +99,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `react-three-postprocessing` ✓ — Declarative post effects (bloom, DOF, SSAO, LUTs) for R3F, wrapping postprocessing · effects, react-integration · guide
 - `react-three-rapier` ✓ — Rapier physics for R3F as components: bodies, colliders, joints, manual stepping · physics-simulation, react-integration · guide
 - `regl` ✓ — Functional WebGL: declarative draw commands with state as data · shaders, 2d-rendering, 3d-rendering · guide
-- `remotion` — React-component video renderer with CLI and Lambda; company licence above 3 employees · video-composition, video-encoding, react-integration, capture
+- `remotion` ✓ — React-component video renderer with CLI and Lambda; company licence above 3 employees · video-composition, video-encoding, react-integration, capture
 - `resvg` ✓ — Static SVG rasterisation · svg-rasterisation · guide
 - `rive-web` — Plays Rive .riv interactive animations with state machines; authoring is in the Rive app · asset-playback
 - `rough-js` ✓ — Hand-drawn, sketchy rendering of shapes and paths to Canvas or SVG · 2d-rendering, vector-authoring · guide

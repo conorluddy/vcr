@@ -1,0 +1,27 @@
+{
+	"body_position": [
+		0.0007,
+		87.3
+	],
+	"body_shape": {
+		"size": [
+			16.0,
+			16.0
+		],
+		"type": "RectangleShape2D"
+	},
+	"body_velocity": [
+		0.0,
+		0.0
+	],
+	"floor_shape": {
+		"size": [
+			200.0,
+			10.0
+		],
+		"type": "RectangleShape2D"
+	},
+	"godot": "4.7.2-stable (official)",
+	"physics_frames": 120,
+	"physics_ticks_per_second": 60
+}
