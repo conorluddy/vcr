@@ -34,12 +34,23 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "6.1.5 (PixiJS 8.23.0)",
+        "command": "examples/pixijs-filters-pixelate/run.sh",
+        "result": "PixelateFilter size driven 1→12 by t; baseline/effect differed at 15,365 pixels; repeated effect PNG SHA-256 e795ad73365efe1ad04c684314f44d838cd1867713052b36a08e22894acbbe2c; Chromium 156 ANGLE SwiftShader",
+        "example": "examples/pixijs-filters-pixelate",
+        "scope": "PixelateFilter on a generated 128x128 checker in PixiJS 8 WebGL; baseline/effect and repeated output checked under Chromium ANGLE SwiftShader; no hardware GPU claim."
+      }
+    ]
   },
+  "examples": ["pixijs-filters-pixelate"],
   "adapter_maturity": "none",
   "notes": [
-    "2026-10-26: package name is pixi-filters while the repo is pixijs/filters; compatibility with the current pixi.js major was not verified."
+    "2026-10-26: package name is pixi-filters while the repository is pixijs/filters; compatibility had not yet been verified. 2026-11-16: pixi-filters 6.1.5 peer supports pixi.js >=8.0.0-0; fixture verified it with pixi.js 8.23.0."
   ],
   "assessment": {
     "date": "2026-10-26",

@@ -1,0 +1,8 @@
+{
+  "id": "pixijs-filters-pixelate",
+  "title": "PixiJS Filters time-driven pixelation",
+  "summary": "Compare baseline and PixelateFilter output on an owned WebGL checker pattern and check repeated capture stability.",
+  "status": "validated",
+  "tools": ["pixijs-filters", "pixijs", "playwright", "imagemagick"],
+  "run": "./run.sh"
+}
