@@ -1,0 +1,8 @@
+{
+  "id": "manim-cairo-square",
+  "title": "Manim Cairo square translation",
+  "summary": "Renders a filled square moving right with Manim Community's Cairo CLI renderer and checks PNG sequence geometry and repeatability.",
+  "status": "validated",
+  "tools": ["manim-community"],
+  "run": "./run.sh"
+}
