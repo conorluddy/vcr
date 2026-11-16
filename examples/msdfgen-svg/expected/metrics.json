@@ -1,0 +1,8 @@
+{
+  "version": "v1.13.1",
+  "field": "64x64 srgb  3.0",
+  "render": "256x256 gray  2.0",
+  "channel_min": 0.0,
+  "channel_max": 1.0,
+  "field_sha256": "5f725b755e71ed579ef84b75379726ee360b0f7c98297a2385064d443dd22982"
+}
