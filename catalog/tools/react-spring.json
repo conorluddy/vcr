@@ -70,5 +70,6 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "react-spring-capture"
-  ]
+  ],
+  "skill": "skills/react-spring/SKILL.md"
 }

@@ -81,5 +81,6 @@
   },
   "examples": [
     "build123d-product"
-  ]
+  ],
+  "skill": "skills/build123d/SKILL.md"
 }
