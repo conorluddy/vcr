@@ -1,0 +1,8 @@
+{
+  "id": "hyperframes-gsap-square",
+  "title": "HyperFrames local GSAP square render",
+  "summary": "Uses the HyperFrames CLI to render a one-second local GSAP square translation to PNG frames and verifies dimensions, geometry and repeatability.",
+  "status": "validated",
+  "tools": ["hyperframes"],
+  "run": "./run.sh"
+}

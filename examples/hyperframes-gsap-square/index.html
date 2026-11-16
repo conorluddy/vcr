@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>HyperFrames square motion fixture</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { width: 192px; height: 108px; margin: 0; overflow: hidden; background: #fff; }
+      #root { position: relative; width: 192px; height: 108px; overflow: hidden; background: #fff; }
+      #square { position: absolute; left: 20px; top: 42px; width: 24px; height: 24px; background: #e31b23; }
+    </style>
+  </head>
+  <body>
+    <main id="root" data-composition-id="root" data-start="0" data-duration="1" data-width="192" data-height="108" data-fps="12">
+      <div id="square" class="clip" data-start="0" data-duration="1" data-track-index="0"></div>
+    </main>
+    <script src="./node_modules/gsap/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const timeline = gsap.timeline({ paused: true });
+      timeline.fromTo("#square", { x: 0 }, { x: 120, duration: 1, ease: "none" }, 0);
+      window.__timelines.root = timeline;
+    </script>
+  </body>
+</html>

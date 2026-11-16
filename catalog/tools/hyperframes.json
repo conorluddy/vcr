@@ -55,9 +55,20 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-16",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.9.33",
+        "command": "examples/hyperframes-gsap-square/run.sh",
+        "result": "HyperFrames local CLI rendered the owned 1-second HTML/GSAP composition to 12 192x108 PNG frames at 12 fps. Every frame contained a 24x24 red square moving 10 px per frame; two independent renders had identical pixel hashes. GSAP 3.15.1, Node v25.6.1, Chrome for Testing 152.0.7977.30, FFmpeg 9.0.2.",
+        "example": "examples/hyperframes-gsap-square",
+        "scope": "One local HTML/GSAP composition rendered to PNG sequence with same-host repeatability; no video encoding, audio, registry blocks, hosted rendering or cross-platform claim."
+      }
+    ]
   },
+  "examples": ["hyperframes-gsap-square"],
   "adapter_maturity": "none",
   "checked_at": "2026-10-26",
   "source": "specifications/vcr-prd.md#appendix-a"

@@ -1,0 +1,10 @@
+{
+  "name": "hyperframes-gsap-square-fixture",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "gsap": "3.15.1",
+    "hyperframes": "0.9.33",
+    "pngjs": "7.0.0"
+  }
+}
