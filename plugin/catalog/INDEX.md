@@ -80,8 +80,8 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `opencolorio` — Colour-management engine for ACES and config-driven transforms; library plus ocio* CLI utilities · colour-management
 - `opencv-js` — OpenCV compiled to WASM: feature detection, filtering, tracking, analysis in browser or Node · computer-vision, image-processing
 - `openimageio-oiiotool` — VFX-grade CLI for EXR, sequences and OCIO colour conversion; stack-based image operations · image-sequence-processing, image-processing, colour-management
-- `opentimelineio` — Timeline exchange · media-inspection
-- `opentype-js` — Parse fonts to glyph outlines and SVG path data; text without installed fonts · font-processing, typography, vector-authoring
+- `opentimelineio` ✓ — Timeline exchange · media-inspection
+- `opentype-js` ✓ — Parse fonts to glyph outlines and SVG path data; text without installed fonts · font-processing, typography, vector-authoring
 - `paper-js` ✓ — Vector scene graph with Bezier path geometry and boolean path operations · vector-authoring, 2d-rendering · guide
 - `pixijs` ✓ — GPU-accelerated 2D renderer (WebGPU and WebGL) for sprites, text and filters · 2d-rendering, effects, shaders · guide
 - `pixijs-filters` — Community filter pack for PixiJS: glow, bloom, shockwave, CRT and more · effects, 2d-rendering, shaders

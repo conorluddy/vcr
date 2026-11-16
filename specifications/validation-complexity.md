@@ -1,16 +1,16 @@
 # Validation complexity tiers
 
-Status: planning aid, not evidence or a release gate. Updated 2026-11-15.
+Status: historical batching plan, not live coverage or a release gate. Use `pnpm vcr tools status` for current progress. Updated 2026-11-16.
 
 This groups the current validation queue by the expected effort to make and review one useful fixture. Complexity is an estimate from the catalogue route and documented dependencies; it is not a measure of tool quality, priority, installation, or readiness. Check actual machine availability with `vcr doctor` before planning a run.
 
-## Scope
+## Baseline before batching
 
-- **69 catalogued/core tools** have `not-validated` status and are grouped below.
+- **69 catalogued/core tools** had `not-validated` status and are grouped below.
 - **3 partial records** have existing, narrowly scoped evidence; see the follow-up list.
 - **105 candidates** are excluded from the validation queue. Review their assessment recommendations first. Of these, 2 are recommended for promotion, 97 to keep at candidate tier, and 6 for demotion. A recommendation does not change a record's tier.
 
-The catalogue currently has 212 records: 101 catalogued, 6 core and 105 candidate. Thirty-five are validated, three partial and 174 not validated; the 174 includes all 105 candidates.
+The baseline catalogue had 212 records: 101 catalogued, 6 core and 105 candidate. Thirty-five are validated, three partial and 174 not validated; the 174 includes all 105 candidates.
 
 ## How to read the tiers
 
@@ -90,3 +90,7 @@ On 2026-11-16, msdfgen 1.13.1 generated a nonconstant 64×64 MSDF and 256×256 t
 Candidate records need a review decision before they enter this queue. In particular, the two promotion recommendations should be reviewed as catalogue decisions first; only then choose a validation claim and effort tier. The other candidates can remain discoverable without implying operational support.
 
 For every fixture, use the [evidence template](../catalog/FIXTURE-EVIDENCE-TEMPLATE.md): declare the exact tool/version and claim, owned or appropriately licensed input, install plan, expected artifacts, checks and stop conditions before running. Record exact version, hostname, command, result and scope. Keep installation, evidence and adapter support as separate facts. Toolkit guides follow evidence; they do not replace it.
+
+## Sixth wave
+
+OpenType.js 2.0.0 now parses an original FontTools-generated TrueType glyph with exact metadata and outline checks, resolving the earlier font-asset blocker. OpenTimelineIO 0.18.1 preserves a one-clip native JSON timeline and media reference across repeat serializations. Both fixtures are integrated on top of the merged discovery PR #204; their recorded claims exclude shaping, editorial adapters and rendering.

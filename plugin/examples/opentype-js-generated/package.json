@@ -1,0 +1,1 @@
+{"name":"opentype-js-generated-fixture","private":true,"type":"module","scripts":{"run":"node run.mjs"},"dependencies":{"opentype.js":"2.0.0"}}

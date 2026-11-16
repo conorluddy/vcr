@@ -1,0 +1,8 @@
+{
+  "id": "opentimelineio-native-json",
+  "title": "OpenTimelineIO native JSON timeline round trip",
+  "summary": "Round-trips a generated one-track, one-clip OTIO timeline and checks its duration and external media reference.",
+  "status": "validated",
+  "tools": ["opentimelineio"],
+  "run": "./run.sh"
+}

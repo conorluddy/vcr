@@ -18,8 +18,18 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-15",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.18.1",
+        "command": "examples/opentimelineio-native-json/run.sh",
+        "result": "Reopened native JSON with 1 video track, 1 clip, 48 frames at 24 fps and media/sample.mov; two serializations matched SHA-256 a567ca427ce4edf2d249f78aacf90b508fb02d8d19fc04a3e0e32caebcd7df07.",
+        "example": "examples/opentimelineio-native-json",
+        "scope": "Native OTIO JSON timeline write/reopen: 1 video track, 1 clip, 48 frames/24 fps, external URL and repeat bytes; no editorial adapters or render."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-10-29",
@@ -35,6 +45,9 @@
   ],
   "pairs_with": [
     "ffmpeg-ffprobe"
+  ],
+  "examples": [
+    "opentimelineio-native-json"
   ],
   "license": "Apache-2.0 (core project; verify dependencies, adapters and assets separately)",
   "install": {
