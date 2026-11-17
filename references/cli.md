@@ -300,6 +300,24 @@ Plan (or with --yes, install) Playwright and Chromium into <VCR_HOME>/runtime
 vcr setup capture --yes
 ```
 
+## `vcr preview <scene.html> --width n --height n --fps n [--at t1,t2] [--marker id1,id2] [--neighbors n] [--serve-root dir]`
+
+Capture selected frames from a browser scene and write a labelled contact sheet under output/previews/
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--width n` (required) | Delivery width in pixels |  |
+| `--height n` (required) | Delivery height in pixels |  |
+| `--fps n` (required) | Delivery frame rate |  |
+| `--at t1,t2` | Comma-separated timestamps in seconds; pass --at, --marker, or both |  |
+| `--marker id1,id2` | Comma-separated IDs from window.__scene.markers |  |
+| `--neighbors n` | Include this many frames on each side of each selection | `0` |
+| `--serve-root dir` | Ancestor directory to serve for shared assets | `<scene dir>` |
+
+```sh
+vcr preview scene.html --width 1920 --height 1080 --fps 30 --at 10,18.25 --marker B03,B05 --neighbors 1
+```
+
 ## `vcr capture <scene.html> --width n --height n --fps n [--out dir] [--video project/video] [--verify]`
 
 Capture a browser scene frame by frame; frames and report.json go to --out, or with --video become a render with a manifest

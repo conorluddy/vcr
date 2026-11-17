@@ -39,7 +39,7 @@ Use the live skills on two or three real renders in a user-selected production w
 
 Asset/readiness diagnostics and capture review-summary refresh now ship. Capture and lint name the serving root, failed resource/status and page errors on readiness failure. Retained captures refresh generated review summaries, preserving pre-existing drift with a warning. #51 shared-root configuration remains a separate slice.
 
-3. **#63: selected timestamp/marker previews and contact sheets.** Inspect critical poses and transitions before full capture; previews never imply complete renders or approval.
+3. **#63: previews and contact sheets.** Browser scenes now support selected timestamps, named markers and neighboring frames before full capture. MP4 sampling and retained revision comparison remain open.
 4. **#184: validate and explain social safe-zone geometry.** Retain evidence and uncertainty before changing presets; show an overlay from shared data.
 5. **#186: selected-video dependency readiness.** Check the actual package root without reopening the parked capability graph.
 6. **#187: separate capture and verification timings.** Coordinate progress with #53; preserve verification coverage semantics.

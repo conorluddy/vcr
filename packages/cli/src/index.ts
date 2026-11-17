@@ -2,6 +2,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { applyCaptureSetup, formatCaptureSetupPlan, planCaptureSetup, runCapture } from "./capture.js";
+import { parsePreviewOptions, runPreview } from "./preview.js";
 import { COMMANDS, findCommand, findCommandGroup, formatCommandHelp, formatGlobalUsage, GLOBAL_FLAGS } from "./commands.js";
 import { buildCatalogIndex, formatToolStatusTable, writeCatalogIndex } from "./catalog.js";
 import { filterPillarRules, findPillarRule, formatPillarRule, formatPillarRuleList, loadPillarRules, loadPillars, readKnowledgeBaseSection, renderReferencesIndex, writeReferencesIndex } from "./references.js";
@@ -215,6 +216,21 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     const applied = applyCaptureSetup(plan, roots.isCodexSandbox);
     if (!applied.ok) return failWith(applied.error, asJson);
     print(asJson ? { applied: applied.value, remaining: planCaptureSetup(roots).steps } : formatCaptureSetupPlan(applied.value, true));
+    return 0;
+  }
+
+  if (command === "preview") {
+    const unsupported = Object.keys(options).find((name) => !["json", "workspace", "width", "height", "fps", "at", "marker", "neighbors", "serve-root"].includes(name));
+    if (unsupported || target) {
+      const message = unsupported ? `preview does not accept --${unsupported}.` : "preview takes one scene.html.";
+      return failWith({ code: "INVALID_ARGUMENT", message }, asJson, 2);
+    }
+    const previewOptions = parsePreviewOptions(subcommand, options);
+    if (!previewOptions.ok) return failWith(previewOptions.error, asJson, 2);
+    const preview = await runPreview(roots, previewOptions.value);
+    if (!preview.ok) return failWith(preview.error, asJson);
+    const { contactSheet, frames } = preview.value;
+    print(asJson ? preview.value : `Previewed ${frames.length} ${frames.length === 1 ? "frame" : "frames"}: ${contactSheet}`);
     return 0;
   }
 

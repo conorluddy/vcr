@@ -80,7 +80,7 @@ Layer status follows the PRD release gates; early slices do not complete a paren
 | L3 — Layered composition | Not started; native toolkit composition does not imply a VCR compositor or adapter. |
 | L4 — Advanced motion | Not started; native toolkit motion does not imply shared time maps, masks or simulation contracts. |
 | L5 — Production system | Guidance and native recipes exist; integrated audio/captions, variants, delivery presets and preflight remain ahead. |
-| L6 — Review and iteration | Findings, retained revisions, human terminal approvals, generated summaries, typography lint and story plan checks ship. Previews/contact sheets, comparison, review pages, broader measurements and calibration remain ahead. |
+| L6 — Review and iteration | Findings, retained revisions, human terminal approvals, generated summaries, typography lint, story plan checks and browser-scene previews with contact sheets ship. Retained evidence sheets, comparison, review pages, broader measurements and calibration remain ahead. |
 | L7 — Reuse and orchestration | Not started; examples/templates exist, but no production reference search, resumable batch orchestration or dependency-aware cache. |
 
 Plugin P0–P2 are complete on Claude Code and Codex: three roots, setup/capture, example creation and the review contract. `vcr capture --video` retains manifests in each video's `review/renders/`; `vcr findings`, human-only `vcr review approve|request-changes|resolve` (interactive TTY), `vcr status --brief`, `vcr storage` and `vcr lint --video` operate on that contract. `vcr plan check|markers` reads `beats.json`; plan findings are printed, not filed, until #173. Schemas live in `catalog/schemas/`. P3 review pages, P4 the fuller review loop and P5 sharing remain ahead. The TypeScript toolchain, pnpm workspace and JSON Schemas are decided; future layers remain provisional except where ADRs or shipped slices settle them.
@@ -112,7 +112,7 @@ This section is meant to change in most PRs; the rest of this file should rarely
 
 ## Active production feedback
 
-- Current runway: [#183](https://github.com/conorluddy/vcr/issues/183). Next: #63 previews, #184 safe zones, #186 nested readiness and #187 timing. #51 shared-root configuration remains open; readiness diagnostics and capture review-summary refresh are implemented. Delivery gate #144 continues alongside.
+- Current runway: [#183](https://github.com/conorluddy/vcr/issues/183). Browser-scene previews ship. #63 still covers MP4s and retained comparison. Next: #184 safe zones, #186 nested readiness and #187 timing. #51 shared-root configuration remains open. Delivery gate #144 continues alongside.
 - Preserve dated observations and evidence in field-note issues; keep this section to the next work and blockers. Earlier entries: `specifications/reviews/production-feedback-2026-11-09.md`.
 
 - - - - -  NEVER EDIT BELOW THIS LINE - - - - - -

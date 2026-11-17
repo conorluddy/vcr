@@ -62,7 +62,7 @@ A video lives at `projects/<project>/videos/<video>/` in the user's workspace, n
 3. **Plan it:** write `beats.json`, then run `vcr plan check --video demo/teaser` until there are no blockers or majors. `vcr plan markers` gives the scene its `window.__scene.markers`.
 4. **Choose tools:** `vcr tools list`, then `vcr tools info <id>`, then `--full` for the guide, then `vcr tools examples <id>`. Read one tier at a time.
 
-5. **Build and capture:** `vcr capture scene.html --width 1080 --height 1920 --fps 30 --video demo/teaser`.
+5. **Build and capture:** Inspect key frames with `vcr preview scene.html --width 1080 --height 1920 --fps 30 --at 2.4 --neighbors 1`, then run `vcr capture scene.html --width 1080 --height 1920 --fps 30 --video demo/teaser` to retain a render.
 6. **Review:** `vcr lint scene.html --safe-zone tiktok --markers --video demo/teaser` files findings. Agents fix them and run `vcr findings address`. A person approves or requests changes with `vcr review approve demo/teaser`.
 
 Capture and lint readiness errors report the serving root, failed resource URLs/statuses and page errors. A retained video capture refreshes its generated `review/REVIEW.md`; existing manual edits or drift are preserved with a warning.
