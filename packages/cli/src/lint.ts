@@ -40,8 +40,12 @@ export async function runLint(roots: Roots, options: LintCommandOptions): Promis
   if (width === undefined || height === undefined) return fail("INVALID_ARGUMENT", "--safe-zone none needs --width and --height; a preset supplies its own canvas size.");
   const browser = prepareBrowserRuntime(roots);
   if (!browser.ok) return browser;
-  const report = await lintScenes(sceneFiles.value, { width, height, safeZone, times: options.times, useMarkers: options.useMarkers, samples: options.samples, fps: options.fps, ...browser.value }, process.cwd());
-  return ok({ report, safeZone });
+  try {
+    const report = await lintScenes(sceneFiles.value, { width, height, safeZone, times: options.times, useMarkers: options.useMarkers, samples: options.samples, fps: options.fps, ...browser.value }, process.cwd());
+    return ok({ report, safeZone });
+  } catch (cause) {
+    return fail("LINT_FAILED", cause instanceof Error ? cause.message : String(cause));
+  }
 }
 
 export function formatLintReport(report: LintReport): string {

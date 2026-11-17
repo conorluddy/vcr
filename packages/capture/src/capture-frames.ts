@@ -173,7 +173,7 @@ export async function openScenePage(options: ScenePageOptions): Promise<OpenScen
     const page = await browser.newPage({ viewport: { width: options.width, height: options.height } });
     const cdp = await page.context().newCDPSession(page);
     await cdp.send("Emulation.setDefaultBackgroundColorOverride", { color: { r: 0, g: 0, b: 0, a: 0 } });
-    const duration = await openScene(page, sceneUrl, options);
+    const duration = await openScene(page, sceneUrl, options, root);
     log("capture.ready", { duration });
     return { page, cdp, duration, close };
   } catch (error) {
@@ -193,15 +193,40 @@ function log(event: string, fields: Record<string, unknown> = {}): void {
   process.stderr.write(`${JSON.stringify({ time: new Date().toISOString(), event, ...fields })}\n`);
 }
 
-async function openScene(page: Page, sceneUrl: string, options: ScenePageOptions): Promise<number> {
-  page.on("pageerror", (error) => process.stderr.write(`${JSON.stringify({ event: "page.error", message: error.message })}\n`));
-  page.on("console", (message) => {
-    if (message.type() === "error") process.stderr.write(`${JSON.stringify({ event: "page.console.error", text: message.text() })}\n`);
+async function openScene(page: Page, sceneUrl: string, options: ScenePageOptions, servingRoot: string | null): Promise<number> {
+  const diagnostics: string[] = [];
+  const remember = (message: string): void => {
+    if (diagnostics.length < 20 && !diagnostics.includes(message)) diagnostics.push(message);
+  };
+  page.on("response", (response) => {
+    if (response.status() >= 400) remember(`HTTP ${response.status()} ${response.url()}`);
   });
-  await page.goto(sceneUrl);
-  for (const script of options.scripts ?? []) await page.addScriptTag(script);
-  // Interval polling: under begin-frame control no animation frame fires until the harness asks for one.
-  await page.waitForFunction(() => typeof (window as unknown as { __scene?: SceneContract }).__scene?.seek === "function", undefined, { timeout: 10_000, polling: 50 });
+  page.on("requestfailed", (request) => remember(`Request failed ${request.url()}: ${request.failure()?.errorText ?? "unknown network error"}`));
+  page.on("pageerror", (error) => {
+    remember(`Page error: ${error.message}`);
+    process.stderr.write(`${JSON.stringify({ event: "page.error", message: error.message })}\n`);
+  });
+  page.on("console", (message) => {
+    if (message.type() === "error") {
+      remember(`Console error: ${message.text()}`);
+      process.stderr.write(`${JSON.stringify({ event: "page.console.error", text: message.text() })}\n`);
+    }
+  });
+  try {
+    await page.goto(sceneUrl);
+    for (const script of options.scripts ?? []) await page.addScriptTag(script);
+    // Interval polling: under begin-frame control no animation frame fires until the harness asks for one.
+    await page.waitForFunction(() => typeof (window as unknown as { __scene?: SceneContract }).__scene?.seek === "function", undefined, { timeout: 10_000, polling: 50 });
+  } catch (cause) {
+    const reason = cause instanceof Error ? cause.message : String(cause);
+    throw new Error([
+      `Scene readiness failed: ${sceneUrl}`,
+      `Serving root: ${servingRoot ?? "external URL (no local serving root)"}`,
+      ...diagnostics,
+      ...(diagnostics.length ? [] : ["No failed resource requests or page errors observed; scene did not become ready."]),
+      `Cause: ${reason}`,
+    ].join("\n"), { cause });
+  }
   return page.evaluate(() => (window as unknown as { __scene: SceneContract }).__scene.duration);
 }
 

@@ -237,6 +237,7 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     const render = video?.ok && workspace?.ok
       ? writeRender({ workspaceRoot: workspace.value, videoId: video.value.videoId, videoDirectory: video.value.directory, sceneFile, stagingDirectory: outputDirectory, report: report.value, createdAt: startedAt, machineRecord: loadMachineRecord(roots.machine) })
       : undefined;
+    if (render?.reviewSummary === "preserved" && video?.ok) process.stderr.write(`${JSON.stringify({ event: "review.summary.preserved", path: join(video.value.directory, "review", "REVIEW.md"), message: "REVIEW.md already differed from generated review state and was preserved. Save any hand edits before a findings or review write regenerates it." })}\n`);
     const { frames, frames_per_second, shuffled_matches_sequential, mismatched_frames } = report.value;
     if (shuffled_matches_sequential === false) {
       const firstMismatches = mismatched_frames.slice(0, 5).join(", ") + (mismatched_frames.length > 5 ? ", …" : "");

@@ -2,7 +2,7 @@
 
 What to build next, in order, and why. Status per layer lives in [README.md](README.md); requirement IDs live in the PRDs; this file only sequences the work. Update it when an item lands or the order changes.
 
-Updated 2026-11-09.
+Updated 2026-11-16.
 
 ## Where we are
 
@@ -37,8 +37,8 @@ Use the live skills on two or three real renders in a user-selected production w
 
 [Field notes #183](https://github.com/conorluddy/vcr/issues/183) collect the installed-plugin pilot evidence. Work in small independently verified slices:
 
-1. **#51: asset/readiness diagnostics first.** Name serving root, failing resource/status and page error in lint/capture. Shared-root configuration remains a separate slice in the existing issue.
-2. **#185: refresh review summaries after capture.** Normal successful operations should not leave generated-state warnings.
+Asset/readiness diagnostics and capture review-summary refresh now ship. Capture and lint name the serving root, failed resource/status and page errors on readiness failure. Retained captures refresh generated review summaries, preserving pre-existing drift with a warning. #51 shared-root configuration remains a separate slice.
+
 3. **#63: selected timestamp/marker previews and contact sheets.** Inspect critical poses and transitions before full capture; previews never imply complete renders or approval.
 4. **#184: validate and explain social safe-zone geometry.** Retain evidence and uncertainty before changing presets; show an overlay from shared data.
 5. **#186: selected-video dependency readiness.** Check the actual package root without reopening the parked capability graph.

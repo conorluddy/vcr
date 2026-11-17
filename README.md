@@ -65,6 +65,8 @@ A video lives at `projects/<project>/videos/<video>/` in the user's workspace, n
 5. **Build and capture:** `vcr capture scene.html --width 1080 --height 1920 --fps 30 --video demo/teaser`.
 6. **Review:** `vcr lint scene.html --safe-zone tiktok --markers --video demo/teaser` files findings. Agents fix them and run `vcr findings address`. A person approves or requests changes with `vcr review approve demo/teaser`.
 
+Capture and lint readiness errors report the serving root, failed resource URLs/statuses and page errors. A retained video capture refreshes its generated `review/REVIEW.md`; existing manual edits or drift are preserved with a warning.
+
 For catalogue-wide progress, run `vcr tools status`. It shows documentation status, this machine's installation/readiness, validation evidence and adapter maturity; filter with `--tier`, `--validation`, `--documentation` or `--adapter`, or use `--json` for structured output. Tool records and environment records are the sources of truth; agents run this view when answering progress or coverage questions.
 
 `vcr status --brief` shows what is waiting at any point. [`references/cli.md`](references/cli.md) is the full command reference, generated from the CLI. Every command also answers `--help`, and `--json` turns errors into `{ code, message, retryable }`.

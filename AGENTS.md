@@ -99,7 +99,7 @@ This section is meant to change in most PRs; the rest of this file should rarely
 
 ## Active production feedback
 
-- Current runway: [#183](https://github.com/conorluddy/vcr/issues/183). Start with #51 asset diagnostics, then #185 review-summary refresh; #63 previews, #184 safe zones, #186 nested readiness and #187 timing follow. Delivery gate #144 continues alongside.
+- Current runway: [#183](https://github.com/conorluddy/vcr/issues/183). Next: #63 previews, #184 safe zones, #186 nested readiness and #187 timing. #51 shared-root configuration remains open; readiness diagnostics and capture review-summary refresh are implemented. Delivery gate #144 continues alongside.
 - Preserve dated observations and evidence in field-note issues; keep this section to the next work and blockers. Earlier entries: `specifications/reviews/production-feedback-2026-11-09.md`.
 
 - - - - -  NEVER EDIT BELOW THIS LINE - - - - - -
