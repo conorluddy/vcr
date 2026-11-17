@@ -35,6 +35,22 @@ describe("vcr CLI", () => {
     expect(tools.every((tool) => tool.capabilities.includes("video-encoding"))).toBe(true);
   });
 
+  test("flushes a large JSON response before exiting with piped stdout", async () => {
+    const { stdout } = await runCli("tools", "list", "--json");
+    expect(Buffer.byteLength(stdout)).toBeGreaterThan(65_536);
+    expect(JSON.parse(stdout)).toEqual(expect.arrayContaining([expect.objectContaining({ id: "ffmpeg-ffprobe" })]));
+  });
+
+  test.each([
+    { name: "scene path", args: [`${"x".repeat(300)}.html`], exit: 1, code: "PREVIEW_FAILED" },
+    { name: "serving root", args: [join("x".repeat(300), "scene.html"), "--serve-root", "x".repeat(300)], exit: 2, code: "INVALID_ARGUMENT" },
+  ])("preview reports an unreadable $name as JSON", async ({ args, exit, code }) => {
+    const result = await runCli("preview", ...args, "--width", "80", "--height", "80", "--fps", "30", "--at", "0", "--json")
+      .then(() => undefined, (error: { code: number; stdout: string }) => error);
+    expect(result?.code).toBe(exit);
+    expect(JSON.parse(result!.stdout)).toMatchObject({ error: { code, message: expect.stringContaining("ENAMETOOLONG"), retryable: false } });
+  });
+
   test("tools info with an unknown id exits 1 with a structured error", async () => {
     await expect(runCli("tools", "info", "does-not-exist", "--json")).rejects.toMatchObject({ code: 1, stdout: expect.stringContaining("TOOL_NOT_FOUND") });
   });

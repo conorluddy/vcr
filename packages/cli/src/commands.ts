@@ -202,6 +202,21 @@ export const COMMANDS: CommandSpec[] = [
     example: "vcr setup capture --yes",
   },
   {
+    name: "preview",
+    argumentsHint: "<scene.html>",
+    summary: "Capture selected frames from a browser scene and write a labelled contact sheet under output/previews/",
+    flags: [
+      { name: "width", value: "n", description: "Delivery width in pixels", isRequired: true },
+      { name: "height", value: "n", description: "Delivery height in pixels", isRequired: true },
+      { name: "fps", value: "n", description: "Delivery frame rate", isRequired: true },
+      { name: "at", value: "t1,t2", description: "Comma-separated timestamps in seconds; pass --at, --marker, or both" },
+      { name: "marker", value: "id1,id2", description: "Comma-separated IDs from window.__scene.markers" },
+      { name: "neighbors", value: "n", description: "Include this many frames on each side of each selection", defaultValue: "0" },
+      { name: "serve-root", value: "dir", description: "Ancestor directory to serve for shared assets", defaultValue: "<scene dir>" },
+    ],
+    example: "vcr preview scene.html --width 1920 --height 1080 --fps 30 --at 10,18.25 --marker B03,B05 --neighbors 1",
+  },
+  {
     name: "capture",
     argumentsHint: "<scene.html>",
     summary: "Capture a browser scene frame by frame; frames and report.json go to --out, or with --video become a render with a manifest",

@@ -5,7 +5,7 @@
 import { createHash } from "node:crypto";
 import { mkdirSync, readdirSync, readFile, unlinkSync, writeFileSync } from "node:fs";
 import { createServer, type Server } from "node:http";
-import { dirname, extname, join, normalize, relative, resolve } from "node:path";
+import { dirname, extname, join, normalize, relative, resolve, sep } from "node:path";
 import { createRequire } from "node:module";
 import type { Browser, CDPSession, Page } from "playwright";
 
@@ -146,7 +146,7 @@ export async function openScenePage(options: ScenePageOptions): Promise<OpenScen
   // Resolved, so the server's path-traversal guard compares like with like.
   const root = options.sceneFile ? resolve(options.serveRoot ?? dirname(options.sceneFile)) : null;
   const served = root ? await serveDirectory(root) : null;
-  const sceneUrl = served ? `${served.url}/${relative(root!, resolve(options.sceneFile!))}` : options.sceneUrl;
+  const sceneUrl = served ? `${served.url}/${relative(root!, resolve(options.sceneFile!)).split(sep).map(encodeURIComponent).join("/")}` : options.sceneUrl;
   const closeServer = async (): Promise<void> => {
     if (served) await new Promise<void>((resolve, reject) => {
       served.server.close((error) => error ? reject(error) : resolve());
@@ -233,18 +233,19 @@ async function openScene(page: Page, sceneUrl: string, options: ScenePageOptions
 async function captureInOrder(page: Page, cdp: CDPSession, frames: number[], options: CaptureOptions, captureMode: CaptureMode): Promise<string[]> {
   const hashes: string[] = [];
   for (const frame of frames) {
-    await page.evaluate((seconds) => {
-      (window as unknown as { __scene: SceneContract }).__scene.seek(seconds);
-    }, frame / options.fps);
-    const png = await captureOne(page, cdp, captureMode, frame);
+    const png = await captureSceneFrame({ page, cdp }, frame, options.fps, captureMode);
     hashes[frame] = createHash("sha256").update(png).digest("hex");
     if (frame === frames[0] || frame % 30 === 0) log("capture.frame", { frame, bytes: png.length });
-    if (options.outputDirectory) writeFileSync(join(options.outputDirectory, `frame-${String(frame).padStart(4, "0")}.png`), png);
+    if (options.outputDirectory) writeFileSync(join(options.outputDirectory, frameFilename(frame)), png);
   }
   return hashes;
 }
 
-async function captureOne(page: Page, cdp: CDPSession, captureMode: CaptureMode, frame: number): Promise<Buffer> {
+/** Seek on the delivery frame grid and capture the settled pixels. */
+export async function captureSceneFrame({ page, cdp }: Pick<OpenScenePage, "page" | "cdp">, frame: number, fps: number, captureMode: CaptureMode = "screenshot"): Promise<Buffer> {
+  await page.evaluate((seconds) => {
+    (window as unknown as { __scene: SceneContract }).__scene.seek(seconds);
+  }, frame / fps);
   if (captureMode === "beginframe") {
     const result = (await cdp.send("HeadlessExperimental.beginFrame", { screenshot: { format: "png" } })) as { screenshotData?: string };
     if (!result.screenshotData) throw new Error(`beginFrame produced no screenshot for frame ${frame}`);
@@ -252,6 +253,10 @@ async function captureOne(page: Page, cdp: CDPSession, captureMode: CaptureMode,
   }
   await settleFrame(page);
   return page.screenshot({ type: "png" });
+}
+
+export function frameFilename(frame: number): string {
+  return `frame-${String(frame).padStart(4, "0")}.png`;
 }
 
 /** Deterministic shuffle so a determinism failure reproduces. */
