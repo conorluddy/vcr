@@ -70,7 +70,20 @@ Before opening a follow-up, check existing issues for duplicates. Keep each acti
 Advisory craft-making workflows and a CLI-only review skill ship under ADR 0008, alongside the draft accessibility reviewer. They do not add checks, calibration or review pages.
 
 
-Layer 0 is complete for the initial catalogue: those records are carded and assessed, and evidence counts are whatever `vcr catalog build` reports. New discovery candidates may be unassessed. The plugin is installable on Claude Code and Codex (plugin PRD P0 and P1): three roots, `vcr workspace init`, `vcr setup capture`, `vcr capture`, `vcr example create`, and the `start` and `init` skills. Plugin PRD P2, the review contract, is done: `vcr video init`, `vcr capture --video` (render manifests retained under each video's `review/renders/`), `vcr findings`, human-only `vcr review approve|request-changes|resolve` (interactive TTY), `vcr status --brief`, `vcr storage`, `vcr lint --video`, and the series and video briefs with the `brief` skill. The beat sheet (`beats.json`) and `vcr plan check|markers` check a plan before rendering; plan findings are printed, not filed, until plan approvals (#173). Schemas are in `catalog/schemas/`. The review pages (P3 onward) and Layer 1 have not started. There is no timeline resolver, compositor, review surface or reference search; do not imply one. The TypeScript toolchain, pnpm workspace and JSON Schemas are decided, not provisional. Everything beyond Layer 0 is still provisional per the PRD.
+Layer status follows the PRD release gates; early slices do not complete a parent layer. See `specifications/README.md` for gates and `specifications/roadmap.md` for sequencing.
+
+| Layer | Current boundary |
+| --- | --- |
+| L0 — Tool suite | Initial catalogue complete; guides and scoped fixture evidence ship. Run `pnpm vcr tools status` for current documentation, machine readiness, validation and adapter coverage; never maintain counts here. New discovery candidates may be unassessed. |
+| L1 — Project workspace | Early slices ship: workspace/video init, briefs, beat sheets, render manifests and storage. Full shared asset store, provenance, brand/component reuse and project scaffolding remain ahead. |
+| L2 — Basic timeline | Time types, scene contract and browser-capture spike exist; no timeline resolver, clip placement or composition assembly. |
+| L3 — Layered composition | Not started; native toolkit composition does not imply a VCR compositor or adapter. |
+| L4 — Advanced motion | Not started; native toolkit motion does not imply shared time maps, masks or simulation contracts. |
+| L5 — Production system | Guidance and native recipes exist; integrated audio/captions, variants, delivery presets and preflight remain ahead. |
+| L6 — Review and iteration | Findings, retained revisions, human terminal approvals, generated summaries, typography lint and story plan checks ship. Previews/contact sheets, comparison, review pages, broader measurements and calibration remain ahead. |
+| L7 — Reuse and orchestration | Not started; examples/templates exist, but no production reference search, resumable batch orchestration or dependency-aware cache. |
+
+Plugin P0–P2 are complete on Claude Code and Codex: three roots, setup/capture, example creation and the review contract. `vcr capture --video` retains manifests in each video's `review/renders/`; `vcr findings`, human-only `vcr review approve|request-changes|resolve` (interactive TTY), `vcr status --brief`, `vcr storage` and `vcr lint --video` operate on that contract. `vcr plan check|markers` reads `beats.json`; plan findings are printed, not filed, until #173. Schemas live in `catalog/schemas/`. P3 review pages, P4 the fuller review loop and P5 sharing remain ahead. The TypeScript toolchain, pnpm workspace and JSON Schemas are decided; future layers remain provisional except where ADRs or shipped slices settle them.
 
 
 ## Open work (living)
@@ -95,7 +108,7 @@ This section is meant to change in most PRs; the rest of this file should rarely
 - **Public-release rights audit:** Apache-2.0 covers original VCR material; review third-party excerpts and copied reference material passage by passage before making the repository public. Bundled dependency notices and the example font licence are retained separately.
 - **Version sets:** `vcr lint` and `vcr plan check` take one scene or video, so `version-auditor` loops per cell; a matrix input would help.
 - **Unassigned or uncovered rules:** `PACE-READ-05/06` have no reviewer; `story-editor` does not cover `STORY-MUTED-LEGIBLE` or `STORY-LOOP-SEAM`; pattern periods for `MOTION-FPS-002` are not in the scene contract.
-- **Tests:** `lint-scene.test.ts` cannot launch Chromium in cloud sessions (Playwright build mismatch). In worktrees, `pnpm test` may also lack the `packages/capture` Playwright link; `pnpm install --offline --frozen-lockfile` currently reports a stale lockfile for `examples/canvas-record-webm`. `typography-rules.test.ts` failed once in a full run and passed on rerun.
+- **Tests:** browser tests need matching Playwright/Chromium and local socket permissions; install locked dependencies in worktrees. Local CLI tests have shown catalogue JSON truncated around 65 KB; hosted CI passed. `typography-rules.test.ts` failed once in a full run and passed on rerun.
 
 ## Active production feedback
 
