@@ -63,8 +63,12 @@ export function parsePreviewOptions(scene: string | undefined, flags: Record<str
   const serveRoot = typeof flags["serve-root"] === "string" ? resolve(flags["serve-root"]) : undefined;
   if (serveRoot) {
     const fromRoot = relative(serveRoot, sceneFile);
-    if (isAbsolute(fromRoot) || fromRoot === ".." || fromRoot.startsWith(`..${sep}`) || !statSync(serveRoot, { throwIfNoEntry: false })?.isDirectory()) {
-      return fail("INVALID_ARGUMENT", "--serve-root must be a directory that contains the scene.");
+    try {
+      if (isAbsolute(fromRoot) || fromRoot === ".." || fromRoot.startsWith(`..${sep}`) || !statSync(serveRoot, { throwIfNoEntry: false })?.isDirectory()) {
+        return fail("INVALID_ARGUMENT", "--serve-root must be a directory that contains the scene.");
+      }
+    } catch (cause) {
+      return fail("INVALID_ARGUMENT", `Cannot inspect --serve-root: ${cause instanceof Error ? cause.message : String(cause)}`);
     }
   }
   return ok({ sceneFile, serveRoot, width, height, fps, times: times.map(Number), markerIds, neighbors });
@@ -114,16 +118,16 @@ export function selectPreviewFrames(options: Pick<PreviewOptions, "times" | "mar
 
 export async function runPreview(roots: Roots, options: PreviewOptions): Promise<Result<PreviewReport & { outputDirectory: string; reportPath: string }>> {
   const { sceneFile, width, height, fps } = options;
-  if (!statSync(sceneFile, { throwIfNoEntry: false })?.isFile()) return fail("SCENE_NOT_FOUND", `${sceneFile} does not exist or is not a file.`);
-  if (roots.workspace) {
-    const workspace = requireWorkspace(roots);
-    if (!workspace.ok) return workspace;
-  }
-  const browser = prepareBrowserRuntime(roots);
-  if (!browser.ok) return browser;
   const parent = join(roots.workspace ?? dirname(sceneFile), "output", "previews");
   let staging: string | undefined;
   try {
+    if (!statSync(sceneFile, { throwIfNoEntry: false })?.isFile()) return fail("SCENE_NOT_FOUND", `${sceneFile} does not exist or is not a file.`);
+    if (roots.workspace) {
+      const workspace = requireWorkspace(roots);
+      if (!workspace.ok) return workspace;
+    }
+    const browser = prepareBrowserRuntime(roots);
+    if (!browser.ok) return browser;
     const scene = await openScenePage({ ...options, ...browser.value });
     let report: PreviewReport;
     try {

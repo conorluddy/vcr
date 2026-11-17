@@ -44,7 +44,7 @@ const resolvedRoots = resolveRoots({ cwd: process.cwd(), env: process.env, works
 
 const exitCode = resolvedRoots.ok ? await dispatch(positional, flags, resolvedRoots.value) : failWith(resolvedRoots.error, flags["json"] === true);
 logEvent("command.finished", { command: positional.join(" ") || "help", duration_ms: elapsed(), exit_code: exitCode });
-process.exit(exitCode);
+process.exitCode = exitCode;
 
 // === COMMANDS ===
 

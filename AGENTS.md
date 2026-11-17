@@ -108,7 +108,7 @@ This section is meant to change in most PRs; the rest of this file should rarely
 - **Public-release rights audit:** Apache-2.0 covers original VCR material; review third-party excerpts and copied reference material passage by passage before making the repository public. Bundled dependency notices and the example font licence are retained separately.
 - **Version sets:** `vcr lint` and `vcr plan check` take one scene or video, so `version-auditor` loops per cell; a matrix input would help.
 - **Unassigned or uncovered rules:** `PACE-READ-05/06` have no reviewer; `story-editor` does not cover `STORY-MUTED-LEGIBLE` or `STORY-LOOP-SEAM`; pattern periods for `MOTION-FPS-002` are not in the scene contract.
-- **Tests:** browser tests need matching Playwright/Chromium and local socket permissions; install locked dependencies in worktrees. Local CLI tests have shown catalogue JSON truncated around 65 KB; hosted CI passed. `typography-rules.test.ts` failed once in a full run and passed on rerun.
+- **Tests:** browser tests need matching Playwright/Chromium and local socket permissions. Install locked dependencies in worktrees. `typography-rules.test.ts` failed once in a full run and passed on rerun.
 
 ## Active production feedback
 
