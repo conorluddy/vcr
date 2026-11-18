@@ -1,4 +1,4 @@
-import { readFileSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { listJsonFiles, readJsonFile } from "./repository.js";
 import { fail, ok, type Result } from "./result.types.js";
@@ -44,6 +44,9 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 
 /** The README keeps its own prose; only the text between these markers is generated. */
 export const README_TOC_MARKERS = { start: "<!-- vcr:catalog-toc:start -->", end: "<!-- vcr:catalog-toc:end -->" } as const;
+
+/** Inline README numbers are generated too: `<!-- vcr:count:<key> -->N<!-- /vcr:count -->`, so prose never carries a hand-typed count. */
+const README_COUNT_PATTERN = /<!-- vcr:count:([a-z-]+) -->[^<]*<!-- \/vcr:count -->/g;
 
 const CANDIDATES_HEADER = `# VCR candidate tools
 
@@ -135,6 +138,28 @@ export function spliceReadmeToc(readme: string, toc: string): Result<string> {
   return ok(`${readme.slice(0, start + README_TOC_MARKERS.start.length)}\n${toc}\n${readme.slice(end)}`);
 }
 
+/** The numbers README prose may cite: catalogue tiers, records with evidence, and shipped skills and agents. */
+export function readmeCounts(index: CatalogIndex, repositoryRoot: string): Record<string, number> {
+  const tier = (name: string) => index.resources.filter((tool) => tool.tier === name).length;
+  const entries = (directory: string) => (existsSync(join(repositoryRoot, directory)) ? readdirSync(join(repositoryRoot, directory)) : []);
+  return {
+    records: index.resources.length,
+    core: tier("core"),
+    catalogued: tier("catalogued"),
+    candidates: tier("candidate"),
+    evidence: index.resources.filter((tool) => tool.validation.status === "validated" || tool.validation.status === "partial").length,
+    skills: entries("skills").filter((name) => existsSync(join(repositoryRoot, "skills", name, "SKILL.md"))).length,
+    agents: entries("agents").filter((name) => name.endsWith(".md")).length,
+  };
+}
+
+/** Rewrites every inline count marker; a marker naming an unknown count is an error, not a silent stale number. */
+export function spliceReadmeCounts(readme: string, counts: Record<string, number>): Result<string> {
+  const unknown = [...readme.matchAll(README_COUNT_PATTERN)].map((match) => match[1]!).filter((key) => counts[key] === undefined);
+  if (unknown.length > 0) return fail("README_COUNT_UNKNOWN", `README.md cites unknown count(s): ${[...new Set(unknown)].join(", ")}. Known: ${Object.keys(counts).join(", ")}.`);
+  return ok(readme.replace(README_COUNT_PATTERN, (_match, key: string) => `<!-- vcr:count:${key} -->${counts[key]}<!-- /vcr:count -->`));
+}
+
 /** Writes both index files unless `checkOnly`; either way reports which committed files were stale. */
 export function writeCatalogIndex(repositoryRoot: string, checkOnly: boolean): Result<BuildOutcome> {
   const built = buildCatalogIndex(repositoryRoot);
@@ -149,7 +174,9 @@ export function writeCatalogIndex(repositoryRoot: string, checkOnly: boolean): R
   if (readme !== null) {
     const spliced = spliceReadmeToc(readme, renderReadmeToc(built.value));
     if (!spliced.ok) return spliced;
-    outputs.push(["README.md", spliced.value]);
+    const counted = spliceReadmeCounts(spliced.value, readmeCounts(built.value, repositoryRoot));
+    if (!counted.ok) return counted;
+    outputs.push(["README.md", counted.value]);
   }
   const staleFiles: string[] = [];
   for (const [relativePath, next] of outputs) {

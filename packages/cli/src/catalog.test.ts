@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { README_TOC_MARKERS, spliceReadmeToc } from "./catalog.js";
+import { README_TOC_MARKERS, spliceReadmeCounts, spliceReadmeToc } from "./catalog.js";
 
 const { start, end } = README_TOC_MARKERS;
 
@@ -16,5 +16,21 @@ describe("spliceReadmeToc", () => {
     const outcome = spliceReadmeToc(readme, "toc");
     expect(outcome.ok).toBe(false);
     if (!outcome.ok) expect(outcome.error.code).toBe("README_TOC_MARKERS_MISSING");
+  });
+});
+
+describe("spliceReadmeCounts", () => {
+  const marker = (key: string, value: string) => `<!-- vcr:count:${key} -->${value}<!-- /vcr:count -->`;
+
+  test("rewrites every marker, leaves prose alone and is idempotent", () => {
+    const once = spliceReadmeCounts(`${marker("records", "146")} records, ${marker("core", "")} core; 12 stays.`, { records: 205, core: 5 });
+    expect(once.ok && once.value).toBe(`${marker("records", "205")} records, ${marker("core", "5")} core; 12 stays.`);
+    expect(once.ok ? spliceReadmeCounts(once.value, { records: 205, core: 5 }) : once).toEqual(once);
+  });
+
+  test("an unknown count is an actionable error", () => {
+    const outcome = spliceReadmeCounts(marker("skils", "3"), { skills: 3 });
+    expect(outcome.ok).toBe(false);
+    if (!outcome.ok) expect(outcome.error.code).toBe("README_COUNT_UNKNOWN");
   });
 });

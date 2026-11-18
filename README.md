@@ -6,14 +6,14 @@ VCR is an agent-friendly studio for code-first motion graphics, images and video
 
 | Area | What exists |
 | --- | --- |
-| **Tool catalogue** | 146 records (6 core, 88 catalogued, 52 candidates); 15 carry validation evidence from fixtures under `examples/`. Routed through `catalog/INDEX.md` and `vcr tools`; cross-catalogue progress and coverage are shown by `vcr tools status`. |
+| **Tool catalogue** | <!-- vcr:count:records -->205<!-- /vcr:count --> records (<!-- vcr:count:core -->5<!-- /vcr:count --> core, <!-- vcr:count:catalogued -->96<!-- /vcr:count --> catalogued, <!-- vcr:count:candidates -->104<!-- /vcr:count --> candidates); <!-- vcr:count:evidence -->100<!-- /vcr:count --> carry full or partial validation evidence from fixtures under `examples/`. Routed through `catalog/INDEX.md` and `vcr tools`; cross-catalogue progress and coverage are shown by `vcr tools status`. |
 | **Creative pillars** | Knowledge bases and rule tables for typography, motion, pacing, story, sound, art, accessibility, delivery and more, under `references/`. Read with `vcr refs` and `vcr rules`, one section or rule at a time. |
 | **Capture** | Deterministic browser frame capture (`vcr capture`, with `--verify` to recapture in shuffled order). `--video` records a render with a retained manifest. |
 | **Briefs and plans** | A series brief (`brief.json`) and a video brief (`brief.md`), written with the `brief` skill. A beat sheet (`beats.json`) is checked before anything renders (`vcr plan check`) and gives scenes their markers (`vcr plan markers`). |
 | **Review contract** | Findings, render manifests and approvals per video. `vcr lint --video` files layout findings, and agents claim fixes. Only a person approves a render or closes a finding, at their own terminal. |
-| **Plugin** | `plugin/` is a generated, committed bundle: a single-file CLI, the catalogue, 22 skills, the pillar references and a `typographer` reviewer agent. It works from any directory against a read-only harness. |
+| **Plugin** | `plugin/` is a generated, committed bundle: a single-file CLI, the catalogue, <!-- vcr:count:skills -->120<!-- /vcr:count --> skills, the pillar references and <!-- vcr:count:agents -->16<!-- /vcr:count --> expert agents (reviewers are advisory drafts except `typographer`). It works from any directory against a read-only harness. |
 
-**Not built yet:** the review pages (plugin PRD P3 onward), Layer 1 (timeline resolver, compositor), and approvals on plans ([#173](https://github.com/conorluddy/vcr/issues/173)). See [`specifications/roadmap.md`](specifications/roadmap.md) for the order.
+**Not built yet:** the review pages (plugin PRD P3 onward), the timeline resolver (Layer 2), the compositor (Layer 3), and approvals on plans ([#173](https://github.com/conorluddy/vcr/issues/173)). See [`specifications/roadmap.md`](specifications/roadmap.md) for the order.
 
 ## Install as a plugin
 
