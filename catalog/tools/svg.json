@@ -51,7 +51,8 @@
   ],
   "skill": "skills/svg/SKILL.md",
   "examples": [
-    "native-svg"
+    "native-svg",
+    "svg-paper-collage"
   ],
   "notes": [
     "Static SVG is a native, dependency-free source format; Anime.js and Web Animations API can provide seekable browser motion."
@@ -69,6 +70,15 @@
         "result": "Static SVG rasterised by resvg",
         "example": "examples/native-svg",
         "scope": "Backfilled 2026-11-04: one static SVG rasterised by resvg; no SVG animation and no browser rendering."
+      },
+      {
+        "date": "2026-11-20",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "n/a (platform)",
+        "command": "examples/svg-paper-collage/run.sh",
+        "result": "6 inline SVG paper pieces (image, irregular mat, feDropShadow) animated via seeked element.animate: 90 frames, shuffled equals sequential, settles",
+        "example": "examples/svg-paper-collage",
+        "scope": "Chromium 156 on macOS arm64: inline SVG image, filter and group animation with alpha. Not other browsers, photographs or other filters."
       }
     ]
   },

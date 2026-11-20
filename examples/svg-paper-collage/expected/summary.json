@@ -1,0 +1,26 @@
+{
+  "frames": 90,
+  "width": 1280,
+  "height": 720,
+  "shuffled_matches_sequential": true,
+  "images": {
+    "count": 6,
+    "decoded": 6
+  },
+  "frame_0_alpha_max": 0,
+  "frame_45_alpha": {
+    "min": 0,
+    "max": 1,
+    "has_soft_values": true
+  },
+  "last_two_frames_identical": true,
+  "final_rotations_deg": [
+    -9,
+    6,
+    -3,
+    12,
+    -14,
+    3.5
+  ],
+  "final_rotations_all_distinct": true
+}
