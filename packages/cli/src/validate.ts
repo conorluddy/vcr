@@ -500,7 +500,7 @@ function techniqueDiagnostics(record: Technique, file: string, context: Techniqu
     const example = context.examples.get(route.example)?.manifest;
     const reference = routeReference(record.id, route.id);
     if (!example) {
-      error(path, `example "${route.example}" has no examples/<dir>/example.json`, "Point at an existing example id or remove it; a route without an example is unverified, which is allowed.");
+      error(path, `example "${route.example}" has no examples/<dir>/example.json`, "Point at an existing example id or remove it; a route without an example is `documented`, which is allowed.");
       continue;
     }
     if (!(example.techniques ?? []).includes(reference)) error(path, `example "${route.example}" does not list ${reference} in its techniques`, `Add "${reference}" to examples/${route.example}/example.json so the claim is made on the fixture's side too.`);
