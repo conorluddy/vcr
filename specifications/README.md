@@ -33,7 +33,7 @@
 | production delivery | L5 / M6 | M4 | FFmpeg intermediate and export strategy | not started |
 | plugin and review layer (`vcr-plugin-prd.md`) | L0 packaging, early L1 and L6 slices | — | S1 plugin invocation (passed) | P0, S1, P1 and P2 done (installable on both hosts; review contract in); P3 next |
 | capability graph (`vcr-capability-graph-prd.md`, proposal) | L0 catalogue extension (L0-01, L0-02, L0-05, L0-06); L6 checks (L6-02 to L6-04) | CG0 reopen conditions (scope-match check, complete evidence entries, n>1 rerun) | CG0 G0 desk research (`spikes/capability-graph-g0.md`, accepted 2026-11-04) | CG0 done: current workflow kept; operations model on hold; #74/#76 proceed on tool records |
-| technique mapping (`catalog/techniques/`, ADR 0010, #212) | L0 catalogue extension (L0-01, L0-02) | — | none (reconciled with CG0: no operations model) | foundation done: records, link checks, `vcr techniques`, generated index, eleven seeds; production trial next |
+| technique mapping (`catalog/techniques/`, ADR 0010, #212) | L0 catalogue extension (L0-01, L0-02) | — | none (reconciled with CG0: no operations model) | foundation done: records, link checks, `vcr techniques`, generated index, twenty seeds; production trial next |
 | creative pillars (`references/`, ADR 0006, epic #152) | L6 checks (L6-02), skills and review agents; brief and beat sheet are early L1 slices | — | none (deep-research knowledge bases) | 19 reference pillars; advisory making workflows and research/reviewer agents ship; typography has rules data and lint, story has six plan checks; remaining measurement and calibration work is separate |
 | review loop | L6 / M7 | M3 | none | not started |
 | reference corpus | L7 / M8 | M2 | none | not started |
