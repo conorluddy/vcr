@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8" /><style>html, body { margin: 0; background: transparent; } canvas { display: block; }</style></head>
+<body>
+<canvas id="stage"></canvas>
+<script>
+  // Canvas 2D count-up. The displayed integer is a pure function of t: ease-out cubic over COUNT_SECONDS,
+  // clamped so it cannot overshoot, then held. Each digit is drawn centred in a fixed-width cell.
+  const DURATION = 3;
+  const COUNT_SECONDS = 2;
+  const START_VALUE = 0;
+  const TARGET_VALUE = 1250;
+  const FONT_FAMILY = "VCR JetBrains Mono";
+  const FONT_SIZE_PX = 220;
+  const CELL_WIDTH_PX = 140;
+  const BASELINE_Y = 440;
+  const CAP_HEIGHT_RATIO = 0.73;
+  const canvas = document.getElementById("stage");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const context = canvas.getContext("2d");
+  let currentLabel = "";
+
+  function valueAt(t) {
+    const progress = Math.min(Math.max(t / COUNT_SECONDS, 0), 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    return Math.min(TARGET_VALUE, Math.round(START_VALUE + (TARGET_VALUE - START_VALUE) * eased));
+  }
+
+  function figureLeft(label) {
+    return (canvas.width - label.length * CELL_WIDTH_PX) / 2;
+  }
+
+  function drawFrame(t) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    currentLabel = String(valueAt(t));
+    const left = figureLeft(currentLabel);
+    context.font = `700 ${FONT_SIZE_PX}px "${FONT_FAMILY}"`;
+    context.fillStyle = "#c7f36b";
+    context.textBaseline = "alphabetic";
+    context.textAlign = "center";
+    [...currentLabel].forEach((digit, index) => {
+      context.fillText(digit, left + (index + 0.5) * CELL_WIDTH_PX, BASELINE_Y);
+    });
+  }
+
+  function textBounds() {
+    return [{
+      x: figureLeft(currentLabel),
+      y: BASELINE_Y - FONT_SIZE_PX * CAP_HEIGHT_RATIO,
+      width: currentLabel.length * CELL_WIDTH_PX,
+      height: FONT_SIZE_PX * CAP_HEIGHT_RATIO,
+      label: currentLabel,
+    }];
+  }
+
+  async function start() {
+    const font = new FontFace(FONT_FAMILY, "url(./fonts/JetBrainsMono-Bold.ttf)", { weight: "700" });
+    document.fonts.add(await font.load());
+    await document.fonts.ready;
+    if (!document.fonts.check(`700 ${FONT_SIZE_PX}px "${FONT_FAMILY}"`)) throw new Error("font did not load");
+    drawFrame(0);
+    window.__scene = { duration: DURATION, seek: drawFrame, textBounds };
+  }
+  start();
+</script>
+</body>
+</html>
