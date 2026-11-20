@@ -1,0 +1,71 @@
+{
+  "frames": 150,
+  "node_first_visible_frames": [
+    4,
+    28,
+    53,
+    79
+  ],
+  "connector_first_drawn_frames": [
+    16,
+    41,
+    67
+  ],
+  "connector_complete_frames": [
+    27,
+    53,
+    78
+  ],
+  "build_end_frame": 90,
+  "build_end": {
+    "nodes": [
+      {
+        "id": "node-1",
+        "opacity": 1,
+        "accent": 0
+      },
+      {
+        "id": "node-2",
+        "opacity": 1,
+        "accent": 0
+      },
+      {
+        "id": "node-3",
+        "opacity": 1,
+        "accent": 0
+      },
+      {
+        "id": "node-4",
+        "opacity": 1,
+        "accent": 0.4
+      }
+    ],
+    "connectors": [
+      {
+        "id": "connector-1",
+        "drawn": 1
+      },
+      {
+        "id": "connector-2",
+        "drawn": 1
+      },
+      {
+        "id": "connector-3",
+        "drawn": 1
+      }
+    ]
+  },
+  "trace_lit_order": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "hold_accents": [
+    0,
+    0,
+    0,
+    1
+  ],
+  "reverse_order_probe_matches": true
+}

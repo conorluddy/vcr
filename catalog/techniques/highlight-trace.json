@@ -60,10 +60,11 @@
         }
       ],
       "limits": [
-        "Evidence covers a path draw and a stagger, not a travelling highlight over an existing path",
-        "Elements must carry stable ids; optimising the SVG can strip them",
-        "No motion-path method is guided, so the accent steps between elements; it does not glide along the line"
-      ]
+        "The fixture lights four nodes in turn; a highlight on connectors or text is untested",
+        "No motion-path method is guided, so the accent steps between elements; it does not glide along the line",
+        "Elements must carry stable ids; optimising the SVG can strip them"
+      ],
+      "example": "anime-diagram-build"
     },
     {
       "id": "waapi-offsets",

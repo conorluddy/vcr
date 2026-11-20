@@ -55,6 +55,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `canvas2d-count-up` | canvas-2d, playwright, imagemagick | canvas-text figure counts 0 to 1250 with a clamped ease-out: monotonic, lands exactly and holds, position stable, shuffled equals sequential (2026-11-20) |
 | `svg-paper-collage` | svg, web-animations-api, playwright, imagemagick | six inline SVG paper pieces (embedded still, irregular mat, feDropShadow) animated via seeked element.animate; alpha, settles, shuffled equals sequential (2026-11-20) |
 | `waapi-word-stagger` | web-animations-api, playwright, imagemagick | seven-word line split into spans, one paused animation per word, onsets exactly 3 frames apart, settles fully visible, shuffled equals sequential (2026-11-20) |
+| `anime-diagram-build` | anime-js, playwright, imagemagick | paused v4 timeline: connectors draw before each node appears, earlier nodes recede, then an accent traces nodes 1-4 and holds; probe checks in both seek orders, shuffled equals sequential (2026-11-20) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 

@@ -176,6 +176,15 @@
             "result": "90 alpha frames at 1280x720 via the @vcr/capture screenshot route (Chromium 156.0.8078.4); shuffled matches sequential; frame 45 alpha min 0 max 1. First run failed by 2 px at frames 62-89 until the stagger targets got will-change; see the example README.",
             "example": "examples/anime-capture",
             "scope": "v4 createTimeline (autoplay off) seeked per frame: transform tween, SVG draw, stagger; alpha; macOS arm64. Not springs, morphing or v3."
+          },
+          {
+            "date": "2026-11-20",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.5.0",
+            "command": "examples/anime-diagram-build/run.sh",
+            "result": "150 alpha frames at 1280x720 (Chromium 156.0.8078.4); shuffled matches sequential; per-frame probe checks pass: connector draws before node, accents recede, one-at-a-time trace, hold; reverse-order probe equal.",
+            "example": "examples/anime-diagram-build",
+            "scope": "One paused v4 timeline: svg.createDrawable connectors, opacity fades, keyframed accents. Split tweens on one property mis-seek backwards; use one keyframed tween. macOS arm64."
           }
         ]
       },
@@ -183,7 +192,8 @@
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
-        "anime-capture"
+        "anime-capture",
+        "anime-diagram-build"
       ],
       "skill": "skills/anime-js/SKILL.md"
     },
@@ -4667,7 +4677,8 @@
         "pixijs-filters-pixelate",
         "waapi-word-stagger",
         "canvas2d-count-up",
-        "svg-paper-collage"
+        "svg-paper-collage",
+        "anime-diagram-build"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -8465,7 +8476,8 @@
         "gl-react-shader",
         "waapi-word-stagger",
         "canvas2d-count-up",
-        "svg-paper-collage"
+        "svg-paper-collage",
+        "anime-diagram-build"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",

@@ -4,7 +4,13 @@
   "summary": "One paused Anime.js v4 timeline builds a four-node chain (connector draws, node fades in, previous accent recedes) then traces an accent node by node; 150 frames at 1280x720 with alpha, per-frame probe checks and shuffled order matching sequential.",
   "status": "validated",
   "tools": [
-    "anime-js"
+    "anime-js",
+    "playwright",
+    "imagemagick"
+  ],
+  "techniques": [
+    "diagram-build/hand-placed-anime",
+    "highlight-trace/anime-sweep"
   ],
   "run": "./run.sh",
   "capture": {

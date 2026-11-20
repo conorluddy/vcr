@@ -37,6 +37,7 @@ Chromium promotes elements whose opacity or transform is animating to compositor
 
 - Anime.js: seek in milliseconds (`tl.seek(t * 1000)`); a seconds value lands on the wrong frame without failing.
 - Anime.js: a tween's from-value (`opacity: [0, 1]`) is applied only once a seek has reached that tween. Before then the element shows its CSS state, so frames ahead of the tween differ with seek order. Set the starting state in CSS (`opacity: 0`) as well. Measured: 30 of 60 frames mismatched without it, none with it.
+- Anime.js: several separate tweens on one property of one element can leave a stale value after a backwards seek (an accent read 0.14 instead of 0). Write that property as one keyframed tween covering the whole timeline (`examples/anime-diagram-build`).
 
 ## 5. Anything with its own clock
 

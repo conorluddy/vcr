@@ -61,10 +61,11 @@
         }
       ],
       "limits": [
-        "Suits a handful of nodes; positions are yours to set, so nothing reflows when a label changes",
-        "Receding by tweening colours proved fragile in a build; fading a separate overlay per node held",
-        "Evidence covers one path draw and one stagger, not a multi-node build"
-      ]
+        "The fixture builds four nodes in a row; branching diagrams and many nodes are untested",
+        "Positions are yours to set, so nothing reflows when a label changes",
+        "Receding is done by fading a per-node overlay; tweening colours proved fragile in a build"
+      ],
+      "example": "anime-diagram-build"
     },
     {
       "id": "graphviz-layout-anime",
