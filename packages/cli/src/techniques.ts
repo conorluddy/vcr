@@ -57,11 +57,11 @@ export interface TechniqueVocabulary {
 }
 
 /** How far a route's end-to-end claim is backed. Derived on every read (ADR 0010); never stored. */
-export type RouteEvidenceClass = "retained-fixture" | "fixture-reported" | "unverified";
+export type RouteEvidenceClass = "retained-fixture" | "fixture-reported" | "documented";
 
 export interface RouteEvidence {
   class: RouteEvidenceClass;
-  /** The covering example, when the class is not `unverified`. */
+  /** The covering example, when the class is not `documented`. */
   example?: string;
   /** Why the route has this class, in one clause. */
   reason: string;
@@ -134,17 +134,18 @@ export function filterTechniques(techniques: Technique[], filter: TechniqueFilte
 
 /**
  * A route is only as proven as the one fixture that runs all of it. Tools validated separately do not
- * add up to a validated route, so anything short of a covering, validated, two-way-linked example is `unverified`.
+ * add up to a validated route, so anything short of a covering, validated, two-way-linked example is `documented`:
+ * supported by the tools' own documentation, usable, and not yet run here.
  */
 export function deriveRouteEvidence(technique: Technique, route: TechniqueRoute, examples: ExampleManifest[], harnessRoot: string): RouteEvidence {
-  const unverified = (reason: string): RouteEvidence => ({ class: "unverified", reason });
-  if (!route.example) return unverified("no fixture exercises this route end to end");
+  const documented = (reason: string): RouteEvidence => ({ class: "documented", reason });
+  if (!route.example) return documented("the tools' documentation supports this route; no fixture here has run it end to end");
   const example = examples.find((candidate) => candidate.id === route.example);
-  if (!example) return unverified(`example ${route.example} is not in this install`);
-  if (!(example.techniques ?? []).includes(routeReference(technique.id, route.id))) return unverified(`example ${example.id} does not claim this route`);
-  if (example.status !== "validated") return unverified(`example ${example.id} is ${example.status}`);
+  if (!example) return documented(`example ${route.example} is not in this install`);
+  if (!(example.techniques ?? []).includes(routeReference(technique.id, route.id))) return documented(`example ${example.id} does not claim this route`);
+  if (example.status !== "validated") return documented(`example ${example.id} is ${example.status}`);
   const uncovered = routeTools(route).filter((toolId) => !example.tools.includes(toolId));
-  if (uncovered.length > 0) return unverified(`example ${example.id} does not use ${uncovered.join(", ")}`);
+  if (uncovered.length > 0) return documented(`example ${example.id} does not use ${uncovered.join(", ")}`);
   const hasRetainedOutputs = existsSync(join(harnessRoot, example.directory, "expected"));
   return hasRetainedOutputs
     ? { class: "retained-fixture", example: example.id, reason: `example ${example.id} runs every tool in the route and checks its output against expected/` }
@@ -232,7 +233,7 @@ export function renderTechniquesIndex(techniques: Technique[]): string {
     "- **Tier 1, card:** `vcr techniques info <id>`. Summary, craft pointers, related techniques, one line per route with its evidence class.",
     "- **Tier 2, routes:** `vcr techniques info <id> --full`. Steps, each tool's own evidence and readiness on this machine, limits. Then one toolkit guide: `vcr tools info <tool> --full`.",
     "",
-    "Filter with `vcr techniques list --purpose|--mechanism|--pillar|--capability|--tool`. This index is inspiration, not a whitelist: a technique missing here may still be proposed, and `0 routes` marks a gap, not a verdict. A route's evidence class (`retained-fixture`, `fixture-reported`, `unverified`) is derived when you read the card and is never a claim that a tool is installed.",
+    "Filter with `vcr techniques list --purpose|--mechanism|--pillar|--capability|--tool`. This index is inspiration, not a whitelist: a technique missing here may still be proposed, and `0 routes` marks a gap, not a verdict. A route's evidence class is derived when you read the card: `documented` (the tools' docs support it; no fixture here has run it; the usual case, and fine to use), `fixture-reported` or `retained-fixture` (a fixture runs the whole route). None is a claim that a tool is installed.",
     "",
     `## techniques (${sorted.length})`,
     "",

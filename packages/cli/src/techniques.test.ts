@@ -43,14 +43,14 @@ describe("deriveRouteEvidence", () => {
   });
 
   test.each([
-    ["no example is cited", bare, [example()], "no fixture"],
+    ["no example is cited", bare, [example()], "no fixture here has run it"],
     ["the example is absent from this install", linked, [], "not in this install"],
     ["the example does not list the route back", linked, [example({ techniques: [] })], "does not claim"],
     ["the example is not validated", linked, [example({ status: "not-validated" })], "not-validated"],
     ["the example does not use every route tool", linked, [example({ tools: ["capture"] })], "does not use shader"],
-  ])("unverified when %s, however well the tools are validated", (_name, candidate, examples, reason) => {
+  ])("documented, never more, when %s, however well the tools are validated", (_name, candidate, examples, reason) => {
     const evidence = deriveRouteEvidence(halftone, candidate, examples, harnessWith(true));
-    expect(evidence.class).toBe("unverified");
+    expect(evidence.class).toBe("documented");
     expect(evidence.example).toBeUndefined();
     expect(evidence.reason).toContain(reason);
   });
@@ -101,7 +101,7 @@ describe("formatting", () => {
     expect(card).toContain("vcr rules info FX-MOIRE-RESAMPLE");
     expect(card).toContain("bloom (contrasts)");
     expect(card).toContain("- shader [retained-fixture]");
-    expect(card).toContain("- native [unverified]");
+    expect(card).toContain("- native [documented]");
   });
 
   test("a technique with no route says it is a gap, not a verdict", () => {
@@ -121,7 +121,7 @@ describe("formatting", () => {
   test("--json carries the derived class and per-tool status beside the stored links", () => {
     const resolved = resolveTechnique(halftone, { harnessRoot: harnessWith(false), tools: [tool("shader", { tier: "core" })], examples: [example()] });
     expect(resolved.routes[0]).toMatchObject({ id: "shader", evidence: { class: "fixture-reported" }, tool_status: [{ id: "shader", tier: "core", validation_status: "validated", readiness: { state: "no-machine-record" } }] });
-    expect(resolved.routes[1]).toMatchObject({ evidence: { class: "unverified" }, tool_status: [{ id: "ghost", tier: "unknown" }] });
+    expect(resolved.routes[1]).toMatchObject({ evidence: { class: "documented" }, tool_status: [{ id: "ghost", tier: "unknown" }] });
   });
 });
 
