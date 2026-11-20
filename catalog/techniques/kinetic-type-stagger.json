@@ -3,23 +3,53 @@
   "name": "Kinetic type stagger",
   "one_line": "Words or glyphs enter one after another on offset onsets, so a line builds rather than appears",
   "summary": "Text arrives in pieces, each starting a little after the last, so the eye is steered along the line in reading order. It gives a title rhythm and emphasis and suits short statements. Uneven offsets read as sloppy, and an over-long cascade makes the viewer wait for the message to finish building.",
-  "purposes": ["emphasis", "playful-energy"],
-  "mechanisms": ["staggered-timing"],
+  "purposes": [
+    "emphasis",
+    "playful-energy"
+  ],
+  "mechanisms": [
+    "staggered-timing"
+  ],
   "craft": [
-    { "pillar": "typography", "section": "9c", "rules": ["TYPO-STAGGER-QUANT"] },
-    { "pillar": "motion-director", "section": "4.1", "rules": ["MOTION-CHOR-001", "MOTION-CHOR-002", "MOTION-EASE-002"] }
+    {
+      "pillar": "typography",
+      "section": "9c",
+      "rules": [
+        "TYPO-STAGGER-QUANT"
+      ]
+    },
+    {
+      "pillar": "motion-director",
+      "section": "4.1",
+      "rules": [
+        "MOTION-CHOR-001",
+        "MOTION-CHOR-002",
+        "MOTION-EASE-002"
+      ]
+    }
   ],
   "related": [
-    { "id": "count-up", "relation": "combines" },
-    { "id": "parallax-photo", "relation": "contrasts" }
+    {
+      "id": "count-up",
+      "relation": "combines"
+    },
+    {
+      "id": "parallax-photo",
+      "relation": "contrasts"
+    }
   ],
   "routes": [
     {
       "id": "waapi-seek",
       "one_line": "Per-word or per-glyph elements animated with the Web Animations API, seeked per frame",
       "steps": [
-        { "does": "Give each word or glyph its own animation, onset offset by index", "capability": "timeline-animation", "tools": ["web-animations-api"] },
-        { "does": "Seek, settle and screenshot each frame of the page", "capability": "capture", "tools": ["playwright"] }
+        {
+          "does": "Give each word or glyph its own animation, onset offset by index",
+          "capability": "timeline-animation",
+          "tools": [
+            "web-animations-api"
+          ]
+        }
       ],
       "limits": [
         "The tool's fixture staggers dots, not text; splitting text into elements is not exercised",
@@ -30,8 +60,13 @@
       "id": "anime-timeline",
       "one_line": "Per-word or per-glyph elements staggered on an Anime.js timeline, seeked per frame",
       "steps": [
-        { "does": "Stagger the entrances of the split text elements along one timeline", "capability": "timeline-animation", "tools": ["anime-js"] },
-        { "does": "Seek, settle and screenshot each frame of the page", "capability": "capture", "tools": ["playwright"] }
+        {
+          "does": "Stagger the entrances of the split text elements along one timeline",
+          "capability": "timeline-animation",
+          "tools": [
+            "anime-js"
+          ]
+        }
       ],
       "limits": [
         "The tool's fixture staggers dots, not text; splitting text into elements is not exercised",
@@ -42,8 +77,20 @@
       "id": "troika-meshes",
       "one_line": "Glyph or word meshes in a Three.js scene, each entering on its own offset",
       "steps": [
-        { "does": "Typeset the text as SDF meshes the scene can address per glyph", "capability": "text-rendering", "tools": ["troika-three-text"] },
-        { "does": "Render the scene with each mesh's entrance driven from t", "capability": "3d-rendering", "tools": ["three-js"] }
+        {
+          "does": "Typeset the text as SDF meshes the scene can address per glyph",
+          "capability": "text-rendering",
+          "tools": [
+            "troika-three-text"
+          ]
+        },
+        {
+          "does": "Render the scene with each mesh's entrance driven from t",
+          "capability": "3d-rendering",
+          "tools": [
+            "three-js"
+          ]
+        }
       ],
       "limits": [
         "Text evidence is one local font under software GPU; complex scripts and other fonts are untested",

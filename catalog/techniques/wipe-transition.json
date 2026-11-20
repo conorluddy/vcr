@@ -3,23 +3,59 @@
   "name": "Wipe transition",
   "one_line": "One scene replaced by the next through a moving edge or shape, not a cut or dissolve",
   "summary": "A moving edge or shape (a straight line, an expanding circle, a drawn silhouette) uncovers the next scene over the last. The change is visible and directional, so it can steer the eye, mark a new section or echo a graphic motif. A soft or flickering edge reads as accidental, and a wipe on every cut becomes a habit.",
-  "purposes": ["graphic-boldness", "continuity"],
-  "mechanisms": ["transition-mask"],
+  "purposes": [
+    "graphic-boldness",
+    "continuity"
+  ],
+  "mechanisms": [
+    "transition-mask"
+  ],
   "craft": [
-    { "pillar": "fx", "section": "3", "rules": ["FX-MASK-EDGE", "FX-PREMULT-EDGES"] },
-    { "pillar": "motion-director", "section": "4.3", "rules": ["MOTION-CHOR-005"] }
+    {
+      "pillar": "fx",
+      "section": "3",
+      "rules": [
+        "FX-MASK-EDGE",
+        "FX-PREMULT-EDGES"
+      ]
+    },
+    {
+      "pillar": "motion-director",
+      "section": "4.3",
+      "rules": [
+        "MOTION-CHOR-005"
+      ]
+    }
   ],
   "related": [
-    { "id": "card-stack", "relation": "contrasts" },
-    { "id": "lockup-reveal", "relation": "combines" }
+    {
+      "id": "card-stack",
+      "relation": "contrasts"
+    },
+    {
+      "id": "lockup-reveal",
+      "relation": "combines"
+    }
   ],
   "routes": [
     {
       "id": "svg-mask-waapi",
       "one_line": "Vector mask or clip shape swept across two layers on a seekable timeline",
       "steps": [
-        { "does": "Author the wipe shape as a vector clip or mask over the incoming scene", "capability": "vector-authoring", "tools": ["svg"] },
-        { "does": "Move or scale the shape across the frame, seeked per frame", "capability": "tweening", "tools": ["web-animations-api"] }
+        {
+          "does": "Author the wipe shape as a vector clip or mask over the incoming scene",
+          "capability": "vector-authoring",
+          "tools": [
+            "svg"
+          ]
+        },
+        {
+          "does": "Move or scale the shape across the frame, seeked per frame",
+          "capability": "tweening",
+          "tools": [
+            "web-animations-api"
+          ]
+        }
       ],
       "limits": [
         "Suits drawn vectors; masking supplied stills in SVG is untested",
@@ -31,7 +67,13 @@
       "id": "sharp-mask-frames",
       "one_line": "Two stills composited per frame through a mask that advances with t",
       "steps": [
-        { "does": "Build each frame's mask and composite incoming over outgoing still", "capability": "compositing", "tools": ["sharp"] }
+        {
+          "does": "Build each frame's mask and composite incoming over outgoing still",
+          "capability": "compositing",
+          "tools": [
+            "sharp"
+          ]
+        }
       ],
       "limits": [
         "Suits supplied raster stills, and drawn vectors once rasterised; no live scenes",
@@ -43,7 +85,13 @@
       "id": "pixi-masked-scene",
       "one_line": "Both scenes in one GPU scene, the top one revealed through an animated mask",
       "steps": [
-        { "does": "Reveal the incoming layer through a mask shape driven from t", "capability": "2d-rendering", "tools": ["pixijs"] }
+        {
+          "does": "Reveal the incoming layer through a mask shape driven from t",
+          "capability": "2d-rendering",
+          "tools": [
+            "pixijs"
+          ]
+        }
       ],
       "limits": [
         "Suits supplied stills and drawn vectors; PixiJS evidence is Graphics geometry only",

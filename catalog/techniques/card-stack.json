@@ -3,24 +3,66 @@
   "name": "Card stack",
   "one_line": "Many variants of one object fanned or stacked in overlap, so range reads at a glance",
   "summary": "Copies of one kind of object, each a different variant, overlap in a pile or fan that deals out, shuffles or spreads. Range reads at once, where a slideshow makes the viewer wait for it. It suits showing a collection or choice. A lead card steadies it; every card moving at once reads as noise, and mismatched cards undercut the set.",
-  "purposes": ["variety-and-range", "playful-energy"],
-  "mechanisms": ["layered-stacking", "staggered-timing"],
+  "purposes": [
+    "variety-and-range",
+    "playful-energy"
+  ],
+  "mechanisms": [
+    "layered-stacking",
+    "staggered-timing"
+  ],
   "craft": [
-    { "pillar": "motion-director", "section": "4.2", "rules": ["MOTION-CHOR-003"] },
-    { "pillar": "motion-director", "section": "4.1", "rules": ["MOTION-CHOR-001"] },
-    { "pillar": "image-direction", "section": "5.1", "rules": ["IMAGE-SET-COHERENCE"] }
+    {
+      "pillar": "motion-director",
+      "section": "4.2",
+      "rules": [
+        "MOTION-CHOR-003"
+      ]
+    },
+    {
+      "pillar": "motion-director",
+      "section": "4.1",
+      "rules": [
+        "MOTION-CHOR-001"
+      ]
+    },
+    {
+      "pillar": "image-direction",
+      "section": "5.1",
+      "rules": [
+        "IMAGE-SET-COHERENCE"
+      ]
+    }
   ],
   "related": [
-    { "id": "carousel", "relation": "contrasts" },
-    { "id": "paper-collage", "relation": "combines" }
+    {
+      "id": "carousel",
+      "relation": "contrasts"
+    },
+    {
+      "id": "paper-collage",
+      "relation": "combines"
+    }
   ],
   "routes": [
     {
       "id": "svg-waapi-cards",
       "one_line": "Cards as vector groups, dealt and fanned on a seekable timeline in the browser",
       "steps": [
-        { "does": "Author each card as a vector group with a shared frame and its own variant", "capability": "vector-authoring", "tools": ["svg"] },
-        { "does": "Deal, rotate and spread the cards with offset onsets, seeked per frame", "capability": "timeline-animation", "tools": ["web-animations-api"] }
+        {
+          "does": "Author each card as a vector group with a shared frame and its own variant",
+          "capability": "vector-authoring",
+          "tools": [
+            "svg"
+          ]
+        },
+        {
+          "does": "Deal, rotate and spread the cards with offset onsets, seeked per frame",
+          "capability": "timeline-animation",
+          "tools": [
+            "web-animations-api"
+          ]
+        }
       ],
       "limits": [
         "Suits drawn vectors; supplied stills would be embedded as image elements, which no evidence covers",
@@ -32,7 +74,13 @@
       "id": "pixi-sprites",
       "one_line": "Supplied stills as GPU sprites in a pile, dealt and shuffled from t",
       "steps": [
-        { "does": "Draw each still as a card with its own transform and draw order, set from t", "capability": "2d-rendering", "tools": ["pixijs"] }
+        {
+          "does": "Draw each still as a card with its own transform and draw order, set from t",
+          "capability": "2d-rendering",
+          "tools": [
+            "pixijs"
+          ]
+        }
       ],
       "limits": [
         "Suits supplied raster stills; PixiJS evidence is Graphics geometry only, not sprites or textures",
@@ -44,7 +92,13 @@
       "id": "three-fan",
       "one_line": "Cards as planes in a Three.js scene, so the fan can turn with real depth and a camera",
       "steps": [
-        { "does": "Place card planes with textures in depth and drive their poses from t", "capability": "3d-rendering", "tools": ["three-js"] }
+        {
+          "does": "Place card planes with textures in depth and drive their poses from t",
+          "capability": "3d-rendering",
+          "tools": [
+            "three-js"
+          ]
+        }
       ],
       "limits": [
         "Suits supplied stills as textures or drawn vectors rasterised first; neither is in the evidence",
