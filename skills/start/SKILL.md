@@ -19,7 +19,7 @@ Run `vcr status --brief`: it lists videos awaiting review and their open finding
 
 When the brief leaves the look open, shortlist treatments before tools. `vcr techniques list` (or `<plugin-root>/catalog/TECHNIQUES.md`) gives one line per visual technique; filter with `--purpose`, `--mechanism`, `--pillar`, `--capability` or `--tool`. Take two or three that contrast, not three versions of the obvious one. `vcr techniques info <id>` shows what each expresses, the pillar sections and rules that own its craft, and its routes with an evidence class; `--full` adds each route's steps, every tool's own evidence and readiness, and limits. Then choose a tool below.
 
-A route explains; it runs nothing. `unverified` means no fixture exercises the whole route, however well each tool is validated alone, so plan a small test before committing a production to it. The list is inspiration, not a whitelist: propose an unmapped technique when the brief calls for one, and say that its route is unresearched.
+A route explains; it runs nothing. Most routes are `documented`: the tools' own documentation supports them and no fixture here has run the whole chain, so use them and expect to work out the details yourself, reading the route's limits first. The list is inspiration, not a whitelist: propose an unmapped technique when the brief calls for one, and say that its route is unresearched.
 
 ## Choosing a tool: four tiers, one at a time
 

@@ -78,6 +78,6 @@ The foundation ships under [ADR 0010](decisions/0010-technique-mapping-layer.md)
 What remains, in order:
 
 1. **Production trial** on two or three real treatment decisions, recorded in #183: whether a less obvious treatment surfaced, whether evidence class and readiness were accurate, where vocabulary or filters failed, and bytes loaded per tier. Fixes follow in one PR.
-2. **More fixtures**, so common routes move from `unverified` to `retained-fixture`. Most seed routes have none.
+2. **More fixtures**, so common routes move from `documented` to `retained-fixture`. Most seed routes have none.
 3. **Toolkit guides cite pillar rule IDs** for the techniques they can execute, so a route's last hop lands on a recipe.
 4. **Previews** (stills or short loops per technique). The plugin ships no media (PL-04), so this needs a distribution decision first.
