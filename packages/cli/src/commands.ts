@@ -50,6 +50,27 @@ export const COMMANDS: CommandSpec[] = [
   { name: "video init", argumentsHint: "<project>/<video>", summary: "Register a video: the project in vcr.json and project.json, plus its review/ directories; idempotent", flags: [], example: "vcr video init demo/teaser" },
   { name: "validate", summary: "Validate the workspace (in the harness repository: everything)", flags: [], example: "vcr validate --json" },
   {
+    name: "techniques list",
+    summary: "Tier 0 of techniques: one line per visual technique, paginated; inspiration, not a whitelist",
+    flags: [
+      { name: "purpose", value: "term", description: "Only techniques with this expressive purpose (see catalog/techniques/vocabulary.json)" },
+      { name: "mechanism", value: "term", description: "Only techniques with this visual mechanism" },
+      { name: "pillar", value: "name", description: "Only techniques whose craft lives in this pillar: fx, motion, typography" },
+      { name: "capability", value: "id", description: "Only techniques with a route step using this capability" },
+      { name: "tool", value: "id", description: "Only techniques with a route through this tool" },
+      { name: "limit", value: "n", description: "Techniques per page", defaultValue: "50" },
+      { name: "offset", value: "n", description: "Techniques to skip", defaultValue: "0" },
+    ],
+    example: "vcr techniques list --purpose print-nostalgia",
+  },
+  {
+    name: "techniques info",
+    argumentsHint: "<id>",
+    summary: "Tier 1 card: summary, craft pointers and one line per route with its derived evidence class; --full adds each route's steps, tool evidence, readiness and limits",
+    flags: [{ name: "full", description: "Append each route's steps, per-tool evidence and readiness, and limits" }],
+    example: "vcr techniques info halftone-screen --full",
+  },
+  {
     name: "tools list",
     summary: "Tier 0: one line per tool",
     flags: [
@@ -268,7 +289,7 @@ export const COMMANDS: CommandSpec[] = [
   },
   {
     name: "catalog build",
-    summary: "Regenerate catalog/tools.json, INDEX.md, CANDIDATES.md and the typography KB §14 table",
+    summary: "Regenerate catalog/tools.json, INDEX.md, CANDIDATES.md, TECHNIQUES.md and the typography KB §14 table",
     flags: [{ name: "check", description: "Report stale files and exit 1 instead of rewriting" }],
     example: "vcr catalog build --check",
     isMaintainerOnly: true,

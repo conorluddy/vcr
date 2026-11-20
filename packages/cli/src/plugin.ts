@@ -42,7 +42,7 @@ The CLI is \`node <this directory>/cli/vcr.mjs\` (Node 22 or newer). It never wr
 `;
 
 const LICENSE_FILES = ["LICENSE", "NOTICE", "THIRD_PARTY_NOTICES"];
-const CATALOG_ENTRIES = ["INDEX.md", "CANDIDATES.md", "tools.json", "tools", "schemas", "capabilities", "CANDIDATE-INGESTION.md", "ASSESSMENT-BRIEF.md", "FIXTURE-EVIDENCE-TEMPLATE.md"];
+const CATALOG_ENTRIES = ["INDEX.md", "CANDIDATES.md", "TECHNIQUES.md", "tools.json", "tools", "techniques", "schemas", "capabilities", "CANDIDATE-INGESTION.md", "ASSESSMENT-BRIEF.md", "FIXTURE-EVIDENCE-TEMPLATE.md"];
 const SKIPPED_DIRECTORIES = new Set(["node_modules", "output", ".cache", "dist"]);
 const MEDIA_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".mp4", ".mov", ".webm", ".wav", ".mp3", ".aac", ".glb", ".gltf", ".blend", ".exr", ".woff", ".woff2"]);
 

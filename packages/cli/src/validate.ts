@@ -9,7 +9,7 @@ import type { ExampleManifest, ToolSummary } from "./tools.js";
 import { versionScope } from "./evidence.js";
 import { TYPOGRAPHY_RULES_PATH, typographyRuleDiagnostics } from "./typography-rules.js";
 import { findPillarRule, loadPillarRules, loadPillars, readKnowledgeBaseSection, referencesIndexDiagnostics, type Pillar, type PillarRule } from "./references.js";
-import { listTechniqueFiles, routeReference, routeTools, TECHNIQUE_VOCABULARY_PATH, type Technique, type TechniqueVocabulary } from "./techniques.js";
+import { listTechniqueFiles, routeReference, routeTools, TECHNIQUE_VOCABULARY_PATH, TECHNIQUES_INDEX_PATH, techniquesIndexDiagnostics, type Technique, type TechniqueVocabulary } from "./techniques.js";
 import { listRetainedRenderIds, REVIEW_PATHS, reviewDiagnostics, sha256Hex, type Approval, type Finding, type RenderManifest, type VideoReview } from "./review.js";
 import { listVideoDirectories } from "./video.js";
 import { loadBudgets, storageReport } from "./storage.js";
@@ -85,6 +85,7 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
   if (validToolRecords) diagnostics.push(...indexFreshnessDiagnostics(repositoryRoot));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/INDEX.md", BUDGET_BYTES.indexMarkdown));
   diagnostics.push(...budgetDiagnostics(repositoryRoot, "catalog/CANDIDATES.md", BUDGET_BYTES.indexMarkdown));
+  diagnostics.push(...techniquesIndexDiagnostics(repositoryRoot), ...budgetDiagnostics(repositoryRoot, TECHNIQUES_INDEX_PATH, BUDGET_BYTES.indexMarkdown));
 
   const typographyRulesPath = join(repositoryRoot, TYPOGRAPHY_RULES_PATH);
   if (existsSync(typographyRulesPath) && check(typographyRulesPath, "typographyRules")) diagnostics.push(...typographyRuleDiagnostics(repositoryRoot));

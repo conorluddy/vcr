@@ -297,6 +297,13 @@ describe("technique records (ADR 0010)", () => {
     expect(diagnostics).toContainEqual(expect.objectContaining({ path: "/routes/0/example", message: expect.stringContaining("does not use ffprobe") }));
   });
 
+  test("a stale TECHNIQUES.md is an error that names the fix", () => {
+    const root = createFixtureRepository([validTool]);
+    mkdirSync(join(root, "catalog/techniques"), { recursive: true });
+    writeFileSync(join(root, "catalog/techniques/halftone-screen.json"), JSON.stringify({ ...validTechnique, routes: [] }));
+    expect(validateRepository(root).diagnostics).toContainEqual(expect.objectContaining({ file: "catalog/TECHNIQUES.md", message: "technique index is stale", suggestion: expect.stringContaining("catalog build") }));
+  });
+
   test("a file named differently from its id, and a threshold-length one-liner, are schema or naming errors", () => {
     expect(techniqueDiagnosticsFor({ technique: { ...validTechnique, id: "other" } })).toContainEqual(expect.objectContaining({ path: "/id", message: expect.stringContaining("other.json") }));
     expect(techniqueDiagnosticsFor({ technique: { ...validTechnique, one_line: "x".repeat(101) } })).toEqual([expect.objectContaining({ path: "/one_line", suggestion: expect.stringContaining("100") })]);

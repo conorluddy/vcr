@@ -55,6 +55,17 @@ describe("vcr CLI", () => {
     await expect(runCli("tools", "info", "does-not-exist", "--json")).rejects.toMatchObject({ code: 1, stdout: expect.stringContaining("TOOL_NOT_FOUND") });
   });
 
+  test("techniques list filters and paginates; info derives each route's evidence class", async () => {
+    const listed = JSON.parse((await runCli("techniques", "list", "--tool", "postprocessing", "--limit", "1", "--json")).stdout);
+    expect(listed).toMatchObject({ offset: 0, limit: 1, techniques: [{ id: "bloom-glow", pillars: expect.arrayContaining(["fx"]) }] });
+    expect(listed.total).toBeGreaterThanOrEqual(1);
+    const info = JSON.parse((await runCli("techniques", "info", "bloom-glow", "--json")).stdout);
+    expect(info.routes.find((route: { id: string }) => route.id === "three-postprocessing").evidence).toMatchObject({ class: "retained-fixture", example: "postprocessing-capture" });
+    const card = (await runCli("techniques", "info", "bloom-glow", "--full")).stdout;
+    expect(card).toContain("vcr refs section fx 7");
+    expect(card).toContain("Route pixi-filter [unverified]");
+  });
+
   test.each([["--help"], ["-h"]])("capture %s documents its flags and environment, exit 0", async (flag) => {
     const { stdout } = await runCli("capture", flag);
     for (const expected of ["--width n", "--height n", "--fps n", "--out dir", "--verify", "VCR_CAPTURE_MODE"]) expect(stdout).toContain(expected);
@@ -70,6 +81,8 @@ describe("vcr CLI", () => {
   test.each([
     [["tools", "info", "does-not-exist"]],
     [["tools", "list", "--unknown"]],
+    [["techniques", "info", "does-not-exist"]],
+    [["techniques", "list", "--limit", "0"]],
     [["capture", "scene.html"]],
     [["lint", "scene.html"]],
     [["findings", "list", "nope"]],
@@ -115,6 +128,13 @@ describe("the bundled plugin CLI outside the harness repository (P0/P1 exit evid
   test("tools info works against a read-only harness", async () => {
     const { stdout } = await runFromScratch("tools", "info", "d3", "--json");
     expect(JSON.parse(stdout).id).toBe("d3");
+  });
+
+  test("techniques resolve from the plugin's own records, examples and retained outputs", async () => {
+    const { stdout } = await runFromScratch("techniques", "info", "bloom-glow", "--json");
+    expect(JSON.parse(stdout).routes[0]).toMatchObject({ id: "three-postprocessing", evidence: { class: "retained-fixture" } });
+    const listed = await runFromScratch("techniques", "list", "--pillar", "fx", "--json");
+    expect(JSON.parse(listed.stdout).total).toBeGreaterThan(0);
   });
 
   test("status reports user mode and no workspace before init", async () => {
