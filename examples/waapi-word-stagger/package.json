@@ -1,0 +1,17 @@
+{
+  "name": "@vcr/example-waapi-word-stagger",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx capture.ts",
+    "probe": "tsx probe.ts"
+  },
+  "dependencies": {
+    "@vcr/capture": "workspace:*",
+    "playwright": "^1.64.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}
