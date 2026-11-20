@@ -54,6 +54,7 @@ Give every element whose opacity is animated `will-change: transform, opacity` i
 ## Troubleshooting
 - `--verify` reports a shuffled mismatch: see [Determinism pitfalls](../start/references/determinism.md).
 - Shuffled order differs but DOM values match: compositor layering; see the section above. Bisect by removing one tween at a time and rerunning with `--verify`.
+- Frames before a later tween differ by order: its from-value applies only once a seek reaches it. Put the starting state in CSS too (`opacity: 0` for an `opacity: [0, 1]` entrance).
 - `anime is not defined`: the scene loaded the ESM build with a classic script tag; use the UMD bundle.
 - Scene ends early or late: a seconds value went in as milliseconds, or the other way round.
 

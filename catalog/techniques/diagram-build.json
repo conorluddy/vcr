@@ -49,6 +49,24 @@
   ],
   "routes": [
     {
+      "id": "hand-placed-anime",
+      "one_line": "Place a few nodes by hand and reveal nodes and connectors in turn on one Anime.js timeline",
+      "steps": [
+        {
+          "does": "Reveal each node, draw each connector before it, and dim earlier nodes on one seekable timeline",
+          "capability": "timeline-animation",
+          "tools": [
+            "anime-js"
+          ]
+        }
+      ],
+      "limits": [
+        "Suits a handful of nodes; positions are yours to set, so nothing reflows when a label changes",
+        "Receding by tweening colours proved fragile in a build; fading a separate overlay per node held",
+        "Evidence covers one path draw and one stagger, not a multi-node build"
+      ]
+    },
+    {
       "id": "graphviz-layout-anime",
       "one_line": "Lay the diagram out with Graphviz, then reveal its nodes and edges in turn",
       "steps": [
