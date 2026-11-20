@@ -1,0 +1,15 @@
+{
+  "id": "svg-paper-collage",
+  "title": "Inline SVG paper collage seeked per frame with alpha",
+  "summary": "Six SVG groups, each an embedded canvas-generated raster still on an irregular paper mat with an feDropShadow filter, slide and tilt into a layered stack through paused element.animate() seeked via currentTime; 90 frames at 1280x720 with alpha, settles, shuffled order matches sequential.",
+  "status": "validated",
+  "validated_on": {"date": "2026-11-20", "hostname": "Conors-MacBook-Pro-2.local"},
+  "tools": ["svg"],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  }
+}
