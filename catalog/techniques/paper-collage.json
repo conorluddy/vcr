@@ -105,10 +105,11 @@
         }
       ],
       "limits": [
-        "SVG evidence is one static raster by resvg; no browser rendering, shadow filter or embedded still was exercised",
-        "Edges stay clean unless you draw irregular paths; torn texture is not included",
-        "WAAPI evidence covers transform, stroke draw and stagger on Chromium only"
-      ]
+        "The fixture uses generated pattern stills as data URLs; supplied image files must sit under the scene directory",
+        "Six pieces with one shadow filter each captured slowly; many pieces or large blurs are untested",
+        "Edges stay clean unless you draw irregular paths; reusing one edge gives the preset look"
+      ],
+      "example": "svg-paper-collage"
     }
   ],
   "checked_at": "2026-11-20",

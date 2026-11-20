@@ -73,7 +73,10 @@
     "troika-three-text-sync",
     "pixijs-filters-pixelate",
     "dotlottie-wasm-seek",
-    "gl-react-shader"
+    "gl-react-shader",
+    "waapi-word-stagger",
+    "canvas2d-count-up",
+    "svg-paper-collage"
   ],
   "notes": [
     "Not in PRD Appendix A; added because the browser-capture spike depends on it.",

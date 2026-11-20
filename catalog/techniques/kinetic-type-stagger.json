@@ -52,9 +52,11 @@
         }
       ],
       "limits": [
-        "The tool's fixture staggers dots, not text; splitting text into elements is not exercised",
-        "Evidence covers opacity and transform; blur, clip and variable-font axes are untested"
-      ]
+        "The fixture staggers seven words of one line in one font; per-glyph splits and wrapped lines are untested",
+        "Evidence covers opacity and translate; blur, clip and variable-font axes are untested",
+        "The tool does not split text; the scene's own script makes one element per word"
+      ],
+      "example": "waapi-word-stagger"
     },
     {
       "id": "anime-timeline",

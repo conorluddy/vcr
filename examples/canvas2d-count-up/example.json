@@ -4,7 +4,12 @@
   "summary": "A figure drawn as canvas text counts 0 to 1250 over 2 s and holds; monotonic, never over target, lands exactly, digits centred in fixed cells so it does not shift; 90 alpha frames, shuffled matches sequential.",
   "status": "validated",
   "tools": [
-    "canvas-2d"
+    "canvas-2d",
+    "playwright",
+    "imagemagick"
+  ],
+  "techniques": [
+    "count-up/canvas-text"
   ],
   "run": "./run.sh",
   "capture": {

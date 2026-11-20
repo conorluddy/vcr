@@ -843,6 +843,15 @@
             "result": "90 alpha frames at 1280x720 via the @vcr/capture screenshot route (Playwright 1.64.1); shuffled matches sequential on first run, no mismatched frames; frame 45 alpha min 0 max 1. A Math.random control run failed run.sh at all 90 frames.",
             "example": "examples/canvas2d-capture",
             "scope": "2D context redrawn from t: gradient, arc, path, loaded-font text, seeded PRNG; alpha; macOS arm64, one font. Not images, pixel access, compositing modes, OffscreenCanvas or devicePixelRatio above 1."
+          },
+          {
+            "date": "2026-11-20",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "Chromium 156.0.8078.4",
+            "command": "examples/canvas2d-count-up/run.sh",
+            "result": "90 alpha frames at 1280x720 (Playwright 1.64.1); canvas text counts 0 to 1250, monotonic, never over target, exactly 1250 from 2.0 s, last two frames identical, x/width stable on 65 four-digit frames; shuffled matches sequential.",
+            "example": "examples/canvas2d-count-up",
+            "scope": "Canvas fillText digits in fixed cells counting from t, via textBounds() labels; one monospaced font; macOS arm64. Not separators, units, other fonts or pixel-measured bounds."
           }
         ]
       },
@@ -850,7 +859,8 @@
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
-        "canvas2d-capture"
+        "canvas2d-capture",
+        "canvas2d-count-up"
       ],
       "skill": "skills/canvas-2d/SKILL.md"
     },
@@ -4654,7 +4664,10 @@
         "react-spring-capture",
         "motion-capture",
         "troika-three-text-sync",
-        "pixijs-filters-pixelate"
+        "pixijs-filters-pixelate",
+        "waapi-word-stagger",
+        "canvas2d-count-up",
+        "svg-paper-collage"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -8449,7 +8462,10 @@
         "troika-three-text-sync",
         "pixijs-filters-pixelate",
         "dotlottie-wasm-seek",
-        "gl-react-shader"
+        "gl-react-shader",
+        "waapi-word-stagger",
+        "canvas2d-count-up",
+        "svg-paper-collage"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
@@ -10878,7 +10894,8 @@
       ],
       "skill": "skills/svg/SKILL.md",
       "examples": [
-        "native-svg"
+        "native-svg",
+        "svg-paper-collage"
       ],
       "notes": [
         "Static SVG is a native, dependency-free source format; Anime.js and Web Animations API can provide seekable browser motion."
@@ -10896,6 +10913,15 @@
             "result": "Static SVG rasterised by resvg",
             "example": "examples/native-svg",
             "scope": "Backfilled 2026-11-04: one static SVG rasterised by resvg; no SVG animation and no browser rendering."
+          },
+          {
+            "date": "2026-11-20",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "n/a (platform)",
+            "command": "examples/svg-paper-collage/run.sh",
+            "result": "6 inline SVG paper pieces (image, irregular mat, feDropShadow) animated via seeked element.animate: 90 frames, shuffled equals sequential, settles",
+            "example": "examples/svg-paper-collage",
+            "scope": "Chromium 156 on macOS arm64: inline SVG image, filter and group animation with alpha. Not other browsers, photographs or other filters."
           }
         ]
       },
@@ -12968,6 +12994,15 @@
             "result": "90 alpha frames at 1280x720 via the @vcr/capture screenshot route (Playwright 1.64.1); shuffled matches sequential in 3 runs; frame 45 alpha min 0 max 1. Passed first run; also passed with will-change removed.",
             "example": "examples/waapi-capture",
             "scope": "element.animate() paused, seeked via currentTime: transform, SVG stroke draw, staggered opacity; alpha; macOS arm64 Chromium. Not CSS animations, getAnimations(), scroll timelines."
+          },
+          {
+            "date": "2026-11-20",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "Chromium 156.0.8078.4",
+            "command": "examples/waapi-word-stagger/run.sh",
+            "result": "90 alpha frames at 1280x720 via the @vcr/capture screenshot route (Playwright 1.64.1); shuffled matches sequential; frame 0 alpha max 0; 7 word onsets exactly 3 frames apart; all words opacity 1 and last two frames identical.",
+            "example": "examples/waapi-word-stagger",
+            "scope": "Per-word paused element.animate() (opacity+translate) seeked via currentTime; 3-frame onset stagger, settles visible; one line, JetBrains Mono; macOS arm64 Chromium. Not CSS animations/scroll."
           }
         ]
       },
@@ -12976,7 +13011,9 @@
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
         "waapi-capture",
-        "browser-capture"
+        "browser-capture",
+        "waapi-word-stagger",
+        "svg-paper-collage"
       ],
       "skill": "skills/web-animations-api/SKILL.md"
     },

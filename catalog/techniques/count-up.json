@@ -55,9 +55,11 @@
         }
       ],
       "limits": [
-        "Evidence shows a changing time readout, not a count that lands on a data value",
-        "No OpenType feature control, so tabular figures depend on the font chosen"
-      ]
+        "The fixture counts one integer in a monospaced font; proportional fonts and decimals are untested",
+        "No OpenType feature control, so tabular figures depend on the font or on fixed-width digit cells",
+        "Lint cannot see canvas text unless the scene exposes textBounds()"
+      ],
+      "example": "canvas2d-count-up"
     },
     {
       "id": "tween-driven",

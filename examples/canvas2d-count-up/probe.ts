@@ -18,20 +18,23 @@ await page.goto(pathToFileURL(join(here, "scene.html")).href);
 await page.waitForFunction(() => (window as unknown as Partial<SceneWindow>).__scene);
 const boxes: Box[] = [];
 for (let frame = 0; frame < frameCount; frame += 1) {
-  boxes.push(await page.evaluate((t) => {
+  const box = await page.evaluate((t) => {
     const scene = (window as unknown as SceneWindow).__scene;
     scene.seek(t);
     return scene.textBounds()[0];
-  }, frame / fps));
+  }, frame / fps);
+  if (!box) throw new Error(`textBounds() returned nothing at frame ${frame}`);
+  boxes.push(box);
 }
 await browser.close();
 
 const values = boxes.map((box) => Number(box.label));
 const finalBox = boxes[frameCount - 1];
+if (!finalBox) throw new Error(`expected ${frameCount} textBounds samples, got ${boxes.length}`);
 const sameDigits = boxes.filter((box) => box.label.length === finalBox.label.length);
 const hashes: string[] = JSON.parse(readFileSync(join(here, "output/report.json"), "utf8")).hashes;
 const summary = {
-  monotonic_non_decreasing: values.every((value, index) => index === 0 || value >= values[index - 1]),
+  monotonic_non_decreasing: values.every((value, index) => index === 0 || value >= values[index - 1]!),
   never_exceeds_target: values.every((value) => value <= targetValue),
   first_value_is_start: values[0] === startValue,
   target_from_2s_exactly: values.slice(2 * fps).every((value) => value === targetValue),
