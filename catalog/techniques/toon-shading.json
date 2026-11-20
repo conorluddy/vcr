@@ -1,0 +1,55 @@
+{
+  "id": "toon-shading",
+  "name": "Toon shading",
+  "one_line": "3D forms rendered with a few flat tonal steps and a clean outline, like a cel drawing",
+  "summary": "Smooth lighting on a 3D form is collapsed into a handful of flat tones, with a hard highlight and a line around the silhouette. It reads as animation cel, comic or game art, and keeps a model legible and graphic at small sizes. Step count, outline weight and whether the line holds steady as the camera moves decide whether it feels crafted or cheap.",
+  "purposes": ["stylised-form", "graphic-boldness", "playful-energy"],
+  "mechanisms": ["outline-and-flat-shading", "tone-quantisation"],
+  "craft": [
+    { "pillar": "materials", "section": "5.2", "rules": ["MAT-TOON-RAMP-STEPS", "MAT-OUTLINE-WIDTH-STABLE"] }
+  ],
+  "related": [
+    { "id": "line-boil", "relation": "contrasts" },
+    { "id": "hand-drawn-sketch", "relation": "contrasts" },
+    { "id": "halftone-screen", "relation": "combines" }
+  ],
+  "routes": [
+    {
+      "id": "three-toon-material",
+      "one_line": "Stepped ramp material and an inverted-hull outline in a browser 3D scene",
+      "steps": [
+        { "does": "Render the model with a stepped tone ramp and back-face outline, redrawn from t on each seek", "capability": "3d-rendering", "tools": ["three-js"] }
+      ],
+      "limits": [
+        "Three.js evidence is a render-once-per-seek scene; no toon material or outline is tested",
+        "Outline width stability under camera movement is yours to check",
+        "Evidence ran in a Linux container with a stand-in Chromium"
+      ]
+    },
+    {
+      "id": "three-post-outline",
+      "one_line": "Toon-shaded scene with the outline found by an edge pass over depth and normals",
+      "steps": [
+        { "does": "Render the stepped-tone scene", "capability": "3d-rendering", "tools": ["three-js"] },
+        { "does": "Detect edges on the rendered scene and draw the outline in screen space", "capability": "effects", "tools": ["postprocessing"] }
+      ],
+      "limits": [
+        "Postprocessing evidence covers bloom and chromatic aberration, not an edge or outline pass",
+        "Edge passes can flicker on thin geometry; check frames either side of a seek"
+      ]
+    },
+    {
+      "id": "blender-stills",
+      "one_line": "Render toon-shaded frames offline with the native renderer",
+      "steps": [
+        { "does": "Build the scene with stepped shading and outline and render the frame sequence", "capability": "3d-rendering", "tools": ["blender"] }
+      ],
+      "limits": [
+        "Blender evidence is one Workbench still; no EEVEE, Cycles or animation",
+        "Shader-based stepped shading does not export to other tools"
+      ]
+    }
+  ],
+  "checked_at": "2026-11-20",
+  "source": "references/materials §5.2; tool records as of 2026-11-20"
+}

@@ -71,16 +71,13 @@ Each fix links its PR and verification back to #183. Re-run a fresh-workspace fi
 - **Capability graph** (#65). CG0 kept the current workflow; #74 and #76 continue on tool records, and the rest waits for its reopen conditions.
 - **Category conventions and differentiation research:** commission when the existing `brief` workflow needs more than fit-or-break.
 
+## Technique-to-tool discovery
 
+The foundation ships under [ADR 0010](decisions/0010-technique-mapping-layer.md) (#212): hand-curated records in `catalog/techniques/`, link checks in `vcr validate`, `vcr techniques list|info [--full]` and the generated `catalog/TECHNIQUES.md`. A record holds links only; a route's evidence class, tool validation and machine readiness are derived when it is read. The capability graph (#65) stays parked.
 
-## Technique-to-tool discovery proposal
+What remains, in order:
 
-Provide a discoverable bridge from creative intent to techniques, required capabilities, catalogue tools and reproducible examples. This is proposed work, not a shipped capability or approval to reopen the parked capability graph (#65); assess overlap before choosing storage or CLI interfaces.
-
-- **Creative discovery:** index techniques by expressive purpose and visual mechanism, with concise descriptions and representative stills or motion samples where available. Support FX and other relevant pillars rather than making this an FX-only feature. Encourage contrasting treatments and combinations; the index is inspiration, not an exhaustive list of permitted approaches.
-- **Separate ownership:** pillar guidance remains tool-independent under ADR 0006. A separate mapping links techniques to canonical craft sections/rule IDs, capabilities, tool records, toolkit recipes and example evidence. Do not duplicate operating instructions or thresholds in that mapping.
-- **Execution routes:** allow multiple tools and multi-step routes for one technique. For example, generic paper collage can involve subject segmentation, mask preparation, paper-edge treatment and layer animation. A proposed route must distinguish documented possibility from validated end-to-end execution.
-- **Evidence and availability:** preserve documentation, installation, validation and adapter maturity as separate facts. Resolve tool status from catalogue records and machine availability through existing diagnostics; a mapping must not imply that a candidate is installed or supported.
-- **Progressive disclosure:** show a small creative shortlist first, then the selected technique's routes, then one toolkit guide or example as needed. Agents may propose unmapped techniques and research execution options; tool availability should inform feasibility without defining the creative vocabulary.
-- **First useful slice:** curate a small, varied set of techniques from existing references, connect existing records and examples, and identify missing evidence explicitly. Validate that an agent starting from a brief can discover a less obvious treatment, explain its fit, and find an honest execution route without loading whole knowledge bases.
-- **Acceptance and boundaries:** check mapping targets and status accuracy, exercise discovery on real production decisions, and keep production imagery, branding and selected treatments in their workspaces. Storage/schema, command design, preview distribution and any expansion of #65 remain decisions for a scoped implementation plan.
+1. **Production trial** on two or three real treatment decisions, recorded in #183: whether a less obvious treatment surfaced, whether evidence class and readiness were accurate, where vocabulary or filters failed, and bytes loaded per tier. Fixes follow in one PR.
+2. **More fixtures**, so common routes move from `unverified` to `retained-fixture`. Most seed routes have none.
+3. **Toolkit guides cite pillar rule IDs** for the techniques they can execute, so a route's last hop lands on a recipe.
+4. **Previews** (stills or short loops per technique). The plugin ships no media (PL-04), so this needs a distribution decision first.

@@ -15,6 +15,12 @@ VCR is a catalogue of code-first motion tools (Anime.js, p5.js, Three.js, SVG, F
 
 Run `vcr status --brief`: it lists videos awaiting review and their open findings, so address those before starting new work. If it reports no workspace, use the `init` skill before anything else. All projects, examples and renders live in the workspace; never write into the plugin directory. A video lives at `projects/<project>/videos/<video>/`; create it with `vcr video init <project>/<video>`, which registers the project and is safe to re-run. `vcr capture <scene.html> … --video <project>/<video>` records a render: frames under `output/<video>/<render_id>/` and a retained manifest under the video's `review/renders/`, which findings and approvals point at. Record problems with `vcr findings add`, and claim a fix with `vcr findings address` once a new render carries it. Plan before building: a confirmed `brief.md` (the `brief` skill), then `beats.json` checked with `vcr plan check --video <project>/<video>`. Only a person resolves a finding or approves a render, at their own terminal (`vcr review approve|request-changes|resolve`); never try to work around the refusal.
 
+## Choosing a technique: before the tool
+
+When the brief leaves the look open, shortlist treatments before tools. `vcr techniques list` (or `<plugin-root>/catalog/TECHNIQUES.md`) gives one line per visual technique; filter with `--purpose`, `--mechanism`, `--pillar`, `--capability` or `--tool`. Take two or three that contrast, not three versions of the obvious one. `vcr techniques info <id>` shows what each expresses, the pillar sections and rules that own its craft, and its routes with an evidence class; `--full` adds each route's steps, every tool's own evidence and readiness, and limits. Then choose a tool below.
+
+A route explains; it runs nothing. `unverified` means no fixture exercises the whole route, however well each tool is validated alone, so plan a small test before committing a production to it. The list is inspiration, not a whitelist: propose an unmapped technique when the brief calls for one, and say that its route is unresearched.
+
 ## Choosing a tool: four tiers, one at a time
 
 1. Route: `vcr tools list` (or read `<plugin-root>/catalog/INDEX.md` whole). One line per routable tool; unassessed candidates are in `CANDIDATES.md`; filter with `--capability`, `--tier`, `--category`.

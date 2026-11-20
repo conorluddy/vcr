@@ -8,6 +8,7 @@
     "playwright",
     "rough-js"
   ],
+  "techniques": ["hand-drawn-sketch/rough-canvas"],
   "run": "./run.sh",
   "capture": {
     "scene": "scene.html",
