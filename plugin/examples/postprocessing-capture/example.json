@@ -9,6 +9,9 @@
     "postprocessing",
     "three-js"
   ],
+  "techniques": [
+    "bloom-glow/three-postprocessing"
+  ],
   "run": "./run.sh",
   "capture": {
     "scene": "scene.html",

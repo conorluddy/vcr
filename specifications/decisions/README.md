@@ -10,6 +10,7 @@
 
 - 0008 — advisory making workflows may ship before checks; limits stay sourced and approval remains human. Accepted.
 - 0009 — free/libre software is the only routable catalogue scope; retire proprietary and source-available records. Accepted.
+- 0010 — techniques are a thin, hand-curated catalogue layer joining pillars to tools; routes name whole tools and status is derived at read time. Accepted.
 
 One file per decision, `NNNN-kebab-title.md`, never edited after acceptance except to change `Status` and add a `Superseded by` line.
 

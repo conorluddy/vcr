@@ -221,6 +221,88 @@ describe("validateRepository", () => {
   });
 });
 
+describe("technique records (ADR 0010)", () => {
+  const route = { id: "encode-pass", one_line: "Encode it", steps: [{ does: "Encode the frames", capability: "video-encoding", tools: ["ffmpeg"] }] };
+  const validTechnique = {
+    id: "halftone-screen",
+    name: "Halftone screen",
+    one_line: "Tone as dots",
+    summary: "Tone rendered as a grid of dots.",
+    purposes: ["print-nostalgia"],
+    mechanisms: ["tone-quantisation"],
+    craft: [{ pillar: "fx", section: "5.1", rules: ["FX-MOIRE-RESAMPLE"] }],
+    routes: [route],
+    checked_at: "2026-11-20",
+    source: "test",
+  };
+  type Fixture = { technique?: object; example?: object | null; retired?: string };
+
+  /** The real pillars and technique vocabulary around one technique, one tool and (optionally) one fixture. */
+  const techniqueDiagnosticsFor = ({ technique = validTechnique, example = null, retired }: Fixture) => {
+    const root = createFixtureRepository([{ ...validTool, examples: example ? ["demo"] : [] }]);
+    cpSync(join(harnessRoot(), "references"), join(root, "references"), { recursive: true });
+    mkdirSync(join(root, "catalog/techniques"), { recursive: true });
+    cpSync(join(harnessRoot(), "catalog/techniques/vocabulary.json"), join(root, "catalog/techniques/vocabulary.json"));
+    writeFileSync(join(root, "catalog/techniques/halftone-screen.json"), JSON.stringify(technique));
+    if (retired) {
+      mkdirSync(join(root, "catalog/retired"), { recursive: true });
+      writeFileSync(join(root, `catalog/retired/${retired}.json`), "{}");
+    }
+    if (example) {
+      mkdirSync(join(root, "examples/demo"), { recursive: true });
+      writeFileSync(join(root, "examples/demo/run.sh"), "#!/bin/sh\n");
+      writeFileSync(join(root, "examples/demo/example.json"), JSON.stringify({ id: "demo", title: "Demo", status: "validated", tools: ["ffmpeg"], run: "./run.sh", ...example }));
+    }
+    return validateRepository(root).diagnostics.filter((diagnostic) => diagnostic.file.startsWith("catalog/techniques/") || diagnostic.file.startsWith("examples/"));
+  };
+  const withRoute = (overrides: object) => ({ ...validTechnique, routes: [{ ...route, ...overrides }] });
+  const withStep = (overrides: object) => withRoute({ steps: [{ ...route.steps[0], ...overrides }] });
+
+  test("a record whose links all resolve is clean, with or without routes", () => {
+    expect(techniqueDiagnosticsFor({})).toEqual([]);
+    expect(techniqueDiagnosticsFor({ technique: { ...validTechnique, routes: [] } })).toEqual([]);
+  });
+
+  test.each([
+    ["an unknown rule ID", { ...validTechnique, craft: [{ pillar: "fx", section: "5.1", rules: ["FX-NOPE"] }] }, "/craft/0/rules", "does not exist"],
+    ["a rule from another pillar", { ...validTechnique, craft: [{ pillar: "fx", section: "5.1", rules: ["TYPO-HOLD"] }] }, "/craft/0/rules", "belongs to typography"],
+    ["a superseded rule", { ...validTechnique, craft: [{ pillar: "fx", section: "5.1", rules: ["FX-BANDING"] }] }, "/craft/0/rules", "superseded"],
+    ["an unknown section", { ...validTechnique, craft: [{ pillar: "fx", section: "99", rules: [] }] }, "/craft/0/section", "No §99"],
+    ["an unknown pillar", { ...validTechnique, craft: [{ pillar: "effects", section: "5.1", rules: [] }] }, "/craft/0/pillar", "not a pillar"],
+    ["a purpose outside the vocabulary", { ...validTechnique, purposes: ["vibes"] }, "/purposes", "vocabulary.json"],
+    ["a tool lacking the step's capability", withStep({ capability: "effects" }), "/routes/0/steps/0/tools", "does not list the capability"],
+    ["an unknown tool", withStep({ tools: ["ghost"] }), "/routes/0/steps/0/tools", "not a catalogued tool id"],
+    ["a facet the tool lacks", withStep({ facet: "mux" }), "/routes/0/steps/0/facet", "no facet"],
+    ["an unknown related technique", { ...validTechnique, related: [{ id: "ghost", relation: "contrasts" }] }, "/related", "not another technique"],
+    ["an example that does not exist", withRoute({ example: "ghost" }), "/routes/0/example", "no examples/<dir>/example.json"],
+  ])("%s is an error", (_name, technique, path, message) => {
+    expect(techniqueDiagnosticsFor({ technique })).toEqual([expect.objectContaining({ severity: "error", file: "catalog/techniques/halftone-screen.json", path, message: expect.stringContaining(message) })]);
+  });
+
+  test("a retired tool is named as retired", () => {
+    expect(techniqueDiagnosticsFor({ technique: withStep({ tools: ["after-effects"] }), retired: "after-effects" })).toEqual([expect.objectContaining({ path: "/routes/0/steps/0/tools", message: expect.stringContaining("retired") })]);
+  });
+
+  test("a route and its example must link both ways", () => {
+    const reference = "halftone-screen/encode-pass";
+    expect(techniqueDiagnosticsFor({ technique: withRoute({ example: "demo" }), example: { techniques: [reference] } })).toEqual([]);
+    expect(techniqueDiagnosticsFor({ technique: withRoute({ example: "demo" }), example: {} })).toEqual([expect.objectContaining({ file: "catalog/techniques/halftone-screen.json", path: "/routes/0/example", message: expect.stringContaining("does not list") })]);
+    expect(techniqueDiagnosticsFor({ example: { techniques: [reference] } })).toEqual([expect.objectContaining({ file: "examples/demo/example.json", path: "/techniques", message: expect.stringContaining("does not cite this example") })]);
+    expect(techniqueDiagnosticsFor({ example: { techniques: ["halftone-screen/ghost"] } })).toEqual([expect.objectContaining({ file: "examples/demo/example.json", path: "/techniques", message: expect.stringContaining("not a route") })]);
+  });
+
+  test("an example that does not use every route tool does not cover the route", () => {
+    const twoTools = withRoute({ example: "demo", steps: [...route.steps, { does: "Probe it", capability: "video-encoding", tools: ["ffprobe"] }] });
+    const diagnostics = techniqueDiagnosticsFor({ technique: twoTools, example: { techniques: ["halftone-screen/encode-pass"] } });
+    expect(diagnostics).toContainEqual(expect.objectContaining({ path: "/routes/0/example", message: expect.stringContaining("does not use ffprobe") }));
+  });
+
+  test("a file named differently from its id, and a threshold-length one-liner, are schema or naming errors", () => {
+    expect(techniqueDiagnosticsFor({ technique: { ...validTechnique, id: "other" } })).toContainEqual(expect.objectContaining({ path: "/id", message: expect.stringContaining("other.json") }));
+    expect(techniqueDiagnosticsFor({ technique: { ...validTechnique, one_line: "x".repeat(101) } })).toEqual([expect.objectContaining({ path: "/one_line", suggestion: expect.stringContaining("100") })]);
+  });
+});
+
 function harnessRoot(): string {
   const roots = resolveRoots({ cwd: process.cwd(), env: {} });
   if (!roots.ok) throw new Error(roots.error.message);

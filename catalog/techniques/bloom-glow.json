@@ -1,0 +1,43 @@
+{
+  "id": "bloom-glow",
+  "name": "Bloom and glow",
+  "one_line": "Bright areas bleed soft light into their surroundings, as a lens or the eye does",
+  "summary": "Highlights spread into a soft halo that falls off across several scales. It makes a source read as emitting light: neon, screens, sparks, sun on chrome. Used on a few chosen elements it gives energy and emphasis; applied to everything it flattens the picture into haze and costs legibility.",
+  "purposes": ["light-and-energy", "emphasis"],
+  "mechanisms": ["highlight-spread"],
+  "craft": [
+    { "pillar": "fx", "section": "7", "rules": ["FX-INTENSITY-RESTRAINT", "FX-BLEND-SPACE-DECLARED"] },
+    { "pillar": "lighting", "section": "7", "rules": ["LIGHT-BLOOM-RESTRAINT"] }
+  ],
+  "related": [
+    { "id": "halftone-screen", "relation": "contrasts" }
+  ],
+  "routes": [
+    {
+      "id": "three-postprocessing",
+      "one_line": "Bloom as an effect pass over a Three.js scene, rendered once per seek",
+      "steps": [
+        { "does": "Render the lit scene into the buffer the effect pass reads", "capability": "3d-rendering", "tools": ["three-js"] },
+        { "does": "Spread the highlights with a bloom effect whose strength is set from t", "capability": "effects", "tools": ["postprocessing"] }
+      ],
+      "example": "postprocessing-capture",
+      "limits": [
+        "The fixture merges bloom with chromatic aberration and vignette; bloom is not isolated",
+        "Determinism is claimed, not how the bloom looks; unseeded noise and glitch effects are excluded"
+      ]
+    },
+    {
+      "id": "pixi-filter",
+      "one_line": "A ready-made glow or bloom filter on a PixiJS container",
+      "steps": [
+        { "does": "Draw the 2D scene whose bright elements will glow", "capability": "2d-rendering", "tools": ["pixijs"] },
+        { "does": "Apply a glow or bloom filter to the chosen container, with uniforms set from t", "capability": "effects", "tools": ["pixijs-filters"] }
+      ],
+      "limits": [
+        "Filter-pack evidence covers the pixelate filter only; glow and bloom filters are untested here"
+      ]
+    }
+  ],
+  "checked_at": "2026-11-20",
+  "source": "references/fx §7, references/lighting §7; tool records as of 2026-11-20"
+}
