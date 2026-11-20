@@ -221,12 +221,14 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
       if (!tools.ok) return failWith(tools.error, asJson);
       const examples = loadExamples(repositoryRoot);
       if (!examples.ok) return failWith(examples.error, asJson);
-      const context = { harnessRoot: repositoryRoot, tools: tools.value, examples: examples.value, machine: loadMachineRecord(roots.machine), project: { cwd: process.cwd(), stopAt: roots.workspace ?? undefined } };
+      const pillars = loadPillars(repositoryRoot);
+      const craft = pillars.ok ? { harnessRoot: repositoryRoot, pillars: pillars.value, rules: loadPillarRules(repositoryRoot, pillars.value) } : undefined;
+      const context = { harnessRoot: repositoryRoot, tools: tools.value, examples: examples.value, machine: loadMachineRecord(roots.machine), project: { cwd: process.cwd(), stopAt: roots.workspace ?? undefined }, craft };
       if (asJson) {
         print(resolveTechnique(technique.value, context));
         return 0;
       }
-      const card = formatTechniqueCard(technique.value, examples.value, repositoryRoot);
+      const card = formatTechniqueCard(technique.value, examples.value, repositoryRoot, craft);
       print(options["full"] === true && technique.value.routes.length > 0 ? `${card}\n\n---\n\n${formatTechniqueRoutes(technique.value, context)}` : card);
       return 0;
     }
@@ -391,7 +393,9 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     const built = buildCatalogIndex(repositoryRoot);
     const manifests = loadExamples(repositoryRoot);
     const techniques = loadTechniques(repositoryRoot);
-    const disclosure = built.ok && manifests.ok ? disclosureReport(repositoryRoot, built.value, manifests.value, techniques.ok ? techniques.value : []) : undefined;
+    const pillars = loadPillars(repositoryRoot);
+    const craft = pillars.ok ? { harnessRoot: repositoryRoot, pillars: pillars.value, rules: loadPillarRules(repositoryRoot, pillars.value) } : undefined;
+    const disclosure = built.ok && manifests.ok ? disclosureReport(repositoryRoot, built.value, manifests.value, techniques.ok ? techniques.value : [], craft) : undefined;
     const summary = `${recordCount} records; ${wasStale ? `${checkOnly ? "stale" : "rewrote"}: ${staleFiles.join(", ")}` : "index up to date"}`;
     print(asJson ? { ...outcome.value, wasStale, staleFiles, disclosure } : disclosure ? `${summary}\n${formatDisclosureReport(disclosure)}` : summary);
     return checkOnly && wasStale ? 1 : 0;

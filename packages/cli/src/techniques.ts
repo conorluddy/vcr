@@ -5,6 +5,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import type { EnvironmentRecord } from "./doctor.js";
 import { assessReadiness, type Readiness } from "./evidence.js";
+import { findPillarRule, readKnowledgeBaseSection, type Pillar, type PillarRule } from "./references.js";
 import { listJsonFiles, readJsonFile } from "./repository.js";
 import { fail, ok, type Result } from "./result.types.js";
 import { formatToolEvidence, formatToolReadiness, type ExampleManifest, type ToolSummary } from "./tools.js";
@@ -83,6 +84,14 @@ export interface TechniqueReadContext {
   examples: ExampleManifest[];
   machine?: EnvironmentRecord | undefined;
   project?: { cwd: string; stopAt?: string | undefined } | undefined;
+  craft?: CraftSources | undefined;
+}
+
+/** The pillars as loaded, so a card can say what each craft pointer is about without the reader chasing it. */
+export interface CraftSources {
+  harnessRoot: string;
+  pillars: Pillar[];
+  rules: PillarRule[];
 }
 
 export const TECHNIQUES_INDEX_PATH = "catalog/TECHNIQUES.md";
@@ -161,6 +170,7 @@ export function summariseTechnique(technique: Technique) {
 export function resolveTechnique(technique: Technique, context: TechniqueReadContext) {
   return {
     ...technique,
+    craft: technique.craft.map((pointer) => ({ ...pointer, ...(context.craft ? describeCraftPointer(pointer, context.craft) : {}) })),
     routes: technique.routes.map((route) => ({
       ...route,
       evidence: deriveRouteEvidence(technique, route, context.examples, context.harnessRoot),
@@ -188,19 +198,25 @@ export function formatTechniqueList(techniques: Technique[], total: number, offs
     return lines.join("\n");
   }
   const width = Math.max(...techniques.map((technique) => technique.id.length));
-  const rows = techniques.map((technique) => `${technique.id.padEnd(width)}  ${routeCount(technique).padEnd(8)}  ${technique.one_line}`);
+  const rows = techniques.map((technique) => `${technique.id.padEnd(width)}  ${routeCount(technique).padEnd(8)}  ${technique.one_line}  [${technique.purposes.join(", ")}]`);
   const shown = `${offset + 1}–${offset + techniques.length} of ${total}`;
   return [...rows, "", total > offset + techniques.length ? `${shown}; next page: --offset ${offset + techniques.length}` : shown].join("\n");
 }
 
 /** Tier 1: what it is, where its craft lives, and one line per route with its derived evidence class. */
-export function formatTechniqueCard(technique: Technique, examples: ExampleManifest[], harnessRoot: string): string {
+export function formatTechniqueCard(technique: Technique, examples: ExampleManifest[], harnessRoot: string, craft?: CraftSources): string {
   const lines = [`${technique.id} — ${technique.name}`, technique.one_line, "", technique.summary, ""];
   lines.push(`Purposes: ${technique.purposes.join(", ")}`, `Mechanisms: ${technique.mechanisms.join(", ")}`);
   if (technique.related?.length) lines.push(`Related: ${technique.related.map((related) => `${related.id} (${related.relation})`).join(", ")}`);
   lines.push("", "Craft (one at a time):");
   for (const pointer of technique.craft) {
-    lines.push(`- vcr refs section ${pointer.pillar} ${pointer.section}${pointer.rules.length > 0 ? `  · rules: ${pointer.rules.map((rule) => `vcr rules info ${rule}`).join("; ")}` : ""}`);
+    const described = craft ? describeCraftPointer(pointer, craft) : undefined;
+    lines.push(`- vcr refs section ${pointer.pillar} ${pointer.section}${described?.section_title ? `  · ${described.section_title}` : ""}`);
+    // The rule's own check line and source strength, read from the pillar now; the record stores only the ID.
+    for (const rule of pointer.rules) {
+      const gist = described?.rule_gists.find((candidate) => candidate.id === rule);
+      lines.push(`  vcr rules info ${rule}${gist ? `  · ${gist.strength}: ${gist.check}` : ""}`);
+    }
   }
   lines.push("", "Routes:");
   if (technique.routes.length === 0) lines.push("- none mapped: no catalogue tool is linked to this technique yet. That is a gap, not a verdict; research a route and propose it.");
@@ -219,7 +235,7 @@ export function formatTechniqueRoutes(technique: Technique, context: TechniqueRe
     const lines = [`Route ${route.id} [${evidence.class}]`, route.one_line, `Route evidence: ${evidence.class}; ${evidence.reason}.`];
     for (const [index, step] of route.steps.entries()) {
       lines.push(`${index + 1}. ${step.does} (${step.capability}${step.facet ? `, facet ${step.facet}` : ""})`);
-      for (const toolId of step.tools) lines.push(`   ${toolStatusLine(toolId, context)}`);
+      for (const toolId of step.tools) lines.push(`   ${toolStatusLine(toolId, context, evidence.example)}`);
     }
     if (route.limits?.length) lines.push("Limits:", ...route.limits.map((limit) => `- ${limit}`));
     if (evidence.example) lines.push(`Fixture: vcr example create ${evidence.example}`);
@@ -281,8 +297,25 @@ function routeCount(technique: Technique): string {
   return `${technique.routes.length} ${technique.routes.length === 1 ? "route" : "routes"}`;
 }
 
-function toolStatusLine(toolId: string, context: TechniqueReadContext): string {
+/** A pointer's section heading and each rule's check line and source strength, for display beside the stored IDs. */
+function describeCraftPointer(pointer: TechniqueCraftPointer, sources: CraftSources) {
+  const section = readKnowledgeBaseSection(sources.harnessRoot, sources.pillars, pointer.pillar, pointer.section);
+  const heading = section.ok ? section.value.split("\n")[0]!.replace(/^#+\s+[\w.]+\s+/, "").trim() : undefined;
+  const rule_gists = pointer.rules.flatMap((id) => {
+    const rule = findPillarRule(sources.rules, id);
+    if (!rule.ok) return [];
+    // A knowledge-base rule is a candidate nobody checks yet; say so, or a cited ID reads as an enforced limit.
+    const strength = `${rule.value.tier.split("(")[0]!.trim()}${rule.value.origin === "knowledge-base" ? ", advisory" : ""}`;
+    return [{ id: rule.value.id, strength, check: rule.value.check }];
+  });
+  return { ...(heading ? { section_title: heading } : {}), rule_gists };
+}
+
+function toolStatusLine(toolId: string, context: TechniqueReadContext, routeExample?: string): string {
   const tool = context.tools.find((candidate) => candidate.id === toolId);
   if (!tool) return `${toolId} · not in this catalogue`;
-  return `${toolId} · ${tool.tier} · tool's own evidence: ${formatToolEvidence(tool)} · ${formatToolReadiness(tool, context.machine, context.project)}`;
+  // On a fixture-backed route, cite the tool's evidence from that fixture, not whichever example ran last.
+  const fromRouteFixture = routeExample ? tool.validation.evidence?.filter((entry) => entry.example?.replace(/^examples\//, "") === routeExample).at(-1) : undefined;
+  const evidence = fromRouteFixture ? `${tool.validation.status} ${fromRouteFixture.date} (this route's fixture)` : formatToolEvidence(tool);
+  return `${toolId} · ${tool.tier} · tool's own evidence: ${evidence} · ${formatToolReadiness(tool, context.machine, context.project)}`;
 }

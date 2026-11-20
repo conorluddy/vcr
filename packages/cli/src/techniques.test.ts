@@ -4,6 +4,12 @@ import { join } from "node:path";
 import { describe, expect, test } from "vitest";
 import { techniqueFilterTerms, deriveRouteEvidence, filterTechniques, findTechnique, formatTechniqueCard, formatTechniqueList, formatTechniqueRoutes, renderTechniquesIndex, resolveTechnique, TECHNIQUES_INDEX_PATH, techniquesIndexDiagnostics, writeTechniquesIndex, type Technique, type TechniqueRoute } from "./techniques.js";
 import type { ExampleManifest, ToolSummary } from "./tools.js";
+import { loadPillarRules, loadPillars } from "./references.js";
+import { harnessRoot } from "./test-workspace.js";
+
+const loadedPillars = loadPillars(harnessRoot());
+if (!loadedPillars.ok) throw new Error(loadedPillars.error.message);
+const realPillars = loadedPillars.value;
 
 const route = (id: string, tools: string[], extra: Partial<TechniqueRoute> = {}): TechniqueRoute => ({
   id, one_line: `Route ${id}`, steps: tools.map((tool) => ({ does: `Use ${tool}`, capability: "effects", tools: [tool] })), ...extra,
@@ -91,6 +97,7 @@ describe("formatting", () => {
   test("a page names its range and the next offset; the last page does not", () => {
     const techniques = [technique("a"), technique("b"), technique("c")];
     expect(formatTechniqueList(techniques.slice(0, 2), 3, 0)).toContain("1–2 of 3; next page: --offset 2");
+    expect(formatTechniqueList(techniques.slice(0, 1), 3, 0)).toContain("a in one line  [print-nostalgia]");
     expect(formatTechniqueList(techniques.slice(2), 3, 2).split("\n").at(-1)).toBe("3–3 of 3");
     expect(formatTechniqueList([], 0, 0)).toContain("not a whitelist");
     const miss = formatTechniqueList([], 0, 0, techniqueFilterTerms(techniques, { purposes: ["emphasis"], mechanisms: ["staggered-timing"] }));
@@ -119,6 +126,22 @@ describe("formatting", () => {
     expect(routes).toContain("- No fixture renders dots");
     expect(routes).toContain("vcr example create demo");
     expect(routes).not.toMatch(/\binstalled\b/);
+  });
+
+  test("a fixture-backed route cites the tool's evidence from that fixture, not its latest example", () => {
+    const evidence = [{ date: "2026-11-05", version: "1.0.0", example: "examples/demo" }, { date: "2026-11-20", version: "1.0.0", example: "examples/later" }];
+    const context = { harnessRoot: harnessWith(true), tools: [tool("shader", { validation: { status: "validated", evidence } })], examples: [example()] };
+    const routes = formatTechniqueRoutes(halftone, context);
+    expect(routes).toContain("tool's own evidence: validated 2026-11-05 (this route's fixture)");
+    expect(routes).not.toContain("examples/later");
+  });
+
+  test("a card names each craft pointer's section and each rule's check and strength, read from the pillars", () => {
+    const sources = { harnessRoot: harnessRoot(), pillars: realPillars, rules: loadPillarRules(harnessRoot(), realPillars) };
+    const card = formatTechniqueCard(halftone, [], harnessWith(false), sources);
+    expect(card).toContain("vcr refs section fx 5.1  · Halftone");
+    expect(card).toMatch(/vcr rules info FX-MOIRE-RESAMPLE  · heuristic, advisory: Periodic patterns/);
+    expect(resolveTechnique(halftone, { harnessRoot: harnessWith(false), tools: [], examples: [], craft: sources }).craft[0]).toMatchObject({ section_title: "Halftone", rule_gists: [{ id: "FX-MOIRE-RESAMPLE", strength: "heuristic, advisory" }] });
   });
 
   test("--json carries the derived class and per-tool status beside the stored links", () => {
