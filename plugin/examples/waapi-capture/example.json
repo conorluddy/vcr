@@ -5,6 +5,7 @@
   "status": "validated",
   "validated_on": {"date": "2026-11-05", "hostname": "Conors-MacBook-Pro-2.local"},
   "tools": ["web-animations-api", "playwright", "imagemagick"],
+  "techniques": ["line-draw/waapi-dashoffset"],
   "run": "./run.sh",
   "capture": {
     "scene": "scene.html",

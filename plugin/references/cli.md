@@ -60,8 +60,8 @@ Tier 0 of techniques: one line per visual technique, paginated; inspiration, not
 | --- | --- | --- |
 | `--purpose term` | Only techniques with this expressive purpose; a miss lists the accepted terms |  |
 | `--mechanism term` | Only techniques with this visual mechanism; a miss lists the accepted terms |  |
-| `--pillar name` | Only techniques whose craft lives in this pillar: fx, motion, typography |  |
-| `--capability id` | Only techniques with a route step using this capability |  |
+| `--pillar name` | Only techniques whose craft lives in this pillar directory, or its start: fx, motion-director, typo |  |
+| `--capability id` | Only techniques with a route step using this capability; a miss lists those in use |  |
 | `--tool id` | Only techniques with a route through this tool |  |
 | `--limit n` | Techniques per page | `50` |
 | `--offset n` | Techniques to skip | `0` |

@@ -94,8 +94,8 @@ describe("formatting", () => {
     expect(formatTechniqueList(techniques.slice(2), 3, 2).split("\n").at(-1)).toBe("3–3 of 3");
     expect(formatTechniqueList([], 0, 0)).toContain("not a whitelist");
     const miss = formatTechniqueList([], 0, 0, techniqueFilterTerms(techniques, { purposes: ["emphasis"], mechanisms: ["staggered-timing"] }));
-    expect(miss).toContain("--purpose: emphasis");
-    expect(miss).toContain("--pillar: fx");
+    expect(miss).toContain("--purpose accepts: emphasis");
+    expect(miss).toContain("--pillar accepts: fx");
   });
 
   test("the card points into the pillars and gives each route its derived class", () => {
