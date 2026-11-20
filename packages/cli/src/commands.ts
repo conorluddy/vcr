@@ -53,8 +53,8 @@ export const COMMANDS: CommandSpec[] = [
     name: "techniques list",
     summary: "Tier 0 of techniques: one line per visual technique, paginated; inspiration, not a whitelist",
     flags: [
-      { name: "purpose", value: "term", description: "Only techniques with this expressive purpose (see catalog/techniques/vocabulary.json)" },
-      { name: "mechanism", value: "term", description: "Only techniques with this visual mechanism" },
+      { name: "purpose", value: "term", description: "Only techniques with this expressive purpose; a miss lists the accepted terms" },
+      { name: "mechanism", value: "term", description: "Only techniques with this visual mechanism; a miss lists the accepted terms" },
       { name: "pillar", value: "name", description: "Only techniques whose craft lives in this pillar: fx, motion, typography" },
       { name: "capability", value: "id", description: "Only techniques with a route step using this capability" },
       { name: "tool", value: "id", description: "Only techniques with a route through this tool" },

@@ -10,7 +10,7 @@ Filter with `vcr techniques list --purpose|--mechanism|--pillar|--capability|--t
 ## techniques (11)
 
 - `bloom-glow` — Bright areas bleed soft light into their surroundings, as a lens or the eye does · light-and-energy, emphasis · highlight-spread · fx, lighting · 2 routes
-- `count-up` — A number that counts up to its final value, so the figure feels earned · emphasis, progress-and-scale, editorial-argument · value-interpolation · data-visualisation, typography · 3 routes
+- `count-up` — A figure that runs up or down to its value: a statistic landing, a timer, hours elapsed · emphasis, progress-and-scale, editorial-argument · value-interpolation · data-visualisation, typography · 3 routes
 - `duotone` — Luminance mapped onto a ramp of chosen colours, so a whole image speaks in one palette · brand-cohesion, graphic-boldness · colour-remapping, tone-quantisation · fx · 3 routes
 - `film-grain` — Fine, shifting texture over the picture that mimics photographic emulsion · analogue-texture, print-nostalgia · noise-overlay · fx · 3 routes
 - `halftone-screen` — Tone rendered as a grid of dots whose size carries the value, as in offset or screen printing · print-nostalgia, graphic-boldness · tone-quantisation · fx · 3 routes

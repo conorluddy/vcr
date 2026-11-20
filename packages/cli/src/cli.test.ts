@@ -59,6 +59,8 @@ describe("vcr CLI", () => {
     const listed = JSON.parse((await runCli("techniques", "list", "--tool", "postprocessing", "--limit", "1", "--json")).stdout);
     expect(listed).toMatchObject({ offset: 0, limit: 1, techniques: [{ id: "bloom-glow", pillars: expect.arrayContaining(["fx"]) }] });
     expect(listed.total).toBeGreaterThanOrEqual(1);
+    const miss = JSON.parse((await runCli("techniques", "list", "--purpose", "calm", "--json")).stdout);
+    expect(miss).toMatchObject({ total: 0, filter_terms: { purposes: expect.arrayContaining(["emphasis"]), pillars: expect.arrayContaining(["fx"]) } });
     const info = JSON.parse((await runCli("techniques", "info", "bloom-glow", "--json")).stdout);
     expect(info.routes.find((route: { id: string }) => route.id === "three-postprocessing").evidence).toMatchObject({ class: "retained-fixture", example: "postprocessing-capture" });
     const card = (await runCli("techniques", "info", "bloom-glow", "--full")).stdout;

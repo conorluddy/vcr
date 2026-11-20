@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, test } from "vitest";
-import { deriveRouteEvidence, filterTechniques, findTechnique, formatTechniqueCard, formatTechniqueList, formatTechniqueRoutes, renderTechniquesIndex, resolveTechnique, TECHNIQUES_INDEX_PATH, techniquesIndexDiagnostics, writeTechniquesIndex, type Technique, type TechniqueRoute } from "./techniques.js";
+import { techniqueFilterTerms, deriveRouteEvidence, filterTechniques, findTechnique, formatTechniqueCard, formatTechniqueList, formatTechniqueRoutes, renderTechniquesIndex, resolveTechnique, TECHNIQUES_INDEX_PATH, techniquesIndexDiagnostics, writeTechniquesIndex, type Technique, type TechniqueRoute } from "./techniques.js";
 import type { ExampleManifest, ToolSummary } from "./tools.js";
 
 const route = (id: string, tools: string[], extra: Partial<TechniqueRoute> = {}): TechniqueRoute => ({
@@ -93,6 +93,9 @@ describe("formatting", () => {
     expect(formatTechniqueList(techniques.slice(0, 2), 3, 0)).toContain("1–2 of 3; next page: --offset 2");
     expect(formatTechniqueList(techniques.slice(2), 3, 2).split("\n").at(-1)).toBe("3–3 of 3");
     expect(formatTechniqueList([], 0, 0)).toContain("not a whitelist");
+    const miss = formatTechniqueList([], 0, 0, techniqueFilterTerms(techniques, { purposes: ["emphasis"], mechanisms: ["staggered-timing"] }));
+    expect(miss).toContain("--purpose: emphasis");
+    expect(miss).toContain("--pillar: fx");
   });
 
   test("the card points into the pillars and gives each route its derived class", () => {
@@ -111,7 +114,7 @@ describe("formatting", () => {
   test("routes show each tool's own evidence and readiness, and never claim installation", () => {
     const context = { harnessRoot: harnessWith(true), tools: [tool("shader")], examples: [example()] };
     const routes = formatTechniqueRoutes(halftone, context);
-    expect(routes).toContain("shader · catalogued · validated 2026-11-05 (examples/other) · this machine: no vcr doctor record");
+    expect(routes).toContain("shader · catalogued · tool's own evidence: validated 2026-11-05 (examples/other) · this machine: no vcr doctor record");
     expect(routes).toContain("ghost · not in this catalogue");
     expect(routes).toContain("- No fixture renders dots");
     expect(routes).toContain("vcr example create demo");

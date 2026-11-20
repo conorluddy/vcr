@@ -15,7 +15,7 @@ import { logEvent, startTimer } from "./log.js";
 import { buildPlugin, pluginDiagnostics, readHarnessVersion } from "./plugin.js";
 import { requireDevMode, requireWorkspace, resolveRoots, type Roots } from "./roots.js";
 import { filterTools, findTool, formatExamplesForTool, formatToolCard, formatToolTable, loadExamples, loadTools, readToolGuide } from "./tools.js";
-import { filterTechniques, findTechnique, formatTechniqueCard, formatTechniqueList, formatTechniqueRoutes, loadTechniques, resolveTechnique, summariseTechnique, writeTechniquesIndex } from "./techniques.js";
+import { filterTechniques, findTechnique, formatTechniqueCard, formatTechniqueList, formatTechniqueRoutes, loadTechniques, resolveTechnique, summariseTechnique, TECHNIQUE_VOCABULARY_PATH, techniqueFilterTerms, writeTechniquesIndex, type TechniqueVocabulary } from "./techniques.js";
 import { beatSheetSchemaDiagnostics, hasErrors, validateRepository, validateWorkspace } from "./validate.js";
 import { ensureWorkspace } from "./workspace.js";
 import { ensureVideo, resolveVideo, type VideoLocation } from "./video.js";
@@ -206,7 +206,10 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
       if (Number.isNaN(limit) || !Number.isInteger(offset) || offset < 0) return failWith({ code: "INVALID_ARGUMENT", message: "--limit must be a positive number and --offset a whole number of 0 or more." }, asJson, 2);
       const matching = filterTechniques(techniques.value, { purpose: text(options["purpose"]), mechanism: text(options["mechanism"]), pillar: text(options["pillar"]), capability: text(options["capability"]), tool: text(options["tool"]) });
       const page = matching.slice(offset, offset + limit);
-      print(asJson ? { total: matching.length, offset, limit, techniques: page.map(summariseTechnique) } : formatTechniqueList(page, matching.length, offset));
+      const vocabulary = readJsonFile<TechniqueVocabulary>(join(repositoryRoot, TECHNIQUE_VOCABULARY_PATH));
+      // A miss says which terms the filters accept, so the vocabulary is discoverable without opening a file.
+      const terms = matching.length === 0 && vocabulary.ok ? techniqueFilterTerms(techniques.value, vocabulary.value) : undefined;
+      print(asJson ? { total: matching.length, offset, limit, techniques: page.map(summariseTechnique), ...(terms ? { filter_terms: terms } : {}) } : formatTechniqueList(page, matching.length, offset, terms));
       return 0;
     }
     if (subcommand === "info" && target) {
