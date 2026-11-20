@@ -1,0 +1,10 @@
+{
+  "id": "waapi-word-stagger",
+  "title": "Web Animations API word-by-word text entrance",
+  "summary": "A line of text split into one span per word; each word's paused element.animate() (opacity plus translate) is seeked via currentTime on onsets exactly 3 frames apart; 90 frames at 1280x720 with alpha, onset frames and settled state asserted.",
+  "status": "validated",
+  "validated_on": {"date": "2026-11-20", "hostname": "Conors-MacBook-Pro-2.local"},
+  "tools": ["web-animations-api"],
+  "run": "./run.sh",
+  "capture": {"scene": "scene.html", "width": 1280, "height": 720, "fps": 30}
+}
