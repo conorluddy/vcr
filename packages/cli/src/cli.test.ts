@@ -63,7 +63,7 @@ describe("vcr CLI", () => {
     expect(info.routes.find((route: { id: string }) => route.id === "three-postprocessing").evidence).toMatchObject({ class: "retained-fixture", example: "postprocessing-capture" });
     const card = (await runCli("techniques", "info", "bloom-glow", "--full")).stdout;
     expect(card).toContain("vcr refs section fx 7");
-    expect(card).toContain("Route pixi-filter [unverified]");
+    expect(card).toContain("Route pixi-filter [documented]");
   });
 
   test.each([["--help"], ["-h"]])("capture %s documents its flags and environment, exit 0", async (flag) => {
