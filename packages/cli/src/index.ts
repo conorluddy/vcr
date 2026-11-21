@@ -17,7 +17,7 @@ import { requireDevMode, requireWorkspace, resolveRoots, type Roots } from "./ro
 import { filterTools, findTool, formatExamplesForTool, formatToolCard, formatToolTable, loadExamples, loadTools, readToolGuide } from "./tools.js";
 import { filterTechniques, findTechnique, formatTechniqueCard, formatTechniqueList, formatTechniqueRoutes, loadTechniques, resolveTechnique, summariseTechnique, TECHNIQUE_VOCABULARY_PATH, techniqueFilterTerms, writeTechniquesIndex, type TechniqueVocabulary } from "./techniques.js";
 import { beatSheetSchemaDiagnostics, hasErrors, validateRepository, validateWorkspace } from "./validate.js";
-import { ensureWorkspace } from "./workspace.js";
+import { ensureWorkspace, loadAgentModels, type AgentModels } from "./workspace.js";
 import { ensureVideo, resolveVideo, type VideoLocation } from "./video.js";
 import { writeLintFindings } from "./lint-findings.js";
 import { writeReviewSummary } from "./review-summary.js";
@@ -71,7 +71,8 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
   }
 
   if (command === "status") {
-    print(asJson ? { ...roots, harness_version: harnessVersion.value } : formatRoots(roots, harnessVersion.value));
+    const models = loadAgentModels(roots.workspace);
+    print(asJson ? { ...roots, harness_version: harnessVersion.value, models } : formatRoots(roots, harnessVersion.value, models));
     return 0;
   }
 
@@ -521,7 +522,8 @@ function writeEnvironmentRecord(directory: string, record: { hostname: string })
   return outputPath;
 }
 
-function formatRoots(roots: Roots, harnessVersion: string): string {
+function formatRoots(roots: Roots, harnessVersion: string, models: AgentModels): string {
+  const modelRows = Object.entries(models).map(([agent, model]) => `model      ${agent}: ${typeof model === "string" ? model : Object.entries(model).map(([host, name]) => `${host}=${name}`).join(", ")}`);
   return [
     `harness    ${roots.harness}`,
     `workspace  ${roots.workspace ?? "none (run vcr workspace init)"}`,
@@ -529,6 +531,7 @@ function formatRoots(roots: Roots, harnessVersion: string): string {
     `machine    from ${roots.machineSource}${roots.isCodexSandbox ? " (Codex sandbox: capture uses --single-process)" : ""}`,
     `mode       ${roots.isDevMode ? "dev (harness repository)" : "user"}`,
     `version    ${harnessVersion}`,
+    ...modelRows,
   ].join("\n");
 }
 

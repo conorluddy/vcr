@@ -38,6 +38,18 @@ A workspace has one inspiration library. Each item is a committed record at `ins
 4. Weigh the three sources differently. The note says what the person wants. Facts are reproducible. An observation is one model's reading on one day: use it to find things to look at, and never present it as the person's preference.
 5. Then shortlist techniques (`vcr techniques list`, the `start` skill) against what the notes ask for, and say which items each candidate draws on.
 
+## Analysis, on request
+
+Intake measures; it does not look. When the person asks for their references to be analysed, or a look is about to be chosen and items have notes but no observations (`vcr inspiration list --unobserved`), give the items to the `inspiration-analyst` agent. It looks at each file and records what is there, per aspect, through `vcr inspiration observe`, which is the only thing it writes.
+
+1. **Choose the model from the workspace.** `vcr status --json` reports `models`: the workspace's choice per agent, as one name or one per host. If `models["inspiration-analyst"]` is set, spawn the agent with that model (your host's entry when it is keyed by host); otherwise let the agent's own default apply. VCR never recommends or checks a model name, and neither should you: if the host rejects the name, tell the person, do not substitute another.
+2. **Tell the agent which model it is running as**, in the prompt, so its observations are stamped correctly, along with the item ids and the decision the analysis is for.
+3. **Keep batches small**, a handful of items per agent, so each file is actually looked at.
+4. **To compare two models**, run the same items under each: observations carry their model and sit side by side in `show`.
+5. **Relay, do not merge.** Where the agent's reading differs from the person's note, put it to the person as a question. Their note stands until they change it.
+
+To set the model: add `"models": { "inspiration-analyst": "<model>" }` to `vcr.json`. This is the person's choice; ask before writing it.
+
 ## Citing items in a brief
 
 A brief names the items it draws on, so a reviewer can hold the result to them. `vcr validate` rejects an id that is not in the library.

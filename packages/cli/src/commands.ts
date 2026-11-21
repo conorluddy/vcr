@@ -42,7 +42,7 @@ export const GLOBAL_ENVIRONMENT = [
 export const COMMANDS: CommandSpec[] = [
   {
     name: "status",
-    summary: "Show the harness, workspace and machine roots; --brief for videos awaiting review and open findings (under 1 KB)",
+    summary: "Show the harness, workspace and machine roots, and the workspace's per-agent models; --brief for videos awaiting review and open findings (under 1 KB)",
     flags: [{ name: "brief", description: "Videos needing attention first, with open-finding counts and warnings" }],
     example: "vcr status --brief",
   },
@@ -195,6 +195,20 @@ export const COMMANDS: CommandSpec[] = [
       { name: "title", value: "text", description: "A clearer title" },
     ],
     example: "vcr inspiration annotate poster-0a1b2c --note \"The headline sits low and the top stays empty\"",
+  },
+  {
+    name: "inspiration observe",
+    argumentsHint: "<id>",
+    summary: "Append one judged observation to an item, stamped with agent, model and date; idempotent on content. The only write an analyst agent makes: it never touches the note, use or rights",
+    flags: [
+      { name: "aspect", value: "aspect", description: "palette, typography, composition, motion, texture, pacing or tone", isRequired: true },
+      { name: "observed", value: "text", description: "What is there, in terms someone could check against the file", isRequired: true },
+      { name: "model", value: "name", description: "The model making the observation, as the caller named it", isRequired: true },
+      { name: "inferred", value: "text", description: "The transferable principle, kept apart from the description" },
+      { name: "span", value: "t=a,b", description: "Seconds inspected; required for a motion or pacing observation on a video" },
+      { name: "agent", value: "name", description: "The agent observing", defaultValue: "inspiration-analyst" },
+    ],
+    example: "vcr inspiration observe poster-0a1b2c --aspect composition --observed \"Headline set in the lower third; the top two thirds are one flat field\" --model <model>",
   },
   {
     name: "inspiration list",
