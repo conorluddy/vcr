@@ -92,6 +92,7 @@ describe("vcr CLI", () => {
     [["inspiration", "show", "does-not-exist"]],
     [["inspiration", "list", "--kind", "audio"]],
     [["inspiration", "add"]],
+    [["inspiration", "observe", "does-not-exist", "--aspect", "palette"]],
   ])("errors from %j carry { code, message, retryable } (ADR 0004)", async (args) => {
     const failure = await runCli(...args, "--json").then(() => undefined, (cause: { stdout: string }) => cause);
     expect(failure).toBeDefined();
@@ -199,8 +200,21 @@ describe("the bundled plugin CLI outside the harness repository (P0/P1 exit evid
     expect(shown).toContain("note (stated): Wide, even mono.");
     expect(shown).toContain(`file: ${join(realpathSync(scratch), "inspiration/files", added.data[0].id, "JetBrainsMono-Bold.ttf")}`);
     expect(readFileSync(join(scratch, ".gitignore"), "utf8")).toContain("inspiration/files/");
+    const observed = JSON.parse((await runFromScratch("inspiration", "observe", added.data[0].id, "--aspect", "typography", "--observed", "Monospaced, heavy weight, wide apertures.", "--model", "model-a", "--json")).stdout);
+    expect(observed.data).toMatchObject({ note: "Wide, even mono.", observations: [{ aspect: "typography", by: { agent: "inspiration-analyst", model: "model-a" } }] });
+    expect((await runFromScratch("inspiration", "show", added.data[0].id)).stdout).toContain("judged by model-a");
     const validation = await runFromScratch("validate", "--json");
     expect(JSON.parse(validation.stdout).diagnostics).toEqual([]);
+  });
+
+  test("status reports the workspace's per-agent models, and an empty map when none are set", async () => {
+    expect(JSON.parse((await runFromScratch("status", "--json")).stdout).models).toEqual({});
+    const markerPath = join(scratch, "vcr.json");
+    const marker = JSON.parse(readFileSync(markerPath, "utf8"));
+    writeFileSync(markerPath, JSON.stringify({ ...marker, models: { "inspiration-analyst": "model-a" } }, null, 2));
+    expect(JSON.parse((await runFromScratch("status", "--json")).stdout).models).toEqual({ "inspiration-analyst": "model-a" });
+    expect((await runFromScratch("status")).stdout).toContain("model      inspiration-analyst: model-a");
+    writeFileSync(markerPath, JSON.stringify(marker, null, 2));
   });
 
   test("doctor writes to the machine root, and --record is maintainer-only", async () => {

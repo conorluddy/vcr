@@ -2,6 +2,7 @@ import { existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { addColourSet, addInspirationFile, annotateInspiration, applyRemoveInspiration, CONTACT_SHEET_FILE, expandSources, filterInspiration, findInspiration, loadInspiration, parseAspects, planRemoveInspiration, type Mutation, type StatedFields } from "./inspiration.js";
 import type { ToolRunner } from "./inspiration-facts.js";
+import { DEFAULT_ANALYST_AGENT, observeInspiration } from "./inspiration-observe.js";
 import { INSPIRATION_ASPECTS, INSPIRATION_PATHS, inspirationFilePath, type InspirationItem } from "./inspiration-record.js";
 import { fail, ok, type Result } from "./result.types.js";
 import type { CommandOutput } from "./review-commands.js";
@@ -44,6 +45,15 @@ export async function runInspirationCommand(subcommand: string, targets: string[
     if (!outcome.ok) return outcome;
     return ok(mutationOutput(withNoteReminder(outcome.value, [outcome.value.data]), outcome.value.changes.length > 0 ? `annotated ${id}` : `${id} already says this; nothing written`));
   }
+  if (subcommand === "observe") {
+    const aspect = text(flags["aspect"]);
+    const observed = text(flags["observed"]);
+    const model = text(flags["model"]);
+    if (!aspect || !observed || !model) return fail("INVALID_ARGUMENT", 'inspiration observe needs --aspect <aspect>, --observed "<what is there>" and --model <the model observing>.');
+    const outcome = observeInspiration(context.workspaceRoot, id, { aspect, observed, inferred: text(flags["inferred"]), span: text(flags["span"]), agent: text(flags["agent"]) ?? DEFAULT_ANALYST_AGENT, model }, context.now);
+    if (!outcome.ok) return outcome;
+    return ok(mutationOutput(outcome.value, outcome.value.changes.length > 0 ? `recorded a ${aspect} observation on ${id}, judged by ${model}` : `${id} already holds this observation; nothing written`));
+  }
   if (subcommand === "remove") {
     const plan = planRemoveInspiration(context.workspaceRoot, id);
     if (!plan.ok) return plan;
@@ -53,7 +63,7 @@ export async function runInspirationCommand(subcommand: string, targets: string[
     const text = [`${isApplying ? "deleted" : "would delete"} ${id}, ${formatBytes(result.totalBytes)}:`, ...rows, ...result.warnings.map((warning) => `warning: ${warning}`), ...(isApplying ? [] : ["", "Run again with --yes to apply."])].join("\n");
     return ok({ json: { applied: isApplying, data: { id }, changes: isApplying ? result.deletions.map((deletion) => displayPath(deletion.path, context.workspaceRoot)) : [], warnings: result.warnings, deletions: result.deletions, totalBytes: result.totalBytes }, text });
   }
-  return fail("INVALID_ARGUMENT", "Use vcr inspiration add, annotate, list, show or remove.");
+  return fail("INVALID_ARGUMENT", "Use vcr inspiration add, annotate, observe, list, show or remove.");
 }
 
 /** One line per item: what a reader needs to decide whether to open it. */

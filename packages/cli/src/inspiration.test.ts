@@ -158,6 +158,53 @@ describe("vcr inspiration", () => {
     expect([...positions].sort((left, right) => left - right)).toEqual(positions);
   });
 
+  test("observe appends a judged observation, is idempotent, and never touches what the person stated", async () => {
+    const { run, fails, context } = fixture();
+    const [item] = (await run("add", ["saved/Poster One.png"], { note: "Low headline.", aspect: "composition" })).json["data"] as InspirationItem[];
+    const flags = { aspect: "composition", observed: "Headline set in the lower third; the top two thirds are one flat field.", inferred: "Emptiness above the type gives it weight.", model: "model-a" };
+    const first = await run("observe", [item!.id], flags);
+    expect(first.json["changes"]).toEqual([`inspiration/items/${item!.id}.json`]);
+    expect((await run("observe", [item!.id], flags)).json["changes"]).toEqual([]);
+    await run("observe", [item!.id], { ...flags, model: "model-b" });
+    const stored = record(context.workspaceRoot, item!.id);
+    const { observations, ...rest } = stored;
+    expect(rest).toEqual(item);
+    expect(observations).toEqual([
+      { aspect: "composition", observed: flags.observed, inferred: flags.inferred, by: { agent: "inspiration-analyst", model: "model-a" }, at: now.toISOString() },
+      expect.objectContaining({ by: { agent: "inspiration-analyst", model: "model-b" } }),
+    ]);
+    expect(validateWorkspace(harnessRoot(), context.workspaceRoot).diagnostics).toEqual([]);
+    const shown = (await run("show", [item!.id])).text;
+    const positions = ["note (stated): Low headline.", "measured by imagemagick", "judged by model-a (inspiration-analyst, 2026-11-21), composition:", "judged by model-b"].map((expected) => shown.indexOf(expected));
+    expect(positions.every((position) => position >= 0) && [...positions].sort((left, right) => left - right).join() === positions.join()).toBe(true);
+    expect(((await run("list", [], { unobserved: true })).json["items"] as unknown[]).length).toBe(0);
+    for (const invalid of [{ ...flags, aspect: "vibes" }, { ...flags, observed: "x".repeat(401) }, { ...flags, inferred: "x".repeat(301) }, { ...flags, span: "t=0,2" }, { aspect: "composition", observed: "No model named." }]) {
+      expect(await fails("observe", [item!.id], invalid)).toBe("INVALID_ARGUMENT");
+    }
+    expect(await fails("observe", ["not-there"], flags)).toBe("NOT_FOUND");
+  });
+
+  test("an observation on an unannotated item warns that it does not stand in for the note, and validation still flags it", async () => {
+    const { run, context } = fixture();
+    const [item] = (await run("add", ["saved/Poster One.png"])).json["data"] as InspirationItem[];
+    const observed = await run("observe", [item!.id], { aspect: "palette", observed: "Two colours: a navy field and one orange block.", model: "model-a" });
+    expect(observed.json["warnings"]).toEqual([expect.stringContaining("still has no note")]);
+    expect(record(context.workspaceRoot, item!.id).note).toBeUndefined();
+    expect(validateWorkspace(harnessRoot(), context.workspaceRoot).diagnostics).toEqual([expect.objectContaining({ severity: "warning", path: "/note" })]);
+  });
+
+  test("a motion or pacing observation on a video must cite the span inspected", async () => {
+    const { run, fails, context, sources } = fixture();
+    writeFileSync(join(sources, "saved/clip.mp4"), "clip bytes");
+    const [clip] = (await run("add", ["saved/clip.mp4"], { note: "The cut rhythm." })).json["data"] as InspirationItem[];
+    const flags = { aspect: "pacing", observed: "Four cuts, each shorter than the last.", model: "model-a" };
+    expect(await fails("observe", [clip!.id], flags)).toBe("INVALID_ARGUMENT");
+    expect(await fails("observe", [clip!.id], { ...flags, span: "0-2" })).toBe("INVALID_ARGUMENT");
+    await run("observe", [clip!.id], { ...flags, span: "t=0,2.5" });
+    await run("observe", [clip!.id], { aspect: "palette", observed: "Near-black field with one saturated accent.", model: "model-a" });
+    expect(record(context.workspaceRoot, clip!.id).observations).toMatchObject([{ aspect: "pacing", span: "t=0,2.5" }, { aspect: "palette" }]);
+  });
+
   test("remove plans first, names briefs that cite the item, and deletes only on --yes", async () => {
     const { run, context, videoDirectory } = fixture();
     const [item] = (await run("add", ["saved/Poster One.png"], { note: "Low headline." })).json["data"] as InspirationItem[];

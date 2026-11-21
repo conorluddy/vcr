@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { readJsonFile } from "./repository.js";
 import { WORKSPACE_MARKER } from "./roots.js";
 
 // === TYPES ===
@@ -9,6 +10,9 @@ export interface WorkspaceMarker {
   harness_version: string;
   projects: string[];
 }
+
+/** Agent name → model, or one model per host where the names differ (ADR 0013). Reported, never checked. */
+export type AgentModels = Record<string, string | Record<string, string>>;
 
 export interface EnsureWorkspaceOutcome {
   workspace: string;
@@ -35,6 +39,14 @@ export function ensureWorkspace(directory: string, harnessVersion: string): Ensu
   }
   if (ensureIgnored(directory, IGNORED_DIRECTORIES)) changes.push(".gitignore");
   return { workspace: directory, changes };
+}
+
+/** The workspace's `models` map from vcr.json; empty when there is no workspace or no map. VCR passes it on and never judges a name. */
+export function loadAgentModels(workspaceRoot: string | null): AgentModels {
+  if (!workspaceRoot) return {};
+  const marker = readJsonFile<{ models?: unknown }>(join(workspaceRoot, WORKSPACE_MARKER));
+  const models = marker.ok ? marker.value.models : undefined;
+  return typeof models === "object" && models !== null && !Array.isArray(models) ? (models as AgentModels) : {};
 }
 
 /** Idempotently adds ignore entries to the directory's `.gitignore`. True when the file was written. */
