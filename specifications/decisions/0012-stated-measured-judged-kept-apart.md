@@ -5,7 +5,7 @@ status: accepted
 date: "2026-11-21"
 ---
 
-# 0012. Stated, measured and judged are kept apart
+# ADR-0012: Stated, measured and judged are kept apart
 
 ## Context
 

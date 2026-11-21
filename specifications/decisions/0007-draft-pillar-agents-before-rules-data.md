@@ -5,7 +5,7 @@ status: accepted
 date: "2026-11-07"
 ---
 
-# 0007. Draft pillar agents before rules data
+# ADR-0007: Draft pillar agents before rules data
 
 ## Context
 

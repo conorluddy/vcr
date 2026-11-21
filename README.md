@@ -87,6 +87,7 @@ pnpm vcr plugin build              # regenerate plugin/ and references/cli.md; c
 pnpm validate && pnpm test && pnpm typecheck
 ```
 
+- **Decisions and specs:** ADRs live in `specifications/decisions/` and feature PRDs in `specifications/prd/`, managed with `node scripts/whatwhy.mjs` (`status`, `new adr|prd`, `check`). A pull request names the PRD or ADR it implements, or says `no-spec: <reason>`. The process is in `AGENTS.md`.
 - **Before a PR:** after changing the CLI, catalogue, skills or examples, run `pnpm vcr plugin build`. The pre-commit hook in `.githooks/` runs it as well. Always run `pnpm validate && pnpm test` before opening a PR.
 - **Branches:** never push to `main`. Work on branches and merge through PRs.
 - **Releasing:** hosts only pick up a change when the version changes. Bump `version` in `packages/cli/package.json` (it flows into both manifests), rebuild the plugin, and merge.

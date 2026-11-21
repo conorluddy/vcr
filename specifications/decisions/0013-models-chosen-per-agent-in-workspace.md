@@ -5,7 +5,7 @@ status: accepted
 date: "2026-11-21"
 ---
 
-# 0013. Models are chosen per agent, in the workspace
+# ADR-0013: Models are chosen per agent, in the workspace
 
 ## Context
 

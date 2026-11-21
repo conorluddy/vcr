@@ -5,7 +5,7 @@ status: accepted
 date: "2026-11-20"
 ---
 
-# 0010. Techniques are a thin, hand-curated layer with derived status
+# ADR-0010: Techniques are a thin, hand-curated layer with derived status
 
 ## Context
 

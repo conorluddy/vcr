@@ -5,7 +5,7 @@ status: accepted
 date: "2026-10-26"
 ---
 
-# 0002. Headless first; read-only visualisers, no editor
+# ADR-0002: Headless first; read-only visualisers, no editor
 
 ## Context
 

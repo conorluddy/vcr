@@ -5,7 +5,7 @@ status: accepted
 date: "2026-11-21"
 ---
 
-# 0011. Inspiration is a workspace library, separate from assets
+# ADR-0011: Inspiration is a workspace library, separate from assets
 
 ## Context
 

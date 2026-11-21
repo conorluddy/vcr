@@ -6,7 +6,7 @@ date: "2026-11-04"
 superseded-by: ADR-0009
 ---
 
-# 0005. Recommendation policy and licence migration
+# ADR-0005: Recommendation policy and licence migration
 
 ## Context
 

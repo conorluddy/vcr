@@ -5,7 +5,7 @@ status: accepted
 date: "2026-11-08"
 ---
 
-# 0008. Advisory making workflows before checks
+# ADR-0008: Advisory making workflows before checks
 
 ## Context
 

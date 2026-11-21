@@ -5,7 +5,7 @@ status: proposed
 date: "2026-11-21"
 ---
 
-# 0014. A look is approved in stills before motion
+# ADR-0014: A look is approved in stills before motion
 
 ## Context
 

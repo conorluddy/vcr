@@ -5,7 +5,7 @@ status: accepted
 date: "2026-10-28"
 ---
 
-# 0003. Distribute as a plugin with a bundled CLI and three roots
+# ADR-0003: Distribute as a plugin with a bundled CLI and three roots
 
 ## Context
 

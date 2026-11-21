@@ -5,7 +5,7 @@ status: accepted
 date: "2026-10-26"
 ---
 
-# 0001. Build the composition engine in-house
+# ADR-0001: Build the composition engine in-house
 
 ## Context
 

@@ -89,6 +89,8 @@ Plugin P0–P2 are complete on Claude Code and Codex: three roots, setup/capture
 
 ## Open work (living)
 
+The process section at the end of this file says plans and progress notes belong in the issue or pull request. That holds for task plans. These VCR documents stand as they are and are not replaced by it: this list, `specifications/roadmap.md`, `specifications/handoffs/`, `specifications/spikes/` and the two product PRDs.
+
 This section is meant to change in most PRs; the rest of this file should rarely change. It lists loose ends and deferred decisions, one line each. Planned work is in GitHub issues (epic #152 for the pillars; #65, the capability graph, is parked) and `specifications/roadmap.md` orders it; this list catches what falls between them.
 
 - Add a line when you defer something, and link the issue if there is one.

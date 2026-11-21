@@ -5,7 +5,7 @@ status: accepted
 date: "2026-11-16"
 ---
 
-# 0009. Free software is the catalogue boundary
+# ADR-0009: Free software is the catalogue boundary
 
 ## Context
 
