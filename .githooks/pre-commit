@@ -7,10 +7,10 @@ cd "$(git rev-parse --show-toplevel)"
 staged=$(git diff --cached --name-only --diff-filter=ACMRD)
 [[ -z "$staged" ]] && exit 0
 
-if grep -qE '^(catalog/tools/|catalog/capabilities/|README\.md$)' <<<"$staged"; then
+if grep -qE '^(catalog/tools/|catalog/techniques/|catalog/capabilities/|README\.md$)' <<<"$staged"; then
   echo "pre-commit: vcr catalog build"
   pnpm -s vcr catalog build >/dev/null
-  git add catalog/tools.json catalog/INDEX.md catalog/CANDIDATES.md README.md
+  git add catalog/tools.json catalog/INDEX.md catalog/CANDIDATES.md catalog/TECHNIQUES.md README.md
 fi
 
 # Runs after catalog build, because plugin/ copies the catalogue.

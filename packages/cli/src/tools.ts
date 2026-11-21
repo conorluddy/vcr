@@ -120,11 +120,11 @@ export function formatToolCard(tool: ToolSummary, examples: ExampleManifest[], r
   if (tool.pairs_with?.length) lines.push(`Pairs with: ${tool.pairs_with.join(", ")}`);
   if (tool.license) lines.push(`Licence: ${tool.license}`);
   if (tool.install?.macos) lines.push(`Install (macOS): ${tool.install.macos}${tool.install.check_command ? `  · check: ${tool.install.check_command}` : ""}`);
-  lines.push(`Evidence: ${evidenceLine(tool)}`);
+  lines.push(`Evidence: ${formatToolEvidence(tool)}`);
   const latestScope = tool.validation.evidence?.at(-1)?.scope;
   if (latestScope) lines.push(`Evidence scope: ${latestScope}`);
   // The catalogue never claims installation, so only its not-applicable value is worth showing.
-  const readiness = readinessText(tool, machine, project);
+  const readiness = formatToolReadiness(tool, machine, project);
   lines.push(`Readiness: ${readiness} · VCR adapter ${tool.adapter_maturity || "unknown"}`);
   lines.push(`Guide: ${tool.skill ? `${tool.skill} (${fileSizeKb(repositoryRoot, tool.skill) ?? "?"} KB) — vcr tools info ${tool.id} --full` : "none yet"}`);
   const own = examples.filter((example) => example.tools.includes(tool.id));
@@ -154,9 +154,8 @@ export function formatExamplesForTool(tool: ToolSummary, examples: ExampleManife
   return [...listed, ...notInstalled].join("\n\n");
 }
 
-// === PRIVATE HELPERS ===
-
-function readinessText(tool: ToolSummary, machine: EnvironmentRecord | undefined, project: { cwd: string; stopAt?: string | undefined } | undefined): string {
+/** This machine's readiness for one tool: the doctor record first, then the project's own packages. Never a catalogue claim. */
+export function formatToolReadiness(tool: ToolSummary, machine: EnvironmentRecord | undefined, project: { cwd: string; stopAt?: string | undefined } | undefined): string {
   if (tool.installation_status === "not-applicable") return "no install needed";
   const latest = tool.validation.evidence?.at(-1);
   const machineReadiness = assessReadiness(tool.id, machine);
@@ -167,7 +166,8 @@ function readinessText(tool: ToolSummary, machine: EnvironmentRecord | undefined
   return formatReadiness(machineReadiness, latest);
 }
 
-function evidenceLine(tool: ToolSummary): string {
+/** The tool's validation status with its latest evidence date and example. */
+export function formatToolEvidence(tool: ToolSummary): string {
   const latest = tool.validation.evidence?.at(-1);
   if (!latest) return tool.validation.status;
   const scope = versionScope(latest.version);

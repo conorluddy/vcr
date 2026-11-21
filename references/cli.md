@@ -52,6 +52,36 @@ Validate the workspace (in the harness repository: everything)
 vcr validate --json
 ```
 
+## `vcr techniques list [--purpose term] [--mechanism term] [--pillar name] [--capability id] [--tool id] [--limit n] [--offset n]`
+
+Tier 0 of techniques: one line per visual technique, paginated; inspiration, not a whitelist
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--purpose term` | Only techniques with this expressive purpose (see catalog/techniques/vocabulary.json) |  |
+| `--mechanism term` | Only techniques with this visual mechanism |  |
+| `--pillar name` | Only techniques whose craft lives in this pillar: fx, motion, typography |  |
+| `--capability id` | Only techniques with a route step using this capability |  |
+| `--tool id` | Only techniques with a route through this tool |  |
+| `--limit n` | Techniques per page | `50` |
+| `--offset n` | Techniques to skip | `0` |
+
+```sh
+vcr techniques list --purpose print-nostalgia
+```
+
+## `vcr techniques info <id> [--full]`
+
+Tier 1 card: summary, craft pointers and one line per route with its derived evidence class; --full adds each route's steps, tool evidence, readiness and limits
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--full` | Append each route's steps, per-tool evidence and readiness, and limits |  |
+
+```sh
+vcr techniques info halftone-screen --full
+```
+
 ## `vcr tools list [--capability id] [--tier tier] [--category name]`
 
 Tier 0: one line per tool
@@ -395,7 +425,7 @@ vcr doctor
 
 ## `vcr catalog build [--check]`
 
-Regenerate catalog/tools.json, INDEX.md, CANDIDATES.md and the typography KB §14 table Harness repository only.
+Regenerate catalog/tools.json, INDEX.md, CANDIDATES.md, TECHNIQUES.md and the typography KB §14 table Harness repository only.
 
 | Flag | Description | Default |
 | --- | --- | --- |

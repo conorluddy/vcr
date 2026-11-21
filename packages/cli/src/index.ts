@@ -15,6 +15,7 @@ import { logEvent, startTimer } from "./log.js";
 import { buildPlugin, pluginDiagnostics, readHarnessVersion } from "./plugin.js";
 import { requireDevMode, requireWorkspace, resolveRoots, type Roots } from "./roots.js";
 import { filterTools, findTool, formatExamplesForTool, formatToolCard, formatToolTable, loadExamples, loadTools, readToolGuide } from "./tools.js";
+import { filterTechniques, findTechnique, formatTechniqueCard, formatTechniqueList, formatTechniqueRoutes, loadTechniques, resolveTechnique, summariseTechnique, writeTechniquesIndex } from "./techniques.js";
 import { beatSheetSchemaDiagnostics, hasErrors, validateRepository, validateWorkspace } from "./validate.js";
 import { ensureWorkspace } from "./workspace.js";
 import { ensureVideo, resolveVideo, type VideoLocation } from "./video.js";
@@ -196,6 +197,36 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     }
   }
 
+  if (command === "techniques") {
+    const techniques = loadTechniques(repositoryRoot);
+    if (!techniques.ok) return failWith(techniques.error, asJson);
+    if (subcommand === "list") {
+      const limit = optionalPositive(options["limit"]) ?? 50;
+      const offset = options["offset"] === undefined ? 0 : Number(options["offset"]);
+      if (Number.isNaN(limit) || !Number.isInteger(offset) || offset < 0) return failWith({ code: "INVALID_ARGUMENT", message: "--limit must be a positive number and --offset a whole number of 0 or more." }, asJson, 2);
+      const matching = filterTechniques(techniques.value, { purpose: text(options["purpose"]), mechanism: text(options["mechanism"]), pillar: text(options["pillar"]), capability: text(options["capability"]), tool: text(options["tool"]) });
+      const page = matching.slice(offset, offset + limit);
+      print(asJson ? { total: matching.length, offset, limit, techniques: page.map(summariseTechnique) } : formatTechniqueList(page, matching.length, offset));
+      return 0;
+    }
+    if (subcommand === "info" && target) {
+      const technique = findTechnique(techniques.value, target);
+      if (!technique.ok) return failWith(technique.error, asJson);
+      const tools = loadTools(repositoryRoot);
+      if (!tools.ok) return failWith(tools.error, asJson);
+      const examples = loadExamples(repositoryRoot);
+      if (!examples.ok) return failWith(examples.error, asJson);
+      const context = { harnessRoot: repositoryRoot, tools: tools.value, examples: examples.value, machine: loadMachineRecord(roots.machine), project: { cwd: process.cwd(), stopAt: roots.workspace ?? undefined } };
+      if (asJson) {
+        print(resolveTechnique(technique.value, context));
+        return 0;
+      }
+      const card = formatTechniqueCard(technique.value, examples.value, repositoryRoot);
+      print(options["full"] === true && technique.value.routes.length > 0 ? `${card}\n\n---\n\n${formatTechniqueRoutes(technique.value, context)}` : card);
+      return 0;
+    }
+  }
+
   if (command === "example" && subcommand === "create" && target) {
     const workspace = requireWorkspace(roots);
     if (!workspace.ok) return failWith(workspace.error, asJson);
@@ -347,12 +378,15 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     if (!table.ok) return failWith(table.error, asJson);
     const referencesIndex = writeReferencesIndex(repositoryRoot, checkOnly);
     if (!referencesIndex.ok) return failWith(referencesIndex.error, asJson);
+    const techniquesIndex = writeTechniquesIndex(repositoryRoot, checkOnly);
+    if (!techniquesIndex.ok) return failWith(techniquesIndex.error, asJson);
     const { recordCount } = outcome.value;
-    const staleFiles = [...outcome.value.staleFiles, ...table.value.staleFiles, ...referencesIndex.value.staleFiles];
+    const staleFiles = [...outcome.value.staleFiles, ...table.value.staleFiles, ...referencesIndex.value.staleFiles, ...techniquesIndex.value.staleFiles];
     const wasStale = staleFiles.length > 0;
     const built = buildCatalogIndex(repositoryRoot);
     const manifests = loadExamples(repositoryRoot);
-    const disclosure = built.ok && manifests.ok ? disclosureReport(repositoryRoot, built.value, manifests.value) : undefined;
+    const techniques = loadTechniques(repositoryRoot);
+    const disclosure = built.ok && manifests.ok ? disclosureReport(repositoryRoot, built.value, manifests.value, techniques.ok ? techniques.value : []) : undefined;
     const summary = `${recordCount} records; ${wasStale ? `${checkOnly ? "stale" : "rewrote"}: ${staleFiles.join(", ")}` : "index up to date"}`;
     print(asJson ? { ...outcome.value, wasStale, staleFiles, disclosure } : disclosure ? `${summary}\n${formatDisclosureReport(disclosure)}` : summary);
     return checkOnly && wasStale ? 1 : 0;
