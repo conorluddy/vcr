@@ -58,8 +58,8 @@ Tier 0 of techniques: one line per visual technique, paginated; inspiration, not
 
 | Flag | Description | Default |
 | --- | --- | --- |
-| `--purpose term` | Only techniques with this expressive purpose (see catalog/techniques/vocabulary.json) |  |
-| `--mechanism term` | Only techniques with this visual mechanism |  |
+| `--purpose term` | Only techniques with this expressive purpose; a miss lists the accepted terms |  |
+| `--mechanism term` | Only techniques with this visual mechanism; a miss lists the accepted terms |  |
 | `--pillar name` | Only techniques whose craft lives in this pillar: fx, motion, typography |  |
 | `--capability id` | Only techniques with a route step using this capability |  |
 | `--tool id` | Only techniques with a route through this tool |  |

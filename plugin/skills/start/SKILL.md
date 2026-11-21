@@ -28,7 +28,7 @@ A route explains; it runs nothing. Most routes are `documented`: the tools' own 
 3. Commit: `vcr tools info <id> --full`, or load that tool's skill (`anime-js`, `three-js`, `p5-js`, `svg`, `resvg`, `ffmpeg`, `imagemagick`, `blender-background`). One guide at a time.
 4. Do: `vcr tools examples <id>`, then `vcr example create <example-id>` and follow the steps it prints.
 
-A card or guide never claims the tool is installed on this machine; `vcr doctor` does. Prefer `core` tier tools: they carry validation evidence.
+A card or guide never claims the tool is installed on this machine; `vcr doctor` does. Prefer `core` tier tools: they carry a guide and an example; the card's `Evidence` line says how far each is validated.
 
 ## Producing an asset
 

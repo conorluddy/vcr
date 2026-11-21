@@ -173,9 +173,18 @@ export function resolveTechnique(technique: Technique, context: TechniqueReadCon
   };
 }
 
-/** Tier 0 as a table: what `vcr techniques list` prints. */
-export function formatTechniqueList(techniques: Technique[], total: number, offset: number): string {
-  if (techniques.length === 0) return "no matching techniques (the index is not a whitelist: an unmapped technique can still be proposed)";
+/** The filter terms actually in use, so a miss can show what would have matched. */
+export function techniqueFilterTerms(techniques: Technique[], vocabulary: TechniqueVocabulary) {
+  return { purposes: vocabulary.purposes, mechanisms: vocabulary.mechanisms, pillars: [...new Set(techniques.flatMap(craftPillars))].sort() };
+}
+
+/** Tier 0 as a table: what `vcr techniques list` prints. An empty result lists the terms the filters accept. */
+export function formatTechniqueList(techniques: Technique[], total: number, offset: number, terms?: ReturnType<typeof techniqueFilterTerms>): string {
+  if (techniques.length === 0) {
+    const lines = ["no matching techniques (the index is not a whitelist: an unmapped technique can still be proposed)"];
+    if (terms) lines.push(`--purpose: ${terms.purposes.join(", ")}`, `--mechanism: ${terms.mechanisms.join(", ")}`, `--pillar: ${terms.pillars.join(", ")}`);
+    return lines.join("\n");
+  }
   const width = Math.max(...techniques.map((technique) => technique.id.length));
   const rows = techniques.map((technique) => `${technique.id.padEnd(width)}  ${routeCount(technique).padEnd(8)}  ${technique.one_line}`);
   const shown = `${offset + 1}–${offset + techniques.length} of ${total}`;
@@ -216,7 +225,7 @@ export function formatTechniqueRoutes(technique: Technique, context: TechniqueRe
   });
   const tools = [...new Set(technique.routes.flatMap(routeTools))];
   const footer = tools.length > 0
-    ? `Tool lines show each tool's own evidence, which does not transfer to the route. Next, for one tool: vcr tools info <id> (card and evidence scope), then --full (guide), then vcr tools examples <id>. Tools here: ${tools.join(", ")}.`
+    ? `Next, for one tool: vcr tools info <id> (card, avoid-when and evidence scope), then --full (guide). Tools here: ${tools.join(", ")}.`
     : "";
   return [...sections, footer].filter(Boolean).join("\n\n");
 }
@@ -273,5 +282,5 @@ function routeCount(technique: Technique): string {
 function toolStatusLine(toolId: string, context: TechniqueReadContext): string {
   const tool = context.tools.find((candidate) => candidate.id === toolId);
   if (!tool) return `${toolId} · not in this catalogue`;
-  return `${toolId} · ${tool.tier} · ${formatToolEvidence(tool)} · ${formatToolReadiness(tool, context.machine, context.project)}`;
+  return `${toolId} · ${tool.tier} · tool's own evidence: ${formatToolEvidence(tool)} · ${formatToolReadiness(tool, context.machine, context.project)}`;
 }
