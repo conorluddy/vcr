@@ -45,6 +45,8 @@ export interface ExampleManifest {
   summary?: string;
   status: string;
   tools: string[];
+  /** Technique routes this fixture exercises, as `<technique>/<route>` (ADR 0010). */
+  techniques?: string[];
   run: string;
   report?: string;
   /** Repository-relative directory, filled in on load. */

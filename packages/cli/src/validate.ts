@@ -8,7 +8,8 @@ import { WORKSPACE_MARKER } from "./roots.js";
 import type { ExampleManifest, ToolSummary } from "./tools.js";
 import { versionScope } from "./evidence.js";
 import { TYPOGRAPHY_RULES_PATH, typographyRuleDiagnostics } from "./typography-rules.js";
-import { referencesIndexDiagnostics } from "./references.js";
+import { findPillarRule, loadPillarRules, loadPillars, readKnowledgeBaseSection, referencesIndexDiagnostics, type Pillar, type PillarRule } from "./references.js";
+import { listTechniqueFiles, routeReference, routeTools, TECHNIQUE_VOCABULARY_PATH, type Technique, type TechniqueVocabulary } from "./techniques.js";
 import { listRetainedRenderIds, REVIEW_PATHS, reviewDiagnostics, sha256Hex, type Approval, type Finding, type RenderManifest, type VideoReview } from "./review.js";
 import { listVideoDirectories } from "./video.js";
 import { loadBudgets, storageReport } from "./storage.js";
@@ -78,6 +79,7 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
     diagnostics.push(...cardDiagnostics(record, file));
   }
   for (const { manifest, file } of examples.values()) diagnostics.push(...exampleDiagnostics(manifest, file, tools, repositoryRoot));
+  diagnostics.push(...checkTechniques(check, repositoryRoot, knownCapabilities, tools, examples));
 
   check(join(repositoryRoot, "catalog/tools.json"), "tool");
   if (validToolRecords) diagnostics.push(...indexFreshnessDiagnostics(repositoryRoot));
@@ -219,6 +221,7 @@ function loadSchemas(repositoryRoot: string) {
   ajv.addSchema(toolRecordSchema);
   return {
     toolRecord: ajv.compile(toolRecordSchema),
+    technique: ajv.compile(load("technique")),
     tool: ajv.compile(load("tool")),
     example: ajv.compile(load("example")),
     project: ajv.compile(load("project")),
@@ -384,6 +387,125 @@ function exampleDiagnostics(manifest: ExampleManifest, file: string, tools: Map<
     else if (!(tool.record.examples ?? []).includes(manifest.id)) error("/tools", `${toolId} does not list this example in its examples`, `Add "${manifest.id}" to catalog/tools/${toolId}.json examples.`);
   }
   if (manifest.report && !existsSync(join(repositoryRoot, manifest.report))) error("/report", `${manifest.report} does not exist`, "Fix the path or remove it.");
+  return diagnostics;
+}
+
+// === TECHNIQUES (ADR 0010) ===
+
+interface TechniqueContext {
+  repositoryRoot: string;
+  vocabulary: TechniqueVocabulary;
+  pillars: Pillar[];
+  rules: PillarRule[];
+  knownCapabilities: Set<string>;
+  tools: Map<string, { record: ToolSummary }>;
+  retiredToolIds: Set<string>;
+  examples: Map<string, { manifest: ExampleManifest }>;
+  techniqueIds: Set<string>;
+}
+
+/** Schema-checks every technique record, then resolves each link it holds and each route an example claims. */
+function checkTechniques(check: Check, repositoryRoot: string, knownCapabilities: Set<string>, tools: Map<string, { record: ToolSummary }>, examples: Map<string, { manifest: ExampleManifest; file: string }>): Diagnostic[] {
+  const diagnostics: Diagnostic[] = [];
+  const techniques = new Map<string, { record: Technique; file: string }>();
+  for (const recordPath of listTechniqueFiles(repositoryRoot)) {
+    const record = check(recordPath, "technique") as Technique | undefined;
+    if (!record) continue;
+    const file = relative(repositoryRoot, recordPath);
+    if (basename(recordPath) !== `${record.id}.json`) diagnostics.push({ severity: "error", file, path: "/id", message: `file must be named ${record.id}.json to match its id`, suggestion: "Rename the file or the id." });
+    techniques.set(record.id, { record, file });
+  }
+  for (const { manifest, file } of examples.values()) {
+    for (const reference of manifest.techniques ?? []) {
+      const [techniqueId, routeId] = reference.split("/");
+      const route = techniques.get(techniqueId ?? "")?.record.routes.find((candidate) => candidate.id === routeId);
+      if (!route) diagnostics.push({ severity: "error", file, path: "/techniques", message: `"${reference}" is not a route of a technique in catalog/techniques/`, suggestion: "Use <technique>/<route> from an existing record, or remove it." });
+      else if (route.example !== manifest.id) diagnostics.push({ severity: "error", file, path: "/techniques", message: `route ${reference} does not cite this example`, suggestion: `Set "example": "${manifest.id}" on the route in catalog/techniques/${techniqueId}.json so the link is two-way, or remove the claim here.` });
+    }
+  }
+  if (techniques.size === 0) return diagnostics;
+
+  const vocabulary = readJsonFile<TechniqueVocabulary>(join(repositoryRoot, TECHNIQUE_VOCABULARY_PATH));
+  if (!vocabulary.ok) diagnostics.push({ severity: "error", file: TECHNIQUE_VOCABULARY_PATH, path: "", message: vocabulary.error.message });
+  const pillars = loadPillars(repositoryRoot);
+  if (!pillars.ok) diagnostics.push({ severity: "error", file: "catalog/techniques", path: "", message: `craft pointers cannot be resolved: ${pillars.error.message}` });
+  const context: TechniqueContext = {
+    repositoryRoot,
+    vocabulary: vocabulary.ok ? vocabulary.value : { purposes: [], mechanisms: [] },
+    pillars: pillars.ok ? pillars.value : [],
+    rules: pillars.ok ? loadPillarRules(repositoryRoot, pillars.value) : [],
+    knownCapabilities,
+    tools,
+    retiredToolIds: new Set(listJsonFiles(join(repositoryRoot, "catalog/retired")).map((filePath) => basename(filePath, ".json"))),
+    examples,
+    techniqueIds: new Set(techniques.keys()),
+  };
+  for (const { record, file } of techniques.values()) diagnostics.push(...techniqueDiagnostics(record, file, context));
+  return diagnostics;
+}
+
+/** Every link a technique record holds must resolve: vocabulary, pillar section and rules, capabilities, tools, facets, examples and related records. */
+function techniqueDiagnostics(record: Technique, file: string, context: TechniqueContext): Diagnostic[] {
+  const diagnostics: Diagnostic[] = [];
+  const error = (path: string, message: string, suggestion: string) => diagnostics.push({ severity: "error", file, path, message, suggestion });
+
+  for (const field of ["purposes", "mechanisms"] as const) {
+    for (const term of record[field].filter((candidate) => !context.vocabulary[field].includes(candidate))) {
+      error(`/${field}`, `"${term}" is not in ${TECHNIQUE_VOCABULARY_PATH} ${field}`, "Use an existing term or add it to the vocabulary in the same change.");
+    }
+  }
+
+  for (const [index, pointer] of record.craft.entries()) {
+    const path = `/craft/${index}`;
+    const pillar = context.pillars.find((candidate) => candidate.slug === pointer.pillar);
+    if (!pillar) {
+      error(`${path}/pillar`, `"${pointer.pillar}" is not a pillar directory under references/`, `Use one of: ${context.pillars.map((candidate) => candidate.slug).join(", ")}.`);
+      continue;
+    }
+    const section = readKnowledgeBaseSection(context.repositoryRoot, context.pillars, pillar.slug, pointer.section);
+    if (!section.ok) error(`${path}/section`, section.error.message, `Check it with \`vcr refs section ${pillar.slug} ${pointer.section}\`.`);
+    for (const ruleId of pointer.rules) {
+      const rule = findPillarRule(context.rules, ruleId);
+      if (!rule.ok) error(`${path}/rules`, `rule ${ruleId} does not exist`, "Cite an ID that `vcr rules info` resolves; a renamed rule must be migrated here in the same change.");
+      else if (rule.value.pillar !== pillar.slug) error(`${path}/rules`, `rule ${ruleId} belongs to ${rule.value.pillar}, not ${pillar.slug}`, `Move it to a craft pointer whose pillar is ${rule.value.pillar}.`);
+      else if (rule.value.replacements?.length) error(`${path}/rules`, `rule ${ruleId} is superseded`, `Cite ${rule.value.replacements.join(", ")} instead.`);
+    }
+  }
+
+  for (const related of record.related ?? []) {
+    if (related.id === record.id || !context.techniqueIds.has(related.id)) error("/related", `"${related.id}" is not another technique id`, "Use an id from catalog/techniques/ or drop it.");
+  }
+
+  const routeIds = record.routes.map((route) => route.id);
+  for (const duplicate of new Set(routeIds.filter((id, index) => routeIds.indexOf(id) !== index))) error("/routes", `route id "${duplicate}" is used more than once`, "Route ids are unique within a technique.");
+
+  for (const [routeIndex, route] of record.routes.entries()) {
+    for (const [stepIndex, step] of route.steps.entries()) {
+      const path = `/routes/${routeIndex}/steps/${stepIndex}`;
+      if (!context.knownCapabilities.has(step.capability)) error(`${path}/capability`, `capability "${step.capability}" is not in catalog/capabilities/vocabulary.json`, "Use an existing capability.");
+      for (const toolId of step.tools) {
+        const tool = context.tools.get(toolId)?.record;
+        if (!tool) {
+          const isRetired = context.retiredToolIds.has(toolId);
+          error(`${path}/tools`, isRetired ? `"${toolId}" is retired and cannot be routed to (ADR 0009)` : `"${toolId}" is not a catalogued tool id`, "Use an id from catalog/tools/.");
+          continue;
+        }
+        if (!tool.capabilities.includes(step.capability)) error(`${path}/tools`, `${toolId} does not list the capability "${step.capability}"`, `Use a capability the tool record carries (${tool.capabilities.join(", ")}), split the step, or fix the tool record first.`);
+        if (step.facet && !(tool.facets ?? []).some((facet) => facet.id === step.facet)) error(`${path}/facet`, `${toolId} has no facet "${step.facet}"`, "Use a facet id from the tool record or drop it.");
+      }
+    }
+    if (!route.example) continue;
+    const path = `/routes/${routeIndex}/example`;
+    const example = context.examples.get(route.example)?.manifest;
+    const reference = routeReference(record.id, route.id);
+    if (!example) {
+      error(path, `example "${route.example}" has no examples/<dir>/example.json`, "Point at an existing example id or remove it; a route without an example is `documented`, which is allowed.");
+      continue;
+    }
+    if (!(example.techniques ?? []).includes(reference)) error(path, `example "${route.example}" does not list ${reference} in its techniques`, `Add "${reference}" to examples/${route.example}/example.json so the claim is made on the fixture's side too.`);
+    const uncovered = routeTools(route).filter((toolId) => !example.tools.includes(toolId));
+    if (uncovered.length > 0) error(path, `example "${route.example}" does not use ${uncovered.join(", ")}, so it does not exercise this route`, "Cite a fixture whose tools cover every tool in the route, or remove the example.");
+  }
   return diagnostics;
 }
 
