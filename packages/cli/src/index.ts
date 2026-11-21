@@ -29,6 +29,7 @@ import { TYPOGRAPHY_RULES_PATH, writeTypographyTable, type TypographyRules } fro
 import { fail, ok, type Result } from "./result.types.js";
 import { stagingDirectoryFor, writeRender } from "./render-manifest.js";
 import { runFindingsCommand, runReviewDecision } from "./review-commands.js";
+import { runInspirationCommand } from "./inspiration-commands.js";
 import { briefStatus, formatBriefStatus } from "./status.js";
 import { applyPlan, formatPlan, formatStorageReport, loadBudgets, planClear, planPruneEvidence, storageReport } from "./storage.js";
 import type { TerminalIo } from "./approvals.js";
@@ -96,6 +97,15 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     const outcome = command === "findings"
       ? runFindingsCommand(workspace.value, subcommand, target, args[3], options, new Date())
       : await runReviewDecision(workspace.value, subcommand, target, args[3], options, terminalIo(), new Date());
+    if (!outcome.ok) return failWith(outcome.error, asJson, outcome.error.code === "INVALID_ARGUMENT" ? 2 : 1);
+    print(asJson ? outcome.value.json : outcome.value.text);
+    return 0;
+  }
+
+  if (command === "inspiration" && subcommand) {
+    const workspace = requireWorkspace(roots);
+    if (!workspace.ok) return failWith(workspace.error, asJson);
+    const outcome = await runInspirationCommand(subcommand, args.slice(2), options, { workspaceRoot: workspace.value, cwd: process.cwd(), harnessVersion: harnessVersion.value, now: new Date() });
     if (!outcome.ok) return failWith(outcome.error, asJson, outcome.error.code === "INVALID_ARGUMENT" ? 2 : 1);
     print(asJson ? outcome.value.json : outcome.value.text);
     return 0;

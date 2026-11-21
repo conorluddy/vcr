@@ -164,7 +164,7 @@ Workspace files, per video.
 
 ### 6.5 Storage
 
-Every byte VCR writes falls into one of five classes. Sizes are reported per class, root, video and render; budgets live in `vcr.json` under `storage`.
+Every byte VCR writes falls into one of six classes. Sizes are reported per class, root, video and render; budgets live in `vcr.json` under `storage`.
 
 | Class | Where | Regenerable | Committed | Cleared by |
 | --- | --- | --- | --- | --- |
@@ -173,6 +173,7 @@ Every byte VCR writes falls into one of five classes. Sizes are reported per cla
 | Evidence | Workspace `review/renders/`: manifests, contact sheets, evidence frames | No | Yes | `vcr storage prune evidence` only |
 | Proxies | `VCR_HOME/proxies`: share transcodes | Yes | No | `vcr storage clear proxies`, Storage view |
 | Runtime | `VCR_HOME/runtime`: Playwright and Chromium | Yes, by `vcr setup capture` | No | `vcr storage clear runtime` |
+| Inspiration | Workspace `inspiration/files/`: the user's copied reference files and video contact sheets (ADR 0011) | No: only the user's original can restore a copy | No; the record in `inspiration/items/` is | `vcr inspiration remove <id>` only, one item at a time |
 
 - `vcr storage [--video <id>] [--json] [--limit --offset]`: the size report, largest first.
 - `vcr storage clear <class> [--video <id>] [--render <id>] [--older-than <days>] [--keep-latest <n>]` prints the planned deletions and byte total, and applies them only with `--yes`. It is idempotent and agent-safe, because everything it removes is regenerable.
@@ -180,6 +181,7 @@ Every byte VCR writes falls into one of five classes. Sizes are reported per cla
 - Budgets: `storage.output_warn_bytes` (default 5 GB per workspace) and `storage.evidence_warn_bytes` (default 2 MB per video). Over budget is a warning in `vcr status`, `vcr validate` and the Storage view, never a failure and never an automatic deletion.
 - Clearing output under a render keeps its retained revision; Render and Compare fall back to it and say so.
 - The Storage view clears output, cache and proxies through the token-gated POST, with the same plan-then-apply step. Runtime and evidence are CLI-only.
+- Inspiration is reported and never cleared: `vcr storage clear inspiration` is refused, and clearing another class never reaches into `inspiration/`.
 
 ### 6.6 The loop
 
@@ -272,7 +274,7 @@ Existing commands keep their behaviour. `catalog build` and `doctor --record` ar
 
 ### Storage (ST)
 
-- ST-01: Every file VCR writes belongs to one of the five storage classes in §6.5. A test fails if a command writes outside them.
+- ST-01: Every file VCR writes belongs to one of the six storage classes in §6.5. A test fails if a command writes outside them.
 - ST-02: `vcr storage` reports usage by root, class, video and render, in `--json` and paginated, and finishes in under two seconds on a workspace of 50 renders.
 - ST-03: Clearing is plan-then-apply: the planned deletions and byte total are shown before anything is removed, in the CLI and in the Storage view alike.
 - ST-04: Clearing never removes source, findings, approvals, `brief.md`, manifests or committed evidence. Tests assert this against a fixture workspace.
@@ -350,7 +352,7 @@ Same skills, same CLI, same files. Only packaging differs.
 | Trigger collision with HyperFrames and other video skills | Router scoped to VCR, skills namespaced by the plugin (`/vcr:brief`), a routing test (AG-01) |
 | Plugin version drifts from the workspace | `harness_version` pin plus a CLI warning (PL-06) |
 | Share leaks private assets (product screenshots) | Explicit per-share command, proxy only, recorded, never automatic (SH-01 to SH-05) |
-| Clearing deletes something that cannot be regenerated | Five named classes; plan-then-apply; evidence prune is CLI-only and keeps latest, approved and cited revisions; ST-04 tests |
+| Clearing deletes something that cannot be regenerated | Six named classes; inspiration is never clearable; plan-then-apply; evidence prune is CLI-only and keeps latest, approved and cited revisions; ST-04 tests |
 | Review layer creeps toward an editor | Writes limited to findings and approvals; ADR 0002's revisit triggers apply |
 | Render manifest churns before L1 lands | Minimal, versioned subset, owned by the L1 child specification |
 

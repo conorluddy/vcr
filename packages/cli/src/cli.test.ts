@@ -1,5 +1,5 @@
 import { execFile } from "node:child_process";
-import { chmodSync, cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, realpathSync, statSync, writeFileSync } from "node:fs";
+import { chmodSync, cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { promisify } from "node:util";
@@ -89,6 +89,9 @@ describe("vcr CLI", () => {
     [["capture", "scene.html"]],
     [["lint", "scene.html"]],
     [["findings", "list", "nope"]],
+    [["inspiration", "show", "does-not-exist"]],
+    [["inspiration", "list", "--kind", "audio"]],
+    [["inspiration", "add"]],
   ])("errors from %j carry { code, message, retryable } (ADR 0004)", async (args) => {
     const failure = await runCli(...args, "--json").then(() => undefined, (cause: { stdout: string }) => cause);
     expect(failure).toBeDefined();
@@ -181,6 +184,21 @@ describe("the bundled plugin CLI outside the harness repository (P0/P1 exit evid
     expect(JSON.parse(checked!.stdout)).toEqual([expect.objectContaining({ rule_id: "STORY-BEAT-SUM", severity: "major", plan_sha256: expect.stringMatching(/^[0-9a-f]{64}$/) })]);
     const markers = await runFromScratch("plan", "markers", "--video", "demo/teaser", "--json");
     expect(JSON.parse(markers.stdout)).toEqual([{ t: 1.966667, id: "B01", role: "hook" }, { t: 3.866667, id: "B02" }]);
+    const validation = await runFromScratch("validate", "--json");
+    expect(JSON.parse(validation.stdout).diagnostics).toEqual([]);
+  });
+
+  test("inspiration: a font and a colour set are added, listed and shown from the bundled CLI, and still validate", async () => {
+    const added = JSON.parse((await runFromScratch("inspiration", "add", join(root, "examples/canvas2d-capture/fonts/JetBrainsMono-Bold.ttf"), "--note", "Wide, even mono.", "--aspect", "typography", "--json")).stdout);
+    expect(added).toMatchObject({ data: [{ kind: "font", facts: { family: "JetBrains Mono", weight_class: 700 }, facts_by: { tool: "vcr" } }], warnings: [] });
+    expect(added.changes).toEqual(expect.arrayContaining([`inspiration/items/${added.data[0].id}.json`]));
+    await runFromScratch("inspiration", "add", "--colours", "#0B1F3A,#F2A33A", "--title", "Harbour night", "--note", "Navy with one warm accent.");
+    const listed = JSON.parse((await runFromScratch("inspiration", "list", "--json")).stdout);
+    expect(listed).toMatchObject({ total: 2, offset: 0, limit: 50, items: [{ id: "harbour-night" }, { id: added.data[0].id, observation_count: 0 }] });
+    const shown = (await runFromScratch("inspiration", "show", added.data[0].id)).stdout;
+    expect(shown).toContain("note (stated): Wide, even mono.");
+    expect(shown).toContain(`file: ${join(realpathSync(scratch), "inspiration/files", added.data[0].id, "JetBrainsMono-Bold.ttf")}`);
+    expect(readFileSync(join(scratch, ".gitignore"), "utf8")).toContain("inspiration/files/");
     const validation = await runFromScratch("validate", "--json");
     expect(JSON.parse(validation.stdout).diagnostics).toEqual([]);
   });

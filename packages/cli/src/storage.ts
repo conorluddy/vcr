@@ -1,19 +1,22 @@
 import { existsSync, lstatSync, readdirSync, rmSync } from "node:fs";
 import { join, relative, resolve, sep } from "node:path";
+import { INSPIRATION_PATHS } from "./inspiration-record.js";
 import { readJsonFile } from "./repository.js";
 import { fail, ok, type Result } from "./result.types.js";
 import { latestManifest, readVideoReview, REVIEW_PATHS, type VideoReview } from "./review.js";
 import { WORKSPACE_MARKER } from "./roots.js";
 import { listVideoDirectories, resolveVideo } from "./video.js";
 
-// Every byte VCR writes is in one of five classes (plugin PRD §6.5). Output, cache, proxies and
+// Every byte VCR writes is in one of six classes (plugin PRD §6.5). Output, cache, proxies and
 // runtime are regenerable and cleared plan-then-apply; evidence is committed and only ever pruned,
-// never down to less than its manifest. Source, findings, approvals and briefs are never touched (ST-04).
+// never down to less than its manifest; inspiration holds the user's copied reference files, which
+// nothing can regenerate, so it is reported and only `vcr inspiration remove` deletes from it
+// (ADR 0011). Source, findings, approvals and briefs are never touched (ST-04).
 
 // === TYPES ===
 
-export type StorageClass = "output" | "cache" | "evidence" | "proxies" | "runtime";
-export type ClearableClass = Exclude<StorageClass, "evidence">;
+export type StorageClass = "output" | "cache" | "evidence" | "proxies" | "runtime" | "inspiration";
+export type ClearableClass = Exclude<StorageClass, "evidence" | "inspiration">;
 
 export interface StorageEntry {
   storageClass: StorageClass;
@@ -73,8 +76,10 @@ export function storageReport(roots: StorageRoots, budgets: StorageBudgets, vide
     const unattributed = directoryBytes(outputRoot) - attributed;
     if (unattributed > 0) entries.push({ storageClass: "output", path: outputRoot, bytes: unattributed });
     for (const [storageClass, path] of classRoots(roots)) if (storageClass !== "output") entries.push({ storageClass, path, bytes: directoryBytes(path) });
+    const inspirationFiles = join(roots.workspace, INSPIRATION_PATHS.files);
+    entries.push({ storageClass: "inspiration", path: inspirationFiles, bytes: directoryBytes(inspirationFiles) });
   }
-  const totals: Record<StorageClass, number> = { output: 0, cache: 0, evidence: 0, proxies: 0, runtime: 0 };
+  const totals: Record<StorageClass, number> = { output: 0, cache: 0, evidence: 0, proxies: 0, runtime: 0, inspiration: 0 };
   for (const entry of entries) totals[entry.storageClass] += entry.bytes;
   entries.sort((left, right) => right.bytes - left.bytes);
   return { totals, entries: entries.filter((entry) => entry.bytes > 0), warnings: budgetWarnings(entries, totals, budgets, videoId !== undefined) };
@@ -90,6 +95,7 @@ export function loadBudgets(workspaceRoot: string): StorageBudgets {
 /** What `vcr storage clear` would delete. Only regenerable classes; filters apply to output renders. */
 export function planClear(roots: StorageRoots, storageClass: string, options: ClearOptions): Result<DeletionPlan> {
   if (storageClass === "evidence") return fail("INVALID_ARGUMENT", "Evidence is committed and not regenerable, so it is never cleared. Use `vcr storage prune evidence --video <id> --keep <n>`.");
+  if (storageClass === "inspiration") return fail("INVALID_ARGUMENT", "Inspiration files are the user's own copies and cannot be regenerated, so they are never cleared. Remove one item with `vcr inspiration remove <id>`.");
   if (!CLEARABLE_CLASSES.includes(storageClass as ClearableClass)) return fail("INVALID_ARGUMENT", `Unknown storage class "${storageClass}". Clearable: ${CLEARABLE_CLASSES.join(", ")}.`);
   const root = classRoots(roots).get(storageClass as ClearableClass)!;
   const hasRenderFilters = options.videoId !== undefined || options.renderId !== undefined || options.olderThanDays !== undefined || options.keepLatest !== undefined;
@@ -142,7 +148,7 @@ export function applyPlan(plan: DeletionPlan): DeletionPlan {
 export function formatStorageReport(report: StorageReport, offset: number, limit: number): string {
   const lines = [`totals: ${Object.entries(report.totals).map(([storageClass, bytes]) => `${storageClass} ${formatBytes(bytes)}`).join(", ")}`];
   const page = report.entries.slice(offset, offset + limit);
-  for (const entry of page) lines.push(`${formatBytes(entry.bytes).padStart(9)}  ${entry.storageClass.padEnd(8)}  ${entry.videoId ? `${entry.videoId} ${entry.renderId ?? ""}`.trim() : entry.path}`);
+  for (const entry of page) lines.push(`${formatBytes(entry.bytes).padStart(9)}  ${entry.storageClass.padEnd(11)}  ${entry.videoId ? `${entry.videoId} ${entry.renderId ?? ""}`.trim() : entry.path}`);
   if (report.entries.length > offset + page.length) lines.push(`${offset + 1}–${offset + page.length} of ${report.entries.length}; next page: --offset ${offset + page.length}`);
   lines.push(...report.warnings.map((warning) => `warning: ${warning}`));
   return lines.join("\n");
@@ -177,11 +183,11 @@ function classRoots(roots: StorageRoots): Map<ClearableClass, string> {
   ]);
 }
 
-/** The last guard before deletion: inside the class root, and never inside a project, a review directory or the workspace marker. */
+/** The last guard before deletion: inside the class root, and never inside a project, the inspiration library, a review directory or the workspace marker. */
 function isSafeToClear(path: string, classRoot: string, workspaceRoot: string): boolean {
   const absolute = resolve(path);
   if (!isInside(absolute, resolve(classRoot)) || absolute === resolve(classRoot)) return false;
-  const protectedRoots = [join(workspaceRoot, "projects"), join(workspaceRoot, WORKSPACE_MARKER)].map((entry) => resolve(entry));
+  const protectedRoots = [join(workspaceRoot, "projects"), join(workspaceRoot, "inspiration"), join(workspaceRoot, WORKSPACE_MARKER)].map((entry) => resolve(entry));
   return !protectedRoots.some((protectedRoot) => isInside(absolute, protectedRoot) || isInside(protectedRoot, absolute)) && !absolute.split(sep).includes(REVIEW_PATHS.directory);
 }
 
@@ -222,7 +228,7 @@ function toPlan(storageClass: StorageClass, paths: string[]): DeletionPlan {
 }
 
 /** Sums file sizes without following symbolic links, so a linked directory is never counted or crossed. */
-function directoryBytes(path: string): number {
+export function directoryBytes(path: string): number {
   if (!existsSync(path) && !isSymbolicLink(path)) return 0;
   const stats = lstatSync(path);
   if (!stats.isDirectory()) return stats.isFile() ? stats.size : 0;
@@ -241,7 +247,7 @@ function isInside(path: string, directory: string): boolean {
   return path === directory || path.startsWith(directory + sep);
 }
 
-function displayPath(path: string, workspaceRoot: string): string {
+export function displayPath(path: string, workspaceRoot: string): string {
   const relativePath = relative(workspaceRoot, path);
   return relativePath.startsWith("..") ? path : relativePath;
 }
