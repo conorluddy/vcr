@@ -15,6 +15,7 @@ import { listVideoDirectories } from "./video.js";
 import { loadBudgets, storageReport } from "./storage.js";
 import { REVIEW_SUMMARY_FILE, reviewSummaryDiagnostics } from "./review-summary.js";
 import { BEAT_SHEET_FILE, beatSheetDiagnostics, type BeatSheet } from "./plan-check.js";
+import { INSPIRATION_PATHS, inspirationCitationDiagnostics, inspirationDiagnostics, type InspirationItem, type LoadedInspirationItem } from "./inspiration-record.js";
 import { parseVideoBrief, SERIES_BRIEF_FILE, seriesBriefDiagnostics, VIDEO_BRIEF_FILE, videoBriefDiagnostics, type SeriesBrief, type VideoBriefFrontMatter } from "./brief.js";
 
 // === TYPES ===
@@ -153,13 +154,23 @@ function checkWorkspaceDocuments(check: Check, checkDocument: CheckDocument, wor
   for (const projectPath of listFilesNamed(join(workspaceRoot, "projects"), "project.json")) check(projectPath, "project");
   for (const referencePath of listJsonFiles(join(workspaceRoot, "references"))) check(referencePath, "reference");
   const diagnostics: Diagnostic[] = [];
+  const inspiration: LoadedInspirationItem[] = [];
+  for (const itemPath of listJsonFiles(join(workspaceRoot, INSPIRATION_PATHS.items))) {
+    const item = check(itemPath, "inspiration") as InspirationItem | undefined;
+    if (item) inspiration.push({ item, file: relative(workspaceRoot, itemPath) });
+  }
+  diagnostics.push(...inspirationDiagnostics(inspiration, workspaceRoot));
+  const inspirationIds = new Set(inspiration.map(({ item }) => item.id));
   const seriesBriefs = new Map<string, SeriesBrief | undefined>();
   const seriesBriefFor = (project: string): SeriesBrief | undefined => {
     if (seriesBriefs.has(project)) return seriesBriefs.get(project);
     const projectDirectory = join(workspaceRoot, "projects", project);
     const path = join(projectDirectory, SERIES_BRIEF_FILE);
     const brief = existsSync(path) ? (check(path, "seriesBrief") as SeriesBrief | undefined) : undefined;
-    if (brief) diagnostics.push(...seriesBriefDiagnostics(brief, projectDirectory, relative(workspaceRoot, path)));
+    if (brief) {
+      diagnostics.push(...seriesBriefDiagnostics(brief, projectDirectory, relative(workspaceRoot, path)));
+      diagnostics.push(...inspirationCitationDiagnostics((brief.inspiration ?? []).map((cited) => cited.id), inspirationIds, relative(workspaceRoot, path), "/inspiration"));
+    }
     seriesBriefs.set(project, brief);
     return brief;
   };
@@ -170,7 +181,7 @@ function checkWorkspaceDocuments(check: Check, checkDocument: CheckDocument, wor
     const seriesBrief = seriesBriefFor(videoId.split("/")[0]!);
     const briefPath = join(directory, VIDEO_BRIEF_FILE);
     const videoBrief = existsSync(briefPath) ? checkVideoBrief(checkDocument, briefPath, videoId, seriesBrief, relative(workspaceRoot, briefPath)) : undefined;
-    if (videoBrief) diagnostics.push(...videoBrief.diagnostics);
+    if (videoBrief) diagnostics.push(...videoBrief.diagnostics, ...inspirationCitationDiagnostics(videoBrief.frontMatter?.inspiration ?? [], inspirationIds, relative(workspaceRoot, briefPath), "/inspiration"));
     const beatsPath = join(directory, BEAT_SHEET_FILE);
     const beats = existsSync(beatsPath) ? (check(beatsPath, "beatSheet") as BeatSheet | undefined) : undefined;
     if (beats) diagnostics.push(...beatSheetDiagnostics(beats, videoId, videoBrief?.frontMatter?.deliverables.map(deliverableFps), relative(workspaceRoot, beatsPath)));
@@ -236,6 +247,7 @@ function loadSchemas(repositoryRoot: string) {
     seriesBrief: ajv.compile(load("series-brief")),
     videoBrief: ajv.compile(load("video-brief")),
     beatSheet: ajv.compile(load("beat-sheet")),
+    inspiration: ajv.compile(load("inspiration")),
   };
 }
 

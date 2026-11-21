@@ -16,6 +16,16 @@
         "evidence_warn_bytes": { "type": "integer", "minimum": 0, "description": "Default 2 MB per video" }
       },
       "additionalProperties": false
+    },
+    "models": {
+      "type": "object",
+      "description": "The model each agent runs on in this workspace, keyed by agent name (ADR 0013). A value is a model name, or one name per host where they differ. An agent not listed uses the model in its own definition. VCR reports this map and never checks a name: only the host knows what it accepts",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string", "minLength": 1 },
+          { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 }, "description": "Keyed by host" }
+        ]
+      }
     }
   },
   "additionalProperties": true

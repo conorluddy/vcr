@@ -1,7 +1,7 @@
 # 0012. Stated, measured and judged are kept apart
 
 Date: 2026-11-21
-Status: proposed
+Status: accepted
 
 ## Context
 

@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vcr.local/schemas/inspiration.schema.json",
+  "title": "VCR inspiration item",
+  "description": "One item in the workspace inspiration library, inspiration/items/<id>.json (ADR 0011). The file it describes is copied to the git-ignored inspiration/files/<id>/. What a person stated (note, aspects, use, rights, source), what a tool measured (facts) and what a model judged (observations) stay in separate fields (ADR 0012): no agent writes the stated fields, and observations never stand in for a note.",
+  "type": "object",
+  "required": ["schema_version", "id", "kind", "title", "use", "added_at"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$", "description": "The file name without .json. A slug of the source file name plus the first six hex of its sha256; a colour set uses a slug of its title" },
+    "kind": { "enum": ["image", "video", "font", "colours"] },
+    "title": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "note": { "type": "string", "minLength": 1, "maxLength": 400, "description": "Stated: what the user likes in this item, in their words. Only a person writes it" },
+    "aspects": {
+      "type": "array",
+      "description": "Stated: what to take from the item",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/aspect" }
+    },
+    "use": { "enum": ["inspiration", "asset"], "description": "Stated. An inspiration item informs a treatment and never appears in output; only an asset with rights evidence may" },
+    "rights": {
+      "description": "Stated. Required when use is asset; \"unknown\" is recorded honestly and fails validation on an asset",
+      "oneOf": [
+        { "const": "unknown" },
+        {
+          "type": "object",
+          "required": ["evidence"],
+          "properties": {
+            "evidence": { "type": "string", "minLength": 1, "description": "Where permission comes from: a licence name and locator, a purchase record, or own work" },
+            "attribution": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "description": "Stated. Recorded as text; nothing is fetched",
+      "properties": {
+        "locator": { "type": "string", "minLength": 1, "description": "URL or other address the item came from" },
+        "creator": { "type": "string", "minLength": 1 },
+        "accessed": { "type": "string", "format": "date" }
+      },
+      "additionalProperties": false
+    },
+    "file": {
+      "type": "object",
+      "description": "The copied file at inspiration/files/<id>/<name>. Absent for a colour set",
+      "required": ["name", "sha256", "bytes", "media_type"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "pattern": "^[^/\\\\]+$" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "bytes": { "type": "integer", "minimum": 0 },
+        "media_type": { "type": "string", "pattern": "^[a-z]+/[A-Za-z0-9.+-]+$" }
+      },
+      "additionalProperties": false
+    },
+    "colours": {
+      "type": "array",
+      "description": "kind colours only: the values as the user gave them",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/hex" }
+    },
+    "facts": {
+      "type": "object",
+      "description": "Measured from the file at intake. Stored because the file is fixed by its hash and the tool may be absent later (ADR 0012)",
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "dominant_colours": {
+          "type": "array",
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["hex", "share"],
+            "properties": { "hex": { "$ref": "#/$defs/hex" }, "share": { "type": "number", "minimum": 0, "maximum": 1 } },
+            "additionalProperties": false
+          }
+        },
+        "duration_s": { "type": "number", "minimum": 0 },
+        "fps": { "type": "number", "exclusiveMinimum": 0 },
+        "has_audio": { "type": "boolean" },
+        "family": { "type": "string" },
+        "subfamily": { "type": "string" },
+        "weight_class": { "type": "integer", "minimum": 1, "maximum": 1000 },
+        "italic": { "type": "boolean" },
+        "licence": { "type": "string", "description": "The font's own licence string, as embedded. Not rights evidence" }
+      },
+      "additionalProperties": false
+    },
+    "facts_by": {
+      "type": "object",
+      "required": ["tool", "version"],
+      "properties": { "tool": { "type": "string", "minLength": 1 }, "version": { "type": "string", "minLength": 1 } },
+      "additionalProperties": false
+    },
+    "observations": {
+      "type": "array",
+      "description": "Judged: what a model saw. Appended only through `vcr inspiration observe`",
+      "items": {
+        "type": "object",
+        "required": ["aspect", "observed", "by", "at"],
+        "properties": {
+          "aspect": { "$ref": "#/$defs/aspect" },
+          "observed": { "type": "string", "minLength": 1, "maxLength": 400, "description": "What is there, described" },
+          "inferred": { "type": "string", "minLength": 1, "maxLength": 300, "description": "A principle that could transfer, kept apart from the description (VREF-LAYERS-SEPARATED)" },
+          "span": { "type": "string", "minLength": 1, "description": "The inspected time span a claim about a video rests on, as t=<start>,<end> in seconds (VREF-TEMPORAL-SPAN)" },
+          "by": {
+            "type": "object",
+            "required": ["agent", "model"],
+            "properties": { "agent": { "type": "string", "minLength": 1 }, "model": { "type": "string", "minLength": 1 } },
+            "additionalProperties": false
+          },
+          "at": { "type": "string", "format": "date-time" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "added_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "description": "A colour set has values and no file; every other kind has a file and no values",
+      "if": { "required": ["kind"], "properties": { "kind": { "const": "colours" } } },
+      "then": { "required": ["colours"], "not": { "anyOf": [{ "required": ["file"] }, { "required": ["facts"] }] } },
+      "else": { "required": ["file"], "not": { "required": ["colours"] } }
+    },
+    {
+      "description": "An asset states its rights",
+      "if": { "required": ["use"], "properties": { "use": { "const": "asset" } } },
+      "then": { "required": ["rights"] }
+    },
+    {
+      "description": "Facts name the tool that measured them",
+      "if": { "required": ["facts"] },
+      "then": { "required": ["facts_by"] }
+    }
+  ],
+  "$defs": {
+    "aspect": { "enum": ["palette", "typography", "composition", "motion", "texture", "pacing", "tone"] },
+    "hex": { "type": "string", "pattern": "^#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$" }
+  }
+}

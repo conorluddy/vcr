@@ -1,7 +1,7 @@
 # 0013. Models are chosen per agent, in the workspace
 
 Date: 2026-11-21
-Status: proposed
+Status: accepted
 
 ## Context
 

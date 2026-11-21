@@ -39,6 +39,11 @@ describe("briefs", () => {
     expect(parsed).toMatchObject({ ok: true, value: { frontMatter: { video_id: "demo/teaser", deliverables: ["1080x1920@30"] }, body: "body" } });
   });
 
+  test("a series brief citing inspiration that is not in the library is an error", () => {
+    const series = { ...lowTideLab(), inspiration: [{ id: "tide-chart", takes: "One accent colour against a near-black field." }] };
+    expect(messages(workspaceWithBriefs(validFrontMatter, sections, series))).toEqual(['error /inspiration: cites inspiration "tide-chart", which is not in inspiration/items/']);
+  });
+
   test("a series brief missing its required decisions is rejected", () => {
     const { evaluation: _evaluation, ...withoutEvaluation } = lowTideLab();
     expect(messages(workspaceWithBriefs(validFrontMatter, sections, withoutEvaluation))).toContainEqual(expect.stringContaining("evaluation"));

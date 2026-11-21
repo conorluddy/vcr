@@ -43,6 +43,15 @@
       "type": "string",
       "format": "date",
       "description": "Set only after the human confirms the brief; rendering waits for it (AG-04)"
+    },
+    "inspiration": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "description": "Ids from the workspace inspiration library (inspiration/items/) this video draws on; each must resolve"
     }
   },
   "additionalProperties": false
