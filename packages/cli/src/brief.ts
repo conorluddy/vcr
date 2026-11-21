@@ -17,6 +17,8 @@ export interface SeriesBrief {
   deliverables: Array<{ width: number; height: number; fps: number }>;
   mandatories?: Array<{ id: string; rule: string }>;
   accessibility?: { flashProfile?: FlashProfile };
+  /** Items of the workspace inspiration library this series draws on (ADR 0011). */
+  inspiration?: Array<{ id: string; takes: string; avoid?: string }>;
 }
 
 export type FlashProfile = "wcag" | "broadcast" | "strict";
@@ -28,6 +30,8 @@ export interface VideoBriefFrontMatter {
   flash_profile?: FlashProfile;
   route?: string;
   confirmed?: string;
+  /** Ids from the workspace inspiration library this video draws on. */
+  inspiration?: string[];
 }
 
 export interface ParsedVideoBrief {
@@ -48,7 +52,7 @@ const FLASH_STRICTNESS: FlashProfile[] = ["wcag", "broadcast", "strict"];
  */
 export function parseVideoBrief(markdown: string): Result<ParsedVideoBrief> {
   const match = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/.exec(markdown);
-  if (!match) return fail("INVALID_BRIEF", "brief.md must start with front matter between --- lines (video_id, deliverables, optional series_brief, flash_profile, route, confirmed).");
+  if (!match) return fail("INVALID_BRIEF", "brief.md must start with front matter between --- lines (video_id, deliverables, optional series_brief, flash_profile, route, confirmed, inspiration).");
   const frontMatter: Record<string, string | string[]> = {};
   let listKey: string | undefined;
   for (const [index, rawLine] of match[1]!.split(/\r?\n/).entries()) {

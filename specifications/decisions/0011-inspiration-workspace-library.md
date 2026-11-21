@@ -1,7 +1,7 @@
 # 0011. Inspiration is a workspace library, separate from assets
 
 Date: 2026-11-21
-Status: proposed
+Status: accepted
 
 ## Context
 

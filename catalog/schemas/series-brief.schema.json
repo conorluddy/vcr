@@ -601,6 +601,34 @@
           "type": "string"
         }
       }
+    },
+    "inspiration": {
+      "type": "array",
+      "description": "Items of the workspace inspiration library (inspiration/items/) the series draws on. Each id must resolve; the item's own note says what the user likes, this says what the series does with it",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "takes"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "takes": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What the series takes from the item, as a principle and not its surface"
+          },
+          "avoid": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What must not be carried over"
+          }
+        },
+        "additionalProperties": false
+      }
     }
   },
   "$defs": {
