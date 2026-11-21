@@ -3,21 +3,47 @@
   "name": "Duotone / gradient map",
   "one_line": "Luminance mapped onto a ramp of chosen colours, so a whole image speaks in one palette",
   "summary": "An image is reduced to its brightness and re-coloured along a short ramp, shadows in one hue and highlights in another. It unifies mixed photography under a brand palette and reads as bold, graphic and deliberate. A print duotone of overprinted inks looks different from a simple ramp, so choose which is meant.",
-  "purposes": ["brand-cohesion", "graphic-boldness"],
-  "mechanisms": ["colour-remapping", "tone-quantisation"],
+  "purposes": [
+    "brand-cohesion",
+    "graphic-boldness"
+  ],
+  "mechanisms": [
+    "colour-remapping",
+    "tone-quantisation"
+  ],
   "craft": [
-    { "pillar": "fx", "section": "4", "rules": ["FX-LUT-SPACE", "FX-BLEND-SPACE-DECLARED", "FX-BLEND-SPACE-CONSISTENT"] }
+    {
+      "pillar": "fx",
+      "section": "4",
+      "rules": [
+        "FX-LUT-SPACE",
+        "FX-BLEND-SPACE-DECLARED",
+        "FX-BLEND-SPACE-CONSISTENT"
+      ]
+    }
   ],
   "related": [
-    { "id": "film-grain", "relation": "combines" },
-    { "id": "bloom-glow", "relation": "contrasts" }
+    {
+      "id": "film-grain",
+      "relation": "combines"
+    },
+    {
+      "id": "bloom-glow",
+      "relation": "contrasts"
+    }
   ],
   "routes": [
     {
       "id": "native-stills",
       "one_line": "Map luminance to a colour ramp on stills or frames from the command line",
       "steps": [
-        { "does": "Convert each still or frame to grey, then map it onto the chosen ink colours", "capability": "image-processing", "tools": ["imagemagick"] }
+        {
+          "does": "Convert each still or frame to grey, then map it onto the chosen ink colours",
+          "capability": "image-processing",
+          "tools": [
+            "imagemagick"
+          ]
+        }
       ],
       "limits": [
         "ImageMagick evidence covers drawing solid frames, not colour mapping",
@@ -29,7 +55,13 @@
       "id": "fragment-shader",
       "one_line": "Sample a ramp by pixel luminance in a fragment shader, live over footage or a scene",
       "steps": [
-        { "does": "Compute luminance per pixel and look up the ramp colour, with ramp stops free to animate from t", "capability": "shaders", "tools": ["webgl"] }
+        {
+          "does": "Compute luminance per pixel and look up the ramp colour, with ramp stops free to animate from t",
+          "capability": "shaders",
+          "tools": [
+            "webgl"
+          ]
+        }
       ],
       "limits": [
         "WebGL evidence is a software-rendered triangle read back, not a textured full-frame effect",
@@ -40,7 +72,13 @@
       "id": "filtergraph",
       "one_line": "Grey and look-up the colours across a whole clip or sequence in a filtergraph",
       "steps": [
-        { "does": "Convert to grey and remap through a lookup or generated colour table over the video", "capability": "video-composition", "tools": ["ffmpeg-ffprobe"] }
+        {
+          "does": "Convert to grey and remap through a lookup or generated colour table over the video",
+          "capability": "video-composition",
+          "tools": [
+            "ffmpeg-ffprobe"
+          ]
+        }
       ],
       "limits": [
         "FFmpeg evidence is a PNG sequence muxed to MP4; no colour lookup is exercised",

@@ -52,10 +52,12 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `synfig-static-render` | synfig | Static SIF rectangle to 160x120 PNG; pixel probes and repeated file hash (2026-11-16) |
 | `inkscape-svg-export` | inkscape | SVG page to 128x96 PNG; pixel probes and repeated file hash (2026-11-16) |
 | `hyperframes-static-square` | hyperframes | Static HTML composition to 12 PNG frames; exact square bounds and repeated pixel hashes (2026-11-16) |
+| `canvas2d-count-up` | canvas-2d, playwright, imagemagick | canvas-text figure counts 0 to 1250 with a clamped ease-out: monotonic, lands exactly and holds, position stable, shuffled equals sequential (2026-11-20) |
+| `svg-paper-collage` | svg, web-animations-api, playwright, imagemagick | six inline SVG paper pieces (embedded still, irregular mat, feDropShadow) animated via seeked element.animate; alpha, settles, shuffled equals sequential (2026-11-20) |
+| `waapi-word-stagger` | web-animations-api, playwright, imagemagick | seven-word line split into spans, one paused animation per word, onsets exactly 3 frames apart, settles fully visible, shuffled equals sequential (2026-11-20) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 
 ## Outside this repository
 
 `vcr example create <id>` copies an example into `<workspace>/examples/<id>` and prints the commands to run it. Browser examples arrive without `capture.ts`, `run.sh` and `expected/` (they depend on this pnpm workspace) and with a standalone `package.json`; render them with `vcr capture` using the `capture` block. Native examples (`native-svg`, `ffmpeg-assembly`, `blender-smoke`) keep their standalone `run.sh` and `expected/`. `*.test.ts`, `node_modules/` and `output/` never travel.
-

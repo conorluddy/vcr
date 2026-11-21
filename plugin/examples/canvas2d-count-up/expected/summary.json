@@ -1,0 +1,29 @@
+{
+  "frames": 90,
+  "width": 1280,
+  "height": 720,
+  "shuffled_matches_sequential": true,
+  "frame_45_alpha": {
+    "min": 0,
+    "max": 1
+  },
+  "distinct_hashes": 56,
+  "count_up": {
+    "monotonic_non_decreasing": true,
+    "never_exceeds_target": true,
+    "first_value_is_start": true,
+    "target_from_2s_exactly": true,
+    "last_two_hashes_identical": true,
+    "same_digit_frames": 65,
+    "same_digit_left_and_width_identical": true,
+    "distinct_values": 56,
+    "values_at_0_15_30_45_60_89": [
+      0,
+      723,
+      1094,
+      1230,
+      1250,
+      1250
+    ]
+  }
+}

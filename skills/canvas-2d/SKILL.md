@@ -12,6 +12,7 @@ Immediate-mode drawing with no library: `seek(t)` clears the canvas and redraws 
 ## Use cases and limits
 - Proven: linear gradients fading to transparent, arcs, filled and stroked paths, many small seeded shapes, text in a loaded font, all captured with alpha.
 - Untested here: `drawImage` and images, `getImageData` and pixel access, `globalCompositeOperation` modes, filters, `OffscreenCanvas`, `devicePixelRatio` above 1, system fonts.
+- Canvas text is invisible to `vcr lint` unless the scene exposes `textBounds()` (see the scene contract in the `start` skill); without it lint reports *unable to assess*. Record a box for each string as you draw it.
 - No scene graph or easing: you write the maths. For generative sketches with helpers use `p5-js`; for DOM or SVG elements use `anime-js` or `web-animations-api`.
 
 ## Capability map

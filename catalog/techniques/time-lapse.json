@@ -3,23 +3,54 @@
   "name": "Time-lapse",
   "one_line": "A long period compressed into seconds: a clock, strip or interface running fast through a day",
   "summary": "A span of hours or days is played in moments, shown by a clock hand sweeping, a schedule strip scrolling or an interface passing through its states. It lets the viewer feel a whole day elapse and see what changes across it. Fast circular or striped motion can alias into stutter or apparent reversal, and the pace needs to stay even so the span reads true.",
-  "purposes": ["time-passing", "progress-and-scale"],
-  "mechanisms": ["time-compression", "lateral-scroll"],
+  "purposes": [
+    "time-passing",
+    "progress-and-scale"
+  ],
+  "mechanisms": [
+    "time-compression",
+    "lateral-scroll"
+  ],
   "craft": [
-    { "pillar": "data-visualisation", "section": "2.4", "rules": ["DATA-TIME-LINEAR", "DATA-TREND-SUMMARY"] },
-    { "pillar": "motion-director", "section": "7", "rules": ["MOTION-FPS-002", "MOTION-FPS-003"] }
+    {
+      "pillar": "data-visualisation",
+      "section": "2.4",
+      "rules": [
+        "DATA-TIME-LINEAR",
+        "DATA-TREND-SUMMARY"
+      ]
+    },
+    {
+      "pillar": "motion-director",
+      "section": "7",
+      "rules": [
+        "MOTION-FPS-002",
+        "MOTION-FPS-003"
+      ]
+    }
   ],
   "related": [
-    { "id": "tint-cycle", "relation": "combines" },
-    { "id": "count-up", "relation": "contrasts" }
+    {
+      "id": "tint-cycle",
+      "relation": "combines"
+    },
+    {
+      "id": "count-up",
+      "relation": "contrasts"
+    }
   ],
   "routes": [
     {
       "id": "waapi-strip",
       "one_line": "Scroll a schedule strip or turn a clock hand with seeked Web Animations API tweens",
       "steps": [
-        { "does": "Animate strip position or hand rotation across the compressed span from t", "capability": "timeline-animation", "tools": ["web-animations-api"] },
-        { "does": "Seek, settle and screenshot each frame of the page", "capability": "capture", "tools": ["playwright"] }
+        {
+          "does": "Animate strip position or hand rotation across the compressed span from t",
+          "capability": "timeline-animation",
+          "tools": [
+            "web-animations-api"
+          ]
+        }
       ],
       "limits": [
         "Evidence covers transform tweens, not many-state interface changes along one span",
@@ -30,8 +61,13 @@
       "id": "anime-timeline",
       "one_line": "Run a clock, strip and state changes on one seekable Anime.js timeline",
       "steps": [
-        { "does": "Sequence hand, strip and state changes on one timeline across the compressed span", "capability": "timeline-animation", "tools": ["anime-js"] },
-        { "does": "Seek, settle and screenshot each frame of the page", "capability": "capture", "tools": ["playwright"] }
+        {
+          "does": "Sequence hand, strip and state changes on one timeline across the compressed span",
+          "capability": "timeline-animation",
+          "tools": [
+            "anime-js"
+          ]
+        }
       ],
       "limits": [
         "Evidence covers transform tween, SVG draw and stagger, not long multi-track timelines",
@@ -42,7 +78,13 @@
       "id": "canvas-clock",
       "one_line": "Redraw a clock face or strip on a 2D canvas, with time mapped from t",
       "steps": [
-        { "does": "Map scene time to clock time and draw the face, hands or strip each seek", "capability": "2d-rendering", "tools": ["canvas-2d"] }
+        {
+          "does": "Map scene time to clock time and draw the face, hands or strip each seek",
+          "capability": "2d-rendering",
+          "tools": [
+            "canvas-2d"
+          ]
+        }
       ],
       "limits": [
         "Evidence includes a changing time readout, not a full clock face with fast-turning hands",

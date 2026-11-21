@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  html, body { margin: 0; background: transparent; width: 100%; height: 100%; overflow: hidden; }
+  #line { position: absolute; left: 0; right: 0; top: 40%; text-align: center; font: 700 48px "VCR JetBrains Mono"; color: #f4f1e8; text-shadow: 0 2px 0 #1b2a3a, 0 0 6px #1b2a3a; white-space: pre; }
+  .word { display: inline-block; opacity: 0; will-change: transform, opacity; }
+</style>
+</head>
+<body>
+<div id="line"></div>
+<script>
+  // Words are split in this script; every animation is created paused and positioned only via currentTime, so seek(t) rebuilds all state from t.
+  const TEXT = "Every word arrives on its own beat";
+  const FPS = 30, STAGGER_FRAMES = 3, WORD_MS = 500, DURATION_S = 3;
+  const staggerMs = (STAGGER_FRAMES / FPS) * 1000;
+  const FONT_FAMILY = "VCR JetBrains Mono";
+  const container = document.querySelector("#line");
+  const words = TEXT.split(" ").map((text, index, all) => {
+    const span = document.createElement("span");
+    span.className = "word";
+    span.textContent = text;
+    container.append(span);
+    if (index < all.length - 1) container.append(" ");
+    return span;
+  });
+  const animations = words.map((span, index) => {
+    const animation = span.animate(
+      [{ opacity: 0, transform: "translateY(24px)" }, { opacity: 1, transform: "translateY(0)" }],
+      { duration: WORD_MS, delay: index * staggerMs, easing: "cubic-bezier(0.215, 0.61, 0.355, 1)", fill: "both" });
+    animation.pause();
+    return animation;
+  });
+  const seek = (t) => { for (const animation of animations) animation.currentTime = t * 1000; };
+  const probe = (t) => { seek(t); return words.map((span) => Number(getComputedStyle(span).opacity)); };
+
+  const wordsInsideViewport = () => words.every((span) => { const box = span.getBoundingClientRect(); return box.left >= 0 && box.right <= innerWidth; });
+
+  (async () => {
+    const font = new FontFace(FONT_FAMILY, "url(./fonts/JetBrainsMono-Bold.ttf)", { weight: "700" });
+    document.fonts.add(await font.load());
+    await document.fonts.ready;
+    if (!document.fonts.check(`700 48px "${FONT_FAMILY}"`)) throw new Error("font did not load");
+    seek(0);
+    window.__scene = { duration: DURATION_S, seek, probe, wordsInsideViewport, markers: words.map((_, index) => ({ word: index, onsetFrame: index * STAGGER_FRAMES })) };
+  })();
+</script>
+</body>
+</html>

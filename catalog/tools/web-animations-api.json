@@ -57,6 +57,15 @@
         "result": "90 alpha frames at 1280x720 via the @vcr/capture screenshot route (Playwright 1.64.1); shuffled matches sequential in 3 runs; frame 45 alpha min 0 max 1. Passed first run; also passed with will-change removed.",
         "example": "examples/waapi-capture",
         "scope": "element.animate() paused, seeked via currentTime: transform, SVG stroke draw, staggered opacity; alpha; macOS arm64 Chromium. Not CSS animations, getAnimations(), scroll timelines."
+      },
+      {
+        "date": "2026-11-20",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "Chromium 156.0.8078.4",
+        "command": "examples/waapi-word-stagger/run.sh",
+        "result": "90 alpha frames at 1280x720 via the @vcr/capture screenshot route (Playwright 1.64.1); shuffled matches sequential; frame 0 alpha max 0; 7 word onsets exactly 3 frames apart; all words opacity 1 and last two frames identical.",
+        "example": "examples/waapi-word-stagger",
+        "scope": "Per-word paused element.animate() (opacity+translate) seeked via currentTime; 3-frame onset stagger, settles visible; one line, JetBrains Mono; macOS arm64 Chromium. Not CSS animations/scroll."
       }
     ]
   },
@@ -65,7 +74,9 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
     "waapi-capture",
-    "browser-capture"
+    "browser-capture",
+    "waapi-word-stagger",
+    "svg-paper-collage"
   ],
   "skill": "skills/web-animations-api/SKILL.md"
 }

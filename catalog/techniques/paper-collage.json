@@ -3,26 +3,80 @@
   "name": "Paper collage",
   "one_line": "Cut-out and torn-paper layers with soft shadows, stacked and moved like a hand-made set",
   "summary": "Subjects and shapes become flat paper pieces with rough edges, small shadows and slight tilts, stacked into a layered scene. It reads as hand-made, editorial and argumentative, setting unlike things side by side. Repeated identical tears and perfect vector edges give it away as a preset.",
-  "purposes": ["handmade-warmth", "editorial-argument"],
-  "mechanisms": ["cut-out-masking", "depth-layering"],
+  "purposes": [
+    "handmade-warmth",
+    "editorial-argument"
+  ],
+  "mechanisms": [
+    "cut-out-masking",
+    "depth-layering"
+  ],
   "craft": [
-    { "pillar": "fx", "section": "7", "rules": ["FX-BLEND-SPACE-DECLARED", "FX-INTENSITY-RESTRAINT"] },
-    { "pillar": "fx", "section": "3", "rules": ["FX-MASK-EDGE", "FX-PREMULT-EDGES"] },
-    { "pillar": "image-direction", "section": "2.1", "rules": [] }
+    {
+      "pillar": "fx",
+      "section": "7",
+      "rules": [
+        "FX-BLEND-SPACE-DECLARED",
+        "FX-INTENSITY-RESTRAINT"
+      ]
+    },
+    {
+      "pillar": "fx",
+      "section": "3",
+      "rules": [
+        "FX-MASK-EDGE",
+        "FX-PREMULT-EDGES"
+      ]
+    },
+    {
+      "pillar": "image-direction",
+      "section": "2.1",
+      "rules": []
+    }
   ],
   "related": [
-    { "id": "parallax-photo", "relation": "combines" },
-    { "id": "toon-shading", "relation": "contrasts" }
+    {
+      "id": "parallax-photo",
+      "relation": "combines"
+    },
+    {
+      "id": "toon-shading",
+      "relation": "contrasts"
+    }
   ],
   "routes": [
     {
       "id": "photo-cutouts",
       "one_line": "Segment a subject from a photo, give it a paper edge and shadow, animate the layers",
       "steps": [
-        { "does": "Segment the subject from the photograph into a matte", "capability": "computer-vision", "tools": ["mediapipe"] },
-        { "does": "Roughen and feather the matte into a paper edge", "capability": "image-processing", "tools": ["sharp"] },
-        { "does": "Composite the cut-outs over a paper backdrop with drop shadows", "capability": "compositing", "tools": ["sharp"] },
-        { "does": "Move and tilt the layers in a browser scene, seeked per frame", "capability": "tweening", "tools": ["anime-js"] }
+        {
+          "does": "Segment the subject from the photograph into a matte",
+          "capability": "computer-vision",
+          "tools": [
+            "mediapipe"
+          ]
+        },
+        {
+          "does": "Roughen and feather the matte into a paper edge",
+          "capability": "image-processing",
+          "tools": [
+            "sharp"
+          ]
+        },
+        {
+          "does": "Composite the cut-outs over a paper backdrop with drop shadows",
+          "capability": "compositing",
+          "tools": [
+            "sharp"
+          ]
+        },
+        {
+          "does": "Move and tilt the layers in a browser scene, seeked per frame",
+          "capability": "tweening",
+          "tools": [
+            "anime-js"
+          ]
+        }
       ],
       "limits": [
         "MediaPipe evidence is one selfie-model run on one image; other subjects and video are untested",
@@ -35,14 +89,27 @@
       "id": "vector-paper",
       "one_line": "Paper pieces as vector shapes, or supplied stills placed as pieces, animated in the browser",
       "steps": [
-        { "does": "Author the paper shapes, tilted, layered and shadowed as vector art", "capability": "vector-authoring", "tools": ["svg"] },
-        { "does": "Slide and rotate the pieces on a seekable timeline", "capability": "tweening", "tools": ["web-animations-api"] }
+        {
+          "does": "Author the paper shapes, tilted, layered and shadowed as vector art",
+          "capability": "vector-authoring",
+          "tools": [
+            "svg"
+          ]
+        },
+        {
+          "does": "Slide and rotate the pieces on a seekable timeline",
+          "capability": "tweening",
+          "tools": [
+            "web-animations-api"
+          ]
+        }
       ],
       "limits": [
-        "SVG evidence is one static raster by resvg; no browser rendering, shadow filter or embedded still was exercised",
-        "Edges stay clean unless you draw irregular paths; torn texture is not included",
-        "WAAPI evidence covers transform, stroke draw and stagger on Chromium only"
-      ]
+        "The fixture uses generated pattern stills as data URLs; supplied image files must sit under the scene directory",
+        "Six pieces with one shadow filter each captured slowly; many pieces or large blurs are untested",
+        "Edges stay clean unless you draw irregular paths; reusing one edge gives the preset look"
+      ],
+      "example": "svg-paper-collage"
     }
   ],
   "checked_at": "2026-11-20",

@@ -3,23 +3,59 @@
   "name": "Carousel",
   "one_line": "Items drifting through the frame in a continuous lateral scroll or marquee, often looping",
   "summary": "A row or strip of items passes across the frame without stopping, so quantity and range read as ongoing rather than counted. It gives steady momentum under other content and suits logos, products or images in a set. Wrong spacing or speed makes it judder, and a loop that jumps at its seam breaks the illusion.",
-  "purposes": ["continuity", "variety-and-range"],
-  "mechanisms": ["lateral-scroll"],
+  "purposes": [
+    "continuity",
+    "variety-and-range"
+  ],
+  "mechanisms": [
+    "lateral-scroll"
+  ],
   "craft": [
-    { "pillar": "motion-director", "section": "6", "rules": ["MOTION-CAM-001", "MOTION-FPS-003"] },
-    { "pillar": "motion-director", "section": "5", "rules": ["MOTION-RHY-004"] },
-    { "pillar": "image-direction", "section": "5.1", "rules": ["IMAGE-SET-COHERENCE"] }
+    {
+      "pillar": "motion-director",
+      "section": "6",
+      "rules": [
+        "MOTION-CAM-001",
+        "MOTION-FPS-003"
+      ]
+    },
+    {
+      "pillar": "motion-director",
+      "section": "5",
+      "rules": [
+        "MOTION-RHY-004"
+      ]
+    },
+    {
+      "pillar": "image-direction",
+      "section": "5.1",
+      "rules": [
+        "IMAGE-SET-COHERENCE"
+      ]
+    }
   ],
   "related": [
-    { "id": "card-stack", "relation": "contrasts" },
-    { "id": "kinetic-type-stagger", "relation": "combines" }
+    {
+      "id": "card-stack",
+      "relation": "contrasts"
+    },
+    {
+      "id": "kinetic-type-stagger",
+      "relation": "combines"
+    }
   ],
   "routes": [
     {
       "id": "canvas-redraw",
       "one_line": "Strip redrawn each frame as a pure function of t, wrapped for a seamless loop",
       "steps": [
-        { "does": "Draw the repeating items at an offset computed from t, wrapping at the strip length", "capability": "2d-rendering", "tools": ["canvas-2d"] }
+        {
+          "does": "Draw the repeating items at an offset computed from t, wrapping at the strip length",
+          "capability": "2d-rendering",
+          "tools": [
+            "canvas-2d"
+          ]
+        }
       ],
       "limits": [
         "Suits supplied raster stills; Canvas 2D evidence excludes images and devicePixelRatio above 1",
@@ -31,8 +67,20 @@
       "id": "svg-anime-strip",
       "one_line": "Items in one vector strip translated on a seekable timeline, looping by duplication",
       "steps": [
-        { "does": "Author the item strip as vector art, repeated so the loop has no gap", "capability": "vector-authoring", "tools": ["svg"] },
-        { "does": "Translate the strip along one timeline, seeked per frame", "capability": "svg-animation", "tools": ["anime-js"] }
+        {
+          "does": "Author the item strip as vector art, repeated so the loop has no gap",
+          "capability": "vector-authoring",
+          "tools": [
+            "svg"
+          ]
+        },
+        {
+          "does": "Translate the strip along one timeline, seeked per frame",
+          "capability": "svg-animation",
+          "tools": [
+            "anime-js"
+          ]
+        }
       ],
       "limits": [
         "Suits drawn vectors; embedded stills are untested for SVG here",
@@ -44,7 +92,13 @@
       "id": "pixi-sprite-strip",
       "one_line": "Many supplied stills as sprites scrolled on the GPU, recycled at the edges",
       "steps": [
-        { "does": "Position sprites along the strip from t and recycle those leaving the frame", "capability": "2d-rendering", "tools": ["pixijs"] }
+        {
+          "does": "Position sprites along the strip from t and recycle those leaving the frame",
+          "capability": "2d-rendering",
+          "tools": [
+            "pixijs"
+          ]
+        }
       ],
       "limits": [
         "Suits supplied raster stills; PixiJS evidence is Graphics geometry, not sprites or textures",

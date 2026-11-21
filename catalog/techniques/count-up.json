@@ -3,33 +3,75 @@
   "name": "Count-up",
   "one_line": "A figure that runs up or down to its value: a statistic landing, a timer, hours elapsed",
   "summary": "A displayed figure runs from a starting value to the true one and then rests, or tracks a clock as a countdown or elapsed time. It adds anticipation to a statistic and shows time passing in a readout. The landing must show exactly the stated value, the figures must not shift sideways as digits change, and the count must not pass its target on the way.",
-  "purposes": ["emphasis", "progress-and-scale", "editorial-argument"],
-  "mechanisms": ["value-interpolation"],
+  "purposes": [
+    "emphasis",
+    "progress-and-scale",
+    "editorial-argument"
+  ],
+  "mechanisms": [
+    "value-interpolation"
+  ],
   "craft": [
-    { "pillar": "data-visualisation", "section": "4.1", "rules": ["DATA-COUNTUP-LAND", "DATA-COUNTUP-MONOTONIC", "DATA-NO-OVERSHOOT", "DATA-TIME-LINEAR"] },
-    { "pillar": "typography", "section": "5", "rules": ["TYPO-FEATURES", "TYPO-HOLD"] }
+    {
+      "pillar": "data-visualisation",
+      "section": "4.1",
+      "rules": [
+        "DATA-COUNTUP-LAND",
+        "DATA-COUNTUP-MONOTONIC",
+        "DATA-NO-OVERSHOOT",
+        "DATA-TIME-LINEAR"
+      ]
+    },
+    {
+      "pillar": "typography",
+      "section": "5",
+      "rules": [
+        "TYPO-FEATURES",
+        "TYPO-HOLD"
+      ]
+    }
   ],
   "related": [
-    { "id": "kinetic-type-stagger", "relation": "contrasts" },
-    { "id": "bloom-glow", "relation": "combines" }
+    {
+      "id": "kinetic-type-stagger",
+      "relation": "contrasts"
+    },
+    {
+      "id": "bloom-glow",
+      "relation": "combines"
+    }
   ],
   "routes": [
     {
       "id": "canvas-text",
       "one_line": "Interpolate the value from t and draw it as text on a 2D canvas",
       "steps": [
-        { "does": "Compute the displayed value from t, round it, and draw it as text each seek", "capability": "text-rendering", "tools": ["canvas-2d"] }
+        {
+          "does": "Compute the displayed value from t, round it, and draw it as text each seek",
+          "capability": "text-rendering",
+          "tools": [
+            "canvas-2d"
+          ]
+        }
       ],
       "limits": [
-        "Evidence shows a changing time readout, not a count that lands on a data value",
-        "No OpenType feature control, so tabular figures depend on the font chosen"
-      ]
+        "The fixture counts one integer in a monospaced font; proportional fonts and decimals are untested",
+        "No OpenType feature control, so tabular figures depend on the font or on fixed-width digit cells",
+        "Lint cannot see canvas text unless the scene exposes textBounds()"
+      ],
+      "example": "canvas2d-count-up"
     },
     {
       "id": "tween-driven",
       "one_line": "Tween a number object on a seekable timeline and write it to the page",
       "steps": [
-        { "does": "Tween a plain value on a paused timeline and write the rounded result to text each seek", "capability": "tweening", "tools": ["anime-js"] }
+        {
+          "does": "Tween a plain value on a paused timeline and write the rounded result to text each seek",
+          "capability": "tweening",
+          "tools": [
+            "anime-js"
+          ]
+        }
       ],
       "limits": [
         "Anime.js evidence covers transform, SVG draw and stagger, not tweening a number into text",
@@ -40,7 +82,13 @@
       "id": "data-interpolate",
       "one_line": "Drive the figure from a data scale and interpolator beside a chart",
       "steps": [
-        { "does": "Interpolate between values with a scale driven from t, shared with the chart", "capability": "data-visualisation", "tools": ["d3"] }
+        {
+          "does": "Interpolate between values with a scale driven from t, shared with the chart",
+          "capability": "data-visualisation",
+          "tools": [
+            "d3"
+          ]
+        }
       ],
       "limits": [
         "D3 evidence interpolates chart values, not a displayed numeral",

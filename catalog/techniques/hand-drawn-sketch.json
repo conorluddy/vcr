@@ -3,17 +3,49 @@
   "name": "Hand-drawn sketch",
   "one_line": "Wobbly, hachured shapes that look drawn by hand rather than constructed by software",
   "summary": "Rectangles, circles and paths are drawn with a loose, slightly uneven line and filled with hatching, as if sketched on a whiteboard or in a notebook. It adds warmth and informality and signals work in progress. The wobble must stay stable between frames unless boil is wanted, and one sketch style should hold across a piece.",
-  "purposes": ["handmade-warmth", "informality", "stylised-form"],
-  "mechanisms": ["stroke-wobble"],
+  "purposes": [
+    "handmade-warmth",
+    "informality",
+    "stylised-form"
+  ],
+  "mechanisms": [
+    "stroke-wobble"
+  ],
   "craft": [
-    { "pillar": "art-director", "section": "11", "rules": [] },
-    { "pillar": "art-director", "section": "7", "rules": ["ART-STY-05"] },
-    { "pillar": "fx", "section": "8.1", "rules": ["FX-SEED-DECLARED", "FX-NO-WALLCLOCK"] }
+    {
+      "pillar": "art-director",
+      "section": "11",
+      "rules": []
+    },
+    {
+      "pillar": "art-director",
+      "section": "7",
+      "rules": [
+        "ART-STY-05"
+      ]
+    },
+    {
+      "pillar": "fx",
+      "section": "8.1",
+      "rules": [
+        "FX-SEED-DECLARED",
+        "FX-NO-WALLCLOCK"
+      ]
+    }
   ],
   "related": [
-    { "id": "line-boil", "relation": "combines" },
-    { "id": "toon-shading", "relation": "contrasts" },
-    { "id": "paper-collage", "relation": "combines" }
+    {
+      "id": "line-boil",
+      "relation": "combines"
+    },
+    {
+      "id": "toon-shading",
+      "relation": "contrasts"
+    },
+    {
+      "id": "paper-collage",
+      "relation": "combines"
+    }
   ],
   "routes": [
     {
@@ -21,7 +53,13 @@
       "one_line": "Draw seeded sketchy shapes with Rough.js on a 2D canvas, redrawn from t",
       "example": "roughjs-capture",
       "steps": [
-        { "does": "Draw hachure, solid and path shapes with a fixed seed, redrawn on each seek", "capability": "2d-rendering", "tools": ["rough-js"] }
+        {
+          "does": "Draw hachure, solid and path shapes with a fixed seed, redrawn on each seek",
+          "capability": "2d-rendering",
+          "tools": [
+            "rough-js"
+          ]
+        }
       ],
       "limits": [
         "Evidence covers hachure and solid fills with a fixed seed; other fill styles are untested",
@@ -33,8 +71,20 @@
       "id": "rough-vector",
       "one_line": "Author sketchy vector shapes with Rough.js and place them in an SVG scene",
       "steps": [
-        { "does": "Generate sketchy shape geometry as vector paths", "capability": "vector-authoring", "tools": ["rough-js"] },
-        { "does": "Hold and animate the paths in an SVG scene", "capability": "svg-animation", "tools": ["svg"] }
+        {
+          "does": "Generate sketchy shape geometry as vector paths",
+          "capability": "vector-authoring",
+          "tools": [
+            "rough-js"
+          ]
+        },
+        {
+          "does": "Hold and animate the paths in an SVG scene",
+          "capability": "svg-animation",
+          "tools": [
+            "svg"
+          ]
+        }
       ],
       "limits": [
         "Rough.js evidence excludes SVG output, so the handoff to SVG is untested",
@@ -45,7 +95,13 @@
       "id": "wobble-by-hand",
       "one_line": "Perturb path points with seeded noise in a vector library",
       "steps": [
-        { "does": "Build paths whose points are offset by seeded noise computed from t", "capability": "vector-authoring", "tools": ["paper-js"] }
+        {
+          "does": "Build paths whose points are offset by seeded noise computed from t",
+          "capability": "vector-authoring",
+          "tools": [
+            "paper-js"
+          ]
+        }
       ],
       "limits": [
         "Paper.js evidence is a smoothed path and boolean union, not a hand-drawn look",

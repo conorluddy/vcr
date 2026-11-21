@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  html, body { margin: 0; background: transparent; width: 100%; height: 100%; overflow: hidden; }
+  svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<svg id="stage" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="6" dy="10" stdDeviation="9" flood-color="#000" flood-opacity="0.45" />
+    </filter>
+  </defs>
+  <g id="pieces"></g>
+</svg>
+<script>
+  // Seeded PRNG (mulberry32): no Math.random, no clocks.
+  const prng = (seed) => () => {
+    seed = (seed + 0x6d2b79f5) | 0;
+    let r = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r;
+    return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+  };
+
+  const IMAGE_WIDTH = 240, IMAGE_HEIGHT = 170, MAT = 18;
+  const palettes = [["#e4572e", "#f3a712"], ["#2e86ab", "#a8dadc"], ["#6a994e", "#f2e8cf"], ["#7b2cbf", "#ffafcc"], ["#264653", "#e9c46a"], ["#d62839", "#fcbf49"]];
+  const paperColours = ["#f6efe0", "#efe6d2", "#f9f4ea", "#eadfc8", "#f3ead9", "#ede3cf"];
+
+  // Distinct deterministic raster still per piece, drawn on an offscreen canvas.
+  function makeStill(index) {
+    const canvas = document.createElement("canvas");
+    canvas.width = IMAGE_WIDTH; canvas.height = IMAGE_HEIGHT;
+    const c = canvas.getContext("2d");
+    const [a, b] = palettes[index];
+    const rand = prng(1000 + index);
+    c.fillStyle = a; c.fillRect(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
+    c.fillStyle = b;
+    const kind = index % 3;
+    if (kind === 0) for (let x = -IMAGE_HEIGHT; x < IMAGE_WIDTH; x += 24) { c.beginPath(); c.moveTo(x, IMAGE_HEIGHT); c.lineTo(x + 12, IMAGE_HEIGHT); c.lineTo(x + 12 + IMAGE_HEIGHT, 0); c.lineTo(x + IMAGE_HEIGHT, 0); c.fill(); }
+    else if (kind === 1) for (let i = 0; i < 40; i++) { c.beginPath(); c.arc(rand() * IMAGE_WIDTH, rand() * IMAGE_HEIGHT, 6 + rand() * 18, 0, Math.PI * 2); c.fill(); }
+    else for (let y = 0; y < IMAGE_HEIGHT; y += 30) for (let x = 0; x < IMAGE_WIDTH; x += 30) if ((x + y) / 30 % 2 === 0) c.fillRect(x, y, 30, 30);
+    c.fillStyle = "rgba(255,255,255,0.35)"; c.fillRect(0, 0, IMAGE_WIDTH, 10 + index * 4);
+    return canvas.toDataURL("image/png");
+  }
+
+  // Irregular mat: edge points jittered by a per-piece seed.
+  function matPath(index) {
+    const rand = prng(77 + index * 13);
+    const hw = IMAGE_WIDTH / 2 + MAT, hh = IMAGE_HEIGHT / 2 + MAT;
+    const j = () => (rand() - 0.5) * 14;
+    const pts = [];
+    const steps = 6;
+    for (let i = 0; i <= steps; i++) pts.push([-hw + (2 * hw * i) / steps + j(), -hh + j()]);
+    for (let i = 1; i <= steps; i++) pts.push([hw + j(), -hh + (2 * hh * i) / steps + j()]);
+    for (let i = 1; i <= steps; i++) pts.push([hw - (2 * hw * i) / steps + j(), hh + j()]);
+    for (let i = 1; i < steps; i++) pts.push([-hw + j(), hh - (2 * hh * i) / steps + j()]);
+    return "M" + pts.map((p) => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L") + " Z";
+  }
+
+  // Final stack: position, rotation (degrees), scale.
+  const finals = [
+    { x: 520, y: 330, r: -9, s: 1.0 }, { x: 640, y: 380, r: 6, s: 1.0 }, { x: 760, y: 340, r: -3, s: 1.0 },
+    { x: 600, y: 440, r: 12, s: 1.0 }, { x: 720, y: 450, r: -14, s: 1.0 }, { x: 660, y: 370, r: 3.5, s: 1.0 },
+  ];
+  const starts = [[-300, 100], [1600, 150], [400, -300], [900, 1000], [-300, 800], [1600, 700]];
+  const SVG = "http://www.w3.org/2000/svg";
+  const animations = [];
+  const stills = [];
+
+  finals.forEach((f, i) => {
+    const g = document.createElementNS(SVG, "g");
+    g.setAttribute("filter", "url(#shadow)");
+    const mat = document.createElementNS(SVG, "path");
+    mat.setAttribute("d", matPath(i)); mat.setAttribute("fill", paperColours[i]);
+    const img = document.createElementNS(SVG, "image");
+    img.setAttribute("x", -IMAGE_WIDTH / 2); img.setAttribute("y", -IMAGE_HEIGHT / 2);
+    img.setAttribute("width", IMAGE_WIDTH); img.setAttribute("height", IMAGE_HEIGHT);
+    img.setAttribute("href", makeStill(i));
+    g.append(mat, img);
+    document.querySelector("#pieces").append(g);
+    stills.push(img);
+    const [sx, sy] = starts[i];
+    const a = g.animate([
+      { transform: `translate(${sx}px, ${sy}px) rotate(${f.r - 50}deg) scale(1.3)`, opacity: 0 },
+      { transform: `translate(${f.x}px, ${f.y}px) rotate(${f.r}deg) scale(${f.s})`, opacity: 1 },
+    ], { duration: 1100, delay: i * 250, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "both" });
+    a.pause();
+    animations.push(a);
+  });
+
+  // SVG <image> has no decode(); decode the same data URL through an Image, then publish the scene last.
+  Promise.all(stills.map((img) => {
+    const probe = new Image();
+    probe.src = img.getAttribute("href");
+    return probe.decode().then(() => probe);
+  })).then((probes) => {
+    window.__imageCheck = { count: probes.length, decoded: probes.filter((p) => p.naturalWidth > 0 && p.naturalHeight > 0).length };
+    if (window.__imageCheck.decoded !== stills.length) throw new Error("not every image decoded");
+    window.__scene = {
+      duration: 3,
+      seek: (t) => { for (const a of animations) a.currentTime = t * 1000; },
+    };
+  }).catch((e) => { window.__sceneError = String(e); });
+</script>
+</body>
+</html>

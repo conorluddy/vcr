@@ -1,0 +1,25 @@
+{
+  "id": "canvas2d-count-up",
+  "title": "Canvas 2D count-up: clamped ease-out figure in fixed-width digit cells",
+  "summary": "A figure drawn as canvas text counts 0 to 1250 over 2 s and holds; monotonic, never over target, lands exactly, digits centred in fixed cells so it does not shift; 90 alpha frames, shuffled matches sequential.",
+  "status": "validated",
+  "tools": [
+    "canvas-2d",
+    "playwright",
+    "imagemagick"
+  ],
+  "techniques": [
+    "count-up/canvas-text"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-20",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
