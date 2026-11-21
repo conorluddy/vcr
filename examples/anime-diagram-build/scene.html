@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  html, body { margin: 0; background: transparent; width: 100%; height: 100%; overflow: hidden; }
+  #stage { position: relative; width: 1280px; height: 720px; }
+  svg { position: absolute; inset: 0; width: 1280px; height: 720px; }
+  .connector { fill: none; stroke: #e8e4d8; stroke-width: 8; stroke-linecap: butt; }
+  /* Hidden start states live in CSS: an Anime.js from-value is only applied once a seek reaches its tween. */
+  .node { position: absolute; top: 300px; width: 200px; height: 120px; opacity: 0; will-change: transform, opacity; }
+  .base, .accent { position: absolute; inset: 0; border-radius: 20px; box-sizing: border-box; }
+  .base { background: #1b2a3a; border: 4px solid #8fa3b8; }
+  .accent { background: rgba(243, 168, 107, 0.85); opacity: 0; will-change: transform, opacity; }
+  .label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: 700 40px "VCR JetBrains Mono"; color: #f4f1e8; z-index: 1; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg viewBox="0 0 1280 720">
+    <path id="connector-1" class="connector" d="M260 360 H380" />
+    <path id="connector-2" class="connector" d="M580 360 H700" />
+    <path id="connector-3" class="connector" d="M900 360 H1020" />
+  </svg>
+  <div class="node" id="node-1" style="left:60px"><div class="base"></div><div class="accent" id="accent-1"></div><div class="label">One</div></div>
+  <div class="node" id="node-2" style="left:380px"><div class="base"></div><div class="accent" id="accent-2"></div><div class="label">Two</div></div>
+  <div class="node" id="node-3" style="left:700px"><div class="base"></div><div class="accent" id="accent-3"></div><div class="label">Three</div></div>
+  <div class="node" id="node-4" style="left:1020px"><div class="base"></div><div class="accent" id="accent-4"></div><div class="label">Four</div></div>
+</div>
+<script src="node_modules/animejs/dist/bundles/anime.umd.min.js"></script>
+<script>
+  // One paused timeline, built once and seeked in milliseconds; nothing reads a clock or random.
+  const { createTimeline, svg } = anime;
+  const FONT_FAMILY = "VCR JetBrains Mono";
+  const ids = [1, 2, 3, 4];
+  const STEP_MS = 850, FIRST_NODE_MS = 100, FIRST_CONNECTOR_MS = 500;
+  const DRAW_MS = 400, FADE_MS = 250, TRACE_START_MS = 3100, TRACE_STEP_MS = 350, TRACE_FADE_MS = 120;
+  const drawables = ids.slice(0, 3).map((id) => svg.createDrawable(`#connector-${id}`)[0]);
+  drawables.forEach((drawable) => drawable.setAttribute("draw", "0 0"));
+
+  const tl = createTimeline({ autoplay: false, defaults: { ease: "linear" } });
+  const arriveMs = (index) => (index === 0 ? FIRST_NODE_MS : FIRST_CONNECTOR_MS + (index - 1) * STEP_MS + DRAW_MS);
+  // Nodes fade in once; connectors draw just before their node arrives.
+  ids.forEach((id, index) => tl.add(`#node-${id}`, { opacity: [0, 1], duration: FADE_MS }, arriveMs(index)));
+  drawables.forEach((drawable, index) => tl.add(drawable, { draw: ["0 0", "0 1"], duration: DRAW_MS }, arriveMs(index + 1) - DRAW_MS));
+
+  // Each accent is ONE keyframed tween: it arrives with its node, recedes when the next node arrives (the last
+  // one just after it arrives), then lights in the trace. Separate tweens on one property mis-seek backwards.
+  const accentKeyframes = (index) => {
+    const ramps = [[arriveMs(index), arriveMs(index) + FADE_MS, 1], [index < 3 ? arriveMs(index + 1) : arriveMs(index) + FADE_MS, (index < 3 ? arriveMs(index + 1) : arriveMs(index) + FADE_MS) + FADE_MS, 0]];
+    const traceStart = TRACE_START_MS + index * TRACE_STEP_MS;
+    ramps.push([traceStart, traceStart + TRACE_FADE_MS, 1]);
+    if (index < 3) ramps.push([traceStart + TRACE_STEP_MS - TRACE_FADE_MS, traceStart + TRACE_STEP_MS, 0]);
+    const keyframes = [];
+    let cursor = 0, value = 0;
+    for (const [from, to, target] of ramps) {
+      if (from > cursor) keyframes.push({ to: value, duration: from - cursor });
+      keyframes.push({ to: target, duration: to - from });
+      cursor = to; value = target;
+    }
+    return keyframes;
+  };
+  ids.forEach((id, index) => tl.add(`#accent-${id}`, { opacity: accentKeyframes(index) }, 0));
+  tl.pause();
+
+  const seek = (t) => { tl.seek(t * 1000); };
+  const number = (value) => Math.round(Number(value) * 10000) / 10000;
+  const probe = () => ({
+    nodes: ids.map((id) => ({ id: `node-${id}`, opacity: number(getComputedStyle(document.getElementById(`node-${id}`)).opacity), accent: number(getComputedStyle(document.getElementById(`accent-${id}`)).opacity) })),
+    connectors: ids.slice(0, 3).map((id) => { const [from, to] = document.getElementById(`connector-${id}`).getAttribute("draw").split(" ").map(Number); return { id: `connector-${id}`, drawn: number(to - from) }; }),
+  });
+
+  (async () => {
+    const font = new FontFace(FONT_FAMILY, "url(./fonts/JetBrainsMono-Bold.ttf)", { weight: "700" });
+    document.fonts.add(await font.load());
+    await document.fonts.ready;
+    if (!document.fonts.check(`700 40px "${FONT_FAMILY}"`)) throw new Error("font did not load");
+    seek(0);
+    window.__scene = { duration: 5, seek, probe };
+  })();
+</script>
+</body>
+</html>

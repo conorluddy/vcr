@@ -1,7 +1,7 @@
 import { existsSync, statSync } from "node:fs";
 import { join } from "node:path";
 import type { CatalogIndex } from "./catalog.js";
-import { formatTechniqueCard, formatTechniqueRoutes, TECHNIQUES_INDEX_PATH, type Technique } from "./techniques.js";
+import { formatTechniqueCard, formatTechniqueRoutes, TECHNIQUES_INDEX_PATH, type CraftSources, type Technique } from "./techniques.js";
 import { formatToolCard, type ExampleManifest } from "./tools.js";
 
 // ADR 0004 (5): disclosure is measured before it is capped. Sizes are bytes; tokens are an estimate
@@ -30,9 +30,9 @@ export interface DisclosureReport {
 
 // === PUBLIC API ===
 
-export function disclosureReport(repositoryRoot: string, index: CatalogIndex, examples: ExampleManifest[], techniques: Technique[] = []): DisclosureReport {
+export function disclosureReport(repositoryRoot: string, index: CatalogIndex, examples: ExampleManifest[], techniques: Technique[] = [], craft?: CraftSources): DisclosureReport {
   const techniqueContext = { harnessRoot: repositoryRoot, tools: index.resources, examples };
-  const techniqueCards = techniques.map((technique) => ({ id: technique.id, bytes: Buffer.byteLength(formatTechniqueCard(technique, examples, repositoryRoot), "utf8") }));
+  const techniqueCards = techniques.map((technique) => ({ id: technique.id, bytes: Buffer.byteLength(formatTechniqueCard(technique, examples, repositoryRoot, craft), "utf8") }));
   const techniqueRoutes = techniques.map((technique, position) => ({ id: technique.id, bytes: techniqueCards[position]!.bytes + Buffer.byteLength(formatTechniqueRoutes(technique, techniqueContext), "utf8") }));
   const cards = index.resources.map((tool) => ({ id: tool.id, bytes: Buffer.byteLength(formatToolCard(tool, examples, repositoryRoot), "utf8") }));
   const guides = index.resources.filter((tool) => tool.skill).map((tool) => ({ id: tool.id, bytes: fileBytes(repositoryRoot, tool.skill!) }));

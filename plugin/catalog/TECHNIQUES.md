@@ -15,7 +15,7 @@ Filter with `vcr techniques list --purpose|--mechanism|--pillar|--capability|--t
 - `carousel` — Items drifting through the frame in a continuous lateral scroll or marquee, often looping · continuity, variety-and-range · lateral-scroll · motion-director, image-direction · 3 routes
 - `count-up` — A figure that runs up or down to its value: a statistic landing, a timer, hours elapsed · emphasis, progress-and-scale, editorial-argument · value-interpolation · data-visualisation, typography · 3 routes
 - `device-framing` — Screen imagery shown inside a device bezel so it reads as a product in use · product-context, brand-cohesion · device-mockup, layered-stacking · image-direction, art-director · 3 routes
-- `diagram-build` — A node-and-link diagram assembled piece by piece, earlier parts receding as new ones arrive · explanation, guided-attention · node-accrual, sequential-reveal · pacing-editor, motion-director, art-director · 3 routes
+- `diagram-build` — A node-and-link diagram assembled piece by piece, earlier parts receding as new ones arrive · explanation, guided-attention · node-accrual, sequential-reveal · pacing-editor, motion-director, art-director · 4 routes
 - `duotone` — Luminance mapped onto a ramp of chosen colours, so a whole image speaks in one palette · brand-cohesion, graphic-boldness · colour-remapping, tone-quantisation · fx · 3 routes
 - `film-grain` — Fine, shifting texture over the picture that mimics photographic emulsion · analogue-texture, print-nostalgia · noise-overlay · fx · 3 routes
 - `halftone-screen` — Tone rendered as a grid of dots whose size carries the value, as in offset or screen printing · print-nostalgia, graphic-boldness · tone-quantisation · fx · 3 routes
