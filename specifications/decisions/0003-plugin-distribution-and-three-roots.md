@@ -1,7 +1,11 @@
-# 0003. Distribute as a plugin with a bundled CLI and three roots
+---
+id: ADR-0003
+title: Distribute as a plugin with a bundled CLI and three roots
+status: accepted
+date: "2026-10-28"
+---
 
-Date: 2026-10-28
-Status: accepted
+# ADR-0003: Distribute as a plugin with a bundled CLI and three roots
 
 ## Context
 

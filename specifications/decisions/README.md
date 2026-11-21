@@ -1,41 +1,28 @@
 # Architecture decision records
 
-- 0001 — build the composition engine in-house. Accepted.
-- 0002 — headless first; read-only visualisers, no editor. Accepted.
-- 0003 — distribute as a plugin with a bundled CLI and three roots. Accepted.
-- 0004 — progressive disclosure and feedback are first-class, enforced by checks. Accepted.
-- 0005 — recommendation policy dimensions and licence migration; superseded by the stricter free-software catalogue scope in 0009.
-- 0006 — creative pillars: craft knowledge as rules data, independent of catalogue tools, one owner per rule. Accepted.
-- 0007 — draft pillar agents may ship before rules data: advisory, rule IDs only, one reviewer contract, citations checked by validate. Accepted.
+One line on what each record decides. Status and date are in the generated [`INDEX.md`](INDEX.md), which is the authority; this list says nothing about status so it cannot drift from it. Add a line here when a record is created.
 
-- 0008 — advisory making workflows may ship before checks; limits stay sourced and approval remains human. Accepted.
-- 0009 — free/libre software is the only routable catalogue scope; retire proprietary and source-available records. Accepted.
-- 0010 — techniques are a thin, hand-curated catalogue layer joining pillars to tools; routes name whole tools and status is derived at read time. Accepted.
-- 0011 — inspiration is a workspace library separate from assets: a committed record per item, the file copied into an ignored folder, local files only; only an asset with rights evidence may appear in output. Accepted.
-- 0012 — what a person stated, a tool measured and a model judged are kept in separate, labelled fields; no agent writes a person's statement and a judged field never satisfies a stated check. Accepted.
-- 0013 — models are chosen per agent in the workspace (`vcr.json` `models`); the agent definition is the default and VCR never recommends or validates a model name. Accepted.
-- 0014 — a video's look is approved on look frames (stills, a recorded human choice) before motion; stills are a stage, not a project type. Proposed, with open questions.
+- 0001 — build the composition engine in-house.
+- 0002 — headless first; read-only visualisers, no editor.
+- 0003 — distribute as a plugin with a bundled CLI and three roots.
+- 0004 — progressive disclosure and feedback are first-class, enforced by checks.
+- 0005 — recommendation policy dimensions and licence migration; replaced by the stricter free-software catalogue scope in 0009.
+- 0006 — creative pillars: craft knowledge as rules data, independent of catalogue tools, one owner per rule.
+- 0007 — draft pillar agents may ship before rules data: advisory, rule IDs only, one reviewer contract, citations checked by validate.
 
-One file per decision, `NNNN-kebab-title.md`, never edited after acceptance except to change `Status` and add a `Superseded by` line.
+- 0008 — advisory making workflows may ship before checks; limits stay sourced and approval remains human.
+- 0009 — free/libre software is the only routable catalogue scope; retire proprietary and source-available records.
+- 0010 — techniques are a thin, hand-curated catalogue layer joining pillars to tools; routes name whole tools and status is derived at read time.
+- 0011 — inspiration is a workspace library separate from assets: a committed record per item, the file copied into an ignored folder, local files only; only an asset with rights evidence may appear in output.
+- 0012 — what a person stated, a tool measured and a model judged are kept in separate, labelled fields; no agent writes a person's statement and a judged field never satisfies a stated check.
+- 0013 — models are chosen per agent in the workspace (`vcr.json` `models`); the agent definition is the default and VCR never recommends or validates a model name.
+- 0014 — a video's look is approved on look frames (stills, a recorded human choice) before motion; stills are a stage, not a project type.
 
-```markdown
-# NNNN. Title
+One file per decision, `NNNN-kebab-title.md`, managed with `whatwhy` (`node scripts/whatwhy.mjs`; see the process section of `AGENTS.md`). Create a record with `whatwhy new adr "<title>"` from `TEMPLATE.md`, and change its status with `whatwhy accept|reject|deprecate <ID>`; never edit an `id`, a number or a `status` by hand. An accepted record is frozen once merged: supersede it with a new one.
 
-Date: YYYY-MM-DD
-Status: proposed | accepted | superseded by NNNN
+`TEMPLATE.md` carries whatwhy's three required sections (Context, Decision, Consequences) plus two this repository adds, which every record here fills in:
 
-## Context
-What forced a decision. Facts, not opinions.
+- **Options considered**, after Context: each option with its real cost and benefit.
+- **Revisit when**, last: a concrete, observable trigger.
 
-## Options considered
-Each option with its real cost and benefit.
-
-## Decision
-One paragraph. What we do.
-
-## Consequences
-What becomes easier, what becomes harder, what we must now do.
-
-## Revisit when
-A concrete, observable trigger.
-```
+Cite a record as "ADR 0011" or `ADR-0011`; `whatwhy check` reads both in a branch name, commit message or pull request.

@@ -1,7 +1,11 @@
-# 0002. Headless first; read-only visualisers, no editor
+---
+id: ADR-0002
+title: Headless first; read-only visualisers, no editor
+status: accepted
+date: "2026-10-26"
+---
 
-Date: 2026-10-26
-Status: accepted
+# ADR-0002: Headless first; read-only visualisers, no editor
 
 ## Context
 

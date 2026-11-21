@@ -1,7 +1,11 @@
-# 0012. Stated, measured and judged are kept apart
+---
+id: ADR-0012
+title: Stated, measured and judged are kept apart
+status: accepted
+date: "2026-11-21"
+---
 
-Date: 2026-11-21
-Status: accepted
+# ADR-0012: Stated, measured and judged are kept apart
 
 ## Context
 

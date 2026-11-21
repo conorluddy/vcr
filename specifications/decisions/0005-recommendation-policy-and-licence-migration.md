@@ -1,9 +1,12 @@
-# 0005. Recommendation policy and licence migration
+---
+id: ADR-0005
+title: Recommendation policy and licence migration
+status: superseded
+date: "2026-11-04"
+superseded-by: ADR-0009
+---
 
-Date: 2026-11-04
-Status: superseded by 0009
-
-Superseded by: 0009
+# ADR-0005: Recommendation policy and licence migration
 
 ## Context
 

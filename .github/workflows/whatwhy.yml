@@ -1,0 +1,22 @@
+name: whatwhy
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # the check compares against the merge base
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check PRD/ADR process
+        env:
+          WHATWHY_PR_TEXT: "${{ github.event.pull_request.title }}\n${{ github.event.pull_request.body }}"
+        run: node scripts/whatwhy.mjs check --base "origin/$GITHUB_BASE_REF"

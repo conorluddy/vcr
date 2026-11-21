@@ -1,7 +1,11 @@
-# 0010. Techniques are a thin, hand-curated layer with derived status
+---
+id: ADR-0010
+title: Techniques are a thin, hand-curated layer with derived status
+status: accepted
+date: "2026-11-20"
+---
 
-Date: 2026-11-20
-Status: accepted
+# ADR-0010: Techniques are a thin, hand-curated layer with derived status
 
 ## Context
 

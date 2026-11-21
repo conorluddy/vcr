@@ -1,7 +1,11 @@
-# 0007. Draft pillar agents before rules data
+---
+id: ADR-0007
+title: Draft pillar agents before rules data
+status: accepted
+date: "2026-11-07"
+---
 
-Date: 2026-11-07
-Status: accepted
+# ADR-0007: Draft pillar agents before rules data
 
 ## Context
 

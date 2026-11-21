@@ -1,7 +1,11 @@
-# 0004. Agent ergonomics: progressive disclosure and feedback are first-class
+---
+id: ADR-0004
+title: "Agent ergonomics: progressive disclosure and feedback are first-class"
+status: accepted
+date: "2026-11-01"
+---
 
-Date: 2026-11-01
-Status: accepted
+# ADR-0004: Agent ergonomics: progressive disclosure and feedback are first-class
 
 ## Context
 

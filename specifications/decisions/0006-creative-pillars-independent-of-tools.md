@@ -1,7 +1,11 @@
-# 0006. Creative pillars: craft knowledge as rules, independent of tools
+---
+id: ADR-0006
+title: "Creative pillars: craft knowledge as rules, independent of tools"
+status: accepted
+date: "2026-11-06"
+---
 
-Date: 2026-11-06
-Status: accepted
+# ADR-0006: Creative pillars: craft knowledge as rules, independent of tools
 
 ## Context
 

@@ -1,0 +1,22 @@
+{
+  "baseBranch": "main",
+  "directories": {
+    "adr": "specifications/decisions",
+    "prd": "specifications/prd"
+  },
+  "rules": {
+    "structure": "error",
+    "immutability": "error",
+    "traceability": "warn",
+    "architecture": "warn"
+  },
+  "architecturalPaths": [
+    "**/package.json",
+    "whatwhy.config.json",
+    "scripts/whatwhy.mjs",
+    ".githooks/**",
+    ".github/workflows/**",
+    "**/migrations/**",
+    "**/Dockerfile"
+  ]
+}
