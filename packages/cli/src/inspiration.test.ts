@@ -187,7 +187,7 @@ describe("vcr inspiration", () => {
     const positions = ["note (stated): Low headline.", "measured by imagemagick", "judged by model-a (inspiration-analyst, 2026-11-21), composition:", "judged by model-b"].map((expected) => shown.indexOf(expected));
     expect(positions.every((position) => position >= 0) && [...positions].sort((left, right) => left - right).join() === positions.join()).toBe(true);
     expect(((await run("list", [], { unobserved: true })).json["items"] as unknown[]).length).toBe(0);
-    for (const invalid of [{ ...flags, aspect: "vibes" }, { ...flags, observed: "x".repeat(401) }, { ...flags, inferred: "x".repeat(301) }, { ...flags, span: "t=0,2" }, { aspect: "composition", observed: "No model named." }]) {
+    for (const invalid of [{ ...flags, aspect: "vibes" }, { ...flags, observed: "x".repeat(401) }, { ...flags, observed: "test" }, { ...flags, inferred: "x".repeat(301) }, { ...flags, span: "t=0,2" }, { aspect: "composition", observed: "No model named." }]) {
       expect(await fails("observe", [item!.id], invalid)).toBe("INVALID_ARGUMENT");
     }
     expect(await fails("observe", ["not-there"], flags)).toBe("NOT_FOUND");

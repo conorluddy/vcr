@@ -43,9 +43,9 @@ A workspace has one inspiration library. Each item is a committed record at `ins
 Intake measures; it does not look. When the person asks for their references to be analysed, or a look is about to be chosen and items have notes but no observations (`vcr inspiration list --unobserved`), give the items to the `inspiration-analyst` agent. It looks at each file and records what is there, per aspect, through `vcr inspiration observe`, which is the only thing it writes.
 
 1. **Choose the model from the workspace.** `vcr status --json` reports `models`: the workspace's choice per agent, as one name or one per host. If `models["inspiration-analyst"]` is set, spawn the agent with that model (your host's entry when it is keyed by host); otherwise let the agent's own default apply. VCR never recommends or checks a model name, and neither should you: if the host rejects the name, tell the person, do not substitute another.
-2. **Tell the agent which model it is running as**, in the prompt, so its observations are stamped correctly, along with the item ids and the decision the analysis is for.
+2. **Tell the agent which model it is running as**, in the prompt, so its observations are stamped correctly, along with the item ids, the decision the analysis is for, and the exact `vcr` invocation to use (with `--workspace <dir>` when it will not be started inside the workspace).
 3. **Keep batches small**, a handful of items per agent, so each file is actually looked at.
-4. **To compare two models**, run the same items under each: observations carry their model and sit side by side in `show`.
+4. **To compare two models**, run the same items under each, one after the other: observations carry their model and sit side by side in `show`. Two agents writing to the same item at once can lose an observation, so give concurrent agents different items.
 5. **Relay, do not merge.** Where the agent's reading differs from the person's note, put it to the person as a question. Their note stands until they change it.
 
 To set the model: add `"models": { "inspiration-analyst": "<model>" }` to `vcr.json`. This is the person's choice; ask before writing it.

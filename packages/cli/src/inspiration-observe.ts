@@ -23,6 +23,8 @@ export interface ObservationDraft {
 
 export const DEFAULT_ANALYST_AGENT = "inspiration-analyst";
 export const OBSERVATION_LIMITS = { observed: 400, inferred: 300 } as const;
+/** Short enough to stop a placeholder, which cannot be retracted; far below any real description. */
+export const MIN_OBSERVATION_CHARACTERS = 20;
 /** Aspects whose claims about a video are claims about time, so they must cite the span inspected (VREF-TEMPORAL-SPAN). */
 const TEMPORAL_ASPECTS: InspirationAspect[] = ["motion", "pacing"];
 const SPAN_PATTERN = /^t=(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)$/;
@@ -68,7 +70,7 @@ export function observeInspiration(workspaceRoot: string, id: string, draft: Obs
 
 function lengthErrorFor(field: keyof typeof OBSERVATION_LIMITS, value: string): string | undefined {
   const length = value.trim().length;
-  if (length === 0) return `--${field} cannot be empty.`;
+  if (length < MIN_OBSERVATION_CHARACTERS) return `--${field} is ${length} characters; an observation describes what is there in at least ${MIN_OBSERVATION_CHARACTERS}. Observations cannot be retracted, so try the command with --help, not a placeholder.`;
   if (length > OBSERVATION_LIMITS[field]) return `--${field} is ${length} characters; the limit is ${OBSERVATION_LIMITS[field]}. Tighten the sentence; do not split one observation into several.`;
   return undefined;
 }
