@@ -2,7 +2,7 @@
 
 What to build next, in order, and why. Status per layer lives in [README.md](README.md); requirement IDs live in the PRDs; this file only sequences the work. Update it when an item lands or the order changes.
 
-Updated 2026-11-16.
+Updated 2026-11-21.
 
 ## Where we are
 
@@ -32,6 +32,19 @@ The scene contract (#143), beat sheet and plan checks (#142), and advisory workf
 Use the live skills on two or three real renders in a user-selected production workspace. Record where workflows or reviewers are wrong, silent or difficult to use; link focused follow-ups to production field notes. Synthetic cases in `specifications/drafts/pillar-extraction/evaluation/` support scoped workflow decisions, not production performance or calibration. Keep production-specific material outside this repository.
 
 **Alongside:** #144 remains the next engineering implementation, followed by #146 and #145. #173 (plan approvals) would let plan findings be filed rather than printed. Sound-cue export still waits for #60.
+
+## Next major: look frames (stills before motion)
+
+A step skipped on the way to video. Most of what makes a piece look good is settled in one frame: palette, type, composition, texture. A frame costs seconds to render and review; a scene costs minutes. Both technique-layer builds (#183, 2026-11-20) went straight to motion and came out competent but plain, with nothing approved to aim at.
+
+Give stills first-class treatment inside a video project, not as a separate project type:
+
+- **Look frames:** one or a few scenes captured at a single time, kept with the video so the approved frame becomes the starting point of the motion scene and is not thrown away. `vcr preview --at` and `vcr lint` already render and check single frames.
+- **Variants side by side:** render three or four candidate looks on one sheet, each naming the techniques it uses (`vcr techniques`) and, once intake exists, the inspiration it draws on.
+- **A recorded choice:** which variant was picked, by whom and why, so later scenes and reviewers can be held to it. Approval stays human, as for renders.
+- **Out of scope here:** standalone still deliverables (posters, store screenshots), which wait for a production that needs one.
+
+Open before building: where look frames live in the video directory, whether a choice reuses the approval contract or gets its own record, and how a look frame relates to `beats.json`. Inspiration intake is planned separately and comes first, since a look frame needs something to be judged against.
 
 ## Production usability runway
 
