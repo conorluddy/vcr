@@ -11,6 +11,10 @@
 - 0008 — advisory making workflows may ship before checks; limits stay sourced and approval remains human. Accepted.
 - 0009 — free/libre software is the only routable catalogue scope; retire proprietary and source-available records. Accepted.
 - 0010 — techniques are a thin, hand-curated catalogue layer joining pillars to tools; routes name whole tools and status is derived at read time. Accepted.
+- 0011 — inspiration is a workspace library separate from assets: a committed record per item, the file copied into an ignored folder, local files only; only an asset with rights evidence may appear in output. Proposed.
+- 0012 — what a person stated, a tool measured and a model judged are kept in separate, labelled fields; no agent writes a person's statement and a judged field never satisfies a stated check. Proposed.
+- 0013 — models are chosen per agent in the workspace (`vcr.json` `models`); the agent definition is the default and VCR never recommends or validates a model name. Proposed.
+- 0014 — a video's look is approved on look frames (stills, a recorded human choice) before motion; stills are a stage, not a project type. Proposed, with open questions.
 
 One file per decision, `NNNN-kebab-title.md`, never edited after acceptance except to change `Status` and add a `Superseded by` line.
 
