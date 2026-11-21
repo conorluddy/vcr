@@ -10,6 +10,7 @@ VCR is an agent-friendly studio for code-first motion graphics, images and video
 | **Creative pillars** | Knowledge bases and rule tables for typography, motion, pacing, story, sound, art, accessibility, delivery and more, under `references/`. Read with `vcr refs` and `vcr rules`, one section or rule at a time. |
 | **Capture** | Deterministic browser frame capture (`vcr capture`, with `--verify` to recapture in shuffled order). `--video` records a render with a retained manifest. |
 | **Briefs and plans** | A series brief (`brief.json`) and a video brief (`brief.md`), written with the `brief` skill. A beat sheet (`beats.json`) is checked before anything renders (`vcr plan check`) and gives scenes their markers (`vcr plan markers`). |
+| **Inspiration library** | Reference material the person provides (saved images, clips, fonts, colour sets), taken in with `vcr inspiration add` and the `inspiration` skill. Each item keeps what the person said they like, what a tool measured and what an analyst agent observed in separate fields; files are copied to a git-ignored folder. Briefs cite items by id. |
 | **Review contract** | Findings, render manifests and approvals per video. `vcr lint --video` files layout findings, and agents claim fixes. Only a person approves a render or closes a finding, at their own terminal. |
 | **Plugin** | `plugin/` is a generated, committed bundle: a single-file CLI, the catalogue, 22 skills, the pillar references and a `typographer` reviewer agent. It works from any directory against a read-only harness. |
 
@@ -58,12 +59,13 @@ Without either, everything except capture and installs still works. Under the sa
 A video lives at `projects/<project>/videos/<video>/` in the user's workspace, never in the plugin.
 
 1. **Register it** with `vcr video init demo/teaser`.
-2. **Brief it:** the `brief` skill interviews for the series brief and the video brief. The person confirms the brief before anything is built.
-3. **Plan it:** write `beats.json`, then run `vcr plan check --video demo/teaser` until there are no blockers or majors. `vcr plan markers` gives the scene its `window.__scene.markers`.
-4. **Choose tools:** `vcr tools list`, then `vcr tools info <id>`, then `--full` for the guide, then `vcr tools examples <id>`. Read one tier at a time.
+2. **Hand over references, if there are any:** `vcr inspiration add <file|dir>` takes local files in; the `inspiration` skill asks what the person likes in each and records their words.
+3. **Brief it:** the `brief` skill interviews for the series brief and the video brief. The person confirms the brief before anything is built.
+4. **Plan it:** write `beats.json`, then run `vcr plan check --video demo/teaser` until there are no blockers or majors. `vcr plan markers` gives the scene its `window.__scene.markers`.
+5. **Choose tools:** `vcr tools list`, then `vcr tools info <id>`, then `--full` for the guide, then `vcr tools examples <id>`. Read one tier at a time.
 
-5. **Build and capture:** Inspect key frames with `vcr preview scene.html --width 1080 --height 1920 --fps 30 --at 2.4 --neighbors 1`, then run `vcr capture scene.html --width 1080 --height 1920 --fps 30 --video demo/teaser` to retain a render.
-6. **Review:** `vcr lint scene.html --safe-zone tiktok --markers --video demo/teaser` files findings. Agents fix them and run `vcr findings address`. A person approves or requests changes with `vcr review approve demo/teaser`.
+6. **Build and capture:** Inspect key frames with `vcr preview scene.html --width 1080 --height 1920 --fps 30 --at 2.4 --neighbors 1`, then run `vcr capture scene.html --width 1080 --height 1920 --fps 30 --video demo/teaser` to retain a render.
+7. **Review:** `vcr lint scene.html --safe-zone tiktok --markers --video demo/teaser` files findings. Agents fix them and run `vcr findings address`. A person approves or requests changes with `vcr review approve demo/teaser`.
 
 Capture and lint readiness errors report the serving root, failed resource URLs/statuses and page errors. A retained video capture refreshes its generated `review/REVIEW.md`; existing manual edits or drift are preserved with a warning.
 
@@ -103,7 +105,7 @@ pnpm validate && pnpm test && pnpm typecheck
 
 - `catalog/`: tool records (`tools/`, `retired/`), the generated `tools.json`, `INDEX.md` and `CANDIDATES.md`, the capability vocabulary, and every JSON Schema (`schemas/`: briefs, beat sheet, findings, manifests, approvals and more).
 - `references/`: the creative pillars. Start at `INDEX.md`; each pillar has a README, a knowledge base and rules. `cli.md` is generated.
-- `skills/`: toolkit guides (`web-animations-api`, `three-js`, …) and workflow skills (`start`, `init`, `brief`, `ingest`, `evidence`, `guide`, `typography`). `agents/`: reviewer agents.
+- `skills/`: toolkit guides (`web-animations-api`, `three-js`, …) and workflow skills (`start`, `init`, `brief`, `inspiration`, `ingest`, `evidence`, `guide`, `typography` and the other pillar workflows). `agents/`: reviewer, research and analyst agents.
 - `packages/`:
   - `cli`: the `vcr` command;
   - `capture`: browser frame capture;
@@ -121,6 +123,9 @@ The decisions behind it:
 - ADR 0003: VCR ships as a plugin with three roots.
 - ADR 0004: progressive disclosure and structured feedback for agents.
 - ADR 0006: the creative pillars stay independent of tools.
+- ADR 0011: inspiration is a workspace library, separate from assets.
+- ADR 0012: what a person stated, a tool measured and a model judged are kept apart.
+- ADR 0013: models are chosen per agent, in the workspace.
 
 Working rules for agents are in [`AGENTS.md`](AGENTS.md).
 
