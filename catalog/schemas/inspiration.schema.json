@@ -13,7 +13,7 @@
     "note": { "type": "string", "minLength": 1, "maxLength": 400, "description": "Stated: what the user likes in this item, in their words. Only a person writes it" },
     "aspects": {
       "type": "array",
-      "description": "Stated: what to take from the item",
+      "description": "Stated: what to take from the item. An agent may map these from the person's own words when the mapping is plain; it never invents them",
       "uniqueItems": true,
       "items": { "$ref": "#/$defs/aspect" }
     },

@@ -11,7 +11,7 @@ A workspace has one inspiration library. Each item is a committed record at `ins
 
 | Source | Fields | Who writes it |
 | --- | --- | --- |
-| Stated | `note`, `aspects`, `use`, `rights`, `source` | The person. You pass their words through; you never compose them |
+| Stated | `note`, `aspects`, `use`, `rights`, `source` | The person. You pass their words through and never compose them; `aspects` alone may be mapped from what they said |
 | Measured | `facts`, stamped with tool and version | `vcr inspiration add` |
 | Judged | `observations`, stamped with agent, model and date | An analyst agent, on request |
 
@@ -20,7 +20,7 @@ A workspace has one inspiration library. Each item is a committed record at `ins
 1. **Local files only.** `vcr inspiration add <file|dir>…` copies, hashes and measures each file; a directory is walked. Nothing is fetched: if the person gives a link, ask them to save the file, then add it with `--source <link>` so where it came from is on record. Re-adding the same file changes nothing, and restores a copy that has gone missing.
 2. **Colours** the person gives as values go in as a named set: `vcr inspiration add --colours "#0B1F3A,#F2A33A" --title "Harbour night"`. Record them as given; do not tidy or extend the set.
 3. **Read the warnings.** A missing measuring tool still adds the item and says which facts are absent; `vcr doctor` shows what is installed. Unsupported files in a directory are skipped and named.
-4. **Ask what they like, item by item.** After a bulk add, `vcr inspiration list --unannotated` shows what still has no note. For each, look at the file (`vcr inspiration show <id>` prints its absolute path; read the image, or a video's contact sheet), then ask the person what drew them to it and what to take from it. Record their answer in their words: `vcr inspiration annotate <id> --note "…" --aspect palette,composition`. The aspects are `palette`, `typography`, `composition`, `motion`, `texture`, `pacing` and `tone`.
+4. **Ask what they like, item by item.** After a bulk add, `vcr inspiration list --unannotated` shows what still has no note. For each, look at the file (`vcr inspiration show <id>` prints its absolute path; read the image, or a video's contact sheet), then ask the person what drew them to it and what to take from it. Most people would rather answer than run commands: give them the path to each file and a short question, a handful of items at a time, and accept a few words or "drop it". If an analyst has already looked, its questions make better prompts than a blank one. Record their answer in their words: `vcr inspiration annotate <id> --note "…" --aspect palette,composition`. The note is theirs alone, but you may set the aspects yourself when their words map plainly ("the grid and the whitespace" is `composition`); say which you set, and ask when the mapping is not plain. The aspects are `palette`, `typography`, `composition`, `motion`, `texture`, `pacing` and `tone`.
 5. **Record source and creator** when the person knows them (`--source`, `--creator`, `--accessed`).
 
 ## Rules
@@ -43,7 +43,7 @@ A workspace has one inspiration library. Each item is a committed record at `ins
 Intake measures; it does not look. When the person asks for their references to be analysed, or a look is about to be chosen and items have notes but no observations (`vcr inspiration list --unobserved`), give the items to the `inspiration-analyst` agent. It looks at each file and records what is there, per aspect, through `vcr inspiration observe`, which is the only thing it writes.
 
 1. **Choose the model from the workspace.** `vcr status --json` reports `models`: the workspace's choice per agent, as one name or one per host. If `models["inspiration-analyst"]` is set, spawn the agent with that model (your host's entry when it is keyed by host); otherwise let the agent's own default apply. VCR never recommends or checks a model name, and neither should you: if the host rejects the name, tell the person, do not substitute another.
-2. **Tell the agent which model it is running as**, in the prompt, so its observations are stamped correctly, along with the item ids and the decision the analysis is for.
+2. **Tell the agent which model it is running as**, in the prompt, so its observations are stamped correctly, along with the item ids, the decision the analysis is for, and the exact `vcr` invocation to use (with `--workspace <dir>` when it will not be started inside the workspace).
 3. **Keep batches small**, a handful of items per agent, so each file is actually looked at.
 4. **To compare two models**, run the same items under each: observations carry their model and sit side by side in `show`.
 5. **Relay, do not merge.** Where the agent's reading differs from the person's note, put it to the person as a question. Their note stands until they change it.
@@ -59,6 +59,7 @@ A brief names the items it draws on, so a reviewer can hold the result to them. 
 
 ## Housekeeping
 
+- A wrong or unwanted observation is removed only by the person, at their own terminal: `vcr inspiration retract <id> --observation <n>`, with the number `show` gives it. Never work around the refusal.
 - `vcr inspiration remove <id>` shows what it would delete and which briefs cite the item; `--yes` applies. Removing is the only way a copied file is deleted: `vcr storage` reports the library's size and never clears it.
 - A fresh clone has the records and none of the files. `show` says when a file is absent; ask the person for the original and add it again, which restores the same id.
 - `vcr validate` fails on an asset with unknown rights and on a copied file that no longer matches its recorded hash.

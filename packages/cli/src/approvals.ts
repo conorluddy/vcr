@@ -22,12 +22,12 @@ export interface ApprovalWrite {
 
 // === PUBLIC API ===
 
-/** Ok only when a person at an interactive terminal types the video id back. */
+/** Ok only when a person at an interactive terminal types the id (a video's, or another record's) back. */
 export async function confirmHumanAtTerminal(io: TerminalIo, videoId: string, action: string): Promise<Result<"tty">> {
   if (!io.isInteractive) {
     return fail("HUMAN_CHANNEL_REQUIRED", `"${action}" is a human decision and needs an interactive terminal; this one has none, and agent hosts never do. Ask the person to run the same command in their own terminal.`);
   }
-  const typed = (await io.ask(`${action} for ${videoId}. Type the video id to confirm: `)).trim();
+  const typed = (await io.ask(`${action} for ${videoId}. Type the id to confirm: `)).trim();
   if (typed !== videoId) return fail("CONFIRMATION_MISMATCH", `Typed "${typed}", expected "${videoId}". Nothing was written.`);
   return ok("tty");
 }

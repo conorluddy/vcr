@@ -1,7 +1,8 @@
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, utimesSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, test } from "vitest";
+import { withRecordLock } from "./inspiration.js";
 import { runInspirationCommand, type InspirationCommandContext } from "./inspiration-commands.js";
 import type { ToolRunner } from "./inspiration-facts.js";
 import type { InspirationItem } from "./inspiration-record.js";
@@ -69,6 +70,15 @@ describe("vcr inspiration", () => {
     expect(second.json["changes"]).toEqual([]);
     expect((second.json["data"] as InspirationItem[]).map((item) => item.id)).toEqual((first.json["data"] as InspirationItem[]).map((item) => item.id));
     expect((await run("list")).json["total"]).toBe(2);
+  });
+
+  test("a saved file that lost its extension is recognised by its first bytes", async () => {
+    const { run, fails, sources } = fixture();
+    writeFileSync(join(sources, "saved/A long caption that ran out of room"), Buffer.concat([Buffer.from([0xff, 0xd8, 0xff, 0xe0]), Buffer.from("jpeg body")]));
+    writeFileSync(join(sources, "saved/notes"), "plain text with no extension");
+    const [item] = (await run("add", ["saved/A long caption that ran out of room"])).json["data"] as InspirationItem[];
+    expect(item).toMatchObject({ kind: "image", file: { name: "A long caption that ran out of room", media_type: "image/jpeg" } });
+    expect(await fails("add", ["saved/notes"])).toBe("UNSUPPORTED_FILE");
   });
 
   test("re-adding restores a copy that went missing, and ignores flags on an existing item", async () => {
@@ -175,10 +185,10 @@ describe("vcr inspiration", () => {
     ]);
     expect(validateWorkspace(harnessRoot(), context.workspaceRoot).diagnostics).toEqual([]);
     const shown = (await run("show", [item!.id])).text;
-    const positions = ["note (stated): Low headline.", "measured by imagemagick", "judged by model-a (inspiration-analyst, 2026-11-21), composition:", "judged by model-b"].map((expected) => shown.indexOf(expected));
+    const positions = ["note (stated): Low headline.", "measured by imagemagick", "1. judged by model-a (inspiration-analyst, 2026-11-21), composition:", "2. judged by model-b"].map((expected) => shown.indexOf(expected));
     expect(positions.every((position) => position >= 0) && [...positions].sort((left, right) => left - right).join() === positions.join()).toBe(true);
     expect(((await run("list", [], { unobserved: true })).json["items"] as unknown[]).length).toBe(0);
-    for (const invalid of [{ ...flags, aspect: "vibes" }, { ...flags, observed: "x".repeat(401) }, { ...flags, inferred: "x".repeat(301) }, { ...flags, span: "t=0,2" }, { aspect: "composition", observed: "No model named." }]) {
+    for (const invalid of [{ ...flags, aspect: "vibes" }, { ...flags, observed: "x".repeat(401) }, { ...flags, observed: "test" }, { ...flags, inferred: "x".repeat(301) }, { ...flags, span: "t=0,2" }, { aspect: "composition", observed: "No model named." }]) {
       expect(await fails("observe", [item!.id], invalid)).toBe("INVALID_ARGUMENT");
     }
     expect(await fails("observe", ["not-there"], flags)).toBe("NOT_FOUND");
@@ -191,6 +201,37 @@ describe("vcr inspiration", () => {
     expect(observed.json["warnings"]).toEqual([expect.stringContaining("still has no note")]);
     expect(record(context.workspaceRoot, item!.id).note).toBeUndefined();
     expect(validateWorkspace(harnessRoot(), context.workspaceRoot).diagnostics).toEqual([expect.objectContaining({ severity: "warning", path: "/note" })]);
+  });
+
+  test("only a person at a terminal can retract an observation, by its number in show", async () => {
+    const { run, context } = fixture();
+    const [item] = (await run("add", ["saved/Poster One.png"], { note: "Low headline." })).json["data"] as InspirationItem[];
+    await run("observe", [item!.id], { aspect: "palette", observed: "A placeholder that should not have been recorded.", model: "model-a" });
+    await run("observe", [item!.id], { aspect: "composition", observed: "Headline set in the lower third of the frame.", model: "model-a" });
+    expect((await run("show", [item!.id])).text).toContain("2. judged by model-a");
+    const retract = (io?: InspirationCommandContext["io"]) => runInspirationCommand("retract", [item!.id], { observation: "1" }, { ...context, ...(io ? { io } : {}) });
+    expect(await retract()).toMatchObject({ ok: false, error: { code: "HUMAN_CHANNEL_REQUIRED" } });
+    expect(await retract({ isInteractive: true, ask: async () => "something else" })).toMatchObject({ ok: false, error: { code: "CONFIRMATION_MISMATCH" } });
+    expect(record(context.workspaceRoot, item!.id).observations).toHaveLength(2);
+    expect(await retract({ isInteractive: true, ask: async () => item!.id })).toMatchObject({ ok: true });
+    const stored = record(context.workspaceRoot, item!.id);
+    expect(stored.observations).toMatchObject([{ aspect: "composition" }]);
+    expect(stored.note).toBe("Low headline.");
+    expect(await runInspirationCommand("retract", [item!.id], { observation: "5" }, context)).toMatchObject({ ok: false, error: { code: "INVALID_ARGUMENT" } });
+  });
+
+  test("a record's lock makes a second writer wait, fail retryably, or take over a stale lock", async () => {
+    const { run, context } = fixture();
+    const [item] = (await run("add", ["saved/Poster One.png"], { note: "Low headline." })).json["data"] as InspirationItem[];
+    const inner = withRecordLock(context.workspaceRoot, item!.id, () => withRecordLock(context.workspaceRoot, item!.id, () => ok("second writer"), 60));
+    expect(inner).toMatchObject({ ok: false, error: { code: "RECORD_LOCKED", retryable: true } });
+    const lockPath = join(context.workspaceRoot, "inspiration/files/.locks", `${item!.id}.lock`);
+    expect(existsSync(lockPath)).toBe(false);
+    writeFileSync(lockPath, "");
+    const longAgo = new Date(Date.now() - 120_000);
+    utimesSync(lockPath, longAgo, longAgo);
+    expect(withRecordLock(context.workspaceRoot, item!.id, () => ok("took over"), 60)).toEqual({ ok: true, value: "took over" });
+    expect(validateWorkspace(harnessRoot(), context.workspaceRoot).diagnostics).toEqual([]);
   });
 
   test("a motion or pacing observation on a video must cite the span inspected", async () => {

@@ -1,4 +1,4 @@
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync } from "node:fs";
+import { closeSync, copyFileSync, existsSync, mkdirSync, openSync, readdirSync, readFileSync, readSync, rmSync, statSync } from "node:fs";
 import { basename, extname, join, relative } from "node:path";
 import { parseVideoBrief, SERIES_BRIEF_FILE, VIDEO_BRIEF_FILE, type SeriesBrief } from "./brief.js";
 import { measureFacts, type ToolRunner } from "./inspiration-facts.js";
@@ -112,7 +112,7 @@ export function expandSources(sourcePath: string): Result<{ files: string[]; ski
   if (!existsSync(sourcePath)) return fail("NOT_FOUND", `${sourcePath} does not exist. Inspiration takes local files only; save the file first, and pass where it came from with --source.`);
   if (!statSync(sourcePath).isDirectory()) {
     if (kindOfFile(sourcePath)) return ok({ files: [sourcePath], skipped: [] });
-    return fail("UNSUPPORTED_FILE", `${basename(sourcePath)} is not an image, video or font VCR recognises (${Object.keys(MEDIA_TYPES).join(" ")}).`);
+    return fail("UNSUPPORTED_FILE", `${basename(sourcePath)} is not an image, video or font VCR recognises by extension (${Object.keys(MEDIA_TYPES).join(" ")}) or by its first bytes.`);
   }
   const files: string[] = [];
   const skipped: string[] = [];
@@ -201,6 +201,10 @@ export function addColourSet(workspaceRoot: string, colours: string[], stated: S
 
 /** Sets or changes what a person stated. Never touches the file, facts or observations. */
 export function annotateInspiration(workspaceRoot: string, id: string, stated: StatedFields): Result<Mutation<InspirationItem>> {
+  return withRecordLock(workspaceRoot, id, () => annotateUnlocked(workspaceRoot, id, stated));
+}
+
+function annotateUnlocked(workspaceRoot: string, id: string, stated: StatedFields): Result<Mutation<InspirationItem>> {
   const found = findInspiration(workspaceRoot, id);
   if (!found.ok) return found;
   if (!hasStatedFields(stated)) return fail("INVALID_ARGUMENT", "annotate needs at least one of --note, --aspect, --use, --title, --rights, --attribution, --source, --creator or --accessed.");
@@ -237,6 +241,37 @@ export function parseAspects(value: string): Result<InspirationAspect[]> {
   return ok(aspects as InspirationAspect[]);
 }
 
+/**
+ * Runs a read-modify-write on one record while holding its lock, so two agents changing the same
+ * item cannot lose each other's write. The lock is a file in the ignored folder; one left behind by
+ * a crashed process is taken over once it is stale.
+ */
+export function withRecordLock<T>(workspaceRoot: string, id: string, change: () => Result<T>, timeoutMs = RECORD_LOCK.timeoutMs): Result<T> {
+  const lockDirectory = join(workspaceRoot, INSPIRATION_PATHS.files, ".locks");
+  const lockPath = join(lockDirectory, `${id}.lock`);
+  mkdirSync(lockDirectory, { recursive: true });
+  const deadline = Date.now() + timeoutMs;
+  for (;;) {
+    try {
+      closeSync(openSync(lockPath, "wx"));
+      break;
+    } catch (cause) {
+      if ((cause as NodeJS.ErrnoException).code !== "EEXIST") throw cause;
+      const heldForMs = Date.now() - (statSync(lockPath, { throwIfNoEntry: false })?.mtimeMs ?? Date.now());
+      if (heldForMs > RECORD_LOCK.staleMs) rmSync(lockPath, { force: true });
+      else if (Date.now() >= deadline) return fail("RECORD_LOCKED", `Another process is writing inspiration item ${id}. Run the command again.`, true);
+      else Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, RECORD_LOCK.pollMs);
+    }
+  }
+  try {
+    return change();
+  } finally {
+    rmSync(lockPath, { force: true });
+  }
+}
+
+const RECORD_LOCK = { timeoutMs: 10_000, staleMs: 30_000, pollMs: 25 } as const;
+
 export function recordPath(workspaceRoot: string, id: string): string {
   return join(workspaceRoot, INSPIRATION_PATHS.items, `${id}.json`);
 }
@@ -247,9 +282,31 @@ const HEX_COLOUR = /^#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/;
 const MAX_TITLE_CHARACTERS = 100;
 const MAX_SLUG_CHARACTERS = 48;
 
+/** By extension, then by the file's first bytes: saved posts often lose their extension to a long caption. */
 function kindOfFile(filePath: string): { kind: InspirationKind; mediaType: string } | undefined {
-  return MEDIA_TYPES[extname(filePath).toLowerCase()];
+  const byExtension = MEDIA_TYPES[extname(filePath).toLowerCase()];
+  if (byExtension) return byExtension;
+  const head = Buffer.alloc(12);
+  const descriptor = openSync(filePath, "r");
+  try {
+    readSync(descriptor, head, 0, head.length, 0);
+  } finally {
+    closeSync(descriptor);
+  }
+  const signature = SIGNATURES.find(({ offset, bytes }) => head.subarray(offset, offset + bytes.length).equals(Buffer.from(bytes, "latin1")));
+  return signature ? MEDIA_TYPES[signature.extension] : undefined;
 }
+
+const SIGNATURES: Array<{ offset: number; bytes: string; extension: string }> = [
+  { offset: 0, bytes: "\x89PNG", extension: ".png" },
+  { offset: 0, bytes: "\xFF\xD8\xFF", extension: ".jpg" },
+  { offset: 0, bytes: "GIF8", extension: ".gif" },
+  { offset: 8, bytes: "WEBP", extension: ".webp" },
+  { offset: 4, bytes: "ftypqt", extension: ".mov" },
+  { offset: 4, bytes: "ftyp", extension: ".mp4" },
+  { offset: 0, bytes: "OTTO", extension: ".otf" },
+  { offset: 0, bytes: "\x00\x01\x00\x00", extension: ".ttf" },
+];
 
 function slugify(value: string): string {
   return value

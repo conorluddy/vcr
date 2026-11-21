@@ -1,5 +1,5 @@
 import { relative } from "node:path";
-import { findInspiration, recordPath, type Mutation } from "./inspiration.js";
+import { findInspiration, recordPath, withRecordLock, type Mutation } from "./inspiration.js";
 import { INSPIRATION_ASPECTS, type InspirationAspect, type InspirationItem, type InspirationObservation } from "./inspiration-record.js";
 import { writeJsonAtomic } from "./repository.js";
 import { fail, ok, type Result } from "./result.types.js";
@@ -23,6 +23,8 @@ export interface ObservationDraft {
 
 export const DEFAULT_ANALYST_AGENT = "inspiration-analyst";
 export const OBSERVATION_LIMITS = { observed: 400, inferred: 300 } as const;
+/** Short enough to stop a placeholder, which cannot be retracted; far below any real description. */
+export const MIN_OBSERVATION_CHARACTERS = 20;
 /** Aspects whose claims about a video are claims about time, so they must cite the span inspected (VREF-TEMPORAL-SPAN). */
 const TEMPORAL_ASPECTS: InspirationAspect[] = ["motion", "pacing"];
 const SPAN_PATTERN = /^t=(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)$/;
@@ -32,6 +34,10 @@ const SPAN_PATTERN = /^t=(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)$/;
  * writes nothing. Stated fields, the file and facts are carried over untouched.
  */
 export function observeInspiration(workspaceRoot: string, id: string, draft: ObservationDraft, now: Date): Result<Mutation<InspirationItem>> {
+  return withRecordLock(workspaceRoot, id, () => observeUnlocked(workspaceRoot, id, draft, now));
+}
+
+function observeUnlocked(workspaceRoot: string, id: string, draft: ObservationDraft, now: Date): Result<Mutation<InspirationItem>> {
   const found = findInspiration(workspaceRoot, id);
   if (!found.ok) return found;
   const item = found.value;
@@ -64,11 +70,33 @@ export function observeInspiration(workspaceRoot: string, id: string, draft: Obs
   return ok({ data: updated, changes: [relative(workspaceRoot, recordPath(workspaceRoot, id))], warnings });
 }
 
+/**
+ * Removes one observation by its position in the record (1-based, as `show` numbers them). Callers
+ * gate this behind a human terminal: a model may add a reading but never delete one.
+ */
+export function retractObservation(workspaceRoot: string, id: string, position: number): Result<Mutation<InspirationItem>> {
+  return withRecordLock(workspaceRoot, id, () => retractUnlocked(workspaceRoot, id, position));
+}
+
+function retractUnlocked(workspaceRoot: string, id: string, position: number): Result<Mutation<InspirationItem>> {
+  const found = findInspiration(workspaceRoot, id);
+  if (!found.ok) return found;
+  const existing = found.value.observations ?? [];
+  if (!Number.isInteger(position) || position < 1 || position > existing.length) {
+    return fail("NOT_FOUND", existing.length === 0 ? `${id} has no observations to retract.` : `${id} has observations 1 to ${existing.length}; \`vcr inspiration show ${id}\` numbers them.`);
+  }
+  const remaining = existing.filter((_, index) => index !== position - 1);
+  const { observations: _observations, ...withoutObservations } = found.value;
+  const updated: InspirationItem = remaining.length > 0 ? { ...found.value, observations: remaining } : withoutObservations;
+  writeJsonAtomic(recordPath(workspaceRoot, id), updated);
+  return ok({ data: updated, changes: [relative(workspaceRoot, recordPath(workspaceRoot, id))], warnings: [] });
+}
+
 // === PRIVATE HELPERS ===
 
 function lengthErrorFor(field: keyof typeof OBSERVATION_LIMITS, value: string): string | undefined {
   const length = value.trim().length;
-  if (length === 0) return `--${field} cannot be empty.`;
+  if (length < MIN_OBSERVATION_CHARACTERS) return `--${field} is ${length} characters; an observation describes what is there in at least ${MIN_OBSERVATION_CHARACTERS}. Only a person can retract an observation, so try the command with --help, not a placeholder.`;
   if (length > OBSERVATION_LIMITS[field]) return `--${field} is ${length} characters; the limit is ${OBSERVATION_LIMITS[field]}. Tighten the sentence; do not split one observation into several.`;
   return undefined;
 }

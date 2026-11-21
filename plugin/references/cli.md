@@ -293,6 +293,18 @@ Append one judged observation to an item, stamped with agent, model and date; id
 vcr inspiration observe poster-0a1b2c --aspect composition --observed "Headline set in the lower third; the top two thirds are one flat field" --model <model>
 ```
 
+## `vcr inspiration retract <id> --observation n`
+
+Human only: remove one judged observation from an item, after typing the id back at an interactive terminal. An agent can add a reading but never delete one
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--observation n` (required) | The observation's number in `vcr inspiration show <id>` |  |
+
+```sh
+vcr inspiration retract poster-0a1b2c --observation 2
+```
+
 ## `vcr inspiration list [--kind kind] [--aspect aspect] [--use use] [--unannotated] [--unobserved] [--limit n] [--offset n]`
 
 One line per item in the workspace library, paginated

@@ -211,6 +211,13 @@ export const COMMANDS: CommandSpec[] = [
     example: "vcr inspiration observe poster-0a1b2c --aspect composition --observed \"Headline set in the lower third; the top two thirds are one flat field\" --model <model>",
   },
   {
+    name: "inspiration retract",
+    argumentsHint: "<id>",
+    summary: "Human only: remove one judged observation from an item, after typing the id back at an interactive terminal. An agent can add a reading but never delete one",
+    flags: [{ name: "observation", value: "n", description: "The observation's number in `vcr inspiration show <id>`", isRequired: true }],
+    example: "vcr inspiration retract poster-0a1b2c --observation 2",
+  },
+  {
     name: "inspiration list",
     summary: "One line per item in the workspace library, paginated",
     flags: [

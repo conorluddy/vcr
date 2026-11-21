@@ -2,7 +2,8 @@ import { existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { addColourSet, addInspirationFile, annotateInspiration, applyRemoveInspiration, CONTACT_SHEET_FILE, expandSources, filterInspiration, findInspiration, loadInspiration, parseAspects, planRemoveInspiration, type Mutation, type StatedFields } from "./inspiration.js";
 import type { ToolRunner } from "./inspiration-facts.js";
-import { DEFAULT_ANALYST_AGENT, observeInspiration } from "./inspiration-observe.js";
+import { confirmHumanAtTerminal, type TerminalIo } from "./approvals.js";
+import { DEFAULT_ANALYST_AGENT, observeInspiration, retractObservation } from "./inspiration-observe.js";
 import { INSPIRATION_ASPECTS, INSPIRATION_PATHS, inspirationFilePath, type InspirationItem } from "./inspiration-record.js";
 import { fail, ok, type Result } from "./result.types.js";
 import type { CommandOutput } from "./review-commands.js";
@@ -23,6 +24,8 @@ export interface InspirationCommandContext {
   harnessVersion: string;
   now: Date;
   run?: ToolRunner;
+  /** The human channel, for `retract`. Absent means no terminal. */
+  io?: TerminalIo;
 }
 
 // === PUBLIC API ===
@@ -54,6 +57,18 @@ export async function runInspirationCommand(subcommand: string, targets: string[
     if (!outcome.ok) return outcome;
     return ok(mutationOutput(outcome.value, outcome.value.changes.length > 0 ? `recorded a ${aspect} observation on ${id}, judged by ${model}` : `${id} already holds this observation; nothing written`));
   }
+  if (subcommand === "retract") {
+    const position = Number(text(flags["observation"]));
+    const found = findInspiration(context.workspaceRoot, id);
+    if (!found.ok) return found;
+    const target = (found.value.observations ?? [])[position - 1];
+    if (!Number.isInteger(position) || !target) return fail("INVALID_ARGUMENT", `inspiration retract needs --observation <n>, the number \`vcr inspiration show ${id}\` gives it; ${id} has ${(found.value.observations ?? []).length}.`);
+    const human = await confirmHumanAtTerminal(context.io ?? NO_TERMINAL, id, `Retract observation ${position} (${target.aspect}, judged by ${target.by.model}: "${target.observed.slice(0, 80)}")`);
+    if (!human.ok) return human;
+    const outcome = retractObservation(context.workspaceRoot, id, position);
+    if (!outcome.ok) return outcome;
+    return ok(mutationOutput(outcome.value, `retracted observation ${position} from ${id}`));
+  }
   if (subcommand === "remove") {
     const plan = planRemoveInspiration(context.workspaceRoot, id);
     if (!plan.ok) return plan;
@@ -63,7 +78,7 @@ export async function runInspirationCommand(subcommand: string, targets: string[
     const text = [`${isApplying ? "deleted" : "would delete"} ${id}, ${formatBytes(result.totalBytes)}:`, ...rows, ...result.warnings.map((warning) => `warning: ${warning}`), ...(isApplying ? [] : ["", "Run again with --yes to apply."])].join("\n");
     return ok({ json: { applied: isApplying, data: { id }, changes: isApplying ? result.deletions.map((deletion) => displayPath(deletion.path, context.workspaceRoot)) : [], warnings: result.warnings, deletions: result.deletions, totalBytes: result.totalBytes }, text });
   }
-  return fail("INVALID_ARGUMENT", "Use vcr inspiration add, annotate, observe, list, show or remove.");
+  return fail("INVALID_ARGUMENT", "Use vcr inspiration add, annotate, observe, retract, list, show or remove.");
 }
 
 /** One line per item: what a reader needs to decide whether to open it. */
@@ -86,8 +101,8 @@ export function formatInspirationItem(item: InspirationItem, located: { file_pat
     for (const [name, value] of Object.entries(scalars)) lines.push(`  ${name}: ${String(value)}`);
     if (dominantColours) lines.push(`  dominant_colours: ${dominantColours.map((colour) => `${colour.hex} ${Math.round(colour.share * 100)}%`).join(", ")}`);
   }
-  for (const observation of item.observations ?? []) {
-    lines.push("", `judged by ${observation.by.model} (${observation.by.agent}, ${observation.at.slice(0, 10)}), ${observation.aspect}${observation.span ? ` ${observation.span}` : ""}:`, `  observed: ${observation.observed}`);
+  for (const [index, observation] of (item.observations ?? []).entries()) {
+    lines.push("", `${index + 1}. judged by ${observation.by.model} (${observation.by.agent}, ${observation.at.slice(0, 10)}), ${observation.aspect}${observation.span ? ` ${observation.span}` : ""}:`, `  observed: ${observation.observed}`);
     if (observation.inferred) lines.push(`  inferred: ${observation.inferred}`);
   }
   if (located.file_path) lines.push("", `file: ${located.file_path}${located.is_file_present ? "" : " (absent: copied files are git-ignored; add the original again to restore it)"}`);
@@ -154,6 +169,7 @@ function runList(flags: Flags, workspaceRoot: string): Result<CommandOutput> {
   return ok({ json: { total: matching.length, offset, limit, items }, text: page.length === 0 ? empty : [...page.map(formatInspirationLine), "", footer].join("\n") });
 }
 
+const NO_TERMINAL: TerminalIo = { isInteractive: false, ask: async () => "" };
 const KINDS = ["image", "video", "font", "colours"];
 const USES = ["inspiration", "asset"];
 
