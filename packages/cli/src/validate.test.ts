@@ -277,7 +277,7 @@ describe("technique records (ADR 0010)", () => {
     ["an example that does not exist", withRoute({ example: "ghost" }), "/routes/0/example", "no examples/<dir>/example.json"],
   ])("%s is an error", (_name, technique, path, message) => {
     expect(techniqueDiagnosticsFor({ technique })).toEqual([expect.objectContaining({ severity: "error", file: "catalog/techniques/halftone-screen.json", path, message: expect.stringContaining(message) })]);
-  });
+  }, 20_000); // each case validates a full fixture repository; the slowest has twice passed 5 s on a loaded CI runner
 
   test("a retired tool is named as retired", () => {
     expect(techniqueDiagnosticsFor({ technique: withStep({ tools: ["after-effects"] }), retired: "after-effects" })).toEqual([expect.objectContaining({ path: "/routes/0/steps/0/tools", message: expect.stringContaining("retired") })]);
