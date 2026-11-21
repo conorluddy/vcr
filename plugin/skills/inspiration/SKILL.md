@@ -59,6 +59,7 @@ A brief names the items it draws on, so a reviewer can hold the result to them. 
 
 ## Housekeeping
 
+- A wrong or unwanted observation is removed only by the person, at their own terminal: `vcr inspiration retract <id> --observation <n>`, with the number `show` gives it. Never work around the refusal.
 - `vcr inspiration remove <id>` shows what it would delete and which briefs cite the item; `--yes` applies. Removing is the only way a copied file is deleted: `vcr storage` reports the library's size and never clears it.
 - A fresh clone has the records and none of the files. `show` says when a file is absent; ask the person for the original and add it again, which restores the same id.
 - `vcr validate` fails on an asset with unknown rights and on a copied file that no longer matches its recorded hash.

@@ -106,7 +106,7 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
   if (command === "inspiration" && subcommand) {
     const workspace = requireWorkspace(roots);
     if (!workspace.ok) return failWith(workspace.error, asJson);
-    const outcome = await runInspirationCommand(subcommand, args.slice(2), options, { workspaceRoot: workspace.value, cwd: process.cwd(), harnessVersion: harnessVersion.value, now: new Date() });
+    const outcome = await runInspirationCommand(subcommand, args.slice(2), options, { workspaceRoot: workspace.value, cwd: process.cwd(), harnessVersion: harnessVersion.value, now: new Date(), io: terminalIo() });
     if (!outcome.ok) return failWith(outcome.error, asJson, outcome.error.code === "INVALID_ARGUMENT" ? 2 : 1);
     print(asJson ? outcome.value.json : outcome.value.text);
     return 0;

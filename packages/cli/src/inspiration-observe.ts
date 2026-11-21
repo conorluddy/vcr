@@ -66,11 +66,29 @@ export function observeInspiration(workspaceRoot: string, id: string, draft: Obs
   return ok({ data: updated, changes: [relative(workspaceRoot, recordPath(workspaceRoot, id))], warnings });
 }
 
+/**
+ * Removes one observation by its position in the record (1-based, as `show` numbers them). Callers
+ * gate this behind a human terminal: a model may add a reading but never delete one.
+ */
+export function retractObservation(workspaceRoot: string, id: string, position: number): Result<Mutation<InspirationItem>> {
+  const found = findInspiration(workspaceRoot, id);
+  if (!found.ok) return found;
+  const existing = found.value.observations ?? [];
+  if (!Number.isInteger(position) || position < 1 || position > existing.length) {
+    return fail("NOT_FOUND", existing.length === 0 ? `${id} has no observations to retract.` : `${id} has observations 1 to ${existing.length}; \`vcr inspiration show ${id}\` numbers them.`);
+  }
+  const remaining = existing.filter((_, index) => index !== position - 1);
+  const { observations: _observations, ...withoutObservations } = found.value;
+  const updated: InspirationItem = remaining.length > 0 ? { ...found.value, observations: remaining } : withoutObservations;
+  writeJsonAtomic(recordPath(workspaceRoot, id), updated);
+  return ok({ data: updated, changes: [relative(workspaceRoot, recordPath(workspaceRoot, id))], warnings: [] });
+}
+
 // === PRIVATE HELPERS ===
 
 function lengthErrorFor(field: keyof typeof OBSERVATION_LIMITS, value: string): string | undefined {
   const length = value.trim().length;
-  if (length < MIN_OBSERVATION_CHARACTERS) return `--${field} is ${length} characters; an observation describes what is there in at least ${MIN_OBSERVATION_CHARACTERS}. Observations cannot be retracted, so try the command with --help, not a placeholder.`;
+  if (length < MIN_OBSERVATION_CHARACTERS) return `--${field} is ${length} characters; an observation describes what is there in at least ${MIN_OBSERVATION_CHARACTERS}. Only a person can retract an observation, so try the command with --help, not a placeholder.`;
   if (length > OBSERVATION_LIMITS[field]) return `--${field} is ${length} characters; the limit is ${OBSERVATION_LIMITS[field]}. Tighten the sentence; do not split one observation into several.`;
   return undefined;
 }

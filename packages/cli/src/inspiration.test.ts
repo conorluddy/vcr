@@ -184,7 +184,7 @@ describe("vcr inspiration", () => {
     ]);
     expect(validateWorkspace(harnessRoot(), context.workspaceRoot).diagnostics).toEqual([]);
     const shown = (await run("show", [item!.id])).text;
-    const positions = ["note (stated): Low headline.", "measured by imagemagick", "judged by model-a (inspiration-analyst, 2026-11-21), composition:", "judged by model-b"].map((expected) => shown.indexOf(expected));
+    const positions = ["note (stated): Low headline.", "measured by imagemagick", "1. judged by model-a (inspiration-analyst, 2026-11-21), composition:", "2. judged by model-b"].map((expected) => shown.indexOf(expected));
     expect(positions.every((position) => position >= 0) && [...positions].sort((left, right) => left - right).join() === positions.join()).toBe(true);
     expect(((await run("list", [], { unobserved: true })).json["items"] as unknown[]).length).toBe(0);
     for (const invalid of [{ ...flags, aspect: "vibes" }, { ...flags, observed: "x".repeat(401) }, { ...flags, observed: "test" }, { ...flags, inferred: "x".repeat(301) }, { ...flags, span: "t=0,2" }, { aspect: "composition", observed: "No model named." }]) {
@@ -200,6 +200,23 @@ describe("vcr inspiration", () => {
     expect(observed.json["warnings"]).toEqual([expect.stringContaining("still has no note")]);
     expect(record(context.workspaceRoot, item!.id).note).toBeUndefined();
     expect(validateWorkspace(harnessRoot(), context.workspaceRoot).diagnostics).toEqual([expect.objectContaining({ severity: "warning", path: "/note" })]);
+  });
+
+  test("only a person at a terminal can retract an observation, by its number in show", async () => {
+    const { run, context } = fixture();
+    const [item] = (await run("add", ["saved/Poster One.png"], { note: "Low headline." })).json["data"] as InspirationItem[];
+    await run("observe", [item!.id], { aspect: "palette", observed: "A placeholder that should not have been recorded.", model: "model-a" });
+    await run("observe", [item!.id], { aspect: "composition", observed: "Headline set in the lower third of the frame.", model: "model-a" });
+    expect((await run("show", [item!.id])).text).toContain("2. judged by model-a");
+    const retract = (io?: InspirationCommandContext["io"]) => runInspirationCommand("retract", [item!.id], { observation: "1" }, { ...context, ...(io ? { io } : {}) });
+    expect(await retract()).toMatchObject({ ok: false, error: { code: "HUMAN_CHANNEL_REQUIRED" } });
+    expect(await retract({ isInteractive: true, ask: async () => "something else" })).toMatchObject({ ok: false, error: { code: "CONFIRMATION_MISMATCH" } });
+    expect(record(context.workspaceRoot, item!.id).observations).toHaveLength(2);
+    expect(await retract({ isInteractive: true, ask: async () => item!.id })).toMatchObject({ ok: true });
+    const stored = record(context.workspaceRoot, item!.id);
+    expect(stored.observations).toMatchObject([{ aspect: "composition" }]);
+    expect(stored.note).toBe("Low headline.");
+    expect(await runInspirationCommand("retract", [item!.id], { observation: "5" }, context)).toMatchObject({ ok: false, error: { code: "INVALID_ARGUMENT" } });
   });
 
   test("a motion or pacing observation on a video must cite the span inspected", async () => {

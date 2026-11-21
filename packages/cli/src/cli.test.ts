@@ -202,7 +202,8 @@ describe("the bundled plugin CLI outside the harness repository (P0/P1 exit evid
     expect(readFileSync(join(scratch, ".gitignore"), "utf8")).toContain("inspiration/files/");
     const observed = JSON.parse((await runFromScratch("inspiration", "observe", added.data[0].id, "--aspect", "typography", "--observed", "Monospaced, heavy weight, wide apertures.", "--model", "model-a", "--json")).stdout);
     expect(observed.data).toMatchObject({ note: "Wide, even mono.", observations: [{ aspect: "typography", by: { agent: "inspiration-analyst", model: "model-a" } }] });
-    expect((await runFromScratch("inspiration", "show", added.data[0].id)).stdout).toContain("judged by model-a");
+    expect((await runFromScratch("inspiration", "show", added.data[0].id)).stdout).toContain("1. judged by model-a");
+    await expect(runFromScratch("inspiration", "retract", added.data[0].id, "--observation", "1", "--json")).rejects.toMatchObject({ code: 1, stdout: expect.stringContaining("HUMAN_CHANNEL_REQUIRED") });
     const validation = await runFromScratch("validate", "--json");
     expect(JSON.parse(validation.stdout).diagnostics).toEqual([]);
   });
