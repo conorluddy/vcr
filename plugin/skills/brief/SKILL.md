@@ -22,7 +22,7 @@ A one-off video may have only `brief.md`. A series, or any project with more tha
 
 ## Steps
 
-1. **Orient.** Run `vcr status --brief`. Run `vcr video init <project>/<video>`; it is safe to re-run. If `projects/<project>/brief.json` exists, read it and treat its contents as settled: the interview covers only what this video adds or narrows. Read the person's notes, attachments and any earlier briefs before asking anything.
+1. **Orient.** Run `vcr status --brief`. Run `vcr video init <project>/<video>`; it is safe to re-run. If the person supplies reference material, or `vcr inspiration list` shows a library, use the `inspiration` skill: take the material in, ask what they like in each item, and cite the items this brief draws on (`inspiration` in `brief.json` or the `brief.md` front matter). If `projects/<project>/brief.json` exists, read it and treat its contents as settled: the interview covers only what this video adds or narrows. Read the person's notes, attachments and any earlier briefs before asking anything.
 2. **Interview for the decision fields only** (`vcr refs section series-brief 1.2`). Ask a manageable group of questions at a time, fill in what the notes already answer, and confirm rather than re-ask. In order:
    - **Objective**: exactly one, with its kind and a success measure (`BRIEF-OBJECTIVE-SINGLE`, `BRIEF-OBJECTIVE-MEASURE`).
    - **Audience and viewing context**: a portrait beyond demographics, and the watch mode, muted-first, sound-on or mixed (`BRIEF-AUDIENCE-SPECIFIC`).
@@ -68,7 +68,7 @@ A one-off video may have only `brief.md`. A series, or any project with more tha
 
 - One objective, one proposition. If the person gives two, ask which one wins, or propose two videos.
 - The brief states values, and pillar rules own the checks. Cite rule IDs and never restate their thresholds.
-- Keep the brief to what reviewers judge against. Put notes, history and inspiration in the person's own documents.
+- Keep the brief to what reviewers judge against. Put notes and history in the person's own documents; reference material goes in the workspace inspiration library and the brief cites it by id.
 - Never invent a mandatory, a claim or a source. Ask, or leave it out and say so.
 - A video brief never contradicts its series brief. If the video needs something the series forbids, change the series brief first (a new version, with the person's approval), or record a declared break.
 - Never write a real client, brand or product name into the harness. Briefs live in the workspace.
