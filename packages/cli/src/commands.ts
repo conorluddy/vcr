@@ -55,8 +55,8 @@ export const COMMANDS: CommandSpec[] = [
     flags: [
       { name: "purpose", value: "term", description: "Only techniques with this expressive purpose; a miss lists the accepted terms" },
       { name: "mechanism", value: "term", description: "Only techniques with this visual mechanism; a miss lists the accepted terms" },
-      { name: "pillar", value: "name", description: "Only techniques whose craft lives in this pillar: fx, motion, typography" },
-      { name: "capability", value: "id", description: "Only techniques with a route step using this capability" },
+      { name: "pillar", value: "name", description: "Only techniques whose craft lives in this pillar directory, or its start: fx, motion-director, typo" },
+      { name: "capability", value: "id", description: "Only techniques with a route step using this capability; a miss lists those in use" },
       { name: "tool", value: "id", description: "Only techniques with a route through this tool" },
       { name: "limit", value: "n", description: "Techniques per page", defaultValue: "50" },
       { name: "offset", value: "n", description: "Techniques to skip", defaultValue: "0" },

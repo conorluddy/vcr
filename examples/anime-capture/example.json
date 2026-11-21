@@ -4,6 +4,7 @@
   "summary": "createTimeline with autoplay off drives a CSS transform tween, an SVG line draw and a stagger; 90 frames at 1280x720 with alpha, shuffled order matches sequential, asserted against expected/summary.json.",
   "status": "validated",
   "tools": ["anime-js", "playwright", "imagemagick"],
+  "techniques": ["line-draw/anime-draw"],
   "run": "./run.sh",
   "capture": {
     "scene": "scene.html",

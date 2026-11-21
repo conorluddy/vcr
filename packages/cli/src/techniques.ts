@@ -175,14 +175,16 @@ export function resolveTechnique(technique: Technique, context: TechniqueReadCon
 
 /** The filter terms actually in use, so a miss can show what would have matched. */
 export function techniqueFilterTerms(techniques: Technique[], vocabulary: TechniqueVocabulary) {
-  return { purposes: vocabulary.purposes, mechanisms: vocabulary.mechanisms, pillars: [...new Set(techniques.flatMap(craftPillars))].sort() };
+  const steps = techniques.flatMap((technique) => technique.routes.flatMap((route) => route.steps));
+  const unique = (values: string[]) => [...new Set(values)].sort();
+  return { purpose: vocabulary.purposes, mechanism: vocabulary.mechanisms, pillar: unique(techniques.flatMap(craftPillars)), capability: unique(steps.map((step) => step.capability)), tool: unique(steps.flatMap((step) => step.tools)) };
 }
 
-/** Tier 0 as a table: what `vcr techniques list` prints. An empty result lists the terms the filters accept. */
-export function formatTechniqueList(techniques: Technique[], total: number, offset: number, terms?: ReturnType<typeof techniqueFilterTerms>): string {
+/** Tier 0 as a table: what `vcr techniques list` prints. An empty result lists the terms each filter that was used accepts. */
+export function formatTechniqueList(techniques: Technique[], total: number, offset: number, terms?: Partial<ReturnType<typeof techniqueFilterTerms>>): string {
   if (techniques.length === 0) {
     const lines = ["no matching techniques (the index is not a whitelist: an unmapped technique can still be proposed)"];
-    if (terms) lines.push(`--purpose: ${terms.purposes.join(", ")}`, `--mechanism: ${terms.mechanisms.join(", ")}`, `--pillar: ${terms.pillars.join(", ")}`);
+    for (const [flag, accepted] of Object.entries(terms ?? {})) lines.push(`--${flag} accepts: ${accepted.join(", ")}`);
     return lines.join("\n");
   }
   const width = Math.max(...techniques.map((technique) => technique.id.length));

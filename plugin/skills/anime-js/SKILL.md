@@ -12,7 +12,7 @@ A small v4 timeline driven by the harness: built with autoplay off, seeked in mi
 ## Use cases and limits
 - Proven: CSS transform tweens, SVG line drawing with `svg.createDrawable`, staggered opacity and translate, all on one timeline, captured with alpha.
 - Untested here: springs, morphing (`svg.morphTo`), motion paths, `animate()` outside a timeline, text splitting. Check them with a fixture before relying on them.
-- Nested timelines with labels, or plugins like SplitText and MotionPath that are already validated: use `web-animations-api`.
+- Nested timelines with labels: use `web-animations-api`. No catalogued tool splits text into word or glyph elements; split it yourself before animating.
 - v4 only. v3 snippets (`anime({...})`, `anime.timeline`) do not run on v4.
 
 ## Capability map

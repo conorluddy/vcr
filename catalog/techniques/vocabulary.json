@@ -20,7 +20,9 @@
     "calm-confidence",
     "continuity",
     "product-context",
-    "anticipation"
+    "anticipation",
+    "explanation",
+    "guided-attention"
   ],
   "mechanisms": [
     "tone-quantisation",
@@ -41,7 +43,11 @@
     "lateral-scroll",
     "transition-mask",
     "sequential-reveal",
-    "device-mockup"
+    "device-mockup",
+    "stroke-draw-on",
+    "node-accrual",
+    "camera-move",
+    "path-highlight"
   ],
   "note": "A purpose is what a technique expresses; a mechanism is how the picture is changed. Grow both with the seeds, in the same change as the record that needs the term. Neither list limits what an agent may propose."
 }

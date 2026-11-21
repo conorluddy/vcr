@@ -208,7 +208,9 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
       const page = matching.slice(offset, offset + limit);
       const vocabulary = readJsonFile<TechniqueVocabulary>(join(repositoryRoot, TECHNIQUE_VOCABULARY_PATH));
       // A miss says which terms the filters accept, so the vocabulary is discoverable without opening a file.
-      const terms = matching.length === 0 && vocabulary.ok ? techniqueFilterTerms(techniques.value, vocabulary.value) : undefined;
+      const allTerms = techniqueFilterTerms(techniques.value, vocabulary.ok ? vocabulary.value : { purposes: [], mechanisms: [] });
+      const usedTerms = Object.fromEntries(Object.entries(allTerms).filter(([flag]) => options[flag] !== undefined));
+      const terms = matching.length === 0 ? usedTerms : undefined;
       print(asJson ? { total: matching.length, offset, limit, techniques: page.map(summariseTechnique), ...(terms ? { filter_terms: terms } : {}) } : formatTechniqueList(page, matching.length, offset, terms));
       return 0;
     }
