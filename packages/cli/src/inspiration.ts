@@ -1,4 +1,4 @@
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync } from "node:fs";
+import { closeSync, copyFileSync, existsSync, mkdirSync, openSync, readdirSync, readFileSync, readSync, rmSync, statSync } from "node:fs";
 import { basename, extname, join, relative } from "node:path";
 import { parseVideoBrief, SERIES_BRIEF_FILE, VIDEO_BRIEF_FILE, type SeriesBrief } from "./brief.js";
 import { measureFacts, type ToolRunner } from "./inspiration-facts.js";
@@ -112,7 +112,7 @@ export function expandSources(sourcePath: string): Result<{ files: string[]; ski
   if (!existsSync(sourcePath)) return fail("NOT_FOUND", `${sourcePath} does not exist. Inspiration takes local files only; save the file first, and pass where it came from with --source.`);
   if (!statSync(sourcePath).isDirectory()) {
     if (kindOfFile(sourcePath)) return ok({ files: [sourcePath], skipped: [] });
-    return fail("UNSUPPORTED_FILE", `${basename(sourcePath)} is not an image, video or font VCR recognises (${Object.keys(MEDIA_TYPES).join(" ")}).`);
+    return fail("UNSUPPORTED_FILE", `${basename(sourcePath)} is not an image, video or font VCR recognises by extension (${Object.keys(MEDIA_TYPES).join(" ")}) or by its first bytes.`);
   }
   const files: string[] = [];
   const skipped: string[] = [];
@@ -247,9 +247,31 @@ const HEX_COLOUR = /^#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/;
 const MAX_TITLE_CHARACTERS = 100;
 const MAX_SLUG_CHARACTERS = 48;
 
+/** By extension, then by the file's first bytes: saved posts often lose their extension to a long caption. */
 function kindOfFile(filePath: string): { kind: InspirationKind; mediaType: string } | undefined {
-  return MEDIA_TYPES[extname(filePath).toLowerCase()];
+  const byExtension = MEDIA_TYPES[extname(filePath).toLowerCase()];
+  if (byExtension) return byExtension;
+  const head = Buffer.alloc(12);
+  const descriptor = openSync(filePath, "r");
+  try {
+    readSync(descriptor, head, 0, head.length, 0);
+  } finally {
+    closeSync(descriptor);
+  }
+  const signature = SIGNATURES.find(({ offset, bytes }) => head.subarray(offset, offset + bytes.length).equals(Buffer.from(bytes, "latin1")));
+  return signature ? MEDIA_TYPES[signature.extension] : undefined;
 }
+
+const SIGNATURES: Array<{ offset: number; bytes: string; extension: string }> = [
+  { offset: 0, bytes: "\x89PNG", extension: ".png" },
+  { offset: 0, bytes: "\xFF\xD8\xFF", extension: ".jpg" },
+  { offset: 0, bytes: "GIF8", extension: ".gif" },
+  { offset: 8, bytes: "WEBP", extension: ".webp" },
+  { offset: 4, bytes: "ftypqt", extension: ".mov" },
+  { offset: 4, bytes: "ftyp", extension: ".mp4" },
+  { offset: 0, bytes: "OTTO", extension: ".otf" },
+  { offset: 0, bytes: "\x00\x01\x00\x00", extension: ".ttf" },
+];
 
 function slugify(value: string): string {
   return value

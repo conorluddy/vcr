@@ -71,6 +71,15 @@ describe("vcr inspiration", () => {
     expect((await run("list")).json["total"]).toBe(2);
   });
 
+  test("a saved file that lost its extension is recognised by its first bytes", async () => {
+    const { run, fails, sources } = fixture();
+    writeFileSync(join(sources, "saved/A long caption that ran out of room"), Buffer.concat([Buffer.from([0xff, 0xd8, 0xff, 0xe0]), Buffer.from("jpeg body")]));
+    writeFileSync(join(sources, "saved/notes"), "plain text with no extension");
+    const [item] = (await run("add", ["saved/A long caption that ran out of room"])).json["data"] as InspirationItem[];
+    expect(item).toMatchObject({ kind: "image", file: { name: "A long caption that ran out of room", media_type: "image/jpeg" } });
+    expect(await fails("add", ["saved/notes"])).toBe("UNSUPPORTED_FILE");
+  });
+
   test("re-adding restores a copy that went missing, and ignores flags on an existing item", async () => {
     const { run, context } = fixture();
     const [item] = (await run("add", ["saved/Poster One.png"])).json["data"] as InspirationItem[];
