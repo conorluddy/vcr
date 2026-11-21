@@ -1,0 +1,54 @@
+{
+  "id": "line-boil",
+  "name": "Line boil",
+  "one_line": "Hand-drawn lines redrawn on a stepped cadence so they shimmer like traditional animation",
+  "summary": "Outlines and fills are redrawn with slightly different wobble every few frames, so still drawings seem alive and hand-made. It suits sketchy, informal, human-scaled pieces. The step must be steady and the wobble consistent; per-frame jitter reads as electrical noise, not craft.",
+  "purposes": ["handmade-warmth", "informality", "playful-energy"],
+  "mechanisms": ["stepped-redraw", "stroke-wobble"],
+  "craft": [
+    { "pillar": "fx", "section": "8.1", "rules": ["FX-BOIL-STEPPED", "FX-TEMPORAL-FLICKER", "FX-SEED-DECLARED", "FX-NO-WALLCLOCK"] }
+  ],
+  "related": [
+    { "id": "hand-drawn-sketch", "relation": "combines" },
+    { "id": "toon-shading", "relation": "contrasts" }
+  ],
+  "routes": [
+    {
+      "id": "rough-seeded",
+      "one_line": "Redraw sketchy shapes with a seed that changes only on each step",
+      "steps": [
+        { "does": "Draw hand-drawn shapes whose seed comes from stepped time, redrawn on each seek", "capability": "2d-rendering", "tools": ["rough-js"] }
+      ],
+      "limits": [
+        "Evidence covers a hachure rectangle, solid ellipse and closed path; no stepped seed is tested",
+        "No SVG output evidence; this route is canvas only",
+        "Text and fine detail do not come out of it"
+      ]
+    },
+    {
+      "id": "svg-displacement",
+      "one_line": "Wobble vector art with a displacement filter whose noise seed steps on a cadence",
+      "steps": [
+        { "does": "Author the vector drawing and a displacement filter, its seed set from stepped time", "capability": "svg-animation", "tools": ["svg", "anime-js"] }
+      ],
+      "limits": [
+        "SVG evidence is one static raster by resvg; no filter or animation was exercised",
+        "anime-js evidence covers transforms, stroke draw and stagger, not filter attributes",
+        "Filter output differs between rasterisers; check in the capture browser"
+      ]
+    },
+    {
+      "id": "generative-sketch",
+      "one_line": "Jitter hand-built stroke geometry in a seeded sketch redrawn on each step",
+      "steps": [
+        { "does": "Offset stroke points with seeded noise keyed to stepped time and redraw", "capability": "generative-2d", "tools": ["p5-js"] }
+      ],
+      "limits": [
+        "p5.js evidence is a static noLoop sketch captured on Linux; stepped redraw is untested",
+        "Stroke style is yours to build; there is no ready hand-drawn look"
+      ]
+    }
+  ],
+  "checked_at": "2026-11-20",
+  "source": "references/fx §8.1; tool records as of 2026-11-20"
+}

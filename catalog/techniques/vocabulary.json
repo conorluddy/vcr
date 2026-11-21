@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0.0",
   "purposes": [
-    "print-nostalgia", "handmade-warmth", "editorial-argument", "analogue-texture", "retro-display",
+    "print-nostalgia", "handmade-warmth", "editorial-argument", "analogue-texture",
     "light-and-energy", "depth-and-space", "emphasis", "playful-energy", "graphic-boldness",
     "brand-cohesion", "living-stillness", "progress-and-scale", "informality", "stylised-form"
   ],
   "mechanisms": [
     "tone-quantisation", "colour-remapping", "noise-overlay", "cut-out-masking", "depth-layering",
     "stepped-redraw", "highlight-spread", "staggered-timing", "outline-and-flat-shading",
-    "value-interpolation", "stroke-wobble", "pixel-resampling"
+    "value-interpolation", "stroke-wobble"
   ],
   "note": "A purpose is what a technique expresses; a mechanism is how the picture is changed. Grow both with the seeds, in the same change as the record that needs the term. Neither list limits what an agent may propose."
 }
