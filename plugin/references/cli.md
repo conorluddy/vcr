@@ -235,6 +235,85 @@ Claim a fix: mark a finding addressed with the render that fixes it and evidence
 vcr findings address demo/teaser F-0001 --render r-20261106T120000-abcdef0 --note "Moved headline 40px left"
 ```
 
+## `vcr inspiration add <file|dir>… [--note text] [--aspect a,b] [--use use] [--rights evidence] [--attribution text] [--source locator] [--creator name] [--accessed date] [--title text] [--colours hex,hex]`
+
+Copy local reference files into the workspace library (git-ignored), hash them, measure what a tool can and write one record each; idempotent on content. Nothing is fetched
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--note text` | What the user likes in it, in their words; one item only. Never written by an agent on its own account |  |
+| `--aspect a,b` | What to take from it: palette, typography, composition, motion, texture, pacing, tone |  |
+| `--use use` | inspiration (never appears in output) or asset (may, with rights) | `inspiration` |
+| `--rights evidence` | Where permission to reuse comes from, or unknown; required for an asset |  |
+| `--attribution text` | Credit line that goes with --rights |  |
+| `--source locator` | Where it came from (a URL or other address), recorded as text |  |
+| `--creator name` | Who made it |  |
+| `--accessed date` | When it was saved, YYYY-MM-DD |  |
+| `--title text` | One item only | `the file name` |
+| `--colours hex,hex` | Add a named colour set instead of a file; needs --title |  |
+
+```sh
+vcr inspiration add ~/Downloads/poster.png --note "The headline sits low and the top stays empty" --aspect composition,typography
+```
+
+## `vcr inspiration annotate <id> [--note text] [--aspect a,b] [--use use] [--rights evidence] [--attribution text] [--source locator] [--creator name] [--accessed date] [--title text]`
+
+Set or change what a person stated about an item: note, aspects, use, rights, source, title. Never touches facts or observations
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--note text` | What the user likes in it, in their words |  |
+| `--aspect a,b` | Replaces the aspects: palette, typography, composition, motion, texture, pacing, tone |  |
+| `--use use` | inspiration or asset |  |
+| `--rights evidence` | Where permission to reuse comes from, or unknown |  |
+| `--attribution text` | Credit line that goes with --rights |  |
+| `--source locator` | Where it came from |  |
+| `--creator name` | Who made it |  |
+| `--accessed date` | When it was saved, YYYY-MM-DD |  |
+| `--title text` | A clearer title |  |
+
+```sh
+vcr inspiration annotate poster-0a1b2c --note "The headline sits low and the top stays empty"
+```
+
+## `vcr inspiration list [--kind kind] [--aspect aspect] [--use use] [--unannotated] [--unobserved] [--limit n] [--offset n]`
+
+One line per item in the workspace library, paginated
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--kind kind` | image, video, font or colours |  |
+| `--aspect aspect` | Only items the user said to take this from |  |
+| `--use use` | inspiration or asset |  |
+| `--unannotated` | Only items with no note |  |
+| `--unobserved` | Only items no model has looked at |  |
+| `--limit n` | Items per page | `50` |
+| `--offset n` | Items to skip | `0` |
+
+```sh
+vcr inspiration list --aspect palette
+```
+
+## `vcr inspiration show <id>`
+
+One item: what the user stated, what was measured, what a model judged (each labelled), and the absolute path of the file to look at
+
+```sh
+vcr inspiration show poster-0a1b2c
+```
+
+## `vcr inspiration remove <id> [--yes]`
+
+Show what removing an item would delete (its record and copied files) and which briefs cite it; --yes applies
+
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--yes` | Apply the plan |  |
+
+```sh
+vcr inspiration remove poster-0a1b2c --yes
+```
+
 ## `vcr review approve <project>/<video> [--render id] [--note text]`
 
 Human only: approve a render at an interactive terminal by typing the video id; refused without a TTY
