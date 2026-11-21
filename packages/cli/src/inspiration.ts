@@ -201,6 +201,10 @@ export function addColourSet(workspaceRoot: string, colours: string[], stated: S
 
 /** Sets or changes what a person stated. Never touches the file, facts or observations. */
 export function annotateInspiration(workspaceRoot: string, id: string, stated: StatedFields): Result<Mutation<InspirationItem>> {
+  return withRecordLock(workspaceRoot, id, () => annotateUnlocked(workspaceRoot, id, stated));
+}
+
+function annotateUnlocked(workspaceRoot: string, id: string, stated: StatedFields): Result<Mutation<InspirationItem>> {
   const found = findInspiration(workspaceRoot, id);
   if (!found.ok) return found;
   if (!hasStatedFields(stated)) return fail("INVALID_ARGUMENT", "annotate needs at least one of --note, --aspect, --use, --title, --rights, --attribution, --source, --creator or --accessed.");
@@ -236,6 +240,37 @@ export function parseAspects(value: string): Result<InspirationAspect[]> {
   if (aspects.length === 0 || unknown.length > 0) return fail("INVALID_ARGUMENT", `--aspect takes one or more of ${INSPIRATION_ASPECTS.join(", ")}, comma-separated${unknown.length > 0 ? `; not ${unknown.join(", ")}` : ""}.`);
   return ok(aspects as InspirationAspect[]);
 }
+
+/**
+ * Runs a read-modify-write on one record while holding its lock, so two agents changing the same
+ * item cannot lose each other's write. The lock is a file in the ignored folder; one left behind by
+ * a crashed process is taken over once it is stale.
+ */
+export function withRecordLock<T>(workspaceRoot: string, id: string, change: () => Result<T>, timeoutMs = RECORD_LOCK.timeoutMs): Result<T> {
+  const lockDirectory = join(workspaceRoot, INSPIRATION_PATHS.files, ".locks");
+  const lockPath = join(lockDirectory, `${id}.lock`);
+  mkdirSync(lockDirectory, { recursive: true });
+  const deadline = Date.now() + timeoutMs;
+  for (;;) {
+    try {
+      closeSync(openSync(lockPath, "wx"));
+      break;
+    } catch (cause) {
+      if ((cause as NodeJS.ErrnoException).code !== "EEXIST") throw cause;
+      const heldForMs = Date.now() - (statSync(lockPath, { throwIfNoEntry: false })?.mtimeMs ?? Date.now());
+      if (heldForMs > RECORD_LOCK.staleMs) rmSync(lockPath, { force: true });
+      else if (Date.now() >= deadline) return fail("RECORD_LOCKED", `Another process is writing inspiration item ${id}. Run the command again.`, true);
+      else Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, RECORD_LOCK.pollMs);
+    }
+  }
+  try {
+    return change();
+  } finally {
+    rmSync(lockPath, { force: true });
+  }
+}
+
+const RECORD_LOCK = { timeoutMs: 10_000, staleMs: 30_000, pollMs: 25 } as const;
 
 export function recordPath(workspaceRoot: string, id: string): string {
   return join(workspaceRoot, INSPIRATION_PATHS.items, `${id}.json`);

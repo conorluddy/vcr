@@ -1,7 +1,8 @@
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, utimesSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, test } from "vitest";
+import { withRecordLock } from "./inspiration.js";
 import { runInspirationCommand, type InspirationCommandContext } from "./inspiration-commands.js";
 import type { ToolRunner } from "./inspiration-facts.js";
 import type { InspirationItem } from "./inspiration-record.js";
@@ -217,6 +218,20 @@ describe("vcr inspiration", () => {
     expect(stored.observations).toMatchObject([{ aspect: "composition" }]);
     expect(stored.note).toBe("Low headline.");
     expect(await runInspirationCommand("retract", [item!.id], { observation: "5" }, context)).toMatchObject({ ok: false, error: { code: "INVALID_ARGUMENT" } });
+  });
+
+  test("a record's lock makes a second writer wait, fail retryably, or take over a stale lock", async () => {
+    const { run, context } = fixture();
+    const [item] = (await run("add", ["saved/Poster One.png"], { note: "Low headline." })).json["data"] as InspirationItem[];
+    const inner = withRecordLock(context.workspaceRoot, item!.id, () => withRecordLock(context.workspaceRoot, item!.id, () => ok("second writer"), 60));
+    expect(inner).toMatchObject({ ok: false, error: { code: "RECORD_LOCKED", retryable: true } });
+    const lockPath = join(context.workspaceRoot, "inspiration/files/.locks", `${item!.id}.lock`);
+    expect(existsSync(lockPath)).toBe(false);
+    writeFileSync(lockPath, "");
+    const longAgo = new Date(Date.now() - 120_000);
+    utimesSync(lockPath, longAgo, longAgo);
+    expect(withRecordLock(context.workspaceRoot, item!.id, () => ok("took over"), 60)).toEqual({ ok: true, value: "took over" });
+    expect(validateWorkspace(harnessRoot(), context.workspaceRoot).diagnostics).toEqual([]);
   });
 
   test("a motion or pacing observation on a video must cite the span inspected", async () => {

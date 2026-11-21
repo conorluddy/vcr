@@ -208,6 +208,14 @@ describe("the bundled plugin CLI outside the harness repository (P0/P1 exit evid
     expect(JSON.parse(validation.stdout).diagnostics).toEqual([]);
   });
 
+  test("observers writing the same item at once all land (the record is locked per write)", async () => {
+    const listed = JSON.parse((await runFromScratch("inspiration", "list", "--kind", "font", "--json")).stdout);
+    const id = listed.items[0].id as string;
+    const before = JSON.parse((await runFromScratch("inspiration", "show", id, "--json")).stdout).observations.length as number;
+    await Promise.all([1, 2, 3, 4, 5, 6].map((writer) => runFromScratch("inspiration", "observe", id, "--aspect", "typography", "--observed", `Concurrent writer number ${writer} describing the type.`, "--model", `model-${writer}`)));
+    expect(JSON.parse((await runFromScratch("inspiration", "show", id, "--json")).stdout).observations).toHaveLength(before + 6);
+  }, 30_000);
+
   test("status reports the workspace's per-agent models, and an empty map when none are set", async () => {
     expect(JSON.parse((await runFromScratch("status", "--json")).stdout).models).toEqual({});
     const markerPath = join(scratch, "vcr.json");

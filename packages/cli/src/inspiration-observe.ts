@@ -1,5 +1,5 @@
 import { relative } from "node:path";
-import { findInspiration, recordPath, type Mutation } from "./inspiration.js";
+import { findInspiration, recordPath, withRecordLock, type Mutation } from "./inspiration.js";
 import { INSPIRATION_ASPECTS, type InspirationAspect, type InspirationItem, type InspirationObservation } from "./inspiration-record.js";
 import { writeJsonAtomic } from "./repository.js";
 import { fail, ok, type Result } from "./result.types.js";
@@ -34,6 +34,10 @@ const SPAN_PATTERN = /^t=(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)$/;
  * writes nothing. Stated fields, the file and facts are carried over untouched.
  */
 export function observeInspiration(workspaceRoot: string, id: string, draft: ObservationDraft, now: Date): Result<Mutation<InspirationItem>> {
+  return withRecordLock(workspaceRoot, id, () => observeUnlocked(workspaceRoot, id, draft, now));
+}
+
+function observeUnlocked(workspaceRoot: string, id: string, draft: ObservationDraft, now: Date): Result<Mutation<InspirationItem>> {
   const found = findInspiration(workspaceRoot, id);
   if (!found.ok) return found;
   const item = found.value;
@@ -71,6 +75,10 @@ export function observeInspiration(workspaceRoot: string, id: string, draft: Obs
  * gate this behind a human terminal: a model may add a reading but never delete one.
  */
 export function retractObservation(workspaceRoot: string, id: string, position: number): Result<Mutation<InspirationItem>> {
+  return withRecordLock(workspaceRoot, id, () => retractUnlocked(workspaceRoot, id, position));
+}
+
+function retractUnlocked(workspaceRoot: string, id: string, position: number): Result<Mutation<InspirationItem>> {
   const found = findInspiration(workspaceRoot, id);
   if (!found.ok) return found;
   const existing = found.value.observations ?? [];
