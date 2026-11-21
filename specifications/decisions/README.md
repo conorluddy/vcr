@@ -18,7 +18,7 @@
 
 One file per decision, `NNNN-kebab-title.md`, managed with `whatwhy` (`node scripts/whatwhy.mjs`; see the process section of `AGENTS.md`). `INDEX.md` is the generated list with status and date; the list above is the hand-written one-line summary of each. Create a record with `whatwhy new adr "<title>"` from `TEMPLATE.md`, and change its status with `whatwhy accept|reject|deprecate <ID>`; never edit an `id`, a number or a `status` by hand. An accepted record is frozen once merged: supersede it with a new one.
 
-The whatwhy template has three sections (Context, Decision, Consequences). Records here also carry two more, which the check allows and reviewers expect:
+`TEMPLATE.md` carries whatwhy's three required sections (Context, Decision, Consequences) plus two this repository adds, which every record here fills in:
 
 - **Options considered**, after Context: each option with its real cost and benefit.
 - **Revisit when**, last: a concrete, observable trigger.

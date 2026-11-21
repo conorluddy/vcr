@@ -19,6 +19,10 @@ write a new ADR with `supersedes: ADR-NNNN`.
 
 <The forces at play: constraints, requirements, what makes this hard.>
 
+## Options considered
+
+<Each option with its real cost and benefit, including the one chosen.>
+
 ## Decision
 
 <What we will do, in the active voice.>
@@ -26,3 +30,7 @@ write a new ADR with `supersedes: ADR-NNNN`.
 ## Consequences
 
 <What becomes easier, what becomes harder, what we now have to live with.>
+
+## Revisit when
+
+<A concrete, observable trigger for reopening this decision.>
