@@ -1,7 +1,11 @@
-# 0013. Models are chosen per agent, in the workspace
+---
+id: ADR-0013
+title: Models are chosen per agent, in the workspace
+status: accepted
+date: "2026-11-21"
+---
 
-Date: 2026-11-21
-Status: accepted
+# 0013. Models are chosen per agent, in the workspace
 
 ## Context
 

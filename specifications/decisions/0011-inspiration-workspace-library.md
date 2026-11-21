@@ -1,7 +1,11 @@
-# 0011. Inspiration is a workspace library, separate from assets
+---
+id: ADR-0011
+title: Inspiration is a workspace library, separate from assets
+status: accepted
+date: "2026-11-21"
+---
 
-Date: 2026-11-21
-Status: accepted
+# 0011. Inspiration is a workspace library, separate from assets
 
 ## Context
 

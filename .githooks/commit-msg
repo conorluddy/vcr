@@ -1,0 +1,7 @@
+#!/bin/sh
+# Checks the commit against the PRD/ADR process. Runs once git is pointed here:
+# `git config core.hooksPath .githooks` (`node scripts/whatwhy.mjs init` does it).
+# commit-msg, not pre-commit, because the traceability rule reads the message.
+# Errors only: a finding printed here has blocked the commit. Warnings show on the
+# pull request, and when you run `node scripts/whatwhy.mjs check` yourself.
+exec node "$(git rev-parse --show-toplevel)/scripts/whatwhy.mjs" check --errors-only --message-file "$1"

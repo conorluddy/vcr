@@ -1,7 +1,11 @@
-# 0001. Build the composition engine in-house
+---
+id: ADR-0001
+title: Build the composition engine in-house
+status: accepted
+date: "2026-10-26"
+---
 
-Date: 2026-10-26
-Status: accepted
+# 0001. Build the composition engine in-house
 
 ## Context
 

@@ -1,7 +1,11 @@
-# 0014. A look is approved in stills before motion
+---
+id: ADR-0014
+title: A look is approved in stills before motion
+status: proposed
+date: "2026-11-21"
+---
 
-Date: 2026-11-21
-Status: proposed
+# 0014. A look is approved in stills before motion
 
 ## Context
 

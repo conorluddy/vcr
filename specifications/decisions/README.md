@@ -16,26 +16,11 @@
 - 0013 — models are chosen per agent in the workspace (`vcr.json` `models`); the agent definition is the default and VCR never recommends or validates a model name. Accepted.
 - 0014 — a video's look is approved on look frames (stills, a recorded human choice) before motion; stills are a stage, not a project type. Proposed, with open questions.
 
-One file per decision, `NNNN-kebab-title.md`, never edited after acceptance except to change `Status` and add a `Superseded by` line.
+One file per decision, `NNNN-kebab-title.md`, managed with `whatwhy` (`node scripts/whatwhy.mjs`; see the process section of `AGENTS.md`). `INDEX.md` is the generated list with status and date; the list above is the hand-written one-line summary of each. Create a record with `whatwhy new adr "<title>"` from `TEMPLATE.md`, and change its status with `whatwhy accept|reject|deprecate <ID>`; never edit an `id`, a number or a `status` by hand. An accepted record is frozen once merged: supersede it with a new one.
 
-```markdown
-# NNNN. Title
+The whatwhy template has three sections (Context, Decision, Consequences). Records here also carry two more, which the check allows and reviewers expect:
 
-Date: YYYY-MM-DD
-Status: proposed | accepted | superseded by NNNN
+- **Options considered**, after Context: each option with its real cost and benefit.
+- **Revisit when**, last: a concrete, observable trigger.
 
-## Context
-What forced a decision. Facts, not opinions.
-
-## Options considered
-Each option with its real cost and benefit.
-
-## Decision
-One paragraph. What we do.
-
-## Consequences
-What becomes easier, what becomes harder, what we must now do.
-
-## Revisit when
-A concrete, observable trigger.
-```
+Cite a record as "ADR 0011" or `ADR-0011`; `whatwhy check` reads both in a branch name, commit message or pull request.

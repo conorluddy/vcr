@@ -1,7 +1,11 @@
-# 0008. Advisory making workflows before checks
+---
+id: ADR-0008
+title: Advisory making workflows before checks
+status: accepted
+date: "2026-11-08"
+---
 
-Date: 2026-11-08
-Status: accepted
+# 0008. Advisory making workflows before checks
 
 ## Context
 
