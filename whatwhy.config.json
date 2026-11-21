@@ -2,7 +2,7 @@
   "baseBranch": "main",
   "directories": {
     "adr": "specifications/decisions",
-    "prd": "docs/prd"
+    "prd": "specifications/prd"
   },
   "rules": {
     "structure": "error",

@@ -8,6 +8,7 @@
 - `vcr-plugin-prd.md` — child PRD for distribution as a Claude Code and Codex plugin, and the human review layer (review pages and storage controls). Requirement groups PL, RT, AG, RS, RV, ST, SH, PX.
 - `roadmap.md` — what to build next, in order, and why. Start here when choosing work.
 - `decisions/` — architecture decision records, numbered. See `decisions/README.md`.
+- `prd/` — feature-sized PRDs managed with `whatwhy` (`node scripts/whatwhy.mjs new prd "<title>"`); `prd/INDEX.md` is generated. The two product-level PRDs above stay where they are, with their own requirement IDs.
 - `handoffs/` — resumable multi-session workflows an agent can pick up from a single prompt, such as `catalogue-evidence-rollout.md`.
 - `spikes/` — reports from time-boxed technical spikes: decision, numbers, limitations. A child specification cites the spike that opened it.
 - `research/` — discovery reports and proposals, including the [pillar extraction audit](research/pillar-extraction-audit-2026-11-08.md); recommendations are not implemented capabilities or accepted decisions.
