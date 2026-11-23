@@ -3932,14 +3932,27 @@
       "install": {
         "macos": "pnpm add gl-matrix"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "glmatrix-camera-projection"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-23",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.4.4",
+            "command": "examples/glmatrix-camera-projection/run.sh",
+            "result": "perspective x lookAt view-projection; 5 points vs closed-form NDC, max abs error 5.4e-8 (tolerance 1e-6); lookAt target to NDC (0, 0); two runs byte-identical; Node v22.19.0",
+            "example": "examples/glmatrix-camera-projection",
+            "scope": "In Node, perspective x lookAt view-projection matches closed-form NDC for 5 points within 1e-6; reruns byte-identical; gl-matrix 3.4.4, Node 22.19.0, macOS arm64. Not WebGL or shaders."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-11-23",
       "assessment": {
         "date": "2026-10-26",
         "assessed_by": "assess-a9a",
@@ -3956,8 +3969,9 @@
       },
       "source": "specifications/vcr-prd.md#appendix-a",
       "notes": [
-        "2026-10-29: Skill opportunity: No skill yet: this supporting math library has no standalone rendering workflow; revisit for a recurring raw WebGL task."
-      ]
+        "2026-11-23: Guide written from examples/glmatrix-camera-projection evidence (Node Float32 perspective x lookAt only)."
+      ],
+      "skill": "skills/glmatrix/SKILL.md"
     },
     {
       "id": "glslify",
