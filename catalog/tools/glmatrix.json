@@ -30,7 +30,7 @@
   "install": {
     "macos": "pnpm add gl-matrix"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "glmatrix-camera-projection"
@@ -67,6 +67,7 @@
   },
   "source": "specifications/vcr-prd.md#appendix-a",
   "notes": [
-    "2026-10-29: Skill opportunity: No skill yet: this supporting math library has no standalone rendering workflow; revisit for a recurring raw WebGL task."
-  ]
+    "2026-11-23: Guide written from examples/glmatrix-camera-projection evidence (Node Float32 perspective x lookAt only)."
+  ],
+  "skill": "skills/glmatrix/SKILL.md"
 }
