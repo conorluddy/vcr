@@ -1,0 +1,9 @@
+{
+  "id": "glmatrix-camera-projection",
+  "title": "gl-matrix perspective and lookAt projecting five points to NDC in Node",
+  "summary": "gl-matrix 3.4.4 builds a perspective x lookAt view-projection; five points are checked against closed-form NDC within 1e-6 and the JSON is byte-identical across two runs.",
+  "status": "validated",
+  "tools": ["glmatrix"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-23", "hostname": "Conors-MacBook-Pro-2.local" }
+}
