@@ -12,7 +12,8 @@ The argument is a batch size (default 3) or a list of tool ids, for example `bac
 ## 1. Pick the batch
 
 - `vcr tools status --json --documentation listed-in-prd` lists the backlog.
-- Rank the tools in this order: those `vcr doctor` already finds installed (no approval needed); those that fill a capability gap (a `catalog/capabilities/vocabulary.json` entry with no validated tool); then the oldest `checkedAt`.
+- Drop any record whose `assessment.verdict` is already `demote` or `retire`, and note it for the PR body.
+- Rank the rest in this order: tools that need no system install (a project-local `pnpm add` in the example, or a binary already on `PATH`: run the record's `install.check_command`, but don't trust `pnpm dlx` or `pnpm list`, which succeed without an install; `vcr doctor` does not probe candidates); those that fill a capability gap (a `catalog/capabilities/vocabulary.json` entry with no validated tool); then the oldest `checkedAt`.
 - Skip any id that already has an open `backfill/*` PR (`gh pr list --search "head:backfill"`) or a worktree under `.claude/worktrees/`.
 - Show the picked ids with a one-line reason each. If any of them needs a system install, show the install plan and wait for approval, as `evidence` requires.
 
@@ -22,7 +23,7 @@ Run the `ingest` assessment for each tool. A tool that comes out as `defer` or `
 
 ## 3. Evidence (parallel)
 
-Follow `## Batches` in the `evidence` skill. Run one `evidence-runner` agent per tool, with `isolation: worktree`, its own `examples/<dir>`, and the claim and template chosen up front (step 1 of `evidence`). Launch them all in one message.
+Follow `## Batches` in the `evidence` skill. Run one `evidence-runner` agent per tool, with `isolation: worktree`, its own `examples/<dir>`, and the claim and template chosen up front (step 1 of `evidence`). Launch them all in one message. Tell each worker to commit only its own record and example. Examples are part of the pnpm workspace, so the lockfile is regenerated once at integration.
 
 ## 4. Guide (parallel, passed or partial only)
 
@@ -30,7 +31,7 @@ For each tool whose evidence passed or partly passed, run one agent, in that too
 
 ## 5. Integrate
 
-Follow `AGENTS.md`'s worktree rule: merge every worker branch into `backfill/<YYYY-MM-DD>`, rebuild once, and never `git add -A` while worktrees exist.
+Follow `AGENTS.md`'s worktree rule: merge every worker branch into `backfill/<YYYY-MM-DD>`, rebuild once, and never `git add -A` while worktrees exist. Run `pnpm install` first so `pnpm-lock.yaml` picks up the new examples' dependencies, then rerun each new example's `run.sh`. Remove the worker worktrees after the merge.
 
 ```sh
 pnpm vcr catalog build && pnpm vcr plugin build && pnpm validate && pnpm test
