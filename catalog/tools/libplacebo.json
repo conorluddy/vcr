@@ -12,9 +12,10 @@
   "notes": [
     "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
     "2026-10-29: Primary code.videolan.org page was inaccessible; the upstream project identifies the GitHub mirror as official. GPU backends and the FFmpeg build determine usable functionality.",
-    "2026-10-29: Skill opportunity: further research first; evaluate colour processing in a pinned FFmpeg build before proposing a VCR skill."
+    "2026-10-29: Skill opportunity: further research first; evaluate colour processing in a pinned FFmpeg build before proposing a VCR skill.",
+    "2026-11-24: Toolkit guide written from libplacebo-colour-maths evidence (CPU-only colour maths, PQ, BT.2390 structural check); GPU, gamut mapping and ICC untested."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "libplacebo-colour-maths"
@@ -65,5 +66,6 @@
   "install": {
     "macos": "brew install libplacebo",
     "check_command": "pkg-config --modversion libplacebo"
-  }
+  },
+  "skill": "skills/libplacebo/SKILL.md"
 }
