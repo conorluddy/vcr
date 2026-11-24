@@ -14,16 +14,27 @@
     "2026-11-01: Licence as reported by the source research, not yet verified: MIT.",
     "2026-11-01: Anchors font fixtures for reproducible text.",
     "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-    "2026-11-01: Triage: assess. Report rates it a strong candidate."
+    "2026-11-01: Triage: assess. Report rates it a strong candidate.",
+    "2026-11-24: Toolkit guide skills/fonttools written from examples/fonttools-subset-instance evidence (pyftsubset TTF and WOFF2 subset; varLib.instancer untested)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.68.0",
+        "command": "examples/fonttools-subset-instance/run.sh",
+        "result": "pyftsubset 4.68.0 + brotli 1.2.1, JetBrains Mono Bold (114828 B, 976 cmap, 1168 glyphs) to 'Type & Motion 2026' (14 codepoints): TTF 3772 B, 21 glyphs, cmap equals the 14 codepoints, 81 dropped ASCII codepoints absent; WOFF2 1712 B, magic wOF2, cmap equal to TTF; all nine gating checks true; two TTF and two WOFF2 runs byte-identical; record and verify runs gave identical checks.json; variable instancing not exercised. Specimen shows subset title matches source, missing letters blank.",
+        "example": "examples/fonttools-subset-instance",
+        "scope": "pyftsubset to a 14-codepoint title subset as TTF and WOFF2: cmap exact, ASCII drops absent, size drops, repeat byte-identical; no varLib.instancer (no variable font in repo); macOS arm64"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "Python library and CLI utilities for reading, building, subsetting, and instancing OpenType fonts; pyftsubset can make reproducible subsets and varLib can instantiate variable fonts.",
   "use_when": [
@@ -53,5 +64,9 @@
     "sources": [
       "https://github.com/fonttools/fonttools"
     ]
-  }
+  },
+  "examples": [
+    "fonttools-subset-instance"
+  ],
+  "skill": "skills/fonttools/SKILL.md"
 }
