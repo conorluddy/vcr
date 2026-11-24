@@ -36,6 +36,7 @@
   },
   "skill": "skills/imagemagick/SKILL.md",
   "examples": [
+    "gl-transitions-seek",
     "ffmpeg-assembly",
     "libwebp-lossless-animation",
     "blender-smoke",

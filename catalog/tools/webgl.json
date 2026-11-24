@@ -47,6 +47,7 @@
   "documentation_status": "skill-written",
   "installation_status": "not-applicable",
   "examples": [
+    "gl-transitions-seek",
     "webgl-readpixels"
   ],
   "validation": {

@@ -11,11 +11,13 @@
     "effects"
   ],
   "notes": [
+    "2026-11-24: Toolkit guide written from partial Fade-only evidence (examples/gl-transitions-seek).",
     "2026-11-15: Triage reason: Assess source-specific licenses and host-renderer integration. Revisit when a seekable shader transition workflow is needed.",
     "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
+  "skill": "skills/gl-transitions/SKILL.md",
   "validation": {
     "status": "not-validated",
     "evidence": [
