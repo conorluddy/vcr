@@ -12,7 +12,7 @@ description: Record a scripted terminal session from a .tape file to MP4, PNG fr
 - Tested: one headless tape to an h264 640x360 MP4 (about 3.9 s, within 1 s), a text golden that was identical across two runs, and a final frame showing the typed text. macOS arm64, VHS 0.12.1, ttyd 1.7.7, Chrome 158. The result is partial: the PNG and frame-count checks failed (see Troubleshooting).
 - Untested: GIF, WebM, `Screenshot`, themes, other fonts and shells, `Wait`, `Require`, `record`, `vhs serve`, `publish`, audio, other platforms.
 - For deterministic checks use the text `Output` golden, not pixels or hashes of MP4 or PNG output.
-- Neighbours: render an existing asciinema cast with `agg`; a static code still with `freeze`. Neither is catalogued or tested here.
+- Neighbours: render an existing asciinema cast with `agg`; make a static code still with `freeze`. Both have their own guides.
 
 ## Capability map
 Discovery only; see the [README](https://github.com/charmbracelet/vhs#vhs-command-reference).

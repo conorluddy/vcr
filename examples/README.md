@@ -63,12 +63,6 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `libass-burn-in` | libass | C program renders a two-event ASS track with a bundled OFL font over a solid 640x360 background; events land in their regions, gaps empty, alpha coverage, shuffled equals sequential, reruns byte-identical (2026-11-24) |
 | `fogleman-sdf-mesh` | fogleman-sdf | classic CSG to binary STL: 291028 triangles, bounds +-0.75, watertight, byte-identical rerun (2026-11-24) |
 | `gifsicle-optimise` | gifsicle, ffmpeg, imagemagick | 6-frame ffmpeg GIF: -O3 keeps frames, delays, loop and RGBA pixels, smaller; --colors=16 table <= 16 (2026-11-24) |
-
-The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
-
-## Outside this repository
-
-`vcr example create <id>` copies an example into `<workspace>/examples/<id>` and prints the commands to run it. Browser examples arrive without `capture.ts`, `run.sh` and `expected/` (they depend on this pnpm workspace) and with a standalone `package.json`; render them with `vcr capture` using the `capture` block. Native examples (`native-svg`, `ffmpeg-assembly`, `blender-smoke`) keep their standalone `run.sh` and `expected/`. `*.test.ts`, `node_modules/` and `output/` never travel.
 | `heerich-voxel-svg` | heerich | 3x3x3 voxel cube minus one corner rendered to oblique SVG in Node, 27 polygons, reruns byte-identical (2026-11-24) |
 | `ab-av1-crf-search` | ab-av1 | crf-search to VMAF 95 on a 2 s generated clip (CRF 27.5 on 3 of 3 runs), encode scored by FFmpeg libvmaf 98.310 (2026-11-24) |
 | `agg-asciicast-gif` | agg | hand-written asciicast v2 (4 events) renders to a 403x157 GIF at font-size 16 and exactly 2x at 32, 5 frames at the event times, 5.00 s, rerun byte-identical; size depends on the resolved font (2026-11-24) |
@@ -78,3 +72,9 @@ The original six were validated on the primary Mac on 2026-10-26; later rows giv
 | `freeze-code-still` | freeze | fixed Go file to SVG and PNG, Dracula, window chrome off/on, line numbers, embedded JetBrains Mono; repeat byte-identical (2026-11-24) |
 | `typst-title-card` | typst | Data-driven title card from .typ plus json() to SVG and PNG at 144 ppi with one pinned font; size, alpha, query and reruns pass, SVG glyphs are outlines so value is not text (partial, 2026-11-24) |
 | `vhs-tape-recording` | vhs | partial: headless tape to MP4 h264 640x360 and a stable text golden; PNG frames cropped to 494x208 and frame counts vary run to run (2026-11-24) |
+
+The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
+
+## Outside this repository
+
+`vcr example create <id>` copies an example into `<workspace>/examples/<id>` and prints the commands to run it. Browser examples arrive without `capture.ts`, `run.sh` and `expected/` (they depend on this pnpm workspace) and with a standalone `package.json`; render them with `vcr capture` using the `capture` block. Native examples (`native-svg`, `ffmpeg-assembly`, `blender-smoke`) keep their standalone `run.sh` and `expected/`. `*.test.ts`, `node_modules/` and `output/` never travel.
