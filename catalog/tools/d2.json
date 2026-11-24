@@ -17,11 +17,24 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.7.1",
+        "command": "examples/d2-diagram-svg/run.sh",
+        "result": "Generated 12650-byte SVG (viewBox 0 0 859 268); Source, Layout, SVG and Inspect labels present; 4 shape groups and 3 edge paths; repeat and fresh-process SHA-256 identical; 960 px raster showed four boxes, three arrows, no clipping.",
+        "example": "examples/d2-diagram-svg",
+        "scope": "Four-node left-to-right chain to SVG with D2 0.7.1 on macOS arm64: labels, shape and edge counts, repeat byte-identical. Not other layouts, formats or platforms."
+      }
+    ]
   },
+  "examples": [
+    "d2-diagram-svg"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "A text-based diagram language and CLI that lays out diagrams and exports SVG, PNG or PDF. Its main advantage is editable source with automatic layout for architecture and flow diagrams.",
   "use_when": [
