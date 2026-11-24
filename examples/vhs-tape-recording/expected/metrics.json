@@ -1,0 +1,24 @@
+{
+  "chrome_version": "Google Chrome 158.0.8127.37",
+  "failed_checks": [
+    "first and last PNG are 640x360",
+    "PNG frame count within 39 +/- 10",
+    "MP4 frame count within 39 +/- 10"
+  ],
+  "ffprobe_version": "ffprobe version 9.0.2 Copyright (c) 2007-2026 the FFmpeg developers",
+  "golden_text_sha256": "7dd0fde8c0015e6f76d3bf85aef1ba039394c66c29ef630dc47d89426ca4b175",
+  "imagemagick_version": "Version: ImageMagick 7.1.2-35 Q16-HDRI aarch64 acaf7e418:20261031 https://imagemagick.org",
+  "mp4_codec": "h264",
+  "mp4_height": 360,
+  "mp4_width": 640,
+  "png_first_dimensions": [
+    494,
+    208
+  ],
+  "png_last_dimensions": [
+    494,
+    208
+  ],
+  "predeclared_checks_passed": false,
+  "vhs_version": "vhs version 0.12.1"
+}

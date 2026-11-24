@@ -30,7 +30,7 @@
       }
     ]
   },
-  "examples": ["svt-av1-encode"],
+  "examples": ["svt-av1-encode", "ab-av1-crf-search"],
   "adapter_maturity": "none",
   "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",

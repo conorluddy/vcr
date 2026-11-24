@@ -1,0 +1,81 @@
+{
+  "colors": {
+    "bytes": 4929,
+    "delays_centiseconds": [
+      12,
+      24,
+      4,
+      16,
+      28,
+      4
+    ],
+    "distinct_decoded_colours": 15,
+    "frame_count": 6,
+    "height": 64,
+    "loop_count": 2,
+    "max_colour_table_entries": 16,
+    "sha256": "0f2772cca5ae3cd3c15e1f2cef2311339d9a9826da6ba05bcd64ab95cd3e78ac",
+    "width": 64
+  },
+  "input": {
+    "bytes": 12479,
+    "delays_centiseconds": [
+      12,
+      24,
+      4,
+      16,
+      28,
+      4
+    ],
+    "distinct_decoded_colours": 62,
+    "distinct_frame_hashes": 6,
+    "frame_count": 6,
+    "height": 64,
+    "loop_count": 2,
+    "max_colour_table_entries": 256,
+    "sha256": "b11b269b9284d670498e808d4314d94b9ec3db2c37ad1ec12f55153896c95026",
+    "width": 64
+  },
+  "lossy": {
+    "bytes": 10811,
+    "delays_centiseconds": [
+      12,
+      24,
+      4,
+      16,
+      28,
+      4
+    ],
+    "frame_count": 6,
+    "frames_pixel_identical_to_input": 0,
+    "height": 64,
+    "loop_count": 2,
+    "max_colour_table_entries": 64,
+    "sha256": "bf84f49a4b85dde6c3bedf02fb9a7be3f310c00e543448f178e7dc6c01bca7b3",
+    "width": 64
+  },
+  "o3": {
+    "bytes": 10869,
+    "delays_centiseconds": [
+      12,
+      24,
+      4,
+      16,
+      28,
+      4
+    ],
+    "frame_count": 6,
+    "frames_pixel_identical_to_input": 6,
+    "height": 64,
+    "loop_count": 2,
+    "max_colour_table_entries": 64,
+    "sha256": "4aa1d4fa6b4220947bc993e83812ee79302c6ae4f9ce16807935311e591545dc",
+    "width": 64
+  },
+  "versions": {
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "gifsicle": "LCDF Gifsicle 1.98",
+    "imagemagick": "Version: ImageMagick 7.1.2-35 Q16-HDRI aarch64 acaf7e418:20261031 https://imagemagick.org",
+    "python": "Python 3.12.2"
+  }
+}

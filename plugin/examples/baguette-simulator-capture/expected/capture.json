@@ -1,0 +1,23 @@
+{
+  "device": {
+    "udid": "FD84C3BC-FC27-4FEE-BBBD-9955FDA2F45C",
+    "name": "iPhone 17 Pro (EN)",
+    "runtime": "iOS 26.5"
+  },
+  "screenshot": {
+    "format": "png",
+    "width": 1206,
+    "height": 2622
+  },
+  "recording": {
+    "codec": "h264",
+    "container": "mp4",
+    "width": 1206,
+    "height": 2622,
+    "requestedDurationSeconds": 3,
+    "minimumDurationSeconds": 2.7,
+    "maximumDurationSeconds": 3.3
+  },
+  "minimumNormalisedStandardDeviation": 0.02,
+  "bootTimeoutSeconds": 120
+}

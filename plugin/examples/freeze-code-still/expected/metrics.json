@@ -1,0 +1,77 @@
+{
+  "background_fill": "#282a36",
+  "embedded_font": {
+    "bytes": 274744,
+    "family": "JetBrains Mono",
+    "format": "woff2",
+    "sha256": "0ca830b4ec5ff8da6c25b98625575e6fcc60f0fa740015228b7c07c59604d433"
+  },
+  "padding": 20,
+  "plain": {
+    "line_numbers": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "png_bytes": 45952,
+    "png_height": 736,
+    "png_sha256": "cac462ca3355027f84a322c196bb31267ed4eb4a4102bec9beb6d5402760b696",
+    "png_width": 1428,
+    "svg_bytes": 368083,
+    "svg_height": 184,
+    "svg_sha256": "a5cf60b09567dd5a9da62571bb143eb3cdf3ca0c4e7e9cd150f735c314a3bb9f",
+    "svg_width": 357,
+    "tokens_found": [
+      "package",
+      "import",
+      "func",
+      "main",
+      "fmt",
+      "Println",
+      "hello",
+      "freeze"
+    ],
+    "window_control_fills_found": []
+  },
+  "source_sha256": "f53aa052f993f96f24613bd2989074f9bbfd501c4d52bbf943e44dace5e6400a",
+  "theme": "dracula",
+  "version": "0.2.2",
+  "window": {
+    "line_numbers": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "png_bytes": 48637,
+    "png_height": 736,
+    "png_sha256": "f0dd15de706847a1d687d2c8dbdb69cb7b19c0ed780fafe78b61c1c75d391beb",
+    "png_width": 1428,
+    "svg_bytes": 368282,
+    "svg_height": 184,
+    "svg_sha256": "773ad137320c0610962de356a11528c2a0bd26553abfdd243a259dbbf0b38159",
+    "svg_width": 357,
+    "tokens_found": [
+      "package",
+      "import",
+      "func",
+      "main",
+      "fmt",
+      "Println",
+      "hello",
+      "freeze"
+    ],
+    "window_control_fills_found": [
+      "#FF5A54",
+      "#E6BF29",
+      "#52C12B"
+    ]
+  }
+}

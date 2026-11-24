@@ -1,0 +1,30 @@
+{
+  "C1": {
+    "name": "iPhone 17 Pro (EN)",
+    "runtime": "iOS 26.5"
+  },
+  "C2": {
+    "width": 1206,
+    "height": 2622,
+    "format": "PNG"
+  },
+  "C3": {
+    "normalisedStandardDeviation": 0.18983
+  },
+  "C4": {
+    "codec": "h264",
+    "width": 1206,
+    "height": 2622,
+    "formats": "mov,mp4,m4a,3gp,3g2,mj2",
+    "durationSeconds": 2.861667
+  },
+  "C5": {
+    "earlyDeviation": 0.268161,
+    "lateDeviation": 0.25653,
+    "earlyHash": "3d5abbe58c46beeac3424dcb7e895e6e914b52763c3fbabe39105620a216d014",
+    "lateHash": "2b98e93b199f0df19eb0f40bd48b073418a73cd658159b31c675568e63d2b155"
+  },
+  "C6": {
+    "state": "Shutdown"
+  }
+}

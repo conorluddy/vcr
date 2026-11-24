@@ -1,0 +1,30 @@
+{
+  "checks": {
+    "font_family_listed_with_flags": true,
+    "json_variant_changes_svg": true,
+    "png_alpha_has_transparent_and_opaque": true,
+    "png_dimensions_match_page_times_ppi": true,
+    "png_is_rgba_8bit": true,
+    "png_rerun_byte_identical": true,
+    "query_returns_one_heading": true,
+    "svg_contains_value_as_text": false,
+    "svg_rerun_byte_identical": true,
+    "svg_root_is_svg": true,
+    "svg_viewbox_is_page_in_points": true,
+    "typst_version_is_0_15_1": true
+  },
+  "png_alpha_max": 255,
+  "png_alpha_min": 0,
+  "png_bit_depth": 8,
+  "png_bytes": 30376,
+  "png_color_type": 6,
+  "png_height": 720,
+  "png_sha256": "781aabe894252a3ef37505f8d071b5b66ea0b7ff3691c4c1a0b271290d7f4677",
+  "png_width": 1280,
+  "query_heading_sha256": "dbdc2774baf1fe62118efe1bcd684af7ce1d474f0c5d6eeaca8f22efe786f6ef",
+  "svg_bytes": 19796,
+  "svg_sha256": "a858300549fb31b1ba7eca79083ccb0b85afe5cd6423e0debbeeb024f6b4128c",
+  "svg_viewBox": "0 0 640 360",
+  "typst": "typst 0.15.1 (unknown commit)",
+  "variant_svg_sha256": "829c1276ba7814d98420d010fba468d407007c49d10f1228f6810658616e7b91"
+}

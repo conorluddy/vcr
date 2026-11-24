@@ -16,16 +16,30 @@
       ],
       "notes": [
         "2026-11-01: Searches for the CRF that meets a target VMAF, then encodes; JSON output and atomic writes.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-01: Triage: assess. Report rates it a strong candidate.",
+        "2026-11-24: Guide written from examples/ab-av1-crf-search. Version note: tested 0.12.0; assessment saw 0.10.2 (assessment.version_seen unchanged)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "ab-av1-crf-search"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.12.0",
+            "command": "examples/ab-av1-crf-search/run.sh",
+            "result": "crf-search --min-vmaf 95 --preset 10 on 2 s testsrc2 640x360: CRF 27.5 on 3 of 3 runs, predicted VMAF 95.055; encode at 27.5 scored by FFmpeg libvmaf 98.310 (bound 94.0), 48 frames; summary matches expected.",
+            "example": "examples/ab-av1-crf-search",
+            "scope": "crf-search to min-vmaf 95 on a 2 s generated clip, libsvtav1 preset 10, macOS arm64: predicted VMAF met; full encode libvmaf 98.3 (bound 94). No real footage; predictions not validated."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Chooses CRF against a target VMAF/XPSNR threshold, then encodes through FFmpeg. The Rust CLI exposes search, encode and quality-measurement commands; its distinctive value is automating quality/size trade-offs across FFmpeg encoders.",
       "use_when": [
@@ -57,7 +71,8 @@
           "https://github.com/alexheretic/ab-av1",
           "https://github.com/alexheretic/ab-av1/blob/main/CHANGELOG.md"
         ]
-      }
+      },
+      "skill": "skills/ab-av1/SKILL.md"
     },
     {
       "id": "agg",
@@ -72,16 +87,27 @@
       ],
       "notes": [
         "2026-11-01: Renders asciicast recordings to GIF via gifski, deterministically from event timestamps.",
-        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+        "2026-11-24: Toolkit guide written from the agg-asciicast-gif evidence; absolute GIF size depends on the resolved font, so the guide says to pin fonts."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.9.0",
+            "command": "examples/agg-asciicast-gif/run.sh",
+            "result": "Hand-written asciicast v2 with four output events rendered at --font-size 16 and 32, 40x6 cells: 403x157 and 806x314 px (2.00x), 5 GIF frames at 0/0.5/1/2/3 s, 5.00 s duration, rerun byte-identical; contact sheet shows the prompt, echo, output and ok lines in order.",
+            "example": "examples/agg-asciicast-gif",
+            "scope": "Hand-written asciicast v2 (4 events) to GIF on macOS arm64, system JetBrains Mono: 403x157 px at 16 px, 5 frames, 5.00 s, rerun byte-identical; absolute size is font-dependent"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Turns asciicast event recordings into timestamped GIFs, with frame selection, themes and font rendering. The CLI preserves recording timing and supports excerpt or marker selection.",
       "use_when": [
@@ -110,7 +136,11 @@
           "https://github.com/asciinema/agg",
           "https://github.com/asciinema/agg/releases"
         ]
-      }
+      },
+      "examples": [
+        "agg-asciicast-gif"
+      ],
+      "skill": "skills/agg/SKILL.md"
     },
     {
       "id": "anime-js",
@@ -437,16 +467,31 @@
       ],
       "notes": [
         "2026-11-15: Triage: assess; scripted simulator gestures and capture fill a distinct native-app preview route. Revisit if supported macOS/Xcode requirements exceed the target environment or capture cannot be repeated reliably.",
+        "2026-11-24: Guide written from examples/baguette-simulator-capture; tested 0.3.2 (assessment saw 0.2.14), one iPhone 17 Pro iOS 26.5 sim on macOS 26.6 arm64.",
         "2026-11-15: Skill opportunity: consider a VCR simulator-capture guide if this becomes a recurring app-capture workflow; assess Xcode and host constraints in a scoped fixture."
       ],
-      "documentation_status": "listed-in-prd",
+      "skill": "skills/baguette/SKILL.md",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.3.2",
+            "command": "examples/baguette-simulator-capture/run.sh",
+            "result": "Booted iPhone 17 Pro (EN) iOS 26.5 by UDID, took a 1206x2622 PNG screenshot and a 3 s H.264 MP4 of a home-screen swipe (duration 3.007 s; 42 frames), frames non-blank and different, device Shutdown afterwards. Final record and verify runs both OK. ffprobe 9.0.2, ImageMagick 7.1.2, macOS 26.6 arm64.",
+            "example": "examples/baguette-simulator-capture",
+            "scope": "Boot one named iPhone 17 Pro (EN) iOS 26.5 sim by UDID; PNG and 3 s home-screen H.264 capture at 1206x2622, shutdown; no pixel hashes or input latency; macOS arm64 only"
+          }
+        ]
       },
+      "examples": [
+        "baguette-simulator-capture"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-14-discovery.md",
       "summary": "Native macOS CLI for headless Apple Simulator control, screenshots, video recording, UI descriptions and multi-device sessions. Its broad simulator input and capture commands make it useful for repeatable app capture; it requires Apple Silicon and Xcode 26 private simulator frameworks.",
       "use_when": [
@@ -2272,16 +2317,30 @@
       ],
       "notes": [
         "2026-11-04: Triage: Concrete metadata inspection and editing gap beyond FFmpeg and MediaInfo HDR signalling; revisit after official automation route and profile coverage are checked.",
-        "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+        "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion.",
+        "2026-11-24: Guide written from examples/dovi-tool-metadata-roundtrip (partial; dovi_tool 2.3.4, hdr10plus_tool 1.7.2, macOS arm64, synthetic metadata on 48-frame x265 10-bit HEVC). Metadata plumbing only, not playback or grading. L1 avg_pq/min_pq did not read back as written and info -s shows no sub-profile; everything else untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "dovi_tool 2.3.4; hdr10plus_tool 1.7.2",
+            "command": "examples/dovi-tool-metadata-roundtrip/run.sh",
+            "result": "Partial: 9 of 11 predeclared checks pass. Profile-8 RPU generated, injected and extracted: 48 frames, extracted RPU byte-identical, decoded pixels identical to base, testsrc2 visibly intact. Fails: profile reads 8 not 8.1; per-frame L1 avg_pq reads 819 for frames 0-31 (predeclared 300, 650) and min_pq 12 for frames 32-47 (predeclared 20). hdr10plus_tool profile-A inject and extract of 48 frames matches predeclared values. FFmpeg 9.0.2 with libx265 4.3, Node v22.19.0.",
+            "example": "examples/dovi-tool-metadata-roundtrip",
+            "scope": "Synthetic RPU and HDR10+ metadata injected into x265 10-bit HEVC: stream, pixels and HDR10+ read back; DV profile and L1 avg/min differ; macOS arm64"
+          }
+        ]
       },
+      "examples": [
+        "dovi-tool-metadata-roundtrip"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-04-discovery.md",
       "summary": "Native Rust command line tools for extracting, editing, generating and injecting Dolby Vision RPU or HDR10+ metadata in HEVC streams. Use them for metadata operations where FFmpeg probing alone is insufficient; they do not encode video.",
       "license": "MIT",
@@ -2314,7 +2373,8 @@
           "https://github.com/quietvoid/dovi_tool/releases",
           "https://github.com/quietvoid/hdr10plus_tool"
         ]
-      }
+      },
+      "skill": "skills/dovi-tool/SKILL.md"
     },
     {
       "id": "drawsvg",
@@ -2702,7 +2762,8 @@
         ]
       },
       "examples": [
-        "exiftool-metadata-roundtrip"
+        "exiftool-metadata-roundtrip",
+        "exiv2-metadata-roundtrip"
       ],
       "adapter_maturity": "none",
       "checked_at": "2026-11-24",
@@ -2749,16 +2810,31 @@
       ],
       "notes": [
         "2026-11-15: Assess because writing or stripping EXIF, IPTC and XMP fills a metadata workflow gap beside read-only inspection and C2PA provenance. Revisit after verifying licence and video-container coverage.",
-        "2026-11-15: Assessment uncertainty: official pages read did not establish release recency; confirm the current release history before promotion."
+        "2026-11-15: Assessment uncertainty: official pages read did not establish release recency; confirm the current release history before promotion.",
+        "2026-11-24: Guide written from exiv2-metadata-roundtrip evidence (0.28.9; card version_seen unconfirmed). Scope: XMP-dc Title/Rights, EXIF Artist and IPTC Caption on a JPEG copy via -m; exiftool 13.50 cross-read."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.28.9",
+            "command": "examples/exiv2-metadata-roundtrip/run.sh",
+            "result": "XMP-dc Title/Rights, EXIF Artist and IPTC Caption read back exact via exiv2 -pa; exiftool 13.50 read identical values; rm left no Xmp/Exif/Iptc keys; decoded RGBA SHA-256 unchanged. Fixture passed twice.",
+            "example": "examples/exiv2-metadata-roundtrip",
+            "scope": "Writes XMP-dc Title/Rights, EXIF Artist and IPTC Caption to generated JPEG via -m; -pa reads exact; rm strips; RGBA unchanged; exiftool 13.50 reads same values; no PNG, other fields"
+          }
+        ]
       },
+      "examples": [
+        "exiv2-metadata-roundtrip"
+      ],
+      "skill": "skills/exiv2/SKILL.md",
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-02-discovery.md",
       "summary": "C++ library and command-line utility for inspecting, editing, deleting and copying common image metadata (EXIF, IPTC, XMP and ICC). It provides direct metadata operations without re-encoding image pixels.",
       "use_when": [
@@ -2806,13 +2882,27 @@
       ],
       "notes": [
         "2026-11-01: Minimal 3D viewer with headless rendering on macOS; glTF, USD, STEP, OBJ and Gaussian splats.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-01: Triage: assess. Report rates it a strong candidate.",
+        "2026-11-24: Guide written at skills/f3d/SKILL.md from PARTIAL evidence (320x240 RGBA stills, byte-identical reruns); framing, antialiasing and no-window recorded as failed or unknown."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "f3d-headless-still"
+      ],
       "validation": {
         "status": "not-validated",
-        "evidence": []
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.0.1",
+            "command": "examples/f3d-headless-still/run.sh",
+            "result": "partial: 320x240 RGBA8 PNG stills from a generated GLB cube, transparent corners, distinct camera outputs, byte-identical reruns and A-B-A order match. Two predeclared checks failed: view-A object bottom y=227 vs limit 210, and 0 antialiased edge pixels vs 100-10000. No-window not established (cocoa is a windowed backend; System Events denied). Backend vtkCocoaRenderWindow.",
+            "example": "examples/f3d-headless-still",
+            "scope": "Fixture-reported: f3d 4.0.1 cocoa writes 320x240 RGBA stills, transparent and byte-identical on rerun; view-A region and antialias checks failed; no-window unproven; macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": "2026-11-15",
@@ -2846,7 +2936,8 @@
           "https://github.com/f3d-app/f3d/releases",
           "https://f3d.app/download/"
         ]
-      }
+      },
+      "skill": "skills/f3d/SKILL.md"
     },
     {
       "id": "fabric-js",
@@ -3004,8 +3095,15 @@
         "ffmpeg-assembly",
         "browser-capture",
         "svt-av1-encode",
+        "vhs-tape-recording",
         "vmaf-ffmpeg-score",
-        "node-av-decode-encode"
+        "node-av-decode-encode",
+        "ab-av1-crf-search",
+        "agg-asciicast-gif",
+        "dovi-tool-metadata-roundtrip",
+        "exiv2-metadata-roundtrip",
+        "gifsicle-optimise",
+        "baguette-simulator-capture"
       ],
       "notes": [
         "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
@@ -3442,16 +3540,30 @@
       "notes": [
         "2026-11-01: Code or ANSI output to PNG, SVG or WebP with window chrome; the SVG output suits browser motion layers.",
         "2026-11-01: Maintenance may be slow.",
-        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+        "2026-11-24: Toolkit guide skills/freeze/SKILL.md written from freeze-code-still evidence (freeze 0.2.2, macOS arm64, fixed Go file to SVG and PNG, Dracula); other themes, fonts and flags untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.2.2",
+            "command": "examples/freeze-code-still/run.sh",
+            "result": "Dracula theme, padding 20, line numbers: plain and window-chrome SVG 357x184 and PNG 1428x736; 8 predeclared tokens and #282a36 background in SVG; JetBrains Mono woff2 embedded; repeat SVG and PNG byte-identical; contact sheet inspected, legible and unclipped.",
+            "example": "examples/freeze-code-still",
+            "scope": "Fixed Go file to SVG and PNG on macOS arm64: Dracula, window chrome off/on, line numbers, embedded JetBrains Mono; repeat byte-identical. Not other themes, fonts or platforms."
+          }
+        ]
       },
+      "examples": [
+        "freeze-code-still"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "CLI that renders source code or terminal output to PNG, SVG and WebP, with configurable themes and framing. It is useful for polished, repeatable code and terminal stills without a manual screenshot.",
       "use_when": [
@@ -3465,7 +3577,7 @@
       "pairs_with": [],
       "license": "MIT",
       "install": {
-        "macos": "brew install freeze",
+        "macos": "brew install charmbracelet/tap/freeze",
         "check_command": "freeze --version"
       },
       "assessment": {
@@ -3480,7 +3592,8 @@
           "https://github.com/charmbracelet/freeze",
           "https://github.com/charmbracelet/freeze/releases"
         ]
-      }
+      },
+      "skill": "skills/freeze/SKILL.md"
     },
     {
       "id": "frei0r",
@@ -3678,16 +3791,27 @@
       ],
       "notes": [
         "2026-11-01: GIF optimisation and editing; post-processes gifski or agg output.",
-        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+        "2026-11-24: Toolkit guide written from examples/gifsicle-optimise evidence (gifsicle 1.98)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.98",
+            "command": "examples/gifsicle-optimise/run.sh",
+            "result": "6-frame 64x64 ffmpeg GIF (12/24/4/16/28/4 cs, loop 2, 12479 B). -O3: 10869 B, frames and delays identical, 6/6 RGBA frames identical. --lossy=80: 10811 B. --colors=16: 4929 B, table 16, 15 colours. Repeat -O3 byte-identical.",
+            "example": "examples/gifsicle-optimise",
+            "scope": "gifsicle -O3 keeps 6 frames, delays, loop and decoded RGBA identical and smaller; --colors=16 table<=16, smaller; --lossy=80 smaller, timing kept; ffmpeg GIF input; macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Command-line GIF optimizer and editor for reducing file size, inspecting, combining and modifying animated GIFs. It is a focused post-processing step after GIF generation.",
       "use_when": [
@@ -3719,7 +3843,11 @@
           "https://github.com/kohler/gifsicle",
           "https://github.com/kohler/gifsicle/blob/master/NEWS.md"
         ]
-      }
+      },
+      "examples": [
+        "gifsicle-optimise"
+      ],
+      "skill": "skills/gifsicle/SKILL.md"
     },
     {
       "id": "gifski",
@@ -4851,7 +4979,12 @@
         "anime-diagram-build",
         "vmaf-ffmpeg-score",
         "chiitiler-offline-style",
-        "three-globe-capture"
+        "three-globe-capture",
+        "agg-asciicast-gif",
+        "f3d-headless-still",
+        "gifsicle-optimise",
+        "vhs-tape-recording",
+        "baguette-simulator-capture"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -5196,16 +5329,30 @@
       ],
       "notes": [
         "2026-11-01: Reference ASS/SSA renderer behind FFmpeg's ass and subtitles filters; styled and karaoke-timed burn-in.",
-        "2026-11-01: Pin font files; system font fallback breaks reproducibility. May be better recorded as an FFmpeg capability."
+        "2026-11-01: Pin font files; system font fallback breaks reproducibility. May be better recorded as an FFmpeg capability.",
+        "2026-11-24: Guide written from libass-burn-in evidence; C route only, FFmpeg here has no libass."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "libass-burn-in"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.17.5",
+            "command": "examples/libass-burn-in/run.sh",
+            "result": "C via Homebrew libass 0.17.5: 50 frames 640x360; TOP LEFT and BOTTOM RIGHT events land in their predeclared regions, gaps empty; 3 distinct hashes; repeat and shuffled runs match; coverage 0..255 with 797 partial pixels at 3000 ms; font log names JetBrainsMono-Bold; contact sheet inspected.",
+            "example": "examples/libass-burn-in",
+            "scope": "Hand-written ASS, one style with bundled OFL font via ass_set_fonts_dir, two timed events over a solid background, C on macOS arm64; no FFmpeg filter, karaoke, fades or system fonts."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Portable C library that renders Advanced SubStation Alpha subtitles, including styled text and timed events, to video frames. It is commonly consumed through FFmpeg’s ass/subtitles filters or embedded by media applications rather than used as a standalone authoring tool. Strength: mature ASS rendering with shaping and font-provider integration.",
       "use_when": [
@@ -5237,7 +5384,8 @@
           "https://github.com/libass/libass/releases",
           "https://github.com/libass/libass/blob/master/meson.build"
         ]
-      }
+      },
+      "skill": "skills/libass/SKILL.md"
     },
     {
       "id": "libavif",
@@ -11387,7 +11535,8 @@
         ]
       },
       "examples": [
-        "svt-av1-encode"
+        "svt-av1-encode",
+        "ab-av1-crf-search"
       ],
       "adapter_maturity": "none",
       "checked_at": "2026-11-24",
@@ -12627,14 +12776,28 @@
       ],
       "notes": [
         "2026-11-01: Typesetting to PDF, PNG and SVG for title cards, equations, tables and data-driven stills.",
-        "2026-11-01: Pass --font-path to avoid system font variation."
+        "2026-11-01: Pass --font-path to avoid system font variation.",
+        "2026-11-24: Guide written from partial typst-title-card evidence (SVG glyphs are outlines; query deprecated for eval; PDF untested)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
         "status": "not-validated",
-        "evidence": []
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.15.1",
+            "command": "examples/typst-title-card/run.sh",
+            "result": "Partial: 11 of 12 predeclared checks pass. SVG viewBox 640x360pt; PNG 1280x720 RGBA 8-bit, alpha 0..255; query returned one heading; SVG and PNG reruns byte-identical; JSON variant changes SVG. SVG has no KS-7342 text (glyph outlines), so that check fails.",
+            "example": "examples/typst-title-card",
+            "scope": "Title card to SVG and PNG with typst 0.15.1, macOS arm64: size, alpha, query, reruns pass; SVG lacks the value as text (glyph outlines). No PDF."
+          }
+        ]
       },
+      "examples": [
+        "typst-title-card"
+      ],
       "adapter_maturity": "none",
       "checked_at": "2026-11-15",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
@@ -12670,7 +12833,8 @@
           "https://github.com/typst/typst/blob/main/README.md",
           "https://github.com/typst/typst/blob/main/Cargo.toml"
         ]
-      }
+      },
+      "skill": "skills/typst/SKILL.md"
     },
     {
       "id": "vapoursynth",
@@ -12821,16 +12985,31 @@
       ],
       "notes": [
         "2026-11-01: Renders .tape scripts of terminal sessions to GIF, MP4, WebM or frames via ttyd and Chromium.",
-        "2026-11-01: Records in real time, so output is NOT a pure function of t; treat as a source asset."
+        "2026-11-01: Records in real time, so output is NOT a pure function of t; treat as a source asset.",
+        "2026-11-24: Toolkit guide written from partial evidence (MP4, text golden); PNG frames are cropped and frame counts vary, so gate on the text golden."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "vhs-tape-recording"
+      ],
+      "skill": "skills/vhs/SKILL.md",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.12.1",
+            "command": "examples/vhs-tape-recording/run.sh",
+            "result": "Headless tape (640x360, FontSize 20, Framerate 10, TypingSpeed 100ms): MP4 h264 640x360, 3.84 s and 4.04 s over two runs; golden text identical across runs, with both commands and outputs; final frame shows typed text (33,696 changed pixels vs first). Failed predeclared checks: PNG frames 494x208 not 640x360; PNG frames 78 and 82 (cursor and text families); MP4 frames 96 and 101 vs 39 +/- 10. Chrome 158.0.8127.37 via vhs, ttyd 1.7.7.",
+            "example": "examples/vhs-tape-recording",
+            "scope": "Headless tape to MP4, PNG frames and text golden; typed text in golden and final frame; PNG 494x208 and frame counts outside predeclared checks; macOS arm64, real-time, no seek."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Go CLI that executes .tape scripts in a virtual terminal and records terminal output to GIF, MP4, WebM or still/text outputs. Tapes set dimensions, font and framerate and issue keystrokes, commands and waits. Its strength is repeatable scripted terminal demonstrations and golden-file capture; it records a real-time session rather than a frame-seekable animation.",
       "use_when": [
@@ -12936,7 +13115,8 @@
         "video-encoding"
       ],
       "examples": [
-        "vmaf-ffmpeg-score"
+        "vmaf-ffmpeg-score",
+        "ab-av1-crf-search"
       ],
       "notes": [
         "2026-11-01: Netflix full-reference video quality metric via the vmaf CLI or FFmpeg libvmaf filter.",

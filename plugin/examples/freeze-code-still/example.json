@@ -1,0 +1,14 @@
+{
+  "id": "freeze-code-still",
+  "title": "freeze renders a fixed Go file to SVG and PNG stills",
+  "summary": "Checks freeze 0.2.2 with the Dracula theme, window chrome off and on, padding and line numbers: predeclared tokens and background in SVG, PNG dimensions, repeat byte-identical.",
+  "status": "validated",
+  "tools": [
+    "freeze"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

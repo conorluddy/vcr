@@ -79,8 +79,15 @@
     "ffmpeg-assembly",
     "browser-capture",
     "svt-av1-encode",
+    "vhs-tape-recording",
     "vmaf-ffmpeg-score",
-    "node-av-decode-encode"
+    "node-av-decode-encode",
+    "ab-av1-crf-search",
+    "agg-asciicast-gif",
+    "dovi-tool-metadata-roundtrip",
+    "exiv2-metadata-roundtrip",
+    "gifsicle-optimise",
+    "baguette-simulator-capture"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
