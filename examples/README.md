@@ -33,6 +33,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `lint-overflow` | playwright, `vcr lint` | 9:16 DOM frame: exactly one TYPO-SAFE crossing and one overflow, exit 1 (2026-11-06) |
 | `roughjs-capture` | rough-js, playwright, imagemagick | seeded hand-drawn rectangle, ellipse and path redrawn from t (hachure fill only; other fills use unseeded Math.random), alpha, shuffled equals sequential (2026-11-11) |
 | `d3-capture` | d3, playwright, imagemagick | SVG bar-and-line chart via d3-scale/shape/axis, values from d3.interpolate at t, no transitions or timers, alpha, shuffled equals sequential (2026-11-11) |
+| `three-globe-capture` | three-globe, three-js, playwright, imagemagick | seeked rotating globe, 5 points and 1 arc on SwiftShader WebGL, alpha, shuffled equals sequential; mark-visibility check failed (marks about 2 to 5 px), partial (2026-11-24) |
 | `paperjs-capture` | paper-js, playwright, imagemagick | smoothed path, boolean union and radial gradient set from t with explicit view.update(), alpha, shuffled equals sequential (2026-11-11) |
 | `matterjs-capture` | matter-js, playwright, imagemagick | rigid bodies seeked by fixed-step re-simulation, drawn with Canvas 2D, alpha, shuffled equals sequential (2026-11-11) |
 | `tweenjs-capture` | tween-js, playwright, imagemagick | chained, yoyo and eased tweens rebuilt and stepped by explicit time per seek, alpha, shuffled equals sequential (2026-11-11) |

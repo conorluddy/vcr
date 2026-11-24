@@ -12,9 +12,10 @@
   ],
   "notes": [
     "2026-11-15: Triage reason: Assess compatibility with frame-driven Three.js scenes and determine whether time-based layer animation can be controlled. Revisit when globe scenes are in scope.",
-    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+    "2026-11-24: Toolkit guide written from partial evidence (skills/three-globe/SKILL.md); the mark-visibility check failed, so the guide advises sizing marks for video and verifying on frames."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "partial",
@@ -66,5 +67,6 @@
   },
   "examples": [
     "three-globe-capture"
-  ]
+  ],
+  "skill": "skills/three-globe/SKILL.md"
 }
