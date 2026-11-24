@@ -17,9 +17,10 @@
     "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
     "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
     "2026-10-29: Skill opportunity: Further research first: one scripted score and offline audio fixture could support a standalone synthesis skill.",
-    "2026-10-29: Official website advertises 7.0.0 released while the reviewed development README describes 7.0.0 beta; reconcile version before use."
+    "2026-10-29: Official website advertises 7.0.0 released while the reviewed development README describes 7.0.0 beta; reconcile version before use.",
+    "2026-11-24: Toolkit guide written at skills/csound/SKILL.md from the csound-offline-render evidence (Csound 7.0.0_1, macOS arm64); only the one-sine scored offline render is tested; 7.x vs 6.x syntax differences, random opcodes, real-time and MIDI marked untested."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -65,5 +66,6 @@
       "https://csound.com/",
       "https://github.com/csound/csound"
     ]
-  }
+  },
+  "skill": "skills/csound/SKILL.md"
 }
