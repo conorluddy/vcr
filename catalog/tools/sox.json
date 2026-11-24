@@ -16,9 +16,10 @@
   "notes": [
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-    "2026-10-29: Skill opportunity: Further research first: compare maintenance, licences and a representative SoX workflow with FFmpeg."
+    "2026-10-29: Skill opportunity: Further research first: compare maintenance, licences and a representative SoX workflow with FFmpeg.",
+    "2026-11-24: Toolkit guide written at skills/sox/SKILL.md from the sox-audio-chain evidence (sox 14.4.2, macOS arm64); dither (-D) and join clicks documented; effects beyond the fixture marked untested."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -62,5 +63,6 @@
     "sources": [
       "https://sox.sourceforge.net/"
     ]
-  }
+  },
+  "skill": "skills/sox/SKILL.md"
 }
