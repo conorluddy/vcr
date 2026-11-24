@@ -1,0 +1,15 @@
+{
+  "id": "glslify-bundle",
+  "title": "glslify CLI inlines glsl-easings cubic-in-out into one WebGL1 fragment shader",
+  "summary": "glslify 7.1.1 bundles a require() import from glsl-easings 1.0.0 into one shader; no pragmas remain, it compiles in headless Chromium WebGL1, controls fail, and two bundles are byte-identical.",
+  "status": "validated",
+  "tools": [
+    "glslify",
+    "playwright"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
