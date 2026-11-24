@@ -17,13 +17,30 @@
     "2026-11-15: Three.js dev package.json reports 0.187.0; no separate BVHLoader release is available in reviewed sources. CMU site describes its data as free for research projects only; rights for other uses remain unverified."
   ],
   "documentation_status": "listed-in-prd",
+  "install": {
+    "macos": "cd examples/bvh-mocap-playback && pnpm add --save-exact three@0.186.1",
+    "check_command": "node -e \"console.log(require('three/package.json').version)\""
+  },
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.186.1",
+        "command": "examples/bvh-mocap-playback/run.sh",
+        "result": "30 frames 1280x720, shuffled equals sequential; hand-written 4-joint BVH: skeleton Hips/Spine/Neck/Head/ENDSITE, clip 0.966667 s, 8 tracks; mixer.setTime samples at 5 times within 2.7e-8 (quaternion) and 1.6e-7 cm of BVH values; distinct poses differ; Chromium 156.0.8078.4, Playwright 1.64.1; three amendments in README",
+        "example": "examples/bvh-mocap-playback",
+        "scope": "BVHLoader parse, clip tracks and mixer.setTime sampling against a hand-written BVH; shuffled equals sequential; no CMU or other mocap data; macOS arm64"
+      }
+    ]
   },
+  "examples": [
+    "bvh-mocap-playback"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "conversation 2026-11-01: character and figure tooling gap",
   "summary": "Three.js BVHLoader parses BVH skeleton animation into an AnimationClip for playback by AnimationMixer; the data and loader are separate choices, so BVHLoader adds motion import without supplying motion capture.",
   "use_when": [

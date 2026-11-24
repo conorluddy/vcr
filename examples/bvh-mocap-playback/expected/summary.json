@@ -1,0 +1,16 @@
+{
+  "frames": 30,
+  "width": 1280,
+  "height": 720,
+  "shuffled_matches_sequential": true,
+  "frame_sha256": {
+    "0000": "05404ffc407df7410bc66d49c3be155e38fa2dc830ced03716418824d10197c0",
+    "0007": "4515437dc3ba148ce5def90b19f13768cbc0fe554d4dc4a86b9081b07dd54fdf",
+    "0015": "5550f113406f41c644b59c500e31c4f88927535a11620ed29aa3ec3300328df5",
+    "0029": "b0a403c4dbdc639628a1594c35fa1fe8e23874fa2b3a3351fb60af06f44f0f1d"
+  },
+  "frame_0015_alpha": {
+    "corner_0_0": "0",
+    "max": "1"
+  }
+}

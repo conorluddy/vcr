@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>html, body { margin: 0; background: transparent; overflow: hidden; }</style>
+<script type="importmap">
+  {
+    "imports": {
+      "three": "./node_modules/three/build/three.module.js",
+      "three/addons/": "./node_modules/three/examples/jsm/"
+    }
+  }
+</script>
+</head>
+<body>
+<script type="module">
+  // A hand-written BVH chain loaded by BVHLoader and played through AnimationMixer.
+  // Every pose is set by mixer.setTime(t), which zeroes the mixer and then updates to t, so no delta is accumulated.
+  import * as THREE from "three";
+  import { BVHLoader } from "three/addons/loaders/BVHLoader.js";
+
+  const DURATION = 1;
+  const BVH_URL = "./fixture/chain.bvh";
+  const RIG_SCALE = 4;
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+  document.body.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 2000);
+  camera.position.set(0, 118, 420);
+  camera.lookAt(0, 118, 0);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.9));
+  const key = new THREE.DirectionalLight(0xffffff, 1.4);
+  key.position.set(120, 200, 300);
+  scene.add(key);
+
+  const bvh = await new BVHLoader().loadAsync(BVH_URL);
+  const hips = bvh.skeleton.bones[0];
+  const rig = new THREE.Group();
+  rig.scale.setScalar(RIG_SCALE);
+  rig.position.y = -300;
+  rig.add(hips);
+  scene.add(rig);
+
+  const jointMaterial = new THREE.MeshStandardMaterial({ color: 0xc7f36b, roughness: 0.5 });
+  for (const bone of bvh.skeleton.bones) {
+    bone.add(new THREE.Mesh(new THREE.SphereGeometry(2, 24, 16), jointMaterial));
+  }
+  scene.add(new THREE.SkeletonHelper(hips));
+
+  // The default LoopRepeat wraps a time at or past the clip end back to the rest pose. LoopOnce with clamping
+  // keeps paused and loop state that setTime does not reset, so its output depends on the seek order.
+  // Clamping t to just inside the clip end keeps LoopRepeat, which depends only on t.
+  const LAST_SAMPLE_SECONDS = bvh.clip.duration - 1e-6;
+  const clipSecondsAt = (seconds) => Math.min(seconds, LAST_SAMPLE_SECONDS);
+  const mixer = new THREE.AnimationMixer(hips);
+  mixer.clipAction(bvh.clip).play();
+
+  const renderAt = (seconds) => {
+    mixer.setTime(clipSecondsAt(seconds));
+    renderer.render(scene, camera);
+  };
+
+  window.__scene = {
+    duration: DURATION,
+    seek: (seconds) => requestAnimationFrame(() => renderAt(seconds)),
+    info: () => ({
+      boneNames: bvh.skeleton.bones.map((bone) => bone.name),
+      clipName: bvh.clip.name,
+      clipDurationSeconds: bvh.clip.duration,
+      trackNames: bvh.clip.tracks.map((track) => track.name),
+    }),
+    sample: (seconds) => {
+      mixer.setTime(clipSecondsAt(seconds));
+      return {
+        joints: bvh.skeleton.bones.map((bone) => ({
+          name: bone.name,
+          position: bone.position.toArray(),
+          quaternion: bone.quaternion.toArray(),
+        })),
+      };
+    },
+  };
+</script>
+</body>
+</html>
