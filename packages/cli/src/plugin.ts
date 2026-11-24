@@ -18,7 +18,7 @@ export interface PluginBuildOutcome {
 }
 
 export const PLUGIN_DIRECTORY = "plugin";
-export const PLUGIN_MAX_BYTES = 8 * 1024 * 1024;
+export const PLUGIN_MAX_BYTES = 12 * 1024 * 1024;
 export const CLI_REFERENCE_PATH = "references/cli.md";
 /** `references/` entries that are not pillars and stay out of the plugin: research briefs and exploratory notes. */
 const NON_PILLAR_REFERENCES = new Set(["research-prompts", "ideas"]);

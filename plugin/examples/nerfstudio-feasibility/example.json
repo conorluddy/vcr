@@ -1,0 +1,8 @@
+{
+  "id": "nerfstudio-feasibility",
+  "title": "Nerfstudio feasibility on macOS arm64 without CUDA",
+  "summary": "Install nerfstudio 1.1.5, convert 20 synthetic views with COLMAP 4.2.1, then train nerfacto on MPS. Scripted run stops at the registration gate (2 of 20 frames).",
+  "status": "not-validated",
+  "tools": ["nerfstudio", "colmap", "ffmpeg-ffprobe"],
+  "run": "./run.sh"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "odiff-frame-diff",
+  "title": "odiff compares generated PNG frames: exact counts, diff image, antialiasing and threshold",
+  "summary": "ImageMagick generates 256x144 frames and a predeclared 200-pixel patch; odiff reports 0 for identical frames and exactly 200 with a matching diff image. --aa leaves 12 of 512 edge pixels, so the exit-0 check fails (partial).",
+  "status": "not-validated",
+  "tools": ["odiff", "imagemagick"],
+  "run": "./run.sh"
+}

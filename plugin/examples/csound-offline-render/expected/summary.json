@@ -1,0 +1,86 @@
+{
+  "checks": {
+    "distinct_note_hashes": true,
+    "frames_144000": true,
+    "frequencies_within_5_cents": true,
+    "gaps_silent": true,
+    "mono": true,
+    "onsets_within_5ms": true,
+    "peak_below_0dbfs": true,
+    "peak_matches_amplitude": true,
+    "rate_48000_hz": true,
+    "rerun_byte_identical": true,
+    "score_matches_predeclared": true
+  },
+  "notes": [
+    {
+      "duration_s": 0.4,
+      "error_cents": 0.008,
+      "expected_hz": 220.0,
+      "measured_hz": 220.001,
+      "onset_error_ms": 0.2917,
+      "onset_s": 0.000292,
+      "segment_sha256": "70a454e7a83089a97089ecedda85b362d555b8131d586cbcac9811582cd58a1e",
+      "start_s": 0.0
+    },
+    {
+      "duration_s": 0.4,
+      "error_cents": 0.006,
+      "expected_hz": 330.0,
+      "measured_hz": 330.0011,
+      "onset_error_ms": 0.2292,
+      "onset_s": 0.500229,
+      "segment_sha256": "acc3c50488c2cfb6f9c8873eed49f9b08dfac8f468b0f363260fb41025ff8a36",
+      "start_s": 0.5
+    },
+    {
+      "duration_s": 0.4,
+      "error_cents": 0.004,
+      "expected_hz": 440.0,
+      "measured_hz": 440.001,
+      "onset_error_ms": 0.2083,
+      "onset_s": 1.000208,
+      "segment_sha256": "3965f508e6dffd88e76e26b5d91f527fb7fa8d2e8a20eeae40e6ff7a17ebe9d0",
+      "start_s": 1.0
+    },
+    {
+      "duration_s": 0.4,
+      "error_cents": -0.002,
+      "expected_hz": 660.0,
+      "measured_hz": 659.9994,
+      "onset_error_ms": 0.1667,
+      "onset_s": 1.500167,
+      "segment_sha256": "1e4e3a2a55e3f5ae64b7bc7aa4500f1c586286637c69851c9eaf2f3822437534",
+      "start_s": 1.5
+    },
+    {
+      "duration_s": 0.4,
+      "error_cents": -0.002,
+      "expected_hz": 880.0,
+      "measured_hz": 879.9989,
+      "onset_error_ms": 0.1458,
+      "onset_s": 2.000146,
+      "segment_sha256": "b5fcdd0f00c75f6239df66a2de8bf32f7b0a596b65da02b26ad70fa923cb3646",
+      "start_s": 2.0
+    },
+    {
+      "duration_s": 0.4,
+      "error_cents": -0.001,
+      "expected_hz": 1100.0,
+      "measured_hz": 1099.9996,
+      "onset_error_ms": 0.1458,
+      "onset_s": 2.500146,
+      "segment_sha256": "2b24d86e0259e596056a0bd583c946a01c01bfe1736499ef555311d1e81c619f",
+      "start_s": 2.5
+    }
+  ],
+  "render": {
+    "channels": 1,
+    "frames": 144000,
+    "peak_amplitude": 0.5,
+    "rate_hz": 48000,
+    "sample_width_bytes": 2,
+    "sha256": "415fce931e3c0bfaba5a0167d4167cb621b34b4c8e648d9a492476220c471eab"
+  },
+  "silence_max_abs": 0.0
+}

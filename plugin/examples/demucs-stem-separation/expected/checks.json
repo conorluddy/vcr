@@ -1,0 +1,20 @@
+{
+  "input": {
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "samples": 441000
+  },
+  "C1_format_all_stems": true,
+  "C2_correlation_margin": {
+    "drums": true,
+    "bass": true,
+    "vocals": true
+  },
+  "C3_sdr_floors": {
+    "drums": true,
+    "bass": true,
+    "vocals": true
+  },
+  "C4_sum_residual_snr": true,
+  "all_gated_checks_pass": true
+}

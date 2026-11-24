@@ -1,0 +1,5 @@
+flowchart LR
+    Start[Start] --> Review{Review}
+    Review -->|pass| Done[Done]
+    Review -->|revise| Draft[Draft]
+    Draft --> Review

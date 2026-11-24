@@ -1,0 +1,108 @@
+{
+  "checks": {
+    "history_entry_completed_success": true,
+    "no_node_served_from_cache_each_run": true,
+    "one_still_per_run_in_history": true,
+    "output_is_rgb_png_at_predeclared_size": true,
+    "pixel_probes_within_tolerance": true,
+    "resubmission_byte_identical": true,
+    "server_listened_on_loopback_only": true
+  },
+  "measurements": {
+    "input_sha256": "406b41ee0d1136ad9bd2f06e12e520b6b4cc5f5184e7b5e28708d501b52773b7",
+    "input_size": [
+      64,
+      48
+    ],
+    "output_size": [
+      128,
+      96
+    ],
+    "predicted_probe_rgb": {
+      "bottom_left": [
+        108.0,
+        78.5,
+        209.5
+      ],
+      "bottom_right": [
+        33.0,
+        58.5,
+        109.5
+      ],
+      "top_left": [
+        53.0,
+        153.5,
+        214.5
+      ],
+      "top_right": [
+        148.0,
+        118.5,
+        119.5
+      ]
+    },
+    "run_a_message_events": [
+      "execution_start",
+      "execution_cached",
+      "execution_success"
+    ],
+    "run_a_probe_rgb": {
+      "bottom_left": [
+        108,
+        78,
+        209
+      ],
+      "bottom_right": [
+        32,
+        58,
+        109
+      ],
+      "top_left": [
+        52,
+        153,
+        214
+      ],
+      "top_right": [
+        148,
+        118,
+        119
+      ]
+    },
+    "run_a_sha256": "215844080c0bcffb0d64b040bdc0a3ad0b7e572d7a4e28143cec4073be46e2bd",
+    "run_b_cached_node_ids": [],
+    "run_b_message_events": [
+      "execution_start",
+      "execution_cached",
+      "execution_success"
+    ],
+    "run_b_probe_rgb": {
+      "bottom_left": [
+        108,
+        78,
+        209
+      ],
+      "bottom_right": [
+        32,
+        58,
+        109
+      ],
+      "top_left": [
+        52,
+        153,
+        214
+      ],
+      "top_right": [
+        148,
+        118,
+        119
+      ]
+    },
+    "run_b_sha256": "215844080c0bcffb0d64b040bdc0a3ad0b7e572d7a4e28143cec4073be46e2bd"
+  },
+  "tolerances": {
+    "output_size": [
+      128,
+      96
+    ],
+    "pixel_tolerance_per_channel": 1
+  }
+}

@@ -12,16 +12,28 @@
   "notes": [
     "2026-10-29: Listed from a conversation; listed-in-prd is the schema’s listed-only status, not an assertion of PRD inclusion.",
     "2026-10-29: Documentation assessed; no fixture has been run. Dependency and asset terms require separate review.",
-    "2026-10-29: Skill opportunity: further research first; run a colour tracing fixture and check existing vector skills before choosing a VCR or standalone guide."
+    "2026-10-29: Skill opportunity: further research first; run a colour tracing fixture and check existing vector skills before choosing a VCR or standalone guide.",
+    "2026-11-24: Fixture examples/vtracer-colour-trace ran PyPI vtracer 0.6.15 (wheel metadata MIT). Upstream's latest GitHub release, 1.0.0-alpha.4 (2026-08-29), is not covered by this evidence.",
+    "2026-11-24: Toolkit guide written: skills/vtracer/SKILL.md, from examples/vtracer-colour-trace; colour mode with fixed settings only."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.6.15",
+        "command": "examples/vtracer-colour-trace/run.sh",
+        "result": "All 8 gates pass: fills match palette exactly; IoU 0.981-1.0 per shape (background 0.995); MAE 0.13-1.85 of 255; SVG and PNG reruns byte-identical; second run prints OK. resvg 0.47.0, ImageMagick 7.1.2.",
+        "example": "examples/vtracer-colour-trace",
+        "scope": "Colour mode, fixed settings: 3 flat shapes on white traced to SVG; fills match palette; resvg IoU and MAE per shape; reruns byte-identical; macOS arm64"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "Raster-to-SVG vector tracing with a CLI and colour support. Useful for turning simple colour artwork into vector source; geometry and visual fidelity depend on settings and input.",
   "use_when": [
@@ -38,6 +50,13 @@
     "resvg"
   ],
   "license": "MIT (project code; dependency and asset terms unassessed)",
+  "install": {
+    "macos": "python3 -m venv examples/vtracer-colour-trace/output/venv && examples/vtracer-colour-trace/output/venv/bin/python -m pip install -r examples/vtracer-colour-trace/requirements.txt",
+    "check_command": "examples/vtracer-colour-trace/output/venv/bin/python -m pip show vtracer"
+  },
+  "examples": [
+    "vtracer-colour-trace"
+  ],
   "assessment": {
     "date": "2026-10-29",
     "assessed_by": "codex",
@@ -48,5 +67,6 @@
       "https://github.com/visioncortex/vtracer",
       "https://github.com/visioncortex/vtracer/blob/master/LICENSE"
     ]
-  }
+  },
+  "skill": "skills/vtracer/SKILL.md"
 }

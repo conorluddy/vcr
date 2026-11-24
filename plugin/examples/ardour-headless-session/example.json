@@ -1,0 +1,11 @@
+{
+  "id": "ardour-headless-session",
+  "title": "Ardour headless session and export (blocked: no free macOS build)",
+  "summary": "Planned fixture for Ardour's session utilities on macOS. Blocked: the official macOS binaries are paid and no free headless route was obtained, so the claim was not run.",
+  "status": "not-validated",
+  "tools": [
+    "ardour"
+  ],
+  "run": "./run.sh",
+  "report": "examples/ardour-headless-session/README.md"
+}

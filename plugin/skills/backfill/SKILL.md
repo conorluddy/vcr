@@ -37,11 +37,11 @@ Follow `AGENTS.md`'s worktree rule: merge every worker branch into `backfill/<YY
 pnpm vcr catalog build && pnpm vcr plugin build && pnpm typecheck && pnpm validate && pnpm test
 ```
 
-If a check fails, fix the problem or drop that tool's branch. Never weaken a check.
+Commit everything those builds regenerate, including the root `README.md` index, not just `catalog/` and `plugin/`. If a check fails, fix the problem or drop that tool's branch. Never weaken a check.
 
 ## 6. Pull request and report
 
-`gh pr create` against `main`, never pushing to `main` itself. The body holds:
+`gh pr create` against `main`, never pushing to `main` itself. Wait for CI to pass before merging: `main` does not enforce it. The body holds:
 
 | tool | assessment | evidence | guide | example |
 | --- | --- | --- | --- | --- |

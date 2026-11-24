@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "depth_range_nonzero": true,
+    "depth_shape_matches_input": true,
+    "floor_monotonic_nondecreasing_toward_bottom": true,
+    "hashes_at_least_two_distinct": true,
+    "input_is_rgb_png_640x480": true,
+    "near_region_nearer_than_far": true,
+    "one_still_frame": true,
+    "rerun_within_tolerance": true
+  },
+  "hashes": {
+    "input_png_sha256": "6182d5ce7af76fe5c9e48a8d03b995d40e7781fec36eef405c0532481810bac9",
+    "run1_depth_png_sha256": "1f6bca524b73896979b3c96b860160f923ef421c70953f00cf72b0ecdbddb801",
+    "run2_depth_png_sha256": "1f6bca524b73896979b3c96b860160f923ef421c70953f00cf72b0ecdbddb801"
+  },
+  "measured": {
+    "depth_range": 9.2812,
+    "depth_shape": [
+      480,
+      640
+    ],
+    "far_median": 0.9429,
+    "floor_monotonic_pair_fraction": 1.0,
+    "floor_row_mean_first": 0.4007,
+    "floor_row_mean_last": 8.628,
+    "near_median": 9.1815,
+    "rerun_byte_identical": true,
+    "rerun_max_abs_diff": 0.0,
+    "rerun_tolerance": 0.0093
+  }
+}

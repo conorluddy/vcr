@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>html, body { margin: 0; background: transparent; overflow: hidden; }</style>
+<script type="importmap">
+  {
+    "imports": {
+      "three": "./node_modules/three/build/three.module.js",
+      "three/addons/": "./node_modules/three/examples/jsm/",
+      "mannequin-js/": "./node_modules/mannequin-js/src/"
+    }
+  }
+</script>
+</head>
+<body>
+<script type="module">
+  // A mannequin-js figure posed from t. Three joint angles are absolute closed-form functions of t, written on every call;
+  // nothing is stepped, so a single jump to any time gives the same pose.
+  // The library's own render loop and clock (scene.js) are switched off; frames come from seek(t) only.
+  // The library's renderer is opaque, so its scene graph is drawn by an alpha renderer instead.
+  import * as THREE from "three";
+  import { renderer as libraryRenderer, scene, camera } from "mannequin-js/scene.js";
+  import { Mannequin } from "mannequin-js/bodies/Mannequin.js";
+
+  const DURATION = 3;
+  const TORSO_BEND_DEGREES = 30;          // torso.bend, reached at 1.0 s
+  const RIGHT_ARM_RAISE_FROM_DEGREES = -5;
+  const RIGHT_ARM_RAISE_TO_DEGREES = 85;  // r_arm.raise, reached at 1.5 s
+  const LEFT_KNEE_BEND_DEGREES = 50;      // l_knee.bend, ramps from 1.5 s to 2.5 s
+  const FIGURE_FILL_OF_FRAME_HEIGHT = 0.8;
+
+  libraryRenderer.setAnimationLoop(null);
+  libraryRenderer.domElement.remove();
+  libraryRenderer.dispose();
+  scene.background = null;
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  document.body.appendChild(renderer.domElement);
+
+  const smoothstep01 = (x) => {
+    const clamped = Math.min(Math.max(x, 0), 1);
+    return clamped * clamped * (3 - 2 * clamped);
+  };
+  const poseAt = (seconds) => ({
+    torsoBendDegrees: TORSO_BEND_DEGREES * smoothstep01(seconds / 1.0),
+    rightArmRaiseDegrees: RIGHT_ARM_RAISE_FROM_DEGREES
+      + (RIGHT_ARM_RAISE_TO_DEGREES - RIGHT_ARM_RAISE_FROM_DEGREES) * smoothstep01(seconds / 1.5),
+    leftKneeBendDegrees: LEFT_KNEE_BEND_DEGREES * smoothstep01((seconds - 1.5) / 1.0),
+  });
+
+  const figure = new Mannequin(false, 1);
+  figure.stepOnGround();
+  const figureBounds = new THREE.Box3().setFromObject(figure);
+  const figureCenter = figureBounds.getCenter(new THREE.Vector3());
+  const figureHeightUnits = figureBounds.max.y - figureBounds.min.y;
+  const cameraDistance = (figureHeightUnits / FIGURE_FILL_OF_FRAME_HEIGHT / 2)
+    / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.position.set(figureCenter.x, figureCenter.y, figureCenter.z + cameraDistance);
+  camera.lookAt(figureCenter);
+  camera.updateProjectionMatrix();
+
+  const applyPoseAt = (seconds) => {
+    const pose = poseAt(seconds);
+    figure.torso.bend = pose.torsoBendDegrees;
+    figure.r_arm.raise = pose.rightArmRaiseDegrees;
+    figure.l_knee.bend = pose.leftKneeBendDegrees;
+  };
+
+  const renderAt = (seconds) => {
+    applyPoseAt(seconds);
+    renderer.render(scene, camera);
+  };
+
+  window.__scene = {
+    duration: DURATION,
+    seek: (seconds) => requestAnimationFrame(() => renderAt(seconds)),
+    meta: { figureHeightUnits },
+    probe: (seconds) => {
+      applyPoseAt(seconds);
+      figure.updateMatrixWorld(true);
+      return {
+        seconds,
+        torsoBendDegrees: figure.torso.bend,
+        rightArmRaiseDegrees: figure.r_arm.raise,
+        leftKneeBendDegrees: figure.l_knee.bend,
+        rightWristWorld: figure.r_wrist.getWorldPosition(new THREE.Vector3()).toArray(),
+      };
+    },
+  };
+</script>
+</body>
+</html>
+</content>

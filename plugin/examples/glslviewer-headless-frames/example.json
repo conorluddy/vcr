@@ -1,0 +1,9 @@
+{
+  "id": "glslviewer-headless-frames",
+  "title": "glslViewer headless sequence export of a time-driven GLSL fragment shader",
+  "summary": "Hand-written fragment shader rendered headlessly by glslViewer's sequence export at 8 fps; pixel probes match analytic values per frame time, re-renders and a 0.5 s sub-range match, frames differ.",
+  "status": "validated",
+  "tools": ["glslviewer", "imagemagick"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" }
+}

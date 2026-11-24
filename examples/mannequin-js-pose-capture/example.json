@@ -1,0 +1,14 @@
+{
+  "id": "mannequin-js-pose-capture",
+  "title": "mannequin.js figure: torso bend, right arm raise and left knee bend set from t",
+  "summary": "mannequin-js 5.2.3 builds a procedural figure in Three.js 0.186.1; three joint angles are closed-form in t; shuffled order matches sequential; probe values and frame hashes recorded.",
+  "status": "not-validated",
+  "tools": ["mannequin-js", "three-js", "playwright", "imagemagick"],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  }
+}

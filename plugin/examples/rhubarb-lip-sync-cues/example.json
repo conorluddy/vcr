@@ -1,0 +1,11 @@
+{
+  "id": "rhubarb-lip-sync-cues",
+  "title": "Rhubarb Lip Sync turns generated speech into tiling mouth cues with rest during silences",
+  "summary": "Three generated phrases with exact silent gaps: cues tile the duration with no gaps or overlaps, use only A-H and X, rest covers at least 80% of each gap, and reruns with and without --dialogFile are byte-identical.",
+  "status": "not-validated",
+  "tools": [
+    "rhubarb-lip-sync",
+    "ffmpeg-ffprobe"
+  ],
+  "run": "./run.sh"
+}

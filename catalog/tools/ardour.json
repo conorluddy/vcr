@@ -18,11 +18,24 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "blocked",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "9.10",
+        "command": "examples/ardour-headless-session/run.sh",
+        "result": "blocked before any run: no free macOS Ardour build with a headless route found; ardour.org binaries are a payment flow; no Homebrew cask; GitHub has no release assets. Nothing downloaded or run.",
+        "example": "ardour-headless-session",
+        "scope": "Fixture-reported: blocked before any run; no build tested. Says nothing about CLI session creation, WAV import, export, rerun identity or determinism"
+      }
+    ]
   },
+  "examples": [
+    "ardour-headless-session"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "Digital audio workstation with multitrack editing, mixing, MIDI and Lua scripting. Its automation works through Ardour sessions and scripting, not a simple standalone audio filter.",
   "use_when": [
@@ -37,7 +50,7 @@
     "ffmpeg-ffprobe",
     "fluidsynth"
   ],
-  "license": "GPL v2 (official site; exact variant and distribution terms need review)",
+  "license": "GPL v2 (ardour.org footer, checked 2026-11-24); official macOS binaries are a payment flow, terms not verified",
   "assessment": {
     "date": "2026-10-29",
     "assessed_by": "ingest-assess-a",

@@ -63,7 +63,8 @@
     ]
   },
   "examples": [
-    "mlt-color-render"
+    "mlt-color-render",
+    "frei0r-effect"
   ],
   "adapter_maturity": "none",
   "checked_at": "2026-11-16",

@@ -1,0 +1,18 @@
+{
+  "name": "@vcr/example-mannequin-js-pose-capture",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx capture.ts",
+    "probe": "tsx probe.ts"
+  },
+  "dependencies": {
+    "mannequin-js": "5.2.3",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@vcr/capture": "workspace:*",
+    "tsx": "^4.23.15"
+  }
+}

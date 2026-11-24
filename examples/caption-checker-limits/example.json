@@ -1,0 +1,9 @@
+{
+  "id": "caption-checker-limits",
+  "title": "caption-checker checks hand-written SRT and WebVTT against its Netflix profile",
+  "summary": "Two clean captions files (SRT, WebVTT) pass with zero issues; two files with predeclared violations (line length, line count, short duration, overlap) report exactly those issues on the predeclared cues, with identical JSON across reruns.",
+  "status": "validated",
+  "tools": ["caption-checker"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" }
+}

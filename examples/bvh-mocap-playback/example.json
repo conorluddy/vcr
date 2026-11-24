@@ -1,0 +1,18 @@
+{
+  "id": "bvh-mocap-playback",
+  "title": "BVHLoader hand-written chain: skeleton, clip, mixer.setTime samples vs BVH, shuffled equality",
+  "summary": "three 0.186.1 BVHLoader parses a 4-joint, 30-frame BVH written for this fixture; AnimationMixer.setTime(t) rotations match the file interpolated within 1e-6; alpha frames, shuffled order matches sequential.",
+  "status": "validated",
+  "tools": ["bvh-mocap", "three-js", "playwright", "imagemagick"],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

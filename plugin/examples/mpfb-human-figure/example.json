@@ -1,0 +1,9 @@
+{
+  "id": "mpfb-human-figure",
+  "title": "MPFB default human in background Blender",
+  "summary": "Blender 4.4.0 loads MPFB 2.0.18 from an isolated repository, sets the height macro to 0.0, 0.5 and 1.0, checks geometry, and renders the default figure to a transparent 480x720 PNG.",
+  "status": "validated",
+  "tools": ["mpfb", "blender", "imagemagick"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" }
+}

@@ -12,16 +12,34 @@
   "notes": [
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-    "2026-10-29: Skill opportunity: Possible standalone restoration skill; first verify specific model weights, rights and an image fixture."
+    "2026-10-29: Skill opportunity: Possible standalone restoration skill; first verify specific model weights, rights and an image fixture.",
+    "2026-11-24: Fixture uses the ncnn-Vulkan macOS release asset realesrgan-ncnn-vulkan-20220424-macos.zip (Real-ESRGAN v0.2.5.0), which bundles the models. The wrapper's v0.2.0 macOS zip bundles no models. Binary licence MIT (wrapper LICENSE); weight terms not separately verified."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
     "status": "not-validated",
-    "evidence": []
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "20220424",
+        "command": "examples/real-esrgan-upscale/run.sh",
+        "result": "realesrgan-x4plus, -s 4, on a 160x120 box-downscaled 640x480 synthetic still: output 640x480 (exact 4x); PSNR 20.46 dB vs bicubic 20.27 (margin 1.0 dB, not met); SSIM 0.9258 vs 0.9210 (margin 0.010, not met); fresh-process rerun byte-identical. Predeclared result: fail. Vulkan via MoltenVK on Apple M3.",
+        "example": "examples/real-esrgan-upscale",
+        "scope": "realesrgan-x4plus ncnn route, one generated still: exact 4x size and deterministic rerun hold; no PSNR/SSIM margin over bicubic (fail); macOS arm64 only"
+      }
+    ]
+  },
+  "examples": [
+    "real-esrgan-upscale"
+  ],
+  "install": {
+    "macos": "mkdir -p examples/real-esrgan-upscale/output/bin && curl -sSLo examples/real-esrgan-upscale/output/bin/realesrgan-ncnn-vulkan-20220424-macos.zip https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesrgan-ncnn-vulkan-20220424-macos.zip && unzip -q examples/real-esrgan-upscale/output/bin/realesrgan-ncnn-vulkan-20220424-macos.zip -d examples/real-esrgan-upscale/output/bin/release && chmod u+x examples/real-esrgan-upscale/output/bin/release/realesrgan-ncnn-vulkan",
+    "check_command": "examples/real-esrgan-upscale/output/bin/release/realesrgan-ncnn-vulkan -h 2>&1 | head -1"
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "Model-based image restoration and upscaling with Python inference scripts. It produces processed image files; model weights, output quality and compute requirements vary by model.",
   "use_when": [

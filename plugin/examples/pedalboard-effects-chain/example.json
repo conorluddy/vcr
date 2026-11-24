@@ -1,0 +1,10 @@
+{
+  "id": "pedalboard-effects-chain",
+  "title": "pedalboard built-in chain (highpass, compressor, gain, limiter) on generated audio",
+  "summary": "Generated 48 kHz tones and seeded noise through built-in processors: 200 Hz tone at least 12 dB down vs 5 kHz tone within 0.5 dB, limiter peak check, identical reruns, 16-bit WAV round trip.",
+  "status": "not-validated",
+  "tools": [
+    "pedalboard"
+  ],
+  "run": "./run.sh"
+}

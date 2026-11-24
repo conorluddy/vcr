@@ -1,0 +1,25 @@
+1
+00:00:01,000 --> 00:00:03,500
+Welcome back to the channel.
+
+2
+00:00:04,100 --> 00:00:08,100
+The quick brown fox jumps over the lazy dog and runs far away
+
+3
+00:00:08,700 --> 00:00:12,700
+Line one of three.
+Line two of three.
+Line three of three.
+
+4
+00:00:13,300 --> 00:00:13,700
+Okay.
+
+5
+00:00:14,300 --> 00:00:16,800
+This one overlaps the next caption.
+
+6
+00:00:16,300 --> 00:00:18,800
+Second caption starts here.

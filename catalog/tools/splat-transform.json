@@ -17,10 +17,20 @@
   "installation_status": "unknown",
   "validation": {
     "status": "not-validated",
-    "evidence": []
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.12.0",
+        "command": "examples/splat-transform-convert/run.sh",
+        "example": "examples/splat-transform-convert",
+        "result": "FAIL as predeclared: synthetic 100-splat 3DGS PLY, translate + filter to PLY. Count 60 and PLY rerun byte-identical pass; predicted bounds miss by 40 because -t acts in the tool's frame (x and y negated for this PLY). Compressed PLY and SOG not reached in the predeclared run.",
+        "scope": "Fixture-reported: translate acts in splat-transform's frame (x,y flipped vs PLY) so predeclared bounds fail; count and PLY reruns hold; compressed formats unverified; macOS arm64."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-01-discovery.md",
   "summary": "Node.js CLI and library for transforming and converting Gaussian splat assets. It handles splat-oriented workflows directly, including conversion and filtering, where general mesh tools do not preserve splat data.",
   "use_when": [
@@ -36,9 +46,12 @@
   ],
   "license": "MIT (per official PlayCanvas open-source listing)",
   "install": {
-    "macos": "npm install -g @playcanvas/splat-transform",
-    "check_command": "splat-transform --help"
+    "macos": "in examples/splat-transform-convert: pnpm add @playcanvas/splat-transform@3.12.0 (project-local exact pin; no global install)",
+    "check_command": "node_modules/.bin/splat-transform --help"
   },
+  "examples": [
+    "splat-transform-convert"
+  ],
   "assessment": {
     "date": "2026-11-15",
     "assessed_by": "assessment_batch_a",

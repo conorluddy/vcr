@@ -13,16 +13,30 @@
   ],
   "notes": [
     "2026-11-15: Triage reason: Assess documented coverage, output fidelity and stability against mermaid-cli. Revisit if upstream parity becomes important.",
-    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+    "2026-11-24: Toolkit guide written from validated evidence (examples/mermaid-rs-renderer-svg); scope one flowchart, SVG and PNG."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.3.1",
+        "command": "examples/mermaid-rs-renderer-svg/run.sh",
+        "result": "mmdr 0.3.1 wrote source.mmd to SVG twice, byte-identical (SHA-256 fcdb1be5...); 4 nodes, 4 edges, all six labels; PNG 466x189 within 1px of --size; mmdc 12.0.0 gave the same labels and counts; contact sheet inspected. Wall-clock medians ~20-27 ms vs mmdc ~1.5-2.4 s (facts, not gate).",
+        "example": "examples/mermaid-rs-renderer-svg",
+        "scope": "mmdr 0.3.1 SVG flowchart: 4 nodes, 4 edges, 6 labels matched to mmdc 12.0.0; PNG size within 1px; byte-identical reruns; no browser lib. macOS arm64. Not other diagrams or themes."
+      }
+    ]
   },
+  "examples": [
+    "mermaid-rs-renderer-svg"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-11-discovery.md",
   "summary": "Rust CLI and library render Mermaid text to SVG, with optional PNG output via resvg. Its browser-free native path is useful for scripts needing low startup and memory; layout and syntax coverage should be checked against mermaid-cli.",
   "license": "MIT",
@@ -55,5 +69,6 @@
       "https://github.com/1jehuang/mermaid-rs-renderer/releases",
       "https://github.com/1jehuang/mermaid-rs-renderer/blob/master/Cargo.toml"
     ]
-  }
+  },
+  "skill": "skills/mermaid-rs-renderer/SKILL.md"
 }

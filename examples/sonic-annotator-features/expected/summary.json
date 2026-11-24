@@ -1,0 +1,43 @@
+{
+  "checks": {
+    "inputs_match_spec": true,
+    "onsets_within_tolerance": true,
+    "pitch_within_tolerance": true,
+    "rerun_identical": true,
+    "transforms_listed": true,
+    "writers_non_empty": true
+  },
+  "inputs": {
+    "clicks": {
+      "channels": 1,
+      "durationS": 10.000,
+      "sampleRateHz": 44100
+    },
+    "sine440": {
+      "channels": 1,
+      "durationS": 4.000,
+      "sampleRateHz": 44100
+    }
+  },
+  "listing": {
+    "ids_listed": true
+  },
+  "onsets": {
+    "detections": 20,
+    "extras": 0,
+    "matched": 20,
+    "maxErrorMs": 24.739,
+    "misses": 0,
+    "truth": 20
+  },
+  "pitch": {
+    "centsError": 3.0,
+    "frames": 258,
+    "medianHz": 440.8
+  },
+  "rerun_identical": true,
+  "writers": {
+    "jams_onset_observations": 20,
+    "jams_pitch_observations": 344
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "vapoursynth-script-frames",
+  "title": "VapourSynth core script: spliced solid clips, per-frame crossfade, YUV420P8, vspipe to FFmpeg",
+  "summary": "A .vpy script (BlankClip, FrameEval with Merge, Splice, resize.Bicubic) is read by vspipe in Y4M; frame facts, pixels, out-of-order ranges and reruns are checked against expected/.",
+  "status": "validated",
+  "tools": ["vapoursynth", "ffmpeg-ffprobe"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" },
+  "report": "README.md"
+}

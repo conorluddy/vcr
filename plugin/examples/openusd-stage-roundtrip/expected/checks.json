@@ -1,0 +1,940 @@
+{
+  "checks": {
+    "G1_prim_types_usda": true,
+    "G1_prim_types_usdc": true,
+    "G2_attribute_values_usda": true,
+    "G2_attribute_values_usdc": true,
+    "G3_stage_metadata_usda": true,
+    "G3_stage_metadata_usdc": true,
+    "G4_translate_time_samples_usda": true,
+    "G4_translate_time_samples_usdc": true,
+    "G5_material_binding_usda": true,
+    "G5_material_binding_usdc": true,
+    "G6_roundtrip_equals_authored": true,
+    "G7_usdchecker_clean": null,
+    "G8_shuffled_time_reads_equal_sequential": true
+  },
+  "sha256": {
+    "stage.usda": "c57805a9cbf6e01244adb3f168bcfa0e8cd3ec026c5a0f41505108a341f11966",
+    "stage.usdc": "3cd7a337e1f2d43655e9c397df08245dedd68921d893040573e664681a260749"
+  },
+  "summaries": {
+    "authored": {
+      "prims": {
+        "/World": {
+          "applied_schemas": [],
+          "attributes": {
+            "purpose": {
+              "default": "default",
+              "time_samples": [],
+              "type": "token"
+            },
+            "visibility": {
+              "default": "inherited",
+              "time_samples": [],
+              "type": "token"
+            },
+            "xformOpOrder": {
+              "default": null,
+              "time_samples": [],
+              "type": "token[]"
+            }
+          },
+          "relationships": {
+            "proxyPrim": []
+          },
+          "type": "Xform"
+        },
+        "/World/Cube": {
+          "applied_schemas": [
+            "MaterialBindingAPI"
+          ],
+          "attributes": {
+            "doubleSided": {
+              "default": false,
+              "time_samples": [],
+              "type": "bool"
+            },
+            "extent": {
+              "default": [
+                [
+                  -1.0,
+                  -1.0,
+                  -1.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "time_samples": [],
+              "type": "float3[]"
+            },
+            "orientation": {
+              "default": "rightHanded",
+              "time_samples": [],
+              "type": "token"
+            },
+            "primvars:displayColor": {
+              "default": null,
+              "time_samples": [],
+              "type": "color3f[]"
+            },
+            "primvars:displayOpacity": {
+              "default": null,
+              "time_samples": [],
+              "type": "float[]"
+            },
+            "purpose": {
+              "default": "default",
+              "time_samples": [],
+              "type": "token"
+            },
+            "size": {
+              "default": 2.0,
+              "time_samples": [],
+              "type": "double"
+            },
+            "visibility": {
+              "default": "inherited",
+              "time_samples": [],
+              "type": "token"
+            },
+            "xformOp:translate": {
+              "default": null,
+              "time_samples": [
+                [
+                  0.0,
+                  [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                [
+                  6.0,
+                  [
+                    12.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                [
+                  12.0,
+                  [
+                    24.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                [
+                  18.0,
+                  [
+                    36.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                [
+                  24.0,
+                  [
+                    48.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              ],
+              "type": "double3"
+            },
+            "xformOpOrder": {
+              "default": [
+                "xformOp:translate"
+              ],
+              "time_samples": [],
+              "type": "token[]"
+            }
+          },
+          "relationships": {
+            "material:binding": [
+              "/World/Looks/RedMat"
+            ],
+            "proxyPrim": []
+          },
+          "type": "Cube"
+        },
+        "/World/Looks": {
+          "applied_schemas": [],
+          "attributes": {
+            "purpose": {
+              "default": "default",
+              "time_samples": [],
+              "type": "token"
+            },
+            "visibility": {
+              "default": "inherited",
+              "time_samples": [],
+              "type": "token"
+            }
+          },
+          "relationships": {
+            "proxyPrim": []
+          },
+          "type": "Scope"
+        },
+        "/World/Looks/RedMat": {
+          "applied_schemas": [],
+          "attributes": {
+            "outputs:displacement": {
+              "default": null,
+              "time_samples": [],
+              "type": "token"
+            },
+            "outputs:surface": {
+              "default": null,
+              "time_samples": [],
+              "type": "token"
+            },
+            "outputs:volume": {
+              "default": null,
+              "time_samples": [],
+              "type": "token"
+            }
+          },
+          "relationships": {},
+          "type": "Material"
+        },
+        "/World/Looks/RedMat/PreviewSurface": {
+          "applied_schemas": [
+            "NodeDefAPI"
+          ],
+          "attributes": {
+            "info:id": {
+              "default": "UsdPreviewSurface",
+              "time_samples": [],
+              "type": "token"
+            },
+            "info:implementationSource": {
+              "default": "id",
+              "time_samples": [],
+              "type": "token"
+            },
+            "inputs:diffuseColor": {
+              "default": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "time_samples": [],
+              "type": "color3f"
+            },
+            "outputs:surface": {
+              "default": null,
+              "time_samples": [],
+              "type": "token"
+            }
+          },
+          "relationships": {},
+          "type": "Shader"
+        },
+        "/World/Sphere": {
+          "applied_schemas": [],
+          "attributes": {
+            "doubleSided": {
+              "default": false,
+              "time_samples": [],
+              "type": "bool"
+            },
+            "extent": {
+              "default": [
+                [
+                  -1.0,
+                  -1.0,
+                  -1.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "time_samples": [],
+              "type": "float3[]"
+            },
+            "orientation": {
+              "default": "rightHanded",
+              "time_samples": [],
+              "type": "token"
+            },
+            "primvars:displayColor": {
+              "default": null,
+              "time_samples": [],
+              "type": "color3f[]"
+            },
+            "primvars:displayOpacity": {
+              "default": null,
+              "time_samples": [],
+              "type": "float[]"
+            },
+            "purpose": {
+              "default": "default",
+              "time_samples": [],
+              "type": "token"
+            },
+            "radius": {
+              "default": 0.5,
+              "time_samples": [],
+              "type": "double"
+            },
+            "visibility": {
+              "default": "inherited",
+              "time_samples": [],
+              "type": "token"
+            },
+            "xformOp:translate": {
+              "default": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "time_samples": [],
+              "type": "double3"
+            },
+            "xformOpOrder": {
+              "default": [
+                "xformOp:translate"
+              ],
+              "time_samples": [],
+              "type": "token[]"
+            }
+          },
+          "relationships": {
+            "proxyPrim": []
+          },
+          "type": "Sphere"
+        }
+      },
+      "stage": {
+        "defaultPrim": "World",
+        "endTimeCode": 24.0,
+        "metersPerUnit": 0.01,
+        "startTimeCode": 0.0,
+        "timeCodesPerSecond": 24.0,
+        "upAxis": "Y"
+      }
+    },
+    "usda": {
+      "prims": {
+        "/World": {
+          "applied_schemas": [],
+          "attributes": {
+            "purpose": {
+              "default": "default",
+              "time_samples": [],
+              "type": "token"
+            },
+            "visibility": {
+              "default": "inherited",
+              "time_samples": [],
+              "type": "token"
+            },
+            "xformOpOrder": {
+              "default": null,
+              "time_samples": [],
+              "type": "token[]"
+            }
+          },
+          "relationships": {
+            "proxyPrim": []
+          },
+          "type": "Xform"
+        },
+        "/World/Cube": {
+          "applied_schemas": [
+            "MaterialBindingAPI"
+          ],
+          "attributes": {
+            "doubleSided": {
+              "default": false,
+              "time_samples": [],
+              "type": "bool"
+            },
+            "extent": {
+              "default": [
+                [
+                  -1.0,
+                  -1.0,
+                  -1.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "time_samples": [],
+              "type": "float3[]"
+            },
+            "orientation": {
+              "default": "rightHanded",
+              "time_samples": [],
+              "type": "token"
+            },
+            "primvars:displayColor": {
+              "default": null,
+              "time_samples": [],
+              "type": "color3f[]"
+            },
+            "primvars:displayOpacity": {
+              "default": null,
+              "time_samples": [],
+              "type": "float[]"
+            },
+            "purpose": {
+              "default": "default",
+              "time_samples": [],
+              "type": "token"
+            },
+            "size": {
+              "default": 2.0,
+              "time_samples": [],
+              "type": "double"
+            },
+            "visibility": {
+              "default": "inherited",
+              "time_samples": [],
+              "type": "token"
+            },
+            "xformOp:translate": {
+              "default": null,
+              "time_samples": [
+                [
+                  0.0,
+                  [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                [
+                  6.0,
+                  [
+                    12.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                [
+                  12.0,
+                  [
+                    24.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                [
+                  18.0,
+                  [
+                    36.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                [
+                  24.0,
+                  [
+                    48.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              ],
+              "type": "double3"
+            },
+            "xformOpOrder": {
+              "default": [
+                "xformOp:translate"
+              ],
+              "time_samples": [],
+              "type": "token[]"
+            }
+          },
+          "relationships": {
+            "material:binding": [
+              "/World/Looks/RedMat"
+            ],
+            "proxyPrim": []
+          },
+          "type": "Cube"
+        },
+        "/World/Looks": {
+          "applied_schemas": [],
+          "attributes": {
+            "purpose": {
+              "default": "default",
+              "time_samples": [],
+              "type": "token"
+            },
+            "visibility": {
+              "default": "inherited",
+              "time_samples": [],
+              "type": "token"
+            }
+          },
+          "relationships": {
+            "proxyPrim": []
+          },
+          "type": "Scope"
+        },
+        "/World/Looks/RedMat": {
+          "applied_schemas": [],
+          "attributes": {
+            "outputs:displacement": {
+              "default": null,
+              "time_samples": [],
+              "type": "token"
+            },
+            "outputs:surface": {
+              "default": null,
+              "time_samples": [],
+              "type": "token"
+            },
+            "outputs:volume": {
+              "default": null,
+              "time_samples": [],
+              "type": "token"
+            }
+          },
+          "relationships": {},
+          "type": "Material"
+        },
+        "/World/Looks/RedMat/PreviewSurface": {
+          "applied_schemas": [
+            "NodeDefAPI"
+          ],
+          "attributes": {
+            "info:id": {
+              "default": "UsdPreviewSurface",
+              "time_samples": [],
+              "type": "token"
+            },
+            "info:implementationSource": {
+              "default": "id",
+              "time_samples": [],
+              "type": "token"
+            },
+            "inputs:diffuseColor": {
+              "default": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "time_samples": [],
+              "type": "color3f"
+            },
+            "outputs:surface": {
+              "default": null,
+              "time_samples": [],
+              "type": "token"
+            }
+          },
+          "relationships": {},
+          "type": "Shader"
+        },
+        "/World/Sphere": {
+          "applied_schemas": [],
+          "attributes": {
+            "doubleSided": {
+              "default": false,
+              "time_samples": [],
+              "type": "bool"
+            },
+            "extent": {
+              "default": [
+                [
+                  -1.0,
+                  -1.0,
+                  -1.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "time_samples": [],
+              "type": "float3[]"
+            },
+            "orientation": {
+              "default": "rightHanded",
+              "time_samples": [],
+              "type": "token"
+            },
+            "primvars:displayColor": {
+              "default": null,
+              "time_samples": [],
+              "type": "color3f[]"
+            },
+            "primvars:displayOpacity": {
+              "default": null,
+              "time_samples": [],
+              "type": "float[]"
+            },
+            "purpose": {
+              "default": "default",
+              "time_samples": [],
+              "type": "token"
+            },
+            "radius": {
+              "default": 0.5,
+              "time_samples": [],
+              "type": "double"
+            },
+            "visibility": {
+              "default": "inherited",
+              "time_samples": [],
+              "type": "token"
+            },
+            "xformOp:translate": {
+              "default": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "time_samples": [],
+              "type": "double3"
+            },
+            "xformOpOrder": {
+              "default": [
+                "xformOp:translate"
+              ],
+              "time_samples": [],
+              "type": "token[]"
+            }
+          },
+          "relationships": {
+            "proxyPrim": []
+          },
+          "type": "Sphere"
+        }
+      },
+      "stage": {
+        "defaultPrim": "World",
+        "endTimeCode": 24.0,
+        "metersPerUnit": 0.01,
+        "startTimeCode": 0.0,
+        "timeCodesPerSecond": 24.0,
+        "upAxis": "Y"
+      }
+    },
+    "usdc": {
+      "prims": {
+        "/World": {
+          "applied_schemas": [],
+          "attributes": {
+            "purpose": {
+              "default": "default",
+              "time_samples": [],
+              "type": "token"
+            },
+            "visibility": {
+              "default": "inherited",
+              "time_samples": [],
+              "type": "token"
+            },
+            "xformOpOrder": {
+              "default": null,
+              "time_samples": [],
+              "type": "token[]"
+            }
+          },
+          "relationships": {
+            "proxyPrim": []
+          },
+          "type": "Xform"
+        },
+        "/World/Cube": {
+          "applied_schemas": [
+            "MaterialBindingAPI"
+          ],
+          "attributes": {
+            "doubleSided": {
+              "default": false,
+              "time_samples": [],
+              "type": "bool"
+            },
+            "extent": {
+              "default": [
+                [
+                  -1.0,
+                  -1.0,
+                  -1.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "time_samples": [],
+              "type": "float3[]"
+            },
+            "orientation": {
+              "default": "rightHanded",
+              "time_samples": [],
+              "type": "token"
+            },
+            "primvars:displayColor": {
+              "default": null,
+              "time_samples": [],
+              "type": "color3f[]"
+            },
+            "primvars:displayOpacity": {
+              "default": null,
+              "time_samples": [],
+              "type": "float[]"
+            },
+            "purpose": {
+              "default": "default",
+              "time_samples": [],
+              "type": "token"
+            },
+            "size": {
+              "default": 2.0,
+              "time_samples": [],
+              "type": "double"
+            },
+            "visibility": {
+              "default": "inherited",
+              "time_samples": [],
+              "type": "token"
+            },
+            "xformOp:translate": {
+              "default": null,
+              "time_samples": [
+                [
+                  0.0,
+                  [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                [
+                  6.0,
+                  [
+                    12.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                [
+                  12.0,
+                  [
+                    24.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                [
+                  18.0,
+                  [
+                    36.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                [
+                  24.0,
+                  [
+                    48.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              ],
+              "type": "double3"
+            },
+            "xformOpOrder": {
+              "default": [
+                "xformOp:translate"
+              ],
+              "time_samples": [],
+              "type": "token[]"
+            }
+          },
+          "relationships": {
+            "material:binding": [
+              "/World/Looks/RedMat"
+            ],
+            "proxyPrim": []
+          },
+          "type": "Cube"
+        },
+        "/World/Looks": {
+          "applied_schemas": [],
+          "attributes": {
+            "purpose": {
+              "default": "default",
+              "time_samples": [],
+              "type": "token"
+            },
+            "visibility": {
+              "default": "inherited",
+              "time_samples": [],
+              "type": "token"
+            }
+          },
+          "relationships": {
+            "proxyPrim": []
+          },
+          "type": "Scope"
+        },
+        "/World/Looks/RedMat": {
+          "applied_schemas": [],
+          "attributes": {
+            "outputs:displacement": {
+              "default": null,
+              "time_samples": [],
+              "type": "token"
+            },
+            "outputs:surface": {
+              "default": null,
+              "time_samples": [],
+              "type": "token"
+            },
+            "outputs:volume": {
+              "default": null,
+              "time_samples": [],
+              "type": "token"
+            }
+          },
+          "relationships": {},
+          "type": "Material"
+        },
+        "/World/Looks/RedMat/PreviewSurface": {
+          "applied_schemas": [
+            "NodeDefAPI"
+          ],
+          "attributes": {
+            "info:id": {
+              "default": "UsdPreviewSurface",
+              "time_samples": [],
+              "type": "token"
+            },
+            "info:implementationSource": {
+              "default": "id",
+              "time_samples": [],
+              "type": "token"
+            },
+            "inputs:diffuseColor": {
+              "default": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "time_samples": [],
+              "type": "color3f"
+            },
+            "outputs:surface": {
+              "default": null,
+              "time_samples": [],
+              "type": "token"
+            }
+          },
+          "relationships": {},
+          "type": "Shader"
+        },
+        "/World/Sphere": {
+          "applied_schemas": [],
+          "attributes": {
+            "doubleSided": {
+              "default": false,
+              "time_samples": [],
+              "type": "bool"
+            },
+            "extent": {
+              "default": [
+                [
+                  -1.0,
+                  -1.0,
+                  -1.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "time_samples": [],
+              "type": "float3[]"
+            },
+            "orientation": {
+              "default": "rightHanded",
+              "time_samples": [],
+              "type": "token"
+            },
+            "primvars:displayColor": {
+              "default": null,
+              "time_samples": [],
+              "type": "color3f[]"
+            },
+            "primvars:displayOpacity": {
+              "default": null,
+              "time_samples": [],
+              "type": "float[]"
+            },
+            "purpose": {
+              "default": "default",
+              "time_samples": [],
+              "type": "token"
+            },
+            "radius": {
+              "default": 0.5,
+              "time_samples": [],
+              "type": "double"
+            },
+            "visibility": {
+              "default": "inherited",
+              "time_samples": [],
+              "type": "token"
+            },
+            "xformOp:translate": {
+              "default": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "time_samples": [],
+              "type": "double3"
+            },
+            "xformOpOrder": {
+              "default": [
+                "xformOp:translate"
+              ],
+              "time_samples": [],
+              "type": "token[]"
+            }
+          },
+          "relationships": {
+            "proxyPrim": []
+          },
+          "type": "Sphere"
+        }
+      },
+      "stage": {
+        "defaultPrim": "World",
+        "endTimeCode": 24.0,
+        "metersPerUnit": 0.01,
+        "startTimeCode": 0.0,
+        "timeCodesPerSecond": 24.0,
+        "upAxis": "Y"
+      }
+    }
+  },
+  "usd_core_version": "0.26.11",
+  "usdchecker": {
+    "reason": "usdchecker is not in the venv bin; usd-core 26.11 ships none",
+    "status": "not-run"
+  }
+}

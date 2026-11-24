@@ -1,0 +1,8 @@
+{
+  "id": "splat-transform-convert",
+  "title": "splat-transform translate, scale and filter of a synthetic splat PLY to PLY, compressed PLY, SOG",
+  "summary": "Not validated: the predeclared bounds check failed (translate acts in the tool's frame for this PLY). Count 60 and PLY rerun identity held. See README.",
+  "status": "not-validated",
+  "tools": ["splat-transform"],
+  "run": "./run.sh"
+}

@@ -1,0 +1,64 @@
+# libplacebo CPU colour maths and BT.2390 tone map (native C)
+
+Status: validated on macOS arm64 with libplacebo 7.387.0 (Homebrew), CPU only, 2026-11-24. The plan below was written before the first run; the observation section records what happened, including one checker bug fixed mid-run.
+
+```text
+./run.sh --record   # builds, runs twice, records expected/hashes.json only
+./run.sh            # expect: libplacebo-colour-maths: OK
+```
+
+`expected/reference.json` holds the predeclared published primaries, matrices, colours, PQ inputs and tolerances. It was written before the first run and is not changed afterwards. `expected/hashes.json` holds the SHA-256 of this machine's `measured.json`.
+
+## Intent and scope
+
+- Tool ID and version/build: `libplacebo` 7.387.0, Homebrew build (`pkg-config --modversion libplacebo`). Library only: no `plplay`, no `mpv` (neither is installed; mpv is not installed for this run). The FFmpeg 9.0.2 on this machine has no libplacebo filter, so it is not used.
+- VCR job and exact claim being tested: a small C program linked against libplacebo 7.387.0 uses only CPU functions that need no GPU context. It returns the BT.709 and BT.2020 primaries and their RGB-to-XYZ matrices within 1e-4 of published values. It converts a predeclared set of linear-light colours between BT.709 and BT.2020, matching closed-form results within 1e-4. It evaluates the BT.2390 tone-mapping curve on predeclared PQ inputs (in PQ, from 0.1 to 1000 nits) so that the output is monotonically increasing and lies in the SDR range of 0 to 100 nits, with the 1000-nit input landing on 100 nits. Two reruns are byte-identical.
+- Explicit exclusions: no GPU rendering (no Vulkan, MoltenVK, OpenGL or D3D11 context, no `pl_gpu`, no `pl_renderer`, no shader generation); GPU rendering is not exercised. No transfer-function conformance beyond the PQ inputs. No gamut mapping, no ICC, no dithering, no film grain, no Dolby Vision. No claim about the rendering quality of tone mapping on real frames, and nothing is compared with mpv or any other renderer. The tone-map check is structural (monotonic, in range, peak mapped), not a numeric match to a published BT.2390 table, because the spec does not publish one at these inputs. No other OS or architecture.
+- Tool documentation and licence sources, checked 2026-11-24: `https://code.videolan.org/videolan/libplacebo` (primary), `https://github.com/haasn/libplacebo` (mirror, per the catalogue card) and the installed `LICENSE` file (`/opt/homebrew/Cellar/libplacebo/7.387.0/LICENSE`, LGPL-2.1, read locally). The catalogue card records `LGPL-2.1-or-later` and the Homebrew formula (`.brew/libplacebo.rb`) records the same. The primary code.videolan.org page was inaccessible when the card was written (2026-10-29); this run did not re-check it over the network.
+- Environment: macOS 26.6 (Darwin 25.6.0) arm64, Apple clang 21.0.0, CPU only. No GPU backend is initialised. Node v22.19.0 runs the checker only.
+- Input: no media. Inputs are constants in `render.c` (linear-light colours, PQ nit levels) mirrored in `expected/reference.json`.
+- Dependencies, installation plan, permissions, network and side effects: Homebrew `libplacebo` 7.387.0 is already installed (the Cellar holds `include/`, `lib/` and `lib/pkgconfig/`), and it pulls in its own dependencies through Homebrew. Nothing new is installed by this example. The build is a single `clang` invocation writing into `output/`. No network access is needed.
+- Selected workspace, generated output and cleanup paths: `examples/libplacebo-colour-maths/output/` (git-ignored) holds the binary and the two `measured.json` runs. `rm -rf output` removes all of it.
+
+## Plan, before running
+
+- Exact commands: `./run.sh --record` (version gate, build, two runs, `cmp`, writes `expected/hashes.json` only), then `./run.sh` (must print `libplacebo-colour-maths: OK`). Build: `clang -std=c11 -O2 -Wall -Wextra $(pkg-config --cflags libplacebo) render.c $(pkg-config --libs libplacebo)`.
+- Versions: libplacebo 7.387.0 (checked by `run.sh`, which stops on any other version), Apple clang 21.0.0, Node v22.19.0 (checker only).
+- Library calls used (all CPU, no `pl_context`, no `pl_gpu`): `pl_raw_primaries_get`, `pl_get_rgb2xyz_matrix`, `pl_get_color_mapping_matrix` (relative colorimetric), `pl_matrix3x3_apply`, `pl_hdr_rescale` (nits to PQ), `pl_tone_map_sample` with `pl_tone_map_bt2390` and libplacebo's default constants (`PL_TONE_MAP_CONSTANTS`).
+- Predeclared references, in `expected/reference.json`, written before the first run:
+  1. Primaries (CIE xy) and D65 white. BT.709: R (0.640, 0.330), G (0.300, 0.600), B (0.150, 0.060). BT.2020: R (0.708, 0.292), G (0.170, 0.797), B (0.131, 0.046). Both white (0.3127, 0.3290). Tolerance 1e-4 against libplacebo's `pl_raw_primaries_get`.
+  2. RGB-to-XYZ matrices (row-major, Y-normalised, D65), published to six decimals in ITU-R BT.709 and BT.2020: BT.709 `[0.412391, 0.357584, 0.180481; 0.212639, 0.715169, 0.072192; 0.019331, 0.119195, 0.950532]`; BT.2020 `[0.636958, 0.144617, 0.168881; 0.262700, 0.677998, 0.059302; 0.000000, 0.028073, 1.060985]`. Tolerance 1e-4 against `pl_get_rgb2xyz_matrix`.
+  3. Closed form, derived in `check.mjs` from the published primaries alone (no libplacebo): RGB-to-XYZ by the standard primaries-and-white solve, then the BT.2020-to-BT.709 and BT.709-to-BT.2020 linear matrices as products of these. The checker first confirms that the published matrices in item 2 agree with this derivation within 1e-5. Then libplacebo's `pl_get_color_mapping_matrix` output is compared with the closed form within 1e-4.
+  4. Colours (linear light, predeclared): (1,0,0), (0,1,0), (0,0,1), (1,1,1), (0.5,0.25,0.125), (0.2,0.6,0.1), (0.9,0.1,0.4). Each is converted in both directions with `pl_matrix3x3_apply` and compared with the closed-form product within 1e-4. Anchors for a reader: BT.709 red in BT.2020 is about (0.627404, 0.069097, 0.016391); BT.2020 red in BT.709 is about (1.660491, -0.124550, -0.018151).
+  5. PQ inputs: nit levels 0.1, 1, 5, 20, 100, 203, 400, 600, 1000. Each is encoded with `pl_hdr_rescale(PL_HDR_NITS, PL_HDR_PQ, ...)` and compared with the SMPTE ST 2084 closed form in `check.mjs` within 1e-5 (PQ(1000) = 0.75182710, PQ(100) = 0.50807842).
+  6. Tone map: `pl_tone_map_bt2390`, input PQ with input range [0, PQ(1000 nits)], output in nits with output range [0, 100] nits. Predeclared: the outputs over the ascending PQ inputs are strictly increasing; every output is within [0 - 0.001, 100 + 0.001] nits; the 1000-nit input maps to 100 nits within 0.5 nit.
+  7. Byte-identical reruns: `cmp` of the two `measured.json` runs in `run.sh`.
+  8. SHA-256 of `measured.json` equals `expected/hashes.json` (recorded on this machine; a different libplacebo build or a change to the JSON layout needs `--record`).
+- Expected artifacts: `output/run1/measured.json` and `output/run2/measured.json`, each one JSON object with the primaries, matrices, colours, PQ points and tone-map points. No media.
+- Intended consumer and handoff settings: none. This proves the CPU colour-maths and tone-map route only. There is no encode and no delivery.
+- Delivery constraints: none.
+- Expected failure modes and stop conditions: `pkg-config` reports a version other than 7.387.0 (stop and re-plan); the clang build fails (blocked, reported as such); any primary, matrix, colour or PQ value outside tolerance (fail, and the failing claim is named); the tone-map check fails (partial, with the colour and PQ halves still scored); reruns differ (fail). A libplacebo call that returns NaN or an out-of-range pointer would show up as invalid JSON, which the checker reports as a failure.
+- Reproduction and inspection: `./run.sh`; read `output/run1/measured.json` directly. There is no picture to look at, so the inspection is the numbers themselves: `check.mjs` prints the largest error for each group.
+
+## Observation, after running
+
+- Date and executor: 2026-11-24, Conors-MacBook-Pro-2.local (macOS 26.6, Darwin 25.6.0, arm64), Claude agent in worktree `agent-aa91e0137afdd3fba`.
+- Versions: libplacebo 7.387.0 (`pkg-config --modversion libplacebo`; `pl_version()` returns `v7.387.0`; `PL_API_VER` 387; linked `/opt/homebrew/opt/libplacebo/lib/libplacebo.387.dylib`); Apple clang 21.0.0 (clang-2100.3.34.2); Node v22.19.0 (checker only). No Playwright and no Chromium (not used). No Vulkan, MoltenVK or other GPU backend was initialised, so GPU rendering is not exercised.
+- Commands: `./run.sh --record` (built, ran twice, `cmp` identical, wrote `expected/hashes.json`), then `./run.sh`, which printed `reruns byte-identical` and `libplacebo-colour-maths: OK`, exit 0.
+- Measured (`output/run1/measured.json`; full numbers in the file, largest error per group from the checker):
+  - Primaries: largest error 2.4e-8 (BT.709 and BT.2020, all corners; the 1e-4 tolerance is met with margin).
+  - RGB-to-XYZ: largest error 3.5e-7 against the published six-decimal matrices, and 3.4e-7 and 3.1e-7 between the published matrices and the checker's closed form (self-check).
+  - Colour conversion, 7 colours each way: largest error 3.6e-7 against the closed-form product (BT.709 red into BT.2020 is `0.627404, 0.069097, 0.016391`; BT.2020 red into BT.709 is `1.660491, -0.124550, -0.018151`, both as predeclared anchors).
+  - PQ inputs: largest error 2.3e-6 against the ST 2084 closed form (tolerance 1e-5); the nit levels echo the predeclared list exactly.
+  - BT.2390 tone map, PQ input range 0 to PQ(1000 nits), output 0 to 100 nits: outputs for 0.1, 1, 5, 20, 100, 203, 400, 600 and 1000 nits are 0.100001, 0.999994, 5.0, 18.05, 53.73, 73.90, 90.39, 96.89 and 99.9995 nits. Strictly increasing; all within [0, 100]; peak error 5.1e-4 nit (tolerance 0.5).
+  - Reruns: `cmp` identical. SHA-256 of `measured.json` is `023e04df8f74bff842caceabe2a56222b0b0c418f3ccfa44497db98220bef14d`, which matches `expected/hashes.json`.
+- Inspection: there is no picture, so the contact-sheet step does not apply. I read the JSON directly. Every colour and PQ value is within tolerance, and the tone-map column rises from 0.1 to 99.9995 nits with no flat or reversed step. One point to note: the 1 nit and 5 nit points come out near identity (0.999994 and 5.0), which is what BT.2390 does below its knee.
+- Pass / partial / fail / blocked: pass. All predeclared checks passed on the second checker run, and no predeclared tolerance was changed.
+- Deviations and limitations:
+  1. The first checker run failed on every closed-form comparison (errors around 0.8 to 11). The cause was a bug in `check.mjs` itself: its 3x3 inverse returned the cofactor matrix without transposing it. The published-matrix self-check caught it before any colour result was trusted. I fixed the checker only; `render.c`, `expected/reference.json` and the measured output were not changed, and the recorded hash still matches. The fix is in the file, not in a changed expectation.
+  2. Tone-map check is structural (strictly increasing, inside the SDR range, peak near 100 nits), not a numeric match to a BT.2390 reference table, because the spec does not give one for these inputs. It does not show that libplacebo's curve equals the spec curve at other inputs.
+  3. Hashes are specific to this build and to libplacebo's CPU output on arm64. A different build, compiler, or float behaviour may change the last bits and needs `--record`.
+  4. The run used libplacebo's default BT.2390 constants (`PL_TONE_MAP_CONSTANTS`, knee offset 1.0). The spec default knee offset is 0.5, so this is not the spec-default curve.
+- What this result establishes: a C program linked to Homebrew libplacebo 7.387.0 calls only CPU functions and gets BT.709 and BT.2020 primaries and RGB-to-XYZ matrices matching the published values within 3.5e-7; converts 7 predeclared linear colours between BT.709 and BT.2020 matching closed-form results within 3.6e-7; encodes the predeclared nit levels to PQ within 2.3e-6 of ST 2084; and evaluates libplacebo's BT.2390 curve as strictly increasing from 0.1 to 1000 PQ-nit inputs into 0 to 100 nits, with the 1000-nit peak landing on 100 nits. Repeated runs are byte-identical on this machine.
+- What it does not establish: GPU rendering (Vulkan, MoltenVK, OpenGL or D3D11 shaders, `pl_renderer`), gamut mapping, ICC, dithering, film grain, Dolby Vision, or any tone map other than BT.2390; conformance to the spec curve beyond the structural checks; real frame quality or agreement with mpv; other platforms or other libplacebo versions; the FFmpeg route, which has no libplacebo filter on this machine.
+- Reviewer, decision, follow-up and invalidation triggers: revisit on any libplacebo upgrade (the `run.sh` version gate stops it first), a change to `render.c` or `expected/reference.json`, or if a GPU route is wanted, which would need its own example and its own claim.
