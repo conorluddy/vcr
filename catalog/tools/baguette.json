@@ -11,9 +11,11 @@
   ],
   "notes": [
     "2026-11-15: Triage: assess; scripted simulator gestures and capture fill a distinct native-app preview route. Revisit if supported macOS/Xcode requirements exceed the target environment or capture cannot be repeated reliably.",
+    "2026-11-24: Guide written from examples/baguette-simulator-capture; tested 0.3.2 (assessment saw 0.2.14), one iPhone 17 Pro iOS 26.5 sim on macOS 26.6 arm64.",
     "2026-11-15: Skill opportunity: consider a VCR simulator-capture guide if this becomes a recurring app-capture workflow; assess Xcode and host constraints in a scoped fixture."
   ],
-  "documentation_status": "listed-in-prd",
+  "skill": "skills/baguette/SKILL.md",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",

@@ -80,7 +80,8 @@
     "browser-capture",
     "svt-av1-encode",
     "vmaf-ffmpeg-score",
-    "node-av-decode-encode"
+    "node-av-decode-encode",
+    "baguette-simulator-capture"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
