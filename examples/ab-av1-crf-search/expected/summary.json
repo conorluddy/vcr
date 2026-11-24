@@ -1,0 +1,22 @@
+{
+  "checks": {
+    "encode_meets_target_within_tolerance": true,
+    "frames_match": true,
+    "repeats_meet_target": true,
+    "search_meets_target": true
+  },
+  "crf_repeats_equal": true,
+  "encode": {
+    "frames": 48,
+    "full_vmaf_pooled_mean": 98.310
+  },
+  "search": {
+    "crf": 27.5,
+    "min_vmaf": 95,
+    "predicted_vmaf": 95.055,
+    "repeat_crfs": [
+      27.5,
+      27.5
+    ]
+  }
+}

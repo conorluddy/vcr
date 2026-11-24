@@ -11,7 +11,8 @@
     "video-encoding"
   ],
   "examples": [
-    "vmaf-ffmpeg-score"
+    "vmaf-ffmpeg-score",
+    "ab-av1-crf-search"
   ],
   "notes": [
     "2026-11-01: Netflix full-reference video quality metric via the vmaf CLI or FFmpeg libvmaf filter.",
