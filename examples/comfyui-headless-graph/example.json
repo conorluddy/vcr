@@ -1,0 +1,14 @@
+{
+  "id": "comfyui-headless-graph",
+  "title": "Headless ComfyUI on 127.0.0.1 runs an API workflow of built-in image nodes with no models",
+  "summary": "ComfyUI v0.46.0 CPU server: POST /prompt of a six-node API graph (load, scale, invert, blend with a generated colour, save); fixed size, four probed pixels, /history entry, loopback-only listener; resubmission byte identity recorded. No models, no custom nodes.",
+  "status": "validated",
+  "tools": [
+    "comfyui"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
