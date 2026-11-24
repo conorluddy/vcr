@@ -12,9 +12,10 @@
   ],
   "notes": [
     "2026-11-01: Reference ASS/SSA renderer behind FFmpeg's ass and subtitles filters; styled and karaoke-timed burn-in.",
-    "2026-11-01: Pin font files; system font fallback breaks reproducibility. May be better recorded as an FFmpeg capability."
+    "2026-11-01: Pin font files; system font fallback breaks reproducibility. May be better recorded as an FFmpeg capability.",
+    "2026-11-24: Guide written from libass-burn-in evidence; C route only, FFmpeg here has no libass."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "libass-burn-in"
@@ -36,7 +37,7 @@
   "adapter_maturity": "none",
   "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
-  "summary": "Portable C library that renders Advanced SubStation Alpha subtitles, including styled text and timed events, to video frames. It is commonly consumed through FFmpeg\u2019s ass/subtitles filters or embedded by media applications rather than used as a standalone authoring tool. Strength: mature ASS rendering with shaping and font-provider integration.",
+  "summary": "Portable C library that renders Advanced SubStation Alpha subtitles, including styled text and timed events, to video frames. It is commonly consumed through FFmpeg’s ass/subtitles filters or embedded by media applications rather than used as a standalone authoring tool. Strength: mature ASS rendering with shaping and font-provider integration.",
   "use_when": [
     "Render an existing ASS/SSA subtitle track through an FFmpeg filter or a native application",
     "Use for ASS-specific subtitle styling and timed events rather than HTML text overlays"
@@ -66,5 +67,6 @@
       "https://github.com/libass/libass/releases",
       "https://github.com/libass/libass/blob/master/meson.build"
     ]
-  }
+  },
+  "skill": "skills/libass/SKILL.md"
 }
