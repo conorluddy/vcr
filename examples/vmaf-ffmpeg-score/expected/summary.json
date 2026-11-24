@@ -1,0 +1,18 @@
+{
+  "checks": {
+    "degraded_below_bound": true,
+    "frames_match": true,
+    "identical_above_degraded": true,
+    "identical_at_ceiling": true,
+    "per_frame_scores_present": true
+  },
+  "degraded": {
+    "frames": 48,
+    "pooled_vmaf_mean": 71.822
+  },
+  "identical": {
+    "frames": 48,
+    "pooled_vmaf_mean": 99.946
+  },
+  "rerun_identical": true
+}
