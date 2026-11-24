@@ -16,12 +16,25 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "vl-convert-chart"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.9.0.post1",
+        "command": "examples/vl-convert-chart/run.sh",
+        "result": "Inline 5-bar Vega-Lite (vl_version 5.21) to SVG 320x200 and PNG 640x400 at scale 2: 5 bar marks match data, title text present, bar heights 1.36 px per unit with 0 px baseline spread, SVG and PNG reruns byte-identical; Python 3.12.2, macOS arm64; sans-serif face not reported.",
+        "example": "examples/vl-convert-chart",
+        "scope": "Python API renders one inline Vega-Lite bar chart to SVG and PNG: bars, title, zero baseline, byte-identical reruns; no PDF, CLI, server or other marks; macOS arm64"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "Rust-based converter available as a library, CLI/server and Python package. It compiles Vega-Lite or Vega specifications and exports SVG, PNG, JPEG, PDF, HTML and scenegraphs without requiring a browser or Node.js. It embeds the official Vega JavaScript libraries and runs them in V8; local and remote resource access is configurable and relevant when processing external specs.",
   "use_when": [
