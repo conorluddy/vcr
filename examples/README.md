@@ -90,6 +90,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `kokoro-onnx-tts` | kokoro-onnx | kokoro-onnx 0.6.0, voice af_heart, speed 1.0: fixed sentence to 24 kHz mono 16-bit WAV, 2.73 s, non-silent, in range; reruns NOT sample-identical (unseeded random ops in the model graph); partial, no listening test, ~337 MB model download (2026-11-24) |
 | `aubio-onsets-pitch` | aubio, ffmpeg-ffprobe | Generated 120 BPM clicks and five sine tones, aubio 0.4.9_4: aubioonset 20 of 20 within 8.8 ms, 0 extras; aubiotrack BPM 120.4 but 9 beats (1.76 to 5.75 s); aubiopitch 3 of 5 tones within 10 cents, low tones sharp; aubiopitch not byte-stable; partial (2026-11-24) |
 | `librosa-beat-spectra` | librosa | 120 BPM generated clicks and four tones, librosa 1.0.1: beat and onset times within 30 ms of the clicks both ways, STFT tone peaks within one bin, reruns byte-identical; partial because beat_track tempo is 117.45 BPM (-2.1 %), a hop-512 grid effect; no real audio or other features (2026-11-24) |
+| `rembg-cutout` | rembg | default u2net library route, generated sphere over busy checker, RGBA same size, IoU 0.996, byte-identical rerun (2026-11-24) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 
