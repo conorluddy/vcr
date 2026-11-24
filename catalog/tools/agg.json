@@ -11,9 +11,10 @@
   ],
   "notes": [
     "2026-11-01: Renders asciicast recordings to GIF via gifski, deterministically from event timestamps.",
-    "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+    "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+    "2026-11-24: Toolkit guide written from the agg-asciicast-gif evidence; absolute GIF size depends on the resolved font, so the guide says to pin fonts."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -62,5 +63,6 @@
   },
   "examples": [
     "agg-asciicast-gif"
-  ]
+  ],
+  "skill": "skills/agg/SKILL.md"
 }
