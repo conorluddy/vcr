@@ -12,9 +12,10 @@
   "notes": [
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-    "2026-10-29: Skill opportunity: Potential standalone video-processing skill; verify CLI and a scoped filter fixture first."
+    "2026-10-29: Skill opportunity: Potential standalone video-processing skill; verify CLI and a scoped filter fixture first.",
+    "2026-11-24: Guide written at skills/vapoursynth/SKILL.md from examples/vapoursynth-script-frames; core-only, plugins untested."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "vapoursynth-script-frames"
@@ -66,5 +67,6 @@
     ],
     "version_seen": "R81",
     "last_release": "2026-10-22"
-  }
+  },
+  "skill": "skills/vapoursynth/SKILL.md"
 }
