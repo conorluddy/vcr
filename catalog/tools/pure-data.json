@@ -17,9 +17,10 @@
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
     "2026-10-29: Skill opportunity: Further research first: independently useful patch workflows need headless execution evidence and ownership.",
-    "2026-11-24: Homebrew cask pd installs Pd 0.57.0 as /Applications/Pd-0.57-0.app; the pd binary is not on PATH, so the fixture calls Contents/Resources/bin/pd (overridable with PD_BIN)."
+    "2026-11-24: Homebrew cask pd installs Pd 0.57.0 as /Applications/Pd-0.57-0.app; the pd binary is not on PATH, so the fixture calls Contents/Resources/bin/pd (overridable with PD_BIN).",
+    "2026-11-24: Toolkit guide written at skills/pure-data/SKILL.md from the pure-data-batch-render evidence; scope stays batch render of one hand-written patch, no externals, real-time audio, MIDI or GUI."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -65,5 +66,6 @@
       "https://github.com/pure-data/pure-data",
       "https://github.com/pure-data/pure-data/blob/master/LICENSE.txt"
     ]
-  }
+  },
+  "skill": "skills/pure-data/SKILL.md"
 }
