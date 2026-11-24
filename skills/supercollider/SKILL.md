@@ -11,7 +11,7 @@ A synthesis platform: the `sclang` language builds a score, the `scsynth` server
 
 ## Use cases and limits
 - Scored synthesis: notes with exact start, duration, frequency and amplitude, rendered to WAV from the score alone. Reruns are byte-identical on the tested host, which is what SOUND-SYNTH-DETERMINISM asks of generated audio.
-- Neighbours: `csound` for the same scored-synthesis job in one self-contained `.csd` (its evidence is complete); `pure-data` is listed on the card as a pairing and has no guide yet; `sox` for effect chains and trims; `tone-js` for browser synthesis; `ffmpeg` for muxing and delivery.
+- Neighbours: `csound` for the same scored-synthesis job in one self-contained `.csd` (its evidence is complete); `pure-data` for a patched dataflow render in batch mode; `sox` for effect chains and trims; `tone-js` for browser synthesis; `ffmpeg` for muxing and delivery.
 - Rate, headroom and ceiling are policy, not this tool: `vcr rules info SOUND-SAMPLE-RATE`, `SOUND-CLIP`, `SOUND-TRUE-PEAK`. The fixture's 48 kHz and amplitudes 0.2 to 0.6 are parameters, not recommendations; its peak check is a sample-peak bound.
 - Evidence is partial: SuperCollider 3.14.1 (Homebrew cask), macOS arm64, one SynthDef (`SinOsc` times `EnvGen` with `Env.linen`, two identical channels), five notes, 48 kHz stereo 16-bit WAV. No listening test, no spectral purity claim.
 - Untested: the real-time server, UGens beyond `SinOsc` and `EnvGen`, sc3-plugins, MIDI, `Routine`/`Pbind`, other versions or platforms, dither.

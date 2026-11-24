@@ -17,7 +17,7 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
+    "status": "blocked",
     "evidence": [
       {
         "date": "2026-11-24",
