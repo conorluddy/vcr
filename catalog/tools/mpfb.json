@@ -14,9 +14,10 @@
     "2026-11-01: Blender extension generating parametric rigged humans; proposed route is Blender Python in background mode. Rigify ships with Blender and needs no separate record.",
     "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
     "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue.",
-    "2026-11-15: MPFB2 release v2.0.18 dated 2026-10-11. Source code is GPLv3; core bundled assets are CC0. Check third-party asset packs separately."
+    "2026-11-15: MPFB2 release v2.0.18 dated 2026-10-11. Source code is GPLv3; core bundled assets are CC0. Check third-party asset packs separately.",
+    "2026-11-24: Guide written at skills/mpfb/SKILL.md from examples/mpfb-human-figure evidence (Blender 4.4.0, MPFB 2.0.18, default human, height macro, Workbench still)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "install": {
     "macos": "Download the MPFB 2.0.18 extension zip from https://extensions.blender.org/download/sha256:c075b3e9b94b8e5556a5f03f4653602d02ea306de08126e8f55ed6dee28a2dad/add-on-mpfb-v2.0.18.zip and check its sha256. Install with blender --factory-startup --command extension install-file -r user_default <zip>, with HOME and BLENDER_USER_* pointed into the example's output/ directory. See examples/mpfb-human-figure/run.sh.",
@@ -69,5 +70,6 @@
       "https://github.com/makehumancommunity/mpfb2/blob/master/LICENSE.md",
       "https://static.makehumancommunity.org/about/license.html"
     ]
-  }
+  },
+  "skill": "skills/mpfb/SKILL.md"
 }
