@@ -1,0 +1,15 @@
+{
+  "id": "dssim-still-compare",
+  "title": "dssim scores degraded generated PNGs and writes difference maps",
+  "summary": "Scores a generated PNG against itself and against JPEG q90, q50, q10 versions; checks zero self-score, strict monotone scores, order independence, non-blank maps and rerun identity.",
+  "status": "validated",
+  "tools": [
+    "dssim",
+    "imagemagick"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

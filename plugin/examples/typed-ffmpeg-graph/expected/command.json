@@ -1,0 +1,3 @@
+{
+  "command": "ffmpeg -filter_complex 'testsrc=size=320x180:rate=24:duration=2[s0];testsrc2=size=640x360:rate=24:duration=2[s1];[s1]scale=w=160:h=90[s2];[s0][s2]overlay=x=10:y=10[s3];[s3]drawbox=x=0:y=0:width=50:height=20:color=white:thickness=fill[s4]' -map '[s4]' -t 2 -r 24 -pix_fmt yuv420p -vcodec libx264 -movflags +faststart output/graph.mp4"
+}

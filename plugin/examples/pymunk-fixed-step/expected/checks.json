@@ -1,0 +1,40 @@
+{
+  "all_passed": true,
+  "checks": {
+    "ball_rest_region": true,
+    "bodies_fell_to_floor": true,
+    "distinct_trace_hashes": true,
+    "fixed_step_is_one_sixtieth": true,
+    "recorded_steps_as_declared": true,
+    "reruns_identical": true,
+    "seek_fresh_process_matches_trace": true,
+    "seek_order_is_shuffled": true,
+    "trace_covers_declared_steps": true
+  },
+  "measurements": {
+    "ball_final_speed_px_per_s": 0.0,
+    "ball_final_x_px": -250.0,
+    "ball_final_y_px": 11.9,
+    "distinct_trace_hashes": 901,
+    "fall_px_by_body": {
+      "ball": 188.1,
+      "box_a": 278.1,
+      "box_b": 358.1,
+      "box_c": 403.2,
+      "circle_a": 233.1,
+      "circle_b": 316.1
+    },
+    "seek_in_process_matching_steps": [
+      0,
+      1,
+      2,
+      30,
+      60,
+      120,
+      240,
+      480,
+      900
+    ],
+    "seek_in_process_total": 9
+  }
+}

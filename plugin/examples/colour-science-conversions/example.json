@@ -1,0 +1,8 @@
+{
+  "id": "colour-science-conversions",
+  "title": "colour-science sRGB Lab/OKLab round trip, CIEDE2000 Sharma pairs and BT.2020 matrix",
+  "summary": "Python venv: sRGB to Lab and OKLab and back within 1e-6, D65 white L* 100, eight Sharma CIEDE2000 pairs within 1e-4, BT.709 to BT.2020 linear matrix within 1e-5 of the published BT.2087 values.",
+  "status": "not-validated",
+  "tools": ["colour-science"],
+  "run": "./run.sh"
+}

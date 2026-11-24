@@ -1,0 +1,14 @@
+{
+  "id": "pymunk-fixed-step",
+  "title": "pymunk rigid bodies at a fixed 1/60 s step, seeked by re-simulation",
+  "summary": "Predeclared box, circle and ball scene: state hashes identical across reruns, fresh-process re-simulation to nine steps matches the continuous trace in shuffled order, ball rests in a predeclared region. JSON only.",
+  "status": "validated",
+  "tools": [
+    "pymunk"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

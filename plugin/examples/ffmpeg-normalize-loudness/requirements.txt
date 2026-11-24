@@ -1,0 +1,9 @@
+ffmpeg-normalize==1.45.3
+ffmpeg-progress-yield==1.1.4
+markdown-it-py==4.3.0
+mdurl==0.1.2
+mutagen==1.48.1
+pygments==2.21.0
+rich==15.0.0
+rich-argparse==1.8.0
+tqdm==4.70.1
