@@ -13,16 +13,34 @@
     "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
     "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
     "2026-10-29: Skill opportunity: Further research first: test a host build and specific effect before a VCR or standalone skill.",
-    "2026-10-29: Plugin collection requires a compatible host; effects, builds and licences vary and no VCR integration is verified."
+    "2026-10-29: Plugin collection requires a compatible host; effects, builds and licences vary and no VCR integration is verified.",
+    "2026-11-24: Guide written at skills/frei0r/SKILL.md from the frei0r-effect evidence (MLT melt route, FREI0R_PATH, invert0r and brightness only)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
-  "validation": {
-    "status": "not-validated",
-    "evidence": []
+  "install": {
+    "macos": "brew install frei0r",
+    "check_command": "brew list --versions frei0r"
   },
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.7.1 (Homebrew frei0r 3.7.1, applied via MLT melt 7.42.0)",
+        "command": "examples/frei0r-effect/run.sh",
+        "result": "invert0r exact 255-v on a generated 64x48 four-quadrant frame; brightness 0.25/0.5/0.75 within ±1 of formula and monotonic; reruns byte-identical; OK.",
+        "example": "examples/frei0r-effect",
+        "scope": "MLT melt route with FREI0R_PATH, macOS arm64; invert0r and brightness on raw RGBA; no GStreamer, other plugins, codecs or animation."
+      }
+    ]
+  },
+  "examples": [
+    "frei0r-effect"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "Video-effects plugin API and collection of filters, generators and mixers. Effects require a compatible host; availability in a particular FFmpeg build is not implied.",
   "use_when": [
@@ -48,5 +66,6 @@
       "https://dyne.org/frei0r/",
       "https://github.com/dyne/frei0r"
     ]
-  }
+  },
+  "skill": "skills/frei0r/SKILL.md"
 }
