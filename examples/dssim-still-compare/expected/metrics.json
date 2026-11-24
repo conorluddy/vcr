@@ -1,0 +1,45 @@
+{
+  "dimensions": "256x256",
+  "distinct_input_hashes": 4,
+  "dssim_version": "3.4.0",
+  "frame_count": 4,
+  "input_sha256": {
+    "base": "6fafed73ed1545defdfa989636b22a39aa1d892a31f4bc688fd9d13842ae0457",
+    "q10": "6378b467e2d7124469cb86ec7dfb2b3dfcce2ad63ed0fcbd104ae92f30b2a7c6",
+    "q50": "ca6f507500d4e616fdaebe6fd7ebccfad3b808acb711d640b4bb7bf3d5649646",
+    "q90": "df5134ec99f0fdff1a0b7a394cd52f2e68c6af517a5956c809bc7a5083cd4408"
+  },
+  "magick_version": "Version: ImageMagick 7.1.2-35 Q16-HDRI aarch64 acaf7e418:20261031 https://imagemagick.org",
+  "map_count_per_run": 3,
+  "repeat_identical": true,
+  "run": {
+    "maps": {
+      "q10": {
+        "maxima": 1.0,
+        "mean": 0.623992,
+        "sha256": "fa50cb5cdaed33c74fe50b349c05ac81f48d680cfca69fc92d3dc5a69d57e40f"
+      },
+      "q50": {
+        "maxima": 1.0,
+        "mean": 0.342268,
+        "sha256": "313ef1d51a5e7236e26b30dc784159f0afe50791293f3c30451706a4249801bb"
+      },
+      "q90": {
+        "maxima": 1.0,
+        "mean": 0.0874834,
+        "sha256": "bf97985e2b5b78a4dbbd6e936c97b184231aa01d2ba166eb445294a8cbbd1ebd"
+      }
+    },
+    "reversed_scores": {
+      "q10": "0.05846345",
+      "q50": "0.02181509",
+      "q90": "0.00087072"
+    },
+    "self_score": "0.00000000",
+    "sequential_scores": {
+      "q10": "0.05846345",
+      "q50": "0.02181509",
+      "q90": "0.00087072"
+    }
+  }
+}

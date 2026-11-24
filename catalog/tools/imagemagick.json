@@ -36,6 +36,7 @@
   },
   "skill": "skills/imagemagick/SKILL.md",
   "examples": [
+    "dssim-still-compare",
     "gl-transitions-seek",
     "ffmpeg-assembly",
     "libwebp-lossless-animation",
