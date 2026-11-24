@@ -12,16 +12,30 @@
   "notes": [
     "2026-11-15: Triage reason: Assess official licence terms and video write coverage. Revisit when delivery metadata handling is scoped.",
     "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
-    "2026-11-15: Release date or maintenance cadence could not be established from the inspected official pages."
+    "2026-11-15: Release date or maintenance cadence could not be established from the inspected official pages.",
+    "2026-11-24: Guide written from exiftool-metadata-roundtrip evidence (13.50; card version_seen 13.59). Scope: XMP-dc Title/Rights and EXIF Artist on PNG and JPEG copies."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "13.50",
+        "command": "examples/exiftool-metadata-roundtrip/run.sh",
+        "result": "XMP-dc Title/Rights and EXIF Artist read back exact on PNG and JPEG; -all= left no predeclared or XMP/EXIF keys; decoded RGBA SHA-256 unchanged. Fixture passed twice.",
+        "example": "examples/exiftool-metadata-roundtrip",
+        "scope": "Writes XMP-dc Title/Rights and EXIF Artist to generated PNG and JPEG, reads back exactly, -all= strips them, decoded RGBA unchanged; other fields, formats, cross-tool agreement not tested; macOS arm64"
+      }
+    ]
   },
+  "examples": [
+    "exiftool-metadata-roundtrip"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-12-discovery.md",
   "summary": "Perl CLI and library for media metadata",
   "license": "GPL-3.0-or-later OR Artistic-1.0-Perl",
@@ -48,5 +62,6 @@
   "install": {
     "macos": "brew install exiftool",
     "check_command": "exiftool -ver"
-  }
+  },
+  "skill": "skills/exiftool/SKILL.md"
 }
