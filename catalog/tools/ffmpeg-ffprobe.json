@@ -78,7 +78,8 @@
     "native-svg",
     "ffmpeg-assembly",
     "browser-capture",
-    "svt-av1-encode"
+    "svt-av1-encode",
+    "vmaf-ffmpeg-score"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
