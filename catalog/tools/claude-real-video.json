@@ -11,10 +11,12 @@
     "media-inspection"
   ],
   "notes": [
+    "2026-11-24: Guide written at skills/claude-real-video/SKILL.md from the claude-real-video-keyframes evidence; default density-floor output, fades, real footage, transcripts and URL ingestion remain untested.",
     "2026-11-15: Triage: assess; selected keyframes and contact sheets could support agent-facing render review. Revisit when #63 frame sampling is exercised and frame selection repeatability is checked.",
     "2026-11-15: Skill opportunity: a focused review-packet workflow may merit a VCR skill if the tool reliably produces the needed keyframes and transcript; fixture retrieval and transcription separately."
   ],
-  "documentation_status": "listed-in-prd",
+  "skill": "skills/claude-real-video/SKILL.md",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
