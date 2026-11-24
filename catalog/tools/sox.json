@@ -6,6 +6,10 @@
   "role": "Audio processing",
   "official_url": "https://sox.sourceforge.net/",
   "automation_route": "native-cli-or-scripting",
+  "install": {
+    "macos": "brew install sox",
+    "check_command": "sox --version"
+  },
   "capabilities": [
     "audio"
   ],
@@ -17,11 +21,24 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "14.4.2",
+        "command": "examples/sox-audio-chain/run.sh",
+        "result": "Four synth sine tones (440, 660, 880, 1100 Hz, 0.5 s each) through trim 0 1.5, fade t 0.02 0 0.1, gain -3, channels 2, rate 44100 and 16-bit output: 66150 samples, 44100 Hz, 2 channels, 16-bit, 1.500 s (soxi). Peak 0.354 (predicted 0.354; ceiling -6 dBFS). Two -D reruns byte-identical; the same chain with dither enabled differed between runs.",
+        "example": "examples/sox-audio-chain",
+        "scope": "synth tones, trim/fade/gain, 48 to 44.1 kHz resample to 16-bit stereo; soxi and stat checks; -D reruns byte-identical; macOS arm64, sox 14.4.2"
+      }
+    ]
   },
+  "examples": [
+    "sox-audio-chain"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "Command-line sound processing toolkit for converting and transforming audio files. Its effects offer a dedicated audio route alongside FFmpeg; supported codecs depend on the build.",
   "use_when": [
