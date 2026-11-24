@@ -1,0 +1,28 @@
+{
+  "exiftool_version": "13.50",
+  "exiv2_version": "0.28.9",
+  "formats": {
+    "jpg": {
+      "exiftool_readback_of_exiv2_tags": {
+        "Artist": "VCR fixture",
+        "Caption-Abstract": "VCR caption fixture",
+        "Rights": "CC0 fixture; no rights claimed",
+        "Title": "VCR metadata fixture"
+      },
+      "exiv2_readback": {
+        "Exif.Image.Artist": "VCR fixture",
+        "Iptc.Application2.Caption": "VCR caption fixture",
+        "Xmp.dc.rights": "CC0 fixture; no rights claimed",
+        "Xmp.dc.title": "VCR metadata fixture"
+      },
+      "pixel_rgba_sha256": "44dfe21abf0955cce9f1522102340f853769323c045a16c026311c26b4dbe8a3",
+      "stripped_exiftool_metadata_keys": [],
+      "stripped_exiv2_keys": []
+    }
+  },
+  "image": {
+    "height": 48,
+    "rgba_bytes": 12288,
+    "width": 64
+  }
+}

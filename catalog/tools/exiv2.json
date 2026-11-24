@@ -17,11 +17,24 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.28.9",
+        "command": "examples/exiv2-metadata-roundtrip/run.sh",
+        "result": "XMP-dc Title/Rights, EXIF Artist and IPTC Caption read back exact via exiv2 -pa; exiftool 13.50 read identical values; rm left no Xmp/Exif/Iptc keys; decoded RGBA SHA-256 unchanged. Fixture passed twice.",
+        "example": "examples/exiv2-metadata-roundtrip",
+        "scope": "Writes XMP-dc Title/Rights, EXIF Artist and IPTC Caption to generated JPEG via -m; -pa reads exact; rm strips; RGBA unchanged; exiftool 13.50 reads same values; no PNG, other fields"
+      }
+    ]
   },
+  "examples": [
+    "exiv2-metadata-roundtrip"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-02-discovery.md",
   "summary": "C++ library and command-line utility for inspecting, editing, deleting and copying common image metadata (EXIF, IPTC, XMP and ICC). It provides direct metadata operations without re-encoding image pixels.",
   "use_when": [

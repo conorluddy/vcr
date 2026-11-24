@@ -32,7 +32,8 @@
     ]
   },
   "examples": [
-    "exiftool-metadata-roundtrip"
+    "exiftool-metadata-roundtrip",
+    "exiv2-metadata-roundtrip"
   ],
   "adapter_maturity": "none",
   "checked_at": "2026-11-24",
