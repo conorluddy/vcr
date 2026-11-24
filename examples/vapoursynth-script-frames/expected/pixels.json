@@ -1,0 +1,13 @@
+{
+  "toleranceCodeValues": 2,
+  "lumaSample": { "x": 160, "y": 90 },
+  "chromaSample": { "x": 80, "y": 45 },
+  "frames": [
+    { "index": 0, "y": 80, "u": 112, "v": 198, "note": "red, start of the first splice segment" },
+    { "index": 24, "y": 80, "u": 112, "v": 198, "note": "red, crossfade weight 0" },
+    { "index": 36, "y": 83, "u": 154, "v": 150, "note": "crossfade weight 12/23, mixed" },
+    { "index": 47, "y": 86, "u": 194, "v": 105, "note": "blue, crossfade weight 1" },
+    { "index": 71, "y": 86, "u": 194, "v": 105, "note": "blue, end of the last segment" }
+  ],
+  "outOfOrderRanges": [[60, 71], [0, 11], [36, 47], [24, 35]]
+}
