@@ -18,11 +18,28 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "blocked",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.1.0",
+        "command": "examples/demucs-stem-separation/run.sh",
+        "result": "BLOCKED before separation: demucs 4.1.0 (torch 2.15.0, torchaudio 2.11.1) installed in venv; import fails, numpy absent (demucs/transformer.py imports numpy; metadata declares it only for darwin/x86_64).",
+        "example": "examples/demucs-stem-separation",
+        "scope": "Fixture-reported: install and import probe on arm64 only; no separation, rate, SDR, sum or determinism result. numpy not approved."
+      }
+    ]
+  },
+  "examples": [
+    "demucs-stem-separation"
+  ],
+  "install": {
+    "macos": "uv venv --python 3.12 <venv>; uv pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu; uv pip install demucs==4.1.0; numpy also required on arm64 (not declared by demucs 4.1.0)",
+    "check_command": "<venv>/bin/python -c 'import numpy, demucs.separate'"
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "Research code and command-line interface for separating recorded music into stems using neural models. The original repository is archived and no longer maintained; model and weight terms require separate checks.",
   "use_when": [
@@ -36,7 +53,7 @@
   "pairs_with": [
     "ffmpeg-ffprobe"
   ],
-  "license": "MIT (source code; model weights, input and output rights not assessed)",
+  "license": "MIT (source code). Model weights: upstream README says licence not clear, likely CC-BY-NC (checked 2026-11-24); input and output rights not assessed",
   "assessment": {
     "date": "2026-10-29",
     "assessed_by": "ingest-assess-a",

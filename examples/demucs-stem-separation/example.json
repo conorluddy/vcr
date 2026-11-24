@@ -1,0 +1,10 @@
+{
+  "id": "demucs-stem-separation",
+  "title": "Demucs htdemucs separates a generated drums, bass and vocals mix into four stems",
+  "summary": "Blocked: demucs 4.1.0 imports numpy unconditionally and does not declare it on arm64; no separation has run. Pending approval of numpy in output/venv.",
+  "status": "not-validated",
+  "tools": [
+    "demucs"
+  ],
+  "run": "./run.sh"
+}
