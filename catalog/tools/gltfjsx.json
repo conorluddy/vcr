@@ -33,10 +33,10 @@
     "macos": "pnpm add -D gltfjsx@6.5.3 in an example directory (project-local, exact pin; not pnpm dlx)",
     "check_command": "pnpm --dir examples/gltfjsx-r3f-component exec gltfjsx --version"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
+    "status": "partial",
     "evidence": [
       {
         "date": "2026-11-24",
@@ -68,6 +68,8 @@
   "source": "specifications/vcr-prd.md#appendix-a",
   "notes": [
     "2026-10-29: Skill opportunity: Further research first: verify a GLB-to-R3F fixture and current maintenance before proposing a standalone skill.",
-    "2026-11-24: --types output references GLTFAction in GLTFResult even for a GLB with no animations; strict tsc reports TS2304 for it. Also the output imports @react-three/drei and three-stdlib, which the fixture did not install. See examples/gltfjsx-r3f-component/README.md."
-  ]
+    "2026-11-24: --types output references GLTFAction in GLTFResult even for a GLB with no animations; strict tsc reports TS2304 for it. Also the output imports @react-three/drei and three-stdlib, which the fixture did not install. See examples/gltfjsx-r3f-component/README.md.",
+    "2026-11-24: Guide written at skills/gltfjsx/SKILL.md from partial evidence (generation, name references, rerun identity); typecheck, render, --transform untested."
+  ],
+  "skill": "skills/gltfjsx/SKILL.md"
 }
