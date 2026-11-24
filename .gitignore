@@ -25,3 +25,6 @@ coverage/
 
 # Agent worktrees
 .claude/worktrees/
+
+# Generated catalogue site (vcr site build); published by CI, never committed.
+/site/

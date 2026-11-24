@@ -543,6 +543,14 @@ Regenerate catalog/tools.json, INDEX.md, CANDIDATES.md, TECHNIQUES.md and the ty
 vcr catalog build --check
 ```
 
+## `vcr site build`
+
+Generate the public catalogue site into site/ (ignored): technique map, tool pages, status Harness repository only.
+
+```sh
+vcr site build
+```
+
 ## `vcr plugin build`
 
 Assemble plugin/ for Claude Code and Codex; regenerates references/cli.md Harness repository only.

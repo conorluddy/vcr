@@ -372,6 +372,7 @@ export const COMMANDS: CommandSpec[] = [
     example: "vcr catalog build --check",
     isMaintainerOnly: true,
   },
+  { name: "site build", summary: "Generate the public catalogue site into site/ (ignored): technique map, tool pages, status", flags: [], example: "vcr site build", isMaintainerOnly: true },
   { name: "plugin build", summary: "Assemble plugin/ for Claude Code and Codex; regenerates references/cli.md", flags: [], example: "vcr plugin build", isMaintainerOnly: true },
 ];
 
