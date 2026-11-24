@@ -78,6 +78,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `colour-science-conversions` | colour-science | Python venv, colour-science 0.4.7: ΔE2000 on 8 Sharma pairs within 4.1e-5 (matches Color.js to 12 figures), BT.709 to BT.2020 within 1e-6; PARTIAL: sRGB to Lab/OKLab round trip drifts to 3e-4 and white a*, b* 7.7e-3 on the default route (2026-11-24) |
 | `ttconv-caption-convert` | ttconv | 3-cue SRT (two-line, italic) to WebVTT and TTML: ms timings, text, breaks, well-formed TTML namespace, VTT to SRT round trip, rerun identical; no IMSC profile check (2026-11-24) |
 | `dssim-still-compare` | dssim, imagemagick | dssim 3.4.0 scores a generated opaque 256x256 PNG: self 0, JPEG q90/q50/q10 strictly increasing, per-scale difference maps via -o, reruns identical; no alpha or thresholds (2026-11-24) |
+| `generativepy-frames` | generativepy | 48 PNG frames 320x240 ARGB32 of two circles, a bar and one gradient as a pure function of frame number via make_images and make_image; 5 probes, shuffled equals sequential, reruns byte-identical; no movie, SVG or text (2026-11-24) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 

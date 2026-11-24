@@ -13,16 +13,27 @@
   ],
   "notes": [
     "2026-11-15: Triage: assess; plain Python frame generation for mathematical graphics differs from scene-oriented animation tools. Revisit if repeated VCR work establishes a need and Cairo/font dependencies are understood.",
-    "2026-11-15: Skill opportunity: further research first; compare a small Python frame-sequence fixture with existing code-first tools before proposing a guide."
+    "2026-11-15: Skill opportunity: further research first; compare a small Python frame-sequence fixture with existing code-first tools before proposing a guide.",
+    "2026-11-24: Guide written at skills/generativepy/SKILL.md from the generativepy-frames evidence (shapes and one gradient, PNG frames only)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "50.0",
+        "command": "examples/generativepy-frames/run.sh",
+        "result": "make_images and out-of-order make_image, 48 frames 320x240 RGBA: 48 distinct hashes, 5 probes match, shuffled equals sequential, rerun byte-identical (digest 4408bd59), middle-frame alpha 0 to 255; Python 3.12.2, pycairo 1.29.2, Cairo 1.18.6, macOS arm64",
+        "example": "examples/generativepy-frames",
+        "scope": "Shapes and one gradient, 48 PNG frames 320x240 via pycairo ARGB32; probes, shuffled and rerun byte-identical; no movie, SVG or text; macOS arm64"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-15-discovery.md",
   "summary": "Python library authors procedural 2D graphics, function plots and frame sequences, with GIF and movie-building routes. Its Python frame model is approachable for data-driven graphics, while movie output depends on additional libraries and it overlaps with other code-first creative tools.",
   "use_when": [
@@ -52,5 +63,9 @@
       "https://github.com/martinmcbride/generativepy",
       "https://pypi.org/project/generativepy/"
     ]
-  }
+  },
+  "examples": [
+    "generativepy-frames"
+  ],
+  "skill": "skills/generativepy/SKILL.md"
 }
