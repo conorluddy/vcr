@@ -21,11 +21,21 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.11.0",
+        "command": "examples/revideo-headless-render/run.sh",
+        "result": "renderVideo wrote 320x180 H.264 yuv420p MP4 at 30 fps with 61 frames (predeclared 60); rect centre within 0.2 px of expected at 5 sampled frames; two renders gave identical per-frame hashes",
+        "example": "examples/revideo-headless-render",
+        "scope": "Fixture-reported: headless renderVideo to H.264 MP4 at 320x180, 30 fps, bundled ffmpeg, macOS arm64; frame count 61 vs predeclared 60 failed; no expected/ kept; no other hosts, exporters or CLI."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "TypeScript rendering engine for programmatic video creation with a Motion Canvas-like authoring model and headless rendering route.",
   "use_when": [
@@ -53,5 +63,12 @@
       "https://github.com/midrender/revideo/blob/main/RELEASING.md",
       "https://github.com/midrender/revideo/releases"
     ]
-  }
+  },
+  "install": {
+    "macos": "npm install --save-exact --ignore-scripts @revideo/core@0.11.0 @revideo/2d@0.11.0 @revideo/renderer@0.11.0 @revideo/vite-plugin@0.11.0 @revideo/ui@0.11.0",
+    "check_command": "npm ls @revideo/renderer --depth 0"
+  },
+  "examples": [
+    "revideo-headless-render"
+  ]
 }
