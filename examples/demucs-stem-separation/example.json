@@ -1,10 +1,15 @@
 {
   "id": "demucs-stem-separation",
   "title": "Demucs htdemucs separates a generated drums, bass and vocals mix into four stems",
-  "summary": "Blocked: demucs 4.1.0 imports numpy unconditionally and does not declare it on arm64; no separation has run. Pending approval of numpy in output/venv.",
-  "status": "not-validated",
+  "summary": "Generated 10 s kick/snare, bass and speech mix: four 44.1 kHz stems of equal length; each estimate correlates most with its own source (margin at least 0.83); SDR drums 8.0, bass 11.1, vocals 16.1 dB; sum residual 20.1 dB. Stems byte-identical across two runs. htdemucs, CPU, arm64.",
+  "status": "validated",
   "tools": [
-    "demucs"
+    "demucs",
+    "ffmpeg-ffprobe"
   ],
-  "run": "./run.sh"
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
 }

@@ -18,7 +18,7 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "blocked",
+    "status": "validated",
     "evidence": [
       {
         "date": "2026-11-24",
@@ -28,6 +28,15 @@
         "result": "BLOCKED before separation: demucs 4.1.0 (torch 2.15.0, torchaudio 2.11.1) installed in venv; import fails, numpy absent (demucs/transformer.py imports numpy; metadata declares it only for darwin/x86_64).",
         "example": "examples/demucs-stem-separation",
         "scope": "Fixture-reported: install and import probe on arm64 only; no separation, rate, SDR, sum or determinism result. numpy not approved."
+      },
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.1.0",
+        "command": "examples/demucs-stem-separation/run.sh",
+        "result": "10 s synthetic mix (kick/snare, bass, say voice) at 44.1 kHz stereo: 4 stems, 441000 samples each. Correlation margins drums 0.835, bass 0.961, vocals 0.996. SDR drums 8.0, bass 11.1, vocals 16.1 dB. Sum residual SNR 20.1 dB. Stems byte-identical across two runs. htdemucs, CPU, torch 2.15.0, numpy 2.5.5.",
+        "example": "examples/demucs-stem-separation",
+        "scope": "Synthetic 10 s mix, htdemucs CPU, arm64: four-stem rate/length, correlation margin, SDR floors and sum; not real music, other models or devices; weights licence unclear."
       }
     ]
   },
@@ -35,7 +44,7 @@
     "demucs-stem-separation"
   ],
   "install": {
-    "macos": "uv venv --python 3.12 <venv>; uv pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu; uv pip install demucs==4.1.0; numpy also required on arm64 (not declared by demucs 4.1.0)",
+    "macos": "uv venv --python 3.12 <venv>; uv pip install -r examples/demucs-stem-separation/requirements.txt (torch CPU index, demucs 4.1.0, numpy pinned: demucs does not declare numpy on arm64)",
     "check_command": "<venv>/bin/python -c 'import numpy, demucs.separate'"
   },
   "adapter_maturity": "none",
