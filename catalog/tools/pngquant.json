@@ -29,7 +29,7 @@
         "command": "examples/pngquant-palette-quantise/run.sh",
         "result": "FAIL as predeclared: 256x256 RGBA gradient to 64 colours at --quality 70-95 exits 99 (MSE Q=54, floor 70); no palette written. Unrecorded diagnostic at --quality 0-100: exit 0, 14817 B vs 1754 B source, alpha 3/255..244/255, PSNR 31.17 dB.",
         "example": "examples/pngquant-palette-quantise",
-        "scope": "Quality-floor claim fails for a 256px RGBA gradient at 64 colours (exit 99, Q=54 below floor 70); no palette written. Says nothing on alpha or size; macOS arm64 only."
+        "scope": "Fixture-reported: q70 floor fails for 256px RGBA gradient at 64 colours (exit 99, Q=54); no palette written. Says nothing on alpha or size; macOS arm64 only."
       }
     ]
   },
