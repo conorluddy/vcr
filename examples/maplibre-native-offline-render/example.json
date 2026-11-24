@@ -1,0 +1,9 @@
+{
+  "id": "maplibre-native-offline-render",
+  "title": "maplibre-native renders an inline offline style to an RGBA buffer in Node",
+  "summary": "@maplibre/maplibre-gl-native 6.4.1 (prebuilt darwin-arm64 binding, Node 22) renders a background and GeoJSON fill style with requests refused; probes match at pixel ratios 1 and 2; reruns are byte-identical.",
+  "status": "validated",
+  "tools": ["maplibre-native", "imagemagick"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" }
+}
