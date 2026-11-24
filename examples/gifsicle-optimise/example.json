@@ -1,0 +1,16 @@
+{
+  "id": "gifsicle-optimise",
+  "title": "Gifsicle optimises an ffmpeg-made GIF losslessly",
+  "summary": "Six owned frames with varied delays; -O3 keeps frames, delays, loop and decoded pixels, --lossy and --colors shrink further. Checked by parsing GIF blocks.",
+  "status": "validated",
+  "tools": [
+    "gifsicle",
+    "ffmpeg-ffprobe",
+    "imagemagick"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
