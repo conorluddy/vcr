@@ -1,0 +1,15 @@
+{
+  "id": "trimesh-mesh-checks",
+  "title": "trimesh primitives, GLB reload and transformed GLB/STL re-export checked analytically",
+  "summary": "trimesh 5.2.2 box and icosphere checked against analytic volume, area, bounds and counts; GLB reload and transformed GLB/STL reload keep vertex and face counts; reruns byte-identical. No materials, lighting, rendering or optional extras.",
+  "status": "validated",
+  "tools": [
+    "trimesh"
+  ],
+  "run": "./run.sh",
+  "report": "examples/trimesh-mesh-checks/README.md",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

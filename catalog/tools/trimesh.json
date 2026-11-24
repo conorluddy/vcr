@@ -16,12 +16,29 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "install": {
+    "macos": "python3 -m venv .venv && .venv/bin/python -m pip install trimesh==5.2.2",
+    "check_command": ".venv/bin/python -c \"import trimesh; print(trimesh.__version__)\""
+  },
+  "examples": [
+    "trimesh-mesh-checks"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "5.2.2",
+        "command": "examples/trimesh-mesh-checks/run.sh",
+        "result": "Box volume 48, area 88, bounds ±(1,2,3) exact; icosphere (4 subdivisions) 2562 vertices, 5120 faces, volume error 0.216%, area error 0.119% (tolerance 0.5%); GLB reload and transformed GLB/STL re-export keep counts and volume 384; reruns byte-identical. numpy 2.5.5, Python 3.12.2, macOS arm64.",
+        "example": "examples/trimesh-mesh-checks",
+        "scope": "Python primitives vs analytic volume, area, bounds, counts; GLB/STL export reload counts; byte-identical reruns. No materials, lighting, extras or other formats; macOS arm64."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "Python library for loading, inspecting and transforming triangular meshes, with emphasis on geometry analysis and watertight surfaces. Some operations require optional dependencies.",
   "use_when": [
