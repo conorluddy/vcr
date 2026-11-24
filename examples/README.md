@@ -74,6 +74,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `vhs-tape-recording` | vhs | partial: headless tape to MP4 h264 640x360 and a stable text golden; PNG frames cropped to 494x208 and frame counts vary run to run (2026-11-24) |
 | `baguette-simulator-capture` | baguette, ffmpeg-ffprobe, imagemagick | one iPhone 17 Pro iOS 26.5 sim booted by UDID: 1206x2622 PNG and 3 s H.264 recording within tolerance, non-blank frames, shutdown; no pixel hashes (2026-11-24) |
 | `drawsvg-frames` | drawsvg, resvg | 5 Python SVG frames at predeclared t rasterised by resvg 0.47.0: element attributes, pixel probes, bundled-font caption, distinct frames, byte-identical regeneration and shuffled order; no SMIL or animation API (2026-11-24) |
+| `vl-convert-chart` | vl-convert | Python API renders one inline 5-bar Vega-Lite spec to SVG 320x200 and PNG 640x400 at scale 2: zero baseline, proportional bar heights, reruns byte-identical; sans-serif face not reported, nominal x sorts alphabetically (2026-11-24) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 

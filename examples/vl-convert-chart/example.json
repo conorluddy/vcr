@@ -1,0 +1,14 @@
+{
+  "id": "vl-convert-chart",
+  "title": "vl-convert hand-written Vega-Lite bar chart to SVG and PNG offline",
+  "summary": "Five-bar Vega-Lite chart with inline data, zero-based y domain and title: SVG bars and title present, PNG 640x400 at scale 2, bar heights proportional, reruns byte-identical. Python API only; no PDF, server or other specs.",
+  "status": "validated",
+  "tools": [
+    "vl-convert"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
