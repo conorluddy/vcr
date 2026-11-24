@@ -14,12 +14,13 @@
     "2026-10-29: Documentation assessed; no fixture has been run. Dependency and asset terms require separate review.",
     "2026-10-29: Skill opportunity: further research first; a standalone audio-analysis skill needs the proposed onset fixture and an existing-skill check.",
     "2026-11-04: No onset-event output format or event-to-timeline contract is declared in VCR yet, so onset-driven routes stay unknown; cue/mux runtime is tracked in #60 and not implemented.",
-    "2026-11-24: Fixture librosa-beat-spectra is partial: beat and onset times, tone STFT peaks and reruns pass; beat_track tempo (117.45 BPM for 120 BPM clicks) fails its predeclared ±2 % tolerance, a hop-grid effect at hop 512."
+    "2026-11-24: Fixture librosa-beat-spectra is partial: beat and onset times, tone STFT peaks and reruns pass; beat_track tempo (117.45 BPM for 120 BPM clicks) fails its predeclared ±2 % tolerance, a hop-grid effect at hop 512.",
+    "2026-11-24: Toolkit guide skills/librosa/SKILL.md written from the partial fixture; the beat_track tempo scalar is documented as failed and beat times are the recommended output."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
+    "status": "partial",
     "evidence": [
       {
         "date": "2026-11-24",
@@ -67,5 +68,6 @@
       "https://librosa.org/doc/latest/index.html"
     ],
     "version_seen": "1.0.0 (documentation; release date unverified)"
-  }
+  },
+  "skill": "skills/librosa/SKILL.md"
 }
