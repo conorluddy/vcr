@@ -12,9 +12,10 @@
   ],
   "notes": [
     "2026-11-04: Triage: Concrete metadata inspection and editing gap beyond FFmpeg and MediaInfo HDR signalling; revisit after official automation route and profile coverage are checked.",
-    "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+    "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion.",
+    "2026-11-24: Guide written from examples/dovi-tool-metadata-roundtrip (partial; dovi_tool 2.3.4, hdr10plus_tool 1.7.2, macOS arm64, synthetic metadata on 48-frame x265 10-bit HEVC). Metadata plumbing only, not playback or grading. L1 avg_pq/min_pq did not read back as written and info -s shows no sub-profile; everything else untested."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "partial",
@@ -67,5 +68,6 @@
       "https://github.com/quietvoid/dovi_tool/releases",
       "https://github.com/quietvoid/hdr10plus_tool"
     ]
-  }
+  },
+  "skill": "skills/dovi-tool/SKILL.md"
 }
