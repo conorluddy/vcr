@@ -83,6 +83,7 @@
     "browser-capture",
     "svt-av1-encode",
     "vhs-tape-recording",
+    "nerfstudio-feasibility",
     "vmaf-ffmpeg-score",
     "node-av-decode-encode",
     "ab-av1-crf-search",

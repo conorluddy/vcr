@@ -1,0 +1,9 @@
+{
+  "frame_count": 20,
+  "final_step": 299,
+  "device_type": "mps",
+  "image_size": [384, 288],
+  "min_eval_images": 1,
+  "min_eval_std": 5.0,
+  "train_seconds_cap": 1200
+}
