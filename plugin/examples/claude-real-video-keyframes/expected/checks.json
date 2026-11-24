@@ -1,0 +1,82 @@
+{
+  "authoredKeyframeIndices": [
+    0,
+    48,
+    96
+  ],
+  "clip": {
+    "frameCount": 144,
+    "frameRate": "24/1",
+    "height": 240,
+    "width": 320
+  },
+  "gates": {
+    "clipDimensions320x240": true,
+    "clipFrameCount144": true,
+    "clipRate24fps": true,
+    "rerunBoundariesIdentical": true,
+    "rerunFramesJsonIdentical": true,
+    "runAFilesMatchFramesJson": true,
+    "runAKeyframeCount3": true,
+    "runAKeyframeDimensions320x240": true,
+    "runAKeyframesWithinTolerance": true,
+    "runBFilesMatchFramesJson": true,
+    "runBKeyframeCount3": true,
+    "runBKeyframeDimensions320x240": true,
+    "runBKeyframesWithinTolerance": true
+  },
+  "pass": true,
+  "runA": {
+    "dimensions": [
+      [
+        320,
+        240
+      ],
+      [
+        320,
+        240
+      ],
+      [
+        320,
+        240
+      ]
+    ],
+    "keyframeIndices": [
+      0,
+      48,
+      96
+    ],
+    "selectionReasons": [
+      "first",
+      "global",
+      "global"
+    ]
+  },
+  "runB": {
+    "dimensions": [
+      [
+        320,
+        240
+      ],
+      [
+        320,
+        240
+      ],
+      [
+        320,
+        240
+      ]
+    ],
+    "keyframeIndices": [
+      0,
+      48,
+      96
+    ],
+    "selectionReasons": [
+      "first",
+      "global",
+      "global"
+    ]
+  },
+  "toleranceFrames": 1
+}

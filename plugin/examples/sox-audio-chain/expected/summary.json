@@ -1,0 +1,48 @@
+{
+  "chain": {
+    "channels": 2,
+    "dither": "disabled",
+    "fade_in_s": 0.02,
+    "fade_out_s": 0.1,
+    "gain_db": -3,
+    "rate_hz": 44100,
+    "trim_s": 1.5
+  },
+  "checks": {
+    "distinct_hashes": true,
+    "duration": true,
+    "fade_applied": true,
+    "format": true,
+    "gain_applied": true,
+    "peak_below_ceiling": true,
+    "rerun_identical": true,
+    "sample_count": true,
+    "tone_sequence": true
+  },
+  "output": {
+    "bits": 16,
+    "channels": 2,
+    "duration_s": 1.500,
+    "head_peak_1ms": 0.012,
+    "peak_amplitude": 0.354,
+    "rate_hz": 44100,
+    "samples": 66150,
+    "sha256": "03061667080322762b6281f8049e56e177b035cecd06439fabab89aa7389ef24",
+    "tail_peak_5ms": 0.015
+  },
+  "source": {
+    "sha256": "9f59ee1b502822940d8266eb6da291d2bb672ef1ae3be39563f43d1181bcf3d8",
+    "tone_rough_frequency_hz": [
+      439,
+      659,
+      879,
+      1099
+    ],
+    "tones_hz": [
+      440,
+      660,
+      880,
+      1100
+    ]
+  }
+}

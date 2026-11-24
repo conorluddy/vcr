@@ -1,0 +1,36 @@
+{
+  "checks": {
+    "background_region_mostly_transparent": true,
+    "cutout_hash_differs_from_input": true,
+    "iou_at_or_above_floor": true,
+    "output_is_rgba_png": true,
+    "rerun_identical_or_within_tolerance": true,
+    "same_size_as_input": true,
+    "subject_region_mostly_opaque": true
+  },
+  "measurements": {
+    "background_transparent_fraction": 1.0,
+    "cutout_sha256": "3630315ff3e555d8b326d80fbe7392398442e5e1c5ab323c288145ebeba8a934",
+    "cutout_size": [
+      512,
+      512
+    ],
+    "ground_truth_pixels": 45244,
+    "input_format": "PNG",
+    "input_mode": "RGB",
+    "input_sha256": "e93c8e88ab0e241566aaa3a384bbaebfb90cabb888930f5e5625c85b7b00ce0b",
+    "iou": 0.995783,
+    "opaque_pixels": 45151,
+    "rerun_byte_identical": true,
+    "rerun_max_channel_difference": 0,
+    "rerun_sha256": "3630315ff3e555d8b326d80fbe7392398442e5e1c5ab323c288145ebeba8a934",
+    "subject_opaque_fraction": 1.0
+  },
+  "tolerances": {
+    "alpha_opaque_min": 128,
+    "background_transparent_fraction_min": 0.9,
+    "iou_floor": 0.9,
+    "rerun_max_channel_difference": 2,
+    "subject_opaque_fraction_min": 0.9
+  }
+}

@@ -296,14 +296,27 @@
         "2026-10-29: Skill opportunity: Further research first: a synthetic audio-event fixture is needed before recommending a general audio-analysis skill.",
         "2026-11-04: No onset-event output format or event-to-timeline contract is declared in VCR yet, so onset-driven routes stay unknown; cue/mux runtime is tracked in #60 and not implemented."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "aubio-onsets-pitch"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.4.9_4",
+            "command": "examples/aubio-onsets-pitch/run.sh",
+            "result": "Partial: onsets 20 of 20 within 8.8 ms, 0 misses, 0 extras (pass). BPM 120.39 within 2, but 9 beats against a minimum of 10 (fail). Pitch: 3 of 5 tones within 10 cents; 220 Hz +15.6 c and 261.63 Hz +10.3 c fail. aubioonset and aubiotrack reruns byte-identical; aubiopitch not (2 hashes in 8 runs).",
+            "example": "examples/aubio-onsets-pitch",
+            "scope": "Generated 120 BPM clicks and five sine tones, macOS arm64: onsets pass; beat count and two low-pitch tones fail; aubiopitch output not byte-stable across processes"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Audio event detection library and command-line tools for onsets, tempo and pitch. Produces analysis events from audio; useful when a lightweight onset detector is preferable to a broader analysis library.",
       "use_when": [
@@ -319,6 +332,10 @@
         "ffmpeg-ffprobe"
       ],
       "license": "GPL-3.0-or-later (project code; dependencies separately)",
+      "install": {
+        "macos": "brew install aubio",
+        "check_command": "aubioonset -h"
+      },
       "assessment": {
         "date": "2026-10-29",
         "assessed_by": "ingest-assess-a",
@@ -329,7 +346,8 @@
           "https://aubio.org/",
           "https://github.com/aubio/aubio"
         ]
-      }
+      },
+      "skill": "skills/aubio/SKILL.md"
     },
     {
       "id": "audiowaveform",
@@ -1455,17 +1473,32 @@
         "media-inspection"
       ],
       "notes": [
+        "2026-11-24: Guide written at skills/claude-real-video/SKILL.md from the claude-real-video-keyframes evidence; default density-floor output, fades, real footage, transcripts and URL ingestion remain untested.",
         "2026-11-15: Triage: assess; selected keyframes and contact sheets could support agent-facing render review. Revisit when #63 frame sampling is exercised and frame selection repeatability is checked.",
         "2026-11-15: Skill opportunity: a focused review-packet workflow may merit a VCR skill if the tool reliably produces the needed keyframes and transcript; fixture retrieval and transcription separately."
       ],
-      "documentation_status": "listed-in-prd",
+      "skill": "skills/claude-real-video/SKILL.md",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.10.7",
+            "command": "examples/claude-real-video-keyframes/run.sh",
+            "result": "3 keyframes at frames 0, 48, 96 (0 frames off, tolerance ±1), each 320x240; 3 frames extracted, none deduped; reruns identical; passes under a deny-network sandbox",
+            "example": "examples/claude-real-video-keyframes",
+            "scope": "Local scene gate finds two authored cuts (frames 48, 96) in a generated 3-shot clip, one keyframe per shot; no real-footage, transcript or URL claim."
+          }
+        ]
       },
+      "examples": [
+        "claude-real-video-keyframes"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-14-discovery.md",
       "summary": "Python CLI and API analyse a local video or URL and emit deduplicated scene-aware keyframes plus a transcript. Its analysis window and contact-sheet workflow can prepare compact visual evidence for human or agent review; URL downloads and transcription add external dependency and model variability.",
       "use_when": [
@@ -3151,7 +3184,11 @@
         "gifsicle-optimise",
         "baguette-simulator-capture",
         "typed-ffmpeg-graph",
-        "ffmpeg-normalize-loudness"
+        "ffmpeg-normalize-loudness",
+        "claude-real-video-keyframes",
+        "aubio-onsets-pitch",
+        "syncalong-text-align",
+        "whisperx-word-timing"
       ],
       "notes": [
         "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
@@ -5290,16 +5327,30 @@
       "notes": [
         "2026-11-01: 82M-parameter TTS on ONNX Runtime for offline scratch or final voiceover.",
         "2026-11-01: Pin onnxruntime and cache WAVs as fixtures. Python >=3.10,<3.14.",
-        "2026-11-15: Official release page labels model-files-v1.1 as latest; assets show August 2026 upload times. Release page does not state a package release version/date for current code; 0.6.0 is referenced in model notes."
+        "2026-11-15: Official release page labels model-files-v1.1 as latest; assets show August 2026 upload times. Release page does not state a package release version/date for current code; 0.6.0 is referenced in model notes.",
+        "2026-11-24: Toolkit guide written from partial evidence (examples/kokoro-onnx-tts); reruns are not sample-identical, keep the rendered WAV as an asset."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.6.0",
+            "command": "examples/kokoro-onnx-tts/run.sh",
+            "result": "Partial: kokoro-v1.0.onnx and voices-v1.0.bin from model-files-v1.1 (sha256 verified), voice af_heart, speed 1.0, en-us: 65536 frames, 24000 Hz mono 16-bit, 2.731 s, RMS 0.0598 (floor 0.001); duration, sample rate and non-silence gates pass. In-process and cross-process reruns NOT sample-identical (max int16 difference 2753). onnxruntime 1.32.0, Python 3.12.2, macOS arm64.",
+            "example": "examples/kokoro-onnx-tts",
+            "scope": "Fixed sentence to 24 kHz mono WAV, one voice, speed 1.0; reruns not identical (unseeded model random ops); no listening test; macOS arm64."
+          }
+        ]
       },
+      "examples": [
+        "kokoro-onnx-tts"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Python interface to Kokoro TTS models through ONNX Runtime. Given text, a voice bank and model files, it synthesizes waveform samples that can be written as WAV; model weights and voices are separate downloads. It offers a compact local inference route, with multiple voice and precision variants, without requiring a hosted speech service.",
       "use_when": [
@@ -5331,7 +5382,8 @@
           "https://github.com/thewh1teagle/kokoro-onnx/releases",
           "https://github.com/thewh1teagle/kokoro-onnx/blob/main/LICENSE"
         ]
-      }
+      },
+      "skill": "skills/kokoro-onnx/SKILL.md"
     },
     {
       "id": "konva",
@@ -5622,16 +5674,35 @@
         "2026-10-29: Listed from a conversation; listed-in-prd is the schema’s listed-only status, not an assertion of PRD inclusion.",
         "2026-10-29: Documentation assessed; no fixture has been run. Dependency and asset terms require separate review.",
         "2026-10-29: Skill opportunity: further research first; a standalone audio-analysis skill needs the proposed onset fixture and an existing-skill check.",
-        "2026-11-04: No onset-event output format or event-to-timeline contract is declared in VCR yet, so onset-driven routes stay unknown; cue/mux runtime is tracked in #60 and not implemented."
+        "2026-11-04: No onset-event output format or event-to-timeline contract is declared in VCR yet, so onset-driven routes stay unknown; cue/mux runtime is tracked in #60 and not implemented.",
+        "2026-11-24: Fixture librosa-beat-spectra is partial: beat and onset times, tone STFT peaks and reruns pass; beat_track tempo (117.45 BPM for 120 BPM clicks) fails its predeclared ±2 % tolerance, a hop-grid effect at hop 512.",
+        "2026-11-24: Toolkit guide skills/librosa/SKILL.md written from the partial fixture; the beat_track tempo scalar is documented as failed and beat times are the recommended output."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.0.1",
+            "command": "examples/librosa-beat-spectra/run.sh",
+            "result": "PARTIAL: 120 BPM generated click track of 18 clicks: beat_track 117.453835 BPM fails ±2 %; 18/18 beats and onsets within 29.43 ms and 24.81 ms of clicks; 4 steady tones 440-3520 Hz peak within one 10.77 Hz bin; two runs byte-identical. numpy 2.5.5, numba 0.68.1, Python 3.15.2, macOS arm64.",
+            "example": "examples/librosa-beat-spectra",
+            "scope": "Fixture-reported: generated click and tone WAVs; beat and onset times and tone peaks pass, tempo fails; reruns identical; no sweep, real audio or other features; macOS arm64."
+          }
+        ]
+      },
+      "examples": [
+        "librosa-beat-spectra"
+      ],
+      "install": {
+        "macos": "python3 -m venv output/venv && output/venv/bin/python -m pip install -r requirements.txt inside examples/librosa-beat-spectra (librosa==1.0.1 pinned)",
+        "check_command": "output/venv/bin/python -c \"import librosa\""
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Python library for audio and music signal analysis, including onset and spectral features. It can produce numeric data for offline audio-reactive workflows; it does not itself establish animation synchronisation.",
       "use_when": [
@@ -5658,7 +5729,8 @@
           "https://librosa.org/doc/latest/index.html"
         ],
         "version_seen": "1.0.0 (documentation; release date unverified)"
-      }
+      },
+      "skill": "skills/librosa/SKILL.md"
     },
     {
       "id": "libvips",
@@ -8620,16 +8692,30 @@
       "notes": [
         "2026-11-01: Neural TTS engine with many languages and voices.",
         "2026-11-01: Project is seeking maintainers; old rhasspy/piper archived 2025-10.",
-        "2026-11-15: Project README says it is looking for maintainers; release activity is recent, but long-term ownership remains uncertain. Voice-model permissions require each model card review."
+        "2026-11-15: Project README says it is looking for maintainers; release activity is recent, but long-term ownership remains uncertain. Voice-model permissions require each model card review.",
+        "2026-11-24: Toolkit guide written from partial evidence (examples/piper-tts); check_command fixed (no --version in 1.8.0); evidence unchanged."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.8.0",
+            "command": "examples/piper-tts/run.sh",
+            "result": "partial: WAV format (mono 16-bit, 16000 Hz = config), duration 2.2-2.3 s in [1.5, 5.0] and non-silence pass; --length-scale 1.5 long/default ratio 1.331 (record run) and 1.225 (verify run) vs predeclared 1.5 +-0.15 fails; default reruns not sample-identical. Python 3.12.2, onnxruntime 1.32.0, en_US-ryan-low, macOS arm64.",
+            "example": "examples/piper-tts",
+            "scope": "Fixture-reported: piper CLI WAV format, duration and non-silence for one sentence; length-scale 1.5 not 1.5x (1.2-1.3x); reruns not identical; one voice, macOS arm64."
+          }
+        ]
       },
+      "examples": [
+        "piper-tts"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Local neural TTS engine exposed through a Python package, CLI, C/C++ API and web server. It embeds espeak-ng for phonemization and synthesizes audio from separately obtained ONNX voice models. Its strength is a fast local workflow with many community voices and multiple language phonemizers; voice licensing is model-specific.",
       "use_when": [
@@ -8646,7 +8732,7 @@
       "license": "GPL-3.0-or-later (engine); each voice model has its own MODEL_CARD licence; bundled phonemizer resources may carry separate terms",
       "install": {
         "macos": "python3 -m pip install piper-tts; download a voice model and its JSON config",
-        "check_command": "python3 -m piper --version"
+        "check_command": "python3 -m piper --help"
       },
       "assessment": {
         "date": "2026-11-15",
@@ -8662,7 +8748,8 @@
           "https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/LICENSING.md",
           "https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/BUILDING.md"
         ]
-      }
+      },
+      "skill": "skills/piper/SKILL.md"
     },
     {
       "id": "pixijs",
@@ -10287,16 +10374,31 @@
         "2026-11-01: Licence as reported by the source research, not yet verified: Code MIT; per-model weight terms.",
         "2026-11-01: Record model terms per backend.",
         "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-01: Triage: assess. Report rates it a strong candidate.",
+        "2026-11-24: Guide written at skills/rembg/SKILL.md from the library-route, default u2net fixture (one generated sphere); other models, photos, hair and alpha matting untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.0.85",
+            "command": "examples/rembg-cutout/run.sh",
+            "result": "Default u2net via new_session/remove on a generated 512x512 shaded sphere over a busy checker pattern: RGBA 512x512; subject region 1.0 opaque, background region 1.0 transparent, IoU 0.995783 against the analytic disc (floor 0.90); fresh-process rerun byte-identical. onnxruntime 1.32.0, Python 3.12.13, macOS arm64.",
+            "example": "examples/rembg-cutout",
+            "scope": "rembg 2.0.85 library route, default u2net, one generated sphere over busy pattern: RGBA same size, IoU 0.996 vs disc, rerun byte-identical; no other models or options; macOS arm64"
+          }
+        ]
       },
+      "examples": [
+        "rembg-cutout"
+      ],
+      "skill": "skills/rembg/SKILL.md",
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Python CLI and library for background removal using local ONNX models or optional remote APIs; produces image cutouts with alpha, with model and service terms varying by backend.",
       "use_when": [
@@ -11038,22 +11140,40 @@
       "role": "Audio processing",
       "official_url": "https://sox.sourceforge.net/",
       "automation_route": "native-cli-or-scripting",
+      "install": {
+        "macos": "brew install sox",
+        "check_command": "sox --version"
+      },
       "capabilities": [
         "audio"
       ],
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Further research first: compare maintenance, licences and a representative SoX workflow with FFmpeg."
+        "2026-10-29: Skill opportunity: Further research first: compare maintenance, licences and a representative SoX workflow with FFmpeg.",
+        "2026-11-24: Toolkit guide written at skills/sox/SKILL.md from the sox-audio-chain evidence (sox 14.4.2, macOS arm64); dither (-D) and join clicks documented; effects beyond the fixture marked untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "14.4.2",
+            "command": "examples/sox-audio-chain/run.sh",
+            "result": "Four synth sine tones (440, 660, 880, 1100 Hz, 0.5 s each) through trim 0 1.5, fade t 0.02 0 0.1, gain -3, channels 2, rate 44100 and 16-bit output: 66150 samples, 44100 Hz, 2 channels, 16-bit, 1.500 s (soxi). Peak 0.354 (predicted 0.354; ceiling -6 dBFS). Two -D reruns byte-identical; the same chain with dither enabled differed between runs.",
+            "example": "examples/sox-audio-chain",
+            "scope": "synth tones, trim/fade/gain, 48 to 44.1 kHz resample to 16-bit stereo; soxi and stat checks; -D reruns byte-identical; macOS arm64, sox 14.4.2"
+          }
+        ]
       },
+      "examples": [
+        "sox-audio-chain"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Command-line sound processing toolkit for converting and transforming audio files. Its effects offer a dedicated audio route alongside FFmpeg; supported codecs depend on the build.",
       "use_when": [
@@ -11077,7 +11197,8 @@
         "sources": [
           "https://sox.sourceforge.net/"
         ]
-      }
+      },
+      "skill": "skills/sox/SKILL.md"
     },
     {
       "id": "splat-transform",
@@ -11699,16 +11820,30 @@
       ],
       "notes": [
         "2026-11-06: Triage: Distinct timing job for supplied text, though documented output is line-level and project is very small; revisit after stability and word-timing support are established.",
-        "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+        "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion.",
+        "2026-11-24: Fixture examples/syncalong-text-align FAILED on macOS arm64 (syncalong 2.0.1 from PyPI, openai-whisper 20250625, Whisper base, default lyrics prompt): transcript wrong and not repeatable, line starts up to 24 s off on the first run; reruns differ. Without the prompt the transcript is exact and repeatable, but line 1 is 1.0 s early. No evidence entry; validation stays not-validated."
+      ],
+      "examples": [
+        "syncalong-text-align"
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
         "status": "not-validated",
-        "evidence": []
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.0.1",
+            "command": "examples/syncalong-text-align/run.sh",
+            "result": "FAIL as predeclared: 8-line macOS say narration, syncalong[whisper] 2.0.1 with Whisper base and the default lyrics prompt; transcript looped (20 of 60 words), line starts up to 24.31 s off, reruns differ. Unrecorded diagnostic without the prompt: repeatable, lines 2-8 within 0.5 s, line 1 1.0 s early.",
+            "example": "examples/syncalong-text-align",
+            "scope": "Fixture-reported: default lyrics-prompt route fails on generated say narration (wrong, non-repeatable transcript, starts up to 24 s off); macOS arm64, Whisper base only."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-06-discovery.md",
       "summary": "Python CLI and library aligns supplied lyric text to audio using Whisper word timestamps and sequence alignment, then emits timestamped LRC lines. Supports local or remote transcription; local Whisper and optional Demucs add substantial dependencies.",
       "license": "MIT",
@@ -12428,16 +12563,34 @@
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Potential standalone mesh inspection skill; test mesh import, analysis and dependency compatibility first."
+        "2026-10-29: Skill opportunity: Potential standalone mesh inspection skill; test mesh import, analysis and dependency compatibility first.",
+        "2026-11-24: Guide written at skills/trimesh/SKILL.md from the trimesh-mesh-checks evidence; install recipe moved to a venv under the example's git-ignored output/."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "install": {
+        "macos": "cd examples/trimesh-mesh-checks && python3 -m venv output/venv && output/venv/bin/python -m pip install -r requirements.txt",
+        "check_command": "examples/trimesh-mesh-checks/output/venv/bin/python -c \"import trimesh; print(trimesh.__version__)\""
+      },
+      "examples": [
+        "trimesh-mesh-checks"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "5.2.2",
+            "command": "examples/trimesh-mesh-checks/run.sh",
+            "result": "Box volume 48, area 88, bounds ±(1,2,3) exact; icosphere (4 subdivisions) 2562 vertices, 5120 faces, volume error 0.216%, area error 0.119% (tolerance 0.5%); GLB reload and transformed GLB/STL re-export keep counts and volume 384; reruns byte-identical. numpy 2.5.5, Python 3.12.2, macOS arm64.",
+            "example": "examples/trimesh-mesh-checks",
+            "scope": "Python primitives vs analytic volume, area, bounds, counts; GLB/STL export reload counts; byte-identical reruns. No materials, lighting, extras or other formats; macOS arm64."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Python library for loading, inspecting and transforming triangular meshes, with emphasis on geometry analysis and watertight surfaces. Some operations require optional dependencies.",
       "use_when": [
@@ -12465,7 +12618,8 @@
           "https://github.com/mikedh/trimesh/releases"
         ],
         "version_seen": "5.2.0 (documentation and GitHub release; date year unverified)"
-      }
+      },
+      "skill": "skills/trimesh/SKILL.md"
     },
     {
       "id": "troika-three-text",
@@ -14030,16 +14184,30 @@
       "notes": [
         "2026-11-01: faster-whisper ASR with forced alignment for word timestamps and optional diarisation.",
         "2026-11-01: CPU-only on Apple Silicon; ML output drifts across versions, so commit alignment JSON as fixtures.",
-        "2026-11-15: v3.8.7rc1 is newer but prerelease; card and last_release identify the latest stable release. Diarization requires separate gated model access; model terms are not the code licence."
+        "2026-11-15: v3.8.7rc1 is newer but prerelease; card and last_release identify the latest stable release. Diarization requires separate gated model access; model terms are not the code licence.",
+        "2026-11-24: guide written at skills/whisperx/SKILL.md from examples/whisperx-word-timing evidence (tiny.en int8 CPU, generated 10-word sentence); diarization and other models untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.8.6",
+            "command": "examples/whisperx-word-timing/run.sh",
+            "result": "10 words from macOS say (Samantha): WER 0/10 in both runs; 10/10 matched and timed, start error mean 0.033 s, max 0.077 s vs energy onsets (bound 0.20 s); transcripts identical; timings identical to 1 ms across runs. faster-whisper 1.2.1, torch 2.8.0, CPU int8.",
+            "example": "examples/whisperx-word-timing",
+            "scope": "tiny.en int8 CPU, generated 10-word sentence: word error and start bounds, identical text on rerun. Not diarization, other models, real speech. macOS arm64."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "examples": [
+        "whisperx-word-timing"
+      ],
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Python CLI and library for batched automatic speech recognition with word-level timestamps, forced alignment, VAD and optional speaker diarization. It uses faster-whisper/Whisper and wav2vec2 alignment models; model downloads, accelerator stack and gated pyannote access for diarization add setup constraints. Its distinguishing strength is combining transcription and word alignment in one local workflow.",
       "use_when": [
@@ -14073,7 +14241,8 @@
           "https://github.com/m-bain/whisperX/issues?state=open",
           "https://github.com/m-bain/whisperX/pulls"
         ]
-      }
+      },
+      "skill": "skills/whisperx/SKILL.md"
     }
   ]
 }

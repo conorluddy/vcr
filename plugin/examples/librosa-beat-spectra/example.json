@@ -1,0 +1,10 @@
+{
+  "id": "librosa-beat-spectra",
+  "title": "librosa beat, onset and STFT peaks on generated click and tone audio",
+  "summary": "Partial: generated 120 BPM clicks give 18 beats and 18 onsets within 30 ms and tone peaks within one bin; beat_track tempo 117.45 BPM fails +-2 %. Reruns identical. No sweep or real audio.",
+  "status": "not-validated",
+  "tools": [
+    "librosa"
+  ],
+  "run": "./run.sh"
+}

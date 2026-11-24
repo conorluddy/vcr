@@ -1,0 +1,10 @@
+{
+  "id": "kokoro-onnx-tts",
+  "title": "kokoro-onnx 0.6.0 fixed English sentence to 24 kHz WAV with a named voice",
+  "summary": "One fixed sentence, voice af_heart, speed 1.0: 24000 Hz mono 16-bit WAV, 2.73 s, non-silent, in range. Reruns are NOT sample-identical (unseeded random ops in the model graph). Partial. No listening test.",
+  "status": "not-validated",
+  "tools": [
+    "kokoro-onnx"
+  ],
+  "run": "./run.sh"
+}

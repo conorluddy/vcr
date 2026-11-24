@@ -1,0 +1,11 @@
+{
+  "id": "syncalong-text-align",
+  "title": "syncalong forced alignment of a known transcript to a generated macOS narration",
+  "summary": "FAIL with the default route: eight lines spoken by macOS say with 1.5 s gaps; syncalong 2.0.1 with Whisper base and the lyrics prompt gave a wrong, non-repeatable transcript, 24 s off on the first run. No expected/ recorded. Line-level LRC only.",
+  "status": "not-validated",
+  "tools": [
+    "syncalong",
+    "ffmpeg-ffprobe"
+  ],
+  "run": "./run.sh"
+}

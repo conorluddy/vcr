@@ -1,0 +1,15 @@
+{
+  "id": "whisperx-word-timing",
+  "title": "WhisperX tiny.en transcribes a generated ten-word sentence with word starts near the reference",
+  "summary": "Ten words synthesised by macOS say, concatenated with fixed silences: word error rate 0 of 10, all words start within 0.08 s of energy onsets, identical transcript across reruns. CPU int8 tiny.en only; no diarization.",
+  "status": "validated",
+  "tools": [
+    "whisperx",
+    "ffmpeg-ffprobe"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

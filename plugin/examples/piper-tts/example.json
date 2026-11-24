@@ -1,0 +1,8 @@
+{
+  "id": "piper-tts",
+  "title": "Piper 1.8.0 synthesises one English sentence with the ryan-low voice to WAV",
+  "summary": "piper-tts 1.8.0 CLI, en_US-ryan-low voice: mono 16-bit WAVs at the config's 16 kHz, duration in range, non-silent. Partial: length-scale 1.5 gives 1.2-1.3x, not 1.5 +-0.15; reruns not sample-identical.",
+  "status": "not-validated",
+  "tools": ["piper"],
+  "run": "./run.sh"
+}
