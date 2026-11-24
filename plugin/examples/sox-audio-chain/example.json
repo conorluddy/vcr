@@ -1,0 +1,14 @@
+{
+  "id": "sox-audio-chain",
+  "title": "sox synth tone sequence through a fade, trim, gain and 48 to 44.1 kHz resample chain",
+  "summary": "Four procedural sine tones via synth, trimmed, faded, gained, channel-duplicated and resampled to 16-bit 44.1 kHz; soxi and stat checks plus -D rerun byte identity.",
+  "status": "validated",
+  "tools": [
+    "sox"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

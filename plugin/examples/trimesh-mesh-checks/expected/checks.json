@@ -1,0 +1,181 @@
+{
+  "analytic": {
+    "box_area": 88.0,
+    "box_bounds": [
+      [
+        -1.0,
+        -2.0,
+        -3.0
+      ],
+      [
+        1.0,
+        2.0,
+        3.0
+      ]
+    ],
+    "box_volume": 48.0,
+    "icosphere_face_count": 5120,
+    "icosphere_vertex_count": 2562,
+    "sphere_area": 12.566370614,
+    "sphere_volume": 4.188790205,
+    "transformed_bounds": [
+      [
+        -3.0,
+        0.0,
+        -3.0
+      ],
+      [
+        5.0,
+        4.0,
+        9.0
+      ]
+    ],
+    "transformed_volume": 384.0
+  },
+  "checks": {
+    "box_area_matches_analytic": true,
+    "box_bounds_match_analytic": true,
+    "box_volume_matches_analytic": true,
+    "box_watertight_and_closed": true,
+    "icosphere_area_within_tolerance": true,
+    "icosphere_counts_match_subdivision": true,
+    "icosphere_glb_reload_matches": true,
+    "icosphere_vertices_on_unit_sphere": true,
+    "icosphere_volume_within_tolerance": true,
+    "icosphere_watertight_and_closed": true,
+    "transformed_bounds_match_analytic": true,
+    "transformed_glb_reload_matches": true,
+    "transformed_still_watertight": true,
+    "transformed_stl_reload_matches": true,
+    "transformed_volume_matches_analytic": true
+  },
+  "measurements": {
+    "box": {
+      "area": 88.0,
+      "bounds_max": [
+        1.0,
+        2.0,
+        3.0
+      ],
+      "bounds_min": [
+        -1.0,
+        -2.0,
+        -3.0
+      ],
+      "euler_number": 2,
+      "face_count": 12,
+      "vertex_count": 8,
+      "volume": 48.0,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "box_transformed": {
+      "area": 352.0,
+      "bounds_max": [
+        5.0,
+        4.0,
+        9.0
+      ],
+      "bounds_min": [
+        -3.0,
+        -0.0,
+        -3.0
+      ],
+      "euler_number": 2,
+      "face_count": 12,
+      "vertex_count": 8,
+      "volume": 384.0,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "box_transformed_glb_reload": {
+      "area": 352.0,
+      "bounds_max": [
+        5.0,
+        4.0,
+        9.0
+      ],
+      "bounds_min": [
+        -3.0,
+        -0.0,
+        -3.0
+      ],
+      "euler_number": 2,
+      "face_count": 12,
+      "vertex_count": 8,
+      "volume": 384.0,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "box_transformed_stl_reload": {
+      "area": 352.0,
+      "bounds_max": [
+        5.0,
+        4.0,
+        9.0
+      ],
+      "bounds_min": [
+        -3.0,
+        -0.0,
+        -3.0
+      ],
+      "euler_number": 2,
+      "face_count": 12,
+      "vertex_count": 8,
+      "volume": 384.0,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "export_sha256": {
+      "box-transformed.glb": "75a34e5487a228fac81afa0dc743d04c50b073622f9a0b1a858d7d5152ce4ef8",
+      "box-transformed.stl": "5ac4c824939230bd00500f2da26c6ba9e5995397b047b40a8b360cbf388f12af",
+      "icosphere.glb": "32541d2080f1753adab240ccda94fdf204e82663aa33fd4f71e90fe28e085abc"
+    },
+    "icosphere": {
+      "area": 12.55135388,
+      "bounds_max": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds_min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "euler_number": 2,
+      "face_count": 5120,
+      "vertex_count": 2562,
+      "volume": 4.179738948,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "icosphere_area_relative_error": 0.001194994,
+    "icosphere_glb_reload": {
+      "area": 12.551353816,
+      "bounds_max": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bounds_min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "euler_number": 2,
+      "face_count": 5120,
+      "vertex_count": 2562,
+      "volume": 4.179738916,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "icosphere_radius_max_error": 0.0,
+    "icosphere_volume_relative_error": 0.002160828
+  },
+  "tolerances": {
+    "absolute": 1e-09,
+    "relative": 1e-06,
+    "sphere_relative": 0.005
+  }
+}
