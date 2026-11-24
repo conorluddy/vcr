@@ -1,0 +1,8 @@
+{
+  "name": "@vcr/example-caption-checker-limits",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "caption-checker": "github:markksantos/caption-checker#4a504ede1606fbefd7e7b658281b9b8f7a4ef9e2"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@vcr/example-odiff-frame-diff",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "odiff-bin": "4.5.0"
+  }
+}

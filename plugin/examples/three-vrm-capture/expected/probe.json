@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "metaVersion": "1",
+    "name": "VRM1_Constraint_Twist_Sample",
+    "version": "v1.0.1",
+    "authors": [
+      "pixiv Inc."
+    ],
+    "licenseUrl": "https://vrm.dev/licenses/1.0/",
+    "allowRedistribution": true
+  },
+  "readings": [
+    {
+      "seconds": 0,
+      "rightUpperArmAngleRadians": 0,
+      "rightHandWorld": [
+        -0.543094,
+        1.27423,
+        -0.025098
+      ],
+      "blinkWeight": 0,
+      "springBoneManagerPresent": true
+    },
+    {
+      "seconds": 1,
+      "rightUpperArmAngleRadians": 1,
+      "rightHandWorld": [
+        -0.343338,
+        0.908579,
+        -0.025098
+      ],
+      "blinkWeight": 0,
+      "springBoneManagerPresent": true
+    },
+    {
+      "seconds": 1.5,
+      "rightUpperArmAngleRadians": 1,
+      "rightHandWorld": [
+        -0.343338,
+        0.908579,
+        -0.025098
+      ],
+      "blinkWeight": 1,
+      "springBoneManagerPresent": true
+    },
+    {
+      "seconds": 2.5,
+      "rightUpperArmAngleRadians": 1,
+      "rightHandWorld": [
+        -0.343338,
+        0.908579,
+        -0.025098
+      ],
+      "blinkWeight": 0,
+      "springBoneManagerPresent": true
+    }
+  ]
+}

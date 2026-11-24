@@ -1,0 +1,16 @@
+{
+  "name": "@vcr/example-splat-transform-convert",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "make-input": "tsx make-input.ts",
+    "convert": "tsx convert.ts"
+  },
+  "dependencies": {
+    "@playcanvas/splat-transform": "3.12.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "gates": {
+    "G0_model_sha256": true,
+    "G1_input_format": true,
+    "G2_run1_word_error_rate_at_most_0.1": true,
+    "G3_run1_outputs_json_srt_vtt_agree": true,
+    "G4_run1_segments_inside_duration": true,
+    "G6_run1_backend_metal_or_cpu_in_use": true,
+    "G2_run2_word_error_rate_at_most_0.1": true,
+    "G3_run2_outputs_json_srt_vtt_agree": true,
+    "G4_run2_segments_inside_duration": true,
+    "G6_run2_backend_metal_or_cpu_in_use": true,
+    "G5_run1_segments_in_order": true,
+    "G7_text_identical_across_runs": true
+  },
+  "pass": true,
+  "thresholds": {
+    "modelSha256": "a03779c86df3323075f5e796cb2ce5029f00ec8869eee3fdfb897afe36c6d002",
+    "maxWordErrorRate": 0.1,
+    "durationToleranceMs": 50,
+    "timestampAgreementMs": 1
+  },
+  "reference": {
+    "sentence": "the red fox jumps over the quiet brown river today",
+    "wordCount": 10
+  },
+  "input": {
+    "codec": "pcm_s16le",
+    "sampleRateHz": "16000",
+    "channels": 1
+  },
+  "runs": {
+    "run1": {
+      "transcript": "The Red Fox jumps over the Quiet Brown River today.",
+      "wordErrors": 0,
+      "wordErrorRate": 0.0,
+      "segmentCount": 1,
+      "backendNames": [
+        "Metal",
+        "BLAS"
+      ]
+    },
+    "run2": {
+      "transcript": "The Red Fox jumps over the Quiet Brown River today.",
+      "wordErrors": 0,
+      "wordErrorRate": 0.0,
+      "segmentCount": 1,
+      "backendNames": [
+        "Metal",
+        "BLAS"
+      ]
+    }
+  }
+}

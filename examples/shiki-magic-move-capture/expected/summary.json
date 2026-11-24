@@ -1,0 +1,20 @@
+{
+  "frames": 90,
+  "width": 1280,
+  "height": 720,
+  "static_reference_frames": 2,
+  "checks": {
+    "frame_count_is_90": true,
+    "static_reference_has_2_frames": true,
+    "dimensions_1280x720": true,
+    "at_least_2_distinct_hashes": true,
+    "shuffled_matches_sequential": true,
+    "progress_0_matches_static_a": true,
+    "progress_1_matches_static_b": true,
+    "middle_frame_differs_from_both": true
+  },
+  "middle_frame_alpha": {
+    "min": 0,
+    "max": 1
+  }
+}

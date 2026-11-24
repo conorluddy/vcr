@@ -6,22 +6,40 @@
   "role": "Time stretch",
   "official_url": "https://breakfastquay.com/rubberband/",
   "automation_route": "native-cli-or-scripting",
+  "install": {
+    "macos": "brew install rubberband",
+    "check_command": "rubberband --version"
+  },
   "capabilities": [
     "audio"
   ],
   "notes": [
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-    "2026-10-29: Skill opportunity: Possible standalone audio time-stretch skill; verify CLI behaviour, licences and duration/quality fixture."
+    "2026-10-29: Skill opportunity: Possible standalone audio time-stretch skill; verify CLI behaviour, licences and duration/quality fixture.",
+    "2026-11-24: examples/rubber-band-stretch (rubberband 4.0.0, R2) FAILED: stretched tone +10.7 cents and +12 semitone tone -13.9 cents against 5-cent limit (FFT peak lands on amplitude-modulation sidebands); click onsets 12-14 ms early; durations exact; outputs not byte-identical across invocations. Not validated."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
     "status": "not-validated",
-    "evidence": []
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.0.0",
+        "command": "examples/rubber-band-stretch/run.sh",
+        "example": "examples/rubber-band-stretch",
+        "result": "FAIL as predeclared: rubberband 4.0.0 (R2 engine, -2) on generated tones and clicks. Durations exact (1.5x stretch 144000 samples; +12 st 96000 samples), but stretched 440 Hz tone read +10.7 cents and +12 st tone -13.9 cents against a 5-cent limit (FFT on amplitude-modulation sidebands); click onsets 12-14 ms early; outputs not byte-identical across invocations.",
+        "scope": "Fixture-reported: R2 engine on pure tones and clicks: durations exact, pitch off 11-14 cents, onsets 12-14 ms early, not deterministic across runs; R3 engine untested; macOS arm64."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "examples": [
+    "rubber-band-stretch"
+  ],
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "C++ audio time-stretch and pitch-shift library with a command-line utility. It can alter tempo and pitch independently; quality and latency depend on algorithm and settings.",
   "use_when": [

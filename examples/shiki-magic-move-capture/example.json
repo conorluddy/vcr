@@ -1,0 +1,22 @@
+{
+  "id": "shiki-magic-move-capture",
+  "title": "Shiki Magic Move transition seeked from t",
+  "summary": "Two Shiki-highlighted snippets joined by @shikijs/magic-move; each seek freezes its CSS transitions at seek time and captures alpha PNGs. run.sh checks endpoints against static renders, shuffled equals sequential, and the middle frame's alpha.",
+  "status": "validated",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  },
+  "tools": [
+    "shikijs-magic-move",
+    "playwright",
+    "imagemagick"
+  ],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  }
+}

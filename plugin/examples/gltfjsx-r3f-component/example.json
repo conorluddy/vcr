@@ -1,0 +1,8 @@
+{
+  "id": "gltfjsx-r3f-component",
+  "title": "gltfjsx converts a generated two-material GLB to a typed React Three Fiber component",
+  "summary": "gltfjsx 6.5.3 --types --keepnames on a generated two-material GLB: reruns byte-identical; default output drops the named group. Typecheck and r3f render not exercised.",
+  "status": "not-validated",
+  "tools": ["gltfjsx"],
+  "run": "./run.sh"
+}
