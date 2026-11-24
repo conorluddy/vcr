@@ -79,6 +79,7 @@
     "ffmpeg-assembly",
     "browser-capture",
     "svt-av1-encode",
+    "vhs-tape-recording",
     "vmaf-ffmpeg-score",
     "node-av-decode-encode"
   ],

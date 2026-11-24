@@ -1,0 +1,12 @@
+{
+  "id": "vhs-tape-recording",
+  "title": "VHS runs a fixed tape to MP4, PNG frames and a text golden",
+  "summary": "Headless vhs replays a 640x360 two-command tape; checks outputs, frame count and duration tolerance, typed text in the golden and final frame.",
+  "status": "not-validated",
+  "tools": [
+    "vhs",
+    "ffmpeg-ffprobe",
+    "imagemagick"
+  ],
+  "run": "./run.sh"
+}
