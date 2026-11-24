@@ -12,13 +12,15 @@
   ],
   "notes": [
     "2026-11-01: Renders .tape scripts of terminal sessions to GIF, MP4, WebM or frames via ttyd and Chromium.",
-    "2026-11-01: Records in real time, so output is NOT a pure function of t; treat as a source asset."
+    "2026-11-01: Records in real time, so output is NOT a pure function of t; treat as a source asset.",
+    "2026-11-24: Toolkit guide written from partial evidence (MP4, text golden); PNG frames are cropped and frame counts vary, so gate on the text golden."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "vhs-tape-recording"
   ],
+  "skill": "skills/vhs/SKILL.md",
   "validation": {
     "status": "partial",
     "evidence": [
