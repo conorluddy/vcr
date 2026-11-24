@@ -1,0 +1,62 @@
+{
+  "background_iou": 0.995123,
+  "gates": {
+    "canvas_is_240_px": true,
+    "rendered_rerun_byte_identical": true,
+    "shape_iou_at_least_minimum": true,
+    "shape_mae_at_most_maximum": true,
+    "source_palette_pixels": true,
+    "svg_fills_match_palette": true,
+    "svg_rerun_byte_identical": true,
+    "vtracer_version_is_pinned": true
+  },
+  "minimum_rendered_alpha": 255,
+  "passed": true,
+  "rendered_sha256": "c43e8684f89ab618fbc31f5b579ef57463680a0b3b5532b412855f45b4ceccba",
+  "shapes": {
+    "blue": {
+      "bounding_box": [
+        127,
+        17,
+        212,
+        102
+      ],
+      "fill_nearest_channel_difference": 0,
+      "fill_path_count": 1,
+      "iou": 1.0,
+      "mae": 0.1347
+    },
+    "green": {
+      "bounding_box": [
+        37,
+        137,
+        203,
+        233
+      ],
+      "fill_nearest_channel_difference": 0,
+      "fill_path_count": 1,
+      "iou": 0.987636,
+      "mae": 1.4197
+    },
+    "red": {
+      "bounding_box": [
+        17,
+        17,
+        103,
+        103
+      ],
+      "fill_nearest_channel_difference": 0,
+      "fill_path_count": 1,
+      "iou": 0.981325,
+      "mae": 1.8518
+    }
+  },
+  "source_pixels": {
+    "background": 38752,
+    "blue": 6400,
+    "green": 7351,
+    "red": 5097
+  },
+  "svg_sha256": "b2bb9a2b1b21eaf336a551fd50d0ee82d564de6e5665f1a13c331ccbffd46281",
+  "vtracer_version": "0.6.15"
+}
