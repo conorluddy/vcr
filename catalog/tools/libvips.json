@@ -32,12 +32,25 @@
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "libvips-resize-composite"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "8.18.7",
+        "command": "examples/libvips-resize-composite/run.sh",
+        "result": "vips thumbnail 4096x4096 RGBA PNG to 1024x1024 (0.42 s, peak 89.9 MB) and composite2 over a 256x256 RGBA overlay (0.16 s, peak 17.8 MB). Alpha kept (4 bands); probes within 1 of predeclared values (tolerance 3 colour, 2 alpha); reruns byte-identical.",
+        "example": "examples/libvips-resize-composite",
+        "scope": "vips CLI 8.18.7 thumbnail and composite2 over on generated RGBA PNGs, macOS arm64 Homebrew; size, alpha, probe pixels, reruns. No other formats, profiles or versions."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-11-24",
   "assessment": {
     "date": "2026-10-26",
     "assessed_by": "assess-a9a",
