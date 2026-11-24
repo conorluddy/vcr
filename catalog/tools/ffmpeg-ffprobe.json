@@ -87,7 +87,8 @@
     "dovi-tool-metadata-roundtrip",
     "exiv2-metadata-roundtrip",
     "gifsicle-optimise",
-    "baguette-simulator-capture"
+    "baguette-simulator-capture",
+    "typed-ffmpeg-graph"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
