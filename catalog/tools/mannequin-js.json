@@ -19,11 +19,27 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "5.2.3",
+        "command": "examples/mannequin-js-pose-capture/run.sh",
+        "result": "partial: 90 frames 1280x720, shuffled equals sequential; joint readbacks (torso bend, right arm raise, left knee bend) match the values set from t; four predeclared frames distinct; knee-only change smaller than torso-and-arm change; corner alpha 0. Failed predeclared check: right wrist moved 0.404 library units t=0 to 1.5 s vs 1.0 required (figure 1.01 units tall). Reruns byte-identical. three 0.186.1, Chromium 156.0.8078.4, Node v22.19.0",
+        "example": "examples/mannequin-js-pose-capture",
+        "scope": "Fixture-reported: joints posed from t, frames deterministic and distinct, alpha ok; wrist displacement check failed (0.40 vs 1.0 units); macOS arm64"
+      }
+    ]
   },
+  "install": {
+    "macos": "pnpm add mannequin-js@5.2.3 three@0.186.1"
+  },
+  "examples": [
+    "mannequin-js-pose-capture"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "conversation 2026-11-01: character and figure tooling gap",
   "summary": "Three.js procedural articulated human figures with joint-angle posing, suited to simple pose-driven scenes without importing a character asset.",
   "use_when": [
