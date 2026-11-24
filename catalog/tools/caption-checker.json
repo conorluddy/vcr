@@ -16,17 +16,30 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.3.3",
+        "command": "examples/caption-checker-limits/run.sh",
+        "result": "netflix profile on two clean captions files (SRT, WebVTT, 5 cues each): exit 0, zero issues. Two files with predeclared violations (6 cues each): exit 1, exactly 4 flagged cues: cue 2 cpl (line of 61 characters), cue 3 lines (3 lines), cue 4 short (0.40 s), cue 5 overlap (0.50 s). SRT and WebVTT agree; each file's two JSON runs byte-identical. Node v22.19.0, macOS arm64.",
+        "example": "examples/caption-checker-limits",
+        "scope": "netflix profile, hand-written SRT and WebVTT: clean files 0 issues; 4 predeclared violations on the right cues; reruns identical; no other profiles or rule kinds; macOS arm64."
+      }
+    ]
   },
+  "examples": [
+    "caption-checker-limits"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-08-discovery.md",
   "summary": "Zero-dependency CLI and library checks SRT/WebVTT captions against Netflix, BBC and DCMP limits for reading speed, line length, line count, duration, gaps and overlaps. It reports compliance issues rather than rendering or translating captions.",
   "license": "MIT",
   "install": {
-    "macos": "npm install -g caption-checker",
-    "check_command": "caption-checker --help"
+    "macos": "project-local in examples/caption-checker-limits: dependency github:markksantos/caption-checker#4a504ede1606fbefd7e7b658281b9b8f7a4ef9e2 (v1.3.3, MIT), then pnpm install; the npm registry has no caption-checker package",
+    "check_command": "pnpm -s exec caption-check --help"
   },
   "use_when": [
     "Check subtitle reading speed, line length and gaps against its named SRT/WebVTT rule sets",
