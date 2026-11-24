@@ -16,9 +16,22 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "f3d-headless-still"
+  ],
   "validation": {
     "status": "not-validated",
-    "evidence": []
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.0.1",
+        "command": "examples/f3d-headless-still/run.sh",
+        "result": "partial: 320x240 RGBA8 PNG stills from a generated GLB cube, transparent corners, distinct camera outputs, byte-identical reruns and A-B-A order match. Two predeclared checks failed: view-A object bottom y=227 vs limit 210, and 0 antialiased edge pixels vs 100-10000. No-window not established (cocoa is a windowed backend; System Events denied). Backend vtkCocoaRenderWindow.",
+        "example": "examples/f3d-headless-still",
+        "scope": "Fixture-reported: f3d 4.0.1 cocoa writes 320x240 RGBA stills, transparent and byte-identical on rerun; view-A region and antialias checks failed; no-window unproven; macOS arm64"
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-11-15",
