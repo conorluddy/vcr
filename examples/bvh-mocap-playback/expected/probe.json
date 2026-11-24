@@ -1,0 +1,370 @@
+{
+  "info": {
+    "boneNames": [
+      "Hips",
+      "Spine",
+      "Neck",
+      "Head",
+      "ENDSITE"
+    ],
+    "clipName": "animation",
+    "clipDurationSeconds": 0.966667,
+    "trackNames": [
+      "Hips.position",
+      "Hips.quaternion",
+      "Spine.position",
+      "Spine.quaternion",
+      "Neck.position",
+      "Neck.quaternion",
+      "Head.position",
+      "Head.quaternion"
+    ]
+  },
+  "samples": [
+    {
+      "seconds": 0,
+      "joints": [
+        {
+          "name": "Hips",
+          "position": [
+            0,
+            90,
+            0
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Spine",
+          "position": [
+            0,
+            10,
+            0
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Neck",
+          "position": [
+            0,
+            8,
+            0
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Head",
+          "position": [
+            0,
+            6,
+            0
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        }
+      ]
+    },
+    {
+      "seconds": 0.233333,
+      "joints": [
+        {
+          "name": "Hips",
+          "position": [
+            0,
+            90,
+            3.5
+          ],
+          "quaternion": [
+            0,
+            0.358368,
+            0,
+            0.93358
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Spine",
+          "position": [
+            0,
+            10,
+            0
+          ],
+          "quaternion": [
+            0.125114,
+            -0.053054,
+            0.053054,
+            0.989301
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Neck",
+          "position": [
+            0,
+            8,
+            0
+          ],
+          "quaternion": [
+            -0.060026,
+            0.181896,
+            -0.011125,
+            0.981421
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Head",
+          "position": [
+            0,
+            6,
+            0
+          ],
+          "quaternion": [
+            0.241922,
+            0,
+            0,
+            0.970296
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        }
+      ]
+    },
+    {
+      "seconds": 0.25,
+      "joints": [
+        {
+          "name": "Hips",
+          "position": [
+            0,
+            90,
+            3.75
+          ],
+          "quaternion": [
+            0,
+            0.382683,
+            0,
+            0.92388
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Spine",
+          "position": [
+            0,
+            10,
+            0
+          ],
+          "quaternion": [
+            0.134221,
+            -0.056143,
+            0.056143,
+            0.987765
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Neck",
+          "position": [
+            0,
+            8,
+            0
+          ],
+          "quaternion": [
+            -0.064135,
+            0.194669,
+            -0.012815,
+            0.978686
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Head",
+          "position": [
+            0,
+            6,
+            0
+          ],
+          "quaternion": [
+            0.258819,
+            0,
+            0,
+            0.965926
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        }
+      ]
+    },
+    {
+      "seconds": 0.5,
+      "joints": [
+        {
+          "name": "Hips",
+          "position": [
+            0,
+            90,
+            7.5
+          ],
+          "quaternion": [
+            0,
+            0.707107,
+            0,
+            0.707107
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Spine",
+          "position": [
+            0,
+            10,
+            0
+          ],
+          "quaternion": [
+            0.270866,
+            -0.091506,
+            0.091506,
+            0.953879
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Neck",
+          "position": [
+            0,
+            8,
+            0
+          ],
+          "quaternion": [
+            -0.12059,
+            0.37941,
+            -0.04995,
+            0.915976
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Head",
+          "position": [
+            0,
+            6,
+            0
+          ],
+          "quaternion": [
+            0.5,
+            0,
+            0,
+            0.866025
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        }
+      ]
+    },
+    {
+      "seconds": 0.95,
+      "joints": [
+        {
+          "name": "Hips",
+          "position": [
+            0,
+            90,
+            14.25
+          ],
+          "quaternion": [
+            0,
+            0.996917,
+            0,
+            0.078459
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Spine",
+          "position": [
+            0,
+            10,
+            0
+          ],
+          "quaternion": [
+            0.501479,
+            -0.095779,
+            0.095779,
+            0.854501
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Neck",
+          "position": [
+            0,
+            8,
+            0
+          ],
+          "quaternion": [
+            -0.180718,
+            0.657904,
+            -0.16713,
+            0.711738
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        },
+        {
+          "name": "Head",
+          "position": [
+            0,
+            6,
+            0
+          ],
+          "quaternion": [
+            0.838671,
+            0,
+            0,
+            0.544639
+          ],
+          "quaternionMaxComponentDifferenceFromBvh": 0,
+          "positionDifferenceFromBvhCm": 0
+        }
+      ]
+    }
+  ]
+}
