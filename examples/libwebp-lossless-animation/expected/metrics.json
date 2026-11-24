@@ -1,0 +1,36 @@
+{
+  "animation_bytes": 260,
+  "animation_sha256": "109fd60ea23f3e3bc2a72e25a1c5ef74bdfb40b28f79a7ea42c6fe135af1512c",
+  "canvas_size": 64,
+  "declared_durations_ms": [
+    100,
+    250,
+    400
+  ],
+  "decoded_rgba_sha256": [
+    "90929480e9e11e45897a29b8a55a217665dcd04f9d4ae28748cd18a5b15b2d13",
+    "57270c0229d5acdbe3dff95b2169009431b1d3d16c5061c468dba96bbb571ba1",
+    "eb473d61f99881c469efdf431cc2514171f663a7692d067d5cbbdb7f18bbde15"
+  ],
+  "dwebp_version": "1.6.0",
+  "frame_count": 3,
+  "imagemagick_version": "Version: ImageMagick 7.1.2-35 Q16-HDRI aarch64 acaf7e418:20261031 https://imagemagick.org",
+  "img2webp_version": "WebP Encoder version: 1.6.0",
+  "libwebp_version": "1.6.0",
+  "source_alpha_values_frame0": [
+    0,
+    128,
+    255
+  ],
+  "source_rgba_sha256": [
+    "90929480e9e11e45897a29b8a55a217665dcd04f9d4ae28748cd18a5b15b2d13",
+    "57270c0229d5acdbe3dff95b2169009431b1d3d16c5061c468dba96bbb571ba1",
+    "eb473d61f99881c469efdf431cc2514171f663a7692d067d5cbbdb7f18bbde15"
+  ],
+  "webpmux_durations_ms": [
+    100,
+    250,
+    400
+  ],
+  "webpmux_version": "1.6.0"
+}
