@@ -12,9 +12,10 @@
   "notes": [
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-    "2026-10-29: Skill opportunity: Possible standalone Python audio-effects skill; verify plugin hosting and GPL dependencies before proposing."
+    "2026-10-29: Skill opportunity: Possible standalone Python audio-effects skill; verify plugin hosting and GPL dependencies before proposing.",
+    "2026-11-24: Toolkit guide written at skills/pedalboard/SKILL.md from the pedalboard-effects-chain partial evidence (pedalboard 0.9.26, macOS arm64); Limiter-is-not-a-ceiling and GPLv3 documented; plugin hosting and other processors marked untested."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "partial",
@@ -65,5 +66,6 @@
       "https://github.com/spotify/pedalboard/releases"
     ],
     "version_seen": "0.9.26 (GitHub release; date year unverified)"
-  }
+  },
+  "skill": "skills/pedalboard/SKILL.md"
 }

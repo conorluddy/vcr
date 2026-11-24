@@ -92,6 +92,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `librosa-beat-spectra` | librosa | 120 BPM generated clicks and four tones, librosa 1.0.1: beat and onset times within 30 ms of the clicks both ways, STFT tone peaks within one bin, reruns byte-identical; partial because beat_track tempo is 117.45 BPM (-2.1 %), a hop-512 grid effect; no real audio or other features (2026-11-24) |
 | `rembg-cutout` | rembg | default u2net library route, generated sphere over busy checker, RGBA same size, IoU 0.996, byte-identical rerun (2026-11-24) |
 | `whisperx-word-timing` | whisperx, ffmpeg-ffprobe | tiny.en int8 CPU on a macOS `say` 10-word sentence: WER 0/10, 10/10 word starts within 0.08 s of energy onsets (mean 0.033 s), transcript and timings identical on rerun; no diarization, other models or real speech (2026-11-24) |
+| `pedalboard-effects-chain` | pedalboard | built-in highpass, compressor, gain and limiter on generated tones and noise: first-order highpass (200 Hz down 14.2 dB, 5 kHz flat), reruns identical, 16-bit WAV within 2 LSB; Limiter peaked at 0 dBFS despite a -1 dB threshold (partial); no plugins (2026-11-24) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 
