@@ -1,0 +1,47 @@
+{
+  "checks": {
+    "duration_2000ms_within_5ms": true,
+    "fall_10_within_2ms": true,
+    "fall_90_within_2ms": true,
+    "mono": true,
+    "peak_below_full_scale": true,
+    "plateau_0_5_within_1_percent": true,
+    "rate_48000_hz": true,
+    "rerun_byte_identical": true,
+    "rise_10_within_2ms": true,
+    "rise_90_within_2ms": true,
+    "sample_width_16_bit": true,
+    "segments_distinct": true,
+    "tail_silent": true,
+    "tone_440_within_5_cents": true
+  },
+  "measured": {
+    "channels": 1,
+    "duration_ms": 2000.0,
+    "envelope_ms": {
+      "fall10Ms": 1774.375,
+      "fall90Ms": 1534.5625,
+      "rise10Ms": 5.5208,
+      "rise90Ms": 45.4167
+    },
+    "envelope_predicted_ms": {
+      "fall10Ms": 1775.0,
+      "fall90Ms": 1535.0,
+      "rise10Ms": 5.0,
+      "rise90Ms": 45.0
+    },
+    "frame_count": 96000,
+    "plateau_amplitude": 0.5,
+    "sample_rate_hz": 48000,
+    "sample_width_bytes": 2,
+    "segment_sha256": {
+      "attack": "1c275ec11d5d73f07052d14e793b76b252fc8d64a7d118790bec324adf30d1ac",
+      "release": "2a65da473ab1306353d52c24875d8987e9b9add4d3ce675c307015842afafcb4",
+      "sustain": "727f72a78d80a5ae84d579eee55aa87cc233d562cdf986a01027e6fb41065af3"
+    },
+    "tail_peak": 0.0,
+    "tone_error_cents": 0.1527,
+    "tone_hz": 440.0388
+  },
+  "sha256": "456ffdaef2b3e60116de743e065732ecdf4128727b1fa2f24648a4b288a1aed0"
+}
