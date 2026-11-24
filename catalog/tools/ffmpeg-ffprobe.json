@@ -77,7 +77,8 @@
   "examples": [
     "native-svg",
     "ffmpeg-assembly",
-    "browser-capture"
+    "browser-capture",
+    "vmaf-ffmpeg-score"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."

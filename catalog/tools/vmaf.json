@@ -15,9 +15,10 @@
   ],
   "notes": [
     "2026-11-01: Netflix full-reference video quality metric via the vmaf CLI or FFmpeg libvmaf filter.",
-    "2026-11-15: Homebrew package route not confirmed; model use depends on selected model, input alignment, preprocessing and version."
+    "2026-11-15: Homebrew package route not confirmed; model use depends on selected model, input alignment, preprocessing and version.",
+    "2026-11-24: Guide skills/vmaf/SKILL.md written from the vmaf-ffmpeg-score evidence (FFmpeg libvmaf filter only); CLI and other models untested. Multi-threaded x264 encodes are non-deterministic, so degraded encodes use -threads 1."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -69,5 +70,6 @@
       "https://github.com/Netflix/vmaf/blob/master/resource/doc/ffmpeg.md",
       "https://github.com/Netflix/vmaf/blob/master/libvmaf/tools/README.md"
     ]
-  }
+  },
+  "skill": "skills/vmaf/SKILL.md"
 }
