@@ -15,9 +15,10 @@
     "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
     "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue.",
     "2026-11-15: Latest release is v3.6.0-beta.0 (2026-09-29); stable release listed as v3.5.5.",
-    "2026-11-24: npm dist-tag latest is 3.6.0 (MIT, peer three >=0.137); evidence run pins 3.6.0 with three 0.186.1. Sample model VRM1_Constraint_Twist_Sample.vrm is not in the npm package; run.sh downloads it at a pinned commit and checks its sha256. Scope excludes spring-bone physics (disabled), lookAt, visemes and VRM 0.x."
+    "2026-11-24: npm dist-tag latest is 3.6.0 (MIT, peer three >=0.137); evidence run pins 3.6.0 with three 0.186.1. Sample model VRM1_Constraint_Twist_Sample.vrm is not in the npm package; run.sh downloads it at a pinned commit and checks its sha256. Scope excludes spring-bone physics (disabled), lookAt, visemes and VRM 0.x.",
+    "2026-11-24: Guide written at skills/three-vrm/SKILL.md from examples/three-vrm-capture evidence; licence-per-model, spring bones disabled and untested areas stated."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -69,5 +70,6 @@
       "https://github.com/pixiv/three-vrm/releases",
       "https://github.com/pixiv/three-vrm/blob/release/LICENSE"
     ]
-  }
+  },
+  "skill": "skills/three-vrm/SKILL.md"
 }
