@@ -11,9 +11,10 @@
   ],
   "notes": [
     "2026-11-01: AV1 encoder via FFmpeg libsvtav1 or SvtAv1EncApp. rav1e considered and skipped in its favour.",
-    "2026-11-01: No alpha; may be recorded as an FFmpeg capability."
+    "2026-11-01: No alpha; may be recorded as an FFmpeg capability.",
+    "2026-11-24: Guide written from examples/svt-av1-encode (4.3.0, macOS arm64, preset 8 CRF 35, Y4M to IVF). Alpha, 10-bit, rate-control modes and the libsvtav1 route are untested; AOM Patent License 1.0 applies."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -65,5 +66,6 @@
       "https://gitlab.com/AOMediaCodec/SVT-AV1/-/tags/v4.2.0",
       "https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/LICENSE.md"
     ]
-  }
+  },
+  "skill": "skills/svt-av1/SKILL.md"
 }
