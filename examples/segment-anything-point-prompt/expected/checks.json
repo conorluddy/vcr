@@ -1,0 +1,100 @@
+{
+  "checks": {
+    "at_least_two_distinct_hashes": true,
+    "box_prompt_iou_at_or_above_floor": true,
+    "disc_cutout_alpha_range": true,
+    "input_is_rgb_png_512": true,
+    "mask_excludes_other_object": true,
+    "mask_shape_matches_input": true,
+    "masks_are_binary_0_or_255": true,
+    "one_still_set_per_run": true,
+    "point_prompt_iou_at_or_above_floor": true,
+    "rerun_identical_or_within_tolerance": true
+  },
+  "measurements": {
+    "cutout_alpha_max": 255,
+    "cutout_alpha_min": 0,
+    "cutout_opaque_fraction": 0.076305,
+    "ground_truth_pixels": {
+      "disc": 20108,
+      "square": 18496
+    },
+    "hashes": {
+      "disc-box": "898d6fecfb25acbd05f7a3c685231984110a58bd4aed82c3c0975e0696bac1b9",
+      "disc-cutout": "c55cc2f1dd3f2223b437f6c9beccd0460785d190e1ef80204a677ebe6226178e",
+      "disc-point": "69158c9eb7b0125588b681d924d036aca70a5141a69b728b1596f974956cf496",
+      "input": "c4cd9261e1f495232ac4c7ab4bb37d53143b64a7dba87f5a39ebfb56895e56ba",
+      "square-box": "f1d7c702c757dc8abc139713831172847e3b20f4d2ce1096e3e1830456906aa1",
+      "square-point": "5b0f80fd70a5239744296ceae448a9b6150652586b9eb8140d04d0975b3d4eda"
+    },
+    "input_format": "PNG",
+    "input_mode": "RGB",
+    "iou": {
+      "disc-box": 0.992292,
+      "disc-point": 0.994778,
+      "square-box": 0.999622,
+      "square-point": 0.999784
+    },
+    "leak_fraction": {
+      "disc-box": 0.0,
+      "disc-point": 0.0,
+      "square-box": 0.0,
+      "square-point": 0.0
+    },
+    "mask_pixels": {
+      "disc-box": 19953,
+      "disc-point": 20003,
+      "square-box": 18489,
+      "square-point": 18492
+    },
+    "rerun_byte_identical": {
+      "disc-box": true,
+      "disc-point": true,
+      "square-box": true,
+      "square-point": true
+    },
+    "rerun_disagreement_fraction": {
+      "disc-box": 0.0,
+      "disc-point": 0.0,
+      "square-box": 0.0,
+      "square-point": 0.0
+    },
+    "sam_candidate_iou_scores": {
+      "disc-box": [
+        1.002236,
+        1.007178,
+        0.976852
+      ],
+      "disc-point": [
+        0.928857,
+        1.011694,
+        0.887964
+      ],
+      "square-box": [
+        1.005945,
+        1.013341,
+        1.002303
+      ],
+      "square-point": [
+        0.896492,
+        1.017136,
+        1.008469
+      ]
+    },
+    "sam_selected_index": {
+      "disc-box": 1,
+      "disc-point": 1,
+      "square-box": 1,
+      "square-point": 1
+    }
+  },
+  "tolerances": {
+    "iou_floor": 0.9,
+    "leak_max_fraction": 0.01,
+    "opaque_fraction_range": [
+      0.05,
+      0.1
+    ],
+    "rerun_max_disagreement_fraction": 0.001
+  }
+}

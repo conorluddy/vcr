@@ -17,11 +17,24 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "Hub commit 70c1a07f894ebb5b307fd9eaaee97b9dfc16068f (facebook/sam-vit-base; transformers 5.24.0, torch 2.15.0)",
+        "command": "examples/segment-anything-point-prompt/run.sh",
+        "result": "Point and box prompts on a generated 512x512 red disc and blue square over a striped background: IoU vs analytic truth disc point 0.994778, disc box 0.992292, square point 0.999784, square box 0.999622 (floor 0.90); leak onto the other shape 0.0; disc cutout alpha binary, opaque fraction 0.076305; fresh-process rerun masks byte-identical. Python 3.12.13, macOS arm64.",
+        "example": "examples/segment-anything-point-prompt",
+        "scope": "transformers SAM ViT-B (facebook/sam-vit-base) on CPU: one point or box per shape on 2 synthetic shapes; IoU 0.99+ vs truth, no leak, rerun identical; one still; macOS arm64"
+      }
+    ]
   },
+  "examples": [
+    "segment-anything-point-prompt"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "Python inference code and model checkpoints for promptable image segmentation. It produces masks for specified prompts; checkpoint, input and model rights must be checked separately.",
   "use_when": [
@@ -36,7 +49,11 @@
     "imagemagick",
     "mediapipe"
   ],
-  "license": "Apache-2.0 (project code and stated model); verify selected checkpoints and assets",
+  "license": "Apache-2.0 (project code; facebook/sam-vit-base model card apache-2.0, checked 2026-11-24); other checkpoints not checked",
+  "install": {
+    "macos": "/opt/homebrew/bin/python3.12 -m venv examples/segment-anything-point-prompt/output/venv && examples/segment-anything-point-prompt/output/venv/bin/pip install -r examples/segment-anything-point-prompt/requirements.txt",
+    "check_command": "examples/segment-anything-point-prompt/output/venv/bin/python -c \"import torch, transformers; print(torch.__version__, transformers.__version__)\""
+  },
   "assessment": {
     "date": "2026-10-29",
     "assessed_by": "assess-c",
