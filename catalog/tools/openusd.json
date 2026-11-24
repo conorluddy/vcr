@@ -13,9 +13,10 @@
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
     "2026-10-29: Skill opportunity: Potential standalone scene-interchange skill; investigate actual USD round trips and licence obligations first.",
-    "2026-11-24: Fixture examples/openusd-stage-roundtrip (usd-core 26.11 in a git-ignored venv): partial. usdchecker is not shipped by the usd-core wheel, so its check did not run; no rendering. The OpenUSD repo LICENSE and the wheel licence are TOST 1.0 (Apache-2.0 derived), not plain Apache-2.0; the GitHub release 26.11.1 was not the version tested."
+    "2026-11-24: Fixture examples/openusd-stage-roundtrip (usd-core 26.11 in a git-ignored venv): partial. usdchecker is not shipped by the usd-core wheel, so its check did not run; no rendering. The OpenUSD repo LICENSE and the wheel licence are TOST 1.0 (Apache-2.0 derived), not plain Apache-2.0; the GitHub release 26.11.1 was not the version tested.",
+    "2026-11-24: Toolkit guide skills/openusd/SKILL.md written from the partial fixture evidence; usdchecker, rendering, USDZ and composition remain untested."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "install": {
     "macos": "cd examples/openusd-stage-roundtrip && python3 -m venv output/venv && output/venv/bin/python -m pip install -r requirements.txt",
@@ -68,5 +69,6 @@
       "https://github.com/PixarAnimationStudios/OpenUSD/releases"
     ],
     "version_seen": "26.11.1 (GitHub release; date year unverified)"
-  }
+  },
+  "skill": "skills/openusd/SKILL.md"
 }
