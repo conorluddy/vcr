@@ -1,0 +1,9 @@
+{
+  "id": "thorvg-svg-raster",
+  "title": "ThorVG 1.1.4 software canvas: inline SVG and one Lottie frame",
+  "summary": "C++ program linked to Homebrew ThorVG renders an inline SVG and one inline Lottie frame to 120x80 ARGB; probes and repeated buffers are checked.",
+  "status": "validated",
+  "tools": ["thorvg"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" }
+}

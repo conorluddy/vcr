@@ -1,0 +1,42 @@
+{
+  "checks": {
+    "bounds_within_tolerance": true,
+    "stl_length_matches_count": true,
+    "triangle_count_positive": true,
+    "vertices_on_composed_surface": true,
+    "watertight_edge_manifold": true
+  },
+  "measurements": {
+    "boundary_edges": 0,
+    "bounds_max": [
+      0.75,
+      0.75,
+      0.75
+    ],
+    "bounds_min": [
+      -0.75,
+      -0.75,
+      -0.75
+    ],
+    "degenerate_triangles": 0,
+    "edges": 436542,
+    "max_bounds_error": 0.0,
+    "max_composed_residual": 0.002277,
+    "non_manifold_edges": 0,
+    "orientation_conflicts": 0,
+    "rerun_byte_identical": true,
+    "rerun_triangle_count": 291028,
+    "stl_bytes": 14551484,
+    "stl_sha256": "84c058c5c45ecc74f85c078cb859c544afcc02733ab7bc6c7b4c4edb3bc5d4b0",
+    "triangle_count": 291028,
+    "welded_vertex_count": 145506
+  },
+  "tolerances": {
+    "analytic_bounds_per_axis": [
+      -0.75,
+      0.75
+    ],
+    "bounds_per_axis": 0.01,
+    "composed_residual": 0.01
+  }
+}

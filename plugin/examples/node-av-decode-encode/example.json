@@ -1,0 +1,9 @@
+{
+  "id": "node-av-decode-encode",
+  "title": "node-av decodes and re-encodes an ffmpeg-generated H.264 clip in Node",
+  "summary": "Generate a 24-frame 320x240 H.264 MP4 with ffmpeg, decode it frame by frame with node-av, re-encode with libx264 and check ffprobe fields against predeclared values.",
+  "status": "validated",
+  "tools": ["node-av", "ffmpeg-ffprobe"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "three-globe-capture",
+  "title": "three-globe points and one arc on a globe rotated from t, captured with alpha",
+  "summary": "three-globe 2.45.6 on three 0.186.1: five inline points and one arc, globe rotation from seek time, transitions and animateIn off; 90 frames, shuffled order matches sequential.",
+  "status": "not-validated",
+  "tools": ["three-globe", "three-js", "playwright", "imagemagick"],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  }
+}
