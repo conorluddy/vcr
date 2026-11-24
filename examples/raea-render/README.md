@@ -1,0 +1,78 @@
+# raea source build and headless render fixture
+
+## Intent and scope
+
+- **Tool/version:** raea, built from source at the pinned commit `66eb15448f69ab29a801fe1bde75d3889d34d04e` of `https://github.com/shinyobjectz/raea` (2026-11-23 head of `main`; upstream reports release 0.1.6 on 17 Nov 2026, but the pin is the commit, and `raea --version` output is recorded in `expected/`). Build: `cargo build --release -p raea-cli --no-default-features`, as the upstream "Build from source" section documents. No release binary, no `raea` on PATH, no Homebrew or npm `raea` package.
+- **VCR job and exact claim:** raea builds from that pinned commit on macOS arm64 and renders its documented example `docs/manual/examples/hello.tsx` headlessly with `raea render`: (a) to an H.264 MP4 of 1080×1920, 30 fps, 90 frames; (b) to PNG stills at frames 0, 30 and 89. The output is non-blank, a second render produces identical per-frame decoded hashes, and the stills are identical when rendered in shuffled order.
+- **Explicit exclusions:** `--alpha` and `RAEA_READBACK` output (no alpha is claimed); audio (the scene has none); `raea check`, `raea play`, the desktop app, the web export, R3F and game routes; the `--no-default-features` build's omitted hosted Content Credentials feature; Linux and Windows; other GPUs or Metal versions; cross-machine hash equality; visual quality beyond non-blank and text-present; seek determinism of the MP4 (the stills carry the shuffled-order check, not the video). The `--manifest` full check and the `--quality` presets are not tested. Hashes are MD5 from ffmpeg's `framemd5` muxer on decoded RGB24 frames; the MP4 byte hash is not a claim.
+- **Documentation and licence:** upstream README and `docs/manual/` (`concepts/rendering.md`, `start/install.md`) at the pinned commit; `docs/settings.md` for `RAEA_OFFLINE`. Licence FSL-1.1-ALv2 (`LICENSE` at the pin; "Use it, change it, build on it ... for anything except a product that competes with raea"; each version becomes Apache-2.0 two years after release). This fixture is internal evaluation, which the licence permits; the clone and its binaries are not redistributed and stay in the ignored `output/`. Checked 2026-11-24. Third-party parts keep their licences (`NOTICE` at the pin).
+- **Environment:** macOS 26 (Darwin 25.6.0), arm64 (MacBook Pro, Apple M3, 18 GB; chip and GPU core count to be confirmed in the observation). Toolchains already present: rustc/cargo 1.99.1 (pinned by the clone's `rust-toolchain.toml`), bun 1.2.18, Node v22.19.0, pnpm. CMake is not installed; the clone's Cargo manifests and build scripts do not invoke it (checked by grep before building), so it is not needed. Homebrew ffmpeg and ffprobe are used for analysis only.
+- **Input:** none. The scene is the upstream file `docs/manual/examples/hello.tsx` at the pinned commit, used unmodified; its SHA-256 is recorded in `expected/render.json`. No network assets, fonts or media are fetched by the scene.
+- **Dependencies, installation plan, permissions, network and side effects:**
+  - Clone: `git clone --depth 1 https://github.com/shinyobjectz/raea examples/raea-render/output/src`, then checkout must equal the pin (`run.sh` fails otherwise).
+  - Build: `cargo build --release -p raea-cli --no-default-features` with `CARGO_TARGET_DIR=examples/raea-render/output/target`. Cargo fetches crates and git dependencies from the network during the first build. Cap: about 20 minutes, reported if exceeded.
+  - Scene import resolution: `bun install --frozen-lockfile` inside `output/src/sdk/raea`, `output/src/sdk/react/js` and `output/src/sdk/react/tw` (their committed `bun.lock` files), as the upstream recipe does.
+  - Run-time: `RAEA_OFFLINE=1` (refuses all network the engine would make), `RAEA_HOME` pointed at the clone, and no telemetry (the engine says it sends none; `RAEA_OFFLINE` enforces it).
+  - No system packages, no global installs, no sudo, no changes outside `examples/raea-render/` and `catalog/tools/raea.json`.
+- **Selected workspace and outputs:** `examples/raea-render/output/` (git-ignored): `src/` (the clone), `target/` (cargo), `render-a/`, `render-b/` (MP4s), `stills/sequence/` and `stills/shuffled/` (PNGs). `run.sh` removes only the `render-*` and `stills` folders, never `src/` or `target/`. Cleanup, if wanted: `rm -rf examples/raea-render/output`.
+
+## Plan, before running
+
+- **Commands:** `./run.sh --record` (build, install, render, measure, and write `expected/render.json` only if every predeclared check passes), then `./run.sh` (no record; must print `raea-render: OK`). Each run renders `render-a` and `render-b` and six stills.
+- **Build:** `cargo build --release -p raea-cli --no-default-features` at the pin; the binary is `output/target/release/raea`. Predeclared: exit 0; `raea --version` prints a version (recorded, no content check).
+- **Scene and parameters:** `raea render output/src/docs/manual/examples/hello.tsx -o output/render-a/hello.mp4` (and `render-b`). Upstream's scene: composition `hello`, 1080×1920, 30 fps, `durationInFrames` 90, "Hello" for frames 0–44 and "world" for 45–89, text fading in over the first 12 frames of each card, black background.
+- **Stills:** `raea render <scene> --frame N -o output/stills/<order>/frame-N.png`, one process per frame. Sequence order N = 0, 30, 89; shuffled order N = 89, 0, 30.
+- **Predeclared checks** (`check.mjs`, FFprobe and ffmpeg from PATH):
+  1. Build exits 0 at the pinned commit; `run.sh` refuses to run if `HEAD` differs from the pin.
+  2. Every `raea render` call exits 0 (`set -e`).
+  3. ffprobe on `render-a` and `render-b`: H.264 (`h264`), pixel format `yuv420p`, 1080×1920, `r_frame_rate` `30/1`, and 90 frames read with `-count_frames`.
+  4. ffmpeg `framemd5` of `render-a` yields exactly 90 frame hashes.
+  5. At least 2 distinct frame hashes in `render-a`.
+  6. Non-blank text: the fraction of pixels with gray value ≥ 128 is ≤ 0.05% at frame 0 (text opacity 0) and between 0.1% and 15% at frames 30 and 89 (white text present and not filling the frame).
+  7. `render-b` per-frame hashes equal `render-a` for all 90 frames (rerender determinism).
+  8. Each still is 1080×1920 PNG, and its decoded-frame hash in the shuffled order equals the sequential order for frames 0, 30 and 89.
+  9. Non-record run only: the probe facts and the 90 `render-a` hashes equal `expected/render.json`.
+  Check 9 is the drift check; checks 1–8 are predeclared and must pass before anything is recorded.
+- **Stop conditions and expected failure modes:** cargo build fails or exceeds about 20 minutes (report partial/blocked with the stage); the binary needs a display or window to render (blocked); Metal unavailable headless (blocked); `raea render` cannot find the SDK (`RAEA_HOME` or bun install issue); frame count differs from 90 (fail, with no change to the predeclared count); text checks fail (the picture is not what the scene draws; fail regardless of hashes). A pass on checks 1–9 is a pass; hashes matching a wrong picture is a fail.
+- **Inspection:** after `--record`, look at `output/render-a` frames 0, 30 and 89 (and a contact sheet of the 90 frames at reduced size) before accepting the result. Contact sheet via ImageMagick `magick` (no `montage`), as the evidence skill describes.
+- **Reproduction:** `cd examples/raea-render && ./run.sh --record && ./run.sh`.
+- **Intended consumer:** a reviewer deciding whether raea is a credible headless render route for the VCR catalogue; the record stays `not-validated` unless this passes.
+
+## Observation, after running
+
+Run 1 is kept as history. Run 2 (below) is the result of record.
+
+### Run 1: blocked at the source build (cmake missing)
+
+Run date 2026-11-24, executed on `Conors-MacBook-Pro-2.local` (macOS, Darwin 25.6.0, arm64), 11:05 to 11:11 UTC.
+
+- **Result: blocked at the source build.** The run stopped at `cargo build --release -p raea-cli --no-default-features` at the pinned commit, so no render was attempted. No MP4, PNG, `expected/` file or frame hash was produced. `./run.sh --record` exits 101 (`output/run-record.log`).
+- **Where it stopped:** 507 crates compiled under the clone's pinned toolchain (`rust-toolchain.toml`, rustc and cargo 1.99.1; the ambient default is 1.95.0). The build then failed in the build script of `opusic-sys` v0.7.5, which builds libopus with the `cmake` crate: `failed to execute command: No such file or directory ... is cmake not installed?`. `cmake` is not on this machine (no Homebrew, no Xcode, no app bundle). Installing it would be a system package or global install, which this run does not do, so the run stopped there.
+- **Correction to the plan:** the plan said CMake was not needed, because the first-party Cargo manifests and build scripts do not mention it. That check was too narrow. The failing script belongs to a registry dependency, and the upstream README lists CMake as a build requirement. The plan should have followed it.
+- **Second blocker, not reached:** the SDK installs use `bun install --frozen-lockfile` against `bun.lock` files with `lockfileVersion` 2. The host's bun 1.2.18 fails with `UnknownLockfileVersion: failed to parse lockfile`, so `sdk/raea`, `sdk/react/js` and `sdk/react/tw` cannot install under the pinned lock. Upstream CI uses bun 1.4.2 (`.github/workflows/release.yml`). Getting it would need an approved install, and pnpm's `import` does not read `bun.lock`. The `pnpm-workspace.yaml` at the VCR root also makes pnpm unsafe inside the clone.
+- **Measurements:** clone `output/src` 133 MB (depth 1 at the pin); `output/target` 5.0 GB after the failed build; cargo wall time 5 min 27 s to the failure (11:05:30 to 11:10:57 UTC), inside the 20-minute cap.
+- **Versions:** raea at `66eb15448f69ab29a801fe1bde75d3889d34d04e` (upstream reports release 0.1.6 on 17 Nov 2026; no `raea --version` was obtained). cargo and rustc 1.99.1 (via the clone's toolchain file). bun 1.2.18. pnpm 10.29.2. Node v22.19.0. Homebrew ffmpeg and ffprobe 9.0.2 (not reached). Playwright and Chromium not used.
+- **Licence and maturity:** FSL-1.1-ALv2 unchanged at the pin, as checked on 2026-11-24. Use was internal evaluation only; nothing was redistributed.
+- **What this establishes:** at this commit on this host, the documented source build does not complete without CMake, and the SDK install step needs bun 1.4.2. Nothing is established about headless rendering, GPU use, output content or determinism.
+- **Reviewer, decision and follow-up:** a reviewer should decide whether CMake may be installed through an approved route, and whether bun 1.4.2 may be installed for this fixture. Then rerun `./run.sh --record` (cargo resumes from `output/target`), followed by `./run.sh`. Revisit if the pin or the toolchain changes.
+
+### Run 2: pass (cmake 4.5.1 installed by the coordinator; same pin)
+
+Run date 2026-11-24, same host, 11:14 to 11:34 UTC for the build and first render attempts, then `./run.sh --record` at 11:33 and `./run.sh` at 11:34 (both exit 0).
+
+- **Result: pass on every predeclared check.** `./run.sh --record` wrote `expected/render.json` after all checks passed; `./run.sh` then printed `raea-render: OK` with `matches-expected` passing.
+- **Build:** `cargo build --release -p raea-cli --no-default-features` at `66eb15448f69ab29a801fe1bde75d3889d34d04e` completed in 15 min 7 s (retry, incremental on `output/target`). Exit 0, one warning in `raea-cli`. `raea --version` prints `0.1.0-checkout`, not a release number, so the evidence entry cites the commit.
+- **Render:** `raea render output/src/docs/manual/examples/hello.tsx` (with `RAEA_OFFLINE=1`, `RAEA_HOME` at the clone, `RAEA_EXPORT_CACHE=0`) made `render-a/hello.mp4` and `render-b/hello.mp4`, 90 frames each at 33.2 ms per frame on the GPU, and PNG stills at frames 0, 30 and 89 in sequence and shuffled order. No window was needed.
+- **Checks (record run):** probe h264 yuv420p 1080x1920 30/1, 90 frames, on both MP4s; 90 decoded frame hashes; 48 distinct hashes; frame 0 white fraction 0; frames 30 and 89 white fraction 0.0042 and 0.0043; render-b equal to render-a on all 90 hashes; stills 1080x1920; shuffled stills equal sequential for frames 0, 30 and 89.
+- **Contact sheet:** `output/contact.png`, built from `render-a` frames 0, 15, 30, 45, 60, 75 and 89 with `magick`. It shows black at frames 0 and 45 (fade-in start), "Hello" centred at frames 15 and 30, and "world" centred at 60, 75 and 89, on black, at the same position. This matches the scene source.
+- **Corrections made during run 2, all disclosed:**
+  1. **Export cache.** Run 2's first attempt cloned `render-b` from `~/Library/Caches/raea/exports` (the log says "from the export cache"), so it was not an independent rerender. `run.sh` now sets `RAEA_EXPORT_CACHE=0`, and the recorded run has no cache hit (`grep` count 0).
+  2. **Check bug.** The first record attempt failed `stills-shuffled-equals-sequential`. That was a bug in `check.mjs`, which compared the sequential and shuffled arrays by index, not by frame. The render was not at fault; the stills were the same size in both orders. The comparison now matches by frame number. The predeclared intent is unchanged.
+  3. **SDK install.** The host's bun 1.2.18 cannot read `bun.lock` v2, so the SDK installs use bun 1.4.2, installed with `npm install --prefix output/bun-tool bun@1.4.2`. This is local to `output/`, not global. The SDK's `bun run build` (in `sdk/react/js`) writes `dist/`, and this is in `run.sh` now.
+  4. **Failed attempts before the pass.** Before the SDK install and build, the scene bundle threw `ReferenceError: Can't find variable: bevy_react`. After `bun install` and `bun run build`, a single still still failed with the same error. A symlink of `sdk/react/js/node_modules` at the clone root did not help, and I removed it. The next `run.sh --record` (which also rebuilds raea-cli) rendered successfully. I did not isolate which step fixed it; the rebuild is the likely trigger, and I have not proven it.
+- **Versions:** raea at `66eb15448f69ab29a801fe1bde75d3889d34d04e` (`raea --version` 0.1.0-checkout); cargo and rustc 1.99.1 (clone's toolchain file); cmake 4.5.1 (Homebrew); bun 1.4.2 (local, `output/bun-tool`); bun 1.2.18 not used for installs; pnpm 10.29.2; Node v22.19.0; Homebrew ffmpeg and ffprobe 9.0.2 (analysis only). Playwright and Chromium not used.
+- **Sizes:** `output/src` 216 MB (clone with installed SDK packages and dist); `output/target` 19 GB (release build with debuginfo, plus both runs); `output/bun-tool` 59 MB. All under the git-ignored `output/`.
+- **Deviations from the plan:** the bun install and `bun run build` steps were not in the plan's recipe (they are needed, as shown above); the export-cache switch is new; the check comparison fix as above. The predeclared thresholds, frame count and text ranges were not changed.
+- **What this establishes:** at this pin on this host (macOS arm64), the documented source build completes with cmake present, and the documented hello composition renders headlessly with `RAEA_OFFLINE=1` to 90 H.264 frames at 1080x1920 and 30 fps, to PNG stills, with rerender and stills order checks passing.
+- **What it does not establish:** seek or random-access determinism of the MP4 itself (the shuffled check covers stills only); alpha; audio; `raea check`, play, or web export; Linux or Windows; other GPUs; the default-features build (hosted Content Credentials omitted); cross-machine hash equality; the `--quality` presets; and the time to first frame.
+- **Reviewer and follow-up:** revisit if the pin, the toolchain, cmake, or bun changes. The record should be re-run on a fresh clone to confirm the trigger in item 4.
