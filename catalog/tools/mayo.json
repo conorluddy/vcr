@@ -12,9 +12,11 @@
   "notes": [
     "2026-11-07: Triage: Direct CAD interchange conversion is a concrete job without writing a script; revisit after confirming headless CLI operation and macOS build route.",
     "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion.",
-    "2026-11-24: No macOS build is published in any github.com/fougue/mayo release (v0.2.0 to v0.10.0; macOS is documented as build-from-source only). Headless conversion was not tested; see examples/mayo-cad-convert (blocked). Licence corrected to BSD-2-Clause; brew cask line removed (no such cask)."
+    "2026-11-24: No macOS build is published in any github.com/fougue/mayo release (v0.2.0 to v0.10.0; macOS is documented as build-from-source only). Headless conversion was not tested; see examples/mayo-cad-convert (blocked). Licence corrected to BSD-2-Clause; brew cask line removed (no such cask).",
+    "2026-11-24: Unproven guide written from official docs and the failed fixture; no passing evidence."
   ],
   "documentation_status": "listed-in-prd",
+  "skill": "skills/mayo/SKILL.md",
   "installation_status": "unknown",
   "validation": {
     "status": "blocked",
