@@ -13,9 +13,10 @@
     "2026-10-29: Listed from a conversation; listed-in-prd is the schema’s listed-only status, not an assertion of PRD inclusion.",
     "2026-10-29: Documentation assessed; no fixture has been run. Dependency and asset terms require separate review.",
     "2026-10-29: Skill opportunity: further research first; run a colour tracing fixture and check existing vector skills before choosing a VCR or standalone guide.",
-    "2026-11-24: Fixture examples/vtracer-colour-trace ran PyPI vtracer 0.6.15 (wheel metadata MIT). Upstream's latest GitHub release, 1.0.0-alpha.4 (2026-08-29), is not covered by this evidence."
+    "2026-11-24: Fixture examples/vtracer-colour-trace ran PyPI vtracer 0.6.15 (wheel metadata MIT). Upstream's latest GitHub release, 1.0.0-alpha.4 (2026-08-29), is not covered by this evidence.",
+    "2026-11-24: Toolkit guide written: skills/vtracer/SKILL.md, from examples/vtracer-colour-trace; colour mode with fixed settings only."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -66,5 +67,6 @@
       "https://github.com/visioncortex/vtracer",
       "https://github.com/visioncortex/vtracer/blob/master/LICENSE"
     ]
-  }
+  },
+  "skill": "skills/vtracer/SKILL.md"
 }
