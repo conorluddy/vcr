@@ -91,7 +91,8 @@
     "typed-ffmpeg-graph",
     "ffmpeg-normalize-loudness",
     "claude-real-video-keyframes",
-    "aubio-onsets-pitch"
+    "aubio-onsets-pitch",
+    "syncalong-text-align"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."

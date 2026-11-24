@@ -11,7 +11,11 @@
   ],
   "notes": [
     "2026-11-06: Triage: Distinct timing job for supplied text, though documented output is line-level and project is very small; revisit after stability and word-timing support are established.",
-    "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+    "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion.",
+    "2026-11-24: Fixture examples/syncalong-text-align FAILED on macOS arm64 (syncalong 2.0.1 from PyPI, openai-whisper 20250625, Whisper base, default lyrics prompt): transcript wrong and not repeatable, line starts up to 24 s off on the first run; reruns differ. Without the prompt the transcript is exact and repeatable, but line 1 is 1.0 s early. No evidence entry; validation stays not-validated."
+  ],
+  "examples": [
+    "syncalong-text-align"
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -20,7 +24,7 @@
     "evidence": []
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-06-discovery.md",
   "summary": "Python CLI and library aligns supplied lyric text to audio using Whisper word timestamps and sequence alignment, then emits timestamped LRC lines. Supports local or remote transcription; local Whisper and optional Demucs add substantial dependencies.",
   "license": "MIT",
