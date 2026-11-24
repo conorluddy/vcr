@@ -23,7 +23,17 @@
   "installation_status": "unknown",
   "validation": {
     "status": "not-validated",
-    "evidence": []
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.0.0",
+        "command": "examples/rubber-band-stretch/run.sh",
+        "example": "examples/rubber-band-stretch",
+        "result": "FAIL as predeclared: rubberband 4.0.0 (R2 engine, -2) on generated tones and clicks. Durations exact (1.5x stretch 144000 samples; +12 st 96000 samples), but stretched 440 Hz tone read +10.7 cents and +12 st tone -13.9 cents against a 5-cent limit (FFT on amplitude-modulation sidebands); click onsets 12-14 ms early; outputs not byte-identical across invocations.",
+        "scope": "Fixture-reported: R2 engine on pure tones and clicks: durations exact, pitch off 11-14 cents, onsets 12-14 ms early, not deterministic across runs; R3 engine untested; macOS arm64."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "examples": [
