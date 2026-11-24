@@ -17,12 +17,25 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "thorvg-svg-raster"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.1.4",
+        "command": "examples/thorvg-svg-raster/run.sh",
+        "result": "C++ via Homebrew ThorVG 1.1.4 SwCanvas, 120x80 ARGB: 6 SVG probes and 3 Lottie frame-5 probes match predeclared values (gradient within tolerance 3); Lottie loader present, totalFrame 10; reruns byte-identical; hashes match expected/hashes.json; contact sheet inspected.",
+        "example": "examples/thorvg-svg-raster",
+        "scope": "Inline SVG (fills, one gradient) and one Lottie frame rasterised by ThorVG software canvas via C++ at 120x80; probed pixels and reruns; macOS arm64, CPU, no text/GPU/conformance claim."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-12-discovery.md",
   "summary": "C++ vector renderer for SVG and Lottie",
   "license": "MIT",
@@ -50,6 +63,6 @@
   },
   "install": {
     "macos": "brew install thorvg",
-    "check_command": "pkg-config --modversion thorvg"
+    "check_command": "pkg-config --modversion thorvg-1"
   }
 }
