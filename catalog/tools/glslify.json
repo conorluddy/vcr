@@ -31,9 +31,11 @@
     "macos": "pnpm add -D glslify",
     "check_command": "pnpm exec glslify --version"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
-  "examples": ["glslify-bundle"],
+  "examples": [
+    "glslify-bundle"
+  ],
   "validation": {
     "status": "validated",
     "evidence": [
@@ -65,6 +67,8 @@
   },
   "source": "specifications/vcr-prd.md#appendix-a",
   "notes": [
-    "2026-10-29: Skill opportunity: Further research first: test a shader-module build in a real scene before proposing a standalone shader tooling skill."
-  ]
+    "2026-10-29: Skill opportunity: Further research first: test a shader-module build in a real scene before proposing a standalone shader tooling skill.",
+    "2026-11-24: Toolkit guide written at skills/glslify/SKILL.md from the glslify-bundle evidence; flags the untested negative-base pow() in glsl-easings cubic-in-out."
+  ],
+  "skill": "skills/glslify/SKILL.md"
 }
