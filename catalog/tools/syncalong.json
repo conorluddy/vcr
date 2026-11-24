@@ -21,7 +21,17 @@
   "installation_status": "unknown",
   "validation": {
     "status": "not-validated",
-    "evidence": []
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "2.0.1",
+        "command": "examples/syncalong-text-align/run.sh",
+        "result": "FAIL as predeclared: 8-line macOS say narration, syncalong[whisper] 2.0.1 with Whisper base and the default lyrics prompt; transcript looped (20 of 60 words), line starts up to 24.31 s off, reruns differ. Unrecorded diagnostic without the prompt: repeatable, lines 2-8 within 0.5 s, line 1 1.0 s early.",
+        "example": "examples/syncalong-text-align",
+        "scope": "Fixture-reported: default lyrics-prompt route fails on generated say narration (wrong, non-repeatable transcript, starts up to 24 s off); macOS arm64, Whisper base only."
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-11-24",
