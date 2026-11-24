@@ -71,7 +71,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `motion-canvas` ✓ — TypeScript generator-based 2D animation editor and renderer for explainers · timeline-animation, 2d-rendering, video-encoding · guide
 - `msdfgen` ✓ — Signed distance-field generation · sdf-generation, font-processing · guide
 - `music21` ✓ — Music analysis · audio · guide
-- `nerfstudio` — Reconstruction · 3d-asset-processing
+- `nerfstudio` ◐ — Reconstruction · 3d-asset-processing · guide
 - `ogl` ✓ — Tiny zero-dependency WebGL library with a Three.js-like API, about 29 KB · 3d-rendering, shaders · guide
 - `opencolorio` ✓ — Colour-management engine for ACES and config-driven transforms; library plus ocio* CLI utilities · colour-management · guide
 - `opencv-js` ✓ — OpenCV compiled to WASM: feature detection, filtering, tracking, analysis in browser or Node · computer-vision, image-processing · guide

@@ -1,0 +1,8 @@
+{
+  "id": "raea-render",
+  "title": "raea source build and headless hello.tsx render to MP4 and PNG stills",
+  "summary": "Pinned raea commit built from source with cmake 4.5.1; the manual's hello.tsx renders headlessly to 90-frame 1080x1920 H.264 and PNG stills. Probes, hashes, rerender and shuffled stills pass. Run 1 (no cmake) is in the README.",
+  "status": "validated",
+  "tools": ["raea", "ffmpeg-ffprobe"],
+  "run": "./run.sh"
+}

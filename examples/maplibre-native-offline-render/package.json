@@ -1,0 +1,15 @@
+{
+  "name": "@vcr/example-maplibre-native-offline-render",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "tsx render.ts"
+  },
+  "dependencies": {
+    "@maplibre/maplibre-gl-native": "6.4.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}

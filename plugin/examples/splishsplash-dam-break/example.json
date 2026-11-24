@@ -1,0 +1,10 @@
+{
+  "id": "splishsplash-dam-break",
+  "title": "SPlisHSPlasH 2D dam break via Python bindings, fresh-process seeks",
+  "summary": "Predeclared 266-particle dam break in a box, fixed 0.002 s step, headless: count conserved, inside box, centre of mass drops. Reruns and seeks are not bit-identical at default threads. Partial; no expected/.",
+  "status": "not-validated",
+  "tools": [
+    "splishsplash"
+  ],
+  "run": "./run.sh"
+}

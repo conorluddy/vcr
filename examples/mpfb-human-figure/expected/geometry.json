@@ -1,0 +1,60 @@
+{
+  "addon_module": "bl_ext.user_default.mpfb",
+  "blender_version": "4.4.0",
+  "measurements_by_height_macro": {
+    "0.0": {
+      "bounding_box_height_m": 1.299869,
+      "bounding_box_max_m": [
+        0.441245,
+        0.084231,
+        1.299869
+      ],
+      "bounding_box_min_m": [
+        -0.441245,
+        -0.267244,
+        0.0
+      ],
+      "coordinate_sha256": "277562038765c4032d81bf6171fa5505cf5c2f9b7baaa3ca0b05d56b5b53cfc9",
+      "face_count": 13378,
+      "vertex_count": 13380
+    },
+    "0.5": {
+      "bounding_box_height_m": 1.659431,
+      "bounding_box_max_m": [
+        0.525525,
+        0.095501,
+        1.659431
+      ],
+      "bounding_box_min_m": [
+        -0.525525,
+        -0.334472,
+        0.0
+      ],
+      "coordinate_sha256": "3971fd513bd0004d62427c52c3af6996bf35ea0206e5a7c2e2e32569962d2daf",
+      "face_count": 13378,
+      "vertex_count": 13380
+    },
+    "1.0": {
+      "bounding_box_height_m": 2.367775,
+      "bounding_box_max_m": [
+        0.736911,
+        0.123137,
+        2.367775
+      ],
+      "bounding_box_min_m": [
+        -0.736911,
+        -0.481766,
+        -0.0
+      ],
+      "coordinate_sha256": "46f5fb033be305affa23c05cdb5206f8c500c8544e030a1aa8cc992af41d0ea9",
+      "face_count": 13378,
+      "vertex_count": 13380
+    }
+  },
+  "mpfb_version": "2.0.18",
+  "render": {
+    "engine": "BLENDER_WORKBENCH",
+    "height_px": 720,
+    "width_px": 480
+  }
+}

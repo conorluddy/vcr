@@ -83,6 +83,7 @@
     "browser-capture",
     "svt-av1-encode",
     "vhs-tape-recording",
+    "nerfstudio-feasibility",
     "vmaf-ffmpeg-score",
     "node-av-decode-encode",
     "ab-av1-crf-search",
@@ -101,7 +102,8 @@
     "vapoursynth-script-frames",
     "rhubarb-lip-sync-cues",
     "revideo-headless-render",
-    "sonic-annotator-features"
+    "sonic-annotator-features",
+    "raea-render"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."

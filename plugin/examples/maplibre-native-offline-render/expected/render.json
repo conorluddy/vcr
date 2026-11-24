@@ -1,0 +1,274 @@
+{
+  "camera": {
+    "bearing": 0,
+    "center": [
+      5,
+      5
+    ],
+    "pitch": 0,
+    "zoom": 4
+  },
+  "renders": [
+    {
+      "alphaRange": {
+        "max": 255,
+        "min": 255
+      },
+      "bytes": 1048576,
+      "file": "map-ratio1.rgba",
+      "height": 512,
+      "pixelRatio": 1,
+      "probes": [
+        {
+          "actualRgba": [
+            255,
+            204,
+            0,
+            255
+          ],
+          "expectedRgb": [
+            255,
+            204,
+            0
+          ],
+          "name": "fill-centre",
+          "pass": true,
+          "x": 256,
+          "y": 256
+        },
+        {
+          "actualRgba": [
+            255,
+            204,
+            0,
+            255
+          ],
+          "expectedRgb": [
+            255,
+            204,
+            0
+          ],
+          "name": "fill-inside-left-edge",
+          "pass": true,
+          "x": 200,
+          "y": 256
+        },
+        {
+          "actualRgba": [
+            16,
+            32,
+            48,
+            255
+          ],
+          "expectedRgb": [
+            16,
+            32,
+            48
+          ],
+          "name": "background-outside-left-edge",
+          "pass": true,
+          "x": 170,
+          "y": 256
+        },
+        {
+          "actualRgba": [
+            16,
+            32,
+            48,
+            255
+          ],
+          "expectedRgb": [
+            16,
+            32,
+            48
+          ],
+          "name": "background-top-left-corner",
+          "pass": true,
+          "x": 16,
+          "y": 16
+        },
+        {
+          "actualRgba": [
+            16,
+            32,
+            48,
+            255
+          ],
+          "expectedRgb": [
+            16,
+            32,
+            48
+          ],
+          "name": "background-bottom-right-corner",
+          "pass": true,
+          "x": 496,
+          "y": 496
+        }
+      ],
+      "sha256": "d0a9c489dbfcae3e90556b61db7ddbd857046fb531290dae571ab442aa203b57",
+      "width": 512
+    },
+    {
+      "alphaRange": {
+        "max": 255,
+        "min": 255
+      },
+      "bytes": 4194304,
+      "file": "map-ratio2.rgba",
+      "height": 1024,
+      "pixelRatio": 2,
+      "probes": [
+        {
+          "actualRgba": [
+            255,
+            204,
+            0,
+            255
+          ],
+          "expectedRgb": [
+            255,
+            204,
+            0
+          ],
+          "name": "fill-centre",
+          "pass": true,
+          "x": 512,
+          "y": 512
+        },
+        {
+          "actualRgba": [
+            255,
+            204,
+            0,
+            255
+          ],
+          "expectedRgb": [
+            255,
+            204,
+            0
+          ],
+          "name": "fill-inside-left-edge",
+          "pass": true,
+          "x": 400,
+          "y": 512
+        },
+        {
+          "actualRgba": [
+            16,
+            32,
+            48,
+            255
+          ],
+          "expectedRgb": [
+            16,
+            32,
+            48
+          ],
+          "name": "background-outside-left-edge",
+          "pass": true,
+          "x": 340,
+          "y": 512
+        },
+        {
+          "actualRgba": [
+            16,
+            32,
+            48,
+            255
+          ],
+          "expectedRgb": [
+            16,
+            32,
+            48
+          ],
+          "name": "background-top-left-corner",
+          "pass": true,
+          "x": 32,
+          "y": 32
+        },
+        {
+          "actualRgba": [
+            16,
+            32,
+            48,
+            255
+          ],
+          "expectedRgb": [
+            16,
+            32,
+            48
+          ],
+          "name": "background-bottom-right-corner",
+          "pass": true,
+          "x": 992,
+          "y": 992
+        }
+      ],
+      "sha256": "c935f369abf98ea5f1738b1b09cfdbf9f3ea5c81b7fa0d22d4d5604db712ac8b",
+      "width": 1024
+    }
+  ],
+  "requestsAttempted": 0,
+  "style": {
+    "layers": [
+      {
+        "id": "paper",
+        "paint": {
+          "background-color": "#102030"
+        },
+        "type": "background"
+      },
+      {
+        "id": "fill",
+        "paint": {
+          "fill-color": "#ffcc00",
+          "fill-opacity": 1
+        },
+        "source": "area",
+        "type": "fill"
+      }
+    ],
+    "sources": {
+      "area": {
+        "data": {
+          "features": [
+            {
+              "geometry": {
+                "coordinates": [
+                  [
+                    [
+                      2,
+                      2
+                    ],
+                    [
+                      8,
+                      2
+                    ],
+                    [
+                      8,
+                      8
+                    ],
+                    [
+                      2,
+                      8
+                    ],
+                    [
+                      2,
+                      2
+                    ]
+                  ]
+                ],
+                "type": "Polygon"
+              },
+              "properties": {},
+              "type": "Feature"
+            }
+          ],
+          "type": "FeatureCollection"
+        },
+        "type": "geojson"
+      }
+    },
+    "version": 8
+  }
+}
