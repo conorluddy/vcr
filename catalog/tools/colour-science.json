@@ -12,22 +12,23 @@
   ],
   "notes": [
     "2026-11-15: Triage: assess; colour difference and transfer-function calculations may support measurable palette and delivery checks. Revisit after mapping its functions to a concrete VCR check and scope.",
-    "2026-11-15: Skill opportunity: further research first; define which colour checks VCR needs and how to interpret model outputs before writing a guide."
+    "2026-11-15: Skill opportunity: further research first; define which colour checks VCR needs and how to interpret model outputs before writing a guide.",
+    "2026-11-24: Toolkit guide written on partial evidence; states the default sRGB route uses separately rounded matrices so Lab/OKLab round trips drift up to about 3e-4 and white gives a*, b* near 7.7e-3."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "colour-science-conversions"
   ],
   "validation": {
-    "status": "not-validated",
+    "status": "partial",
     "evidence": [
       {
         "date": "2026-11-24",
         "hostname": "Conors-MacBook-Pro-2.local",
         "version": "colour-science 0.4.7 (numpy 2.5.5, Python 3.12.2)",
         "command": "examples/colour-science-conversions/run.sh",
-        "result": "Fail: 4 of 6 predeclared checks pass. CIEDE2000 on 8 Sharma pairs: max difference 4.1e-5 (gate 1e-4). BT.709 to BT.2020 linear: max 1.0e-6 from BT.2087 6-dp matrix (gate 1e-5). sRGB to Lab/OKLab round trip: max 3.0e-4 (gate 1e-6); white Lab a*, b* 7.7e-3 (gate 1e-6). Repeat run byte-identical.",
+        "result": "Partial: 4 of 6 predeclared checks pass. CIEDE2000 on 8 Sharma pairs: max difference 4.1e-5 (gate 1e-4). BT.709 to BT.2020 linear: max 1.0e-6 from BT.2087 6-dp matrix (gate 1e-5). sRGB to Lab/OKLab round trip: max 3.0e-4 (gate 1e-6); white Lab a*, b* 7.7e-3 (gate 1e-6). Repeat run byte-identical. Relabelled partial at integration: 4 of 6 predeclared checks pass; both failures share one cause (rounded sRGB matrices).",
         "example": "examples/colour-science-conversions",
         "scope": "Python venv, Lab/OKLab sRGB round trip fails at 3e-4; CIEDE2000 and BT.709 to BT.2020 pass; no SciPy or Matplotlib; macOS arm64"
       }
@@ -64,5 +65,6 @@
       "https://github.com/colour-science/colour/releases",
       "https://pypi.org/project/colour-science/"
     ]
-  }
+  },
+  "skill": "skills/colour-science/SKILL.md"
 }
