@@ -13,9 +13,10 @@
     "2026-11-01: hb-shape, hb-view and hb-subset for shaping checks and shaped-text stills.",
     "2026-11-01: Licence as reported by the source research, not yet verified: Old MIT (unverified).",
     "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-    "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+    "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+    "2026-11-24: Toolkit guide skills/harfbuzz written from examples/harfbuzz-shape-text evidence (hb-shape JSON, hb-view SVG; ligatures only)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -65,5 +66,6 @@
     "sources": [
       "https://github.com/harfbuzz/harfbuzz"
     ]
-  }
+  },
+  "skill": "skills/harfbuzz/SKILL.md"
 }
