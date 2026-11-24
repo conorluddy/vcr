@@ -1,0 +1,9 @@
+{
+  "name": "@vcr/example-gltfjsx-r3f-component",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "gltfjsx": "6.5.3"
+  }
+}
