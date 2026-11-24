@@ -1,0 +1,17 @@
+{
+  "id": "ab-av1-crf-search",
+  "title": "ab-av1 crf-search finds a CRF meeting a VMAF target on a generated clip",
+  "summary": "testsrc2 640x360 2 s; crf-search --min-vmaf 95 at preset 10, repeated 3x; encode at the CRF and score with FFmpeg libvmaf against a 94.0 bound.",
+  "status": "validated",
+  "tools": [
+    "ab-av1",
+    "ffmpeg-ffprobe",
+    "vmaf",
+    "svt-av1"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

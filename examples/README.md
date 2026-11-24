@@ -72,7 +72,6 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `freeze-code-still` | freeze | fixed Go file to SVG and PNG, Dracula, window chrome off/on, line numbers, embedded JetBrains Mono; repeat byte-identical (2026-11-24) |
 | `typst-title-card` | typst | Data-driven title card from .typ plus json() to SVG and PNG at 144 ppi with one pinned font; size, alpha, query and reruns pass, SVG glyphs are outlines so value is not text (partial, 2026-11-24) |
 | `vhs-tape-recording` | vhs | partial: headless tape to MP4 h264 640x360 and a stable text golden; PNG frames cropped to 494x208 and frame counts vary run to run (2026-11-24) |
-| `heerich-voxel-svg` | heerich | 3x3x3 voxel cube minus one corner rendered to oblique SVG in Node, 27 polygons, reruns byte-identical (2026-11-24) |
 | `baguette-simulator-capture` | baguette, ffmpeg-ffprobe, imagemagick | one iPhone 17 Pro iOS 26.5 sim booted by UDID: 1206x2622 PNG and 3 s H.264 recording within tolerance, non-blank frames, shutdown; no pixel hashes (2026-11-24) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.

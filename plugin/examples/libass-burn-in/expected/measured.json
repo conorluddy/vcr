@@ -1,0 +1,612 @@
+[
+  {
+    "tMs": 0,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 100,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 200,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 300,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 400,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 500,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 600,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 700,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 800,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 900,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 1000,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 1100,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 1200,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 1300,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 1400,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 1500,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 1600,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 1700,
+    "imageCount": 1,
+    "changedPixels": 866,
+    "changedBox": [
+      41,
+      66,
+      154,
+      84
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 441
+  },
+  {
+    "tMs": 1800,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 1900,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 2000,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 2100,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 2200,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 2300,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 2400,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 2500,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 2600,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 2700,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 2800,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 2900,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 3000,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 3100,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 3200,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 3300,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 3400,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 3500,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 3600,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 3700,
+    "imageCount": 1,
+    "changedPixels": 1556,
+    "changedBox": [
+      427,
+      294,
+      598,
+      312
+    ],
+    "coverageMin": 0,
+    "coverageMax": 255,
+    "partialCoveragePixels": 797
+  },
+  {
+    "tMs": 3800,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 3900,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 4000,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 4100,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 4200,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 4300,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 4400,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 4500,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 4600,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 4700,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 4800,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  },
+  {
+    "tMs": 4900,
+    "imageCount": 0,
+    "changedPixels": 0,
+    "changedBox": null,
+    "coverageMin": 0,
+    "coverageMax": 0,
+    "partialCoveragePixels": 0
+  }
+]
