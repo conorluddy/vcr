@@ -17,11 +17,21 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "2.5.1",
+        "command": "examples/drawsvg-frames/run.sh",
+        "result": "5 frames 480x270 RGBA; 12/12 gating checks pass on the verify run: SVG attributes per frame, 4 colour probes and transparent corner per frame, caption ink 529-562 px per frame (0 without the bundled font); 5 distinct PNG and SVG hashes; rerun and shuffled-order SVG byte-identical; shuffled PNG hashes equal sequential; t=1.0 alpha 0..255. Python 3.12.2, drawsvg 2.5.1, resvg 0.47.0, macOS 26.6 arm64.",
+        "example": "examples/drawsvg-frames",
+        "scope": "Python SVG frames at 5 predeclared t via resvg: element attrs, pixel probes, distinct frames, byte-identical regen and shuffled order; no SMIL or animation API; macOS arm64"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-14-discovery.md",
   "summary": "Python library builds SVG drawings and frame-based or SVG-native animations from code, with Jupyter display support. The vector-first output stays editable and can be rasterised separately; optional raster and video export paths add dependencies.",
   "use_when": [
@@ -50,5 +60,8 @@
       "https://tangled.org/cduck.me/drawsvg",
       "https://pypi.org/project/drawsvg/"
     ]
-  }
+  },
+  "examples": [
+    "drawsvg-frames"
+  ]
 }
