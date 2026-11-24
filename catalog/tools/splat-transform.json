@@ -36,9 +36,12 @@
   ],
   "license": "MIT (per official PlayCanvas open-source listing)",
   "install": {
-    "macos": "npm install -g @playcanvas/splat-transform",
-    "check_command": "splat-transform --help"
+    "macos": "in examples/splat-transform-convert: pnpm add @playcanvas/splat-transform@3.12.0 (project-local exact pin; no global install)",
+    "check_command": "node_modules/.bin/splat-transform --help"
   },
+  "examples": [
+    "splat-transform-convert"
+  ],
   "assessment": {
     "date": "2026-11-15",
     "assessed_by": "assessment_batch_a",
