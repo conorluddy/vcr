@@ -12,9 +12,10 @@
   ],
   "notes": [
     "2026-11-01: Dependency-free Vega and Vega-Lite rendering to SVG, PNG and PDF from Python or CLI.",
-    "2026-11-15: 2.0.0-rc7 is a prerelease; stable release is 1.9.0. v2 API and behavior may change before stable release."
+    "2026-11-15: 2.0.0-rc7 is a prerelease; stable release is 1.9.0. v2 API and behavior may change before stable release.",
+    "2026-11-24: Toolkit guide written from the vl-convert-chart evidence (Python API, SVG and PNG only); fonts and nominal sort order noted as untested fixes."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "vl-convert-chart"
@@ -67,5 +68,6 @@
       "https://github.com/vega/vl-convert/releases",
       "https://github.com/vega/vl-convert/blob/main/README.md"
     ]
-  }
+  },
+  "skill": "skills/vl-convert/SKILL.md"
 }
