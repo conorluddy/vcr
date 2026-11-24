@@ -60,6 +60,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `anime-diagram-build` | anime-js, playwright, imagemagick | paused v4 timeline: connectors draw before each node appears, earlier nodes recede, then an accent traces nodes 1-4 and holds; probe checks in both seek orders, shuffled equals sequential (2026-11-20) |
 | `node-av-decode-encode` | node-av, ffmpeg-ffprobe | node-av 7.1.0 decodes a 24-frame 320x240 H.264 MP4 frame by frame and re-encodes with libx264; ffprobe fields match, round-trip decode matches (2026-11-24) |
 | `thorvg-svg-raster` | thorvg | C++ SwCanvas renders inline SVG and one Lottie frame at 120x80; probed pixels match, reruns byte-identical (2026-11-24) |
+| `libass-burn-in` | libass | C program renders a two-event ASS track with a bundled OFL font over a solid 640x360 background; events land in their regions, gaps empty, alpha coverage, shuffled equals sequential, reruns byte-identical (2026-11-24) |
 | `fogleman-sdf-mesh` | fogleman-sdf | classic CSG to binary STL: 291028 triangles, bounds +-0.75, watertight, byte-identical rerun (2026-11-24) |
 | `gifsicle-optimise` | gifsicle, ffmpeg, imagemagick | 6-frame ffmpeg GIF: -O3 keeps frames, delays, loop and RGBA pixels, smaller; --colors=16 table <= 16 (2026-11-24) |
 

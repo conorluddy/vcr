@@ -1,0 +1,15 @@
+[Script Info]
+; Hand-written fixture: two timed events at different positions, one style, JetBrains Mono (OFL) from fonts/.
+ScriptType: v4.00+
+PlayResX: 640
+PlayResY: 360
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Main,JetBrains Mono,32,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,0,0,7,0,0,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.20,0:00:01.80,Main,,0,0,0,,{\an7\pos(40,60)}TOP LEFT
+Dialogue: 0,0:00:02.20,0:00:03.80,Main,,0,0,0,,{\an3\pos(600,320)}BOTTOM RIGHT
