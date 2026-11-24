@@ -1,0 +1,7 @@
+# Installed into output/venv (Python 3.12) with uv. Torch CPU wheels from the PyTorch index.
+# numpy is pinned here because demucs 4.1.0 imports it on arm64 but does not declare it there.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.15.0
+torchaudio==2.11.1
+demucs==4.1.0
+numpy==2.5.5

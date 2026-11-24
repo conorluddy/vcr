@@ -75,6 +75,7 @@
   },
   "skill": "skills/ffmpeg/SKILL.md",
   "examples": [
+    "demucs-stem-separation",
     "native-svg",
     "ffmpeg-assembly",
     "gstreamer-pipeline-encode",
