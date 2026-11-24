@@ -1,0 +1,25 @@
+{
+  "all_passed": false,
+  "checks": {
+    "highpass_attenuates_low_tone": true,
+    "highpass_passes_high_tone": true,
+    "length_rate_and_channels_unchanged": true,
+    "limiter_peak_at_or_below_threshold": false,
+    "repeat_processing_identical": true,
+    "wav_round_trip_within_tolerance": true
+  },
+  "measurements": {
+    "high_tone_deviation_db": -0.158967,
+    "loud_peak_dbfs": 0.0,
+    "low_tone_attenuation_db": 14.161188,
+    "output_frames": 96000,
+    "output_sample_rate_hz": 48000,
+    "output_sha256": "cf486b26d5f250aaf28f374eed420334a5f7e10f26e36ec872c046f923df7f6f",
+    "roundtrip_max_abs_diff": 4.4e-05
+  },
+  "signal": {
+    "frames": 96000,
+    "noise_seed": 20261124,
+    "sample_rate_hz": 48000
+  }
+}
