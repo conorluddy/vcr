@@ -1,0 +1,9 @@
+{
+  "id": "dawn-node-webgpu-readback",
+  "title": "webgpu (Dawn) in Node: full-screen-triangle WGSL shader rendered to rgba8unorm and read back",
+  "summary": "webgpu 0.6.2 acquires a Metal adapter in Node on macOS arm64, renders three frames of a WGSL shader into a 64x64 offscreen texture, and reads every pixel back within 1 LSB of an analytic reference; shuffled equals sequential and reruns are byte-identical.",
+  "status": "validated",
+  "tools": ["dawn-node-webgpu"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" }
+}
