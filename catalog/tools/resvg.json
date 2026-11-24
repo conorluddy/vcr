@@ -35,7 +35,8 @@
   },
   "skill": "skills/resvg/SKILL.md",
   "examples": [
-    "native-svg"
+    "native-svg",
+    "drawsvg-frames"
   ],
   "notes": [
     "2026-10-26: Homebrew offers 0.49.0 while validation evidence is for 0.47.0; revalidate on upgrade."
