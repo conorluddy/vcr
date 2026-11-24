@@ -12,6 +12,7 @@ A guide is tier 2 of the catalogue tree: how to operate one tool once it has bee
 ## 1. Check it is justified
 
 - `vcr tools info <id>`: the record needs at least one evidence entry whose `example` exists under `examples/`. No evidence means no guide; run the `evidence` skill first.
+- Exception: an **unproven guide** may be written, when a person asks, for a tool that VCR could not test (blocked install, paid or GUI-only, demoted, manual-only, or a failed fixture). Its `description` starts with `Unproven in VCR:`, every recipe is marked as documentation-only, a failed fixture's findings are quoted with its example path, and the record keeps `documentation_status: listed-in-prd` so evidence work still finds it.
 - If `skill` is already set, revise that file instead of creating another.
 
 ## 2. Gather only what is proven
