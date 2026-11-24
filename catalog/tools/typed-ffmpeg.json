@@ -12,9 +12,10 @@
   ],
   "notes": [
     "2026-11-15: Assess because typed filtergraph construction could reduce hand-written FFmpeg command errors. Revisit after checking TypeScript package maturity and official supported-filter coverage.",
-    "2026-11-15: Assessment uncertainty: release recency and complete TypeScript supported-filter/version coverage were not established; TypeScript route is documented as experimental."
+    "2026-11-15: Assessment uncertainty: release recency and complete TypeScript supported-filter/version coverage were not established; TypeScript route is documented as experimental.",
+    "2026-11-24: Guide written from examples/typed-ffmpeg-graph (build-time check covers stream kind only; option values unchecked). Not yet reviewed for promotion."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -65,5 +66,6 @@
     "sources": [
       "https://github.com/lucemia/typed-ffmpeg"
     ]
-  }
+  },
+  "skill": "skills/typed-ffmpeg/SKILL.md"
 }
