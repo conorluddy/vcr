@@ -1,0 +1,47 @@
+{
+  "allGatingChecksPass": true,
+  "checks": {
+    "bundledFontHashMatches": true,
+    "captionUsesBundledFont": true,
+    "frameCountIsFive": true,
+    "framesAreDistinctPng": true,
+    "framesAreDistinctSvg": true,
+    "middleFrameAlphaRange": true,
+    "pixelProbesMatchPredeclaredValues": true,
+    "pngDimensionsAre480x270Rgba8": true,
+    "regenerationIsByteIdentical": true,
+    "shuffledOrderPngEqualsSequential": true,
+    "shuffledOrderSvgEqualsSequential": true,
+    "svgStructureMatchesPredeclaredElements": true
+  },
+  "measurements": {
+    "captionOpaquePixelCounts": [
+      562,
+      535,
+      529,
+      502,
+      539
+    ],
+    "distinctPngHashCount": 5,
+    "fontSha256": "a2349098b9e45419e7bf0e2958d6c4937a049dded37387b08be725be4c7615f3",
+    "middleFrameAlpha": {
+      "maximum": 255,
+      "minimum": 0,
+      "partialCount": 773
+    },
+    "pngSha256": {
+      "frame-0000.png": "ad8e04503fc6b836de5ef3fdb1cccbf768903eba304cf8ddb8ce6871f3f7031e",
+      "frame-0001.png": "df258527803477f626807af61af55141b7fe01b641309c856657b2f7476f893d",
+      "frame-0002.png": "3d3d7717e743abe70aebed411087e155d02be4856ccebef61a2534f4a41a377e",
+      "frame-0003.png": "bd0cbc5091b01dc55918ae849415814ccc62b2f7a5de14d6e72ed4f459aa0db7",
+      "frame-0004.png": "c50a37205467780ec055ebfaf6b1a7440a6870f0139b03e7ea214dbd5f14a0f4"
+    },
+    "svgSha256": {
+      "frame-0000.svg": "20d821caf982dd4817a75c628220587a845b6a43450242b1ba8471d273d121bb",
+      "frame-0001.svg": "fecab847c55568126a14be59015c6fc0d1ac15f257419a0afba53f357511f8fc",
+      "frame-0002.svg": "31b3c9e093a478190e9e4255d5e26ee755f56498928e396aa314bcae9da1bc28",
+      "frame-0003.svg": "5d3ec19f72deb8bdac6b8a7c88872929e432750667b8fbd3905c94ed3b508f62",
+      "frame-0004.svg": "8f2cb711d0c2f2d917ecbab52ae9ca2a44d7a4e4c570bc52c1d521f9fde96865"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "checks": {
+    "png_dimensions_match_scale": true,
+    "png_rerun_byte_identical": true,
+    "png_signature": true,
+    "spec_inline_data_only": true,
+    "spec_scale_domain_starts_at_zero": true,
+    "svg_bar_bottoms_aligned": true,
+    "svg_bar_heights_proportional": true,
+    "svg_bar_labels_match_data": true,
+    "svg_bar_mark_count_is_five": true,
+    "svg_rerun_byte_identical": true,
+    "svg_size_matches_spec": true,
+    "svg_title_text_present": true
+  },
+  "measurements": {
+    "bar_count": 5,
+    "bar_heights_px": [
+      38.08,
+      74.8,
+      58.48,
+      123.76,
+      95.2
+    ],
+    "bar_values": [
+      28.0,
+      55.0,
+      43.0,
+      91.0,
+      70.0
+    ],
+    "baseline_spread_px": 0.0,
+    "png_height_px": 400,
+    "png_sha256": "7dd276fe527764d3d26747488c93864b3ac672dbb371303af794a3503ee63364",
+    "png_width_px": 640,
+    "proportion_relative_deviation": 0.0,
+    "svg_sha256": "96f85d618f7ac1a998c7647d5fbda17a6499a2634e8aab4dbfffe19614de383e"
+  }
+}

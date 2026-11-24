@@ -1,0 +1,15 @@
+{
+  "id": "ffmpeg-normalize-loudness",
+  "title": "ffmpeg-normalize EBU R128 normalisation of generated sine bursts",
+  "summary": "Quiet and loud 440 Hz burst files normalised to -16 LUFS with a -1.5 dBTP ceiling; FFmpeg ebur128 checks target, ceiling, LRA, duration, 48 kHz and rerun identity.",
+  "status": "validated",
+  "tools": [
+    "ffmpeg-normalize",
+    "ffmpeg-ffprobe"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

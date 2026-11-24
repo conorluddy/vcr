@@ -1,0 +1,54 @@
+{
+  "checks": {
+    "duration_unchanged": true,
+    "input_contrast": true,
+    "input_loudness_range": true,
+    "linear_gain_preserves_lra": true,
+    "rerun_identical": true,
+    "sample_rate_unchanged": true,
+    "target_within_tolerance": true,
+    "true_peak_within_ceiling": true
+  },
+  "default_options_observed": {
+    "loud": {
+      "integrated_lufs": -16.1,
+      "sample_rate_hz": 48000
+    },
+    "quiet": {
+      "integrated_lufs": -16.1,
+      "sample_rate_hz": 48000
+    }
+  },
+  "inputs": {
+    "loud": {
+      "duration_s": 10.000,
+      "integrated_lufs": -10.7,
+      "loudness_range_lu": 1.8
+    },
+    "quiet": {
+      "duration_s": 10.000,
+      "integrated_lufs": -29.1,
+      "loudness_range_lu": 1.8
+    }
+  },
+  "outputs": {
+    "loud": {
+      "duration_s": 10.000,
+      "integrated_lufs": -16.1,
+      "loudness_range_lu": 1.8,
+      "pcm_md5": "e3e32a1bd07b8ac3531c5aaa319d2696",
+      "sample_rate_hz": 48000,
+      "true_peak_dbtp": -11.4
+    },
+    "quiet": {
+      "duration_s": 10.000,
+      "integrated_lufs": -16.1,
+      "loudness_range_lu": 1.8,
+      "pcm_md5": "53e46407a04b88b607eff7d8c10b0592",
+      "sample_rate_hz": 48000,
+      "true_peak_dbtp": -11.4
+    }
+  },
+  "target_lufs": -16.0,
+  "true_peak_ceiling_dbtp": -1.5
+}

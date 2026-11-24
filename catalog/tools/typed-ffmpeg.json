@@ -12,16 +12,30 @@
   ],
   "notes": [
     "2026-11-15: Assess because typed filtergraph construction could reduce hand-written FFmpeg command errors. Revisit after checking TypeScript package maturity and official supported-filter coverage.",
-    "2026-11-15: Assessment uncertainty: release recency and complete TypeScript supported-filter/version coverage were not established; TypeScript route is documented as experimental."
+    "2026-11-15: Assessment uncertainty: release recency and complete TypeScript supported-filter/version coverage were not established; TypeScript route is documented as experimental.",
+    "2026-11-24: Guide written from examples/typed-ffmpeg-graph (build-time check covers stream kind only; option values unchecked). Not yet reviewed for promotion."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.6.2",
+        "command": "examples/typed-ffmpeg-graph/run.sh",
+        "result": "Compiled command identical across two processes and equal to expected/command.json; render exit 0; ffprobe h264 yuv420p 320x180 24/1, 48 frames, 2.000000 s; 48 distinct frame hashes; audio-into-video overlay raised FFMpegTypeError at build. FFmpeg 9.0.2.",
+        "example": "examples/typed-ffmpeg-graph",
+        "scope": "Python graph of two lavfi sources, scale, overlay, drawbox to H.264 on FFmpeg 9.0.2, macOS arm64; stream-kind mismatch rejected; option values not checked by the library."
+      }
+    ]
   },
+  "examples": [
+    "typed-ffmpeg-graph"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-02-discovery.md",
   "summary": "Typed Python API and experimental TypeScript packages construct FFmpeg commands and filtergraphs with filter types, documentation and compile-to-argument output. The library helps author pipelines but does not include FFmpeg; execution still depends on a compatible system FFmpeg binary.",
   "use_when": [
@@ -52,5 +66,6 @@
     "sources": [
       "https://github.com/lucemia/typed-ffmpeg"
     ]
-  }
+  },
+  "skill": "skills/typed-ffmpeg/SKILL.md"
 }

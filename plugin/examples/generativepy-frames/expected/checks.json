@@ -1,0 +1,83 @@
+{
+  "checks": {
+    "analytic_probes_match": true,
+    "dimensions_are_320x240": true,
+    "frame_count_is_48": true,
+    "frames_differ_across_time": true,
+    "middle_frame_alpha_range_0_to_255": true,
+    "rerun_byte_identical": true,
+    "shuffled_equals_sequential": true
+  },
+  "measurements": {
+    "distinct_sequential_hashes": 48,
+    "frame_hashes_digest_sha256": "4408bd597363a19c1132b9dbc5e723f5516b8a9601a81fab7ac26ff57e7eb673",
+    "middle_frame_alpha": {
+      "max": 255,
+      "min": 0
+    },
+    "probes": [
+      {
+        "bgra_premultiplied": [
+          25,
+          204,
+          255,
+          255
+        ],
+        "frame": 0,
+        "label": "yellow_orbit_frame0",
+        "x": 240,
+        "y": 100
+      },
+      {
+        "bgra_premultiplied": [
+          25,
+          204,
+          255,
+          255
+        ],
+        "frame": 24,
+        "label": "yellow_orbit_frame24",
+        "x": 80,
+        "y": 100
+      },
+      {
+        "bgra_premultiplied": [
+          179,
+          51,
+          230,
+          255
+        ],
+        "frame": 12,
+        "label": "magenta_counter_orbit_frame12",
+        "x": 160,
+        "y": 50
+      },
+      {
+        "bgra_premultiplied": [
+          226,
+          114,
+          27,
+          253
+        ],
+        "frame": 0,
+        "label": "gradient_left_edge_frame0",
+        "x": 2,
+        "y": 208
+      },
+      {
+        "bgra_premultiplied": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "frame": 0,
+        "label": "gradient_right_edge_frame0",
+        "x": 318,
+        "y": 208
+      }
+    ],
+    "rerun_frame_hashes_digest_sha256": "4408bd597363a19c1132b9dbc5e723f5516b8a9601a81fab7ac26ff57e7eb673",
+    "stride_bytes": 1280
+  }
+}

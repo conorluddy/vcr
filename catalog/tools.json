@@ -1646,13 +1646,27 @@
       ],
       "notes": [
         "2026-11-15: Triage: assess; colour difference and transfer-function calculations may support measurable palette and delivery checks. Revisit after mapping its functions to a concrete VCR check and scope.",
-        "2026-11-15: Skill opportunity: further research first; define which colour checks VCR needs and how to interpret model outputs before writing a guide."
+        "2026-11-15: Skill opportunity: further research first; define which colour checks VCR needs and how to interpret model outputs before writing a guide.",
+        "2026-11-24: Toolkit guide written on partial evidence; states the default sRGB route uses separately rounded matrices so Lab/OKLab round trips drift up to about 3e-4 and white gives a*, b* near 7.7e-3."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "colour-science-conversions"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "colour-science 0.4.7 (numpy 2.5.5, Python 3.12.2)",
+            "command": "examples/colour-science-conversions/run.sh",
+            "result": "Partial: 4 of 6 predeclared checks pass. CIEDE2000 on 8 Sharma pairs: max difference 4.1e-5 (gate 1e-4). BT.709 to BT.2020 linear: max 1.0e-6 from BT.2087 6-dp matrix (gate 1e-5). sRGB to Lab/OKLab round trip: max 3.0e-4 (gate 1e-6); white Lab a*, b* 7.7e-3 (gate 1e-6). Repeat run byte-identical. Relabelled partial at integration: 4 of 6 predeclared checks pass; both failures share one cause (rounded sRGB matrices).",
+            "example": "examples/colour-science-conversions",
+            "scope": "Python venv, Lab/OKLab sRGB round trip fails at 3e-4; CIEDE2000 and BT.709 to BT.2020 pass; no SciPy or Matplotlib; macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
       "checked_at": "2026-11-15",
@@ -1685,7 +1699,8 @@
           "https://github.com/colour-science/colour/releases",
           "https://pypi.org/project/colour-science/"
         ]
-      }
+      },
+      "skill": "skills/colour-science/SKILL.md"
     },
     {
       "id": "comfyui",
@@ -2390,16 +2405,27 @@
       ],
       "notes": [
         "2026-11-15: Triage: assess; Python-authored SVG frames provide a distinct language route to existing vector renderers. Revisit after checking seekable animation and resvg compatibility in a fixture.",
-        "2026-11-15: Skill opportunity: existing VCR SVG guidance covers the vector workflow; revisit a drawsvg-specific guide only if a repeated Python animation route needs operating details."
+        "2026-11-15: Skill opportunity: existing VCR SVG guidance covers the vector workflow; revisit a drawsvg-specific guide only if a repeated Python animation route needs operating details.",
+        "2026-11-24: Guide written at skills/drawsvg/SKILL.md from examples/drawsvg-frames evidence; licence reconfirmed (blank PyPI field, MIT classifier and bundled LICENSE.txt in 2.5.1)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.5.1",
+            "command": "examples/drawsvg-frames/run.sh",
+            "result": "5 frames 480x270 RGBA; 12/12 gating checks pass on the verify run: SVG attributes per frame, 4 colour probes and transparent corner per frame, caption ink 529-562 px per frame (0 without the bundled font); 5 distinct PNG and SVG hashes; rerun and shuffled-order SVG byte-identical; shuffled PNG hashes equal sequential; t=1.0 alpha 0..255. Python 3.12.2, drawsvg 2.5.1, resvg 0.47.0, macOS 26.6 arm64.",
+            "example": "examples/drawsvg-frames",
+            "scope": "Python SVG frames at 5 predeclared t via resvg: element attrs, pixel probes, distinct frames, byte-identical regen and shuffled order; no SMIL or animation API; macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-14-discovery.md",
       "summary": "Python library builds SVG drawings and frame-based or SVG-native animations from code, with Jupyter display support. The vector-first output stays editable and can be rasterised separately; optional raster and video export paths add dependencies.",
       "use_when": [
@@ -2428,7 +2454,11 @@
           "https://tangled.org/cduck.me/drawsvg",
           "https://pypi.org/project/drawsvg/"
         ]
-      }
+      },
+      "skill": "skills/drawsvg/SKILL.md",
+      "examples": [
+        "drawsvg-frames"
+      ]
     },
     {
       "id": "drei",
@@ -2516,16 +2546,32 @@
       "notes": [
         "2026-11-01: Rust CLI scoring multi-scale SSIM dissimilarity with an optional difference map; tolerance gating for stills.",
         "2026-11-01: Run as an external CLI only; never link into shipped code.",
-        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+        "2026-11-24: Install corrected. PyPI dssim 1.3.0 is a discrete-event simulation framework (majvan), not this tool; the assessment's version_seen '1.3.0 (PyPI)' refers to that package. Install is Homebrew dssim (kornel.ski, 3.4.0).",
+        "2026-11-24: Guide written at skills/dssim/SKILL.md from examples/dssim-still-compare; documentation_status skill-written."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.4.0",
+            "command": "examples/dssim-still-compare/run.sh",
+            "result": "Generated 256x256 opaque RGB PNG: self-score 0.00000000; JPEG q90, q50, q10 round trips 0.00087072, 0.02181509, 0.05846345 (same in reversed order); scale-0 difference maps 256x256, non-blank, mean 0.087, 0.342, 0.624; repeat run byte-identical; contact sheet inspected.",
+            "example": "examples/dssim-still-compare",
+            "scope": "Scores a generated opaque PNG against itself and its JPEG q90/q50/q10 versions, rerun-identical, with scale-0 maps; dssim 3.4.0, macOS arm64. Not alpha, thresholds or other versions."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "skill": "skills/dssim/SKILL.md",
+      "examples": [
+        "dssim-still-compare"
+      ],
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "A command-line perceptual image comparison utility that computes multi-scale SSIM dissimilarity and can emit a difference map. Useful for tolerance-based still-image comparisons; its AGPL licensing and commercial licensing option need review for deployment.",
       "use_when": [
@@ -2542,8 +2588,8 @@
       ],
       "license": "AGPL-3.0",
       "install": {
-        "macos": "python3 -m pip install dssim",
-        "check_command": "dssim --version"
+        "macos": "brew install dssim",
+        "check_command": "dssim --help"
       },
       "assessment": {
         "date": "2026-11-15",
@@ -3103,7 +3149,9 @@
         "dovi-tool-metadata-roundtrip",
         "exiv2-metadata-roundtrip",
         "gifsicle-optimise",
-        "baguette-simulator-capture"
+        "baguette-simulator-capture",
+        "typed-ffmpeg-graph",
+        "ffmpeg-normalize-loudness"
       ],
       "notes": [
         "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
@@ -3150,16 +3198,31 @@
       ],
       "notes": [
         "2026-11-01: EBU R128 two-pass loudness normalisation CLI with presets and batch mode.",
-        "2026-11-15: Release page identifies 1.43.0 (2026-10-14) as latest; current repository pyproject reports 1.44.0. Release tag/date for 1.44.0 not confirmed."
+        "2026-11-15: Release page identifies 1.43.0 (2026-10-14) as latest; current repository pyproject reports 1.44.0. Release tag/date for 1.44.0 not confirmed.",
+        "2026-11-24: Toolkit guide written from ffmpeg-normalize-loudness evidence (linear two-pass, sine bursts only); documents the silent loudnorm dynamic fallback and explicit -ar."
       ],
-      "documentation_status": "listed-in-prd",
+      "skill": "skills/ffmpeg-normalize/SKILL.md",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "ffmpeg-normalize-loudness"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.45.3",
+            "command": "examples/ffmpeg-normalize-loudness/run.sh",
+            "result": "Two generated 10 s 48 kHz stereo sine-burst WAVs (input -29.1 and -10.7 LUFS, LRA 1.8 LU each) normalised with -nt ebu -t -16 -tp -1.5 -ar 48000: outputs -16.1 LUFS each (tolerance 0.5 LU), true peak -11.4 dBTP each (ceiling -1.5), LRA unchanged, duration 10.000 s, 48000 Hz, rerun PCM MD5 identical. Default options also gave 48000 Hz. Linear gain used (no loudnorm revert). FFmpeg 9.0.2 ebur128 measurement.",
+            "example": "examples/ffmpeg-normalize-loudness",
+            "scope": "EBU R128 linear normalisation to -16 LUFS, -1.5 dBTP; sine bursts only, ceiling never binding; 48 kHz kept; macOS arm64, FFmpeg 9.0.2"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Python CLI and API built on FFmpeg for batch EBU R128, RMS or peak loudness normalisation. It can preserve video streams and selectively process audio tracks; output is re-encoded media with configurable codecs and metadata. Its distinguishing strength is album-style batch normalisation that preserves relative levels.",
       "use_when": [
@@ -3406,16 +3469,27 @@
         "2026-11-01: Licence as reported by the source research, not yet verified: MIT.",
         "2026-11-01: Anchors font fixtures for reproducible text.",
         "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-01: Triage: assess. Report rates it a strong candidate.",
+        "2026-11-24: Toolkit guide skills/fonttools written from examples/fonttools-subset-instance evidence (pyftsubset TTF and WOFF2 subset; varLib.instancer untested)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.68.0",
+            "command": "examples/fonttools-subset-instance/run.sh",
+            "result": "pyftsubset 4.68.0 + brotli 1.2.1, JetBrains Mono Bold (114828 B, 976 cmap, 1168 glyphs) to 'Type & Motion 2026' (14 codepoints): TTF 3772 B, 21 glyphs, cmap equals the 14 codepoints, 81 dropped ASCII codepoints absent; WOFF2 1712 B, magic wOF2, cmap equal to TTF; all nine gating checks true; two TTF and two WOFF2 runs byte-identical; record and verify runs gave identical checks.json; variable instancing not exercised. Specimen shows subset title matches source, missing letters blank.",
+            "example": "examples/fonttools-subset-instance",
+            "scope": "pyftsubset to a 14-codepoint title subset as TTF and WOFF2: cmap exact, ASCII drops absent, size drops, repeat byte-identical; no varLib.instancer (no variable font in repo); macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Python library and CLI utilities for reading, building, subsetting, and instancing OpenType fonts; pyftsubset can make reproducible subsets and varLib can instantiate variable fonts.",
       "use_when": [
@@ -3445,7 +3519,11 @@
         "sources": [
           "https://github.com/fonttools/fonttools"
         ]
-      }
+      },
+      "examples": [
+        "fonttools-subset-instance"
+      ],
+      "skill": "skills/fonttools/SKILL.md"
     },
     {
       "id": "frames-cli",
@@ -3737,16 +3815,27 @@
       ],
       "notes": [
         "2026-11-15: Triage: assess; plain Python frame generation for mathematical graphics differs from scene-oriented animation tools. Revisit if repeated VCR work establishes a need and Cairo/font dependencies are understood.",
-        "2026-11-15: Skill opportunity: further research first; compare a small Python frame-sequence fixture with existing code-first tools before proposing a guide."
+        "2026-11-15: Skill opportunity: further research first; compare a small Python frame-sequence fixture with existing code-first tools before proposing a guide.",
+        "2026-11-24: Guide written at skills/generativepy/SKILL.md from the generativepy-frames evidence (shapes and one gradient, PNG frames only)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "50.0",
+            "command": "examples/generativepy-frames/run.sh",
+            "result": "make_images and out-of-order make_image, 48 frames 320x240 RGBA: 48 distinct hashes, 5 probes match, shuffled equals sequential, rerun byte-identical (digest 4408bd59), middle-frame alpha 0 to 255; Python 3.12.2, pycairo 1.29.2, Cairo 1.18.6, macOS arm64",
+            "example": "examples/generativepy-frames",
+            "scope": "Shapes and one gradient, 48 PNG frames 320x240 via pycairo ARGB32; probes, shuffled and rerun byte-identical; no movie, SVG or text; macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-15-discovery.md",
       "summary": "Python library authors procedural 2D graphics, function plots and frame sequences, with GIF and movie-building routes. Its Python frame model is approachable for data-driven graphics, while movie output depends on additional libraries and it overlaps with other code-first creative tools.",
       "use_when": [
@@ -3776,7 +3865,11 @@
           "https://github.com/martinmcbride/generativepy",
           "https://pypi.org/project/generativepy/"
         ]
-      }
+      },
+      "examples": [
+        "generativepy-frames"
+      ],
+      "skill": "skills/generativepy/SKILL.md"
     },
     {
       "id": "gifsicle",
@@ -4937,6 +5030,7 @@
       },
       "skill": "skills/imagemagick/SKILL.md",
       "examples": [
+        "dssim-still-compare",
         "gl-transitions-seek",
         "ffmpeg-assembly",
         "libwebp-lossless-animation",
@@ -9425,16 +9519,30 @@
       ],
       "notes": [
         "2026-11-15: Triage: assess; manual fixed-step Python simulation offers a distinct bake route beside the JavaScript physics tools. Revisit after an owned fixture checks state serialization and repeatability.",
-        "2026-11-15: Skill opportunity: no standalone skill yet; consider a VCR toolkit guide only if a reproducible fixed-step simulation fixture is adopted."
+        "2026-11-15: Skill opportunity: no standalone skill yet; consider a VCR toolkit guide only if a reproducible fixed-step simulation fixture is adopted.",
+        "2026-11-24: Toolkit guide written at skills/pymunk/SKILL.md from examples/pymunk-fixed-step evidence (same-machine fixed-step reruns and fresh-process seek only)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "7.3.1",
+            "command": "examples/pymunk-fixed-step/run.sh",
+            "result": "Predeclared scene (static floor, 3 boxes, 2 circles, ball) stepped at 1/60 s for 900 steps, Chipmunk 2.0.1, Python 3.12.2, cffi 2.1.1: two separate runs identical as parsed JSON; 9 of 9 fresh-process re-simulations from step 0, in shuffled order, match the continuous trace hash; 901 distinct hashes; ball rests at (-250.0, 11.9) px with speed 0.0 px/s, inside the predeclared region. Negative check: a 1e-6 px perturbation fails the rerun gate. Agent-reviewed contact sheet shows fall and settle.",
+            "example": "examples/pymunk-fixed-step",
+            "scope": "Fixed-step 2D rigid bodies, JSON state and hashes, same-machine reruns and fresh-process re-simulation; no collision callbacks, sleep or serialisation; no render; macOS arm64 only."
+          }
+        ]
       },
+      "examples": [
+        "pymunk-fixed-step"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-14-discovery.md",
       "summary": "Python binding to the Chipmunk 2D rigid-body engine, driven through simulation spaces, bodies and constraints. It supports fixed-step updates and serializable spaces, offering a Python bake route distinct from JavaScript-first physics libraries; deterministic behavior still depends on callbacks and environment.",
       "use_when": [
@@ -9446,6 +9554,7 @@
         "Use Matter.js when the scene and physics are already browser-based"
       ],
       "license": "MIT",
+      "skill": "skills/pymunk/SKILL.md",
       "install": {
         "macos": "python3 -m pip install pymunk",
         "check_command": "python3 -c \"import pymunk; print(pymunk.version)\""
@@ -10256,7 +10365,8 @@
       },
       "skill": "skills/resvg/SKILL.md",
       "examples": [
-        "native-svg"
+        "native-svg",
+        "drawsvg-frames"
       ],
       "notes": [
         "2026-10-26: Homebrew offers 0.49.0 while validation evidence is for 0.47.0; revalidate on upgrade."
@@ -12445,16 +12555,31 @@
       ],
       "notes": [
         "2026-11-15: Assess because deterministic conversion to delivery caption formats fills a distinct gap beyond subtitle authoring and burn-in. Revisit after checking standards conformance coverage.",
-        "2026-11-15: Assessment uncertainty: official pages read did not establish release recency; verify the exact licence text and standards coverage before promotion."
+        "2026-11-15: Assessment uncertainty: official pages read did not establish release recency; verify the exact licence text and standards coverage before promotion.",
+        "2026-11-24: Guide skills/ttconv/SKILL.md written from examples/ttconv-caption-convert. Installed LICENSE.txt has two BSD clauses (no non-endorsement clause), so licence set to BSD-2-Clause; IMSC profile conformance remains untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "ttconv-caption-convert"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.2.3",
+            "command": "examples/ttconv-caption-convert/run.sh",
+            "result": "Hand-written SRT with 3 cues (1 two-line, 1 italic) converted to WebVTT and TTML; all 16 predeclared checks pass: 3 cues, timings 1000-2500, 3120-5040, 5500-7250 ms, text and line breaks, TTML well-formed in the TTML namespace, WebVTT back to SRT keeps timings; second conversion byte-identical. Python 3.12.2, macOS arm64.",
+            "example": "examples/ttconv-caption-convert",
+            "scope": "SRT (3 cues, 2-line, italic) to WebVTT and TTML: cues, ms timings, text, breaks, well-formed TTML namespace, VTT to SRT round-trip; no IMSC profile; macOS arm64."
+          }
+        ]
       },
+      "skill": "skills/ttconv/SKILL.md",
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-03-discovery.md",
       "summary": "Python library and `tt` command-line tool for converting timed-text files across formats including STL, SRT, TTML, SCC and WebVTT. It automates format conversion; standards conformance and preservation of format-specific features need workflow-specific checks.",
       "use_when": [
@@ -12469,7 +12594,7 @@
         "ffmpeg-ffprobe",
         "libass"
       ],
-      "license": "BSD-3-Clause (PyPI classifier identifies BSD; verify exact terms in repository licence before redistribution)",
+      "license": "BSD-2-Clause",
       "install": {
         "macos": "python3 -m pip install ttconv",
         "check_command": "tt --help"
@@ -12720,16 +12845,30 @@
       ],
       "notes": [
         "2026-11-15: Assess because typed filtergraph construction could reduce hand-written FFmpeg command errors. Revisit after checking TypeScript package maturity and official supported-filter coverage.",
-        "2026-11-15: Assessment uncertainty: release recency and complete TypeScript supported-filter/version coverage were not established; TypeScript route is documented as experimental."
+        "2026-11-15: Assessment uncertainty: release recency and complete TypeScript supported-filter/version coverage were not established; TypeScript route is documented as experimental.",
+        "2026-11-24: Guide written from examples/typed-ffmpeg-graph (build-time check covers stream kind only; option values unchecked). Not yet reviewed for promotion."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.6.2",
+            "command": "examples/typed-ffmpeg-graph/run.sh",
+            "result": "Compiled command identical across two processes and equal to expected/command.json; render exit 0; ffprobe h264 yuv420p 320x180 24/1, 48 frames, 2.000000 s; 48 distinct frame hashes; audio-into-video overlay raised FFMpegTypeError at build. FFmpeg 9.0.2.",
+            "example": "examples/typed-ffmpeg-graph",
+            "scope": "Python graph of two lavfi sources, scale, overlay, drawbox to H.264 on FFmpeg 9.0.2, macOS arm64; stream-kind mismatch rejected; option values not checked by the library."
+          }
+        ]
       },
+      "examples": [
+        "typed-ffmpeg-graph"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-02-discovery.md",
       "summary": "Typed Python API and experimental TypeScript packages construct FFmpeg commands and filtergraphs with filter types, documentation and compile-to-argument output. The library helps author pipelines but does not include FFmpeg; execution still depends on a compatible system FFmpeg binary.",
       "use_when": [
@@ -12760,7 +12899,8 @@
         "sources": [
           "https://github.com/lucemia/typed-ffmpeg"
         ]
-      }
+      },
+      "skill": "skills/typed-ffmpeg/SKILL.md"
     },
     {
       "id": "typst",
@@ -13058,16 +13198,30 @@
       ],
       "notes": [
         "2026-11-01: Dependency-free Vega and Vega-Lite rendering to SVG, PNG and PDF from Python or CLI.",
-        "2026-11-15: 2.0.0-rc7 is a prerelease; stable release is 1.9.0. v2 API and behavior may change before stable release."
+        "2026-11-15: 2.0.0-rc7 is a prerelease; stable release is 1.9.0. v2 API and behavior may change before stable release.",
+        "2026-11-24: Toolkit guide written from the vl-convert-chart evidence (Python API, SVG and PNG only); fonts and nominal sort order noted as untested fixes."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "vl-convert-chart"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.9.0.post1",
+            "command": "examples/vl-convert-chart/run.sh",
+            "result": "Inline 5-bar Vega-Lite (vl_version 5.21) to SVG 320x200 and PNG 640x400 at scale 2: 5 bar marks match data, title text present, bar heights 1.36 px per unit with 0 px baseline spread, SVG and PNG reruns byte-identical; Python 3.12.2, macOS arm64; sans-serif face not reported.",
+            "example": "examples/vl-convert-chart",
+            "scope": "Python API renders one inline Vega-Lite bar chart to SVG and PNG: bars, title, zero baseline, byte-identical reruns; no PDF, CLI, server or other marks; macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Rust-based converter available as a library, CLI/server and Python package. It compiles Vega-Lite or Vega specifications and exports SVG, PNG, JPEG, PDF, HTML and scenegraphs without requiring a browser or Node.js. It embeds the official Vega JavaScript libraries and runs them in V8; local and remote resource access is configurable and relevant when processing external specs.",
       "use_when": [
@@ -13100,7 +13254,8 @@
           "https://github.com/vega/vl-convert/releases",
           "https://github.com/vega/vl-convert/blob/main/README.md"
         ]
-      }
+      },
+      "skill": "skills/vl-convert/SKILL.md"
     },
     {
       "id": "vmaf",

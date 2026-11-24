@@ -1,0 +1,15 @@
+{
+  "id": "drawsvg-frames",
+  "title": "drawsvg Python SVG frames at predeclared t, rasterised by resvg",
+  "summary": "Five SVG frames from one drawsvg scene as a pure function of t: moving circle, rotating square, gradient band, bundled-font caption. resvg PNG probes, distinct frames, byte-identical regeneration and shuffled order. No SMIL or animation API.",
+  "status": "validated",
+  "tools": [
+    "drawsvg",
+    "resvg"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

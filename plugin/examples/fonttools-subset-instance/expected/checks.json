@@ -1,0 +1,49 @@
+{
+  "checks": {
+    "dropped_set_is_non_empty": true,
+    "size_drops_woff2_below_ttf_below_source": true,
+    "source_has_all_title_codepoints": true,
+    "ttf_cmap_equals_title_codepoints": true,
+    "ttf_cmap_has_no_dropped_codepoint": true,
+    "ttf_is_byte_identical_across_runs": true,
+    "woff2_cmap_equals_ttf_cmap": true,
+    "woff2_is_byte_identical_across_runs": true,
+    "woff2_magic_is_wOF2": true
+  },
+  "measured": {
+    "brotli_version": "1.2.1",
+    "bytes": {
+      "source": 114828,
+      "ttf": 3772,
+      "woff2": 1712
+    },
+    "dropped_codepoint_count": 81,
+    "fonttools_version": "4.68.0",
+    "sha256": {
+      "source": "a2349098b9e45419e7bf0e2958d6c4937a049dded37387b08be725be4c7615f3",
+      "subset_ttf": "4fb70a38d879b74d7d55e8428f21336619c4d2013abbb8b5ebff349a36370dbd",
+      "subset_woff2": "629b3ef10452588357917afd6d4ba61de3c34fa166b97ea97f718cb8ac238fa9"
+    },
+    "source_cmap_codepoint_count": 976,
+    "source_glyph_count": 1168,
+    "title": "Type & Motion 2026",
+    "title_codepoints": [
+      "U+0020",
+      "U+0026",
+      "U+0030",
+      "U+0032",
+      "U+0036",
+      "U+004D",
+      "U+0054",
+      "U+0065",
+      "U+0069",
+      "U+006E",
+      "U+006F",
+      "U+0070",
+      "U+0074",
+      "U+0079"
+    ],
+    "ttf_cmap_codepoint_count": 14,
+    "ttf_glyph_count": 21
+  }
+}

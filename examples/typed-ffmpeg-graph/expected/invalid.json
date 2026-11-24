@@ -1,0 +1,4 @@
+{
+  "error_type": "FFMpegTypeError",
+  "message": "Expected input 1 to have video component, got AudioStream"
+}

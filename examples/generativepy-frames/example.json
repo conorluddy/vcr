@@ -1,0 +1,14 @@
+{
+  "id": "generativepy-frames",
+  "title": "generativepy shapes and one gradient rendered as a 48-frame PNG sequence",
+  "summary": "generativepy 50.0 on pycairo 1.29.2: 320x240 RGBA frames as a pure function of frame number; probes, 48 distinct hashes, shuffled equals sequential, byte-identical rerun. Only PNG via cairo; no movie or other shapes.",
+  "status": "validated",
+  "tools": [
+    "generativepy"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

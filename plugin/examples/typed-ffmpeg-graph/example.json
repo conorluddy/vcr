@@ -1,0 +1,9 @@
+{
+  "id": "typed-ffmpeg-graph",
+  "title": "Typed Python filter graph compiled to an FFmpeg command, rendered and probed",
+  "summary": "typed-ffmpeg builds a two-source overlay with drawbox into H.264; the compiled command is checked for byte identity and against expected/, the rendered file's ffprobe facts and frame hashes are diffed, and an audio-into-video graph is checked for rejection.",
+  "status": "validated",
+  "tools": ["typed-ffmpeg", "ffmpeg-ffprobe"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" }
+}
