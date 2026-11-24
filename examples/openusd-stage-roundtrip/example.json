@@ -1,0 +1,11 @@
+{
+  "id": "openusd-stage-roundtrip",
+  "title": "usd-core stage authored, saved as .usda and .usdc, reopened and compared",
+  "summary": "usd-core 26.11 authors Xform, Cube, Sphere, a material binding and a time-sampled translate, round-trips .usda and .usdc, and checks read-back and rerun bytes. No rendering; usdchecker not shipped by usd-core.",
+  "status": "not-validated",
+  "tools": [
+    "openusd"
+  ],
+  "run": "./run.sh",
+  "report": "examples/openusd-stage-roundtrip/README.md"
+}

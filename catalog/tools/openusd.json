@@ -12,16 +12,35 @@
   "notes": [
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-    "2026-10-29: Skill opportunity: Potential standalone scene-interchange skill; investigate actual USD round trips and licence obligations first."
+    "2026-10-29: Skill opportunity: Potential standalone scene-interchange skill; investigate actual USD round trips and licence obligations first.",
+    "2026-11-24: Fixture examples/openusd-stage-roundtrip (usd-core 26.11 in a git-ignored venv): partial. usdchecker is not shipped by the usd-core wheel, so its check did not run; no rendering. The OpenUSD repo LICENSE and the wheel licence are TOST 1.0 (Apache-2.0 derived), not plain Apache-2.0; the GitHub release 26.11.1 was not the version tested."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "install": {
+    "macos": "cd examples/openusd-stage-roundtrip && python3 -m venv output/venv && output/venv/bin/python -m pip install -r requirements.txt",
+    "check_command": "examples/openusd-stage-roundtrip/output/venv/bin/python -c \"from pxr import Usd; print('.'.join(map(str, Usd.GetVersion())))\""
+  },
+  "examples": [
+    "openusd-stage-roundtrip"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "26.11",
+        "command": "examples/openusd-stage-roundtrip/run.sh",
+        "result": "usd-core 26.11 (pxr 0.26.11) authors Xform, Cube, Sphere, material binding, translate samples at frames 0-24, metersPerUnit 0.01, upAxis Y. .usda and .usdc reopen equal to the authored stage (prims, attributes, time samples, metadata). Rerun .usda byte-identical. usdchecker not run: not shipped in the wheel. Python 3.12.2, macOS arm64.",
+        "example": "examples/openusd-stage-roundtrip",
+        "scope": "usd-core stage .usda/.usdc read-back equal, rerun .usda byte-identical; usdchecker not run (absent from wheel); no rendering; macOS arm64"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
+  "license": "LicenseRef-TOST-1.0 for the usd-core wheel (Tomorrow Open Source Technology License 1.0); OpenUSD LICENSE.txt is the same licence",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "OpenUSD is a scene-description framework and interchange ecosystem for composing 3D scene data, with C++ and Python interfaces. Import fidelity varies by application and schema.",
   "use_when": [
