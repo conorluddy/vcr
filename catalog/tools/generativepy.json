@@ -13,9 +13,10 @@
   ],
   "notes": [
     "2026-11-15: Triage: assess; plain Python frame generation for mathematical graphics differs from scene-oriented animation tools. Revisit if repeated VCR work establishes a need and Cairo/font dependencies are understood.",
-    "2026-11-15: Skill opportunity: further research first; compare a small Python frame-sequence fixture with existing code-first tools before proposing a guide."
+    "2026-11-15: Skill opportunity: further research first; compare a small Python frame-sequence fixture with existing code-first tools before proposing a guide.",
+    "2026-11-24: Guide written at skills/generativepy/SKILL.md from the generativepy-frames evidence (shapes and one gradient, PNG frames only)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -65,5 +66,6 @@
   },
   "examples": [
     "generativepy-frames"
-  ]
+  ],
+  "skill": "skills/generativepy/SKILL.md"
 }
