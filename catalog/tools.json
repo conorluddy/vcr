@@ -247,11 +247,24 @@
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "blocked",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "9.10",
+            "command": "examples/ardour-headless-session/run.sh",
+            "result": "blocked before any run: no free macOS Ardour build with a headless route found; ardour.org binaries are a payment flow; no Homebrew cask; GitHub has no release assets. Nothing downloaded or run.",
+            "example": "ardour-headless-session",
+            "scope": "Fixture-reported: blocked before any run; no build tested. Says nothing about CLI session creation, WAV import, export, rerun identity or determinism"
+          }
+        ]
       },
+      "examples": [
+        "ardour-headless-session"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Digital audio workstation with multitrack editing, mixing, MIDI and Lua scripting. Its automation works through Ardour sessions and scripting, not a simple standalone audio filter.",
       "use_when": [
@@ -266,7 +279,7 @@
         "ffmpeg-ffprobe",
         "fluidsynth"
       ],
-      "license": "GPL v2 (official site; exact variant and distribution terms need review)",
+      "license": "GPL v2 (ardour.org footer, checked 2026-11-24); official macOS binaries are a payment flow, terms not verified",
       "assessment": {
         "date": "2026-10-29",
         "assessed_by": "ingest-assess-a",
@@ -628,7 +641,8 @@
       "skill": "skills/blender-background/SKILL.md",
       "examples": [
         "blender-smoke",
-        "build123d-product"
+        "build123d-product",
+        "mpfb-human-figure"
       ],
       "notes": [
         "Not on PATH on macOS; use the app bundle executable. First native application spike planned in M0."
@@ -1615,7 +1629,8 @@
         ]
       },
       "examples": [
-        "colmap-feature-extraction"
+        "colmap-feature-extraction",
+        "nerfstudio-feasibility"
       ],
       "adapter_maturity": "none",
       "checked_at": "2026-11-16",
@@ -3332,6 +3347,7 @@
         "browser-capture",
         "svt-av1-encode",
         "vhs-tape-recording",
+        "nerfstudio-feasibility",
         "vmaf-ffmpeg-score",
         "node-av-decode-encode",
         "ab-av1-crf-search",
@@ -3350,7 +3366,8 @@
         "vapoursynth-script-frames",
         "rhubarb-lip-sync-cues",
         "revideo-headless-render",
-        "sonic-annotator-features"
+        "sonic-annotator-features",
+        "raea-render"
       ],
       "notes": [
         "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
@@ -5376,7 +5393,9 @@
         "real-esrgan-upscale",
         "mannequin-js-pose-capture",
         "bvh-mocap-playback",
-        "supercollider-nrt-render"
+        "supercollider-nrt-render",
+        "maplibre-native-offline-render",
+        "mpfb-human-figure"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -6566,16 +6585,27 @@
       ],
       "notes": [
         "2026-11-15: Assess because stateless map-frame rendering could make camera paths usable as frame sequences without browser capture. Revisit after verifying the CLI/binding and local tile, glyph and sprite inputs.",
-        "2026-11-15: Assessment uncertainty: official pages read did not establish release recency; verify a headless rendering automation route and current release history before promotion."
+        "2026-11-15: Assessment uncertainty: official pages read did not establish release recency; verify a headless rendering automation route and current release history before promotion.",
+        "2026-11-24: Guide written at skills/maplibre-native/SKILL.md from the maplibre-native-offline-render evidence (Node 22, offline background+GeoJSON fill only)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "6.4.1",
+            "command": "examples/maplibre-native-offline-render/run.sh",
+            "result": "inline background+GeoJSON fill style, requests refused (0); 512x512 RGBA and 1024x1024 at pixelRatio 2; 10 probes exact in buffer and ImageMagick decode; alpha 255..255; reruns byte-identical; Node v22.19.0 (ABI 127), prebuilt darwin-arm64 binary, no source build",
+            "example": "examples/maplibre-native-offline-render",
+            "scope": "Node 22 prebuilt binding: offline inline background+GeoJSON fill renders to RGBA at predeclared size, pixelRatio 2 doubles it, probes and reruns match. Not tiles, text, other Node or platforms."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-03-discovery.md",
       "summary": "Native library for rendering vector-tile maps in mobile and desktop applications using GPU acceleration. The official project documents platform SDK integration; a general headless frame-rendering CLI route was not established.",
       "use_when": [
@@ -6589,8 +6619,8 @@
       "pairs_with": [],
       "license": "BSD-2-Clause",
       "install": {
-        "macos": "Build for the target platform using the official platform-specific instructions and toolchain",
-        "check_command": "Not applicable; no general CLI documented"
+        "macos": "cd examples/maplibre-native-offline-render && pnpm install && cd node_modules/@maplibre/maplibre-gl-native && ./node_modules/.bin/node-pre-gyp install --fallback-to-build=false",
+        "check_command": "cd examples/maplibre-native-offline-render && node -e \"new (require('@maplibre/maplibre-gl-native').Map)().release(); console.log(require('@maplibre/maplibre-gl-native/package.json').version)\""
       },
       "assessment": {
         "date": "2026-11-15",
@@ -6603,7 +6633,11 @@
         "sources": [
           "https://github.com/maplibre/maplibre-native"
         ]
-      }
+      },
+      "examples": [
+        "maplibre-native-offline-render"
+      ],
+      "skill": "skills/maplibre-native/SKILL.md"
     },
     {
       "id": "matter-js",
@@ -7733,16 +7767,34 @@
         "2026-11-01: Blender extension generating parametric rigged humans; proposed route is Blender Python in background mode. Rigify ships with Blender and needs no separate record.",
         "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue.",
-        "2026-11-15: MPFB2 release v2.0.18 dated 2026-10-11. Source code is GPLv3; core bundled assets are CC0. Check third-party asset packs separately."
+        "2026-11-15: MPFB2 release v2.0.18 dated 2026-10-11. Source code is GPLv3; core bundled assets are CC0. Check third-party asset packs separately.",
+        "2026-11-24: Guide written at skills/mpfb/SKILL.md from examples/mpfb-human-figure evidence (Blender 4.4.0, MPFB 2.0.18, default human, height macro, Workbench still)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "install": {
+        "macos": "Download the MPFB 2.0.18 extension zip from https://extensions.blender.org/download/sha256:c075b3e9b94b8e5556a5f03f4653602d02ea306de08126e8f55ed6dee28a2dad/add-on-mpfb-v2.0.18.zip and check its sha256. Install with blender --factory-startup --command extension install-file -r user_default <zip>, with HOME and BLENDER_USER_* pointed into the example's output/ directory. See examples/mpfb-human-figure/run.sh.",
+        "check_command": "grep '^version' examples/mpfb-human-figure/output/blender-home/extensions/user_default/mpfb/blender_manifest.toml"
+      },
+      "examples": [
+        "mpfb-human-figure"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.0.18",
+            "command": "examples/mpfb-human-figure/run.sh",
+            "result": "Blender 4.4.0 background: default human at height 0.0/0.5/1.0 has 13380 vertices each, bbox height 1.30/1.66/2.37 m; 480x720 transparent Workbench still; identical geometry across reruns",
+            "example": "examples/mpfb-human-figure",
+            "scope": "Headless Blender 4.4.0 loads MPFB 2.0.18 from an isolated repo, sets height macro, checks geometry and one still; no clothing, rigs, other macros or EEVEE; macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "conversation 2026-11-01: character and figure tooling gap",
       "summary": "MakeHuman Community Blender add-on for parameterized human creation and rigging; produces editable Blender characters that can be exported or rendered through Blender.",
       "use_when": [
@@ -7771,7 +7823,8 @@
           "https://github.com/makehumancommunity/mpfb2/blob/master/LICENSE.md",
           "https://static.makehumancommunity.org/about/license.html"
         ]
-      }
+      },
+      "skill": "skills/mpfb/SKILL.md"
     },
     {
       "id": "msdfgen",
@@ -7989,16 +8042,36 @@
       "notes": [
         "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
         "2026-10-29: Documented quickstart requires NVIDIA CUDA; applicability on this macOS machine is unverified. Model and dataset rights are separate.",
-        "2026-10-29: Skill opportunity: further research first; assess existing reconstruction skills and reproduce one pinned GPU fixture."
+        "2026-10-29: Skill opportunity: further research first; assess existing reconstruction skills and reproduce one pinned GPU fixture.",
+        "2026-11-24: Hardware: macOS arm64 (Apple M3 Pro, 18 GB, no CUDA). pip install nerfstudio==1.1.5 succeeds; the venv is about 2.1 GB. nerfacto trains on MPS with --machine.device-type mps (MachineConfig default is cuda). The CUDA-only paths (tinycudann, gsplat and nerfacc CUDA kernels) are not exercised.",
+        "2026-11-24: COLMAP 4.2.1 renamed SiftExtraction.use_gpu and SiftMatching.use_gpu, which nerfstudio 1.1.5 still passes; ns-process-data needs a flag-rename shim (examples/nerfstudio-feasibility/colmap-compat.sh) on this COLMAP. torch 2.6 and later needs TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1 for ns-render of nerfstudio's own checkpoints.",
+        "2026-11-24: Toolkit guide written at skills/nerfstudio/SKILL.md from partial evidence (macOS arm64, nerfacto MPS 300 steps; 2 of 20 views registered). CUDA paths and splatfacto untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
+      "install": {
+        "macos": "python3.12 -m venv ~/nerfstudio-venv && ~/nerfstudio-venv/bin/pip install nerfstudio==1.1.5",
+        "check_command": "~/nerfstudio-venv/bin/ns-train --help"
       },
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.1.5",
+            "command": "examples/nerfstudio-feasibility/run.sh",
+            "result": "PyPI nerfstudio 1.1.5 installed into a Python 3.12 venv with torch 2.15.0 on macOS arm64, no CUDA. ns-process-data with COLMAP 4.2.1 (through a flag-rename shim) registered 2 of 20 synthetic views, so run.sh fails its 20-frame check. In a separate pass on the same data, nerfacto trained 300 steps on MPS and wrote step-000000299.ckpt; the train split rendered non-blank frames (RGB std about 61 to 63).",
+            "example": "examples/nerfstudio-feasibility",
+            "scope": "Install and nerfacto 300-step MPS training on macOS arm64 without CUDA; COLMAP registered 2 of 20 synthetic views, so no 20-frame claim; no held-out eval; no splatfacto or CUDA."
+          }
+        ]
+      },
+      "examples": [
+        "nerfstudio-feasibility"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Python-based framework and command-line workflows for training, viewing and exporting neural scene representations from image datasets. Its documented quickstart requires NVIDIA CUDA and significant dependencies.",
       "use_when": [
@@ -8029,7 +8102,8 @@
         ],
         "version_seen": "1.1.5 (PyPI); repository release page lists 1.1.1",
         "last_release": "2024-11-11"
-      }
+      },
+      "skill": "skills/nerfstudio/SKILL.md"
     },
     {
       "id": "node-av",
@@ -10196,16 +10270,38 @@
       ],
       "notes": [
         "2026-11-15: Triage reason: Assess source-available licence fit, deterministic display-free rendering and API stability. Revisit after those constraints are documented.",
-        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+        "2026-11-24: Source build at 66eb15448f69ab29a801fe1bde75d3889d34d04e stopped in opusic-sys (cmake not installed on the test host); blocked, see examples/raea-render. No render, headless path or determinism tested.",
+        "2026-11-24: Retry with cmake 4.5.1 installed: release build passes at the same pin; hello.tsx renders headlessly to MP4 and PNG stills and the predeclared checks pass (see examples/raea-render README, run 2). Needed bun 1.4.2 for the SDK, not 1.2.18.",
+        "2026-11-24: Toolkit guide written at skills/raea/SKILL.md from the run 2 evidence; scope is the pinned source build and hello.tsx headless render on macOS arm64."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "66eb15448f69ab29a801fe1bde75d3889d34d04e",
+            "command": "examples/raea-render/run.sh",
+            "result": "blocked: cargo build --release -p raea-cli --no-default-features stopped in opusic-sys v0.7.5 (cmake not installed, exit 101); no render, expected/ or hashes produced",
+            "example": "raea-render",
+            "scope": "Fixture-reported: blocked at source build (no cmake on host); no render, headless route, SDK install or determinism tested"
+          },
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "66eb15448f69ab29a801fe1bde75d3889d34d04e",
+            "command": "examples/raea-render/run.sh",
+            "result": "pass: release build at pin (exit 0); hello.tsx headless render (RAEA_OFFLINE=1) to 90 frames 1080x1920 yuv420p h264 30/1 MP4 x2, 3 PNG stills x2 orders; 48 distinct frame hashes; render-b equal to render-a (export cache off); shuffled stills equal sequential; ./run.sh OK",
+            "example": "raea-render",
+            "scope": "Source build at pin, macOS arm64: headless CLI render of manual hello.tsx to MP4 and stills, repeat and shuffled-order hashes. No seek, alpha, audio, Linux or Windows claim"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-13-discovery.md",
       "summary": "React-authored GPU renderer for video and 3D",
       "license": "FSL-1.1-ALv2",
@@ -10230,9 +10326,13 @@
         ]
       },
       "install": {
-        "macos": "See official repository install instructions; no verified Homebrew route",
+        "macos": "git clone --depth 1 https://github.com/shinyobjectz/raea at 66eb15448f69ab29a801fe1bde75d3889d34d04e; cmake on PATH (Homebrew cmake 4.5.1); CARGO_TARGET_DIR set to a directory outside the clone; cargo build --release -p raea-cli --no-default-features (rust 1.99.1 from rust-toolchain.toml); bun 1.4.2 (npm install --prefix <dir> bun@1.4.2, not global) then bun install --frozen-lockfile in sdk/raea, sdk/react/js and sdk/react/tw and bun run build in sdk/react/js (bun 1.2.18 cannot read bun.lock v2). Binary at target/release/raea; RAEA_OFFLINE=1, RAEA_EXPORT_CACHE=0. No verified Homebrew route",
         "check_command": "raea --version"
-      }
+      },
+      "examples": [
+        "raea-render"
+      ],
+      "skill": "skills/raea/SKILL.md"
     },
     {
       "id": "rapier",
@@ -11857,16 +11957,27 @@
       ],
       "notes": [
         "2026-11-15: Assess because the digest describes a bakeable particle simulation and mesh-sequence workflow beyond rigid-body solvers. Revisit after confirming build and Python/CLI support on target machines and cross-machine reproducibility.",
-        "2026-11-15: Assessment uncertainty: release recency and reproducible SPlisHSPlasH build/export steps on target machines were not established; assess the GPL simulator and MIT reconstruction component separately."
+        "2026-11-15: Assessment uncertainty: release recency and reproducible SPlisHSPlasH build/export steps on target machines were not established; assess the GPL simulator and MIT reconstruction component separately.",
+        "2026-11-24: Toolkit guide written from partial evidence (headless 2D dam break; reruns not bit-identical at default threads, reproducible only with OMP_NUM_THREADS=1 as a diagnostic)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.19.1",
+            "command": "examples/splishsplash-dam-break/run.sh",
+            "result": "Partial: 9 of 11 predeclared checks pass. Headless 2D DFSPH dam break, 266 particles, fixed 0.002 s step, 500 steps via pySPlisHSPlasH 2.19.1 on Python 3.12.13 and numpy 2.5.5: count conserved at 5 frames, all particles inside the box, centre of mass drops 0.157 m and width grows 1.40 m, 2D positions. reruns_identical and seek_fresh_process_matches_trace fail at default threads: particles differ by 0.30 m at step 500 between reruns. Diagnostic only: OMP_NUM_THREADS=1 gives bit-identical reruns and seeks. No expected/ kept.",
+            "example": "examples/splishsplash-dam-break",
+            "scope": "Fixture-reported: headless 2D dam break, Python bindings only; count, box bounds, fall and spread pass; reruns and fresh-process seeks not bit-identical at default threads; no splashsurf."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-01-discovery.md",
       "summary": "SPlisHSPlasH simulates particle based fluids; the companion splashsurf project reconstructs SPH particle data as surface meshes, with Rust CLI/library and Python bindings. Together they support a scriptable simulation-to-mesh workflow, while simulation build and export settings remain environment dependent.",
       "use_when": [
@@ -11878,14 +11989,17 @@
         "Use a rigid-body solver for primarily solid-object dynamics",
         "Use Blender fluid tools when an integrated scene authoring workflow matters more"
       ],
+      "examples": [
+        "splishsplash-dam-break"
+      ],
       "pairs_with": [
         "blender",
         "ffmpeg-ffprobe"
       ],
       "license": "SPlisHSPlasH: MIT; splashsurf: MIT",
       "install": {
-        "macos": "Build SPlisHSPlasH from its official source; install splashsurf with `cargo install splashsurf` or Python bindings with `pip install pysplashsurf`",
-        "check_command": "splashsurf --help"
+        "macos": "SPlisHSPlasH Python bindings: in a Python 3.12 venv, `pip install --only-binary=:all: pySPlisHSPlasH==2.19.1` (PyPI macOS arm64 wheel, no CLI, no source build needed); splashsurf: `cargo install splashsurf` or `pip install pysplashsurf` (not exercised by any example)",
+        "check_command": "examples/splishsplash-dam-break/output/venv/bin/python -c 'import pysplishsplash'"
       },
       "assessment": {
         "date": "2026-11-15",
@@ -11900,7 +12014,8 @@
           "https://github.com/InteractiveComputerGraphics/splashsurf",
           "https://github.com/interactivecomputergraphics"
         ]
-      }
+      },
+      "skill": "skills/splishsplash/SKILL.md"
     },
     {
       "id": "ssam",
