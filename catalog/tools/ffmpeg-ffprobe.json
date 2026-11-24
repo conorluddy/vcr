@@ -90,7 +90,8 @@
     "baguette-simulator-capture",
     "typed-ffmpeg-graph",
     "ffmpeg-normalize-loudness",
-    "claude-real-video-keyframes"
+    "claude-real-video-keyframes",
+    "aubio-onsets-pitch"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."

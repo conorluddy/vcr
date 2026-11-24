@@ -1,0 +1,68 @@
+{
+  "beats": {
+    "bpm": 120.393,
+    "count": 9
+  },
+  "checks": {
+    "beat_bpm_within_tolerance": false,
+    "inputs_match_spec": true,
+    "onsets_within_tolerance": true,
+    "pitch_within_tolerance": false
+  },
+  "inputs": {
+    "click": {
+      "channels": 1,
+      "durationS": 10.000,
+      "sampleRateHz": 44100
+    },
+    "tones": {
+      "channels": 1,
+      "durationS": 4.500,
+      "sampleRateHz": 44100
+    }
+  },
+  "onsets": {
+    "extras": 0,
+    "matched": 20,
+    "maxErrorMs": 8.776,
+    "misses": 0,
+    "truth": 20
+  },
+  "pitch": [
+    {
+      "centsError": 15.6,
+      "expectedHz": 220,
+      "measuredHz": 222.0,
+      "voicedFrames": 69,
+      "withinTolerance": false
+    },
+    {
+      "centsError": 10.3,
+      "expectedHz": 261.63,
+      "measuredHz": 263.2,
+      "voicedFrames": 69,
+      "withinTolerance": false
+    },
+    {
+      "centsError": 5.7,
+      "expectedHz": 329.63,
+      "measuredHz": 330.7,
+      "voicedFrames": 69,
+      "withinTolerance": true
+    },
+    {
+      "centsError": 3.0,
+      "expectedHz": 440,
+      "measuredHz": 440.8,
+      "voicedFrames": 69,
+      "withinTolerance": true
+    },
+    {
+      "centsError": 2.0,
+      "expectedHz": 523.25,
+      "measuredHz": 523.9,
+      "voicedFrames": 69,
+      "withinTolerance": true
+    }
+  ]
+}

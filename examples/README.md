@@ -88,6 +88,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `claude-real-video-keyframes` | claude-real-video, ffmpeg-ffprobe | Scene gate on a generated 3-shot 320x240 clip, claude-real-video 0.10.7 with `--fps-floor 1000`: keyframes at frames 0, 48, 96 (0 off), one 320x240 JPEG per shot, reruns identical, passes under a deny-network sandbox; default density floor, fades, real footage, transcripts and URL input untested (2026-11-24) |
 | `piper-tts` | piper | piper-tts 1.8.0, en_US-ryan-low (CC BY-NC-SA 4.0): one sentence to 16 kHz mono 16-bit WAV, duration and non-silence pass; `--length-scale 1.5` gives 1.2-1.3x not 1.5x, reruns not sample-identical; partial (2026-11-24) |
 | `kokoro-onnx-tts` | kokoro-onnx | kokoro-onnx 0.6.0, voice af_heart, speed 1.0: fixed sentence to 24 kHz mono 16-bit WAV, 2.73 s, non-silent, in range; reruns NOT sample-identical (unseeded random ops in the model graph); partial, no listening test, ~337 MB model download (2026-11-24) |
+| `aubio-onsets-pitch` | aubio, ffmpeg-ffprobe | Generated 120 BPM clicks and five sine tones, aubio 0.4.9_4: aubioonset 20 of 20 within 8.8 ms, 0 extras; aubiotrack BPM 120.4 but 9 beats (1.76 to 5.75 s); aubiopitch 3 of 5 tones within 10 cents, low tones sharp; aubiopitch not byte-stable; partial (2026-11-24) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 
