@@ -15,9 +15,10 @@
     "2026-11-15: Triage reason: Assess source-available licence fit, deterministic display-free rendering and API stability. Revisit after those constraints are documented.",
     "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
     "2026-11-24: Source build at 66eb15448f69ab29a801fe1bde75d3889d34d04e stopped in opusic-sys (cmake not installed on the test host); blocked, see examples/raea-render. No render, headless path or determinism tested.",
-    "2026-11-24: Retry with cmake 4.5.1 installed: release build passes at the same pin; hello.tsx renders headlessly to MP4 and PNG stills and the predeclared checks pass (see examples/raea-render README, run 2). Needed bun 1.4.2 for the SDK, not 1.2.18."
+    "2026-11-24: Retry with cmake 4.5.1 installed: release build passes at the same pin; hello.tsx renders headlessly to MP4 and PNG stills and the predeclared checks pass (see examples/raea-render README, run 2). Needed bun 1.4.2 for the SDK, not 1.2.18.",
+    "2026-11-24: Toolkit guide written at skills/raea/SKILL.md from the run 2 evidence; scope is the pinned source build and hello.tsx headless render on macOS arm64."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -73,5 +74,6 @@
   },
   "examples": [
     "raea-render"
-  ]
+  ],
+  "skill": "skills/raea/SKILL.md"
 }
