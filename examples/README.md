@@ -63,3 +63,4 @@ The original six were validated on the primary Mac on 2026-10-26; later rows giv
 ## Outside this repository
 
 `vcr example create <id>` copies an example into `<workspace>/examples/<id>` and prints the commands to run it. Browser examples arrive without `capture.ts`, `run.sh` and `expected/` (they depend on this pnpm workspace) and with a standalone `package.json`; render them with `vcr capture` using the `capture` block. Native examples (`native-svg`, `ffmpeg-assembly`, `blender-smoke`) keep their standalone `run.sh` and `expected/`. `*.test.ts`, `node_modules/` and `output/` never travel.
+| `heerich-voxel-svg` | heerich | 3x3x3 voxel cube minus one corner rendered to oblique SVG in Node, 27 polygons, reruns byte-identical (2026-11-24) |
