@@ -30,17 +30,28 @@
   ],
   "license": "MIT",
   "install": {
-    "macos": "pnpm dlx gltfjsx model.glb",
-    "check_command": "pnpm dlx gltfjsx --help"
+    "macos": "pnpm add -D gltfjsx@6.5.3 in an example directory (project-local, exact pin; not pnpm dlx)",
+    "check_command": "pnpm --dir examples/gltfjsx-r3f-component exec gltfjsx --version"
   },
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
     "status": "not-validated",
-    "evidence": []
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "6.5.3",
+        "command": "examples/gltfjsx-r3f-component/run.sh",
+        "result": "partial: two gltfjsx 6.5.3 runs over one generated GLB are byte-identical (TSX 921 bytes, SHA-256 0f95f66ba2728d4a7472ff4831d17a2da21f334bb4399cc8aa27d8809f8da361). Body, Clasp, Wood and Metal are referenced; group CrateGroup is dropped under --types --keepnames, so run.sh exits 1. Strict typecheck and r3f render not run.",
+        "example": "examples/gltfjsx-r3f-component",
+        "scope": "Fixture-reported: gltfjsx 6.5.3 --types --keepnames on a generated GLB; reruns byte-identical; CrateGroup not referenced; no typecheck or render; macOS arm64."
+      }
+    ]
   },
+  "examples": ["gltfjsx-r3f-component"],
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-11-24",
   "assessment": {
     "date": "2026-10-26",
     "assessed_by": "assess-a9a",
@@ -56,6 +67,7 @@
   },
   "source": "specifications/vcr-prd.md#appendix-a",
   "notes": [
-    "2026-10-29: Skill opportunity: Further research first: verify a GLB-to-R3F fixture and current maintenance before proposing a standalone skill."
+    "2026-10-29: Skill opportunity: Further research first: verify a GLB-to-R3F fixture and current maintenance before proposing a standalone skill.",
+    "2026-11-24: --types output references GLTFAction in GLTFResult even for a GLB with no animations; strict tsc reports TS2304 for it. Also the output imports @react-three/drei and three-stdlib, which the fixture did not install. See examples/gltfjsx-r3f-component/README.md."
   ]
 }
