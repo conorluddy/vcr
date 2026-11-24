@@ -13,9 +13,10 @@
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
     "2026-10-29: Skill opportunity: Potential standalone 3D processing skill; first verify a reproducible point-cloud workflow and ownership.",
-    "2026-11-24: Fixture examples/open3d-point-cloud is partial: sampling, sphere voxel count, normals, Poisson bounds and PLY counts pass; box voxel gate (predeclared range) and Poisson-mesh seeded reruns fail. Install is a venv under the example's git-ignored output/."
+    "2026-11-24: Fixture examples/open3d-point-cloud is partial: sampling, sphere voxel count, normals, Poisson bounds and PLY counts pass; box voxel gate (predeclared range) and Poisson-mesh seeded reruns fail. Install is a venv under the example's git-ignored output/.",
+    "2026-11-24: Toolkit guide skills/open3d/SKILL.md written from the partial fixture evidence; validation unchanged (partial)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "install": {
     "macos": "cd examples/open3d-point-cloud && /opt/homebrew/bin/python3.12 -m venv output/venv && output/venv/bin/python -m pip install -r requirements.txt",
@@ -67,5 +68,6 @@
       "https://github.com/isl-org/Open3D/releases"
     ],
     "version_seen": "0.20.0 (GitHub release; date year unverified)"
-  }
+  },
+  "skill": "skills/open3d/SKILL.md"
 }
