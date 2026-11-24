@@ -82,7 +82,8 @@
     "vmaf-ffmpeg-score",
     "node-av-decode-encode",
     "ab-av1-crf-search",
-    "agg-asciicast-gif"
+    "agg-asciicast-gif",
+    "dovi-tool-metadata-roundtrip"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."

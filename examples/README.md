@@ -70,3 +70,4 @@ The original six were validated on the primary Mac on 2026-10-26; later rows giv
 | `heerich-voxel-svg` | heerich | 3x3x3 voxel cube minus one corner rendered to oblique SVG in Node, 27 polygons, reruns byte-identical (2026-11-24) |
 | `ab-av1-crf-search` | ab-av1 | crf-search to VMAF 95 on a 2 s generated clip (CRF 27.5 on 3 of 3 runs), encode scored by FFmpeg libvmaf 98.310 (2026-11-24) |
 | `agg-asciicast-gif` | agg | hand-written asciicast v2 (4 events) renders to a 403x157 GIF at font-size 16 and exactly 2x at 32, 5 frames at the event times, 5.00 s, rerun byte-identical; size depends on the resolved font (2026-11-24) |
+| `dovi-tool-metadata-roundtrip` | dovi-tool | synthetic Dolby Vision RPU and HDR10+ metadata injected into 48-frame x265 10-bit HEVC and read back: RPU byte-identical, pixels unchanged, HDR10+ matches; DV profile and L1 avg/min read back differently, partial (2026-11-24) |

@@ -1,0 +1,10 @@
+{
+  "codec_name": "hevc",
+  "width": 640,
+  "height": 360,
+  "pix_fmt": "yuv420p10le",
+  "color_primaries": "bt2020",
+  "color_transfer": "smpte2084",
+  "color_space": "bt2020nc",
+  "nb_read_frames": "48"
+}
