@@ -18,8 +18,21 @@
   "installation_status": "unknown",
   "validation": {
     "status": "not-validated",
-    "evidence": []
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.15.1",
+        "command": "examples/typst-title-card/run.sh",
+        "result": "Partial: 11 of 12 predeclared checks pass. SVG viewBox 640x360pt; PNG 1280x720 RGBA 8-bit, alpha 0..255; query returned one heading; SVG and PNG reruns byte-identical; JSON variant changes SVG. SVG has no KS-7342 text (glyph outlines), so that check fails.",
+        "example": "examples/typst-title-card",
+        "scope": "Title card to SVG and PNG with typst 0.15.1, macOS arm64: size, alpha, query, reruns pass; SVG lacks the value as text (glyph outlines). No PDF."
+      }
+    ]
   },
+  "examples": [
+    "typst-title-card"
+  ],
   "adapter_maturity": "none",
   "checked_at": "2026-11-15",
   "source": "references/ideas/new-candidate-tools-2026-11.md",

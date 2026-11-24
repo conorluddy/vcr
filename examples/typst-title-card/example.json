@@ -1,0 +1,10 @@
+{
+  "id": "typst-title-card",
+  "title": "Typst compiles a data-driven title card to SVG and PNG",
+  "summary": "Checks typst 0.15.1 SVG and PNG output for page size, one OFL font, a JSON-driven value, query results and byte-identical reruns.",
+  "status": "not-validated",
+  "tools": [
+    "typst"
+  ],
+  "run": "./run.sh"
+}
