@@ -1,0 +1,8 @@
+{
+  "id": "gl-transitions-seek",
+  "title": "gl-transitions Fade in raw WebGL, seeked by progress",
+  "summary": "Runs the gl-transitions Fade shader from the browser build in raw WebGL 1 between two generated solid textures; seeked frames at progress 0, 0.5 and 1 are checked against predeclared colours, and shuffled capture equals sequential.",
+  "status": "not-validated",
+  "tools": ["gl-transitions"],
+  "run": "./run.sh"
+}
