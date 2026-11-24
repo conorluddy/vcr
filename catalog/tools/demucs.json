@@ -13,16 +13,43 @@
     "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
     "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
     "2026-10-29: Skill opportunity: Further research first: evaluate maintained alternatives, model terms and a representative fixture before writing a skill.",
-    "2026-10-29: Original repository archived 2025-01-01; maintainer notes the fork only receives important bug fixes."
+    "2026-10-29: Original repository archived 2025-01-01; maintainer notes the fork only receives important bug fixes.",
+    "2026-11-24: Guide written at skills/demucs/SKILL.md from the passing htdemucs CPU fixture; weights licence unclear (likely CC-BY-NC), untested: real music, other models, GPU, two-stem."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.1.0",
+        "command": "examples/demucs-stem-separation/run.sh",
+        "result": "BLOCKED before separation: demucs 4.1.0 (torch 2.15.0, torchaudio 2.11.1) installed in venv; import fails, numpy absent (demucs/transformer.py imports numpy; metadata declares it only for darwin/x86_64).",
+        "example": "examples/demucs-stem-separation",
+        "scope": "Fixture-reported: install and import probe on arm64 only; no separation, rate, SDR, sum or determinism result. numpy not approved."
+      },
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.1.0",
+        "command": "examples/demucs-stem-separation/run.sh",
+        "result": "10 s synthetic mix (kick/snare, bass, say voice) at 44.1 kHz stereo: 4 stems, 441000 samples each. Correlation margins drums 0.835, bass 0.961, vocals 0.996. SDR drums 8.0, bass 11.1, vocals 16.1 dB. Sum residual SNR 20.1 dB. Stems byte-identical across two runs. htdemucs, CPU, torch 2.15.0, numpy 2.5.5.",
+        "example": "examples/demucs-stem-separation",
+        "scope": "Synthetic 10 s mix, htdemucs CPU, arm64: four-stem rate/length, correlation margin, SDR floors and sum; not real music, other models or devices; weights licence unclear."
+      }
+    ]
+  },
+  "examples": [
+    "demucs-stem-separation"
+  ],
+  "install": {
+    "macos": "uv venv --python 3.12 <venv>; uv pip install -r examples/demucs-stem-separation/requirements.txt (torch CPU index, demucs 4.1.0, numpy pinned: demucs does not declare numpy on arm64)",
+    "check_command": "<venv>/bin/python -c 'import numpy, demucs.separate'"
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "Research code and command-line interface for separating recorded music into stems using neural models. The original repository is archived and no longer maintained; model and weight terms require separate checks.",
   "use_when": [
@@ -36,7 +63,7 @@
   "pairs_with": [
     "ffmpeg-ffprobe"
   ],
-  "license": "MIT (source code; model weights, input and output rights not assessed)",
+  "license": "MIT (source code). Model weights: upstream README says licence not clear, likely CC-BY-NC (checked 2026-11-24); input and output rights not assessed",
   "assessment": {
     "date": "2026-10-29",
     "assessed_by": "ingest-assess-a",
@@ -46,5 +73,6 @@
     "sources": [
       "https://github.com/facebookresearch/demucs"
     ]
-  }
+  },
+  "skill": "skills/demucs/SKILL.md"
 }

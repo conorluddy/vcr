@@ -1,0 +1,8 @@
+{
+  "id": "revideo-headless-render",
+  "title": "Revideo headless MP4 render of a tweened rect and Txt node",
+  "summary": "renderVideo renders a 2 s, 320x180, 30 fps scene to MP4; ffprobe and decoded-frame checks run against predeclared values. The frame count check fails (61, not 60).",
+  "status": "not-validated",
+  "tools": ["revideo", "ffmpeg-ffprobe"],
+  "run": "./run.sh"
+}

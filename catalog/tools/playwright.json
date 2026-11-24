@@ -82,7 +82,9 @@
     "glslify-bundle",
     "three-globe-capture",
     "shiki-magic-move-capture",
-    "three-vrm-capture"
+    "three-vrm-capture",
+    "mannequin-js-pose-capture",
+    "bvh-mocap-playback"
   ],
   "notes": [
     "Not in PRD Appendix A; added because the browser-capture spike depends on it.",

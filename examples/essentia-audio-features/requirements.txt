@@ -1,0 +1,4 @@
+essentia==2.1b6.dev1438
+numpy==2.5.5
+PyYAML==6.0.4
+six==1.17.0

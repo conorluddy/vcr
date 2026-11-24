@@ -75,6 +75,7 @@
   },
   "skill": "skills/ffmpeg/SKILL.md",
   "examples": [
+    "demucs-stem-separation",
     "native-svg",
     "ffmpeg-assembly",
     "gstreamer-pipeline-encode",
@@ -97,7 +98,9 @@
     "syncalong-text-align",
     "whisperx-word-timing",
     "whisper-cpp-transcribe",
-    "vapoursynth-script-frames"
+    "vapoursynth-script-frames",
+    "rhubarb-lip-sync-cues",
+    "revideo-headless-render"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."

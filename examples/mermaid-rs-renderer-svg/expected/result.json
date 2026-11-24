@@ -1,0 +1,25 @@
+{
+  "mmdc_comparison": {
+    "edges": 4,
+    "labels_match": true,
+    "nodes": 4
+  },
+  "mmdr": {
+    "edges": 4,
+    "labels": [
+      "Done",
+      "Draft",
+      "Review",
+      "Start",
+      "pass",
+      "revise"
+    ],
+    "nodes": 4,
+    "png_height": 189,
+    "png_width": 466,
+    "repeat_matches": true,
+    "sha256": "fcdb1be50312bef9d1ac2354b9b387493358690982f267f0d9df7d27beccf6ad",
+    "viewBox": "0 0 465.93597 189.2099",
+    "width": "465.93597"
+  }
+}

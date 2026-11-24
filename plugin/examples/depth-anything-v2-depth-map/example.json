@@ -1,0 +1,14 @@
+{
+  "id": "depth-anything-v2-depth-map",
+  "title": "Depth Anything V2 Small depth map of a synthetic receding floor, CPU, rerun identical",
+  "summary": "Transformers pipeline, Small checkpoint only: depth map at input size; near disc nearer than far disc; floor depth non-decreasing toward the bottom for all 260 row pairs; fresh-process rerun byte-identical. One generated scene; relative depth only.",
+  "status": "validated",
+  "tools": [
+    "depth-anything-v2"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

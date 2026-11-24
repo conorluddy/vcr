@@ -1,0 +1,11 @@
+{
+  "id": "open3d-point-cloud",
+  "title": "Open3D sphere and box sampling, voxel, normals, Poisson and PLY checked analytically",
+  "summary": "open3d 0.20.0 sphere and box sampling, normals, Poisson bounds and PLY counts pass; box voxel gate and Poisson-mesh seeded reruns fail (partial). One offscreen image rendered; not gating.",
+  "status": "not-validated",
+  "tools": [
+    "open3d"
+  ],
+  "run": "./run.sh",
+  "report": "examples/open3d-point-cloud/README.md"
+}

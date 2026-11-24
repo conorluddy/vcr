@@ -755,16 +755,34 @@
         "2026-11-01: Three.js BVHLoader plays BVH motion capture through AnimationMixer.setTime(t). Proposed data source: CMU Graphics Lab Motion Capture Database (http://mocap.cs.cmu.edu/); data terms are separate from code and unverified.",
         "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue.",
-        "2026-11-15: Three.js dev package.json reports 0.187.0; no separate BVHLoader release is available in reviewed sources. CMU site describes its data as free for research projects only; rights for other uses remain unverified."
+        "2026-11-15: Three.js dev package.json reports 0.187.0; no separate BVHLoader release is available in reviewed sources. CMU site describes its data as free for research projects only; rights for other uses remain unverified.",
+        "2026-11-24: Guide written at skills/bvh-mocap/SKILL.md from examples/bvh-mocap-playback (hand-written BVH only; no real mocap data, licences are the user's to check)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
+      "install": {
+        "macos": "cd examples/bvh-mocap-playback && pnpm add --save-exact three@0.186.1",
+        "check_command": "node -e \"console.log(require('three/package.json').version)\""
+      },
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.186.1",
+            "command": "examples/bvh-mocap-playback/run.sh",
+            "result": "30 frames 1280x720, shuffled equals sequential; hand-written 4-joint BVH: skeleton Hips/Spine/Neck/Head/ENDSITE, clip 0.966667 s, 8 tracks; mixer.setTime samples at 5 times within 2.7e-8 (quaternion) and 1.6e-7 cm of BVH values; distinct poses differ; Chromium 156.0.8078.4, Playwright 1.64.1; three amendments in README",
+            "example": "examples/bvh-mocap-playback",
+            "scope": "BVHLoader parse, clip tracks and mixer.setTime sampling against a hand-written BVH; shuffled equals sequential; no CMU or other mocap data; macOS arm64"
+          }
+        ]
       },
+      "examples": [
+        "bvh-mocap-playback"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "conversation 2026-11-01: character and figure tooling gap",
       "summary": "Three.js BVHLoader parses BVH skeleton animation into an AnimationClip for playback by AnimationMixer; the data and loader are separate choices, so BVHLoader adds motion import without supplying motion capture.",
       "use_when": [
@@ -794,7 +812,8 @@
           "https://github.com/mrdoob/three.js/blob/dev/LICENSE",
           "https://mocap.cs.cmu.edu/"
         ]
-      }
+      },
+      "skill": "skills/bvh-mocap/SKILL.md"
     },
     {
       "id": "c2patool",
@@ -2188,16 +2207,43 @@
         "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
         "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
         "2026-10-29: Skill opportunity: Further research first: evaluate maintained alternatives, model terms and a representative fixture before writing a skill.",
-        "2026-10-29: Original repository archived 2025-01-01; maintainer notes the fork only receives important bug fixes."
+        "2026-10-29: Original repository archived 2025-01-01; maintainer notes the fork only receives important bug fixes.",
+        "2026-11-24: Guide written at skills/demucs/SKILL.md from the passing htdemucs CPU fixture; weights licence unclear (likely CC-BY-NC), untested: real music, other models, GPU, two-stem."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.1.0",
+            "command": "examples/demucs-stem-separation/run.sh",
+            "result": "BLOCKED before separation: demucs 4.1.0 (torch 2.15.0, torchaudio 2.11.1) installed in venv; import fails, numpy absent (demucs/transformer.py imports numpy; metadata declares it only for darwin/x86_64).",
+            "example": "examples/demucs-stem-separation",
+            "scope": "Fixture-reported: install and import probe on arm64 only; no separation, rate, SDR, sum or determinism result. numpy not approved."
+          },
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.1.0",
+            "command": "examples/demucs-stem-separation/run.sh",
+            "result": "10 s synthetic mix (kick/snare, bass, say voice) at 44.1 kHz stereo: 4 stems, 441000 samples each. Correlation margins drums 0.835, bass 0.961, vocals 0.996. SDR drums 8.0, bass 11.1, vocals 16.1 dB. Sum residual SNR 20.1 dB. Stems byte-identical across two runs. htdemucs, CPU, torch 2.15.0, numpy 2.5.5.",
+            "example": "examples/demucs-stem-separation",
+            "scope": "Synthetic 10 s mix, htdemucs CPU, arm64: four-stem rate/length, correlation margin, SDR floors and sum; not real music, other models or devices; weights licence unclear."
+          }
+        ]
+      },
+      "examples": [
+        "demucs-stem-separation"
+      ],
+      "install": {
+        "macos": "uv venv --python 3.12 <venv>; uv pip install -r examples/demucs-stem-separation/requirements.txt (torch CPU index, demucs 4.1.0, numpy pinned: demucs does not declare numpy on arm64)",
+        "check_command": "<venv>/bin/python -c 'import numpy, demucs.separate'"
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Research code and command-line interface for separating recorded music into stems using neural models. The original repository is archived and no longer maintained; model and weight terms require separate checks.",
       "use_when": [
@@ -2211,7 +2257,7 @@
       "pairs_with": [
         "ffmpeg-ffprobe"
       ],
-      "license": "MIT (source code; model weights, input and output rights not assessed)",
+      "license": "MIT (source code). Model weights: upstream README says licence not clear, likely CC-BY-NC (checked 2026-11-24); input and output rights not assessed",
       "assessment": {
         "date": "2026-10-29",
         "assessed_by": "ingest-assess-a",
@@ -2221,7 +2267,8 @@
         "sources": [
           "https://github.com/facebookresearch/demucs"
         ]
-      }
+      },
+      "skill": "skills/demucs/SKILL.md"
     },
     {
       "id": "depth-anything-v2",
@@ -2237,16 +2284,30 @@
       "notes": [
         "2026-11-01: Depth maps for 2.5D parallax moves.",
         "2026-11-01: Only the Small model is safe for commercial use.",
-        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+        "2026-11-24: Toolkit guide written at skills/depth-anything-v2/SKILL.md from the Small-hf fixture evidence; licence warning (Small only is Apache-2.0) up front."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "Hub commit 5426e4f0f36572d16453bbda7a8389317b1bef99 (depth-anything/Depth-Anything-V2-Small-hf; transformers 5.24.0, torch 2.15.0)",
+            "command": "examples/depth-anything-v2-depth-map/run.sh",
+            "result": "Small checkpoint via transformers depth-estimation pipeline on a generated 640x480 receding-floor scene: depth map 480x640 float32; near disc median 9.1815 vs far disc median 0.9429 (ordering correct); floor band 260/260 adjacent row pairs non-decreasing toward the bottom; fresh-process rerun byte-identical. CPU, macOS arm64.",
+            "example": "examples/depth-anything-v2-depth-map",
+            "scope": "Small checkpoint via transformers pipeline on CPU; one generated receding-floor scene: near>far, floor 260/260 pairs monotone, rerun byte-identical; relative depth only; macOS arm64"
+          }
+        ]
       },
+      "examples": [
+        "depth-anything-v2-depth-map"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Monocular depth-estimation model with Python inference and downloaded checkpoints. It produces relative depth maps for still images; only the Small checkpoint is Apache-2.0, while larger checkpoints carry non-commercial terms.",
       "use_when": [
@@ -2260,8 +2321,8 @@
       "pairs_with": [],
       "license": "Apache-2.0 (Small model); CC-BY-NC-4.0 (Base/Large/Giant weights)",
       "install": {
-        "macos": "unknown",
-        "check_command": "unknown"
+        "macos": "/opt/homebrew/bin/python3.12 -m venv examples/depth-anything-v2-depth-map/output/venv && examples/depth-anything-v2-depth-map/output/venv/bin/pip install -r examples/depth-anything-v2-depth-map/requirements.txt",
+        "check_command": "examples/depth-anything-v2-depth-map/output/venv/bin/python -c \"import torch, transformers; print(torch.__version__, transformers.__version__)\""
       },
       "assessment": {
         "date": "2026-11-15",
@@ -2275,7 +2336,8 @@
           "https://github.com/DepthAnything/Depth-Anything-V2",
           "https://github.com/DepthAnything/Depth-Anything-V2/releases"
         ]
-      }
+      },
+      "skill": "skills/depth-anything-v2/SKILL.md"
     },
     {
       "id": "diffusion-studio-core",
@@ -2822,16 +2884,35 @@
         "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
         "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
         "2026-10-29: Skill opportunity: Further research first: a repeatable descriptor fixture and licence/model review should precede a VCR or standalone skill.",
-        "2026-10-29: Optional models have separate provenance and licensing; verify exact AGPL variant and terms for intended deployment."
+        "2026-10-29: Optional models have separate provenance and licensing; verify exact AGPL variant and terms for intended deployment.",
+        "2026-11-24: Fixture essentia-audio-features is partial: BPM (119.88 for 120), four sine pitches within 1.3 cents, the 1 kHz level at -6.011 LUFS and reruns pass; RhythmExtractor2013 beat ticks fail the ±30 ms rule (8 of 18 clicks), with most ticks 24 to 35 ms late.",
+        "2026-11-24: Guide skills/essentia/SKILL.md written from the partial fixture evidence; evidence unchanged."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "essentia-audio-features"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.1b6.dev1438",
+            "command": "examples/essentia-audio-features/run.sh",
+            "result": "PARTIAL: RhythmExtractor2013 119.88 BPM on 120 BPM clicks (-0.10 %, passes ±2 %); 19 ticks, 8 of 18 clicks within 30 ms (fails; most ticks 24-35 ms late). PitchYinFFT: 440, 880, 1760 and 3520 Hz within 1.3 cents (passes). LoudnessEBUR128 1 kHz level -6.011 LUFS vs -6.01 expected (passes). Reruns byte-identical.",
+            "example": "examples/essentia-audio-features",
+            "scope": "Fixture-reported: generated clicks, sines and 1 kHz level, macOS arm64; BPM, pitch, loudness and reruns pass; beat positions fail at 30 ms; no expected/ kept"
+          }
+        ]
+      },
+      "install": {
+        "macos": "/opt/homebrew/bin/python3.14 -m venv output/venv && output/venv/bin/python -m pip install -r requirements.txt, run inside examples/essentia-audio-features (essentia==2.1b6.dev1438 pinned, cp314 macOS arm64 wheel)",
+        "check_command": "output/venv/bin/python -c \"import essentia.standard\""
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "C++ audio-analysis library with Python and JavaScript bindings and CLI tools. It offers a broad set of audio descriptors and optional model inference, including onset analysis.",
       "use_when": [
@@ -2858,7 +2939,8 @@
           "https://essentia.upf.edu/",
           "https://github.com/MTG/essentia"
         ]
-      }
+      },
+      "skill": "skills/essentia/SKILL.md"
     },
     {
       "id": "exiftool",
@@ -3223,6 +3305,7 @@
       },
       "skill": "skills/ffmpeg/SKILL.md",
       "examples": [
+        "demucs-stem-separation",
         "native-svg",
         "ffmpeg-assembly",
         "gstreamer-pipeline-encode",
@@ -3245,7 +3328,9 @@
         "syncalong-text-align",
         "whisperx-word-timing",
         "whisper-cpp-transcribe",
-        "vapoursynth-script-frames"
+        "vapoursynth-script-frames",
+        "rhubarb-lip-sync-cues",
+        "revideo-headless-render"
       ],
       "notes": [
         "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
@@ -5267,7 +5352,10 @@
         "shiki-magic-move-capture",
         "three-vrm-capture",
         "audiowaveform-peaks",
-        "glslviewer-headless-frames"
+        "glslviewer-headless-frames",
+        "real-esrgan-upscale",
+        "mannequin-js-pose-capture",
+        "bvh-mocap-playback"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -6386,16 +6474,33 @@
         "2026-11-01: Procedural jointed human figure on Three.js; poses are joint angles, so a pose can be a pure function of t. Proposed route: render through the three-js capture path.",
         "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue.",
-        "2026-11-15: Latest upstream release v5.2.3 dated 2026-10-06; repository LICENSE is GPL-3, not MIT."
+        "2026-11-15: Latest upstream release v5.2.3 dated 2026-10-06; repository LICENSE is GPL-3, not MIT.",
+        "2026-11-24: Guide written from partial evidence (mannequin-js-pose-capture): figure units about 1 per figure height; GPL-3.0 flagged for redistribution."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "5.2.3",
+            "command": "examples/mannequin-js-pose-capture/run.sh",
+            "result": "partial: 90 frames 1280x720, shuffled equals sequential; joint readbacks (torso bend, right arm raise, left knee bend) match the values set from t; four predeclared frames distinct; knee-only change smaller than torso-and-arm change; corner alpha 0. Failed predeclared check: right wrist moved 0.404 library units t=0 to 1.5 s vs 1.0 required (figure 1.01 units tall). Reruns byte-identical. three 0.186.1, Chromium 156.0.8078.4, Node v22.19.0",
+            "example": "examples/mannequin-js-pose-capture",
+            "scope": "Fixture-reported: joints posed from t, frames deterministic and distinct, alpha ok; wrist displacement check failed (0.40 vs 1.0 units); macOS arm64"
+          }
+        ]
       },
+      "install": {
+        "macos": "pnpm add mannequin-js@5.2.3 three@0.186.1"
+      },
+      "examples": [
+        "mannequin-js-pose-capture"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "conversation 2026-11-01: character and figure tooling gap",
       "summary": "Three.js procedural articulated human figures with joint-angle posing, suited to simple pose-driven scenes without importing a character asset.",
       "use_when": [
@@ -6423,7 +6528,8 @@
           "https://github.com/boytchev/mannequin.js/releases",
           "https://github.com/boytchev/mannequin.js/blob/main/LICENSE"
         ]
-      }
+      },
+      "skill": "skills/mannequin-js/SKILL.md"
     },
     {
       "id": "maplibre-native",
@@ -7016,7 +7122,8 @@
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a",
       "examples": [
-        "mermaid-cli-svg"
+        "mermaid-cli-svg",
+        "mermaid-rs-renderer-svg"
       ],
       "skill": "skills/mermaid-cli/SKILL.md"
     },
@@ -7035,16 +7142,30 @@
       ],
       "notes": [
         "2026-11-15: Triage reason: Assess documented coverage, output fidelity and stability against mermaid-cli. Revisit if upstream parity becomes important.",
-        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+        "2026-11-24: Toolkit guide written from validated evidence (examples/mermaid-rs-renderer-svg); scope one flowchart, SVG and PNG."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.3.1",
+            "command": "examples/mermaid-rs-renderer-svg/run.sh",
+            "result": "mmdr 0.3.1 wrote source.mmd to SVG twice, byte-identical (SHA-256 fcdb1be5...); 4 nodes, 4 edges, all six labels; PNG 466x189 within 1px of --size; mmdc 12.0.0 gave the same labels and counts; contact sheet inspected. Wall-clock medians ~20-27 ms vs mmdc ~1.5-2.4 s (facts, not gate).",
+            "example": "examples/mermaid-rs-renderer-svg",
+            "scope": "mmdr 0.3.1 SVG flowchart: 4 nodes, 4 edges, 6 labels matched to mmdc 12.0.0; PNG size within 1px; byte-identical reruns; no browser lib. macOS arm64. Not other diagrams or themes."
+          }
+        ]
       },
+      "examples": [
+        "mermaid-rs-renderer-svg"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-11-discovery.md",
       "summary": "Rust CLI and library render Mermaid text to SVG, with optional PNG output via resvg. Its browser-free native path is useful for scripts needing low startup and memory; layout and syntax coverage should be checked against mermaid-cli.",
       "license": "MIT",
@@ -7077,7 +7198,8 @@
           "https://github.com/1jehuang/mermaid-rs-renderer/releases",
           "https://github.com/1jehuang/mermaid-rs-renderer/blob/master/Cargo.toml"
         ]
-      }
+      },
+      "skill": "skills/mermaid-rs-renderer/SKILL.md"
     },
     {
       "id": "meshoptimizer",
@@ -8108,16 +8230,35 @@
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Potential standalone 3D processing skill; first verify a reproducible point-cloud workflow and ownership."
+        "2026-10-29: Skill opportunity: Potential standalone 3D processing skill; first verify a reproducible point-cloud workflow and ownership.",
+        "2026-11-24: Fixture examples/open3d-point-cloud is partial: sampling, sphere voxel count, normals, Poisson bounds and PLY counts pass; box voxel gate (predeclared range) and Poisson-mesh seeded reruns fail. Install is a venv under the example's git-ignored output/.",
+        "2026-11-24: Toolkit guide skills/open3d/SKILL.md written from the partial fixture evidence; validation unchanged (partial)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "install": {
+        "macos": "cd examples/open3d-point-cloud && /opt/homebrew/bin/python3.12 -m venv output/venv && output/venv/bin/python -m pip install -r requirements.txt",
+        "check_command": "examples/open3d-point-cloud/output/venv/bin/python -c \"import open3d; print(open3d.__version__)\""
+      },
+      "examples": [
+        "open3d-point-cloud"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.20.0",
+            "command": "examples/open3d-point-cloud/run.sh",
+            "result": "Sphere and box: 20000 samples exact; sphere voxel ratio 1.125, box 0.435 (predeclared 0.8-2.5, box fails); normals radial-outward fraction 1.0; Poisson bounds deviation 0.0009 and 0.028 (<=0.1); PLY point and mesh counts identical; reruns: point cloud identical, Poisson triangle counts differ (61704 vs 61703); offscreen render produced an image. run.sh exits 1. numpy 2.5.5, Python 3.12.13, macOS arm64.",
+            "example": "examples/open3d-point-cloud",
+            "scope": "Fixture-reported: open3d sphere/box sampling, normals, Poisson bounds, PLY counts pass; box voxel gate false; Poisson mesh reruns differ; macOS arm64."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "C++ and Python library for processing 3D data, including point clouds and meshes. Its geometry operations suit reconstruction and inspection, while scene authoring remains with native 3D tools.",
       "use_when": [
@@ -8145,7 +8286,8 @@
           "https://github.com/isl-org/Open3D/releases"
         ],
         "version_seen": "0.20.0 (GitHub release; date year unverified)"
-      }
+      },
+      "skill": "skills/open3d/SKILL.md"
     },
     {
       "id": "opencolorio",
@@ -9286,7 +9428,9 @@
         "glslify-bundle",
         "three-globe-capture",
         "shiki-magic-move-capture",
-        "three-vrm-capture"
+        "three-vrm-capture",
+        "mannequin-js-pose-capture",
+        "bvh-mocap-playback"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
@@ -10498,16 +10642,34 @@
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Possible standalone restoration skill; first verify specific model weights, rights and an image fixture."
+        "2026-10-29: Skill opportunity: Possible standalone restoration skill; first verify specific model weights, rights and an image fixture.",
+        "2026-11-24: Fixture uses the ncnn-Vulkan macOS release asset realesrgan-ncnn-vulkan-20220424-macos.zip (Real-ESRGAN v0.2.5.0), which bundles the models. The wrapper's v0.2.0 macOS zip bundles no models. Binary licence MIT (wrapper LICENSE); weight terms not separately verified."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
         "status": "not-validated",
-        "evidence": []
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "20220424",
+            "command": "examples/real-esrgan-upscale/run.sh",
+            "result": "realesrgan-x4plus, -s 4, on a 160x120 box-downscaled 640x480 synthetic still: output 640x480 (exact 4x); PSNR 20.46 dB vs bicubic 20.27 (margin 1.0 dB, not met); SSIM 0.9258 vs 0.9210 (margin 0.010, not met); fresh-process rerun byte-identical. Predeclared result: fail. Vulkan via MoltenVK on Apple M3.",
+            "example": "examples/real-esrgan-upscale",
+            "scope": "realesrgan-x4plus ncnn route, one generated still: exact 4x size and deterministic rerun hold; no PSNR/SSIM margin over bicubic (fail); macOS arm64 only"
+          }
+        ]
+      },
+      "examples": [
+        "real-esrgan-upscale"
+      ],
+      "install": {
+        "macos": "mkdir -p examples/real-esrgan-upscale/output/bin && curl -sSLo examples/real-esrgan-upscale/output/bin/realesrgan-ncnn-vulkan-20220424-macos.zip https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesrgan-ncnn-vulkan-20220424-macos.zip && unzip -q examples/real-esrgan-upscale/output/bin/realesrgan-ncnn-vulkan-20220424-macos.zip -d examples/real-esrgan-upscale/output/bin/release && chmod u+x examples/real-esrgan-upscale/output/bin/release/realesrgan-ncnn-vulkan",
+        "check_command": "examples/real-esrgan-upscale/output/bin/release/realesrgan-ncnn-vulkan -h 2>&1 | head -1"
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Model-based image restoration and upscaling with Python inference scripts. It produces processed image files; model weights, output quality and compute requirements vary by model.",
       "use_when": [
@@ -10774,16 +10936,27 @@
         "2026-11-01: Reference only per ADR 0001; no GitHub releases, moved organisations.",
         "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
-        "2026-11-15: GitHub release list is empty; project docs describe npm releases/canaries. Current published package version and last release date were not established."
+        "2026-11-15: GitHub release list is empty; project docs describe npm releases/canaries. Current published package version and last release date were not established.",
+        "2026-11-24: Toolkit guide written from the partial headless renderVideo evidence; evidence unchanged."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.11.0",
+            "command": "examples/revideo-headless-render/run.sh",
+            "result": "renderVideo wrote 320x180 H.264 yuv420p MP4 at 30 fps with 61 frames (predeclared 60); rect centre within 0.2 px of expected at 5 sampled frames; two renders gave identical per-frame hashes",
+            "example": "examples/revideo-headless-render",
+            "scope": "Fixture-reported: headless renderVideo to H.264 MP4 at 320x180, 30 fps, bundled ffmpeg, macOS arm64; frame count 61 vs predeclared 60 failed; no expected/ kept; no other hosts, exporters or CLI."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "TypeScript rendering engine for programmatic video creation with a Motion Canvas-like authoring model and headless rendering route.",
       "use_when": [
@@ -10811,7 +10984,15 @@
           "https://github.com/midrender/revideo/blob/main/RELEASING.md",
           "https://github.com/midrender/revideo/releases"
         ]
-      }
+      },
+      "install": {
+        "macos": "npm install --save-exact --ignore-scripts @revideo/core@0.11.0 @revideo/2d@0.11.0 @revideo/renderer@0.11.0 @revideo/vite-plugin@0.11.0 @revideo/ui@0.11.0",
+        "check_command": "npm ls @revideo/renderer --depth 0"
+      },
+      "examples": [
+        "revideo-headless-render"
+      ],
+      "skill": "skills/revideo/SKILL.md"
     },
     {
       "id": "rhubarb-lip-sync",
@@ -10832,10 +11013,23 @@
       "installation_status": "unknown",
       "validation": {
         "status": "not-validated",
-        "evidence": []
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.14.0",
+            "command": "examples/rhubarb-lip-sync-cues/run.sh",
+            "result": "fail: run.sh exits 139 (SIGSEGV) at the first rhubarb run on a 9.12 s generated 16 kHz speech WAV; no mouth cues written. Same crash with -r phonetic, --threads 1, a 2 s excerpt and an explicit arch -x86_64 launch. --version exit 0; bundled sine sample exit 0 (no speech path). Binary sha256 93fa4a16ae1cc88a89d59743057521407843fc7139e23808c9e6587c6cc946d3. Crash in PocketSphinx ps_init; root cause not established.",
+            "example": "examples/rhubarb-lip-sync-cues",
+            "scope": "Fixture-reported: segfault on any speech WAV in PocketSphinx init, macOS arm64 under Rosetta; no cues produced; claim not tested, dialog path not reached"
+          }
+        ]
       },
+      "examples": [
+        "rhubarb-lip-sync-cues"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "conversation 2026-11-01: character and figure tooling gap",
       "summary": "Desktop CLI analyzes WAV or Ogg audio and produces timestamped mouth-shape cues in TSV, XML or JSON, with integrations for several animation applications. English recognition uses PocketSphinx; a phonetic recognizer is available for other languages with lower precision. Strength: turns existing dialogue recordings into lightweight cues that can drive 2D mouth animation.",
       "use_when": [
@@ -10851,7 +11045,7 @@
       ],
       "license": "MIT (project); bundled third-party dependencies have their own permissive licences, including BSD and Boost",
       "install": {
-        "macos": "Download and unpack the macOS archive from the official GitHub release",
+        "macos": "curl -L -o output/bin/archive/Rhubarb-Lip-Sync-1.14.0-macOS.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-macOS.zip (sha256 f991deacac6c973a14a4431a16a58b842f436531e120cfaea142c87c0d3ab4c5), unzip to output/bin/extracted, run output/bin/extracted/Rhubarb-Lip-Sync-1.14.0-macOS/rhubarb (x86_64 build, runs under Rosetta 2 on arm64)",
         "check_command": "rhubarb --version"
       },
       "assessment": {
@@ -12548,7 +12742,9 @@
         "rapier-capture",
         "troika-three-text-sync",
         "three-globe-capture",
-        "three-vrm-capture"
+        "three-vrm-capture",
+        "mannequin-js-pose-capture",
+        "bvh-mocap-playback"
       ],
       "documentation_status": "skill-verified",
       "installation_status": "unknown",

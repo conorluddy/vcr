@@ -75,7 +75,9 @@
     "rapier-capture",
     "troika-three-text-sync",
     "three-globe-capture",
-    "three-vrm-capture"
+    "three-vrm-capture",
+    "mannequin-js-pose-capture",
+    "bvh-mocap-playback"
   ],
   "documentation_status": "skill-verified",
   "installation_status": "unknown",
