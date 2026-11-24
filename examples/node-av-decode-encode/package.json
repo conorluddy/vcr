@@ -1,0 +1,15 @@
+{
+  "name": "@vcr/example-node-av-decode-encode",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "tsx check.ts"
+  },
+  "dependencies": {
+    "node-av": "7.1.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}

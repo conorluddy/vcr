@@ -79,7 +79,8 @@
     "ffmpeg-assembly",
     "browser-capture",
     "svt-av1-encode",
-    "vmaf-ffmpeg-score"
+    "vmaf-ffmpeg-score",
+    "node-av-decode-encode"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
