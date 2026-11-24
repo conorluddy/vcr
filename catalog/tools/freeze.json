@@ -18,11 +18,24 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.2.2",
+        "command": "examples/freeze-code-still/run.sh",
+        "result": "Dracula theme, padding 20, line numbers: plain and window-chrome SVG 357x184 and PNG 1428x736; 8 predeclared tokens and #282a36 background in SVG; JetBrains Mono woff2 embedded; repeat SVG and PNG byte-identical; contact sheet inspected, legible and unclipped.",
+        "example": "examples/freeze-code-still",
+        "scope": "Fixed Go file to SVG and PNG on macOS arm64: Dracula, window chrome off/on, line numbers, embedded JetBrains Mono; repeat byte-identical. Not other themes, fonts or platforms."
+      }
+    ]
   },
+  "examples": [
+    "freeze-code-still"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "CLI that renders source code or terminal output to PNG, SVG and WebP, with configurable themes and framing. It is useful for polished, repeatable code and terminal stills without a manual screenshot.",
   "use_when": [
@@ -36,7 +49,7 @@
   "pairs_with": [],
   "license": "MIT",
   "install": {
-    "macos": "brew install freeze",
+    "macos": "brew install charmbracelet/tap/freeze",
     "check_command": "freeze --version"
   },
   "assessment": {
