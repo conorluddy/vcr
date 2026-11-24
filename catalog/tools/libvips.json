@@ -25,12 +25,12 @@
   "capabilities": [
     "image-processing"
   ],
-  "license": "LGPL-2.1",
+  "license": "LGPL-2.1-or-later",
   "install": {
     "macos": "brew install vips",
     "check_command": "vips --version"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "libvips-resize-composite"
@@ -65,6 +65,8 @@
   },
   "source": "specifications/vcr-prd.md#appendix-a",
   "notes": [
-    "2026-10-29: Skill opportunity: further research first; existing ImageMagick guidance addresses common image tasks, while libvips-specific large-image benefits need a fixture."
-  ]
+    "2026-10-29: Skill opportunity: further research first; existing ImageMagick guidance addresses common image tasks, while libvips-specific large-image benefits need a fixture.",
+    "2026-11-24: Guide written from examples/libvips-resize-composite. Licence changed from LGPL-2.1 to LGPL-2.1-or-later as stated on libvips.org."
+  ],
+  "skill": "skills/libvips/SKILL.md"
 }
