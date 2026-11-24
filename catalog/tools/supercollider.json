@@ -12,9 +12,10 @@
   "notes": [
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-    "2026-10-29: Skill opportunity: Potential standalone synthesis skill; establish scoped noninteractive render and server lifecycle before authoring."
+    "2026-10-29: Skill opportunity: Potential standalone synthesis skill; establish scoped noninteractive render and server lifecycle before authoring.",
+    "2026-11-24: Guide written from partial NRT evidence (skills/supercollider/SKILL.md); frame-count finding recorded as a gotcha."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "install": {
     "macos": "brew install --cask supercollider",
@@ -66,5 +67,6 @@
       "https://github.com/supercollider/supercollider/releases"
     ],
     "version_seen": "3.14.1 (GitHub release; date year unverified)"
-  }
+  },
+  "skill": "skills/supercollider/SKILL.md"
 }
