@@ -1,0 +1,14 @@
+{
+  "id": "ttconv-caption-convert",
+  "title": "ttconv converts a hand-written three-cue SRT to WebVTT and TTML",
+  "summary": "Three predeclared SRT cues (one two-line, one italic) convert to WebVTT and TTML with matching cue count, millisecond timings, text and line breaks; TTML is well-formed in the TTML namespace; WebVTT back to SRT keeps timings. No IMSC profile check.",
+  "status": "validated",
+  "tools": [
+    "ttconv"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
