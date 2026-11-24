@@ -1,0 +1,18 @@
+{
+  "id": "three-vrm-capture",
+  "title": "VRM 1.0 avatar: meta read, right arm and blink posed from t, spring bones disabled",
+  "summary": "three-vrm 3.6.0 loads a downloaded sample VRM in Three.js 0.186.1; arm and blink are closed-form in t; shuffled order matches sequential; probe values and frame hashes recorded.",
+  "status": "validated",
+  "tools": ["three-vrm", "three-js", "playwright", "imagemagick"],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
