@@ -11,9 +11,10 @@
   ],
   "notes": [
     "2026-11-15: Triage: assess; manual fixed-step Python simulation offers a distinct bake route beside the JavaScript physics tools. Revisit after an owned fixture checks state serialization and repeatability.",
-    "2026-11-15: Skill opportunity: no standalone skill yet; consider a VCR toolkit guide only if a reproducible fixed-step simulation fixture is adopted."
+    "2026-11-15: Skill opportunity: no standalone skill yet; consider a VCR toolkit guide only if a reproducible fixed-step simulation fixture is adopted.",
+    "2026-11-24: Toolkit guide written at skills/pymunk/SKILL.md from examples/pymunk-fixed-step evidence (same-machine fixed-step reruns and fresh-process seek only)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -45,6 +46,7 @@
     "Use Matter.js when the scene and physics are already browser-based"
   ],
   "license": "MIT",
+  "skill": "skills/pymunk/SKILL.md",
   "install": {
     "macos": "python3 -m pip install pymunk",
     "check_command": "python3 -c \"import pymunk; print(pymunk.version)\""
