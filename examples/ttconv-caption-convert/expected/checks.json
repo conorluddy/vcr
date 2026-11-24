@@ -1,0 +1,27 @@
+{
+  "all_gating_checks_pass": true,
+  "checks": {
+    "rerun_vtt_identical": true,
+    "roundtrip_srt_cue_count": true,
+    "roundtrip_srt_text_lines": true,
+    "roundtrip_srt_timings_ms": true,
+    "ttml_cue_count": true,
+    "ttml_italic_span": true,
+    "ttml_line_break_preserved": true,
+    "ttml_namespace": true,
+    "ttml_text_lines": true,
+    "ttml_timings_ms": true,
+    "ttml_well_formed_xml": true,
+    "vtt_cue_count": true,
+    "vtt_italic_markup": true,
+    "vtt_line_break_preserved": true,
+    "vtt_text_lines": true,
+    "vtt_timings_ms": true
+  },
+  "measured": {
+    "roundtrip_srt_sha256": "69a3ec7b595552e652e8788dc818e2d2ffcfc5d119c7b81620fe14a058c42f84",
+    "ttml_parse_error": null,
+    "ttml_sha256": "de2c591569c18191b1ca8aa185e742ccc258cd5954561e935b5904d8abfb7d65",
+    "vtt_sha256": "5c2e980e29643128a5715efe1fb1990a7c29bc3d178422837ec420ea335ba6cf"
+  }
+}

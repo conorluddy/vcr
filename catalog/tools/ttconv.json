@@ -15,12 +15,25 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "ttconv-caption-convert"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.2.3",
+        "command": "examples/ttconv-caption-convert/run.sh",
+        "result": "Hand-written SRT with 3 cues (1 two-line, 1 italic) converted to WebVTT and TTML; all 16 predeclared checks pass: 3 cues, timings 1000-2500, 3120-5040, 5500-7250 ms, text and line breaks, TTML well-formed in the TTML namespace, WebVTT back to SRT keeps timings; second conversion byte-identical. Python 3.12.2, macOS arm64.",
+        "example": "examples/ttconv-caption-convert",
+        "scope": "SRT (3 cues, 2-line, italic) to WebVTT and TTML: cues, ms timings, text, breaks, well-formed TTML namespace, VTT to SRT round-trip; no IMSC profile; macOS arm64."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-03-discovery.md",
   "summary": "Python library and `tt` command-line tool for converting timed-text files across formats including STL, SRT, TTML, SCC and WebVTT. It automates format conversion; standards conformance and preservation of format-specific features need workflow-specific checks.",
   "use_when": [
