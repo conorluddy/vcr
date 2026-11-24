@@ -36,9 +36,11 @@
   },
   "skill": "skills/imagemagick/SKILL.md",
   "examples": [
+    "vtracer-colour-trace",
     "dssim-still-compare",
     "gl-transitions-seek",
     "ffmpeg-assembly",
+    "gstreamer-pipeline-encode",
     "libwebp-lossless-animation",
     "blender-smoke",
     "browser-capture",
@@ -87,7 +89,9 @@
     "baguette-simulator-capture",
     "odiff-frame-diff",
     "shiki-magic-move-capture",
-    "three-vrm-capture"
+    "three-vrm-capture",
+    "audiowaveform-peaks",
+    "glslviewer-headless-frames"
   ],
   "notes": [
     "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",

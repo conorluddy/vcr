@@ -1,0 +1,14 @@
+{
+  "id": "csound-offline-render",
+  "title": "csound offline WAV render of a one-sine score: rate, length, pitch and onset checks",
+  "summary": "Six predeclared sine notes via poscil in one instrument, -W -o render twice; rate, mono, 3.0 s length, FFT pitch within 5 cents, onset within 5 ms, peak below 0 dBFS, rerun byte identity.",
+  "status": "validated",
+  "tools": [
+    "csound"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

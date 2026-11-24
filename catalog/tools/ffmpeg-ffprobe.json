@@ -77,6 +77,7 @@
   "examples": [
     "native-svg",
     "ffmpeg-assembly",
+    "gstreamer-pipeline-encode",
     "rubber-band-stretch",
     "browser-capture",
     "svt-av1-encode",
@@ -95,7 +96,8 @@
     "aubio-onsets-pitch",
     "syncalong-text-align",
     "whisperx-word-timing",
-    "whisper-cpp-transcribe"
+    "whisper-cpp-transcribe",
+    "vapoursynth-script-frames"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."

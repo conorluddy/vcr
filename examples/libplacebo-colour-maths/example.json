@@ -1,0 +1,9 @@
+{
+  "id": "libplacebo-colour-maths",
+  "title": "libplacebo 7.387.0 CPU colour maths and BT.2390 tone map (native C)",
+  "summary": "C program linked to Homebrew libplacebo calls CPU-only primaries, RGB-to-XYZ, BT.709/BT.2020 conversion and BT.2390 tone-map APIs; no GPU context.",
+  "status": "validated",
+  "tools": ["libplacebo"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" }
+}

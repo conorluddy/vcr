@@ -1,0 +1,17 @@
+{
+  "frames": 8,
+  "range_frames": 4,
+  "width": 128,
+  "height": 96,
+  "dimensions_ok": true,
+  "distinct_frames": 8,
+  "rerun_identical": true,
+  "range_0_5_matches_full_4_7": true,
+  "probes_checked": 16,
+  "probes_within_tolerance_per_channel_2": true,
+  "alpha": {
+    "channels": "srgba",
+    "middle_frame": 4,
+    "min_max_8bit": "255,255"
+  }
+}
