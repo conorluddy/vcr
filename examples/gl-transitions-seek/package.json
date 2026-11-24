@@ -1,0 +1,17 @@
+{
+  "name": "@vcr/example-gl-transitions-seek",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "node --import tsx/esm capture.ts"
+  },
+  "dependencies": {
+    "@vcr/capture": "workspace:*",
+    "gl-transitions": "3.3.0",
+    "playwright": "^1.64.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}

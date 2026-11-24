@@ -38,6 +38,7 @@
     "check_command": "npx playwright --version"
   },
   "examples": [
+    "gl-transitions-seek",
     "browser-capture",
     "lint-overflow",
     "p5-capture",
