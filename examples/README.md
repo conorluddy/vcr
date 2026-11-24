@@ -94,6 +94,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `whisperx-word-timing` | whisperx, ffmpeg-ffprobe | tiny.en int8 CPU on a macOS `say` 10-word sentence: WER 0/10, 10/10 word starts within 0.08 s of energy onsets (mean 0.033 s), transcript and timings identical on rerun; no diarization, other models or real speech (2026-11-24) |
 | `caption-checker-limits` | caption-checker | netflix profile on hand-written SRT and WebVTT: clean files 0 issues, 4 predeclared violations (cpl, lines, short, overlap) on the right cues in both formats, reruns byte-identical; no other profiles, gap or reading-speed rules, fix or MCP (2026-11-24) |
 | `pedalboard-effects-chain` | pedalboard | built-in highpass, compressor, gain and limiter on generated tones and noise: first-order highpass (200 Hz down 14.2 dB, 5 kHz flat), reruns identical, 16-bit WAV within 2 LSB; Limiter peaked at 0 dBFS despite a -1 dB threshold (partial); no plugins (2026-11-24) |
+| `odiff-frame-diff` | odiff, imagemagick | odiff 4.5.0 on generated 256x144 PNG frames: identical exit 0 and no diff, 20x10 patch exactly 200 px (exit 22) with highlighted diff image, threshold sweep non-increasing, reruns identical; partial: --aa leaves 12 of 512 ring pixels (2026-11-24) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 
