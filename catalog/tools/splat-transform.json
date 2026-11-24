@@ -11,9 +11,11 @@
     "model-loading"
   ],
   "notes": [
-    "2026-11-15: Assess because the digest identifies a conversion and filtering gap between splat producers and mesh-only tools. Revisit after confirming the official automation interface and supported formats."
+    "2026-11-15: Assess because the digest identifies a conversion and filtering gap between splat producers and mesh-only tools. Revisit after confirming the official automation interface and supported formats.",
+    "2026-11-24: Unproven guide written from official docs and the failed fixture; no passing evidence."
   ],
   "documentation_status": "listed-in-prd",
+  "skill": "skills/splat-transform/SKILL.md",
   "installation_status": "unknown",
   "validation": {
     "status": "not-validated",

@@ -6,6 +6,8 @@ Resume with the `backfill` skill for tool work, and with `evidence` or `guide` f
 
 ## 1. Tools still `listed-in-prd` (19)
 
+All 19 now have an **unproven guide** (`skills/<id>/SKILL.md`, description starting `Unproven in VCR:`), written on 2026-11-24 from official docs, the failed fixtures, and the agents' recall. The records stay `listed-in-prd`. The guides mark every unverified flag and fact. Several writers had no web access and wrote CLI flags from memory, so check those with `--help` before relying on them. Evidence work replaces an unproven guide with a normal one.
+
 **Skip unless the decision changes (8).** These are demoted (`diffusion-studio-core`, `easeljs`, `editly`, `mediarecorder`, `mo-js`, `natron`) or manual-only (`chainner`, `magenta-studio`). Next step: an `ingest` pass to *retire* the demoted ones. The backfill skips them, so they stay in the backlog for good.
 
 **Blocked on install access (4):**

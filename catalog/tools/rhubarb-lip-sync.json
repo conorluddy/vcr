@@ -11,7 +11,8 @@
   ],
   "notes": [
     "2026-11-01: CLI that turns a voice recording into timed mouth shapes (JSON/TSV); proposed driver for avatar or 2D mouth animation.",
-    "2026-11-15: GitHub release page omits the year in its April 3 timestamp; year 2025 is corroborated by a release index. Latest release tag remains v1.14.0."
+    "2026-11-15: GitHub release page omits the year in its April 3 timestamp; year 2025 is corroborated by a release index. Latest release tag remains v1.14.0.",
+    "2026-11-24: Unproven guide written from official docs and the failed fixture; no passing evidence."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -66,5 +67,6 @@
       "https://github.com/DanielSWolf/rhubarb-lip-sync/blob/master/LICENSE.md",
       "https://talking-avatar.dev/alternatives/7-best-ovrlipsync-alternatives-2026"
     ]
-  }
+  },
+  "skill": "skills/rhubarb-lip-sync/SKILL.md"
 }

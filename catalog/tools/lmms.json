@@ -12,7 +12,8 @@
   "notes": [
     "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
     "2026-10-29: The original site could not be opened in this check; the project repository was accessible. CLI render and plugins have not been tested.",
-    "2026-10-29: Skill opportunity: further research first; a standalone LMMS workflow may be useful for music production after a reproducible render."
+    "2026-10-29: Skill opportunity: further research first; a standalone LMMS workflow may be useful for music production after a reproducible render.",
+    "2026-11-24: Unproven guide written from official docs; no VCR evidence."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -50,5 +51,6 @@
       "https://github.com/LMMS/lmms/releases",
       "https://github.com/LMMS/lmms/blob/master/src/core/main.cpp"
     ]
-  }
+  },
+  "skill": "skills/lmms/SKILL.md"
 }
