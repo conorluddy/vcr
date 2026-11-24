@@ -33,6 +33,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `lint-overflow` | playwright, `vcr lint` | 9:16 DOM frame: exactly one TYPO-SAFE crossing and one overflow, exit 1 (2026-11-06) |
 | `roughjs-capture` | rough-js, playwright, imagemagick | seeded hand-drawn rectangle, ellipse and path redrawn from t (hachure fill only; other fills use unseeded Math.random), alpha, shuffled equals sequential (2026-11-11) |
 | `d3-capture` | d3, playwright, imagemagick | SVG bar-and-line chart via d3-scale/shape/axis, values from d3.interpolate at t, no transitions or timers, alpha, shuffled equals sequential (2026-11-11) |
+| `three-globe-capture` | three-globe, three-js, playwright, imagemagick | seeked rotating globe, 5 points and 1 arc on SwiftShader WebGL, alpha, shuffled equals sequential; mark-visibility check failed (marks about 2 to 5 px), partial (2026-11-24) |
 | `paperjs-capture` | paper-js, playwright, imagemagick | smoothed path, boolean union and radial gradient set from t with explicit view.update(), alpha, shuffled equals sequential (2026-11-11) |
 | `matterjs-capture` | matter-js, playwright, imagemagick | rigid bodies seeked by fixed-step re-simulation, drawn with Canvas 2D, alpha, shuffled equals sequential (2026-11-11) |
 | `tweenjs-capture` | tween-js, playwright, imagemagick | chained, yoyo and eased tweens rebuilt and stepped by explicit time per seek, alpha, shuffled equals sequential (2026-11-11) |
@@ -46,6 +47,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `playcanvas-capture` | playcanvas-engine, playwright, imagemagick | WebGL2 Application driven by app.update(0) + app.render() per seek, never app.start(), alpha, shuffled equals sequential (2026-11-11) |
 | `meshline-capture` | three-meshline, three-js, playwright, imagemagick | THREE.MeshLine width taper, dash offset, visibility and rebuilt points per seek, alpha, shuffled equals sequential (2026-11-11) |
 | `postprocessing-capture` | postprocessing, three-js, playwright, imagemagick | EffectComposer with Bloom and ChromaticAberration via composer.render(0) per seek; vignette not visible on alpha; shuffled equals sequential (2026-11-11) |
+| `gl-transitions-seek` | gl-transitions, webgl, playwright, imagemagick | gl-transitions Fade in raw WebGL1 between solid textures, seeked by progress; partial, alpha not measured, shuffled equals sequential (2026-11-24) |
 | `rive-web-state-machine` | rive-web | MIT-licensed sample, nested boolean inputs drive visible state colors (2026-11-16) |
 | `colmap-feature-extraction` | colmap | CPU SIFT database records for three generated 384x288 views; 853 keypoints each (2026-11-16) |
 | `mlt-color-render` | mlt-melt | Built-in color to FFV1: five 64x48 frames, repeated decoded RGB hash (2026-11-16) |
@@ -56,9 +58,13 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `svg-paper-collage` | svg, web-animations-api, playwright, imagemagick | six inline SVG paper pieces (embedded still, irregular mat, feDropShadow) animated via seeked element.animate; alpha, settles, shuffled equals sequential (2026-11-20) |
 | `waapi-word-stagger` | web-animations-api, playwright, imagemagick | seven-word line split into spans, one paused animation per word, onsets exactly 3 frames apart, settles fully visible, shuffled equals sequential (2026-11-20) |
 | `anime-diagram-build` | anime-js, playwright, imagemagick | paused v4 timeline: connectors draw before each node appears, earlier nodes recede, then an accent traces nodes 1-4 and holds; probe checks in both seek orders, shuffled equals sequential (2026-11-20) |
+| `node-av-decode-encode` | node-av, ffmpeg-ffprobe | node-av 7.1.0 decodes a 24-frame 320x240 H.264 MP4 frame by frame and re-encodes with libx264; ffprobe fields match, round-trip decode matches (2026-11-24) |
+| `thorvg-svg-raster` | thorvg | C++ SwCanvas renders inline SVG and one Lottie frame at 120x80; probed pixels match, reruns byte-identical (2026-11-24) |
+| `fogleman-sdf-mesh` | fogleman-sdf | classic CSG to binary STL: 291028 triangles, bounds +-0.75, watertight, byte-identical rerun (2026-11-24) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 
 ## Outside this repository
 
 `vcr example create <id>` copies an example into `<workspace>/examples/<id>` and prints the commands to run it. Browser examples arrive without `capture.ts`, `run.sh` and `expected/` (they depend on this pnpm workspace) and with a standalone `package.json`; render them with `vcr capture` using the `capture` block. Native examples (`native-svg`, `ffmpeg-assembly`, `blender-smoke`) keep their standalone `run.sh` and `expected/`. `*.test.ts`, `node_modules/` and `output/` never travel.
+| `heerich-voxel-svg` | heerich | 3x3x3 voxel cube minus one corner rendered to oblique SVG in Node, 27 polygons, reruns byte-identical (2026-11-24) |

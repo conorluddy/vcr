@@ -1,0 +1,27 @@
+{
+  "versions": {
+    "heerich": "0.21.0",
+    "node": "v22.19.0"
+  },
+  "scene": {
+    "tile": 40,
+    "camera": "oblique, angle 45, distance 15",
+    "box": "3x3x3 at [0,0,0], union",
+    "carved": "1x1x1 at [2,2,2], subtract"
+  },
+  "counts": {
+    "rawExposedFaces": 54,
+    "projectedFaces": 27,
+    "svgPolygons": 27,
+    "svgPathElements": 0
+  },
+  "projectedFaceNameCounts": {
+    "bottom": 9,
+    "right": 9,
+    "front": 9
+  },
+  "svg": {
+    "bytes": 5875,
+    "sha256": "fe319f842ace64633998b7fecd80c3e15189d5fe3e255dad1e49d0ab26e2cf41"
+  }
+}

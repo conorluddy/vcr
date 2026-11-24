@@ -1,0 +1,16 @@
+{
+  "name": "@vcr/example-glslify-bundle",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "tsx check.ts"
+  },
+  "dependencies": {
+    "glslify": "7.1.1",
+    "glsl-easings": "1.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}

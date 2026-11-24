@@ -1,0 +1,9 @@
+{
+  "id": "heerich-voxel-svg",
+  "title": "heerich carved 3x3x3 voxel cube rendered to SVG in Node",
+  "summary": "heerich 0.21.0 subtracts one corner voxel from a 3x3x3 cube and renders an oblique SVG; face and polygon counts checked against analytic values, two runs byte-identical.",
+  "status": "validated",
+  "tools": ["heerich"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" }
+}

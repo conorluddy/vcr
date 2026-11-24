@@ -1,0 +1,37 @@
+{
+  "inputFfprobe": {
+    "codecName": "h264",
+    "width": 320,
+    "height": 240,
+    "pixelFormat": "yuv420p",
+    "readFrameCount": 24,
+    "frameRate": "24/1",
+    "formatName": "mov,mp4,m4a,3gp,3g2,mj2"
+  },
+  "inputNodeAvDecode": {
+    "frameCount": 24,
+    "width": 320,
+    "height": 240,
+    "pixelFormatIsYuv420p": true,
+    "ptsStrictlyIncreasing": true,
+    "distinctFrameHashes": 24
+  },
+  "reencodedEncoder": "libx264",
+  "reencodedFfprobe": {
+    "codecName": "h264",
+    "width": 320,
+    "height": 240,
+    "pixelFormat": "yuv420p",
+    "readFrameCount": 24,
+    "frameRate": "24/1",
+    "formatName": "mov,mp4,m4a,3gp,3g2,mj2"
+  },
+  "reencodedRoundTripDecode": {
+    "frameCount": 24,
+    "width": 320,
+    "height": 240,
+    "pixelFormatIsYuv420p": true,
+    "ptsStrictlyIncreasing": true,
+    "distinctFrameHashes": 24
+  }
+}

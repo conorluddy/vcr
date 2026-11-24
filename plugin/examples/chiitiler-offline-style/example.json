@@ -1,0 +1,9 @@
+{
+  "id": "chiitiler-offline-style",
+  "title": "chiitiler renders an inline offline MapLibre style to PNG in Node",
+  "summary": "chiitiler 2.0.3 renders a background and GeoJSON fill style with network refused to a 512x512 PNG; five predeclared pixel colours match in the RGBA buffer and in ImageMagick's decode; reruns are byte-identical.",
+  "status": "validated",
+  "tools": ["chiitiler", "imagemagick"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" }
+}

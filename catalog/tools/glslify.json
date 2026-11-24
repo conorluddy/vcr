@@ -31,14 +31,27 @@
     "macos": "pnpm add -D glslify",
     "check_command": "pnpm exec glslify --version"
   },
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
+  "examples": [
+    "glslify-bundle"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "7.1.1",
+        "command": "examples/glslify-bundle/run.sh",
+        "result": "glsl-easings 1.0.0 cubic-in-out via #pragma require(): bundle 283 bytes, 0 pragmas, 0 require(); compiles in headless Chromium 156.0.8078.4 WebGL1 (SwiftShader); raw input and syntax-broken control rejected; two CLI bundles byte-identical; Node v22.19.0",
+        "example": "examples/glslify-bundle",
+        "scope": "CLI inlines a glsl-easings import into one GLSL ES 1.00 shader that compiles in headless WebGL1; reruns byte-identical. Not easing values, Node API or native drivers. macOS arm64."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-11-24",
   "assessment": {
     "date": "2026-10-26",
     "assessed_by": "assess-a9a",
@@ -54,6 +67,8 @@
   },
   "source": "specifications/vcr-prd.md#appendix-a",
   "notes": [
-    "2026-10-29: Skill opportunity: Further research first: test a shader-module build in a real scene before proposing a standalone shader tooling skill."
-  ]
+    "2026-10-29: Skill opportunity: Further research first: test a shader-module build in a real scene before proposing a standalone shader tooling skill.",
+    "2026-11-24: Toolkit guide written at skills/glslify/SKILL.md from the glslify-bundle evidence; flags the untested negative-base pow() in glsl-easings cubic-in-out."
+  ],
+  "skill": "skills/glslify/SKILL.md"
 }

@@ -1,0 +1,24 @@
+{
+  "capture_mode": "screenshot",
+  "transition": "Fade",
+  "frames": 61,
+  "width": 640,
+  "height": 360,
+  "distinct_hashes_at_least_two": true,
+  "shuffled_matches_sequential": true,
+  "colour_within_tolerance": {
+    "progress_0": true,
+    "progress_0_5": true,
+    "progress_1": true
+  },
+  "colour_tolerance_per_channel": 2,
+  "single_colour_frames": {
+    "progress_0": true,
+    "progress_0_5": true,
+    "progress_1": true
+  },
+  "frame_30_alpha": {
+    "channel_state": "Undefined",
+    "opaque": true
+  }
+}

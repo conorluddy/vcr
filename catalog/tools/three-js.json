@@ -73,7 +73,8 @@
     "drei-capture",
     "react-postprocessing-capture",
     "rapier-capture",
-    "troika-three-text-sync"
+    "troika-three-text-sync",
+    "three-globe-capture"
   ],
   "documentation_status": "skill-verified",
   "installation_status": "unknown",

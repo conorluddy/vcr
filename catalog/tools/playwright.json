@@ -38,6 +38,7 @@
     "check_command": "npx playwright --version"
   },
   "examples": [
+    "gl-transitions-seek",
     "browser-capture",
     "lint-overflow",
     "p5-capture",
@@ -77,7 +78,9 @@
     "waapi-word-stagger",
     "canvas2d-count-up",
     "svg-paper-collage",
-    "anime-diagram-build"
+    "anime-diagram-build",
+    "glslify-bundle",
+    "three-globe-capture"
   ],
   "notes": [
     "Not in PRD Appendix A; added because the browser-capture spike depends on it.",

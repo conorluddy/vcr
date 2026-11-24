@@ -1,0 +1,10 @@
+{
+  "frames": 90,
+  "width": 1280,
+  "height": 720,
+  "shuffled_matches_sequential": true,
+  "distinct_hashes_at_least_two": true,
+  "frame_0030_alpha_range": "0 1",
+  "corners_transparent": true,
+  "central_crop_arc_or_point_present": true
+}

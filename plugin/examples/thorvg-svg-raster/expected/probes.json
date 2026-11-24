@@ -1,0 +1,23 @@
+{
+  "canvas": { "width": 120, "height": 80, "bytes": 38400 },
+  "svg": {
+    "probes": [
+      { "x": 20, "y": 20, "argb": "ffff0000", "tolerance": 0 },
+      { "x": 90, "y": 20, "argb": "ff0000ff", "tolerance": 0 },
+      { "x": 20, "y": 60, "argb": "ff020202", "tolerance": 3 },
+      { "x": 60, "y": 60, "argb": "ff818181", "tolerance": 3 },
+      { "x": 99, "y": 60, "argb": "fffdfdfd", "tolerance": 3 },
+      { "x": 5, "y": 70, "argb": "00000000", "tolerance": 0 }
+    ]
+  },
+  "lottie": {
+    "loader": "present",
+    "frame": 5,
+    "totalFrame": 10,
+    "probes": [
+      { "x": 50, "y": 40, "argb": "ff0080ff", "tolerance": 2 },
+      { "x": 10, "y": 40, "argb": "00000000", "tolerance": 0 },
+      { "x": 90, "y": 40, "argb": "00000000", "tolerance": 0 }
+    ]
+  }
+}

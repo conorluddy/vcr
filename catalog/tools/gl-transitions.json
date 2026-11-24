@@ -11,17 +11,32 @@
     "effects"
   ],
   "notes": [
+    "2026-11-24: Toolkit guide written from partial Fade-only evidence (examples/gl-transitions-seek).",
     "2026-11-15: Triage reason: Assess source-specific licenses and host-renderer integration. Revisit when a seekable shader transition workflow is needed.",
     "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
+  "skill": "skills/gl-transitions/SKILL.md",
   "validation": {
     "status": "not-validated",
-    "evidence": []
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "gl-transitions 3.3.0 (Fade) on Chromium 156.0.8078.4 (Playwright 1.64.1)",
+        "command": "examples/gl-transitions-seek/run.sh",
+        "result": "partial: Fade in raw WebGL1 between two 2x2 solid textures under ANGLE SwiftShader (Vulkan). Progress 0, 0.5, 1 centre rgb 200,40,0 / 100,80,128 / 0,120,255 within 2 per channel; each checked frame one colour. 61 frames 640x360, 61 distinct hashes, shuffled equals sequential. Alpha check not measurable: PNG has no alpha channel.",
+        "example": "examples/gl-transitions-seek",
+        "scope": "Fade seeked by progress in raw WebGL1 on SwiftShader, macOS arm64; shuffled equals sequential. No alpha, other transitions, Metal or other GPUs."
+      }
+    ]
   },
+  "examples": [
+    "gl-transitions-seek"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-12-discovery.md",
   "summary": "Progress-driven GLSL image transition collection",
   "license": "MIT",

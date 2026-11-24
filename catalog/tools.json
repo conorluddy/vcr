@@ -1293,16 +1293,30 @@
       "notes": [
         "2026-11-15: Triage reason: Assess local tile support, platform requirements and label stability across frames. Revisit when repeatable map animation is needed.",
         "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
-        "2026-11-15: Release date or maintenance cadence could not be established from the inspected official pages."
+        "2026-11-15: Release date or maintenance cadence could not be established from the inspected official pages.",
+        "2026-11-24: Toolkit guide written from validated evidence (offline inline style, Node >= 24.22.1)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "chiitiler-offline-style"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.0.3",
+            "command": "examples/chiitiler-offline-style/run.sh",
+            "result": "inline background + GeoJSON fill style, network refused; renderView 512x512 PNG; 5 probes exact in RGBA and ImageMagick decode; alpha 255..255; reruns byte-identical; Node v25.6.1",
+            "example": "examples/chiitiler-offline-style",
+            "scope": "In Node, offline inline background+GeoJSON fill style renders to 512x512 PNG at predeclared pixels; reruns byte-identical. Not remote styles, text, tiles or other routes."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-12-discovery.md",
       "summary": "MapLibre style raster renderer for tiles, clips and camera shots",
       "license": "MIT",
@@ -1329,7 +1343,8 @@
       "install": {
         "macos": "npm install chiitiler",
         "check_command": "npm view chiitiler version"
-      }
+      },
+      "skill": "skills/chiitiler/SKILL.md"
     },
     {
       "id": "clap",
@@ -1879,7 +1894,7 @@
       "category": "Discovery: research candidates",
       "tier": "candidate",
       "role": "Node.js WebGPU binding for offscreen GPU rendering and compute",
-      "official_url": "https://github.com/dawnjs/node-webgpu",
+      "official_url": "https://github.com/dawn-gpu/node-webgpu",
       "automation_route": "library-or-runtime",
       "capabilities": [
         "3d-rendering",
@@ -1887,16 +1902,30 @@
       ],
       "notes": [
         "2026-11-15: Triage: assess; Node-based WebGPU may provide a headless shader and compute route beyond browser capture. Revisit after verifying supported platforms, pixel readback and cross-run stability.",
-        "2026-11-15: Skill opportunity: no skill yet; run a scoped GPU availability and texture-readback fixture before considering toolkit guidance."
+        "2026-11-15: Skill opportunity: no skill yet; run a scoped GPU availability and texture-readback fixture before considering toolkit guidance.",
+        "2026-11-24: Guide written from dawn-node-webgpu-readback evidence (macOS arm64 Metal, webgpu 0.6.2). official_url corrected to github.com/dawn-gpu/node-webgpu, the npm package's repository."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "dawn-node-webgpu-readback"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.6.2",
+            "command": "examples/dawn-node-webgpu-readback/run.sh",
+            "result": "Metal adapter (apple, metal-3, Apple M3 Pro); 3 WGSL frames 64x64 rgba8unorm; max channel deviation 0 vs analytic reference (tolerance 1); 3 distinct hashes; shuffled equals sequential; two runs byte-identical; Node v22.19.0",
+            "example": "examples/dawn-node-webgpu-readback",
+            "scope": "Node webgpu 0.6.2 on macOS arm64 Metal: WGSL triangle to 64x64 rgba8unorm, readback within 1 LSB of analytic, reruns identical. Not browsers, other backends or performance."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-15-discovery.md",
       "summary": "Node.js binding to Dawn exposes WebGPU devices, textures and compute without a browser DOM. It can support GPU rendering and readback in a Node process, but it does not provide HTML canvas, video-frame or image-element integration; device lifetime and host GPU support need testing.",
       "use_when": [
@@ -1921,11 +1950,12 @@
         "verdict": "keep",
         "rationale": "Official Node binding v0.6.2 was released 2026-10-02 and documents WebGPU texture readback and compute without browser DOM/media APIs. MIT; runtime GPU availability, deterministic capture and macOS setup are not yet validated.",
         "sources": [
-          "https://github.com/dawnjs/node-webgpu",
-          "https://github.com/dawnjs/node-webgpu/releases",
+          "https://github.com/dawn-gpu/node-webgpu",
+          "https://github.com/dawn-gpu/node-webgpu/releases",
           "https://www.npmjs.com/package/webgpu"
         ]
-      }
+      },
+      "skill": "skills/dawn-node-webgpu/SKILL.md"
     },
     {
       "id": "deck-gl",
@@ -2974,7 +3004,8 @@
         "ffmpeg-assembly",
         "browser-capture",
         "svt-av1-encode",
-        "vmaf-ffmpeg-score"
+        "vmaf-ffmpeg-score",
+        "node-av-decode-encode"
       ],
       "notes": [
         "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
@@ -3205,16 +3236,27 @@
       ],
       "notes": [
         "2026-11-15: Assess because it offers implicit-shape generation distinct from B-rep CAD and mesh processing. Revisit after confirming the repository-to-package relationship and current install route.",
-        "2026-11-15: Assessment uncertainty: no current release date or published package route was established; documented installation is from the GitHub source repository."
+        "2026-11-15: Assessment uncertainty: no current release date or published package route was established; documented installation is from the GitHub source repository.",
+        "2026-11-24: Toolkit guide written from the fogleman-sdf-mesh evidence (classic CSG to binary STL, default resolution). Other primitives, meshio formats and OpenVDB remain untested in the guide."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "d58a6fc63b75fc1cf1ebb71e0b42bf552319c8f1",
+            "command": "examples/fogleman-sdf-mesh/run.sh",
+            "result": "README classic sphere(1) & box(1.5) minus three cylinder(0.5) cuts at default resolution: 291028 triangles, 145506 welded vertices, bounds exactly +-0.75, max vertex residual 0.00228 against the analytic composed SDF, 0 boundary/non-manifold edges; second run byte-identical. Python 3.12.2, numpy 2.5.5, scikit-image 0.26.0, macOS arm64.",
+            "example": "examples/fogleman-sdf-mesh",
+            "scope": "Python classic CSG to binary STL at default resolution: triangle count, bounds, watertight; no meshio formats, OpenVDB, other primitives or render; macOS arm64."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-02-discovery.md",
       "summary": "Python library for defining signed-distance functions with composable primitives and Boolean operations, then generating mesh files such as STL. It offers a compact code-first route to implicit geometry; it is not a general CAD modeller or renderer.",
       "use_when": [
@@ -3244,7 +3286,11 @@
         "sources": [
           "https://github.com/fogleman/sdf"
         ]
-      }
+      },
+      "examples": [
+        "fogleman-sdf-mesh"
+      ],
+      "skill": "skills/fogleman-sdf/SKILL.md"
     },
     {
       "id": "fonttools",
@@ -3907,17 +3953,32 @@
         "effects"
       ],
       "notes": [
+        "2026-11-24: Toolkit guide written from partial Fade-only evidence (examples/gl-transitions-seek).",
         "2026-11-15: Triage reason: Assess source-specific licenses and host-renderer integration. Revisit when a seekable shader transition workflow is needed.",
         "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "skill": "skills/gl-transitions/SKILL.md",
       "validation": {
         "status": "not-validated",
-        "evidence": []
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "gl-transitions 3.3.0 (Fade) on Chromium 156.0.8078.4 (Playwright 1.64.1)",
+            "command": "examples/gl-transitions-seek/run.sh",
+            "result": "partial: Fade in raw WebGL1 between two 2x2 solid textures under ANGLE SwiftShader (Vulkan). Progress 0, 0.5, 1 centre rgb 200,40,0 / 100,80,128 / 0,120,255 within 2 per channel; each checked frame one colour. 61 frames 640x360, 61 distinct hashes, shuffled equals sequential. Alpha check not measurable: PNG has no alpha channel.",
+            "example": "examples/gl-transitions-seek",
+            "scope": "Fade seeked by progress in raw WebGL1 on SwiftShader, macOS arm64; shuffled equals sequential. No alpha, other transitions, Metal or other GPUs."
+          }
+        ]
       },
+      "examples": [
+        "gl-transitions-seek"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-12-discovery.md",
       "summary": "Progress-driven GLSL image transition collection",
       "license": "MIT",
@@ -4054,14 +4115,27 @@
         "macos": "pnpm add -D glslify",
         "check_command": "pnpm exec glslify --version"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "glslify-bundle"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "7.1.1",
+            "command": "examples/glslify-bundle/run.sh",
+            "result": "glsl-easings 1.0.0 cubic-in-out via #pragma require(): bundle 283 bytes, 0 pragmas, 0 require(); compiles in headless Chromium 156.0.8078.4 WebGL1 (SwiftShader); raw input and syntax-broken control rejected; two CLI bundles byte-identical; Node v22.19.0",
+            "example": "examples/glslify-bundle",
+            "scope": "CLI inlines a glsl-easings import into one GLSL ES 1.00 shader that compiles in headless WebGL1; reruns byte-identical. Not easing values, Node API or native drivers. macOS arm64."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-11-24",
       "assessment": {
         "date": "2026-10-26",
         "assessed_by": "assess-a9a",
@@ -4077,8 +4151,10 @@
       },
       "source": "specifications/vcr-prd.md#appendix-a",
       "notes": [
-        "2026-10-29: Skill opportunity: Further research first: test a shader-module build in a real scene before proposing a standalone shader tooling skill."
-      ]
+        "2026-10-29: Skill opportunity: Further research first: test a shader-module build in a real scene before proposing a standalone shader tooling skill.",
+        "2026-11-24: Toolkit guide written at skills/glslify/SKILL.md from the glslify-bundle evidence; flags the untested negative-base pow() in glsl-easings cubic-in-out."
+      ],
+      "skill": "skills/glslify/SKILL.md"
     },
     {
       "id": "glslviewer",
@@ -4561,16 +4637,30 @@
       ],
       "notes": [
         "2026-11-15: Triage reason: Assess Node/server-side route, API stability and deterministic output. Revisit after a stable API or repeat workflow.",
-        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+        "2026-11-24: Toolkit guide written from examples/heerich-voxel-svg (Node oblique SVG, 27 polygons); untested areas marked in the guide."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "heerich-voxel-svg"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.21.0",
+            "command": "examples/heerich-voxel-svg/run.sh",
+            "result": "3x3x3 union minus one corner voxel, oblique SVG: 54 raw faces, 27 polygons in 3 face names (9 each), 0 paths; two runs byte-identical; Node v22.19.0",
+            "example": "examples/heerich-voxel-svg",
+            "scope": "In Node, 3x3x3 cube minus one voxel renders to oblique SVG with 27 polygons; reruns byte-identical; heerich 0.21.0, Node 22.19.0, macOS arm64. No occlusion, perspective or GPU."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-11-discovery.md",
       "summary": "Small JavaScript engine for defining voxel scenes, boolean geometry operations and SVG rendering from oblique or perspective cameras. Its vector output suits compact isometric illustrations; the API and server-side determinism need a scoped check.",
       "license": "MIT",
@@ -4601,7 +4691,8 @@
         "sources": [
           "https://github.com/meodai/heerich"
         ]
-      }
+      },
+      "skill": "skills/heerich/SKILL.md"
     },
     {
       "id": "hyperframes",
@@ -4718,6 +4809,7 @@
       },
       "skill": "skills/imagemagick/SKILL.md",
       "examples": [
+        "gl-transitions-seek",
         "ffmpeg-assembly",
         "libwebp-lossless-animation",
         "blender-smoke",
@@ -4757,7 +4849,9 @@
         "canvas2d-count-up",
         "svg-paper-collage",
         "anime-diagram-build",
-        "vmaf-ffmpeg-score"
+        "vmaf-ffmpeg-score",
+        "chiitiler-offline-style",
+        "three-globe-capture"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -5351,19 +5445,32 @@
       "capabilities": [
         "image-processing"
       ],
-      "license": "LGPL-2.1",
+      "license": "LGPL-2.1-or-later",
       "install": {
         "macos": "brew install vips",
         "check_command": "vips --version"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "libvips-resize-composite"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "8.18.7",
+            "command": "examples/libvips-resize-composite/run.sh",
+            "result": "vips thumbnail 4096x4096 RGBA PNG to 1024x1024 (0.42 s, peak 89.9 MB) and composite2 over a 256x256 RGBA overlay (0.16 s, peak 17.8 MB). Alpha kept (4 bands); probes within 1 of predeclared values (tolerance 3 colour, 2 alpha); reruns byte-identical.",
+            "example": "examples/libvips-resize-composite",
+            "scope": "vips CLI 8.18.7 thumbnail and composite2 over on generated RGBA PNGs, macOS arm64 Homebrew; size, alpha, probe pixels, reruns. No other formats, profiles or versions."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-11-24",
       "assessment": {
         "date": "2026-10-26",
         "assessed_by": "assess-a9a",
@@ -5378,8 +5485,10 @@
       },
       "source": "specifications/vcr-prd.md#appendix-a",
       "notes": [
-        "2026-10-29: Skill opportunity: further research first; existing ImageMagick guidance addresses common image tasks, while libvips-specific large-image benefits need a fixture."
-      ]
+        "2026-10-29: Skill opportunity: further research first; existing ImageMagick guidance addresses common image tasks, while libvips-specific large-image benefits need a fixture.",
+        "2026-11-24: Guide written from examples/libvips-resize-composite. Licence changed from LGPL-2.1 to LGPL-2.1-or-later as stated on libvips.org."
+      ],
+      "skill": "skills/libvips/SKILL.md"
     },
     {
       "id": "libwebp",
@@ -7295,16 +7404,30 @@
       ],
       "notes": [
         "2026-11-15: Assess because the digest identifies in-process FFmpeg from a Node render loop as a distinct route from CLI and WebCodecs neighbours. Revisit after checking native binaries, FFmpeg build flags, bundled codecs and determinism.",
-        "2026-11-15: Assessment uncertainty: bundled FFmpeg build flags, enabled codecs and their licence implications vary by published platform package; verify the selected binary before redistribution."
+        "2026-11-15: Assessment uncertainty: bundled FFmpeg build flags, enabled codecs and their licence implications vary by published platform package; verify the selected binary before redistribution.",
+        "2026-11-24: Guide written from the node-av-decode-encode evidence (7.1.0, bundled FFmpeg 8.1.3, macOS arm64, Node 22); scope is H.264 decode and libx264 re-encode only."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "node-av-decode-encode"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "7.1.0",
+            "command": "examples/node-av-decode-encode/run.sh",
+            "result": "24 frames 320x240 yuv420p, 24 distinct frame hashes, pts increasing; libx264 re-encode via node-av; output ffprobe h264 320x240 yuv420p 24 frames 24/1 matches predeclared; round-trip decode matches; bundled FFmpeg 8.1.3; Node v22.19.0",
+            "example": "examples/node-av-decode-encode",
+            "scope": "In Node, node-av 7.1.0 decodes a 24-frame 320x240 H.264 MP4 frame by frame and re-encodes it with libx264, ffprobe fields match; macOS arm64. Not quality, audio or hardware."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-02-discovery.md",
       "summary": "Node.js bindings exposing low and high level FFmpeg APIs for decode, filter and encode workflows, with platform-specific native packages and bundled FFmpeg binaries. This provides in-process media operations and hardware acceleration options; FFmpeg build and codec availability are version and platform specific.",
       "use_when": [
@@ -7337,7 +7460,8 @@
           "https://github.com/seydx/node-av/releases",
           "https://github.com/seydx/node-av/blob/main/LICENSE.md"
         ]
-      }
+      },
+      "skill": "skills/node-av/SKILL.md"
     },
     {
       "id": "odiff",
@@ -8562,6 +8686,7 @@
         "check_command": "npx playwright --version"
       },
       "examples": [
+        "gl-transitions-seek",
         "browser-capture",
         "lint-overflow",
         "p5-capture",
@@ -8601,7 +8726,9 @@
         "waapi-word-stagger",
         "canvas2d-count-up",
         "svg-paper-collage",
-        "anime-diagram-build"
+        "anime-diagram-build",
+        "glslify-bundle",
+        "three-globe-capture"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
@@ -11519,18 +11646,33 @@
         "svg-rasterisation",
         "asset-playback"
       ],
+      "skill": "skills/thorvg/SKILL.md",
       "notes": [
         "2026-11-15: Triage reason: Assess frame-addressed Lottie rendering route and feature coverage. Revisit when a reproducible image-sequence workflow is documented.",
-        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+        "2026-11-24: Toolkit guide written at skills/thorvg/SKILL.md from examples/thorvg-svg-raster (C++ SwCanvas, SVG and one Lottie frame, ThorVG 1.1.4)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "thorvg-svg-raster"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.1.4",
+            "command": "examples/thorvg-svg-raster/run.sh",
+            "result": "C++ via Homebrew ThorVG 1.1.4 SwCanvas, 120x80 ARGB: 6 SVG probes and 3 Lottie frame-5 probes match predeclared values (gradient within tolerance 3); Lottie loader present, totalFrame 10; reruns byte-identical; hashes match expected/hashes.json; contact sheet inspected.",
+            "example": "examples/thorvg-svg-raster",
+            "scope": "Inline SVG (fills, one gradient) and one Lottie frame rasterised by ThorVG software canvas via C++ at 120x80; probed pixels and reruns; macOS arm64, CPU, no text/GPU/conformance claim."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-12-discovery.md",
       "summary": "C++ vector renderer for SVG and Lottie",
       "license": "MIT",
@@ -11558,7 +11700,7 @@
       },
       "install": {
         "macos": "brew install thorvg",
-        "check_command": "pkg-config --modversion thorvg"
+        "check_command": "pkg-config --modversion thorvg-1"
       }
     },
     {
@@ -11575,16 +11717,27 @@
       ],
       "notes": [
         "2026-11-15: Triage reason: Assess compatibility with frame-driven Three.js scenes and determine whether time-based layer animation can be controlled. Revisit when globe scenes are in scope.",
-        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+        "2026-11-24: Toolkit guide written from partial evidence (skills/three-globe/SKILL.md); the mark-visibility check failed, so the guide advises sizing marks for video and verifying on frames."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "three-globe 2.45.6, three 0.186.1, Playwright 1.64.1, Chromium 156.0.8078.4",
+            "command": "examples/three-globe-capture/run.sh",
+            "result": "partial: 90 frames at 1280x720, shuffled matches sequential, 90 distinct hashes, frame 0030 alpha 0 to 1, corners transparent. Arc/point pixel count 32 to 38 against predeclared 150: check failed, exit 1. Renderer ANGLE SwiftShader (software Vulkan).",
+            "example": "examples/three-globe-capture",
+            "scope": "Seeked globe with five points and one arc in Chromium on SwiftShader WebGL; shuffled matches sequential; arc/point visibility check failed; no GPU, no positions."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-11-discovery.md",
       "summary": "Three.js object for spherical geographic visualisation with data layers for points, arcs, polygons, paths, heatmaps, tiles, labels and custom objects. Configure layer data through JavaScript accessors; it is a scene component, not a standalone renderer.",
       "license": "MIT",
@@ -11616,7 +11769,11 @@
           "https://github.com/vasturiano/three-globe",
           "https://github.com/vasturiano/three-globe/releases"
         ]
-      }
+      },
+      "examples": [
+        "three-globe-capture"
+      ],
+      "skill": "skills/three-globe/SKILL.md"
     },
     {
       "id": "three-js",
@@ -11693,7 +11850,8 @@
         "drei-capture",
         "react-postprocessing-capture",
         "rapier-capture",
-        "troika-three-text-sync"
+        "troika-three-text-sync",
+        "three-globe-capture"
       ],
       "documentation_status": "skill-verified",
       "installation_status": "unknown",
@@ -13382,6 +13540,7 @@
       "documentation_status": "skill-written",
       "installation_status": "not-applicable",
       "examples": [
+        "gl-transitions-seek",
         "webgl-readpixels"
       ],
       "validation": {

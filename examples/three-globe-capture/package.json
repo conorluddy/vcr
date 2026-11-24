@@ -1,0 +1,17 @@
+{
+  "name": "@vcr/example-three-globe-capture",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx capture.ts"
+  },
+  "dependencies": {
+    "three": "0.186.1",
+    "three-globe": "2.45.6"
+  },
+  "devDependencies": {
+    "@vcr/capture": "workspace:*",
+    "tsx": "^4.23.15"
+  }
+}

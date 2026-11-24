@@ -1,0 +1,33 @@
+{
+  "pins": {
+    "glslify": "7.1.1",
+    "glsl-easings": "1.0.0"
+  },
+  "input": {
+    "pragmaImports": 1
+  },
+  "bundle": {
+    "sha256": "c2bf0c821ef6785703f207f72f5b412f274fd2291b1f14cc16d9ad9a170973a5",
+    "bytes": 283,
+    "lines": 16,
+    "pragmaImports": 0,
+    "requireCalls": 0,
+    "definesFunction": true
+  },
+  "compile": {
+    "bundle": true,
+    "rawInput": false,
+    "brokenBundle": false
+  },
+  "checks": {
+    "inputHasOneImport": true,
+    "bundleLargerThanInput": true,
+    "bundleDefinesFunction": true,
+    "noPragmaImportsRemain": true,
+    "noRequireCallsRemain": true,
+    "bundlesByteIdentical": true,
+    "bundleCompiles": true,
+    "rawInputRejected": true,
+    "brokenBundleRejected": true
+  }
+}
