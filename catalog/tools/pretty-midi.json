@@ -13,9 +13,10 @@
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
     "2026-10-29: Skill opportunity: Possible standalone MIDI manipulation skill; outside core VCR work until an actual job and fixture exist.",
-    "2026-11-24: Fixture examples/pretty-midi-roundtrip covers note-level build, read-back, tempo-change times, pitch bends and piano roll. pretty_midi 0.2.11.post0 has no public tempo-authoring call; the fixture sets the tempo map through private _tick_scales."
+    "2026-11-24: Fixture examples/pretty-midi-roundtrip covers note-level build, read-back, tempo-change times, pitch bends and piano roll. pretty_midi 0.2.11.post0 has no public tempo-authoring call; the fixture sets the tempo map through private _tick_scales.",
+    "2026-11-24: Toolkit guide written at skills/pretty-midi/SKILL.md from the validated pretty-midi-roundtrip evidence; synthesis untested and tempo authoring flagged as private-API fragile."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -66,5 +67,6 @@
       "https://github.com/craffel/pretty-midi/releases"
     ],
     "version_seen": "0.2.11 (GitHub release; date year unverified)"
-  }
+  },
+  "skill": "skills/pretty-midi/SKILL.md"
 }
