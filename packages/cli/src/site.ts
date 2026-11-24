@@ -16,6 +16,9 @@ export interface SiteBuildOutcome {
 }
 
 export const SITE_DIRECTORY = "site";
+export const SITE_DATA_FILE = "data.json";
+/** Bump the major version when a field is renamed or removed; external explorers read this file. */
+const SITE_DATA_SCHEMA_VERSION = "1.0.0";
 const ASSETS_DIRECTORY = "packages/cli/site-assets";
 
 // === PUBLIC API ===
@@ -39,6 +42,8 @@ export function buildSite(harnessRoot: string, outputDirectory = join(harnessRoo
   for (const [relativePath, html] of pages) writeOutput(join(outputDirectory, relativePath), html);
   // Pages would otherwise run Jekyll over the output and skip nothing useful.
   writeOutput(join(outputDirectory, ".nojekyll"), "");
+  // The same model as JSON, for explorers built outside this repository (an artifact can fetch it from Pages).
+  writeOutput(join(outputDirectory, SITE_DATA_FILE), `${JSON.stringify({ schema_version: SITE_DATA_SCHEMA_VERSION, ...model.value }, null, 2)}\n`);
   mkdirSync(join(outputDirectory, "assets"), { recursive: true });
   for (const asset of readdirSync(assetsSource)) copyFileSync(join(assetsSource, asset), join(outputDirectory, "assets", asset));
 

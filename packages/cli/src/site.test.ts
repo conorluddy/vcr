@@ -2,7 +2,7 @@ import { mkdtempSync, readdirSync, readFileSync, rmSync, statSync } from "node:f
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { afterAll, beforeAll, describe, expect, test } from "vitest";
-import { buildSite } from "./site.js";
+import { buildSite, SITE_DATA_FILE } from "./site.js";
 import { loadTechniques } from "./techniques.js";
 import { harnessRoot } from "./test-workspace.js";
 import { loadTools } from "./tools.js";
@@ -38,10 +38,22 @@ describe("vcr site build", () => {
     }
   });
 
+  test("publishes the site model as versioned JSON beside the pages", () => {
+    const data = JSON.parse(readFileSync(join(outputDirectory, SITE_DATA_FILE), "utf8")) as { schema_version: string; tools: unknown[]; techniques: unknown[]; capabilities: string[] };
+    const tools = loadTools(harnessRoot());
+    const techniques = loadTechniques(harnessRoot());
+    if (!tools.ok || !techniques.ok) throw new Error("catalogue failed to load");
+    expect(data.schema_version).toMatch(/^\d+\.\d+\.\d+$/);
+    expect(data.tools).toHaveLength(tools.value.length);
+    expect(data.techniques).toHaveLength(techniques.value.length);
+    expect(data.capabilities.length).toBeGreaterThan(0);
+  });
+
   test("publishes no machine names or local paths from evidence", () => {
     const hostnames = recordedHostnames();
     expect(hostnames.length).toBeGreaterThan(0);
-    for (const [file, html] of pages) {
+    const dataFile = join(outputDirectory, SITE_DATA_FILE);
+    for (const [file, html] of [...pages, [dataFile, readFileSync(dataFile, "utf8")] as const]) {
       expect(html, file).not.toMatch(/hostname|\/Users\//);
       // Whole words only: a generic hostname such as `vm` is also a substring of `vmaf`.
       for (const hostname of hostnames) expect(new RegExp(`\\b${hostname.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(html), `${hostname} in ${file}`).toBe(false);
