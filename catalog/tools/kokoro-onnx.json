@@ -12,12 +12,13 @@
   "notes": [
     "2026-11-01: 82M-parameter TTS on ONNX Runtime for offline scratch or final voiceover.",
     "2026-11-01: Pin onnxruntime and cache WAVs as fixtures. Python >=3.10,<3.14.",
-    "2026-11-15: Official release page labels model-files-v1.1 as latest; assets show August 2026 upload times. Release page does not state a package release version/date for current code; 0.6.0 is referenced in model notes."
+    "2026-11-15: Official release page labels model-files-v1.1 as latest; assets show August 2026 upload times. Release page does not state a package release version/date for current code; 0.6.0 is referenced in model notes.",
+    "2026-11-24: Toolkit guide written from partial evidence (examples/kokoro-onnx-tts); reruns are not sample-identical, keep the rendered WAV as an asset."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
+    "status": "partial",
     "evidence": [
       {
         "date": "2026-11-24",
@@ -66,5 +67,6 @@
       "https://github.com/thewh1teagle/kokoro-onnx/releases",
       "https://github.com/thewh1teagle/kokoro-onnx/blob/main/LICENSE"
     ]
-  }
+  },
+  "skill": "skills/kokoro-onnx/SKILL.md"
 }
