@@ -17,12 +17,25 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "chiitiler-offline-style"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "2.0.3",
+        "command": "examples/chiitiler-offline-style/run.sh",
+        "result": "inline background + GeoJSON fill style, network refused; renderView 512x512 PNG; 5 probes exact in RGBA and ImageMagick decode; alpha 255..255; reruns byte-identical; Node v25.6.1",
+        "example": "examples/chiitiler-offline-style",
+        "scope": "In Node, offline inline background+GeoJSON fill style renders to 512x512 PNG at predeclared pixels; reruns byte-identical. Not remote styles, text, tiles or other routes."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-12-discovery.md",
   "summary": "MapLibre style raster renderer for tiles, clips and camera shots",
   "license": "MIT",
