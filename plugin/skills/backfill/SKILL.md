@@ -34,7 +34,7 @@ For each tool whose evidence passed or partly passed, run one agent, in that too
 Follow `AGENTS.md`'s worktree rule: merge every worker branch into `backfill/<YYYY-MM-DD>`, rebuild once, and never `git add -A` while worktrees exist. Run `pnpm install` first so `pnpm-lock.yaml` picks up the new examples' dependencies, then rerun each new example's `run.sh`. Remove the worker worktrees after the merge.
 
 ```sh
-pnpm vcr catalog build && pnpm vcr plugin build && pnpm validate && pnpm test
+pnpm vcr catalog build && pnpm vcr plugin build && pnpm typecheck && pnpm validate && pnpm test
 ```
 
 If a check fails, fix the problem or drop that tool's branch. Never weaken a check.
