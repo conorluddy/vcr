@@ -1,0 +1,15 @@
+{
+  "name": "@vcr/example-chiitiler-offline-style",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "tsx render.ts"
+  },
+  "dependencies": {
+    "chiitiler": "2.0.3"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}
