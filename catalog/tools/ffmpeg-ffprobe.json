@@ -99,7 +99,8 @@
     "whisperx-word-timing",
     "whisper-cpp-transcribe",
     "vapoursynth-script-frames",
-    "rhubarb-lip-sync-cues"
+    "rhubarb-lip-sync-cues",
+    "revideo-headless-render"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
