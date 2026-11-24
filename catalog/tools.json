@@ -357,6 +357,10 @@
       "role": "Waveform data",
       "official_url": "https://github.com/bbc/audiowaveform",
       "automation_route": "native-cli-or-scripting",
+      "install": {
+        "macos": "brew install audiowaveform",
+        "check_command": "audiowaveform --version"
+      },
       "capabilities": [
         "audio"
       ],
@@ -364,16 +368,30 @@
         "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
         "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
         "2026-10-29: Skill opportunity: Further research first: a repeatable waveform asset fixture could justify VCR-specific guidance.",
-        "2026-10-29: Ongoing development moved to https://codeberg.org/chrisn/audiowaveform per the project README; verify the new source and its current releases."
+        "2026-10-29: Ongoing development moved to https://codeberg.org/chrisn/audiowaveform per the project README; verify the new source and its current releases.",
+        "2026-11-24: Guide written at skills/audiowaveform/SKILL.md from the partial audiowaveform-peaks evidence; DAT header version observed as 1, not the predeclared 2."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.11.1",
+            "command": "examples/audiowaveform-peaks/run.sh",
+            "result": "Partial. 3 s sox envelope (1 s silence, -6 dBFS and -20 dBFS 1 kHz sines) to JSON and DAT at 480 samples per pixel, 16-bit: 300 pixels; silence 0, -6 dBFS max 0.501190, -20 dBFS max 0.100006; DAT payload equals JSON; PNG 300x200, alpha 0 to 255; reruns byte-identical. dat_header failed: DAT header version 1, plan expected 2.",
+            "example": "examples/audiowaveform-peaks",
+            "scope": "Fixture-reported: 3 s sox envelope, JSON/DAT peaks and length, DAT payload equal to JSON, PNG 300x200 alpha, reruns identical; dat_header failed (v1 not 2); macOS arm64"
+          }
+        ]
       },
+      "examples": [
+        "audiowaveform-peaks"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Command-line tool producing waveform data and PNG waveform images from audio. It can create JSON for a downstream visualiser without requiring a browser to compute peaks.",
       "use_when": [
@@ -398,7 +416,8 @@
         "sources": [
           "https://github.com/bbc/audiowaveform"
         ]
-      }
+      },
+      "skill": "skills/audiowaveform/SKILL.md"
     },
     {
       "id": "babylon-js",
@@ -1809,6 +1828,10 @@
       "role": "Audio synthesis",
       "official_url": "https://csound.com/",
       "automation_route": "native-cli-or-scripting",
+      "install": {
+        "macos": "brew install csound",
+        "check_command": "csound --version"
+      },
       "capabilities": [
         "audio"
       ],
@@ -1816,16 +1839,30 @@
         "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
         "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
         "2026-10-29: Skill opportunity: Further research first: one scripted score and offline audio fixture could support a standalone synthesis skill.",
-        "2026-10-29: Official website advertises 7.0.0 released while the reviewed development README describes 7.0.0 beta; reconcile version before use."
+        "2026-10-29: Official website advertises 7.0.0 released while the reviewed development README describes 7.0.0 beta; reconcile version before use.",
+        "2026-11-24: Toolkit guide written at skills/csound/SKILL.md from the csound-offline-render evidence (Csound 7.0.0_1, macOS arm64); only the one-sine scored offline render is tested; 7.x vs 6.x syntax differences, random opcodes, real-time and MIDI marked untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "7.0.0_1",
+            "command": "examples/csound-offline-render/run.sh",
+            "result": "One sine instrument (poscil, linseg 5 ms attack, 10 ms release), six predeclared notes 220 to 1100 Hz, 0.4 s each, starting at 0 to 2.5 s in 0.5 s steps; f 0 3, sr 48000, ksmps 64, 0dbfs 1; csound -W -o to 16-bit mono WAV: 144000 frames (3.000 s), peak 0.5. Measured frequencies within 0.01 cents of nominal (bound 5 cents); onsets 0.15 to 0.29 ms after start (bound 5 ms); gaps silent; two renders byte-identical (cmp). Spectrogram inspected.",
+            "example": "examples/csound-offline-render",
+            "scope": "offline sine score to 16-bit mono 48 kHz WAV; FFT pitch, onset and peak checks; reruns byte-identical; macOS arm64, Homebrew build 7.0.0_1"
+          }
+        ]
       },
+      "examples": [
+        "csound-offline-render"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Programmable sound and music synthesis system with a CLI and embeddable API. Written instruments and scores can produce audio files or be used in realtime; it is not a general video renderer.",
       "use_when": [
@@ -1851,7 +1888,8 @@
           "https://csound.com/",
           "https://github.com/csound/csound"
         ]
-      }
+      },
+      "skill": "skills/csound/SKILL.md"
     },
     {
       "id": "d2",
@@ -3187,6 +3225,7 @@
       "examples": [
         "native-svg",
         "ffmpeg-assembly",
+        "gstreamer-pipeline-encode",
         "rubber-band-stretch",
         "browser-capture",
         "svt-av1-encode",
@@ -3205,7 +3244,8 @@
         "aubio-onsets-pitch",
         "syncalong-text-align",
         "whisperx-word-timing",
-        "whisper-cpp-transcribe"
+        "whisper-cpp-transcribe",
+        "vapoursynth-script-frames"
       ],
       "notes": [
         "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
@@ -3400,16 +3440,30 @@
         "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
         "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
         "2026-10-29: Skill opportunity: Further research first: verify a legal SoundFont and a reproducible MIDI-to-audio fixture before proposing a standalone skill.",
-        "2026-10-29: SoundFonts are separate assets with independent licence and provenance; no VCR fixture run."
+        "2026-10-29: SoundFonts are separate assets with independent licence and provenance; no VCR fixture run.",
+        "2026-11-24: Toolkit guide written at skills/fluidsynth/SKILL.md from partial evidence (5-note MIDI render; duration check failed on reverb tail); untested remedies marked."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "fluidsynth-midi-render"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.6.3",
+            "command": "examples/fluidsynth-midi-render/run.sh",
+            "result": "fluidsynth -ni -F -r 48000, VintageDreamsWaves-v2.sf2 (SHA-256 52132b2b…585cdd): 48000 Hz, 2 ch, 16-bit, 7.256 s (MIDI end 3.5 s; check allowed 2.0 s tail, FAIL); onsets within 10 ms (±50 ms), 5/5 pitches exact, two renders byte-identical; run 2 same hash; partial.",
+            "example": "examples/fluidsynth-midi-render",
+            "scope": "Fixture-reported: 5-note MIDI to 48 kHz stereo WAV; onsets and pitches pass, repeat renders identical; duration fails (7.26 s, reverb tail). macOS arm64. Not validated."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "SoundFont-based software synthesizer with a CLI shell and library API. It accepts MIDI events and can play MIDI files; the available sounds depend on a separately supplied SoundFont.",
       "use_when": [
@@ -3424,7 +3478,11 @@
         "csound",
         "ffmpeg-ffprobe"
       ],
-      "license": "LGPL-2.1 (repository label; verify exact variant, dependencies and SoundFont rights)",
+      "license": "LGPL-2.1-or-later (checked 2026-11-24 from the Homebrew formula and installed LICENSE; SoundFont rights are separate)",
+      "install": {
+        "macos": "brew install fluid-synth",
+        "check_command": "fluidsynth --version"
+      },
       "assessment": {
         "date": "2026-10-29",
         "assessed_by": "ingest-assess-a",
@@ -3435,7 +3493,8 @@
           "https://www.fluidsynth.org/",
           "https://github.com/FluidSynth/fluidsynth"
         ]
-      }
+      },
+      "skill": "skills/fluidsynth/SKILL.md"
     },
     {
       "id": "fogleman-sdf",
@@ -3742,16 +3801,34 @@
         "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
         "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
         "2026-10-29: Skill opportunity: Further research first: test a host build and specific effect before a VCR or standalone skill.",
-        "2026-10-29: Plugin collection requires a compatible host; effects, builds and licences vary and no VCR integration is verified."
+        "2026-10-29: Plugin collection requires a compatible host; effects, builds and licences vary and no VCR integration is verified.",
+        "2026-11-24: Guide written at skills/frei0r/SKILL.md from the frei0r-effect evidence (MLT melt route, FREI0R_PATH, invert0r and brightness only)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
+      "install": {
+        "macos": "brew install frei0r",
+        "check_command": "brew list --versions frei0r"
       },
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.7.1 (Homebrew frei0r 3.7.1, applied via MLT melt 7.42.0)",
+            "command": "examples/frei0r-effect/run.sh",
+            "result": "invert0r exact 255-v on a generated 64x48 four-quadrant frame; brightness 0.25/0.5/0.75 within ±1 of formula and monotonic; reruns byte-identical; OK.",
+            "example": "examples/frei0r-effect",
+            "scope": "MLT melt route with FREI0R_PATH, macOS arm64; invert0r and brightness on raw RGBA; no GStreamer, other plugins, codecs or animation."
+          }
+        ]
+      },
+      "examples": [
+        "frei0r-effect"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Video-effects plugin API and collection of filters, generators and mixers. Effects require a compatible host; availability in a particular FFmpeg build is not implied.",
       "use_when": [
@@ -3777,7 +3854,8 @@
           "https://dyne.org/frei0r/",
           "https://github.com/dyne/frei0r"
         ]
-      }
+      },
+      "skill": "skills/frei0r/SKILL.md"
     },
     {
       "id": "g-mic",
@@ -4446,16 +4524,31 @@
       "notes": [
         "2026-11-01: Renders fragment shaders or shaded models to PNG sequences with explicit time stepping.",
         "2026-11-01: GPU float differences can break bit-identical fixtures; use perceptual tolerances.",
-        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+        "2026-11-24: Guide written from headless-frames evidence; notes the unexplained segfault history (retry and verify outputs) and that screenshot, time, windows and textures are untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "skill": "skills/glslviewer/SKILL.md",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "glslviewer-headless-frames"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.5.2",
+            "command": "examples/glslviewer-headless-frames/run.sh",
+            "result": "8 frames 128x96 (2x Retina backing); 16 pixel probes within 2/channel of analytic; 8 distinct frames; rerun and 0.5 s sub-range hashes identical; renderer Apple M3 Pro",
+            "example": "examples/glslviewer-headless-frames",
+            "scope": "Headless sequence export of a hand-written u_time shader: 8 PNGs at 128x96 (2x Retina), pixel probes, reruns and 0.5 s sub-range match; no screenshot, time cmd or window; macOS arm64 only"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Interactive and command-line GLSL shader viewer that can render shader output to image sequences with time input. It offers a small native route for capturing shader sketches; GPU and driver differences affect reproducibility.",
       "use_when": [
@@ -4469,7 +4562,7 @@
       "pairs_with": [],
       "license": "BSD-3-Clause",
       "install": {
-        "macos": "unknown",
+        "macos": "brew install glslviewer",
         "check_command": "glslViewer --version"
       },
       "assessment": {
@@ -4817,14 +4910,32 @@
         "video-composition"
       ],
       "license": "LGPL-2.1",
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
+      "install": {
+        "macos": "brew install gstreamer",
+        "check_command": "gst-launch-1.0 --version"
       },
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.28.9",
+            "command": "examples/gstreamer-pipeline-encode/run.sh",
+            "result": "partial: 48 frames 640x360 24/1 H.264 yuv420p, 2.000 s; ffprobe, gst-discoverer-1.0 and framemd5 match expected/; visual check pass; reruns differ in 12 bytes of moov (mp4mux creation_time), H.264 stream identical",
+            "example": "examples/gstreamer-pipeline-encode",
+            "scope": "Headless gst-launch 640x360 24/1 to H.264 MP4 (x264enc, mp4mux); ffprobe, discoverer, frame count match; reruns not byte-identical (mux creation_time); macOS arm64; no alpha"
+          }
+        ]
+      },
+      "skill": "skills/gstreamer/SKILL.md",
+      "examples": [
+        "gstreamer-pipeline-encode"
+      ],
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-11-24",
       "assessment": {
         "date": "2026-10-26",
         "assessed_by": "assess-a9a",
@@ -4840,7 +4951,8 @@
       },
       "source": "specifications/vcr-prd.md#appendix-a",
       "notes": [
-        "2026-10-29: Skill opportunity: further research first; a standalone live-pipeline skill may be useful after a reproducible streaming fixture and an existing-skill check."
+        "2026-10-29: Skill opportunity: further research first; a standalone live-pipeline skill may be useful after a reproducible streaming fixture and an existing-skill check.",
+        "2026-11-24: Guide written at skills/gstreamer/SKILL.md from partial evidence (headless x264 MP4 encode only); evidence unchanged."
       ]
     },
     {
@@ -5100,9 +5212,11 @@
       },
       "skill": "skills/imagemagick/SKILL.md",
       "examples": [
+        "vtracer-colour-trace",
         "dssim-still-compare",
         "gl-transitions-seek",
         "ffmpeg-assembly",
+        "gstreamer-pipeline-encode",
         "libwebp-lossless-animation",
         "blender-smoke",
         "browser-capture",
@@ -5151,7 +5265,9 @@
         "baguette-simulator-capture",
         "odiff-frame-diff",
         "shiki-magic-move-capture",
-        "three-vrm-capture"
+        "three-vrm-capture",
+        "audiowaveform-peaks",
+        "glslviewer-headless-frames"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -5657,16 +5773,30 @@
       "notes": [
         "2026-10-29: Candidate originated in conversation; listed-in-prd is a legacy listed-only status, not PRD inclusion.",
         "2026-10-29: Primary code.videolan.org page was inaccessible; the upstream project identifies the GitHub mirror as official. GPU backends and the FFmpeg build determine usable functionality.",
-        "2026-10-29: Skill opportunity: further research first; evaluate colour processing in a pinned FFmpeg build before proposing a VCR skill."
+        "2026-10-29: Skill opportunity: further research first; evaluate colour processing in a pinned FFmpeg build before proposing a VCR skill.",
+        "2026-11-24: Toolkit guide written from libplacebo-colour-maths evidence (CPU-only colour maths, PQ, BT.2390 structural check); GPU, gamut mapping and ICC untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "libplacebo-colour-maths"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "7.387.0",
+            "command": "examples/libplacebo-colour-maths/run.sh",
+            "result": "C via Homebrew libplacebo 7.387.0 CPU APIs: primaries within 2.4e-8, RGB-to-XYZ 3.5e-7, 14 colour conversions 3.6e-7, PQ 2.3e-6 of closed form; BT.2390 strictly increasing 0.1-1000 nits into 0-100 (peak 99.9995); reruns byte-identical; hash matches expected/hashes.json; numeric only.",
+            "example": "examples/libplacebo-colour-maths",
+            "scope": "CPU-only libplacebo: BT.709/2020 primaries, RGB-XYZ, colour conversion and BT.2390 PQ tone map vs closed form, reruns identical; no GPU, no picture; macOS arm64, Homebrew build."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "C library implementing GPU video processing, scaling and colour management algorithms. Applications integrate it directly; FFmpeg can expose selected functionality when built with the library.",
       "use_when": [
@@ -5693,7 +5823,12 @@
           "https://github.com/haasn/libplacebo",
           "https://github.com/haasn/libplacebo/releases"
         ]
-      }
+      },
+      "install": {
+        "macos": "brew install libplacebo",
+        "check_command": "pkg-config --modversion libplacebo"
+      },
+      "skill": "skills/libplacebo/SKILL.md"
     },
     {
       "id": "librosa",
@@ -7210,7 +7345,8 @@
         ]
       },
       "examples": [
-        "mlt-color-render"
+        "mlt-color-render",
+        "frei0r-effect"
       ],
       "adapter_maturity": "none",
       "checked_at": "2026-11-16",
@@ -8398,16 +8534,36 @@
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Potential standalone scene-interchange skill; investigate actual USD round trips and licence obligations first."
+        "2026-10-29: Skill opportunity: Potential standalone scene-interchange skill; investigate actual USD round trips and licence obligations first.",
+        "2026-11-24: Fixture examples/openusd-stage-roundtrip (usd-core 26.11 in a git-ignored venv): partial. usdchecker is not shipped by the usd-core wheel, so its check did not run; no rendering. The OpenUSD repo LICENSE and the wheel licence are TOST 1.0 (Apache-2.0 derived), not plain Apache-2.0; the GitHub release 26.11.1 was not the version tested.",
+        "2026-11-24: Toolkit guide skills/openusd/SKILL.md written from the partial fixture evidence; usdchecker, rendering, USDZ and composition remain untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "install": {
+        "macos": "cd examples/openusd-stage-roundtrip && python3 -m venv output/venv && output/venv/bin/python -m pip install -r requirements.txt",
+        "check_command": "examples/openusd-stage-roundtrip/output/venv/bin/python -c \"from pxr import Usd; print('.'.join(map(str, Usd.GetVersion())))\""
+      },
+      "examples": [
+        "openusd-stage-roundtrip"
+      ],
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "26.11",
+            "command": "examples/openusd-stage-roundtrip/run.sh",
+            "result": "usd-core 26.11 (pxr 0.26.11) authors Xform, Cube, Sphere, material binding, translate samples at frames 0-24, metersPerUnit 0.01, upAxis Y. .usda and .usdc reopen equal to the authored stage (prims, attributes, time samples, metadata). Rerun .usda byte-identical. usdchecker not run: not shipped in the wheel. Python 3.12.2, macOS arm64.",
+            "example": "examples/openusd-stage-roundtrip",
+            "scope": "usd-core stage .usda/.usdc read-back equal, rerun .usda byte-identical; usdchecker not run (absent from wheel); no rendering; macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
+      "license": "LicenseRef-TOST-1.0 for the usd-core wheel (Tomorrow Open Source Technology License 1.0); OpenUSD LICENSE.txt is the same licence",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "OpenUSD is a scene-description framework and interchange ecosystem for composing 3D scene data, with C++ and Python interfaces. Import fidelity varies by application and schema.",
       "use_when": [
@@ -8435,7 +8591,8 @@
           "https://github.com/PixarAnimationStudios/OpenUSD/releases"
         ],
         "version_seen": "26.11.1 (GitHub release; date year unverified)"
-      }
+      },
+      "skill": "skills/openusd/SKILL.md"
     },
     {
       "id": "oxipng",
@@ -10560,7 +10717,8 @@
       "skill": "skills/resvg/SKILL.md",
       "examples": [
         "native-svg",
-        "drawsvg-frames"
+        "drawsvg-frames",
+        "vtracer-colour-trace"
       ],
       "notes": [
         "2026-10-26: Homebrew offers 0.49.0 while validation evidence is for 0.47.0; revalidate on upgrade."
@@ -11300,7 +11458,8 @@
         ]
       },
       "examples": [
-        "sox-audio-chain"
+        "sox-audio-chain",
+        "audiowaveform-peaks"
       ],
       "adapter_maturity": "none",
       "checked_at": "2026-11-24",
@@ -13307,16 +13466,34 @@
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Potential standalone video-processing skill; verify CLI and a scoped filter fixture first."
+        "2026-10-29: Skill opportunity: Potential standalone video-processing skill; verify CLI and a scoped filter fixture first.",
+        "2026-11-24: Guide written at skills/vapoursynth/SKILL.md from examples/vapoursynth-script-frames; core-only, plugins untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
+      "examples": [
+        "vapoursynth-script-frames"
+      ],
+      "install": {
+        "macos": "brew install vapoursynth",
+        "check_command": "vspipe --version"
+      },
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "Core R82; API R4.3",
+            "command": "examples/vapoursynth-script-frames/run.sh",
+            "result": "72-frame YUV420P8 320x180 24/1 .vpy (BlankClip, FrameEval+Merge crossfade, Splice, Bicubic); pixels at 5 frames within 2 codes; out-of-order -s/-e ranges equal sequential; reruns byte-identical; ffprobe of piped MP4 matches",
+            "example": "examples/vapoursynth-script-frames",
+            "scope": "Core-only .vpy to Y4M via vspipe, piped to FFmpeg/libx264; geometry, pixels, ranges and reruns checked; no plugins, no alpha; macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Scriptable video processing framework that uses Python and plugins to build frame-processing pipelines. Output and capabilities depend on the installed filters and runtime.",
       "use_when": [
@@ -13344,7 +13521,8 @@
         ],
         "version_seen": "R81",
         "last_release": "2026-10-22"
-      }
+      },
+      "skill": "skills/vapoursynth/SKILL.md"
     },
     {
       "id": "vedo",
@@ -13886,16 +14064,28 @@
       "notes": [
         "2026-10-29: Listed from a conversation; listed-in-prd is the schema’s listed-only status, not an assertion of PRD inclusion.",
         "2026-10-29: Documentation assessed; no fixture has been run. Dependency and asset terms require separate review.",
-        "2026-10-29: Skill opportunity: further research first; run a colour tracing fixture and check existing vector skills before choosing a VCR or standalone guide."
+        "2026-10-29: Skill opportunity: further research first; run a colour tracing fixture and check existing vector skills before choosing a VCR or standalone guide.",
+        "2026-11-24: Fixture examples/vtracer-colour-trace ran PyPI vtracer 0.6.15 (wheel metadata MIT). Upstream's latest GitHub release, 1.0.0-alpha.4 (2026-08-29), is not covered by this evidence.",
+        "2026-11-24: Toolkit guide written: skills/vtracer/SKILL.md, from examples/vtracer-colour-trace; colour mode with fixed settings only."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.6.15",
+            "command": "examples/vtracer-colour-trace/run.sh",
+            "result": "All 8 gates pass: fills match palette exactly; IoU 0.981-1.0 per shape (background 0.995); MAE 0.13-1.85 of 255; SVG and PNG reruns byte-identical; second run prints OK. resvg 0.47.0, ImageMagick 7.1.2.",
+            "example": "examples/vtracer-colour-trace",
+            "scope": "Colour mode, fixed settings: 3 flat shapes on white traced to SVG; fills match palette; resvg IoU and MAE per shape; reruns byte-identical; macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Raster-to-SVG vector tracing with a CLI and colour support. Useful for turning simple colour artwork into vector source; geometry and visual fidelity depend on settings and input.",
       "use_when": [
@@ -13912,6 +14102,13 @@
         "resvg"
       ],
       "license": "MIT (project code; dependency and asset terms unassessed)",
+      "install": {
+        "macos": "python3 -m venv examples/vtracer-colour-trace/output/venv && examples/vtracer-colour-trace/output/venv/bin/python -m pip install -r examples/vtracer-colour-trace/requirements.txt",
+        "check_command": "examples/vtracer-colour-trace/output/venv/bin/python -m pip show vtracer"
+      },
+      "examples": [
+        "vtracer-colour-trace"
+      ],
       "assessment": {
         "date": "2026-10-29",
         "assessed_by": "codex",
@@ -13922,7 +14119,8 @@
           "https://github.com/visioncortex/vtracer",
           "https://github.com/visioncortex/vtracer/blob/master/LICENSE"
         ]
-      }
+      },
+      "skill": "skills/vtracer/SKILL.md"
     },
     {
       "id": "web-animations-api",

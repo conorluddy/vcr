@@ -1,0 +1,8 @@
+{
+  "id": "fluidsynth-midi-render",
+  "title": "FluidSynth offline MIDI render",
+  "summary": "Renders a generated type-0 MIDI score with a pinned SoundFont to 48 kHz stereo WAV, checking duration, note onsets and pitches, and byte-identical reruns.",
+  "status": "not-validated",
+  "tools": ["fluidsynth"],
+  "run": "./run.sh"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "vtracer-colour-trace",
+  "title": "vtracer traces a generated flat-colour PNG to SVG, rasterised by resvg",
+  "summary": "Three flat-colour shapes on white, drawn by ImageMagick, traced in colour mode with fixed vtracer settings. Checks SVG fills, per-shape IoU and MAE after resvg rasterisation, and byte-identical reruns.",
+  "status": "validated",
+  "tools": [
+    "vtracer",
+    "resvg",
+    "imagemagick"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

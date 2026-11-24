@@ -1,0 +1,8 @@
+{
+  "id": "gstreamer-pipeline-encode",
+  "title": "videotestsrc to x264enc MP4 via gst-launch-1.0, checked by ffprobe and gst-discoverer-1.0",
+  "summary": "gst-launch-1.0 renders 48 moving-ball frames at 640x360 24/1 to H.264 in MP4; ffprobe, discoverer and decoded frame facts match expected/; rerun file bytes differ (mp4mux creation_time), so partial.",
+  "status": "not-validated",
+  "tools": ["gstreamer", "ffmpeg-ffprobe", "imagemagick"],
+  "run": "./run.sh"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "audiowaveform-peaks",
+  "title": "audiowaveform peaks from a sox envelope: JSON, DAT and PNG at 480 samples per pixel",
+  "summary": "Silence, -6 dBFS and -20 dBFS 1 kHz sines via sox; audiowaveform JSON and DAT peaks checked per segment, PNG 300x200 alpha, byte-identical reruns. Partial: DAT header version check fails.",
+  "status": "not-validated",
+  "tools": [
+    "audiowaveform",
+    "sox",
+    "imagemagick"
+  ],
+  "run": "./run.sh"
+}
