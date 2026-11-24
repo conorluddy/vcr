@@ -11,16 +11,29 @@
   ],
   "notes": [
     "2026-11-15: Triage: assess; scripted simulator gestures and capture fill a distinct native-app preview route. Revisit if supported macOS/Xcode requirements exceed the target environment or capture cannot be repeated reliably.",
+    "2026-11-24: Guide written from examples/baguette-simulator-capture; tested 0.3.2 (assessment saw 0.2.14), one iPhone 17 Pro iOS 26.5 sim on macOS 26.6 arm64.",
     "2026-11-15: Skill opportunity: consider a VCR simulator-capture guide if this becomes a recurring app-capture workflow; assess Xcode and host constraints in a scoped fixture."
   ],
-  "documentation_status": "listed-in-prd",
+  "skill": "skills/baguette/SKILL.md",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.3.2",
+        "command": "examples/baguette-simulator-capture/run.sh",
+        "result": "Booted iPhone 17 Pro (EN) iOS 26.5 by UDID, took a 1206x2622 PNG screenshot and a 3 s H.264 MP4 of a home-screen swipe (duration 3.007 s; 42 frames), frames non-blank and different, device Shutdown afterwards. Final record and verify runs both OK. ffprobe 9.0.2, ImageMagick 7.1.2, macOS 26.6 arm64.",
+        "example": "examples/baguette-simulator-capture",
+        "scope": "Boot one named iPhone 17 Pro (EN) iOS 26.5 sim by UDID; PNG and 3 s home-screen H.264 capture at 1206x2622, shutdown; no pixel hashes or input latency; macOS arm64 only"
+      }
+    ]
   },
+  "examples": ["baguette-simulator-capture"],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-14-discovery.md",
   "summary": "Native macOS CLI for headless Apple Simulator control, screenshots, video recording, UI descriptions and multi-device sessions. Its broad simulator input and capture commands make it useful for repeatable app capture; it requires Apple Silicon and Xcode 26 private simulator frameworks.",
   "use_when": [

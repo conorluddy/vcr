@@ -1,0 +1,9 @@
+{
+  "id": "baguette-simulator-capture",
+  "title": "Baguette boots an iOS Simulator, captures a screenshot and recording, then shuts it down",
+  "summary": "One named iPhone 17 Pro (EN) simulator by UDID: PNG screenshot and 3-second H.264 recording with a home-screen swipe; dimensions, duration and non-blank checks; shutdown.",
+  "status": "validated",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" },
+  "tools": ["baguette", "ffmpeg-ffprobe", "imagemagick"],
+  "run": "./run.sh"
+}

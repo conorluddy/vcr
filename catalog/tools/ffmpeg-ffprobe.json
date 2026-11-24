@@ -86,7 +86,8 @@
     "agg-asciicast-gif",
     "dovi-tool-metadata-roundtrip",
     "exiv2-metadata-roundtrip",
-    "gifsicle-optimise"
+    "gifsicle-optimise",
+    "baguette-simulator-capture"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
