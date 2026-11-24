@@ -69,7 +69,8 @@
   "checked_at": null,
   "source": "specifications/vcr-prd.md#appendix-a",
   "examples": [
-    "mermaid-cli-svg"
+    "mermaid-cli-svg",
+    "mermaid-rs-renderer-svg"
   ],
   "skill": "skills/mermaid-cli/SKILL.md"
 }
