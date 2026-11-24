@@ -18,11 +18,24 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "15.1.0",
+        "command": "examples/harfbuzz-shape-text/run.sh",
+        "result": "hb-shape JSON for 'a -> b != c' with JetBrains Mono Bold: 11 glyphs, clusters 0-10 in order, advances 600; ligature glyphs hyphen_greater.liga (cluster 3) and exclam_equal.liga (cluster 8); ID and name outputs match expected JSON; repeat runs byte-identical; hb-view SVG 666x158.72, 11 use elements, sha256 ff74b181 repeated; contact sheet shows both ligatures unclipped.",
+        "example": "examples/harfbuzz-shape-text",
+        "scope": "Fixed string with two ligatures, one OFL font, hb-shape JSON and hb-view SVG repeat output; HarfBuzz 15.1.0 on macOS arm64. Not kerning, other fonts, scripts, subset or formats."
+      }
+    ]
   },
+  "examples": [
+    "harfbuzz-shape-text"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "Text shaping engine with native libraries and utilities such as hb-shape and hb-view; turns text plus a font into positioned glyph output and supports subset operations.",
   "use_when": [
@@ -36,7 +49,7 @@
   "pairs_with": [
     "fonttools"
   ],
-  "license": "Old MIT (MIT-like; verify exact notice)",
+  "license": "Old MIT (verified against COPYING in HarfBuzz 15.1.0 source, 2026-11-24)",
   "install": {
     "macos": "brew install harfbuzz",
     "check_command": "hb-shape --version"
