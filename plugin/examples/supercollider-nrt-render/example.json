@@ -1,0 +1,11 @@
+{
+  "id": "supercollider-nrt-render",
+  "title": "SuperCollider NRT render of five scored sine notes: onset, pitch, envelope and rerun checks",
+  "summary": "Headless sclang -D builds a SynthDef sine with linen envelope and five predeclared notes; Score.recordNRT runs scsynth -N to write two int16 stereo 48 kHz WAVs; onset, duration, 5-cent pitch and peak checks; rerun byte identity.",
+  "status": "not-validated",
+  "tools": [
+    "supercollider",
+    "imagemagick"
+  ],
+  "run": "./run.sh"
+}

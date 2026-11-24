@@ -1,0 +1,14 @@
+{
+  "id": "segment-anything-point-prompt",
+  "title": "Segment Anything ViT-B point and box prompts on a generated two-object still, CPU, rerun identical",
+  "summary": "Transformers SamModel facebook/sam-vit-base, one positive point or one box per object: IoU floor 0.90 vs analytic ground truth, exclusion of the other object, alpha range on the cutout, fresh-process rerun within tolerance. One synthetic still; ViT-B only.",
+  "status": "validated",
+  "tools": [
+    "segment-anything"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

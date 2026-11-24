@@ -1,0 +1,9 @@
+{
+  "id": "sonic-annotator-features",
+  "title": "sonic-annotator onset and pitch transforms on generated audio",
+  "summary": "120 BPM click track and a 440 Hz sine; QM onset transform finds all 20 clicks within 25 ms, aubiopitch within 10 cents, CSV and JAMS written, reruns identical.",
+  "status": "validated",
+  "tools": ["sonic-annotator", "ffmpeg-ffprobe"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "pure-data-batch-render",
+  "title": "Pure Data batch WAV render: rate, duration, envelope times, 440 Hz tone and rerun checks",
+  "summary": "Pd -nogui -batch renders a 440 Hz osc~ through a vline~ envelope via writesf~ to 16-bit mono 48 kHz WAV; checks rate, duration, envelope times within 2 ms, FFT tone within 5 cents, tail silence and rerun identity.",
+  "status": "validated",
+  "tools": [
+    "pure-data"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

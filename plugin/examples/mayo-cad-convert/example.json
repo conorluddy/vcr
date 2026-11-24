@@ -1,0 +1,11 @@
+{
+  "id": "mayo-cad-convert",
+  "title": "Mayo CLI converts a STEP part headlessly (blocked: no macOS build)",
+  "summary": "Planned fixture for mayo's batch converter on macOS. Blocked: no macOS build is published in any upstream release, so the claim was not run.",
+  "status": "not-validated",
+  "tools": [
+    "mayo"
+  ],
+  "run": "./run.sh",
+  "report": "examples/mayo-cad-convert/README.md"
+}

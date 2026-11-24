@@ -1803,16 +1803,34 @@
         "2026-10-29: Source is a conversation; the listed-in-prd value is the schema’s listed-only status, not an assertion of PRD inclusion.",
         "2026-10-29: Documentation assessed only; no fixture or VCR adapter was tested.",
         "2026-10-29: Skill opportunity: Further research first: identify a repeatable local workflow, model licence and execution footprint before VCR or standalone guidance.",
-        "2026-10-29: Models, custom nodes, hosted services, data and generated outputs have separate conditions; offline behaviour depends on the chosen workflow."
+        "2026-10-29: Models, custom nodes, hosted services, data and generated outputs have separate conditions; offline behaviour depends on the chosen workflow.",
+        "2026-11-24: Guide written at skills/comfyui/SKILL.md from examples/comfyui-headless-graph; built-in image nodes only, no models, custom nodes or GPU tested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.46.0",
+            "command": "examples/comfyui-headless-graph/run.sh",
+            "result": "CPU server on 127.0.0.1 with no custom nodes: API workflow of six built-in nodes (LoadImage, ImageScale nearest 2x, ImageInvert, EmptyImage, ImageBlend, SaveImage) to 128x96 RGB PNG; /history completed with success, no cached nodes; four probes within 1 of predicted; loopback-only listener; two submissions byte-identical. Commit a277b5bf, Python 3.12.13, torch 2.15.0, macOS arm64. No models.",
+            "example": "examples/comfyui-headless-graph",
+            "scope": "ComfyUI v0.46.0 CPU server, loopback: built-in-node API graph, no models; 4 probes within 1, rerun byte-identical; no custom nodes, GPU, restart, or per-node order; macOS arm64"
+          }
+        ]
+      },
+      "examples": [
+        "comfyui-headless-graph"
+      ],
+      "install": {
+        "macos": "git clone --branch v0.46.0 https://github.com/Comfy-Org/ComfyUI && /opt/homebrew/bin/python3.12 -m venv ComfyUI/venv && ComfyUI/venv/bin/pip install -r ComfyUI/requirements.txt",
+        "check_command": "git -C ComfyUI describe --tags --exact-match"
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Node-graph application and local API for model-based creative workflows. It can orchestrate image generation and other workflows; actual outputs and terms depend on models and custom nodes.",
       "use_when": [
@@ -1837,7 +1855,8 @@
         "sources": [
           "https://github.com/Comfy-Org/ComfyUI"
         ]
-      }
+      },
+      "skill": "skills/comfyui/SKILL.md"
     },
     {
       "id": "csound",
@@ -3330,7 +3349,8 @@
         "whisper-cpp-transcribe",
         "vapoursynth-script-frames",
         "rhubarb-lip-sync-cues",
-        "revideo-headless-render"
+        "revideo-headless-render",
+        "sonic-annotator-features"
       ],
       "notes": [
         "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
@@ -5355,7 +5375,8 @@
         "glslviewer-headless-frames",
         "real-esrgan-upscale",
         "mannequin-js-pose-capture",
-        "bvh-mocap-playback"
+        "bvh-mocap-playback",
+        "supercollider-nrt-render"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -6670,23 +6691,36 @@
       ],
       "notes": [
         "2026-11-07: Triage: Direct CAD interchange conversion is a concrete job without writing a script; revisit after confirming headless CLI operation and macOS build route.",
-        "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+        "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion.",
+        "2026-11-24: No macOS build is published in any github.com/fougue/mayo release (v0.2.0 to v0.10.0; macOS is documented as build-from-source only). Headless conversion was not tested; see examples/mayo-cad-convert (blocked). Licence corrected to BSD-2-Clause; brew cask line removed (no such cask)."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "blocked",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.10.0",
+            "command": "examples/mayo-cad-convert/run.sh",
+            "result": "blocked: no macOS asset in any github.com/fougue/mayo release (latest v0.10.0 ships AppImage and Windows only); run.sh exit 2; nothing downloaded, converted or measured",
+            "example": "mayo-cad-convert",
+            "scope": "Fixture-reported: blocked before any run; no macOS build to test. Says nothing about CLI conversion, reload accuracy or determinism"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-07-discovery.md",
       "summary": "Qt/OpenCascade CAD viewer with a documented batch conversion CLI for CAD and mesh formats. It targets interchange and inspection of engineering geometry, rather than scene authoring or rendering.",
-      "license": "MIT",
+      "license": "BSD-2-Clause",
       "install": {
-        "macos": "brew install --cask mayo",
         "check_command": "mayo --help"
       },
+      "examples": [
+        "mayo-cad-convert"
+      ],
       "use_when": [
         "Batch convert engineering CAD and mesh formats through a documented CLI",
         "Inspect CAD files with a desktop viewer before converting them"
@@ -9946,19 +9980,38 @@
       "capabilities": [
         "audio"
       ],
+      "install": {
+        "macos": "brew install --cask pd",
+        "check_command": "/Applications/Pd-0.57-0.app/Contents/Resources/bin/pd -version"
+      },
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Further research first: independently useful patch workflows need headless execution evidence and ownership."
+        "2026-10-29: Skill opportunity: Further research first: independently useful patch workflows need headless execution evidence and ownership.",
+        "2026-11-24: Homebrew cask pd installs Pd 0.57.0 as /Applications/Pd-0.57-0.app; the pd binary is not on PATH, so the fixture calls Contents/Resources/bin/pd (overridable with PD_BIN).",
+        "2026-11-24: Toolkit guide written at skills/pure-data/SKILL.md from the pure-data-batch-render evidence; scope stays batch render of one hand-written patch, no externals, real-time audio, MIDI or GUI."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.57.0",
+            "command": "examples/pure-data-batch-render/run.sh",
+            "result": "Hand-written patch: osc~ 440 Hz through a vline~ envelope (ramp to 0.5 over 50 ms, release to 0 over 300 ms from 1.5 s) into writesf~; pd -nogui -batch -r 48000 writes 96000 frames (2.000 s), 16-bit mono 48 kHz, plateau 0.5. Rise and fall at 10% and 90% within 0.6 ms of prediction (bound 2 ms); FFT tone 440.04 Hz, 0.15 cents (bound 5); tail silent; two reruns byte-identical and identical to the recorded summary.",
+            "example": "examples/pure-data-batch-render",
+            "scope": "batch render of a hand-written osc~/vline~ patch to 16-bit mono 48 kHz WAV, 2.0 s; envelope, 440 Hz and rerun checks; no listening or realtime audio; macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
+      "examples": [
+        "pure-data-batch-render"
+      ],
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Visual dataflow environment for sound and multimedia. Native Pd patches express realtime processing; automation and offline rendering depend on the patch and runtime configuration.",
       "use_when": [
@@ -9984,7 +10037,8 @@
           "https://github.com/pure-data/pure-data",
           "https://github.com/pure-data/pure-data/blob/master/LICENSE.txt"
         ]
-      }
+      },
+      "skill": "skills/pure-data/SKILL.md"
     },
     {
       "id": "pymunk",
@@ -11372,16 +11426,30 @@
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Possible standalone segmentation skill; compare alternatives and validate chosen checkpoints and masks first."
+        "2026-10-29: Skill opportunity: Possible standalone segmentation skill; compare alternatives and validate chosen checkpoints and masks first.",
+        "2026-11-24: Toolkit guide written at skills/segment-anything/SKILL.md from the point and box prompt evidence; untested areas listed in the guide."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "Hub commit 70c1a07f894ebb5b307fd9eaaee97b9dfc16068f (facebook/sam-vit-base; transformers 5.24.0, torch 2.15.0)",
+            "command": "examples/segment-anything-point-prompt/run.sh",
+            "result": "Point and box prompts on a generated 512x512 red disc and blue square over a striped background: IoU vs analytic truth disc point 0.994778, disc box 0.992292, square point 0.999784, square box 0.999622 (floor 0.90); leak onto the other shape 0.0; disc cutout alpha binary, opaque fraction 0.076305; fresh-process rerun masks byte-identical. Python 3.12.13, macOS arm64.",
+            "example": "examples/segment-anything-point-prompt",
+            "scope": "transformers SAM ViT-B (facebook/sam-vit-base) on CPU: one point or box per shape on 2 synthetic shapes; IoU 0.99+ vs truth, no leak, rerun identical; one still; macOS arm64"
+          }
+        ]
       },
+      "examples": [
+        "segment-anything-point-prompt"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Python inference code and model checkpoints for promptable image segmentation. It produces masks for specified prompts; checkpoint, input and model rights must be checked separately.",
       "use_when": [
@@ -11396,7 +11464,11 @@
         "imagemagick",
         "mediapipe"
       ],
-      "license": "Apache-2.0 (project code and stated model); verify selected checkpoints and assets",
+      "license": "Apache-2.0 (project code; facebook/sam-vit-base model card apache-2.0, checked 2026-11-24); other checkpoints not checked",
+      "install": {
+        "macos": "/opt/homebrew/bin/python3.12 -m venv examples/segment-anything-point-prompt/output/venv && examples/segment-anything-point-prompt/output/venv/bin/pip install -r examples/segment-anything-point-prompt/requirements.txt",
+        "check_command": "examples/segment-anything-point-prompt/output/venv/bin/python -c \"import torch, transformers; print(torch.__version__, transformers.__version__)\""
+      },
       "assessment": {
         "date": "2026-10-29",
         "assessed_by": "assess-c",
@@ -11407,7 +11479,8 @@
           "https://github.com/facebookresearch/segment-anything",
           "https://github.com/facebookresearch/segment-anything/releases"
         ]
-      }
+      },
+      "skill": "skills/segment-anything/SKILL.md"
     },
     {
       "id": "sharp",
@@ -11578,16 +11651,27 @@
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Further research first: identify a maintained Vamp plugin and test output timing on a known signal."
+        "2026-10-29: Skill opportunity: Further research first: identify a maintained Vamp plugin and test output timing on a known signal.",
+        "2026-11-24: Guide written at skills/sonic-annotator/SKILL.md from examples/sonic-annotator-features; evidence partial (QM onsets, aubiopitch, CSV and JAMS only)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.7.0",
+            "command": "examples/sonic-annotator-features/run.sh",
+            "result": "Pass: qm-onsetdetector:onsets found 20 of 20 clicks within 25 ms (max 24.7 ms, all early), 0 misses, 0 extras; aubiopitch median 440.8 Hz on a 440 Hz sine, 3.0 cents (258 frames in window). -l lists both ids. CSV and JAMS written (onsets 20 rows, pitch 344 rows). Reruns byte-identical; separate-process rerun matched expected/summary.json.",
+            "example": "examples/sonic-annotator-features",
+            "scope": "Vamp onset (QM onsetdetector) on generated clicks within 25 ms, aubiopitch 440 Hz within 10 cents, CSV and JAMS written; macOS arm64 only; no RDF or JSON-LD, no tempo"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Batch audio feature extraction and annotation tool using Vamp plugins. It reads audio and writes structured results such as CSV or RDF; available analyses depend on installed plugins.",
       "use_when": [
@@ -11602,7 +11686,7 @@
         "librosa",
         "ffmpeg-ffprobe"
       ],
-      "license": "GPL (project page); exact version and plugin terms need review",
+      "license": "GPL-2.0 (sonic-annotator 1.7.0 COPYING); vamp-aubio descriptions declare GPL; qm-vamp-plugins licence not verified (descriptions give QMUL copyright only); checked 2026-11-24",
       "assessment": {
         "date": "2026-10-29",
         "assessed_by": "assess-c",
@@ -11612,7 +11696,15 @@
         "sources": [
           "https://www.vamp-plugins.org/sonic-annotator/"
         ]
-      }
+      },
+      "install": {
+        "macos": "examples/sonic-annotator-features/fetch-tools.sh",
+        "check_command": "examples/sonic-annotator-features/output/bin/sonic-annotator -v"
+      },
+      "examples": [
+        "sonic-annotator-features"
+      ],
+      "skill": "skills/sonic-annotator/SKILL.md"
     },
     {
       "id": "sox",
@@ -11901,16 +11993,34 @@
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Potential standalone synthesis skill; establish scoped noninteractive render and server lifecycle before authoring."
+        "2026-10-29: Skill opportunity: Potential standalone synthesis skill; establish scoped noninteractive render and server lifecycle before authoring.",
+        "2026-11-24: Guide written from partial NRT evidence (skills/supercollider/SKILL.md); frame-count finding recorded as a gotcha."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
-      "validation": {
-        "status": "not-validated",
-        "evidence": []
+      "install": {
+        "macos": "brew install --cask supercollider",
+        "check_command": "/Applications/SuperCollider.app/Contents/Resources/scsynth -v"
       },
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.14.1",
+            "command": "examples/supercollider-nrt-render/run.sh",
+            "result": "Five scored sine notes (440, 330, 660, 880, 550 Hz; starts 0.25 to 3.25 s) via sclang -D and Score.recordNRT (scsynth -N, /Applications/SuperCollider.app/Contents/Resources/scsynth) to 48 kHz stereo int16 WAV. Onsets within 0.6 ms, durations within 0.9 ms, pitch within 0.01 cents, peaks within 0.0001 of amplitude. Output 192064 frames, not the predeclared 192000 (one 64-sample block past 4.0 s): that check fails. Two renders byte-identical.",
+            "example": "examples/supercollider-nrt-render",
+            "scope": "Fixture-reported: headless NRT render, scored sine notes, onset/pitch/rerun checks pass; frame count off by one block; macOS arm64, SuperCollider 3.14.1"
+          }
+        ]
+      },
+      "examples": [
+        "supercollider-nrt-render"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Audio synthesis and algorithmic composition platform with the sclang language and a separate audio server. Scripted workflows need explicit server, timing and rendering configuration.",
       "use_when": [
@@ -11938,7 +12048,8 @@
           "https://github.com/supercollider/supercollider/releases"
         ],
         "version_seen": "3.14.1 (GitHub release; date year unverified)"
-      }
+      },
+      "skill": "skills/supercollider/SKILL.md"
     },
     {
       "id": "surge-xt",
