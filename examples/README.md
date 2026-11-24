@@ -76,3 +76,4 @@ The original six were validated on the primary Mac on 2026-10-26; later rows giv
 | `f3d-headless-still` | f3d | PARTIAL: 320x240 RGBA stills of a generated GLB, byte-identical reruns, A-B-A order; view-A region and antialias checks failed, no-window unproven; no expected/ committed (2026-11-24) |
 | `freeze-code-still` | freeze | fixed Go file to SVG and PNG, Dracula, window chrome off/on, line numbers, embedded JetBrains Mono; repeat byte-identical (2026-11-24) |
 | `typst-title-card` | typst | Data-driven title card from .typ plus json() to SVG and PNG at 144 ppi with one pinned font; size, alpha, query and reruns pass, SVG glyphs are outlines so value is not text (partial, 2026-11-24) |
+| `vhs-tape-recording` | vhs | partial: headless tape to MP4 h264 640x360 and a stable text golden; PNG frames cropped to 494x208 and frame counts vary run to run (2026-11-24) |
