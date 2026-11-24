@@ -16,12 +16,25 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "libass-burn-in"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.17.5",
+        "command": "examples/libass-burn-in/run.sh",
+        "result": "C via Homebrew libass 0.17.5: 50 frames 640x360; TOP LEFT and BOTTOM RIGHT events land in their predeclared regions, gaps empty; 3 distinct hashes; repeat and shuffled runs match; coverage 0..255 with 797 partial pixels at 3000 ms; font log names JetBrainsMono-Bold; contact sheet inspected.",
+        "example": "examples/libass-burn-in",
+        "scope": "Hand-written ASS, one style with bundled OFL font via ass_set_fonts_dir, two timed events over a solid background, C on macOS arm64; no FFmpeg filter, karaoke, fades or system fonts."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "Portable C library that renders Advanced SubStation Alpha subtitles, including styled text and timed events, to video frames. It is commonly consumed through FFmpeg\u2019s ass/subtitles filters or embedded by media applications rather than used as a standalone authoring tool. Strength: mature ASS rendering with shaping and font-provider integration.",
   "use_when": [
