@@ -12,16 +12,30 @@
   "notes": [
     "2026-11-01: 82M-parameter TTS on ONNX Runtime for offline scratch or final voiceover.",
     "2026-11-01: Pin onnxruntime and cache WAVs as fixtures. Python >=3.10,<3.14.",
-    "2026-11-15: Official release page labels model-files-v1.1 as latest; assets show August 2026 upload times. Release page does not state a package release version/date for current code; 0.6.0 is referenced in model notes."
+    "2026-11-15: Official release page labels model-files-v1.1 as latest; assets show August 2026 upload times. Release page does not state a package release version/date for current code; 0.6.0 is referenced in model notes.",
+    "2026-11-24: Toolkit guide written from partial evidence (examples/kokoro-onnx-tts); reruns are not sample-identical, keep the rendered WAV as an asset."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.6.0",
+        "command": "examples/kokoro-onnx-tts/run.sh",
+        "result": "Partial: kokoro-v1.0.onnx and voices-v1.0.bin from model-files-v1.1 (sha256 verified), voice af_heart, speed 1.0, en-us: 65536 frames, 24000 Hz mono 16-bit, 2.731 s, RMS 0.0598 (floor 0.001); duration, sample rate and non-silence gates pass. In-process and cross-process reruns NOT sample-identical (max int16 difference 2753). onnxruntime 1.32.0, Python 3.12.2, macOS arm64.",
+        "example": "examples/kokoro-onnx-tts",
+        "scope": "Fixed sentence to 24 kHz mono WAV, one voice, speed 1.0; reruns not identical (unseeded model random ops); no listening test; macOS arm64."
+      }
+    ]
   },
+  "examples": [
+    "kokoro-onnx-tts"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "Python interface to Kokoro TTS models through ONNX Runtime. Given text, a voice bank and model files, it synthesizes waveform samples that can be written as WAV; model weights and voices are separate downloads. It offers a compact local inference route, with multiple voice and precision variants, without requiring a hosted speech service.",
   "use_when": [
@@ -53,5 +67,6 @@
       "https://github.com/thewh1teagle/kokoro-onnx/releases",
       "https://github.com/thewh1teagle/kokoro-onnx/blob/main/LICENSE"
     ]
-  }
+  },
+  "skill": "skills/kokoro-onnx/SKILL.md"
 }

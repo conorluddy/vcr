@@ -1,0 +1,26 @@
+{
+  "gating": {
+    "duration_in_predeclared_range": true,
+    "file_frames_match_library_output": true,
+    "mono_16bit_wav": true,
+    "non_silent_above_floor": true,
+    "sample_rate_is_24000_hz": true,
+    "voice_present_in_bank": true
+  },
+  "measures": {
+    "frame_count": 65536,
+    "kokoro_onnx_version": "0.6.0",
+    "language": "en-us",
+    "numpy_version": "2.5.5",
+    "onnxruntime_version": "1.32.0",
+    "python_version": "3.12.2",
+    "sample_rate_hz": 24000,
+    "sentence": "The quick brown fox jumps over the lazy dog.",
+    "speed": 1.0,
+    "voice": "af_heart"
+  },
+  "repeats_recorded_not_gating": {
+    "cross_process_pcm_identical": false,
+    "in_process_rerun_pcm_identical": false
+  }
+}
