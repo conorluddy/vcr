@@ -1,8 +1,8 @@
 {
   "id": "raea-render",
-  "title": "raea source build and headless hello.tsx render (blocked at build: cmake missing)",
-  "summary": "Blocked: the pinned raea commit's cargo release build stops in opusic-sys because cmake is not installed on the test host. The planned 1080x1920, 30 fps, 90-frame headless render of the manual's hello.tsx was not run; no expected/ output exists.",
-  "status": "not-validated",
+  "title": "raea source build and headless hello.tsx render to MP4 and PNG stills",
+  "summary": "Pinned raea commit built from source with cmake 4.5.1; the manual's hello.tsx renders headlessly to 90-frame 1080x1920 H.264 and PNG stills. Probes, hashes, rerender and shuffled stills pass. Run 1 (no cmake) is in the README.",
+  "status": "validated",
   "tools": ["raea", "ffmpeg-ffprobe"],
   "run": "./run.sh"
 }

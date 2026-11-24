@@ -67,7 +67,9 @@ function predeclaredChecks(measurement) {
     && probe.width === EXPECTED_WIDTH && probe.height === EXPECTED_HEIGHT
     && probe.frameRate === EXPECTED_FRAME_RATE && probe.frameCount === EXPECTED_FRAME_COUNT;
   const sameHashes = (left, right) => left.length === right.length && left.every((hash, index) => hash === right[index]);
-  const stillsMatch = sameHashes(measurement.stillsSequence, measurement.stillsShuffled);
+  // Compare by frame number: the shuffled list is in a different order from the sequential one.
+  const stillsMatch = STILL_FRAMES_SEQUENCE.every((frame, index) =>
+    measurement.stillsSequence[index] === measurement.stillsShuffled[STILL_FRAMES_SHUFFLED.indexOf(frame)]);
   const stillsSized = measurement.stillsSize.every((size) => size.width === EXPECTED_WIDTH && size.height === EXPECTED_HEIGHT);
   const textPresent = [30, 89].every((frame) => {
     const fraction = measurement.whiteFractionsA[frame];

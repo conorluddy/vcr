@@ -20,15 +20,25 @@ if [ "$(git -C "$SOURCE" rev-parse HEAD)" != "$RAEA_PIN" ]; then
   exit 1
 fi
 
-# The build and the SDK installs happen inside the ignored clone only. Cargo's no-op is quick once built.
+# The build and the SDK installs happen inside the ignored output/ only. Cargo's no-op is quick once built.
 (cd "$SOURCE" && CARGO_TARGET_DIR="$TARGET" cargo build --release -p raea-cli --no-default-features)
+
+# bun 1.4.2 (what upstream CI pins; the host's bun 1.2.18 cannot read bun.lock v2), installed locally under output/.
+BUN_TOOL="$PWD/output/bun-tool"
+BUN="$BUN_TOOL/node_modules/.bin/bun"
+if [ ! -x "$BUN" ]; then
+  npm install --prefix "$BUN_TOOL" bun@1.4.2
+fi
 for dir in sdk/raea sdk/react/js sdk/react/tw; do
-  (cd "$SOURCE/$dir" && bun install --frozen-lockfile)
+  (cd "$SOURCE/$dir" && "$BUN" install --frozen-lockfile)
 done
+(cd "$SOURCE/sdk/react/js" && "$BUN" run build)
 
 # Offline: the engine refuses every network request it would make; telemetry is not sent by raea.
 export RAEA_OFFLINE=1
 export RAEA_HOME="$PWD/$SOURCE"
+# Without this, raea clones a repeated MP4 from ~/Library/Caches/raea/exports, so the rerender check would not render twice.
+export RAEA_EXPORT_CACHE=0
 
 rm -rf output/render-a output/render-b output/stills
 mkdir -p output/render-a output/render-b output/stills/sequence output/stills/shuffled

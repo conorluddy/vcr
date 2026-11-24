@@ -40,6 +40,10 @@
 
 ## Observation, after running
 
+Run 1 is kept as history. Run 2 (below) is the result of record.
+
+### Run 1: blocked at the source build (cmake missing)
+
 Run date 2026-11-24, executed on `Conors-MacBook-Pro-2.local` (macOS, Darwin 25.6.0, arm64), 11:05 to 11:11 UTC.
 
 - **Result: blocked at the source build.** The run stopped at `cargo build --release -p raea-cli --no-default-features` at the pinned commit, so no render was attempted. No MP4, PNG, `expected/` file or frame hash was produced. `./run.sh --record` exits 101 (`output/run-record.log`).
@@ -51,3 +55,24 @@ Run date 2026-11-24, executed on `Conors-MacBook-Pro-2.local` (macOS, Darwin 25.
 - **Licence and maturity:** FSL-1.1-ALv2 unchanged at the pin, as checked on 2026-11-24. Use was internal evaluation only; nothing was redistributed.
 - **What this establishes:** at this commit on this host, the documented source build does not complete without CMake, and the SDK install step needs bun 1.4.2. Nothing is established about headless rendering, GPU use, output content or determinism.
 - **Reviewer, decision and follow-up:** a reviewer should decide whether CMake may be installed through an approved route, and whether bun 1.4.2 may be installed for this fixture. Then rerun `./run.sh --record` (cargo resumes from `output/target`), followed by `./run.sh`. Revisit if the pin or the toolchain changes.
+
+### Run 2: pass (cmake 4.5.1 installed by the coordinator; same pin)
+
+Run date 2026-11-24, same host, 11:14 to 11:34 UTC for the build and first render attempts, then `./run.sh --record` at 11:33 and `./run.sh` at 11:34 (both exit 0).
+
+- **Result: pass on every predeclared check.** `./run.sh --record` wrote `expected/render.json` after all checks passed; `./run.sh` then printed `raea-render: OK` with `matches-expected` passing.
+- **Build:** `cargo build --release -p raea-cli --no-default-features` at `66eb15448f69ab29a801fe1bde75d3889d34d04e` completed in 15 min 7 s (retry, incremental on `output/target`). Exit 0, one warning in `raea-cli`. `raea --version` prints `0.1.0-checkout`, not a release number, so the evidence entry cites the commit.
+- **Render:** `raea render output/src/docs/manual/examples/hello.tsx` (with `RAEA_OFFLINE=1`, `RAEA_HOME` at the clone, `RAEA_EXPORT_CACHE=0`) made `render-a/hello.mp4` and `render-b/hello.mp4`, 90 frames each at 33.2 ms per frame on the GPU, and PNG stills at frames 0, 30 and 89 in sequence and shuffled order. No window was needed.
+- **Checks (record run):** probe h264 yuv420p 1080x1920 30/1, 90 frames, on both MP4s; 90 decoded frame hashes; 48 distinct hashes; frame 0 white fraction 0; frames 30 and 89 white fraction 0.0042 and 0.0043; render-b equal to render-a on all 90 hashes; stills 1080x1920; shuffled stills equal sequential for frames 0, 30 and 89.
+- **Contact sheet:** `output/contact.png`, built from `render-a` frames 0, 15, 30, 45, 60, 75 and 89 with `magick`. It shows black at frames 0 and 45 (fade-in start), "Hello" centred at frames 15 and 30, and "world" centred at 60, 75 and 89, on black, at the same position. This matches the scene source.
+- **Corrections made during run 2, all disclosed:**
+  1. **Export cache.** Run 2's first attempt cloned `render-b` from `~/Library/Caches/raea/exports` (the log says "from the export cache"), so it was not an independent rerender. `run.sh` now sets `RAEA_EXPORT_CACHE=0`, and the recorded run has no cache hit (`grep` count 0).
+  2. **Check bug.** The first record attempt failed `stills-shuffled-equals-sequential`. That was a bug in `check.mjs`, which compared the sequential and shuffled arrays by index, not by frame. The render was not at fault; the stills were the same size in both orders. The comparison now matches by frame number. The predeclared intent is unchanged.
+  3. **SDK install.** The host's bun 1.2.18 cannot read `bun.lock` v2, so the SDK installs use bun 1.4.2, installed with `npm install --prefix output/bun-tool bun@1.4.2`. This is local to `output/`, not global. The SDK's `bun run build` (in `sdk/react/js`) writes `dist/`, and this is in `run.sh` now.
+  4. **Failed attempts before the pass.** Before the SDK install and build, the scene bundle threw `ReferenceError: Can't find variable: bevy_react`. After `bun install` and `bun run build`, a single still still failed with the same error. A symlink of `sdk/react/js/node_modules` at the clone root did not help, and I removed it. The next `run.sh --record` (which also rebuilds raea-cli) rendered successfully. I did not isolate which step fixed it; the rebuild is the likely trigger, and I have not proven it.
+- **Versions:** raea at `66eb15448f69ab29a801fe1bde75d3889d34d04e` (`raea --version` 0.1.0-checkout); cargo and rustc 1.99.1 (clone's toolchain file); cmake 4.5.1 (Homebrew); bun 1.4.2 (local, `output/bun-tool`); bun 1.2.18 not used for installs; pnpm 10.29.2; Node v22.19.0; Homebrew ffmpeg and ffprobe 9.0.2 (analysis only). Playwright and Chromium not used.
+- **Sizes:** `output/src` 216 MB (clone with installed SDK packages and dist); `output/target` 19 GB (release build with debuginfo, plus both runs); `output/bun-tool` 59 MB. All under the git-ignored `output/`.
+- **Deviations from the plan:** the bun install and `bun run build` steps were not in the plan's recipe (they are needed, as shown above); the export-cache switch is new; the check comparison fix as above. The predeclared thresholds, frame count and text ranges were not changed.
+- **What this establishes:** at this pin on this host (macOS arm64), the documented source build completes with cmake present, and the documented hello composition renders headlessly with `RAEA_OFFLINE=1` to 90 H.264 frames at 1080x1920 and 30 fps, to PNG stills, with rerender and stills order checks passing.
+- **What it does not establish:** seek or random-access determinism of the MP4 itself (the shuffled check covers stills only); alpha; audio; `raea check`, play, or web export; Linux or Windows; other GPUs; the default-features build (hosted Content Credentials omitted); cross-machine hash equality; the `--quality` presets; and the time to first frame.
+- **Reviewer and follow-up:** revisit if the pin, the toolchain, cmake, or bun changes. The record should be re-run on a fresh clone to confirm the trigger in item 4.
