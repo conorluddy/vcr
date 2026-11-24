@@ -15,12 +15,25 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "ffmpeg-normalize-loudness"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.45.3",
+        "command": "examples/ffmpeg-normalize-loudness/run.sh",
+        "result": "Two generated 10 s 48 kHz stereo sine-burst WAVs (input -29.1 and -10.7 LUFS, LRA 1.8 LU each) normalised with -nt ebu -t -16 -tp -1.5 -ar 48000: outputs -16.1 LUFS each (tolerance 0.5 LU), true peak -11.4 dBTP each (ceiling -1.5), LRA unchanged, duration 10.000 s, 48000 Hz, rerun PCM MD5 identical. Default options also gave 48000 Hz. Linear gain used (no loudnorm revert). FFmpeg 9.0.2 ebur128 measurement.",
+        "example": "examples/ffmpeg-normalize-loudness",
+        "scope": "EBU R128 linear normalisation to -16 LUFS, -1.5 dBTP; sine bursts only, ceiling never binding; 48 kHz kept; macOS arm64, FFmpeg 9.0.2"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "Python CLI and API built on FFmpeg for batch EBU R128, RMS or peak loudness normalisation. It can preserve video streams and selectively process audio tracks; output is re-encoded media with configurable codecs and metadata. Its distinguishing strength is album-style batch normalisation that preserves relative levels.",
   "use_when": [
