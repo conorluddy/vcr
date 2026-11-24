@@ -1,0 +1,4 @@
+{
+  "deterministicIds": true,
+  "deterministicIDSeed": "vcr-mermaid-cli-fixture"
+}
