@@ -83,7 +83,8 @@
     "node-av-decode-encode",
     "ab-av1-crf-search",
     "agg-asciicast-gif",
-    "dovi-tool-metadata-roundtrip"
+    "dovi-tool-metadata-roundtrip",
+    "exiv2-metadata-roundtrip"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."

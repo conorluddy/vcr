@@ -1,0 +1,8 @@
+{
+  "id": "exiv2-metadata-roundtrip",
+  "title": "Exiv2 writes, reads back and strips predeclared metadata",
+  "summary": "Generate a 64x48 JPEG, write XMP-dc Title and Rights, EXIF Artist and IPTC Caption via exiv2 -m, read back with exiv2 -pa and exiftool, strip with exiv2 rm, and confirm decoded pixels never change.",
+  "status": "validated",
+  "tools": ["exiv2", "exiftool", "ffmpeg-ffprobe"],
+  "run": "./run.sh"
+}
