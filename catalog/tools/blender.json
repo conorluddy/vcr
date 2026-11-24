@@ -67,7 +67,8 @@
   "skill": "skills/blender-background/SKILL.md",
   "examples": [
     "blender-smoke",
-    "build123d-product"
+    "build123d-product",
+    "mpfb-human-figure"
   ],
   "notes": [
     "Not on PATH on macOS; use the app bundle executable. First native application spike planned in M0."
