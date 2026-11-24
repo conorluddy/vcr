@@ -12,9 +12,10 @@
   "notes": [
     "2026-11-01: Neural TTS engine with many languages and voices.",
     "2026-11-01: Project is seeking maintainers; old rhasspy/piper archived 2025-10.",
-    "2026-11-15: Project README says it is looking for maintainers; release activity is recent, but long-term ownership remains uncertain. Voice-model permissions require each model card review."
+    "2026-11-15: Project README says it is looking for maintainers; release activity is recent, but long-term ownership remains uncertain. Voice-model permissions require each model card review.",
+    "2026-11-24: Toolkit guide written from partial evidence (examples/piper-tts); check_command fixed (no --version in 1.8.0); evidence unchanged."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "partial",
@@ -51,7 +52,7 @@
   "license": "GPL-3.0-or-later (engine); each voice model has its own MODEL_CARD licence; bundled phonemizer resources may carry separate terms",
   "install": {
     "macos": "python3 -m pip install piper-tts; download a voice model and its JSON config",
-    "check_command": "python3 -m piper --version"
+    "check_command": "python3 -m piper --help"
   },
   "assessment": {
     "date": "2026-11-15",
@@ -67,5 +68,6 @@
       "https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/LICENSING.md",
       "https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/BUILDING.md"
     ]
-  }
+  },
+  "skill": "skills/piper/SKILL.md"
 }
