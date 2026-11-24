@@ -11,9 +11,11 @@
   ],
   "notes": [
     "2026-11-01: EBU R128 two-pass loudness normalisation CLI with presets and batch mode.",
-    "2026-11-15: Release page identifies 1.43.0 (2026-10-14) as latest; current repository pyproject reports 1.44.0. Release tag/date for 1.44.0 not confirmed."
+    "2026-11-15: Release page identifies 1.43.0 (2026-10-14) as latest; current repository pyproject reports 1.44.0. Release tag/date for 1.44.0 not confirmed.",
+    "2026-11-24: Toolkit guide written from ffmpeg-normalize-loudness evidence (linear two-pass, sine bursts only); documents the silent loudnorm dynamic fallback and explicit -ar."
   ],
-  "documentation_status": "listed-in-prd",
+  "skill": "skills/ffmpeg-normalize/SKILL.md",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "ffmpeg-normalize-loudness"

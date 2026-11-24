@@ -73,6 +73,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `typst-title-card` | typst | Data-driven title card from .typ plus json() to SVG and PNG at 144 ppi with one pinned font; size, alpha, query and reruns pass, SVG glyphs are outlines so value is not text (partial, 2026-11-24) |
 | `vhs-tape-recording` | vhs | partial: headless tape to MP4 h264 640x360 and a stable text golden; PNG frames cropped to 494x208 and frame counts vary run to run (2026-11-24) |
 | `baguette-simulator-capture` | baguette, ffmpeg-ffprobe, imagemagick | one iPhone 17 Pro iOS 26.5 sim booted by UDID: 1206x2622 PNG and 3 s H.264 recording within tolerance, non-blank frames, shutdown; no pixel hashes (2026-11-24) |
+| `ffmpeg-normalize-loudness` | ffmpeg-normalize, ffmpeg-ffprobe | EBU R128 linear two-pass on quiet and loud sine bursts: both within 0.5 LU of the -16 LUFS target, true peak never binding, LRA, duration and 48 kHz kept, reruns identical; constant-level input falls back to dynamic mode (2026-11-24) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 
