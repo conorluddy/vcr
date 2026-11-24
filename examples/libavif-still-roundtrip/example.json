@@ -1,0 +1,10 @@
+{
+  "id": "libavif-still-roundtrip",
+  "title": "libavif encodes a generated RGBA PNG to AVIF and decodes it back",
+  "summary": "Generated 64x64 RGBA PNG with an alpha ramp; avifenc lossless and lossy (q 60) round-trip through avifdec; checks dimensions, alpha, lossless pixel identity and a 35 dB PSNR floor.",
+  "status": "not-validated",
+  "tools": [
+    "libavif"
+  ],
+  "run": "./run.sh"
+}
