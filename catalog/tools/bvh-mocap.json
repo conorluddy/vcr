@@ -14,9 +14,10 @@
     "2026-11-01: Three.js BVHLoader plays BVH motion capture through AnimationMixer.setTime(t). Proposed data source: CMU Graphics Lab Motion Capture Database (http://mocap.cs.cmu.edu/); data terms are separate from code and unverified.",
     "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
     "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue.",
-    "2026-11-15: Three.js dev package.json reports 0.187.0; no separate BVHLoader release is available in reviewed sources. CMU site describes its data as free for research projects only; rights for other uses remain unverified."
+    "2026-11-15: Three.js dev package.json reports 0.187.0; no separate BVHLoader release is available in reviewed sources. CMU site describes its data as free for research projects only; rights for other uses remain unverified.",
+    "2026-11-24: Guide written at skills/bvh-mocap/SKILL.md from examples/bvh-mocap-playback (hand-written BVH only; no real mocap data, licences are the user's to check)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "install": {
     "macos": "cd examples/bvh-mocap-playback && pnpm add --save-exact three@0.186.1",
     "check_command": "node -e \"console.log(require('three/package.json').version)\""
@@ -70,5 +71,6 @@
       "https://github.com/mrdoob/three.js/blob/dev/LICENSE",
       "https://mocap.cs.cmu.edu/"
     ]
-  }
+  },
+  "skill": "skills/bvh-mocap/SKILL.md"
 }
