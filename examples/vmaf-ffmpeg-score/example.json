@@ -1,0 +1,16 @@
+{
+  "id": "vmaf-ffmpeg-score",
+  "title": "FFmpeg libvmaf scores identical and degraded generated clips",
+  "summary": "testsrc2 reference scored against itself and a 60 kbit/s encode via libvmaf (vmaf_v0.6.1); predeclared pooled-mean bounds, per-frame JSON, rerun determinism.",
+  "status": "validated",
+  "tools": [
+    "vmaf",
+    "ffmpeg-ffprobe",
+    "imagemagick"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

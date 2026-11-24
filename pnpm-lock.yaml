@@ -150,6 +150,12 @@ importers:
         specifier: 8.3.5
         version: 8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(tsx@4.23.15)
 
+  examples/colorjs-conversions:
+    dependencies:
+      colorjs.io:
+        specifier: 0.7.1
+        version: 0.7.1
+
   examples/d3-capture:
     dependencies:
       '@vcr/capture':
@@ -3409,6 +3415,9 @@ packages:
 
   colorjs.io@0.6.1:
     resolution: {integrity: sha512-8lyR2wHzuIykCpqHKgluGsqQi5iDm3/a2IgP2GBZrasn2sBRkE4NOGsglZxWLs/jZQoNkmA/KM/8NV16rLUdBg==}
+
+  colorjs.io@0.7.1:
+    resolution: {integrity: sha512-LY7OHnJZxHwT5UlzNa9bbhHHDbzB6yE5+3MIPwJEQKRvSCt/T4G7epsj+9j2BExUIIfXFIJGsIXUKdfrK9Q5tA==}
 
   commander@13.1.0:
     resolution: {integrity: sha512-/rFeCpNJQbhSZjGVwO9RFV3xPqbnERS8MmIQzCtD/zl6gpJuV/bMLuN92oG3F7d8oDEHHRrujSXNUr8fpjntKw==}
@@ -7829,6 +7838,8 @@ snapshots:
   colord@2.13.0: {}
 
   colorjs.io@0.6.1: {}
+
+  colorjs.io@0.7.1: {}
 
   commander@13.1.0: {}
 

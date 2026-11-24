@@ -1,0 +1,9 @@
+{
+  "id": "svt-av1-encode",
+  "title": "testsrc2 Y4M clip encoded to AV1 IVF by SvtAv1EncApp, checked by ffprobe and PSNR",
+  "summary": "ffmpeg generates 48 frames of testsrc2 at 1280x720; SvtAv1EncApp encodes them at preset 8, CRF 35 to IVF; ffprobe fields and decoded PSNR against the source are checked.",
+  "status": "validated",
+  "tools": ["svt-av1", "ffmpeg-ffprobe"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" }
+}

@@ -1518,16 +1518,28 @@
       ],
       "notes": [
         "2026-11-15: Triage reason: Assess scope for palette and colour-conformance workflows, including unsupported contrast algorithms. Revisit when a colour-check workflow is scoped.",
-        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+        "2026-11-24: Toolkit guide written from colorjs-conversions evidence (Node, sRGB/OKLCH, CSS gamut mapping, ΔE2000); ΔE reference rows still await a check against the Sharma paper."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.7.1",
+            "command": "examples/colorjs-conversions/run.sh",
+            "result": "16 sRGB colours round-tripped via OKLCH within 3.5e-14; 4 out-of-gamut OKLCH colours mapped into sRGB (max lightness shift 0.0137); 8 Sharma pairs ΔE2000 within 4.1e-5 of published. Node 22.19.0.",
+            "output_hash": "89a8be541b5266c332015a51701662edeeb4e617e0ab94264cd3b14f7b1034be",
+            "example": "examples/colorjs-conversions",
+            "scope": "Node: sRGB/OKLCH round trip, CSS gamut mapping to sRGB, ΔE2000 for 8 Sharma pairs (secondary transcription); no browser, other ΔE/gamut methods, contrast, macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-12-discovery.md",
       "summary": "JavaScript colour conversion and manipulation library",
       "license": "MIT",
@@ -1538,6 +1550,9 @@
         "Avoid when you need a complete accessibility contrast audit; use a dedicated checker."
       ],
       "pairs_with": [],
+      "examples": [
+        "colorjs-conversions"
+      ],
       "assessment": {
         "date": "2026-11-15",
         "assessed_by": "assessment_batch_c",
@@ -1554,7 +1569,8 @@
       "install": {
         "macos": "npm install colorjs.io",
         "check_command": "npm view colorjs.io version"
-      }
+      },
+      "skill": "skills/color-js/SKILL.md"
     },
     {
       "id": "colour-science",
@@ -1728,16 +1744,30 @@
       ],
       "notes": [
         "2026-11-01: Diagram language with a Go CLI producing SVG, PNG and PDF; native SVG labels rasterise cleanly with resvg.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-01: Triage: assess. Report rates it a strong candidate.",
+        "2026-11-24: Toolkit guide skills/d2/SKILL.md written from d2-diagram-svg evidence (D2 0.7.1, macOS arm64, four-node LR chain to SVG); other layouts, themes and formats untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.7.1",
+            "command": "examples/d2-diagram-svg/run.sh",
+            "result": "Generated 12650-byte SVG (viewBox 0 0 859 268); Source, Layout, SVG and Inspect labels present; 4 shape groups and 3 edge paths; repeat and fresh-process SHA-256 identical; 960 px raster showed four boxes, three arrows, no clipping.",
+            "example": "examples/d2-diagram-svg",
+            "scope": "Four-node left-to-right chain to SVG with D2 0.7.1 on macOS arm64: labels, shape and edge counts, repeat byte-identical. Not other layouts, formats or platforms."
+          }
+        ]
       },
+      "examples": [
+        "d2-diagram-svg"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "A text-based diagram language and CLI that lays out diagrams and exports SVG, PNG or PDF. Its main advantage is editable source with automatic layout for architecture and flow diagrams.",
       "use_when": [
@@ -1765,7 +1795,8 @@
         "sources": [
           "https://github.com/terrastruct/d2"
         ]
-      }
+      },
+      "skill": "skills/d2/SKILL.md"
     },
     {
       "id": "d3",
@@ -2621,16 +2652,30 @@
       "notes": [
         "2026-11-15: Triage reason: Assess official licence terms and video write coverage. Revisit when delivery metadata handling is scoped.",
         "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
-        "2026-11-15: Release date or maintenance cadence could not be established from the inspected official pages."
+        "2026-11-15: Release date or maintenance cadence could not be established from the inspected official pages.",
+        "2026-11-24: Guide written from exiftool-metadata-roundtrip evidence (13.50; card version_seen 13.59). Scope: XMP-dc Title/Rights and EXIF Artist on PNG and JPEG copies."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "13.50",
+            "command": "examples/exiftool-metadata-roundtrip/run.sh",
+            "result": "XMP-dc Title/Rights and EXIF Artist read back exact on PNG and JPEG; -all= left no predeclared or XMP/EXIF keys; decoded RGBA SHA-256 unchanged. Fixture passed twice.",
+            "example": "examples/exiftool-metadata-roundtrip",
+            "scope": "Writes XMP-dc Title/Rights and EXIF Artist to generated PNG and JPEG, reads back exactly, -all= strips them, decoded RGBA unchanged; other fields, formats, cross-tool agreement not tested; macOS arm64"
+          }
+        ]
       },
+      "examples": [
+        "exiftool-metadata-roundtrip"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-12-discovery.md",
       "summary": "Perl CLI and library for media metadata",
       "license": "GPL-3.0-or-later OR Artistic-1.0-Perl",
@@ -2657,7 +2702,8 @@
       "install": {
         "macos": "brew install exiftool",
         "check_command": "exiftool -ver"
-      }
+      },
+      "skill": "skills/exiftool/SKILL.md"
     },
     {
       "id": "exiv2",
@@ -2926,7 +2972,9 @@
       "examples": [
         "native-svg",
         "ffmpeg-assembly",
-        "browser-capture"
+        "browser-capture",
+        "svt-av1-encode",
+        "vmaf-ffmpeg-score"
       ],
       "notes": [
         "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
@@ -4443,16 +4491,30 @@
         "2026-11-01: hb-shape, hb-view and hb-subset for shaping checks and shaped-text stills.",
         "2026-11-01: Licence as reported by the source research, not yet verified: Old MIT (unverified).",
         "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+        "2026-11-24: Toolkit guide skills/harfbuzz written from examples/harfbuzz-shape-text evidence (hb-shape JSON, hb-view SVG; ligatures only)."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "15.1.0",
+            "command": "examples/harfbuzz-shape-text/run.sh",
+            "result": "hb-shape JSON for 'a -> b != c' with JetBrains Mono Bold: 11 glyphs, clusters 0-10 in order, advances 600; ligature glyphs hyphen_greater.liga (cluster 3) and exclam_equal.liga (cluster 8); ID and name outputs match expected JSON; repeat runs byte-identical; hb-view SVG 666x158.72, 11 use elements, sha256 ff74b181 repeated; contact sheet shows both ligatures unclipped.",
+            "example": "examples/harfbuzz-shape-text",
+            "scope": "Fixed string with two ligatures, one OFL font, hb-shape JSON and hb-view SVG repeat output; HarfBuzz 15.1.0 on macOS arm64. Not kerning, other fonts, scripts, subset or formats."
+          }
+        ]
       },
+      "examples": [
+        "harfbuzz-shape-text"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Text shaping engine with native libraries and utilities such as hb-shape and hb-view; turns text plus a font into positioned glyph output and supports subset operations.",
       "use_when": [
@@ -4466,7 +4528,7 @@
       "pairs_with": [
         "fonttools"
       ],
-      "license": "Old MIT (MIT-like; verify exact notice)",
+      "license": "Old MIT (verified against COPYING in HarfBuzz 15.1.0 source, 2026-11-24)",
       "install": {
         "macos": "brew install harfbuzz",
         "check_command": "hb-shape --version"
@@ -4482,7 +4544,8 @@
         "sources": [
           "https://github.com/harfbuzz/harfbuzz"
         ]
-      }
+      },
+      "skill": "skills/harfbuzz/SKILL.md"
     },
     {
       "id": "heerich",
@@ -4656,6 +4719,7 @@
       "skill": "skills/imagemagick/SKILL.md",
       "examples": [
         "ffmpeg-assembly",
+        "libwebp-lossless-animation",
         "blender-smoke",
         "browser-capture",
         "p5-capture",
@@ -4692,7 +4756,8 @@
         "waapi-word-stagger",
         "canvas2d-count-up",
         "svg-paper-collage",
-        "anime-diagram-build"
+        "anime-diagram-build",
+        "vmaf-ffmpeg-score"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -5095,16 +5160,30 @@
       "notes": [
         "2026-11-01: AVIF still and animated encoding with alpha from PNG sequences.",
         "2026-11-01: Pin codec and speed for byte-stable output.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-01: Triage: assess. Report rates it a strong candidate.",
+        "2026-11-24: Toolkit guide written on partial evidence; states lossy alpha reached 254 not 255 and recommends lossless or verifying alpha for compositing."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.4.2",
+            "command": "examples/libavif-still-roundtrip/run.sh",
+            "result": "Partial: 8 of 9 predeclared checks pass. Lossless avifenc -l to avifdec is pixel-identical (RGBA SHA-256 match), 64x64, alpha 0-255 with 16 levels. Lossy -q 60 --qalpha 60: 64x64, alpha 0-254 with 17 levels (fails predeclared max 255), PSNR 52.2968 dB against 35 dB floor. Repeat run identical. aom 3.15.3 encoder, dav1d 1.5.4 decoder, ImageMagick 7.1.2-35, Python 3.12.2.",
+            "example": "examples/libavif-still-roundtrip",
+            "scope": "Lossless AVIF round-trip pixel-identical with alpha and dims; q60 lossy 52.3 dB PSNR but alpha max 254 not 255; macOS arm64, 64x64 only"
+          }
+        ]
       },
+      "examples": [
+        "libavif-still-roundtrip"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "C implementation of AVIF encoding and decoding, including the avifenc and avifdec CLIs. It supports stills and sequences with alpha, with encoder behavior depending on the enabled AV1 codec backend.",
       "use_when": [
@@ -5137,7 +5216,8 @@
           "https://github.com/AOMediaCodec/libavif/releases",
           "https://github.com/AOMediaCodec/libavif/wiki/Release-Checklist"
         ]
-      }
+      },
+      "skill": "skills/libavif/SKILL.md"
     },
     {
       "id": "libplacebo",
@@ -5315,16 +5395,31 @@
       ],
       "notes": [
         "2026-11-01: img2webp, gif2webp and cwebp for still and animated WebP with alpha.",
-        "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+        "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+        "2026-11-24: Guide skills/libwebp/SKILL.md written from examples/libwebp-lossless-animation; scope is lossless cwebp/dwebp RGBA round trip and img2webp 3-frame animation durations. gif2webp, lossy and -exact untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.6.0",
+            "command": "examples/libwebp-lossless-animation/run.sh",
+            "result": "cwebp -lossless then dwebp -pam round-tripped three generated 64x64 RGBA PNG frames; raw RGBA SHA-256 of each decode equals its source, with alpha values 0, 128 and 255 kept. img2webp wrote a 260 B animation; webpmux -info reported 3 frames at 100/250/400 ms with animation and transparency. Repeat run byte-identical.",
+            "example": "examples/libwebp-lossless-animation",
+            "scope": "cwebp -lossless and dwebp round-trip 3 generated RGBA PNGs pixel-identically; img2webp 3-frame animation at 100/250/400 ms; macOS arm64. No lossy, -exact or GIF."
+          }
+        ]
       },
+      "examples": [
+        "libwebp-lossless-animation"
+      ],
+      "skill": "skills/libwebp/SKILL.md",
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "The WebP reference codec distribution includes cwebp, dwebp, gif2webp and img2webp for still and animated WebP conversion. Dedicated tools expose WebP-specific quality and animation controls.",
       "use_when": [
@@ -7869,16 +7964,30 @@
         "2026-11-01: Licence as reported by the source research, not yet verified: MIT.",
         "2026-11-01: Verify pixel identity with odiff.",
         "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-01: Triage: assess. Report rates it a strong candidate.",
+        "2026-11-24: Toolkit guide written from the oxipng-lossless-optimise evidence (-o 4 --strip safe, 10.1.0); other presets and pixel-changing options untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "10.1.0",
+            "command": "examples/oxipng-lossless-optimise/run.sh",
+            "result": "Six 64x64 PNGs (3 RGBA, 3 8-bit palette with tRNS) totalling 32671 B became 1120 B under --strip safe (saved 31551 B, 96.57%); decoded RGBA SHA-256 equal to input for every frame; text chunks and tIME removed, pHYs kept; repeat output byte-identical; contact sheet inspected.",
+            "example": "examples/oxipng-lossless-optimise",
+            "scope": "Generated RGBA and palette PNGs at -o 4 with --strip safe: decoded pixels identical, no size growth, text/tIME stripped; oxipng 10.1.0, macOS arm64. Not other presets or depths."
+          }
+        ]
       },
+      "examples": [
+        "oxipng-lossless-optimise"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Rust CLI and library that recompresses PNG data and may reduce bit depth or colour type while retaining decoded image appearance; its lossless optimization makes it suitable for asset-size reduction.",
       "use_when": [
@@ -7909,7 +8018,8 @@
         "sources": [
           "https://github.com/oxipng/oxipng"
         ]
-      }
+      },
+      "skill": "skills/oxipng/SKILL.md"
     },
     {
       "id": "p5-js",
@@ -8574,10 +8684,23 @@
       "installation_status": "unknown",
       "validation": {
         "status": "not-validated",
-        "evidence": []
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.0.3",
+            "command": "examples/pngquant-palette-quantise/run.sh",
+            "result": "FAIL as predeclared: 256x256 RGBA gradient to 64 colours at --quality 70-95 exits 99 (MSE Q=54, floor 70); no palette written. Unrecorded diagnostic at --quality 0-100: exit 0, 14817 B vs 1754 B source, alpha 3/255..244/255, PSNR 31.17 dB.",
+            "example": "examples/pngquant-palette-quantise",
+            "scope": "Fixture-reported: q70 floor fails for 256px RGBA gradient at 64 colours (exit 99, Q=54); no palette written. Says nothing on alpha or size; macOS arm64 only."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "examples": [
+        "pngquant-palette-quantise"
+      ],
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "CLI library for lossy PNG palette quantization with alpha; trades colour precision for smaller indexed PNG files.",
       "use_when": [
@@ -11117,16 +11240,30 @@
       ],
       "notes": [
         "2026-11-01: AV1 encoder via FFmpeg libsvtav1 or SvtAv1EncApp. rav1e considered and skipped in its favour.",
-        "2026-11-01: No alpha; may be recorded as an FFmpeg capability."
+        "2026-11-01: No alpha; may be recorded as an FFmpeg capability.",
+        "2026-11-24: Guide written from examples/svt-av1-encode (4.3.0, macOS arm64, preset 8 CRF 35, Y4M to IVF). Alpha, 10-bit, rate-control modes and the libsvtav1 route are untested; AOM Patent License 1.0 applies."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.3.0",
+            "command": "examples/svt-av1-encode/run.sh",
+            "result": "48 frames testsrc2 1280x720 Y4M encoded to AV1 IVF at preset 8, CRF 35; ffprobe av1, 1280x720, yuv420p, 48 frames match expected/; decoded PSNR 43.05 dB vs 30 dB floor; two encodes byte-identical",
+            "example": "examples/svt-av1-encode",
+            "scope": "Encode 48-frame 1280x720 Y4M to AV1 IVF at fixed preset/CRF; ffprobe fields and PSNR floor checked; macOS arm64; no alpha, no 10-bit, no libsvtav1 route."
+          }
+        ]
       },
+      "examples": [
+        "svt-av1-encode"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "AOMedia software AV1 encoder library, used standalone or through FFmpeg’s libsvtav1 encoder. It produces AV1 elementary streams or containerized output via a host muxer. Its strength is production-oriented speed and quality tuning across offline VOD and real-time modes; output has no alpha channel.",
       "use_when": [
@@ -11160,7 +11297,8 @@
           "https://gitlab.com/AOMediaCodec/SVT-AV1/-/tags/v4.2.0",
           "https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/LICENSE.md"
         ]
-      }
+      },
+      "skill": "skills/svt-av1/SKILL.md"
     },
     {
       "id": "syncalong",
@@ -12639,18 +12777,32 @@
         "media-inspection",
         "video-encoding"
       ],
+      "examples": [
+        "vmaf-ffmpeg-score"
+      ],
       "notes": [
         "2026-11-01: Netflix full-reference video quality metric via the vmaf CLI or FFmpeg libvmaf filter.",
-        "2026-11-15: Homebrew package route not confirmed; model use depends on selected model, input alignment, preprocessing and version."
+        "2026-11-15: Homebrew package route not confirmed; model use depends on selected model, input alignment, preprocessing and version.",
+        "2026-11-24: Guide skills/vmaf/SKILL.md written from the vmaf-ffmpeg-score evidence (FFmpeg libvmaf filter only); CLI and other models untested. Multi-threaded x264 encodes are non-deterministic, so degraded encodes use -threads 1."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.2.0",
+            "command": "examples/vmaf-ffmpeg-score/run.sh",
+            "result": "libvmaf via FFmpeg 9.0.2: identical pooled mean 99.946 (>=99), 60 kbit/s single-threaded encode 71.822 (<80), identical > degraded; 48 frames per JSON; reruns equal except fps. Version is libvmaf's JSON self-report; Homebrew has 3.2.1.",
+            "example": "examples/vmaf-ffmpeg-score",
+            "scope": "FFmpeg libvmaf filter, vmaf_v0.6.1, pool=mean: 48-frame generated clip scores 99.946 vs itself, 71.822 vs 60 kbit/s encode; per-frame JSON; macOS arm64. No CLI or other models."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Netflix video quality metric exposed as a CLI, C/Python libraries, or FFmpeg libvmaf filter. It compares aligned reference and distorted video and writes pooled and per-frame scores/logs. New v1 models broaden model choices for display resolution and viewing distance; results depend on model, alignment and preprocessing.",
       "use_when": [
@@ -12685,7 +12837,8 @@
           "https://github.com/Netflix/vmaf/blob/master/resource/doc/ffmpeg.md",
           "https://github.com/Netflix/vmaf/blob/master/libvmaf/tools/README.md"
         ]
-      }
+      },
+      "skill": "skills/vmaf/SKILL.md"
     },
     {
       "id": "vpype",

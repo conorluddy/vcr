@@ -1,0 +1,8 @@
+{
+  "id": "exiftool-metadata-roundtrip",
+  "title": "ExifTool writes, reads back and strips predeclared metadata",
+  "summary": "Generate a 64x48 PNG and JPEG, write XMP-dc Title and Rights and EXIF Artist, read them back exactly, strip with -all=, and confirm decoded pixels never change.",
+  "status": "validated",
+  "tools": ["exiftool"],
+  "run": "./run.sh"
+}

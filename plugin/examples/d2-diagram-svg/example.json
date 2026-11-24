@@ -1,0 +1,14 @@
+{
+  "id": "d2-diagram-svg",
+  "title": "D2 renders a four-node text diagram to SVG",
+  "summary": "Checks D2 0.7.1 SVG output for four predeclared labels, four shape groups, three connection paths, and byte-identical repeat output.",
+  "status": "validated",
+  "tools": [
+    "d2"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

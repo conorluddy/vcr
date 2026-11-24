@@ -1,0 +1,2 @@
+hb-shape (HarfBuzz) 15.1.0
+hb-view (HarfBuzz) 15.1.0

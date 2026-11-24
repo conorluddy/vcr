@@ -1,0 +1,15 @@
+{
+  "id": "libwebp-lossless-animation",
+  "title": "libwebp round-trips lossless RGBA and assembles an animated WebP",
+  "summary": "Generates three owned RGBA PNG frames, checks cwebp/dwebp pixel identity, and checks img2webp frame count and durations with webpmux -info.",
+  "status": "validated",
+  "tools": [
+    "libwebp",
+    "imagemagick"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

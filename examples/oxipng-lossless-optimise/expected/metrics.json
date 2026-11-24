@@ -1,0 +1,265 @@
+{
+  "frame_count": 6,
+  "frames": [
+    {
+      "bit_depth": 8,
+      "color_type": 3,
+      "decoded_sha256_input": "f77c2f5b3080efff0be6f581194b659e9fb6d66cc07d89cf2598ef3dffff6319",
+      "decoded_sha256_safe": "f77c2f5b3080efff0be6f581194b659e9fb6d66cc07d89cf2598ef3dffff6319",
+      "frame": "palette000",
+      "height": 64,
+      "input_bytes": 346,
+      "input_chunks": [
+        "IHDR",
+        "PLTE",
+        "tRNS",
+        "pHYs",
+        "tEXt",
+        "zTXt",
+        "iTXt",
+        "tIME",
+        "IDAT",
+        "IEND"
+      ],
+      "keep_bytes": 319,
+      "keep_chunks": [
+        "IHDR",
+        "pHYs",
+        "tEXt",
+        "zTXt",
+        "iTXt",
+        "tIME",
+        "PLTE",
+        "tRNS",
+        "IDAT",
+        "IEND"
+      ],
+      "safe_bytes": 161,
+      "safe_chunks": [
+        "IHDR",
+        "pHYs",
+        "PLTE",
+        "tRNS",
+        "IDAT",
+        "IEND"
+      ],
+      "safe_file_sha256": "d5ac10956ad73c1c2cf4fe939d4aa2f3049c2e0dbdfd9a84c93acccf756d99cf",
+      "width": 64
+    },
+    {
+      "bit_depth": 8,
+      "color_type": 3,
+      "decoded_sha256_input": "38a8c4b55bcd2c8152baf290e04fc76c7d3b8f2cefacb55686858fb15398b6f8",
+      "decoded_sha256_safe": "38a8c4b55bcd2c8152baf290e04fc76c7d3b8f2cefacb55686858fb15398b6f8",
+      "frame": "palette001",
+      "height": 64,
+      "input_bytes": 347,
+      "input_chunks": [
+        "IHDR",
+        "PLTE",
+        "tRNS",
+        "pHYs",
+        "tEXt",
+        "zTXt",
+        "iTXt",
+        "tIME",
+        "IDAT",
+        "IEND"
+      ],
+      "keep_bytes": 318,
+      "keep_chunks": [
+        "IHDR",
+        "pHYs",
+        "tEXt",
+        "zTXt",
+        "iTXt",
+        "tIME",
+        "PLTE",
+        "tRNS",
+        "IDAT",
+        "IEND"
+      ],
+      "safe_bytes": 160,
+      "safe_chunks": [
+        "IHDR",
+        "pHYs",
+        "PLTE",
+        "tRNS",
+        "IDAT",
+        "IEND"
+      ],
+      "safe_file_sha256": "97baf8ff3718c2b12116208ff89d2a26ac4fe05d7a19bae5d85f503e4cb41850",
+      "width": 64
+    },
+    {
+      "bit_depth": 8,
+      "color_type": 3,
+      "decoded_sha256_input": "06fc22fe8a90335d4b28897ea20063ef88bffee549cec4f58892142771f5c359",
+      "decoded_sha256_safe": "06fc22fe8a90335d4b28897ea20063ef88bffee549cec4f58892142771f5c359",
+      "frame": "palette002",
+      "height": 64,
+      "input_bytes": 348,
+      "input_chunks": [
+        "IHDR",
+        "PLTE",
+        "tRNS",
+        "pHYs",
+        "tEXt",
+        "zTXt",
+        "iTXt",
+        "tIME",
+        "IDAT",
+        "IEND"
+      ],
+      "keep_bytes": 319,
+      "keep_chunks": [
+        "IHDR",
+        "pHYs",
+        "tEXt",
+        "zTXt",
+        "iTXt",
+        "tIME",
+        "PLTE",
+        "tRNS",
+        "IDAT",
+        "IEND"
+      ],
+      "safe_bytes": 161,
+      "safe_chunks": [
+        "IHDR",
+        "pHYs",
+        "PLTE",
+        "tRNS",
+        "IDAT",
+        "IEND"
+      ],
+      "safe_file_sha256": "77b14bba53659daf003fc480d04d81e5b0b7551478467dd0656e96f3bfab3b1e",
+      "width": 64
+    },
+    {
+      "bit_depth": 8,
+      "color_type": 6,
+      "decoded_sha256_input": "69f39cfb514b6ce967e98489393d8c40160b27dc3a1fd23c6a71936524ed58b7",
+      "decoded_sha256_safe": "69f39cfb514b6ce967e98489393d8c40160b27dc3a1fd23c6a71936524ed58b7",
+      "frame": "rgba000",
+      "height": 64,
+      "input_bytes": 10327,
+      "input_chunks": [
+        "IHDR",
+        "pHYs",
+        "tEXt",
+        "zTXt",
+        "iTXt",
+        "tIME",
+        "IDAT",
+        "IEND"
+      ],
+      "keep_bytes": 366,
+      "keep_chunks": [
+        "IHDR",
+        "pHYs",
+        "tEXt",
+        "zTXt",
+        "iTXt",
+        "tIME",
+        "IDAT",
+        "IEND"
+      ],
+      "safe_bytes": 208,
+      "safe_chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ],
+      "safe_file_sha256": "002c23dbc0439acd25a4707bc2ec52788d10ba2485d694d3841cab12fb63a6b3",
+      "width": 64
+    },
+    {
+      "bit_depth": 8,
+      "color_type": 6,
+      "decoded_sha256_input": "ef488f903fd358d2f9917ba8f4d2fe0ca3849c689d01796c6e8f47f8386e2d33",
+      "decoded_sha256_safe": "ef488f903fd358d2f9917ba8f4d2fe0ca3849c689d01796c6e8f47f8386e2d33",
+      "frame": "rgba001",
+      "height": 64,
+      "input_bytes": 10755,
+      "input_chunks": [
+        "IHDR",
+        "pHYs",
+        "tEXt",
+        "zTXt",
+        "iTXt",
+        "tIME",
+        "IDAT",
+        "IEND"
+      ],
+      "keep_bytes": 373,
+      "keep_chunks": [
+        "IHDR",
+        "pHYs",
+        "tEXt",
+        "zTXt",
+        "iTXt",
+        "tIME",
+        "IDAT",
+        "IEND"
+      ],
+      "safe_bytes": 215,
+      "safe_chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ],
+      "safe_file_sha256": "0ae82683bd5bb4c0cc6f46d62abc6d7870c96bd95266688a5e1bae1aad73bde2",
+      "width": 64
+    },
+    {
+      "bit_depth": 8,
+      "color_type": 6,
+      "decoded_sha256_input": "6b4f1244c5c4dc12330ca93c6d19e98db24d9e92364aaae7dc214528f2a189c9",
+      "decoded_sha256_safe": "6b4f1244c5c4dc12330ca93c6d19e98db24d9e92364aaae7dc214528f2a189c9",
+      "frame": "rgba002",
+      "height": 64,
+      "input_bytes": 10548,
+      "input_chunks": [
+        "IHDR",
+        "pHYs",
+        "tEXt",
+        "zTXt",
+        "iTXt",
+        "tIME",
+        "IDAT",
+        "IEND"
+      ],
+      "keep_bytes": 373,
+      "keep_chunks": [
+        "IHDR",
+        "pHYs",
+        "tEXt",
+        "zTXt",
+        "iTXt",
+        "tIME",
+        "IDAT",
+        "IEND"
+      ],
+      "safe_bytes": 215,
+      "safe_chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ],
+      "safe_file_sha256": "8b1fc5c4b7a83f12989d6cfd96eb6f445565cc4113447f87c03453ef501a047d",
+      "width": 64
+    }
+  ],
+  "input_total_bytes": 32671,
+  "magick_version": "Version: ImageMagick 7.1.2-35 Q16-HDRI aarch64 acaf7e418:20261031 https://imagemagick.org",
+  "oxipng_version": "oxipng 10.1.0",
+  "preset": 4,
+  "safe_total_bytes": 1120,
+  "saved_bytes": 31551,
+  "saved_percent": 96.57,
+  "strip_mode": "safe"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "oxipng-lossless-optimise",
+  "title": "oxipng losslessly optimises RGBA and palette PNG frames",
+  "summary": "Generates three RGBA and three palette PNGs with metadata; checks decoded pixel hashes, no size growth, --strip safe metadata removal, alpha range and repeat output.",
+  "status": "validated",
+  "tools": [
+    "oxipng"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

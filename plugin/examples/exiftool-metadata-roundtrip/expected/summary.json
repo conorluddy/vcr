@@ -1,0 +1,30 @@
+{
+  "exiftool_version": "13.50",
+  "formats": {
+    "jpg": {
+      "pixel_rgba_sha256": "44dfe21abf0955cce9f1522102340f853769323c045a16c026311c26b4dbe8a3",
+      "stripped_metadata_keys": [],
+      "stripped_readback": {},
+      "tagged_readback": {
+        "Artist": "VCR fixture",
+        "Rights": "CC0 fixture; no rights claimed",
+        "Title": "VCR metadata fixture"
+      }
+    },
+    "png": {
+      "pixel_rgba_sha256": "c71c1b5fdb21963f11790fae29ce8dbbc265b779fc822724ae559fd209f3e7f1",
+      "stripped_metadata_keys": [],
+      "stripped_readback": {},
+      "tagged_readback": {
+        "Artist": "VCR fixture",
+        "Rights": "CC0 fixture; no rights claimed",
+        "Title": "VCR metadata fixture"
+      }
+    }
+  },
+  "image": {
+    "height": 48,
+    "rgba_bytes": 12288,
+    "width": 64
+  }
+}
