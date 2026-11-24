@@ -4,6 +4,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { mat4, vec4 } from "gl-matrix";
 
 type Vector3 = [number, number, number];
+type Vector4 = [number, number, number, number];
 
 // === PUBLIC API ===
 
@@ -42,6 +43,7 @@ function main(): void {
     }
   }
   const lookAtTarget = points[0];
+  if (!lookAtTarget) throw new Error("no points projected");
   if (Math.abs(lookAtTarget.ndc[0]) > TOLERANCE_NDC || Math.abs(lookAtTarget.ndc[1]) > TOLERANCE_NDC) {
     throw new Error(`lookAt target should project to NDC (0, 0), got ${JSON.stringify(lookAtTarget.ndc)}`);
   }
@@ -61,7 +63,7 @@ function main(): void {
 
 // === GL-MATRIX PATH ===
 
-function buildGlMatrixViewProjection(): Float32Array {
+function buildGlMatrixViewProjection(): mat4 {
   const projection = mat4.perspective(mat4.create(), CAMERA.fovyRadians, CAMERA.aspect, CAMERA.near, CAMERA.far);
   const view = mat4.lookAt(mat4.create(), CAMERA.eye, CAMERA.target, CAMERA.up);
   return mat4.multiply(mat4.create(), projection, view);
@@ -69,26 +71,31 @@ function buildGlMatrixViewProjection(): Float32Array {
 
 function projectWithGlMatrix(
   point: { name: string; position: Vector3 },
-  viewProjection: Float32Array,
+  viewProjection: mat4,
 ): {
   name: string;
   position: Vector3;
-  clip: number[];
-  ndc: number[];
-  analyticNdc: number[];
+  clip: Vector4;
+  ndc: Vector3;
+  analyticNdc: Vector3;
   maxAbsErrorNdc: number;
 } {
   const clipVector = vec4.transformMat4(vec4.create(), vec4.fromValues(...point.position, 1), viewProjection);
-  const clip = Array.from(clipVector);
-  const ndc = [clip[0] / clip[3], clip[1] / clip[3], clip[2] / clip[3]];
+  const [clipX, clipY, clipZ, clipW] = clipVector as unknown as Vector4;
+  const clip: Vector4 = [clipX, clipY, clipZ, clipW];
+  const ndc: Vector3 = [clipX / clipW, clipY / clipW, clipZ / clipW];
   const analyticNdc = analyticNdcForPoint(point.position);
-  const maxAbsErrorNdc = Math.max(...ndc.map((value, index) => Math.abs(value - analyticNdc[index])));
+  const maxAbsErrorNdc = Math.max(
+    Math.abs(ndc[0] - analyticNdc[0]),
+    Math.abs(ndc[1] - analyticNdc[1]),
+    Math.abs(ndc[2] - analyticNdc[2]),
+  );
   return { name: point.name, position: point.position, clip, ndc, analyticNdc, maxAbsErrorNdc };
 }
 
 // === ANALYTIC REFERENCE (no gl-matrix) ===
 
-function analyticNdcForPoint(position: Vector3): number[] {
+function analyticNdcForPoint(position: Vector3): Vector3 {
   const forward = normalise(subtract(CAMERA.target, CAMERA.eye));
   const right = normalise(cross(forward, CAMERA.up));
   const trueUp = cross(right, forward);
