@@ -31,7 +31,8 @@
     ]
   },
   "examples": [
-    "colmap-feature-extraction"
+    "colmap-feature-extraction",
+    "nerfstudio-feasibility"
   ],
   "adapter_maturity": "none",
   "checked_at": "2026-11-16",
