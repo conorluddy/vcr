@@ -16,12 +16,25 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "ab-av1-crf-search"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.12.0",
+        "command": "examples/ab-av1-crf-search/run.sh",
+        "result": "crf-search --min-vmaf 95 --preset 10 on 2 s testsrc2 640x360: CRF 27.5 on 3 of 3 runs, predicted VMAF 95.055; encode at 27.5 scored by FFmpeg libvmaf 98.310 (bound 94.0), 48 frames; summary matches expected.",
+        "example": "examples/ab-av1-crf-search",
+        "scope": "crf-search to min-vmaf 95 on a 2 s generated clip, libsvtav1 preset 10, macOS arm64: predicted VMAF met; full encode libvmaf 98.3 (bound 94). No real footage; predictions not validated."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "Chooses CRF against a target VMAF/XPSNR threshold, then encodes through FFmpeg. The Rust CLI exposes search, encode and quality-measurement commands; its distinctive value is automating quality/size trade-offs across FFmpeg encoders.",
   "use_when": [
