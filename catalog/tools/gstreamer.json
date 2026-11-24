@@ -28,12 +28,27 @@
   "license": "LGPL-2.1",
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
-  "validation": {
-    "status": "not-validated",
-    "evidence": []
+  "install": {
+    "macos": "brew install gstreamer",
+    "check_command": "gst-launch-1.0 --version"
   },
+  "validation": {
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.28.9",
+        "command": "examples/gstreamer-pipeline-encode/run.sh",
+        "result": "partial: 48 frames 640x360 24/1 H.264 yuv420p, 2.000 s; ffprobe, gst-discoverer-1.0 and framemd5 match expected/; visual check pass; reruns differ in 12 bytes of moov (mp4mux creation_time), H.264 stream identical",
+        "example": "examples/gstreamer-pipeline-encode",
+        "scope": "Headless gst-launch 640x360 24/1 to H.264 MP4 (x264enc, mp4mux); ffprobe, discoverer, frame count match; reruns not byte-identical (mux creation_time); macOS arm64; no alpha"
+      }
+    ]
+  },
+  "examples": ["gstreamer-pipeline-encode"],
   "adapter_maturity": "none",
-  "checked_at": null,
+  "checked_at": "2026-11-24",
   "assessment": {
     "date": "2026-10-26",
     "assessed_by": "assess-a9a",

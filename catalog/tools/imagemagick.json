@@ -39,6 +39,7 @@
     "dssim-still-compare",
     "gl-transitions-seek",
     "ffmpeg-assembly",
+    "gstreamer-pipeline-encode",
     "libwebp-lossless-animation",
     "blender-smoke",
     "browser-capture",
