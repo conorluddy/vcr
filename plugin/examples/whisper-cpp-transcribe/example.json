@@ -1,0 +1,15 @@
+{
+  "id": "whisper-cpp-transcribe",
+  "title": "whisper-cli transcribes a generated ten-word sentence with bounded word error and identical reruns",
+  "summary": "macOS say to 16 kHz mono WAV; whisper.cpp 1.9.6 ggml-base.en run twice. Word error bound 0.10, JSON/SRT/VTT agree, segments in bounds and order, identical text. Segment timing only.",
+  "status": "validated",
+  "tools": [
+    "whisper-cpp",
+    "ffmpeg-ffprobe"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

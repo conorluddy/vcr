@@ -1,0 +1,20 @@
+{
+  "frames": 90,
+  "width": 1280,
+  "height": 720,
+  "shuffled_matches_sequential": true,
+  "frame_sha256": {
+    "0000": "3bdd87a236b0e7d4a69ead32bde1f851f87c0573cadb7add67b03ea6bcbaa32b",
+    "0030": "68b133d0c734e9d37953d833e8b6f82f4b152a8fa3ea20508d5bf44195b7ba91",
+    "0045": "afe51c0e9c956f4309a4e22b2c7453e092901998b5d0c0b6fc8442106b7fec7e",
+    "0075": "68b133d0c734e9d37953d833e8b6f82f4b152a8fa3ea20508d5bf44195b7ba91"
+  },
+  "pixel_difference": {
+    "blink_0045_vs_0075": "82.0137",
+    "arm_0000_vs_0030": "5449.1"
+  },
+  "frame_0030_alpha": {
+    "corner_0_0": "0",
+    "max": "1"
+  }
+}

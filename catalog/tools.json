@@ -1174,22 +1174,36 @@
       ],
       "notes": [
         "2026-11-08: Triage: A machine-checking route for caption rules is distinct from conversion and rendering; revisit after independent validation and rule coverage review.",
-        "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+        "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion.",
+        "2026-11-24: Guide skills/caption-checker/SKILL.md written from examples/caption-checker-limits (netflix profile only; BBC/DCMP, gap and reading-speed rules, fix/convert and MCP untested). Not on npm; install as a commit-pinned git dependency."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.3.3",
+            "command": "examples/caption-checker-limits/run.sh",
+            "result": "netflix profile on two clean captions files (SRT, WebVTT, 5 cues each): exit 0, zero issues. Two files with predeclared violations (6 cues each): exit 1, exactly 4 flagged cues: cue 2 cpl (line of 61 characters), cue 3 lines (3 lines), cue 4 short (0.40 s), cue 5 overlap (0.50 s). SRT and WebVTT agree; each file's two JSON runs byte-identical. Node v22.19.0, macOS arm64.",
+            "example": "examples/caption-checker-limits",
+            "scope": "netflix profile, hand-written SRT and WebVTT: clean files 0 issues; 4 predeclared violations on the right cues; reruns identical; no other profiles or rule kinds; macOS arm64."
+          }
+        ]
       },
+      "examples": [
+        "caption-checker-limits"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-08-discovery.md",
       "summary": "Zero-dependency CLI and library checks SRT/WebVTT captions against Netflix, BBC and DCMP limits for reading speed, line length, line count, duration, gaps and overlaps. It reports compliance issues rather than rendering or translating captions.",
       "license": "MIT",
       "install": {
-        "macos": "npm install -g caption-checker",
-        "check_command": "caption-checker --help"
+        "macos": "project-local in examples/caption-checker-limits: dependency github:markksantos/caption-checker#4a504ede1606fbefd7e7b658281b9b8f7a4ef9e2 (v1.3.3, MIT), then pnpm install; the npm registry has no caption-checker package",
+        "check_command": "pnpm -s exec caption-check --help"
       },
       "use_when": [
         "Check subtitle reading speed, line length and gaps against its named SRT/WebVTT rule sets",
@@ -1213,7 +1227,8 @@
         "sources": [
           "https://github.com/markksantos/caption-checker"
         ]
-      }
+      },
+      "skill": "skills/caption-checker/SKILL.md"
     },
     {
       "id": "ccapture-js",
@@ -3172,6 +3187,7 @@
       "examples": [
         "native-svg",
         "ffmpeg-assembly",
+        "rubber-band-stretch",
         "browser-capture",
         "svt-av1-encode",
         "vhs-tape-recording",
@@ -3188,7 +3204,8 @@
         "claude-real-video-keyframes",
         "aubio-onsets-pitch",
         "syncalong-text-align",
-        "whisperx-word-timing"
+        "whisperx-word-timing",
+        "whisper-cpp-transcribe"
       ],
       "notes": [
         "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
@@ -4577,17 +4594,30 @@
       ],
       "license": "MIT",
       "install": {
-        "macos": "pnpm dlx gltfjsx model.glb",
-        "check_command": "pnpm dlx gltfjsx --help"
+        "macos": "pnpm add -D gltfjsx@6.5.3 in an example directory (project-local, exact pin; not pnpm dlx)",
+        "check_command": "pnpm --dir examples/gltfjsx-r3f-component exec gltfjsx --version"
       },
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "6.5.3",
+            "command": "examples/gltfjsx-r3f-component/run.sh",
+            "result": "partial: two gltfjsx 6.5.3 runs over one generated GLB are byte-identical (TSX 921 bytes, SHA-256 0f95f66ba2728d4a7472ff4831d17a2da21f334bb4399cc8aa27d8809f8da361). Body, Clasp, Wood and Metal are referenced; group CrateGroup is dropped under --types --keepnames, so run.sh exits 1. Strict typecheck and r3f render not run.",
+            "example": "examples/gltfjsx-r3f-component",
+            "scope": "Fixture-reported: gltfjsx 6.5.3 --types --keepnames on a generated GLB; reruns byte-identical; CrateGroup not referenced; no typecheck or render; macOS arm64."
+          }
+        ]
       },
+      "examples": [
+        "gltfjsx-r3f-component"
+      ],
       "adapter_maturity": "none",
-      "checked_at": null,
+      "checked_at": "2026-11-24",
       "assessment": {
         "date": "2026-10-26",
         "assessed_by": "assess-a9a",
@@ -4603,8 +4633,11 @@
       },
       "source": "specifications/vcr-prd.md#appendix-a",
       "notes": [
-        "2026-10-29: Skill opportunity: Further research first: verify a GLB-to-R3F fixture and current maintenance before proposing a standalone skill."
-      ]
+        "2026-10-29: Skill opportunity: Further research first: verify a GLB-to-R3F fixture and current maintenance before proposing a standalone skill.",
+        "2026-11-24: --types output references GLTFAction in GLTFResult even for a GLB with no animations; strict tsc reports TS2304 for it. Also the output imports @react-three/drei and three-stdlib, which the fixture did not install. See examples/gltfjsx-r3f-component/README.md.",
+        "2026-11-24: Guide written at skills/gltfjsx/SKILL.md from partial evidence (generation, name references, rerun identity); typecheck, render, --transform untested."
+      ],
+      "skill": "skills/gltfjsx/SKILL.md"
     },
     {
       "id": "godot",
@@ -5115,7 +5148,10 @@
         "f3d-headless-still",
         "gifsicle-optimise",
         "vhs-tape-recording",
-        "baguette-simulator-capture"
+        "baguette-simulator-capture",
+        "odiff-frame-diff",
+        "shiki-magic-move-capture",
+        "three-vrm-capture"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -7792,16 +7828,27 @@
       "notes": [
         "2026-11-01: SIMD image diff CLI and Node binding; exit codes distinguish match from pixel difference, suited to golden-frame gating.",
         "2026-11-01: Use threshold 0 with anti-aliasing off for strict determinism.",
-        "2026-11-01: Triage: assess. Report rates it a strong candidate."
+        "2026-11-01: Triage: assess. Report rates it a strong candidate.",
+        "2026-11-24: Guide written from partial evidence (examples/odiff-frame-diff); --aa leaves residual pixels, so combine with a pixel-count tolerance."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.5.0",
+            "command": "examples/odiff-frame-diff/run.sh",
+            "result": "Partial: 7 of 8 predeclared check groups pass. Identical frames: exit 0 for 5 of 5, no diff written. 200-px patch: exit 22, 200 px, lines 60-69, cols 100-119, reversed 200; diff image 200 px, bbox 20x10+100+60, magick count 200. Circle 1-px AA ring: 512 px without --aa, 12 px with --aa (exit 22; predeclared exit 0 not met); solid-patch control 200 under --aa. Threshold 0: 8192 px; default match; sweep 8192, 8192, 8192, 0, 0. Two internal runs identical.",
+            "example": "examples/odiff-frame-diff",
+            "scope": "Compares generated 256x144 PNG frames: identical match, exact 200-px patch and diff image, threshold sweep; --aa leaves 12 of 512 ring pixels (partial); macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "SIMD-optimized image comparison CLI, also distributed as a Node package with platform binaries. It returns distinct exit statuses for differences and supports configurable thresholds, making it useful in scripted visual regression checks.",
       "use_when": [
@@ -7818,8 +7865,8 @@
       ],
       "license": "MIT",
       "install": {
-        "macos": "npm install -g odiff-bin",
-        "check_command": "odiff --version"
+        "macos": "cd examples/odiff-frame-diff && pnpm install (odiff-bin 4.5.0, project-local; no global install)",
+        "check_command": "examples/odiff-frame-diff/node_modules/.bin/odiff --version"
       },
       "assessment": {
         "date": "2026-11-15",
@@ -7833,7 +7880,11 @@
           "https://github.com/dmtrKovalenko/odiff",
           "https://github.com/dmtrKovalenko/odiff/blob/main/README.md"
         ]
-      }
+      },
+      "examples": [
+        "odiff-frame-diff"
+      ],
+      "skill": "skills/odiff/SKILL.md"
     },
     {
       "id": "ogl",
@@ -8640,16 +8691,30 @@
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Possible standalone Python audio-effects skill; verify plugin hosting and GPL dependencies before proposing."
+        "2026-10-29: Skill opportunity: Possible standalone Python audio-effects skill; verify plugin hosting and GPL dependencies before proposing.",
+        "2026-11-24: Toolkit guide written at skills/pedalboard/SKILL.md from the pedalboard-effects-chain partial evidence (pedalboard 0.9.26, macOS arm64); Limiter-is-not-a-ceiling and GPLv3 documented; plugin hosting and other processors marked untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.9.26",
+            "command": "examples/pedalboard-effects-chain/run.sh",
+            "result": "Built-in chain on a 2 s 48 kHz signal: 200 Hz tone 14.16 dB below the no-highpass reference (>= 12, pass); 5 kHz tone -0.16 dB (pass); loud 5 kHz limiter output peak 0.00 dBFS against a -1.0 dBFS threshold (fail, hard clip at 1.0); reruns byte-identical; 16-bit WAV round trip max diff 4.4e-5 (pass). Python 3.12.2, numpy 2.5.5, macOS arm64.",
+            "example": "examples/pedalboard-effects-chain",
+            "scope": "Built-in highpass, compressor, gain and limiter on generated tones and noise, macOS arm64: highpass, reruns, 16-bit WAV pass; limiter peak not held to threshold (fail); no plugins"
+          }
+        ]
       },
+      "examples": [
+        "pedalboard-effects-chain"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Python audio-effects library that chains built-in processors and can host VST3 or Audio Unit plugins. Native plugins, their permissions and compatibility must be assessed separately.",
       "use_when": [
@@ -8665,6 +8730,10 @@
         "supercollider"
       ],
       "license": "GPL-3.0 for project code; bundled libraries and third-party plugins have separate terms",
+      "install": {
+        "macos": "python3 -m venv examples/pedalboard-effects-chain/output/venv && examples/pedalboard-effects-chain/output/venv/bin/pip install -r examples/pedalboard-effects-chain/requirements.txt",
+        "check_command": "examples/pedalboard-effects-chain/output/venv/bin/python -c \"import pedalboard; print(pedalboard.__version__)\""
+      },
       "assessment": {
         "date": "2026-10-29",
         "assessed_by": "assess-c",
@@ -8676,7 +8745,8 @@
           "https://github.com/spotify/pedalboard/releases"
         ],
         "version_seen": "0.9.26 (GitHub release; date year unverified)"
-      }
+      },
+      "skill": "skills/pedalboard/SKILL.md"
     },
     {
       "id": "piper",
@@ -9057,7 +9127,9 @@
         "svg-paper-collage",
         "anime-diagram-build",
         "glslify-bundle",
-        "three-globe-capture"
+        "three-globe-capture",
+        "shiki-magic-move-capture",
+        "three-vrm-capture"
       ],
       "notes": [
         "Not in PRD Appendix A; added because the browser-capture spike depends on it.",
@@ -9427,16 +9499,28 @@
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Possible standalone MIDI manipulation skill; outside core VCR work until an actual job and fixture exist."
+        "2026-10-29: Skill opportunity: Possible standalone MIDI manipulation skill; outside core VCR work until an actual job and fixture exist.",
+        "2026-11-24: Fixture examples/pretty-midi-roundtrip covers note-level build, read-back, tempo-change times, pitch bends and piano roll. pretty_midi 0.2.11.post0 has no public tempo-authoring call; the fixture sets the tempo map through private _tick_scales.",
+        "2026-11-24: Toolkit guide written at skills/pretty-midi/SKILL.md from the validated pretty-midi-roundtrip evidence; synthesis untested and tempo authoring flagged as private-API fragile."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.2.11.post0",
+            "command": "examples/pretty-midi-roundtrip/run.sh",
+            "result": "Two instruments, five notes, tempo 120 to 60 BPM at 1.0 s, two piano pitch bends; read back with 0.0 s note and bend error (tolerance one 60 BPM tick, 0.00208 s); tempo times [0.0, 1.0]; end 2.5 s; fs=8 piano roll 128x20 with 28 cells exact; two separate-process writes byte-identical, 147 bytes, SHA-256 65d76b26f7ed080fac80e217a92c1acf8e834cc2ac397e3c682fd26cb1fc967e. mido 1.3.3, numpy 2.5.5, Python 3.12.13, macOS 26.6 arm64.",
+            "example": "examples/pretty-midi-roundtrip",
+            "scope": "Note-level MIDI build, tempo change, pitch bends, read-back, piano roll fs=8, identical reruns; tempo set via private API; no synthesis; macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "Python MIDI utilities for inspecting, modifying and writing musical note data. It offers a note-oriented representation; optional synthesis and external instruments require separate dependencies.",
       "use_when": [
@@ -9451,7 +9535,14 @@
         "mido",
         "music21"
       ],
-      "license": "MIT for project code; dependency, soundfont and asset terms need review",
+      "examples": [
+        "pretty-midi-roundtrip"
+      ],
+      "license": "MIT (library code, read from the installed LICENSE.txt on 2026-11-24); bundled TimGM6mb.sf2 soundfont and dependency terms need review",
+      "install": {
+        "macos": "Create a Python 3.12 virtual environment and run `pip install pretty_midi==0.2.11.post0`; pinned set in examples/pretty-midi-roundtrip/requirements.txt",
+        "check_command": "python -c \"import pretty_midi; print(pretty_midi.__version__)\""
+      },
       "assessment": {
         "date": "2026-10-29",
         "assessed_by": "assess-c",
@@ -9463,7 +9554,8 @@
           "https://github.com/craffel/pretty-midi/releases"
         ],
         "version_seen": "0.2.11 (GitHub release; date year unverified)"
-      }
+      },
+      "skill": "skills/pretty-midi/SKILL.md"
     },
     {
       "id": "pts",
@@ -10778,22 +10870,40 @@
       "role": "Time stretch",
       "official_url": "https://breakfastquay.com/rubberband/",
       "automation_route": "native-cli-or-scripting",
+      "install": {
+        "macos": "brew install rubberband",
+        "check_command": "rubberband --version"
+      },
       "capabilities": [
         "audio"
       ],
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Possible standalone audio time-stretch skill; verify CLI behaviour, licences and duration/quality fixture."
+        "2026-10-29: Skill opportunity: Possible standalone audio time-stretch skill; verify CLI behaviour, licences and duration/quality fixture.",
+        "2026-11-24: examples/rubber-band-stretch (rubberband 4.0.0, R2) FAILED: stretched tone +10.7 cents and +12 semitone tone -13.9 cents against 5-cent limit (FFT peak lands on amplitude-modulation sidebands); click onsets 12-14 ms early; durations exact; outputs not byte-identical across invocations. Not validated."
       ],
       "documentation_status": "listed-in-prd",
       "installation_status": "unknown",
       "validation": {
         "status": "not-validated",
-        "evidence": []
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.0.0",
+            "command": "examples/rubber-band-stretch/run.sh",
+            "example": "examples/rubber-band-stretch",
+            "result": "FAIL as predeclared: rubberband 4.0.0 (R2 engine, -2) on generated tones and clicks. Durations exact (1.5x stretch 144000 samples; +12 st 96000 samples), but stretched 440 Hz tone read +10.7 cents and +12 st tone -13.9 cents against a 5-cent limit (FFT on amplitude-modulation sidebands); click onsets 12-14 ms early; outputs not byte-identical across invocations.",
+            "scope": "Fixture-reported: R2 engine on pure tones and clicks: durations exact, pitch off 11-14 cents, onsets 12-14 ms early, not deterministic across runs; R3 engine untested; macOS arm64."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "examples": [
+        "rubber-band-stretch"
+      ],
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "C++ audio time-stretch and pitch-shift library with a command-line utility. It can alter tempo and pitch independently; quality and latency depend on algorithm and settings.",
       "use_when": [
@@ -11041,16 +11151,31 @@
         "2026-11-01: CSS transitions are not seekable; needs a frame-seekable adapter and odiff gating before promotion.",
         "2026-11-01: Captured from research report; listed-in-prd is the schema's listed-only status. Version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Report rates it a strong candidate.",
-        "2026-11-15: @shikijs/magic-move 4.6.0 published 2026-11-11 (npm reported four days before assessment). Former shiki-magic-move repository archived 2026-06-03; since v4.2.0 it re-exports the maintained package. Seekable animation/capture behavior not validated."
+        "2026-11-15: @shikijs/magic-move 4.6.0 published 2026-11-11 (npm reported four days before assessment). Former shiki-magic-move repository archived 2026-06-03; since v4.2.0 it re-exports the maintained package. Seekable animation/capture behavior not validated.",
+        "2026-11-24: Evidence used @shikijs/magic-move 4.6.0 with shiki 4.6.0, not the archived shiki-magic-move 1.4.0 npm package. Transitions are CSS; the fixture pauses them and seeks currentTime per frame. Shiki-tokenised runs only; no WebGL, wrappers or encoding.",
+        "2026-11-24: Toolkit guide written at skills/shikijs-magic-move/SKILL.md from the shiki-magic-move-capture evidence; sizes the scene to the library duration option and freezes transitions via the seek route."
       ],
-      "documentation_status": "listed-in-prd",
+      "examples": [
+        "shiki-magic-move-capture"
+      ],
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.6.0",
+            "command": "examples/shiki-magic-move-capture/run.sh",
+            "result": "90 alpha frames at 1280x720 (Chromium 156.0.8078.4, Playwright 1.64.1, Node 22.19.0): 61 distinct hashes; shuffled equals sequential; frame 0 equals static A, frame 89 equals static B; frame 45 differs from both, alpha min 0 max 1. Second run after a timeline amendment; the first run failed the middle-frame check because the transition had settled by 1.0 s (README).",
+            "example": "examples/shiki-magic-move-capture",
+            "scope": "Magic Move DOM renderer, CSS transitions frozen per seek; one TS snippet pair, github-dark, JetBrains Mono; alpha PNG; macOS arm64. Not other wrappers, themes, browsers or encodes."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "@shikijs/magic-move turns Shiki-highlighted code states into animated diffs, with framework wrappers and a precompiled-token path; unlike ordinary code highlighting, it includes token matching and transition rendering.",
       "use_when": [
@@ -11066,6 +11191,10 @@
         "anime-js"
       ],
       "license": "MIT",
+      "install": {
+        "macos": "pnpm add @shikijs/magic-move@4.6.0 shiki@4.6.0",
+        "check_command": "pnpm list @shikijs/magic-move shiki --depth 0"
+      },
       "assessment": {
         "date": "2026-11-15",
         "assessed_by": "/root/candidate_batch_c",
@@ -11080,7 +11209,8 @@
           "https://github.com/shikijs/shiki/tree/main/packages/magic-move",
           "https://github.com/shikijs/shiki/blob/main/packages/magic-move/package.json"
         ]
-      }
+      },
+      "skill": "skills/shikijs-magic-move/SKILL.md"
     },
     {
       "id": "sonic-annotator",
@@ -11219,10 +11349,20 @@
       "installation_status": "unknown",
       "validation": {
         "status": "not-validated",
-        "evidence": []
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.12.0",
+            "command": "examples/splat-transform-convert/run.sh",
+            "example": "examples/splat-transform-convert",
+            "result": "FAIL as predeclared: synthetic 100-splat 3DGS PLY, translate + filter to PLY. Count 60 and PLY rerun byte-identical pass; predicted bounds miss by 40 because -t acts in the tool's frame (x and y negated for this PLY). Compressed PLY and SOG not reached in the predeclared run.",
+            "scope": "Fixture-reported: translate acts in splat-transform's frame (x,y flipped vs PLY) so predeclared bounds fail; count and PLY reruns hold; compressed formats unverified; macOS arm64."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-01-discovery.md",
       "summary": "Node.js CLI and library for transforming and converting Gaussian splat assets. It handles splat-oriented workflows directly, including conversion and filtering, where general mesh tools do not preserve splat data.",
       "use_when": [
@@ -11238,9 +11378,12 @@
       ],
       "license": "MIT (per official PlayCanvas open-source listing)",
       "install": {
-        "macos": "npm install -g @playcanvas/splat-transform",
-        "check_command": "splat-transform --help"
+        "macos": "in examples/splat-transform-convert: pnpm add @playcanvas/splat-transform@3.12.0 (project-local exact pin; no global install)",
+        "check_command": "node_modules/.bin/splat-transform --help"
       },
+      "examples": [
+        "splat-transform-convert"
+      ],
       "assessment": {
         "date": "2026-11-15",
         "assessed_by": "assessment_batch_a",
@@ -12245,7 +12388,8 @@
         "react-postprocessing-capture",
         "rapier-capture",
         "troika-three-text-sync",
-        "three-globe-capture"
+        "three-globe-capture",
+        "three-vrm-capture"
       ],
       "documentation_status": "skill-verified",
       "installation_status": "unknown",
@@ -12438,16 +12582,28 @@
         "2026-11-01: Loads VRM avatars into Three.js with humanoid bones and expression blendshapes; candidate route for faces and lip-sync.",
         "2026-11-01: Captured from conversation; listed-in-prd is the schema's listed-only status. Licence, version and maintenance not yet assessed.",
         "2026-11-01: Triage: assess. Concrete job: human figures and character motion, absent from the catalogue.",
-        "2026-11-15: Latest release is v3.6.0-beta.0 (2026-09-29); stable release listed as v3.5.5."
+        "2026-11-15: Latest release is v3.6.0-beta.0 (2026-09-29); stable release listed as v3.5.5.",
+        "2026-11-24: npm dist-tag latest is 3.6.0 (MIT, peer three >=0.137); evidence run pins 3.6.0 with three 0.186.1. Sample model VRM1_Constraint_Twist_Sample.vrm is not in the npm package; run.sh downloads it at a pinned commit and checks its sha256. Scope excludes spring-bone physics (disabled), lookAt, visemes and VRM 0.x.",
+        "2026-11-24: Guide written at skills/three-vrm/SKILL.md from examples/three-vrm-capture evidence; licence-per-model, spring bones disabled and untested areas stated."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.6.0",
+            "command": "examples/three-vrm-capture/run.sh",
+            "result": "90 frames 1280x720, shuffled equals sequential; meta name, licence URL and redistribution read; right arm 0 to 1.0 rad; blink 0/1/0 at 0/1.5/2.5 s; spring bones disabled; reruns reproduce hashes (11.91 fps); three 0.186.1, Chromium 156.0.8078.4",
+            "example": "examples/three-vrm-capture",
+            "scope": "VRM 1.0 sample loads, meta read, arm and blink posed from t, spring bones disabled; shuffled equals sequential; macOS arm64, Chromium 156"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "conversation 2026-11-01: character and figure tooling gap",
       "summary": "Three.js ecosystem loader and extensions for VRM humanoid avatar models, including humanoid bone access and expressions; supplies a runtime avatar rather than a model authoring tool.",
       "use_when": [
@@ -12463,6 +12619,12 @@
         "bvh-mocap"
       ],
       "license": "MIT",
+      "install": {
+        "macos": "pnpm add @pixiv/three-vrm@3.6.0 three@0.186.1"
+      },
+      "examples": [
+        "three-vrm-capture"
+      ],
       "assessment": {
         "date": "2026-11-15",
         "assessed_by": "/root/candidate_batch_c",
@@ -12476,7 +12638,8 @@
           "https://github.com/pixiv/three-vrm/releases",
           "https://github.com/pixiv/three-vrm/blob/release/LICENSE"
         ]
-      }
+      },
+      "skill": "skills/three-vrm/SKILL.md"
     },
     {
       "id": "tone-js",
@@ -14133,16 +14296,35 @@
       "notes": [
         "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
         "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-        "2026-10-29: Skill opportunity: Potential standalone transcription skill; assess existing skills, selected model rights and a timed speech fixture first."
+        "2026-10-29: Skill opportunity: Potential standalone transcription skill; assess existing skills, selected model rights and a timed speech fixture first.",
+        "2026-11-24: Homebrew formula is now whisper.cpp (1.9.6; old name whisper-cpp redirects); binary whisper-cli. Fixture examples/whisper-cpp-transcribe uses ggml-base.en on Metal; segment timing only.",
+        "2026-11-24: guide written at skills/whisper-cpp/SKILL.md from examples/whisper-cpp-transcribe evidence (ggml-base.en on Metal, generated 10-word sentence); CPU-only, multi-segment, word timestamps and other models untested."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.9.6",
+            "command": "examples/whisper-cpp-transcribe/run.sh",
+            "result": "10 words from macOS say (Samantha): WER 0/10 in both runs; JSON, SRT and VTT agree on one segment 0.000-2.880 s inside 2.938 s; Metal (MTL0) reported; text identical across two processes; SRT, VTT and segments byte-identical.",
+            "example": "examples/whisper-cpp-transcribe",
+            "scope": "Generated 10-word sentence, ggml-base.en on Metal: word error, output files, bounds, rerun text. No word timing, CPU path, other models or languages. macOS arm64."
+          }
+        ]
       },
+      "install": {
+        "macos": "brew install whisper.cpp",
+        "check_command": "whisper-cli --help"
+      },
+      "examples": [
+        "whisper-cpp-transcribe"
+      ],
       "adapter_maturity": "none",
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/check-vcr-repo-conversation.md",
       "summary": "C/C++ implementation of Whisper inference with a command-line transcription example. It needs a compatible model file, and timing and accuracy depend on model, language and audio.",
       "use_when": [
@@ -14168,7 +14350,8 @@
           "https://github.com/ggml-org/whisper.cpp/releases"
         ],
         "version_seen": "1.9.5 (GitHub release; date year unverified)"
-      }
+      },
+      "skill": "skills/whisper-cpp/SKILL.md"
     },
     {
       "id": "whisperx",

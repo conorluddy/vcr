@@ -1,0 +1,11 @@
+{
+  "id": "rubber-band-stretch",
+  "title": "rubberband 1.5x time-stretch and +12 semitone pitch shift of generated tone and click track",
+  "summary": "Generated 440 Hz tone and click track (2 s) stretched 1.5x and tone pitch-shifted +12 semitones with rubberband R2; FFT-peak cents, click onsets, ffprobe sample counts, distinct hashes and rerun identity.",
+  "status": "not-validated",
+  "tools": [
+    "rubber-band",
+    "ffmpeg-ffprobe"
+  ],
+  "run": "./run.sh"
+}
