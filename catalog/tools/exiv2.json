@@ -12,9 +12,10 @@
   ],
   "notes": [
     "2026-11-15: Assess because writing or stripping EXIF, IPTC and XMP fills a metadata workflow gap beside read-only inspection and C2PA provenance. Revisit after verifying licence and video-container coverage.",
-    "2026-11-15: Assessment uncertainty: official pages read did not establish release recency; confirm the current release history before promotion."
+    "2026-11-15: Assessment uncertainty: official pages read did not establish release recency; confirm the current release history before promotion.",
+    "2026-11-24: Guide written from exiv2-metadata-roundtrip evidence (0.28.9; card version_seen unconfirmed). Scope: XMP-dc Title/Rights, EXIF Artist and IPTC Caption on a JPEG copy via -m; exiftool 13.50 cross-read."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -33,6 +34,7 @@
   "examples": [
     "exiv2-metadata-roundtrip"
   ],
+  "skill": "skills/exiv2/SKILL.md",
   "adapter_maturity": "none",
   "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-02-discovery.md",
