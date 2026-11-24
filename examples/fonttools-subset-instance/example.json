@@ -1,0 +1,14 @@
+{
+  "id": "fonttools-subset-instance",
+  "title": "fonttools pyftsubset reduces an OFL font to a title's codepoints as TTF and WOFF2",
+  "summary": "Subsets JetBrains Mono Bold to the 14 codepoints of 'Type & Motion 2026': cmap equals that set exactly, ASCII drops absent, WOFF2 smaller than TTF smaller than source, repeated runs byte-identical. No variable instancing (no OFL variable font in repo).",
+  "status": "validated",
+  "tools": [
+    "fonttools"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
