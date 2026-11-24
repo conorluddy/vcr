@@ -1,6 +1,6 @@
 ---
 name: sonic-annotator
-description: Run Vamp plugins over audio in batch with sonic-annotator to get onset times or pitch tracks as CSV or JAMS. VCR evidence covers 1.7.0 with the QM onset detector and aubiopitch, generated audio, macOS arm64).
+description: Run Vamp plugins over audio in batch with sonic-annotator to get onset times or pitch tracks as CSV or JAMS. VCR evidence covers 1.7.0 with the QM onset detector and aubiopitch, generated audio, macOS arm64.
 ---
 
 # sonic-annotator
