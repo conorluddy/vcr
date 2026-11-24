@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="node_modules/@shikijs/magic-move/dist/style.css" />
+<style>
+  @font-face { font-family: "JetBrains Mono VCR"; src: url("fonts/JetBrainsMono-Bold.ttf") format("truetype"); font-weight: 700; }
+  html, body { margin: 0; background: transparent; width: 100%; height: 100%; overflow: hidden; }
+  #code { position: absolute; left: 6%; top: 18%; margin: 0; font: 700 30px/1.5 "JetBrains Mono VCR", monospace; font-synthesis: none; }
+</style>
+</head>
+<body>
+<pre id="code" class="shiki-magic-move-container"></pre>
+<script type="module">
+  // Each seek rebuilds the DOM from the two keyed token sets, then freezes the library's CSS transitions at seek time.
+  import { MagicMoveRenderer } from "./node_modules/@shikijs/magic-move/dist/renderer.mjs";
+
+  const RENDER_OPTIONS = { duration: 2000, easing: "ease-in-out", containerStyle: false };
+  const container = document.querySelector("#code");
+  const steps = await (await fetch("output/steps.json")).json();
+  await document.fonts.load('700 30px "JetBrains Mono VCR"');
+
+  function resetContainer() {
+    container.replaceChildren();
+    container.removeAttribute("style");
+    container.className = "shiki-magic-move-container";
+  }
+
+  function seek(seconds) {
+    resetContainer();
+    const renderer = new MagicMoveRenderer(container, RENDER_OPTIONS);
+    renderer.render(steps.from);
+    renderer.render(steps.to);
+    const animations = container.getAnimations({ subtree: true });
+    const transitionEndMs = Math.max(0, ...animations.map((animation) => animation.effect.getComputedTiming().endTime));
+    const elapsedMs = Math.min(seconds * 1000, transitionEndMs);
+    for (const animation of animations) {
+      animation.pause();
+      animation.currentTime = elapsedMs;
+    }
+  }
+
+  window.__scene = { duration: 3, seek };
+</script>
+</body>
+</html>
