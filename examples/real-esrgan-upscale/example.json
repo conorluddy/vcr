@@ -1,0 +1,11 @@
+{
+  "id": "real-esrgan-upscale",
+  "title": "Real-ESRGAN x4plus upscales a 4x box-downscaled still to exact 4x; bicubic margin not met",
+  "summary": "ncnn-Vulkan release binary, fixed model realesrgan-x4plus, -s 4: 160x120 input to 640x480; PSNR and SSIM vs original against bicubic with predeclared margins; rerun determinism recorded. One synthetic still; macOS arm64.",
+  "status": "not-validated",
+  "tools": [
+    "real-esrgan",
+    "imagemagick"
+  ],
+  "run": "./run.sh"
+}

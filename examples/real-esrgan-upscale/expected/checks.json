@@ -1,0 +1,33 @@
+{
+  "checks": {
+    "input_is_quarter_of_original": true,
+    "realesrgan_is_4x_input": true,
+    "bicubic_matches_original_size": true,
+    "psnr_beats_bicubic_by_margin": false,
+    "ssim_beats_bicubic_by_margin": false,
+    "distinct_hashes_four": true,
+    "rerun_byte_identical": true
+  },
+  "claim_result": "fail",
+  "measurements": {
+    "original_size": "640x480",
+    "input_size": "160x120",
+    "bicubic_size": "640x480",
+    "realesrgan_size": "640x480",
+    "realesrgan_rerun_size": "640x480",
+    "psnr_realesrgan_db": 20.4595,
+    "psnr_bicubic_db": 20.2670,
+    "ssim_realesrgan": 0.9258,
+    "ssim_bicubic": 0.9210,
+    "rerun_differing_pixels": 0,
+    "original_sha256": "31198073b046e757023c2198cf95d853407d032723936148901222bfce009206",
+    "input_sha256": "7b4ce73b1af82abaa66e4277b7ccb1217536053ff4a08a67eb77c75e6b614478",
+    "bicubic_sha256": "d234c6103824d58341049d47b4ce9618040e97a46ed510874fc697d56344b5f8",
+    "realesrgan_sha256": "0431c54c054002fc07615f413b61d234cc89841746451b9c9176ec9220756567",
+    "rerun_sha256": "0431c54c054002fc07615f413b61d234cc89841746451b9c9176ec9220756567"
+  },
+  "margins": {
+    "psnr_db": 1.0,
+    "ssim": 0.010
+  }
+}
