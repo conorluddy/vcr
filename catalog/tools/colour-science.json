@@ -16,9 +16,22 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "colour-science-conversions"
+  ],
   "validation": {
     "status": "not-validated",
-    "evidence": []
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "colour-science 0.4.7 (numpy 2.5.5, Python 3.12.2)",
+        "command": "examples/colour-science-conversions/run.sh",
+        "result": "Fail: 4 of 6 predeclared checks pass. CIEDE2000 on 8 Sharma pairs: max difference 4.1e-5 (gate 1e-4). BT.709 to BT.2020 linear: max 1.0e-6 from BT.2087 6-dp matrix (gate 1e-5). sRGB to Lab/OKLab round trip: max 3.0e-4 (gate 1e-6); white Lab a*, b* 7.7e-3 (gate 1e-6). Repeat run byte-identical.",
+        "example": "examples/colour-science-conversions",
+        "scope": "Python venv, Lab/OKLab sRGB round trip fails at 3e-4; CIEDE2000 and BT.709 to BT.2020 pass; no SciPy or Matplotlib; macOS arm64"
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-11-15",
