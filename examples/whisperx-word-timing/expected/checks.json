@@ -1,0 +1,35 @@
+{
+  "gates": {
+    "G1_input_format": true,
+    "run1_G2_word_error_rate_at_most_0.1": true,
+    "run1_G3_matched_words_at_least_9_all_timed": true,
+    "run1_G4_matched_start_within_0.2s": true,
+    "run2_G2_word_error_rate_at_most_0.1": true,
+    "run2_G3_matched_words_at_least_9_all_timed": true,
+    "run2_G4_matched_start_within_0.2s": true,
+    "G5_transcript_identical_across_runs": true
+  },
+  "pass": true,
+  "thresholds": {
+    "maxWordErrorRate": 0.1,
+    "minMatchedWords": 9,
+    "maxStartErrorS": 0.2,
+    "maxDurationErrorS": 0.02
+  },
+  "reference": {
+    "sentence": "the red fox jumps over the quiet brown river today",
+    "wordCount": 10
+  },
+  "runs": {
+    "run1": {
+      "transcript": "the red fox jumps over the quiet brown river today.",
+      "wordErrors": 0,
+      "matchedWords": 10
+    },
+    "run2": {
+      "transcript": "the red fox jumps over the quiet brown river today.",
+      "wordErrors": 0,
+      "matchedWords": 10
+    }
+  }
+}

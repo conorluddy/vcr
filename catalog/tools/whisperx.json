@@ -17,11 +17,24 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.8.6",
+        "command": "examples/whisperx-word-timing/run.sh",
+        "result": "10 words from macOS say (Samantha): WER 0/10 in both runs; 10/10 matched and timed, start error mean 0.033 s, max 0.077 s vs energy onsets (bound 0.20 s); transcripts identical; timings identical to 1 ms across runs. faster-whisper 1.2.1, torch 2.8.0, CPU int8.",
+        "example": "examples/whisperx-word-timing",
+        "scope": "tiny.en int8 CPU, generated 10-word sentence: word error and start bounds, identical text on rerun. Not diarization, other models, real speech. macOS arm64."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "examples": [
+    "whisperx-word-timing"
+  ],
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "Python CLI and library for batched automatic speech recognition with word-level timestamps, forced alignment, VAD and optional speaker diarization. It uses faster-whisper/Whisper and wav2vec2 alignment models; model downloads, accelerator stack and gated pyannote access for diarization add setup constraints. Its distinguishing strength is combining transcription and word alignment in one local workflow.",
   "use_when": [
