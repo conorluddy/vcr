@@ -13,9 +13,10 @@
   "notes": [
     "2026-11-01: Code or ANSI output to PNG, SVG or WebP with window chrome; the SVG output suits browser motion layers.",
     "2026-11-01: Maintenance may be slow.",
-    "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+    "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+    "2026-11-24: Toolkit guide skills/freeze/SKILL.md written from freeze-code-still evidence (freeze 0.2.2, macOS arm64, fixed Go file to SVG and PNG, Dracula); other themes, fonts and flags untested."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -64,5 +65,6 @@
       "https://github.com/charmbracelet/freeze",
       "https://github.com/charmbracelet/freeze/releases"
     ]
-  }
+  },
+  "skill": "skills/freeze/SKILL.md"
 }
