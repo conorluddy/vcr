@@ -77,7 +77,8 @@
     "svg-paper-collage",
     "anime-diagram-build",
     "vmaf-ffmpeg-score",
-    "chiitiler-offline-style"
+    "chiitiler-offline-style",
+    "three-globe-capture"
   ],
   "notes": [
     "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",

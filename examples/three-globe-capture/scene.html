@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8" /><style>html, body { margin: 0; background: transparent; overflow: hidden; }</style></head>
+<body>
+<script type="module">
+  // three-globe drawn from t: globe rotation, points and one arc are set from the seek time and rendered
+  // once per seek. The library's own clocks are off: animateIn and transition durations are 0, the arc
+  // dash is not animated, and no tween is started. The browser build is a UMD that reads the global THREE,
+  // so the three module is exposed on window first, then the UMD is loaded with a relative script tag.
+  import * as THREE from "./node_modules/three/build/three.module.js";
+  window.THREE = THREE;
+  await new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = "./node_modules/three-globe/dist/three-globe.min.js";
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error("three-globe.min.js failed to load"));
+    document.head.appendChild(script);
+  });
+  const ThreeGlobe = window.ThreeGlobe;
+  const DURATION = 3;
+  const ROTATION_RATE = 0.25;
+  // Predeclared data: five points and one arc, inline, no network.
+  const POINTS = [
+    { lat: 51.5, lng: -0.13 },
+    { lat: 40.71, lng: -74.0 },
+    { lat: -22.91, lng: -43.17 },
+    { lat: -33.87, lng: 151.21 },
+    { lat: 35.68, lng: 139.69 },
+  ];
+  const ARC = { startLat: 51.5, startLng: -0.13, endLat: 35.68, endLng: 139.69 };
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+  document.body.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 2000);
+  camera.position.set(0, 0, 340);
+  camera.lookAt(0, 0, 0);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+  const key = new THREE.DirectionalLight(0xffffff, 0.7);
+  key.position.set(-2, 3, 4);
+  scene.add(key);
+
+  const globe = new ThreeGlobe({ animateIn: false, waitForGlobeReady: false })
+    .showAtmosphere(false)
+    .showGraticules(false)
+    .globeMaterial(new THREE.MeshPhongMaterial({ color: 0x1b2f4a, shininess: 4 }))
+    .pointsData(POINTS)
+    .pointLat("lat")
+    .pointLng("lng")
+    .pointAltitude(0.03)
+    .pointRadius(0.8)
+    .pointColor(() => "#ff3b30")
+    .pointsTransitionDuration(0)
+    .arcsData([ARC])
+    .arcStartLat("startLat")
+    .arcStartLng("startLng")
+    .arcEndLat("endLat")
+    .arcEndLng("endLng")
+    .arcAltitude(0.3)
+    .arcStroke(0.6)
+    .arcColor(() => "#ff6a00")
+    .arcsTransitionDuration(0);
+  scene.add(globe);
+
+  // seek sets state only; the draw happens on the animation frame that the harness's beginFrame drives.
+  const renderAt = (t) => {
+    globe.rotation.y = t * ROTATION_RATE;
+    renderer.render(scene, camera);
+  };
+  window.__scene = {
+    duration: DURATION,
+    seek: (t) => requestAnimationFrame(() => renderAt(t)),
+  };
+</script>
+</body>
+</html>
