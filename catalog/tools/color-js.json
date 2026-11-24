@@ -12,9 +12,10 @@
   ],
   "notes": [
     "2026-11-15: Triage reason: Assess scope for palette and colour-conformance workflows, including unsupported contrast algorithms. Revisit when a colour-check workflow is scoped.",
-    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+    "2026-11-24: Toolkit guide written from colorjs-conversions evidence (Node, sRGB/OKLCH, CSS gamut mapping, ΔE2000); ΔE reference rows still await a check against the Sharma paper."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -62,5 +63,6 @@
   "install": {
     "macos": "npm install colorjs.io",
     "check_command": "npm view colorjs.io version"
-  }
+  },
+  "skill": "skills/color-js/SKILL.md"
 }
