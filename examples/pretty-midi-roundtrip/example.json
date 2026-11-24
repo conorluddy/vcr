@@ -1,0 +1,8 @@
+{
+  "id": "pretty-midi-roundtrip",
+  "title": "pretty_midi two-instrument MIDI build, round trip and piano roll",
+  "summary": "Builds a predeclared two-instrument MIDI with a tempo change and pitch bends, reads it back within one tick, checks tempo, end time and fs=8 piano-roll cells, and confirms byte-identical reruns. No synthesis.",
+  "status": "validated",
+  "tools": ["pretty-midi"],
+  "run": "./run.sh"
+}
