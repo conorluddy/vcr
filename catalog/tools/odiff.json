@@ -13,9 +13,10 @@
   "notes": [
     "2026-11-01: SIMD image diff CLI and Node binding; exit codes distinguish match from pixel difference, suited to golden-frame gating.",
     "2026-11-01: Use threshold 0 with anti-aliasing off for strict determinism.",
-    "2026-11-01: Triage: assess. Report rates it a strong candidate."
+    "2026-11-01: Triage: assess. Report rates it a strong candidate.",
+    "2026-11-24: Guide written from partial evidence (examples/odiff-frame-diff); --aa leaves residual pixels, so combine with a pixel-count tolerance."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "partial",
@@ -67,5 +68,6 @@
   },
   "examples": [
     "odiff-frame-diff"
-  ]
+  ],
+  "skill": "skills/odiff/SKILL.md"
 }
