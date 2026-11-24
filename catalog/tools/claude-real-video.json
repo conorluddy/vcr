@@ -17,11 +17,24 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.10.7",
+        "command": "examples/claude-real-video-keyframes/run.sh",
+        "result": "3 keyframes at frames 0, 48, 96 (0 frames off, tolerance ±1), each 320x240; 3 frames extracted, none deduped; reruns identical; passes under a deny-network sandbox",
+        "example": "examples/claude-real-video-keyframes",
+        "scope": "Local scene gate finds two authored cuts (frames 48, 96) in a generated 3-shot clip, one keyframe per shot; no real-footage, transcript or URL claim."
+      }
+    ]
   },
+  "examples": [
+    "claude-real-video-keyframes"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-14-discovery.md",
   "summary": "Python CLI and API analyse a local video or URL and emit deduplicated scene-aware keyframes plus a transcript. Its analysis window and contact-sheet workflow can prepare compact visual evidence for human or agent review; URL downloads and transcription add external dependency and model variability.",
   "use_when": [

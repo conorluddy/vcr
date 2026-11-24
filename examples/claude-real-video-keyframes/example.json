@@ -1,0 +1,15 @@
+{
+  "id": "claude-real-video-keyframes",
+  "title": "claude-real-video finds three predeclared shots in a generated clip and writes one keyframe per shot",
+  "summary": "Local-only run of claude-real-video 0.10.7 on a generated 144-frame 320x240 24 fps clip of three lavfi shots: boundaries at frames 48 and 96 within 1 frame, three 320x240 keyframes, identical boundaries on rerun.",
+  "status": "validated",
+  "tools": [
+    "claude-real-video",
+    "ffmpeg-ffprobe"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
