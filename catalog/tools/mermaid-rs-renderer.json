@@ -13,9 +13,10 @@
   ],
   "notes": [
     "2026-11-15: Triage reason: Assess documented coverage, output fidelity and stability against mermaid-cli. Revisit if upstream parity becomes important.",
-    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+    "2026-11-24: Toolkit guide written from validated evidence (examples/mermaid-rs-renderer-svg); scope one flowchart, SVG and PNG."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -68,5 +69,6 @@
       "https://github.com/1jehuang/mermaid-rs-renderer/releases",
       "https://github.com/1jehuang/mermaid-rs-renderer/blob/master/Cargo.toml"
     ]
-  }
+  },
+  "skill": "skills/mermaid-rs-renderer/SKILL.md"
 }
