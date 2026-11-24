@@ -12,9 +12,10 @@
   ],
   "notes": [
     "2026-11-15: Triage: assess; Python-authored SVG frames provide a distinct language route to existing vector renderers. Revisit after checking seekable animation and resvg compatibility in a fixture.",
-    "2026-11-15: Skill opportunity: existing VCR SVG guidance covers the vector workflow; revisit a drawsvg-specific guide only if a repeated Python animation route needs operating details."
+    "2026-11-15: Skill opportunity: existing VCR SVG guidance covers the vector workflow; revisit a drawsvg-specific guide only if a repeated Python animation route needs operating details.",
+    "2026-11-24: Guide written at skills/drawsvg/SKILL.md from examples/drawsvg-frames evidence; licence reconfirmed (blank PyPI field, MIT classifier and bundled LICENSE.txt in 2.5.1)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -61,6 +62,7 @@
       "https://pypi.org/project/drawsvg/"
     ]
   },
+  "skill": "skills/drawsvg/SKILL.md",
   "examples": [
     "drawsvg-frames"
   ]
