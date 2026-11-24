@@ -16,11 +16,21 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.98",
+        "command": "examples/gifsicle-optimise/run.sh",
+        "result": "6-frame 64x64 ffmpeg GIF (12/24/4/16/28/4 cs, loop 2, 12479 B). -O3: 10869 B, frames and delays identical, 6/6 RGBA frames identical. --lossy=80: 10811 B. --colors=16: 4929 B, table 16, 15 colours. Repeat -O3 byte-identical.",
+        "example": "examples/gifsicle-optimise",
+        "scope": "gifsicle -O3 keeps 6 frames, delays, loop and decoded RGBA identical and smaller; --colors=16 table<=16, smaller; --lossy=80 smaller, timing kept; ffmpeg GIF input; macOS arm64"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "Command-line GIF optimizer and editor for reducing file size, inspecting, combining and modifying animated GIFs. It is a focused post-processing step after GIF generation.",
   "use_when": [
@@ -52,5 +62,8 @@
       "https://github.com/kohler/gifsicle",
       "https://github.com/kohler/gifsicle/blob/master/NEWS.md"
     ]
-  }
+  },
+  "examples": [
+    "gifsicle-optimise"
+  ]
 }
