@@ -11,11 +11,13 @@
     "svg-rasterisation",
     "asset-playback"
   ],
+  "skill": "skills/thorvg/SKILL.md",
   "notes": [
     "2026-11-15: Triage reason: Assess frame-addressed Lottie rendering route and feature coverage. Revisit when a reproducible image-sequence workflow is documented.",
-    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+    "2026-11-24: Toolkit guide written at skills/thorvg/SKILL.md from examples/thorvg-svg-raster (C++ SwCanvas, SVG and one Lottie frame, ThorVG 1.1.4)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "thorvg-svg-raster"
