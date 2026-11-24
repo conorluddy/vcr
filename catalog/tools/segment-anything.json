@@ -12,9 +12,10 @@
   "notes": [
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
-    "2026-10-29: Skill opportunity: Possible standalone segmentation skill; compare alternatives and validate chosen checkpoints and masks first."
+    "2026-10-29: Skill opportunity: Possible standalone segmentation skill; compare alternatives and validate chosen checkpoints and masks first.",
+    "2026-11-24: Toolkit guide written at skills/segment-anything/SKILL.md from the point and box prompt evidence; untested areas listed in the guide."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -64,5 +65,6 @@
       "https://github.com/facebookresearch/segment-anything",
       "https://github.com/facebookresearch/segment-anything/releases"
     ]
-  }
+  },
+  "skill": "skills/segment-anything/SKILL.md"
 }
