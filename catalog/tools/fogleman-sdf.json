@@ -17,11 +17,21 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "d58a6fc63b75fc1cf1ebb71e0b42bf552319c8f1",
+        "command": "examples/fogleman-sdf-mesh/run.sh",
+        "result": "README classic sphere(1) & box(1.5) minus three cylinder(0.5) cuts at default resolution: 291028 triangles, 145506 welded vertices, bounds exactly +-0.75, max vertex residual 0.00228 against the analytic composed SDF, 0 boundary/non-manifold edges; second run byte-identical. Python 3.12.2, numpy 2.5.5, scikit-image 0.26.0, macOS arm64.",
+        "example": "examples/fogleman-sdf-mesh",
+        "scope": "Python classic CSG to binary STL at default resolution: triangle count, bounds, watertight; no meshio formats, OpenVDB, other primitives or render; macOS arm64."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-02-discovery.md",
   "summary": "Python library for defining signed-distance functions with composable primitives and Boolean operations, then generating mesh files such as STL. It offers a compact code-first route to implicit geometry; it is not a general CAD modeller or renderer.",
   "use_when": [
@@ -51,5 +61,8 @@
     "sources": [
       "https://github.com/fogleman/sdf"
     ]
-  }
+  },
+  "examples": [
+    "fogleman-sdf-mesh"
+  ]
 }
