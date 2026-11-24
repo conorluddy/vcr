@@ -36,7 +36,8 @@
     ]
   },
   "examples": [
-    "sox-audio-chain"
+    "sox-audio-chain",
+    "audiowaveform-peaks"
   ],
   "adapter_maturity": "none",
   "checked_at": "2026-11-24",
