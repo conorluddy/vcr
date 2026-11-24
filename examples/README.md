@@ -83,6 +83,7 @@ Tier 3 of the catalogue tree: runnable fixtures, loaded one at a time. Each dire
 | `ffmpeg-normalize-loudness` | ffmpeg-normalize, ffmpeg-ffprobe | EBU R128 linear two-pass on quiet and loud sine bursts: both within 0.5 LU of the -16 LUFS target, true peak never binding, LRA, duration and 48 kHz kept, reruns identical; constant-level input falls back to dynamic mode (2026-11-24) |
 | `pymunk-fixed-step` | pymunk | 6-body scene at fixed 1/60 s, pymunk 7.3.1: JSON state hashes identical across reruns, 9 shuffled fresh-process re-simulations match the continuous trace, ball rests in region; same machine only, no callbacks, sleep, serialisation or render (2026-11-24) |
 | `fonttools-subset-instance` | fonttools | pyftsubset of OFL JetBrains Mono Bold to a 14-codepoint title set as TTF (3772 B) and WOFF2 (1712 B) from 114828 B: cmap exact, 81 dropped ASCII codepoints absent, reruns byte-identical; varLib.instancer not exercised (2026-11-24) |
+| `whisperx-word-timing` | whisperx, ffmpeg-ffprobe | tiny.en int8 CPU on a macOS `say` 10-word sentence: WER 0/10, 10/10 word starts within 0.08 s of energy onsets (mean 0.033 s), transcript and timings identical on rerun; no diarization, other models or real speech (2026-11-24) |
 
 The original six were validated on the primary Mac on 2026-10-26; later rows give their own dates. Browser examples use `packages/capture`; their scenes expose `window.__scene = { duration, seek }` and schedule canvas renders on an animation frame.
 

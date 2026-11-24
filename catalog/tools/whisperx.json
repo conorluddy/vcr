@@ -12,9 +12,10 @@
   "notes": [
     "2026-11-01: faster-whisper ASR with forced alignment for word timestamps and optional diarisation.",
     "2026-11-01: CPU-only on Apple Silicon; ML output drifts across versions, so commit alignment JSON as fixtures.",
-    "2026-11-15: v3.8.7rc1 is newer but prerelease; card and last_release identify the latest stable release. Diarization requires separate gated model access; model terms are not the code licence."
+    "2026-11-15: v3.8.7rc1 is newer but prerelease; card and last_release identify the latest stable release. Diarization requires separate gated model access; model terms are not the code licence.",
+    "2026-11-24: guide written at skills/whisperx/SKILL.md from examples/whisperx-word-timing evidence (tiny.en int8 CPU, generated 10-word sentence); diarization and other models untested."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -68,5 +69,6 @@
       "https://github.com/m-bain/whisperX/issues?state=open",
       "https://github.com/m-bain/whisperX/pulls"
     ]
-  }
+  },
+  "skill": "skills/whisperx/SKILL.md"
 }
