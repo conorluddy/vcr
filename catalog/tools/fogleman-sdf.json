@@ -12,9 +12,10 @@
   ],
   "notes": [
     "2026-11-15: Assess because it offers implicit-shape generation distinct from B-rep CAD and mesh processing. Revisit after confirming the repository-to-package relationship and current install route.",
-    "2026-11-15: Assessment uncertainty: no current release date or published package route was established; documented installation is from the GitHub source repository."
+    "2026-11-15: Assessment uncertainty: no current release date or published package route was established; documented installation is from the GitHub source repository.",
+    "2026-11-24: Toolkit guide written from the fogleman-sdf-mesh evidence (classic CSG to binary STL, default resolution). Other primitives, meshio formats and OpenVDB remain untested in the guide."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -64,5 +65,6 @@
   },
   "examples": [
     "fogleman-sdf-mesh"
-  ]
+  ],
+  "skill": "skills/fogleman-sdf/SKILL.md"
 }
