@@ -16,11 +16,22 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.3.0",
+        "command": "examples/svt-av1-encode/run.sh",
+        "result": "48 frames testsrc2 1280x720 Y4M encoded to AV1 IVF at preset 8, CRF 35; ffprobe av1, 1280x720, yuv420p, 48 frames match expected/; decoded PSNR 43.05 dB vs 30 dB floor; two encodes byte-identical",
+        "example": "examples/svt-av1-encode",
+        "scope": "Encode 48-frame 1280x720 Y4M to AV1 IVF at fixed preset/CRF; ffprobe fields and PSNR floor checked; macOS arm64; no alpha, no 10-bit, no libsvtav1 route."
+      }
+    ]
   },
+  "examples": ["svt-av1-encode"],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "AOMedia software AV1 encoder library, used standalone or through FFmpeg\u2019s libsvtav1 encoder. It produces AV1 elementary streams or containerized output via a host muxer. Its strength is production-oriented speed and quality tuning across offline VOD and real-time modes; output has no alpha channel.",
   "use_when": [
