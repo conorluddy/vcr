@@ -12,9 +12,10 @@
   ],
   "notes": [
     "2026-11-15: Triage reason: Assess Node/server-side route, API stability and deterministic output. Revisit after a stable API or repeat workflow.",
-    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+    "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+    "2026-11-24: Toolkit guide written from examples/heerich-voxel-svg (Node oblique SVG, 27 polygons); untested areas marked in the guide."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "heerich-voxel-svg"
@@ -65,5 +66,6 @@
     "sources": [
       "https://github.com/meodai/heerich"
     ]
-  }
+  },
+  "skill": "skills/heerich/SKILL.md"
 }
