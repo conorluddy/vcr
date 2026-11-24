@@ -16,12 +16,25 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "libplacebo-colour-maths"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "7.387.0",
+        "command": "examples/libplacebo-colour-maths/run.sh",
+        "result": "C via Homebrew libplacebo 7.387.0 CPU APIs: primaries within 2.4e-8, RGB-to-XYZ 3.5e-7, 14 colour conversions 3.6e-7, PQ 2.3e-6 of closed form; BT.2390 strictly increasing 0.1-1000 nits into 0-100 (peak 99.9995); reruns byte-identical; hash matches expected/hashes.json; numeric only.",
+        "example": "examples/libplacebo-colour-maths",
+        "scope": "CPU-only libplacebo: BT.709/2020 primaries, RGB-XYZ, colour conversion and BT.2390 PQ tone map vs closed form, reruns identical; no GPU, no picture; macOS arm64, Homebrew build."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "C library implementing GPU video processing, scaling and colour management algorithms. Applications integrate it directly; FFmpeg can expose selected functionality when built with the library.",
   "use_when": [
@@ -48,5 +61,9 @@
       "https://github.com/haasn/libplacebo",
       "https://github.com/haasn/libplacebo/releases"
     ]
+  },
+  "install": {
+    "macos": "brew install libplacebo",
+    "check_command": "pkg-config --modversion libplacebo"
   }
 }
