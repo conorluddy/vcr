@@ -1,0 +1,15 @@
+{
+  "connection_path_count": 3,
+  "input_sha256": "3ce8271b7fdbc262f255a258dee2881264fc406a6e4af0b92cba318b0de61b84",
+  "labels_present": [
+    "Inspect",
+    "Layout",
+    "SVG",
+    "Source"
+  ],
+  "shape_group_count": 4,
+  "svg_bytes": 12650,
+  "svg_sha256": "74bb86839890ed7269d595c675f8e5b739cf6bfe5041407a2c09366578f5c8b2",
+  "version": "0.7.1",
+  "viewBox": "0 0 859 268"
+}

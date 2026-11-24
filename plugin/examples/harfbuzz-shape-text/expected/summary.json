@@ -1,0 +1,21 @@
+{
+  "glyphCount": 11,
+  "glyphNamesByCluster": {
+    "0": "a",
+    "1": "space",
+    "10": "c",
+    "2": "SPC",
+    "3": "hyphen_greater.liga",
+    "4": "space",
+    "5": "b",
+    "6": "space",
+    "7": "SPC",
+    "8": "exclam_equal.liga",
+    "9": "space"
+  },
+  "svg": {
+    "height": 158.71875,
+    "useElements": 11,
+    "width": 666.0
+  }
+}

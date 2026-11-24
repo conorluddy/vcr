@@ -1518,16 +1518,28 @@
       ],
       "notes": [
         "2026-11-15: Triage reason: Assess scope for palette and colour-conformance workflows, including unsupported contrast algorithms. Revisit when a colour-check workflow is scoped.",
-        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+        "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
+        "2026-11-24: Toolkit guide written from colorjs-conversions evidence (Node, sRGB/OKLCH, CSS gamut mapping, ΔE2000); ΔE reference rows still await a check against the Sharma paper."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.7.1",
+            "command": "examples/colorjs-conversions/run.sh",
+            "result": "16 sRGB colours round-tripped via OKLCH within 3.5e-14; 4 out-of-gamut OKLCH colours mapped into sRGB (max lightness shift 0.0137); 8 Sharma pairs ΔE2000 within 4.1e-5 of published. Node 22.19.0.",
+            "output_hash": "89a8be541b5266c332015a51701662edeeb4e617e0ab94264cd3b14f7b1034be",
+            "example": "examples/colorjs-conversions",
+            "scope": "Node: sRGB/OKLCH round trip, CSS gamut mapping to sRGB, ΔE2000 for 8 Sharma pairs (secondary transcription); no browser, other ΔE/gamut methods, contrast, macOS arm64"
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "prospects/inbox/2026-11-12-discovery.md",
       "summary": "JavaScript colour conversion and manipulation library",
       "license": "MIT",
@@ -1538,6 +1550,9 @@
         "Avoid when you need a complete accessibility contrast audit; use a dedicated checker."
       ],
       "pairs_with": [],
+      "examples": [
+        "colorjs-conversions"
+      ],
       "assessment": {
         "date": "2026-11-15",
         "assessed_by": "assessment_batch_c",
@@ -1554,7 +1569,8 @@
       "install": {
         "macos": "npm install colorjs.io",
         "check_command": "npm view colorjs.io version"
-      }
+      },
+      "skill": "skills/color-js/SKILL.md"
     },
     {
       "id": "colour-science",
@@ -2957,7 +2973,8 @@
         "native-svg",
         "ffmpeg-assembly",
         "browser-capture",
-        "svt-av1-encode"
+        "svt-av1-encode",
+        "vmaf-ffmpeg-score"
       ],
       "notes": [
         "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
@@ -4725,7 +4742,8 @@
         "waapi-word-stagger",
         "canvas2d-count-up",
         "svg-paper-collage",
-        "anime-diagram-build"
+        "anime-diagram-build",
+        "vmaf-ffmpeg-score"
       ],
       "notes": [
         "2026-10-26: official_url ends in a trailing slash and the fetch returned a redirect to /command-line-tools/; consider dropping the slash. Homebrew formula is at 7.1.2-34 while validation evidence was taken on 7.1.2-15.",
@@ -12745,18 +12763,32 @@
         "media-inspection",
         "video-encoding"
       ],
+      "examples": [
+        "vmaf-ffmpeg-score"
+      ],
       "notes": [
         "2026-11-01: Netflix full-reference video quality metric via the vmaf CLI or FFmpeg libvmaf filter.",
-        "2026-11-15: Homebrew package route not confirmed; model use depends on selected model, input alignment, preprocessing and version."
+        "2026-11-15: Homebrew package route not confirmed; model use depends on selected model, input alignment, preprocessing and version.",
+        "2026-11-24: Guide skills/vmaf/SKILL.md written from the vmaf-ffmpeg-score evidence (FFmpeg libvmaf filter only); CLI and other models untested. Multi-threaded x264 encodes are non-deterministic, so degraded encodes use -threads 1."
       ],
-      "documentation_status": "listed-in-prd",
+      "documentation_status": "skill-written",
       "installation_status": "unknown",
       "validation": {
-        "status": "not-validated",
-        "evidence": []
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-24",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.2.0",
+            "command": "examples/vmaf-ffmpeg-score/run.sh",
+            "result": "libvmaf via FFmpeg 9.0.2: identical pooled mean 99.946 (>=99), 60 kbit/s single-threaded encode 71.822 (<80), identical > degraded; 48 frames per JSON; reruns equal except fps. Version is libvmaf's JSON self-report; Homebrew has 3.2.1.",
+            "example": "examples/vmaf-ffmpeg-score",
+            "scope": "FFmpeg libvmaf filter, vmaf_v0.6.1, pool=mean: 48-frame generated clip scores 99.946 vs itself, 71.822 vs 60 kbit/s encode; per-frame JSON; macOS arm64. No CLI or other models."
+          }
+        ]
       },
       "adapter_maturity": "none",
-      "checked_at": "2026-11-15",
+      "checked_at": "2026-11-24",
       "source": "references/ideas/new-candidate-tools-2026-11.md",
       "summary": "Netflix video quality metric exposed as a CLI, C/Python libraries, or FFmpeg libvmaf filter. It compares aligned reference and distorted video and writes pooled and per-frame scores/logs. New v1 models broaden model choices for display resolution and viewing distance; results depend on model, alignment and preprocessing.",
       "use_when": [
@@ -12791,7 +12823,8 @@
           "https://github.com/Netflix/vmaf/blob/master/resource/doc/ffmpeg.md",
           "https://github.com/Netflix/vmaf/blob/master/libvmaf/tools/README.md"
         ]
-      }
+      },
+      "skill": "skills/vmaf/SKILL.md"
     },
     {
       "id": "vpype",

@@ -1,0 +1,10 @@
+{
+  "id": "pngquant-palette-quantise",
+  "title": "pngquant quantises an owned RGBA gradient to a palette PNG",
+  "summary": "Generates one RGBA gradient with alpha, quantises it to at most 64 colours at quality 70-95, and checks palette size, alpha, size, PSNR/SSIM floors and repeat bytes.",
+  "status": "not-validated",
+  "tools": [
+    "pngquant"
+  ],
+  "run": "./run.sh"
+}

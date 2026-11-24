@@ -1,0 +1,48 @@
+{
+  "avifdec_version": "Version: 1.4.2 (dav1d [dec]:1.5.4, aom [enc/dec]:3.15.3)",
+  "avifenc_version": "Version: 1.4.2 (dav1d [dec]:1.5.4, aom [enc/dec]:3.15.3)",
+  "checks": {
+    "lossless_alpha_has_ramp": true,
+    "lossless_alpha_range_0_to_255": true,
+    "lossless_dimensions_64x64": true,
+    "lossless_pixel_identical": true,
+    "lossy_alpha_has_ramp": true,
+    "lossy_alpha_range_0_to_255": false,
+    "lossy_dimensions_64x64": true,
+    "lossy_psnr_at_least_floor": true,
+    "source_dimensions_64x64": true
+  },
+  "imagemagick_version": "Version: ImageMagick 7.1.2-35 Q16-HDRI aarch64 acaf7e418:20261031 https://imagemagick.org",
+  "lossless_alpha": {
+    "alpha_distinct_values": 16,
+    "alpha_max": 255,
+    "alpha_min": 0
+  },
+  "lossless_avif_bytes": 604,
+  "lossless_avif_sha256": "7825d9857511ec4951f70d9b8acc00c4912d8ea7c9dbbcfa2d14a95a78ee5fd4",
+  "lossless_dimensions": [
+    64,
+    64
+  ],
+  "lossless_pixel_identical": true,
+  "lossless_rgba_sha256": "e229d16b9706965d39e892683bcf97cf2581c68f197bd824b70427c868d207fd",
+  "lossy_alpha": {
+    "alpha_distinct_values": 17,
+    "alpha_max": 254,
+    "alpha_min": 0
+  },
+  "lossy_avif_bytes": 590,
+  "lossy_avif_sha256": "22b2ec546adb1badb49d16efb0f5fffbc201a6b05d4f32bdac355237babef34e",
+  "lossy_dimensions": [
+    64,
+    64
+  ],
+  "lossy_psnr_db_rgba": 52.2968,
+  "psnr_floor_db": 35.0,
+  "python_version": "3.12.2",
+  "source_dimensions": [
+    64,
+    64
+  ],
+  "source_rgba_sha256": "e229d16b9706965d39e892683bcf97cf2581c68f197bd824b70427c868d207fd"
+}
