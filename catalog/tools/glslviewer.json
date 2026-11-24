@@ -13,9 +13,11 @@
   "notes": [
     "2026-11-01: Renders fragment shaders or shaded models to PNG sequences with explicit time stepping.",
     "2026-11-01: GPU float differences can break bit-identical fixtures; use perceptual tolerances.",
-    "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+    "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+    "2026-11-24: Guide written from headless-frames evidence; notes the unexplained segfault history (retry and verify outputs) and that screenshot, time, windows and textures are untested."
   ],
-  "documentation_status": "listed-in-prd",
+  "skill": "skills/glslviewer/SKILL.md",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "glslviewer-headless-frames"
