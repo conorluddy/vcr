@@ -12,7 +12,8 @@
   "notes": [
     "2026-11-06: Triage: Distinct timing job for supplied text, though documented output is line-level and project is very small; revisit after stability and word-timing support are established.",
     "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion.",
-    "2026-11-24: Fixture examples/syncalong-text-align FAILED on macOS arm64 (syncalong 2.0.1 from PyPI, openai-whisper 20250625, Whisper base, default lyrics prompt): transcript wrong and not repeatable, line starts up to 24 s off on the first run; reruns differ. Without the prompt the transcript is exact and repeatable, but line 1 is 1.0 s early. No evidence entry; validation stays not-validated."
+    "2026-11-24: Fixture examples/syncalong-text-align FAILED on macOS arm64 (syncalong 2.0.1 from PyPI, openai-whisper 20250625, Whisper base, default lyrics prompt): transcript wrong and not repeatable, line starts up to 24 s off on the first run; reruns differ. Without the prompt the transcript is exact and repeatable, but line 1 is 1.0 s early. No evidence entry; validation stays not-validated.",
+    "2026-11-24: Unproven guide written from official docs and the failed fixture; no passing evidence."
   ],
   "examples": [
     "syncalong-text-align"
@@ -66,5 +67,6 @@
       "https://github.com/wickeddoc/syncalong/releases",
       "https://syncalong.readthedocs.io/"
     ]
-  }
+  },
+  "skill": "skills/syncalong/SKILL.md"
 }
