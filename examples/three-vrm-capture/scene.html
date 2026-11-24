@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>html, body { margin: 0; background: transparent; overflow: hidden; }</style>
+<script type="importmap">
+  {
+    "imports": {
+      "three": "./node_modules/three/build/three.module.js",
+      "three/addons/": "./node_modules/three/examples/jsm/",
+      "@pixiv/three-vrm": "./node_modules/@pixiv/three-vrm/lib/three-vrm.module.js"
+    }
+  }
+</script>
+</head>
+<body>
+<script type="module">
+  // A VRM 1.0 avatar seeked from t. The pose and the blink are closed-form functions of t, rebuilt on every call;
+  // spring bones are disabled: springBoneManager.update is never called, so joints keep their loaded pose.
+  // The model is downloaded by run.sh into output/ (git-ignored) and served by the capture harness.
+  import * as THREE from "three";
+  import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+  import { VRMLoaderPlugin } from "@pixiv/three-vrm";
+
+  const DURATION = 3;
+  const MODEL_URL = "./output/vrm/VRM1_Constraint_Twist_Sample.vrm";
+  const ARM_RAISE_RADIANS = 1.0;
+  const ARM_RAISE_SECONDS = 1.0;
+  const BLINK_PEAK_SECONDS = 1.5;
+  const BLINK_HALF_WIDTH_SECONDS = 0.1;
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+  document.body.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 50);
+  // Frames the full figure (feet at y=0, head near y=1.62); the first draft at 3.4 m clipped both feet.
+  camera.position.set(0, 0.82, 3.92);
+  camera.lookAt(0, 0.82, 0);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+  const key = new THREE.DirectionalLight(0xffffff, 1.6);
+  key.position.set(1.5, 2.5, 3);
+  scene.add(key);
+
+  const loader = new GLTFLoader();
+  loader.register((parser) => new VRMLoaderPlugin(parser));
+  const gltf = await loader.loadAsync(MODEL_URL);
+  const vrm = gltf.userData.vrm;
+  if (!vrm) throw new Error(`three-vrm-capture: ${MODEL_URL} loaded without a VRM extension; check the model file`);
+  if (!vrm.expressionManager) throw new Error("three-vrm-capture: VRM has no expression manager");
+  scene.add(vrm.scene);
+
+  const rightUpperArm = vrm.humanoid.getNormalizedBoneNode("rightUpperArm");
+  const rightHand = vrm.humanoid.getRawBoneNode("rightHand");
+  if (!rightUpperArm || !rightHand) throw new Error("three-vrm-capture: VRM humanoid is missing rightUpperArm or rightHand");
+  const ZERO_ROTATION = new THREE.Quaternion();
+  const ARM_AXIS = new THREE.Vector3(0, 0, 1);
+
+  const armAngleAt = (seconds) => {
+    const progress = Math.min(Math.max(seconds / ARM_RAISE_SECONDS, 0), 1);
+    return ARM_RAISE_RADIANS * progress * progress * (3 - 2 * progress);
+  };
+  const blinkWeightAt = (seconds) => Math.max(0, 1 - Math.abs(seconds - BLINK_PEAK_SECONDS) / BLINK_HALF_WIDTH_SECONDS);
+
+  // Same order as VRM.update, without the spring-bone step.
+  const applyPoseAt = (seconds) => {
+    rightUpperArm.quaternion.setFromAxisAngle(ARM_AXIS, armAngleAt(seconds));
+    vrm.expressionManager.setValue("blink", blinkWeightAt(seconds));
+    vrm.humanoid.update();
+    vrm.expressionManager.update();
+    vrm.nodeConstraintManager?.update();
+  };
+
+  const renderAt = (seconds) => {
+    applyPoseAt(seconds);
+    renderer.render(scene, camera);
+  };
+
+  const meta = vrm.meta;
+  window.__scene = {
+    duration: DURATION,
+    seek: (seconds) => requestAnimationFrame(() => renderAt(seconds)),
+    meta: {
+      metaVersion: meta.metaVersion,
+      name: meta.name,
+      version: meta.version,
+      authors: meta.authors,
+      licenseUrl: meta.licenseUrl,
+      allowRedistribution: meta.allowRedistribution ?? null,
+    },
+    probe: (seconds) => {
+      applyPoseAt(seconds);
+      vrm.scene.updateMatrixWorld(true);
+      const handPosition = rightHand.getWorldPosition(new THREE.Vector3());
+      return {
+        seconds,
+        rightUpperArmAngleRadians: rightUpperArm.quaternion.angleTo(ZERO_ROTATION),
+        rightHandWorld: handPosition.toArray(),
+        blinkWeight: vrm.expressionManager.getValue("blink"),
+        springBoneManagerPresent: vrm.springBoneManager !== undefined,
+      };
+    },
+  };
+</script>
+</body>
+</html>
