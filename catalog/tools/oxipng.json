@@ -19,11 +19,24 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "10.1.0",
+        "command": "examples/oxipng-lossless-optimise/run.sh",
+        "result": "Six 64x64 PNGs (3 RGBA, 3 8-bit palette with tRNS) totalling 32671 B became 1120 B under --strip safe (saved 31551 B, 96.57%); decoded RGBA SHA-256 equal to input for every frame; text chunks and tIME removed, pHYs kept; repeat output byte-identical; contact sheet inspected.",
+        "example": "examples/oxipng-lossless-optimise",
+        "scope": "Generated RGBA and palette PNGs at -o 4 with --strip safe: decoded pixels identical, no size growth, text/tIME stripped; oxipng 10.1.0, macOS arm64. Not other presets or depths."
+      }
+    ]
   },
+  "examples": [
+    "oxipng-lossless-optimise"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "Rust CLI and library that recompresses PNG data and may reduce bit depth or colour type while retaining decoded image appearance; its lossless optimization makes it suitable for asset-size reduction.",
   "use_when": [
