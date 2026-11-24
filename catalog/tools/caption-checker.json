@@ -11,9 +11,10 @@
   ],
   "notes": [
     "2026-11-08: Triage: A machine-checking route for caption rules is distinct from conversion and rendering; revisit after independent validation and rule coverage review.",
-    "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion."
+    "documentation_status uses legacy listed-in-prd value for a listed-only discovery candidate; this is not evidence of PRD inclusion.",
+    "2026-11-24: Guide skills/caption-checker/SKILL.md written from examples/caption-checker-limits (netflix profile only; BBC/DCMP, gap and reading-speed rules, fix/convert and MCP untested). Not on npm; install as a commit-pinned git dependency."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -63,5 +64,6 @@
     "sources": [
       "https://github.com/markksantos/caption-checker"
     ]
-  }
+  },
+  "skill": "skills/caption-checker/SKILL.md"
 }
