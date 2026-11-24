@@ -12,9 +12,10 @@
   ],
   "notes": [
     "2026-11-15: Assess because the digest describes a bakeable particle simulation and mesh-sequence workflow beyond rigid-body solvers. Revisit after confirming build and Python/CLI support on target machines and cross-machine reproducibility.",
-    "2026-11-15: Assessment uncertainty: release recency and reproducible SPlisHSPlasH build/export steps on target machines were not established; assess the GPL simulator and MIT reconstruction component separately."
+    "2026-11-15: Assessment uncertainty: release recency and reproducible SPlisHSPlasH build/export steps on target machines were not established; assess the GPL simulator and MIT reconstruction component separately.",
+    "2026-11-24: Toolkit guide written from partial evidence (headless 2D dam break; reruns not bit-identical at default threads, reproducible only with OMP_NUM_THREADS=1 as a diagnostic)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "not-validated",
@@ -68,5 +69,6 @@
       "https://github.com/InteractiveComputerGraphics/splashsurf",
       "https://github.com/interactivecomputergraphics"
     ]
-  }
+  },
+  "skill": "skills/splishsplash/SKILL.md"
 }
