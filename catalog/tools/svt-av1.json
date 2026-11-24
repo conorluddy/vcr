@@ -11,16 +11,28 @@
   ],
   "notes": [
     "2026-11-01: AV1 encoder via FFmpeg libsvtav1 or SvtAv1EncApp. rav1e considered and skipped in its favour.",
-    "2026-11-01: No alpha; may be recorded as an FFmpeg capability."
+    "2026-11-01: No alpha; may be recorded as an FFmpeg capability.",
+    "2026-11-24: Guide written from examples/svt-av1-encode (4.3.0, macOS arm64, preset 8 CRF 35, Y4M to IVF). Alpha, 10-bit, rate-control modes and the libsvtav1 route are untested; AOM Patent License 1.0 applies."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.3.0",
+        "command": "examples/svt-av1-encode/run.sh",
+        "result": "48 frames testsrc2 1280x720 Y4M encoded to AV1 IVF at preset 8, CRF 35; ffprobe av1, 1280x720, yuv420p, 48 frames match expected/; decoded PSNR 43.05 dB vs 30 dB floor; two encodes byte-identical",
+        "example": "examples/svt-av1-encode",
+        "scope": "Encode 48-frame 1280x720 Y4M to AV1 IVF at fixed preset/CRF; ffprobe fields and PSNR floor checked; macOS arm64; no alpha, no 10-bit, no libsvtav1 route."
+      }
+    ]
   },
+  "examples": ["svt-av1-encode"],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/new-candidate-tools-2026-11.md",
   "summary": "AOMedia software AV1 encoder library, used standalone or through FFmpeg\u2019s libsvtav1 encoder. It produces AV1 elementary streams or containerized output via a host muxer. Its strength is production-oriented speed and quality tuning across offline VOD and real-time modes; output has no alpha channel.",
   "use_when": [
@@ -54,5 +66,6 @@
       "https://gitlab.com/AOMediaCodec/SVT-AV1/-/tags/v4.2.0",
       "https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/LICENSE.md"
     ]
-  }
+  },
+  "skill": "skills/svt-av1/SKILL.md"
 }
