@@ -12,9 +12,10 @@
   "notes": [
     "2026-11-01: Depth maps for 2.5D parallax moves.",
     "2026-11-01: Only the Small model is safe for commercial use.",
-    "2026-11-01: Triage: assess. Report rates it worth cataloguing."
+    "2026-11-01: Triage: assess. Report rates it worth cataloguing.",
+    "2026-11-24: Toolkit guide written at skills/depth-anything-v2/SKILL.md from the Small-hf fixture evidence; licence warning (Small only is Apache-2.0) up front."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "validated",
@@ -63,5 +64,6 @@
       "https://github.com/DepthAnything/Depth-Anything-V2",
       "https://github.com/DepthAnything/Depth-Anything-V2/releases"
     ]
-  }
+  },
+  "skill": "skills/depth-anything-v2/SKILL.md"
 }
