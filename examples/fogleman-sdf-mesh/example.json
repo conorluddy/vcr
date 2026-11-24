@@ -1,0 +1,14 @@
+{
+  "id": "fogleman-sdf-mesh",
+  "title": "fogleman/sdf classic CSG composed in Python and written as binary STL",
+  "summary": "README classic sphere-and-box minus three axis cylinders at default resolution: 291028 triangles, bounds exactly +-0.75, vertices on the analytic composed surface, watertight edge-manifold, repeated run byte-identical. Only binary STL; no other format, primitive or render.",
+  "status": "validated",
+  "tools": [
+    "fogleman-sdf"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
