@@ -1,0 +1,8 @@
+{
+  "id": "dovi-tool-metadata-roundtrip",
+  "title": "dovi_tool RPU and hdr10plus_tool JSON injected into an x265 10-bit HEVC stream and read back",
+  "summary": "ffmpeg makes a 48-frame 640x360 10-bit HEVC stream with PQ/BT.2020 signalling; dovi_tool generates and injects a profile 8.1 RPU from a hand-written config; hdr10plus_tool injects a hand-written HDR10+ JSON into a second copy; both are read back and checked against predeclared values.",
+  "status": "not-validated",
+  "tools": ["dovi-tool", "ffmpeg-ffprobe"],
+  "run": "./run.sh"
+}
