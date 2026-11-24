@@ -16,11 +16,24 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "7.3.1",
+        "command": "examples/pymunk-fixed-step/run.sh",
+        "result": "Predeclared scene (static floor, 3 boxes, 2 circles, ball) stepped at 1/60 s for 900 steps, Chipmunk 2.0.1, Python 3.12.2, cffi 2.1.1: two separate runs identical as parsed JSON; 9 of 9 fresh-process re-simulations from step 0, in shuffled order, match the continuous trace hash; 901 distinct hashes; ball rests at (-250.0, 11.9) px with speed 0.0 px/s, inside the predeclared region. Negative check: a 1e-6 px perturbation fails the rerun gate. Agent-reviewed contact sheet shows fall and settle.",
+        "example": "examples/pymunk-fixed-step",
+        "scope": "Fixed-step 2D rigid bodies, JSON state and hashes, same-machine reruns and fresh-process re-simulation; no collision callbacks, sleep or serialisation; no render; macOS arm64 only."
+      }
+    ]
   },
+  "examples": [
+    "pymunk-fixed-step"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-14-discovery.md",
   "summary": "Python binding to the Chipmunk 2D rigid-body engine, driven through simulation spaces, bodies and constraints. It supports fixed-step updates and serializable spaces, offering a Python bake route distinct from JavaScript-first physics libraries; deterministic behavior still depends on callbacks and environment.",
   "use_when": [
