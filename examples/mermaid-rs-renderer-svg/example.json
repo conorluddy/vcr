@@ -1,0 +1,9 @@
+{
+  "id": "mermaid-rs-renderer-svg",
+  "title": "Mermaid Rust renderer flowchart to SVG",
+  "summary": "Runs mmdr on the owned four-node flowchart used by mermaid-cli-svg; checks labels, node and edge counts, PNG size and byte-identical reruns, and compares with mmdc.",
+  "status": "validated",
+  "validated_on": { "date": "2026-11-24", "hostname": "Conors-MacBook-Pro-2.local" },
+  "tools": ["mermaid-rs-renderer", "mermaid-cli"],
+  "run": "./run.sh"
+}
