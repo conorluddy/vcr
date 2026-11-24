@@ -12,9 +12,10 @@
   ],
   "notes": [
     "2026-11-01: Typesetting to PDF, PNG and SVG for title cards, equations, tables and data-driven stills.",
-    "2026-11-01: Pass --font-path to avoid system font variation."
+    "2026-11-01: Pass --font-path to avoid system font variation.",
+    "2026-11-24: Guide written from partial typst-title-card evidence (SVG glyphs are outlines; query deprecated for eval; PDF untested)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "validation": {
     "status": "not-validated",
@@ -68,5 +69,6 @@
       "https://github.com/typst/typst/blob/main/README.md",
       "https://github.com/typst/typst/blob/main/Cargo.toml"
     ]
-  }
+  },
+  "skill": "skills/typst/SKILL.md"
 }
