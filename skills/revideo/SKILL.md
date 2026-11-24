@@ -27,11 +27,11 @@ Discovery only. Documented surface is at the [docs](https://docs.re.video/) and 
 
 ## Install and doctor
 
-The fixture is a workspace package: installs go through `pnpm install` at the repository root. There is no per-example `package-lock.json`. Direct dependencies, all exact 0.11.0: `@revideo/core`, `2d`, `renderer`, `vite-plugin`, `ui`.
+The fixture installs standalone with npm, like the repository's other standalone examples: `npm ci --ignore-scripts` in the example directory (pnpm's strict layout cannot resolve `puppeteer` for the renderer). Direct dependencies, all exact 0.11.0: `@revideo/core`, `2d`, `renderer`, `vite-plugin`, `ui`.
 
 - `@revideo/renderer` needs `@revideo/vite-plugin` and `@revideo/ui` at runtime but does not declare them; install both yourself.
 - Renders use the installed Google Chrome through puppeteer (`CHROME_BIN`, default `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`). The fixture passes it as `puppeteer.executablePath`; no browser is downloaded.
-- The bundled `@ffmpeg-installer` ffmpeg and `@ffprobe-installer` ffprobe can lose their execute bit when install scripts are skipped (`--ignore-scripts`, or pnpm's default); the bundled ffprobe failed with EACCES. Rebuild those packages or chmod the binaries; `run.sh` does the chmod.
+- The bundled `@ffmpeg-installer` ffmpeg and `@ffprobe-installer` ffprobe can lose their execute bit when install scripts are skipped (`--ignore-scripts`, or pnpm's default); the bundled ffprobe failed with EACCES. `npm rebuild` those two packages; `run.sh` does this.
 - Set `DISABLE_TELEMETRY=true`; otherwise render events are sent to a third-party service.
 
 `vcr doctor` checks only the catalogue's `npm ls @revideo/renderer --depth 0`; it proves nothing about rendering. Nothing is installed unless doctor says so.
