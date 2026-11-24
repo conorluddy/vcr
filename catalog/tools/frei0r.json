@@ -17,12 +17,29 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
-  "validation": {
-    "status": "not-validated",
-    "evidence": []
+  "install": {
+    "macos": "brew install frei0r",
+    "check_command": "brew list --versions frei0r"
   },
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.7.1 (Homebrew frei0r 3.7.1, applied via MLT melt 7.42.0)",
+        "command": "examples/frei0r-effect/run.sh",
+        "result": "invert0r exact 255-v on a generated 64x48 four-quadrant frame; brightness 0.25/0.5/0.75 within ±1 of formula and monotonic; reruns byte-identical; OK.",
+        "example": "examples/frei0r-effect",
+        "scope": "MLT melt route with FREI0R_PATH, macOS arm64; invert0r and brightness on raw RGBA; no GStreamer, other plugins, codecs or animation."
+      }
+    ]
+  },
+  "examples": [
+    "frei0r-effect"
+  ],
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "Video-effects plugin API and collection of filters, generators and mixers. Effects require a compatible host; availability in a particular FFmpeg build is not implied.",
   "use_when": [
