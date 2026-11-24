@@ -16,12 +16,25 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "heerich-voxel-svg"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.21.0",
+        "command": "examples/heerich-voxel-svg/run.sh",
+        "result": "3x3x3 union minus one corner voxel, oblique SVG: 54 raw faces, 27 polygons in 3 face names (9 each), 0 paths; two runs byte-identical; Node v22.19.0",
+        "example": "examples/heerich-voxel-svg",
+        "scope": "In Node, 3x3x3 cube minus one voxel renders to oblique SVG with 27 polygons; reruns byte-identical; heerich 0.21.0, Node 22.19.0, macOS arm64. No occlusion, perspective or GPU."
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-11-discovery.md",
   "summary": "Small JavaScript engine for defining voxel scenes, boolean geometry operations and SVG rendering from oblique or perspective cameras. Its vector output suits compact isometric illustrations; the API and server-side determinism need a scoped check.",
   "license": "MIT",

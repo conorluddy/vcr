@@ -1,0 +1,15 @@
+{
+  "name": "@vcr/example-heerich-voxel-svg",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "tsx render.ts"
+  },
+  "dependencies": {
+    "heerich": "0.21.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}
