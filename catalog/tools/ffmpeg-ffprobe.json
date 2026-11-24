@@ -93,7 +93,8 @@
     "claude-real-video-keyframes",
     "aubio-onsets-pitch",
     "syncalong-text-align",
-    "whisperx-word-timing"
+    "whisperx-word-timing",
+    "whisper-cpp-transcribe"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
