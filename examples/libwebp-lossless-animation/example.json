@@ -4,7 +4,8 @@
   "summary": "Generates three owned RGBA PNG frames, checks cwebp/dwebp pixel identity, and checks img2webp frame count and durations with webpmux -info.",
   "status": "validated",
   "tools": [
-    "libwebp"
+    "libwebp",
+    "imagemagick"
   ],
   "run": "./run.sh",
   "validated_on": {

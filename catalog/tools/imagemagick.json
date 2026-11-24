@@ -37,6 +37,7 @@
   "skill": "skills/imagemagick/SKILL.md",
   "examples": [
     "ffmpeg-assembly",
+    "libwebp-lossless-animation",
     "blender-smoke",
     "browser-capture",
     "p5-capture",
