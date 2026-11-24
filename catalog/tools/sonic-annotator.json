@@ -17,11 +17,21 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.7.0",
+        "command": "examples/sonic-annotator-features/run.sh",
+        "result": "Pass: qm-onsetdetector:onsets found 20 of 20 clicks within 25 ms (max 24.7 ms, all early), 0 misses, 0 extras; aubiopitch median 440.8 Hz on a 440 Hz sine, 3.0 cents (258 frames in window). -l lists both ids. CSV and JAMS written (onsets 20 rows, pitch 344 rows). Reruns byte-identical; separate-process rerun matched expected/summary.json.",
+        "example": "examples/sonic-annotator-features",
+        "scope": "Vamp onset (QM onsetdetector) on generated clicks within 25 ms, aubiopitch 440 Hz within 10 cents, CSV and JAMS written; macOS arm64 only; no RDF or JSON-LD, no tempo"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "Batch audio feature extraction and annotation tool using Vamp plugins. It reads audio and writes structured results such as CSV or RDF; available analyses depend on installed plugins.",
   "use_when": [
@@ -36,7 +46,7 @@
     "librosa",
     "ffmpeg-ffprobe"
   ],
-  "license": "GPL (project page); exact version and plugin terms need review",
+  "license": "GPL-2.0 (sonic-annotator 1.7.0 COPYING); vamp-aubio descriptions declare GPL; qm-vamp-plugins licence not verified (descriptions give QMUL copyright only); checked 2026-11-24",
   "assessment": {
     "date": "2026-10-29",
     "assessed_by": "assess-c",
@@ -46,5 +56,12 @@
     "sources": [
       "https://www.vamp-plugins.org/sonic-annotator/"
     ]
-  }
+  },
+  "install": {
+    "macos": "examples/sonic-annotator-features/fetch-tools.sh",
+    "check_command": "examples/sonic-annotator-features/output/bin/sonic-annotator -v"
+  },
+  "examples": [
+    "sonic-annotator-features"
+  ]
 }

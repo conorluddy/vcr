@@ -100,7 +100,8 @@
     "whisper-cpp-transcribe",
     "vapoursynth-script-frames",
     "rhubarb-lip-sync-cues",
-    "revideo-headless-render"
+    "revideo-headless-render",
+    "sonic-annotator-features"
   ],
   "notes": [
     "Delivery path for every renderer; first FFmpeg assembly example planned in M0."
