@@ -1,0 +1,40 @@
+{
+  "clean.srt": {
+    "captions": 5,
+    "exitCode": 0,
+    "flagged": 0,
+    "advisoryOnly": 0,
+    "cues": []
+  },
+  "clean.vtt": {
+    "captions": 5,
+    "exitCode": 0,
+    "flagged": 0,
+    "advisoryOnly": 0,
+    "cues": []
+  },
+  "violations.srt": {
+    "captions": 6,
+    "exitCode": 1,
+    "flagged": 4,
+    "advisoryOnly": 0,
+    "cues": [
+      { "n": 2, "kinds": ["cpl"] },
+      { "n": 3, "kinds": ["lines"] },
+      { "n": 4, "kinds": ["short"] },
+      { "n": 5, "kinds": ["overlap"] }
+    ]
+  },
+  "violations.vtt": {
+    "captions": 6,
+    "exitCode": 1,
+    "flagged": 4,
+    "advisoryOnly": 0,
+    "cues": [
+      { "n": 2, "kinds": ["cpl"] },
+      { "n": 3, "kinds": ["lines"] },
+      { "n": 4, "kinds": ["short"] },
+      { "n": 5, "kinds": ["overlap"] }
+    ]
+  }
+}
