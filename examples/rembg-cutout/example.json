@@ -1,0 +1,14 @@
+{
+  "id": "rembg-cutout",
+  "title": "rembg u2net removes the background from a generated sphere over a busy pattern",
+  "summary": "Library route, default u2net: RGBA PNG same size; subject mostly opaque, background mostly transparent, IoU vs analytic disc at or above floor; rerun in a fresh process byte-identical. One synthetic still; no other models or options.",
+  "status": "validated",
+  "tools": [
+    "rembg"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-24",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
