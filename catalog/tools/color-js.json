@@ -17,11 +17,22 @@
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.7.1",
+        "command": "examples/colorjs-conversions/run.sh",
+        "result": "16 sRGB colours round-tripped via OKLCH within 3.5e-14; 4 out-of-gamut OKLCH colours mapped into sRGB (max lightness shift 0.0137); 8 Sharma pairs ΔE2000 within 4.1e-5 of published. Node 22.19.0.",
+        "output_hash": "89a8be541b5266c332015a51701662edeeb4e617e0ab94264cd3b14f7b1034be",
+        "example": "examples/colorjs-conversions",
+        "scope": "Node: sRGB/OKLCH round trip, CSS gamut mapping to sRGB, ΔE2000 for 8 Sharma pairs (secondary transcription); no browser, other ΔE/gamut methods, contrast, macOS arm64"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-11-15",
+  "checked_at": "2026-11-24",
   "source": "prospects/inbox/2026-11-12-discovery.md",
   "summary": "JavaScript colour conversion and manipulation library",
   "license": "MIT",
@@ -32,6 +43,9 @@
     "Avoid when you need a complete accessibility contrast audit; use a dedicated checker."
   ],
   "pairs_with": [],
+  "examples": [
+    "colorjs-conversions"
+  ],
   "assessment": {
     "date": "2026-11-15",
     "assessed_by": "assessment_batch_c",
