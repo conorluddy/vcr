@@ -1,0 +1,22 @@
+{
+  "agg_version": "agg 1.9.0",
+  "ffprobe_version": "ffprobe version 9.0.2 Copyright (c) 2007-2026 the FFmpeg developers",
+  "codec": "gif",
+  "width": 403,
+  "height": 157,
+  "size_32_width": 806,
+  "size_32_height": 314,
+  "frame_count": 5,
+  "frame_timestamps_seconds": [
+    0.0,
+    0.5,
+    1.0,
+    2.0,
+    3.0
+  ],
+  "duration_seconds": 5.0,
+  "middle_frame_index": 3,
+  "middle_frame_standard_deviation": 4853.82,
+  "gif_bytes": 5744,
+  "sha256": "6856747555582bf98085e9912357a808b26f25ee817efb91d990d675182758c6"
+}
