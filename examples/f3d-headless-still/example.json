@@ -1,0 +1,8 @@
+{
+  "id": "f3d-headless-still",
+  "title": "f3d renders a generated glTF cube to transparent PNG stills",
+  "summary": "f3d 4.0.1 --output of a generated GLB cube at fixed 320x240 and camera options, transparent background; checks dimensions, alpha, object region, byte-identical reruns and order independence. Windowless claim tested separately.",
+  "status": "not-validated",
+  "tools": ["f3d", "imagemagick"],
+  "run": "./run.sh"
+}

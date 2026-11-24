@@ -12,13 +12,27 @@
   ],
   "notes": [
     "2026-11-01: Minimal 3D viewer with headless rendering on macOS; glTF, USD, STEP, OBJ and Gaussian splats.",
-    "2026-11-01: Triage: assess. Report rates it a strong candidate."
+    "2026-11-01: Triage: assess. Report rates it a strong candidate.",
+    "2026-11-24: Guide written at skills/f3d/SKILL.md from PARTIAL evidence (320x240 RGBA stills, byte-identical reruns); framing, antialiasing and no-window recorded as failed or unknown."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
+  "examples": [
+    "f3d-headless-still"
+  ],
   "validation": {
     "status": "not-validated",
-    "evidence": []
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.0.1",
+        "command": "examples/f3d-headless-still/run.sh",
+        "result": "partial: 320x240 RGBA8 PNG stills from a generated GLB cube, transparent corners, distinct camera outputs, byte-identical reruns and A-B-A order match. Two predeclared checks failed: view-A object bottom y=227 vs limit 210, and 0 antialiased edge pixels vs 100-10000. No-window not established (cocoa is a windowed backend; System Events denied). Backend vtkCocoaRenderWindow.",
+        "example": "examples/f3d-headless-still",
+        "scope": "Fixture-reported: f3d 4.0.1 cocoa writes 320x240 RGBA stills, transparent and byte-identical on rerun; view-A region and antialias checks failed; no-window unproven; macOS arm64"
+      }
+    ]
   },
   "adapter_maturity": "none",
   "checked_at": "2026-11-15",
@@ -52,5 +66,6 @@
       "https://github.com/f3d-app/f3d/releases",
       "https://f3d.app/download/"
     ]
-  }
+  },
+  "skill": "skills/f3d/SKILL.md"
 }
