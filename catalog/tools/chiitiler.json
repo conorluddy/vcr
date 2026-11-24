@@ -13,9 +13,10 @@
   "notes": [
     "2026-11-15: Triage reason: Assess local tile support, platform requirements and label stability across frames. Revisit when repeatable map animation is needed.",
     "2026-11-15: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion.",
-    "2026-11-15: Release date or maintenance cadence could not be established from the inspected official pages."
+    "2026-11-15: Release date or maintenance cadence could not be established from the inspected official pages.",
+    "2026-11-24: Toolkit guide written from validated evidence (offline inline style, Node >= 24.22.1)."
   ],
-  "documentation_status": "listed-in-prd",
+  "documentation_status": "skill-written",
   "installation_status": "unknown",
   "examples": [
     "chiitiler-offline-style"
@@ -62,5 +63,6 @@
   "install": {
     "macos": "npm install chiitiler",
     "check_command": "npm view chiitiler version"
-  }
+  },
+  "skill": "skills/chiitiler/SKILL.md"
 }
