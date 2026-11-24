@@ -17,12 +17,25 @@
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
+  "examples": [
+    "aubio-onsets-pitch"
+  ],
   "validation": {
-    "status": "not-validated",
-    "evidence": []
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-24",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.4.9_4",
+        "command": "examples/aubio-onsets-pitch/run.sh",
+        "result": "Partial: onsets 20 of 20 within 8.8 ms, 0 misses, 0 extras (pass). BPM 120.39 within 2, but 9 beats against a minimum of 10 (fail). Pitch: 3 of 5 tones within 10 cents; 220 Hz +15.6 c and 261.63 Hz +10.3 c fail. aubioonset and aubiotrack reruns byte-identical; aubiopitch not (2 hashes in 8 runs).",
+        "example": "examples/aubio-onsets-pitch",
+        "scope": "Generated 120 BPM clicks and five sine tones, macOS arm64: onsets pass; beat count and two low-pitch tones fail; aubiopitch output not byte-stable across processes"
+      }
+    ]
   },
   "adapter_maturity": "none",
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-11-24",
   "source": "references/ideas/check-vcr-repo-conversation.md",
   "summary": "Audio event detection library and command-line tools for onsets, tempo and pitch. Produces analysis events from audio; useful when a lightweight onset detector is preferable to a broader analysis library.",
   "use_when": [
@@ -38,6 +51,10 @@
     "ffmpeg-ffprobe"
   ],
   "license": "GPL-3.0-or-later (project code; dependencies separately)",
+  "install": {
+    "macos": "brew install aubio",
+    "check_command": "aubioonset -h"
+  },
   "assessment": {
     "date": "2026-10-29",
     "assessed_by": "ingest-assess-a",

@@ -1,0 +1,8 @@
+{
+  "id": "aubio-onsets-pitch",
+  "title": "aubio onsets, beat and pitch on generated click and tone audio",
+  "summary": "120 BPM click track and five sine tones from FFmpeg aevalsrc; onsets within 25 ms with no misses or extras, beat BPM within 2, pitch within 10 cents, reruns identical.",
+  "status": "not-validated",
+  "tools": ["aubio", "ffmpeg-ffprobe"],
+  "run": "./run.sh"
+}
