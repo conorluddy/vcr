@@ -24,6 +24,7 @@
     "three-js"
   ],
   "official_url": "https://docs.blender.org/manual/en/latest/advanced/command_line/render.html",
+  "repository_url": "https://projects.blender.org/blender/blender",
   "documentation_urls": [
     "https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html"
   ],

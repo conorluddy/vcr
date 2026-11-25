@@ -20,6 +20,7 @@
     "webcodecs"
   ],
   "official_url": "https://ffmpegwasm.netlify.app/docs/overview/",
+  "repository_url": "https://github.com/ffmpegwasm/ffmpeg.wasm",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "video-encoding",

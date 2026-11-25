@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "MIDI variants",
   "official_url": "https://magenta.tensorflow.org/studio",
+  "repository_url": "https://github.com/magenta/magenta-studio",
   "automation_route": "manual-only",
   "capabilities": [
     "audio"

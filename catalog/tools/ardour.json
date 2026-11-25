@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Audio workstation",
   "official_url": "https://ardour.org/",
+  "repository_url": "https://github.com/Ardour/ardour",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "audio"

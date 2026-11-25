@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "MIDI synthesis",
   "official_url": "https://www.fluidsynth.org/",
+  "repository_url": "https://github.com/FluidSynth/fluidsynth",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "audio"

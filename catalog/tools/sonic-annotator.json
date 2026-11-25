@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Audio annotation",
   "official_url": "https://www.vamp-plugins.org/sonic-annotator/",
+  "repository_url": "https://github.com/sonic-visualiser/sonic-annotator",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "audio"

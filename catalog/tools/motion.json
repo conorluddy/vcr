@@ -22,6 +22,7 @@
     "web-animations-api"
   ],
   "official_url": "https://motion.dev/docs",
+  "repository_url": "https://github.com/motiondivision/motion",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "tweening",

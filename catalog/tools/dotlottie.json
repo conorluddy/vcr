@@ -21,6 +21,7 @@
     "rive-web"
   ],
   "official_url": "https://developers.lottiefiles.com/",
+  "repository_url": "https://github.com/LottieFiles/dotlottie-web",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "asset-playback"

@@ -22,6 +22,7 @@
     "opencolorio"
   ],
   "official_url": "https://rawpedia.pixls.us/command-line_options/",
+  "repository_url": "https://github.com/RawTherapee/RawTherapee",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "raw-processing"

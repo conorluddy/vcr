@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "AV1 video encoder",
   "official_url": "https://gitlab.com/AOMediaCodec/SVT-AV1",
+  "repository_url": "https://gitlab.com/AOMediaCodec/SVT-AV1",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "video-encoding"

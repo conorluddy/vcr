@@ -20,6 +20,7 @@
     "opencv-js"
   ],
   "official_url": "https://www.scenedetect.com/",
+  "repository_url": "https://github.com/Breakthrough/PySceneDetect",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "shot-detection",

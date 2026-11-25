@@ -23,6 +23,7 @@
     "anime-js"
   ],
   "official_url": "https://brm.io/matter-js/",
+  "repository_url": "https://github.com/liabru/matter-js",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "physics-simulation"

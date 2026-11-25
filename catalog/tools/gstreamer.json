@@ -20,6 +20,7 @@
     "mlt-melt"
   ],
   "official_url": "https://gstreamer.freedesktop.org/",
+  "repository_url": "https://gitlab.freedesktop.org/gstreamer/gstreamer",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "video-encoding",

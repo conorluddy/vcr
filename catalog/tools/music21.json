@@ -5,6 +5,7 @@
   "tier": "catalogued",
   "role": "Music analysis",
   "official_url": "https://www.music21.org/",
+  "repository_url": "https://github.com/cuthbertLab/music21",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "audio"

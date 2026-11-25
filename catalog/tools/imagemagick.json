@@ -23,6 +23,7 @@
     "openimageio-oiiotool"
   ],
   "official_url": "https://imagemagick.org/script/command-line-tools.php/",
+  "repository_url": "https://github.com/ImageMagick/ImageMagick",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "image-processing",

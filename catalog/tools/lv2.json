@@ -5,6 +5,7 @@
   "tier": "catalogued",
   "role": "Plugin standard",
   "official_url": "https://lv2plug.in/",
+  "repository_url": "https://github.com/lv2/lv2",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "audio"

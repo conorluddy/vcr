@@ -22,6 +22,7 @@
     "matter-js"
   ],
   "official_url": "https://rapier.rs/",
+  "repository_url": "https://github.com/dimforge/rapier",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "physics-simulation"

@@ -5,6 +5,7 @@
   "tier": "catalogued",
   "role": "Timeline exchange",
   "official_url": "https://opentimelineio.readthedocs.io/",
+  "repository_url": "https://github.com/AcademySoftwareFoundation/OpenTimelineIO",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "media-inspection"

@@ -21,6 +21,7 @@
     "d3"
   ],
   "official_url": "https://kitware.github.io/vtk-js/",
+  "repository_url": "https://github.com/Kitware/vtk-js",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "scientific-visualisation",

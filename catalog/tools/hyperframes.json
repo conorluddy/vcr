@@ -21,6 +21,7 @@
     "ffmpeg-ffprobe"
   ],
   "official_url": "https://hyperframes.heygen.com/catalog",
+  "repository_url": "https://github.com/heygen-com/hyperframes",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "video-composition",

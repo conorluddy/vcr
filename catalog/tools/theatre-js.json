@@ -21,6 +21,7 @@
     "anime-js"
   ],
   "official_url": "https://www.theatrejs.com/docs/latest",
+  "repository_url": "https://github.com/theatre-js/theatre",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "timeline-animation",

@@ -18,6 +18,7 @@
     "playwright"
   ],
   "official_url": "https://createjs.com/easeljs",
+  "repository_url": "https://github.com/CreateJS/EaselJS",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "2d-rendering",

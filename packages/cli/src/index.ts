@@ -412,6 +412,19 @@ async function dispatch(args: string[], options: Record<string, string | true>, 
     return checkOnly && wasStale ? 1 : 0;
   }
 
+  if (command === "site" && subcommand === "build") {
+    const devMode = requireDevMode(roots, "site build");
+    if (!devMode.ok) return failWith(devMode.error, asJson);
+    // A computed specifier keeps esbuild from bundling the site into the plugin; it only runs in dev mode.
+    const siteModule = new URL("./site.js", import.meta.url).href;
+    const { buildSite } = (await import(siteModule)) as typeof import("./site.js");
+    const outcome = buildSite(repositoryRoot);
+    if (!outcome.ok) return failWith(outcome.error, asJson);
+    const { directory, pageCount, toolPages, techniquePages } = outcome.value;
+    print(asJson ? outcome.value : `built ${directory}: ${pageCount} pages (${toolPages} tools, ${techniquePages} techniques)`);
+    return 0;
+  }
+
   if (command === "plugin" && subcommand === "build") {
     const devMode = requireDevMode(roots, "plugin build");
     if (!devMode.ok) return failWith(devMode.error, asJson);

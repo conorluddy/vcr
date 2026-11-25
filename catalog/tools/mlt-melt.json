@@ -19,6 +19,7 @@
     "ffmpeg-ffprobe"
   ],
   "official_url": "https://mltframework.org/docs/melt/",
+  "repository_url": "https://github.com/mltframework/mlt",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "video-composition",

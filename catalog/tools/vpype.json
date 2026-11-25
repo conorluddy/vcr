@@ -23,6 +23,7 @@
     "resvg"
   ],
   "official_url": "https://vpype.readthedocs.io/",
+  "repository_url": "https://github.com/abey79/vpype",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "plotter-workflow",

@@ -19,6 +19,7 @@
     "ffmpeg-ffprobe"
   ],
   "official_url": "https://mediabunny.dev/guide/extensions/server",
+  "repository_url": "https://github.com/Vanilagy/mediabunny",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "video-encoding",

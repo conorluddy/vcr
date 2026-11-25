@@ -24,6 +24,7 @@
     "ffmpeg-ffprobe"
   ],
   "official_url": "https://openimageio.readthedocs.io/en/latest/oiiotool.html",
+  "repository_url": "https://github.com/AcademySoftwareFoundation/OpenImageIO",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "image-sequence-processing",

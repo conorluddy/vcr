@@ -23,6 +23,7 @@
     "anime-js"
   ],
   "official_url": "https://www.graphviz.org/doc/info/command.html",
+  "repository_url": "https://gitlab.com/graphviz/graphviz",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "diagram-generation",

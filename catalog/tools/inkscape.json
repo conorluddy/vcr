@@ -24,6 +24,7 @@
     "vpype"
   ],
   "official_url": "https://wiki.inkscape.org/wiki/Using_the_Command_Line",
+  "repository_url": "https://gitlab.com/inkscape/inkscape",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "vector-authoring",

@@ -5,6 +5,7 @@
   "tier": "catalogued",
   "role": "Reconstruction",
   "official_url": "https://colmap.github.io/",
+  "repository_url": "https://github.com/colmap/colmap",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "3d-asset-processing"

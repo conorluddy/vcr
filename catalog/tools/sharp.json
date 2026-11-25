@@ -25,6 +25,7 @@
     "ffmpeg-ffprobe"
   ],
   "official_url": "https://sharp.pixelplumbing.com/",
+  "repository_url": "https://github.com/lovell/sharp",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "image-processing",

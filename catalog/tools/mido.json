@@ -5,6 +5,7 @@
   "tier": "catalogued",
   "role": "MIDI processing",
   "official_url": "https://mido.readthedocs.io/",
+  "repository_url": "https://github.com/mido/mido",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "audio"

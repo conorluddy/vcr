@@ -22,6 +22,7 @@
     "inkscape"
   ],
   "official_url": "https://www.gimp.org/man/gimp.html",
+  "repository_url": "https://gitlab.gnome.org/GNOME/gimp",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "image-processing"

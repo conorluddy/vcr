@@ -22,6 +22,7 @@
     "imagemagick"
   ],
   "official_url": "https://wiki.synfig.org/Render_options",
+  "repository_url": "https://github.com/synfig/synfig",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "native-authoring",

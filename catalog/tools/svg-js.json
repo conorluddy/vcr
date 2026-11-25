@@ -22,6 +22,7 @@
     "svgo"
   ],
   "official_url": "https://svgjs.dev/",
+  "repository_url": "https://github.com/svgdotjs/svg.js",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "vector-authoring",

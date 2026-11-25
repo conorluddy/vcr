@@ -20,6 +20,7 @@
     "manim-community"
   ],
   "official_url": "https://motioncanvas.io/docs/",
+  "repository_url": "https://github.com/motion-canvas/motion-canvas",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "timeline-animation",

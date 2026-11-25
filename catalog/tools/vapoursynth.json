@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Video filtering",
   "official_url": "https://www.vapoursynth.com/",
+  "repository_url": "https://github.com/vapoursynth/vapoursynth",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "image-sequence-processing"
