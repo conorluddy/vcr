@@ -17,7 +17,8 @@
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
     "2026-10-29: Skill opportunity: Possible standalone audio time-stretch skill; verify CLI behaviour, licences and duration/quality fixture.",
-    "2026-11-24: examples/rubber-band-stretch (rubberband 4.0.0, R2) FAILED: stretched tone +10.7 cents and +12 semitone tone -13.9 cents against 5-cent limit (FFT peak lands on amplitude-modulation sidebands); click onsets 12-14 ms early; durations exact; outputs not byte-identical across invocations. Not validated."
+    "2026-11-24: examples/rubber-band-stretch (rubberband 4.0.0, R2) FAILED: stretched tone +10.7 cents and +12 semitone tone -13.9 cents against 5-cent limit (FFT peak lands on amplitude-modulation sidebands); click onsets 12-14 ms early; durations exact; outputs not byte-identical across invocations. Not validated.",
+    "2026-11-24: Unproven guide written from official docs and the failed fixture; no passing evidence."
   ],
   "documentation_status": "listed-in-prd",
   "installation_status": "unknown",
@@ -66,5 +67,6 @@
     ],
     "version_seen": "4.0.0",
     "last_release": "2024-10-25"
-  }
+  },
+  "skill": "skills/rubber-band/SKILL.md"
 }

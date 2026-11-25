@@ -100,7 +100,7 @@ This section is meant to change in most PRs; the rest of this file should rarely
 
 - **Pillar data and checks:** `rules.json` per pillar (#148), then promote each draft agent (#149). Measurement the drafts lack: motion sampling (#147), flash (#145), delivery gate (#144), loudness and sync (after #60), sub-frame sampling for `DATA-NO-OVERSHOOT`, word-level narration timings for `PACE-NARR-03/04`.
 - **Production workflow evidence:** use the published skills on real renders; resume from `specifications/handoffs/pillar-workflow-publication.md`. Synthetic evaluations do not establish production quality or calibration.
-- **Documentation backlog:** about 105 records are `listed-in-prd`; work it down with the `backfill` skill a few tools at a time.
+- **Backfill gaps:** 19 tools without guides, 26 partials worth a second fixture, unverified facts and process gaps are in `specifications/handoffs/backfill-gaps.md`.
 - **Calibration** (#150): run the advisory reviewers on real renders first; a gold set before any reviewer gates (`REVIEW-CAL-*`); decide whether a different model counts as independent (`REVIEW-IND-01`).
 - **Blind review packet:** a `vcr` command that assembles brief, measurements and contact sheet (#63) for a reviewer, with nothing about authorship (`REVIEW-IND-02`).
 - **Audio cue list** (#60): sound checks, `SOUND-*` sync rules and sound determinism wait on it.

@@ -13,9 +13,11 @@
     "2026-10-29: Documentation assessment only; no installation, fixture, adapter or third-party rights verified.",
     "2026-10-29: listed-in-prd is the schema listed-only status; the source is the conversation, not the PRD.",
     "2026-10-29: Skill opportunity: Possible standalone restoration skill; first verify specific model weights, rights and an image fixture.",
-    "2026-11-24: Fixture uses the ncnn-Vulkan macOS release asset realesrgan-ncnn-vulkan-20220424-macos.zip (Real-ESRGAN v0.2.5.0), which bundles the models. The wrapper's v0.2.0 macOS zip bundles no models. Binary licence MIT (wrapper LICENSE); weight terms not separately verified."
+    "2026-11-24: Fixture uses the ncnn-Vulkan macOS release asset realesrgan-ncnn-vulkan-20220424-macos.zip (Real-ESRGAN v0.2.5.0), which bundles the models. The wrapper's v0.2.0 macOS zip bundles no models. Binary licence MIT (wrapper LICENSE); weight terms not separately verified.",
+    "2026-11-24: Unproven guide written from official docs and the failed fixture; no passing evidence."
   ],
   "documentation_status": "listed-in-prd",
+  "skill": "skills/real-esrgan/SKILL.md",
   "installation_status": "unknown",
   "validation": {
     "status": "not-validated",
