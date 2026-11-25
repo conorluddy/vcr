@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Time stretch",
   "official_url": "https://breakfastquay.com/rubberband/",
+  "repository_url": "https://code.breakfastquay.com/projects/rubberband",
   "automation_route": "native-cli-or-scripting",
   "install": {
     "macos": "brew install rubberband",

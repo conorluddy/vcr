@@ -26,6 +26,7 @@
     "g-mic-negate"
   ],
   "official_url": "https://gmic.eu/",
+  "repository_url": "https://github.com/GreycLab/gmic",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "image-processing",

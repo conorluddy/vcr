@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Audio processing",
   "official_url": "https://sox.sourceforge.net/",
+  "repository_url": "https://sourceforge.net/p/sox/code/ci/master/tree/",
   "automation_route": "native-cli-or-scripting",
   "install": {
     "macos": "brew install sox",
