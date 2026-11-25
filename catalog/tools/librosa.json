@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Rhythm and spectra",
   "official_url": "https://librosa.org/",
+  "repository_url": "https://github.com/librosa/librosa",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "audio"

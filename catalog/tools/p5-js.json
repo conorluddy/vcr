@@ -23,6 +23,7 @@
     "anime-js"
   ],
   "official_url": "https://p5js.org/",
+  "repository_url": "https://github.com/processing/p5.js",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "generative-2d",

@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Video processing",
   "official_url": "https://code.videolan.org/videolan/libplacebo",
+  "repository_url": "https://code.videolan.org/videolan/libplacebo",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "image-processing"

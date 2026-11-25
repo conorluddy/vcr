@@ -22,6 +22,7 @@
     "resvg"
   ],
   "official_url": "https://d3js.org/",
+  "repository_url": "https://github.com/d3/d3",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "data-visualisation",

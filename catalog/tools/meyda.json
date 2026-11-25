@@ -5,6 +5,7 @@
   "tier": "catalogued",
   "role": "Audio features",
   "official_url": "https://meyda.js.org/",
+  "repository_url": "https://github.com/meyda/meyda",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "audio"

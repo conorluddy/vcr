@@ -21,6 +21,7 @@
     "anime-js"
   ],
   "official_url": "https://rive.app/docs/runtimes/web/web-js",
+  "repository_url": "https://github.com/rive-app/rive-wasm",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "asset-playback"

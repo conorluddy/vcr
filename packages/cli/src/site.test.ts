@@ -38,6 +38,16 @@ describe("vcr site build", () => {
     }
   });
 
+  test("tool pages lead with the upstream repository or the official site", () => {
+    const p5 = pages.get(join(outputDirectory, "tools/p5-js.html"));
+    const shiki = pages.get(join(outputDirectory, "tools/shikijs-magic-move.html"));
+    const canvas = pages.get(join(outputDirectory, "tools/canvas-2d.html"));
+    expect(p5).toContain('class="button" href="https://github.com/processing/p5.js"');
+    expect(p5).toContain('class="button button-secondary" href="https://github.com/conorluddy/vcr/blob/main/catalog/tools/p5-js.json"');
+    expect(shiki).toContain('class="button" href="https://github.com/shikijs/shiki"');
+    expect(canvas).toContain('class="button" href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API" rel="noopener">Visit official site</a>');
+  });
+
   test("publishes the site model as versioned JSON beside the pages", () => {
     const data = JSON.parse(readFileSync(join(outputDirectory, SITE_DATA_FILE), "utf8")) as { schema_version: string; tools: unknown[]; techniques: unknown[]; capabilities: string[] };
     const tools = loadTools(harnessRoot());

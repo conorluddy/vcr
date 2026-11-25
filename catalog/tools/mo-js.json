@@ -19,6 +19,7 @@
     "svg"
   ],
   "official_url": "https://mojs.github.io/",
+  "repository_url": "https://github.com/mojs/mojs",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "svg-animation",

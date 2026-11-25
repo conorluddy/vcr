@@ -30,6 +30,7 @@ export interface SiteTool {
   capabilities: string[];
   license?: string;
   officialUrl: string;
+  repositoryUrl?: string;
   validationStatus: string;
   documentationStatus: string;
   /** Repository path of the toolkit guide, when one is written. */
@@ -105,6 +106,8 @@ export function isInfrastructureTool(toolId: string): boolean {
 // === PRIVATE HELPERS ===
 
 function toSiteTool(tool: ToolSummary, allTools: ToolSummary[], examples: ExampleManifest[], techniques: Technique[]): SiteTool {
+  const repositoryUrl = tool.repository_url
+    ?? tool.official_url.match(/^https:\/\/github\.com\/[^/?#]+\/[^/?#]+/)?.[0];
   return {
     id: tool.id,
     name: tool.name,
@@ -118,6 +121,7 @@ function toSiteTool(tool: ToolSummary, allTools: ToolSummary[], examples: Exampl
     capabilities: tool.capabilities,
     ...(tool.license ? { license: tool.license } : {}),
     officialUrl: tool.official_url,
+    ...(repositoryUrl ? { repositoryUrl } : {}),
     validationStatus: tool.validation.status,
     documentationStatus: String(tool.documentation_status ?? "unknown"),
     ...(tool.skill ? { guidePath: tool.skill } : {}),

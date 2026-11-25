@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Audio features",
   "official_url": "https://essentia.upf.edu/",
+  "repository_url": "https://github.com/MTG/essentia",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "audio"

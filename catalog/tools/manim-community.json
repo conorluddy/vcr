@@ -23,6 +23,7 @@
     "imagemagick"
   ],
   "official_url": "https://docs.manim.community/en/stable/",
+  "repository_url": "https://github.com/ManimCommunity/manim",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "timeline-animation",

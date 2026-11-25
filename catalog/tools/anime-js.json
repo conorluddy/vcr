@@ -21,6 +21,7 @@
     "ffmpeg-ffprobe"
   ],
   "official_url": "https://animejs.com/documentation",
+  "repository_url": "https://github.com/juliangarnier/anime",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "tweening",

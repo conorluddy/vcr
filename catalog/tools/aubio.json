@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Onsets and pitch",
   "official_url": "https://aubio.org/",
+  "repository_url": "https://github.com/aubio/aubio",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "audio"

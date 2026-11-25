@@ -21,6 +21,7 @@
     "ffmpeg-ffprobe"
   ],
   "official_url": "https://playcanvas.com/products/engine",
+  "repository_url": "https://github.com/playcanvas/engine",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "3d-rendering",

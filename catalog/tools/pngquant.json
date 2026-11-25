@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Lossy PNG quantisation",
   "official_url": "https://pngquant.org/",
+  "repository_url": "https://github.com/kornelski/pngquant",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "image-processing"

@@ -23,6 +23,7 @@
     "playwright"
   ],
   "official_url": "https://two.js.org/",
+  "repository_url": "https://github.com/jonobr1/two.js",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "2d-rendering",

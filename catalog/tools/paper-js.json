@@ -23,6 +23,7 @@
     "vpype"
   ],
   "official_url": "https://paperjs.org/",
+  "repository_url": "https://github.com/paperjs/paper.js",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "vector-authoring",

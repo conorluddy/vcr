@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Video effects",
   "official_url": "https://frei0r.dyne.org/",
+  "repository_url": "https://github.com/dyne/frei0r",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "effects"

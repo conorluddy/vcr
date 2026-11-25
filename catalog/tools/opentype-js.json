@@ -23,6 +23,7 @@
     "msdfgen"
   ],
   "official_url": "https://opentype.js.org/",
+  "repository_url": "https://github.com/opentypejs/opentype.js",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "font-processing",

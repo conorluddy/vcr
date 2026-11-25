@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Python library for generating editable SVG drawings and animations",
   "official_url": "https://tangled.org/cduck.me/drawsvg",
+  "repository_url": "https://tangled.org/cduck.me/drawsvg",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "vector-authoring",

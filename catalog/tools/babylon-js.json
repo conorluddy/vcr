@@ -21,6 +21,7 @@
     "ffmpeg-ffprobe"
   ],
   "official_url": "https://www.babylonjs.com/",
+  "repository_url": "https://github.com/BabylonJS/Babylon.js",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "3d-rendering",

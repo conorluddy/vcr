@@ -9,6 +9,9 @@ on:
       - "references/**"
       - "examples/**/example.json"
       - "packages/cli/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
       - ".github/workflows/pages.yml"
   push:
     branches: [main]
@@ -41,7 +44,7 @@ jobs:
           path: site
 
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     permissions:

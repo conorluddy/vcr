@@ -27,6 +27,7 @@ export interface ToolSummary {
   avoid_when?: string[];
   pairs_with?: string[];
   official_url: string;
+  repository_url?: string;
   capabilities: string[];
   facets?: ToolFacet[];
   license?: string;

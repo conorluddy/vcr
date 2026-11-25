@@ -21,6 +21,7 @@
     "anime-js"
   ],
   "official_url": "https://tweenjs.github.io/tween.js/",
+  "repository_url": "https://github.com/tweenjs/tween.js",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "tweening"

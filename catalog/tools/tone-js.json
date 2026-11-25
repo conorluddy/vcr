@@ -21,6 +21,7 @@
     "playwright"
   ],
   "official_url": "https://tonejs.github.io/",
+  "repository_url": "https://github.com/Tonejs/Tone.js",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "audio"

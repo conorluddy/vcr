@@ -22,6 +22,7 @@
     "imagemagick"
   ],
   "official_url": "https://www.povray.org/documentation/",
+  "repository_url": "https://github.com/POV-Ray/povray",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "ray-tracing",

@@ -21,6 +21,7 @@
     "ffmpeg-ffprobe"
   ],
   "official_url": "https://www.libvips.org/",
+  "repository_url": "https://github.com/libvips/libvips",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "image-processing"

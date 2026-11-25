@@ -21,6 +21,7 @@
     "ffmpeg-ffprobe"
   ],
   "official_url": "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html",
+  "repository_url": "https://github.com/godotengine/godot",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "game-engine",

@@ -5,6 +5,7 @@
   "tier": "catalogued",
   "role": "Reconstruction",
   "official_url": "https://docs.nerf.studio/",
+  "repository_url": "https://github.com/nerfstudio-project/nerfstudio",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "3d-asset-processing"

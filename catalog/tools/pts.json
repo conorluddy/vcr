@@ -23,6 +23,7 @@
     "playwright"
   ],
   "official_url": "https://ptsjs.org/",
+  "repository_url": "https://github.com/williamngan/pts",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "generative-2d",

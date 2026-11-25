@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Audio programming",
   "official_url": "https://puredata.info/",
+  "repository_url": "https://github.com/pure-data/pure-data",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "audio"

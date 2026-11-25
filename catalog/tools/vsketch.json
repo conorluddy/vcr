@@ -25,6 +25,7 @@
     "vsketch-seeded"
   ],
   "official_url": "https://vsketch.readthedocs.io/",
+  "repository_url": "https://github.com/abey79/vsketch",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "plotter-workflow",

@@ -5,6 +5,7 @@
   "tier": "catalogued",
   "role": "Media metadata",
   "official_url": "https://mediaarea.net/en/MediaInfo",
+  "repository_url": "https://github.com/MediaArea/MediaInfo",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "media-inspection"

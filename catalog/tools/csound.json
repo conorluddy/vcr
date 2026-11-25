@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Audio synthesis",
   "official_url": "https://csound.com/",
+  "repository_url": "https://github.com/csound/csound",
   "automation_route": "native-cli-or-scripting",
   "install": {
     "macos": "brew install csound",

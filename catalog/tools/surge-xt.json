@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Synthesizer",
   "official_url": "https://surge-synthesizer.github.io/",
+  "repository_url": "https://github.com/surge-synthesizer/surge",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "audio"

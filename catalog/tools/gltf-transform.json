@@ -25,6 +25,7 @@
     "babylon-js"
   ],
   "official_url": "https://gltf-transform.dev/cli",
+  "repository_url": "https://github.com/donmccurdy/glTF-Transform",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "3d-asset-processing"

@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Music workstation",
   "official_url": "https://lmms.io/",
+  "repository_url": "https://github.com/LMMS/lmms",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "audio"

@@ -21,6 +21,7 @@
     "ffmpeg-ffprobe"
   ],
   "official_url": "https://docs.opencv.org/",
+  "repository_url": "https://github.com/opencv/opencv",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "computer-vision",

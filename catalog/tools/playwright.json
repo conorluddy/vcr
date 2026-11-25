@@ -25,6 +25,7 @@
     "gifski"
   ],
   "official_url": "https://playwright.dev/docs/intro",
+  "repository_url": "https://github.com/microsoft/playwright",
   "documentation_urls": [
     "https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental/"
   ],

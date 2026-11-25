@@ -110,7 +110,11 @@ export function renderToolPage(tool: SiteTool, model: SiteModel): string {
   <h1>${escapeHtml(tool.name)}</h1>
   <p class="lede">${escapeHtml(tool.role)}</p>
   <p class="badges">${tierBadge(tool.tier)} ${validationBadge(tool.validationStatus)}${isInfrastructureTool(tool.id) ? ` <span class="badge badge-infrastructure">Used by most chains</span>` : ""}</p>
-  <p class="actions">${sourceButton(recordUrl("tools", tool.id), "View record on GitHub")}${tool.guidePath ? ` ${sourceButton(`${REPOSITORY_URL}/blob/main/${escapeHtml(tool.guidePath)}`, "Read the agent guide", true)}` : ""}</p>
+  <p class="actions">
+    ${sourceButton(tool.repositoryUrl ?? tool.officialUrl, tool.repositoryUrl ? "View upstream repository" : "Visit official site")}
+    ${sourceButton(recordUrl("tools", tool.id), "View VCR catalogue record", true)}
+    ${tool.guidePath ? sourceButton(`${REPOSITORY_URL}/blob/main/${tool.guidePath}`, "Read the agent guide", true) : ""}
+  </p>
 </section>
 ${tool.summary ? `<p class="summary">${escapeHtml(tool.summary)}</p>` : ""}
 ${tool.useWhen.length + tool.avoidWhen.length > 0 ? `<div class="two-up">
@@ -256,7 +260,8 @@ function recordUrl(kind: "tools" | "techniques", id: string): string {
 }
 
 function sourceButton(href: string, label: string, isSecondary = false): string {
-  return `<a class="button${isSecondary ? " button-secondary" : ""}" href="${href}" rel="noopener">${GITHUB_MARK}${label}</a>`;
+  const mark = href.startsWith("https://github.com/") ? GITHUB_MARK : "";
+  return `<a class="button${isSecondary ? " button-secondary" : ""}" href="${escapeHtml(href)}" rel="noopener">${mark}${label}</a>`;
 }
 
 function evidenceLegend(): string {

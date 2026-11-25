@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "WebP stills and animation",
   "official_url": "https://chromium.googlesource.com/webm/libwebp",
+  "repository_url": "https://chromium.googlesource.com/webm/libwebp",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "image-processing",

@@ -79,6 +79,12 @@
       "type": "string",
       "format": "uri"
     },
+    "repository_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://",
+      "description": "Upstream source code repository."
+    },
     "documentation_urls": {
       "type": "array",
       "items": {

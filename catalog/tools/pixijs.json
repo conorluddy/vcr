@@ -24,6 +24,7 @@
     "playwright"
   ],
   "official_url": "https://pixijs.com/",
+  "repository_url": "https://github.com/pixijs/pixijs",
   "automation_route": "library-or-runtime",
   "capabilities": [
     "2d-rendering",

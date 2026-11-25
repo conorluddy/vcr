@@ -5,6 +5,7 @@
   "tier": "candidate",
   "role": "Audio synthesis",
   "official_url": "https://supercollider.github.io/",
+  "repository_url": "https://github.com/supercollider/supercollider",
   "automation_route": "native-cli-or-scripting",
   "capabilities": [
     "audio"

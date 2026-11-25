@@ -25,6 +25,7 @@
     "pyscenedetect"
   ],
   "official_url": "https://ffmpeg.org/documentation.html",
+  "repository_url": "https://git.ffmpeg.org/ffmpeg.git",
   "documentation_urls": [
     "https://ffmpeg.org/ffmpeg-filters.html"
   ],
