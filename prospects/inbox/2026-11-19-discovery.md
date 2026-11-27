@@ -111,7 +111,7 @@ Summary line: 8 leads (2 in a new category: music notation engraving).
 - Found via: GitHub topic search `svg`.
 
 ### c2pa-ts (`c2pa-ts`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/TrustNXT/c2pa-ts
 - Role: pure TypeScript C2PA manifest reading, validation and creation.
 - Category: A5. Video and capture (beside `c2patool`).
