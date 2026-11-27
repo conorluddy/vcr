@@ -1,0 +1,44 @@
+{
+  "boxWidthPx": 760,
+  "missingGlyphs": [
+    "181",
+    "183",
+    "191",
+    "19E",
+    "1A5",
+    "1DD",
+    "1E13",
+    "2132",
+    "250",
+    "25F",
+    "260",
+    "265",
+    "26F",
+    "279",
+    "285",
+    "28C",
+    "28D",
+    "28E",
+    "510"
+  ],
+  "titles": {
+    "Buy now": {
+      "originalCharacters": 7,
+      "accentedCharacters": 9,
+      "accentedText": "Ɓŭŭẏ ƞǿǿẇ",
+      "accentedOverflowsBox": false
+    },
+    "Summer Sale: 50% off": {
+      "originalCharacters": 20,
+      "accentedCharacters": 25,
+      "accentedText": "Şŭŭḿḿḗḗř Şȧȧŀḗḗ: 50% ǿǿƒƒ",
+      "accentedOverflowsBox": false
+    },
+    "Free shipping on every order": {
+      "originalCharacters": 28,
+      "accentedCharacters": 35,
+      "accentedText": "Ƒřḗḗḗḗ şħīƥƥīƞɠ ǿǿƞ ḗḗṽḗḗřẏ ǿǿřḓḗḗř",
+      "accentedOverflowsBox": true
+    }
+  }
+}

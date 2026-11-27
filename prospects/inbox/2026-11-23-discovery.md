@@ -43,7 +43,7 @@ This is the first W48 run. The 19 earlier digests (2026-11-01 to 2026-11-22) alr
 - Found via: GitHub topic search `topic:beat-detection`, and again under `topic:loudness`.
 
 ### 🆕 new category: localisation of on-screen text — pseudo-localization (`pseudo-localization`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/tryggvigy/pseudo-localization
 - Role: transforms strings into a pseudo-language. The `accented` strategy lengthens text and swaps Latin letters for accented look-alikes. The `bidi` strategy flips text right to left. `pseudoLocalizeString()` works on a single string in Node, and `pseudo-localization/dom` rewrites a live DOM.
 - Category: new category, localisation of on-screen text (the routine's lower-priority gap). It could also go under A4 for typography checks.
