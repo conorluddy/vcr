@@ -113,7 +113,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: data-visualization topic keyword dedupe.
 
 ### Penrose (`penrose`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/penrose/penrose
 - Role: generates SVG diagrams from plain-text notation split into Domain, Substance and Style programs. Layout is solved by optimisation, and each result is named by a variation string (such as "MonsoonCaterpillar95943"). The `@penrose/roger` CLI runs `roger trio <file.trio.json>` and prints the SVG.
 - Category: A4. Vector, typography, diagrams and stills.
