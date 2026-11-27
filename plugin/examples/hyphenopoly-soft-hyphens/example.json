@@ -1,0 +1,8 @@
+{
+  "id": "hyphenopoly-soft-hyphens",
+  "title": "Hyphenopoly soft hyphens for narrow text",
+  "summary": "Insert TeX-pattern soft hyphens into German and English strings in Node with no browser, check they are additive and deterministic, and show a narrow wrap that overflows without them and fits with them.",
+  "status": "validated",
+  "tools": ["hyphenopoly"],
+  "run": "./run.sh"
+}

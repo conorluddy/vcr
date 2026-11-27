@@ -5337,6 +5337,81 @@
       "skill": "skills/hyperframes/SKILL.md"
     },
     {
+      "id": "hyphenopoly",
+      "name": "Hyphenopoly",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "TeX-pattern hyphenation: soft hyphens inserted into strings in Node and the browser",
+      "summary": "Hyphenopoly 6 applies TeX hyphenation patterns, compiled to WebAssembly, to plain strings in Node and inserts soft hyphens at the break points. It runs from one pnpm dependency, needs no browser, and gives the same result on every platform, unlike CSS `hyphens: auto`. Its strength is deciding where long words may break before any layout engine wraps them, for German and many other languages.",
+      "use_when": [
+        "Justified or narrow text in satori, canvas-2d or troika-three-text, which break only at spaces",
+        "Long German or Dutch compounds in lower thirds and localised strings that overflow the measure",
+        "Break points that must be identical in Node and in the browser, unlike CSS hyphens: auto"
+      ],
+      "avoid_when": [
+        "Browser DOM text where CSS hyphens: auto with a correct lang is enough and platform variation is acceptable",
+        "Whole documents with automatic hyphenation: typst",
+        "Languages without a shipped pattern file, or proper nouns and brand names that must not break"
+      ],
+      "pairs_with": [
+        "satori",
+        "canvas-2d",
+        "troika-three-text",
+        "typst"
+      ],
+      "official_url": "https://github.com/mnater/Hyphenopoly",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "typography",
+        "text-rendering"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add hyphenopoly"
+      },
+      "examples": [
+        "hyphenopoly-soft-hyphens"
+      ],
+      "notes": [
+        "2026-11-27: pattern files carry their own licences, unverified per language; the fixture uses de and en-us only. Pin the package version, because pattern updates change break points.",
+        "2026-11-27: typography pillar (references/typography, TYPO-FEATURES and KB 'Rag, hyphenation and justification') says justified text needs lang and hyphenation; this tool supplies the break points where the renderer lacks CSS hyphenation."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "6.1.0",
+        "last_release": "2026-01-01",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "npm hyphenopoly 6.1.0 published 2026-01-01, MIT; repository pushed 2026-11-21. No catalogued tool hyphenates; satori, canvas-2d and troika-three-text break only at spaces. Alternatives hypher (Rust) and Pyphen (Python) are not in the catalogue.",
+        "sources": [
+          "https://github.com/mnater/Hyphenopoly",
+          "https://www.npmjs.com/package/hyphenopoly",
+          "https://mnater.github.io/Hyphenopoly/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "6.1.0",
+            "command": "examples/hyphenopoly-soft-hyphens/run.sh",
+            "result": "de and en-us strings hyphenated in Node 22.19.0 twice with identical output; 13 and 12 soft hyphens inserted, stripping them restores the input, a 14-column wrap goes from overflowing lines to none, short words unchanged.",
+            "example": "examples/hyphenopoly-soft-hyphens",
+            "scope": "Node API, de and en-us patterns, soft-hyphen output, character-count wrap on macOS arm64; not other languages, the browser polyfill, exceptions or rendering in a real font."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-24-discovery.md",
+      "skill": "skills/hyphenopoly/SKILL.md"
+    },
+    {
       "id": "imagemagick",
       "name": "ImageMagick",
       "category": "A6. Image processing and colour",

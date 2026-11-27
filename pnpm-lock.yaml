@@ -394,6 +394,12 @@ importers:
         specifier: 7.0.0
         version: 7.0.0
 
+  examples/hyphenopoly-soft-hyphens:
+    dependencies:
+      hyphenopoly:
+        specifier: 6.1.0
+        version: 6.1.0
+
   examples/jimp-invert:
     dependencies:
       jimp:
@@ -5418,6 +5424,10 @@ packages:
     resolution: {integrity: sha512-bhuVp6bmK33n2JVu6wuuwifqBum5AYZfMGa7jEke0TxbWl8i098rKuU6ZUD9sFxYsmg77e4CBNKJXfK/ZToYtQ==}
     engines: {node: '>=22'}
     hasBin: true
+
+  hyphenopoly@6.1.0:
+    resolution: {integrity: sha512-exXJMFxLaNAHxl5gQ9JSKNak3M4asJpPonHgctniD7d4Ql6Ba1QQaw7tDBzaoJ8Qmpr4QL5Afo98zESBtvQ0qA==}
+    engines: {node: '>=22'}
 
   i18next-browser-languagedetector@4.3.1:
     resolution: {integrity: sha512-KIToAzf8zwWvacgnRwJp63ase26o24AuNUlfNVJ5YZAFmdGhsJpmFClxXPuk9rv1FMI4lnc8zLSqgZPEZMrW4g==}
@@ -11849,6 +11859,8 @@ snapshots:
       - proxy-agent
       - supports-color
       - utf-8-validate
+
+  hyphenopoly@6.1.0: {}
 
   i18next-browser-languagedetector@4.3.1:
     dependencies:

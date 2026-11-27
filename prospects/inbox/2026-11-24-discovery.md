@@ -71,7 +71,7 @@ This is the second W48 run. The first W48 digest (2026-11-23, PR #233) is merged
 - Found via: GitHub topic search `topic:forced-alignment`.
 
 ### Hyphenopoly (`hyphenopoly`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/mnater/Hyphenopoly (docs: http://mnater.github.io/Hyphenopoly/)
 - Role: hyphenation for Node and the browser. It uses Liang/TeX hyphenation patterns compiled to WebAssembly, for many languages, and inserts soft hyphens into strings.
 - Category: A4. Vector, typography, diagrams and stills.
