@@ -15,7 +15,7 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 ## Leads
 
 ### libultrahdr (`libultrahdr`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/google/libultrahdr
 - Role: the reference library and sample CLI (`ultrahdr_app`) for Ultra HDR JPEG: an SDR base JPEG plus a gain map in one file, readable as SDR everywhere and as HDR where supported. Encodes from an HDR raw (P010 or RGBA1010102) plus an optional SDR JPEG, and decodes back.
 - Category: HDR delivery metadata (beside `dovi-tool`).
