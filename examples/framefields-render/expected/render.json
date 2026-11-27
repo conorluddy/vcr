@@ -1,0 +1,23 @@
+{
+  "versions": {
+    "framefields": "3.0.2",
+    "node": "v22.19.0"
+  },
+  "width": 320,
+  "height": 180,
+  "fps": 12,
+  "durationFrames": 24,
+  "rawBytesPerFrame": [
+    230400
+  ],
+  "sequentialHashes": {
+    "0": "fd1422190a096dbb0a545cbde5d70719174df2730c542c8c6690d9c29e1554ad",
+    "6": "06b5498adbae9717c4f96a387137a6cf8675dcfd0ed78f1233c6988ae50f117b",
+    "12": "deb2ea8d394f8c31ca4675f223d7de8fca64b564e9b8a1af33c1f4f29671ef99",
+    "18": "8682849e1aa199ee3dbf2aad074f04b54f58b8cdf48258a3ff7ce3d048f476fc",
+    "23": "8682849e1aa199ee3dbf2aad074f04b54f58b8cdf48258a3ff7ce3d048f476fc"
+  },
+  "shuffledMatchesSequential": true,
+  "distinctHashes": 4,
+  "videoPath": "output/film.mp4"
+}

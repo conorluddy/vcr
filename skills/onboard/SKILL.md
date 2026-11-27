@@ -33,7 +33,7 @@ Say in one line which state you found and where you are starting.
 
 ## 2. Capture and triage
 
-Follow `catalog/CANDIDATE-INGESTION.md` §1: write one `candidate` record from official sources, applying the free-software gate. A non-free or source-available lead gets no record; it stays in the inbox.
+Follow `catalog/CANDIDATE-INGESTION.md` §1: write one `candidate` record from official sources, applying the free-software gate. A non-free or source-available lead gets no record; it stays in the inbox. Tick its digest entry `retire` with the licence named and quoted on the next line, and stop: that one-line digest edit is the whole onboarding. A lead that passes the gate but isn't worth a fixture (too young, redundant with a validated neighbour, non-free model weights) gets a `candidate` card with assessment verdict `keep`, `documentation_status: listed-in-prd`, `validation.status: not-validated`, and a `defer` tick with the reason and what would reopen it.
 
 Version, licence and install lines in a lead are often stale: take them from the registry or release page, and note on the card where the lead differed. `pnpm validate` enforces card limits the skill doesn't repeat (`role` ≤ 100 characters, `use_when` and `avoid_when` lengths, `pairs_with` ids that already exist in `catalog/tools/`), so run it as soon as the record exists.
 

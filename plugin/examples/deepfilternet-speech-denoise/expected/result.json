@@ -1,0 +1,16 @@
+{
+  "checks": {
+    "input_snr_is_target": true,
+    "output_format_48k_mono_16bit": true,
+    "output_length_equals_input": false,
+    "rerun_byte_identical": true,
+    "snr_improves_by_margin": true
+  },
+  "improvement_db": 12.3,
+  "input_snr_db": 5.0,
+  "min_improvement_db": 8.0,
+  "output_snr_db": 17.3,
+  "samples_in": 225163,
+  "samples_out": 223723,
+  "target_snr_db": 5.0
+}

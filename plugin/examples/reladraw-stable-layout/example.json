@@ -1,0 +1,14 @@
+{
+  "id": "reladraw-stable-layout",
+  "title": "reladraw keeps existing nodes in place when a diagram gains a node",
+  "summary": "Renders a three-node chain and the same chain plus one node with reladraw 0.32.1, and checks the original nodes are drawn at identical coordinates.",
+  "status": "validated",
+  "tools": [
+    "reladraw"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-27",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

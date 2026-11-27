@@ -1,0 +1,78 @@
+{
+  "id": "pixelbolt",
+  "name": "Pixelbolt",
+  "category": "A1. Creative coding and 2D",
+  "tier": "candidate",
+  "role": "Zero-dependency Node CLI: JSON pixel-art recipes to sprite sheets, atlases, GIF and PNG sequences",
+  "official_url": "https://github.com/skulitom/Pixelbolt",
+  "repository_url": "https://github.com/skulitom/Pixelbolt",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "pixel-art",
+    "2d-rendering",
+    "image-sequence-processing"
+  ],
+  "notes": [
+    "2026-11-27: Triage: assess. sharp, imagemagick and libvips resize, convert and composite existing images; none has a palette, sprite, animation or atlas model, so they cannot author pixel art from a recipe. Lead said 0.18.0; npm showed 0.21.0 (MIT, no dependencies, Node >=20) at check time and the fixture pins that.",
+    "2026-11-27: Young project with fast releases, so pin the version. Its skills installer reports telemetry unless DISABLE_TELEMETRY=1; the CLI and the library import do not need it and the fixture never runs it.",
+    "2026-11-27: Evidence covers one small recipe (render and sequence); the fx, fluid, wave, bodies, crystal, powder, scene and MCP surfaces are untested."
+  ],
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "examples": [
+    "pixelbolt-recipe-sequence"
+  ],
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.21.0",
+        "command": "examples/pixelbolt-recipe-sequence/run.sh",
+        "result": "Pass: 11 of 11 predeclared checks. 12x10 slime recipe: 36x10 sheet with only the 4 palette colours and binary alpha; idle sequence 30 frames at 1920x1080 (9 rest, 6 up, loops at 15), 108x block scale exact; render and sequence trees byte-identical across two runs.",
+        "example": "examples/pixelbolt-recipe-sequence",
+        "scope": "macOS arm64, Node 22, local pnpm pin, one 12x10 recipe: render and sequence only; no fx, fluid, wave, bodies, scene, MCP, GIF or APNG checks, no ffmpeg encode"
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-27",
+  "source": "prospects/inbox/2026-11-20-discovery.md",
+  "summary": "Node CLI (and local MCP server) that turns an editable JSON recipe of palette keys, grids, shapes, stamps and frames into exact-pixel sprites. Exports a sprite sheet, atlas JSON, per-frame PNGs, APNG, GIF, and `sequence` writes numbered alpha PNGs at video size and frame rate for ffmpeg or an editor. Also compiles particle, fluid, wave and physics sources. No dependencies, no model, no network; integer coordinates make output deterministic.",
+  "use_when": [
+    "Authoring pixel-art sprites or loops from text where sharp, ImageMagick and libvips have no palette or frame model",
+    "Nearest-neighbour pixel art as a 1080p alpha PNG sequence to composite in video",
+    "Sprite sheets and atlas JSON from one recipe"
+  ],
+  "avoid_when": [
+    "Resizing or converting existing images: sharp, libvips or imagemagick",
+    "Smooth vector or anti-aliased motion graphics: canvas-2d or svg",
+    "Encoding the final video: it only writes frames, use ffmpeg"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "imagemagick",
+    "gifski",
+    "gifsicle"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add pixelbolt@0.21.0",
+    "check_command": "node node_modules/pixelbolt/bin/pixelbolt.js help"
+  },
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard-pixelbolt",
+    "version_seen": "0.21.0",
+    "last_release": "2026-11",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "MIT, zero dependencies, releases within days of the check. No catalogued neighbour authors pixel art from a recipe or writes sprite atlases; sharp, imagemagick and libvips only process existing images.",
+    "sources": [
+      "https://github.com/skulitom/Pixelbolt",
+      "https://www.npmjs.com/package/pixelbolt"
+    ]
+  },
+  "skill": "skills/pixelbolt/SKILL.md"
+}

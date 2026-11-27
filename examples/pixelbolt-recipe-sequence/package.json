@@ -1,0 +1,13 @@
+{
+  "name": "vcr-pixelbolt-recipe-sequence-fixture",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "run": "node run.mjs"
+  },
+  "dependencies": {
+    "pixelbolt": "0.21.0",
+    "pngjs": "7.0.0"
+  }
+}

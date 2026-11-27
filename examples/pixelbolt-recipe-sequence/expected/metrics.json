@@ -1,0 +1,29 @@
+{
+  "pixelbolt_version": "0.21.0",
+  "sheet": {
+    "width": 36,
+    "height": 10,
+    "sha256": "22ef8eca6319c9890524361e147559c462161b628f2a887d6f956f41935b7839"
+  },
+  "sequence": {
+    "frames": 30,
+    "width": 1920,
+    "height": 1080,
+    "frame_1_sha256": "699cf0c1b033a07f7324c71ca6e2d8f25dd05d9144b798544b40e4b135276f56",
+    "frame_10_sha256": "58f9dabb761fcfca55b2dd6113fe2f72b1b94183b8a5a0d32da75772eb79f74a"
+  },
+  "sequence_tree_sha256": "505976962b55bdbbb5bc60c3a0bf1ff58d98665d1bb0aeb91c99ab7e1b5a6cf8",
+  "checks": {
+    "version_is_pinned": true,
+    "sheet_is_36x10_three_frames": true,
+    "sheet_only_palette_colours": true,
+    "sheet_alpha_is_binary": true,
+    "sheet_probe_outline_exact": true,
+    "sequence_is_30_frames_1080p": true,
+    "sequence_timing_9_rest_6_up": true,
+    "sequence_loops_at_15_frames": true,
+    "sequence_block_scale_exact": true,
+    "render_repeats_byte_identical": true,
+    "sequence_repeats_byte_identical": true
+  }
+}

@@ -1,0 +1,21 @@
+{ "version": 1, "name": "slime", "width": 12, "height": 10,
+  "palette": { "k": "#1d2b3a", "g": "#3fa34d", "l": "#8fd16a", "w": "#f4f4e8" },
+  "symbols": { "eye": ["w", "k"] },
+  "frames": [
+    { "name": "rest", "duration": 300, "ops": [
+      { "op": "grid", "x": 0, "y": 2, "rows": [
+        "....kkkk....",
+        "..kkllggkk..",
+        ".kllggggggk.",
+        "kggggggggggk",
+        "kggggggggggk",
+        "kggggggggggk",
+        ".kkkkkkkkkk."
+      ] },
+      { "op": "stamp", "symbol": "eye", "x": 4, "y": 5 },
+      { "op": "stamp", "symbol": "eye", "x": 7, "y": 5 }
+    ] },
+    { "name": "up", "duration": 200, "from": "rest", "translate": [0, -1] },
+    { "name": "blink", "duration": 120, "from": "rest", "ops": [{ "op": "replace", "from": "w", "to": "g" }] }
+  ],
+  "animations": { "idle": { "frames": ["rest", "up"] }, "blink": { "frames": ["rest", "blink", "rest"], "loop": false } } }

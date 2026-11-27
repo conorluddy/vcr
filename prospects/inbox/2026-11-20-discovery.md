@@ -98,7 +98,7 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `gpx`.
 
 ### Pixelbolt (`pixelbolt`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/skulitom/Pixelbolt
 - Role: renders pixel art and short pixel animations from editable JSON recipes to PNG sprite sheets, APNG, GIF, numbered frames and atlases, from a CLI or a local MCP server.
 - Category: A1. Creative coding and 2D.

@@ -1,0 +1,96 @@
+{
+  "codecs": {
+    "vp9": {
+      "magic": "AVLF",
+      "formatVersion": "1.1",
+      "layout": "packed-alpha",
+      "alphaLayout": {
+        "alphaRect": [
+          0,
+          136,
+          128,
+          128
+        ],
+        "colorRect": [
+          0,
+          0,
+          128,
+          128
+        ],
+        "type": "stacked"
+      },
+      "codedSize": [
+        128,
+        264
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "frameCount": 30,
+      "hasBytes": true
+    },
+    "h265": {
+      "magic": "AVLF",
+      "formatVersion": "1.1",
+      "layout": "packed-alpha",
+      "alphaLayout": {
+        "alphaRect": [
+          0,
+          136,
+          128,
+          128
+        ],
+        "colorRect": [
+          0,
+          0,
+          128,
+          128
+        ],
+        "type": "stacked"
+      },
+      "codedSize": [
+        128,
+        264
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "frameCount": 30,
+      "hasBytes": true
+    },
+    "h264": {
+      "magic": "AVLF",
+      "formatVersion": "1.1",
+      "layout": "packed-alpha",
+      "alphaLayout": {
+        "alphaRect": [
+          0,
+          136,
+          128,
+          128
+        ],
+        "colorRect": [
+          0,
+          0,
+          128,
+          128
+        ],
+        "type": "stacked"
+      },
+      "codedSize": [
+        128,
+        272
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "frameCount": 30,
+      "hasBytes": true
+    }
+  },
+  "repeatCompileByteIdentical": true,
+  "buildWarnings": []
+}

@@ -1,0 +1,14 @@
+{
+  "id": "deepfilternet-speech-denoise",
+  "title": "DeepFilterNet deep-filter cleans speech mixed with white noise at 5 dB SNR",
+  "summary": "macOS say speech plus seeded white noise at 5 dB SNR through the pinned deep-filter 0.5.6 binary (downloaded into output/): SNR improves 12.3 dB (floor 8); rerun byte-identical; output length is 30 ms short (KNOWN FAIL).",
+  "status": "not-validated",
+  "tools": [
+    "deepfilternet"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-27",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
