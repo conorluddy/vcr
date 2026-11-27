@@ -1,0 +1,14 @@
+{
+  "id": "aval-packed-alpha",
+  "title": "AVAL compiles an RGBA PNG sequence to packed-alpha .avl files",
+  "summary": "30 owned transparent frames compiled to VP9, H.265 and H.264 .avl bundles; manifests report packed-alpha layout, 30 frames, repeat compile byte-identical, opaque policy refuses transparent input. The browser player is not run.",
+  "status": "validated",
+  "tools": [
+    "aval"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-27",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

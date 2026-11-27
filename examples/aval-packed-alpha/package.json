@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-aval-packed-alpha",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@pixel-point/aval-compiler": "1.1.0"
+  }
+}

@@ -57,7 +57,7 @@ This is the first W48 run. The 19 earlier digests (2026-11-01 to 2026-11-22) alr
 - Found via: GitHub topic search `topic:pseudo-localization`, then a keyword search.
 
 ### AVAL (`aval`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/pixel-point/aval
 - Role: a web format and runtime for short prerendered motion that has loops, named states, triggers, bounded transitions, reversals and packed alpha. The `avl` compiler (`@pixel-point/aval-compiler`) turns a `motion.json` project and source video into per-codec AV1, VP9, H.265 or H.264 `.avl` files. An `<aval-player>` element plays them through WebCodecs.
 - Category: A5. Video and capture (web delivery).
