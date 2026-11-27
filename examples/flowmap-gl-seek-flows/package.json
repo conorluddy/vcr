@@ -1,0 +1,27 @@
+{
+  "name": "@vcr/example-flowmap-gl-seek-flows",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild scene.js --bundle --format=iife --outfile=output/scene.js",
+    "capture": "tsx capture.ts"
+  },
+  "dependencies": {
+    "@deck.gl/core": "9.4.1",
+    "@deck.gl/extensions": "9.4.1",
+    "@deck.gl/layers": "9.4.1",
+    "@flowmap.gl/data": "9.5.0",
+    "@flowmap.gl/layers": "9.5.0",
+    "@luma.gl/core": "9.4.2",
+    "@luma.gl/engine": "9.4.2",
+    "@luma.gl/shadertools": "9.4.2",
+    "@luma.gl/webgl": "9.4.2",
+    "@vcr/capture": "workspace:*",
+    "playwright": "^1.64.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.27.0",
+    "tsx": "^4.23.15"
+  }
+}

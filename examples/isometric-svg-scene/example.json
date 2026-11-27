@@ -1,0 +1,8 @@
+{
+  "id": "isometric-svg-scene",
+  "title": "Isometric scene frames as static SVG from time t",
+  "summary": "@elchininet/isometric renders a floor and two blocks, one growing with t, to static SVG in Node via jsdom; explicit ids make frames byte-identical across processes and order; resvg rasterises them.",
+  "status": "validated",
+  "tools": ["isometric-js"],
+  "run": "./run.sh"
+}

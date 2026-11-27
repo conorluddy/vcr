@@ -1,0 +1,73 @@
+{
+  "id": "penrose",
+  "name": "Penrose",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "candidate",
+  "role": "Domain, Substance and Style programs to optimised SVG diagrams of sets, geometry and concepts",
+  "summary": "Penrose compiles a Domain, Substance and Style trio and solves the layout by optimisation, returning SVG whose labels are MathJax paths. One Style file restyles many diagrams, and a fixed variation string reproduces a layout. Its strength is mathematical and conceptual explainer stills; it makes stills, not motion.",
+  "use_when": [
+    "Mathematical or conceptual diagrams (sets, geometry, vectors) from notation, not drawn by hand",
+    "One Style restyling many diagrams, where the layout should be solved, not placed",
+    "A reproducible layout pinned by a variation string, over d2 or graphviz which lay out graphs and flows"
+  ],
+  "avoid_when": [
+    "Architecture or flow graphs: d2, graphviz or mermaid-cli",
+    "Equations alone: mathjax",
+    "Animated layouts: untested, treat it as a stills tool"
+  ],
+  "pairs_with": [
+    "resvg",
+    "mathjax",
+    "svg"
+  ],
+  "official_url": "https://github.com/penrose/penrose",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "diagram-generation",
+    "vector-authoring"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add @penrose/core@3.3.1 jsdom@22.1.0 global-jsdom@8.8.0"
+  },
+  "examples": [
+    "penrose-venn-svg"
+  ],
+  "notes": [
+    "2026-11-27: lead named a global @penrose/roger install and a native-cli route; the fixture used @penrose/core in Node with jsdom instead, which needs no global or native install. roger 3.3.1 pulls native canvas."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "3.3.1",
+    "last_release": "2026-08-30",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "npm @penrose/core 3.3.1 (latest) MIT, published 2026-08-30; repository pushed 2026-11-06. Solves layout of mathematical diagrams that d2, graphviz and mermaid-cli do not target; fixed variation gives repeatable output on this machine.",
+    "sources": [
+      "https://github.com/penrose/penrose",
+      "https://www.npmjs.com/package/@penrose/core",
+      "https://penrose.cs.cmu.edu/docs/ref/"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.3.1",
+        "command": "examples/penrose-venn-svg/run.sh",
+        "result": "Three-set trio compiled twice in separate Node 22.19.0 processes with a fixed variation: identical SHA-256 bd6fc945…91c5, 3892 bytes, 3 circles, 0 text; a second variation differed and kept the constraints; resvg 800x600 PNG inspected.",
+        "example": "examples/penrose-venn-svg",
+        "scope": "One Venn-style trio, @penrose/core 3.3.1 with jsdom 22.1.0, Equation labels, macOS arm64, one machine; not other Style features, Text shapes, roger, other platforms or motion."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-26-discovery.md",
+  "skill": "skills/penrose/SKILL.md"
+}

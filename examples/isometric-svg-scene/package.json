@@ -1,0 +1,9 @@
+{
+  "name": "vcr-example-isometric-svg-scene",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@elchininet/isometric": "4.0.2",
+    "jsdom": "^31.0.1"
+  }
+}

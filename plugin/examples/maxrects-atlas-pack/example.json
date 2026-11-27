@@ -1,0 +1,8 @@
+{
+  "id": "maxrects-atlas-pack",
+  "title": "MaxRects packing of rectangles into atlas bins",
+  "summary": "Pack 24 seeded rectangles into 256x256 atlas bins with maxrects-packer, check none overlap, all are placed and the layout is identical across processes, then draw it as SVG through resvg.",
+  "status": "validated",
+  "tools": ["maxrects-packer"],
+  "run": "./run.sh"
+}

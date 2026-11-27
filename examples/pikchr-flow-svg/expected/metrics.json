@@ -1,0 +1,15 @@
+{
+  "version": "pikchr 1.0 20260403102956",
+  "viewBox": "0 0 499.68 34.56",
+  "pathCount": 7,
+  "labels": [
+    "Script",
+    "Parse",
+    "Layout",
+    "SVG"
+  ],
+  "fontFamilyAttributes": 0,
+  "earlierShapesUnchangedAfterEdit": true,
+  "editedWidthGrew": true,
+  "sha256": "c616688c48782c697f22d1ee206c813665a826488960e8d8164a6e27888f9309"
+}

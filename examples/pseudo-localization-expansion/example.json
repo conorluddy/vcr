@@ -1,0 +1,8 @@
+{
+  "id": "pseudo-localization-expansion",
+  "title": "Pseudo-localised titles: expansion and overflow",
+  "summary": "Pseudo-localise three titles in Node, draw them in a fixed-width title box with resvg, and check the text lengthens, overflow is detectable and uncovered glyphs surface.",
+  "status": "validated",
+  "tools": ["pseudo-localization"],
+  "run": "./run.sh"
+}

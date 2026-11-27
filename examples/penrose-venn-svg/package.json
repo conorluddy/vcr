@@ -1,0 +1,10 @@
+{
+  "name": "vcr-example-penrose-venn-svg",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@penrose/core": "3.3.1",
+    "global-jsdom": "8.8.0",
+    "jsdom": "22.1.0"
+  }
+}

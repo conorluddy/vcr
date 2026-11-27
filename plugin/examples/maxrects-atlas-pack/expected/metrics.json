@@ -1,0 +1,14 @@
+{
+  "inputCount": 24,
+  "binCount": 2,
+  "rectsPerBin": [
+    16,
+    8
+  ],
+  "minGap": 2,
+  "fillPercent": [
+    75.5,
+    35.8
+  ],
+  "layoutSha256": "5ea511749a262b8112676c9a3209593679213e01a8a015e9f5c77b69485fc1fe"
+}

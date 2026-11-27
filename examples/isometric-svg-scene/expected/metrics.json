@@ -1,0 +1,28 @@
+{
+  "frames": [
+    {
+      "t": 0,
+      "paths": 7,
+      "topTipY": 320,
+      "sha256": "cc4917305a661224023d865a1e2d5e492c75bda26ece8423d503f4ee1e30cd5c"
+    },
+    {
+      "t": 0.5,
+      "paths": 7,
+      "topTipY": 260,
+      "sha256": "1f4da187aaa995faec1536184f9064342909b4a3e2372d0072e4e328d71c9b44"
+    },
+    {
+      "t": 1,
+      "paths": 7,
+      "topTipY": 200,
+      "sha256": "10590eb46c6501dada7b4406af4323a532f36a9e11a94fb573e931bddba2e96f"
+    }
+  ],
+  "risePx": 120,
+  "lengthBytes": [
+    1764,
+    1764,
+    1764
+  ]
+}
