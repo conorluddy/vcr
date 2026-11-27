@@ -1051,6 +1051,22 @@ importers:
         specifier: 0.187.0
         version: 0.187.0
 
+  examples/three-quarks-capture:
+    dependencies:
+      three:
+        specifier: 0.186.1
+        version: 0.186.1
+      three.quarks:
+        specifier: 0.18.0
+        version: 0.18.0(three@0.186.1)
+    devDependencies:
+      '@vcr/capture':
+        specifier: workspace:*
+        version: link:../../packages/capture
+      tsx:
+        specifier: ^4.23.15
+        version: 4.23.15
+
   examples/three-vrm-capture:
     dependencies:
       '@pixiv/three-vrm':
@@ -6525,6 +6541,9 @@ packages:
     engines: {node: '>=22.12.0'}
     hasBin: true
 
+  quarks.core@0.18.0:
+    resolution: {integrity: sha512-DxhGxsGLykIffHy74YZjcQOVRk09eB/1o+9DPiQveyAonpwIzpUu80EtwfZTjBVf9DvM0f8qLSXAjRqXKJ9IIQ==}
+
   querystringify@2.2.0:
     resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
 
@@ -7056,6 +7075,11 @@ packages:
     resolution: {integrity: sha512-PT8Swf/gAKl9KoZDAnwUEy0pesiwrGTiVrPanfGUfA8RO8KcoDwZSg+QfEzbmYa2/1VJaNy4JNqa2TSwXWJPUw==}
     peerDependencies:
       three: '>=0.155.0'
+
+  three.quarks@0.18.0:
+    resolution: {integrity: sha512-Pp7TUHyIA6esrV/YVDma5dLn1lfGNd8rGW2usk9lRNZ7kRTT9aUlfVulwYhlHwHgwEWNL3ONQULK5XeMfTthHA==}
+    peerDependencies:
+      three: '>=0.182.0'
 
   three@0.159.0:
     resolution: {integrity: sha512-eCmhlLGbBgucuo4VEA9IO3Qpc7dh8Bd4VKzr7WfW4+8hMcIfoAVi1ev0pJYN9PTTsCslbcKgBwr2wNZ1EvLInA==}
@@ -12992,6 +13016,8 @@ snapshots:
       - utf-8-validate
       - yauzl
 
+  quarks.core@0.18.0: {}
+
   querystringify@2.2.0:
     optional: true
 
@@ -13736,6 +13762,11 @@ snapshots:
 
   three.meshline@2.0.0(three@0.186.1):
     dependencies:
+      three: 0.186.1
+
+  three.quarks@0.18.0(three@0.186.1):
+    dependencies:
+      quarks.core: 0.18.0
       three: 0.186.1
 
   three@0.159.0: {}

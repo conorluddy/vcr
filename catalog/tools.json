@@ -13346,6 +13346,78 @@
       "skill": "skills/three-meshline/SKILL.md"
     },
     {
+      "id": "three-quarks",
+      "name": "three.quarks",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "candidate",
+      "role": "Particle and VFX emitters for three.js; seek by replaying fixed steps with a seeded Math.random",
+      "summary": "three.quarks adds batched particle systems to a three.js scene: emitters with shapes, start and over-life behaviours, billboard, mesh and trail rendering, and JSON effects from its editor. It advances only through batchRenderer.update(delta) and draws all randomness from Math.random, so VCR rebuilds the system, reseeds Math.random and steps at a fixed delta from 0 to t on every seek.",
+      "use_when": [
+        "Art-directed sprite or mesh particles (sparks, smoke, fountains) inside a three-js scene",
+        "Over splishsplash when the look matters more than fluid physics",
+        "Effects authored as JSON in the quarks.art editor and replayed in a scene"
+      ],
+      "avoid_when": [
+        "Rigid-body collisions: rapier or matter-js",
+        "Very long timelines where replay from 0 per frame is too slow: pre-bake instead",
+        "Particles in a 2D canvas scene: canvas-2d with your own loop"
+      ],
+      "pairs_with": [
+        "three-js",
+        "postprocessing",
+        "rapier"
+      ],
+      "official_url": "https://github.com/Alchemist0823/three.quarks",
+      "repository_url": "https://github.com/Alchemist0823/three.quarks",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "effects"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add three.quarks"
+      },
+      "examples": [
+        "three-quarks-capture"
+      ],
+      "notes": [
+        "2026-11-27: Seeded randomness is not a library feature. Every random draw in three.quarks 0.18.0 and quarks.core goes through Math.random, so the fixture replaces Math.random during each seek."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "0.18.0",
+        "last_release": "2026-11-17",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "npm 0.18.0 published 2026-11-17; repository pushed 2026-11-18; MIT; peer dependency three >=0.182. Only catalogued particle and VFX system for three.js; splishsplash is a fluid solver and three-nebula was rejected as engine-bound.",
+        "sources": [
+          "https://github.com/Alchemist0823/three.quarks",
+          "https://www.npmjs.com/package/three.quarks"
+        ]
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.18.0",
+            "command": "examples/three-quarks-capture/run.sh",
+            "result": "Fountain rebuilt, Math.random seeded and stepped at 1/60 s from t=0 per seek through packages/capture: 90 frames 640x360, shuffled order equals sequential, 90 distinct hashes, frame 45 alpha 0..1; frames inspected (particles rise, spread and fade).",
+            "example": "examples/three-quarks-capture",
+            "scope": "One sprite fountain, three.js 0.186.1, Chromium WebGL screenshot mode, macOS arm64; replay cost grows with t (about 19 fps); not trails, mesh particles, JSON effects, prewarm or looping."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-18-discovery.md",
+      "skill": "skills/three-quarks/SKILL.md"
+    },
+    {
       "id": "three-vrm",
       "name": "three-vrm",
       "category": "Discovery: conversation candidates",

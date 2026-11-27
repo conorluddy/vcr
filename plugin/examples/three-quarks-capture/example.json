@@ -1,0 +1,18 @@
+{
+  "id": "three-quarks-capture",
+  "title": "three.quarks particles re-simulated per seek and captured",
+  "summary": "A three.quarks fountain is rebuilt, seeded and stepped from t=0 on every seek; 90 frames with alpha are captured, shuffled order matches sequential and all 90 frames differ.",
+  "status": "validated",
+  "tools": ["three-quarks"],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 640,
+    "height": 360,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-27",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
