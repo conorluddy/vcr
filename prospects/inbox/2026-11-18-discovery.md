@@ -43,7 +43,7 @@ This is the second run in ISO week 2026-W47. The earlier W47 digest (2026-11-16)
 - Found via: GitHub topic search `particles` (gap area)
 
 ### occt-wasm (`occt-wasm`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/andymai/occt-wasm
 - Role: The OpenCascade (OCCT) B-rep kernel compiled to WebAssembly, with a typed TypeScript API. It offers primitives, booleans, fillets, sweeps, STEP, STL, glTF and BREP I/O, tessellation and wireframe extraction, and runs in Node 18+ (22+ recommended), the browser or a Web Worker.
 - Category: 3D CAD interchange (existing category)
