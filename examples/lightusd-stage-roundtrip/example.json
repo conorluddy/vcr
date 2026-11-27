@@ -1,0 +1,11 @@
+{
+  "id": "lightusd-stage-roundtrip",
+  "title": "lightusd stage saved as .usda, .usdc and .usdz, read by lightusd and usd-core",
+  "summary": "lightusd 1.0.0 authors Xform, Cube, Sphere, a material binding and a time-sampled translate, saves three formats, and lightusd and usd-core 26.11 read them equal. Rerun .usda and .usdz are byte-identical. No rendering.",
+  "status": "not-validated",
+  "tools": [
+    "lightusd"
+  ],
+  "run": "./run.sh",
+  "report": "examples/lightusd-stage-roundtrip/README.md"
+}

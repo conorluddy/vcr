@@ -85,7 +85,7 @@ This is the second W48 run. The first W48 digest (2026-11-23, PR #233) is merged
 - Found via: GitHub topic search `topic:hyphenation`.
 
 ### LightUSD (`lightusd`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/lighttransport/LightUSD (docs: https://lighttransport.github.io/LightUSD/). It was previously named TinyUSDZ.
 - Role: a dependency-free C++17 library that reads and writes USDA, USDC and USDZ, with Python (`lightusd`) and WASM/npm bindings. It also supports MaterialX and USD Physics.
 - Category: Discovery: research candidates. This is the category `openusd` uses.

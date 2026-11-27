@@ -1,0 +1,556 @@
+{
+  "checks": {
+    "G1_prims_and_types": true,
+    "G2_values": true,
+    "G3_metadata": true,
+    "G4_translate_time_samples": true,
+    "G5_material_binding": true,
+    "G6_all_six_reads_equal": true,
+    "G7_shuffled_equals_sequential": true,
+    "G8_usdz_stored_and_64_aligned": true,
+    "usda_sha256": "31d30f1be39ad34ba6cd5fd6a774b956f42b6f397a7c5fb876d5b8bdd22d4e05",
+    "usdz_package": {
+      "all_stored": true,
+      "entries": [
+        "root.usdc"
+      ],
+      "first_entry_data_offset_mod_64": 0
+    }
+  },
+  "reads": {
+    "lightusd_usda": {
+      "meta": {
+        "defaultPrim": "World",
+        "endTimeCode": 24.0,
+        "metersPerUnit": 0.01,
+        "startTimeCode": 0.0,
+        "timeCodesPerSecond": 24.0,
+        "upAxis": "Y"
+      },
+      "prims": {
+        "/World": "Xform",
+        "/World/Cube": "Cube",
+        "/World/Looks": "Scope",
+        "/World/Looks/RedMat": "Material",
+        "/World/Looks/RedMat/PreviewSurface": "Shader",
+        "/World/Sphere": "Sphere"
+      },
+      "translate_samples": {
+        "0": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "12": [
+          24.0,
+          0.0,
+          0.0
+        ],
+        "18": [
+          36.0,
+          0.0,
+          0.0
+        ],
+        "24": [
+          48.0,
+          0.0,
+          0.0
+        ],
+        "6": [
+          12.0,
+          0.0,
+          0.0
+        ]
+      },
+      "translate_shuffled": [
+        [
+          48.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          36.0,
+          0.0,
+          0.0
+        ],
+        [
+          12.0,
+          0.0,
+          0.0
+        ],
+        [
+          24.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "values": {
+        "binding": [
+          "/World/Looks/RedMat"
+        ],
+        "cube_size": 2.0,
+        "diffuse_color": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "sphere_radius": 0.5,
+        "sphere_translate": [
+          0.0,
+          3.0,
+          0.0
+        ]
+      }
+    },
+    "lightusd_usdc": {
+      "meta": {
+        "defaultPrim": "World",
+        "endTimeCode": 24.0,
+        "metersPerUnit": 0.01,
+        "startTimeCode": 0.0,
+        "timeCodesPerSecond": 24.0,
+        "upAxis": "Y"
+      },
+      "prims": {
+        "/World": "Xform",
+        "/World/Cube": "Cube",
+        "/World/Looks": "Scope",
+        "/World/Looks/RedMat": "Material",
+        "/World/Looks/RedMat/PreviewSurface": "Shader",
+        "/World/Sphere": "Sphere"
+      },
+      "translate_samples": {
+        "0": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "12": [
+          24.0,
+          0.0,
+          0.0
+        ],
+        "18": [
+          36.0,
+          0.0,
+          0.0
+        ],
+        "24": [
+          48.0,
+          0.0,
+          0.0
+        ],
+        "6": [
+          12.0,
+          0.0,
+          0.0
+        ]
+      },
+      "translate_shuffled": [
+        [
+          48.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          36.0,
+          0.0,
+          0.0
+        ],
+        [
+          12.0,
+          0.0,
+          0.0
+        ],
+        [
+          24.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "values": {
+        "binding": [
+          "/World/Looks/RedMat"
+        ],
+        "cube_size": 2.0,
+        "diffuse_color": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "sphere_radius": 0.5,
+        "sphere_translate": [
+          0.0,
+          3.0,
+          0.0
+        ]
+      }
+    },
+    "lightusd_usdz": {
+      "meta": {
+        "defaultPrim": "World",
+        "endTimeCode": 24.0,
+        "metersPerUnit": 0.01,
+        "startTimeCode": 0.0,
+        "timeCodesPerSecond": 24.0,
+        "upAxis": "Y"
+      },
+      "prims": {
+        "/World": "Xform",
+        "/World/Cube": "Cube",
+        "/World/Looks": "Scope",
+        "/World/Looks/RedMat": "Material",
+        "/World/Looks/RedMat/PreviewSurface": "Shader",
+        "/World/Sphere": "Sphere"
+      },
+      "translate_samples": {
+        "0": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "12": [
+          24.0,
+          0.0,
+          0.0
+        ],
+        "18": [
+          36.0,
+          0.0,
+          0.0
+        ],
+        "24": [
+          48.0,
+          0.0,
+          0.0
+        ],
+        "6": [
+          12.0,
+          0.0,
+          0.0
+        ]
+      },
+      "translate_shuffled": [
+        [
+          48.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          36.0,
+          0.0,
+          0.0
+        ],
+        [
+          12.0,
+          0.0,
+          0.0
+        ],
+        [
+          24.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "values": {
+        "binding": [
+          "/World/Looks/RedMat"
+        ],
+        "cube_size": 2.0,
+        "diffuse_color": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "sphere_radius": 0.5,
+        "sphere_translate": [
+          0.0,
+          3.0,
+          0.0
+        ]
+      }
+    },
+    "pxr_usda": {
+      "meta": {
+        "defaultPrim": "World",
+        "endTimeCode": 24.0,
+        "metersPerUnit": 0.01,
+        "startTimeCode": 0.0,
+        "timeCodesPerSecond": 24.0,
+        "upAxis": "Y"
+      },
+      "prims": {
+        "/World": "Xform",
+        "/World/Cube": "Cube",
+        "/World/Looks": "Scope",
+        "/World/Looks/RedMat": "Material",
+        "/World/Looks/RedMat/PreviewSurface": "Shader",
+        "/World/Sphere": "Sphere"
+      },
+      "translate_samples": {
+        "0": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "12": [
+          24.0,
+          0.0,
+          0.0
+        ],
+        "18": [
+          36.0,
+          0.0,
+          0.0
+        ],
+        "24": [
+          48.0,
+          0.0,
+          0.0
+        ],
+        "6": [
+          12.0,
+          0.0,
+          0.0
+        ]
+      },
+      "translate_shuffled": [
+        [
+          48.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          36.0,
+          0.0,
+          0.0
+        ],
+        [
+          12.0,
+          0.0,
+          0.0
+        ],
+        [
+          24.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "values": {
+        "binding": [
+          "/World/Looks/RedMat"
+        ],
+        "cube_size": 2.0,
+        "diffuse_color": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "sphere_radius": 0.5,
+        "sphere_translate": [
+          0.0,
+          3.0,
+          0.0
+        ]
+      }
+    },
+    "pxr_usdc": {
+      "meta": {
+        "defaultPrim": "World",
+        "endTimeCode": 24.0,
+        "metersPerUnit": 0.01,
+        "startTimeCode": 0.0,
+        "timeCodesPerSecond": 24.0,
+        "upAxis": "Y"
+      },
+      "prims": {
+        "/World": "Xform",
+        "/World/Cube": "Cube",
+        "/World/Looks": "Scope",
+        "/World/Looks/RedMat": "Material",
+        "/World/Looks/RedMat/PreviewSurface": "Shader",
+        "/World/Sphere": "Sphere"
+      },
+      "translate_samples": {
+        "0": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "12": [
+          24.0,
+          0.0,
+          0.0
+        ],
+        "18": [
+          36.0,
+          0.0,
+          0.0
+        ],
+        "24": [
+          48.0,
+          0.0,
+          0.0
+        ],
+        "6": [
+          12.0,
+          0.0,
+          0.0
+        ]
+      },
+      "translate_shuffled": [
+        [
+          48.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          36.0,
+          0.0,
+          0.0
+        ],
+        [
+          12.0,
+          0.0,
+          0.0
+        ],
+        [
+          24.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "values": {
+        "binding": [
+          "/World/Looks/RedMat"
+        ],
+        "cube_size": 2.0,
+        "diffuse_color": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "sphere_radius": 0.5,
+        "sphere_translate": [
+          0.0,
+          3.0,
+          0.0
+        ]
+      }
+    },
+    "pxr_usdz": {
+      "meta": {
+        "defaultPrim": "World",
+        "endTimeCode": 24.0,
+        "metersPerUnit": 0.01,
+        "startTimeCode": 0.0,
+        "timeCodesPerSecond": 24.0,
+        "upAxis": "Y"
+      },
+      "prims": {
+        "/World": "Xform",
+        "/World/Cube": "Cube",
+        "/World/Looks": "Scope",
+        "/World/Looks/RedMat": "Material",
+        "/World/Looks/RedMat/PreviewSurface": "Shader",
+        "/World/Sphere": "Sphere"
+      },
+      "translate_samples": {
+        "0": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "12": [
+          24.0,
+          0.0,
+          0.0
+        ],
+        "18": [
+          36.0,
+          0.0,
+          0.0
+        ],
+        "24": [
+          48.0,
+          0.0,
+          0.0
+        ],
+        "6": [
+          12.0,
+          0.0,
+          0.0
+        ]
+      },
+      "translate_shuffled": [
+        [
+          48.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          36.0,
+          0.0,
+          0.0
+        ],
+        [
+          12.0,
+          0.0,
+          0.0
+        ],
+        [
+          24.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "values": {
+        "binding": [
+          "/World/Looks/RedMat"
+        ],
+        "cube_size": 2.0,
+        "diffuse_color": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "sphere_radius": 0.5,
+        "sphere_translate": [
+          0.0,
+          3.0,
+          0.0
+        ]
+      }
+    }
+  }
+}
