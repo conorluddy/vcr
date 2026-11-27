@@ -1,0 +1,17 @@
+{
+  "arrows_v1": 2,
+  "arrows_v2": 3,
+  "nodes_moved": [],
+  "nodes_unmoved": [
+    "Source",
+    "Layout",
+    "SVG"
+  ],
+  "nodes_v1": 3,
+  "nodes_v2": 4,
+  "v1_sha256": "59314a1b9fccc5f63b06a85ab146f3852562caaa198d22f2fbde6b22c034565f",
+  "v1_viewBox": "0 0 436 127",
+  "v2_sha256": "f37df47ec91091c581d0c3fabfb45e16fa7b096be120e34629d92b59bf052c01",
+  "v2_viewBox": "0 0 453 246",
+  "version": "0.32.1"
+}
