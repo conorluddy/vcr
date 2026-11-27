@@ -35,6 +35,8 @@ Say in one line which state you found and where you are starting.
 
 Follow `catalog/CANDIDATE-INGESTION.md` §1: write one `candidate` record from official sources, applying the free-software gate. A non-free or source-available lead gets no record; it stays in the inbox.
 
+Version, licence and install lines in a lead are often stale: take them from the registry or release page, and note on the card where the lead differed. `pnpm validate` enforces card limits the skill doesn't repeat (`role` ≤ 100 characters, `use_when` and `avoid_when` lengths, `pairs_with` ids that already exist in `catalog/tools/`), so run it as soon as the record exists.
+
 If the tool came from a digest, tick its triage box with the decision (`- [x] triage: assess`, or `defer` or `retire` with the reason on the next line). That is the only edit a digest allows; everything else in it is history the discovery routine dedupes against.
 
 ## 3. Assess
@@ -82,3 +84,7 @@ Fill the row with the decision, verdict, example path, pass, partial, fail or bl
 ## 7. Report
 
 Give the PR link, the one-line claim the fixture proves and what it does not, anything left untested in the guide, and the next step: a reviewer decides promotion to core.
+
+## As a worker in a wave
+
+When an orchestrator runs several onboardings in parallel worktrees, it owns step 6. Stop after step 5 and commit only the tool's sources: `catalog/tools/<id>.json`, `examples/<dir>/`, `skills/<id>/` and the digest tick, with explicit paths and `--no-verify`. The pre-commit hook regenerates and stages `catalog/tools.json`, `INDEX.md`, `CANDIDATES.md` and `plugin/`, and those copies conflict across workers. Leave `pnpm-lock.yaml` unstaged as well. Don't push or open a PR. Don't make machine-level installs, because a worker can't ask for approval: record the evidence as blocked with the install plan instead. The orchestrator merges the branches, runs `pnpm install` and the builds once, reruns every example and opens one PR.
