@@ -3873,6 +3873,78 @@
       "skill": "skills/ffmpeg-wasm/SKILL.md"
     },
     {
+      "id": "ffsubsync",
+      "name": "ffsubsync",
+      "category": "Caption compliance",
+      "tier": "candidate",
+      "role": "CLI that shifts an existing subtitle file to match the speech in audio or video, without ASR",
+      "summary": "Python CLI `ffsubsync`: aligns an SRT or other subtitle file to a video, audio file or reference subtitle by matching voice activity to cue timing, applying one offset and an optional framerate scale. It does not transcribe or fix drift across cuts.",
+      "use_when": [
+        "A caption file is a constant offset from the speech after a re-edit or a new voiceover take",
+        "Retiming without transcription; whisperx and syncalong make new timings by ASR"
+      ],
+      "avoid_when": [
+        "Timing that drifts across cuts: one offset cannot fix it",
+        "Producing timings from audio: whisperx or syncalong",
+        "Checking caption limits: caption-checker"
+      ],
+      "pairs_with": [
+        "pysubs2",
+        "whisperx",
+        "caption-checker"
+      ],
+      "official_url": "https://github.com/smacke/ffsubsync",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "python3.12 -m venv venv && venv/bin/pip install ffsubsync==0.5.1",
+        "check_command": "ffsubsync --version"
+      },
+      "examples": [
+        "ffsubsync-offset-correction"
+      ],
+      "notes": [
+        "2026-11-27: lead said `uv tool install`; the fixture uses a pinned venv instead. PyPI 0.5.1 (2026-07-24) matches the lead, MIT. Requires ffmpeg on PATH and pulls pysubs2, numpy, webrtcvad-wheels and auditok.",
+        "2026-11-27: on a 30 s clip the default 60 s offset search chose -23 s for a +3 s shift and dropped cues with negative times; --max-offset-seconds 5 or 10 found the right offset. Cause not established."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "0.5.1",
+        "last_release": "2026-07-24",
+        "maintenance": "slow",
+        "verdict": "promote",
+        "rationale": "PyPI 0.5.1 uploaded 2026-07-24, MIT per installed metadata; the last push was four months ago. Nothing catalogued corrects the timing of an existing caption file without ASR: whisperx and syncalong re-time by transcribing, caption-checker only checks, pysubs2 shifts by a number you must already know.",
+        "sources": [
+          "https://github.com/smacke/ffsubsync",
+          "https://pypi.org/project/ffsubsync/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.5.1",
+            "command": "examples/ffsubsync-offset-correction/run.sh",
+            "result": "7 `say` phrases at known times on a 30 s track; SRT shifted +3.0 s and -1.5 s. With --max-offset-seconds 10 both are corrected, worst start/end error 0.01 s (limit 0.25 s). With default flags both FAIL: offset -23 s chosen for +3.0 s, 2 and 1 of 7 cues returned. Two processes identical. Python 3.12.13.",
+            "example": "examples/ffsubsync-offset-correction",
+            "scope": "Constant offsets on clean synthetic speech, 30 s; default-flag checks fail and are recorded (KNOWN FAIL). No drift, music, real recordings, framerate or reference-SRT sync; macOS arm64."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-21-discovery.md",
+      "skill": "skills/ffsubsync/SKILL.md"
+    },
+    {
       "id": "flowmap-gl",
       "name": "flowmap.gl",
       "category": "A9. Adjacent resources mentioned during discovery",
@@ -5559,6 +5631,77 @@
       ]
     },
     {
+      "id": "halftone-converter",
+      "name": "Halftone Converter",
+      "category": "A6. Image processing and colour",
+      "tier": "candidate",
+      "role": "Python CLI that renders stills as halftone screens with set angles per CMYK plate",
+      "summary": "Python CLI `halftonecv` (and library) that redraws a raster as Cairo-drawn round-dot halftones in gray, RGB or CMYK, with pitch, scale, blur and per-channel screen angles, using ICC profiles for the colour conversion. Stills only; one process per frame.",
+      "use_when": [
+        "A print-process look needs real per-plate screen angles (CMYK 15, 75, 0, 45) rather than a filter approximation",
+        "Treating a still asset before it enters a scene"
+      ],
+      "avoid_when": [
+        "Quick ordered-dither or threshold looks: imagemagick",
+        "Distributed code that must not be AGPL: call it as a CLI only",
+        "Per-frame video treatment where a shader or filter is cheaper"
+      ],
+      "pairs_with": [
+        "imagemagick",
+        "g-mic"
+      ],
+      "official_url": "https://github.com/curegit/halftone-converter",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing"
+      ],
+      "license": "AGPL-3.0-or-later",
+      "install": {
+        "macos": "python3.12 -m venv venv && venv/bin/pip install halftone-converter==2.6.14",
+        "check_command": "halftonecv --version"
+      },
+      "examples": [
+        "halftone-screen-separation"
+      ],
+      "notes": [
+        "2026-11-27: The lead's CLI entry point was unverified; it is `halftonecv` (also `python -m halftonecv`), not `halftone-converter`.",
+        "2026-11-27: `-o cmyk` writes the rendered image as a TIFF, not separated plates. Only dots of the C plate show on saturated red, since M and Y saturate; use mid-tone inputs. Isolate a plate with `--keep-*` on the others."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "2.6.14",
+        "last_release": "2026-11-10",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "PyPI 2.6.14 uploaded 2026-11-10 (33 releases since 2023), AGPL-3.0-or-later in wheel metadata, 42 stars, one maintainer. imagemagick and g-mic can fake halftones with dither or filters; none sets a rotated screen angle per CMYK plate with ICC conversion. Niche, so keep and do not promote.",
+        "sources": [
+          "https://github.com/curegit/halftone-converter",
+          "https://pypi.org/project/halftone-converter/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.6.14",
+            "command": "examples/halftone-screen-separation/run.sh",
+            "result": "13 checks pass, repeat identical: gray at -A 45 measures 45.0 deg, period 15.74 px (pitch 8, scale 2); CMYK plates isolated with --keep-* measure C 14.5, M 75.5, Y 0.0, K 45.0 deg for 15/75/0/45; gray output byte-identical on repeat.",
+            "example": "examples/halftone-screen-separation",
+            "scope": "Screen angle, pitch and determinism on flat patches, default SWOP profile; not ICC accuracy, photos, video frames or other platforms; macOS arm64, Python 3.12."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-25-discovery.md",
+      "skill": "skills/halftone-converter/SKILL.md"
+    },
+    {
       "id": "harfbuzz",
       "name": "HarfBuzz utilities",
       "category": "Discovery: research candidates",
@@ -6230,6 +6373,76 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "iris-pse-detection",
+      "name": "iris-pse-detection",
+      "category": "Caption compliance",
+      "tier": "candidate",
+      "role": "Python port of EA IRIS: screens video for photosensitive-epilepsy flash risk; advisory only",
+      "summary": "Python library and `iris` CLI screening video for luminance and saturated-red flashes over a 1 s window, extended failures and optional stripe patterns. A screening aid; not WCAG, Harding or Ofcom conformance, and not a safety certificate.",
+      "use_when": [
+        "Machine-screen a decoded render for general or red flash before human review",
+        "Produce a per-frame flash CSV or JSON for an accessibility review"
+      ],
+      "avoid_when": [
+        "Claiming a video is safe or WCAG 2.3.1 compliant: advisory only, needs expert and human review",
+        "Checking caption limits: caption-checker"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "caption-checker"
+      ],
+      "official_url": "https://github.com/tokoroten/iris-pse-detection",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "python3.12 -m venv output/venv && output/venv/bin/pip install iris-pse-detection==1.1.2",
+        "check_command": "iris --help"
+      },
+      "examples": [
+        "iris-pse-flash-detection"
+      ],
+      "notes": [
+        "2026-11-27: the lead left the upstream licence unverified; EA IRIS is BSD-3-Clause and the port's LICENSE omits EA's notice. Pulls opencv-python, numpy and scipy. analyse_video prints timings to stdout and writes Results/ CSVs in the cwd. overall_result is an enum: compare .name, str() gives a number."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "1.1.2",
+        "last_release": "2026-01-22",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "PyPI 1.1.2 uploaded 2026-01-22, MIT, Python >=3.10, Beta; single-maintainer port with few stars; README disclaims accuracy versus C++ IRIS. No catalogued tool screens for flash, so it fills an accessibility gap, but only as a screen: the accessibility skill says absent validated measurement, report unable to assess.",
+        "sources": [
+          "https://github.com/tokoroten/iris-pse-detection",
+          "https://pypi.org/project/iris-pse-detection/",
+          "https://github.com/electronicarts/IRIS"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.1.2",
+            "command": "examples/iris-pse-flash-detection/run.sh",
+            "result": "4 checks pass, repeat processes identical: generated 640x360 30 fps 4 s clips; 5 Hz full-frame black/white = Fail, 99 of 120 frames luminance flash-fail, 0 red; 1 Hz alternation = Pass; static grey = Pass. Python 3.12, numpy 2.5.5, FFmpeg 9.0.2.",
+            "example": "examples/iris-pse-flash-detection",
+            "scope": "Advisory: gross 5 Hz flash flagged, 1 Hz and static pass; not threshold sensitivity, red, patterns, real footage or any conformance; macOS arm64."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-16-discovery.md",
+      "skill": "skills/iris-pse-detection/SKILL.md"
+    },
+    {
       "id": "isometric-js",
       "name": "isometric (@elchininet/isometric)",
       "category": "A4. Vector, typography, diagrams and stills",
@@ -6885,6 +7098,81 @@
       "skill": "skills/librosa/SKILL.md"
     },
     {
+      "id": "libsonare",
+      "name": "libsonare",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Beat, onset and loudness analysis",
+      "official_url": "https://libsonare.libraz.net",
+      "repository_url": "https://github.com/libraz/libsonare",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-11-27: Lead said 1.10.0 and an unverified macOS arm64 wheel; PyPI shows 2.0.0 (2026-11-26) with a macosx_11_0_arm64 wheel, installed into a venv without a system install.",
+        "2026-11-27: Fixture libsonare-beat-loudness passed: 120 and 90 BPM click tempo within 0.4 %, beats and onsets matched every click, sine LUFS within 0.03 LU of truth, reruns identical.",
+        "2026-11-27: Mastering, mixing, stems, transcription, MIDI rendering and the WASM and Node builds are documented but untested. The catalogue neighbours librosa and aubio each failed one tempo or beat check on the same kind of click track; no head-to-head claim is made.",
+        "2026-11-27: Toolkit guide written at skills/libsonare/SKILL.md from the passing fixture."
+      ],
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.0.0",
+            "command": "examples/libsonare-beat-loudness/run.sh",
+            "result": "11 of 11 predeclared checks pass. 120 BPM clicks (19): tempo 119.626, beats 19 within 11.4 ms, onsets 19 within 0.9 ms. 90 BPM clicks (15): tempo 89.656, beats 15 within 10.7 ms, onsets 15 within 0.9 ms. 997 Hz mono sine at -20 dBFS peak: integrated -22.98 LUFS vs true -23.01. Two runs byte-identical. numpy 2.5.5, Python 3.12, macOS arm64.",
+            "example": "examples/libsonare-beat-loudness",
+            "scope": "Generated clicks at 120 and 90 BPM and one sine, 22050 Hz mono, macOS arm64 wheel: tempo, beat and onset times and integrated LUFS vs known truth; no music, mastering, mixing or WASM."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "examples": [
+        "libsonare-beat-loudness"
+      ],
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-23-discovery.md",
+      "summary": "Dependency-light C++ audio engine with a Python wheel, sonare CLI and npm and WASM builds. Detects BPM, beats, onsets, key, chords and sections, measures EBU R128 loudness, and also masters, mixes, transcribes and renders MIDI. One young, single-maintainer project.",
+      "use_when": [
+        "Get beat, onset and tempo times from audio to cut or time motion to music",
+        "Measure integrated LUFS or loudness range of a mix in Python"
+      ],
+      "avoid_when": [
+        "Need a frame-level feature stream in the browser: Meyda",
+        "Need to normalise loudness while encoding: ffmpeg-normalize"
+      ],
+      "pairs_with": [
+        "librosa",
+        "aubio",
+        "ffmpeg-normalize"
+      ],
+      "license": "Apache-2.0 (code; the README says no models are bundled; licences of any model loaded for stems are unverified)",
+      "install": {
+        "macos": "python3.12 -m venv output/venv && output/venv/bin/python -m pip install -r requirements.txt inside examples/libsonare-beat-loudness (libsonare==2.0.0 pinned)",
+        "check_command": "output/venv/bin/sonare version"
+      },
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-libsonare",
+        "version_seen": "2.0.0",
+        "last_release": "2026-11-26",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Apache-2.0 per wheel metadata and PyPI; released the day before assessment; macOS arm64 wheel installs and runs offline. Single maintainer, repository from 2026-01, version jumped 1.10.0 to 2.0.0 in a month: pin it. Adds loudness and mastering beside librosa and aubio style analysis.",
+        "sources": [
+          "https://github.com/libraz/libsonare",
+          "https://libsonare.libraz.net",
+          "https://pypi.org/project/libsonare/2.0.0/"
+        ]
+      },
+      "skill": "skills/libsonare/SKILL.md"
+    },
+    {
       "id": "libvips",
       "name": "libvips",
       "category": "A9. Adjacent resources mentioned during discovery",
@@ -7028,6 +7316,82 @@
           "https://chromium.googlesource.com/webm/libwebp/+/refs/tags/v1.6.0"
         ]
       }
+    },
+    {
+      "id": "lightusd",
+      "name": "LightUSD",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "candidate",
+      "role": "Dependency-free USD reader/writer (.usda, .usdc, .usdz) via a pip wheel or npm",
+      "summary": "A C++17 USD library (formerly TinyUSDZ) with Python and WASM/npm bindings. The Python wheel creates a stage in code and saves .usda, .usdc or .usdz by extension, and loads them back. It has no renderer and no Hydra. A 1.0 released 2026-11-09, so young; it installs without Pixar's build.",
+      "use_when": [
+        "Write a small scene as .usda, .usdc or .usdz from Python without building OpenUSD",
+        "Inspect or check a USDZ's prims, metadata and time samples as data",
+        "Over openusd when only stage data is needed and the install should be one wheel"
+      ],
+      "avoid_when": [
+        "Rendering, Hydra or usdchecker compliance: Blender or OpenUSD",
+        "Small real-time GLB assets: gltf-transform",
+        "Production composition: openusd is the reference implementation"
+      ],
+      "pairs_with": [
+        "openusd",
+        "gltf-transform",
+        "blender"
+      ],
+      "official_url": "https://github.com/lighttransport/LightUSD",
+      "repository_url": "https://github.com/lighttransport/LightUSD",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-asset-processing"
+      ],
+      "license": "Apache-2.0 (wheel metadata and README); some MIT helper code per LICENSE.3rdparty",
+      "install": {
+        "macos": "cd examples/lightusd-stage-roundtrip && python3.12 -m venv output/venv && output/venv/bin/python -m pip install -r requirements.txt",
+        "check_command": "examples/lightusd-stage-roundtrip/output/venv/bin/python -c \"import lightusd; print(lightusd.__version__)\""
+      },
+      "examples": [
+        "lightusd-stage-roundtrip"
+      ],
+      "notes": [
+        "2026-11-27: lead matched PyPI (1.0.0, 2026-11-09, Apache-2.0, macOS arm64 abi3 wheel, Python >=3.11). The lead's 'glTF or OBJ conversion not documented' is partly wrong: the module exports import_obj, import_urdf and import_mjcf (untested here).",
+        "2026-11-27: the fixture's six reads agree, including usd-core 26.11 reading lightusd's .usda, .usdc and .usdz; usdchecker was not run and nothing was rendered.",
+        "2026-11-27: Python API quirks seen: Stage.default_prim returns a Prim, not a name; Relationship.targets are strings; Attribute.timesamples.times is a property."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "1.0.0",
+        "last_release": "2026-11-09",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "PyPI 1.0.0 (2026-11-09), last push 2026-11-22, Apache-2.0. Young but the write path works: usd-core reads its .usda, .usdc and .usdz. Adds a one-wheel USDZ writer next to openusd, which has no USDZ evidence; overlap is real, so keep as a candidate, not a promotion.",
+        "sources": [
+          "https://github.com/lighttransport/LightUSD",
+          "https://pypi.org/project/lightusd/",
+          "https://lighttransport.github.io/LightUSD/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.0.0",
+            "command": "examples/lightusd-stage-roundtrip/run.sh",
+            "result": "lightusd 1.0.0 authors Xform, Cube, Sphere, material binding, translate samples at frames 0-24, metersPerUnit 0.01, upAxis Y; saves .usda, .usdc, .usdz. lightusd and usd-core 26.11 each read all three: six reads equal (prims, values, metadata, samples, binding, shuffled reads). usdz is one stored root.usdc, data 64-byte aligned. Rerun .usda and .usdz byte-identical. Python 3.12.13, macOS arm64.",
+            "example": "examples/lightusd-stage-roundtrip",
+            "scope": "lightusd authors one stage, saves .usda/.usdc/.usdz; lightusd and usd-core 26.11 read equal; no usdchecker, no rendering, no assets in the USDZ; macOS arm64"
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-24-discovery.md",
+      "skill": "skills/lightusd/SKILL.md"
     },
     {
       "id": "lmms",
@@ -9579,6 +9943,79 @@
       "skill": "skills/node-av/SKILL.md"
     },
     {
+      "id": "nvidia-warp",
+      "name": "NVIDIA Warp",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Python kernel framework for particle, field and geometry simulation, CPU on macOS",
+      "official_url": "https://github.com/NVIDIA/warp",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "physics-simulation"
+      ],
+      "notes": [
+        "2026-11-27: Triage: assess. Scriptable Python kernels bake particles, fields or meshes at a fixed step; neighbours pymunk (2D rigid), jolt-physics-js and rapier (rigid), splishsplash (SPH app).",
+        "2026-11-27: Lead said Apache-2.0 (verified: wheel metadata and LICENSE.md) and 1.19.0 uploaded 2026-11-02 (verified on PyPI). The 1.19.0 wheel has no warp.sim package, so cloth and soft bodies are not in this release; not claimed.",
+        "2026-11-27: Skill opportunity: VCR toolkit guide justified by the fixed-step fixture; macOS wheels are CPU only (no Metal)."
+      ],
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.19.0",
+            "command": "examples/nvidia-warp-particle-fixed-step/run.sh",
+            "result": "CPU backend, numpy 2.5.5, Python 3.12: 64 particles with gravity, pairwise repulsion, a sphere and a floor, 600 steps at 1/60 s with 4 substeps. 9 of 9 gates pass: two process runs identical (601 hashes); 9 fresh-process re-simulations in shuffled order match the trace; no penetration; settled at 0.0117 m/s. Five atomic_add sums identical (0.746666). Agent-reviewed side view shows fall, scatter off the sphere and rest.",
+            "example": "examples/nvidia-warp-particle-fixed-step",
+            "scope": "Fixed-step CPU particle kernels, same-machine reruns and fresh-process seek; no atomics across thread counts, GPU, cloth (no warp.sim in 1.19.0), FEM or fluids, no render; macOS arm64 only."
+          }
+        ]
+      },
+      "examples": [
+        "nvidia-warp-particle-fixed-step"
+      ],
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-22-discovery.md",
+      "summary": "Python framework that JIT-compiles kernels (CPU, or CUDA off macOS) for particles, fields, meshes and FEM. Driven from a script, it bakes per-step arrays to numpy for a renderer or Blender. On macOS the wheel is CPU only; 1.19.0 ships no warp.sim, so no cloth or soft bodies. Distinct strength: write your own 3D simulation kernels.",
+      "use_when": [
+        "Bake custom 3D particle or field simulation from Python at a fixed step",
+        "Use over pymunk when the sim is 3D or needs custom kernels"
+      ],
+      "avoid_when": [
+        "Use Rapier or Jolt for rigid bodies with contacts and joints",
+        "Use Pymunk for plain 2D rigid-body scenes",
+        "Avoid large simulations on macOS: CPU only, no Metal"
+      ],
+      "pairs_with": [
+        "pymunk",
+        "jolt-physics-js"
+      ],
+      "license": "Apache-2.0",
+      "skill": "skills/nvidia-warp/SKILL.md",
+      "install": {
+        "macos": "python3.12 -m venv venv && venv/bin/pip install warp-lang==1.19.0 numpy",
+        "check_command": "python3 -c \"import warp; print(warp.config.version)\""
+      },
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-nvidia-warp",
+        "version_seen": "1.19.0",
+        "last_release": "2026-11-02",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Apache-2.0 per wheel metadata; 1.19.0 released 2026-11-02 with an arm64 macOS wheel (CPU only). No warp.sim in the wheel, so cloth is out of scope. A custom-kernel 3D bake route that pymunk and rapier do not cover.",
+        "sources": [
+          "https://github.com/NVIDIA/warp",
+          "https://pypi.org/project/warp-lang/1.19.0/",
+          "https://nvidia.github.io/warp/"
+        ]
+      }
+    },
+    {
       "id": "occt-wasm",
       "name": "occt-wasm",
       "category": "3D CAD interchange",
@@ -11230,6 +11667,83 @@
       "skill": "skills/piper/SKILL.md"
     },
     {
+      "id": "pixelsort",
+      "name": "pixelsort",
+      "category": "A6. Image processing and colour",
+      "tier": "candidate",
+      "role": "Python pixel-sorting glitch effect for stills: interval functions, masks, angle, sort keys",
+      "official_url": "https://github.com/satyarth/pixelsort",
+      "repository_url": "https://github.com/satyarth/pixelsort",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing",
+        "effects"
+      ],
+      "notes": [
+        "2026-11-27: Triage: assess. g-mic, imagemagick and libvips have no pixel-sort operator; one effect for glitch transitions on stills or frame sequences. Lead details confirmed: PyPI 1.0.2 (2026-09-03), GitHub licence MIT, 877 stars, last push 2026-09-03.",
+        "2026-11-27: pixelsort 1.0.2 declares an unpinned Pillow requirement but imports PIL.PyAccess, which newer Pillow removed; a fresh install on Pillow 13 fails at import. The fixture pins Pillow 10.4.0.",
+        "2026-11-27: No seed option. The random and waves interval functions and the randomness option draw from Python's global random, so call random.seed(n) first when using the API; the CLI cannot be made repeatable that way, so use threshold, edges or a mask there."
+      ],
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "examples": [
+        "pixelsort-span-sort"
+      ],
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.0.2 (Pillow 10.4.0, Python 3.12.13)",
+            "command": "examples/pixelsort-span-sort/run.sh",
+            "result": "Pass: 9 of 9 predeclared checks plus repeat-run equality. Threshold on a generated 240x135 image: 3646 spans, 0 unsorted by lightness, 0 rows not a permutation, 19913 pixels changed. Hue with interval none: 0 of 135 rows unsorted. Mask left right half untouched. Angle 90 sorted 240 of 240 columns. CLI equals API. Seeded random repeats across processes; CLI random differs between runs.",
+            "example": "examples/pixelsort-span-sort",
+            "scope": "Python venv, macOS arm64, 240x135 generated RGB still: threshold, none, mask, angle 90 and random intervals with lightness and hue keys; no edges, waves, file intervals, 4K speed or sequences"
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "skill": "skills/pixelsort/SKILL.md",
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-20-discovery.md",
+      "summary": "Small Python module and CLI that sorts runs of pixels along rows (or columns via angle) by lightness, hue, saturation, intensity or minimum channel. Run boundaries come from brightness thresholds, edge detection, random or wave widths, or a black-and-white interval image, and a mask can protect regions. Writes ordinary images. Pure Python on Pillow, so slow at 4K; its strength is the one glitch effect no neighbour has.",
+      "use_when": [
+        "Pixel-sort glitch stills or transitions that ImageMagick, G'MIC and libvips have no operator for",
+        "Threshold-bounded streaks sorted by hue or lightness, masked to part of the frame",
+        "Repeatable frames from the Python API with a seeded global random"
+      ],
+      "avoid_when": [
+        "Large frames or long sequences: pure Python, use libvips or G'MIC for speed",
+        "Repeatable random intervals from the CLI: it has no seed, use the API",
+        "Other glitch or filter looks: G'MIC has about a thousand filters"
+      ],
+      "pairs_with": [
+        "imagemagick",
+        "g-mic",
+        "libvips",
+        "ffmpeg-ffprobe"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "python3.12 -m venv venv && venv/bin/pip install pixelsort==1.0.2 Pillow==10.4.0",
+        "check_command": "python3 -m pip show pixelsort"
+      },
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-pixelsort",
+        "version_seen": "1.0.2",
+        "last_release": "2026-09-03",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "MIT, 1.0.2 released 2026-09-03 with a push the same day. Fills a gap no neighbour covers. Breaks on current Pillow (PyAccess import), so a pin is needed; random intervals use the unseeded global random.",
+        "sources": [
+          "https://github.com/satyarth/pixelsort",
+          "https://pypi.org/project/pixelsort/"
+        ]
+      }
+    },
+    {
       "id": "pixijs",
       "name": "PixiJS",
       "category": "A1. Creative coding and 2D",
@@ -12540,6 +13054,76 @@
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a",
       "skill": "skills/pyscenedetect/SKILL.md"
+    },
+    {
+      "id": "pyseq",
+      "name": "PySeq",
+      "category": "A5. Video and capture",
+      "tier": "candidate",
+      "role": "Python library and CLI that lists numbered frame files as ranges with missing frames",
+      "summary": "Python library and CLI suite (`lss`, `stree`, `sfind`, `sdiff`, `sstat`, `scopy`, `smv`, `srm`) that groups numbered files such as `frame.0001.png` into sequences and reports ranges like `[1-3, 6-7, 10]` and the exact missing frames. It reads file names only, never pixels.",
+      "use_when": [
+        "Check a capture or render folder has every frame before encoding, with the missing numbers listed",
+        "List which sequences sit in a folder, with start, end and length"
+      ],
+      "avoid_when": [
+        "Encoding or reading pixels from a sequence: FFmpeg or OpenImageIO",
+        "A one-off check of a single known range: a shell loop is enough"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "openimageio-oiiotool"
+      ],
+      "official_url": "https://github.com/rsgalloway/pyseq",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "media-inspection"
+      ],
+      "license": "BSD-3-Clause",
+      "install": {
+        "macos": "python3.12 -m venv venv && venv/bin/pip install pyseq==0.9.3",
+        "check_command": "lss --help"
+      },
+      "examples": [
+        "pyseq-frame-gaps"
+      ],
+      "notes": [
+        "2026-11-27: lead said `uv tool install`; the fixture uses a pinned pip venv instead. Lead version 0.9.3 and BSD-3-Clause confirmed on PyPI.",
+        "2026-11-27: non-frame files such as notes.txt are returned as one-item sequences, and mixed padding (001, 002, 0100) merges into one sequence with false missing frames; filter and normalise before use."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "0.9.3",
+        "last_release": "2026-07-25",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "PyPI 0.9.3 (2026-07-25), BSD-3-Clause, no dependencies, repository pushed 2026-08-24. ffmpeg-ffprobe and openimageio-oiiotool read sequences but do not report which frames are missing. Overlaps a shell loop for a known range, so keep as a candidate, not core.",
+        "sources": [
+          "https://github.com/rsgalloway/pyseq",
+          "https://pypi.org/project/pyseq/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.9.3",
+            "command": "examples/pyseq-frame-gaps/run.sh",
+            "result": "5 of 7 checks pass, repeat processes identical: gap [1-3, 6-7, 10] gives missing 4,5,8,9; 1001-1005 gives missing 1003; lss prints the range line. KNOWN FAIL: notes.txt listed as a sequence; pad.001/002 + pad.0100 merge with 97 false missing frames.",
+            "example": "examples/pyseq-frame-gaps",
+            "scope": "Empty generated files, names only, Python 3.12 macOS arm64: gaps and ranges correct; stray files and mixed padding not handled; no pixels, duplicates or other CLIs."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-22-discovery.md",
+      "skill": "skills/pyseq/SKILL.md"
     },
     {
       "id": "pysubs2",

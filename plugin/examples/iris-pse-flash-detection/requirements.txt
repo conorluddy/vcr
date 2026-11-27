@@ -1,0 +1,4 @@
+iris-pse-detection==1.1.2
+numpy==2.5.5
+opencv-python==5.1.0.95
+scipy==1.18.1

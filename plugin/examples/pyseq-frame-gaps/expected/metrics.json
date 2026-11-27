@@ -1,0 +1,66 @@
+{
+  "all_passed": false,
+  "checks": {
+    "cli_lss_line": {
+      "observed": "6 frame.%04d.png [1-3, 6-7, 10]",
+      "passed": true
+    },
+    "complete_has_no_gaps": {
+      "observed": [
+        1,
+        5,
+        5,
+        []
+      ],
+      "passed": true
+    },
+    "gap_missing_frames": {
+      "observed": [
+        4,
+        5,
+        8,
+        9
+      ],
+      "passed": true
+    },
+    "gap_range_string": {
+      "observed": [
+        "[1-3, 6-7, 10]",
+        6
+      ],
+      "passed": true
+    },
+    "mixed_padding_reports_no_false_gaps": {
+      "observed": {
+        "pad.%03d.png": [
+          "[1-2, 100]",
+          97
+        ]
+      },
+      "passed": false
+    },
+    "offset_start_gap": {
+      "observed": [
+        1001,
+        1005,
+        [
+          1003
+        ]
+      ],
+      "passed": true
+    },
+    "two_sequences_split_and_text_ignored": {
+      "observed": {
+        "a.%04d.png": "[1-3]",
+        "b.%04d.png": "[1, 3]",
+        "notes.txt": ""
+      },
+      "passed": false
+    }
+  },
+  "failed": [
+    "two_sequences_split_and_text_ignored",
+    "mixed_padding_reports_no_false_gaps"
+  ],
+  "pyseq_version": "0.9.3"
+}

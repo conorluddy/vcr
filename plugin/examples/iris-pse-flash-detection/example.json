@@ -1,0 +1,8 @@
+{
+  "id": "iris-pse-flash-detection",
+  "title": "IRIS flash screening: 5 Hz black/white flags, 1 Hz and static pass",
+  "summary": "Python venv: IRIS 1.1.2 on three generated 640x360 30 fps clips. Full-frame 5 Hz black/white fails with 99 luminance flash frames; a 1 Hz alternation and a static grey pass. Advisory only.",
+  "status": "not-validated",
+  "tools": ["iris-pse-detection"],
+  "run": "./run.sh"
+}

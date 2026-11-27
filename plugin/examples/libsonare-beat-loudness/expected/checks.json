@@ -1,0 +1,33 @@
+{
+  "click_120": {
+    "true_click_count": 19,
+    "bpm": 119.626,
+    "beat_count": 19,
+    "onset_count": 19,
+    "max_beat_error_ms": 11.4,
+    "max_onset_error_ms": 0.9
+  },
+  "click_90": {
+    "true_click_count": 15,
+    "bpm": 89.656,
+    "beat_count": 15,
+    "onset_count": 15,
+    "max_beat_error_ms": 10.7,
+    "max_onset_error_ms": 0.9
+  },
+  "sine_integrated_lufs": -22.98,
+  "sine_true_lufs": -23.01,
+  "checks": {
+    "bpm_120_within_2_percent": true,
+    "beats_120_count_matches_clicks": true,
+    "beats_120_within_40_ms": true,
+    "onsets_120_count_matches_clicks": true,
+    "onsets_120_within_30_ms": true,
+    "bpm_90_within_2_percent": true,
+    "beats_90_count_matches_clicks": true,
+    "beats_90_within_40_ms": true,
+    "onsets_90_count_matches_clicks": true,
+    "onsets_90_within_30_ms": true,
+    "sine_lufs_within_0_5_lu": true
+  }
+}

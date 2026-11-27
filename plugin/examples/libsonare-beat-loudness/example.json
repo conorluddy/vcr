@@ -1,0 +1,10 @@
+{
+  "id": "libsonare-beat-loudness",
+  "title": "libsonare tempo, beats, onsets and LUFS on generated click and sine audio",
+  "summary": "Generated 120 and 90 BPM click tracks and a -20 dBFS sine: libsonare 2.0.0 tempo, beat and onset times and integrated LUFS are checked against known truth. Python wheel in a venv.",
+  "status": "not-validated",
+  "tools": [
+    "libsonare"
+  ],
+  "run": "./run.sh"
+}
