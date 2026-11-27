@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>html, body { margin: 0; background: transparent; overflow: hidden; }</style>
+<script type="importmap">
+{ "imports": {
+  "three": "/examples/three-quarks-capture/node_modules/three/build/three.module.js",
+  "quarks.core": "/node_modules/.pnpm/quarks.core@0.18.0/node_modules/quarks.core/dist/quarks.core.esm.js",
+  "three.quarks": "/examples/three-quarks-capture/node_modules/three.quarks/dist/three.quarks.esm.js"
+} }
+</script>
+</head>
+<body>
+<script type="module">
+  // three.quarks advances by batchRenderer.update(delta), so it has no seek. To make frame t a pure
+  // function of t, every seek rebuilds the system, reseeds Math.random (quarks draws all its randomness
+  // from it) and replays fixed steps from 0 to t. The replay reads no wall clock.
+  import * as THREE from "three";
+  import { BatchedRenderer, ParticleSystem, RenderMode, ConeEmitter, ConstantValue, IntervalValue, ColorRange, Vector4, Vector3, ApplyForce, ColorOverLife, SizeOverLife, PiecewiseBezier, Bezier } from "three.quarks";
+
+  const DURATION = 3;
+  const STEP_SECONDS = 1 / 60;
+  const SEED = 0x5eed;
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+  document.body.appendChild(renderer.domElement);
+  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 1.5, 8);
+  camera.lookAt(0, 1.5, 0);
+
+  // Radial-gradient sprite drawn in code, so no asset file is involved.
+  const spriteCanvas = document.createElement("canvas");
+  spriteCanvas.width = spriteCanvas.height = 64;
+  const spriteContext = spriteCanvas.getContext("2d");
+  const gradient = spriteContext.createRadialGradient(32, 32, 0, 32, 32, 32);
+  gradient.addColorStop(0, "rgba(255,255,255,1)");
+  gradient.addColorStop(1, "rgba(255,255,255,0)");
+  spriteContext.fillStyle = gradient;
+  spriteContext.fillRect(0, 0, 64, 64);
+  const spriteTexture = new THREE.CanvasTexture(spriteCanvas);
+  spriteTexture.colorSpace = THREE.SRGBColorSpace;
+  const material = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+
+  function seededRandom(seed) {
+    let state = seed >>> 0;
+    return () => {
+      state = (state + 0x6d2b79f5) >>> 0; // mulberry32
+      let value = state;
+      value = Math.imul(value ^ (value >>> 15), value | 1);
+      value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+      return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function buildFountain() {
+    const scene = new THREE.Scene();
+    const batchRenderer = new BatchedRenderer();
+    const system = new ParticleSystem({
+      duration: DURATION,
+      looping: false,
+      startLife: new IntervalValue(1.2, 2),
+      startSpeed: new IntervalValue(3, 5),
+      startSize: new IntervalValue(0.15, 0.35),
+      startColor: new ColorRange(new Vector4(1, 0.6, 0.2, 1), new Vector4(0.4, 0.9, 1, 1)),
+      worldSpace: true,
+      maxParticles: 400,
+      emissionOverTime: new ConstantValue(120),
+      shape: new ConeEmitter({ radius: 0.1, angle: 0.4, thickness: 1 }),
+      material,
+      renderMode: RenderMode.BillBoard,
+    });
+    system.addBehavior(new ApplyForce(new Vector3(0, -1, 0), new ConstantValue(4)));
+    system.addBehavior(new SizeOverLife(new PiecewiseBezier([[new Bezier(1, 0.9, 0.5, 0), 0]])));
+    system.addBehavior(new ColorOverLife(new ColorRange(new Vector4(1, 1, 1, 1), new Vector4(1, 1, 1, 0))));
+    system.emitter.position.set(0, -1, 0);
+    system.emitter.rotation.x = -Math.PI / 2;
+    batchRenderer.addSystem(system);
+    scene.add(batchRenderer);
+    scene.add(system.emitter);
+    return { scene, batchRenderer, system };
+  }
+
+  const nativeRandom = Math.random;
+  function renderAt(t) {
+    Math.random = seededRandom(SEED);
+    const { scene, batchRenderer, system } = buildFountain();
+    const steps = Math.round(t / STEP_SECONDS);
+    for (let step = 0; step < steps; step++) batchRenderer.update(STEP_SECONDS);
+    renderer.render(scene, camera);
+    window.__liveParticles = system.particleNum;
+    system.dispose();
+    Math.random = nativeRandom;
+  }
+
+  // seek schedules the draw on the animation frame the harness drives, as the three-capture scene does.
+  window.__scene = { duration: DURATION, seek: (t) => requestAnimationFrame(() => renderAt(t)) };
+</script>
+</body>
+</html>
