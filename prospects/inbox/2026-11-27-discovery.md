@@ -99,7 +99,7 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 - Found via: audio-for-video area, neighbour of `demucs` and `ffmpeg-normalize`.
 
 ### MathJax 4 (`mathjax`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/mathjax/MathJax-src
 - Role: TeX, MathML or AsciiMath to self-contained SVG in Node, with the lite DOM adaptor and no browser. Output paths are glyph outlines, so they rasterise through `resvg` with no font installed.
 - Category: A4. Vector, typography, diagrams and stills.

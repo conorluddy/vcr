@@ -1,0 +1,8 @@
+{
+  "id": "mathjax-tex-svg",
+  "title": "MathJax TeX equation to path-only SVG",
+  "summary": "Typeset one TeX display equation to SVG in Node with no browser or fonts, check it is path-only and byte-identical across runs, and rasterise it with resvg.",
+  "status": "validated",
+  "tools": ["mathjax"],
+  "run": "./run.sh"
+}

@@ -1,0 +1,73 @@
+{
+  "id": "mathjax",
+  "name": "MathJax",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "candidate",
+  "role": "TeX, MathML or AsciiMath to self-contained SVG equations in Node, no browser or LaTeX",
+  "summary": "MathJax 4 (@mathjax/src) typesets TeX, MathML or AsciiMath in Node with its lite DOM adaptor and emits SVG whose glyphs are path outlines, so the result needs no installed font and rasterises through resvg. Its strength is standard TeX notation as an SVG layer from one pnpm dependency, with no LaTeX install.",
+  "use_when": [
+    "A TeX equation as an SVG or PNG layer; over manim-community when no LaTeX install is wanted",
+    "Equation stills for a browser scene, positioned and animated as ordinary SVG paths",
+    "Authors already write TeX; over typst, which uses its own maths syntax"
+  ],
+  "avoid_when": [
+    "Whole documents or pages with maths: typst",
+    "Equation transforms animated term by term with a maths engine: manim-community",
+    "Plain text titles with no maths: satori or svg with opentype-js"
+  ],
+  "pairs_with": [
+    "resvg",
+    "svg",
+    "svgo"
+  ],
+  "official_url": "https://github.com/mathjax/MathJax-src",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "typography",
+    "vector-authoring",
+    "text-rendering"
+  ],
+  "license": "Apache-2.0",
+  "install": {
+    "macos": "pnpm add @mathjax/src"
+  },
+  "examples": [
+    "mathjax-tex-svg"
+  ],
+  "notes": [
+    "2026-11-27: default font package in 4.x and whether output ids are stable across runs not yet checked; the fixture should pin the font and test byte equality."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "4.1.3",
+    "last_release": "2026-07-03",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "npm @mathjax/src 4.1.3 published 2026-07-03; repository pushed 2026-11-26; Apache-2.0. Only catalogue route from TeX to SVG without a LaTeX install; mathjax-full stopped at 3.2.2.",
+    "sources": [
+      "https://github.com/mathjax/MathJax-src",
+      "https://www.npmjs.com/package/@mathjax/src"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.1.3",
+        "command": "examples/mathjax-tex-svg/run.sh",
+        "result": "TeX display equation to SVG twice in separate Node 22.19.0 processes: identical SHA-256 5c0adcba…68a9, 10 paths, 13 uses, 0 text or font references; resvg 0.47.0 PNG 960x282 inspected.",
+        "example": "examples/mathjax-tex-svg",
+        "scope": "One TeX equation, base+ams packages, NewCM font, fontCache local, lite DOM on macOS arm64; not other fonts, inputs, inline maths or multi-equation documents."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-27-discovery.md",
+  "skill": "skills/mathjax/SKILL.md"
+}
