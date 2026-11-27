@@ -43,7 +43,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: app-preview and device-capture gap, checking the Android side of the existing iOS leads.
 
 ### skia-canvas (`skia-canvas`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/samizdatco/skia-canvas
 - Role: a Node implementation of the HTML Canvas API on Skia. It renders headlessly to PNG, JPEG, WEBP, raw pixels, SVG and multi-page PDF, supports variable fonts loaded from local files, and also has an on-screen `Window`.
 - Category: A1. Creative coding and 2D.
