@@ -1,0 +1,33 @@
+<Map srs="+proj=longlat +datum=WGS84 +no_defs" background-color="#f1faee">
+  <Style name="area">
+    <Rule>
+      <Filter>[name] = 'Alpha'</Filter>
+      <PolygonSymbolizer fill="#e63946" />
+    </Rule>
+    <Rule>
+      <Filter>[name] = 'Beta'</Filter>
+      <PolygonSymbolizer fill="#1d3557" />
+    </Rule>
+  </Style>
+  <Style name="road">
+    <Rule>
+      <Filter>[name] = 'Road'</Filter>
+      <LineSymbolizer stroke="#2a9d8f" stroke-width="6" />
+    </Rule>
+  </Style>
+  <Style name="label">
+    <Rule>
+      <Filter>[name] = 'Dublin'</Filter>
+      <TextSymbolizer face-name="DejaVu Sans Bold" size="40" fill="#000000" allow-overlap="true">[name]</TextSymbolizer>
+    </Rule>
+  </Style>
+  <Layer name="places" srs="+proj=longlat +datum=WGS84 +no_defs">
+    <StyleName>area</StyleName>
+    <StyleName>road</StyleName>
+    <StyleName>label</StyleName>
+    <Datasource>
+      <Parameter name="type">geojson</Parameter>
+      <Parameter name="file">places.geojson</Parameter>
+    </Datasource>
+  </Layer>
+</Map>

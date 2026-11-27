@@ -589,6 +589,79 @@
       "skill": "skills/auto-editor/SKILL.md"
     },
     {
+      "id": "autotrace",
+      "name": "AutoTrace",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "Bitmap to SVG tracing, outline or centerline strokes",
+      "summary": "CLI and library that converts bitmaps to vectors: filled colour outlines, or centerline tracing that turns stroke art into stroke-only SVG paths. Many output formats (SVG, EPS, PDF, DXF). Output is deterministic for fixed input and options.",
+      "use_when": [
+        "Turning line drawings or handwriting into single stroked paths for vpype plotting or stroke-draw animation",
+        "Centerline tracing, which potrace and vtracer do not offer"
+      ],
+      "avoid_when": [
+        "One-bit outline tracing alone: potrace is simpler",
+        "Copyleft is a problem when bundling: GPL-2.0-or-later and LGPL-2.1-or-later"
+      ],
+      "pairs_with": [
+        "potrace",
+        "vtracer",
+        "resvg",
+        "svg",
+        "vpype",
+        "imagemagick"
+      ],
+      "official_url": "https://github.com/autotrace/autotrace",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "vector-tracing"
+      ],
+      "license": "GPL-2.0-or-later and LGPL-2.1-or-later (Homebrew metadata); GitHub reports GPL-2.0",
+      "install": {
+        "macos": "brew install autotrace",
+        "check_command": "autotrace --version"
+      },
+      "notes": [
+        "2026-11-27: lead said 0.31.12 with unverified date; GitHub and Homebrew show 0.31.13 released 2026-11-26."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-autotrace",
+        "version_seen": "0.31.13",
+        "last_release": "2026-11-26",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Free software (copyleft), maintained again with a release a day before assessment. Adds centerline tracing missing from potrace and vtracer. Noisy scans untested.",
+        "sources": [
+          "https://github.com/autotrace/autotrace",
+          "https://autotrace.sourceforge.net/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.31.13",
+            "command": "examples/autotrace-centerline/run.sh",
+            "result": "Outline IoU 0.9941 (floor 0.97), centerline IoU 0.9023 (floor 0.90) after resvg rasterisation; 4 stroke-only paths, widths 7.89 to 8.79; repeat bytes equal; strokes SVG SHA-256 f006293966409c65367619839b3d7c94f16b2aa2e3d2fbadf44dd24e342f8e67",
+            "example": "examples/autotrace-centerline",
+            "scope": "Generated 200x200 shapes and 8px strokes, outline and centerline SVG, macOS arm64, 0.31.13; no scans, colour, noise, junction or cross-platform claim."
+          }
+        ]
+      },
+      "examples": [
+        "autotrace-centerline"
+      ],
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-24-discovery.md",
+      "skill": "skills/autotrace/SKILL.md"
+    },
+    {
       "id": "aval",
       "name": "AVAL",
       "category": "A5. Video and capture",
@@ -3654,6 +3727,79 @@
       "skill": "skills/editly/SKILL.md"
     },
     {
+      "id": "elevation-eio",
+      "name": "elevation (eio)",
+      "category": "Geospatial",
+      "tier": "candidate",
+      "role": "Python library and `eio` CLI that fetch, cache and clip global DEM data to a GeoTIFF for bounds",
+      "summary": "Python package with the `eio` CLI: `eio clip --bounds left bottom right top -o dem.tif` downloads and caches global DEM data (Terrain Tiles MAPZEN default, Copernicus GLO-30/90, ALOS AW3D30, SRTM 30/90 m, GEDTM30) and clips it to a GeoTIFF in EPSG:4326. It needs GDAL's command-line tools and the network on first use; it gives heights, not relief rendering.",
+      "use_when": [
+        "Get a DEM GeoTIFF for a lat/lon box as the first step of a terrain or relief-map scene",
+        "Over hand-downloading tiles when bounds are known and the result must be scripted"
+      ],
+      "avoid_when": [
+        "Hillshading, reprojection or other raster processing of the DEM: GDAL",
+        "Rendering map tiles or styles: maplibre-native",
+        "Offline work on first run: tiles download on demand"
+      ],
+      "pairs_with": [
+        "maplibre-native",
+        "three-globe"
+      ],
+      "official_url": "https://github.com/bopen/elevation",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "geospatial"
+      ],
+      "license": "Apache-2.0",
+      "install": {
+        "macos": "micromamba create -p env -c conda-forge python=3.12 gdal && env/bin/pip install elevation==2.1.0",
+        "check_command": "eio selfcheck"
+      },
+      "examples": [
+        "elevation-eio-clip"
+      ],
+      "notes": [
+        "2026-11-27: the lead said `brew install gdal && uv tool install elevation`; Homebrew gdal failed to install here, so the fixture uses conda-forge gdal. PyPI lists no licence field; Apache-2.0 is from the GitHub repository.",
+        "2026-11-27: datasets have provider terms (STAC `license: other`); SRTM3 forbids redistribution and resale without CIAT permission. GLO-30 and GLO-90 need an Earth Data Hub key in ~/.netrc and were not tried.",
+        "2026-11-27: PyPI shows 1.1.3 in 2021, then 1.1.4 on 2026-09-30 and 2.0.0 on 2026-10-21: a revival after five years, so the maintenance record is short."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "2.1.0",
+        "last_release": "2026-11-09",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "PyPI 2.1.0 uploaded 2026-11-09, repository pushed 2026-11-15, not archived, Apache-2.0, 9 open issues. Nothing catalogued fetches elevation data; GDAL (onboarded separately) processes it but does not download it. Data hosts' terms apply.",
+        "sources": [
+          "https://github.com/bopen/elevation",
+          "https://pypi.org/project/elevation/",
+          "https://registry.opendata.aws/terrain-tiles/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.1.0",
+            "command": "examples/elevation-eio-clip/run.sh",
+            "result": "8 checks pass, repeat runs identical: clip of -4.12 53.04 -4.03 53.10 (Snowdon) gives a 325x217 EPSG:4326 GeoTIFF, bounds -4.120139 53.039861 -4.029861 53.100139, max 1064 m at -4.07667 53.06833 (summit 1085 m), min 60 m, no nodata. GDAL 3.13.3, Python 3.12.",
+            "example": "examples/elevation-eio-clip",
+            "scope": "MAPZEN clip of one box to GeoTIFF: CRS, bounds, size, summit height; not GLO, SRTM3 or other products, large areas, vertical accuracy elsewhere or rendering; macOS arm64."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-22-discovery.md",
+      "skill": "skills/elevation-eio/SKILL.md"
+    },
+    {
       "id": "essentia",
       "name": "Essentia",
       "category": "Discovery: conversation candidates",
@@ -5107,6 +5253,84 @@
       "skill": "skills/g-mic/SKILL.md"
     },
     {
+      "id": "gdal",
+      "name": "GDAL",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "Geospatial CLI suite that reprojects, clips and converts raster and vector map data",
+      "summary": "GDAL is the standard geospatial library and CLI set: gdalwarp reprojects and clips rasters, gdal_translate converts and rescales them, ogr2ogr reprojects and clips vector data to GeoJSON, gdalinfo reports CRS and extents. It is the data step before a map scene or still, not a renderer.",
+      "use_when": [
+        "A DEM or satellite raster must be reprojected, clipped or converted before a map scene uses it",
+        "Vector data in an exotic GIS format must become clean GeoJSON in a chosen CRS",
+        "CRS, extents or pixel values of a geo file must be checked by script"
+      ],
+      "avoid_when": [
+        "Dissolving or simplifying boundary GeoJSON with no GDAL install: mapshaper",
+        "Rendering styled map stills from vector tiles: chiitiler or maplibre-native",
+        "Projecting geometry inside a seeked scene: d3"
+      ],
+      "pairs_with": [
+        "mapshaper",
+        "chiitiler",
+        "maplibre-native",
+        "d3"
+      ],
+      "official_url": "https://gdal.org",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing",
+        "data-visualisation"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "conda route used in VCR: micromamba create -p <dir> -c conda-forge gdal=3.13.2; or brew install gdal (failed on one machine: conflict with fbthrift)",
+        "check_command": "gdalinfo --version"
+      },
+      "examples": [
+        "gdal-reproject-clip"
+      ],
+      "notes": [
+        "2026-11-27: the lead said 3.13.3 on gdal.org; conda-forge carried 3.13.2, which is what ran.",
+        "2026-11-27: brew install gdal failed on the test machine because of a conflict with fbthrift; the fixture builds a conda-forge env under its ignored output/.",
+        "2026-11-27: set GDAL_PAM_ENABLED=NO so gdalinfo does not write .aux.xml files beside the data."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "3.13.2",
+        "last_release": "2026-07-20",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "GDAL 3.13.2 on conda-forge (release dated 2026-07-20 by gdalinfo); MIT. The only catalogued route that reprojects and clips rasters and converts GIS vector formats; mapshaper covers GeoJSON only and chiitiler and maplibre-native draw styled tiles. Install is heavy and one route failed, so keep as candidate pending review.",
+        "sources": [
+          "https://gdal.org",
+          "https://github.com/OSGeo/gdal",
+          "https://gdal.org/en/stable/programs/index.html",
+          "https://anaconda.org/conda-forge/gdal"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.13.2",
+            "command": "examples/gdal-reproject-clip/run.sh",
+            "result": "10x10 ASCII grid to EPSG:4326 GeoTIFF; warped to EPSG:3857 (11x18 px at 50 km); cutline-clipped to 7x7; GeoJSON reprojected and bbox-clipped (2 features, metres); pixels 0 and 99 read back; two runs byte-identical. conda-forge env.",
+            "example": "examples/gdal-reproject-clip",
+            "scope": "Tiny self-authored data, gdal_translate, gdalwarp, ogr2ogr, gdalinfo on macOS arm64 via conda-forge; not Homebrew, hillshade or gdaldem, real DEMs, other CPUs or other PROJ data."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-22-discovery.md",
+      "skill": "skills/gdal/SKILL.md"
+    },
+    {
       "id": "generativepy",
       "name": "generativepy",
       "category": "Discovery: research candidates",
@@ -5983,6 +6207,225 @@
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a",
       "skill": "skills/godot/SKILL.md"
+    },
+    {
+      "id": "gopro-overlay",
+      "name": "gopro-dashboard-overlay",
+      "category": "A5. Video and capture",
+      "tier": "candidate",
+      "role": "Python CLI that renders telemetry gauges and maps as video from GoPro metadata or a GPX or FIT track",
+      "summary": "Python CLI (`gopro-dashboard.py`) that draws speed, heart rate, altitude, charts, a moving map and a route trace from GoPro GPMF telemetry or a plain GPX or FIT file, using layouts written in XML. It pipes frames to FFmpeg; with `--use-gpx-only` it needs no video. Map widgets fetch online tiles.",
+      "use_when": [
+        "A timed GPS track must become frame-synced gauges or a route trace; nothing catalogued does this",
+        "Telemetry from a GPX file, with no GoPro footage, should drive a dashboard overlay",
+        "Over d3 or canvas-2d when the data is a timestamped track and the layout is XML widgets"
+      ],
+      "avoid_when": [
+        "Static map images: maplibre-native or chiitiler",
+        "A globe or free-form data graphic: three-globe or d3",
+        "Gauges from arbitrary non-GPS data series: d3 or canvas-2d"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "maplibre-native"
+      ],
+      "official_url": "https://github.com/time4tea/gopro-dashboard-overlay",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "data-visualisation",
+        "geospatial",
+        "video-composition"
+      ],
+      "license": "GPL-3.0-or-later",
+      "install": {
+        "macos": "python3.12 -m venv venv && venv/bin/pip install gopro-overlay==0.134.0",
+        "check_command": "gopro-dashboard.py --help"
+      },
+      "examples": [
+        "gopro-overlay-gpx-widgets"
+      ],
+      "notes": [
+        "2026-11-27: GPL-3.0-or-later per PyPI metadata and LICENSE.md; run as a separate process, never link. The README says the bundled icons are not covered by the project licence.",
+        "2026-11-27: lead said Python 3.10 or 3.11+; PyPI says >=3.11. The lead's default font Roboto is not on this machine, so the run used `--font Arial.ttf`. `--generate overlay` is rejected with `--use-gpx-only`; the default FFmpeg output (H.264) drops alpha, so transparency needs an ffmpeg profile in the config dir (the fixture uses qtrle/argb).",
+        "2026-11-27: speed derived from the first GPX points read 33 km/h at t=0 on a true 36 km/h track; map tiles are not exercised."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "0.134.0",
+        "last_release": "2026-05-16",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "PyPI 0.134.0 published 2026-05-16; GPL-3.0-or-later (passes the free-software gate, process boundary kept). Nothing catalogued turns a timed GPS track into synced gauges: maplibre-native and chiitiler render static maps, three-globe a globe.",
+        "sources": [
+          "https://github.com/time4tea/gopro-dashboard-overlay",
+          "https://pypi.org/project/gopro-overlay/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.134.0",
+            "command": "examples/gopro-overlay-gpx-widgets/run.sh",
+            "result": "8 of 10 checks pass: GPX-only 640x360 qtrle argb overlay, 303 frames, identical frame hashes over two renders, transparent corner, 100 distinct frames; digits read 120/130/140 hr, 100/110/120 m, speed 33/36/36. KNOWN FAIL: speed 33 at t=0 (36 expected); 100 distinct frames (101 expected).",
+            "example": "examples/gopro-overlay-gpx-widgets",
+            "scope": "GPX-only text/bar widgets, transparent qtrle output; not GoPro/FIT input or maps; t=0 speed and distinct-frame checks failed; macOS arm64, Python 3.12."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-20-discovery.md",
+      "skill": "skills/gopro-overlay/SKILL.md"
+    },
+    {
+      "id": "gource",
+      "name": "Gource",
+      "category": "A7. Native applications and procedural tools",
+      "tier": "candidate",
+      "role": "Animates commit history as a growing tree; writes a PPM frame stream",
+      "official_url": "https://gource.io",
+      "repository_url": "https://github.com/acaudwell/Gource",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "data-visualisation",
+        "video-encoding"
+      ],
+      "notes": [
+        "2026-11-27: Lead said version 0.56 on Homebrew; confirmed, formula 0.56_1 (gource has no --version flag; the banner on --help prints v0.56). Lead's licence GPL-3.0-or-later not re-verified beyond the lead.",
+        "2026-11-27: Not headless on macOS: it opens an OpenGL window while writing frames. Observed in a desktop session only.",
+        "2026-11-27: Seed option is --hash-seed (colours and hashing); the layout is not repeatable across runs in the fixture."
+      ],
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "examples": [
+        "gource-custom-log"
+      ],
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.56_1",
+            "command": "examples/gource-custom-log/run.sh",
+            "result": "Partial: custom log to PPM pipe to H.264 works (640x360, 30/1, frame not blank; pass). Frame count 434 to 462 against 58 predicted from seconds-per-day (fail). 4 renders gave 2 to 3 distinct hashes with --hash-seed 1 (fail).",
+            "example": "examples/gource-custom-log",
+            "scope": "24-event custom log, macOS arm64 desktop session with window: route works; frame count off prediction and frames not repeatable across runs; headless not shown"
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-20-discovery.md",
+      "summary": "Repository-history visualiser. Reads a VCS directory or a custom pipe-delimited log and renders an animated tree of files and contributors, writing a PPM stream for FFmpeg. Needs an OpenGL window; frames come out in order, not seekable, and are not repeatable run to run.",
+      "use_when": [
+        "A developer-facing film needs a code-history tree shot from a log you author or export",
+        "A quick, one-off activity visual where exact repeatability does not matter"
+      ],
+      "avoid_when": [
+        "Frame-exact repeatable renders or a fixed duration are required: draw the tree with d3 or graphviz",
+        "No display session is available"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "d3",
+        "graphviz"
+      ],
+      "license": "GPL-3.0-or-later (run as a separate process)",
+      "install": {
+        "macos": "brew install gource",
+        "check_command": "gource --help"
+      },
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-gource",
+        "maintenance": "unknown",
+        "verdict": "keep",
+        "rationale": "Fills a gap no neighbour covers: ready-made code-history video. The fixture shows the route works but frames and duration are not controllable enough for pipeline use; keep as a visual shortcut, not a deterministic renderer.",
+        "sources": [
+          "https://gource.io",
+          "https://github.com/acaudwell/Gource"
+        ]
+      },
+      "skill": "skills/gource/SKILL.md"
+    },
+    {
+      "id": "gpac",
+      "name": "GPAC (MP4Box)",
+      "category": "A5. Video and capture",
+      "tier": "candidate",
+      "role": "Packages and inspects MP4, CMAF, DASH and HLS at box level",
+      "official_url": "https://github.com/gpac/gpac",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection",
+        "video-encoding"
+      ],
+      "notes": [
+        "2026-11-27: Triage: assess; ffmpeg-ffprobe muxes and can segment but has limited box-level control; mediainfo reports but does not write.",
+        "2026-11-27: Lead said Homebrew stable 26.07.0 with release date unverified; the local binary reports 26.07-revrelease. Licence taken from the lead (LGPL-2.1-or-later) and the MP4Box banner (LGPL v2.1+).",
+        "2026-11-27: Fixture partial: MP4Box -dash with three inputs aborts in about 1 run in 5 (retry in run.sh); base MP4 and init segments carry a wall-clock track modification time that -time/-mtime do not pin."
+      ],
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "26.07-revrelease",
+            "command": "examples/gpac-cmaf-dash/run.sh",
+            "result": "ffmpeg testsrc+sine MP4 (10 s) plus WebVTT and 2 chapters via MP4Box: 3 tracks (avc1, mp4a, wvtt eng), chapters Intro 0 s and Middle 5 s; -dash 4000 gives 3 segments per track, video 100/100/50 packets (4, 4, 2 s), MPD max segment PT4S. KNOWN FAIL: base.mp4 and 3 init segments differ across runs (modification time); .m4s and MPD identical. MP4Box -dash crashed in about 1 run in 5.",
+            "example": "examples/gpac-cmaf-dash",
+            "scope": "MP4Box 26.07 on macOS arm64: tracks, chapters, DASH segment counts pass; byte-identical reruns FAIL for base MP4 and init segments (m4s, MPD identical); intermittent -dash crash; no HLS or players."
+          }
+        ]
+      },
+      "examples": [
+        "gpac-cmaf-dash"
+      ],
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-27-discovery.md",
+      "summary": "Multimedia framework whose MP4Box and gpac CLIs package and inspect MP4, CMAF, DASH and HLS: fragmenting, segmenting, adding subtitle and chapter tracks, and dumping box structure. FFmpeg muxes; GPAC gives box-level control for adaptive-streaming delivery.",
+      "license": "LGPL-2.1-or-later",
+      "install": {
+        "macos": "brew install gpac",
+        "check_command": "MP4Box -version"
+      },
+      "use_when": [
+        "Fragment an MP4 into DASH segments and a manifest with pinned segment duration",
+        "Add a WebVTT subtitle track or chapters to an MP4, or dump its box structure"
+      ],
+      "avoid_when": [
+        "Need to decode or encode pictures or sound: FFmpeg",
+        "Need a byte-reproducible MP4 for hashing: the track modification time is not pinnable"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "mediainfo"
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-gpac",
+        "version_seen": "26.07-revrelease",
+        "last_release": "Unknown from reviewed source",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Lead reports a push on 2026-11-24 and Homebrew stable 26.07; the local MP4Box banner confirms 26.07-revrelease and LGPL v2.1+. Fills the box-level packaging and DASH gap beside ffmpeg-ffprobe and mediainfo; release date not independently checked.",
+        "sources": [
+          "https://github.com/gpac/gpac",
+          "https://wiki.gpac.io"
+        ]
+      },
+      "skill": "skills/gpac/SKILL.md"
     },
     {
       "id": "graphviz",
@@ -7311,6 +7754,77 @@
       "skill": "skills/konva/SKILL.md"
     },
     {
+      "id": "ktx-software",
+      "name": "KTX-Software",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "catalogued",
+      "role": "Khronos KTX2 texture tools: create, validate, inspect, extract",
+      "official_url": "https://github.com/KhronosGroup/KTX-Software",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "3d-asset-processing"
+      ],
+      "notes": [
+        "2026-11-27: Lead said version 5.0.0 and no macOS installer; the latest stable release is v4.4.2 (2025-10-04) and ships a Darwin-arm64 .pkg. 5.0.0 exists only as release candidates.",
+        "2026-11-27: Licence is Apache-2.0 for repository-own files with many other open licences for bundled code; check LICENSE.md before redistributing."
+      ],
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.4.2",
+            "command": "examples/ktx-software-roundtrip/run.sh",
+            "example": "examples/ktx-software-roundtrip",
+            "result": "256x256 RGBA PNG to UASTC KTX2 with 9 mip levels: validate valid, info reports KHR_DF_MODEL_UASTC and sRGB, extract level 0 PSNR 54.5 dB (max error 3, tolerance 40 dB and 16); two --threads 1 encodes identical.",
+            "scope": "ktx 4.4.2 from expanded official pkg, macOS arm64, one generated image, UASTC only; not ETC1S, GPU use, glTF Transform integration or photographic quality."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-27-discovery.md",
+      "summary": "Khronos reference tools for KTX2 GPU textures. The unified ktx command creates Basis ETC1S or UASTC textures with mipmaps and zstd, then validates, inspects and extracts them; glTF Transform's KTX2 commands rely on it.",
+      "use_when": [
+        "Compress textures to KTX2 (UASTC or ETC1S) for a 3D asset pipeline",
+        "Validate or inspect a KTX2 file's format, levels and colour model"
+      ],
+      "avoid_when": [
+        "Need geometry compression: meshoptimizer",
+        "Need to edit glTF scenes, not just textures: glTF Transform"
+      ],
+      "pairs_with": [
+        "gltf-transform",
+        "meshoptimizer"
+      ],
+      "license": "Apache-2.0 for repository-own files; bundled third-party code under other open licences (see LICENSE.md)",
+      "install": {
+        "macos": "download KTX-Software-4.4.2-Darwin-arm64.pkg from the v4.4.2 release, check SHA-256 500bd8f9d63358c3f3a0d83b724c8574436a72c37dc0e4bad90ec1ca38032c3c, then pkgutil --expand-full it into a project folder and copy ktx and libktx* into bin/ and lib/ (examples/ktx-software-roundtrip/run.sh does this); system install: sudo installer -pkg <pkg> -target /",
+        "check_command": "ktx --version"
+      },
+      "examples": [
+        "ktx-software-roundtrip"
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-ktx-software",
+        "version_seen": "v4.4.2",
+        "last_release": "2025-10-04",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Official Khronos reference tools with a documented scriptable ktx CLI; repo pushed 2026-11-17 and a 5.0.0 release candidate is out. glTF Transform's KTX2 commands depend on it.",
+        "sources": [
+          "https://github.com/KhronosGroup/KTX-Software",
+          "https://github.com/KhronosGroup/KTX-Software/releases",
+          "https://github.com/KhronosGroup/KTX-Software/blob/v4.4.2/LICENSE.md"
+        ]
+      },
+      "skill": "skills/ktx-software/SKILL.md"
+    },
+    {
       "id": "libass",
       "name": "libass",
       "category": "Discovery: research candidates",
@@ -7529,6 +8043,83 @@
       "skill": "skills/libplacebo/SKILL.md"
     },
     {
+      "id": "librashader",
+      "name": "librashader",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Apply RetroArch slang shader presets (CRT, scanline) to images headlessly",
+      "official_url": "https://github.com/SnowflakePowered/librashader",
+      "repository_url": "https://github.com/SnowflakePowered/librashader",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "shaders",
+        "image-processing"
+      ],
+      "notes": [
+        "2026-11-27: Lead from prospects/inbox/2026-11-20-discovery.md. Lead differed: crate licence is MPL-2.0 OR GPL-3.0-only (not MPL-2.0 alone); the CLI's file-path PNG output works; only the metal and wgpu runtimes exist on macOS, and wgpu failed.",
+        "2026-11-27: Install is cargo only, no Homebrew formula; crate declares no rust-version, rustc 1.95.0 built it. Default features need cmake for OpenGL glfw; built with --no-default-features --features metal,wgpu into the example's ignored output/cargo.",
+        "2026-11-27: Presets and shaders are separate, each with its own licence (crt-lottes public domain, crt-geom GPL-2.0-or-later); libretro/slang-shaders has no single licence."
+      ],
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "install": {
+        "macos": "cargo install librashader-cli --version 0.12.1 --locked --root <dir> --no-default-features --features metal,wgpu",
+        "check_command": "librashader-cli --version"
+      },
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "librashader-cli 0.12.1 (cargo, metal,wgpu features; slang-shaders 02bf134)",
+            "command": "examples/librashader-crt-preset/run.sh",
+            "result": "crt-lottes on 3 generated 320x240 frames to 960x720 via Metal: curvature, scanlines, mask seen; shuffled order and rerun byte-identical. wgpu runtime KNOWN FAIL: PIPELINE_CACHE unsupported.",
+            "example": "examples/librashader-crt-preset",
+            "scope": "Metal runtime, macOS arm64 M3; crt-lottes (PD) and crt-geom single-pass presets; per-frame calls. wgpu fails; no OpenGL/Vulkan, multi-pass or temporal presets."
+          }
+        ]
+      },
+      "examples": [
+        "librashader-crt-preset"
+      ],
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-20-discovery.md",
+      "summary": "Runs RetroArch slang shader presets (CRT, scanline, NTSC, handheld LCD looks) on an image from the command line and writes a PNG for a chosen frame number. Presets come from separate repositories with per-shader licences.",
+      "use_when": [
+        "Give a still or generated frame an accurate CRT or retro display look from the libretro slang-shaders library",
+        "Render a shader preset for a given frame number outside an emulator"
+      ],
+      "avoid_when": [
+        "Need a single GLSL shader run or live editing: glslviewer",
+        "Need GPU video processing hooks or tone mapping: libplacebo",
+        "Need a filter chain from another plugin family: frei0r or g-mic"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "glslviewer",
+        "libplacebo",
+        "frei0r",
+        "g-mic"
+      ],
+      "license": "MPL-2.0 OR GPL-3.0-only (librashader-cli); slang presets carry their own licences, per shader",
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-librashader",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Documented CLI render command applies a preset to an image for a given frame; no catalogued neighbour runs the slang preset library. Licence is free for the CLI, shaders must be checked individually.",
+        "sources": [
+          "https://github.com/SnowflakePowered/librashader",
+          "https://crates.io/crates/librashader-cli",
+          "https://github.com/SnowflakePowered/librashader/blob/master/CLI.md",
+          "https://github.com/libretro/slang-shaders"
+        ]
+      },
+      "skill": "skills/librashader/SKILL.md"
+    },
+    {
       "id": "librosa",
       "name": "librosa",
       "category": "Discovery: conversation candidates",
@@ -7676,6 +8267,81 @@
         ]
       },
       "skill": "skills/libsonare/SKILL.md"
+    },
+    {
+      "id": "libultrahdr",
+      "name": "libultrahdr (ultrahdr_app)",
+      "category": "HDR delivery metadata",
+      "tier": "candidate",
+      "role": "Ultra HDR JPEG encode and decode: SDR base plus gain map in one file",
+      "official_url": "https://github.com/google/libultrahdr",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "image-processing",
+        "media-inspection"
+      ],
+      "notes": [
+        "2026-11-27: Triage: assess. Fills the HDR-still gap: libavif writes AVIF, dovi-tool covers video metadata only.",
+        "2026-11-27: Lead said the formula's ultrahdr_app was unverified; Homebrew 2.0.2 ships it at bin/ultrahdr_app. Lead licence Apache-2.0 was incomplete: the repo LICENSE says MIT and Apache-2.0 together. Release v2.0.2 dated 2026-08-13.",
+        "2026-11-27: Flags are documented only in `ultrahdr_app -h` and examples/ultrahdr_app.cpp, not a man page.",
+        "2026-11-27: Evidence partial: 2.0.2 writes ISO 21496-1 gain map metadata (APP2) plus MPF and no XMP hdrgm, so readers that only parse Google XMP metadata may not see the gain map. Untested for display as HDR."
+      ],
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.0.2",
+            "command": "examples/libultrahdr-gainmap-encode/run.sh",
+            "result": "Partial: 9 of 10 predeclared checks pass. 128x96 SDR RGBA8888 plus HLG P3 RGBA1010102 encoded to a 7410-byte Ultra HDR JPEG (gain map 4024 bytes, MPF lists 2 images); probe reads maxContentBoost 9.462; ImageMagick and ffmpeg decode the SDR base (PSNR 50.39 dB vs input); library HLG decode highlight peak 1023/1023; plain JPEG probe exits 255; repeat encode byte-identical. KNOWN FAIL xmp_hdrgm_gain_map_max_present: no XMP in the file, metadata is ISO 21496-1 APP2. libjpeg-turbo 3.2.1, exiftool 13.50, ImageMagick 7.1.2-36, ffmpeg 9.0.2, Python 3.12.2.",
+            "example": "examples/libultrahdr-gainmap-encode",
+            "scope": "Ultra HDR JPEG encode from raw SDR+HLG pair, SDR base decode, library HDR decode; macOS arm64, 128x96 synthetic. XMP hdrgm absent (KNOWN FAIL). No HDR display, PQ, P010 or photos."
+          }
+        ]
+      },
+      "examples": [
+        "libultrahdr-gainmap-encode"
+      ],
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-27-discovery.md",
+      "summary": "Google's reference library and sample CLI for Ultra HDR JPEG: an SDR base JPEG plus a gain map in one file, readable as SDR everywhere and as HDR where supported. ultrahdr_app encodes from raw HDR (P010 or RGBA1010102) with an optional SDR input, and decodes back.",
+      "use_when": [
+        "Ship an HDR still that falls back to SDR in any JPEG reader",
+        "Probe or decode a gain map JPEG back to HDR pixels"
+      ],
+      "avoid_when": [
+        "Use libavif when an AVIF still is wanted",
+        "Use dovi-tool for HDR metadata in video streams"
+      ],
+      "pairs_with": [
+        "libavif",
+        "dovi-tool",
+        "exiftool"
+      ],
+      "license": "MIT OR Apache-2.0",
+      "install": {
+        "macos": "brew install libultrahdr",
+        "check_command": "ultrahdr_app -h 0"
+      },
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-libultrahdr",
+        "version_seen": "2.0.2",
+        "last_release": "2026-08-13",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "v2.0.2 released 2026-08-13 with pushes through 2026-11-20. The Homebrew formula ships the ultrahdr_app CLI. Dual MIT and Apache-2.0 licence per the repository LICENSE. Flag reference is the help text and source; output depends on the libjpeg-turbo build.",
+        "sources": [
+          "https://github.com/google/libultrahdr",
+          "https://github.com/google/libultrahdr/releases",
+          "https://developer.android.com/media/platform/hdr-image-format"
+        ]
+      },
+      "skill": "skills/libultrahdr/SKILL.md"
     },
     {
       "id": "libvips",
@@ -8517,6 +9183,80 @@
         "maplibre-native-offline-render"
       ],
       "skill": "skills/maplibre-native/SKILL.md"
+    },
+    {
+      "id": "mapnik",
+      "name": "Mapnik",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "C++ map renderer with Python bindings: geodata plus XML style to PNG",
+      "official_url": "https://mapnik.org",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "geospatial",
+        "2d-rendering"
+      ],
+      "notes": [
+        "2026-11-27: Lead said Homebrew 4.3.2 and PyPI wheels; Homebrew install failed here (gdal conflicts with fbthrift) and conda-forge has no osx-arm64 mapnik. The PyPI wheel (4.3.2, cp312 macosx arm64, bundles libmapnik, plugins, PROJ, GDAL and DejaVu fonts) installs in a venv and was used. PyPI 4.4.0 (2026-11-25, Python >=3.11) is newer and untested.",
+        "2026-11-27: Python API differs from older docs: Image.to_string('png'), version_string(); mapnik.version is a function."
+      ],
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "examples": [
+        "mapnik-geojson-style"
+      ],
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.3.2",
+            "command": "examples/mapnik-geojson-style/run.sh",
+            "result": "GeoJSON polygons, line and point label with XML style, 3 panned 512x512 frames; 7 probes exact in ImageMagick decode; alpha 255; shuffled equals sequential; two processes byte-identical; 1351 label black pixels; CPython 3.12, PyPI wheel",
+            "example": "examples/mapnik-geojson-style",
+            "scope": "PyPI wheel on macOS arm64, CPython 3.12: GeoJSON+XML style renders to PNG at predeclared pixels; bbox-pan frames deterministic. Not SVG/PDF/Cairo, PostGIS, projections or other fonts."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "skill": "skills/mapnik/SKILL.md",
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-21-discovery.md",
+      "summary": "Mapnik draws geodata (GeoJSON, shapefile, PostGIS) to PNG through XML styles on CPU; change the bbox per frame for a pan",
+      "license": "LGPL-2.1-or-later",
+      "use_when": [
+        "Use to draw source geodata straight to raster maps on CPU, with no tiles, GPU or browser.",
+        "Use to render a camera pan as frames by changing the bounding box per frame."
+      ],
+      "avoid_when": [
+        "Avoid when a MapLibre style or vector tiles are the input; use chiitiler or maplibre-native.",
+        "Avoid for simple geometry that an SVG drawn directly would express."
+      ],
+      "pairs_with": [
+        "imagemagick",
+        "mapshaper",
+        "maplibre-native",
+        "chiitiler"
+      ],
+      "install": {
+        "macos": "python3.12 -m venv venv && venv/bin/pip install mapnik==4.3.2",
+        "check_command": "venv/bin/python -c \"import mapnik; print(mapnik.version_string())\""
+      },
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-mapnik",
+        "version_seen": "4.3.2 (PyPI wheel; 4.4.0 released 2026-11-25)",
+        "last_release": "2026-11-25 (PyPI 4.4.0)",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "LGPL-2.1-or-later (PyPI metadata and COPYING in the wheel), passes the free-software gate. The PyPI macOS arm64 wheel bundles the library, plugins and fonts, so no system install is needed, unlike Homebrew here. Differs from maplibre-native and chiitiler by drawing source geodata with XML styles instead of MapLibre styles. Text placement depends on the bundled fonts and version.",
+        "sources": [
+          "https://mapnik.org",
+          "https://pypi.org/project/mapnik/4.3.2/",
+          "https://github.com/mapnik/python-mapnik"
+        ]
+      }
     },
     {
       "id": "mapshaper",
@@ -9791,6 +10531,79 @@
       "skill": "skills/mo-js/SKILL.md"
     },
     {
+      "id": "montreal-forced-aligner",
+      "name": "Montreal Forced Aligner",
+      "category": "Speech and lyric alignment",
+      "tier": "candidate",
+      "role": "Kaldi CLI that aligns a known transcript to speech: word and phone timings as JSON or TextGrid",
+      "official_url": "https://montrealcorpustools.github.io/Montreal-Forced-Aligner/",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "audio"
+      ],
+      "notes": [
+        "2026-11-27: lead (prospects/inbox/2026-11-24-discovery.md) said MIT, v3.4.4, conda-forge osx-arm64; conda-forge noarch 3.4.4 resolved and ran. The lead said JSON output was unverified: `--output_format json` works and writes tiers `words` and `phones`.",
+        "2026-11-27: pretrained english_us_arpa acoustic model and dictionary (v3.0.0) are CC BY 4.0 per mfa-models.readthedocs.io; downloaded by `mfa model download` into MFA_ROOT_DIR, about 95 MB.",
+        "2026-11-27: fixture examples/mfa-forced-alignment passes: 10/10 starts within 0.20 s (max 0.10 s) on the sentence where echogarden DTW got 8/10; two runs identical."
+      ],
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.4.4",
+            "command": "examples/mfa-forced-alignment/run.sh",
+            "result": "mfa align with english_us_arpa model and dictionary (v3.0.0) on a known 10-word transcript of macOS say speech with 0.4 s gaps: words in reference order, starts non-decreasing, 10/10 starts within 0.20 s of known onsets (mean 0.03 s, max 0.10 s), two separate runs identical to 1 ms. micromamba env from conda-forge, models via mfa model download, all under output/.",
+            "example": "examples/mfa-forced-alignment",
+            "scope": "One generated sentence, say voice Samantha, english_us_arpa only, word tier only, macOS arm64, conda-forge env. Not real recordings, noise, other languages, G2P, phone timings or speed."
+          }
+        ]
+      },
+      "skill": "skills/montreal-forced-aligner/SKILL.md",
+      "adapter_maturity": "none",
+      "examples": [
+        "mfa-forced-alignment"
+      ],
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-24-discovery.md",
+      "summary": "Command-line forced aligner built on Kaldi. Given audio and its exact transcript it writes word and phone timings (JSON or Praat TextGrid), with pretrained acoustic models and dictionaries downloaded by name. Installed through conda-forge; tight on gapped speech where DTW aligners drift.",
+      "use_when": [
+        "A final narration script must be timed word by word, or per phone for syllable-level kinetic type",
+        "Word starts must stay tight around pauses, which DTW aligners such as echogarden lose"
+      ],
+      "avoid_when": [
+        "The transcript is not known: use whisperx or whisper-cpp to transcribe first",
+        "Need mouth-shape cues or no conda install: use rhubarb-lip-sync"
+      ],
+      "pairs_with": [
+        "echogarden",
+        "whisperx",
+        "rhubarb-lip-sync"
+      ],
+      "license": "MIT (code); english_us_arpa acoustic model and dictionary CC BY 4.0, other models checked separately",
+      "install": {
+        "macos": "micromamba create -p ENV -c conda-forge montreal-forced-aligner=3.4.4",
+        "check_command": "mfa version"
+      },
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard_montreal-forced-aligner",
+        "version_seen": "3.4.4",
+        "last_release": "2026-11-16",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Free software (MIT) with free models (CC BY 4.0). Conda route works unattended from ignored output/. Passed all four predeclared checks where echogarden's DTW engine did not.",
+        "sources": [
+          "https://montrealcorpustools.github.io/Montreal-Forced-Aligner/",
+          "https://github.com/MontrealCorpusTools/Montreal-Forced-Aligner",
+          "https://mfa-models.readthedocs.io/"
+        ]
+      }
+    },
+    {
       "id": "morphicons",
       "name": "morphicons",
       "category": "A2. Animation and authored assets",
@@ -10446,6 +11259,79 @@
         ]
       },
       "skill": "skills/node-av/SKILL.md"
+    },
+    {
+      "id": "ntsc-rs",
+      "name": "ntsc-rs",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "Analogue NTSC/VHS signal emulation",
+      "official_url": "https://ntsc.rs",
+      "repository_url": "https://github.com/ntsc-rs/ntsc-rs",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "effects"
+      ],
+      "notes": [
+        "2026-11-27: Source: prospects/inbox/2026-11-20-discovery.md. Lead said version and licence unverified: release v0.9.7; ntscrs crate declares MIT OR ISC OR Apache-2.0 (permissive, not GPL). No crates.io CLI crate; the CLI ships as ntsc-rs-cli inside the macOS standalone pkg.",
+        "2026-11-27: Evidence from examples/ntsc-rs-vhs-preset: pkg pinned by SHA-256 and unpacked under output/, never installed. -c png failed with 'Failed to insert sink' in that bundle; FFV1 and H.264 worked.",
+        "2026-11-27: Skill: guide written at skills/ntsc-rs/SKILL.md from the fixture."
+      ],
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.9.7 (macOS standalone pkg, SHA-256 51ca362a9ce8b40cb47804959cbbdc5bb71e79c0f334542dd85fa27faa04c1e0)",
+            "command": "examples/ntsc-rs-vhs-preset/run.sh",
+            "result": "10-frame 320x240 testsrc clip, flat JSON preset seed 1234 to FFV1: repeat run frame-identical, seed 4321 differs on 10/10 frames, PSNR vs source 12.7 dB, frame 5 inspected as smeared chroma and tracking band; OK.",
+            "example": "examples/ntsc-rs-vhs-preset",
+            "scope": "ntsc-rs-cli 0.9.7 headless from unpacked pkg, macOS arm64, FFV1 output; not the PNG route, GUI or plugins, other hosts or versions; hashes are same-host."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-20-discovery.md",
+      "summary": "Emulates the analogue signal path (NTSC composite, VHS tape, tracking noise, chroma bleed, head switching) on video. A command-line renderer takes JSON presets with a random seed.",
+      "use_when": [
+        "Make clean generated footage look like VHS or broadcast tape with a repeatable seeded preset",
+        "Need signal-level artefacts, not just a filter overlay"
+      ],
+      "avoid_when": [
+        "Use frei0r or G'MIC for simple filter-style effects in an existing pipeline",
+        "Use libplacebo for display-side scaling and tone mapping, not tape artefacts"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "frei0r",
+        "g-mic"
+      ],
+      "license": "MIT OR ISC OR Apache-2.0",
+      "install": {
+        "macos": "Download ntsc-rs-macos-standalone.pkg from the GitHub release and unpack with pkgutil --expand-full; ntsc-rs-cli is inside the app bundle",
+        "check_command": "ntsc-rs-cli --version"
+      },
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-ntsc-rs",
+        "version_seen": "0.9.7",
+        "last_release": "v0.9.7",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "A headless CLI with JSON presets and a seed exists and was fixture-tested; it fills the analogue-tape gap that frei0r, G'MIC and libplacebo leave. The code is permissive; the bundled GStreamer was not assessed.",
+        "sources": [
+          "https://github.com/ntsc-rs/ntsc-rs",
+          "https://github.com/ntsc-rs/ntsc-rs/releases/tag/v0.9.7"
+        ]
+      },
+      "examples": [
+        "ntsc-rs-vhs-preset"
+      ],
+      "skill": "skills/ntsc-rs/SKILL.md"
     },
     {
       "id": "nvidia-warp",
@@ -11184,6 +12070,86 @@
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a",
       "skill": "skills/openimageio-oiiotool/SKILL.md"
+    },
+    {
+      "id": "openscad",
+      "name": "OpenSCAD",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "candidate",
+      "role": "Script-only solid modeller (CSG) with a headless CLI for STL, 3MF, SVG and PNG export",
+      "summary": "OpenSCAD turns a text .scad script into a solid. Variables are overridden per run with -D, and one run exports STL, 3MF, SVG (2D projection) or a PNG preview with a set camera and size. Geometry is a pure function of the script and its variables. The CLI sits on PATH when installed from the snapshot cask.",
+      "use_when": [
+        "Existing .scad models or libraries such as BOSL2 must become STL, SVG or a still",
+        "A parametric part is wanted as text with command-line overrides and no Python or Node",
+        "A quick preview PNG with a fixed camera is enough, with no Blender step"
+      ],
+      "avoid_when": [
+        "Fillets, STEP or exact B-rep work: build123d",
+        "Booleans on triangle meshes in Node or a browser: manifold",
+        "Lighting, materials or final frames: Blender or Three.js",
+        "Byte-identical 3MF output is required: it embeds a timestamp and random UUIDs"
+      ],
+      "pairs_with": [
+        "build123d",
+        "manifold",
+        "trimesh",
+        "blender"
+      ],
+      "official_url": "https://openscad.org",
+      "documentation_urls": [
+        "https://openscad.org/documentation.html",
+        "https://github.com/openscad/openscad"
+      ],
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "3d-asset-processing",
+        "vector-authoring"
+      ],
+      "license": "GPL-2.0 with a linking exception (COPYING); GitHub reports NOASSERTION. Models and libraries carry their own licences.",
+      "install": {
+        "macos": "brew install --cask openscad@snapshot",
+        "check_command": "openscad --version"
+      },
+      "examples": [
+        "openscad-parametric"
+      ],
+      "notes": [
+        "2026-11-27: lead said the stable cask is 2021.01 and the snapshot 2026.10.11; the snapshot ran as 2026.10.11 and puts openscad on PATH (the lead said the CLI sits inside an app bundle). Manifold is the default backend, CGAL is selectable with --backend.",
+        "2026-11-27: help text lists --animate N for $t frames; not exercised. Only the CLI was run, never the GUI."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "2026.10.11 (snapshot)",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "GPL-2.0 with exception, active (push 2026-11-23). Adds the text-CAD language and its large .scad corpus beside build123d (Python B-rep) and manifold (mesh library); headless export ran on macOS without a GUI.",
+        "sources": [
+          "https://openscad.org",
+          "https://github.com/openscad/openscad",
+          "https://github.com/BelfrySCAD/BOSL2"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2026.10.11",
+            "command": "examples/openscad-parametric/run.sh",
+            "result": "Block 40x30x10 and -D override 50x20x8: Manifold STL watertight, volume within 1e-9 of analytic (11214.917211, 6768.990186), 528 faces; CGAL STL watertight, volume off by 3.4e-9 (KNOWN FAIL at 1e-9). STL byte-identical across runs. 3MF differs (CreationDate, UUIDs): KNOWN FAIL. SVG viewBox 42x32, 2 contours. PNG 400x300 byte-identical twice, inspected.",
+            "example": "examples/openscad-parametric",
+            "scope": "Fixture-reported, macOS arm64 snapshot 2026.10.11: -D overrides to STL, SVG, fixed-camera PNG; 3MF not deterministic and CGAL 3e-9 volume gap fail; no --animate, GUI, libraries."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-24-discovery.md",
+      "skill": "skills/openscad/SKILL.md"
     },
     {
       "id": "opensheetmusicdisplay",
@@ -14229,6 +15195,83 @@
       "skill": "skills/raea/SKILL.md"
     },
     {
+      "id": "ranim",
+      "name": "Ranim",
+      "category": "A2. Animation and authored assets",
+      "tier": "catalogued",
+      "role": "Rust scenes rendered headless through wgpu and FFmpeg to MP4, PNG frames and timed captures",
+      "summary": "Manim-style animation engine in Rust. A scene is a function that inserts vector items and plays animations on a timeline. Rendering writes MP4, WebM or MOV with alpha, GIF, saved PNG frames, and PNG captures at marked times, using wgpu. Pre-1.0 with unstable APIs; the first build compiles a large dependency tree.",
+      "use_when": [
+        "Compiled, GPU-rendered maths-style vector motion authored in Rust",
+        "Over Manim Community when Rust and render speed matter",
+        "Fixed-time PNG captures from a scene to inspect frames"
+      ],
+      "avoid_when": [
+        "Equations and LaTeX explainers: Manim Community",
+        "Editor-driven TypeScript scenes: Motion Canvas",
+        "A stable API is needed: pre-1.0 releases break often"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "imagemagick",
+        "manim-community",
+        "motion-canvas"
+      ],
+      "official_url": "https://azurice.github.io/ranim/",
+      "repository_url": "https://github.com/AzurIce/ranim",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "timeline-animation",
+        "2d-rendering",
+        "video-encoding"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "cargo add ranim --features render (FFmpeg on PATH)",
+        "check_command": "cargo --version"
+      },
+      "notes": [
+        "2026-11-27: Lead matched: 0.2.1, MIT. README targets an unreleased v0.3 API. The render entry point needs the `render` feature. Without ffmpeg on PATH it downloads one into the working directory."
+      ],
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "examples": [
+        "ranim-render-scene"
+      ],
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.2.1",
+            "command": "examples/ranim-render-scene/run.sh",
+            "result": "Headless wgpu render of a 1 s 320x180 12 fps scene gave 12 PNG frames, an h264 MP4 with 12 frames and 3 time-mark captures. Square bbox 46 to 64 px (45 degree turn). Captures equalled frames 0, 6 and 11; second run was byte-identical.",
+            "example": "examples/ranim-render-scene",
+            "scope": "Ranim 0.2.1 library route, Rust 1.95.0, macOS arm64 Apple GPU, one rotating square. Same-machine repeat only; no CLI, preview, text, alpha or other GPUs."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-ranim",
+        "version_seen": "0.2.1",
+        "last_release": "2026-05-28",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "0.2.1 on crates.io, MIT, last push 2026-11-17. Library API renders offline through wgpu and FFmpeg. Compiled alternative to Manim Community and Motion Canvas. Pre-1.0 and API-unstable.",
+        "sources": [
+          "https://crates.io/crates/ranim",
+          "https://github.com/AzurIce/ranim",
+          "https://azurice.github.io/ranim/"
+        ]
+      },
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-19-discovery.md",
+      "skill": "skills/ranim/SKILL.md"
+    },
+    {
       "id": "rapier",
       "name": "Rapier",
       "category": "A8. Physics, audio and 3D assets",
@@ -15491,6 +16534,79 @@
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a",
       "skill": "skills/satori/SKILL.md"
+    },
+    {
+      "id": "scrcpy",
+      "name": "scrcpy",
+      "category": "A5. Video and capture",
+      "tier": "candidate",
+      "role": "Mirrors and records an Android device or emulator screen to MP4 over adb",
+      "official_url": "https://github.com/Genymobile/scrcpy",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "capture"
+      ],
+      "notes": [
+        "2026-11-27: Triage: assess; fills the Android device-capture gap beside baguette (iOS Simulator only). Lead said Homebrew 5.0.1; confirmed by `scrcpy --version` on this Mac.",
+        "2026-11-27: Evidence partial: a 3 s headless H.264 MP4 of a connected Android TV device (Android 11, 1920x1080) matched `adb shell wm size`; but `--no-window --no-playback` segfaulted on startup in several runs, so the fixture retries up to 3 times.",
+        "2026-11-27: Guide written from examples/scrcpy-android-capture."
+      ],
+      "skill": "skills/scrcpy/SKILL.md",
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "5.0.1",
+            "command": "examples/scrcpy-android-capture/run.sh",
+            "result": "Recorded 3 s of a connected Android TV device (Android 11) with --no-window --no-playback --no-audio: H.264 MP4 1920x1080 equal to adb wm size, duration 2.91 s, two frames non-blank and different. scrcpy segfaulted at startup in about a third of runs; run.sh retried (up to 3) and passed. ffprobe 9.0.2, macOS 26.6 arm64.",
+            "example": "examples/scrcpy-android-capture",
+            "scope": "One Android TV over adb TCP, 3 s H.264 MP4; startup segfault in ~1 of 3 runs (retried); no phone, emulator, audio, camera, USB, pixel hashes or isolated keypress effect"
+          }
+        ]
+      },
+      "examples": [
+        "scrcpy-android-capture"
+      ],
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-26-discovery.md",
+      "summary": "Genymobile's open-source CLI that mirrors and controls an Android device or emulator over adb and records its screen to MP4, MKV or audio files. With --no-window --no-playback --record it runs headless; --time-limit bounds the take. Capture is real-time, so frames are not seekable or deterministic.",
+      "use_when": [
+        "Capture an Android app or device screen as a source clip for an app preview",
+        "Record an Android take headlessly with a time limit while adb sends scripted input",
+        "Mirror an Android emulator or device with audio recorded to a file"
+      ],
+      "avoid_when": [
+        "Capturing an iOS Simulator: use baguette",
+        "Frames must be seekable or deterministic: capture is real-time, so use a browser or native render route",
+        "Adding a device bezel to a capture: record first, then use frames-cli"
+      ],
+      "pairs_with": [
+        "frames-cli",
+        "ffmpeg-ffprobe",
+        "baguette"
+      ],
+      "license": "Apache-2.0",
+      "install": {
+        "macos": "brew install scrcpy android-platform-tools",
+        "check_command": "scrcpy --version"
+      },
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-scrcpy",
+        "version_seen": "5.0.1",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Official README documents headless recording (--no-window --no-playback --record) and --time-limit; Apache-2.0; Homebrew 5.0.1 recorded a real device here. No other catalogued tool captures an Android screen. Release date not independently checked.",
+        "sources": [
+          "https://github.com/Genymobile/scrcpy",
+          "https://github.com/Genymobile/scrcpy/releases"
+        ]
+      }
     },
     {
       "id": "segment-anything",
@@ -17589,6 +18705,76 @@
       "skill": "skills/three-vrm/SKILL.md"
     },
     {
+      "id": "tippecanoe",
+      "name": "tippecanoe",
+      "category": "Discovery: research candidates",
+      "tier": "candidate",
+      "role": "CLI that builds vector tilesets (.pmtiles, .mbtiles) from GeoJSON",
+      "official_url": "https://github.com/felt/tippecanoe",
+      "repository_url": "https://github.com/felt/tippecanoe",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "geospatial"
+      ],
+      "notes": [
+        "2026-11-27: Lead from prospects/inbox/2026-11-26-discovery.md; stable 2.79.0 and BSD-2-Clause match brew info. This is the Felt fork; mapbox/tippecanoe stopped at 1.36.0.",
+        "2026-11-27: The lead's reproducibility caveat held: archive bytes repeat only for an identical command, because the output file name and input paths are written into the archive metadata."
+      ],
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "examples": [
+        "tippecanoe-geojson-pmtiles"
+      ],
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.79.0",
+            "command": "examples/tippecanoe-geojson-pmtiles/run.sh",
+            "result": "500 points + route + region, -Z0 -z8 --drop-densest-as-needed: 11376-byte .pmtiles, 3 layers, unique points per zoom 1,1,2,5,13,32,80,201,500; tile-join -l points keeps 500; -zg chose maxzoom 6; same command twice byte-identical (8 of 8 runs), 9 of 9 checks pass",
+            "example": "examples/tippecanoe-geojson-pmtiles",
+            "scope": "macOS arm64: GeoJSON to PMTiles, per-zoom counts via tippecanoe-decode and tile-join. Bytes repeat only for an identical command (name and paths are in metadata). No renderer, no real data."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-26-discovery.md",
+      "summary": "Turns your own GeoJSON into a zoom-thinned .pmtiles tileset, the missing step before an offline, pinned map scene.",
+      "license": "BSD-2-Clause",
+      "use_when": [
+        "Turn a production's own GeoJSON (routes, regions, points) into a local vector tileset"
+      ],
+      "avoid_when": [
+        "Need an OpenStreetMap basemap: build it with a planet-scale tool, not tippecanoe",
+        "Need to render tiles to an image: chiitiler or maplibre-native"
+      ],
+      "pairs_with": [
+        "chiitiler",
+        "maplibre-native"
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-tippecanoe",
+        "version_seen": "2.79.0",
+        "last_release": "unknown",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Felt's maintained fork writes .pmtiles directly from GeoJSON, FlatGeobuf or CSV, with zoom-dependent thinning and simplification. BSD-2-Clause, Homebrew bottle, no network. Fills the gap between a map renderer and its tiles. Output depends on pinned flags.",
+        "sources": [
+          "https://github.com/felt/tippecanoe",
+          "https://formulae.brew.sh/formula/tippecanoe"
+        ]
+      },
+      "install": {
+        "macos": "brew install tippecanoe",
+        "check_command": "tippecanoe --version"
+      },
+      "skill": "skills/tippecanoe/SKILL.md"
+    },
+    {
       "id": "tone-js",
       "name": "Tone.js",
       "category": "A8. Physics, audio and 3D assets",
@@ -18472,6 +19658,81 @@
       "checked_at": "2026-11-15",
       "source": "prospects/inbox/2026-11-15-discovery.md",
       "skill": "skills/vedo/SKILL.md"
+    },
+    {
+      "id": "vello",
+      "name": "Vello / vello_cpu",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "Rust 2D vector renderer: GPU (vello) and deterministic CPU (vello_cpu) paths",
+      "summary": "Linebender's Rust 2D renderer. vello_cpu rasterises paths, gradients, clips and layers on the CPU into an RGBA pixmap with PNG encode; vello and vello_gpu run the same scene model on wgpu. Pre-1.0 with frequent breaking releases.",
+      "use_when": [
+        "Native Rust scene code needs anti-aliased paths and gradients rasterised headless to RGBA",
+        "A CPU golden-frame route is wanted from the Linebender stack that resvg also comes from"
+      ],
+      "avoid_when": [
+        "Static SVG rasterisation: resvg is simpler and stable",
+        "Browser-drawn scenes: capture with Playwright, or use canvas-2d",
+        "GPU output must match across machines: adapters differ, use vello_cpu"
+      ],
+      "pairs_with": [
+        "resvg",
+        "canvaskit-skia",
+        "thorvg",
+        "skia-canvas"
+      ],
+      "official_url": "https://github.com/linebender/vello",
+      "repository_url": "https://github.com/linebender/vello",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "2d-rendering",
+        "vector-authoring"
+      ],
+      "license": "Apache-2.0 OR MIT",
+      "install": {
+        "macos": "cargo add vello_cpu@=0.4.0",
+        "check_command": "cargo --version"
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.4.0",
+            "command": "examples/vello-cpu-raster/run.sh",
+            "result": "Rust 1.95.0 crate, vello_cpu 0.4.0 default u8 pipeline, 320x240 RGBA: rotated linear-gradient rect, radial-gradient circle, stroked cubic; 44742 transparent, 30263 opaque, 1795 partial px; 4 probes matched; two fresh processes byte-identical, PNG SHA-256 5e3aba8d81f18f76558d1713b8a2c7c131782c17ba3f3c011a4ec729fd791a15; image inspected.",
+            "example": "examples/vello-cpu-raster",
+            "scope": "vello_cpu CPU raster to PNG on macOS arm64, same-machine repeatability only. No GPU vello, text, vello_svg, cross-machine identity or multithreading claim."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-27",
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard-vello",
+        "version_seen": "vello 0.12.0, vello_cpu 0.4.0",
+        "last_release": "2026-11-11 (crates.io)",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "Apache-2.0 OR MIT, active, MSRV 1.89. vello_cpu gives a headless Rust CPU raster of paths and gradients; overlaps resvg and tiny-skia for SVG, so its niche is native scene code. Pre-1.0, breaking releases about every six weeks.",
+        "sources": [
+          "https://github.com/linebender/vello",
+          "https://crates.io/crates/vello_cpu/0.4.0",
+          "https://docs.rs/vello_cpu/0.4.0"
+        ]
+      },
+      "notes": [
+        "2026-11-27: Lead matched crates.io (versions, licence, MSRV 1.89). GPU vello not run; needs a Metal adapter check."
+      ],
+      "source": "prospects/inbox/2026-11-19-discovery.md",
+      "examples": [
+        "vello-cpu-raster"
+      ],
+      "skill": "skills/vello/SKILL.md"
     },
     {
       "id": "verovio",

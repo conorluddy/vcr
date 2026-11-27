@@ -1,0 +1,10 @@
+{
+  "id": "libultrahdr-gainmap-encode",
+  "title": "libultrahdr encodes an SDR and HDR pair into an Ultra HDR JPEG with a gain map",
+  "summary": "Generated 128x96 SDR RGBA8888 and HLG RGBA1010102 pair; ultrahdr_app encodes one JPEG with MPF gain map, a plain reader decodes the SDR base, the library decodes HDR back. XMP hdrgm check is a KNOWN FAIL: 2.0.2 writes ISO 21496-1 metadata.",
+  "status": "not-validated",
+  "tools": [
+    "libultrahdr"
+  ],
+  "run": "./run.sh"
+}

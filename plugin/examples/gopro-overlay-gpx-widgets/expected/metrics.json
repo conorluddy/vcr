@@ -1,0 +1,42 @@
+{
+ "probe": {
+  "codec_name": "qtrle",
+  "width": 640,
+  "height": 360,
+  "pix_fmt": "argb",
+  "r_frame_rate": "30/1",
+  "nb_frames": "303"
+ },
+ "distinct_frames": 100,
+ "numbers_read": {
+  "speed": [
+   33,
+   36,
+   36
+  ],
+  "hr": [
+   120,
+   130,
+   140
+  ],
+  "alt": [
+   100,
+   110,
+   120
+  ]
+ },
+ "opaque_fraction_t5": 0.1275,
+ "checks": {
+  "version_0_134_0": true,
+  "stream_640x360_qtrle_argb": true,
+  "frame_count_303": true,
+  "two_renders_identical_frames": true,
+  "distinct_frames_101": false,
+  "corner_transparent": true,
+  "has_opaque_pixels": true,
+  "numbers_match_gpx": false,
+  "static_label_unchanged": true,
+  "bar_changes_with_hr": true
+ },
+ "all_passed": false
+}

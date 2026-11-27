@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="vcr-fixture" xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1">
+ <trk><name>fixture</name><trkseg>
+   <trkpt lat="53.3500000" lon="-6.2600000"><ele>100</ele><time>2026-01-01T10:00:00Z</time><extensions><gpxtpx:TrackPointExtension><gpxtpx:hr>120</gpxtpx:hr></gpxtpx:TrackPointExtension></extensions></trkpt>
+   <trkpt lat="53.3500899" lon="-6.2600000"><ele>102</ele><time>2026-01-01T10:00:01Z</time><extensions><gpxtpx:TrackPointExtension><gpxtpx:hr>122</gpxtpx:hr></gpxtpx:TrackPointExtension></extensions></trkpt>
+   <trkpt lat="53.3501799" lon="-6.2600000"><ele>104</ele><time>2026-01-01T10:00:02Z</time><extensions><gpxtpx:TrackPointExtension><gpxtpx:hr>124</gpxtpx:hr></gpxtpx:TrackPointExtension></extensions></trkpt>
+   <trkpt lat="53.3502698" lon="-6.2600000"><ele>106</ele><time>2026-01-01T10:00:03Z</time><extensions><gpxtpx:TrackPointExtension><gpxtpx:hr>126</gpxtpx:hr></gpxtpx:TrackPointExtension></extensions></trkpt>
+   <trkpt lat="53.3503597" lon="-6.2600000"><ele>108</ele><time>2026-01-01T10:00:04Z</time><extensions><gpxtpx:TrackPointExtension><gpxtpx:hr>128</gpxtpx:hr></gpxtpx:TrackPointExtension></extensions></trkpt>
+   <trkpt lat="53.3504497" lon="-6.2600000"><ele>110</ele><time>2026-01-01T10:00:05Z</time><extensions><gpxtpx:TrackPointExtension><gpxtpx:hr>130</gpxtpx:hr></gpxtpx:TrackPointExtension></extensions></trkpt>
+   <trkpt lat="53.3505396" lon="-6.2600000"><ele>112</ele><time>2026-01-01T10:00:06Z</time><extensions><gpxtpx:TrackPointExtension><gpxtpx:hr>132</gpxtpx:hr></gpxtpx:TrackPointExtension></extensions></trkpt>
+   <trkpt lat="53.3506295" lon="-6.2600000"><ele>114</ele><time>2026-01-01T10:00:07Z</time><extensions><gpxtpx:TrackPointExtension><gpxtpx:hr>134</gpxtpx:hr></gpxtpx:TrackPointExtension></extensions></trkpt>
+   <trkpt lat="53.3507195" lon="-6.2600000"><ele>116</ele><time>2026-01-01T10:00:08Z</time><extensions><gpxtpx:TrackPointExtension><gpxtpx:hr>136</gpxtpx:hr></gpxtpx:TrackPointExtension></extensions></trkpt>
+   <trkpt lat="53.3508094" lon="-6.2600000"><ele>118</ele><time>2026-01-01T10:00:09Z</time><extensions><gpxtpx:TrackPointExtension><gpxtpx:hr>138</gpxtpx:hr></gpxtpx:TrackPointExtension></extensions></trkpt>
+   <trkpt lat="53.3508993" lon="-6.2600000"><ele>120</ele><time>2026-01-01T10:00:10Z</time><extensions><gpxtpx:TrackPointExtension><gpxtpx:hr>140</gpxtpx:hr></gpxtpx:TrackPointExtension></extensions></trkpt>
+ </trkseg></trk>
+</gpx>

@@ -1,0 +1,8 @@
+{
+  "id": "elevation-eio-clip",
+  "title": "elevation eio clip: Snowdon DEM to GeoTIFF",
+  "summary": "conda-forge env (GDAL 3.13, Python 3.12) with elevation 2.1.0 in output/: clip a 0.09 x 0.06 degree box around Snowdon from the MAPZEN terrain tiles; check CRS, bounds, size, summit height and position.",
+  "status": "validated",
+  "tools": ["elevation-eio"],
+  "run": "./run.sh"
+}

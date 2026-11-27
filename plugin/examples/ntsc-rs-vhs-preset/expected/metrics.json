@@ -1,0 +1,10 @@
+{
+  "version": "ntsc-rs 0.9.7",
+  "stream": "ffv1,320,240,10",
+  "frames": 10,
+  "frame_md5_digest": "27dca65deea7b74b1178c039fe99e8fbd92163c9907b15da8183a60eaf4dbdc6",
+  "seed2_frame_md5_digest": "da40a89109dadbb8a2bf70a603b71eabc92c1d09aa972a561c928f90ed02d747",
+  "psnr_vs_source_db": 12.7,
+  "repeat_identical": true,
+  "frames_differing_between_seeds": 10
+}

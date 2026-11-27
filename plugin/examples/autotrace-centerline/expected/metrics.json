@@ -1,0 +1,20 @@
+{
+  "outline_iou": 0.9941,
+  "centerline_iou": 0.9023,
+  "centerline_path_count": 4,
+  "centerline_stroke_widths": [
+    8.79,
+    8.35,
+    8.7,
+    7.89
+  ],
+  "solid_sha256": "819613a3cc3ce6681d2c7af6230ad4d0df86536200fdd4c557a2ab75c4d241cc",
+  "strokes_sha256": "f006293966409c65367619839b3d7c94f16b2aa2e3d2fbadf44dd24e342f8e67",
+  "checks": {
+    "outline_iou_min_0.97": true,
+    "centerline_iou_min_0.90": true,
+    "centerline_stroke_only": true,
+    "centerline_widths_7_to_9": true,
+    "outline_filled": true
+  }
+}
