@@ -1,6 +1,6 @@
 ---
 name: backfill
-description: Work down the VCR catalogue's undocumented-tool backlog a small batch at a time, taking each tool from assessment through fixture evidence to a toolkit guide, and open one pull request. Use when asked to backfill, document the backlog, or work through undocumented tools in the VCR repository; not for one tool on its own (use ingest, evidence or guide directly) or for production work.
+description: Work down the VCR catalogue's undocumented-tool backlog a small batch at a time, taking each tool from assessment through fixture evidence to a toolkit guide, and open one pull request. Use when asked to backfill, document the backlog, or work through undocumented tools in the VCR repository; not for one tool on its own (use onboard) or for production work.
 ---
 
 # Backfill undocumented tools
