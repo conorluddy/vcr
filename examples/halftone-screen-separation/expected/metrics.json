@@ -1,0 +1,36 @@
+{
+  "all_passed": true,
+  "checks": {
+    "gray_angle_within_tolerance": true,
+    "gray_output_byte_identical_on_repeat": true,
+    "gray_pitch_within_tolerance": true,
+    "gray_size_is_input_times_scale": true,
+    "gray_tone_within_5_percent_of_input": true,
+    "plate_c_angle_within_tolerance": true,
+    "plate_c_pitch_within_tolerance": true,
+    "plate_k_angle_within_tolerance": true,
+    "plate_k_pitch_within_tolerance": true,
+    "plate_m_angle_within_tolerance": true,
+    "plate_m_pitch_within_tolerance": true,
+    "plate_y_angle_within_tolerance": true,
+    "plate_y_pitch_within_tolerance": true
+  },
+  "failed": [],
+  "gray": {
+    "mean_level": 128.9,
+    "measured_angle_deg": 45.0,
+    "period_px": 15.74
+  },
+  "plate_angle_error_deg": {
+    "c": 0.5,
+    "k": 0.0,
+    "m": 0.5,
+    "y": 0.0
+  },
+  "plate_measured_angle_deg": {
+    "c": 14.5,
+    "k": 45.0,
+    "m": 75.5,
+    "y": 0.0
+  }
+}
