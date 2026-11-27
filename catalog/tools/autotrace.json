@@ -1,0 +1,62 @@
+{
+  "id": "autotrace",
+  "name": "AutoTrace",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "candidate",
+  "role": "Bitmap to SVG tracing, outline or centerline strokes",
+  "summary": "CLI and library that converts bitmaps to vectors: filled colour outlines, or centerline tracing that turns stroke art into stroke-only SVG paths. Many output formats (SVG, EPS, PDF, DXF). Output is deterministic for fixed input and options.",
+  "use_when": [
+    "Turning line drawings or handwriting into single stroked paths for vpype plotting or stroke-draw animation",
+    "Centerline tracing, which potrace and vtracer do not offer"
+  ],
+  "avoid_when": [
+    "One-bit outline tracing alone: potrace is simpler",
+    "Copyleft is a problem when bundling: GPL-2.0-or-later and LGPL-2.1-or-later"
+  ],
+  "pairs_with": ["potrace", "vtracer", "resvg", "svg", "vpype", "imagemagick"],
+  "official_url": "https://github.com/autotrace/autotrace",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": ["vector-tracing"],
+  "license": "GPL-2.0-or-later and LGPL-2.1-or-later (Homebrew metadata); GitHub reports GPL-2.0",
+  "install": {
+    "macos": "brew install autotrace",
+    "check_command": "autotrace --version"
+  },
+  "notes": [
+    "2026-11-27: lead said 0.31.12 with unverified date; GitHub and Homebrew show 0.31.13 released 2026-11-26."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard-autotrace",
+    "version_seen": "0.31.13",
+    "last_release": "2026-11-26",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Free software (copyleft), maintained again with a release a day before assessment. Adds centerline tracing missing from potrace and vtracer. Noisy scans untested.",
+    "sources": [
+      "https://github.com/autotrace/autotrace",
+      "https://autotrace.sourceforge.net/"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.31.13",
+        "command": "examples/autotrace-centerline/run.sh",
+        "result": "Outline IoU 0.9941 (floor 0.97), centerline IoU 0.9023 (floor 0.90) after resvg rasterisation; 4 stroke-only paths, widths 7.89 to 8.79; repeat bytes equal; strokes SVG SHA-256 f006293966409c65367619839b3d7c94f16b2aa2e3d2fbadf44dd24e342f8e67",
+        "example": "examples/autotrace-centerline",
+        "scope": "Generated 200x200 shapes and 8px strokes, outline and centerline SVG, macOS arm64, 0.31.13; no scans, colour, noise, junction or cross-platform claim."
+      }
+    ]
+  },
+  "examples": ["autotrace-centerline"],
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-24-discovery.md",
+  "skill": "skills/autotrace/SKILL.md"
+}
