@@ -1,0 +1,29 @@
+{
+  "all_passed": true,
+  "clips": {
+    "flash-5hz": {
+      "check_passed": true,
+      "expected_fail": true,
+      "luminance_flash_fail_frames": 99,
+      "overall_result": "Fail",
+      "red_total_failed_frames": 0,
+      "total_frames": 120
+    },
+    "slow-1hz": {
+      "check_passed": true,
+      "expected_fail": false,
+      "luminance_flash_fail_frames": 0,
+      "overall_result": "Pass",
+      "red_total_failed_frames": 0,
+      "total_frames": 120
+    },
+    "static-grey": {
+      "check_passed": true,
+      "expected_fail": false,
+      "luminance_flash_fail_frames": 0,
+      "overall_result": "Pass",
+      "red_total_failed_frames": 0,
+      "total_frames": 120
+    }
+  }
+}

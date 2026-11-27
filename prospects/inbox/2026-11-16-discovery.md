@@ -12,7 +12,7 @@ Summary line: 3 leads (1 in a new category: accessibility and compliance; `pysph
 
 ## Leads
 ### iris-pse-detection (`iris-pse-detection`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/tokoroten/iris-pse-detection (PyPI: https://pypi.org/project/iris-pse-detection/). Upstream: https://github.com/electronicarts/IRIS
 - Role: Python port of Electronic Arts' IRIS photosensitive-epilepsy risk detector. CLI `iris video.mp4`, plus a `VideoAnalyser` / `Configuration` library API. Checks luminance and red-saturation flashes over a 1-second transition window, with extended-failure (4 s+) and optional pattern detection.
 - Category: 🆕 new category: accessibility and compliance (joins the category first proposed by `video-safety-check`, 2026-11-01)
