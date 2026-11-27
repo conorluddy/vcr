@@ -1,0 +1,40 @@
+{
+  "checks": {
+    "hdr_decode_highlight_above_900_of_1023": true,
+    "mpf_lists_two_images": true,
+    "plain_jpeg_probe_rejected": true,
+    "plain_readers_decode_128x96": true,
+    "probe_reports_ultra_hdr_with_boost_above_1": true,
+    "repeat_encode_byte_identical": true,
+    "sdr_base_psnr_at_least_30_db": true,
+    "srgb_decode_is_128x96_rgba8888": true,
+    "starts_with_jpeg_soi": true,
+    "xmp_hdrgm_gain_map_max_present": false
+  },
+  "ffmpeg_decode_exit": 0,
+  "gainmap_bytes": 4024,
+  "hdr_decode_highlight_peak_10bit": 1023,
+  "iso_21496_1_marker_in_gainmap": true,
+  "iso_21496_1_marker_in_primary": true,
+  "mpf_number_of_images": "2",
+  "plain_jpeg_probe_exit": 255,
+  "plain_reader_dimensions": [
+    128,
+    96
+  ],
+  "probe_max_content_boost": 9.462,
+  "probe_says_ultra_hdr": true,
+  "sdr_base_psnr_db": 50.39,
+  "srgb_decode_bytes": 49152,
+  "uhdr_bytes": 7410,
+  "uhdr_sha256": "c208205520a7f6981834810c2c1a53638844bb8eb1f2911ca684bfd47ee39468",
+  "versions": {
+    "exiftool": "13.50",
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "imagemagick": "Version: ImageMagick 7.1.2-36 Q16-HDRI aarch64 983df25e4:20261116 https://imagemagick.org",
+    "numpy": "1.26.4",
+    "python": "3.12.2",
+    "ultrahdr_app": "v2.0.2"
+  },
+  "xmp_hdrgm_gain_map_max": ""
+}

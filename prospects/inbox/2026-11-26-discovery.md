@@ -29,7 +29,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: maps gap, a neighbour of the `maplibre-native` and `chiitiler` seeds.
 
 ### scrcpy (`scrcpy`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/Genymobile/scrcpy
 - Role: mirrors and records an Android device or emulator over ADB. With `--no-playback --no-window --record=file.mp4` it records headlessly to MP4, MKV, Opus, FLAC or WAV, and `--time-limit` bounds the take.
 - Category: A5. Video and capture.

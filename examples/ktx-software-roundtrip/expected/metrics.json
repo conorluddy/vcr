@@ -1,0 +1,24 @@
+{
+  "colorModel": "KHR_DF_MODEL_UASTC",
+  "header": {
+    "levelCount": 9,
+    "pixelHeight": 256,
+    "pixelWidth": 256,
+    "supercompressionScheme": "KTX_SS_NONE",
+    "vkFormat": "VK_FORMAT_UNDEFINED"
+  },
+  "info_valid": true,
+  "ktx2_sha256": "643109a14e5ea0ea4b3a8e7681509541c12c05cec287f97c6d3c25651c8ece29",
+  "level0_byteLength": 65536,
+  "roundtrip": {
+    "height": 256,
+    "max_abs_error": 3,
+    "psnr_db": 54.5,
+    "width": 256
+  },
+  "transferFunction": "KHR_DF_TRANSFER_SRGB",
+  "validate": {
+    "messages": [],
+    "valid": true
+  }
+}

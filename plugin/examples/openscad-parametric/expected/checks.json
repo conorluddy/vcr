@@ -1,0 +1,106 @@
+{
+  "3mf_repeat_identical": false,
+  "3mf_vertices_triangles": [
+    264,
+    528
+  ],
+  "default": {
+    "analytic_volume": 11214.917211,
+    "cgal": {
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          40.0,
+          30.0,
+          10.0
+        ]
+      ],
+      "faces": 528,
+      "volume_relative_error_lt_1e-9": false,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "manifold": {
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          40.0,
+          30.0,
+          10.0
+        ]
+      ],
+      "faces": 528,
+      "volume_relative_error_lt_1e-9": true,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "stl_manifold_sha256_16": "07cd706ad25d2e1d"
+  },
+  "override": {
+    "analytic_volume": 6768.990186,
+    "cgal": {
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          50.0,
+          20.0,
+          8.0
+        ]
+      ],
+      "faces": 528,
+      "volume_relative_error_lt_1e-9": false,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "manifold": {
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          50.0,
+          20.0,
+          8.0
+        ]
+      ],
+      "faces": 528,
+      "volume_relative_error_lt_1e-9": true,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "stl_manifold_sha256_16": "c0e41eef1b099df9"
+  },
+  "png": {
+    "repeat_identical": true,
+    "sha256_16": "7cb10de5189f3d6f",
+    "size": [
+      400,
+      300
+    ]
+  },
+  "stl_repeat_identical": true,
+  "svg": {
+    "contours": 2,
+    "footprint_40x30_plus_1mm_margin": true,
+    "viewBox": [
+      -1.0,
+      -31.0,
+      42.0,
+      32.0
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tippecanoe-geojson-pmtiles",
+  "title": "tippecanoe builds a PMTiles archive from self-authored GeoJSON",
+  "summary": "500 points, one route and one region become a three-layer z0-8 .pmtiles with pinned flags; per-zoom feature counts read back with tippecanoe-decode and tile-join, and the bytes repeat across runs of the same command.",
+  "status": "not-validated",
+  "tools": ["tippecanoe"],
+  "run": "./run.sh"
+}

@@ -1,0 +1,72 @@
+{
+  "gdal": "GDAL 3.13.2 \"Iowa City\", released 2026/07/20",
+  "source": {
+    "size": [
+      10,
+      10
+    ],
+    "epsg": 4326,
+    "cornerLowerLeft": [
+      -10,
+      50
+    ],
+    "cornerUpperRight": [
+      -5,
+      55
+    ],
+    "pixelSize": [
+      0.5,
+      -0.5
+    ]
+  },
+  "mercator": {
+    "size": [
+      11,
+      18
+    ],
+    "epsg": 3857,
+    "cornerLowerLeft": [
+      -1113194.9,
+      6461866.1
+    ],
+    "cornerUpperRight": [
+      -563194.9,
+      7361866.1
+    ],
+    "pixelSize": [
+      50000,
+      -50000
+    ]
+  },
+  "clipped": {
+    "size": [
+      7,
+      7
+    ],
+    "epsg": 3857,
+    "cornerLowerLeft": [
+      -1001875.4,
+      6632997.9
+    ],
+    "cornerUpperRight": [
+      -651875.4,
+      6982997.9
+    ],
+    "pixelSize": [
+      50000,
+      -50000
+    ]
+  },
+  "vectorFeaturesAfterClip": 2,
+  "vectorCrs": "urn:ogc:def:crs:EPSG::3857",
+  "checks": {
+    "sourceIsWgs84": true,
+    "mercatorIs3857": true,
+    "clippedIs3857": true,
+    "clippedSmallerThanMercator": true,
+    "vectorsInMetres": true,
+    "topLeftPixelIsZero": true,
+    "bottomRightPixelIsNinetyNine": true
+  },
+  "identicalBytesAcrossTwoRuns": true
+}

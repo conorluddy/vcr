@@ -13,7 +13,7 @@ Summary line: 10 leads (0 in new categories).
 ## Leads
 
 ### librashader (`librashader`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/SnowflakePowered/librashader (CLI docs: `CLI.md` in the repo)
 - Role: runs RetroArch `.slangp` shader presets (CRT, scanline, NTSC, handheld-LCD looks) outside an emulator; `librashader-cli render` applies a preset to an input image and writes the result for a chosen frame number.
 - Category: A3. 3D, shaders and effects.
@@ -70,7 +70,7 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `webgpu` (through fastplotlib, which is built on it).
 
 ### ntsc-rs (`ntsc-rs`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://ntsc.rs (source: https://github.com/ntsc-rs/ntsc-rs)
 - Role: an analogue-video artefact emulator (NTSC composite, VHS tracking noise, chroma bleed, head switching) for stills and video, shipped as a standalone app and as OpenFX and After Effects plugins.
 - Category: A6. Image processing and colour.
@@ -84,7 +84,7 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `glitch-art` (a Swift app in the results cites it), then a name search.
 
 ### gopro-dashboard-overlay (`gopro-overlay`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/time4tea/gopro-dashboard-overlay
 - Role: renders telemetry dashboards (speed, elevation, heart rate, moving map, route trace) as video from GoPro metadata or from a plain GPX or FIT file, with layouts defined in XML.
 - Category: A5. Video and capture (maps and geo motion gap).
@@ -127,7 +127,7 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `simctl`.
 
 ### Gource (`gource`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://gource.io (source: https://github.com/acaudwell/Gource)
 - Role: animates a repository's commit history as a growing tree and writes a PPM frame stream for FFmpeg.
 - Category: A7. Native applications and procedural tools.

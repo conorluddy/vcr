@@ -1,0 +1,9 @@
+{
+  "id": "mapnik-geojson-style",
+  "title": "Mapnik renders a GeoJSON with an XML style to panned PNG frames",
+  "summary": "Mapnik 4.3.2 (PyPI wheel, CPython 3.12) draws polygons, a line and a text label from a self-authored GeoJSON; three bbox-panned 512x512 frames match seven pixel probes, are opaque, distinct, and identical across order and processes.",
+  "status": "validated",
+  "tools": ["mapnik"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-27", "hostname": "Conors-MacBook-Pro-2.local" }
+}

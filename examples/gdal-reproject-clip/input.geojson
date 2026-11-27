@@ -1,0 +1,4 @@
+{"type":"FeatureCollection","features":[
+{"type":"Feature","properties":{"name":"clip-area"},"geometry":{"type":"Polygon","coordinates":[[[-9,51],[-6,51],[-6,53],[-9,53],[-9,51]]]}},
+{"type":"Feature","properties":{"name":"spans-edge"},"geometry":{"type":"Polygon","coordinates":[[[-7,53],[-4,53],[-4,56],[-7,56],[-7,53]]]}}
+]}

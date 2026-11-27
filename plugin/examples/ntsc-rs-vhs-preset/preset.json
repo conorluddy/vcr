@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "random_seed": 1234,
+  "composite_noise_intensity": 0.1,
+  "chroma_noise_intensity": 0.2,
+  "snow_intensity": 0.05,
+  "tracking_noise": true,
+  "tracking_noise_height": 20,
+  "tracking_noise_wave_intensity": 10,
+  "tracking_noise_snow_intensity": 0.5,
+  "tracking_noise_noise_intensity": 0.3,
+  "head_switching": true,
+  "vhs_settings": true,
+  "vhs_tape_speed": 2
+}

@@ -1,0 +1,8 @@
+# frame name x y r g b   (frame 0: 64 px per degree, y grows downward from lat 8; each pan frame shifts content 64 px left)
+0 background-corner 10 10 241 250 238
+0 alpha-fill-centre 128 384 230 57 70
+0 beta-fill-centre 384 160 29 53 87
+0 road-centre 256 288 42 157 143
+0 outside-alpha 20 384 241 250 238
+1 alpha-fill-panned 64 384 230 57 70
+2 alpha-fill-panned 0 384 230 57 70

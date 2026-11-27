@@ -1,0 +1,8 @@
+{
+  "id": "gdal-reproject-clip",
+  "title": "GDAL reproject and clip a GeoTIFF and a GeoJSON",
+  "summary": "Build a GeoTIFF from a self-authored ASCII grid, reproject and clip it with gdalwarp, reproject and clip a GeoJSON with ogr2ogr, and check CRS, extents, pixel values and byte determinism.",
+  "status": "validated",
+  "tools": ["gdal"],
+  "run": "./run.sh"
+}

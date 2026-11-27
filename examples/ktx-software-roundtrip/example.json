@@ -1,0 +1,8 @@
+{
+  "id": "ktx-software-roundtrip",
+  "title": "Create, validate, inspect and extract a UASTC KTX2",
+  "summary": "Runs the pinned official ktx 4.4.2 binary from an expanded pkg: encodes a generated PNG to mipmapped UASTC KTX2, validates and inspects it, and extracts level 0 within a PSNR tolerance.",
+  "status": "validated",
+  "tools": ["ktx-software"],
+  "run": "./run.sh"
+}

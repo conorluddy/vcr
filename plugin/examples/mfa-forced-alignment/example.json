@@ -1,0 +1,14 @@
+{
+  "id": "mfa-forced-alignment",
+  "title": "Montreal Forced Aligner aligns a known 10-word transcript to say speech; all checks pass",
+  "summary": "Order, monotonic timings, 10 of 10 starts within 0.20 s (max 0.10 s) and identical reruns. conda-forge env and english_us_arpa models under ignored output/, macOS arm64.",
+  "status": "validated",
+  "tools": [
+    "montreal-forced-aligner"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-27",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "id": "scrcpy",
+  "name": "scrcpy",
+  "category": "A5. Video and capture",
+  "tier": "candidate",
+  "role": "Mirrors and records an Android device or emulator screen to MP4 over adb",
+  "official_url": "https://github.com/Genymobile/scrcpy",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": ["capture"],
+  "notes": [
+    "2026-11-27: Triage: assess; fills the Android device-capture gap beside baguette (iOS Simulator only). Lead said Homebrew 5.0.1; confirmed by `scrcpy --version` on this Mac.",
+    "2026-11-27: Evidence partial: a 3 s headless H.264 MP4 of a connected Android TV device (Android 11, 1920x1080) matched `adb shell wm size`; but `--no-window --no-playback` segfaulted on startup in several runs, so the fixture retries up to 3 times.",
+    "2026-11-27: Guide written from examples/scrcpy-android-capture."
+  ],
+  "skill": "skills/scrcpy/SKILL.md",
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "5.0.1",
+        "command": "examples/scrcpy-android-capture/run.sh",
+        "result": "Recorded 3 s of a connected Android TV device (Android 11) with --no-window --no-playback --no-audio: H.264 MP4 1920x1080 equal to adb wm size, duration 2.91 s, two frames non-blank and different. scrcpy segfaulted at startup in about a third of runs; run.sh retried (up to 3) and passed. ffprobe 9.0.2, macOS 26.6 arm64.",
+        "example": "examples/scrcpy-android-capture",
+        "scope": "One Android TV over adb TCP, 3 s H.264 MP4; startup segfault in ~1 of 3 runs (retried); no phone, emulator, audio, camera, USB, pixel hashes or isolated keypress effect"
+      }
+    ]
+  },
+  "examples": ["scrcpy-android-capture"],
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-27",
+  "source": "prospects/inbox/2026-11-26-discovery.md",
+  "summary": "Genymobile's open-source CLI that mirrors and controls an Android device or emulator over adb and records its screen to MP4, MKV or audio files. With --no-window --no-playback --record it runs headless; --time-limit bounds the take. Capture is real-time, so frames are not seekable or deterministic.",
+  "use_when": [
+    "Capture an Android app or device screen as a source clip for an app preview",
+    "Record an Android take headlessly with a time limit while adb sends scripted input",
+    "Mirror an Android emulator or device with audio recorded to a file"
+  ],
+  "avoid_when": [
+    "Capturing an iOS Simulator: use baguette",
+    "Frames must be seekable or deterministic: capture is real-time, so use a browser or native render route",
+    "Adding a device bezel to a capture: record first, then use frames-cli"
+  ],
+  "pairs_with": ["frames-cli", "ffmpeg-ffprobe", "baguette"],
+  "license": "Apache-2.0",
+  "install": {
+    "macos": "brew install scrcpy android-platform-tools",
+    "check_command": "scrcpy --version"
+  },
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard-scrcpy",
+    "version_seen": "5.0.1",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "Official README documents headless recording (--no-window --no-playback --record) and --time-limit; Apache-2.0; Homebrew 5.0.1 recorded a real device here. No other catalogued tool captures an Android screen. Release date not independently checked.",
+    "sources": [
+      "https://github.com/Genymobile/scrcpy",
+      "https://github.com/Genymobile/scrcpy/releases"
+    ]
+  }
+}

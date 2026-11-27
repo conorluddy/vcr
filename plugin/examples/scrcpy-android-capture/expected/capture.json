@@ -1,0 +1,4 @@
+{
+  "recording": { "codec": "h264", "container": "mp4", "requestedDurationSeconds": 3, "minimumDurationSeconds": 1.5, "maximumDurationSeconds": 3.5 },
+  "minimumNormalisedStandardDeviation": 0.02
+}

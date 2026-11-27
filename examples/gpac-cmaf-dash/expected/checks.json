@@ -1,0 +1,49 @@
+{
+  "adaptationSets": 3,
+  "chapters": "00:00:00.000 - \"Intro\"|00:00:05.000 - \"Middle\"",
+  "ffprobeStreams": "h264,video aac,audio unknown,data",
+  "maxSegmentDuration": "PT0H0M4.000S",
+  "mediaPresentationDuration": "PT0H0M10.000S",
+  "mediaSegmentFiles": 9,
+  "movieDuration": "00:00:10.000",
+  "mp4boxTrackTypes": "vide:avc1 soun:mp4a text:wvtt",
+  "segments": {
+    "a": {
+      "cumulativeEndSeconds": [
+        4.0,
+        8.0,
+        10.0
+      ],
+      "packetsPerSegment": [
+        173,
+        172,
+        87
+      ]
+    },
+    "t": {
+      "cumulativeEndSeconds": [
+        4.0,
+        8.0,
+        9.0
+      ],
+      "packetsPerSegment": [
+        1,
+        2,
+        1
+      ]
+    },
+    "v": {
+      "cumulativeEndSeconds": [
+        4.0,
+        8.0,
+        10.0
+      ],
+      "packetsPerSegment": [
+        100,
+        100,
+        50
+      ]
+    }
+  },
+  "textLanguage": "eng"
+}

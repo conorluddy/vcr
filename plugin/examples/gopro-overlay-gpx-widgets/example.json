@@ -1,0 +1,8 @@
+{
+  "id": "gopro-overlay-gpx-widgets",
+  "title": "gopro-dashboard-overlay GPX-only widgets",
+  "summary": "Python venv: render a 10 s transparent telemetry overlay (speed, heart rate, altitude, bar gauge) from a hand-written GPX track with an XML layout, no GoPro video; read the drawn numbers back and compare two renders frame by frame.",
+  "status": "not-validated",
+  "tools": ["gopro-overlay"],
+  "run": "./run.sh"
+}

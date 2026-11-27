@@ -23,7 +23,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `svg` ◐ — Dependency-free vector source for cards, logos and diagrams; rasterised by resvg or a browser · vector-authoring, svg-animation · guide
 - `three-js` ✓ — Browser 3D rendered once per seek with alpha: product shots, hero objects, camera moves · 3d-rendering, shaders, effects, model-loading · guide
 
-## catalogued (96)
+## catalogued (98)
 
 - `anime-js` ✓ — DOM/SVG/object tweening with seekable timelines · tweening, timeline-animation, svg-animation · guide
 - `babylon-js` ✓ — Full web 3D engine with built-in PBR, post effects, physics and node materials · 3d-rendering, shaders, effects, physics-simulation, model-loading · guide
@@ -54,6 +54,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `inkscape` ✓ — Command-line actions export and convert SVG and other vector source to PNG, PDF and plain SVG · vector-authoring, svg-rasterisation, native-authoring · guide
 - `jimp` ✓ — Pure-JavaScript image manipulation, no native dependencies; slow but trivially portable · image-processing · guide
 - `konva` ✓ — Canvas 2D scene graph (stage, layers, groups, shapes) with events, tweens and export · 2d-rendering, tweening, react-integration · guide
+- `ktx-software` ✓ — Khronos KTX2 texture tools: create, validate, inspect, extract · 3d-asset-processing · guide
 - `lottie-web` ✓ — Plays frame-addressable Lottie JSON animations in the browser · asset-playback, svg-animation · guide
 - `lv2` ✓ — Plugin standard · audio · guide
 - `manim-community` ✓ — Python scenes rendered by the manim CLI to video or PNG sequences for maths and diagram motion · timeline-animation, 2d-rendering, video-encoding, typography · guide
@@ -88,6 +89,7 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `pov-ray` ✓ — povray renders text scene files and INI settings from the CLI; procedural ray tracing · ray-tracing, 3d-rendering · guide
 - `pts` ✓ — TypeScript creative-coding library centred on points, geometry and vector math · generative-2d, 2d-rendering, math-utilities · guide
 - `pyscenedetect` ✓ — Shot boundary detection CLI and Python library over OpenCV; splits video via FFmpeg · shot-detection, media-inspection, computer-vision · guide
+- `ranim` ✓ — Rust scenes rendered headless through wgpu and FFmpeg to MP4, PNG frames and timed captures · timeline-animation, 2d-rendering, video-encoding · guide
 - `rapier` ✓ — Rust/WASM 2D and 3D physics with optional cross-platform determinism and world snapshots · physics-simulation · guide
 - `rawtherapee-cli` ✓ — Headless RAW development with .pp3 profiles; camera RAW to TIFF or PNG for the pipeline · raw-processing · guide
 - `react-spring` ◐ — Physics-based spring animation for React; velocity-aware, not time-seekable · tweening, physics-simulation, react-integration · guide
@@ -122,6 +124,6 @@ Tiers: core = operational target with skill and example; catalogued = known auto
 - `webgl` ✓ — GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries · 3d-rendering, shaders · guide
 - `webgpu` ✓ — Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking · 3d-rendering, shaders · guide
 
-## candidate (166)
+## candidate (181)
 
 Discovery leads that remain unpromoted; cards show any assessments and recommendations. Do not route production work to them. List: `CANDIDATES.md` or `vcr tools list --tier candidate`.

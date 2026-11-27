@@ -1,0 +1,9 @@
+{
+  "id": "scrcpy-android-capture",
+  "title": "scrcpy records a connected Android device headlessly to MP4 while adb sends input",
+  "summary": "One adb device: 3 s --no-window --no-playback --record H.264 MP4 with a D-pad keypress mid-take; screen size, duration and changing non-blank frames checked. Fails when no device.",
+  "status": "validated",
+  "validated_on": { "date": "2026-11-27", "hostname": "Conors-MacBook-Pro-2.local" },
+  "tools": ["scrcpy"],
+  "run": "./run.sh"
+}

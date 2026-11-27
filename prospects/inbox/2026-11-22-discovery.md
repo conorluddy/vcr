@@ -15,7 +15,7 @@ This is the fifth W47 run. Earlier W47 runs covered shaders, maps, provenance, d
 ## Leads
 
 ### GDAL (`gdal`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://gdal.org (source: https://github.com/OSGeo/gdal)
 - Role: the standard geospatial raster and vector library and its CLI tools. `gdaldem hillshade`, `color-relief` and `slope` turn elevation data into shaded relief. `gdalwarp` reprojects and clips. `gdal_translate` converts to PNG, GeoTIFF or COG. `ogr2ogr` converts vector data to GeoJSON.
 - Category: A4. Vector, typography, diagrams and stills (maps), or A6. Image processing and colour.
@@ -86,7 +86,7 @@ This is the fifth W47 run. Earlier W47 runs covered shaders, maps, provenance, d
 - Found via: GitHub topic search `image-sequence` (lower-priority area: frame caching and batch rendering).
 
 ### elevation (`elevation-eio`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/bopen/elevation
 - Role: the `eio` CLI and Python library that download, cache and clip global DEMs (Mapzen terrain tiles, Copernicus GLO-30/90, ALOS World 3D, GEDTM30, SRTM 30/90 m) to a GeoTIFF for given bounds.
 - Category: A9. Adjacent resources mentioned during discovery (data source for maps).

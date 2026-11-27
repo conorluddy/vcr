@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "frame_count_within_10pct_of_prediction": false,
+    "frame_not_blank": true,
+    "size_and_rate": true
+  },
+  "frameRate": "30/1",
+  "height": 360,
+  "predictedFrames": 58,
+  "width": 640
+}

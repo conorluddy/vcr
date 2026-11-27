@@ -1,0 +1,21 @@
+{
+  "C1": {
+    "codec": "h264",
+    "formats": "mov,mp4,m4a,3gp,3g2,mj2"
+  },
+  "C2": {
+    "width": 1920,
+    "height": 1080,
+    "deviceWidth": 1920,
+    "deviceHeight": 1080
+  },
+  "C3": {
+    "durationSeconds": 3.017922
+  },
+  "C4": {
+    "earlyDeviation": 0.0997533,
+    "lateDeviation": 0.100001,
+    "earlyHash": "119d9157b168911d02480417f0003f8a4ddce9e60b7914e1f4e1937eede1e67d",
+    "lateHash": "018eb8d274c5cd298a130734454fc1bcd3897b53d3e85f5ab02f91234ec1830a"
+  }
+}

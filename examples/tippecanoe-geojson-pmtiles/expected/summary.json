@@ -1,0 +1,71 @@
+{
+  "archive_bytes": 11376,
+  "checks": {
+    "all_points_at_max_zoom": true,
+    "lines_and_polygons_at_every_zoom": true,
+    "pmtiles_magic": true,
+    "points_thinned_at_low_zoom": true,
+    "rerun_identical": true,
+    "three_layers": true,
+    "tile_join_keeps_only_points": true,
+    "zg_picks_sane_maxzoom": true,
+    "zoom_range_pinned": true
+  },
+  "inputs_sha256_prefix": "675fc7ef97d3adcd",
+  "metadata": {
+    "format": "pbf",
+    "layers": [
+      "points",
+      "region",
+      "route"
+    ],
+    "maxzoom": 8,
+    "minzoom": 0,
+    "tilestats_counts": {
+      "points": 500,
+      "region": 1,
+      "route": 1
+    }
+  },
+  "output_name_changes_bytes": true,
+  "region_features_per_zoom": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2
+  ],
+  "rerun_identical": true,
+  "route_features_per_zoom": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2
+  ],
+  "tile_join_layers": [
+    "points"
+  ],
+  "tile_join_points_at_maxzoom": 500,
+  "unique_points_per_zoom": [
+    1,
+    1,
+    2,
+    5,
+    13,
+    32,
+    80,
+    201,
+    500
+  ],
+  "version": "v2.79.0",
+  "zg_maxzoom": 6
+}
