@@ -1,0 +1,8 @@
+{
+  "id": "pysubs2-ass-authoring",
+  "title": "pysubs2 ASS authoring, SRT conversion and retime",
+  "summary": "Python venv: build an ASS file with a custom style and override-tag events from code, convert an SRT to ASS with a 2.5 s shift, and convert to WebVTT with the CLI; reload and check styles, tags and millisecond timings.",
+  "status": "validated",
+  "tools": ["pysubs2"],
+  "run": "./run.sh"
+}
