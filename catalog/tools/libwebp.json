@@ -1,7 +1,7 @@
 {
   "id": "libwebp",
   "name": "libwebp tools",
-  "category": "Discovery: research candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "WebP stills and animation",
   "official_url": "https://chromium.googlesource.com/webm/libwebp",

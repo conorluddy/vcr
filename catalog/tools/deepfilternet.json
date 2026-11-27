@@ -1,7 +1,7 @@
 {
   "id": "deepfilternet",
   "name": "DeepFilterNet",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Speech noise suppression (48 kHz)",
   "official_url": "https://github.com/Rikorose/DeepFilterNet",

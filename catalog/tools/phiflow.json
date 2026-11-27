@@ -1,7 +1,7 @@
 {
   "id": "phiflow",
   "name": "PhiFlow",
-  "category": "Physics, audio and 3D assets",
+  "category": "A8. Physics and simulation",
   "tier": "candidate",
   "role": "Python grid-based smoke and fluid simulator, stepped in a loop so fields save per frame",
   "summary": "Python library (PhiFlow with the phiml backend layer) for grid-based 2D and 3D smoke and incompressible flow, also particles. You write the time loop (advect, add buoyancy, project) and read fields as arrays, so frames can be saved for a scene to render. NumPy runs on CPU; PyTorch, JAX and TensorFlow are optional.",

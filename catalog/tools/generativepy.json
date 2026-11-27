@@ -1,7 +1,7 @@
 {
   "id": "generativepy",
   "name": "generativepy",
-  "category": "Discovery: research candidates",
+  "category": "A1. Creative coding and 2D",
   "tier": "candidate",
   "role": "Python framework for procedural 2D graphics, plots and frame-based animation",
   "official_url": "https://github.com/martinmcbride/generativepy",

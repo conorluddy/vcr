@@ -1,7 +1,7 @@
 {
   "id": "mediarecorder",
   "name": "MediaRecorder",
-  "category": "Native browser platform APIs",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Browser MediaStream recording API",
   "summary": "Records a MediaStream (canvas.captureStream, tab or microphone) into a Blob in the browser's chosen codec. It runs in real time and drops or duplicates frames when rendering is slow, so output depends on wall-clock timing, not on t. Fine for a quick preview or live capture; wrong for frame-accurate renders where frames are produced in any order.",

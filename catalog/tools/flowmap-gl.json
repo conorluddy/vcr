@@ -1,7 +1,7 @@
 {
   "id": "flowmap-gl",
   "name": "flowmap.gl",
-  "category": "A9. Adjacent resources mentioned during discovery",
+  "category": "A11. Maps and geodata",
   "tier": "candidate",
   "role": "deck.gl layer for origin-destination flow maps: sized nodes, tapered or animated flow lines",
   "summary": "FlowmapLayer (@flowmap.gl/layers) turns a locations table and an origin-destination flows table into a deck.gl layer with sized nodes, tapered, curved or animated straight lines, and optional clustering. Its strength is migration, trade and logistics flows without hand-built arcs. The animated mode reads the wall clock, so a scene must supply its own clock from t.",

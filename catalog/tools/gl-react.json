@@ -1,7 +1,7 @@
 {
   "id": "gl-react",
   "name": "gl-react",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "React components that compose GLSL shaders as a node graph over textures",
   "summary": "React library where each shader is a Node component taking uniforms and other nodes or images as inputs, rendered to WebGL surfaces. Suited to image effect chains such as blur, colour grading and transitions described declaratively. Distinguishing strength: shader composition as a React tree. Little 3D support and a long gap before the 2026 release.",

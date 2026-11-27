@@ -1,7 +1,7 @@
 {
   "id": "framefields",
   "name": "Framefields",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Reference: TypeScript film renderer on native WebGPU, no browser, MP4 out",
   "official_url": "https://github.com/gatewai-dev/framefields",

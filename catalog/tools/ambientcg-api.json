@@ -1,7 +1,7 @@
 {
   "id": "ambientcg-api",
   "name": "ambientCG API",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A13. Reference data and asset sources",
   "tier": "candidate",
   "role": "Search and pin CC0 PBR materials, HDRIs and models by id over a JSON API; ZIPs by resolution",
   "summary": "ambientcg.com/api/v2/full_json (and a newer v3) lists assets with maps, tags and download sizes; ZIPs come from /get?file=<id>_<res>-<format>.zip. Assets are CC0 1.0, stated on the docs site, not in the API payload. A hosted service run by one person: pin the id, cache the ZIP and record its hash.",

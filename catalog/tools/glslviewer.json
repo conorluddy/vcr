@@ -1,7 +1,7 @@
 {
   "id": "glslviewer",
   "name": "glslViewer",
-  "category": "Discovery: research candidates",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "candidate",
   "role": "Headless GLSL renderer",
   "official_url": "https://github.com/patriciogonzalezvivo/glslViewer",

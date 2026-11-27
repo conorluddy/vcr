@@ -1,7 +1,7 @@
 {
   "id": "aval",
   "name": "AVAL",
-  "category": "A5. Video and capture",
+  "category": "A2. Animation and authored assets",
   "tier": "candidate",
   "role": "Compiles RGBA PNG frames or video into packed-alpha .avl files for a stateful web player",
   "summary": "`avl` (npm @pixel-point/aval-compiler) turns a motion.json project and a ProRes 4444, MP4 or RGBA PNG-sequence source into one .avl per codec (AV1, VP9, H.265, H.264) with packed alpha, looping body units, named states and transitions, plus a build.json with SRI hashes and ready-made <source> markup. The <aval-player> element plays them through WebCodecs in the browser. The compiler shells out to caller-installed ffmpeg.",

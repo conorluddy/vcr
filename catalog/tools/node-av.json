@@ -1,7 +1,7 @@
 {
   "id": "node-av",
   "name": "node-av",
-  "category": "Discovery: research candidates",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Node.js FFmpeg bindings for in-process audio/video decoding, filtering and encoding",
   "official_url": "https://github.com/seydx/node-av",

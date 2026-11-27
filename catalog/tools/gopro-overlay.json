@@ -1,7 +1,7 @@
 {
   "id": "gopro-overlay",
   "name": "gopro-dashboard-overlay",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Python CLI that renders telemetry gauges and maps as video from GoPro metadata or a GPX or FIT track",
   "summary": "Python CLI (`gopro-dashboard.py`) that draws speed, heart rate, altitude, charts, a moving map and a route trace from GoPro GPMF telemetry or a plain GPX or FIT file, using layouts written in XML. It pipes frames to FFmpeg; with `--use-gpx-only` it needs no video. Map widgets fetch online tiles.",

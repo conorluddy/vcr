@@ -1,7 +1,7 @@
 {
   "id": "open3d",
   "name": "Open3D",
-  "category": "Discovery: conversation candidates",
+  "category": "A10. 3D assets and interchange",
   "tier": "candidate",
   "role": "3D geometry",
   "official_url": "https://www.open3d.org/",

@@ -1,7 +1,7 @@
 {
   "id": "gifsicle",
   "name": "gifsicle",
-  "category": "Discovery: research candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "GIF optimisation",
   "official_url": "https://github.com/kohler/gifsicle",

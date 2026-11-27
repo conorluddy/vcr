@@ -1,7 +1,7 @@
 {
   "id": "canvas-record",
   "name": "canvas-record",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "catalogued",
   "role": "Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped",
   "summary": "Browser library that records a 2D, WebGL or WebGPU canvas into MP4, WebM, MKV, GIF or a PNG/JPG frame sequence. Encoders include WebCodecs (fast, no WASM), an embedded MP4 WASM encoder, an FFmpeg WASM encoder and plain frame dumps. Distinguishing strength: stepped frame-by-frame recording of generative canvas sketches without a headless browser, if your code can render on demand.",

@@ -1,7 +1,7 @@
 {
   "id": "splat-transform",
   "name": "splat-transform",
-  "category": "Discovery: research candidates",
+  "category": "A10. 3D assets and interchange",
   "tier": "candidate",
   "role": "CLI and JavaScript library for processing and converting 3D Gaussian splats",
   "official_url": "https://github.com/playcanvas/splat-transform",

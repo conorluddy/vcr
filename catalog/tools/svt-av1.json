@@ -1,7 +1,7 @@
 {
   "id": "svt-av1",
   "name": "SVT-AV1",
-  "category": "Discovery: research candidates",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "AV1 video encoder",
   "official_url": "https://gitlab.com/AOMediaCodec/SVT-AV1",

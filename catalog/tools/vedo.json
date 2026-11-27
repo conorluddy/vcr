@@ -1,7 +1,7 @@
 {
   "id": "vedo",
   "name": "vedo",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "Scientific 3D visualisation and analysis with VTK and NumPy",
   "official_url": "https://vedo.embl.es/docs/",

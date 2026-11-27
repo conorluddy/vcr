@@ -1,7 +1,7 @@
 {
   "id": "rembg",
   "name": "rembg",
-  "category": "Discovery: research candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "Background removal",
   "official_url": "https://github.com/danielgatis/rembg",

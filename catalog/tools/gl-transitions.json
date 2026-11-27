@@ -1,7 +1,7 @@
 {
   "id": "gl-transitions",
   "name": "gl-transitions",
-  "category": "Discovery: research candidates",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "candidate",
   "role": "GLSL image-transition shader collection",
   "official_url": "https://github.com/gl-transitions/gl-transitions",

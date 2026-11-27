@@ -1,7 +1,7 @@
 {
   "id": "gpac",
   "name": "GPAC (MP4Box)",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Packages and inspects MP4, CMAF, DASH and HLS at box level",
   "official_url": "https://github.com/gpac/gpac",

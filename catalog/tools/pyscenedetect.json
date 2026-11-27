@@ -1,7 +1,7 @@
 {
   "id": "pyscenedetect",
   "name": "PySceneDetect",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "catalogued",
   "role": "Shot boundary detection CLI and Python library over OpenCV; splits video via FFmpeg",
   "summary": "Python CLI and library that finds scene cuts in video using content, adaptive, threshold and histogram detectors on OpenCV frames, and outputs timecode lists, CSV, thumbnails, or split clips by calling FFmpeg or mkvmerge. Distinguishing strength: ready-made cut detection with tunable detectors, so an agent need not write frame-diff code.",

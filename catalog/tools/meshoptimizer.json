@@ -1,7 +1,7 @@
 {
   "id": "meshoptimizer",
   "name": "meshoptimizer",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A10. 3D assets and interchange",
   "tier": "catalogued",
   "role": "Mesh optimisation",
   "official_url": "https://github.com/zeux/meshoptimizer",

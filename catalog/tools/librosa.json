@@ -1,7 +1,7 @@
 {
   "id": "librosa",
   "name": "librosa",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Rhythm and spectra",
   "official_url": "https://librosa.org/",

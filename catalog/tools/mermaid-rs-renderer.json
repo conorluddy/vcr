@@ -1,7 +1,7 @@
 {
   "id": "mermaid-rs-renderer",
   "name": "mermaid-rs-renderer",
-  "category": "Discovery: research candidates",
+  "category": "A4. Vector, typography, diagrams and stills",
   "tier": "candidate",
   "role": "Native Rust Mermaid diagram renderer",
   "official_url": "https://github.com/1jehuang/mermaid-rs-renderer",

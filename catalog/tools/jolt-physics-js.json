@@ -1,7 +1,7 @@
 {
   "id": "jolt-physics-js",
   "name": "Jolt Physics (JoltPhysics.js)",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A8. Physics and simulation",
   "tier": "candidate",
   "role": "Jolt rigid-body and soft-body physics as WASM in Node or the browser, stepped at a fixed timestep",
   "summary": "JoltPhysics.js (npm jolt-physics) compiles Jolt's C++ engine to WebAssembly. A JoltInterface steps the world by a fixed dt, so positions are read per frame and cached as a trajectory. Beyond Rapier and Matter.js it documents soft bodies and cloth; the fixture covers only rigid spheres on a floor.",

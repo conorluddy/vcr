@@ -1,7 +1,7 @@
 {
   "id": "kokoro-onnx",
   "name": "Kokoro (kokoro-onnx)",
-  "category": "Discovery: research candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Local neural text-to-speech runtime",
   "official_url": "https://github.com/thewh1teagle/kokoro-onnx",

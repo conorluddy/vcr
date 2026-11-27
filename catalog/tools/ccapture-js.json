@@ -1,7 +1,7 @@
 {
   "id": "ccapture-js",
   "name": "CCapture.js",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "catalogued",
   "role": "Fixed-framerate canvas capture by hooking browser time; 2.x rewrite on WebCodecs",
   "summary": "Browser library that overrides timing functions (Date, requestAnimationFrame, optionally performance.now) so a canvas animation advances one fixed step per captured frame, then writes MP4/WebM via WebCodecs, GIF via gifenc, or PNG/JPG/WebP frames in a tar. 2.0.0 is a ground-up rewrite adding GPU motion blur. Distinguishing strength: retrofits deterministic capture onto code you cannot change to render on demand.",

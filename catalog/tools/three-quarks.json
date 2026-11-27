@@ -1,7 +1,7 @@
 {
   "id": "three-quarks",
   "name": "three.quarks",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "candidate",
   "role": "Particle and VFX emitters for three.js; seek by replaying fixed steps with a seeded Math.random",
   "summary": "three.quarks adds batched particle systems to a three.js scene: emitters with shapes, start and over-life behaviours, billboard, mesh and trail rendering, and JSON effects from its editor. It advances only through batchRenderer.update(delta) and draws all randomness from Math.random, so VCR rebuilds the system, reseeds Math.random and steps at a fixed delta from 0 to t on every seek.",

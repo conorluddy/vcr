@@ -1,7 +1,7 @@
 {
   "id": "trimesh",
   "name": "Trimesh",
-  "category": "Discovery: conversation candidates",
+  "category": "A10. 3D assets and interchange",
   "tier": "candidate",
   "role": "Mesh processing",
   "official_url": "https://trimesh.org/",

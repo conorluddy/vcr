@@ -1,7 +1,7 @@
 {
   "id": "nvidia-warp",
   "name": "NVIDIA Warp",
-  "category": "Discovery: research candidates",
+  "category": "A8. Physics and simulation",
   "tier": "candidate",
   "role": "Python kernel framework for particle, field and geometry simulation, CPU on macOS",
   "official_url": "https://github.com/NVIDIA/warp",

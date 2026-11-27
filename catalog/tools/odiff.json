@@ -1,7 +1,7 @@
 {
   "id": "odiff",
   "name": "odiff",
-  "category": "Discovery: research candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "Pixel diff for frame checks",
   "official_url": "https://github.com/dmtrKovalenko/odiff",

@@ -1,7 +1,7 @@
 {
   "id": "maplibre-native",
   "name": "MapLibre Native",
-  "category": "Discovery: research candidates",
+  "category": "A11. Maps and geodata",
   "tier": "candidate",
   "role": "GPU-accelerated C++ vector-tile map rendering SDK for native applications",
   "official_url": "https://github.com/maplibre/maplibre-native",

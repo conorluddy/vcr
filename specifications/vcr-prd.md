@@ -459,6 +459,8 @@ Spikes required: browser capture with arbitrary frame evaluation; native Blender
 
 These are official project/documentation links or original repositories previously discussed. Capability summaries describe intended roles, not verified adapter support. The tables below are the 0.1 discovery list and are kept as written; the current, assessed state of every entry is its record under `catalog/tools/` (or `catalog/retired/` for the sixteen dropped after assessment on 2026-10-26). Do not infer maintenance status from inclusion here.
 
+Revised 2026-11-27: headings follow `catalog/categories.json`, which `pnpm validate` enforces on every live record. A8 (physics, audio and 3D assets) split into A8, A9 and A10; A11 to A13 were added; the old A9 (adjacent resources mentioned during discovery) said where leads came from rather than what they do, so its rows moved under the matching group. Rows are unchanged; the *starting point* column of moved rows was the old A9's *potential role*.
+
 ### A1. Creative coding and 2D
 
 | Resource | Role and planning note | Canonical starting point |
@@ -474,6 +476,10 @@ These are official project/documentation links or original repositories previous
 | Ssam | Sketch loop, snapshots and export | https://github.com/cdaein/ssam |
 | EaselJS | Canvas display list; evaluate compatibility before support | https://createjs.com/easeljs |
 | Rough.js | Hand-drawn Canvas/SVG primitives | https://roughjs.com/ |
+| CanvasKit / Skia | WASM graphics rendering candidate | https://skia.org/docs/user/modules/canvaskit/ |
+| Phaser | Game-oriented animation/simulation scenes | https://phaser.io/ |
+| Leva | Parameter inspection/control panels | https://github.com/pmndrs/leva |
+| Dear ImGui | Native UI infrastructure; outside primary scope | https://github.com/ocornut/imgui |
 
 ### A2. Animation and authored assets
 
@@ -488,8 +494,12 @@ These are official project/documentation links or original repositories previous
 | Motion Canvas | TS informative animation and narration workflows | https://motioncanvas.io/docs/ |
 | Lottie Web | Lottie playback; validate generated/edited JSON | https://github.com/airbnb/lottie-web |
 | Rive Web | Authored asset playback/control; runtime is not general authoring API | https://rive.app/docs/runtimes/web/web-js |
+| dotLottie | Lottie packaging/runtime ecosystem | https://developers.lottiefiles.com/ |
+| Popmotion | Animation primitive candidate; assess overlap | https://popmotion.io/ |
+| CreateJS / TweenJS | EaselJS-adjacent tweening ecosystem | https://createjs.com/tweenjs |
+| SVGator | Visual authoring reference; no CLI commitment | https://www.svgator.com/ |
 
-### A3. 3D, shaders and effects
+### A3. 3D rendering, shaders and effects
 
 | Resource | Role and planning note | Canonical starting point |
 | --- | --- | --- |
@@ -506,6 +516,17 @@ These are official project/documentation links or original repositories previous
 | PixiJS Filters | 2D display effects | https://github.com/pixijs/filters |
 | gl-react | Composable React/WebGL shaders | https://github.com/gre/gl-react |
 | THREE.MeshLine | Thick stylised lines; evaluate maintained compatible implementation | https://github.com/spite/THREE.MeshLine |
+| glslCanvas | Lightweight fragment-shader canvas host | https://github.com/patriciogonzalezvivo/glslCanvas |
+| glslify | GLSL module tooling | https://github.com/glslify/glslify |
+| glfx.js | WebGL image-effects candidate | https://github.com/evanw/glfx.js |
+| luma.gl | GPU rendering building blocks | https://luma.gl/ |
+| vtk.js | Scientific visualisation scenes | https://kitware.github.io/vtk-js/ |
+| glMatrix | Vector/matrix supporting utilities | https://glmatrix.net/ |
+| Troika Three Text | Three.js text rendering candidate | https://github.com/protectwise/troika/tree/main/packages/troika-three-text |
+| react-three/postprocessing | React wrapper for effects | https://github.com/pmndrs/react-postprocessing |
+| maath | Graphics math helpers | https://github.com/pmndrs/maath |
+| react-three/gpu-pathtracer | Path-traced output candidate | https://github.com/pmndrs/react-three-gpu-pathtracer |
+| VPython | Python educational 3D; assess export route | https://vpython.org/ |
 
 ### A4. Vector, typography, diagrams and stills
 
@@ -522,7 +543,7 @@ These are official project/documentation links or original repositories previous
 | Potrace | Bitmap tracing to vectors | https://potrace.sourceforge.net/ |
 | msdfgen | Signed distance-field generation | https://github.com/Chlumsky/msdfgen |
 
-### A5. Video and capture
+### A5. Video, capture and delivery
 
 | Resource | Role and planning note | Canonical starting point |
 | --- | --- | --- |
@@ -538,6 +559,9 @@ These are official project/documentation links or original repositories previous
 | MLT / melt | Multitrack CLI processing | https://mltframework.org/docs/melt/ |
 | PySceneDetect | Shot detection and splitting | https://www.scenedetect.com/ |
 | gifski | GIF delivery encoder | https://github.com/ImageOptim/gifski |
+| WebAV | Browser media toolkit candidate | https://github.com/bilibili/WebAV |
+| GStreamer | Media pipeline CLI/framework candidate | https://gstreamer.freedesktop.org/ |
+| Hyperframes | Existing workflow/inspiration; assess interoperability separately | https://hyperframes.heygen.com/catalog |
 
 ### A6. Image processing and colour
 
@@ -551,6 +575,11 @@ These are official project/documentation links or original repositories previous
 | GIMP batch | Scripted image operations; version-specific procedures | https://www.gimp.org/man/gimp.html |
 | RawTherapee CLI | Camera RAW preparation | https://rawtherapee.com/ |
 | OpenColorIO | Colour-management integration | https://github.com/AcademySoftwareFoundation/OpenColorIO |
+| libvips | Native image pipeline underlying Sharp | https://www.libvips.org/ |
+| GraphicsMagick | Alternative native image CLI | http://www.graphicsmagick.org/ |
+| OpenCV.js | Computer-vision/image-analysis candidate | https://docs.opencv.org/ |
+| image-js | JS image-processing candidate | https://github.com/image-js/image-js |
+| Photon | WASM image-processing candidate | https://github.com/silvia-odwyer/photon |
 
 ### A7. Native applications and procedural tools
 
@@ -567,55 +596,40 @@ These are official project/documentation links or original repositories previous
 | vsketch | Python + vsk CLI; plotter-oriented generative vectors | https://vsketch.readthedocs.io/ |
 | vpype | CLI vector pipelines | https://vpype.readthedocs.io/ |
 
-### A8. Physics, audio and 3D assets
+### A8. Physics and simulation
 
 | Resource | Role and planning note | Canonical starting point |
 | --- | --- | --- |
 | Matter.js | 2D physics; fixed-step replay/cache | https://brm.io/matter-js/ |
 | Rapier | Web-capable 2D/3D physics | https://rapier.rs/ |
-| Tone.js | Audio synthesis, scheduling and effects | https://tonejs.github.io/ |
-| glTF Transform | JS/CLI model preparation and optimisation | https://gltf-transform.dev/cli |
-
-### A9. Adjacent resources mentioned during discovery
-
-These are discovery candidates or context tools, not baseline commitments. Some were surfaced during research rather than recommended as core integrations. Keep them in a candidate list until their exact automation route, maintenance and incremental value are assessed.
-
-| Resource | Potential role | Starting point |
-| --- | --- | --- |
-| WebAV | Browser media toolkit candidate | https://github.com/bilibili/WebAV |
-| glslCanvas | Lightweight fragment-shader canvas host | https://github.com/patriciogonzalezvivo/glslCanvas |
-| glslify | GLSL module tooling | https://github.com/glslify/glslify |
-| CanvasKit / Skia | WASM graphics rendering candidate | https://skia.org/docs/user/modules/canvaskit/ |
-| libvips | Native image pipeline underlying Sharp | https://www.libvips.org/ |
-| GraphicsMagick | Alternative native image CLI | http://www.graphicsmagick.org/ |
-| GStreamer | Media pipeline CLI/framework candidate | https://gstreamer.freedesktop.org/ |
-| OpenCV.js | Computer-vision/image-analysis candidate | https://docs.opencv.org/ |
-| image-js | JS image-processing candidate | https://github.com/image-js/image-js |
-| Photon | WASM image-processing candidate | https://github.com/silvia-odwyer/photon |
-| glfx.js | WebGL image-effects candidate | https://github.com/evanw/glfx.js |
-| dotLottie | Lottie packaging/runtime ecosystem | https://developers.lottiefiles.com/ |
-| Popmotion | Animation primitive candidate; assess overlap | https://popmotion.io/ |
-| CreateJS / TweenJS | EaselJS-adjacent tweening ecosystem | https://createjs.com/tweenjs |
-| Phaser | Game-oriented animation/simulation scenes | https://phaser.io/ |
-| luma.gl | GPU rendering building blocks | https://luma.gl/ |
-| deck.gl | Geospatial/data visualisation scenes | https://deck.gl/ |
-| vtk.js | Scientific visualisation scenes | https://kitware.github.io/vtk-js/ |
-| glMatrix | Vector/matrix supporting utilities | https://glmatrix.net/ |
-| Troika Three Text | Three.js text rendering candidate | https://github.com/protectwise/troika/tree/main/packages/troika-three-text |
-| react-three/postprocessing | React wrapper for effects | https://github.com/pmndrs/react-postprocessing |
 | react-three/rapier | R3F physics integration | https://github.com/pmndrs/react-three-rapier |
+
+### A9. Audio, music and speech
+
+| Resource | Role and planning note | Canonical starting point |
+| --- | --- | --- |
+| Tone.js | Audio synthesis, scheduling and effects | https://tonejs.github.io/ |
+
+### A10. 3D assets and interchange
+
+| Resource | Role and planning note | Canonical starting point |
+| --- | --- | --- |
+| glTF Transform | JS/CLI model preparation and optimisation | https://gltf-transform.dev/cli |
 | gltfjsx | Model-to-JSX supporting workflow | https://github.com/pmndrs/gltfjsx |
-| Leva | Parameter inspection/control panels | https://github.com/pmndrs/leva |
-| maath | Graphics math helpers | https://github.com/pmndrs/maath |
-| react-three/gpu-pathtracer | Path-traced output candidate | https://github.com/pmndrs/react-three-gpu-pathtracer |
-| SVGator | Visual authoring reference; no CLI commitment | https://www.svgator.com/ |
-| VPython | Python educational 3D; assess export route | https://vpython.org/ |
-| Hyperframes | Existing workflow/inspiration; assess interoperability separately | https://hyperframes.heygen.com/catalog |
-| Dear ImGui | Native UI infrastructure; outside primary scope | https://github.com/ocornut/imgui |
 
-Discovery indexes for future catalogue expansion: https://github.com/raphamorim/awesome-canvas and https://github.com/terkelg/awesome-creative-coding. These are leads, not authorities for current tool capabilities. Revalidate claims against the original project.
+### A11. Maps and geodata
 
-Native browser primitives also belong in capability guidance: Canvas 2D, SVG, Web Animations API, WebGL, WebGPU, WebCodecs, Web Audio and MediaRecorder. They are platform APIs rather than installable libraries; use official platform documentation and target-browser checks when integrating.
+| Resource | Role and planning note | Canonical starting point |
+| --- | --- | --- |
+| deck.gl | Geospatial/data visualisation scenes | https://deck.gl/ |
+
+### A12. Captions, accessibility and provenance
+
+Added 2026-11-27; no 0.1 discovery entries. The catalogue holds the current tools.
+
+### A13. Reference data and asset sources
+
+Added 2026-11-27; no 0.1 discovery entries. The catalogue holds the current tools.
 
 ## Appendix B. First-release completion checklist
 

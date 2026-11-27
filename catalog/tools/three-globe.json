@@ -1,7 +1,7 @@
 {
   "id": "three-globe",
   "name": "three-globe",
-  "category": "Discovery: research candidates",
+  "category": "A11. Maps and geodata",
   "tier": "candidate",
   "role": "Three.js geographic globe layers",
   "official_url": "https://github.com/vasturiano/three-globe",

@@ -1,7 +1,7 @@
 {
   "id": "revideo",
   "name": "Revideo",
-  "category": "Discovery: research candidates",
+  "category": "A2. Animation and authored assets",
   "tier": "candidate",
   "role": "Reference: headless Motion Canvas fork",
   "official_url": "https://github.com/midrender/revideo",

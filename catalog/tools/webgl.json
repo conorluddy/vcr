@@ -1,7 +1,7 @@
 {
   "id": "webgl",
   "name": "WebGL",
-  "category": "Native browser platform APIs",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries",
   "summary": "The browser's OpenGL ES binding, in WebGL 1 and 2, used directly or through Three.js, PixiJS, OGL, regl and twgl. Rendering is a function of uniforms such as time, so frames can be drawn in any order. Headless Chromium falls back to software GL when no GPU is present, which is slow but works. Read pixels or screenshot the canvas.",

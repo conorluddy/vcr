@@ -1,7 +1,7 @@
 {
   "id": "mediabunny-server-extension",
   "name": "Mediabunny server extension",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "catalogued",
   "role": "Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno",
   "summary": "@mediabunny/server registers a NodeAV backend (bindings to FFmpeg's C API) so Mediabunny can encode and decode AVC, HEVC, VP8, VP9, AV1 and ProRes, plus AAC, MP3, Opus, FLAC, AC-3 and others, outside the browser. Adds resize, rotate, flip and crop transforms and hardware acceleration on macOS, Linux and Windows. Same Mediabunny API server-side as in the browser.",

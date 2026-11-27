@@ -1,7 +1,7 @@
 {
   "id": "ntsc-rs",
   "name": "ntsc-rs",
-  "category": "Discovery: research candidates",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Analogue NTSC/VHS signal emulation",
   "official_url": "https://ntsc.rs",

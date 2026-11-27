@@ -1,7 +1,7 @@
 {
   "id": "opensheetmusicdisplay",
   "name": "OpenSheetMusicDisplay",
-  "category": "A4. Vector, typography, diagrams and stills",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "MusicXML scores to SVG notation in Node (with jsdom) or a browser, VexFlow-based",
   "summary": "OpenSheetMusicDisplay (OSMD) parses MusicXML and engraves it with VexFlow into SVG or canvas. In Node it needs jsdom plus a canvas package for text measurement; it is a library, not a CLI. Its SVG is mostly paths for notes, clefs and stems, with semantic classes (vf-stavenote, vf-notehead) so a scene can recolour or animate single notes; titles and lyrics are font-dependent <text>.",

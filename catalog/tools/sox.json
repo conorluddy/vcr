@@ -1,7 +1,7 @@
 {
   "id": "sox",
   "name": "SoX",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Audio processing",
   "official_url": "https://sox.sourceforge.net/",

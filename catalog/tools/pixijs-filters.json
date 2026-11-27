@@ -1,7 +1,7 @@
 {
   "id": "pixijs-filters",
   "name": "PixiJS Filters",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "Community filter pack for PixiJS: glow, bloom, shockwave, CRT and more",
   "summary": "Collection of community-authored display filters for PixiJS such as glow, bloom, shockwave, pixelate, CRT, RGB split and displacement. Applied by assigning to a container or sprite's filters array and animating uniforms from time. Output is a PixiJS canvas. Distinguishing strength: ready-made 2D effects without writing GLSL.",

@@ -1,7 +1,7 @@
 {
   "id": "occt-wasm",
   "name": "occt-wasm",
-  "category": "3D CAD interchange",
+  "category": "A7. Native applications and procedural tools",
   "tier": "candidate",
   "role": "OpenCascade CAD kernel in WebAssembly: exact solids, STEP/STL I/O and hidden-line SVG in Node",
   "summary": "OpenCascade V8 compiled to WebAssembly with a typed TypeScript API. From one pnpm dependency, Node builds exact solids (primitives, booleans, fillets, sweeps), reads and writes STEP, STL and BREP, tessellates for three-js or babylon-js, and draws hidden-line views as SVG or PNG. It is the JavaScript route to exact CAD, with no Python.",

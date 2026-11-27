@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "categories": [
+    { "id": "A1", "name": "Creative coding and 2D", "description": "Sketching frameworks and 2D raster or scene-graph renderers: p5, canvas, Skia, PixiJS, Paper.js." },
+    { "id": "A2", "name": "Animation and authored assets", "description": "Tweening and timeline libraries, motion frameworks, and players for authored animation formats such as Lottie, Rive and AVAL." },
+    { "id": "A3", "name": "3D rendering, shaders and effects", "description": "Real-time and offline 3D renderers, WebGL and WebGPU layers, shader tooling, post-processing and path tracers." },
+    { "id": "A4", "name": "Vector, typography, diagrams and stills", "description": "SVG authoring and rasterising, fonts and text shaping, maths typesetting, diagram languages and static layout to image." },
+    { "id": "A5", "name": "Video, capture and delivery", "description": "Frame capture, encoding, composition, packaging, inspection and delivery metadata such as HDR." },
+    { "id": "A6", "name": "Image processing and colour", "description": "Raster processing, optimisation, comparison, colour science and pixel treatments such as halftone or pixel sorting." },
+    { "id": "A7", "name": "Native applications and procedural tools", "description": "Desktop applications driven headlessly and procedural or CAD modelling: Blender, Godot, OpenSCAD, build123d, OCCT." },
+    { "id": "A8", "name": "Physics and simulation", "description": "Rigid-body, fluid and particle simulation whose results are baked or stepped for a scene." },
+    { "id": "A9", "name": "Audio, music and speech", "description": "Synthesis, analysis, MIDI and notation, mixing and loudness, text to speech, transcription and alignment, separation and denoise." },
+    { "id": "A10", "name": "3D assets and interchange", "description": "glTF, USD and texture formats, mesh processing and booleans, reconstruction, avatars and Gaussian splats." },
+    { "id": "A11", "name": "Maps and geodata", "description": "Map rendering, vector tiles, geodata conversion and elevation." },
+    { "id": "A12", "name": "Captions, accessibility and provenance", "description": "Caption formats and checks, flashing and photosensitivity analysis, and content credentials." },
+    { "id": "A13", "name": "Reference data and asset sources", "description": "APIs and libraries that supply icons, fonts, materials and media rather than render them." }
+  ],
+  "note": "A tool record's category must be exactly \"<id>. <name>\" from this list. Provenance (where a lead came from) belongs in the record's source, not its category. Propose a new category for a human to decide rather than inventing one."
+}

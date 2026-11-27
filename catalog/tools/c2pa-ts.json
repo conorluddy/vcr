@@ -1,7 +1,7 @@
 {
   "id": "c2pa-ts",
   "name": "c2pa-ts",
-  "category": "A5. Video and capture",
+  "category": "A12. Captions, accessibility and provenance",
   "tier": "candidate",
   "role": "Pure TypeScript C2PA manifest reader and validator",
   "official_url": "https://github.com/TrustNXT/c2pa-ts",

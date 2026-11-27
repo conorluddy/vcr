@@ -1,7 +1,7 @@
 {
   "id": "pretty-midi",
   "name": "pretty_midi",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "MIDI processing",
   "official_url": "https://github.com/craffel/pretty-midi",

@@ -1,7 +1,7 @@
 {
   "id": "three-meshline",
   "name": "THREE.MeshLine",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "Thick camera-facing lines for Three.js; npm three.meshline, pmndrs fork is meshline",
   "summary": "Replacement for THREE.Line that draws lines as strips of camera-facing triangles, so width, dashes and taper work where WebGL lines are fixed at one pixel. Supplies MeshLine geometry, MeshLineMaterial and raycast. Two packages exist: three.meshline from the original author (2.0.0, 2026) and meshline, the pmndrs fork used by R3F (3.3.1, 2024).",

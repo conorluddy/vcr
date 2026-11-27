@@ -1,7 +1,7 @@
 {
   "id": "libplacebo",
   "name": "libplacebo",
-  "category": "Discovery: conversation candidates",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Video processing",
   "official_url": "https://code.videolan.org/videolan/libplacebo",

@@ -1,7 +1,7 @@
 {
   "id": "agg",
   "name": "asciinema agg",
-  "category": "Discovery: research candidates",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Asciicast to GIF",
   "official_url": "https://github.com/asciinema/agg",

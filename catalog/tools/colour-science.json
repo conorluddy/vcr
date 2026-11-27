@@ -1,7 +1,7 @@
 {
   "id": "colour-science",
   "name": "Colour Science for Python",
-  "category": "Discovery: research candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "Python colour-science library for conversions, models and colour-difference analysis",
   "official_url": "https://github.com/colour-science/colour",

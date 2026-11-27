@@ -1,7 +1,7 @@
 {
   "id": "pyseq",
   "name": "PySeq",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Python library and CLI that lists numbered frame files as ranges with missing frames",
   "summary": "Python library and CLI suite (`lss`, `stree`, `sfind`, `sdiff`, `sstat`, `scopy`, `smv`, `srm`) that groups numbered files such as `frame.0001.png` into sequences and reports ranges like `[1-3, 6-7, 10]` and the exact missing frames. It reads file names only, never pixels.",

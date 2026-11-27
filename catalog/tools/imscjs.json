@@ -1,7 +1,7 @@
 {
   "id": "imscjs",
   "name": "imscJS",
-  "category": "Caption compliance",
+  "category": "A12. Captions, accessibility and provenance",
   "tier": "candidate",
   "role": "Reference JS renderer drawing IMSC/TTML captions at any time offset into a DOM element",
   "summary": "imscJS (npm imsc 2.0.0) parses an IMSC/TTML document with fromXML, resolves it at any time offset with generateISD and draws it with renderHTML, so a browser scene can show captions exactly as an IMSC player lays them out (regions, styles, overlap) while seeking by frame time.",

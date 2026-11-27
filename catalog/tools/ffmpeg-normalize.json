@@ -1,7 +1,7 @@
 {
   "id": "ffmpeg-normalize",
   "name": "ffmpeg-normalize",
-  "category": "Discovery: research candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Audio loudness normalisation CLI",
   "official_url": "https://github.com/slhck/ffmpeg-normalize",

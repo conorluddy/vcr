@@ -1,7 +1,7 @@
 {
   "id": "caption-checker",
   "name": "caption-checker",
-  "category": "Caption compliance",
+  "category": "A12. Captions, accessibility and provenance",
   "tier": "candidate",
   "role": "Checks SRT and WebVTT captions against named captioning limits",
   "official_url": "https://github.com/markksantos/caption-checker",

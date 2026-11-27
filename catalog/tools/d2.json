@@ -1,7 +1,7 @@
 {
   "id": "d2",
   "name": "D2",
-  "category": "Discovery: research candidates",
+  "category": "A4. Vector, typography, diagrams and stills",
   "tier": "candidate",
   "role": "Text-to-diagram CLI",
   "official_url": "https://github.com/terrastruct/d2",

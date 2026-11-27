@@ -1,7 +1,7 @@
 {
   "id": "three-vrm",
   "name": "three-vrm",
-  "category": "Discovery: conversation candidates",
+  "category": "A10. 3D assets and interchange",
   "tier": "candidate",
   "role": "VRM avatars",
   "official_url": "https://github.com/pixiv/three-vrm",

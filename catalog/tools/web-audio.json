@@ -1,7 +1,7 @@
 {
   "id": "web-audio",
   "name": "Web Audio API",
-  "category": "Native browser platform APIs",
+  "category": "A9. Audio, music and speech",
   "tier": "catalogued",
   "role": "Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time",
   "summary": "Node-graph audio API for oscillators, buffers, filters, gain automation and analysis. A live AudioContext plays in real time; an OfflineAudioContext renders the graph to an AudioBuffer as fast as possible, which suits VCR. Encode the buffer to WAV and mux with ffmpeg. For audio-reactive visuals compute per-frame features from the decoded buffer: AnalyserNode is real-time, and under OfflineAudioContext needs suspend(t) per frame. No beat or onset detection.",

@@ -1,7 +1,7 @@
 {
   "id": "clap",
   "name": "CLAP",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Plugin standard",
   "official_url": "https://github.com/free-audio/clap",

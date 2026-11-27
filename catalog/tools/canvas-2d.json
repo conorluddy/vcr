@@ -1,7 +1,7 @@
 {
   "id": "canvas-2d",
   "name": "Canvas 2D",
-  "category": "Native browser platform APIs",
+  "category": "A1. Creative coding and 2D",
   "tier": "catalogued",
   "role": "Immediate-mode 2D raster drawing; redraw each frame as a pure function of t",
   "summary": "The browser's 2D drawing context: paths, text, gradients, images, compositing and pixel access, supported in every Chromium. VCR draws a frame by clearing and redrawing from t, then screenshots or reads pixels, so output is deterministic given fixed fonts and assets. Nothing is retained between frames, which suits generative work and rules out a scene graph.",

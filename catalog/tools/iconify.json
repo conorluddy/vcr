@@ -1,7 +1,7 @@
 {
   "id": "iconify",
   "name": "Iconify",
-  "category": "A4. Vector, typography, diagrams and stills",
+  "category": "A13. Reference data and asset sources",
   "tier": "candidate",
   "role": "Offline icon data for 280+ open sets as SVG, with per-set licence and author metadata",
   "summary": "@iconify/json bundles every open icon set as JSON with each set's SPDX licence and author; @iconify/utils turns an icon into SVG offline. Its strength is a machine-readable licence per set, so a credits or licence check can gate icons before they enter a scene.",

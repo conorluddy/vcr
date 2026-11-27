@@ -1,7 +1,7 @@
 {
   "id": "libavif",
   "name": "libavif (avifenc)",
-  "category": "Discovery: research candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "AVIF stills and animation",
   "official_url": "https://github.com/AOMediaCodec/libavif",

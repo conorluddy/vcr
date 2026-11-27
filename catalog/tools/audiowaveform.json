@@ -1,7 +1,7 @@
 {
   "id": "audiowaveform",
   "name": "audiowaveform",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Waveform data",
   "official_url": "https://github.com/bbc/audiowaveform",

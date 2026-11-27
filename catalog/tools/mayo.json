@@ -1,7 +1,7 @@
 {
   "id": "mayo",
   "name": "Mayo",
-  "category": "3D CAD interchange",
+  "category": "A10. 3D assets and interchange",
   "tier": "candidate",
   "role": "CAD viewer and converter based on Qt and OpenCascade",
   "official_url": "https://github.com/fougue/mayo",

@@ -1,7 +1,7 @@
 {
   "id": "spark-splats",
   "name": "Spark",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "candidate",
   "role": "three.js renderer for 3D Gaussian splats (PLY, SPZ, SPLAT, KSPLAT, SOG) as an ordinary Object3D",
   "summary": "Spark (@sparkjsdev/spark 2.4.0, World Labs) adds SplatMesh to three.js: splat files load as an Object3D that shares the scene, camera and depth buffer with meshes. It draws in WebGL2 and sorts splats on a worker per view, so a seek-driven capture must wait for that sort before reading pixels. Its strength is rendering captured splat scenes inside a capturable three.js scene.",

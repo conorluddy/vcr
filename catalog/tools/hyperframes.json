@@ -1,7 +1,7 @@
 {
   "id": "hyperframes",
   "name": "Hyperframes",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "catalogued",
   "role": "HTML-to-MP4 renderer seeking a paused timeline in headless Chrome; reference, not a VCR dependency",
   "summary": "HeyGen's open-source framework that renders HTML compositions (data-attribute timing, tracks, sub-compositions) to deterministic MP4 by seeking each frame in headless Chrome. Supports Anime.js, CSS, Lottie, Three.js, Anime.js and WAAPI. CLI: init, preview, render; Docker and AWS Lambda for scale. Needs Node 22+ and FFmpeg. Per ADR 0001 it is a reference for VCR's own engine, not a dependency.",

@@ -1,7 +1,7 @@
 {
   "id": "typegpu",
   "name": "TypeGPU",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "candidate",
   "role": "Typed WebGPU toolkit: TypeScript shader functions and typed buffers that resolve to WGSL",
   "summary": "TypeGPU (Software Mansion) wraps WebGPU with schemas that are at once GPU types, CPU buffer layouts and TypeScript types, and compiles 'use gpu' TypeScript functions to WGSL through the unplugin-typegpu build plugin. tgpu.resolve returns the generated WGSL as a string. Distinguishing strength: typed, composable shaders for plain WebGPU, with shader output that can be snapshotted.",

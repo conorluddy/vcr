@@ -39,6 +39,12 @@ interface Vocabulary {
   capabilities: string[];
 }
 
+interface CategoryList {
+  categories: Array<{ id: string; name: string }>;
+}
+
+const CATEGORIES_PATH = "catalog/categories.json";
+
 // === BUDGETS ===
 
 /** Byte budgets for the tiers an agent reads whole. */
@@ -60,6 +66,10 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
   const knownCapabilities = new Set(vocabulary.ok ? vocabulary.value.capabilities : []);
   if (!vocabulary.ok) diagnostics.push({ severity: "error", file: "catalog/capabilities/vocabulary.json", path: "", message: vocabulary.error.message });
 
+  const categoryList = readJsonFile<CategoryList>(join(repositoryRoot, CATEGORIES_PATH));
+  const knownCategories = categoryList.ok ? categoryList.value.categories.map(({ id, name }) => `${id}. ${name}`) : [];
+  if (!categoryList.ok) diagnostics.push({ severity: "error", file: CATEGORIES_PATH, path: "", message: categoryList.error.message });
+
   const tools = new Map<string, { record: ToolSummary; file: string }>();
   let validToolRecords = true;
   for (const recordPath of listJsonFiles(join(repositoryRoot, "catalog/tools"))) {
@@ -76,6 +86,7 @@ export function validateRepository(repositoryRoot: string): ValidationReport {
 
   for (const { record, file } of tools.values()) {
     diagnostics.push(...capabilityDiagnostics(record, knownCapabilities, file));
+    diagnostics.push(...categoryDiagnostics(record, knownCategories, file));
     diagnostics.push(...toolReferenceDiagnostics(record, file, tools, examples, repositoryRoot));
     diagnostics.push(...cardDiagnostics(record, file));
   }
@@ -304,6 +315,17 @@ function capabilityDiagnostics(record: ToolSummary, knownCapabilities: Set<strin
       message: `capability "${capability}" is not in catalog/capabilities/vocabulary.json`,
       suggestion: "Use an existing capability or add it to the vocabulary in the same change.",
     }));
+}
+
+function categoryDiagnostics(record: ToolSummary, knownCategories: string[], file: string): Diagnostic[] {
+  if (knownCategories.includes(record.category)) return [];
+  return [{
+    severity: "error",
+    file,
+    path: "/category",
+    message: `category "${record.category}" is not in ${CATEGORIES_PATH}`,
+    suggestion: `Use one of: ${knownCategories.map((category) => `"${category}"`).join(", ")}. Propose a new category for a human to decide rather than inventing one.`,
+  }];
 }
 
 /**

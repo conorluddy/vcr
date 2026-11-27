@@ -1,7 +1,7 @@
 {
   "id": "typst",
   "name": "Typst",
-  "category": "Discovery: research candidates",
+  "category": "A4. Vector, typography, diagrams and stills",
   "tier": "candidate",
   "role": "Programmable typesetting and vector export CLI",
   "official_url": "https://github.com/typst/typst",

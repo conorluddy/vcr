@@ -1,7 +1,7 @@
 {
   "id": "physically-based-api",
   "name": "Physically Based API",
-  "category": "A9. Adjacent resources mentioned during discovery",
+  "category": "A13. Reference data and asset sources",
   "tier": "candidate",
   "role": "CC0 JSON of measured material values: linear sRGB base colour, IOR, metalness, density",
   "summary": "api.physicallybased.info/v2/materials returns 122 materials with base colours in srgb-linear and acescg, IOR or complex IOR, metalness, transmission, density and per-value references. Pin a copy: the live data changes. The fixture reads a 9-material subset offline.",

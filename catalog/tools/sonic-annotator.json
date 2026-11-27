@@ -1,7 +1,7 @@
 {
   "id": "sonic-annotator",
   "name": "Sonic Annotator",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Audio annotation",
   "official_url": "https://www.vamp-plugins.org/sonic-annotator/",

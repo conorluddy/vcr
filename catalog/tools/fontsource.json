@@ -1,7 +1,7 @@
 {
   "id": "fontsource",
   "name": "Fontsource",
-  "category": "A4. Vector, typography, diagrams and stills",
+  "category": "A13. Reference data and asset sources",
   "tier": "candidate",
   "role": "Open-source (OFL) font families as version-pinned npm packages with CSS and per-subset WOFF2",
   "summary": "Fontsource publishes Google Fonts and other open families as npm packages such as @fontsource/inter, each with CSS @font-face rules and per-subset WOFF2/WOFF files. A pnpm lockfile entry pins the exact font bytes a browser capture loads, which removes system-font-fallback drift. It supplies fonts; it does not shape, subset or render them.",

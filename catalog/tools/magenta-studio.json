@@ -1,7 +1,7 @@
 {
   "id": "magenta-studio",
   "name": "Magenta Studio",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "MIDI variants",
   "official_url": "https://magenta.tensorflow.org/studio",

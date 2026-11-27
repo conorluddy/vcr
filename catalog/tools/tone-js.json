@@ -1,7 +1,7 @@
 {
   "id": "tone-js",
   "name": "Tone.js",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A9. Audio, music and speech",
   "tier": "catalogued",
   "role": "Web Audio framework for synths, sequencing and effects; Tone.Offline renders faster than real time",
   "summary": "Web Audio wrapper with instruments, effects, and a Transport for scheduling in musical time. For VCR the useful path is Tone.Offline, which renders a scheduled piece into an AudioBuffer off the real-time clock, so audio is a function of the score, not wall time. Output is a buffer you encode to WAV and mux with ffmpeg. Live playback during headless capture is not deterministic.",

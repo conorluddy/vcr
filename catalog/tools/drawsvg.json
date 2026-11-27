@@ -1,7 +1,7 @@
 {
   "id": "drawsvg",
   "name": "drawsvg",
-  "category": "Discovery: research candidates",
+  "category": "A4. Vector, typography, diagrams and stills",
   "tier": "candidate",
   "role": "Python library for generating editable SVG drawings and animations",
   "official_url": "https://tangled.org/cduck.me/drawsvg",

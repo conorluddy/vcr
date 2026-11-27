@@ -1,7 +1,7 @@
 {
   "id": "comfyui",
   "name": "ComfyUI",
-  "category": "Discovery: conversation candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "Generative graphs",
   "official_url": "https://github.com/Comfy-Org/ComfyUI",

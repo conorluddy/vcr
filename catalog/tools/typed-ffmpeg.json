@@ -1,7 +1,7 @@
 {
   "id": "typed-ffmpeg",
   "name": "typed-ffmpeg",
-  "category": "Discovery: research candidates",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Typed Python and experimental TypeScript APIs for building FFmpeg commands",
   "official_url": "https://github.com/lucemia/typed-ffmpeg",

@@ -1,7 +1,7 @@
 {
   "id": "libvips",
   "name": "libvips",
-  "category": "A9. Adjacent resources mentioned during discovery",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "Streaming image processing library",
   "summary": "Demand-driven, multi-threaded image processing library with a vips command line and bindings for C, Python and others. Streams large images at low memory and is the engine under sharp. Distinguishing strength: speed and memory on big batches without a Node runtime.",

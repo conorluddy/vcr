@@ -1,7 +1,7 @@
 {
   "id": "postprocessing",
   "name": "postprocessing",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "pmndrs effects pipeline for Three.js: merged passes for bloom, DOF, SMAA, SSAO",
   "summary": "Effect library for Three.js that wraps its own EffectComposer and merges Effect instances into single fullscreen passes. Covers bloom, depth of field, SMAA, SSAO, god rays, LUT, chromatic aberration and more. Driven by calling composer.render at each seek. Distinguishing strength: efficient pass merging and a wide, maintained effect set.",

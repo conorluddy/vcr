@@ -1,7 +1,7 @@
 {
   "id": "vl-convert",
   "name": "vl-convert",
-  "category": "Discovery: research candidates",
+  "category": "A4. Vector, typography, diagrams and stills",
   "tier": "candidate",
   "role": "Vega and Vega-Lite static export runtime",
   "official_url": "https://github.com/vega/vl-convert",

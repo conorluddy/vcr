@@ -1,7 +1,7 @@
 {
   "id": "verovio",
   "name": "Verovio",
-  "category": "A4. Vector, typography, diagrams and stills",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "MEI, MusicXML, Humdrum and ABC scores engraved to SVG with a native CLI, Python or WASM",
   "summary": "Verovio is a C++ music engraver from RISM Digital. It reads MEI, MusicXML, Humdrum and ABC and writes SVG with the bundled Leipzig SMuFL font, plus MIDI and a timemap of note onsets for playback sync. It is a library or CLI, not an editor. Notation glyphs are SVG paths with semantic classes (note, notehead, measure); titles and lyrics are font-dependent <text>. Element ids are random unless xmlIdSeed is set.",

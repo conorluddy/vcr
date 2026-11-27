@@ -1,7 +1,7 @@
 {
   "id": "frames-cli",
   "name": "Frames CLI",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "catalogued",
   "role": "CLI for framing device screenshots and recordings with bezels",
   "official_url": "https://github.com/viticci/frames-cli",

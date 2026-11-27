@@ -5,7 +5,7 @@
     {
       "id": "ab-av1",
       "name": "ab-av1",
-      "category": "Discovery: research candidates",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "VMAF-targeted CRF search",
       "official_url": "https://github.com/alexheretic/ab-av1",
@@ -77,7 +77,7 @@
     {
       "id": "agg",
       "name": "asciinema agg",
-      "category": "Discovery: research candidates",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Asciicast to GIF",
       "official_url": "https://github.com/asciinema/agg",
@@ -145,7 +145,7 @@
     {
       "id": "ambientcg-api",
       "name": "ambientCG API",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A13. Reference data and asset sources",
       "tier": "candidate",
       "role": "Search and pin CC0 PBR materials, HDRIs and models by id over a JSON API; ZIPs by resolution",
       "summary": "ambientcg.com/api/v2/full_json (and a newer v3) lists assets with maps, tags and download sizes; ZIPs come from /get?file=<id>_<res>-<format>.zip. Assets are CC0 1.0, stated on the docs site, not in the API payload. A hosted service run by one person: pin the id, cache the ZIP and record its hash.",
@@ -311,7 +311,7 @@
     {
       "id": "ardour",
       "name": "Ardour",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Audio workstation",
       "official_url": "https://ardour.org/",
@@ -379,7 +379,7 @@
     {
       "id": "aubio",
       "name": "aubio",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Onsets and pitch",
       "official_url": "https://aubio.org/",
@@ -450,7 +450,7 @@
     {
       "id": "audiowaveform",
       "name": "audiowaveform",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Waveform data",
       "official_url": "https://github.com/bbc/audiowaveform",
@@ -520,7 +520,7 @@
     {
       "id": "auto-editor",
       "name": "auto-editor",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "CLI that finds silent or static spans and exports the cuts as a timeline or rendered rough cut",
       "summary": "CLI that cuts silent (`--edit audio`) or low-motion (`--edit motion`) spans from video or audio and renders the result or exports a timeline (v1 chunks, v3 JSON, Premiere XML, others). It writes the rough cut of a recorded take; it does not detect shots or edit timelines by hand.",
@@ -664,7 +664,7 @@
     {
       "id": "aval",
       "name": "AVAL",
-      "category": "A5. Video and capture",
+      "category": "A2. Animation and authored assets",
       "tier": "candidate",
       "role": "Compiles RGBA PNG frames or video into packed-alpha .avl files for a stateful web player",
       "summary": "`avl` (npm @pixel-point/aval-compiler) turns a motion.json project and a ProRes 4444, MP4 or RGBA PNG-sequence source into one .avl per codec (AV1, VP9, H.265, H.264) with packed alpha, looping body units, named states and transitions, plus a build.json with SRI hashes and ready-made <source> markup. The <aval-player> element plays them through WebCodecs in the browser. The compiler shells out to caller-installed ffmpeg.",
@@ -742,7 +742,7 @@
     {
       "id": "babylon-js",
       "name": "Babylon.js",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "Full web 3D engine with built-in PBR, post effects, physics and node materials",
       "summary": "WebGL2 and WebGPU engine driven from JavaScript or TypeScript. Ships PBR, glow and other post effects, physics plugins, an inspector and a node material editor in one package. In VCR it would render a scene per seek to a transparent canvas like Three.js. Distinguishing strength: the integrated feature set means fewer third-party parts to version-match.",
@@ -815,7 +815,7 @@
     {
       "id": "baguette",
       "name": "Baguette",
-      "category": "Discovery: research candidates",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Apple Simulator control and capture CLI with multi-device orchestration",
       "official_url": "https://github.com/tddworks/baguette",
@@ -1050,7 +1050,7 @@
     {
       "id": "box2d",
       "name": "Box2D v3 (box2d3-wasm)",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A8. Physics and simulation",
       "tier": "candidate",
       "role": "2D rigid-body physics as WASM in Node, stepped at a fixed timestep and baked to per-frame positions",
       "summary": "Box2D v3 is Erin Catto's C engine; box2d3-wasm is a third-party npm build of v3.2 with compat (no threads) and deluxe (SIMD and threads) variants. The C-style API steps a world by a fixed dt, so positions are read per frame and cached. The author states cross-platform determinism; the fixture checks only single-machine repeatability.",
@@ -1123,7 +1123,7 @@
     {
       "id": "build123d",
       "name": "build123d",
-      "category": "Discovery: conversation candidates",
+      "category": "A7. Native applications and procedural tools",
       "tier": "catalogued",
       "role": "Python parametric CAD for precise product geometry and SVG technical projections",
       "official_url": "https://github.com/gumyr/build123d",
@@ -1209,7 +1209,7 @@
     {
       "id": "bvh-mocap",
       "name": "BVHLoader + CMU mocap",
-      "category": "Discovery: conversation candidates",
+      "category": "A2. Animation and authored assets",
       "tier": "candidate",
       "role": "Mocap playback",
       "official_url": "https://threejs.org/docs/#examples/en/loaders/BVHLoader",
@@ -1286,7 +1286,7 @@
     {
       "id": "c2pa-ts",
       "name": "c2pa-ts",
-      "category": "A5. Video and capture",
+      "category": "A12. Captions, accessibility and provenance",
       "tier": "candidate",
       "role": "Pure TypeScript C2PA manifest reader and validator",
       "official_url": "https://github.com/TrustNXT/c2pa-ts",
@@ -1357,7 +1357,7 @@
     {
       "id": "c2patool",
       "name": "c2patool",
-      "category": "A5. Video and capture",
+      "category": "A12. Captions, accessibility and provenance",
       "tier": "catalogued",
       "role": "CLI for inspecting and adding C2PA manifests to media assets",
       "official_url": "https://github.com/contentauth/c2patool",
@@ -1435,7 +1435,7 @@
     {
       "id": "canvas-2d",
       "name": "Canvas 2D",
-      "category": "Native browser platform APIs",
+      "category": "A1. Creative coding and 2D",
       "tier": "catalogued",
       "role": "Immediate-mode 2D raster drawing; redraw each frame as a pure function of t",
       "summary": "The browser's 2D drawing context: paths, text, gradients, images, compositing and pixel access, supported in every Chromium. VCR draws a frame by clearing and redrawing from t, then screenshots or reads pixels, so output is deterministic given fixed fonts and assets. Nothing is retained between frames, which suits generative work and rules out a scene graph.",
@@ -1517,7 +1517,7 @@
     {
       "id": "canvas-record",
       "name": "canvas-record",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "Browser canvas recorder to MP4/WebM/GIF/frames via WebCodecs; real-time or stepped",
       "summary": "Browser library that records a 2D, WebGL or WebGPU canvas into MP4, WebM, MKV, GIF or a PNG/JPG frame sequence. Encoders include WebCodecs (fast, no WASM), an embedded MP4 WASM encoder, an FFmpeg WASM encoder and plain frame dumps. Distinguishing strength: stepped frame-by-frame recording of generative canvas sketches without a headless browser, if your code can render on demand.",
@@ -1669,7 +1669,7 @@
     {
       "id": "canvaskit-skia",
       "name": "CanvasKit / Skia",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A1. Creative coding and 2D",
       "tier": "catalogued",
       "role": "Skia in WASM: Node-runnable 2D canvas with shaping, SkSL shaders and PDF/SVG output",
       "summary": "Skia compiled to WebAssembly, exposing a Canvas-like API plus Skia-only features: Paragraph text shaping, SkSL runtime shaders, path boolean ops and PDF/SVG surfaces. Runs in Node or the browser; drawing code is a pure function of t, so frames render to PNG without a browser capture loop. Distinguishing strength: richer, more deterministic 2D than Canvas 2D without launching Chromium.",
@@ -1742,7 +1742,7 @@
     {
       "id": "caption-checker",
       "name": "caption-checker",
-      "category": "Caption compliance",
+      "category": "A12. Captions, accessibility and provenance",
       "tier": "candidate",
       "role": "Checks SRT and WebVTT captions against named captioning limits",
       "official_url": "https://github.com/markksantos/caption-checker",
@@ -1811,7 +1811,7 @@
     {
       "id": "ccapture-js",
       "name": "CCapture.js",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "Fixed-framerate canvas capture by hooking browser time; 2.x rewrite on WebCodecs",
       "summary": "Browser library that overrides timing functions (Date, requestAnimationFrame, optionally performance.now) so a canvas animation advances one fixed step per captured frame, then writes MP4/WebM via WebCodecs, GIF via gifenc, or PNG/JPG/WebP frames in a tar. 2.0.0 is a ground-up rewrite adding GPU motion blur. Distinguishing strength: retrofits deterministic capture onto code you cannot change to render on demand.",
@@ -1887,7 +1887,7 @@
     {
       "id": "chainner",
       "name": "chaiNNer",
-      "category": "Discovery: conversation candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "Image graphs",
       "official_url": "https://github.com/chaiNNer-org/chaiNNer",
@@ -1939,7 +1939,7 @@
     {
       "id": "chiitiler",
       "name": "chiitiler",
-      "category": "Discovery: research candidates",
+      "category": "A11. Maps and geodata",
       "tier": "candidate",
       "role": "Node.js library or CLI server",
       "official_url": "https://github.com/Kanahiro/chiitiler",
@@ -2007,7 +2007,7 @@
     {
       "id": "clap",
       "name": "CLAP",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Plugin standard",
       "official_url": "https://github.com/free-audio/clap",
@@ -2060,7 +2060,7 @@
     {
       "id": "claude-real-video",
       "name": "Claude Real Video",
-      "category": "Discovery: research candidates",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Local video analysis CLI producing scene-aware keyframes and transcripts",
       "official_url": "https://github.com/HUANGCHIHHUNGLeo/claude-real-video",
@@ -2209,7 +2209,7 @@
     {
       "id": "colmap",
       "name": "COLMAP",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A10. 3D assets and interchange",
       "tier": "catalogued",
       "role": "Reconstruction",
       "official_url": "https://colmap.github.io/",
@@ -2279,7 +2279,7 @@
     {
       "id": "color-js",
       "name": "color-js",
-      "category": "Discovery: research candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "JavaScript library",
       "official_url": "https://github.com/color-js/color.js",
@@ -2347,7 +2347,7 @@
     {
       "id": "colour-science",
       "name": "Colour Science for Python",
-      "category": "Discovery: research candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "Python colour-science library for conversions, models and colour-difference analysis",
       "official_url": "https://github.com/colour-science/colour",
@@ -2417,7 +2417,7 @@
     {
       "id": "comfyui",
       "name": "ComfyUI",
-      "category": "Discovery: conversation candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "Generative graphs",
       "official_url": "https://github.com/Comfy-Org/ComfyUI",
@@ -2487,7 +2487,7 @@
     {
       "id": "csound",
       "name": "Csound",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Audio synthesis",
       "official_url": "https://csound.com/",
@@ -2559,7 +2559,7 @@
     {
       "id": "ctc-forced-aligner",
       "name": "ctc-forced-aligner",
-      "category": "Discovery: research candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Align known text to audio with a CTC model, word-timed JSON",
       "official_url": "https://github.com/MahmoudAshraf97/ctc-forced-aligner",
@@ -2615,7 +2615,7 @@
     {
       "id": "d2",
       "name": "D2",
-      "category": "Discovery: research candidates",
+      "category": "A4. Vector, typography, diagrams and stills",
       "tier": "candidate",
       "role": "Text-to-diagram CLI",
       "official_url": "https://github.com/terrastruct/d2",
@@ -2759,7 +2759,7 @@
     {
       "id": "dawn-node-webgpu",
       "name": "Dawn Node WebGPU",
-      "category": "Discovery: research candidates",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "Node.js WebGPU binding for offscreen GPU rendering and compute",
       "official_url": "https://github.com/dawn-gpu/node-webgpu",
@@ -2828,7 +2828,7 @@
     {
       "id": "deck-gl",
       "name": "deck.gl",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A11. Maps and geodata",
       "tier": "catalogued",
       "role": "WebGL layers for large geospatial and point-cloud data; view state as props",
       "summary": "WebGL2/WebGPU visualisation framework layering scatterplots, arcs, hexbins, trips and 3D tiles over maps or a plain canvas. Everything is declarative props, so animating means setting props or viewState from t and capturing the canvas. Distinguishing strength: GPU rendering of very large geospatial datasets with built-in map projections.",
@@ -2899,7 +2899,7 @@
     {
       "id": "deepfilternet",
       "name": "DeepFilterNet",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Speech noise suppression (48 kHz)",
       "official_url": "https://github.com/Rikorose/DeepFilterNet",
@@ -2972,7 +2972,7 @@
     {
       "id": "demucs",
       "name": "Demucs",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Source separation",
       "official_url": "https://github.com/facebookresearch/demucs",
@@ -3050,7 +3050,7 @@
     {
       "id": "depth-anything-v2",
       "name": "Depth Anything V2",
-      "category": "Discovery: research candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "Monocular depth maps",
       "official_url": "https://github.com/DepthAnything/Depth-Anything-V2",
@@ -3119,7 +3119,7 @@
     {
       "id": "diffusion-studio-core",
       "name": "Diffusion Studio Core",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Browser timeline engine using WebCodecs",
       "summary": "TypeScript video composition engine for the browser: layers, transitions, effects, keyframes, masks and captions on a timeline, decoded and encoded with WebCodecs and drawn on Canvas 2D, built on Mediabunny. Aimed at people building non-linear editors. Requires COOP/COEP headers. Free tier stamps a watermark on renders unless a paid licence key is bought.",
@@ -3179,7 +3179,7 @@
     {
       "id": "dotlottie",
       "name": "dotLottie",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A2. Animation and authored assets",
       "tier": "catalogued",
       "role": ".lottie container plus ThorVG WASM canvas player with frame seeking",
       "summary": "LottieFiles runtime and container format: .lottie zips animations, images and themes, and dotlottie-web plays them on canvas via a ThorVG WASM renderer. Frames are seekable (setFrame), so a capture harness can step playback deterministically. Distinguishing strength: smaller packaged assets, theming and state machines over plain Lottie JSON.",
@@ -3249,7 +3249,7 @@
     {
       "id": "dovi-tool",
       "name": "dovi_tool and hdr10plus_tool",
-      "category": "HDR delivery metadata",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Rust CLIs for Dolby Vision RPU and HDR10+ dynamic metadata in HEVC streams",
       "official_url": "https://github.com/quietvoid/dovi_tool",
@@ -3322,7 +3322,7 @@
     {
       "id": "drawsvg",
       "name": "drawsvg",
-      "category": "Discovery: research candidates",
+      "category": "A4. Vector, typography, diagrams and stills",
       "tier": "candidate",
       "role": "Python library for generating editable SVG drawings and animations",
       "official_url": "https://tangled.org/cduck.me/drawsvg",
@@ -3392,7 +3392,7 @@
     {
       "id": "drei",
       "name": "Drei",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "Helper components for React Three Fiber: controls, loaders, text, environments",
       "summary": "Large collection of ready-made React Three Fiber components and hooks: Environment lighting, Text, Html, loaders, camera rigs, controls, ContactShadows, Float and more. Driven by JSX inside an R3F Canvas; output is the same Three.js scene. Distinguishing strength: removes boilerplate for common scene furniture, though interactive helpers matter little in offline capture.",
@@ -3464,7 +3464,7 @@
     {
       "id": "dssim",
       "name": "dssim",
-      "category": "Discovery: research candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "Perceptual still difference score",
       "official_url": "https://github.com/kornelski/dssim",
@@ -3598,7 +3598,7 @@
     {
       "id": "echogarden",
       "name": "Echogarden",
-      "category": "Speech and lyric alignment",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Node speech toolkit: forced alignment of a known transcript, TTS, recognition; writes SRT/VTT/JSON",
       "official_url": "https://github.com/echogarden-project/echogarden",
@@ -3669,7 +3669,7 @@
     {
       "id": "editly",
       "name": "Editly",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Declarative FFmpeg video editor",
       "summary": "Node CLI and API that builds a video from a JSON5 spec of clips, images, audio, titles and transitions, rendering frames through headless-gl and canvas and piping them to ffmpeg. Output is one MP4 (or GIF) in one command. Distinguishing strength: the fastest route from a declarative edit list to a finished slideshow-style video without a browser. ESM only; needs ffmpeg, headless-gl on Linux.",
@@ -3729,7 +3729,7 @@
     {
       "id": "elevation-eio",
       "name": "elevation (eio)",
-      "category": "Geospatial",
+      "category": "A11. Maps and geodata",
       "tier": "candidate",
       "role": "Python library and `eio` CLI that fetch, cache and clip global DEM data to a GeoTIFF for bounds",
       "summary": "Python package with the `eio` CLI: `eio clip --bounds left bottom right top -o dem.tif` downloads and caches global DEM data (Terrain Tiles MAPZEN default, Copernicus GLO-30/90, ALOS AW3D30, SRTM 30/90 m, GEDTM30) and clips it to a GeoTIFF in EPSG:4326. It needs GDAL's command-line tools and the network on first use; it gives heights, not relief rendering.",
@@ -3802,7 +3802,7 @@
     {
       "id": "essentia",
       "name": "Essentia",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Audio features",
       "official_url": "https://essentia.upf.edu/",
@@ -3876,7 +3876,7 @@
     {
       "id": "exiftool",
       "name": "exiftool",
-      "category": "Discovery: research candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "Native Perl CLI or library",
       "official_url": "https://github.com/exiftool/exiftool",
@@ -3944,7 +3944,7 @@
     {
       "id": "exiv2",
       "name": "Exiv2",
-      "category": "Discovery: research candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "C++ CLI and library for editing EXIF, IPTC, XMP and ICC image metadata",
       "official_url": "https://github.com/Exiv2/exiv2",
@@ -4016,7 +4016,7 @@
     {
       "id": "f3d",
       "name": "f3d",
-      "category": "Discovery: research candidates",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "Headless 3D asset stills",
       "official_url": "https://github.com/f3d-app/f3d",
@@ -4163,7 +4163,7 @@
     {
       "id": "ffmpeg-ffprobe",
       "name": "FFmpeg / ffprobe",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "core",
       "role": "Native encoding, muxing, filtergraphs, probing and sequence assembly; every renderer's delivery path",
       "summary": "The command-line media toolchain. Every renderer's output becomes video here: image sequences to H.264, VP9 or ProRes 4444 with alpha, audio muxing, overlays and crossfades in filtergraphs, trims and concatenation, and ffprobe as the inspection tool the examples diff against. Deterministic in metadata and frames per build, not in container bytes.",
@@ -4303,7 +4303,7 @@
     {
       "id": "ffmpeg-normalize",
       "name": "ffmpeg-normalize",
-      "category": "Discovery: research candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Audio loudness normalisation CLI",
       "official_url": "https://github.com/slhck/ffmpeg-normalize",
@@ -4375,7 +4375,7 @@
     {
       "id": "ffmpeg-wasm",
       "name": "ffmpeg.wasm",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "FFmpeg compiled to WebAssembly for in-browser transcodes; slower, size-limited",
       "summary": "WebAssembly build of FFmpeg run in a web worker, with single-thread and multi-thread cores. Gives browser pages the familiar ffmpeg command line over an in-memory filesystem: transcode, trim, mux, extract frames. Distinguishing strength: full FFmpeg filter and codec coverage in the browser, at the cost of a multi-MB core, much slower speed than native, and COOP/COEP plus SharedArrayBuffer for multithreading.",
@@ -4450,7 +4450,7 @@
     {
       "id": "ffsubsync",
       "name": "ffsubsync",
-      "category": "Caption compliance",
+      "category": "A12. Captions, accessibility and provenance",
       "tier": "candidate",
       "role": "CLI that shifts an existing subtitle file to match the speech in audio or video, without ASR",
       "summary": "Python CLI `ffsubsync`: aligns an SRT or other subtitle file to a video, audio file or reference subtitle by matching voice activity to cue timing, applying one offset and an optional framerate scale. It does not transcribe or fix drift across cuts.",
@@ -4522,7 +4522,7 @@
     {
       "id": "flowmap-gl",
       "name": "flowmap.gl",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A11. Maps and geodata",
       "tier": "candidate",
       "role": "deck.gl layer for origin-destination flow maps: sized nodes, tapered or animated flow lines",
       "summary": "FlowmapLayer (@flowmap.gl/layers) turns a locations table and an origin-destination flows table into a deck.gl layer with sized nodes, tapered, curved or animated straight lines, and optional clustering. Its strength is migration, trade and logistics flows without hand-built arcs. The animated mode reads the wall clock, so a scene must supply its own clock from t.",
@@ -4595,7 +4595,7 @@
     {
       "id": "fluidsynth",
       "name": "FluidSynth",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "MIDI synthesis",
       "official_url": "https://www.fluidsynth.org/",
@@ -4667,7 +4667,7 @@
     {
       "id": "fogleman-sdf",
       "name": "fogleman/sdf",
-      "category": "Discovery: research candidates",
+      "category": "A7. Native applications and procedural tools",
       "tier": "candidate",
       "role": "Python library for composing signed-distance fields and generating 3D meshes",
       "official_url": "https://github.com/fogleman/sdf",
@@ -4737,7 +4737,7 @@
     {
       "id": "fontsource",
       "name": "Fontsource",
-      "category": "A4. Vector, typography, diagrams and stills",
+      "category": "A13. Reference data and asset sources",
       "tier": "candidate",
       "role": "Open-source (OFL) font families as version-pinned npm packages with CSS and per-subset WOFF2",
       "summary": "Fontsource publishes Google Fonts and other open families as npm packages such as @fontsource/inter, each with CSS @font-face rules and per-subset WOFF2/WOFF files. A pnpm lockfile entry pins the exact font bytes a browser capture loads, which removes system-font-fallback drift. It supplies fonts; it does not shape, subset or render them.",
@@ -4811,7 +4811,7 @@
     {
       "id": "fonttools",
       "name": "fonttools",
-      "category": "Discovery: research candidates",
+      "category": "A4. Vector, typography, diagrams and stills",
       "tier": "candidate",
       "role": "Font subsetting and instancing",
       "official_url": "https://github.com/fonttools/fonttools",
@@ -4883,7 +4883,7 @@
     {
       "id": "framefields",
       "name": "Framefields",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Reference: TypeScript film renderer on native WebGPU, no browser, MP4 out",
       "official_url": "https://github.com/gatewai-dev/framefields",
@@ -4959,7 +4959,7 @@
     {
       "id": "frames-cli",
       "name": "Frames CLI",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "CLI for framing device screenshots and recordings with bezels",
       "official_url": "https://github.com/viticci/frames-cli",
@@ -5037,7 +5037,7 @@
     {
       "id": "freeze",
       "name": "freeze",
-      "category": "Discovery: research candidates",
+      "category": "A4. Vector, typography, diagrams and stills",
       "tier": "candidate",
       "role": "Code and terminal stills",
       "official_url": "https://github.com/charmbracelet/freeze",
@@ -5107,7 +5107,7 @@
     {
       "id": "frei0r",
       "name": "frei0r",
-      "category": "Discovery: conversation candidates",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Video effects",
       "official_url": "https://frei0r.dyne.org/",
@@ -5333,7 +5333,7 @@
     {
       "id": "generativepy",
       "name": "generativepy",
-      "category": "Discovery: research candidates",
+      "category": "A1. Creative coding and 2D",
       "tier": "candidate",
       "role": "Python framework for procedural 2D graphics, plots and frame-based animation",
       "official_url": "https://github.com/martinmcbride/generativepy",
@@ -5404,7 +5404,7 @@
     {
       "id": "gifsicle",
       "name": "gifsicle",
-      "category": "Discovery: research candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "GIF optimisation",
       "official_url": "https://github.com/kohler/gifsicle",
@@ -5475,7 +5475,7 @@
     {
       "id": "gifski",
       "name": "gifski",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "Highest-quality GIF encoder from PNG frames or y4m; palette per frame, AGPL",
       "summary": "Rust CLI and library that encodes an image sequence or y4m stream into a GIF using per-frame palettes and temporal dithering, giving visibly better quality than FFmpeg's palette filters. Input is PNG frames (gifski -o out.gif frame*.png) or an ffmpeg yuv4mpegpipe. Licensed AGPL-3.0 or later with commercial terms available from the author.",
@@ -5624,7 +5624,7 @@
     {
       "id": "gl-react",
       "name": "gl-react",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "React components that compose GLSL shaders as a node graph over textures",
       "summary": "React library where each shader is a Node component taking uniforms and other nodes or images as inputs, rendered to WebGL surfaces. Suited to image effect chains such as blur, colour grading and transitions described declaratively. Distinguishing strength: shader composition as a React tree. Little 3D support and a long gap before the 2026 release.",
@@ -5695,7 +5695,7 @@
     {
       "id": "gl-transitions",
       "name": "gl-transitions",
-      "category": "Discovery: research candidates",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "GLSL image-transition shader collection",
       "official_url": "https://github.com/gl-transitions/gl-transitions",
@@ -5764,7 +5764,7 @@
     {
       "id": "glmatrix",
       "name": "glMatrix",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "Vector and matrix utilities",
       "summary": "High-performance vector, matrix and quaternion library for JavaScript, using Float32Array and in-place operations. It has no rendering or timeline: it supplies projection, view and transform maths to raw WebGL or WebGPU code. Pure functions of their inputs, so safe in seek-driven frames.",
@@ -5838,7 +5838,7 @@
     {
       "id": "glslify",
       "name": "glslify",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "GLSL modules and bundling",
       "summary": "Node module system for GLSL: shaders import functions (noise, easing, blend modes) from npm packages, and the glslify CLI or bundler transform inlines them into one shader string. Build-time only, so output is a plain shader for regl, OGL or Three.js. Distinguishing strength: reusing community GLSL without copy-paste.",
@@ -5912,7 +5912,7 @@
     {
       "id": "glslviewer",
       "name": "glslViewer",
-      "category": "Discovery: research candidates",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "Headless GLSL renderer",
       "official_url": "https://github.com/patriciogonzalezvivo/glslViewer",
@@ -5982,7 +5982,7 @@
     {
       "id": "gltf-transform",
       "name": "glTF Transform",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A10. 3D assets and interchange",
       "tier": "catalogued",
       "role": "Node CLI and library to inspect, optimise and compress glTF/GLB before a scene loads them",
       "summary": "Scriptable glTF 2.x toolkit: a CLI (`gltf-transform optimize`, `draco`, `meshopt`, `etc1s`/`uastc`, `inspect`) and a JS library with NodeIO. It runs in Node with no GUI and rewrites models, textures and animations into smaller, load-ready GLBs. In VCR it is a pre-production step that makes assets cheap for Three.js or Babylon.js to load; it renders nothing itself.",
@@ -6059,7 +6059,7 @@
     {
       "id": "gltfjsx",
       "name": "gltfjsx",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A10. 3D assets and interchange",
       "tier": "candidate",
       "role": "Convert glTF models to React Three Fiber",
       "summary": "Command-line tool that parses a glTF/GLB and emits a React Three Fiber component with each mesh, material and animation clip as addressable JSX, optionally TypeScript and with Draco/meshopt optimisation via gltf-transform. Run once at build time; output is source code. Distinguishing strength: scene graph becomes editable, typed JSX.",
@@ -6211,7 +6211,7 @@
     {
       "id": "gopro-overlay",
       "name": "gopro-dashboard-overlay",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Python CLI that renders telemetry gauges and maps as video from GoPro metadata or a GPX or FIT track",
       "summary": "Python CLI (`gopro-dashboard.py`) that draws speed, heart rate, altitude, charts, a moving map and a route trace from GoPro GPMF telemetry or a plain GPX or FIT file, using layouts written in XML. It pipes frames to FFmpeg; with `--use-gpx-only` it needs no video. Map widgets fetch online tiles.",
@@ -6358,7 +6358,7 @@
     {
       "id": "gpac",
       "name": "GPAC (MP4Box)",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Packages and inspects MP4, CMAF, DASH and HLS at box level",
       "official_url": "https://github.com/gpac/gpac",
@@ -6507,7 +6507,7 @@
     {
       "id": "gstreamer",
       "name": "GStreamer",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Media pipeline framework and CLI",
       "summary": "Plugin-based multimedia framework: gst-launch-1.0 wires elements (sources, decoders, compositors, encoders, sinks) into pipelines, and the C/Python APIs build the same graphs. Handles live capture, RTP/WebRTC and hardware codecs. Distinguishing strength: streaming and live graphs; for offline files FFmpeg is simpler.",
@@ -6652,7 +6652,7 @@
     {
       "id": "harfbuzz",
       "name": "HarfBuzz utilities",
-      "category": "Discovery: research candidates",
+      "category": "A4. Vector, typography, diagrams and stills",
       "tier": "candidate",
       "role": "Text shaping ground truth",
       "official_url": "https://github.com/harfbuzz/harfbuzz",
@@ -6723,7 +6723,7 @@
     {
       "id": "heerich",
       "name": "heerich",
-      "category": "Discovery: research candidates",
+      "category": "A4. Vector, typography, diagrams and stills",
       "tier": "candidate",
       "role": "JavaScript voxel scene engine with SVG output",
       "official_url": "https://github.com/meodai/heerich",
@@ -6794,7 +6794,7 @@
     {
       "id": "hyperframes",
       "name": "Hyperframes",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "HTML-to-MP4 renderer seeking a paused timeline in headless Chrome; reference, not a VCR dependency",
       "summary": "HeyGen's open-source framework that renders HTML compositions (data-attribute timing, tracks, sub-compositions) to deterministic MP4 by seeking each frame in headless Chrome. Supports Anime.js, CSS, Lottie, Three.js, Anime.js and WAAPI. CLI: init, preview, render; Docker and AWS Lambda for scale. Needs Node 22+ and FFmpeg. Per ADR 0001 it is a reference for VCR's own engine, not a dependency.",
@@ -6947,7 +6947,7 @@
     {
       "id": "iconify",
       "name": "Iconify",
-      "category": "A4. Vector, typography, diagrams and stills",
+      "category": "A13. Reference data and asset sources",
       "tier": "candidate",
       "role": "Offline icon data for 280+ open sets as SVG, with per-set licence and author metadata",
       "summary": "@iconify/json bundles every open icon set as JSON with each set's SPDX licence and author; @iconify/utils turns an icon into SVG offline. Its strength is a machine-readable licence per set, so a credits or licence check can gate icons before they enter a scene.",
@@ -7170,7 +7170,7 @@
     {
       "id": "imscjs",
       "name": "imscJS",
-      "category": "Caption compliance",
+      "category": "A12. Captions, accessibility and provenance",
       "tier": "candidate",
       "role": "Reference JS renderer drawing IMSC/TTML captions at any time offset into a DOM element",
       "summary": "imscJS (npm imsc 2.0.0) parses an IMSC/TTML document with fromXML, resolves it at any time offset with generateISD and draws it with renderHTML, so a browser scene can show captions exactly as an IMSC player lays them out (regions, styles, overlap) while seeking by frame time.",
@@ -7323,7 +7323,7 @@
     {
       "id": "iris-pse-detection",
       "name": "iris-pse-detection",
-      "category": "Caption compliance",
+      "category": "A12. Captions, accessibility and provenance",
       "tier": "candidate",
       "role": "Python port of EA IRIS: screens video for photosensitive-epilepsy flash risk; advisory only",
       "summary": "Python library and `iris` CLI screening video for luminance and saturated-red flashes over a 1 s window, extended failures and optional stripe patterns. A screening aid; not WCAG, Harding or Ofcom conformance, and not a safety certificate.",
@@ -7534,7 +7534,7 @@
     {
       "id": "jolt-physics-js",
       "name": "Jolt Physics (JoltPhysics.js)",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A8. Physics and simulation",
       "tier": "candidate",
       "role": "Jolt rigid-body and soft-body physics as WASM in Node or the browser, stepped at a fixed timestep",
       "summary": "JoltPhysics.js (npm jolt-physics) compiles Jolt's C++ engine to WebAssembly. A JoltInterface steps the world by a fixed dt, so positions are read per frame and cached as a trajectory. Beyond Rapier and Matter.js it documents soft bodies and cloth; the fixture covers only rigid spheres on a floor.",
@@ -7607,7 +7607,7 @@
     {
       "id": "kokoro-onnx",
       "name": "Kokoro (kokoro-onnx)",
-      "category": "Discovery: research candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Local neural text-to-speech runtime",
       "official_url": "https://github.com/thewh1teagle/kokoro-onnx",
@@ -7756,7 +7756,7 @@
     {
       "id": "ktx-software",
       "name": "KTX-Software",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A10. 3D assets and interchange",
       "tier": "catalogued",
       "role": "Khronos KTX2 texture tools: create, validate, inspect, extract",
       "official_url": "https://github.com/KhronosGroup/KTX-Software",
@@ -7827,7 +7827,7 @@
     {
       "id": "libass",
       "name": "libass",
-      "category": "Discovery: research candidates",
+      "category": "A12. Captions, accessibility and provenance",
       "tier": "candidate",
       "role": "ASS/SSA subtitle rendering library",
       "official_url": "https://github.com/libass/libass",
@@ -7899,7 +7899,7 @@
     {
       "id": "libavif",
       "name": "libavif (avifenc)",
-      "category": "Discovery: research candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "AVIF stills and animation",
       "official_url": "https://github.com/AOMediaCodec/libavif",
@@ -7973,7 +7973,7 @@
     {
       "id": "libplacebo",
       "name": "libplacebo",
-      "category": "Discovery: conversation candidates",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Video processing",
       "official_url": "https://code.videolan.org/videolan/libplacebo",
@@ -8045,7 +8045,7 @@
     {
       "id": "librashader",
       "name": "librashader",
-      "category": "Discovery: research candidates",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "Apply RetroArch slang shader presets (CRT, scanline) to images headlessly",
       "official_url": "https://github.com/SnowflakePowered/librashader",
@@ -8122,7 +8122,7 @@
     {
       "id": "librosa",
       "name": "librosa",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Rhythm and spectra",
       "official_url": "https://librosa.org/",
@@ -8196,7 +8196,7 @@
     {
       "id": "libsonare",
       "name": "libsonare",
-      "category": "Discovery: research candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Beat, onset and loudness analysis",
       "official_url": "https://libsonare.libraz.net",
@@ -8271,7 +8271,7 @@
     {
       "id": "libultrahdr",
       "name": "libultrahdr (ultrahdr_app)",
-      "category": "HDR delivery metadata",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Ultra HDR JPEG encode and decode: SDR base plus gain map in one file",
       "official_url": "https://github.com/google/libultrahdr",
@@ -8346,7 +8346,7 @@
     {
       "id": "libvips",
       "name": "libvips",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "Streaming image processing library",
       "summary": "Demand-driven, multi-threaded image processing library with a vips command line and bindings for C, Python and others. Streams large images at low memory and is the engine under sharp. Distinguishing strength: speed and memory on big batches without a Node runtime.",
@@ -8419,7 +8419,7 @@
     {
       "id": "libwebp",
       "name": "libwebp tools",
-      "category": "Discovery: research candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "WebP stills and animation",
       "official_url": "https://chromium.googlesource.com/webm/libwebp",
@@ -8491,7 +8491,7 @@
     {
       "id": "lightusd",
       "name": "LightUSD",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A10. 3D assets and interchange",
       "tier": "candidate",
       "role": "Dependency-free USD reader/writer (.usda, .usdc, .usdz) via a pip wheel or npm",
       "summary": "A C++17 USD library (formerly TinyUSDZ) with Python and WASM/npm bindings. The Python wheel creates a stage in code and saves .usda, .usdc or .usdz by extension, and loads them back. It has no renderer and no Hydra. A 1.0 released 2026-11-09, so young; it installs without Pixar's build.",
@@ -8567,7 +8567,7 @@
     {
       "id": "lmms",
       "name": "LMMS",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Music workstation",
       "official_url": "https://lmms.io/",
@@ -8699,7 +8699,7 @@
     {
       "id": "lv2",
       "name": "LV2",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A9. Audio, music and speech",
       "tier": "catalogued",
       "role": "Plugin standard",
       "official_url": "https://lv2plug.in/",
@@ -8766,7 +8766,7 @@
     {
       "id": "magenta-studio",
       "name": "Magenta Studio",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "MIDI variants",
       "official_url": "https://magenta.tensorflow.org/studio",
@@ -8895,7 +8895,7 @@
     {
       "id": "manifold",
       "name": "Manifold",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A10. 3D assets and interchange",
       "tier": "candidate",
       "role": "Fast mesh Booleans (CSG) with guaranteed watertight output, in Node/WASM or Python",
       "summary": "Manifold (manifold-3d on npm, manifold3d on PyPI) unions, subtracts and intersects triangle meshes and guarantees a manifold result, with volume, genus and status queries. In Node it runs as WASM from one pnpm dependency. It is not a CAD kernel: no fillets, no STEP.",
@@ -9045,7 +9045,7 @@
     {
       "id": "mannequin-js",
       "name": "mannequin.js",
-      "category": "Discovery: conversation candidates",
+      "category": "A10. 3D assets and interchange",
       "tier": "candidate",
       "role": "Posable figure",
       "official_url": "https://boytchev.github.io/mannequin.js/",
@@ -9119,7 +9119,7 @@
     {
       "id": "maplibre-native",
       "name": "MapLibre Native",
-      "category": "Discovery: research candidates",
+      "category": "A11. Maps and geodata",
       "tier": "candidate",
       "role": "GPU-accelerated C++ vector-tile map rendering SDK for native applications",
       "official_url": "https://github.com/maplibre/maplibre-native",
@@ -9187,7 +9187,7 @@
     {
       "id": "mapnik",
       "name": "Mapnik",
-      "category": "Discovery: research candidates",
+      "category": "A11. Maps and geodata",
       "tier": "candidate",
       "role": "C++ map renderer with Python bindings: geodata plus XML style to PNG",
       "official_url": "https://mapnik.org",
@@ -9261,7 +9261,7 @@
     {
       "id": "mapshaper",
       "name": "mapshaper",
-      "category": "A4. Vector, typography, diagrams and stills",
+      "category": "A11. Maps and geodata",
       "tier": "candidate",
       "role": "CLI that dissolves, simplifies, reprojects and styles GeoJSON and exports flat SVG maps",
       "summary": "mapshaper is an npm CLI that edits boundary data: dissolve, simplify by percentage, reproject, clip, join and style, then write GeoJSON, TopoJSON or a flat SVG. Its strength is shrinking heavy boundary files into a small map still or scene input with one pnpm dependency and no browser.",
@@ -9408,7 +9408,7 @@
     {
       "id": "matter-js",
       "name": "Matter.js",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A8. Physics and simulation",
       "tier": "catalogued",
       "role": "2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t",
       "summary": "2D rigid-body engine for bodies, constraints, collisions and composites, with an optional built-in canvas renderer. For VCR skip Matter.Runner: call Engine.update(engine, 1000/fps) with a constant delta and read body positions. To render frame f in any order, rebuild the world and step f times, or pre-bake every frame's transforms in one pass and look them up. Pure JS, small, repeatable in the same browser build.",
@@ -9554,7 +9554,7 @@
     {
       "id": "mayo",
       "name": "Mayo",
-      "category": "3D CAD interchange",
+      "category": "A10. 3D assets and interchange",
       "tier": "candidate",
       "role": "CAD viewer and converter based on Qt and OpenCascade",
       "official_url": "https://github.com/fougue/mayo",
@@ -9624,7 +9624,7 @@
     {
       "id": "mediabunny",
       "name": "Mediabunny",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "Pure-TypeScript media toolkit: read, write, convert, WebCodecs-backed; browser and Node",
       "summary": "Zero-dependency TypeScript library for reading, writing and converting MP4, MOV, WebM, MKV, MP3, WAV, Ogg and more, using WebCodecs for encode and decode. Handles metadata, frame and audio sample extraction, trimming, resizing and conversion in browsers and Node. Distinguishing strength: small, fast, typed in-browser media I/O where ffmpeg.wasm would be heavy. Foundation of Diffusion Studio Core.",
@@ -9701,7 +9701,7 @@
     {
       "id": "mediabunny-server-extension",
       "name": "Mediabunny server extension",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "Adds FFmpeg-backed codecs and hardware acceleration to Mediabunny in Node, Bun, Deno",
       "summary": "@mediabunny/server registers a NodeAV backend (bindings to FFmpeg's C API) so Mediabunny can encode and decode AVC, HEVC, VP8, VP9, AV1 and ProRes, plus AAC, MP3, Opus, FLAC, AC-3 and others, outside the browser. Adds resize, rotate, flip and crop transforms and hardware acceleration on macOS, Linux and Windows. Same Mediabunny API server-side as in the browser.",
@@ -9774,7 +9774,7 @@
     {
       "id": "mediainfo",
       "name": "MediaInfo",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "Media metadata",
       "official_url": "https://mediaarea.net/en/MediaInfo",
@@ -9841,7 +9841,7 @@
     {
       "id": "mediapipe",
       "name": "MediaPipe",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A6. Image processing and colour",
       "tier": "catalogued",
       "role": "Vision and tracking",
       "official_url": "https://ai.google.dev/edge/mediapipe",
@@ -9912,7 +9912,7 @@
     {
       "id": "mediarecorder",
       "name": "MediaRecorder",
-      "category": "Native browser platform APIs",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Browser MediaStream recording API",
       "summary": "Records a MediaStream (canvas.captureStream, tab or microphone) into a Blob in the browser's chosen codec. It runs in real time and drops or duplicates frames when rendering is slow, so output depends on wall-clock timing, not on t. Fine for a quick preview or live capture; wrong for frame-accurate renders where frames are produced in any order.",
@@ -10045,7 +10045,7 @@
     {
       "id": "mermaid-rs-renderer",
       "name": "mermaid-rs-renderer",
-      "category": "Discovery: research candidates",
+      "category": "A4. Vector, typography, diagrams and stills",
       "tier": "candidate",
       "role": "Native Rust Mermaid diagram renderer",
       "official_url": "https://github.com/1jehuang/mermaid-rs-renderer",
@@ -10119,7 +10119,7 @@
     {
       "id": "meshoptimizer",
       "name": "meshoptimizer",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A10. 3D assets and interchange",
       "tier": "catalogued",
       "role": "Mesh optimisation",
       "official_url": "https://github.com/zeux/meshoptimizer",
@@ -10185,7 +10185,7 @@
     {
       "id": "meyda",
       "name": "Meyda",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A9. Audio, music and speech",
       "tier": "catalogued",
       "role": "Audio features",
       "official_url": "https://meyda.js.org/",
@@ -10252,7 +10252,7 @@
     {
       "id": "mido",
       "name": "Mido",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A9. Audio, music and speech",
       "tier": "catalogued",
       "role": "MIDI processing",
       "official_url": "https://mido.readthedocs.io/",
@@ -10322,7 +10322,7 @@
     {
       "id": "mitsuba-3",
       "name": "Mitsuba 3",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "Python physically based path tracer with scalar CPU variants, fixed spp and seed, built-in scenes",
       "summary": "Research renderer pip-installable as a wheel (mitsuba plus drjit). Scenes are Python dicts or XML; mi.render takes spp and seed and returns a float image. Variants include scalar_rgb, spectral and differentiable ones; LLVM and Metal variants exist but the LLVM probe failed on the fixture machine.",
@@ -10397,7 +10397,7 @@
     {
       "id": "mlt-melt",
       "name": "MLT / melt",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "MLT multitrack framework with melt CLI and XML projects; the engine behind Kdenlive and Shotcut",
       "summary": "LGPL multimedia framework whose melt CLI plays or renders multitrack timelines from command-line producers, filters and transitions or from an XML project file. Uses FFmpeg for codecs and frei0r or Movit for effects. Distinguishing strength: a mature declarative timeline and compositing model with an XML interchange, driven without a GUI.",
@@ -10533,7 +10533,7 @@
     {
       "id": "montreal-forced-aligner",
       "name": "Montreal Forced Aligner",
-      "category": "Speech and lyric alignment",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Kaldi CLI that aligns a known transcript to speech: word and phone timings as JSON or TextGrid",
       "official_url": "https://montrealcorpustools.github.io/Montreal-Forced-Aligner/",
@@ -10830,7 +10830,7 @@
     {
       "id": "mpfb",
       "name": "MPFB (MakeHuman for Blender)",
-      "category": "Discovery: conversation candidates",
+      "category": "A10. 3D assets and interchange",
       "tier": "candidate",
       "role": "Human figures",
       "official_url": "https://github.com/makehumancommunity/mpfb2",
@@ -10978,7 +10978,7 @@
     {
       "id": "music21",
       "name": "music21",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A9. Audio, music and speech",
       "tier": "catalogued",
       "role": "Music analysis",
       "official_url": "https://www.music21.org/",
@@ -11111,7 +11111,7 @@
     {
       "id": "nerfstudio",
       "name": "Nerfstudio",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A10. 3D assets and interchange",
       "tier": "catalogued",
       "role": "Reconstruction",
       "official_url": "https://docs.nerf.studio/",
@@ -11189,7 +11189,7 @@
     {
       "id": "node-av",
       "name": "node-av",
-      "category": "Discovery: research candidates",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Node.js FFmpeg bindings for in-process audio/video decoding, filtering and encoding",
       "official_url": "https://github.com/seydx/node-av",
@@ -11263,7 +11263,7 @@
     {
       "id": "ntsc-rs",
       "name": "ntsc-rs",
-      "category": "Discovery: research candidates",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Analogue NTSC/VHS signal emulation",
       "official_url": "https://ntsc.rs",
@@ -11336,7 +11336,7 @@
     {
       "id": "nvidia-warp",
       "name": "NVIDIA Warp",
-      "category": "Discovery: research candidates",
+      "category": "A8. Physics and simulation",
       "tier": "candidate",
       "role": "Python kernel framework for particle, field and geometry simulation, CPU on macOS",
       "official_url": "https://github.com/NVIDIA/warp",
@@ -11409,7 +11409,7 @@
     {
       "id": "occt-wasm",
       "name": "occt-wasm",
-      "category": "3D CAD interchange",
+      "category": "A7. Native applications and procedural tools",
       "tier": "candidate",
       "role": "OpenCascade CAD kernel in WebAssembly: exact solids, STEP/STL I/O and hidden-line SVG in Node",
       "summary": "OpenCascade V8 compiled to WebAssembly with a typed TypeScript API. From one pnpm dependency, Node builds exact solids (primitives, booleans, fillets, sweeps), reads and writes STEP, STL and BREP, tessellates for three-js or babylon-js, and draws hidden-line views as SVG or PNG. It is the JavaScript route to exact CAD, with no Python.",
@@ -11482,7 +11482,7 @@
     {
       "id": "odiff",
       "name": "odiff",
-      "category": "Discovery: research candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "Pixel diff for frame checks",
       "official_url": "https://github.com/dmtrKovalenko/odiff",
@@ -11555,7 +11555,7 @@
     {
       "id": "ogl",
       "name": "OGL",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "Tiny zero-dependency WebGL library with a Three.js-like API, about 29 KB",
       "summary": "Minimal ES-module WebGL library with Geometry, Program, Mesh, Camera, Transform, RenderTarget and a few extras, shaped like a lean Three.js. You write your own shaders and drive render calls from time. Output is a canvas. Distinguishing strength: very small, readable source with no dependencies.",
@@ -11627,7 +11627,7 @@
     {
       "id": "omakase-player",
       "name": "Omakase Player",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Browser review player: frame-index seeks, timeline, markers; a candidate base for review pages",
       "summary": "Apache-2.0 JavaScript framework (npm @byomakase/omakase-player 1.3.1) for frame-accurate review UIs: main and sidecar players, multi-track timeline, marker lists, VU meter. Plays HLS and MP4; seekTo takes seconds, frame count or timecode. A person-facing player, not a render tool.",
@@ -11700,7 +11700,7 @@
     {
       "id": "open3d",
       "name": "Open3D",
-      "category": "Discovery: conversation candidates",
+      "category": "A10. 3D assets and interchange",
       "tier": "candidate",
       "role": "3D geometry",
       "official_url": "https://www.open3d.org/",
@@ -11847,7 +11847,7 @@
     {
       "id": "opencv-js",
       "name": "OpenCV.js",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A6. Image processing and colour",
       "tier": "catalogued",
       "role": "OpenCV compiled to WASM: feature detection, filtering, tracking, analysis in browser or Node",
       "summary": "OpenCV's computer-vision library built for JavaScript through WebAssembly, published as @techstark/opencv-js (the official docs cover the build). Driven from a script or a browser page on image data; outputs are matrices, keypoints, masks and filtered images. It is the only catalogued option for analysis such as tracking, contours, optical flow and face or marker detection.",
@@ -12074,7 +12074,7 @@
     {
       "id": "openscad",
       "name": "OpenSCAD",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A7. Native applications and procedural tools",
       "tier": "candidate",
       "role": "Script-only solid modeller (CSG) with a headless CLI for STL, 3MF, SVG and PNG export",
       "summary": "OpenSCAD turns a text .scad script into a solid. Variables are overridden per run with -D, and one run exports STL, 3MF, SVG (2D projection) or a PNG preview with a set camera and size. Geometry is a pure function of the script and its variables. The CLI sits on PATH when installed from the snapshot cask.",
@@ -12154,7 +12154,7 @@
     {
       "id": "opensheetmusicdisplay",
       "name": "OpenSheetMusicDisplay",
-      "category": "A4. Vector, typography, diagrams and stills",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "MusicXML scores to SVG notation in Node (with jsdom) or a browser, VexFlow-based",
       "summary": "OpenSheetMusicDisplay (OSMD) parses MusicXML and engraves it with VexFlow into SVG or canvas. In Node it needs jsdom plus a canvas package for text measurement; it is a library, not a CLI. Its SVG is mostly paths for notes, clefs and stems, with semantic classes (vf-stavenote, vf-notehead) so a scene can recolour or animate single notes; titles and lyrics are font-dependent <text>.",
@@ -12232,7 +12232,7 @@
     {
       "id": "opentimelineio",
       "name": "OpenTimelineIO",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "Timeline exchange",
       "official_url": "https://opentimelineio.readthedocs.io/",
@@ -12384,7 +12384,7 @@
     {
       "id": "openusd",
       "name": "OpenUSD",
-      "category": "Discovery: conversation candidates",
+      "category": "A10. 3D assets and interchange",
       "tier": "candidate",
       "role": "3D interchange",
       "official_url": "https://openusd.org/",
@@ -12459,7 +12459,7 @@
     {
       "id": "openverse-api",
       "name": "Openverse API",
-      "category": "A4. Vector, typography, diagrams and stills",
+      "category": "A13. Reference data and asset sources",
       "tier": "candidate",
       "role": "Search openly licensed images by licence, with creator and attribution fields",
       "summary": "Remote HTTP search over openly licensed images and audio gathered from Flickr, Wikimedia and others. Each result carries licence, version, licence URL, creator, source URL and an attribution string; license= and license_type= filters narrow before use. Index, not host.",
@@ -12528,7 +12528,7 @@
     {
       "id": "osm-static-maps",
       "name": "osm-static-maps",
-      "category": "Discovery: research candidates",
+      "category": "A11. Maps and geodata",
       "tier": "candidate",
       "role": "Raster map still with GeoJSON overlay from any tile server, via Leaflet in headless Chromium",
       "summary": "osm-static-maps renders a Leaflet map in headless Chromium and returns a PNG with GeoJSON, markers and attribution over raster tiles. Its default tile source is OpenStreetMap, whose tile policy forbids headless automated use, so in VCR use it with a tile server you own or are licensed to use.",
@@ -12602,7 +12602,7 @@
     {
       "id": "oxipng",
       "name": "oxipng",
-      "category": "Discovery: research candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "Lossless PNG optimiser",
       "official_url": "https://github.com/oxipng/oxipng",
@@ -12991,7 +12991,7 @@
     {
       "id": "pedalboard",
       "name": "Pedalboard",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Audio effects",
       "official_url": "https://github.com/spotify/pedalboard",
@@ -13135,7 +13135,7 @@
     {
       "id": "phiflow",
       "name": "PhiFlow",
-      "category": "Physics, audio and 3D assets",
+      "category": "A8. Physics and simulation",
       "tier": "candidate",
       "role": "Python grid-based smoke and fluid simulator, stepped in a loop so fields save per frame",
       "summary": "Python library (PhiFlow with the phiml backend layer) for grid-based 2D and 3D smoke and incompressible flow, also particles. You write the time loop (advect, add buoyancy, project) and read fields as arrays, so frames can be saved for a scene to render. NumPy runs on CPU; PyTorch, JAX and TensorFlow are optional.",
@@ -13208,7 +13208,7 @@
     {
       "id": "physically-based-api",
       "name": "Physically Based API",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A13. Reference data and asset sources",
       "tier": "candidate",
       "role": "CC0 JSON of measured material values: linear sRGB base colour, IOR, metalness, density",
       "summary": "api.physicallybased.info/v2/materials returns 122 materials with base colours in srgb-linear and acescg, IOR or complex IOR, metalness, transmission, density and per-value references. Pin a copy: the live data changes. The fixture reads a 9-material subset offline.",
@@ -13358,7 +13358,7 @@
     {
       "id": "piper",
       "name": "Piper (piper1-gpl)",
-      "category": "Discovery: research candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Local neural text-to-speech engine",
       "official_url": "https://github.com/OHF-Voice/piper1-gpl",
@@ -13665,7 +13665,7 @@
     {
       "id": "pixijs-filters",
       "name": "PixiJS Filters",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "Community filter pack for PixiJS: glow, bloom, shockwave, CRT and more",
       "summary": "Collection of community-authored display filters for PixiJS such as glow, bloom, shockwave, pixelate, CRT, RGB split and displacement. Applied by assigning to a container or sprite's filters array and animating uniforms from time. Output is a PixiJS canvas. Distinguishing strength: ready-made 2D effects without writing GLSL.",
@@ -13738,7 +13738,7 @@
     {
       "id": "playcanvas-engine",
       "name": "PlayCanvas Engine",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "Open-source web 3D engine usable standalone; strong glTF and Gaussian splat support",
       "summary": "MIT-licensed WebGL2 and WebGPU engine with an entity-component model, PBR, glTF, physics integration and Gaussian splat rendering. Used as a standalone npm library from code, without the PlayCanvas Editor. Distinguishing strength: small runtime footprint, game-style structure and splat support.",
@@ -13812,7 +13812,7 @@
     {
       "id": "playwright",
       "name": "Playwright",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "Headless browser automation; the capture route for every browser-rendered toolkit",
       "summary": "Browser automation library for Chromium, Firefox and WebKit. In VCR it drives headless Chromium through the shared @vcr/capture harness: seek a paused timeline, settle two animation frames, then capture each frame as PNG, including alpha, with page.screenshot (validated in p5-capture and three-capture). HeadlessExperimental beginFrame is an experimental, DOM-only alternative. Distinguishing strength: one capture path for any DOM, SVG, canvas or WebGL scene, with order-independent frames (a Anime.js timeline matched under beginFrame; canvas and WebGL under screenshot).",
@@ -14031,7 +14031,7 @@
     {
       "id": "pngquant",
       "name": "pngquant",
-      "category": "Discovery: research candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "Lossy PNG quantisation",
       "official_url": "https://pngquant.org/",
@@ -14108,7 +14108,7 @@
     {
       "id": "postprocessing",
       "name": "postprocessing",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "pmndrs effects pipeline for Three.js: merged passes for bloom, DOF, SMAA, SSAO",
       "summary": "Effect library for Three.js that wraps its own EffectComposer and merges Effect instances into single fullscreen passes. Covers bloom, depth of field, SMAA, SSAO, god rays, LUT, chromatic aberration and more. Driven by calling composer.render at each seek. Distinguishing strength: efficient pass merging and a wide, maintained effect set.",
@@ -14331,7 +14331,7 @@
     {
       "id": "pretty-midi",
       "name": "pretty_midi",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "MIDI processing",
       "official_url": "https://github.com/craffel/pretty-midi",
@@ -14553,7 +14553,7 @@
     {
       "id": "pure-data",
       "name": "Pure Data",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Audio programming",
       "official_url": "https://puredata.info/",
@@ -14680,7 +14680,7 @@
     {
       "id": "pygfx",
       "name": "pygfx",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "Python scene-graph 3D renderer on wgpu (Metal on macOS) with an offscreen canvas",
       "summary": "Python render engine in the Three.js mould on wgpu-py: meshes, lines, points, text, volumes and PBR materials. With rendercanvas's offscreen canvas it renders to NumPy RGBA arrays without a window, so a scene can be a function of t in one Python process.",
@@ -14756,7 +14756,7 @@
     {
       "id": "pymunk",
       "name": "Pymunk",
-      "category": "Discovery: research candidates",
+      "category": "A8. Physics and simulation",
       "tier": "candidate",
       "role": "Python 2D rigid-body physics engine with fixed-step simulation",
       "official_url": "https://github.com/viblo/pymunk",
@@ -14824,7 +14824,7 @@
     {
       "id": "pyscenedetect",
       "name": "PySceneDetect",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "Shot boundary detection CLI and Python library over OpenCV; splits video via FFmpeg",
       "summary": "Python CLI and library that finds scene cuts in video using content, adaptive, threshold and histogram detectors on OpenCV frames, and outputs timecode lists, CSV, thumbnails, or split clips by calling FFmpeg or mkvmerge. Distinguishing strength: ready-made cut detection with tunable detectors, so an agent need not write frame-diff code.",
@@ -14898,7 +14898,7 @@
     {
       "id": "pyseq",
       "name": "PySeq",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Python library and CLI that lists numbered frame files as ranges with missing frames",
       "summary": "Python library and CLI suite (`lss`, `stree`, `sfind`, `sdiff`, `sstat`, `scopy`, `smv`, `srm`) that groups numbered files such as `frame.0001.png` into sequences and reports ranges like `[1-3, 6-7, 10]` and the exact missing frames. It reads file names only, never pixels.",
@@ -14968,7 +14968,7 @@
     {
       "id": "pysubs2",
       "name": "pysubs2",
-      "category": "Caption compliance",
+      "category": "A12. Captions, accessibility and provenance",
       "tier": "candidate",
       "role": "Python library and CLI to edit, retime and convert subtitle files, writing ASS styles from code",
       "summary": "Python library and `pysubs2` CLI for SRT, ASS/SSA, WebVTT, MicroDVD, MPL2, TMP, JSON and TTML. It writes ASS styles and override-tag events from code, retimes in milliseconds and converts between formats; it does not render.",
@@ -15040,7 +15040,7 @@
     {
       "id": "pyvista",
       "name": "PyVista",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "Pythonic VTK wrapper that renders meshes off-screen to PNG with numpy image access",
       "summary": "Python library over VTK for meshes, point clouds and volumes. Plotter(off_screen=True) renders a fixed camera and window size to a PNG or a numpy array with no window, and can write movies. Choose it over vedo when you want the larger API and numpy image return; both sit on VTK.",
@@ -15118,7 +15118,7 @@
     {
       "id": "raea",
       "name": "raea",
-      "category": "Discovery: research candidates",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "React/TypeScript project with Rust/Bevy renderer",
       "official_url": "https://github.com/shinyobjectz/raea",
@@ -15274,7 +15274,7 @@
     {
       "id": "rapier",
       "name": "Rapier",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A8. Physics and simulation",
       "tier": "catalogued",
       "role": "Rust/WASM 2D and 3D physics with optional cross-platform determinism and world snapshots",
       "summary": "Dimforge's physics engine compiled to WebAssembly, with separate 2D and 3D npm packages (-compat builds inline the WASM and need `await RAPIER.init()`). Fixed-step replay from t: set the world timestep to 1/fps and step n times, or step once and cache per-frame transforms; takeSnapshot/restoreSnapshot allow checkpoints so seeking need not restart from zero. Upstream describes an opt-in cross-platform determinism mode.",
@@ -15499,7 +15499,7 @@
     {
       "id": "react-three-fiber",
       "name": "React Three Fiber",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "React renderer for Three.js: declarative JSX scenes with hooks for the frame loop",
       "summary": "React reconciler that maps JSX to Three.js objects and exposes useFrame, useThree and an event system. Output is the same canvas as plain Three.js. Distinguishing strength: declarative scene composition and the pmndrs component ecosystem. Majors are tied to React: v9 targets React 19, v8 React 18.",
@@ -15578,7 +15578,7 @@
     {
       "id": "react-three-postprocessing",
       "name": "react-three/postprocessing",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "Declarative post effects (bloom, DOF, SSAO, LUTs) for R3F, wrapping postprocessing",
       "summary": "pmndrs React wrapper around the postprocessing library: an EffectComposer and effect components (Bloom, DepthOfField, SSAO, Vignette, ToneMapping, LUT and more) placed inside an R3F canvas. Driven by JSX and props; output is the post-processed canvas. Strength is composing effect stacks declaratively in the same tree as the scene.",
@@ -15652,7 +15652,7 @@
     {
       "id": "react-three-rapier",
       "name": "react-three/rapier",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A8. Physics and simulation",
       "tier": "catalogued",
       "role": "Rapier physics for R3F as components: bodies, colliders, joints, manual stepping",
       "summary": "pmndrs R3F integration of the Rapier WASM physics engine: RigidBody, colliders, joints and instanced bodies as components, with a fixed 60 Hz timestep and a manual step() option. Driven from JSX and refs; output is simulated transforms rendered by R3F. Strength is physics inside the R3F tree with snapshot and restore.",
@@ -15726,7 +15726,7 @@
     {
       "id": "real-esrgan",
       "name": "Real-ESRGAN",
-      "category": "Discovery: conversation candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "Upscaling",
       "official_url": "https://github.com/xinntao/Real-ESRGAN",
@@ -15798,7 +15798,7 @@
     {
       "id": "regl",
       "name": "regl",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "Functional WebGL: declarative draw commands with state as data",
       "summary": "WebGL abstraction where draw commands are declared as functions of props, with state, uniforms and buffers managed for you and no hidden global state. Output is a canvas. Distinguishing strength: the stateless functional style suits rendering as a pure function of time, for shaders, particles and data visuals.",
@@ -15868,7 +15868,7 @@
     {
       "id": "reladraw",
       "name": "reladraw",
-      "category": "Discovery: research candidates",
+      "category": "A4. Vector, typography, diagrams and stills",
       "tier": "candidate",
       "role": "Text diagram language with author-placed, relative layout; SVG out",
       "official_url": "https://github.com/reladraw/reladraw",
@@ -15941,7 +15941,7 @@
     {
       "id": "rembg",
       "name": "rembg",
-      "category": "Discovery: research candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "Background removal",
       "official_url": "https://github.com/danielgatis/rembg",
@@ -16091,7 +16091,7 @@
     {
       "id": "revideo",
       "name": "Revideo",
-      "category": "Discovery: research candidates",
+      "category": "A2. Animation and authored assets",
       "tier": "candidate",
       "role": "Reference: headless Motion Canvas fork",
       "official_url": "https://github.com/midrender/revideo",
@@ -16167,7 +16167,7 @@
     {
       "id": "rhubarb-lip-sync",
       "name": "Rhubarb Lip Sync",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Audio-to-mouth-shape timing CLI",
       "official_url": "https://github.com/DanielSWolf/rhubarb-lip-sync",
@@ -16391,7 +16391,7 @@
     {
       "id": "rubber-band",
       "name": "Rubber Band",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Time stretch",
       "official_url": "https://breakfastquay.com/rubberband/",
@@ -16538,7 +16538,7 @@
     {
       "id": "scrcpy",
       "name": "scrcpy",
-      "category": "A5. Video and capture",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Mirrors and records an Android device or emulator screen to MP4 over adb",
       "official_url": "https://github.com/Genymobile/scrcpy",
@@ -16611,7 +16611,7 @@
     {
       "id": "segment-anything",
       "name": "Segment Anything",
-      "category": "Discovery: conversation candidates",
+      "category": "A6. Image processing and colour",
       "tier": "candidate",
       "role": "Segmentation",
       "official_url": "https://github.com/facebookresearch/segment-anything",
@@ -16681,7 +16681,7 @@
     {
       "id": "shaders-smaa",
       "name": "shaders-smaa (glsl-smaa, wgsl-smaa)",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "SMAA antialiasing passes as GLSL and WGSL shader strings for raw WebGL and WebGPU renderers",
       "summary": "glsl-smaa 4.0.0 ships the SMAA edges, weights and blend shaders and the reference lookup textures as ES module strings; wgsl-smaa 1.0.0 is the WGSL port. You wire three framebuffer passes yourself in any raw WebGL renderer. Its strength is SMAA outside a Three.js composer. 1x mode is spatial only, so each frame depends only on its input and seeks cleanly; T2x is history-dependent.",
@@ -16835,7 +16835,7 @@
     {
       "id": "shikijs-magic-move",
       "name": "@shikijs/magic-move",
-      "category": "Discovery: research candidates",
+      "category": "A2. Animation and authored assets",
       "tier": "candidate",
       "role": "Animated code diffs",
       "official_url": "https://github.com/shikijs/shiki/tree/main/packages/magic-move",
@@ -16987,7 +16987,7 @@
     {
       "id": "sonic-annotator",
       "name": "Sonic Annotator",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Audio annotation",
       "official_url": "https://www.vamp-plugins.org/sonic-annotator/",
@@ -17057,7 +17057,7 @@
     {
       "id": "sox",
       "name": "SoX",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Audio processing",
       "official_url": "https://sox.sourceforge.net/",
@@ -17127,7 +17127,7 @@
     {
       "id": "spark-splats",
       "name": "Spark",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "three.js renderer for 3D Gaussian splats (PLY, SPZ, SPLAT, KSPLAT, SOG) as an ordinary Object3D",
       "summary": "Spark (@sparkjsdev/spark 2.4.0, World Labs) adds SplatMesh to three.js: splat files load as an Object3D that shares the scene, camera and depth buffer with meshes. It draws in WebGL2 and sorts splats on a worker per view, so a seek-driven capture must wait for that sort before reading pixels. Its strength is rendering captured splat scenes inside a capturable three.js scene.",
@@ -17200,7 +17200,7 @@
     {
       "id": "splat-transform",
       "name": "splat-transform",
-      "category": "Discovery: research candidates",
+      "category": "A10. 3D assets and interchange",
       "tier": "candidate",
       "role": "CLI and JavaScript library for processing and converting 3D Gaussian splats",
       "official_url": "https://github.com/playcanvas/splat-transform",
@@ -17270,7 +17270,7 @@
     {
       "id": "splishsplash",
       "name": "SPlisHSPlasH + splashsurf",
-      "category": "Discovery: research candidates",
+      "category": "A8. Physics and simulation",
       "tier": "candidate",
       "role": "SPH fluid simulator paired with splashsurf CLI/library for particle-to-mesh surface reconstruction",
       "official_url": "https://github.com/InteractiveComputerGraphics/SPlisHSPlasH",
@@ -17421,7 +17421,7 @@
     {
       "id": "supercollider",
       "name": "SuperCollider",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Audio synthesis",
       "official_url": "https://supercollider.github.io/",
@@ -17494,7 +17494,7 @@
     {
       "id": "surge-xt",
       "name": "Surge XT",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Synthesizer",
       "official_url": "https://surge-synthesizer.github.io/",
@@ -17549,7 +17549,7 @@
     {
       "id": "svg",
       "name": "SVG",
-      "category": "Native browser platform APIs",
+      "category": "A4. Vector, typography, diagrams and stills",
       "tier": "core",
       "role": "Dependency-free vector source for cards, logos and diagrams; rasterised by resvg or a browser",
       "summary": "The vector format every tool here reads and writes. Static SVG rasterises deterministically with resvg; animated SVG runs inline in a browser scene driven by Anime.js. Designers can edit the source, Graphviz and Mermaid emit it, and SVGO shrinks it. Keep colour and layout in the SVG and motion in the timeline.",
@@ -17862,7 +17862,7 @@
     {
       "id": "svt-av1",
       "name": "SVT-AV1",
-      "category": "Discovery: research candidates",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "AV1 video encoder",
       "official_url": "https://gitlab.com/AOMediaCodec/SVT-AV1",
@@ -17937,7 +17937,7 @@
     {
       "id": "syncalong",
       "name": "syncalong",
-      "category": "Speech and lyric alignment",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Aligns supplied lyrics or transcript text to audio and emits LRC timing",
       "official_url": "https://github.com/wickeddoc/syncalong",
@@ -18161,7 +18161,7 @@
     {
       "id": "thorvg",
       "name": "thorvg",
-      "category": "Discovery: research candidates",
+      "category": "A2. Animation and authored assets",
       "tier": "candidate",
       "role": "C++ renderer for SVG and Lottie scenes",
       "official_url": "https://github.com/thorvg/thorvg",
@@ -18231,7 +18231,7 @@
     {
       "id": "three-globe",
       "name": "three-globe",
-      "category": "Discovery: research candidates",
+      "category": "A11. Maps and geodata",
       "tier": "candidate",
       "role": "Three.js geographic globe layers",
       "official_url": "https://github.com/vasturiano/three-globe",
@@ -18303,7 +18303,7 @@
     {
       "id": "three-js",
       "name": "Three.js",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "core",
       "role": "Browser 3D rendered once per seek with alpha: product shots, hero objects, camera moves",
       "summary": "The standard WebGL and WebGPU scene graph for the browser, with loaders, PBR materials, lights, shadows, postprocessing and a shading language. In VCR a scene renders once per requested time with a transparent clear colour, so 3D layers can composite over anything else (alpha is not yet asserted by a retained check). Real-time quality in seconds per shot rather than Blender's minutes.",
@@ -18417,7 +18417,7 @@
     {
       "id": "three-js-shading-language",
       "name": "Three.js Shading Language",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "Node-based shader authoring in JavaScript that compiles to WGSL or GLSL",
       "summary": "Node-graph shader language written as JavaScript functions, shipped inside Three.js as three/tsl. A NodeBuilder compiles it to WGSL for WebGPU or GLSL for WebGL2, so one material source targets both. Used through NodeMaterial classes with time and uniform nodes. Distinguishing strength: composable materials and post effects without string-built GLSL.",
@@ -18486,7 +18486,7 @@
     {
       "id": "three-meshline",
       "name": "THREE.MeshLine",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "Thick camera-facing lines for Three.js; npm three.meshline, pmndrs fork is meshline",
       "summary": "Replacement for THREE.Line that draws lines as strips of camera-facing triangles, so width, dashes and taper work where WebGL lines are fixed at one pixel. Supplies MeshLine geometry, MeshLineMaterial and raycast. Two packages exist: three.meshline from the original author (2.0.0, 2026) and meshline, the pmndrs fork used by R3F (3.3.1, 2024).",
@@ -18560,7 +18560,7 @@
     {
       "id": "three-quarks",
       "name": "three.quarks",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "Particle and VFX emitters for three.js; seek by replaying fixed steps with a seeded Math.random",
       "summary": "three.quarks adds batched particle systems to a three.js scene: emitters with shapes, start and over-life behaviours, billboard, mesh and trail rendering, and JSON effects from its editor. It advances only through batchRenderer.update(delta) and draws all randomness from Math.random, so VCR rebuilds the system, reseeds Math.random and steps at a fixed delta from 0 to t on every seek.",
@@ -18632,7 +18632,7 @@
     {
       "id": "three-vrm",
       "name": "three-vrm",
-      "category": "Discovery: conversation candidates",
+      "category": "A10. 3D assets and interchange",
       "tier": "candidate",
       "role": "VRM avatars",
       "official_url": "https://github.com/pixiv/three-vrm",
@@ -18707,7 +18707,7 @@
     {
       "id": "tippecanoe",
       "name": "tippecanoe",
-      "category": "Discovery: research candidates",
+      "category": "A11. Maps and geodata",
       "tier": "candidate",
       "role": "CLI that builds vector tilesets (.pmtiles, .mbtiles) from GeoJSON",
       "official_url": "https://github.com/felt/tippecanoe",
@@ -18777,7 +18777,7 @@
     {
       "id": "tone-js",
       "name": "Tone.js",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A9. Audio, music and speech",
       "tier": "catalogued",
       "role": "Web Audio framework for synths, sequencing and effects; Tone.Offline renders faster than real time",
       "summary": "Web Audio wrapper with instruments, effects, and a Transport for scheduling in musical time. For VCR the useful path is Tone.Offline, which renders a scheduled piece into an AudioBuffer off the real-time clock, so audio is a function of the score, not wall time. Output is a buffer you encode to WAV and mux with ffmpeg. Live playback during headless capture is not deterministic.",
@@ -18849,7 +18849,7 @@
     {
       "id": "trimesh",
       "name": "Trimesh",
-      "category": "Discovery: conversation candidates",
+      "category": "A10. 3D assets and interchange",
       "tier": "candidate",
       "role": "Mesh processing",
       "official_url": "https://trimesh.org/",
@@ -18922,7 +18922,7 @@
     {
       "id": "troika-three-text",
       "name": "Troika Three Text",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "SDF text meshes for Three.js with font loading and Web Worker typesetting",
       "summary": "Text rendering for Three.js: a Text mesh that typesets TTF, OTF or WOFF fonts in a worker and renders them with signed-distance fields, giving crisp text at any size with outline, stroke, curve and per-range colouring. Driven from JavaScript by setting properties and calling sync(); output is a Three.js mesh. This is the text layer that drei's Text wraps.",
@@ -18997,7 +18997,7 @@
     {
       "id": "ttconv",
       "name": "ttconv",
-      "category": "Discovery: research candidates",
+      "category": "A12. Captions, accessibility and provenance",
       "tier": "candidate",
       "role": "Python library and CLI for converting timed-text subtitle and caption formats",
       "official_url": "https://github.com/sandflow/ttconv",
@@ -19142,7 +19142,7 @@
     {
       "id": "twgl",
       "name": "TWGL",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "Tiny WebGL helper: programs, buffers, uniforms and framebuffers with less boilerplate",
       "summary": "Small helper library over the raw WebGL API that creates programs, buffer info, textures and framebuffers from plain objects, then draws with setUniforms and drawBufferInfo. Output is a canvas, with no scene graph. Distinguishing strength: keeps raw WebGL control with a fraction of the boilerplate.",
@@ -19289,7 +19289,7 @@
     {
       "id": "typed-ffmpeg",
       "name": "typed-ffmpeg",
-      "category": "Discovery: research candidates",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Typed Python and experimental TypeScript APIs for building FFmpeg commands",
       "official_url": "https://github.com/lucemia/typed-ffmpeg",
@@ -19360,7 +19360,7 @@
     {
       "id": "typegpu",
       "name": "TypeGPU",
-      "category": "A3. 3D, shaders and effects",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "candidate",
       "role": "Typed WebGPU toolkit: TypeScript shader functions and typed buffers that resolve to WGSL",
       "summary": "TypeGPU (Software Mansion) wraps WebGPU with schemas that are at once GPU types, CPU buffer layouts and TypeScript types, and compiles 'use gpu' TypeScript functions to WGSL through the unplugin-typegpu build plugin. tgpu.resolve returns the generated WGSL as a string. Distinguishing strength: typed, composable shaders for plain WebGPU, with shader output that can be snapshotted.",
@@ -19432,7 +19432,7 @@
     {
       "id": "typst",
       "name": "Typst",
-      "category": "Discovery: research candidates",
+      "category": "A4. Vector, typography, diagrams and stills",
       "tier": "candidate",
       "role": "Programmable typesetting and vector export CLI",
       "official_url": "https://github.com/typst/typst",
@@ -19506,7 +19506,7 @@
     {
       "id": "vapoursynth",
       "name": "VapourSynth",
-      "category": "Discovery: conversation candidates",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Video filtering",
       "official_url": "https://www.vapoursynth.com/",
@@ -19579,7 +19579,7 @@
     {
       "id": "vedo",
       "name": "vedo",
-      "category": "A8. Physics, audio and 3D assets",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "Scientific 3D visualisation and analysis with VTK and NumPy",
       "official_url": "https://vedo.embl.es/docs/",
@@ -19737,7 +19737,7 @@
     {
       "id": "verovio",
       "name": "Verovio",
-      "category": "A4. Vector, typography, diagrams and stills",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "MEI, MusicXML, Humdrum and ABC scores engraved to SVG with a native CLI, Python or WASM",
       "summary": "Verovio is a C++ music engraver from RISM Digital. It reads MEI, MusicXML, Humdrum and ABC and writes SVG with the bundled Leipzig SMuFL font, plus MIDI and a timemap of note onsets for playback sync. It is a library or CLI, not an editor. Notation glyphs are SVG paths with semantic classes (note, notehead, measure); titles and lyrics are font-dependent <text>. Element ids are random unless xmlIdSeed is set.",
@@ -19815,7 +19815,7 @@
     {
       "id": "vhs",
       "name": "VHS",
-      "category": "Discovery: research candidates",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Scripted terminal recording and capture",
       "official_url": "https://github.com/charmbracelet/vhs",
@@ -19962,7 +19962,7 @@
     {
       "id": "vl-convert",
       "name": "vl-convert",
-      "category": "Discovery: research candidates",
+      "category": "A4. Vector, typography, diagrams and stills",
       "tier": "candidate",
       "role": "Vega and Vega-Lite static export runtime",
       "official_url": "https://github.com/vega/vl-convert",
@@ -20035,7 +20035,7 @@
     {
       "id": "vmaf",
       "name": "VMAF (libvmaf)",
-      "category": "Discovery: research candidates",
+      "category": "A5. Video, capture and delivery",
       "tier": "candidate",
       "role": "Full-reference perceptual video quality measurement",
       "official_url": "https://github.com/Netflix/vmaf",
@@ -20262,7 +20262,7 @@
     {
       "id": "vtk-js",
       "name": "vtk.js",
-      "category": "A9. Adjacent resources mentioned during discovery",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "Kitware's VTK for the browser: volumes, meshes, medical and scientific rendering",
       "summary": "Visualization Toolkit ported to WebGL JavaScript: volume rendering, isosurfaces, polydata, transfer functions, widgets and readers for scientific formats. Driven from JavaScript in a browser page; output is canvas pixels. Strength is scientific-grade volume and mesh rendering that Three.js lacks out of the box.",
@@ -20336,7 +20336,7 @@
     {
       "id": "vtracer",
       "name": "VTracer",
-      "category": "Discovery: conversation candidates",
+      "category": "A4. Vector, typography, diagrams and stills",
       "tier": "candidate",
       "role": "Colour tracing",
       "official_url": "https://github.com/visioncortex/vtracer",
@@ -20408,7 +20408,7 @@
     {
       "id": "web-animations-api",
       "name": "Web Animations API",
-      "category": "Native browser platform APIs",
+      "category": "A2. Animation and authored assets",
       "tier": "catalogued",
       "role": "Native element.animate() with a seekable Animation.currentTime; no library needed",
       "summary": "Browser API that animates DOM and SVG elements with keyframes, timing and a document timeline. Each Animation can be paused and its currentTime set, so frames are seekable from outside, and document.getAnimations() lists every running animation, CSS ones included. Provides seekable motion without a library, labels, nesting or plugins.",
@@ -20490,7 +20490,7 @@
     {
       "id": "web-audio",
       "name": "Web Audio API",
-      "category": "Native browser platform APIs",
+      "category": "A9. Audio, music and speech",
       "tier": "catalogued",
       "role": "Browser audio graph; OfflineAudioContext renders deterministic audio faster than real time",
       "summary": "Node-graph audio API for oscillators, buffers, filters, gain automation and analysis. A live AudioContext plays in real time; an OfflineAudioContext renders the graph to an AudioBuffer as fast as possible, which suits VCR. Encode the buffer to WAV and mux with ffmpeg. For audio-reactive visuals compute per-frame features from the decoded buffer: AnalyserNode is real-time, and under OfflineAudioContext needs suspend(t) per frame. No beat or onset detection.",
@@ -20558,7 +20558,7 @@
     {
       "id": "webcodecs",
       "name": "WebCodecs",
-      "category": "Native browser platform APIs",
+      "category": "A5. Video, capture and delivery",
       "tier": "catalogued",
       "role": "Frame-exact browser video/audio encoders and decoders; pair with a muxer",
       "summary": "Low-level API (VideoEncoder, VideoDecoder, AudioEncoder, ImageDecoder, VideoFrame) for encoding and decoding media without a container. Feed it VideoFrames made from a canvas with explicit timestamps and it returns encoded chunks; a muxer such as Mediabunny writes the file. Frame-exact, unlike MediaRecorder. Needs fully specified codec strings; H.264 availability varies by build.",
@@ -20627,7 +20627,7 @@
     {
       "id": "webgl",
       "name": "WebGL",
-      "category": "Native browser platform APIs",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "GPU 3D and shader API (WebGL 1 and 2) beneath Three.js, PixiJS and most canvas libraries",
       "summary": "The browser's OpenGL ES binding, in WebGL 1 and 2, used directly or through Three.js, PixiJS, OGL, regl and twgl. Rendering is a function of uniforms such as time, so frames can be drawn in any order. Headless Chromium falls back to software GL when no GPU is present, which is slow but works. Read pixels or screenshot the canvas.",
@@ -20698,7 +20698,7 @@
     {
       "id": "webgpu",
       "name": "WebGPU",
-      "category": "Native browser platform APIs",
+      "category": "A3. 3D rendering, shaders and effects",
       "tier": "catalogued",
       "role": "Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking",
       "summary": "Successor to WebGL with explicit pipelines, compute shaders and WGSL, used directly or via Three.js WebGPURenderer or TypeGPU. Secure contexts only. Chrome 113 shipped it on ChromeOS, macOS and Windows; 144 added Linux on Intel Gen12+. Headless capture needs a working adapter, so check navigator.gpu.requestAdapter() and keep a WebGL fallback.",
@@ -20766,7 +20766,7 @@
     {
       "id": "whisper-cpp",
       "name": "whisper.cpp",
-      "category": "Discovery: conversation candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Speech to text",
       "official_url": "https://github.com/ggml-org/whisper.cpp",
@@ -20837,7 +20837,7 @@
     {
       "id": "whisperx",
       "name": "WhisperX",
-      "category": "Discovery: research candidates",
+      "category": "A9. Audio, music and speech",
       "tier": "candidate",
       "role": "Word-timed speech recognition and diarization",
       "official_url": "https://github.com/m-bain/whisperX",

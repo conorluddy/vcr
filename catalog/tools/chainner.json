@@ -1,7 +1,7 @@
 {
   "id": "chainner",
   "name": "chaiNNer",
-  "category": "Discovery: conversation candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "Image graphs",
   "official_url": "https://github.com/chaiNNer-org/chaiNNer",

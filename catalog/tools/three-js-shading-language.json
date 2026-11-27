@@ -1,7 +1,7 @@
 {
   "id": "three-js-shading-language",
   "name": "Three.js Shading Language",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "Node-based shader authoring in JavaScript that compiles to WGSL or GLSL",
   "summary": "Node-graph shader language written as JavaScript functions, shipped inside Three.js as three/tsl. A NodeBuilder compiles it to WGSL for WebGPU or GLSL for WebGL2, so one material source targets both. Used through NodeMaterial classes with time and uniform nodes. Distinguishing strength: composable materials and post effects without string-built GLSL.",

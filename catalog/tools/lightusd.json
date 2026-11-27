@@ -1,7 +1,7 @@
 {
   "id": "lightusd",
   "name": "LightUSD",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A10. 3D assets and interchange",
   "tier": "candidate",
   "role": "Dependency-free USD reader/writer (.usda, .usdc, .usdz) via a pip wheel or npm",
   "summary": "A C++17 USD library (formerly TinyUSDZ) with Python and WASM/npm bindings. The Python wheel creates a stage in code and saves .usda, .usdc or .usdz by extension, and loads them back. It has no renderer and no Hydra. A 1.0 released 2026-11-09, so young; it installs without Pixar's build.",

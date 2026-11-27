@@ -1,7 +1,7 @@
 {
   "id": "three-js",
   "name": "Three.js",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "core",
   "role": "Browser 3D rendered once per seek with alpha: product shots, hero objects, camera moves",
   "summary": "The standard WebGL and WebGPU scene graph for the browser, with loaders, PBR materials, lights, shadows, postprocessing and a shading language. In VCR a scene renders once per requested time with a transparent clear colour, so 3D layers can composite over anything else (alpha is not yet asserted by a retained check). Real-time quality in seconds per shot rather than Blender's minutes.",

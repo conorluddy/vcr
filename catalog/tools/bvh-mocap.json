@@ -1,7 +1,7 @@
 {
   "id": "bvh-mocap",
   "name": "BVHLoader + CMU mocap",
-  "category": "Discovery: conversation candidates",
+  "category": "A2. Animation and authored assets",
   "tier": "candidate",
   "role": "Mocap playback",
   "official_url": "https://threejs.org/docs/#examples/en/loaders/BVHLoader",

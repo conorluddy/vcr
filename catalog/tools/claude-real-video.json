@@ -1,7 +1,7 @@
 {
   "id": "claude-real-video",
   "name": "Claude Real Video",
-  "category": "Discovery: research candidates",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Local video analysis CLI producing scene-aware keyframes and transcripts",
   "official_url": "https://github.com/HUANGCHIHHUNGLeo/claude-real-video",

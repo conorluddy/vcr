@@ -1,7 +1,7 @@
 {
   "id": "splishsplash",
   "name": "SPlisHSPlasH + splashsurf",
-  "category": "Discovery: research candidates",
+  "category": "A8. Physics and simulation",
   "tier": "candidate",
   "role": "SPH fluid simulator paired with splashsurf CLI/library for particle-to-mesh surface reconstruction",
   "official_url": "https://github.com/InteractiveComputerGraphics/SPlisHSPlasH",

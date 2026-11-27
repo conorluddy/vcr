@@ -1,7 +1,7 @@
 {
   "id": "echogarden",
   "name": "Echogarden",
-  "category": "Speech and lyric alignment",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Node speech toolkit: forced alignment of a known transcript, TTS, recognition; writes SRT/VTT/JSON",
   "official_url": "https://github.com/echogarden-project/echogarden",
