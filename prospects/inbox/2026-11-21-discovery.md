@@ -72,7 +72,7 @@ This is the fourth W47 run. Earlier runs this week covered shaders, simulation, 
 - Found via: GitHub topic search `icons`, then picking the format layer rather than a single icon set.
 
 ### Mapnik (`mapnik`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://mapnik.org (source: https://github.com/mapnik/mapnik)
 - Role: a long-established C++ map renderer with Python bindings. It draws vector and raster geodata, from PostGIS, shapefiles, GeoJSON or GDAL sources, to PNG, SVG or PDF through AGG and Cairo, using XML styles.
 - Category: A4. Vector, typography, diagrams and stills (maps).

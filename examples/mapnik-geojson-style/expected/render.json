@@ -1,0 +1,37 @@
+{
+  "distinctFrameHashes": 3,
+  "frames": [
+    {
+      "bytes": 5819,
+      "ihdr": [
+        512,
+        512
+      ],
+      "index": 0,
+      "sha256": "44ece0beba9d68d81b493cf6a43dc9581b219bf96b86f60fe6a217e34cbb0999"
+    },
+    {
+      "bytes": 5688,
+      "ihdr": [
+        512,
+        512
+      ],
+      "index": 1,
+      "sha256": "0d4dc7a98bb76b4c680f1b76f1a1ebe08dc3283684451eb10d83ae9d0e3415d1"
+    },
+    {
+      "bytes": 5624,
+      "ihdr": [
+        512,
+        512
+      ],
+      "index": 2,
+      "sha256": "5ff4d619b8f6ba8e17092460beac093c345485b834f040cc8bb6b25cf995d2f8"
+    }
+  ],
+  "shuffledEqualsSequential": true,
+  "size": {
+    "height": 512,
+    "width": 512
+  }
+}
