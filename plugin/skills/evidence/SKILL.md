@@ -28,7 +28,9 @@ Layout per `examples/README.md`: `example.json` (schema `catalog/schemas/example
 
 1. Run once with `--record`, then inspect the actual output at its intended scale (open frames or the movie; use `imagemagick` montage for a contact sheet). A passing diff of a wrong picture is not evidence.
 2. Run again without `--record`; it must print OK. For seeked scenes, rely on the shuffled-order check: determinism is the claim most likely to be false.
-3. Record failure honestly. A blocked or failed run is reported, and the record keeps `not-validated`; a partial result may set `partial` with a scope saying what failed.
+3. `run.sh` must exit 0 from a clean checkout. If it needs a Python venv, it builds one itself in the ignored `output/venv` from a pinned `requirements.txt`, with a named interpreter (`python3.12`), and warms up anything that downloads on first use, so the checked runs see the same output every time.
+4. A predeclared check that fails stays in the fixture: record the observed value in `expected/`, print it as `KNOWN FAIL`, and let `run.sh` exit 0 only while the run reproduces that record. The evidence is then `partial`, and its `scope` names the failed check.
+5. Record failure honestly. A blocked or failed run is reported, and the record keeps `not-validated`; a partial result may set `partial` with a scope saying what failed.
 
 ## 4. Record the evidence
 

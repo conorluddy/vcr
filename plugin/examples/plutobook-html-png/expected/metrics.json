@@ -1,0 +1,22 @@
+{
+  "plutoprint": "0.24.0",
+  "plutobook": "0.21.0",
+  "frame_sha256": [
+    "f8b59a763e7040c3e806bff0a5ec6f84298d2e08681925d6a60fcf4f52894e3e",
+    "908f7438e8a35abcfb1d6d972134eb8e963ed8545ce15dd6f777ef7f1a622587",
+    "fc066a1659567e10f25d6825fd18f536d540971359c6379352603dde5adb40ac",
+    "a1efab9a6b702fdfb5176c3fb643cf6329af36df4041fc155553c6dbc8f24c31",
+    "d1469b85bc74ea54b70535539ea5f1429ed95b95f5f9d076f9fb5347b0a6e97a"
+  ],
+  "javascript_executes": false,
+  "gradient_painted": false,
+  "checks": {
+    "dimensions_1920x1080": true,
+    "shuffled_equals_sequential": true,
+    "frames_all_distinct": true,
+    "css_position_and_colour": true,
+    "background_painted": true,
+    "text_drawn_in_title_area": true
+  },
+  "all_passed": true
+}

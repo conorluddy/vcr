@@ -1,0 +1,8 @@
+{
+  "id": "pygfx-offscreen-scene",
+  "title": "pygfx offscreen scene as a function of t",
+  "summary": "Python venv: render a lit cube and orbiting sphere offscreen through wgpu on Metal as RGBA arrays for 24 times t, and check repeat, shuffled-order, fresh-renderer and cross-process determinism.",
+  "status": "validated",
+  "tools": ["pygfx"],
+  "run": "./run.sh"
+}

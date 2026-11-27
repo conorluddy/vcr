@@ -1,0 +1,8 @@
+{
+  "id": "phiflow-smoke-2d",
+  "title": "PhiFlow 2D smoke plume, NumPy backend",
+  "summary": "Python venv: step a 64x64 PhiFlow buoyant smoke plume 60 times on the NumPy backend, save frames as PNG and arrays, and check determinism across processes, divergence, rise and mass. Mass conservation fails and is recorded as such.",
+  "status": "not-validated",
+  "tools": ["phiflow"],
+  "run": "./run.sh"
+}

@@ -1,0 +1,34 @@
+{
+  "OpenEXR": "3.5.5",
+  "all_passed": true,
+  "channels_seen": [
+    "RGBA",
+    "depth.Z"
+  ],
+  "checks": {
+    "bad_file_raises": true,
+    "channel_names": true,
+    "data_window_size": true,
+    "half_matches_float16_cast": true,
+    "half_pixels_are_float16": true,
+    "isOpenExrFile_true_and_false": true,
+    "none_alpha_and_depth_bit_exact": true,
+    "none_compression_in_header": true,
+    "none_float32_rgb_bit_exact": true,
+    "piz_alpha_and_depth_bit_exact": true,
+    "piz_compression_in_header": true,
+    "piz_float32_rgb_bit_exact": true,
+    "values_beyond_one_kept": true,
+    "zip_alpha_and_depth_bit_exact": true,
+    "zip_compression_in_header": true,
+    "zip_float32_rgb_bit_exact": true,
+    "zip_smaller_than_uncompressed": true
+  },
+  "file_sizes_bytes": {
+    "none": 16128,
+    "piz": 15760,
+    "zip": 15776
+  },
+  "numpy": "2.5.5",
+  "zip_exr_sha256": "fbea6890b641de394e69d6dcab2f34c9c5f73d7db0a8539bf27293227f74c89a"
+}

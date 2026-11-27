@@ -1,0 +1,8 @@
+{
+  "id": "auto-editor-silence-timeline",
+  "title": "auto-editor silence cuts exported as timelines",
+  "summary": "Python venv: cut the silent span of a generated tone-silence-tone clip with auto-editor, export v1, v3 and Premiere XML timelines, and check them against the known 2.0-5.0 s silence and an independent FFmpeg silencedetect.",
+  "status": "validated",
+  "tools": ["auto-editor"],
+  "run": "./run.sh"
+}

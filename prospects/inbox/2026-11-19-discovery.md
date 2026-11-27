@@ -13,7 +13,7 @@ Summary line: 8 leads (2 in a new category: music notation engraving).
 ## Leads
 
 ### 🆕 new category: music notation engraving — Verovio (`verovio`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://www.verovio.org (source: https://github.com/rism-digital/verovio)
 - Role: engraves MEI, MusicXML, Humdrum and ABC scores to SVG from a native CLI, a Python module or a JS/WASM toolkit.
 - Category: new category: music notation engraving (could sit under A8 beside `music21` and `mido`).
@@ -83,7 +83,7 @@ Summary line: 8 leads (2 in a new category: music notation engraving).
 - Found via: GitHub topic search `music-notation`.
 
 ### PlutoBook (`plutobook`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/plutoprint/plutobook
 - Role: C/C++ paged HTML and CSS layout engine that renders to PDF or PNG without a browser. The `plutoprint` Python package wraps it.
 - Category: A4. Vector, typography, diagrams and stills.

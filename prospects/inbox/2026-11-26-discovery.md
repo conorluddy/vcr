@@ -85,7 +85,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: maps gap, cartography topic sweep, then a keyword dedupe.
 
 ### auto-editor (`auto-editor`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/WyattBlue/auto-editor
 - Role: a CLI that cuts silent or low-motion sections from video and audio (`--edit audio`, `--edit motion:threshold=0.02`, combinable). It renders the result or exports a timeline for Premiere, Resolve, Final Cut Pro, Shotcut or Kdenlive, a CMX 3600 EDL or a clip sequence.
 - Category: A5. Video and capture.
@@ -127,7 +127,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: diagram keyword dedupe sweep.
 
 ### Mitsuba 3 (`mitsuba-3`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/mitsuba-renderer/mitsuba3
 - Role: a research-oriented physically based renderer with a Python API. It has scalar and LLVM CPU variants, spectral and RGB modes, and differentiable rendering. Scenes come from XML or Python dicts.
 - Category: A3. 3D, shaders and effects.
@@ -141,7 +141,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: renderer keyword dedupe sweep (lower-priority "reproducible environment pinning" area, since it is a pinned wheel).
 
 ### PyVista (`pyvista`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/pyvista/pyvista
 - Role: a Pythonic VTK wrapper for meshes, volumes and scientific plots, with off-screen `Plotter(off_screen=True)` screenshots and movie writing.
 - Category: A8. Physics, audio and 3D assets.

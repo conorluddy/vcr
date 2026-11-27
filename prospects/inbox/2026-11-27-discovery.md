@@ -156,7 +156,7 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 - Found via: sdf topic.
 
 ### PhiFlow (`phiflow`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/tum-pbs/PhiFlow
 - Role: a Python fluid-simulation toolkit (smoke, incompressible flow, grids and particles) on NumPy, PyTorch, JAX or TensorFlow, stepped explicitly in a loop, so fields can be saved per frame for later rendering.
 - Category: A8. Physics, audio and 3D assets.

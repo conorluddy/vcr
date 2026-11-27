@@ -1,0 +1,19 @@
+{
+ "all_passed": true,
+ "checks": {
+  "centre_pixel_orange": true,
+  "corners_are_background": true,
+  "shaded_orange_covers_most_of_disc": true,
+  "size_960x540": true,
+  "sphere_centred": true,
+  "sphere_extent_matches_projection": true,
+  "version": true
+ },
+ "orange_fraction": 0.283,
+ "pixels_sha256": "ca5bdeb8deb5f28b81d82daffdf8dce930833c31bdc501e1665dae3d8332d61a",
+ "sphere_bbox_px": [
+  524,
+  524
+ ],
+ "vtk": "9.7.2"
+}

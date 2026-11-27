@@ -1,0 +1,59 @@
+{
+  "silence_span_s": [
+    2.0,
+    5.0
+  ],
+  "v1_chunks": [
+    [
+      0,
+      60,
+      1.0
+    ],
+    [
+      60,
+      150,
+      99999.0
+    ],
+    [
+      150,
+      210,
+      1.0
+    ]
+  ],
+  "v3_clips": [
+    [
+      0,
+      60,
+      0
+    ],
+    [
+      60,
+      60,
+      150
+    ]
+  ],
+  "premiere_clips": [
+    [
+      0,
+      60,
+      0,
+      60
+    ],
+    [
+      60,
+      120,
+      150,
+      210
+    ]
+  ],
+  "checks": {
+    "version_29_3_1": true,
+    "v1_chunks_match_known_silence": true,
+    "v3_video_clips_skip_silence": true,
+    "v3_audio_clips_skip_silence": true,
+    "premiere_first_track_clips": true,
+    "ffmpeg_silencedetect_agrees": true,
+    "rendered_cut_is_4s": true
+  },
+  "all_passed": true
+}

@@ -56,7 +56,7 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `webgpu`.
 
 ### pygfx (`pygfx`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://pygfx.org (source: https://github.com/pygfx/pygfx)
 - Role: a Python scene-graph render engine on wgpu-py (Metal on macOS), in the Three.js mould: meshes, lines, points, text, volumes, PBR materials.
 - Category: A3. 3D, shaders and effects.

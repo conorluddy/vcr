@@ -1,0 +1,78 @@
+{
+  "id": "pyvista",
+  "name": "PyVista",
+  "category": "A8. Physics, audio and 3D assets",
+  "tier": "candidate",
+  "role": "Pythonic VTK wrapper that renders meshes off-screen to PNG with numpy image access",
+  "summary": "Python library over VTK for meshes, point clouds and volumes. Plotter(off_screen=True) renders a fixed camera and window size to a PNG or a numpy array with no window, and can write movies. Choose it over vedo when you want the larger API and numpy image return; both sit on VTK.",
+  "use_when": [
+    "Render a mesh or point cloud to a PNG or numpy array from Python with a fixed camera",
+    "Script scientific visualisation stills where the VTK route is already chosen",
+    "Read the rendered pixels back as an array for checks or compositing"
+  ],
+  "avoid_when": [
+    "Build a complete animated production scene: Blender",
+    "Do lightweight triangle-mesh processing only: Trimesh",
+    "Render an interactive browser-based VTK scene: vtk.js"
+  ],
+  "pairs_with": [
+    "vedo",
+    "trimesh",
+    "blender",
+    "ffmpeg-ffprobe"
+  ],
+  "official_url": "https://docs.pyvista.org",
+  "repository_url": "https://github.com/pyvista/pyvista",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "3d-rendering",
+    "scientific-visualisation",
+    "3d-asset-processing"
+  ],
+  "license": "MIT (PyVista); VTK is BSD",
+  "install": {
+    "macos": "python3.12 -m venv venv && venv/bin/pip install pyvista==0.49.3",
+    "check_command": "python -c \"import pyvista; print(pyvista.__version__)\""
+  },
+  "examples": [
+    "pyvista-offscreen-render"
+  ],
+  "notes": [
+    "2026-11-27: the lead named uv pip install pyvista; a plain pip venv worked. Python >=3.10 required.",
+    "2026-11-27: off-screen rendering worked headless on macOS arm64 with no Xvfb, from an agent shell."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "0.49.3",
+    "last_release": "2026-11-24",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "PyPI 0.49.3 uploaded 2026-11-24, MIT per installed metadata, VTK BSD. Versus vedo, whose fixture only round-trips VTP, PyVista has a proven headless macOS render and returns pixels as a numpy array. It overlaps vedo, so keep it as the render-checked VTK route and vedo as the alternative; vtk-js is browser-only and open3d is a different stack.",
+    "sources": [
+      "https://github.com/pyvista/pyvista",
+      "https://docs.pyvista.org",
+      "https://pypi.org/project/pyvista/"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "pyvista 0.49.3; VTK 9.7.2; CPython 3.12.13",
+        "command": "examples/pyvista-offscreen-render/run.sh",
+        "result": "Off-screen Plotter rendered an orange sphere to 960x540 PNG headless; two processes gave identical pixels, SHA-256 ca5bdeb8...d61a; sphere 524 px, centred, corners equal background. Two bounds failed first run and were replaced.",
+        "example": "examples/pyvista-offscreen-render",
+        "scope": "One lit sphere, fixed camera, SSAA, macOS arm64 headless; not other platforms, drivers, movies or textures. Two checks were redefined after a first-run failure."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-26-discovery.md",
+  "skill": "skills/pyvista/SKILL.md"
+}

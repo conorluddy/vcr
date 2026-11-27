@@ -1,0 +1,8 @@
+{
+  "id": "plutobook-html-png",
+  "title": "PlutoBook HTML and CSS title card to PNG frames",
+  "summary": "Python venv: render an HTML and CSS title card (flexbox, gradient, rounded corners, wrapped text) to 1920x1080 PNGs with plutoprint, one frame per t, and check dimensions, pixels and shuffled-order determinism.",
+  "status": "validated",
+  "tools": ["plutobook"],
+  "run": "./run.sh"
+}

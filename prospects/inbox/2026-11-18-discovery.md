@@ -58,7 +58,7 @@ This is the second run in ISO week 2026-W47. The earlier W47 digest (2026-11-16)
 - Found via: GitHub topic search `gltf`
 
 ### OpenEXR tools (`openexr`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/AcademySoftwareFoundation/openexr
 - Role: The reference EXR library and command-line tools: `exrheader`, `exrinfo`, `exrmetrics`, `exrcheck`, `exrmultipart` and others. They inspect and repair EXR headers, attributes, compression and multipart layout.
 - Category: HDR delivery metadata (existing category), or A6. Image processing and colour
