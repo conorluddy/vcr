@@ -84,7 +84,7 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `glitch-art` (a Swift app in the results cites it), then a name search.
 
 ### gopro-dashboard-overlay (`gopro-overlay`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/time4tea/gopro-dashboard-overlay
 - Role: renders telemetry dashboards (speed, elevation, heart rate, moving map, route trace) as video from GoPro metadata or from a plain GPX or FIT file, with layouts defined in XML.
 - Category: A5. Video and capture (maps and geo motion gap).
