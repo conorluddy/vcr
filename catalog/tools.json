@@ -1610,6 +1610,86 @@
       }
     },
     {
+      "id": "clipper2",
+      "name": "Clipper2",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "Robust 2D polygon booleans, offsetting and triangulation; Node via the clipper2-wasm port",
+      "summary": "Clipper2 clips polygons (union, intersection, difference, XOR), offsets them with miter, round or square joins, takes Minkowski sums and triangulates. VCR reaches it through the clipper2-wasm npm port, which runs in Node with no native build and returns point arrays that scripts write as SVG. Its strength is a robust integer-scaled engine for outline, inset and shape-union work on flattened curves.",
+      "use_when": [
+        "Outset or inset an outline with round or mitered joins for stroke, glow or inline effects",
+        "Union or subtract many overlapping polygons into clean rings; over paper-js on hard overlap cases",
+        "Polygon geometry in plain Node, with no canvas, DOM or browser",
+        "Inset-and-hatch or offset-contour fills that feed a plotter path set"
+      ],
+      "avoid_when": [
+        "Bezier-native booleans that keep curves: paper-js",
+        "3D solids or meshes: build123d or trimesh",
+        "Optimising or hatching plotter paths: vpype",
+        "Plain SVG drawing with no geometry operations: svg"
+      ],
+      "pairs_with": [
+        "resvg",
+        "svg",
+        "paper-js",
+        "vpype"
+      ],
+      "official_url": "https://github.com/PolyClipping/Clipper2",
+      "repository_url": "https://github.com/ErikSom/Clipper2-WASM",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring",
+        "math-utilities"
+      ],
+      "license": "BSL-1.0",
+      "install": {
+        "macos": "pnpm add clipper2-wasm"
+      },
+      "notes": [
+        "2026-11-27: AngusJohnson/Clipper2 is archived; its README says development moved to PolyClipping/Clipper2 (BSL-1.0, pushed 2026-11-12). clipper2-wasm 0.4.0 is by Erik Sombroek (ErikSom/Clipper2-WASM, last push 2026-05-18); which Clipper2 release it bundles is not stated in its package.",
+        "2026-11-27: BSL-1.0 is the Boost Software License, permissive, not the Business Source License.",
+        "2026-11-27: input must be flattened polygons; flattening tolerance and the decimal precision argument decide the output, so record both."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "2.0.1",
+        "last_release": "2026-10-26",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Upstream AngusJohnson/Clipper2 retired in favour of PolyClipping/Clipper2 (2.0.1 release 2026-10-26, pushed 2026-11-12, BSL-1.0). npm clipper2-wasm 0.4.0 published 2026-05-18, BSL-1.0, one maintainer. No other catalogue route does robust 2D offsetting.",
+        "sources": [
+          "https://github.com/AngusJohnson/Clipper2",
+          "https://github.com/PolyClipping/Clipper2",
+          "https://github.com/ErikSom/Clipper2-WASM",
+          "https://www.npmjs.com/package/clipper2-wasm"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.4.0",
+            "command": "examples/clipper2-polygon-ops/run.sh",
+            "result": "Union, round outset, miter inset and difference to SVG twice in separate Node 22.19.0 processes: identical SHA-256, union 1 ring/79 vertices, difference 2 rings area 21098.5 vs analytic 21098.6; resvg 0.47.0 PNG 960x300 inspected.",
+            "example": "examples/clipper2-polygon-ops",
+            "scope": "clipper2-wasm 0.4.0 double API (UnionD, InflatePathsD, DifferenceD), precision 2, 96-segment arcs, macOS arm64; not Minkowski, triangulation, open paths, browser or performance."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-25-discovery.md",
+      "examples": [
+        "clipper2-polygon-ops"
+      ],
+      "skill": "skills/clipper2/SKILL.md"
+    },
+    {
       "id": "colmap",
       "name": "COLMAP",
       "category": "A8. Physics, audio and 3D assets",

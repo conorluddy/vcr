@@ -179,6 +179,12 @@ importers:
         specifier: ^4.23.15
         version: 4.23.15
 
+  examples/clipper2-polygon-ops:
+    dependencies:
+      clipper2-wasm:
+        specifier: 0.4.0
+        version: 0.4.0
+
   examples/colorjs-conversions:
     dependencies:
       colorjs.io:
@@ -3838,6 +3844,9 @@ packages:
     resolution: {integrity: sha512-I688mi107oflZOpzhs4EwasCN4ycLlZHf7XAGhM6EQIHEJkRTEuTL08lemIZOQ1YAACJoNoCzAiSDCJujpJLHA==}
     deprecated: This is a stub types definition. earcut provides its own type definitions, so you do not need this installed.
 
+  '@types/emscripten@1.41.6':
+    resolution: {integrity: sha512-uN+9i8bFT5CUcZfyIEYDrSueACEyKGbUs5kC/72DGlZZoinh84sJfVV0i8UOJD1asdzkvLPBRrKs41kZ8MdEXg==}
+
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
 
@@ -4418,6 +4427,9 @@ packages:
 
   class-variance-authority@0.7.1:
     resolution: {integrity: sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==}
+
+  clipper2-wasm@0.4.0:
+    resolution: {integrity: sha512-oYM/F8m7ogBmBXGxARJt9SEcjWPQg6+8zdfYw4Cmb5Ii5AOUjRgdQwQ9i5UW3BCJ4CFWG2CQWwm5HvekyvIdUA==}
 
   cliui@9.0.1:
     resolution: {integrity: sha512-k7ndgKhwoQveBL+/1tqGJYNz097I7WOvwbmmU2AR5+magtbjPWQTS1C5vzGkBC8Ym8UWRzfKUzUUqFLypY4Q+w==}
@@ -10077,6 +10089,8 @@ snapshots:
     dependencies:
       earcut: 3.2.4
 
+  '@types/emscripten@1.41.6': {}
+
   '@types/estree@1.0.9': {}
 
   '@types/geojson@7946.0.16': {}
@@ -10589,6 +10603,10 @@ snapshots:
   class-variance-authority@0.7.1:
     dependencies:
       clsx: 2.1.1
+
+  clipper2-wasm@0.4.0:
+    dependencies:
+      '@types/emscripten': 1.41.6
 
   cliui@9.0.1:
     dependencies:

@@ -1,0 +1,8 @@
+{
+  "id": "clipper2-polygon-ops",
+  "title": "Clipper2 union, offset and difference to SVG",
+  "summary": "Union a star and a flattened circle, outset it with round joins, inset it with miter joins and cut a hole by difference in Node, check areas against analytic values and byte-identical SVG, and rasterise with resvg.",
+  "status": "validated",
+  "tools": ["clipper2"],
+  "run": "./run.sh"
+}
