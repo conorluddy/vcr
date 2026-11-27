@@ -1,5 +1,6 @@
 // Framefields headless: a 24-frame composition rendered on native WebGPU, frames read back as raw RGBA.
 // Writes output/render.json (facts only) and output/frames/*.png for inspection.
+import { relative } from "node:path";
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { Composition, Layer, LayerAnimation } from "framefields";
@@ -68,7 +69,7 @@ writeFileSync(
       sequentialHashes: sequential,
       shuffledMatchesSequential: PROBE_FRAMES.every((frame) => sequential[frame] === shuffled[frame]),
       distinctHashes: new Set(Object.values(sequential)).size,
-      videoPath: video.filePath,
+      videoPath: relative(process.cwd(), video.filePath),
     },
     null,
     2,

@@ -1,0 +1,21 @@
+{
+  "projectVersion": "1.0",
+  "alpha": "packed",
+  "canvas": { "width": 128, "height": 128, "fit": "contain", "pixelAspect": [1, 1], "colorSpace": "srgb" },
+  "frameRate": { "numerator": 30, "denominator": 1 },
+  "sources": [
+    { "id": "disc", "type": "png-sequence", "directory": "frames", "prefix": "frame-", "digits": 4, "suffix": ".png", "firstNumber": 0, "frameCount": 30 }
+  ],
+  "encodings": [
+    { "codec": "vp9", "deadline": "good", "cpuUsed": 4, "threads": 1, "renditions": [ { "id": "disc.1x", "width": 128, "height": "auto", "crf": 30 } ] },
+    { "codec": "h265", "preset": "medium", "threads": 1, "renditions": [ { "id": "disc.1x", "width": 128, "height": "auto", "crf": 24 } ] },
+    { "codec": "h264", "preset": "medium", "renditions": [ { "id": "disc.1x", "width": 128, "height": "auto", "crf": 20 } ] }
+  ],
+  "units": [
+    { "id": "idle.body", "kind": "body", "source": "disc", "range": [0, 30], "playback": "loop", "ports": [] }
+  ],
+  "initialState": "idle",
+  "states": [ { "id": "idle", "bodyUnit": "idle.body" } ],
+  "edges": [],
+  "bindings": []
+}

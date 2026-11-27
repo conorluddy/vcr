@@ -19,5 +19,5 @@
   },
   "shuffledMatchesSequential": true,
   "distinctHashes": 4,
-  "videoPath": "/Users/conor/Development/VCR/.claude/worktrees/agent-a66a86c5cc32cf396/examples/framefields-render/output/film.mp4"
+  "videoPath": "output/film.mp4"
 }

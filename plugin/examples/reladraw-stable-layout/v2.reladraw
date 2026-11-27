@@ -1,0 +1,7 @@
+node source "Source"
+node layout "Layout"  right of source (gap: 6)
+node render "SVG"     right of layout (gap: 6)
+node inspect "Inspect"  below render (gap: 6)
+edge source -> layout
+edge layout -> render
+edge render -> inspect
