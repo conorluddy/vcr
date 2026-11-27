@@ -1,0 +1,331 @@
+{
+  "versions": {
+    "typegpu": "0.12.12",
+    "node": "v22.19.0"
+  },
+  "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3"
+  },
+  "width": 64,
+  "height": 64,
+  "toleranceChannel": 1,
+  "maxChannelDeviation": 0,
+  "shuffledMatchesSequential": true,
+  "wgslSha256": "e8ab772ae54f645371bf28bfdda3e47591ac4c57f8bfb6a00d19b99d83b77f1a",
+  "wgslHasExpectedStages": true,
+  "frames": [
+    {
+      "time": 0,
+      "sha256": "3fade605cdc8dec0b6e85c99c0a14b1461007009e7ed60faac841e190b0a49c6",
+      "maxChannelDeviation": 0,
+      "transparentPixelCount": 0,
+      "probes": [
+        {
+          "x": 0,
+          "y": 0,
+          "rgba": [
+            2,
+            2,
+            0,
+            255
+          ],
+          "expectedRgba": [
+            2,
+            2,
+            0,
+            255
+          ]
+        },
+        {
+          "x": 63,
+          "y": 0,
+          "rgba": [
+            253,
+            2,
+            0,
+            255
+          ],
+          "expectedRgba": [
+            253,
+            2,
+            0,
+            255
+          ]
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "rgba": [
+            129,
+            129,
+            0,
+            255
+          ],
+          "expectedRgba": [
+            129,
+            129,
+            0,
+            255
+          ]
+        },
+        {
+          "x": 0,
+          "y": 63,
+          "rgba": [
+            2,
+            253,
+            0,
+            255
+          ],
+          "expectedRgba": [
+            2,
+            253,
+            0,
+            255
+          ]
+        },
+        {
+          "x": 63,
+          "y": 63,
+          "rgba": [
+            253,
+            253,
+            0,
+            255
+          ],
+          "expectedRgba": [
+            253,
+            253,
+            0,
+            255
+          ]
+        },
+        {
+          "x": 5,
+          "y": 40,
+          "rgba": [
+            22,
+            161,
+            0,
+            255
+          ],
+          "expectedRgba": [
+            22,
+            161,
+            0,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "time": 0.25,
+      "sha256": "eef40eaf74bc6a31554aa12c176056564ce4b7589f2a65afcbbe35f88d06e2b3",
+      "maxChannelDeviation": 0,
+      "transparentPixelCount": 0,
+      "probes": [
+        {
+          "x": 0,
+          "y": 0,
+          "rgba": [
+            2,
+            2,
+            64,
+            255
+          ],
+          "expectedRgba": [
+            2,
+            2,
+            64,
+            255
+          ]
+        },
+        {
+          "x": 63,
+          "y": 0,
+          "rgba": [
+            253,
+            2,
+            64,
+            255
+          ],
+          "expectedRgba": [
+            253,
+            2,
+            64,
+            255
+          ]
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "rgba": [
+            129,
+            129,
+            64,
+            255
+          ],
+          "expectedRgba": [
+            129,
+            129,
+            64,
+            255
+          ]
+        },
+        {
+          "x": 0,
+          "y": 63,
+          "rgba": [
+            2,
+            253,
+            64,
+            255
+          ],
+          "expectedRgba": [
+            2,
+            253,
+            64,
+            255
+          ]
+        },
+        {
+          "x": 63,
+          "y": 63,
+          "rgba": [
+            253,
+            253,
+            64,
+            255
+          ],
+          "expectedRgba": [
+            253,
+            253,
+            64,
+            255
+          ]
+        },
+        {
+          "x": 5,
+          "y": 40,
+          "rgba": [
+            22,
+            161,
+            64,
+            255
+          ],
+          "expectedRgba": [
+            22,
+            161,
+            64,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "time": 1,
+      "sha256": "22380758caa5ebf9a7c577680a47c5d82adc3014de913dcd640182e2289ff397",
+      "maxChannelDeviation": 0,
+      "transparentPixelCount": 0,
+      "probes": [
+        {
+          "x": 0,
+          "y": 0,
+          "rgba": [
+            2,
+            2,
+            255,
+            255
+          ],
+          "expectedRgba": [
+            2,
+            2,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 63,
+          "y": 0,
+          "rgba": [
+            253,
+            2,
+            255,
+            255
+          ],
+          "expectedRgba": [
+            253,
+            2,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "rgba": [
+            129,
+            129,
+            255,
+            255
+          ],
+          "expectedRgba": [
+            129,
+            129,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 0,
+          "y": 63,
+          "rgba": [
+            2,
+            253,
+            255,
+            255
+          ],
+          "expectedRgba": [
+            2,
+            253,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 63,
+          "y": 63,
+          "rgba": [
+            253,
+            253,
+            255,
+            255
+          ],
+          "expectedRgba": [
+            253,
+            253,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 5,
+          "y": 40,
+          "rgba": [
+            22,
+            161,
+            255,
+            255
+          ],
+          "expectedRgba": [
+            22,
+            161,
+            255,
+            255
+          ]
+        }
+      ]
+    }
+  ]
+}
