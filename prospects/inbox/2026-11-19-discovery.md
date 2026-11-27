@@ -27,7 +27,7 @@ Summary line: 8 leads (2 in a new category: music notation engraving).
 - Found via: GitHub topic search `music-notation`.
 
 ### Vello and vello_cpu (`vello`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/linebender/vello
 - Role: Rust 2D vector renderer. `vello` runs on the GPU through wgpu compute shaders; `vello_cpu` is a CPU rasteriser with the same scene model; `vello_svg` renders SVG through either.
 - Category: A4. Vector, typography, diagrams and stills.

@@ -1,0 +1,12 @@
+{
+  "id": "vello-cpu-raster",
+  "title": "vello_cpu Rust CPU raster",
+  "summary": "Rust crate draws gradient and stroked paths with vello_cpu to a transparent 320x240 PNG; probes and repeat-run hashes checked.",
+  "status": "validated",
+  "tools": ["vello"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-27",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

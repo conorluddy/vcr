@@ -1,0 +1,75 @@
+{
+  "id": "vello",
+  "name": "Vello / vello_cpu",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "candidate",
+  "role": "Rust 2D vector renderer: GPU (vello) and deterministic CPU (vello_cpu) paths",
+  "summary": "Linebender's Rust 2D renderer. vello_cpu rasterises paths, gradients, clips and layers on the CPU into an RGBA pixmap with PNG encode; vello and vello_gpu run the same scene model on wgpu. Pre-1.0 with frequent breaking releases.",
+  "use_when": [
+    "Native Rust scene code needs anti-aliased paths and gradients rasterised headless to RGBA",
+    "A CPU golden-frame route is wanted from the Linebender stack that resvg also comes from"
+  ],
+  "avoid_when": [
+    "Static SVG rasterisation: resvg is simpler and stable",
+    "Browser-drawn scenes: capture with Playwright, or use canvas-2d",
+    "GPU output must match across machines: adapters differ, use vello_cpu"
+  ],
+  "pairs_with": [
+    "resvg",
+    "canvaskit-skia",
+    "thorvg",
+    "skia-canvas"
+  ],
+  "official_url": "https://github.com/linebender/vello",
+  "repository_url": "https://github.com/linebender/vello",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "2d-rendering",
+    "vector-authoring"
+  ],
+  "license": "Apache-2.0 OR MIT",
+  "install": {
+    "macos": "cargo add vello_cpu@=0.4.0",
+    "check_command": "cargo --version"
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.4.0",
+        "command": "examples/vello-cpu-raster/run.sh",
+        "result": "Rust 1.95.0 crate, vello_cpu 0.4.0 default u8 pipeline, 320x240 RGBA: rotated linear-gradient rect, radial-gradient circle, stroked cubic; 44742 transparent, 30263 opaque, 1795 partial px; 4 probes matched; two fresh processes byte-identical, PNG SHA-256 5e3aba8d81f18f76558d1713b8a2c7c131782c17ba3f3c011a4ec729fd791a15; image inspected.",
+        "example": "examples/vello-cpu-raster",
+        "scope": "vello_cpu CPU raster to PNG on macOS arm64, same-machine repeatability only. No GPU vello, text, vello_svg, cross-machine identity or multithreading claim."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-27",
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard-vello",
+    "version_seen": "vello 0.12.0, vello_cpu 0.4.0",
+    "last_release": "2026-11-11 (crates.io)",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Apache-2.0 OR MIT, active, MSRV 1.89. vello_cpu gives a headless Rust CPU raster of paths and gradients; overlaps resvg and tiny-skia for SVG, so its niche is native scene code. Pre-1.0, breaking releases about every six weeks.",
+    "sources": [
+      "https://github.com/linebender/vello",
+      "https://crates.io/crates/vello_cpu/0.4.0",
+      "https://docs.rs/vello_cpu/0.4.0"
+    ]
+  },
+  "notes": [
+    "2026-11-27: Lead matched crates.io (versions, licence, MSRV 1.89). GPU vello not run; needs a Metal adapter check."
+  ],
+  "source": "prospects/inbox/2026-11-19-discovery.md",
+  "examples": [
+    "vello-cpu-raster"
+  ],
+  "skill": "skills/vello/SKILL.md"
+}
