@@ -1,0 +1,8 @@
+{
+  "id": "mitsuba-3-cornell-box",
+  "title": "Mitsuba 3 Cornell box, fixed seed and sample count",
+  "summary": "Python venv: render Mitsuba's built-in Cornell box with the scalar_rgb variant at 96x96, 16 spp, seed 7; check colours, seed sensitivity and bitwise repeatability across processes.",
+  "status": "validated",
+  "tools": ["mitsuba-3"],
+  "run": "./run.sh"
+}

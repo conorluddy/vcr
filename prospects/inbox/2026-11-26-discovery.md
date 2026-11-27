@@ -127,7 +127,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: diagram keyword dedupe sweep.
 
 ### Mitsuba 3 (`mitsuba-3`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/mitsuba-renderer/mitsuba3
 - Role: a research-oriented physically based renderer with a Python API. It has scalar and LLVM CPU variants, spectral and RGB modes, and differentiable rendering. Scenes come from XML or Python dicts.
 - Category: A3. 3D, shaders and effects.
