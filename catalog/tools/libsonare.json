@@ -1,0 +1,75 @@
+{
+  "id": "libsonare",
+  "name": "libsonare",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Beat, onset and loudness analysis",
+  "official_url": "https://libsonare.libraz.net",
+  "repository_url": "https://github.com/libraz/libsonare",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-11-27: Lead said 1.10.0 and an unverified macOS arm64 wheel; PyPI shows 2.0.0 (2026-11-26) with a macosx_11_0_arm64 wheel, installed into a venv without a system install.",
+    "2026-11-27: Fixture libsonare-beat-loudness passed: 120 and 90 BPM click tempo within 0.4 %, beats and onsets matched every click, sine LUFS within 0.03 LU of truth, reruns identical.",
+    "2026-11-27: Mastering, mixing, stems, transcription, MIDI rendering and the WASM and Node builds are documented but untested. The catalogue neighbours librosa and aubio each failed one tempo or beat check on the same kind of click track; no head-to-head claim is made.",
+    "2026-11-27: Toolkit guide written at skills/libsonare/SKILL.md from the passing fixture."
+  ],
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "2.0.0",
+        "command": "examples/libsonare-beat-loudness/run.sh",
+        "result": "11 of 11 predeclared checks pass. 120 BPM clicks (19): tempo 119.626, beats 19 within 11.4 ms, onsets 19 within 0.9 ms. 90 BPM clicks (15): tempo 89.656, beats 15 within 10.7 ms, onsets 15 within 0.9 ms. 997 Hz mono sine at -20 dBFS peak: integrated -22.98 LUFS vs true -23.01. Two runs byte-identical. numpy 2.5.5, Python 3.12, macOS arm64.",
+        "example": "examples/libsonare-beat-loudness",
+        "scope": "Generated clicks at 120 and 90 BPM and one sine, 22050 Hz mono, macOS arm64 wheel: tempo, beat and onset times and integrated LUFS vs known truth; no music, mastering, mixing or WASM."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "examples": [
+    "libsonare-beat-loudness"
+  ],
+  "checked_at": "2026-11-27",
+  "source": "prospects/inbox/2026-11-23-discovery.md",
+  "summary": "Dependency-light C++ audio engine with a Python wheel, sonare CLI and npm and WASM builds. Detects BPM, beats, onsets, key, chords and sections, measures EBU R128 loudness, and also masters, mixes, transcribes and renders MIDI. One young, single-maintainer project.",
+  "use_when": [
+    "Get beat, onset and tempo times from audio to cut or time motion to music",
+    "Measure integrated LUFS or loudness range of a mix in Python"
+  ],
+  "avoid_when": [
+    "Need a frame-level feature stream in the browser: Meyda",
+    "Need to normalise loudness while encoding: ffmpeg-normalize"
+  ],
+  "pairs_with": [
+    "librosa",
+    "aubio",
+    "ffmpeg-normalize"
+  ],
+  "license": "Apache-2.0 (code; the README says no models are bundled; licences of any model loaded for stems are unverified)",
+  "install": {
+    "macos": "python3.12 -m venv output/venv && output/venv/bin/python -m pip install -r requirements.txt inside examples/libsonare-beat-loudness (libsonare==2.0.0 pinned)",
+    "check_command": "output/venv/bin/sonare version"
+  },
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard-libsonare",
+    "version_seen": "2.0.0",
+    "last_release": "2026-11-26",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Apache-2.0 per wheel metadata and PyPI; released the day before assessment; macOS arm64 wheel installs and runs offline. Single maintainer, repository from 2026-01, version jumped 1.10.0 to 2.0.0 in a month: pin it. Adds loudness and mastering beside librosa and aubio style analysis.",
+    "sources": [
+      "https://github.com/libraz/libsonare",
+      "https://libsonare.libraz.net",
+      "https://pypi.org/project/libsonare/2.0.0/"
+    ]
+  },
+  "skill": "skills/libsonare/SKILL.md"
+}
