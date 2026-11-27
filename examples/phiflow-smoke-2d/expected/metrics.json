@@ -1,0 +1,20 @@
+{
+  "sha256": "450faeecb507a61447b51640a8ce43d76c9c978dbb4c76466cfd6e6e88480426",
+  "mass_after_inflow": 94.824707,
+  "mass_final": 103.338333,
+  "mass_drift": 0.143978,
+  "max_divergence": 1.64e-06,
+  "centroid_final_cells": 29.683,
+  "checks": {
+    "phiflow_version_3_4_0": true,
+    "four_frames_saved_64x64": true,
+    "rerun_in_process_bit_identical": true,
+    "mass_grows_every_inflow_step": true,
+    "mass_drift_after_inflow_below_2_percent": false,
+    "velocity_divergence_max_below_1e-4": true,
+    "centroid_rises_over_10_cells_after_inflow": true,
+    "smoke_not_below_minus_0.05": true,
+    "final_frame_not_blank": true
+  },
+  "all_passed": false
+}
