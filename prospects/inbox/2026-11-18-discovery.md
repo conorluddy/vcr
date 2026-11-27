@@ -102,7 +102,7 @@ This is the second run in ISO week 2026-W47. The earlier W47 digest (2026-11-16)
 - Found via: GitHub topic search `gltf`
 
 ### Palt Typesetting (`palt-typesetting`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/yamatoiizuka/palt-typesetting
 - Role: A JavaScript library for Japanese and mixed Japanese-Latin text typesetting. It applies proportional spacing (`palt`), inserts quarter-em spacing between scripts, applies kerning rules and breaks lines at word boundaries.
 - Category: A4. Vector, typography, diagrams and stills (lower-priority gap: localisation of on-screen text)
