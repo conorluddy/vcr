@@ -44,7 +44,7 @@ This is the fourth W47 run. Earlier runs this week covered shaders, simulation, 
 - Found via: gap search (openly licensed asset APIs); the inbox and catalogue had no asset-source leads.
 
 ### Openverse API (`openverse-api`) — 🆕 new category: openly licensed asset sources — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://api.openverse.org/v1/ (source: https://github.com/WordPress/openverse)
 - Role: search API for openly licensed images and audio gathered from Flickr, Wikimedia, Freesound and others. Each result carries its licence, licence version, creator and source URL, and searches can filter by licence (for example `license=cc0`).
 - Category: new category, openly licensed asset sources.

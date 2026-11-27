@@ -1,0 +1,15 @@
+{
+  "checks": {
+    "cc0 search has results": true,
+    "cc0 results all license=cc0 with a creativecommons.org licence_url": true,
+    "pdm search has results": true,
+    "pdm results all license=pdm with a licence_url": true,
+    "commercial,modification results contain no nc or nd": true,
+    "detail has every attribution field": true,
+    "attribution text names title, creator and licence": true
+  },
+  "rateLimitHeaders": {
+    "x-ratelimit-limit-anon_burst": "100/min",
+    "x-ratelimit-limit-anon_sustained": "1000/day"
+  }
+}
