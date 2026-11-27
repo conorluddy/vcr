@@ -43,7 +43,7 @@ This is the second W48 run. The first W48 digest (2026-11-23, PR #233) is merged
 - Found via: GitHub topic search `topic:forced-alignment`.
 
 ### imscJS (`imscjs`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/sandflow/imscJS (npm: `imsc`)
 - Role: a reference JavaScript renderer for IMSC (the TTML subtitle and caption profile). `fromXML` parses a document. `generateISD(tt, offset)` resolves it at any time offset. `renderHTML` draws that state into a DOM element.
 - Category: Caption compliance. This is the category `caption-checker` uses.

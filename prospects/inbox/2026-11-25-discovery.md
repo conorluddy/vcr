@@ -29,7 +29,7 @@ This is the third W48 run. The 2026-11-23 digest (PR #233) and the 2026-11-24 di
 - Found via: keyword dedupe sweep for font sources while checking the `fonts` and `cli` topics. It is the lower-priority "reproducible environment pinning" area.
 
 ### Maker.js (`makerjs`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://maker.js.org (repository: https://github.com/microsoft/maker.js)
 - Role: a JavaScript library for 2D vector "models" (paths, arcs, Béziers, fonts through opentype.js). It does unions, offsets (outline and expand), chain detection and layout, then exports SVG, DXF, PDF and OpenJSCAD.
 - Category: A4. Vector, typography, diagrams and stills.

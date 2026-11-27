@@ -15,7 +15,7 @@ This is the fourth W47 run. Earlier runs this week covered shaders, simulation, 
 ## Leads
 
 ### pysubs2 (`pysubs2`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/tkarabela/pysubs2 (docs: https://pysubs2.readthedocs.io)
 - Role: Python library and `pysubs2` CLI that load, edit, retime and convert subtitle files (SRT, ASS/SSA, WebVTT, MicroDVD, MPL2, TMP, JSON).
 - Category: Caption compliance (or A5. Video and capture).

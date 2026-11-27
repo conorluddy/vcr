@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  html, body { margin: 0; background: transparent; width: 640px; height: 360px; overflow: hidden; }
+  #stage { position: relative; width: 640px; height: 360px; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script src="node_modules/imsc/dist/imsc.all.min.js"></script>
+<script>
+  // IMSC1 text profile document: two regions, one overlap (3.0-4.0 s), gaps at 2.0-2.5 s and 5.0-6.0 s.
+  const ttml = `<?xml version="1.0" encoding="UTF-8"?>
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xmlns:ttp="http://www.w3.org/ns/ttml#parameter" xml:lang="en"
+    ttp:profile="http://www.w3.org/ns/ttml/profile/imsc1/text" tts:extent="640px 360px">
+  <head>
+    <styling>
+      <style xml:id="base" tts:fontFamily="sansSerif" tts:fontSize="28px" tts:color="white" tts:backgroundColor="black" tts:textAlign="center"/>
+      <style xml:id="note" tts:color="#ffd84a" tts:fontStyle="italic"/>
+    </styling>
+    <layout>
+      <region xml:id="bottom" tts:origin="10% 70%" tts:extent="80% 25%" tts:displayAlign="after"/>
+      <region xml:id="top" tts:origin="10% 5%" tts:extent="80% 25%" tts:displayAlign="before"/>
+    </layout>
+  </head>
+  <body style="base">
+    <div>
+      <p region="bottom" begin="0s" end="2s">Hello from IMSC</p>
+      <p region="top" style="note" begin="2.5s" end="4s">Top region, italic</p>
+      <p region="bottom" begin="3s" end="5s">Second line<br/>after a break</p>
+    </div>
+  </body>
+</tt>`;
+  const parsed = imsc.fromXML(ttml, (message) => { throw new Error(`IMSC parse error: ${message}`); });
+  const stage = document.getElementById("stage");
+  window.__events = parsed.getMediaTimeEvents();
+  // No previous ISD state is passed and roll-up stays off, so each seek depends only on t.
+  window.__scene = {
+    duration: 6,
+    seek(seconds) {
+      stage.replaceChildren();
+      const isd = imsc.generateISD(parsed, seconds, (message) => { throw new Error(`IMSC ISD error: ${message}`); });
+      imsc.renderHTML(isd, stage, null, 360, 640, false, (message) => { throw new Error(`IMSC render error: ${message}`); }, null, false);
+    },
+  };
+</script>
+</body>
+</html>

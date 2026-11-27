@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-jolt-physics-fixed-step",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "jolt-physics": "1.1.2"
+  }
+}

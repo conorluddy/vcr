@@ -1,0 +1,54 @@
+{
+  "frames": {
+    "0.0": {
+      "size": "640x360",
+      "probes": {
+        "background": "#101820",
+        "barMiddle": "#101820",
+        "discAtT0": "#2f80ed",
+        "discAtT1": "#101820"
+      }
+    },
+    "0.5": {
+      "size": "640x360",
+      "probes": {
+        "background": "#101820",
+        "barMiddle": "#ff7a00",
+        "discAtT0": "#101820",
+        "discAtT1": "#101820"
+      }
+    },
+    "1.0": {
+      "size": "640x360",
+      "probes": {
+        "background": "#101820",
+        "barMiddle": "#ff7a00",
+        "discAtT0": "#101820",
+        "discAtT1": "#2f80ed"
+      }
+    }
+  },
+  "svgFacts": {
+    "textElements": 0,
+    "fontReferences": 0,
+    "hasPaths": true,
+    "viewBox": null
+  },
+  "hashes": {
+    "frames": [
+      {
+        "t": 0,
+        "pngBytesSha256": "7c83de3d31e7c4ed28b7dfee3da8f683dbd4793e393f6b8431bfc79e3beddc8e"
+      },
+      {
+        "t": 0.5,
+        "pngBytesSha256": "6b359d6d6405d0fae411d4dc639817b0ee182b3022537863a1e435de39abe427"
+      },
+      {
+        "t": 1,
+        "pngBytesSha256": "66da131bcafd02918500e76ac31ca5b5a4f347ae0e3c0cea18d267b9aaa1f5ee"
+      }
+    ],
+    "svgSha256": "57194152593f1c494cf3f9df1d82419d38afa877a9654bfdc8db2ab53d0d3fed"
+  }
+}

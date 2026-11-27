@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8" /><style>html, body { margin: 0; background: transparent; overflow: hidden; }</style>
+<script type="importmap">
+  { "imports": {
+    "three": "./node_modules/three/build/three.module.js",
+    "three/addons/": "./node_modules/three/examples/jsm/",
+    "@sparkjsdev/spark": "./node_modules/@sparkjsdev/spark/dist/spark.module.js"
+  } }
+</script>
+</head>
+<body>
+<script type="module">
+  // Spark SplatMesh in an ordinary three.js scene, rendered once per seek. The camera is a pure
+  // function of t. Spark sorts splats asynchronously per view, so each seek waits for the sort of
+  // that exact view before drawing; the harness's settle step then only has to flush the paint.
+  import * as THREE from "three";
+  import { SparkRenderer, SplatMesh } from "@sparkjsdev/spark";
+  const DURATION = 3;
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+  document.body.appendChild(renderer.domElement);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+  const spark = new SparkRenderer({ renderer, minSortIntervalMs: 0 });
+  scene.add(spark);
+  const bytes = await (await fetch("./output/scene.splat")).arrayBuffer();
+  const splats = new SplatMesh({ fileBytes: bytes, fileType: "splat" });
+  scene.add(splats);
+  await splats.initialized;
+  // A solid three.js mesh inside the splats shows they share one scene and depth buffer.
+  const cube = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.5, 0.5), new THREE.MeshBasicMaterial({ color: 0xf3f4ef }));
+  scene.add(cube);
+
+  const renderAt = (t) => {
+    const angle = (t / DURATION) * Math.PI * 2;
+    camera.position.set(Math.sin(angle) * 4.2, 1 + Math.sin(angle) * 0.4, Math.cos(angle) * 4.2);
+    camera.lookAt(0, 0, 0);
+    cube.position.set(0, Math.sin(angle * 2) * 0.8, 0);
+    camera.updateMatrixWorld();
+    renderer.render(scene, camera);
+  };
+  const nextFrame = () => new Promise((resolve) => requestAnimationFrame(resolve));
+  // Draw until Spark's worker has sorted for this exact view, then draw once more with that order.
+  const renderSorted = async (t) => {
+    for (let attempt = 0; attempt < 300; attempt++) {
+      renderAt(t);
+      await nextFrame();
+      const isSortedForView = !spark.sorting && !spark.sortDirty && spark.sortedCenter.distanceTo(camera.position) < 1e-3;
+      if (isSortedForView) { renderAt(t); return; }
+    }
+    throw new Error(`Spark did not finish sorting for t=${t}`);
+  };
+  let pendingFrame = Promise.resolve();
+  window.__scene = {
+    duration: DURATION,
+    seek: (t) => { pendingFrame = renderSorted(t); },
+    // Resolves once the last seek has drawn with a finished sort; the capture script awaits it.
+    whenSettled: () => pendingFrame.then(() => undefined),
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "id": "imscjs-seek-render",
+  "title": "imscJS IMSC document seeked per frame with alpha",
+  "summary": "imsc 2.0.0 generateISD and renderHTML draw an IMSC1 text document with two regions and an overlap into a transparent Chromium scene; 60 frames at 640x360, caption pixels present or absent at chosen frames, shuffled order matches sequential.",
+  "status": "validated",
+  "tools": ["imscjs"],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 640,
+    "height": 360,
+    "fps": 10
+  }
+}

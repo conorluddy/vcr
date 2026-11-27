@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8" /><style>html, body { margin: 0; background: transparent; }</style></head>
+<body>
+<script src="./node_modules/p5/lib/p5.min.js"></script>
+<script src="./node_modules/p5.brush/dist/p5.brush.js"></script>
+<script>
+  // p5.brush draws into a WEBGL canvas. Brush marks accumulate, so every frame clears
+  // and redraws from nothing, with both seeds reset first: frame t depends only on t and SEED.
+  const DURATION = 3;
+  const SEED = 11;
+  new p5((sketch) => {
+    brush.instance(sketch);
+    sketch.setup = () => {
+      sketch.createCanvas(window.innerWidth, window.innerHeight, sketch.WEBGL);
+      sketch.pixelDensity(1);
+      sketch.noLoop();
+      window.__scene = { duration: DURATION, seek: (t) => requestAnimationFrame(() => { window.__sceneTime = t; sketch.redraw(); }) };
+      window.__sceneTime = 0;
+    };
+    sketch.draw = () => {
+      const t = window.__sceneTime;
+      sketch.clear();
+      sketch.randomSeed(SEED);
+      sketch.noiseSeed(SEED);
+      brush.seed(SEED);
+      brush.noiseSeed(SEED);
+      brush.noField();
+      brush.noHatch();
+      // Origin is the canvas centre in WEBGL mode.
+      brush.fill("#e8a33d", 90);
+      brush.hatch(14, 0.8 + t * 0.3);
+      brush.set("charcoal", "#f4efe6", 1);
+      brush.circle(-260, 0, 150);
+      brush.noHatch();
+      brush.noFill();
+      brush.field("curved");
+      brush.set("2B", "#c7f36b", 1.6);
+      for (let i = 0; i < 6; i += 1) {
+        brush.flowLine(60, -240 + i * 90, 120 + t * 40, 90 + t * 20);
+      }
+      brush.noField();
+      brush.set("marker", "#6bb7f3", 1.2);
+      brush.rect(160, -180, 300, 120);
+    };
+  });
+</script>
+</body>
+</html>

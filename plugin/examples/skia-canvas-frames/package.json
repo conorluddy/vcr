@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-skia-canvas-frames",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "skia-canvas": "4.0.1"
+  }
+}

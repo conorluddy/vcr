@@ -1,0 +1,18 @@
+{
+  "inputFeatures": 3,
+  "inputVertices": 29,
+  "dissolvedFeatures": 2,
+  "dissolvedRegions": [
+    "A",
+    "B"
+  ],
+  "dissolvedVertices": 15,
+  "projectedFirstXIsMeters": true,
+  "svgPathCount": 2,
+  "svgWidth": "800",
+  "svgFillColors": [
+    "fill=\"#2a6f97\"",
+    "fill=\"#e9c46a\""
+  ],
+  "svgHasViewBox": true
+}
