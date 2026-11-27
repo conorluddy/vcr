@@ -1,0 +1,70 @@
+{
+  "id": "isometric-js",
+  "name": "isometric (@elchininet/isometric)",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "candidate",
+  "role": "Flat isometric SVG scenes from planes, paths and text, built in code",
+  "summary": "TypeScript library that places rectangles, circles, stars, paths and text on isometric planes and writes the scene as SVG. In Node it needs jsdom. Its strength is flat isometric diagrams and block illustrations drawn as plain SVG paths; there is no solid model, depth sorting or boolean geometry.",
+  "use_when": [
+    "Flat isometric diagrams or block illustrations as SVG, positioned by right, left and top coordinates",
+    "A scene rebuilt per frame from time t, rendered as static SVG and rasterised with resvg"
+  ],
+  "avoid_when": [
+    "Voxel solids with booleans and occlusion-aware faces: heerich",
+    "Real 3D with lighting, cameras or models: three-js",
+    "Motion through the library's own animations: they use SVG animate elements, which cannot be seeked"
+  ],
+  "pairs_with": [
+    "resvg",
+    "svg",
+    "heerich"
+  ],
+  "official_url": "https://github.com/elchininet/isometric",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "vector-authoring"
+  ],
+  "license": "Apache-2.0",
+  "install": {
+    "macos": "pnpm add @elchininet/isometric jsdom"
+  },
+  "examples": [
+    "isometric-svg-scene"
+  ],
+  "notes": [
+    "2026-11-27: Lead said 4.0.0; npm latest is 4.0.2 (published 2026-11-22). Package lists jsdom as a peer (^18.0.1) and a dependency (^31.0.1); the Node entry '@elchininet/isometric/node' needs it. Ids are random unless every element gets an explicit id."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "4.0.2",
+    "last_release": "2026-11-22",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Apache-2.0, npm 4.0.2 published 2026-11-22, actively pushed. Overlaps heerich only partly: this draws flat planes and paths with no solids or booleans. Kept as a niche card with a small fixture; not recommended for core promotion.",
+    "sources": [
+      "https://github.com/elchininet/isometric",
+      "https://www.npmjs.com/package/@elchininet/isometric"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "4.0.2",
+        "command": "examples/isometric-svg-scene/run.sh",
+        "result": "3 frames (t=0, 0.5, 1) of a floor and two blocks, 7 paths each, no animate or text elements; identical bytes across two Node 22.19.0 processes and shuffled order; growing block rose exactly 120 px; resvg 0.47.0 PNGs 800x600 inspected.",
+        "example": "examples/isometric-svg-scene",
+        "scope": "Rectangles on TOP, FRONT and SIDE planes with explicit ids, jsdom 31 in Node on macOS arm64; not text, circles, paths, textures, groups, library animations or the browser."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-21-discovery.md",
+  "skill": "skills/isometric-js/SKILL.md"
+}
