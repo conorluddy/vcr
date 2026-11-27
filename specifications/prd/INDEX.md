@@ -3,3 +3,4 @@
 
 | ID | Title | Status | Date |
 | --- | --- | --- | --- |
+| [PRD-0001](0001-static-design-exploration.md) | Static design exploration | draft | 2026-11-27 |
