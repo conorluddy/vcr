@@ -114,7 +114,7 @@ This is the third W48 run. The 2026-11-23 digest (PR #233) and the 2026-11-24 di
 - Found via: dedupe sweep of polygon tools after `topic:bezier`.
 
 ### halftone-converter (`halftone-converter`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/curegit/halftone-converter (PyPI: `halftone-converter`)
 - Role: a Python CLI and library that converts raster images into halftone screens per channel (CMYK and others), with screen angle, pitch and dot shape.
 - Category: A6. Image processing and colour.
