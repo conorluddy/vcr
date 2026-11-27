@@ -81,8 +81,8 @@ const StudioArt = (() => {
       h * (1 - 2 * inset),
     ]);
   }
-  function lettering(ctx, copy, w, h, font) {
-    let size = Math.min(h, w * 0.44);
+  function lettering(ctx, copy, w, h, font, maxSize = Infinity) {
+    let size = Math.min(h, w * 0.44, maxSize);
     while (size > 0.1) {
       ctx.font =
         (font === 1 ? "bold " : "") + size + 'px "' + fonts[font] + '"';
@@ -104,10 +104,11 @@ const StudioArt = (() => {
       ) {
         ctx.textBaseline = "top";
         lines.forEach((line, i) => ctx.fillText(line, 0, i * size * 1.13));
-        return;
+        return lines.length * size * 1.13;
       }
       size *= 0.94;
     }
+    return 0;
   }
   function draw(canvas, p, r, max = 400, crop = [0, 0, 1, 1]) {
     const w = p.width,
@@ -198,7 +199,30 @@ const StudioArt = (() => {
     ctx.restore();
     ctx.fillStyle = ink;
     ctx.translate(title[0] * w, title[1] * h);
-    lettering(ctx, p.copy, title[2] * w, title[3] * h, r.font);
+    const tw = title[2] * w,
+      th = title[3] * h;
+    const split = p.copy.indexOf("\n");
+    if (p.typeHierarchy && split > 0 && p.copy.slice(split).trim()) {
+      const headline = lettering(
+        ctx,
+        p.copy.slice(0, split),
+        tw,
+        th * 0.62,
+        r.font,
+      );
+      const gap = Math.min(tw * 0.055, th * 0.075);
+      ctx.translate(0, headline + gap);
+      lettering(
+        ctx,
+        p.copy.slice(split + 1),
+        tw,
+        th - headline - gap,
+        0,
+        Math.min(th * 0.14, tw * 0.095),
+      );
+    } else {
+      lettering(ctx, p.copy, tw, th, r.font);
+    }
   }
   return { recipe, draw, regions, layouts };
 })();

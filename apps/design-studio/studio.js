@@ -153,22 +153,20 @@ function home() {
     '<div class="home"><section class="hero"><div><h1>Design<br>explorations</h1><p>Explore a brief in parallel. Keep the details that work and take them into the next round.</p>' +
     button("New exploration", "new", true) +
     '</div><div class="sample" aria-label="Sample graphic treatments"><canvas></canvas><canvas></canvas><canvas></canvas></div></section><div class="row"><h2>Recent explorations</h2><small>Saved in this browser</small></div><div class="recent"></div></div>';
-  app
-    .querySelectorAll(".sample canvas")
-    .forEach((c, i) =>
-      paint(
-        c,
-        { width: 320, height: 450, copy: "Form\nstudies" },
-        {
-          layout: [0, 1, 4][i],
-          palette: [0, 3, 2][i],
-          motif: [1, 3, 2][i],
-          phase: 0.34,
-          inset: 0.055,
-          font: i,
-        },
-      ),
-    );
+  app.querySelectorAll(".sample canvas").forEach((c, i) =>
+    paint(
+      c,
+      { width: 320, height: 450, copy: "Form\nstudies" },
+      {
+        layout: [0, 1, 4][i],
+        palette: [0, 3, 2][i],
+        motif: [1, 3, 2][i],
+        phase: 0.34,
+        inset: 0.055,
+        font: i,
+      },
+    ),
+  );
   const list = app.querySelector(".recent");
   if (!projects.length)
     list.innerHTML = '<p class="sub">Your explorations will appear here.</p>';
@@ -198,7 +196,7 @@ function form(next) {
     "</div>" +
     (next
       ? '<div id="chosen"></div><label class="field">Direction for this round<textarea name="direction"></textarea></label>'
-      : '<label class="field">Workspace name<input name="name" required maxlength="80" autofocus></label><label class="field">Design brief<textarea name="brief" required></textarea></label><label class="field">Required copy<textarea name="copy" required maxlength="1200"></textarea></label><label class="field">Image (optional)<input name="image" type="file" accept="image/png,image/jpeg,image/webp"></label><div class="dims">' +
+      : '<label class="field">Workspace name<input name="name" required maxlength="80" autofocus></label><label class="field">Design brief<textarea name="brief" required></textarea></label><label class="field">Required copy<textarea placeholder="Headline on the first line, supporting copy below" name="copy" required maxlength="1200"></textarea></label><label class="field">Image (optional)<input name="image" type="file" accept="image/png,image/jpeg,image/webp"></label><div class="dims">' +
         ["Width", "Height"]
           .map(
             (k, i) =>
@@ -238,6 +236,7 @@ function form(next) {
           name: f.get("name").trim(),
           brief: f.get("brief").trim(),
           copy: f.get("copy"),
+          typeHierarchy: true,
           width: +f.get("Width"),
           height: +f.get("Height"),
           marks: [],
@@ -405,8 +404,8 @@ function inspect() {
     src = refs[reference],
     r = round.items[vi];
   by("content").innerHTML =
-    '<div class="row">' +
-    button("← Contact sheet", "back") +
+    '<div class="inspect-head row">' +
+    button("← Sheet", "back") +
     "<small>" +
     variant(ri, vi) +
     " / " +
@@ -414,12 +413,14 @@ function inspect() {
     "</small>" +
     button("Export PNG", "export") +
     '</div><div class="toolbar">' +
-    button("Previous", "prev") +
-    button("Next", "next") +
+    '<button id="prev" aria-label="Previous variant" title="Previous variant">←</button>' +
+    '<button id="next" aria-label="Next variant" title="Next variant">→</button>' +
     button("Fit", "fit") +
     button("100%", "native") +
     button("Mark", "mark") +
-    button(hidden ? "Show marks" : "Hide marks", "hide") +
+    (p.marks.some((m) => m.round === ri && m.item === vi)
+      ? button(hidden ? "Show marks" : "Hide marks", "hide")
+      : "") +
     (refs.length ? button("Compare", "compare") : "") +
     "</div>" +
     (compare
@@ -452,6 +453,7 @@ function inspect() {
   on("next", () => location.replace(path(p, ri, vi + 1)));
   by("prev").disabled = vi === 0;
   by("next").disabled = vi + 1 >= round.items.length;
+  by("mark").setAttribute("aria-pressed", marking);
   by("native").setAttribute("aria-pressed", native);
   by("fit").setAttribute("aria-pressed", !native);
   on("fit", () => {
@@ -559,7 +561,9 @@ function editMark(board, r) {
   board.classList.add("marking");
   const overlay = outline(board, pending);
   by("markControls").innerHTML =
-    '<form class="markform">' +
+    '<form class="markform"><div class="mark-actions"><span>Tap a detail or drag a region.</span><button class="primary" id="keep">Keep</button>' +
+    button("Cancel", "cancelMark") +
+    '</div><details><summary>Mark options</summary><div class="mark-options"><label>Keep this detail<select name="trait"><option value="">From marked region</option><option value="art">Artwork treatment</option><option value="title">Typography</option><option value="spacing">Layout and spacing</option><option value="palette">Colours</option></select></label><label>Note (optional)<input name="note" maxlength="300"></label><div class="coordinates">' +
     ["Left", "Top", "Width", "Height"]
       .map(
         (k, i) =>
@@ -572,9 +576,7 @@ function editMark(board, r) {
           '"></label>',
       )
       .join("") +
-    '<label>Keep this detail<select name="trait"><option value="">From marked region</option><option value="art">Artwork treatment</option><option value="title">Typography</option><option value="spacing">Layout and spacing</option><option value="palette">Colours</option></select></label><label>Note (optional)<input name="note" maxlength="300"></label><button class="primary" id="keep">Keep</button>' +
-    button("Cancel", "cancelMark") +
-    "</form>";
+    "</div></div></details></form>";
   const inputs = [...app.querySelectorAll("[data-axis]")];
   function update() {
     locate(overlay, pending);
