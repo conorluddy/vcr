@@ -43,7 +43,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: app-preview and device-capture gap, checking the Android side of the existing iOS leads.
 
 ### skia-canvas (`skia-canvas`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/samizdatco/skia-canvas
 - Role: a Node implementation of the HTML Canvas API on Skia. It renders headlessly to PNG, JPEG, WEBP, raw pixels, SVG and multi-page PDF, supports variable fonts loaded from local files, and also has an on-screen `Window`.
 - Category: A1. Creative coding and 2D.
@@ -57,7 +57,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: neighbour of the `canvaskit-skia` seed.
 
 ### Jolt Physics (JoltPhysics.js) (`jolt-physics-js`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/jrouwe/JoltPhysics.js (engine: https://github.com/jrouwe/JoltPhysics)
 - Role: WASM and JavaScript bindings for the Jolt rigid-body and soft-body physics engine. The engine lists "Soft body simulation (e.g. a soft ball or piece of cloth)" with edge, bend and tetrahedron-volume constraints.
 - Category: A8. Physics, audio and 3D assets.
@@ -71,7 +71,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: simulation gap, a neighbour of the `rapier` seed.
 
 ### mapshaper (`mapshaper`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/mbloch/mapshaper
 - Role: a CLI (`mapshaper`, plus `mapshaper-xl` for large files) that edits Shapefile, GeoJSON, TopoJSON, CSV and other geodata. It simplifies, clips, dissolves, joins and reprojects, and can export SVG.
 - Category: Discovery: research candidates (the maps group).

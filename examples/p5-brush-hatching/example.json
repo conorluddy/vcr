@@ -1,0 +1,18 @@
+{
+  "id": "p5-brush-hatching",
+  "title": "p5.brush hatching, wash fill and flow lines captured by seek",
+  "summary": "p5.brush 3.3.0 on p5 2.3.4 WEBGL: a hatched wash circle, flow-field lines and a marker rect redrawn from scratch per seek; 90 alpha frames at 1280x720, shuffled order matches sequential.",
+  "status": "validated",
+  "tools": ["p5-brush"],
+  "run": "./run.sh",
+  "capture": {
+    "scene": "scene.html",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "validated_on": {
+    "date": "2026-11-27",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

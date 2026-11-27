@@ -1,0 +1,8 @@
+{
+  "id": "makerjs-offset-svg",
+  "title": "Maker.js union and outline offset to SVG and DXF",
+  "summary": "Build a parametric 2D plate in Node, union two shapes, offset the outline outward, export SVG and DXF byte-identically across runs and rasterise with resvg.",
+  "status": "validated",
+  "tools": ["makerjs"],
+  "run": "./run.sh"
+}

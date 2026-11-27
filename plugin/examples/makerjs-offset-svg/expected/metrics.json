@@ -1,0 +1,18 @@
+{
+  "plate": {
+    "width": "80mm",
+    "height": "50mm",
+    "elements": 1,
+    "sha256": "256e66976b4c15dcf61d8195a848cc7fd51374d5a89b4bc17597afc0b5aa62ad"
+  },
+  "outline": {
+    "width": "86mm",
+    "height": "56mm",
+    "elements": 1,
+    "sha256": "f88a938b4038a93d36e9de15fba5552c014f171ed633042863f347e8d7471786"
+  },
+  "dxf": {
+    "entities": 21,
+    "sha256": "f6f243fac6eecb8ee33d0470a0c3c93d7a438677ede13a3a14988f0c86bf0eb1"
+  }
+}

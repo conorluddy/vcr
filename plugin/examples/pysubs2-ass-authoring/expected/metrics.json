@@ -1,0 +1,19 @@
+{
+  "all_passed": true,
+  "authored_ass_sha256": "59f52bd2013e5c3939b405789595a04414b9dde5ba8175770913b3473c6d254d",
+  "checks": {
+    "ass_has_style_and_events": true,
+    "ass_play_res": true,
+    "cli_left_input_unchanged": true,
+    "cli_vtt_header_and_cue": true,
+    "override_tags_survive_reload": true,
+    "shift_plus_2500_ms": true,
+    "srt_italic_becomes_tag": true,
+    "srt_line_break_becomes_ass_N": true,
+    "srt_three_cues": true,
+    "style_survives_reload": true,
+    "timings_ms_survive_reload": true
+  },
+  "converted_ass_sha256": "d6e976f205e770d3ca37226b646f2f3b81a7b9461840499a5a84f57870532a00",
+  "pysubs2": "1.9.1"
+}

@@ -43,7 +43,7 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 - Found via: CAD gap, neighbour of the `build123d` seed (OpenSCAD's new backend).
 
 ### Spark (`spark-splats`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/sparkjsdev/spark
 - Role: a three.js 3D Gaussian Splatting renderer from World Labs. `SplatMesh` is an `Object3D`, so splats sit in an ordinary three.js scene with meshes and a seek-driven camera. Reads PLY (and compressed PLY), SPZ, SPLAT, KSPLAT and SOG.
 - Category: A3. 3D, shaders and effects.

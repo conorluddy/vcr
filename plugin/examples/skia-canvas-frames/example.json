@@ -1,0 +1,8 @@
+{
+  "id": "skia-canvas-frames",
+  "title": "skia-canvas Canvas 2D frames to PNG and outlined SVG",
+  "summary": "Draw one Canvas 2D scene as a pure function of t in Node with skia-canvas, write PNG frames on the CPU and an outlined-text SVG from the same calls, byte-identical across processes.",
+  "status": "validated",
+  "tools": ["skia-canvas"],
+  "run": "./run.sh"
+}
