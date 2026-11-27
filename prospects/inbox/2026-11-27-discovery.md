@@ -57,7 +57,7 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 - Found via: gaussian-splatting topic, neighbour of the `splat-transform` seed.
 
 ### KTX-Software (`ktx-software`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/KhronosGroup/KTX-Software
 - Role: Khronos' reference KTX2 tools. The unified `ktx` front end (`ktx create`, `ktx encode`, `ktx info`, `ktx validate`) builds GPU-compressed textures with Basis Universal ETC1S or UASTC and zstd supercompression.
 - Category: A8. Physics, audio and 3D assets.
