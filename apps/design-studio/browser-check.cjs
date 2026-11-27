@@ -25,6 +25,7 @@ const assert = require("node:assert/strict");
     await page.waitForSelector("#tile19:enabled");
     await page.locator("#tile19").click();
     await page.locator("#mark").click();
+    await page.getByText("Mark options", { exact: true }).click();
     await page.getByLabel("Left %").fill("12");
     await page.getByLabel("Note (optional)").fill("Keep the margin");
     await page.locator("#keep").click();

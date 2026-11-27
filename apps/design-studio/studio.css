@@ -396,3 +396,65 @@ progress {
     max-height: 130px;
   }
 }
+.workspace:has(.stage) .toolbar {
+  gap: 4px;
+}
+.workspace:has(.stage) .toolbar button {
+  padding: 7px 10px;
+}
+.markform {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 12px 16px;
+}
+.mark-actions,
+.mark-options,
+.coordinates {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.mark-actions span {
+  flex: 1;
+}
+.markform summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 13px;
+  width: fit-content;
+  padding: 6px 0;
+}
+.mark-options {
+  padding-top: 6px;
+}
+.mark-options label {
+  font-size: 13px;
+  color: var(--muted);
+}
+.tile:hover .thumb,
+.tile:focus-visible .thumb {
+  outline: 1px solid var(--muted);
+  outline-offset: -1px;
+}
+@media (max-width: 700px) {
+  .inspect-head {
+    gap: 4px;
+  }
+  .inspect-head button {
+    padding: 7px 9px;
+  }
+  .inspect-head small {
+    font-size: 11px;
+  }
+  .markform {
+    padding: 8px 10px;
+  }
+  .mark-actions span {
+    font-size: 13px;
+  }
+  .workspace:has(.markform) .stage {
+    height: clamp(180px, 47dvh, 440px);
+  }
+}
