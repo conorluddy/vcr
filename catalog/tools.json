@@ -438,6 +438,77 @@
       "skill": "skills/audiowaveform/SKILL.md"
     },
     {
+      "id": "auto-editor",
+      "name": "auto-editor",
+      "category": "A5. Video and capture",
+      "tier": "candidate",
+      "role": "CLI that finds silent or static spans and exports the cuts as a timeline or rendered rough cut",
+      "summary": "CLI that cuts silent (`--edit audio`) or low-motion (`--edit motion`) spans from video or audio and renders the result or exports a timeline (v1 chunks, v3 JSON, Premiere XML, others). It writes the rough cut of a recorded take; it does not detect shots or edit timelines by hand.",
+      "use_when": [
+        "Cut dead air from recorded narration or a screen-capture take before pacing review",
+        "Export the cut points as a timeline for assembly with FFmpeg, instead of its own re-encode"
+      ],
+      "avoid_when": [
+        "Finding shot cuts in footage: pyscenedetect",
+        "Editing a timeline you write by hand: opentimelineio or mlt-melt",
+        "Final encoding: ffmpeg"
+      ],
+      "pairs_with": [
+        "ffmpeg-ffprobe",
+        "pyscenedetect",
+        "opentimelineio"
+      ],
+      "official_url": "https://github.com/WyattBlue/auto-editor",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "media-inspection"
+      ],
+      "license": "Unlicense",
+      "install": {
+        "macos": "python3 -m venv venv && venv/bin/pip install auto-editor==29.3.1",
+        "check_command": "auto-editor --version"
+      },
+      "examples": [
+        "auto-editor-silence-timeline"
+      ],
+      "notes": [
+        "2026-11-27: the lead said Homebrew 31.10.0; the PyPI launcher stops at 29.3.1 and downloads its native binary from GitHub on first run. Export names are v1, v3, premiere (not json); the -o extension does not choose the format."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "29.3.1",
+        "last_release": "2025-11-04",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Lead: repository pushed 2026-11-25 (not rechecked); Homebrew 31.10.0 is newer than PyPI 29.3.1, which was the tested version. Nothing catalogued cuts silence: pyscenedetect finds visual cuts, opentimelineio and mlt-melt edit timelines you write. Major versions change the CLI, so pin the version.",
+        "sources": [
+          "https://github.com/WyattBlue/auto-editor",
+          "https://pypi.org/project/auto-editor/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "29.3.1",
+            "command": "examples/auto-editor-silence-timeline/run.sh",
+            "result": "7 checks pass, repeat processes identical: on a generated 2 s tone, 3 s silence, 2 s tone clip, v1 chunks, v3 clips and Premiere XML cut exactly frames 60-150 (2.0-5.0 s), FFmpeg silencedetect agrees, rendered cut is 4.0 s. Python 3.12.2.",
+            "example": "examples/auto-editor-silence-timeline",
+            "scope": "Audio silence cuts on synthetic tones, threshold 0.04, margin 0; v1, v3, premiere exports; not speech, motion edit, 31.x, other exports or OTIO import; macOS arm64."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-26-discovery.md",
+      "skill": "skills/auto-editor/SKILL.md"
+    },
+    {
       "id": "babylon-js",
       "name": "Babylon.js",
       "category": "A3. 3D, shaders and effects",
@@ -8640,6 +8711,81 @@
       "skill": "skills/mido/SKILL.md"
     },
     {
+      "id": "mitsuba-3",
+      "name": "Mitsuba 3",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "candidate",
+      "role": "Python physically based path tracer with scalar CPU variants, fixed spp and seed, built-in scenes",
+      "summary": "Research renderer pip-installable as a wheel (mitsuba plus drjit). Scenes are Python dicts or XML; mi.render takes spp and seed and returns a float image. Variants include scalar_rgb, spectral and differentiable ones; LLVM and Metal variants exist but the LLVM probe failed on the fixture machine.",
+      "use_when": [
+        "A pip-installable, seed-and-spp-controlled path tracer for stills or look references",
+        "Spectral or differentiable rendering from Python"
+      ],
+      "avoid_when": [
+        "Rigged or animated scenes, meshes and the compositor: blender",
+        "Tiny text-only CSG scenes: pov-ray",
+        "Bitwise-reproducible pixels: not shown, see the evidence"
+      ],
+      "pairs_with": [
+        "blender",
+        "pov-ray",
+        "imagemagick"
+      ],
+      "official_url": "https://mitsuba.readthedocs.io",
+      "repository_url": "https://github.com/mitsuba-renderer/mitsuba3",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "ray-tracing",
+        "3d-rendering"
+      ],
+      "license": "BSD-3-Clause",
+      "install": {
+        "macos": "python3 -m venv venv && venv/bin/pip install mitsuba==3.9.1 numpy==2.5.5",
+        "check_command": "python3 -c \"import mitsuba; print(mitsuba.__version__)\""
+      },
+      "examples": [
+        "mitsuba-3-cornell-box"
+      ],
+      "notes": [
+        "2026-11-27: the lead said the licence needed verifying; the 3.9.1 wheel ships a BSD-3 licence file and a BSD classifier. The lead's 'uv pip install' was replaced by pip in a venv. numpy is not a dependency of the wheel but the Python array route needs it.",
+        "2026-11-27: on macOS arm64 the llvm_ad_* variants printed 'LLVM API initialization failed' (no LLVM library found); scalar_rgb works and renders multi-threaded."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "3.9.1",
+        "last_release": "2026-08-07",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "PyPI 3.9.1 (2026-08-07) installs in a venv on macOS arm64 Python 3.12 with drjit 1.5.0; BSD-3 per the wheel licence. It adds a scriptable path tracer with explicit spp and seed that neither blender (GUI-app route, scene files) nor pov-ray (text CSG) covers. Reproducibility is weaker than the lead implied: see evidence.",
+        "sources": [
+          "https://github.com/mitsuba-renderer/mitsuba3",
+          "https://mitsuba.readthedocs.io",
+          "https://pypi.org/project/mitsuba/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.9.1",
+            "command": "examples/mitsuba-3-cornell-box/run.sh",
+            "result": "scalar_rgb Cornell box 96x96, 16 spp, seed 7 renders with red left and dim green right walls; seed changes pixels, 256 spp is less noisy. FAILED: same seed is not bitwise identical (in process or across processes; max abs diff ~3e-8) and the green-wall ratio check (>2x) failed (0.0588 vs 0.05).",
+            "example": "examples/mitsuba-3-cornell-box",
+            "scope": "scalar_rgb only, macOS arm64, Python 3.12; seeded stats and ~1e-8 repeatability, not bitwise determinism; no LLVM, spectral, differentiable, animation or large scenes."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-26-discovery.md",
+      "skill": "skills/mitsuba-3/SKILL.md"
+    },
+    {
       "id": "mlt-melt",
       "name": "MLT / melt",
       "category": "A5. Video and capture",
@@ -9872,6 +10018,81 @@
       "skill": "skills/opencv-js/SKILL.md"
     },
     {
+      "id": "openexr",
+      "name": "OpenEXR (Python bindings and tools)",
+      "category": "A6. Image processing and colour",
+      "tier": "candidate",
+      "role": "Reference EXR library: write and read float multi-channel EXR from Python; header and check CLIs",
+      "summary": "The reference OpenEXR implementation. The PyPI `OpenEXR` wheel reads and writes scanline, tiled and deep EXR from Python with numpy arrays, with named channels, per-file compression (ZIP, PIZ, DWAA, B44 and others) and header attributes. The native package also ships exrheader, exrcheck, exrinfo and exrmetrics.",
+      "use_when": [
+        "Write or inspect float or half EXR (render passes, depth, masks) from a Python script with exact pixel control",
+        "Check what compression, channels and data window an EXR carries before a delivery step"
+      ],
+      "avoid_when": [
+        "Colour conversion, resize or compositing of EXR: openimageio-oiiotool",
+        "Raster work on 8-bit images: ImageMagick",
+        "Producing the passes: blender-background"
+      ],
+      "pairs_with": [
+        "openimageio-oiiotool",
+        "imagemagick",
+        "blender"
+      ],
+      "official_url": "https://openexr.com",
+      "repository_url": "https://github.com/AcademySoftwareFoundation/openexr",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "image-processing",
+        "media-inspection"
+      ],
+      "license": "BSD-3-Clause",
+      "install": {
+        "macos": "python3 -m venv output/venv && output/venv/bin/pip install OpenEXR==3.5.5 numpy",
+        "check_command": "python -c \"import OpenEXR; print(OpenEXR.__version__)\""
+      },
+      "examples": [
+        "openexr-python-roundtrip"
+      ],
+      "notes": [
+        "2026-11-27: the lead said Homebrew 3.5.4 and the tools alone; PyPI has OpenEXR 3.5.5 (uploaded 2026-11-23, Python >=3.11, BSD-3-Clause in the wheel metadata). The wheel has the Python module only, no exr* command-line tools.",
+        "2026-11-27: File.channels() groups R, G, B, A into one RGBA array and fails if they differ in pixel type (use separate_channels=True); File.header() must be copied before the file closes."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "3.5.5",
+        "last_release": "2026-11-23",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "PyPI 3.5.5 uploaded 2026-11-23; repository pushed 2026-11-17. It is the reference EXR implementation and the only catalogued route to exact float channel writes from code; oiiotool converts and composites but does not expose the library's header and compression control directly. The exr* CLIs (exrcheck, exrmetrics) were not exercised.",
+        "sources": [
+          "https://github.com/AcademySoftwareFoundation/openexr",
+          "https://openexr.com",
+          "https://pypi.org/project/OpenEXR/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.5.5",
+            "command": "examples/openexr-python-roundtrip/run.sh",
+            "result": "17 checks pass, repeat processes identical: float32 RGBA plus a depth.Z channel round-trip bit-exact with ZIP, PIZ and no compression; header compression matches; values up to 37.97 kept; half RGBA matches a float16 cast; a non-EXR file is rejected. Python 3.12.2, numpy 2.5.5.",
+            "example": "examples/openexr-python-roundtrip",
+            "scope": "Python wheel round trip of scanline files on 32x24 random data; not exrcheck/exrmetrics, tiled, deep or multipart files, lossy DWA/B44, or interop with other readers; macOS arm64."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-18-discovery.md",
+      "skill": "skills/openexr/SKILL.md"
+    },
+    {
       "id": "openimageio-oiiotool",
       "name": "OpenImageIO / oiiotool",
       "category": "A6. Image processing and colour",
@@ -10788,6 +11009,79 @@
       "skill": "skills/penrose/SKILL.md"
     },
     {
+      "id": "phiflow",
+      "name": "PhiFlow",
+      "category": "Physics, audio and 3D assets",
+      "tier": "candidate",
+      "role": "Python grid-based smoke and fluid simulator, stepped in a loop so fields save per frame",
+      "summary": "Python library (PhiFlow with the phiml backend layer) for grid-based 2D and 3D smoke and incompressible flow, also particles. You write the time loop (advect, add buoyancy, project) and read fields as arrays, so frames can be saved for a scene to render. NumPy runs on CPU; PyTorch, JAX and TensorFlow are optional.",
+      "use_when": [
+        "Smoke, ink or flow-field motion baked from Python as per-frame arrays, where splishsplash particles do not fit",
+        "Small 2D grid simulations on the NumPy backend, with no GPU and a deterministic rerun"
+      ],
+      "avoid_when": [
+        "Particle liquids and surface meshes: splishsplash",
+        "Rigid bodies and collisions: pymunk",
+        "Conserved-mass or exact-volume claims: the advection schemes are not conservative"
+      ],
+      "pairs_with": [
+        "splishsplash",
+        "pymunk"
+      ],
+      "official_url": "https://github.com/tum-pbs/PhiFlow",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "physics-simulation"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "python3 -m venv venv && venv/bin/pip install phiflow==3.4.0",
+        "check_command": "python -c \"import phi; print(phi.__version__)\""
+      },
+      "examples": [
+        "phiflow-smoke-2d"
+      ],
+      "notes": [
+        "2026-11-27: lead said uv pip install; plain pip in a venv works. The NumPy backend pulls in scipy and matplotlib; no torch or jax needed.",
+        "2026-11-27: lead version 3.4.0 (2025-08-02) confirmed on PyPI, MIT; it is still the latest release, so maintenance rests on repository commits not checked here.",
+        "2026-11-27: a fully closed box fails in make_incompressible with Diverged on the singular pressure solve; leave one side open. scipy SparseEfficiencyWarning prints each step."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "3.4.0",
+        "last_release": "2025-08-02",
+        "maintenance": "slow",
+        "verdict": "keep",
+        "rationale": "PyPI 3.4.0 uploaded 2025-08-02 (over 12 months), MIT per PyPI metadata; lead reports repository pushes in 2026, not verified here. Nothing catalogued does grid smoke or 2D flow from Python; splishsplash is SPH particles.",
+        "sources": [
+          "https://github.com/tum-pbs/PhiFlow",
+          "https://pypi.org/project/phiflow/",
+          "https://tum-pbs.github.io/PhiFlow/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.4.0",
+            "command": "examples/phiflow-smoke-2d/run.sh",
+            "result": "Partial: 8 of 9 predeclared checks pass. 64x64 buoyant smoke, 60 fixed steps, NumPy backend, Python 3.12.2: SHA-256 of 4 saved frames identical across processes, max divergence 1.6e-6, centroid rises 18.9 cells after inflow. Fails: mass drift after inflow under 2 percent (mass 94.8 to 103.3, range 14.4 percent).",
+            "example": "examples/phiflow-smoke-2d",
+            "scope": "NumPy backend only, 2D smoke, macOS arm64; determinism, divergence-free projection and frame saving pass; mass is not conserved (non-conservative advection); no other backends, 3D or rendering."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-27-discovery.md",
+      "skill": "skills/phiflow/SKILL.md"
+    },
+    {
       "id": "pikchr",
       "name": "Pikchr",
       "category": "A4. Vector, typography, diagrams and stills",
@@ -11307,6 +11601,78 @@
       "adapter_maturity": "none",
       "checked_at": "2026-10-26",
       "source": "specifications/spikes/browser-capture.md"
+    },
+    {
+      "id": "plutobook",
+      "name": "PlutoBook",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "HTML and CSS to PNG or PDF with no browser or JavaScript; Python wheel plutoprint",
+      "summary": "C++ paged HTML and CSS layout engine with a Python wheel, plutoprint, that bundles it. It renders an HTML string or file to a PNG at a chosen pixel size, or to PDF, with flexbox, wrapped text and rounded corners; no browser, no script execution and no CSS gradients on the tested build.",
+      "use_when": [
+        "Title cards, documents and text-heavy stills written as plain HTML and CSS, rendered without a browser",
+        "One PNG per frame where the page is a pure function of t and Chromium is unwanted"
+      ],
+      "avoid_when": [
+        "Pages that need JavaScript, CSS gradients or animation: playwright",
+        "JSX or React markup to SVG: satori; typeset documents from their own markup: typst"
+      ],
+      "pairs_with": [
+        "playwright",
+        "satori",
+        "typst"
+      ],
+      "official_url": "https://github.com/plutoprint/plutobook",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "typography",
+        "text-rendering"
+      ],
+      "license": "MPL-2.0",
+      "install": {
+        "macos": "python3 -m venv venv && venv/bin/pip install plutoprint==0.24.0",
+        "check_command": "python -c \"import plutoprint; print(plutoprint.plutobook_version_string())\""
+      },
+      "examples": [
+        "plutobook-html-png"
+      ],
+      "notes": [
+        "2026-11-27: the lead said plutoprint 0.23.0 and Homebrew PlutoBook 0.20.0; PyPI has plutoprint 0.24.0 (MIT, Python >=3.10, macOS arm64 wheel) bundling PlutoBook 0.21.0. The upstream library is MPL-2.0 per the lead (not re-checked); the wheel's own licence file is MIT.",
+        "2026-11-27: on the tested build a CSS linear-gradient or radial-gradient paints nothing (transparent), an unpainted background gives a transparent PNG, and inline <script> does not run."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "plutoprint 0.24.0 / PlutoBook 0.21.0",
+        "last_release": "2026-11-27",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "PyPI plutoprint 0.24.0 uploaded 2026-11-27 with an arm64 macOS wheel that needs no system install; the upstream repository was pushed 2026-11-19. It renders real HTML and CSS to bitmaps natively; playwright needs Chromium, satori covers a JSX subset to SVG, typst has its own markup. Limits found: no gradients, no JavaScript.",
+        "sources": [
+          "https://github.com/plutoprint/plutobook",
+          "https://pypi.org/project/plutoprint/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "plutoprint 0.24.0 (PlutoBook 0.21.0)",
+            "command": "examples/plutobook-html-png/run.sh",
+            "result": "6 gating checks pass, repeat processes identical: HTML/CSS title card (flexbox, wrapped text, rounded box) renders to 1920x1080 PNG, 5 frames in shuffled order equal sequential, pixels match. Observed: CSS gradients paint nothing (transparent PNG), inline script does not run.",
+            "example": "examples/plutobook-html-png",
+            "scope": "Solid-colour HTML/CSS to PNG, one frame per t, macOS arm64, Python 3.12; the original gradient check failed; not PDF, web fonts, images, other OS or cross-machine hashes."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-19-discovery.md",
+      "skill": "skills/plutobook/SKILL.md"
     },
     {
       "id": "pngquant",
@@ -11958,6 +12324,82 @@
       "source": "prospects/inbox/2026-11-18-discovery.md"
     },
     {
+      "id": "pygfx",
+      "name": "pygfx",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "candidate",
+      "role": "Python scene-graph 3D renderer on wgpu (Metal on macOS) with an offscreen canvas",
+      "summary": "Python render engine in the Three.js mould on wgpu-py: meshes, lines, points, text, volumes and PBR materials. With rendercanvas's offscreen canvas it renders to NumPy RGBA arrays without a window, so a scene can be a function of t in one Python process.",
+      "use_when": [
+        "Render a 3D scene from Python through a modern GPU API (Metal, Vulkan, D3D) without a browser",
+        "Draw meshes or point data from NumPy, trimesh or build123d output in the same process"
+      ],
+      "avoid_when": [
+        "Scientific meshes, volumes and analysis in Python: vedo",
+        "A browser scene captured by seeking: three-js",
+        "Offline path-traced or production shots: blender-background"
+      ],
+      "pairs_with": [
+        "vedo",
+        "three-js",
+        "trimesh",
+        "build123d"
+      ],
+      "official_url": "https://pygfx.org",
+      "repository_url": "https://github.com/pygfx/pygfx",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-rendering",
+        "model-loading"
+      ],
+      "license": "BSD-2-Clause",
+      "install": {
+        "macos": "python3 -m venv venv && venv/bin/pip install pygfx==0.18.0 wgpu==0.33.0 rendercanvas==3.0.1",
+        "check_command": "python -c \"import pygfx; print(pygfx.__version__)\""
+      },
+      "examples": [
+        "pygfx-offscreen-scene"
+      ],
+      "notes": [
+        "2026-11-27: the lead's version (0.18.0, PyPI 2026-11-17) and BSD-2-Clause matched the registry; PyPI lists Python >=3.11. Rotations use pylinalg (pygfx.linalg does not exist). Offscreen canvas is rendercanvas.offscreen.RenderCanvas; canvas.draw() returns the RGBA array.",
+        "2026-11-27: pre-1.0, so pin pygfx, wgpu and rendercanvas together. Pixel hashes are only claimed on one Apple M3 Pro Metal adapter; other GPUs may differ."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "0.18.0",
+        "last_release": "2026-11-17",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "PyPI 0.18.0 uploaded 2026-11-17, BSD-2-Clause, pure-Python wheels over wgpu-py. Nothing catalogued is a Python-native wgpu renderer: vedo is VTK, trimesh has no modern renderer, dawn-node-webgpu is Node. Offscreen rendering to arrays was verified on a machine without installing anything globally.",
+        "sources": [
+          "https://pygfx.org",
+          "https://github.com/pygfx/pygfx",
+          "https://pypi.org/project/pygfx/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.18.0",
+            "command": "examples/pygfx-offscreen-scene/run.sh",
+            "result": "9 checks pass: 24 frames of a lit cube and orbiting sphere at 320x180 from Python offscreen on Metal (Apple M3 Pro); repeat, seeded shuffled order, fresh renderer and a second process all give identical SHA-256 per frame; loop closes at t=2.0. wgpu 0.33.0, Python 3.12.2.",
+            "example": "examples/pygfx-offscreen-scene",
+            "scope": "Offscreen render to RGBA arrays is deterministic in t on one Apple M3 Pro Metal adapter; not other GPUs or drivers, glTF, text, volumes, post-processing, video assembly or large sizes."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-20-discovery.md",
+      "skill": "skills/pygfx/SKILL.md"
+    },
+    {
       "id": "pymunk",
       "name": "Pymunk",
       "category": "Discovery: research candidates",
@@ -12170,6 +12612,84 @@
       "checked_at": null,
       "source": "prospects/inbox/2026-11-21-discovery.md",
       "skill": "skills/pysubs2/SKILL.md"
+    },
+    {
+      "id": "pyvista",
+      "name": "PyVista",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "candidate",
+      "role": "Pythonic VTK wrapper that renders meshes off-screen to PNG with numpy image access",
+      "summary": "Python library over VTK for meshes, point clouds and volumes. Plotter(off_screen=True) renders a fixed camera and window size to a PNG or a numpy array with no window, and can write movies. Choose it over vedo when you want the larger API and numpy image return; both sit on VTK.",
+      "use_when": [
+        "Render a mesh or point cloud to a PNG or numpy array from Python with a fixed camera",
+        "Script scientific visualisation stills where the VTK route is already chosen",
+        "Read the rendered pixels back as an array for checks or compositing"
+      ],
+      "avoid_when": [
+        "Build a complete animated production scene: Blender",
+        "Do lightweight triangle-mesh processing only: Trimesh",
+        "Render an interactive browser-based VTK scene: vtk.js"
+      ],
+      "pairs_with": [
+        "vedo",
+        "trimesh",
+        "blender",
+        "ffmpeg-ffprobe"
+      ],
+      "official_url": "https://docs.pyvista.org",
+      "repository_url": "https://github.com/pyvista/pyvista",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-rendering",
+        "scientific-visualisation",
+        "3d-asset-processing"
+      ],
+      "license": "MIT (PyVista); VTK is BSD",
+      "install": {
+        "macos": "python3.12 -m venv venv && venv/bin/pip install pyvista==0.49.3",
+        "check_command": "python -c \"import pyvista; print(pyvista.__version__)\""
+      },
+      "examples": [
+        "pyvista-offscreen-render"
+      ],
+      "notes": [
+        "2026-11-27: the lead named uv pip install pyvista; a plain pip venv worked. Python >=3.10 required.",
+        "2026-11-27: off-screen rendering worked headless on macOS arm64 with no Xvfb, from an agent shell."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "0.49.3",
+        "last_release": "2026-11-24",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "PyPI 0.49.3 uploaded 2026-11-24, MIT per installed metadata, VTK BSD. Versus vedo, whose fixture only round-trips VTP, PyVista has a proven headless macOS render and returns pixels as a numpy array. It overlaps vedo, so keep it as the render-checked VTK route and vedo as the alternative; vtk-js is browser-only and open3d is a different stack.",
+        "sources": [
+          "https://github.com/pyvista/pyvista",
+          "https://docs.pyvista.org",
+          "https://pypi.org/project/pyvista/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "pyvista 0.49.3; VTK 9.7.2; CPython 3.12.13",
+            "command": "examples/pyvista-offscreen-render/run.sh",
+            "result": "Off-screen Plotter rendered an orange sphere to 960x540 PNG headless; two processes gave identical pixels, SHA-256 ca5bdeb8...d61a; sphere 524 px, centred, corners equal background. Two bounds failed first run and were replaced.",
+            "example": "examples/pyvista-offscreen-render",
+            "scope": "One lit sphere, fixed camera, SSAA, macOS arm64 headless; not other platforms, drivers, movies or textures. Two checks were redefined after a first-run failure."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-26-discovery.md",
+      "skill": "skills/pyvista/SKILL.md"
     },
     {
       "id": "raea",
@@ -16421,6 +16941,84 @@
       "checked_at": "2026-11-15",
       "source": "prospects/inbox/2026-11-15-discovery.md",
       "skill": "skills/vedo/SKILL.md"
+    },
+    {
+      "id": "verovio",
+      "name": "Verovio",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "MEI, MusicXML, Humdrum and ABC scores engraved to SVG with a native CLI, Python or WASM",
+      "summary": "Verovio is a C++ music engraver from RISM Digital. It reads MEI, MusicXML, Humdrum and ABC and writes SVG with the bundled Leipzig SMuFL font, plus MIDI and a timemap of note onsets for playback sync. It is a library or CLI, not an editor. Notation glyphs are SVG paths with semantic classes (note, notehead, measure); titles and lyrics are font-dependent <text>. Element ids are random unless xmlIdSeed is set.",
+      "use_when": [
+        "Print-quality engraved notation as an SVG layer from MusicXML, MEI, Humdrum or ABC",
+        "In-process Python or WASM engraving with no browser, and a timemap for syncing highlights to audio",
+        "Per-note styling: SVG notes carry note and notehead classes and stable ids when seeded"
+      ],
+      "avoid_when": [
+        "Reading or analysing symbolic music with no drawing: music21 or mido",
+        "Plain bars, chords or a piano roll: draw with svg or canvas-2d",
+        "A permissive licence is required for bundled code: Verovio is LGPL-3.0-only; OpenSheetMusicDisplay is BSD-3-Clause"
+      ],
+      "pairs_with": [
+        "music21",
+        "opensheetmusicdisplay",
+        "resvg"
+      ],
+      "official_url": "https://www.verovio.org",
+      "repository_url": "https://github.com/rism-digital/verovio",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "vector-authoring",
+        "typography",
+        "text-rendering"
+      ],
+      "license": "LGPL-3.0-only",
+      "install": {
+        "macos": "python3 -m venv .venv && .venv/bin/pip install verovio==6.4.1"
+      },
+      "examples": [
+        "verovio-musicxml-svg"
+      ],
+      "notes": [
+        "2026-11-27: Lead version 6.4.1 confirmed on PyPI; installed the arm64 wheel into a venv, no brew.",
+        "2026-11-27: Default SVG ids are random per process, so output differs every run; set the xmlIdSeed option for byte-identical output.",
+        "2026-11-27: resvg clipped the title (text-anchor middle on a nested tspan); lyrics were fine.",
+        "2026-11-27: LGPL-3.0-only: calling the library or CLI as a dependency is the low-friction route; check obligations before bundling it."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "6.4.1",
+        "last_release": "2026-11-03",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Lead dated 2026-11-19: release 6.4.1 (2026-11-03), repository pushed 2026-11-18, LGPL-3.0-only (free software). Engraves four score formats to SVG; music21 and mido do not draw. Python wheel installs without system software.",
+        "sources": [
+          "https://github.com/rism-digital/verovio",
+          "https://pypi.org/project/verovio/",
+          "https://www.verovio.org"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "6.4.1",
+            "command": "examples/verovio-musicxml-svg/run.sh",
+            "result": "4-bar MusicXML to SVG via Python wheel in venv, twice in separate processes: identical only with xmlIdSeed=1 (default ids random, check failed without it); 1 page, 4 measures, 10 notes, 10 timemap note-ons, 10 <text>; resvg 0.47.0 PNG 1800x366 inspected (title clipped by resvg).",
+            "example": "examples/verovio-musicxml-svg",
+            "scope": "One 4-bar MusicXML melody, Python wheel, macOS arm64; not MEI/Humdrum/ABC, CLI, WASM, MIDI, fonts, multi-page, Chromium or note animation."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "skill": "skills/verovio/SKILL.md",
+      "source": "prospects/inbox/2026-11-19-discovery.md"
     },
     {
       "id": "vhs",

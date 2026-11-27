@@ -10,6 +10,8 @@ ffmpeg -v error -y -f lavfi -i "sine=frequency=440:duration=2" -f lavfi -i "anul
   -f lavfi -i "sine=frequency=660:duration=2" -f lavfi -i "testsrc=size=320x240:rate=30:duration=7" \
   -filter_complex "[0][1][2]concat=n=3:v=0:a=1,aresample=48000[a]" -map 3:v -map "[a]" \
   -c:v libx264 -pix_fmt yuv420p -c:a aac -t 7 output/in.mp4
+# The PyPI package fetches its native binary on first use and prints progress; warm it up so the checked runs see only the version.
+output/venv/bin/auto-editor --version > /dev/null 2>&1 || true
 "$PYTHON" check.py > output/first.json
 "$PYTHON" check.py > output/second.json
 diff output/first.json output/second.json

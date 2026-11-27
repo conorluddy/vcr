@@ -1,0 +1,38 @@
+{
+  "variant": "scalar_rgb",
+  "mitsuba": "3.9.1",
+  "size": 96,
+  "spp": 16,
+  "seed": 7,
+  "mean_rgb": [
+    0.2409,
+    0.1418,
+    0.0603
+  ],
+  "left_rgb": [
+    0.1356,
+    0.0207,
+    0.0089
+  ],
+  "right_rgb": [
+    0.05,
+    0.0588,
+    0.0098
+  ],
+  "checks": {
+    "version_3_9_1": true,
+    "shape_96x96x3": true,
+    "finite": true,
+    "same_seed_bitwise_identical_in_process": false,
+    "same_seed_max_abs_diff_below_1e-6_in_process": true,
+    "different_seed_differs": true,
+    "left_wall_red_right_wall_green": false,
+    "mean_in_plausible_range": true,
+    "more_spp_less_noise": true
+  },
+  "all_passed": false
+}
+{
+  "bitwise_identical": false,
+  "max_abs_diff_below_1e-6": true
+}
