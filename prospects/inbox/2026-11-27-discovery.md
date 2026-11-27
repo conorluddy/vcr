@@ -85,7 +85,7 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 - Found via: simulation gap, neighbour of the `rapier`, `matter-js` and `pymunk` records.
 
 ### DeepFilterNet (`deepfilternet`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/Rikorose/DeepFilterNet
 - Role: real-time speech enhancement (noise suppression) for 48 kHz audio, shipped as a prebuilt Rust CLI (`deep-filter in.wav`) with no Python dependency, plus a Python package.
 - Category: A8. Physics, audio and 3D assets.

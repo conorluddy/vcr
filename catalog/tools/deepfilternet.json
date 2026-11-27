@@ -1,0 +1,73 @@
+{
+  "id": "deepfilternet",
+  "name": "DeepFilterNet",
+  "category": "Discovery: conversation candidates",
+  "tier": "candidate",
+  "role": "Speech noise suppression (48 kHz)",
+  "official_url": "https://github.com/Rikorose/DeepFilterNet",
+  "repository_url": "https://github.com/Rikorose/DeepFilterNet",
+  "automation_route": "native-cli-or-scripting",
+  "install": {
+    "macos": "Download the pinned deep-filter release binary into a project directory (examples/deepfilternet-speech-denoise/run.sh does this inside output/, SHA-256 checked); no PATH install.",
+    "check_command": "deep-filter -V"
+  },
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-11-27: Lead differed: latest release is v0.5.6 (2023-08-31); a darwin aarch64 binary exists in its assets (lead said unverified); release assets carry no published digest, so the fixture pins its own SHA-256.",
+    "2026-11-27: Model weights are covered by the README licence section (MIT or Apache-2.0 at your option, 'all code and model weights'); the deep-filter binary embeds the default DeepFilterNet model. Training-data terms not checked.",
+    "2026-11-27: Evidence partial: SNR improved 12.3 dB on say speech plus white noise, but the output is 1440 samples shorter than the input even with -D (KNOWN FAIL, kept)."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.5.6",
+        "command": "examples/deepfilternet-speech-denoise/run.sh",
+        "result": "4.7 s say speech (48 kHz mono) plus seeded white noise at 5.0 dB SNR through deep-filter -D: SNR vs clean 17.3 dB, +12.3 dB (floor +8.0, passed). 48 kHz mono 16-bit output; two runs byte-identical. KNOWN FAIL: output 223723 samples vs 225163 in (1440 short, 30 ms) despite -D.",
+        "example": "examples/deepfilternet-speech-denoise",
+        "scope": "Partial: one synthetic-noise SNR gain on say speech, macOS arm64, pinned binary, gain-aligned SNR on the shared prefix; output length check fails (KNOWN FAIL); real noise and recordings untested."
+      }
+    ]
+  },
+  "examples": [
+    "deepfilternet-speech-denoise"
+  ],
+  "skill": "skills/deepfilternet/SKILL.md",
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-27",
+  "source": "prospects/inbox/2026-11-27-discovery.md",
+  "summary": "Rust CLI (deep-filter) and Python package that suppress background noise in 48 kHz speech with a small neural model, using prebuilt release binaries. Cleans narration before loudness normalisation.",
+  "use_when": [
+    "Clean noisy voice-over or screen-recording narration before normalising",
+    "Reduce steady broadband noise (hiss, fans) in speech"
+  ],
+  "avoid_when": [
+    "Separate music stems: demucs",
+    "Fixed EQ, gate or compression chains: sox or pedalboard",
+    "Music or non-speech sound: it is trained for speech"
+  ],
+  "pairs_with": [
+    "ffmpeg-normalize",
+    "sox",
+    "demucs",
+    "pedalboard"
+  ],
+  "license": "MIT or Apache-2.0 at your option, code and model weights (upstream README, checked 2026-11-27); training-data, input and output rights not assessed",
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard-deepfilternet",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Free-software code and weights, official macOS arm64 binary with no Python needed, a clear gap beside sox and pedalboard. Latest release is old (2023) though the repository is still pushed to; pin the binary.",
+    "sources": [
+      "https://github.com/Rikorose/DeepFilterNet",
+      "https://github.com/Rikorose/DeepFilterNet/releases/tag/v0.5.6"
+    ]
+  }
+}
