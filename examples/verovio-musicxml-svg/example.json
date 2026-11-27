@@ -1,0 +1,8 @@
+{
+  "id": "verovio-musicxml-svg",
+  "title": "Verovio MusicXML to SVG score",
+  "summary": "Engrave a MusicXML melody to SVG with the Verovio Python wheel in a local venv, check structure, timemap and byte-identity across processes (with a fixed xmlIdSeed), and rasterise it with resvg.",
+  "status": "validated",
+  "tools": ["verovio"],
+  "run": "./run.sh"
+}
