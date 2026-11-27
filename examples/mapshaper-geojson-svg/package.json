@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-mapshaper-geojson-svg",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "mapshaper": "0.8.13"
+  }
+}
