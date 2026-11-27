@@ -141,7 +141,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: renderer keyword dedupe sweep (lower-priority "reproducible environment pinning" area, since it is a pinned wheel).
 
 ### PyVista (`pyvista`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/pyvista/pyvista
 - Role: a Pythonic VTK wrapper for meshes, volumes and scientific plots, with off-screen `Plotter(off_screen=True)` screenshots and movie writing.
 - Category: A8. Physics, audio and 3D assets.

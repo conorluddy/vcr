@@ -1,0 +1,8 @@
+{
+  "id": "pyvista-offscreen-render",
+  "title": "PyVista off-screen sphere render",
+  "summary": "Python venv: PyVista Plotter(off_screen=True) renders a lit orange sphere with a fixed camera and SSAA to a 960x540 PNG with no window; pixel hash and geometry checks repeat across two processes.",
+  "status": "validated",
+  "tools": ["pyvista"],
+  "run": "./run.sh"
+}
