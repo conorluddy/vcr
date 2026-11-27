@@ -127,7 +127,7 @@ This is the second W48 run. The first W48 digest (2026-11-23, PR #233) is merged
 - Found via: GitHub topic search `topic:usd`, where it appeared next to the USD results.
 
 ### osm-static-maps (`osm-static-maps`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/jperelli/osm-static-maps
 - Role: a Node library, CLI and server that renders a static map image from OpenStreetMap tiles, with GeoJSON overlays, markers and polylines. It renders with Leaflet in headless Chrome.
 - Category: Discovery: research candidates. This is a maps gap area.
