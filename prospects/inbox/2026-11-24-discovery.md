@@ -57,7 +57,8 @@ This is the second W48 run. The first W48 digest (2026-11-23, PR #233) is merged
 - Found via: GitHub topic search `topic:ttml`, a caption standards gap area.
 
 ### ctc-forced-aligner (`ctc-forced-aligner`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+  Default weights are CC-BY-NC-4.0 and 1.26 GB; revisit with a free checkpoint under 1 GB.
 - URL: https://github.com/MahmoudAshraf97/ctc-forced-aligner
 - Role: a Python CLI and library that aligns known text to audio with a CTC model, at word, sentence or character level. It covers 1,130 languages, including English, Arabic, Russian and German, and writes JSON segments.
 - Category: Speech and lyric alignment.

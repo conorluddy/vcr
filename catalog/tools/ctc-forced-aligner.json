@@ -1,0 +1,56 @@
+{
+  "id": "ctc-forced-aligner",
+  "name": "ctc-forced-aligner",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Align known text to audio with a CTC model, word-timed JSON",
+  "official_url": "https://github.com/MahmoudAshraf97/ctc-forced-aligner",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-11-27: deferred, no fixture. The default model MahmoudAshraf/mms-300m-1130-forced-aligner is CC-BY-NC-4.0 (Hugging Face metadata) and model.safetensors is 1.26 GB, so it fails both the licence and size rules for a worker fixture. Revisit if a freely licensed alignment checkpoint under 1 GB is confirmed to work with the tool, or if the person approves the NC download for private use.",
+    "2026-11-27: lead said 1.0.2 on PyPI; repository HEAD 277720f (2026-11-24) is newer and the README installs from git. Code licence confirmed BSD-2-Clause by GitHub.",
+    "Claim planned if revived: align a known transcript to macOS say speech, word starts in order within a predeclared tolerance; compare with echogarden and whisperx (whisperx-word-timing: 10/10 within 0.20 s)."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-27",
+  "source": "prospects/inbox/2026-11-24-discovery.md",
+  "summary": "Python CLI and library that aligns a known transcript to audio with a CTC model at word, sentence or character level and writes JSON segments. It needs no pronunciation dictionary and covers 1,130 languages. The default model is non-commercial licensed and 1.26 GB, which limits use.",
+  "use_when": [
+    "Time a known script to narration in many languages, no dictionary; non-commercial weights"
+  ],
+  "avoid_when": [
+    "Need commercial-safe weights out of the box: the default model is CC-BY-NC-4.0",
+    "Need transcription as well as alignment: use whisperx"
+  ],
+  "pairs_with": [
+    "whisperx",
+    "ffmpeg-ffprobe"
+  ],
+  "license": "BSD-2-Clause (code); default model weights CC-BY-NC-4.0, checked separately",
+  "install": {
+    "macos": "pip install git+https://github.com/MahmoudAshraf97/ctc-forced-aligner.git in a venv; needs FFmpeg; model downloads required",
+    "check_command": "ctc-forced-aligner --help"
+  },
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard-ctc-forced-aligner",
+    "version_seen": "1.0.2 (PyPI); repository HEAD 277720f",
+    "last_release": "2025-02-09",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Code is BSD-2-Clause and the repository was pushed 2026-11-24, but the default weights are CC-BY-NC-4.0 and 1.26 GB, so no fixture was run. Kept as a candidate with the deferral reason recorded.",
+    "sources": [
+      "https://github.com/MahmoudAshraf97/ctc-forced-aligner",
+      "https://huggingface.co/MahmoudAshraf/mms-300m-1130-forced-aligner"
+    ]
+  }
+}
