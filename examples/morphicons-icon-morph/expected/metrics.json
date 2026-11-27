@@ -1,0 +1,40 @@
+{
+  "subpaths": 3,
+  "frames": [
+    {
+      "progress": 0,
+      "commands": 192,
+      "min": 4,
+      "max": 20,
+      "sha256": "aaa00365448d1979"
+    },
+    {
+      "progress": 0.25,
+      "commands": 192,
+      "min": 4.04,
+      "max": 19.96,
+      "sha256": "4683a98a00483481"
+    },
+    {
+      "progress": 0.5,
+      "commands": 192,
+      "min": 4.39,
+      "max": 19.61,
+      "sha256": "bdc37a0dbab56512"
+    },
+    {
+      "progress": 0.75,
+      "commands": 192,
+      "min": 5.05,
+      "max": 18.95,
+      "sha256": "e312e23b4caa1aca"
+    },
+    {
+      "progress": 1,
+      "commands": 192,
+      "min": 6,
+      "max": 18,
+      "sha256": "79444d03a6798589"
+    }
+  ]
+}

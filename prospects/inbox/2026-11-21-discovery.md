@@ -99,7 +99,7 @@ This is the fourth W47 run. Earlier runs this week covered shaders, simulation, 
 - Found via: GitHub topic search `subtitle-editor` and the `webvtt` neighbour sweep.
 
 ### morphicons (`morphicons`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/guillermolg00/morphicons
 - Role: morphs any icon into any other, stroked or filled (Lucide, Tabler, Heroicons, Material Symbols and Phosphor on a 24×24 grid), with React, Vue, Svelte and React Native bindings plus a `morphicons/dom` route.
 - Category: A2. Animation and authored assets.
