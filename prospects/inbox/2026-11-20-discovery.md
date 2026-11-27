@@ -112,7 +112,8 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `sprite-sheet`.
 
 ### simvyn (`simvyn`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): iOS simulator tooling, baguette already covers simulator capture. Revisit if baguette proves insufficient.
 - URL: https://github.com/pranshuchittora/simvyn
 - Role: one CLI (and local dashboard) over iOS Simulators, Android emulators and USB devices: list, boot, erase, screenshot and record.
 - Category: A5. Video and capture (app-preview and device capture gap).

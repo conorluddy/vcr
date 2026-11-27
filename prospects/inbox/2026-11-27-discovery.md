@@ -141,7 +141,8 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 - Found via: diagrams area, neighbour of `d2` and `graphviz`.
 
 ### libfive (`libfive`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): CMake source build, MacPorts only; manifold and occt-wasm cover solids. Revisit with an approved install window.
 - URL: https://github.com/libfive/libfive
 - Role: a functional-representation (SDF) solid-modelling kernel with Python bindings and a standard library of shapes; meshes implicit models to STL with feature-preserving dual contouring and renders 2D slices.
 - Category: A8. Physics, audio and 3D assets.

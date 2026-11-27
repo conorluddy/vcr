@@ -113,7 +113,8 @@ This is the fourth W47 run. Earlier runs this week covered shaders, simulation, 
 - Found via: GitHub topic search `icons`.
 
 ### go-astisub (`go-astisub`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): Go install with unverified CLI path; pysubs2 now covers subtitle authoring and conversion.
 - URL: https://github.com/asticode/go-astisub
 - Role: Go library for parsing, editing and writing subtitles in SRT, SSA/ASS, EBU STL, TTML, WebVTT and teletext.
 - Category: Caption compliance.

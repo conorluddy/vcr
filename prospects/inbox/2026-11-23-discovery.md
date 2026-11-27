@@ -85,7 +85,8 @@ This is the first W48 run. The 19 earlier digests (2026-11-01 to 2026-11-22) alr
 - Found via: keyword search `frame-accurate in:description`.
 
 ### MapStage (`mapstage`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): an agent skill folder, not a tool with an automation route. Revisit only as skill inspiration.
 - URL: https://github.com/hopechen067/MapStage
 - Role: a narrative-map stage for historical explainer videos. A `story.json` file sets places, routes, labels, camera moves and cards over a MapLibre GL JS 5.6.0 map in an antique parchment style. It exposes a time-based `seek(t)` contract for frame-by-frame capture with Playwright, HyperFrames or Remotion, and ships a style tuner and a `verify.mjs` static check.
 - Category: A4. Vector, typography, diagrams and stills (maps), under the proposed "maps and geo motion" grouping.
@@ -99,7 +100,8 @@ This is the first W48 run. The 19 earlier digests (2026-11-01 to 2026-11-22) alr
 - Found via: keyword search `maplibre video export in:description,readme`.
 
 ### Alpha-Gated Edge Despill (`aged-despill`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): from-source research code, no release. Revisit if packaged.
 - URL: https://github.com/AdolphGong/aged-despill
 - Role: a zero-parameter chroma-key spill suppressor that changes only edge pixels (0 < α < 1) where green or blue is the maximum channel. It ships a Python (NumPy/Cython) `aged.despill(rgb, alpha, screen_type=...)` and a GLSL shader.
 - Category: A6. Image processing and colour.

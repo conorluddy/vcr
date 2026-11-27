@@ -5,6 +5,7 @@
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import tgpu, { d } from "typegpu";
+import { div } from "typegpu/std";
 import { create, globals } from "webgpu";
 
 Object.assign(globalThis, globals);
@@ -31,13 +32,13 @@ const vertexMain = tgpu.vertexFn({ in: { vertexIndex: d.builtin.vertexIndex }, o
   ({ vertexIndex }) => {
     "use gpu";
     const corners = [d.vec2f(-1, -1), d.vec2f(3, -1), d.vec2f(-1, 3)];
-    return { pos: d.vec4f(corners[vertexIndex], 0, 1) };
+    return { pos: d.vec4f(corners[vertexIndex]!, 0, 1) };
   },
 );
 
 const fragmentMain = tgpu.fragmentFn({ in: { position: d.builtin.position }, out: d.vec4f })(({ position }) => {
   "use gpu";
-  const uv = position.xy / params.$.size;
+  const uv = div(position.xy, params.$.size);
   return d.vec4f(uv.x, uv.y, params.$.time, 1);
 });
 

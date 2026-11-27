@@ -43,7 +43,8 @@ This is the third W48 run. The 2026-11-23 digest (PR #233) and the 2026-11-24 di
 - Found via: GitHub topic search `topic:bezier`.
 
 ### Neothesia CLI (`neothesia-cli`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): macOS install unverified, no formula; build from source. Revisit if a macOS release appears.
 - URL: https://github.com/PolyMeilex/Neothesia
 - Role: a MIDI visualiser in Rust and wgpu, with a separate `neothesia-cli` recorder. The recorder takes a MIDI file, an optional SoundFont, a width and a height, renders the falling-notes waterfall and keyboard offscreen, synthesises audio with oxisynth and encodes a video through an FFmpeg encoder crate.
 - Category: Discovery: research candidates.
@@ -127,7 +128,8 @@ This is the third W48 run. The 2026-11-23 digest (PR #233) and the 2026-11-24 di
 - Found via: GitHub topic search `topic:halftone`.
 
 ### Practical-RIFE (`practical-rife`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): clone plus manual model download; frame interpolation not a current VCR job. Revisit with an approved model download.
 - URL: https://github.com/hzwer/Practical-RIFE
 - Role: a Python frame-interpolation script (`inference_video.py`). It multiplies frame rate (`--multi=2`, `--exp`) for a video or a folder of numbered PNGs, with `--fps`, `--scale` and `--ext`.
 - Category: A5. Video and capture.
