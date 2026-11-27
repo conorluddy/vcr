@@ -11993,6 +11993,82 @@
       "skill": "skills/segment-anything/SKILL.md"
     },
     {
+      "id": "shaders-smaa",
+      "name": "shaders-smaa (glsl-smaa, wgsl-smaa)",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "candidate",
+      "role": "SMAA antialiasing passes as GLSL and WGSL shader strings for raw WebGL and WebGPU renderers",
+      "summary": "glsl-smaa 4.0.0 ships the SMAA edges, weights and blend shaders and the reference lookup textures as ES module strings; wgsl-smaa 1.0.0 is the WGSL port. You wire three framebuffer passes yourself in any raw WebGL renderer. Its strength is SMAA outside a Three.js composer. 1x mode is spatial only, so each frame depends only on its input and seeks cleanly; T2x is history-dependent.",
+      "use_when": [
+        "Aliased edges in a raw WebGL, regl, twgl or ogl scene with no antialiasing pass",
+        "Over postprocessing's SMAA when the scene does not use a Three.js composer",
+        "Post-process antialiasing where MSAA is unavailable, such as on a render-to-texture target"
+      ],
+      "avoid_when": [
+        "A Three.js scene: postprocessing or react-three-postprocessing bring SMAA with a composer",
+        "Alpha-keyed output: edge detection reads colour, and alpha is untested here",
+        "Seek-driven capture with T2x: it blends the previous frame, so use 1x"
+      ],
+      "pairs_with": [
+        "webgl",
+        "regl",
+        "twgl",
+        "ogl",
+        "playwright",
+        "postprocessing"
+      ],
+      "official_url": "https://github.com/dmnsgn/shaders-smaa",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "effects",
+        "shaders"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add glsl-smaa"
+      },
+      "notes": [
+        "2026-11-27: wgsl-smaa 1.0.0 (WebGPU) is untested; the fixture covers glsl-smaa only. Quality against postprocessing's SMAA was not compared pixel for pixel.",
+        "2026-11-27: The README warns of a flipped y sign in WebGL T2x jitter and that alpha is overwritten when reprojection is on; neither was exercised."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "4.0.0",
+        "last_release": "2026-09-24",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "glsl-smaa 4.0.0 and wgsl-smaa 1.0.0 published 2026-09-24; MIT; the only catalogue route to SMAA outside a Three.js composer. Shaders only: the caller writes the pass wiring. No upstream tests against the reference are described.",
+        "sources": [
+          "https://github.com/dmnsgn/shaders-smaa",
+          "https://www.npmjs.com/package/glsl-smaa"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "examples": [
+        "glsl-smaa-capture"
+      ],
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.0.0",
+            "command": "examples/glsl-smaa-capture/run.sh",
+            "result": "90 frames at 1280x720; shuffled hashes equal sequential; frame 45 unique colours 4 aliased half vs 455 SMAA half, alpha min 1. glsl-smaa 4.0.0, Playwright 1.64.1, Chromium 156.0.8078.4, Node 22.19.0, WebGL1; 4x crop inspected: staircases gone, geometry intact.",
+            "example": "examples/glsl-smaa-capture",
+            "scope": "SMAA 1x (HIGH, luma edges) on an opaque raw WebGL1 scene, macOS arm64 Chromium; not wgsl-smaa, T2x, alpha, depth edges, WebGL2 or comparison with postprocessing."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-23-discovery.md",
+      "skill": "skills/shaders-smaa/SKILL.md"
+    },
+    {
       "id": "sharp",
       "name": "Sharp",
       "category": "A6. Image processing and colour",

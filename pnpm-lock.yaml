@@ -371,6 +371,22 @@ importers:
         specifier: ^4.23.15
         version: 4.23.15
 
+  examples/glsl-smaa-capture:
+    dependencies:
+      '@vcr/capture':
+        specifier: workspace:*
+        version: link:../../packages/capture
+      glsl-smaa:
+        specifier: 4.0.0
+        version: 4.0.0
+      playwright:
+        specifier: 1.64.1
+        version: 1.64.1
+    devDependencies:
+      tsx:
+        specifier: 4.23.15
+        version: 4.23.15
+
   examples/glslify-bundle:
     dependencies:
       glsl-easings:
@@ -5317,6 +5333,10 @@ packages:
 
   glsl-shader-name@1.0.0:
     resolution: {integrity: sha512-OtHon0dPCbJD+IrVA1vw9QDlp2cS/f9z8X/0y+W7Qy1oZ3U1iFAQUEco2v30V0SAlVLDG5rEfhjEfc3DKdGbFQ==}
+
+  glsl-smaa@4.0.0:
+    resolution: {integrity: sha512-kBflPqpol3fJlCDqsoOLye0yQazQq8lv1u2AnxSOlA2IKjZSaoLDuKE3MjyNC2fbYIYTsMF31m8CztTgiNvYcg==}
+    engines: {node: '>=22.0.0', snowdev: '>=3.0.0-alpha.3'}
 
   glsl-token-assignments@2.0.2:
     resolution: {integrity: sha512-OwXrxixCyHzzA0U2g4btSNAyB2Dx8XrztY5aVUCjRSh4/D0WoJn8Qdps7Xub3sz6zE73W3szLrmWtQ7QMpeHEQ==}
@@ -11697,6 +11717,8 @@ snapshots:
     dependencies:
       atob-lite: 1.0.0
       glsl-tokenizer: 2.1.5
+
+  glsl-smaa@4.0.0: {}
 
   glsl-token-assignments@2.0.2: {}
 

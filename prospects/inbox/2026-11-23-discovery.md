@@ -15,7 +15,7 @@ This is the first W48 run. The 19 earlier digests (2026-11-01 to 2026-11-22) alr
 ## Leads
 
 ### shaders-smaa: glsl-smaa and wgsl-smaa (`shaders-smaa`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/dmnsgn/shaders-smaa
 - Role: SMAA (Enhanced Subpixel Morphological Antialiasing) post-processing passes for raw WebGL and WebGPU. They ship as ES module strings and as plain shader files, with the reference area and search lookup textures. The passes are edges, weights and blend, plus a resolve pass for T2x.
 - Category: A3. 3D, shaders and effects.
