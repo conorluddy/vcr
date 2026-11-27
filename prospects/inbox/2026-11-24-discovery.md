@@ -29,7 +29,7 @@ This is the second W48 run. The first W48 digest (2026-11-23, PR #233) is merged
 - Found via: GitHub topic search `topic:openscad`, then dedupe against the catalogue and every inbox digest.
 
 ### Montreal Forced Aligner (`montreal-forced-aligner`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://montrealcorpustools.github.io/Montreal-Forced-Aligner/ (repository: https://github.com/MontrealCorpusTools/Montreal-Forced-Aligner)
 - Role: a command-line tool, built on Kaldi, that aligns a known transcript to audio. It gives word-level and phone-level timings.
 - Category: Speech and lyric alignment. This is the category `syncalong` uses.
