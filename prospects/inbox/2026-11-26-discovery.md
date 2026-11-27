@@ -57,7 +57,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: neighbour of the `canvaskit-skia` seed.
 
 ### Jolt Physics (JoltPhysics.js) (`jolt-physics-js`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/jrouwe/JoltPhysics.js (engine: https://github.com/jrouwe/JoltPhysics)
 - Role: WASM and JavaScript bindings for the Jolt rigid-body and soft-body physics engine. The engine lists "Soft body simulation (e.g. a soft ball or piece of cloth)" with edge, bend and tetrahedron-volume constraints.
 - Category: A8. Physics, audio and 3D assets.
