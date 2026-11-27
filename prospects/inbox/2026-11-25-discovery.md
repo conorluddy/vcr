@@ -99,7 +99,7 @@ This is the third W48 run. The 2026-11-23 digest (PR #233) and the 2026-11-24 di
 - Found via: dedupe sweep for openly-licensed asset APIs, a lower-priority area.
 
 ### Clipper2 (`clipper2`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/AngusJohnson/Clipper2 (WASM port on npm: `clipper2-wasm`)
 - Role: a polygon library for boolean operations (union, difference, intersection, XOR), offsetting (inflate and deflate with miter, round and square joins), Minkowski sums and, since 2.0, constrained Delaunay triangulation.
 - Category: A4. Vector, typography, diagrams and stills.

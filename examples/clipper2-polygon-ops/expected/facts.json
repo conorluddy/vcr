@@ -1,0 +1,15 @@
+{
+  "precision": 2,
+  "arcSegments": 96,
+  "areaStar": 9404.56,
+  "areaCircle": 9496.53,
+  "areaUnion": 14727.39,
+  "areaOutset": 23298.37,
+  "areaInset": 9531.12,
+  "areaDifference": 21098.5,
+  "ringsUnion": 1,
+  "ringsOutset": 1,
+  "ringsDifference": 2,
+  "verticesUnion": 79,
+  "verticesOutset": 156
+}
