@@ -15,7 +15,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 ## Leads
 
 ### tippecanoe (`tippecanoe`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/felt/tippecanoe
 - Role: a CLI that builds vector tilesets from GeoJSON, FlatGeobuf or CSV points and writes `.mbtiles` or `.pmtiles` directly (`-o file.pmtiles`).
 - Category: Discovery: research candidates (the maps group, beside `chiitiler` and `maplibre-native`).
