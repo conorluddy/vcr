@@ -115,7 +115,8 @@ This is the fifth W47 run. Earlier W47 runs covered shaders, maps, provenance, d
 - Found via: gap search (simulation beyond rigid bodies).
 
 ### zpup (`zpup`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): 11 days old, one author, API still moving, overlaps heerich. Revisit after stable releases.
 - URL: https://github.com/rxolve/zpup
 - Role: describe a small flat-shaded pseudo-3D scene as JSON, then `renderSvg(scene)` returns a static SVG from any angle without a DOM. `renderSpinSvg` makes a SMIL turntable. An MCP server ships as `@zpup/mcp`.
 - Category: A4. Vector, typography, diagrams and stills.
