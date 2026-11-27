@@ -29,7 +29,8 @@ This is the fourth W47 run. Earlier runs this week covered shaders, simulation, 
 - Found via: GitHub topic search `webvtt`.
 
 ### Poly Haven API (`polyhaven-api`) — 🆕 new category: openly licensed asset sources — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+  Reason (2026-11-27): the catalogue holds software tools behind the free-software gate; Poly Haven is a hosted service (assets CC0, API terms free incl. commercial but with required attribution and a unique User-Agent; no API source licence stated). ADR 0011 puts assets in a workspace library needing rights evidence, and the Layer 1 asset store is undesigned, so an asset-source category has no home yet. Revisit when the asset-store design lands; fixture plan: pin one 1k HDRI by id+resolution via /files/{id}, check MD5 and CC0 via /info/{id}.
 - URL: https://polyhaven.com/our-api (base `https://api.polyhaven.com`)
 - Role: a keyless JSON API that lists Poly Haven's CC0 HDRIs, PBR textures and models (`/assets`) and returns per-file download URLs, sizes and MD5 hashes (`/files/{id}`).
 - Category: new category, openly licensed asset sources. A9 is the closest existing category.
