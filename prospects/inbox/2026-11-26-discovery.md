@@ -71,7 +71,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: simulation gap, a neighbour of the `rapier` seed.
 
 ### mapshaper (`mapshaper`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/mbloch/mapshaper
 - Role: a CLI (`mapshaper`, plus `mapshaper-xl` for large files) that edits Shapefile, GeoJSON, TopoJSON, CSV and other geodata. It simplifies, clips, dissolves, joins and reprojects, and can export SVG.
 - Category: Discovery: research candidates (the maps group).
