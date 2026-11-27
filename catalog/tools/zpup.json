@@ -1,0 +1,56 @@
+{
+  "id": "zpup",
+  "name": "zpup (@zpup/core)",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "candidate",
+  "role": "JSON-described pseudo-3D scenes rendered to flat SVG in Node",
+  "official_url": "https://github.com/rxolve/zpup",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "vector-authoring"
+  ],
+  "notes": [
+    "2026-11-27: Triage reason: defer. Package is 11 days old (first publish 2026-11-16, 1.0.0 on 2026-11-24), one author, 25 stars, API still moving; overlaps heerich, which already has validated voxel-to-SVG evidence. Revisit after a few months of stable releases or if a Zdog-style JSON scene is requested.",
+    "2026-11-27: Lead said version unverified; npm shows 1.0.1 (2026-11-25), MIT, repository pushed 2026-11-25. No install or fixture run.",
+    "2026-11-27: Legacy schema value used for a listed-only candidate; this is not evidence of PRD inclusion."
+  ],
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-27",
+  "source": "prospects/inbox/2026-11-22-discovery.md",
+  "summary": "Small JavaScript library that takes a JSON scene of flat-shaded pseudo-3D shapes and returns a static SVG from any rotation without a DOM; a SMIL turntable variant and an MCP server exist. Zdog-like look an agent can write without code. Not yet exercised in VCR.",
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add @zpup/core",
+    "check_command": "node -e \"import('@zpup/core')\""
+  },
+  "use_when": [
+    "Flat Zdog-style icons from a JSON scene, lighter than Three.js"
+  ],
+  "avoid_when": [
+    "Use heerich for voxel scenes with validated SVG output",
+    "Use Three.js for interactive 3D, shading or animation"
+  ],
+  "pairs_with": [
+    "heerich",
+    "resvg"
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard-zpup",
+    "version_seen": "1.0.1",
+    "last_release": "2026-11-25",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "MIT, active, but 11 days old with a single author and a 1.0 only 3 days ago. Overlaps validated heerich for SVG-from-Node scenes. Defer until the API settles; no fixture run.",
+    "sources": [
+      "https://github.com/rxolve/zpup",
+      "https://www.npmjs.com/package/@zpup/core"
+    ]
+  }
+}
