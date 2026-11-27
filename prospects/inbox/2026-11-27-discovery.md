@@ -29,7 +29,7 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 - Found via: HDR delivery gap, neighbour of `dovi-tool` and `libavif`.
 
 ### Manifold (`manifold`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/elalish/manifold
 - Role: a robust mesh Boolean and CSG library that guarantees manifold output, with Python (`manifold3d`) and JS/WASM (`manifold-3d`) bindings; exports through its own mesh API or glTF via the JS bindings.
 - Category: A8. Physics, audio and 3D assets.
