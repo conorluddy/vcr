@@ -1,0 +1,70 @@
+{
+  "id": "iris-pse-detection",
+  "name": "iris-pse-detection",
+  "category": "Caption compliance",
+  "tier": "candidate",
+  "role": "Python port of EA IRIS: screens video for photosensitive-epilepsy flash risk; advisory only",
+  "summary": "Python library and `iris` CLI screening video for luminance and saturated-red flashes over a 1 s window, extended failures and optional stripe patterns. A screening aid; not WCAG, Harding or Ofcom conformance, and not a safety certificate.",
+  "use_when": [
+    "Machine-screen a decoded render for general or red flash before human review",
+    "Produce a per-frame flash CSV or JSON for an accessibility review"
+  ],
+  "avoid_when": [
+    "Claiming a video is safe or WCAG 2.3.1 compliant: advisory only, needs expert and human review",
+    "Checking caption limits: caption-checker"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "caption-checker"
+  ],
+  "official_url": "https://github.com/tokoroten/iris-pse-detection",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "media-inspection"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "python3.12 -m venv output/venv && output/venv/bin/pip install iris-pse-detection==1.1.2",
+    "check_command": "iris --help"
+  },
+  "examples": [
+    "iris-pse-flash-detection"
+  ],
+  "notes": [
+    "2026-11-27: the lead left the upstream licence unverified; EA IRIS is BSD-3-Clause and the port's LICENSE omits EA's notice. Pulls opencv-python, numpy and scipy. analyse_video prints timings to stdout and writes Results/ CSVs in the cwd. overall_result is an enum: compare .name, str() gives a number."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "1.1.2",
+    "last_release": "2026-01-22",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "PyPI 1.1.2 uploaded 2026-01-22, MIT, Python >=3.10, Beta; single-maintainer port with few stars; README disclaims accuracy versus C++ IRIS. No catalogued tool screens for flash, so it fills an accessibility gap, but only as a screen: the accessibility skill says absent validated measurement, report unable to assess.",
+    "sources": [
+      "https://github.com/tokoroten/iris-pse-detection",
+      "https://pypi.org/project/iris-pse-detection/",
+      "https://github.com/electronicarts/IRIS"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.1.2",
+        "command": "examples/iris-pse-flash-detection/run.sh",
+        "result": "4 checks pass, repeat processes identical: generated 640x360 30 fps 4 s clips; 5 Hz full-frame black/white = Fail, 99 of 120 frames luminance flash-fail, 0 red; 1 Hz alternation = Pass; static grey = Pass. Python 3.12, numpy 2.5.5, FFmpeg 9.0.2.",
+        "example": "examples/iris-pse-flash-detection",
+        "scope": "Advisory: gross 5 Hz flash flagged, 1 Hz and static pass; not threshold sensitivity, red, patterns, real footage or any conformance; macOS arm64."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-16-discovery.md",
+  "skill": "skills/iris-pse-detection/SKILL.md"
+}
