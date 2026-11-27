@@ -86,7 +86,7 @@ This is the third W48 run. The 2026-11-23 digest (PR #233) and the 2026-11-24 di
 - Found via: GitHub topic search `topic:bezier`.
 
 ### ambientCG API (`ambientcg-api`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://ambientcg.com (API docs: https://docs.ambientcg.com/)
 - Role: a JSON API over the ambientCG library of CC0 PBR materials, HDRIs and models. `/api/v2/full_json` returns asset ids, categories, tags, dimensions, map lists and download folders. ZIPs come from `https://ambientcg.com/get?file=<assetId>_<res>-<format>.zip` (1K to 8K, JPG or PNG).
 - Category: A8. Physics, audio and 3D assets.
