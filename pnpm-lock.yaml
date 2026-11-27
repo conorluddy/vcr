@@ -394,6 +394,15 @@ importers:
         specifier: 7.0.0
         version: 7.0.0
 
+  examples/iconify-svg-licences:
+    dependencies:
+      '@iconify/json':
+        specifier: 2.2.562
+        version: 2.2.562
+      '@iconify/utils':
+        specifier: 3.1.7
+        version: 3.1.7
+
   examples/jimp-invert:
     dependencies:
       jimp:
@@ -2124,6 +2133,9 @@ packages:
     engines: {node: '>=20'}
     peerDependencies:
       hono: ^4 || ^5.0.0-0
+
+  '@iconify/json@2.2.562':
+    resolution: {integrity: sha512-F8W7ybxpSLiAr43fiGnFUtzIIgaC5NvmdZEiuuLSSrnUjr3RU/rAtG64Pwa9RbgPaLLzrXNtPSvdrh7TXy6sDA==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -6356,6 +6368,9 @@ packages:
     resolution: {integrity: sha512-T2ZUsdZFHgA3u4e5PfPbjd7HDDpxPnQb5jN0SrDsjNSuVXHJqtwTnWqG0B1jZrgmJ/7lj1EmVIByWt1gxGkWvg==}
     engines: {node: '>=4'}
 
+  pathe@2.0.3:
+    resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
+
   pend@1.2.0:
     resolution: {integrity: sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==}
 
@@ -8358,6 +8373,11 @@ snapshots:
   '@hono/node-server@2.1.8(hono@4.13.19)':
     dependencies:
       hono: 4.13.19
+
+  '@iconify/json@2.2.562':
+    dependencies:
+      '@iconify/types': 2.0.0
+      pathe: 2.0.3
 
   '@iconify/types@2.0.0': {}
 
@@ -12805,6 +12825,8 @@ snapshots:
   path-type@3.0.0:
     dependencies:
       pify: 3.0.0
+
+  pathe@2.0.3: {}
 
   pend@1.2.0: {}
 

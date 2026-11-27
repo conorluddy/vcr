@@ -57,7 +57,7 @@ This is the fourth W47 run. Earlier runs this week covered shaders, simulation, 
 - Found via: gap search (openly licensed asset APIs).
 
 ### Iconify (`iconify`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://iconify.design (source: https://github.com/iconify/iconify)
 - Role: one data format and API for over 200 open icon sets. `@iconify/json` bundles every set as JSON, with licence and author metadata for each set. `@iconify/utils` builds SVG from icon data, and `api.iconify.design` serves single icons.
 - Category: A4. Vector, typography, diagrams and stills.

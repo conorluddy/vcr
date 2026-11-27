@@ -1,0 +1,8 @@
+{
+  "id": "iconify-svg-licences",
+  "title": "Iconify icons to SVG with a per-set licence manifest",
+  "summary": "Build three icons from different-licence sets offline with @iconify/utils, check they are byte-identical across runs, classify every set's licence handling from @iconify/json metadata and rasterise with resvg.",
+  "status": "validated",
+  "tools": ["iconify"],
+  "run": "./run.sh"
+}
