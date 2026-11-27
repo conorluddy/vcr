@@ -13,7 +13,7 @@ Summary line: 8 leads (2 in a new category: music notation engraving).
 ## Leads
 
 ### 🆕 new category: music notation engraving — Verovio (`verovio`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://www.verovio.org (source: https://github.com/rism-digital/verovio)
 - Role: engraves MEI, MusicXML, Humdrum and ABC scores to SVG from a native CLI, a Python module or a JS/WASM toolkit.
 - Category: new category: music notation engraving (could sit under A8 beside `music21` and `mido`).
