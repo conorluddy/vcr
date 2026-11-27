@@ -71,7 +71,7 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 - Found via: reverse dependency of the `gltf-transform` seed.
 
 ### Box2D v3 (`box2d`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/erincatto/box2d
 - Role: a 2D rigid-body physics engine in C, rewritten for v3. Its author states cross-platform determinism since 3.1 (same results on x64 and ARM across MSVC, GCC and Clang, independent of worker count), and a June 2026 post adds a replay system built on that. WASM bindings exist on npm (`box2d3-wasm`).
 - Category: A8. Physics, audio and 3D assets.
