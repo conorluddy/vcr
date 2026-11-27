@@ -1,0 +1,23 @@
+{
+  "gates": {
+    "G1_ten_words_in_reference_order": true,
+    "G2_starts_non_decreasing_and_ends_after_starts": true,
+    "G3_at_least_9_starts_within_0.2s": false,
+    "G4_timings_identical_across_runs_to_1ms": false
+  },
+  "pass": false,
+  "thresholds": {
+    "maxStartErrorS": 0.2,
+    "minWordsWithinTolerance": 9
+  },
+  "observed": {
+    "wordsWithinTolerance": 8,
+    "meanAbsStartErrorS": 0.14,
+    "maxAbsStartErrorS": 0.68,
+    "wordsWithDifferentTimingOnRerun": [
+      "brown@7",
+      "river@8",
+      "today@9"
+    ]
+  }
+}

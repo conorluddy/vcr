@@ -1,0 +1,9 @@
+{
+  "name": "@vcr/example-echogarden-forced-alignment",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "echogarden": "3.4.0"
+  }
+}
