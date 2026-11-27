@@ -141,7 +141,7 @@ This is the second W48 run. The first W48 digest (2026-11-23, PR #233) is merged
 - Found via: GitHub topic search `topic:static-maps`, a maps gap area.
 
 ### Echogarden (`echogarden`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/echogarden-project/echogarden
 - Role: a Node CLI and library for speech: forced alignment (DTW against synthesised speech, or Whisper-guided), text-to-speech, recognition and translation. It writes SRT, VTT and JSON timelines.
 - Category: Speech and lyric alignment.

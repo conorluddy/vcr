@@ -1,0 +1,71 @@
+{
+  "id": "echogarden",
+  "name": "Echogarden",
+  "category": "Speech and lyric alignment",
+  "tier": "candidate",
+  "role": "Node speech toolkit: forced alignment of a known transcript, TTS, recognition; writes SRT/VTT/JSON",
+  "official_url": "https://github.com/echogarden-project/echogarden",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "audio"
+  ],
+  "notes": [
+    "2026-11-27: lead (prospects/inbox/2026-11-24-discovery.md) said MIT AND GPL-3.0 and v3.4.0; npm 3.4.0 confirms both, and the package ships LICENSE.MIT.md and LICENSE.GPLv3.md.",
+    "2026-11-27: align() with engine dtw needs no model download (espeak-ng WASM synthesises a reference and DTW matches MFCCs); the Whisper-guided and other engines fetch models at run time and were not run.",
+    "2026-11-27: fixture examples/echogarden-forced-alignment is PARTIAL: word order and monotonic timings pass; 8 of 10 starts within 0.20 s (needed 9) and rerun timings differ for 3 words, both KNOWN FAIL."
+  ],
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.4.0",
+        "command": "examples/echogarden-forced-alignment/run.sh",
+        "result": "DTW forced alignment of a known 10-word transcript to macOS say speech with silence gaps: words in reference order, starts non-decreasing (pass). KNOWN FAIL: 8/10 starts within 0.20 s of known onsets (gate 9), mean error 0.14 s, max 0.68 s; in-process rerun differs for brown, river, today (gate: identical). No model download. Node 22.19.0.",
+        "example": "examples/echogarden-forced-alignment",
+        "scope": "DTW engine only, one generated sentence with 0.4 s gaps, macOS arm64. Fails the 9/10 start bound and rerun identity. Not Whisper-guided alignment, other engines, real speech."
+      }
+    ]
+  },
+  "skill": "skills/echogarden/SKILL.md",
+  "adapter_maturity": "none",
+  "examples": [
+    "echogarden-forced-alignment"
+  ],
+  "checked_at": "2026-11-27",
+  "source": "prospects/inbox/2026-11-24-discovery.md",
+  "summary": "Node CLI and library for speech: forced alignment of a known transcript to audio (DTW against espeak-synthesised speech, or Whisper-guided), text-to-speech, recognition and translation, with SRT, VTT and JSON timelines. Runs from pnpm with no Python; the DTW engine needs no model download, other engines fetch models at run time with their own licences.",
+  "use_when": [
+    "Need word timings for a known transcript from Node, with no Python environment",
+    "Need caption files (SRT/VTT) written directly from alignment"
+  ],
+  "avoid_when": [
+    "Audio has long pauses and DTW word starts must be tight: the fixture missed by up to 0.68 s; use whisperx",
+    "Need mouth-shape cues rather than word times: use rhubarb-lip-sync"
+  ],
+  "pairs_with": [
+    "whisperx",
+    "whisper-cpp"
+  ],
+  "license": "MIT AND GPL-3.0 (npm package); downloaded engines and models carry separate, unverified terms",
+  "install": {
+    "macos": "pnpm add echogarden",
+    "check_command": "npx echogarden --version"
+  },
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard_echogarden",
+    "version_seen": "3.4.0",
+    "last_release": "2026-09-08",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Free software (MIT and GPL-3.0 in one package); v3.4.0 on npm 2026-09-08. Only Node-native aligner among the neighbours. DTW engine ran with no download but missed two predeclared checks on a gapped sentence.",
+    "sources": [
+      "https://github.com/echogarden-project/echogarden",
+      "https://www.npmjs.com/package/echogarden"
+    ]
+  }
+}

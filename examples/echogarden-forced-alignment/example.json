@@ -1,0 +1,14 @@
+{
+  "id": "echogarden-forced-alignment",
+  "title": "Echogarden DTW aligns a known 10-word transcript to say speech; two predeclared checks KNOWN FAIL",
+  "summary": "Order and monotonic timings pass; 8 of 10 starts within 0.20 s (gate 9) and rerun timings differ for three words. DTW engine, no model download, macOS arm64.",
+  "status": "not-validated",
+  "tools": [
+    "echogarden"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-27",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
