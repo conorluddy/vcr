@@ -29,7 +29,7 @@ This is the first W48 run. The 19 earlier digests (2026-11-01 to 2026-11-22) alr
 - Found via: GitHub topic search `topic:wgsl`.
 
 ### libsonare (`libsonare`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/libraz/libsonare (docs: https://libsonare.libraz.net)
 - Role: a dependency-free C++ audio engine with Python, WASM/npm and Node bindings. It does analysis (BPM, key, chords, beats, sections, EBU R128 loudness), mastering to a target LUFS with 95 DSP processors, mixing, stems, transcription to MIDI, time-stretch and pitch-shift, and built-in GM/GS instruments. It also has a headless DAW runtime with offline bounce. The Python package ships a `sonare` CLI.
 - Category: A8. Physics, audio and 3D assets.

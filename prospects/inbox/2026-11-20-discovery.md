@@ -141,7 +141,7 @@ Summary line: 10 leads (0 in new categories).
 - Found via: Homebrew formula index, checked after the `ffmpeg` topic search.
 
 ### pixelsort (`pixelsort`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/satyarth/pixelsort
 - Role: pixel-sorting glitch effect for stills, as a Python module and CLI with interval functions, masks, angle and sort keys.
 - Category: A6. Image processing and colour.

@@ -1,0 +1,8 @@
+{
+  "id": "pixelsort-span-sort",
+  "title": "pixelsort threshold, hue, mask, angle and seeded-random span sorting on a generated still",
+  "summary": "Python venv: pixelsort 1.0.2 sorts spans of a generated 240x135 image; every span is verified sorted by its key with an independent check, masks and angle behave, repeat runs are identical, random intervals repeat only when the global random is seeded.",
+  "status": "not-validated",
+  "tools": ["pixelsort"],
+  "run": "./run.sh"
+}

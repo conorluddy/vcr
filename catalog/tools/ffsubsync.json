@@ -1,0 +1,72 @@
+{
+  "id": "ffsubsync",
+  "name": "ffsubsync",
+  "category": "Caption compliance",
+  "tier": "candidate",
+  "role": "CLI that shifts an existing subtitle file to match the speech in audio or video, without ASR",
+  "summary": "Python CLI `ffsubsync`: aligns an SRT or other subtitle file to a video, audio file or reference subtitle by matching voice activity to cue timing, applying one offset and an optional framerate scale. It does not transcribe or fix drift across cuts.",
+  "use_when": [
+    "A caption file is a constant offset from the speech after a re-edit or a new voiceover take",
+    "Retiming without transcription; whisperx and syncalong make new timings by ASR"
+  ],
+  "avoid_when": [
+    "Timing that drifts across cuts: one offset cannot fix it",
+    "Producing timings from audio: whisperx or syncalong",
+    "Checking caption limits: caption-checker"
+  ],
+  "pairs_with": [
+    "pysubs2",
+    "whisperx",
+    "caption-checker"
+  ],
+  "official_url": "https://github.com/smacke/ffsubsync",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "media-inspection"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "python3.12 -m venv venv && venv/bin/pip install ffsubsync==0.5.1",
+    "check_command": "ffsubsync --version"
+  },
+  "examples": [
+    "ffsubsync-offset-correction"
+  ],
+  "notes": [
+    "2026-11-27: lead said `uv tool install`; the fixture uses a pinned venv instead. PyPI 0.5.1 (2026-07-24) matches the lead, MIT. Requires ffmpeg on PATH and pulls pysubs2, numpy, webrtcvad-wheels and auditok.",
+    "2026-11-27: on a 30 s clip the default 60 s offset search chose -23 s for a +3 s shift and dropped cues with negative times; --max-offset-seconds 5 or 10 found the right offset. Cause not established."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "0.5.1",
+    "last_release": "2026-07-24",
+    "maintenance": "slow",
+    "verdict": "promote",
+    "rationale": "PyPI 0.5.1 uploaded 2026-07-24, MIT per installed metadata; the last push was four months ago. Nothing catalogued corrects the timing of an existing caption file without ASR: whisperx and syncalong re-time by transcribing, caption-checker only checks, pysubs2 shifts by a number you must already know.",
+    "sources": [
+      "https://github.com/smacke/ffsubsync",
+      "https://pypi.org/project/ffsubsync/"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.5.1",
+        "command": "examples/ffsubsync-offset-correction/run.sh",
+        "result": "7 `say` phrases at known times on a 30 s track; SRT shifted +3.0 s and -1.5 s. With --max-offset-seconds 10 both are corrected, worst start/end error 0.01 s (limit 0.25 s). With default flags both FAIL: offset -23 s chosen for +3.0 s, 2 and 1 of 7 cues returned. Two processes identical. Python 3.12.13.",
+        "example": "examples/ffsubsync-offset-correction",
+        "scope": "Constant offsets on clean synthetic speech, 30 s; default-flag checks fail and are recorded (KNOWN FAIL). No drift, music, real recordings, framerate or reference-SRT sync; macOS arm64."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-21-discovery.md",
+  "skill": "skills/ffsubsync/SKILL.md"
+}

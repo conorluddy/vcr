@@ -43,7 +43,7 @@ This is the fifth W47 run. Earlier W47 runs covered shaders, maps, provenance, d
 - Found via: GitHub topic search `hatching`.
 
 ### NVIDIA Warp (`nvidia-warp`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/NVIDIA/warp (docs: https://nvidia.github.io/warp/)
 - Role: a Python framework that JIT-compiles kernels for simulation and geometry. It comes with particle, DEM and SPH, FEM, grid fluid (Navier–Stokes, FDTD), marching-cubes, mesh raycast and NanoVDB examples.
 - Category: A8. Physics, audio and 3D assets.
@@ -72,7 +72,7 @@ This is the fifth W47 run. Earlier W47 runs covered shaders, maps, provenance, d
 - Found via: GitHub topic search `position-based-dynamics`.
 
 ### PySeq (`pyseq`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/rsgalloway/pyseq
 - Role: a Python library and CLI suite (`lss`, `stree`, `sfind`, `sdiff`, `sstat`, `scopy`, `srm`, `smv`) that detects, parses and formats numbered file sequences such as `frame.0001.png`, showing gaps as split ranges (`[1-3, 6]`).
 - Category: A5. Video and capture.

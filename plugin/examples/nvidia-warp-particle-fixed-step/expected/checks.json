@@ -1,0 +1,32 @@
+{
+  "gates": {
+    "reruns_identical": true,
+    "trace_has_601_hashes": true,
+    "seek_fresh_process_matches_trace": true,
+    "seek_order_is_shuffled": true,
+    "distinct_hashes_over_100": true,
+    "all_finite": true,
+    "none_below_ground": true,
+    "none_inside_sphere": true,
+    "settled_max_speed_under_0.05": true
+  },
+  "all_passed": true,
+  "measured": {
+    "warp": "1.19.0",
+    "final_max_speed": 0.01167,
+    "min_distance_from_sphere_centre": 1.995,
+    "seek_hashes": {
+      "300": "3c58fd5c0b9ad904",
+      "0": "ec4cad90a03eab36",
+      "600": "e9a4a2428b3dcd13",
+      "60": "482c2a5334330a5a",
+      "1": "85fccef6061a1181",
+      "450": "e9a4a2428b3dcd13",
+      "120": "e1853885216dae48",
+      "2": "cdc0b7fcd6f6fe58",
+      "200": "ba1034ec5eb35fbd"
+    },
+    "atomic_speed_sums_identical_in_process": true,
+    "atomic_speed_sum": 0.746666
+  }
+}

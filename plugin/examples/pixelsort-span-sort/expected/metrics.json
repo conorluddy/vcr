@@ -1,0 +1,44 @@
+{
+  "all_passed": true,
+  "checks": {
+    "angle_90_sorts_columns": true,
+    "cli_matches_api": true,
+    "cli_random_is_unseeded": true,
+    "mask_protects_unmasked_pixels": true,
+    "none_rows_sorted_by_hue": true,
+    "randomness_100_is_identity": true,
+    "seeded_random_repeats_across_processes": true,
+    "threshold_spans_sorted_by_lightness": true,
+    "versions": true
+  },
+  "metrics": {
+    "angle_90": {
+      "columns_sorted_bottom_up": 0,
+      "columns_sorted_top_down": 240,
+      "size": [
+        240,
+        135
+      ]
+    },
+    "hue_none": {
+      "sha256": "9baf03633fdee6e51c2b787d5da411b69e9ae86dcd993cdd9dcc694bfa571b79",
+      "unsorted_rows": 0
+    },
+    "input_sha256": "84a72cfda3abe1e7bd829b6e51bab519e9d8f2288d824c32fa8e82901268c47b",
+    "mask": {
+      "left_rows_sorted": true,
+      "right_half_pixels_changed": 0
+    },
+    "random": {
+      "seed7_sha256": "1f4c627aaf9f1dd2a4489463cd4e4a2f03249866e133e2cafa97b0e507b31204",
+      "seed8_sha256": "f4a8e46bd8c0f575833424d11baa3b74c39711b5b3368278a813a3fe8d963044"
+    },
+    "threshold": {
+      "pixels_changed": 19913,
+      "rows_not_permutation": 0,
+      "sha256": "94e387f71f63106adc076afab63373d8220b14dde57d5cf1f6ff9adb59f2a5e8",
+      "spans": 3646,
+      "unsorted_spans": 0
+    }
+  }
+}

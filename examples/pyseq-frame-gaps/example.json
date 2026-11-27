@@ -1,0 +1,8 @@
+{
+  "id": "pyseq-frame-gaps",
+  "title": "pyseq frame-sequence ranges and gaps",
+  "summary": "Python venv: generate empty numbered frame files, report ranges and missing frames with pyseq and its lss CLI. Two predeclared checks fail and stay recorded (KNOWN FAIL): non-sequence files listed, mixed padding merged.",
+  "status": "not-validated",
+  "tools": ["pyseq"],
+  "run": "./run.sh"
+}

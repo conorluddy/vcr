@@ -1,0 +1,8 @@
+{
+  "id": "halftone-screen-separation",
+  "title": "halftonecv CMYK screen angles, pitch and determinism",
+  "summary": "Python venv: halftonecv draws a 45 degree gray dot lattice at the asked pitch, and each CMYK plate on its own angle (15, 75, 0, 45); output is byte-identical on repeat.",
+  "status": "not-validated",
+  "tools": ["halftone-converter"],
+  "run": "./run.sh"
+}
