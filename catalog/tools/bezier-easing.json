@@ -1,0 +1,71 @@
+{
+  "id": "bezier-easing",
+  "name": "bezier-easing",
+  "category": "A2. Animation and authored assets",
+  "tier": "candidate",
+  "role": "CSS cubic-bezier(x1, y1, x2, y2) as a pure easing function f(t), no runtime",
+  "summary": "A dependency-free JavaScript function that turns CSS cubic-bezier control points into f(t), solved numerically. It owns no clock or timeline: a seeked canvas, WebGL or Node scene calls it with its own t. Its strength is reusing the exact curves of CSS, Material 3 and Carbon (published as cubic-bezier values) outside a browser transition, matching Chromium closely.",
+  "use_when": [
+    "A published cubic-bezier curve (Material, Carbon, CSS keywords) driving canvas-2d or WebGL values from t",
+    "One curve shared by a CSS transition in a DOM scene and a seeked canvas layer",
+    "Over tween-js or anime-js when only the easing curve is wanted, not a tween engine"
+  ],
+  "avoid_when": [
+    "Springs, bounces or many-stop curves: motion or react-spring",
+    "DOM or SVG tweening with timelines: anime-js",
+    "Browser-only scenes where WAAPI easing strings already work: web-animations-api"
+  ],
+  "pairs_with": [
+    "canvas-2d",
+    "web-animations-api",
+    "tween-js"
+  ],
+  "official_url": "https://github.com/gre/bezier-easing",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "tweening"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add bezier-easing"
+  },
+  "examples": [
+    "bezier-easing-css-match"
+  ],
+  "notes": [
+    "2026-11-27: the lead's version, licence and install matched the npm registry (3.2.0, MIT)."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "3.2.0",
+    "last_release": "2026-10-07",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "npm 3.2.0 published 2026-10-07, MIT. Narrow but cheap: the motion pillar names cubic-bezier curves as its vocabulary, and no catalogue tool exposes them as a bare f(t). Overlaps tween-js easings only in part.",
+    "sources": [
+      "https://github.com/gre/bezier-easing",
+      "https://www.npmjs.com/package/bezier-easing"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.2.0",
+        "command": "examples/bezier-easing-css-match/run.sh",
+        "result": "Six cubic-bezier curves, 101 samples each, vs Chromium 156.0.8078.4 WAAPI computed progress: max difference 5e-6 (all under the predeclared 0.002), endpoints 0 and 1, overshoot curve peak 1.098. Plot inspected; lines coincide.",
+        "example": "examples/bezier-easing-css-match",
+        "scope": "Four CSS keywords, M3 emphasized decelerate and one overshoot curve vs Chromium on macOS arm64, Node 22.19.0; not Firefox or WebKit, steps() or linear()."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-25-discovery.md",
+  "skill": "skills/bezier-easing/SKILL.md"
+}

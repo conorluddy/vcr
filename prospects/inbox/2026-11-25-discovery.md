@@ -72,7 +72,7 @@ This is the third W48 run. The 2026-11-23 digest (PR #233) and the 2026-11-24 di
 - Found via: dedupe sweep of SVG path tools after `topic:bezier`. Neighbouring `veltman/flubber` is rejected below.
 
 ### bezier-easing (`bezier-easing`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/gre/bezier-easing
 - Role: a dependency-free JavaScript function that turns CSS `cubic-bezier(x1, y1, x2, y2)` control points into an easing function `f(t)`.
 - Category: A2. Animation and authored assets.

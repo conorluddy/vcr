@@ -1,0 +1,8 @@
+{
+  "id": "bezier-easing-css-match",
+  "title": "bezier-easing against Chromium CSS cubic-bezier",
+  "summary": "Evaluate CSS cubic-bezier curves as pure functions of t with bezier-easing in Node and compare each to the progress Chromium computes for the same easing string through the Web Animations API.",
+  "status": "validated",
+  "tools": ["bezier-easing"],
+  "run": "./run.sh"
+}

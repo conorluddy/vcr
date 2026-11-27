@@ -1,0 +1,58 @@
+{
+  "curves": {
+    "ease": {
+      "maxAbsDiffOver101Samples": 4.9E-7,
+      "withinTolerance": true,
+      "endpoints": [
+        0,
+        1
+      ],
+      "peak": 1
+    },
+    "ease-in": {
+      "maxAbsDiffOver101Samples": 5E-7,
+      "withinTolerance": true,
+      "endpoints": [
+        0,
+        1
+      ],
+      "peak": 1
+    },
+    "ease-out": {
+      "maxAbsDiffOver101Samples": 5E-7,
+      "withinTolerance": true,
+      "endpoints": [
+        0,
+        1
+      ],
+      "peak": 1
+    },
+    "ease-in-out": {
+      "maxAbsDiffOver101Samples": 6.1E-7,
+      "withinTolerance": true,
+      "endpoints": [
+        0,
+        1
+      ],
+      "peak": 1
+    },
+    "m3-emphasized-decelerate": {
+      "maxAbsDiffOver101Samples": 4.8E-7,
+      "withinTolerance": true,
+      "endpoints": [
+        0,
+        1
+      ],
+      "peak": 1
+    },
+    "overshoot-back": {
+      "maxAbsDiffOver101Samples": 0.000005,
+      "withinTolerance": true,
+      "endpoints": [
+        0,
+        1
+      ],
+      "peak": 1.098
+    }
+  }
+}
