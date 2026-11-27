@@ -1,0 +1,22 @@
+{
+  "frames": 60,
+  "width": 640,
+  "height": 360,
+  "events": [
+    0,
+    2,
+    2.5,
+    3,
+    4,
+    5
+  ],
+  "distinct_frames": 5,
+  "shuffled_matches_sequential": true,
+  "alpha_max_by_frame": {
+    "5": 1,
+    "22": 0,
+    "27": 1,
+    "35": 1,
+    "55": 0
+  }
+}
