@@ -1,0 +1,16 @@
+{
+  "manifoldVersion": "3.5.5",
+  "status": "NoError",
+  "isEmpty": false,
+  "genus": 5,
+  "vertexCount": 812,
+  "triangleCount": 1640,
+  "independentSignedVolume": 1.638331,
+  "manifoldVolume": 1.638331,
+  "analyticVolume": 1.616284,
+  "inclusionExclusionResidual": 1.78e-15,
+  "volumeErrorPercent": 1.364,
+  "unpairedEdges": 0,
+  "repeatedEdges": 0,
+  "meshSha256": "2ab8244861c73d09d8b1a002b13209af5c6f5dfb414b802afd4777473a71a239"
+}

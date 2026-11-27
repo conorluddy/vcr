@@ -1,0 +1,16 @@
+{
+  "name": "@vcr/example-typegpu-typed-wgsl",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "NODE_ENV=development node --import ./preload.mjs render.ts"
+  },
+  "devDependencies": {
+    "unplugin-typegpu": "0.12.9"
+  },
+  "dependencies": {
+    "typegpu": "0.12.12",
+    "webgpu": "0.6.2"
+  }
+}

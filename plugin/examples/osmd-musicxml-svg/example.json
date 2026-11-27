@@ -1,0 +1,8 @@
+{
+  "id": "osmd-musicxml-svg",
+  "title": "OpenSheetMusicDisplay MusicXML to SVG score",
+  "summary": "Engrave a self-authored MusicXML melody to a semantic-class SVG in Node with jsdom and no browser, check structure and byte-identity across runs, and rasterise it with resvg.",
+  "status": "validated",
+  "tools": ["opensheetmusicdisplay"],
+  "run": "./run.sh"
+}

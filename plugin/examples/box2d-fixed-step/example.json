@@ -1,0 +1,8 @@
+{
+  "id": "box2d-fixed-step",
+  "title": "Box2D v3 fixed-step trajectory in Node",
+  "summary": "Step three dropped circles at a fixed timestep in Node with the box2d3-wasm build, record per-frame positions, and check the trajectory is finite, physical, byte-identical across processes and equal between the compat and deluxe builds.",
+  "status": "validated",
+  "tools": ["box2d"],
+  "run": "./run.sh"
+}
