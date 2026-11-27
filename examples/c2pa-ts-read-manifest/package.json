@@ -1,0 +1,10 @@
+{
+  "name": "@vcr/example-c2pa-ts-read-manifest",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@trustnxt/c2pa-ts": "0.14.1",
+    "reflect-metadata": "0.2.2"
+  }
+}

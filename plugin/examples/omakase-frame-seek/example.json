@@ -1,0 +1,12 @@
+{
+  "id": "omakase-frame-seek",
+  "title": "Frame-index seeks in Omakase Player checked against burnt-in frame numbers",
+  "summary": "A 120-frame MP4 carries a 20-bit frame-number barcode; Omakase Player seeks 14 frames by FRAME_COUNT in headless Chromium, each video screenshot is decoded and must equal the requested frame, asserted against expected/summary.json.",
+  "status": "validated",
+  "tools": ["omakase-player"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-27",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

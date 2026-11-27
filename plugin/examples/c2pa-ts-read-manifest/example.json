@@ -1,0 +1,8 @@
+{
+  "id": "c2pa-ts-read-manifest",
+  "title": "c2pa-ts reads and validates a c2patool-signed PNG manifest",
+  "summary": "Read a committed c2patool development-signed PNG in pure Node with c2pa-ts: title, claim generator, custom assertion and signature validation. The untrusted-signer check is a recorded KNOWN FAIL.",
+  "status": "not-validated",
+  "tools": ["c2pa-ts"],
+  "run": "./run.sh"
+}

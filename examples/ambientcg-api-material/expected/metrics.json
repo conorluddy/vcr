@@ -1,0 +1,47 @@
+{
+  "asset": {
+    "id": "PavingStones036",
+    "releaseDate": "2018-11-28 00:00:00",
+    "dataType": "Material",
+    "creationMethod": "PBRPhotogrammetry",
+    "maps": [
+      "color",
+      "displacement",
+      "normal",
+      "roughness",
+      "ambient-occlusion"
+    ]
+  },
+  "zip": {
+    "fileName": "PavingStones036_1K-JPG.zip",
+    "bytes": 9354813,
+    "sha256": "91223aa46aa4275bb30df310fba788d8bfb740f2b1e9796ac0eb9a14f367e9ce",
+    "apiReportedBytes": 9354813
+  },
+  "members": {
+    "PavingStones036.png": 455524,
+    "PavingStones036_1K-JPG.blend": 1109844,
+    "PavingStones036_1K-JPG.mtlx": 2362,
+    "PavingStones036_1K-JPG.tres": 1050,
+    "PavingStones036_1K-JPG.usdc": 3020,
+    "PavingStones036_1K-JPG_AmbientOcclusion.jpg": 499312,
+    "PavingStones036_1K-JPG_Color.jpg": 1796007,
+    "PavingStones036_1K-JPG_Displacement.jpg": 517415,
+    "PavingStones036_1K-JPG_NormalDX.jpg": 2139800,
+    "PavingStones036_1K-JPG_NormalGL.jpg": 2139484,
+    "PavingStones036_1K-JPG_Roughness.jpg": 688711
+  },
+  "dimensions": {
+    "Color": "1024x1024",
+    "Roughness": "1024x1024",
+    "NormalGL": "1024x1024",
+    "NormalDX": "1024x1024",
+    "Displacement": "1024x1024",
+    "AmbientOcclusion": "1024x1024"
+  },
+  "normalGreenMeansSumRounded": 255,
+  "licence": {
+    "payloadLicenceField": false,
+    "docsStatesCc0": true
+  }
+}

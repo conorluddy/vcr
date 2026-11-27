@@ -1,0 +1,8 @@
+{
+  "id": "palt-typesetting-advances",
+  "title": "palt-typesetting markup and Noto Sans JP palt advances",
+  "summary": "Typeset a Japanese and Latin line with palt-typesetting in Node, then measure per-character advances with and without font-feature-settings palt in Chromium using a pinned OFL Noto Sans JP. Two predeclared checks are KNOWN FAIL.",
+  "status": "not-validated",
+  "tools": ["palt-typesetting"],
+  "run": "./run.sh"
+}

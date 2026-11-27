@@ -1,0 +1,8 @@
+{
+  "id": "openverse-licence-fields",
+  "title": "Openverse licence filters and attribution fields",
+  "summary": "Anonymous GETs to the Openverse image API: license=cc0 and license=pdm searches return results whose licence fields say so, license_type=commercial,modification excludes NC and ND, and one fetched item carries complete attribution fields.",
+  "status": "validated",
+  "tools": ["openverse-api"],
+  "run": "./run.sh"
+}

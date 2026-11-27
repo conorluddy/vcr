@@ -1,0 +1,75 @@
+{
+  "id": "physically-based-api",
+  "name": "Physically Based API",
+  "category": "A9. Adjacent resources mentioned during discovery",
+  "tier": "candidate",
+  "role": "CC0 JSON of measured material values: linear sRGB base colour, IOR, metalness, density",
+  "summary": "api.physicallybased.info/v2/materials returns 122 materials with base colours in srgb-linear and acescg, IOR or complex IOR, metalness, transmission, density and per-value references. Pin a copy: the live data changes. The fixture reads a 9-material subset offline.",
+  "use_when": [
+    "A scene needs a citable albedo, IOR or metalness for a named material instead of a guessed one",
+    "A look-developer review needs a number to compare a surface against"
+  ],
+  "avoid_when": [
+    "Textures or full material graphs: this is scalar and colour values only",
+    "Stylised looks where physical values are not the aim"
+  ],
+  "pairs_with": [
+    "three-js",
+    "pov-ray"
+  ],
+  "official_url": "https://physicallybased.info",
+  "repository_url": "https://github.com/AntonPalmqvist/physically-based-api",
+  "documentation_urls": [
+    "https://api.physicallybased.info/v2"
+  ],
+  "automation_route": "remote-api",
+  "capabilities": [
+    "colour-management"
+  ],
+  "license": "CC0-1.0",
+  "examples": [
+    "physically-based-materials"
+  ],
+  "install": {
+    "macos": "curl -A vcr-fixture/1.0 https://api.physicallybased.info/v2/materials -o materials.json"
+  },
+  "notes": [
+    "2026-11-27: Lead said schema 2.2 and CC0; confirmed: response header license is CC0 1.0 Universal, schemaVersion 2.2, updated 2026-11-03. The full response is 341,944 bytes, over the 200 KB pin limit, so the example pins a verbatim 9-material subset (25 KB). The README images use a CC BY 4.0 shader ball, which is not pinned.",
+    "2026-11-27: Data, not software: the catalogue has no dataset class and ADR 0011 (inspiration library) does not cover reference data. Carded as a remote-api resource; a reviewer may prefer a references/ home. No capability in the vocabulary fits; proposed addition: reference-data.",
+    "2026-11-27: srgb-linear values may exceed 1 (Gold red is 1.059); clamp or convert before display."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "schema 2.2",
+    "last_release": "2026-11-03",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "CC0 stated in both the API header and the repository README; anonymous GET, no key. Fills the gap that materials and lighting skills have no citable reference values. Source quality varies per value; references are listed per material.",
+    "sources": [
+      "https://api.physicallybased.info/v2/materials",
+      "https://github.com/AntonPalmqvist/physically-based-api",
+      "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/README.md"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "schema 2.2 (updated 2026-11-03)",
+        "command": "examples/physically-based-materials/run.sh",
+        "result": "9 pinned materials parse; Water IOR 1.3325, Ice 1.3098, Diamond 2.4168; Gold linear sRGB [1.059, 0.773, 0.307] (R/B 3.45), Copper red-orange, Silver and Aluminum near-neutral; metalness 0 for dielectrics, 1 for metals; two runs identical.",
+        "example": "examples/physically-based-materials",
+        "scope": "Offline read of a pinned 9-material subset against predeclared constants; not the live endpoint after 2026-11-27, other materials, or rendered appearance."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-24-discovery.md",
+  "skill": "skills/physically-based-api/SKILL.md"
+}
