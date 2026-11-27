@@ -1,0 +1,8 @@
+{
+  "id": "nvidia-warp-particle-fixed-step",
+  "title": "NVIDIA Warp CPU particle sim at a fixed step, fresh-process seek and rerun hashes",
+  "summary": "Python venv from pinned requirements: 64 particles fall on a sphere and floor, 600 fixed steps; reruns and shuffled fresh-process re-simulations match per-frame hashes; atomics measured, not gated.",
+  "status": "not-validated",
+  "tools": ["nvidia-warp"],
+  "run": "./run.sh"
+}
