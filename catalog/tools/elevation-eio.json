@@ -1,0 +1,73 @@
+{
+  "id": "elevation-eio",
+  "name": "elevation (eio)",
+  "category": "Geospatial",
+  "tier": "candidate",
+  "role": "Python library and `eio` CLI that fetch, cache and clip global DEM data to a GeoTIFF for bounds",
+  "summary": "Python package with the `eio` CLI: `eio clip --bounds left bottom right top -o dem.tif` downloads and caches global DEM data (Terrain Tiles MAPZEN default, Copernicus GLO-30/90, ALOS AW3D30, SRTM 30/90 m, GEDTM30) and clips it to a GeoTIFF in EPSG:4326. It needs GDAL's command-line tools and the network on first use; it gives heights, not relief rendering.",
+  "use_when": [
+    "Get a DEM GeoTIFF for a lat/lon box as the first step of a terrain or relief-map scene",
+    "Over hand-downloading tiles when bounds are known and the result must be scripted"
+  ],
+  "avoid_when": [
+    "Hillshading, reprojection or other raster processing of the DEM: GDAL",
+    "Rendering map tiles or styles: maplibre-native",
+    "Offline work on first run: tiles download on demand"
+  ],
+  "pairs_with": [
+    "maplibre-native",
+    "three-globe"
+  ],
+  "official_url": "https://github.com/bopen/elevation",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "geospatial"
+  ],
+  "license": "Apache-2.0",
+  "install": {
+    "macos": "micromamba create -p env -c conda-forge python=3.12 gdal && env/bin/pip install elevation==2.1.0",
+    "check_command": "eio selfcheck"
+  },
+  "examples": [
+    "elevation-eio-clip"
+  ],
+  "notes": [
+    "2026-11-27: the lead said `brew install gdal && uv tool install elevation`; Homebrew gdal failed to install here, so the fixture uses conda-forge gdal. PyPI lists no licence field; Apache-2.0 is from the GitHub repository.",
+    "2026-11-27: datasets have provider terms (STAC `license: other`); SRTM3 forbids redistribution and resale without CIAT permission. GLO-30 and GLO-90 need an Earth Data Hub key in ~/.netrc and were not tried.",
+    "2026-11-27: PyPI shows 1.1.3 in 2021, then 1.1.4 on 2026-09-30 and 2.0.0 on 2026-10-21: a revival after five years, so the maintenance record is short."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "2.1.0",
+    "last_release": "2026-11-09",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "PyPI 2.1.0 uploaded 2026-11-09, repository pushed 2026-11-15, not archived, Apache-2.0, 9 open issues. Nothing catalogued fetches elevation data; GDAL (onboarded separately) processes it but does not download it. Data hosts' terms apply.",
+    "sources": [
+      "https://github.com/bopen/elevation",
+      "https://pypi.org/project/elevation/",
+      "https://registry.opendata.aws/terrain-tiles/"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "2.1.0",
+        "command": "examples/elevation-eio-clip/run.sh",
+        "result": "8 checks pass, repeat runs identical: clip of -4.12 53.04 -4.03 53.10 (Snowdon) gives a 325x217 EPSG:4326 GeoTIFF, bounds -4.120139 53.039861 -4.029861 53.100139, max 1064 m at -4.07667 53.06833 (summit 1085 m), min 60 m, no nodata. GDAL 3.13.3, Python 3.12.",
+        "example": "examples/elevation-eio-clip",
+        "scope": "MAPZEN clip of one box to GeoTIFF: CRS, bounds, size, summit height; not GLO, SRTM3 or other products, large areas, vertical accuracy elsewhere or rendering; macOS arm64."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-22-discovery.md",
+  "skill": "skills/elevation-eio/SKILL.md"
+}

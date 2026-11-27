@@ -1,0 +1,33 @@
+{
+  "all_passed": true,
+  "bounds": [
+    -4.120139,
+    53.039861,
+    -4.029861,
+    53.100139
+  ],
+  "checks": {
+    "bounds_cover_request": true,
+    "bounds_within_one_pixel": true,
+    "crs_is_epsg_4326": true,
+    "max_within_30m_of_summit": true,
+    "min_plausible_valley_0_to_200m": true,
+    "no_nodata_pixels": true,
+    "peak_within_0.005deg_of_summit": true,
+    "size_is_325x217": true
+  },
+  "eio_version": "2.1.0",
+  "epsg": "4326",
+  "max_m": 1064,
+  "min_m": 60,
+  "nodata_pixels": 0,
+  "peak_lonlat": [
+    -4.07667,
+    53.06833
+  ],
+  "pixel_sha256": "40cdc985cb4107a1",
+  "size": [
+    325,
+    217
+  ]
+}
