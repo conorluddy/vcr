@@ -15,7 +15,7 @@ This is the second W48 run. The first W48 digest (2026-11-23, PR #233) is merged
 ## Leads
 
 ### OpenSCAD (`openscad`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://openscad.org (repository: https://github.com/openscad/openscad)
 - Role: a script-only solid modeller (CSG plus extrusion). It has a headless CLI that exports STL, 3MF, OFF, SVG, DXF, PDF and PNG renders with a set camera and image size. Animation runs through the `$t` variable and the `--animate` frame count.
 - Category: Discovery: research candidates. This is the category that `build123d` uses.

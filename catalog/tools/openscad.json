@@ -1,0 +1,79 @@
+{
+  "id": "openscad",
+  "name": "OpenSCAD",
+  "category": "A8. Physics, audio and 3D assets",
+  "tier": "candidate",
+  "role": "Script-only solid modeller (CSG) with a headless CLI for STL, 3MF, SVG and PNG export",
+  "summary": "OpenSCAD turns a text .scad script into a solid. Variables are overridden per run with -D, and one run exports STL, 3MF, SVG (2D projection) or a PNG preview with a set camera and size. Geometry is a pure function of the script and its variables. The CLI sits on PATH when installed from the snapshot cask.",
+  "use_when": [
+    "Existing .scad models or libraries such as BOSL2 must become STL, SVG or a still",
+    "A parametric part is wanted as text with command-line overrides and no Python or Node",
+    "A quick preview PNG with a fixed camera is enough, with no Blender step"
+  ],
+  "avoid_when": [
+    "Fillets, STEP or exact B-rep work: build123d",
+    "Booleans on triangle meshes in Node or a browser: manifold",
+    "Lighting, materials or final frames: Blender or Three.js",
+    "Byte-identical 3MF output is required: it embeds a timestamp and random UUIDs"
+  ],
+  "pairs_with": [
+    "build123d",
+    "manifold",
+    "trimesh",
+    "blender"
+  ],
+  "official_url": "https://openscad.org",
+  "documentation_urls": [
+    "https://openscad.org/documentation.html",
+    "https://github.com/openscad/openscad"
+  ],
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "3d-asset-processing",
+    "vector-authoring"
+  ],
+  "license": "GPL-2.0 with a linking exception (COPYING); GitHub reports NOASSERTION. Models and libraries carry their own licences.",
+  "install": {
+    "macos": "brew install --cask openscad@snapshot",
+    "check_command": "openscad --version"
+  },
+  "examples": [
+    "openscad-parametric"
+  ],
+  "notes": [
+    "2026-11-27: lead said the stable cask is 2021.01 and the snapshot 2026.10.11; the snapshot ran as 2026.10.11 and puts openscad on PATH (the lead said the CLI sits inside an app bundle). Manifold is the default backend, CGAL is selectable with --backend.",
+    "2026-11-27: help text lists --animate N for $t frames; not exercised. Only the CLI was run, never the GUI."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "2026.10.11 (snapshot)",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "GPL-2.0 with exception, active (push 2026-11-23). Adds the text-CAD language and its large .scad corpus beside build123d (Python B-rep) and manifold (mesh library); headless export ran on macOS without a GUI.",
+    "sources": [
+      "https://openscad.org",
+      "https://github.com/openscad/openscad",
+      "https://github.com/BelfrySCAD/BOSL2"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "2026.10.11",
+        "command": "examples/openscad-parametric/run.sh",
+        "result": "Block 40x30x10 and -D override 50x20x8: Manifold STL watertight, volume within 1e-9 of analytic (11214.917211, 6768.990186), 528 faces; CGAL STL watertight, volume off by 3.4e-9 (KNOWN FAIL at 1e-9). STL byte-identical across runs. 3MF differs (CreationDate, UUIDs): KNOWN FAIL. SVG viewBox 42x32, 2 contours. PNG 400x300 byte-identical twice, inspected.","example": "examples/openscad-parametric",
+        "scope": "Fixture-reported, macOS arm64 snapshot 2026.10.11: -D overrides to STL, SVG, fixed-camera PNG; 3MF not deterministic and CGAL 3e-9 volume gap fail; no --animate, GUI, libraries."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-27",
+  "source": "prospects/inbox/2026-11-24-discovery.md",
+  "skill": "skills/openscad/SKILL.md"
+}
