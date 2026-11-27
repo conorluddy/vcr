@@ -70,7 +70,7 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `webgpu` (through fastplotlib, which is built on it).
 
 ### ntsc-rs (`ntsc-rs`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://ntsc.rs (source: https://github.com/ntsc-rs/ntsc-rs)
 - Role: an analogue-video artefact emulator (NTSC composite, VHS tracking noise, chroma bleed, head switching) for stills and video, shipped as a standalone app and as OpenFX and After Effects plugins.
 - Category: A6. Image processing and colour.

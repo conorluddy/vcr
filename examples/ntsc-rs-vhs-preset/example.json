@@ -1,0 +1,14 @@
+{
+  "id": "ntsc-rs-vhs-preset",
+  "title": "ntsc-rs applies a seeded VHS preset to a generated clip",
+  "summary": "A 10-frame testsrc clip through ntsc-rs-cli with a fixed JSON preset and seed: repeat runs are frame-identical, another seed differs, output is visibly degraded.",
+  "status": "validated",
+  "tools": [
+    "ntsc-rs"
+  ],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-27",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
