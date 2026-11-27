@@ -29,7 +29,7 @@ This is the fifth W47 run. Earlier W47 runs covered shaders, maps, provenance, d
 - Found via: gap analysis after the `hillshade` and `terrain-rgb` topic searches returned only thin GDAL wrappers (`dem2terrainrgb`, `massif`, `contour-tiles`).
 
 ### p5.brush (`p5-brush`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/acamposuribe/p5.brush
 - Role: natural-media drawing for p5.js: pencils, charcoal, markers, watercolour-style fills, hatching and vector fields that bend strokes. It also has a standalone WebGL2 build that does not need p5.
 - Category: A1. Creative coding and 2D.

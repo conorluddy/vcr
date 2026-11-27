@@ -1,0 +1,73 @@
+{
+  "id": "p5-brush",
+  "name": "p5.brush",
+  "category": "A1. Creative coding and 2D",
+  "tier": "candidate",
+  "role": "Natural-media brushes, wash fills, hatching and flow-field strokes for p5.js sketches",
+  "summary": "p5.brush 3.x adds pencils, charcoal, markers, watercolour-style fills, hatch patterns and vector fields that bend strokes to a p5 WEBGL canvas (a standalone build needs no p5). In VCR a scene clears and redraws from scratch at each seek with its seeds reset, so the hand-drawn look captures deterministically with alpha.",
+  "use_when": [
+    "Hand-drawn illustration, hatching or print look for generative stills and motion in a browser scene",
+    "Over rough-js when fills, hatching or flow-field strokes are needed; over p5-js alone, which has no brush or fill model",
+    "A p5-js scene that should look like pencil, charcoal or watercolour"
+  ],
+  "avoid_when": [
+    "Plotter or pen-path output: vsketch or vpype",
+    "Many frames at speed: brush fills ran at roughly 5 frames per second here",
+    "Plain procedural shapes with no media look: p5-js"
+  ],
+  "pairs_with": [
+    "p5-js",
+    "playwright",
+    "ffmpeg-ffprobe"
+  ],
+  "official_url": "https://github.com/acamposuribe/p5.brush",
+  "repository_url": "https://github.com/acamposuribe/p5.brush",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "generative-2d",
+    "2d-rendering"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add p5.brush@3.3.0 p5"
+  },
+  "examples": [
+    "p5-brush-hatching"
+  ],
+  "notes": [
+    "2026-11-27: the lead said 3.0.0; npm latest is 3.3.0 (published 2026-11-26), and that is the version the fixture ran."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "3.3.0",
+    "last_release": "2026-11-26",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "MIT; npm 3.3.0 published 2026-11-26, repository active; peer p5 ^2.2 (standalone build needs none). Fills the hand-drawn media gap that rough-js (no fills or flow fields) and p5-js (no brush model) leave. The p5 build needs a WEBGL canvas and seeds must be reset each frame, both of which the fixture handled.",
+    "sources": [
+      "https://github.com/acamposuribe/p5.brush",
+      "https://www.npmjs.com/package/p5.brush"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "3.3.0",
+        "command": "examples/p5-brush-hatching/run.sh",
+        "result": "90 alpha frames at 1280x720, 90 unique frame hashes, shuffled order matches sequential; frames 0, 30, 60 alpha min 0 max 1; frames inspected (wash disc with hatching, moving flow lines).",
+        "example": "examples/p5-brush-hatching",
+        "scope": "p5.brush 3.3.0 on p5 2.3.4 WEBGL in Chromium via @vcr/capture, macOS arm64: hatch, wash fill, flowLine, marker rect at one seed; not the standalone build, buffers or hardware GPU."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-22-discovery.md",
+  "skill": "skills/p5-brush/SKILL.md"
+}
