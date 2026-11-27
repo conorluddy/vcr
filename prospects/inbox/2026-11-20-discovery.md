@@ -27,7 +27,8 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `shaders`.
 
 ### LYGIA (`lygia`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: retire
+  Non-free: npm `lygia` 1.4.1 declares Prosperity License & Patron License (non-commercial; commercial needs sponsorship), which fails the free-software gate; no record written. Revisit only if the licence changes.
 - URL: https://lygia.xyz (source: https://github.com/patriciogonzalezvivo/lygia)
 - Role: a granular shader function library (noise, SDFs, colour, filters, lighting, easing) in GLSL, HLSL, Metal, WGSL and CUDA, pulled in with `#include`.
 - Category: A3. 3D, shaders and effects.
