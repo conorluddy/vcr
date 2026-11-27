@@ -1,0 +1,8 @@
+{
+  "id": "pikchr-flow-svg",
+  "title": "Pikchr relative-placement flow to SVG",
+  "summary": "Build Pikchr from a pinned check-in into output/, render a four-box flow to SVG, check it is byte-identical across runs, that editing the last label leaves earlier shapes in place, and rasterise with resvg.",
+  "status": "validated",
+  "tools": ["pikchr"],
+  "run": "./run.sh"
+}

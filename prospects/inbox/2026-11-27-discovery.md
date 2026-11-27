@@ -127,7 +127,7 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 - Found via: delivery area (packaging), neighbour of `ffmpeg-ffprobe` and `mediainfo`.
 
 ### Pikchr (`pikchr`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://pikchr.org (GitHub mirror https://github.com/drhsqlite/pikchr)
 - Role: a PIC-like diagram language from the SQLite author, a single C file that turns a text script into SVG; built with `-DPIKCHR_SHELL` it reads files and writes SVG to stdout.
 - Category: A4. Vector, typography, diagrams and stills.

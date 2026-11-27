@@ -1,0 +1,9 @@
+# Four steps placed by direction and distance, never by an automatic layout.
+linewid = 0.6in
+A: box "Script" fit
+arrow
+B: box "Parse" fit
+arrow
+C: box "Layout" fit
+arrow
+D: box "SVG" fit
