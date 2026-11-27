@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-morphicons-icon-morph",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "morphicons": "^2.0.2"
+  }
+}
