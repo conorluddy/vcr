@@ -1,0 +1,10 @@
+{
+  "viewBox": "0 0 400 300",
+  "circleCount": 3,
+  "textCount": 0,
+  "pathCount": 3,
+  "constraintsHold": true,
+  "otherVariationConstraintsHold": true,
+  "otherVariationDiffers": true,
+  "fixedVariationSha256": "bd6fc9454475c80a803fe33a6b4a5ca268cb5f4c474108bba818c5b5c80891c5"
+}
