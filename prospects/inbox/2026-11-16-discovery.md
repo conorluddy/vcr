@@ -26,7 +26,8 @@ Summary line: 3 leads (1 in a new category: accessibility and compliance; `pysph
 - Found via: WebSearch (photosensitivity / WCAG 2.3.1 flash analysis), PyPI JSON, repo page.
 
 ### Vork (`vork`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: retire
+  Reason (2026-11-27): LICENSE read. "vork Preview License" is source-available, not OSI/free: no redistribution of modifications, no sublicensing, no hosted service, later versions may be paid; npm latest is 0.6.2 (lead said 0.5.0). Fails the free-software gate, so no catalogue record. Revisit if it moves to an OSI licence.
 - URL: https://github.com/voyager-so/vork
 - Role: "Headless 3D and VFX engine for agents. Research preview." A CLI that renders a `scene.json` or `.glb` to PNG stills, or to MP4 over a frame range. Rust and Slang on Vulkan or Metal, with TypeScript and Python SDKs for authoring scenes.
 - Category: existing 3D and rendering area, near `blender` and `pov-ray`
