@@ -15,7 +15,8 @@ This is the second run in ISO week 2026-W47. The earlier W47 digest (2026-11-16)
 ## Leads
 
 ### PureImage (`pureimage`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+  Overlaps skia-canvas (no-native edge not needed); lacks gradients and blend modes. Revisit if a no-native route is required.
 - URL: https://github.com/joshmarinacci/node-pureimage
 - Role: A pure-TypeScript implementation of the HTML Canvas 2D API for Node. It has no native dependencies and writes PNG and JPEG.
 - Category: A1. Creative coding and 2D
