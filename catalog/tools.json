@@ -12801,6 +12801,81 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "svg-path-commander",
+      "name": "svg-path-commander",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "SVG path-string maths in Node: normalise to cubics, transform, measure, no DOM",
+      "summary": "TypeScript library (svg-path-commander) that parses an SVG path string and normalises it to absolute cubic segments, converts arcs, reverses, optimises, applies matrix transforms and reports length, bounding box and point-at-length, all in Node with no DOM. Its strength is the path-data step a morph needs before any renderer: two different paths reduced to comparable cubic control points, ahead of resvg.",
+      "use_when": [
+        "Preparing two paths for a seekable shape morph; over svgo, which optimises whole files",
+        "Path length, bounding box or transforms on a path string without building a scene model; over paper-js or svg-js",
+        "Converting arcs, quadratics and shorthand curves to absolute cubics before frame generation"
+      ],
+      "avoid_when": [
+        "Whole-file SVG optimisation or ID cleanup: svgo",
+        "A scene graph with hit-testing, boolean ops or rendering: paper-js",
+        "Real 3D: its 3D transform is a perspective projection of the path"
+      ],
+      "pairs_with": [
+        "resvg",
+        "svg",
+        "svgo",
+        "paper-js"
+      ],
+      "official_url": "https://github.com/thednp/svg-path-commander",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring",
+        "math-utilities",
+        "svg-animation"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add svg-path-commander"
+      },
+      "examples": [
+        "svg-path-commander-cubic"
+      ],
+      "notes": [
+        "2026-11-27: it normalises but does not pair or split segments; two paths with 6 and 7 cubics after toCurve() stay unequal, so equal counts are the caller's job.",
+        "2026-11-27: toCurve() mutates the instance, so getTotalLength() afterwards measures the cubic approximation and differs slightly from a fresh instance."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "2.4.0",
+        "last_release": "2026-11-24",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "npm svg-path-commander 2.4.0 published 2026-11-24, MIT. Only catalogue route for path-string normalisation without a DOM or scene model; svgo works on files, paper-js and svg-js hold a scene.",
+        "sources": [
+          "https://github.com/thednp/svg-path-commander",
+          "https://www.npmjs.com/package/svg-path-commander"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.4.0",
+            "command": "examples/svg-path-commander-cubic/run.sh",
+            "result": "Two paths (H/A/L/Q and L/S/Q/H) both normalised to 6 absolute cubics, interpolated to 3 SVG frames identical across two Node 22.19.0 processes; translate moved bbox x by 5; resvg 0.47.0 PNGs 260x260 inspected.",
+            "example": "examples/svg-path-commander-cubic",
+            "scope": "toCurve, transform, getBBox and getTotalLength on two single-subpath paths, macOS arm64; not getPointAtLength, optimize, reverse, 3D, unequal segment counts or browser use."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-25-discovery.md",
+      "skill": "skills/svg-path-commander/SKILL.md"
+    },
+    {
       "id": "svgo",
       "name": "SVGO",
       "category": "A4. Vector, typography, diagrams and stills",

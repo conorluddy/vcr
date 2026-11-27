@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-svg-path-commander-cubic",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "svg-path-commander": "2.4.0"
+  }
+}
