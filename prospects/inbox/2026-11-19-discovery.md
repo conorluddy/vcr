@@ -97,7 +97,7 @@ Summary line: 8 leads (2 in a new category: music notation engraving).
 - Found via: GitHub topic search `svg`.
 
 ### reladraw (`reladraw`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/reladraw/reladraw (playground: https://reladraw.github.io/reladraw/)
 - Role: text diagram language with relative placement ("below", "right of", explicit gaps). `reladraw render` writes SVG, and it ships its own agent skill.
 - Category: A4. Vector, typography, diagrams and stills.

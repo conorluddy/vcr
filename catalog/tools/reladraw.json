@@ -1,0 +1,73 @@
+{
+  "id": "reladraw",
+  "name": "reladraw",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Text diagram language with author-placed, relative layout; SVG out",
+  "official_url": "https://github.com/reladraw/reladraw",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "diagram-generation",
+    "vector-authoring"
+  ],
+  "notes": [
+    "2026-11-27: Lead said 0.32.0; npm showed 0.32.1 (Apache-2.0). Lead's `pnpm add -g` replaced by a local pnpm add in the example.",
+    "2026-11-27: Triage: assess. The README warns the syntax changes frequently, so pin the version.",
+    "2026-11-27: Gap/units: `gap: N` is scaled (gap: 40 drew about 480 px), so tune against the rendered size.",
+    "2026-11-27: Toolkit guide skills/reladraw/SKILL.md written from reladraw-stable-layout evidence (0.32.1, macOS arm64); other syntax untested."
+  ],
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.32.1",
+        "command": "examples/reladraw-stable-layout/run.sh",
+        "result": "v1 (3 nodes, 2 arrows, viewBox 0 0 436 127) and v2 (4 nodes, 3 arrows, viewBox 0 0 453 246) rendered; Source, Layout and SVG box paths identical in both; repeat render byte-identical; check printed no warnings; 900 px raster showed no overlap.",
+        "example": "examples/reladraw-stable-layout",
+        "scope": "Adding one node to a three-node chain leaves existing nodes' coordinates unchanged, reladraw 0.32.1, macOS arm64. Not other syntax, larger graphs, label-driven resizing or cross-version output."
+      }
+    ]
+  },
+  "examples": [
+    "reladraw-stable-layout"
+  ],
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-27",
+  "source": "prospects/inbox/2026-11-19-discovery.md",
+  "summary": "A text language where the author says where each node goes (right of, below, gap) and reladraw draws exactly that to SVG with a local CLI (render, check, format, serve). No auto-layout, so a diagram edit does not move unrelated nodes. Pin the version: syntax still changes between releases.",
+  "use_when": [
+    "Over D2 or Graphviz when nodes must keep their positions between diagram versions",
+    "Diagram-build animation where each version of the source is a keyframe"
+  ],
+  "avoid_when": [
+    "Use D2 or Graphviz when automatic layout of many nodes and edges is wanted",
+    "Use Mermaid CLI for diagrams embedded in Markdown"
+  ],
+  "pairs_with": [
+    "resvg",
+    "d2"
+  ],
+  "license": "Apache-2.0",
+  "install": {
+    "macos": "pnpm add reladraw@0.32.1",
+    "check_command": "reladraw --version"
+  },
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard-reladraw",
+    "version_seen": "0.32.1",
+    "last_release": "2026-11-19",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Apache-2.0, zero runtime dependencies, local CLI renders SVG headlessly. Adds author-controlled placement that D2, Graphviz and Mermaid lack. Young (repo from 2026-09) and syntax unstable, so keep as a candidate.",
+    "sources": [
+      "https://github.com/reladraw/reladraw",
+      "https://www.npmjs.com/package/reladraw"
+    ]
+  },
+  "skill": "skills/reladraw/SKILL.md"
+}
