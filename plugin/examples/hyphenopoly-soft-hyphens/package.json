@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-hyphenopoly-soft-hyphens",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "hyphenopoly": "6.1.0"
+  }
+}
