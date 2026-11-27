@@ -5491,6 +5491,80 @@
       "skill": "skills/hyperframes/SKILL.md"
     },
     {
+      "id": "iconify",
+      "name": "Iconify",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "Offline icon data for 280+ open sets as SVG, with per-set licence and author metadata",
+      "summary": "@iconify/json bundles every open icon set as JSON with each set's SPDX licence and author; @iconify/utils turns an icon into SVG offline. Its strength is a machine-readable licence per set, so a credits or licence check can gate icons before they enter a scene.",
+      "use_when": [
+        "Icons or logos as SVG layers where the licence must be checked or credited",
+        "Reproducible renders: icon data is local and pinned, no live API",
+        "Picking one icon from a very large mixed-style library by set and name"
+      ],
+      "avoid_when": [
+        "Editing, optimising or rasterising SVG once you have it: svg, svgo, resvg",
+        "Icons from one known set only: install that set's own package instead of 730 MB of data",
+        "Brand logos where trademark terms matter: a CC0 set does not clear the mark"
+      ],
+      "pairs_with": [
+        "resvg",
+        "svg",
+        "svgo"
+      ],
+      "official_url": "https://iconify.design",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add @iconify/json @iconify/utils"
+      },
+      "examples": [
+        "iconify-svg-licences"
+      ],
+      "notes": [
+        "2026-11-27: Tooling is MIT; each icon set keeps its own licence. Of 281 sets in @iconify/json 2.2.562: 184 notice-retained (MIT, ISC, Apache-2.0, BSD-3), 68 attribution-required (CC-BY, OFL), 11 free (CC0, Unlicense), 10 share-alike review (CC-BY-SA, MPL-2.0), 6 GPL (gridicons, wordpress, dashicons, gala, icomoon-free, et) and 2 non-commercial (cbi, ps).",
+        "2026-11-27: @iconify/json publishes almost daily and installs about 730 MB; pin the exact version and prefer the local JSON over api.iconify.design."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "2.2.562",
+        "last_release": "2026-11-19",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "@iconify/json 2.2.562 and @iconify/utils 3.1.7 (both MIT) installed and read locally; repository pushed 2026-11-21. Nothing catalogued supplies icons with machine-readable licence metadata; svg, svgo and resvg only handle SVG you already have. Set licences vary, including GPL and non-commercial sets, so use must be gated per set.",
+        "sources": [
+          "https://iconify.design",
+          "https://github.com/iconify/iconify",
+          "https://iconify.design/docs/icons/json.html",
+          "https://www.npmjs.com/package/@iconify/json"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "@iconify/json 2.2.562, @iconify/utils 3.1.7",
+            "command": "examples/iconify-svg-licences/run.sh",
+            "result": "3 icons (ISC, CC-BY-4.0, CC0) built offline to SVG, identical SHA-256 across two Node 22.19.0 processes; all 281 set licences classified, 0 unknown; resvg 192 px PNGs inspected.",
+            "example": "examples/iconify-svg-licences",
+            "scope": "Local JSON and utils only: 3 icons, height and colour options, one data release, macOS arm64; not the live API, @iconify/tools, palette icons, or legal sufficiency of a licence."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-21-discovery.md",
+      "skill": "skills/iconify/SKILL.md"
+    },
+    {
       "id": "imagemagick",
       "name": "ImageMagick",
       "category": "A6. Image processing and colour",
