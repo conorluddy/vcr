@@ -100,7 +100,7 @@ This is the second W48 run. The first W48 digest (2026-11-23, PR #233) is merged
 - Found via: GitHub topic search `topic:usd`.
 
 ### autotrace (`autotrace`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/autotrace/autotrace
 - Role: a CLI and library that converts bitmaps to vectors, with colour tracing and **centerline** tracing. Output formats include SVG, EPS, PDF and DXF.
 - Category: A4. Vector, typography, diagrams and stills.
