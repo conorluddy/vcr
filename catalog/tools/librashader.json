@@ -1,0 +1,77 @@
+{
+  "id": "librashader",
+  "name": "librashader",
+  "category": "Discovery: research candidates",
+  "tier": "candidate",
+  "role": "Apply RetroArch slang shader presets (CRT, scanline) to images headlessly",
+  "official_url": "https://github.com/SnowflakePowered/librashader",
+  "repository_url": "https://github.com/SnowflakePowered/librashader",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "shaders",
+    "image-processing"
+  ],
+  "notes": [
+    "2026-11-27: Lead from prospects/inbox/2026-11-20-discovery.md. Lead differed: crate licence is MPL-2.0 OR GPL-3.0-only (not MPL-2.0 alone); the CLI's file-path PNG output works; only the metal and wgpu runtimes exist on macOS, and wgpu failed.",
+    "2026-11-27: Install is cargo only, no Homebrew formula; crate declares no rust-version, rustc 1.95.0 built it. Default features need cmake for OpenGL glfw; built with --no-default-features --features metal,wgpu into the example's ignored output/cargo.",
+    "2026-11-27: Presets and shaders are separate, each with its own licence (crt-lottes public domain, crt-geom GPL-2.0-or-later); libretro/slang-shaders has no single licence."
+  ],
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "install": {
+    "macos": "cargo install librashader-cli --version 0.12.1 --locked --root <dir> --no-default-features --features metal,wgpu",
+    "check_command": "librashader-cli --version"
+  },
+  "validation": {
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "librashader-cli 0.12.1 (cargo, metal,wgpu features; slang-shaders 02bf134)",
+        "command": "examples/librashader-crt-preset/run.sh",
+        "result": "crt-lottes on 3 generated 320x240 frames to 960x720 via Metal: curvature, scanlines, mask seen; shuffled order and rerun byte-identical. wgpu runtime KNOWN FAIL: PIPELINE_CACHE unsupported.",
+        "example": "examples/librashader-crt-preset",
+        "scope": "Metal runtime, macOS arm64 M3; crt-lottes (PD) and crt-geom single-pass presets; per-frame calls. wgpu fails; no OpenGL/Vulkan, multi-pass or temporal presets."
+      }
+    ]
+  },
+  "examples": [
+    "librashader-crt-preset"
+  ],
+  "adapter_maturity": "none",
+  "checked_at": "2026-11-27",
+  "source": "prospects/inbox/2026-11-20-discovery.md",
+  "summary": "Runs RetroArch slang shader presets (CRT, scanline, NTSC, handheld LCD looks) on an image from the command line and writes a PNG for a chosen frame number. Presets come from separate repositories with per-shader licences.",
+  "use_when": [
+    "Give a still or generated frame an accurate CRT or retro display look from the libretro slang-shaders library",
+    "Render a shader preset for a given frame number outside an emulator"
+  ],
+  "avoid_when": [
+    "Need a single GLSL shader run or live editing: glslviewer",
+    "Need GPU video processing hooks or tone mapping: libplacebo",
+    "Need a filter chain from another plugin family: frei0r or g-mic"
+  ],
+  "pairs_with": [
+    "ffmpeg-ffprobe",
+    "glslviewer",
+    "libplacebo",
+    "frei0r",
+    "g-mic"
+  ],
+  "license": "MPL-2.0 OR GPL-3.0-only (librashader-cli); slang presets carry their own licences, per shader",
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard-librashader",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "Documented CLI render command applies a preset to an image for a given frame; no catalogued neighbour runs the slang preset library. Licence is free for the CLI, shaders must be checked individually.",
+    "sources": [
+      "https://github.com/SnowflakePowered/librashader",
+      "https://crates.io/crates/librashader-cli",
+      "https://github.com/SnowflakePowered/librashader/blob/master/CLI.md",
+      "https://github.com/libretro/slang-shaders"
+    ]
+  },
+  "skill": "skills/librashader/SKILL.md"
+}

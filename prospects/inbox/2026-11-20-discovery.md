@@ -13,7 +13,7 @@ Summary line: 10 leads (0 in new categories).
 ## Leads
 
 ### librashader (`librashader`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/SnowflakePowered/librashader (CLI docs: `CLI.md` in the repo)
 - Role: runs RetroArch `.slangp` shader presets (CRT, scanline, NTSC, handheld-LCD looks) outside an emulator; `librashader-cli render` applies a preset to an input image and writes the result for a chosen frame number.
 - Category: A3. 3D, shaders and effects.

@@ -1,0 +1,8 @@
+{
+  "id": "librashader-crt-preset",
+  "title": "librashader applies RetroArch CRT presets to a generated frame sequence",
+  "summary": "Three generated 320x240 frames through crt-lottes (public domain) on the Metal runtime to 960x720; CRT look inspected, order-independent and rerun-identical; wgpu runtime fails (KNOWN FAIL).",
+  "status": "not-validated",
+  "tools": ["librashader"],
+  "run": "./run.sh"
+}
