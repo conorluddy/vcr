@@ -113,7 +113,7 @@ This is the second W48 run. The first W48 digest (2026-11-23, PR #233) is merged
 - Found via: GitHub topic search `topic:vectorization`.
 
 ### Physically Based API (`physically-based-api`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://api.physicallybased.info/v2 (repository: https://github.com/AntonPalmqvist/physically-based-api)
 - Role: a CC0 JSON database of measured physically based values: material base colours in linear sRGB and other spaces, IOR, roughness, light-source colour temperatures and camera data. A JSON schema describes it.
 - Category: A9. Adjacent resources mentioned during discovery. This is an openly licensed asset API, which is one of the lower-priority areas.

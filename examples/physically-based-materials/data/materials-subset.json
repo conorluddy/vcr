@@ -1,0 +1,1105 @@
+{
+ "header": {
+  "schemaVersion": 2.2,
+  "updated": 202611031901,
+  "license": "CC0 1.0 Universal",
+  "origin": "https://api.physicallybased.info/v2/materials",
+  "deprecated": false
+ },
+ "fetched": {
+  "url": "https://api.physicallybased.info/v2/materials",
+  "date": "2026-11-27",
+  "note": "verbatim entries for the named materials only; the full response is 341944 bytes (122 materials)"
+ },
+ "data": [
+  {
+   "name": "Aluminum",
+   "color": [
+    {
+     "colorSpace": "srgb-linear",
+     "color": [
+      0.916,
+      0.923,
+      0.924
+     ]
+    },
+    {
+     "colorSpace": "acescg",
+     "color": [
+      0.918,
+      0.922,
+      0.923
+     ]
+    }
+   ],
+   "metalness": 1,
+   "specularColor": [
+    {
+     "format": [
+      "Gulbrandsen"
+     ],
+     "color": [
+      {
+       "colorSpace": "srgb-linear",
+       "color": [
+        0.989,
+        0.989,
+        0.972
+       ]
+      },
+      {
+       "colorSpace": "acescg",
+       "color": [
+        0.985,
+        0.989,
+        0.993
+       ]
+      }
+     ]
+    },
+    {
+     "format": [
+      "F82"
+     ],
+     "color": [
+      {
+       "colorSpace": "srgb-linear",
+       "color": [
+        0.91,
+        0.936,
+        0.959
+       ]
+      },
+      {
+       "colorSpace": "acescg",
+       "color": [
+        0.921,
+        0.934,
+        0.955
+       ]
+      }
+     ]
+    }
+   ],
+   "roughness": 0,
+   "complexIor": [
+    {
+     "colorSpace": "srgb-linear",
+     "n": [
+      0.728978,
+      0.588215,
+      0.78354
+     ],
+     "k": [
+      6.45971,
+      5.19646,
+      4.37746
+     ]
+    },
+    {
+     "colorSpace": "acescg",
+     "n": [
+      0.73826,
+      0.58846,
+      0.401312
+     ],
+     "k": [
+      5.76125,
+      5.26448,
+      4.35851
+     ]
+    }
+   ],
+   "density": [
+    2700
+   ],
+   "category": [
+    "Metal"
+   ],
+   "group": "Aluminum",
+   "tags": [
+    "aluminium",
+    "mirror"
+   ],
+   "references": [
+    {
+     "title": "Refractive index database",
+     "author": "Polyanskiy, M. N.",
+     "url": "https://refractiveindex.info/?shelf=main&book=Al&page=Cheng",
+     "accessed": "2025-06-26"
+    },
+    {
+     "title": "OpenPBR: Novel Features and Implementation Details",
+     "author": "Portsmouth, J., Kutz, P., & Hill, S.",
+     "doi": "https://doi.org/10.48550/arXiv.2512.23696",
+     "year": "2025",
+     "url": "https://arxiv.org/pdf/2512.23696#appendix.D",
+     "accessed": "2025-12-30"
+    },
+    {
+     "title": "Aluminium",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Aluminium&oldid=1271633189",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-01-25"
+    },
+    {
+     "title": "Density",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Density&oldid=1271894167",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-01-25"
+    },
+    {
+     "title": "Mirror",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Mirror&oldid=1268984936",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-01-25"
+    }
+   ],
+   "images": [
+    {
+     "format": "jpeg",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/aluminum.jpeg",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/aluminum.jpeg"
+    },
+    {
+     "format": "avif",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/aluminum.avif",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/aluminum.avif"
+    }
+   ]
+  },
+  {
+   "name": "Copper",
+   "color": [
+    {
+     "colorSpace": "srgb-linear",
+     "color": [
+      0.932,
+      0.623,
+      0.522
+     ]
+    },
+    {
+     "colorSpace": "acescg",
+     "color": [
+      0.811,
+      0.643,
+      0.542
+     ]
+    }
+   ],
+   "metalness": 1,
+   "specularColor": [
+    {
+     "format": [
+      "Gulbrandsen"
+     ],
+     "color": [
+      {
+       "colorSpace": "srgb-linear",
+       "color": [
+        0.999,
+        0.9,
+        0.744
+       ]
+      },
+      {
+       "colorSpace": "acescg",
+       "color": [
+        0.979,
+        0.915,
+        0.85
+       ]
+      }
+     ]
+    },
+    {
+     "format": [
+      "F82"
+     ],
+     "color": [
+      {
+       "colorSpace": "srgb-linear",
+       "color": [
+        0.982,
+        0.947,
+        0.945
+       ]
+      },
+      {
+       "colorSpace": "acescg",
+       "color": [
+        0.97,
+        0.95,
+        0.946
+       ]
+      }
+     ]
+    }
+   ],
+   "roughness": 0,
+   "complexIor": [
+    {
+     "colorSpace": "srgb-linear",
+     "n": [
+      0.133762,
+      1.05661,
+      1.68637
+     ],
+     "k": [
+      3.10615,
+      2.63095,
+      2.42655
+     ]
+    },
+    {
+     "colorSpace": "acescg",
+     "n": [
+      0.4946,
+      0.974095,
+      1.23853
+     ],
+     "k": [
+      2.87217,
+      2.65208,
+      2.41041
+     ]
+    }
+   ],
+   "density": [
+    8940
+   ],
+   "category": [
+    "Metal"
+   ],
+   "references": [
+    {
+     "title": "Refractive index database",
+     "author": "Polyanskiy, M. N.",
+     "url": "https://refractiveindex.info/?shelf=main&book=Cu&page=Johnson",
+     "accessed": "2025-01-26"
+    },
+    {
+     "title": "OpenPBR: Novel Features and Implementation Details",
+     "author": "Portsmouth, J., Kutz, P., & Hill, S.",
+     "doi": "https://doi.org/10.48550/arXiv.2512.23696",
+     "year": "2025",
+     "url": "https://arxiv.org/pdf/2512.23696#appendix.D",
+     "accessed": "2025-12-30"
+    },
+    {
+     "title": "Density",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Density&oldid=1271894167",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-01-26"
+    }
+   ],
+   "images": [
+    {
+     "format": "jpeg",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/copper.jpeg",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/copper.jpeg"
+    },
+    {
+     "format": "avif",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/copper.avif",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/copper.avif"
+    }
+   ]
+  },
+  {
+   "name": "Diamond",
+   "color": [
+    {
+     "colorSpace": "srgb-linear",
+     "color": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "metalness": 0,
+   "roughness": 0,
+   "ior": 2.4168,
+   "transmission": 1,
+   "transmissionDispersion": 55.3,
+   "density": [
+    3500
+   ],
+   "category": [
+    "Crystal"
+   ],
+   "references": [
+    {
+     "title": "Refractive index database",
+     "author": "Polyanskiy, M. N.",
+     "url": "https://refractiveindex.info/?shelf=3d&book=crystals&page=diamond",
+     "accessed": "2025-01-26"
+    },
+    {
+     "title": "Refractive index database",
+     "author": "Polyanskiy, M. N.",
+     "url": "https://refractiveindex.info/?shelf=main&book=C&page=Peter",
+     "accessed": "2025-01-26"
+    },
+    {
+     "title": "Density",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Density&oldid=1271894167",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-01-26"
+    }
+   ],
+   "images": [
+    {
+     "format": "jpeg",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/diamond.jpeg",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/diamond.jpeg"
+    },
+    {
+     "format": "avif",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/diamond.avif",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/diamond.avif"
+    }
+   ]
+  },
+  {
+   "name": "Gold",
+   "color": [
+    {
+     "colorSpace": "srgb-linear",
+     "color": [
+      1.059,
+      0.773,
+      0.307
+     ]
+    },
+    {
+     "colorSpace": "acescg",
+     "color": [
+      0.929,
+      0.788,
+      0.374
+     ]
+    }
+   ],
+   "metalness": 1,
+   "specularColor": [
+    {
+     "format": [
+      "Gulbrandsen"
+     ],
+     "color": [
+      {
+       "colorSpace": "srgb-linear",
+       "color": [
+        1.001,
+        0.985,
+        0.523
+       ]
+      },
+      {
+       "colorSpace": "acescg",
+       "color": [
+        0.997,
+        0.987,
+        0.757
+       ]
+      }
+     ]
+    },
+    {
+     "format": [
+      "F82"
+     ],
+     "color": [
+      {
+       "colorSpace": "srgb-linear",
+       "color": [
+        0.971,
+        1.018,
+        0.994
+       ]
+      },
+      {
+       "colorSpace": "acescg",
+       "color": [
+        0.987,
+        1.013,
+        0.997
+       ]
+      }
+     ]
+    }
+   ],
+   "roughness": 0,
+   "complexIor": [
+    {
+     "colorSpace": "srgb-linear",
+     "n": [
+      0,
+      0.351563,
+      1.85894
+     ],
+     "k": [
+      6.59401,
+      2.08143,
+      1.49631
+     ]
+    },
+    {
+     "colorSpace": "acescg",
+     "n": [
+      0.190506,
+      0.330771,
+      1.35292
+     ],
+     "k": [
+      3.04413,
+      2.11776,
+      1.76193
+     ]
+    }
+   ],
+   "density": [
+    19320
+   ],
+   "category": [
+    "Metal"
+   ],
+   "references": [
+    {
+     "title": "Refractive index database",
+     "author": "Polyanskiy, M. N.",
+     "url": "https://refractiveindex.info/?shelf=main&book=Au&page=Babar",
+     "accessed": "2025-06-26"
+    },
+    {
+     "title": "OpenPBR: Novel Features and Implementation Details",
+     "author": "Portsmouth, J., Kutz, P., & Hill, S.",
+     "doi": "https://doi.org/10.48550/arXiv.2512.23696",
+     "year": "2025",
+     "url": "https://arxiv.org/pdf/2512.23696#appendix.D",
+     "accessed": "2025-12-30"
+    },
+    {
+     "title": "Density",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Density&oldid=1271894167",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-01-26"
+    }
+   ],
+   "images": [
+    {
+     "format": "jpeg",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/gold.jpeg",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/gold.jpeg"
+    },
+    {
+     "format": "avif",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/gold.avif",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/gold.avif"
+    }
+   ]
+  },
+  {
+   "name": "Ice",
+   "color": [
+    {
+     "colorSpace": "srgb-linear",
+     "color": [
+      0.973,
+      0.995,
+      1.0
+     ]
+    }
+   ],
+   "metalness": 0,
+   "roughness": 0,
+   "ior": 1.3098,
+   "transmission": 1,
+   "transmissionDepth": 100,
+   "transmissionDispersion": 64.87,
+   "volumeCoefficients": {
+    "absorption": [
+     {
+      "colorSpace": "srgb-linear",
+      "color": [
+       0.002075,
+       0.000416,
+       0.0
+      ]
+     },
+     {
+      "colorSpace": "acescg",
+      "color": [
+       0.001411,
+       0.000526,
+       5e-05
+      ]
+     }
+    ],
+    "scattering": [
+     {
+      "colorSpace": "srgb-linear",
+      "color": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     {
+      "colorSpace": "acescg",
+      "color": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     }
+    ]
+   },
+   "density": [
+    917
+   ],
+   "acousticAbsorption": [
+    0.008,
+    0.008,
+    0.013,
+    0.015,
+    0.02,
+    0.025
+   ],
+   "category": [
+    "Crystal"
+   ],
+   "references": [
+    {
+     "title": "Refractive index database",
+     "author": "Polyanskiy, M. N.",
+     "url": "https://refractiveindex.info/?shelf=main&book=H2O&page=Warren-2008",
+     "accessed": "2026-04-21"
+    },
+    {
+     "title": "Refractive index database",
+     "author": "Polyanskiy, M. N.",
+     "url": "https://refractiveindex.info/?shelf=main&book=H2O&page=Kofman-150K",
+     "accessed": "2025-01-26"
+    },
+    {
+     "title": "Density",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Density&oldid=1271894167",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-01-26"
+    },
+    {
+     "title": "Absorption coefficients of common building materials and finishes",
+     "author": "JCW Acoustic Supplies",
+     "url": "https://web.archive.org/web/20260510175255/https://www.acoustic-supplies.com/absorption-coefficient-chart/",
+     "accessed": "2025-01-26"
+    },
+    {
+     "title": "Optical Properties of Water and Ice",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Optical_properties_of_water_and_ice&oldid=1272826057",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-01-26"
+    }
+   ],
+   "images": [
+    {
+     "format": "jpeg",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/ice.jpeg",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/ice.jpeg"
+    },
+    {
+     "format": "avif",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/ice.avif",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/ice.avif"
+    }
+   ]
+  },
+  {
+   "name": "Iron",
+   "color": [
+    {
+     "colorSpace": "srgb-linear",
+     "color": [
+      0.53,
+      0.513,
+      0.494
+     ]
+    },
+    {
+     "colorSpace": "acescg",
+     "color": [
+      0.523,
+      0.514,
+      0.497
+     ]
+    }
+   ],
+   "metalness": 1,
+   "specularColor": [
+    {
+     "format": [
+      "Gulbrandsen"
+     ],
+     "color": [
+      {
+       "colorSpace": "srgb-linear",
+       "color": [
+        0.612,
+        0.541,
+        0.422
+       ]
+      },
+      {
+       "colorSpace": "acescg",
+       "color": [
+        0.562,
+        0.549,
+        0.586
+       ]
+      }
+     ]
+    },
+    {
+     "format": [
+      "F82"
+     ],
+     "color": [
+      {
+       "colorSpace": "srgb-linear",
+       "color": [
+        0.765,
+        0.767,
+        0.802
+       ]
+      },
+      {
+       "colorSpace": "acescg",
+       "color": [
+        0.767,
+        0.768,
+        0.797
+       ]
+      }
+     ]
+    }
+   ],
+   "roughness": 0,
+   "complexIor": [
+    {
+     "colorSpace": "srgb-linear",
+     "n": [
+      2.73466,
+      2.94186,
+      3.15654
+     ],
+     "k": [
+      3.14869,
+      2.92718,
+      2.46012
+     ]
+    },
+    {
+     "colorSpace": "acescg",
+     "n": [
+      2.90278,
+      2.91315,
+      2.59243
+     ],
+     "k": [
+      3.01558,
+      2.94418,
+      2.77805
+     ]
+    }
+   ],
+   "density": [
+    7870
+   ],
+   "category": [
+    "Metal"
+   ],
+   "references": [
+    {
+     "title": "Refractive index database",
+     "author": "Polyanskiy, M. N.",
+     "url": "https://refractiveindex.info/?shelf=3d&book=metals&page=iron",
+     "accessed": "2025-01-26"
+    },
+    {
+     "title": "OpenPBR: Novel Features and Implementation Details",
+     "author": "Portsmouth, J., Kutz, P., & Hill, S.",
+     "doi": "https://doi.org/10.48550/arXiv.2512.23696",
+     "year": "2025",
+     "url": "https://arxiv.org/pdf/2512.23696#appendix.D",
+     "accessed": "2025-12-30"
+    },
+    {
+     "title": "Density",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Density&oldid=1271894167",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-01-26"
+    }
+   ],
+   "images": [
+    {
+     "format": "jpeg",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/iron.jpeg",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/iron.jpeg"
+    },
+    {
+     "format": "avif",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/iron.avif",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/iron.avif"
+    }
+   ]
+  },
+  {
+   "name": "Silver",
+   "color": [
+    {
+     "colorSpace": "srgb-linear",
+     "color": [
+      0.991,
+      0.985,
+      0.974
+     ]
+    },
+    {
+     "colorSpace": "acescg",
+     "color": [
+      0.988,
+      0.985,
+      0.975
+     ]
+    }
+   ],
+   "metalness": 1,
+   "specularColor": [
+    {
+     "format": [
+      "Gulbrandsen"
+     ],
+     "color": [
+      {
+       "colorSpace": "srgb-linear",
+       "color": [
+        1.0,
+        1.0,
+        0.991
+       ]
+      },
+      {
+       "colorSpace": "acescg",
+       "color": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ]
+    },
+    {
+     "format": [
+      "F82"
+     ],
+     "color": [
+      {
+       "colorSpace": "srgb-linear",
+       "color": [
+        0.994,
+        0.995,
+        0.998
+       ]
+      },
+      {
+       "colorSpace": "acescg",
+       "color": [
+        0.995,
+        0.995,
+        0.998
+       ]
+      }
+     ]
+    }
+   ],
+   "roughness": 0,
+   "complexIor": [
+    {
+     "colorSpace": "srgb-linear",
+     "n": [
+      0,
+      0.0626977,
+      0.382178
+     ],
+     "k": [
+      8.06675,
+      3.62828,
+      3.80086
+     ]
+    },
+    {
+     "colorSpace": "acescg",
+     "n": [
+      0.0485451,
+      0.0511628,
+      0.0515574
+     ],
+     "k": [
+      3.90854,
+      3.56812,
+      2.69761
+     ]
+    }
+   ],
+   "density": [
+    10500
+   ],
+   "category": [
+    "Metal"
+   ],
+   "tags": [
+    "mirror"
+   ],
+   "references": [
+    {
+     "title": "Refractive index database",
+     "author": "Polyanskiy, M. N.",
+     "url": "https://refractiveindex.info/?shelf=main&book=Ag&page=Babar",
+     "accessed": "2025-06-26"
+    },
+    {
+     "title": "OpenPBR: Novel Features and Implementation Details",
+     "author": "Portsmouth, J., Kutz, P., & Hill, S.",
+     "doi": "https://doi.org/10.48550/arXiv.2512.23696",
+     "year": "2025",
+     "url": "https://arxiv.org/pdf/2512.23696#appendix.D",
+     "accessed": "2025-12-30"
+    },
+    {
+     "title": "Density",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Density&oldid=1271894167",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-01-25"
+    },
+    {
+     "title": "Mirror",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Mirror&oldid=1273933448",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-01-25"
+    }
+   ],
+   "images": [
+    {
+     "format": "jpeg",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/silver.jpeg",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/silver.jpeg"
+    },
+    {
+     "format": "avif",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/silver.avif",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/silver.avif"
+    }
+   ]
+  },
+  {
+   "name": "Water",
+   "color": [
+    {
+     "colorSpace": "srgb-linear",
+     "color": [
+      0.969,
+      0.996,
+      0.997
+     ]
+    }
+   ],
+   "metalness": 0,
+   "roughness": 0,
+   "ior": 1.3325,
+   "transmission": 1,
+   "transmissionDepth": 100,
+   "transmissionDispersion": 55.78,
+   "volumeCoefficients": {
+    "absorption": [
+     {
+      "colorSpace": "srgb-linear",
+      "color": [
+       0.00297,
+       0.00045,
+       0.00017
+      ]
+     },
+     {
+      "colorSpace": "acescg",
+      "color": [
+       0.00198,
+       0.00062,
+       0.00026
+      ]
+     }
+    ],
+    "scattering": [
+     {
+      "colorSpace": "srgb-linear",
+      "color": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     {
+      "colorSpace": "acescg",
+      "color": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     }
+    ]
+   },
+   "density": [
+    958,
+    1000,
+    1000
+   ],
+   "viscosity": [
+    1.002
+   ],
+   "surfaceTension": 72.75,
+   "acousticAbsorption": [
+    0.008,
+    0.008,
+    0.013,
+    0.015,
+    0.02,
+    0.025
+   ],
+   "category": [
+    "Liquid"
+   ],
+   "description": "While relatively small quantities of water appear to be colorless, pure water has a slight blue color that becomes deeper as the thickness of the observed sample increases beyond 50 cm. The hue of water is an intrinsic property and is caused by selective absorption and scattering of white light. Dissolved elements or suspended impurities may give water a different color.",
+   "references": [
+    {
+     "title": "Refractive index database",
+     "author": "Polyanskiy, M. N.",
+     "url": "https://refractiveindex.info/?shelf=main&book=H2O&page=Daimon-21.5C",
+     "accessed": "2025-01-26"
+    },
+    {
+     "title": "Refractive index database",
+     "author": "Polyanskiy, M. N.",
+     "url": "https://refractiveindex.info/?shelf=main&book=H2O&page=Hale",
+     "accessed": "2026-04-21"
+    },
+    {
+     "title": "Density",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Density&oldid=1271894167",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-01-26"
+    },
+    {
+     "title": "Properties of Water",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Properties_of_water&oldid=1274819143",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-02-10"
+    },
+    {
+     "title": "Color of Water",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Color_of_water&oldid=1273446338",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-02-10"
+    },
+    {
+     "title": "List of Viscosities",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=List_of_viscosities&oldid=1256671906",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-01-26"
+    },
+    {
+     "title": "Surface tension",
+     "author": "Wikipedia contributors",
+     "url": "https://en.wikipedia.org/w/index.php?title=Surface_tension&oldid=1304099149#Values",
+     "publisher": "Wikipedia, The Free Encyclopedia",
+     "accessed": "2025-08-30"
+    },
+    {
+     "title": "Hybrido Viscosity Table",
+     "author": "RealFlow 10 Documentation",
+     "publisher": "Next Limit Technologies",
+     "url": "https://nextlimitsupport.atlassian.net/wiki/spaces/rf2016docs/pages/5497120/Hybrido+Viscosity+Table",
+     "accessed": "2025-01-26"
+    },
+    {
+     "title": "Water - Dynamic (Absolute) and Kinematic Viscosity vs. Temperature and Pressure",
+     "url": "https://www.engineeringtoolbox.com/water-dynamic-kinematic-viscosity-d_596.html",
+     "publisher": "The Engineering ToolBox",
+     "accessed": "2025-01-26"
+    },
+    {
+     "title": "Absorption coefficients of common building materials and finishes",
+     "author": "JCW Acoustic Supplies",
+     "url": "https://web.archive.org/web/20260510175255/https://www.acoustic-supplies.com/absorption-coefficient-chart/",
+     "accessed": "2025-01-26"
+    },
+    {
+     "title": "Compendium of Materials for Noise Control",
+     "author": "Hedeen, R. A.",
+     "url": "https://www.cdc.gov/niosh/docs/80-116/",
+     "pages": "55",
+     "year": "1980",
+     "doi": "https://doi.org/10.26616/NIOSHPUB80116",
+     "accessed": "2025-02-10"
+    },
+    {
+     "title": "Zoom Lens Design Using Liquid Lens for Laparoscope",
+     "author": "Seungwan, L., Minseog, C., Eunsung, L., Kyu-Dong, J., Jong-hyeon, C., & Woonbae, K.",
+     "url": "https://opg.optica.org/oe/abstract.cfm?URI=oe-21-2-1751",
+     "publisher": "Optics Express",
+     "volume": "21",
+     "issue": "2",
+     "pages": "1751--1761",
+     "year": "2013",
+     "doi": "https://doi.org/10.1364/OE.21.001751"
+    },
+    {
+     "title": "The Optical Properties of Water",
+     "author": "Mobley, C. D.",
+     "url": "http://data.moby.mlml.sjsu.edu/mobyuncert/self_shading/docs/chapter43_optical_society_of_america_handbook_of_optics_i.pdf",
+     "publisher": "Handbook of optics",
+     "pages": "43",
+     "year": "1995"
+    }
+   ],
+   "images": [
+    {
+     "format": "jpeg",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/water.jpeg",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/water.jpeg"
+    },
+    {
+     "format": "avif",
+     "300": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/300/water.avif",
+     "600": "https://raw.githubusercontent.com/AntonPalmqvist/physically-based-api/main/images/renders/cycles/600/water.avif"
+    }
+   ]
+  }
+ ]
+}
