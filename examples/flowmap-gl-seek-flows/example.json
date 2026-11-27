@@ -1,0 +1,8 @@
+{
+  "id": "flowmap-gl-seek-flows",
+  "title": "flowmap.gl animated flow lines seeked by t",
+  "summary": "Draws 12 origin-destination flows with FlowmapLayer's animated-straight mode on a basemap-free deck.gl MapView, drives its Date.now clock from t, and captures 90 frames whose shuffled capture matches sequential.",
+  "status": "validated",
+  "tools": ["flowmap-gl"],
+  "run": "./run.sh"
+}
