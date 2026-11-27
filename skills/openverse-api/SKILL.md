@@ -24,7 +24,7 @@ Anonymous limits seen 2026-11-27: `/v1/` 20/min and 200/day, `/v1/images/` 100/m
 ## Smoke test
 ```text
 examples/openverse-licence-fields/run.sh
-# expect: requests made: 4; failed checks: 0  then  OK: openverse-licence-fields   (SKIPPED if the API is down)
+# expect: requests made: 4; failed checks: 0  then  OK: openverse-licence-fields   (fails if the API is unreachable)
 ```
 
 ## Recipes

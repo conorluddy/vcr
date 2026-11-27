@@ -1,0 +1,62 @@
+[
+  {
+    "word": "the",
+    "start": 0.5,
+    "end": 0.59,
+    "referenceStart": 0.51
+  },
+  {
+    "word": "red",
+    "start": 0.6,
+    "end": 0.85,
+    "referenceStart": 1.29
+  },
+  {
+    "word": "fox",
+    "start": 1.92,
+    "end": 2.56,
+    "referenceStart": 2.1
+  },
+  {
+    "word": "jumps",
+    "start": 3.01,
+    "end": 3.53,
+    "referenceStart": 3.01
+  },
+  {
+    "word": "over",
+    "start": 3.98,
+    "end": 4.25,
+    "referenceStart": 3.98
+  },
+  {
+    "word": "the",
+    "start": 4.26,
+    "end": 4.33,
+    "referenceStart": 4.77
+  },
+  {
+    "word": "quiet",
+    "start": 5.54,
+    "end": 6,
+    "referenceStart": 5.55
+  },
+  {
+    "word": "brown",
+    "start": 6.44,
+    "end": 7.06,
+    "referenceStart": 6.45
+  },
+  {
+    "word": "river",
+    "start": 7.3,
+    "end": 7.61,
+    "referenceStart": 7.3
+  },
+  {
+    "word": "today",
+    "start": 8.09,
+    "end": 8.54,
+    "referenceStart": 8.09
+  }
+]

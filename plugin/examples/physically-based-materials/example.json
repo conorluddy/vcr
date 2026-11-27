@@ -1,0 +1,12 @@
+{
+  "id": "physically-based-materials",
+  "title": "Physically Based API material values against physical constants",
+  "summary": "Node-only: a pinned 9-material subset of api.physicallybased.info parses, and water and diamond IOR, gold, copper, silver and aluminium base colours and metalness match known physical values.",
+  "status": "validated",
+  "tools": ["physically-based-api"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-27",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}

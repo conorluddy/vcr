@@ -1,0 +1,28 @@
+{
+  "c2paTsVersion": "0.14.1",
+  "fixtureSha256": "f67bbeee14bc83740fe7a69aed969fba6ebb990b42d50ccbf177402cf47196f9",
+  "title": "VCR c2patool fixture",
+  "claimGeneratorName": "VCRFixture",
+  "claimGeneratorVersion": "1.0",
+  "customAssertionData": {
+    "claim": "local test asset only",
+    "fixture": "c2patool-test-signer"
+  },
+  "assertionLabels": [
+    "org.contentauth.test",
+    "c2pa.thumbnail.ingredient",
+    "c2pa.ingredient.v3",
+    "c2pa.actions.v2",
+    "c2pa.thumbnail.claim",
+    "c2pa.hash.data"
+  ],
+  "isValid": true,
+  "claimSignatureValidated": true,
+  "statusCodes": [
+    "assertion.dataHash.match",
+    "assertion.hashedURI.match",
+    "claimSignature.validated",
+    "signingCredential.trusted"
+  ],
+  "signerReportedUntrusted": false
+}

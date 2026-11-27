@@ -1,0 +1,8 @@
+{
+  "id": "ambientcg-api-material",
+  "title": "ambientCG API: pin one CC0 1K material by id and verify it",
+  "summary": "Look up PavingStones036 through the v2 JSON API, download its 1K-JPG ZIP once into an ignored cache, verify size, SHA-256, map set and normal-map conventions, and check where the CC0 licence is stated.",
+  "status": "not-validated",
+  "tools": ["ambientcg-api"],
+  "run": "./run.sh"
+}

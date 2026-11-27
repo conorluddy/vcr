@@ -13,7 +13,7 @@
 
 - `./run.sh --record`, then `./run.sh`.
 - Predeclared checks (all structural): cc0 and pdm searches non-empty with every result's `license` equal to the filter and a `license_url`; commercial,modification results non-empty with no `nc`/`nd` in `license`; detail has every field in the list and an `attribution` string naming title, creator and CC0/Public Domain.
-- Failure handling: 502/503/504 retried up to 4 times with back-off; if the API stays unreachable the script exits 3 and `run.sh` prints SKIPPED and exits 0, which verifies nothing. A failed check is printed as `KNOWN FAIL` and stays in `expected/metrics.json` as `false`.
+- Failure handling: 502/503/504 retried up to 4 times with back-off; if the API stays unreachable the script exits 3 and `run.sh` fails with exit 1, since nothing was verified (changed from an earlier SKIPPED-and-exit-0 during integration). A failed check is printed as `KNOWN FAIL` and stays in `expected/metrics.json` as `false`.
 
 ## Observation
 
