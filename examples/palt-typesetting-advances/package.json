@@ -1,0 +1,10 @@
+{
+  "name": "vcr-example-palt-typesetting-advances",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@fontsource/noto-sans-jp": "5.3.1",
+    "palt-typesetting": "0.9.5",
+    "playwright": "^1.64.1"
+  }
+}
