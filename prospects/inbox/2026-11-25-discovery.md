@@ -15,7 +15,7 @@ This is the third W48 run. The 2026-11-23 digest (PR #233) and the 2026-11-24 di
 ## Leads
 
 ### Fontsource (`fontsource`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://fontsource.org (repository: https://github.com/fontsource/fontsource)
 - Role: open-source fonts (Google Fonts and other OFL families) published as versioned npm packages, such as `@fontsource/inter` and `@fontsource-variable/inter`, with the font files, CSS and per-subset WOFF2 inside.
 - Category: A4. Vector, typography, diagrams and stills.

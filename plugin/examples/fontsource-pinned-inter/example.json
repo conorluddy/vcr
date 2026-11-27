@@ -1,0 +1,8 @@
+{
+  "id": "fontsource-pinned-inter",
+  "title": "Fontsource pinned Inter in a Chromium page",
+  "summary": "Load a lockfile-pinned @fontsource/inter in Chromium, wait on document.fonts.ready, and check the exact woff2 files, loaded faces and a stable render against a no-font control.",
+  "status": "validated",
+  "tools": ["fontsource"],
+  "run": "./run.sh"
+}
