@@ -985,6 +985,12 @@ importers:
         specifier: ^4.23.15
         version: 4.23.15
 
+  examples/svg-path-commander-cubic:
+    dependencies:
+      svg-path-commander:
+        specifier: 2.4.0
+        version: 2.4.0
+
   examples/svgjs-capture:
     dependencies:
       '@svgdotjs/svg.js':
@@ -3685,6 +3691,9 @@ packages:
 
   '@theatre/dataverse@0.7.2':
     resolution: {integrity: sha512-YyfoyX7EyhFUY2OM5fsM0LPrs1SdgLwpiTMkkvTIoZLdOwvQhstjYq4Yz/8ZncJlRoTWvakfmgvCaBN+QuBYxg==}
+
+  '@thednp/dommatrix@3.1.4':
+    resolution: {integrity: sha512-vNI1uA4My/z4Z7btrPsQ9mEV/ZC1bzl2ZdXPIHZiY3U6fHREKDFdNA97Z9VE57dzavgG9FHQZ5EKkpLBbwGx7g==}
 
   '@tokenizer/inflate@0.4.1':
     resolution: {integrity: sha512-2mAv+8pkG6GIZiF1kNg1jAjh27IDxEPKwdGul3snfztFerfPGI1LjDezZp3i7BElXompqEtPmoPx6c2wgtWsOA==}
@@ -6995,6 +7004,9 @@ packages:
     peerDependencies:
       react: '>=17.0'
 
+  svg-path-commander@2.4.0:
+    resolution: {integrity: sha512-adcNMyhgdL+7Ruhwapx/c799NtNMk1+A3uyQYvg3H3biwBFaekhqvWx7iMB1RpYKMxlOdgu9OMhcvkWZsqHtbA==}
+
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
 
@@ -9887,6 +9899,8 @@ snapshots:
   '@theatre/dataverse@0.7.2':
     dependencies:
       lodash-es: 4.18.1
+
+  '@thednp/dommatrix@3.1.4': {}
 
   '@tokenizer/inflate@0.4.1':
     dependencies:
@@ -13629,6 +13643,10 @@ snapshots:
   suspend-react@0.1.3(react@19.3.1):
     dependencies:
       react: 19.3.1
+
+  svg-path-commander@2.4.0:
+    dependencies:
+      '@thednp/dommatrix': 3.1.4
 
   symbol-tree@3.2.4:
     optional: true

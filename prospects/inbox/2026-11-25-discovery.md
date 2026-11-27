@@ -57,7 +57,7 @@ This is the third W48 run. The 2026-11-23 digest (PR #233) and the 2026-11-24 di
 - Found via: GitHub topic search `topic:wgpu` (the wgpu seed neighbourhood).
 
 ### svg-path-commander (`svg-path-commander`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/thednp/svg-path-commander
 - Role: a TypeScript library for SVG path data. It parses, normalises to absolute cubic form, converts arcs, reverses, optimises and applies 2D or 3D matrix transforms to the path string, and reports length, bounding box and point-at-length.
 - Category: A4. Vector, typography, diagrams and stills.

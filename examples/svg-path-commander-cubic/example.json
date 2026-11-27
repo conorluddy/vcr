@@ -1,0 +1,8 @@
+{
+  "id": "svg-path-commander-cubic",
+  "title": "svg-path-commander cubic normalisation for a path morph",
+  "summary": "Normalise two different SVG path strings to absolute cubics in Node with no DOM, pair their segments, interpolate three frames, check them and rasterise with resvg.",
+  "status": "validated",
+  "tools": ["svg-path-commander"],
+  "run": "./run.sh"
+}
