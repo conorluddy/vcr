@@ -1,0 +1,75 @@
+{
+  "id": "pikchr",
+  "name": "Pikchr",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "candidate",
+  "role": "PIC-like diagram script to SVG; every element placed by direction and distance, no auto-layout",
+  "summary": "Pikchr is a diagram language from the SQLite author. A text script places boxes, arrows and labels by relative direction and distance, and a single C program emits SVG, so the layout is exactly what the script says and an edit moves only what depends on it. It has no tagged releases and no package: it is built from source (pikchr.y through lemon) with the system C compiler.",
+  "use_when": [
+    "A diagram whose layout stays put between edits; over d2 or graphviz, which re-lay out the whole graph",
+    "Small flow, block or sequence diagrams as SVG with no browser or runtime",
+    "Authors who think in relative placement and want a diff-friendly text source"
+  ],
+  "avoid_when": [
+    "Large graphs needing automatic layout: graphviz or d2",
+    "Quick flowcharts in familiar Markdown syntax: mermaid-cli",
+    "Text styling or fonts that must be pinned in the file: the SVG leaves fonts to the renderer"
+  ],
+  "pairs_with": [
+    "resvg",
+    "svg",
+    "d2",
+    "graphviz"
+  ],
+  "official_url": "https://pikchr.org",
+  "automation_route": "native-cli-or-scripting",
+  "capabilities": [
+    "diagram-generation",
+    "vector-authoring"
+  ],
+  "license": "0BSD",
+  "install": {
+    "macos": "Fetch the pinned check-in tarball from pikchr.org and run `make pikchr` with the system cc (examples/pikchr-flow-svg/run.sh does this inside output/)."
+  },
+  "examples": [
+    "pikchr-flow-svg"
+  ],
+  "notes": [
+    "2026-11-27: Lead said no tagged releases and mirror pushed 2026-01-02; the Fossil trunk at fetch time was check-in a7f1c35bc0 of 2026-04-03 (pikchr 1.0 20260403102956). The repository does not commit pikchr.c, so the lead's single-file compile needs the official Makefile (lemon generates pikchr.c from pikchr.y); no npm package or Homebrew formula was used.",
+    "2026-11-27: SVG text carries no font-family and the root style is font-size:initial, which resvg 0.47.0 warns about; text still rendered at a readable size in a serif fallback. Pin fonts at the rasteriser."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "1.0 20260403102956",
+    "last_release": "2026-04-03",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "0BSD; Fossil trunk checked in 2026-04-03; builds with only a system C compiler. Distinct from d2 and graphviz because placement is explicit and edit-stable. Retain as a candidate: no tagged releases and no package route, so the pinned check-in is the version.",
+    "sources": [
+      "https://pikchr.org",
+      "https://pikchr.org/home/info/a7f1c35bc0",
+      "https://github.com/drhsqlite/pikchr"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "1.0 20260403102956",
+        "command": "examples/pikchr-flow-svg/run.sh",
+        "result": "Built check-in a7f1c35bc0 in output/ with system cc; four-box flow to SVG (viewBox 0 0 499.68 34.56, 7 paths, 4 labels), identical bytes on repeat; lengthening the last label left the first 5 shapes unchanged and widened the viewBox; resvg 0.47.0 PNG 960x66 inspected.",
+        "example": "examples/pikchr-flow-svg",
+        "scope": "One four-box left-to-right flow, pikchr 1.0 built from source on macOS arm64; not other object types, fonts or platforms. resvg warns font-size:initial."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-27-discovery.md",
+  "skill": "skills/pikchr/SKILL.md"
+}
