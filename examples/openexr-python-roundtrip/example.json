@@ -1,0 +1,8 @@
+{
+  "id": "openexr-python-roundtrip",
+  "title": "OpenEXR Python float round trip and channel layout",
+  "summary": "Python venv: write multi-channel float32 and half EXR files (RGBA plus a dotted depth.Z channel) with ZIP, PIZ and no compression, read them back, and check bit-exact pixels, header compression, channel names and rejection of a non-EXR file.",
+  "status": "validated",
+  "tools": ["openexr"],
+  "run": "./run.sh"
+}
