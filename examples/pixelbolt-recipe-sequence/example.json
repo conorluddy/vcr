@@ -1,0 +1,12 @@
+{
+  "id": "pixelbolt-recipe-sequence",
+  "title": "Pixelbolt recipe to sprite sheet and video frames",
+  "summary": "Renders one JSON pixel-art recipe to a sprite sheet, atlas and a 1080p alpha PNG sequence with the locally pinned pixelbolt and checks palette exactness, timing and repeatability.",
+  "status": "validated",
+  "tools": ["pixelbolt"],
+  "run": "./run.sh",
+  "validated_on": {
+    "date": "2026-11-27",
+    "hostname": "Conors-MacBook-Pro-2.local"
+  }
+}
