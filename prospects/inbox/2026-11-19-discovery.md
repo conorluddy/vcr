@@ -55,7 +55,7 @@ Summary line: 8 leads (2 in a new category: music notation engraving).
 - Found via: GitHub topic search `animation` + `rust`.
 
 ### Framefields (`framefields`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://framefields.dev (source: https://github.com/gatewai-dev/framefields)
 - Role: TypeScript code-first video, compositing, motion-graphics and 3D renderer. It renders through Dawn/WebGPU with no browser and writes hardware-encoded MP4.
 - Category: A5. Video and capture.

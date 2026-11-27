@@ -1,0 +1,9 @@
+{
+  "id": "framefields-render",
+  "title": "framefields on native WebGPU in Node: seeked frames and an MP4 from a TypeScript composition",
+  "summary": "framefields 3.0.2 renders five frames of a 24-frame text-and-box composition to raw RGBA in Node with no browser, sequentially and shuffled with identical hashes, plus an h264 320x180 MP4; reruns are byte-identical on this Mac.",
+  "status": "validated",
+  "tools": ["framefields"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-27", "hostname": "Conors-MacBook-Pro-2.local" }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@vcr/example-framefields-render",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "render": "tsx render.ts" },
+  "dependencies": { "framefields": "3.0.2" },
+  "devDependencies": { "tsx": "^4.23.15" }
+}
