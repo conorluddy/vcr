@@ -1,0 +1,8 @@
+{
+  "id": "gource-custom-log",
+  "title": "gource renders a self-authored custom log to H.264 through a PPM pipe",
+  "summary": "24-event custom log, fixed hash seed, 30 fps, piped to FFmpeg; frames are not repeatable (434 to 462 frames across runs) and the frame count does not follow seconds-per-day.",
+  "status": "not-validated",
+  "tools": ["gource"],
+  "run": "./run.sh"
+}
