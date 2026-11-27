@@ -83,7 +83,7 @@ Summary line: 8 leads (2 in a new category: music notation engraving).
 - Found via: GitHub topic search `music-notation`.
 
 ### PlutoBook (`plutobook`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/plutoprint/plutobook
 - Role: C/C++ paged HTML and CSS layout engine that renders to PDF or PNG without a browser. The `plutoprint` Python package wraps it.
 - Category: A4. Vector, typography, diagrams and stills.
