@@ -1,0 +1,74 @@
+{
+  "ffsubsync": "0.5.1",
+  "tolerance_s": 0.25,
+  "cases": [
+    {
+      "name": "off+3.0-default",
+      "exit": 0,
+      "cue_count": 2,
+      "worst_error_s": null,
+      "per_cue_error_s": [
+        0.27,
+        0.56
+      ]
+    },
+    {
+      "name": "off+3.0-max10",
+      "exit": 0,
+      "cue_count": 7,
+      "worst_error_s": 0.01,
+      "per_cue_error_s": [
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    {
+      "name": "off-1.5-default",
+      "exit": 0,
+      "cue_count": 1,
+      "worst_error_s": null,
+      "per_cue_error_s": [
+        0.51
+      ]
+    },
+    {
+      "name": "off-1.5-max10",
+      "exit": 0,
+      "cue_count": 7,
+      "worst_error_s": 0.01,
+      "per_cue_error_s": [
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "off+3.0-default: 7 cues back, worst error <= 0.25 s",
+      "pass": false
+    },
+    {
+      "name": "off+3.0-max10: 7 cues back, worst error <= 0.25 s",
+      "pass": true
+    },
+    {
+      "name": "off-1.5-default: 7 cues back, worst error <= 0.25 s",
+      "pass": false
+    },
+    {
+      "name": "off-1.5-max10: 7 cues back, worst error <= 0.25 s",
+      "pass": true
+    }
+  ],
+  "all_passed": false
+}
