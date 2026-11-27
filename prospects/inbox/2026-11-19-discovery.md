@@ -41,7 +41,7 @@ Summary line: 8 leads (2 in a new category: music notation engraving).
 - Found via: crates.io reverse dependencies of `wgpu` (seed).
 
 ### Ranim (`ranim`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/AzurIce/ranim (docs: https://azurice.github.io/ranim/)
 - Role: Manim-style programmatic animation engine in Rust. Scenes are Rust functions; a CLI (`output`, `render`, `inspect`) renders them offline through wgpu and FFmpeg.
 - Category: A2. Animation and authored assets.

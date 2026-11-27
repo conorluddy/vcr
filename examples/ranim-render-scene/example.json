@@ -1,0 +1,8 @@
+{
+  "id": "ranim-render-scene",
+  "title": "Ranim headless scene render",
+  "summary": "Builds a tiny Rust crate on Ranim 0.2.1 that renders a turning square to MP4, PNG frames and time-mark captures with no window, then checks geometry and repeat runs.",
+  "status": "validated",
+  "tools": ["ranim"],
+  "run": "./run.sh"
+}
