@@ -1,7 +1,7 @@
 {
   "id": "box2d",
   "name": "Box2D v3 (box2d3-wasm)",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A8. Physics and simulation",
   "tier": "candidate",
   "role": "2D rigid-body physics as WASM in Node, stepped at a fixed timestep and baked to per-frame positions",
   "summary": "Box2D v3 is Erin Catto's C engine; box2d3-wasm is a third-party npm build of v3.2 with compat (no threads) and deluxe (SIMD and threads) variants. The C-style API steps a world by a fixed dt, so positions are read per frame and cached. The author states cross-platform determinism; the fixture checks only single-machine repeatability.",

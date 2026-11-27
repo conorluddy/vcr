@@ -1,7 +1,7 @@
 {
   "id": "ffmpeg-wasm",
   "name": "ffmpeg.wasm",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "catalogued",
   "role": "FFmpeg compiled to WebAssembly for in-browser transcodes; slower, size-limited",
   "summary": "WebAssembly build of FFmpeg run in a web worker, with single-thread and multi-thread cores. Gives browser pages the familiar ffmpeg command line over an in-memory filesystem: transcode, trim, mux, extract frames. Distinguishing strength: full FFmpeg filter and codec coverage in the browser, at the cost of a multi-MB core, much slower speed than native, and COOP/COEP plus SharedArrayBuffer for multithreading.",

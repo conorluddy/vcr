@@ -1,7 +1,7 @@
 {
   "id": "exiv2",
   "name": "Exiv2",
-  "category": "Discovery: research candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "C++ CLI and library for editing EXIF, IPTC, XMP and ICC image metadata",
   "official_url": "https://github.com/Exiv2/exiv2",

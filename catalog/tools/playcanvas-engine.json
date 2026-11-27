@@ -1,7 +1,7 @@
 {
   "id": "playcanvas-engine",
   "name": "PlayCanvas Engine",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "Open-source web 3D engine usable standalone; strong glTF and Gaussian splat support",
   "summary": "MIT-licensed WebGL2 and WebGPU engine with an entity-component model, PBR, glTF, physics integration and Gaussian splat rendering. Used as a standalone npm library from code, without the PlayCanvas Editor. Distinguishing strength: small runtime footprint, game-style structure and splat support.",

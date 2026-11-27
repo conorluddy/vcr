@@ -1,7 +1,7 @@
 {
   "id": "pymunk",
   "name": "Pymunk",
-  "category": "Discovery: research candidates",
+  "category": "A8. Physics and simulation",
   "tier": "candidate",
   "role": "Python 2D rigid-body physics engine with fixed-step simulation",
   "official_url": "https://github.com/viblo/pymunk",

@@ -1,7 +1,7 @@
 {
   "id": "mpfb",
   "name": "MPFB (MakeHuman for Blender)",
-  "category": "Discovery: conversation candidates",
+  "category": "A10. 3D assets and interchange",
   "tier": "candidate",
   "role": "Human figures",
   "official_url": "https://github.com/makehumancommunity/mpfb2",

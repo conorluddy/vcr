@@ -1,7 +1,7 @@
 {
   "id": "gifski",
   "name": "gifski",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "catalogued",
   "role": "Highest-quality GIF encoder from PNG frames or y4m; palette per frame, AGPL",
   "summary": "Rust CLI and library that encodes an image sequence or y4m stream into a GIF using per-frame palettes and temporal dithering, giving visibly better quality than FFmpeg's palette filters. Input is PNG frames (gifski -o out.gif frame*.png) or an ffmpeg yuv4mpegpipe. Licensed AGPL-3.0 or later with commercial terms available from the author.",

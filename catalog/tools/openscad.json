@@ -1,7 +1,7 @@
 {
   "id": "openscad",
   "name": "OpenSCAD",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A7. Native applications and procedural tools",
   "tier": "candidate",
   "role": "Script-only solid modeller (CSG) with a headless CLI for STL, 3MF, SVG and PNG export",
   "summary": "OpenSCAD turns a text .scad script into a solid. Variables are overridden per run with -D, and one run exports STL, 3MF, SVG (2D projection) or a PNG preview with a set camera and size. Geometry is a pure function of the script and its variables. The CLI sits on PATH when installed from the snapshot cask.",

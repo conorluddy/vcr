@@ -1,7 +1,7 @@
 {
   "id": "pyvista",
   "name": "PyVista",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "candidate",
   "role": "Pythonic VTK wrapper that renders meshes off-screen to PNG with numpy image access",
   "summary": "Python library over VTK for meshes, point clouds and volumes. Plotter(off_screen=True) renders a fixed camera and window size to a PNG or a numpy array with no window, and can write movies. Choose it over vedo when you want the larger API and numpy image return; both sit on VTK.",

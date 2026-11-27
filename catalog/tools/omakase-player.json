@@ -1,7 +1,7 @@
 {
   "id": "omakase-player",
   "name": "Omakase Player",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Browser review player: frame-index seeks, timeline, markers; a candidate base for review pages",
   "summary": "Apache-2.0 JavaScript framework (npm @byomakase/omakase-player 1.3.1) for frame-accurate review UIs: main and sidecar players, multi-track timeline, marker lists, VU meter. Plays HLS and MP4; seekTo takes seconds, frame count or timecode. A person-facing player, not a render tool.",

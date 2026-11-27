@@ -1,7 +1,7 @@
 {
   "id": "mapnik",
   "name": "Mapnik",
-  "category": "Discovery: research candidates",
+  "category": "A11. Maps and geodata",
   "tier": "candidate",
   "role": "C++ map renderer with Python bindings: geodata plus XML style to PNG",
   "official_url": "https://mapnik.org",

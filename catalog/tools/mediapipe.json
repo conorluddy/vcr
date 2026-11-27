@@ -1,7 +1,7 @@
 {
   "id": "mediapipe",
   "name": "MediaPipe",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A6. Image processing and colour",
   "tier": "catalogued",
   "role": "Vision and tracking",
   "official_url": "https://ai.google.dev/edge/mediapipe",

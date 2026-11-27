@@ -1,7 +1,7 @@
 {
   "id": "fogleman-sdf",
   "name": "fogleman/sdf",
-  "category": "Discovery: research candidates",
+  "category": "A7. Native applications and procedural tools",
   "tier": "candidate",
   "role": "Python library for composing signed-distance fields and generating 3D meshes",
   "official_url": "https://github.com/fogleman/sdf",

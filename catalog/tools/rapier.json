@@ -1,7 +1,7 @@
 {
   "id": "rapier",
   "name": "Rapier",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A8. Physics and simulation",
   "tier": "catalogued",
   "role": "Rust/WASM 2D and 3D physics with optional cross-platform determinism and world snapshots",
   "summary": "Dimforge's physics engine compiled to WebAssembly, with separate 2D and 3D npm packages (-compat builds inline the WASM and need `await RAPIER.init()`). Fixed-step replay from t: set the world timestep to 1/fps and step n times, or step once and cache per-frame transforms; takeSnapshot/restoreSnapshot allow checkpoints so seeking need not restart from zero. Upstream describes an opt-in cross-platform determinism mode.",

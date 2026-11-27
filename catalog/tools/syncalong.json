@@ -1,7 +1,7 @@
 {
   "id": "syncalong",
   "name": "syncalong",
-  "category": "Speech and lyric alignment",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Aligns supplied lyrics or transcript text to audio and emits LRC timing",
   "official_url": "https://github.com/wickeddoc/syncalong",

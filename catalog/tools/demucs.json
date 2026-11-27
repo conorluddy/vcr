@@ -1,7 +1,7 @@
 {
   "id": "demucs",
   "name": "Demucs",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Source separation",
   "official_url": "https://github.com/facebookresearch/demucs",

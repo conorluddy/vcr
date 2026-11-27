@@ -1,7 +1,7 @@
 {
   "id": "mitsuba-3",
   "name": "Mitsuba 3",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "candidate",
   "role": "Python physically based path tracer with scalar CPU variants, fixed spp and seed, built-in scenes",
   "summary": "Research renderer pip-installable as a wheel (mitsuba plus drjit). Scenes are Python dicts or XML; mi.render takes spp and seed and returns a float image. Variants include scalar_rgb, spectral and differentiable ones; LLVM and Metal variants exist but the LLVM probe failed on the fixture machine.",

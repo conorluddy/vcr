@@ -1,7 +1,7 @@
 {
   "id": "openverse-api",
   "name": "Openverse API",
-  "category": "A4. Vector, typography, diagrams and stills",
+  "category": "A13. Reference data and asset sources",
   "tier": "candidate",
   "role": "Search openly licensed images by licence, with creator and attribution fields",
   "summary": "Remote HTTP search over openly licensed images and audio gathered from Flickr, Wikimedia and others. Each result carries licence, version, licence URL, creator, source URL and an attribution string; license= and license_type= filters narrow before use. Index, not host.",

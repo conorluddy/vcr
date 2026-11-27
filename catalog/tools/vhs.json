@@ -1,7 +1,7 @@
 {
   "id": "vhs",
   "name": "VHS",
-  "category": "Discovery: research candidates",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Scripted terminal recording and capture",
   "official_url": "https://github.com/charmbracelet/vhs",

@@ -1,7 +1,7 @@
 {
   "id": "whisper-cpp",
   "name": "whisper.cpp",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Speech to text",
   "official_url": "https://github.com/ggml-org/whisper.cpp",

@@ -1,7 +1,7 @@
 {
   "id": "exiftool",
   "name": "exiftool",
-  "category": "Discovery: research candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "Native Perl CLI or library",
   "official_url": "https://github.com/exiftool/exiftool",

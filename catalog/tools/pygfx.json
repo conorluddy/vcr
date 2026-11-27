@@ -1,7 +1,7 @@
 {
   "id": "pygfx",
   "name": "pygfx",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "candidate",
   "role": "Python scene-graph 3D renderer on wgpu (Metal on macOS) with an offscreen canvas",
   "summary": "Python render engine in the Three.js mould on wgpu-py: meshes, lines, points, text, volumes and PBR materials. With rendercanvas's offscreen canvas it renders to NumPy RGBA arrays without a window, so a scene can be a function of t in one Python process.",

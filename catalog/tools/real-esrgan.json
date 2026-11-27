@@ -1,7 +1,7 @@
 {
   "id": "real-esrgan",
   "name": "Real-ESRGAN",
-  "category": "Discovery: conversation candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "Upscaling",
   "official_url": "https://github.com/xinntao/Real-ESRGAN",

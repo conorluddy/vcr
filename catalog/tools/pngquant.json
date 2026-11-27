@@ -1,7 +1,7 @@
 {
   "id": "pngquant",
   "name": "pngquant",
-  "category": "Discovery: research candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "Lossy PNG quantisation",
   "official_url": "https://pngquant.org/",

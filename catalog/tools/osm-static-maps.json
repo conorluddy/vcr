@@ -1,7 +1,7 @@
 {
   "id": "osm-static-maps",
   "name": "osm-static-maps",
-  "category": "Discovery: research candidates",
+  "category": "A11. Maps and geodata",
   "tier": "candidate",
   "role": "Raster map still with GeoJSON overlay from any tile server, via Leaflet in headless Chromium",
   "summary": "osm-static-maps renders a Leaflet map in headless Chromium and returns a PNG with GeoJSON, markers and attribution over raster tiles. Its default tile source is OpenStreetMap, whose tile policy forbids headless automated use, so in VCR use it with a tile server you own or are licensed to use.",

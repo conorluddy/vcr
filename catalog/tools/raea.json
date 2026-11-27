@@ -1,7 +1,7 @@
 {
   "id": "raea",
   "name": "raea",
-  "category": "Discovery: research candidates",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "candidate",
   "role": "React/TypeScript project with Rust/Bevy renderer",
   "official_url": "https://github.com/shinyobjectz/raea",

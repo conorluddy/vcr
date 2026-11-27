@@ -1,7 +1,7 @@
 {
   "id": "ffsubsync",
   "name": "ffsubsync",
-  "category": "Caption compliance",
+  "category": "A12. Captions, accessibility and provenance",
   "tier": "candidate",
   "role": "CLI that shifts an existing subtitle file to match the speech in audio or video, without ASR",
   "summary": "Python CLI `ffsubsync`: aligns an SRT or other subtitle file to a video, audio file or reference subtitle by matching voice activity to cue timing, applying one offset and an optional framerate scale. It does not transcribe or fix drift across cuts.",

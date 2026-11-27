@@ -1,7 +1,7 @@
 {
   "id": "segment-anything",
   "name": "Segment Anything",
-  "category": "Discovery: conversation candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "Segmentation",
   "official_url": "https://github.com/facebookresearch/segment-anything",

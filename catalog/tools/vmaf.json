@@ -1,7 +1,7 @@
 {
   "id": "vmaf",
   "name": "VMAF (libvmaf)",
-  "category": "Discovery: research candidates",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Full-reference perceptual video quality measurement",
   "official_url": "https://github.com/Netflix/vmaf",

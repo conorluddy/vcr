@@ -1,7 +1,7 @@
 {
   "id": "manifold",
   "name": "Manifold",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A10. 3D assets and interchange",
   "tier": "candidate",
   "role": "Fast mesh Booleans (CSG) with guaranteed watertight output, in Node/WASM or Python",
   "summary": "Manifold (manifold-3d on npm, manifold3d on PyPI) unions, subtracts and intersects triangle meshes and guarantees a manifold result, with volume, genus and status queries. In Node it runs as WASM from one pnpm dependency. It is not a CAD kernel: no fillets, no STEP.",

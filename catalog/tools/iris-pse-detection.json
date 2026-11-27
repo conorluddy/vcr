@@ -1,7 +1,7 @@
 {
   "id": "iris-pse-detection",
   "name": "iris-pse-detection",
-  "category": "Caption compliance",
+  "category": "A12. Captions, accessibility and provenance",
   "tier": "candidate",
   "role": "Python port of EA IRIS: screens video for photosensitive-epilepsy flash risk; advisory only",
   "summary": "Python library and `iris` CLI screening video for luminance and saturated-red flashes over a 1 s window, extended failures and optional stripe patterns. A screening aid; not WCAG, Harding or Ofcom conformance, and not a safety certificate.",

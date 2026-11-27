@@ -1,7 +1,7 @@
 {
   "id": "aubio",
   "name": "aubio",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Onsets and pitch",
   "official_url": "https://aubio.org/",

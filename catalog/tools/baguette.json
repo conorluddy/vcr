@@ -1,7 +1,7 @@
 {
   "id": "baguette",
   "name": "Baguette",
-  "category": "Discovery: research candidates",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Apple Simulator control and capture CLI with multi-device orchestration",
   "official_url": "https://github.com/tddworks/baguette",

@@ -1,7 +1,7 @@
 {
   "id": "webgpu",
   "name": "WebGPU",
-  "category": "Native browser platform APIs",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "Modern GPU and compute API with WGSL; Chromium coverage varies by OS and needs checking",
   "summary": "Successor to WebGL with explicit pipelines, compute shaders and WGSL, used directly or via Three.js WebGPURenderer or TypeGPU. Secure contexts only. Chrome 113 shipped it on ChromeOS, macOS and Windows; 144 added Linux on Intel Gen12+. Headless capture needs a working adapter, so check navigator.gpu.requestAdapter() and keep a WebGL fallback.",

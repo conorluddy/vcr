@@ -1,7 +1,7 @@
 {
   "id": "build123d",
   "name": "build123d",
-  "category": "Discovery: conversation candidates",
+  "category": "A7. Native applications and procedural tools",
   "tier": "catalogued",
   "role": "Python parametric CAD for precise product geometry and SVG technical projections",
   "official_url": "https://github.com/gumyr/build123d",

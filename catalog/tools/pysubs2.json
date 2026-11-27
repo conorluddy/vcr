@@ -1,7 +1,7 @@
 {
   "id": "pysubs2",
   "name": "pysubs2",
-  "category": "Caption compliance",
+  "category": "A12. Captions, accessibility and provenance",
   "tier": "candidate",
   "role": "Python library and CLI to edit, retime and convert subtitle files, writing ASS styles from code",
   "summary": "Python library and `pysubs2` CLI for SRT, ASS/SSA, WebVTT, MicroDVD, MPL2, TMP, JSON and TTML. It writes ASS styles and override-tag events from code, retimes in milliseconds and converts between formats; it does not render.",

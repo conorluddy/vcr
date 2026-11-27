@@ -1,7 +1,7 @@
 {
   "id": "regl",
   "name": "regl",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "Functional WebGL: declarative draw commands with state as data",
   "summary": "WebGL abstraction where draw commands are declared as functions of props, with state, uniforms and buffers managed for you and no hidden global state. Output is a canvas. Distinguishing strength: the stateless functional style suits rendering as a pure function of time, for shaders, particles and data visuals.",

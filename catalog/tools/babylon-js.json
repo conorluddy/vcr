@@ -1,7 +1,7 @@
 {
   "id": "babylon-js",
   "name": "Babylon.js",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "Full web 3D engine with built-in PBR, post effects, physics and node materials",
   "summary": "WebGL2 and WebGPU engine driven from JavaScript or TypeScript. Ships PBR, glow and other post effects, physics plugins, an inspector and a node material editor in one package. In VCR it would render a scene per seek to a transparent canvas like Three.js. Distinguishing strength: the integrated feature set means fewer third-party parts to version-match.",

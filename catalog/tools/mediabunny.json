@@ -1,7 +1,7 @@
 {
   "id": "mediabunny",
   "name": "Mediabunny",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "catalogued",
   "role": "Pure-TypeScript media toolkit: read, write, convert, WebCodecs-backed; browser and Node",
   "summary": "Zero-dependency TypeScript library for reading, writing and converting MP4, MOV, WebM, MKV, MP3, WAV, Ogg and more, using WebCodecs for encode and decode. Handles metadata, frame and audio sample extraction, trimming, resizing and conversion in browsers and Node. Distinguishing strength: small, fast, typed in-browser media I/O where ffmpeg.wasm would be heavy. Foundation of Diffusion Studio Core.",

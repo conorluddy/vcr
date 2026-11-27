@@ -1,7 +1,7 @@
 {
   "id": "ctc-forced-aligner",
   "name": "ctc-forced-aligner",
-  "category": "Discovery: research candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Align known text to audio with a CTC model, word-timed JSON",
   "official_url": "https://github.com/MahmoudAshraf97/ctc-forced-aligner",

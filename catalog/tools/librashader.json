@@ -1,7 +1,7 @@
 {
   "id": "librashader",
   "name": "librashader",
-  "category": "Discovery: research candidates",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "candidate",
   "role": "Apply RetroArch slang shader presets (CRT, scanline) to images headlessly",
   "official_url": "https://github.com/SnowflakePowered/librashader",

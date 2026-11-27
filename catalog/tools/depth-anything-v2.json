@@ -1,7 +1,7 @@
 {
   "id": "depth-anything-v2",
   "name": "Depth Anything V2",
-  "category": "Discovery: research candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "Monocular depth maps",
   "official_url": "https://github.com/DepthAnything/Depth-Anything-V2",

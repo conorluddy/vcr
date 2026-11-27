@@ -1,7 +1,7 @@
 {
   "id": "scrcpy",
   "name": "scrcpy",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Mirrors and records an Android device or emulator screen to MP4 over adb",
   "official_url": "https://github.com/Genymobile/scrcpy",

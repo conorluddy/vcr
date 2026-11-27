@@ -25,7 +25,7 @@ const example = (extra: Partial<ExampleManifest> = {}): ExampleManifest => ({
 });
 
 const tool = (id: string, extra: Partial<ToolSummary> = {}): ToolSummary => ({
-  id, name: id, category: "A3", tier: "catalogued", role: "", official_url: "https://example.test", capabilities: ["effects"],
+  id, name: id, category: "A3. 3D rendering, shaders and effects", tier: "catalogued", role: "", official_url: "https://example.test", capabilities: ["effects"],
   installation_status: "unknown", validation: { status: "validated", evidence: [{ date: "2026-11-05", version: "1.0.0", example: "examples/other" }] }, adapter_maturity: "none", ...extra,
 });
 

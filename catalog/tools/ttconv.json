@@ -1,7 +1,7 @@
 {
   "id": "ttconv",
   "name": "ttconv",
-  "category": "Discovery: research candidates",
+  "category": "A12. Captions, accessibility and provenance",
   "tier": "candidate",
   "role": "Python library and CLI for converting timed-text subtitle and caption formats",
   "official_url": "https://github.com/sandflow/ttconv",

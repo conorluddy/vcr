@@ -1,7 +1,7 @@
 {
   "id": "react-three-fiber",
   "name": "React Three Fiber",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "React renderer for Three.js: declarative JSX scenes with hooks for the frame loop",
   "summary": "React reconciler that maps JSX to Three.js objects and exposes useFrame, useThree and an event system. Output is the same canvas as plain Three.js. Distinguishing strength: declarative scene composition and the pmndrs component ecosystem. Majors are tied to React: v9 targets React 19, v8 React 18.",

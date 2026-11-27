@@ -13,6 +13,7 @@ function createFixtureRepository(records: Array<{ id: string }>, project?: objec
   mkdirSync(join(fixtureRoot, "catalog/tools"), { recursive: true });
   cpSync(join(realRoot, "catalog/schemas"), join(fixtureRoot, "catalog/schemas"), { recursive: true });
   cpSync(join(realRoot, "catalog/capabilities"), join(fixtureRoot, "catalog/capabilities"), { recursive: true });
+  cpSync(join(realRoot, "catalog/categories.json"), join(fixtureRoot, "catalog/categories.json"));
   for (const record of records) writeFileSync(join(fixtureRoot, `catalog/tools/${record.id}.json`), JSON.stringify(record));
   writeCatalogIndex(fixtureRoot, false);
   if (project) {
@@ -25,7 +26,7 @@ function createFixtureRepository(records: Array<{ id: string }>, project?: objec
 const validTool = {
   id: "ffmpeg",
   name: "FFmpeg",
-  category: "A5",
+  category: "A5. Video, capture and delivery",
   tier: "core",
   role: "encode",
   summary: "Encodes, muxes and probes media.",
@@ -49,6 +50,15 @@ describe("validateRepository", () => {
     const root = createFixtureRepository([validTool]);
     writeFileSync(join(root, "catalog/tools/ffmpeg.json"), JSON.stringify({ ...validTool, ...invalid }));
     expect(hasErrors(validateRepository(root))).toBe(true);
+  });
+
+  test("a record whose category is in catalog/categories.json passes", () => {
+    expect(hasErrors(validateRepository(createFixtureRepository([validTool])))).toBe(false);
+  });
+
+  test("a record whose category is not in catalog/categories.json fails with the valid list", () => {
+    const report = validateRepository(createFixtureRepository([{ ...validTool, category: "Discovery: research candidates" }]));
+    expect(report.diagnostics).toContainEqual(expect.objectContaining({ path: "/category", severity: "error", suggestion: expect.stringContaining('"A11. Maps and geodata"') }));
   });
 
   test("invalid example shapes do not enter reference checks", () => {

@@ -1,7 +1,7 @@
 {
   "id": "c2patool",
   "name": "c2patool",
-  "category": "A5. Video and capture",
+  "category": "A12. Captions, accessibility and provenance",
   "tier": "catalogued",
   "role": "CLI for inspecting and adding C2PA manifests to media assets",
   "official_url": "https://github.com/contentauth/c2patool",

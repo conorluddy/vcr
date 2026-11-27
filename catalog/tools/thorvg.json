@@ -1,7 +1,7 @@
 {
   "id": "thorvg",
   "name": "thorvg",
-  "category": "Discovery: research candidates",
+  "category": "A2. Animation and authored assets",
   "tier": "candidate",
   "role": "C++ renderer for SVG and Lottie scenes",
   "official_url": "https://github.com/thorvg/thorvg",

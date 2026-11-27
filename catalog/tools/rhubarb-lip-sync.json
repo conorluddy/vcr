@@ -1,7 +1,7 @@
 {
   "id": "rhubarb-lip-sync",
   "name": "Rhubarb Lip Sync",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Audio-to-mouth-shape timing CLI",
   "official_url": "https://github.com/DanielSWolf/rhubarb-lip-sync",

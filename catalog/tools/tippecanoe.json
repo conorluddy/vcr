@@ -1,7 +1,7 @@
 {
   "id": "tippecanoe",
   "name": "tippecanoe",
-  "category": "Discovery: research candidates",
+  "category": "A11. Maps and geodata",
   "tier": "candidate",
   "role": "CLI that builds vector tilesets (.pmtiles, .mbtiles) from GeoJSON",
   "official_url": "https://github.com/felt/tippecanoe",

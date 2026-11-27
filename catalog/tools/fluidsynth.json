@@ -1,7 +1,7 @@
 {
   "id": "fluidsynth",
   "name": "FluidSynth",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "MIDI synthesis",
   "official_url": "https://www.fluidsynth.org/",

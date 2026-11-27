@@ -1,7 +1,7 @@
 {
   "id": "mapshaper",
   "name": "mapshaper",
-  "category": "A4. Vector, typography, diagrams and stills",
+  "category": "A11. Maps and geodata",
   "tier": "candidate",
   "role": "CLI that dissolves, simplifies, reprojects and styles GeoJSON and exports flat SVG maps",
   "summary": "mapshaper is an npm CLI that edits boundary data: dissolve, simplify by percentage, reproject, clip, join and style, then write GeoJSON, TopoJSON or a flat SVG. Its strength is shrinking heavy boundary files into a small map still or scene input with one pnpm dependency and no browser.",

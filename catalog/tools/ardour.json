@@ -1,7 +1,7 @@
 {
   "id": "ardour",
   "name": "Ardour",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Audio workstation",
   "official_url": "https://ardour.org/",

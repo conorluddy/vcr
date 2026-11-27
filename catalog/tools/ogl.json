@@ -1,7 +1,7 @@
 {
   "id": "ogl",
   "name": "OGL",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "Tiny zero-dependency WebGL library with a Three.js-like API, about 29 KB",
   "summary": "Minimal ES-module WebGL library with Geometry, Program, Mesh, Camera, Transform, RenderTarget and a few extras, shaped like a lean Three.js. You write your own shaders and drive render calls from time. Output is a canvas. Distinguishing strength: very small, readable source with no dependencies.",

@@ -1,7 +1,7 @@
 {
   "id": "dawn-node-webgpu",
   "name": "Dawn Node WebGPU",
-  "category": "Discovery: research candidates",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "candidate",
   "role": "Node.js WebGPU binding for offscreen GPU rendering and compute",
   "official_url": "https://github.com/dawn-gpu/node-webgpu",

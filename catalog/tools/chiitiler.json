@@ -1,7 +1,7 @@
 {
   "id": "chiitiler",
   "name": "chiitiler",
-  "category": "Discovery: research candidates",
+  "category": "A11. Maps and geodata",
   "tier": "candidate",
   "role": "Node.js library or CLI server",
   "official_url": "https://github.com/Kanahiro/chiitiler",

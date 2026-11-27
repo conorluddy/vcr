@@ -1,7 +1,7 @@
 {
   "id": "pedalboard",
   "name": "Pedalboard",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Audio effects",
   "official_url": "https://github.com/spotify/pedalboard",

@@ -1,7 +1,7 @@
 {
   "id": "montreal-forced-aligner",
   "name": "Montreal Forced Aligner",
-  "category": "Speech and lyric alignment",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Kaldi CLI that aligns a known transcript to speech: word and phone timings as JSON or TextGrid",
   "official_url": "https://montrealcorpustools.github.io/Montreal-Forced-Aligner/",

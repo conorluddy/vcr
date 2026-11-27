@@ -1,7 +1,7 @@
 {
   "id": "dssim",
   "name": "dssim",
-  "category": "Discovery: research candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "Perceptual still difference score",
   "official_url": "https://github.com/kornelski/dssim",

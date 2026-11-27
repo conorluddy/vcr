@@ -1,7 +1,7 @@
 {
   "id": "csound",
   "name": "Csound",
-  "category": "Discovery: conversation candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Audio synthesis",
   "official_url": "https://csound.com/",

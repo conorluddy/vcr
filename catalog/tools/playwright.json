@@ -1,7 +1,7 @@
 {
   "id": "playwright",
   "name": "Playwright",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "catalogued",
   "role": "Headless browser automation; the capture route for every browser-rendered toolkit",
   "summary": "Browser automation library for Chromium, Firefox and WebKit. In VCR it drives headless Chromium through the shared @vcr/capture harness: seek a paused timeline, settle two animation frames, then capture each frame as PNG, including alpha, with page.screenshot (validated in p5-capture and three-capture). HeadlessExperimental beginFrame is an experimental, DOM-only alternative. Distinguishing strength: one capture path for any DOM, SVG, canvas or WebGL scene, with order-independent frames (a Anime.js timeline matched under beginFrame; canvas and WebGL under screenshot).",

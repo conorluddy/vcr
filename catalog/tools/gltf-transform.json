@@ -1,7 +1,7 @@
 {
   "id": "gltf-transform",
   "name": "glTF Transform",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A10. 3D assets and interchange",
   "tier": "catalogued",
   "role": "Node CLI and library to inspect, optimise and compress glTF/GLB before a scene loads them",
   "summary": "Scriptable glTF 2.x toolkit: a CLI (`gltf-transform optimize`, `draco`, `meshopt`, `etc1s`/`uastc`, `inspect`) and a JS library with NodeIO. It runs in Node with no GUI and rewrites models, textures and animations into smaller, load-ready GLBs. In VCR it is a pre-production step that makes assets cheap for Three.js or Babylon.js to load; it renders nothing itself.",

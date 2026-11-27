@@ -1,7 +1,7 @@
 {
   "id": "elevation-eio",
   "name": "elevation (eio)",
-  "category": "Geospatial",
+  "category": "A11. Maps and geodata",
   "tier": "candidate",
   "role": "Python library and `eio` CLI that fetch, cache and clip global DEM data to a GeoTIFF for bounds",
   "summary": "Python package with the `eio` CLI: `eio clip --bounds left bottom right top -o dem.tif` downloads and caches global DEM data (Terrain Tiles MAPZEN default, Copernicus GLO-30/90, ALOS AW3D30, SRTM 30/90 m, GEDTM30) and clips it to a GeoTIFF in EPSG:4326. It needs GDAL's command-line tools and the network on first use; it gives heights, not relief rendering.",

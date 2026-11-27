@@ -1,7 +1,7 @@
 {
   "id": "libsonare",
   "name": "libsonare",
-  "category": "Discovery: research candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Beat, onset and loudness analysis",
   "official_url": "https://libsonare.libraz.net",

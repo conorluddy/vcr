@@ -1,7 +1,7 @@
 {
   "id": "mido",
   "name": "Mido",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A9. Audio, music and speech",
   "tier": "catalogued",
   "role": "MIDI processing",
   "official_url": "https://mido.readthedocs.io/",

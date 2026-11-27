@@ -1,7 +1,7 @@
 {
   "id": "shikijs-magic-move",
   "name": "@shikijs/magic-move",
-  "category": "Discovery: research candidates",
+  "category": "A2. Animation and authored assets",
   "tier": "candidate",
   "role": "Animated code diffs",
   "official_url": "https://github.com/shikijs/shiki/tree/main/packages/magic-move",

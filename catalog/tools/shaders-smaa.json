@@ -1,7 +1,7 @@
 {
   "id": "shaders-smaa",
   "name": "shaders-smaa (glsl-smaa, wgsl-smaa)",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "candidate",
   "role": "SMAA antialiasing passes as GLSL and WGSL shader strings for raw WebGL and WebGPU renderers",
   "summary": "glsl-smaa 4.0.0 ships the SMAA edges, weights and blend shaders and the reference lookup textures as ES module strings; wgsl-smaa 1.0.0 is the WGSL port. You wire three framebuffer passes yourself in any raw WebGL renderer. Its strength is SMAA outside a Three.js composer. 1x mode is spatial only, so each frame depends only on its input and seeks cleanly; T2x is history-dependent.",

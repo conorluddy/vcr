@@ -1,7 +1,7 @@
 {
   "id": "harfbuzz",
   "name": "HarfBuzz utilities",
-  "category": "Discovery: research candidates",
+  "category": "A4. Vector, typography, diagrams and stills",
   "tier": "candidate",
   "role": "Text shaping ground truth",
   "official_url": "https://github.com/harfbuzz/harfbuzz",

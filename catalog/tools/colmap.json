@@ -1,7 +1,7 @@
 {
   "id": "colmap",
   "name": "COLMAP",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A10. 3D assets and interchange",
   "tier": "catalogued",
   "role": "Reconstruction",
   "official_url": "https://colmap.github.io/",

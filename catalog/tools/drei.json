@@ -1,7 +1,7 @@
 {
   "id": "drei",
   "name": "Drei",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "Helper components for React Three Fiber: controls, loaders, text, environments",
   "summary": "Large collection of ready-made React Three Fiber components and hooks: Environment lighting, Text, Html, loaders, camera rigs, controls, ContactShadows, Float and more. Driven by JSX inside an R3F Canvas; output is the same Three.js scene. Distinguishing strength: removes boilerplate for common scene furniture, though interactive helpers matter little in offline capture.",

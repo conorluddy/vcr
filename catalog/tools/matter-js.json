@@ -1,7 +1,7 @@
 {
   "id": "matter-js",
   "name": "Matter.js",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A8. Physics and simulation",
   "tier": "catalogued",
   "role": "2D rigid-body physics (JS); step it manually with a fixed delta to replay frames from t",
   "summary": "2D rigid-body engine for bodies, constraints, collisions and composites, with an optional built-in canvas renderer. For VCR skip Matter.Runner: call Engine.update(engine, 1000/fps) with a constant delta and read body positions. To render frame f in any order, rebuild the world and step f times, or pre-bake every frame's transforms in one pass and look them up. Pure JS, small, repeatable in the same browser build.",

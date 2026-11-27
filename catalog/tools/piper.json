@@ -1,7 +1,7 @@
 {
   "id": "piper",
   "name": "Piper (piper1-gpl)",
-  "category": "Discovery: research candidates",
+  "category": "A9. Audio, music and speech",
   "tier": "candidate",
   "role": "Local neural text-to-speech engine",
   "official_url": "https://github.com/OHF-Voice/piper1-gpl",

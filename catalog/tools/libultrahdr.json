@@ -1,7 +1,7 @@
 {
   "id": "libultrahdr",
   "name": "libultrahdr (ultrahdr_app)",
-  "category": "HDR delivery metadata",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Ultra HDR JPEG encode and decode: SDR base plus gain map in one file",
   "official_url": "https://github.com/google/libultrahdr",

@@ -1,7 +1,7 @@
 {
   "id": "oxipng",
   "name": "oxipng",
-  "category": "Discovery: research candidates",
+  "category": "A6. Image processing and colour",
   "tier": "candidate",
   "role": "Lossless PNG optimiser",
   "official_url": "https://github.com/oxipng/oxipng",

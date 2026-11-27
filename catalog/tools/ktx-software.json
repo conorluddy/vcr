@@ -1,7 +1,7 @@
 {
   "id": "ktx-software",
   "name": "KTX-Software",
-  "category": "A8. Physics, audio and 3D assets",
+  "category": "A10. 3D assets and interchange",
   "tier": "catalogued",
   "role": "Khronos KTX2 texture tools: create, validate, inspect, extract",
   "official_url": "https://github.com/KhronosGroup/KTX-Software",

@@ -1,7 +1,7 @@
 {
   "id": "dovi-tool",
   "name": "dovi_tool and hdr10plus_tool",
-  "category": "HDR delivery metadata",
+  "category": "A5. Video, capture and delivery",
   "tier": "candidate",
   "role": "Rust CLIs for Dolby Vision RPU and HDR10+ dynamic metadata in HEVC streams",
   "official_url": "https://github.com/quietvoid/dovi_tool",

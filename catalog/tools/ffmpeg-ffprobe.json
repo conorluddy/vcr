@@ -1,7 +1,7 @@
 {
   "id": "ffmpeg-ffprobe",
   "name": "FFmpeg / ffprobe",
-  "category": "A5. Video and capture",
+  "category": "A5. Video, capture and delivery",
   "tier": "core",
   "role": "Native encoding, muxing, filtergraphs, probing and sequence assembly; every renderer's delivery path",
   "summary": "The command-line media toolchain. Every renderer's output becomes video here: image sequences to H.264, VP9 or ProRes 4444 with alpha, audio muxing, overlays and crossfades in filtergraphs, trims and concatenation, and ffprobe as the inspection tool the examples diff against. Deterministic in metadata and frames per build, not in container bytes.",

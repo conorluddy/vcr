@@ -18,7 +18,7 @@ One brief for every assessor so every record answers the same questions. Assess 
    - `use_when` (≤ 4 × ≤ 120 chars): concrete and comparative. "Over PixiJS when the scene is vector-first and small" beats "for 2D graphics".
    - `avoid_when` (≤ 4 × ≤ 120 chars): name the neighbour that wins in that case.
    - `pairs_with`: tool ids this is commonly combined with. Ids must exist in `catalog/tools/`.
-3. **Correct what you now know**: `capabilities` (only values from `catalog/capabilities/vocabulary.json`; propose additions in your report, do not add them yourself), `automation_route`, `license`, `install.macos`, `install.check_command`, `role` (≤ 100 chars).
+3. **Correct what you now know**: `capabilities` (only values from `catalog/capabilities/vocabulary.json`; propose additions in your report, do not add them yourself), `automation_route`, `license`, `install.macos`, `install.check_command`, `role` (≤ 100 chars), `category` (exactly one `"<id>. <name>"` from `catalog/categories.json`; propose a new one in your report, do not add it).
 4. **Leave alone**: `tier`, `validation`, `installation_status`, `adapter_maturity`, `documentation_status`, `skill`, `examples`, `facets`. Those change through evidence and review, not assessment.
 
 ## Rules

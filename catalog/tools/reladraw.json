@@ -1,7 +1,7 @@
 {
   "id": "reladraw",
   "name": "reladraw",
-  "category": "Discovery: research candidates",
+  "category": "A4. Vector, typography, diagrams and stills",
   "tier": "candidate",
   "role": "Text diagram language with author-placed, relative layout; SVG out",
   "official_url": "https://github.com/reladraw/reladraw",

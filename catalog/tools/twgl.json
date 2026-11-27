@@ -1,7 +1,7 @@
 {
   "id": "twgl",
   "name": "TWGL",
-  "category": "A3. 3D, shaders and effects",
+  "category": "A3. 3D rendering, shaders and effects",
   "tier": "catalogued",
   "role": "Tiny WebGL helper: programs, buffers, uniforms and framebuffers with less boilerplate",
   "summary": "Small helper library over the raw WebGL API that creates programs, buffer info, textures and framebuffers from plain objects, then draws with setUniforms and drawBufferInfo. Output is a canvas, with no scene graph. Distinguishing strength: keeps raw WebGL control with a fraction of the boilerplate.",
