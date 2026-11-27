@@ -1,0 +1,8 @@
+{
+  "id": "spark-splats-capture",
+  "title": "Spark Gaussian splats in a seek-driven three.js scene",
+  "summary": "A synthetic 3000-splat .splat file rendered by Spark beside a solid three.js mesh on an orbiting camera; 90 frames at 960x540, each drawn after Spark's sort for that view finishes, shuffled order matches sequential.",
+  "status": "validated",
+  "tools": ["spark-splats"],
+  "run": "./run.sh"
+}

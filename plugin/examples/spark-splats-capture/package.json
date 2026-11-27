@@ -1,0 +1,17 @@
+{
+  "name": "@vcr/example-spark-splats-capture",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx capture.ts"
+  },
+  "dependencies": {
+    "@sparkjsdev/spark": "2.4.0",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@vcr/capture": "workspace:*",
+    "tsx": "^4.23.15"
+  }
+}

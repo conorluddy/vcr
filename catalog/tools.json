@@ -12061,6 +12061,79 @@
       "skill": "skills/sox/SKILL.md"
     },
     {
+      "id": "spark-splats",
+      "name": "Spark",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "candidate",
+      "role": "three.js renderer for 3D Gaussian splats (PLY, SPZ, SPLAT, KSPLAT, SOG) as an ordinary Object3D",
+      "summary": "Spark (@sparkjsdev/spark 2.4.0, World Labs) adds SplatMesh to three.js: splat files load as an Object3D that shares the scene, camera and depth buffer with meshes. It draws in WebGL2 and sorts splats on a worker per view, so a seek-driven capture must wait for that sort before reading pixels. Its strength is rendering captured splat scenes inside a capturable three.js scene.",
+      "use_when": [
+        "Render a Gaussian splat asset in a scene; three-js alone has no splat support",
+        "Splats and ordinary meshes in one three.js scene, seek-driven by a camera path",
+        "A splat produced or converted by splat-transform needs to appear as video frames"
+      ],
+      "avoid_when": [
+        "Converting or filtering splat files: splat-transform",
+        "Plain meshes, lights and materials: three-js",
+        "Streamed or LoD-paged scenes whose frames would depend on load timing"
+      ],
+      "pairs_with": [
+        "three-js",
+        "playwright",
+        "splat-transform"
+      ],
+      "official_url": "https://github.com/sparkjsdev/spark",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-rendering",
+        "model-loading"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add @sparkjsdev/spark@2.4.0 three"
+      },
+      "examples": [
+        "spark-splats-capture"
+      ],
+      "notes": [
+        "2026-11-27: Spark sorts splats asynchronously and the shared capture harness does not await it, so the fixture drives frames itself and awaits the scene's whenSettled(). The first run without that wait failed the shuffled-order check."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "2.4.0",
+        "last_release": "2026-10-20",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "npm @sparkjsdev/spark 2.4.0 (MIT) released 2026-10-20; repository pushed 2026-11-19. Only catalogue route that renders splats; splat-transform converts but does not render, and three-js has no splat support.",
+        "sources": [
+          "https://github.com/sparkjsdev/spark",
+          "https://www.npmjs.com/package/@sparkjsdev/spark",
+          "https://sparkjs.dev/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.4.0",
+            "command": "examples/spark-splats-capture/run.sh",
+            "result": "Synthetic 3000-splat .splat (sha256 3051e271…a52e) plus a three.js cube, 90 frames 960x540 in Chromium 156 with three 0.186.1: 90 distinct frames, shuffled order matches sequential, frame 0 alpha 0..1; contact sheet inspected.",
+            "example": "examples/spark-splats-capture",
+            "scope": "One synthetic .splat file, orbit camera, SplatMesh next to a mesh, macOS arm64 headless Chromium; not PLY, SPZ, SOG, LoD or streaming, real captures, GPU variance or other machines."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-27-discovery.md",
+      "skill": "skills/spark-splats/SKILL.md"
+    },
+    {
       "id": "splat-transform",
       "name": "splat-transform",
       "category": "Discovery: research candidates",
