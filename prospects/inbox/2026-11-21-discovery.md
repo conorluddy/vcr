@@ -128,7 +128,7 @@ This is the fourth W47 run. Earlier runs this week covered shaders, simulation, 
 - Found via: GitHub topic search `webvtt`.
 
 ### isometric (`isometric-js`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/elchininet/isometric (npm `@elchininet/isometric`)
 - Role: TypeScript library that builds isometric scenes (planes, rectangles, circles, paths and text) and writes them as SVG.
 - Category: A4. Vector, typography, diagrams and stills.
