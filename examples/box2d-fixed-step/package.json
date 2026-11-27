@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-box2d-fixed-step",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "box2d3-wasm": "6.0.0"
+  }
+}
