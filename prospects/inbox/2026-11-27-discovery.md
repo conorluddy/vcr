@@ -113,7 +113,7 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 - Found via: typesetting topic.
 
 ### GPAC / MP4Box (`gpac`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/gpac/gpac
 - Role: a multimedia framework whose `MP4Box` and `gpac` CLIs package and inspect MP4, CMAF, DASH and HLS: fragmenting, segmenting, adding subtitle and chapter tracks, and dumping box structure.
 - Category: A5. Video and capture.
