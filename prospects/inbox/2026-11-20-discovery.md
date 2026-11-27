@@ -127,7 +127,7 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `simctl`.
 
 ### Gource (`gource`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://gource.io (source: https://github.com/acaudwell/Gource)
 - Role: animates a repository's commit history as a growing tree and writes a PPM frame stream for FFmpeg.
 - Category: A7. Native applications and procedural tools.
