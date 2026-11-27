@@ -1,0 +1,24 @@
+{
+  "frames": 24,
+  "size": [
+    320,
+    180
+  ],
+  "checks": {
+    "versions": true,
+    "shape": true,
+    "repeat_same_renderer": true,
+    "shuffled_equals_sequential": true,
+    "fresh_renderer_equals": true,
+    "frames_differ": true,
+    "loop_closes": true,
+    "background_corner": true,
+    "subject_visible": true
+  },
+  "frame_sha256_first3": [
+    "f987410ebf06e98ddcfe709a78711e738822585009c09ed6748faaf4115c2350",
+    "f64d8a3e087620a0f3bf86a5f460b2964aaa16df1184fb0d24bcb5027c853af7",
+    "e80b33e0e43555216e03563f0e9e788bb9c0c972e9af76cb69d772559ebcf29b"
+  ],
+  "all_passed": true
+}
