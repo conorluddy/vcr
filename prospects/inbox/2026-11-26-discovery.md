@@ -155,7 +155,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: named only inside the GeoVista lead (2026-11 digest) and never listed itself; neighbour of `vedo`.
 
 ### flowmap.gl (`flowmap-gl`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/visgl/flowmap.gl
 - Role: a deck.gl layer that draws origin-destination flows as tapered arrows with clustering and animated flow lines.
 - Category: A9. Adjacent resources mentioned during discovery (beside `deck-gl`).
