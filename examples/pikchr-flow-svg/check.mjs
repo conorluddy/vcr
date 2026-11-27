@@ -11,7 +11,6 @@ const viewBoxWidth = (text) => Number(text.match(/viewBox="[-\d.]+ [-\d.]+ ([\d.
 const shapes = paths(svg);
 const editedShapes = paths(edited);
 const viewBox = svg.match(/viewBox="([^"]+)"/)[1];
-const height = Number(viewBox.split(' ')[3]);
 const metrics = {
   version: read('version.txt').trim(),
   viewBox,
@@ -21,7 +20,6 @@ const metrics = {
   // Drawing order: box, arrow, box, arrow, box, arrow, box. The first five must not move when the last label grows.
   earlierShapesUnchangedAfterEdit: shapes.slice(0, 5).every((d, i) => d === editedShapes[i]),
   editedWidthGrew: viewBoxWidth(edited) > viewBoxWidth(svg),
-  pngSize: `960x${Math.round((960 * height) / viewBoxWidth(svg))}`,
   sha256: createHash('sha256').update(svg).digest('hex'),
 };
 if (metrics.pathCount !== 7) throw new Error(`expected 4 boxes and 3 arrows, got ${metrics.pathCount} paths`);

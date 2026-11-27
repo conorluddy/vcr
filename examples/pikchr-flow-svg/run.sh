@@ -19,7 +19,8 @@ sed 's/"SVG"/"A much longer final label"/' flow.pikchr > output/flow-edited.pikc
 $pk --svg-only output/flow-edited.pikchr > output/flow-edited.svg
 node check.mjs
 resvg --width 960 --background white output/flow.svg output/flow.png
-[[ "$(magick identify -format '%wx%h' output/flow.png)" == "$(node -p "require('./output/metrics.json').pngSize")" ]]
-if [[ "${1:-}" == "--record" ]]; then cp output/metrics.json expected/metrics.json; fi
+magick identify -format '%wx%h\n' output/flow.png > output/png-size.txt
+if [[ "${1:-}" == "--record" ]]; then cp output/metrics.json expected/metrics.json; cp output/png-size.txt expected/png-size.txt; fi
 diff -u expected/metrics.json output/metrics.json
+diff -u expected/png-size.txt output/png-size.txt
 echo "OK: pikchr-flow-svg"

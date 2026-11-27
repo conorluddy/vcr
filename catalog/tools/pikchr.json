@@ -62,7 +62,7 @@
         "hostname": "Conors-MacBook-Pro-2.local",
         "version": "1.0 20260403102956",
         "command": "examples/pikchr-flow-svg/run.sh",
-        "result": "Built check-in a7f1c35bc0 in output/ with system cc; four-box flow to SVG (viewBox 0 0 499.68 34.56, 7 paths, 4 labels), identical bytes on repeat; lengthening the last label left the first 5 shapes unchanged and widened the viewBox; resvg 0.47.0 PNG 960x66 inspected.",
+        "result": "Built check-in a7f1c35bc0 in output/ with system cc; four-box flow to SVG (viewBox 0 0 499.68 34.56, 7 paths, 4 labels), identical bytes on repeat; lengthening the last label left the first 5 shapes unchanged and widened the viewBox; resvg 0.47.0 PNG 960x68 inspected.",
         "example": "examples/pikchr-flow-svg",
         "scope": "One four-box left-to-right flow, pikchr 1.0 built from source on macOS arm64; not other object types, fonts or platforms. resvg warns font-size:initial."
       }

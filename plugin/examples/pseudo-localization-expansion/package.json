@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-pseudo-localization-expansion",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "pseudo-localization": "3.1.3"
+  }
+}

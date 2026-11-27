@@ -1,0 +1,8 @@
+{
+  "id": "osm-static-maps-local-tiles",
+  "title": "osm-static-maps raster map still from a local tile server",
+  "summary": "Render one GeoJSON polygon over synthetic tiles served from loopback with osm-static-maps in headless Chromium, byte-identical across runs, with no request to OpenStreetMap.",
+  "status": "validated",
+  "tools": ["osm-static-maps"],
+  "run": "./run.sh"
+}

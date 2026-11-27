@@ -1,0 +1,10 @@
+{
+  "id": "penrose-venn-svg",
+  "title": "Penrose trio to deterministic SVG",
+  "summary": "Compile a Penrose Domain, Substance and Style trio in Node with a fixed variation string, check the SVG is byte-identical across processes and that another variation gives a different layout that still meets the constraints.",
+  "status": "validated",
+  "tools": [
+    "penrose"
+  ],
+  "run": "./run.sh"
+}

@@ -33,7 +33,7 @@ cd examples/pikchr-flow-svg && ./run.sh   # downloads, verifies pikchr.y, runs t
 cd examples/pikchr-flow-svg && ./run.sh
 # expect: OK: pikchr-flow-svg
 ```
-Renders twice and requires identical bytes, checks 7 paths and the four labels, edits the last label and requires the earlier shapes unchanged, then rasterises through resvg (960x66). The first run needs network; later runs reuse `output/src`.
+Renders twice and requires identical bytes, checks 7 paths and the four labels, edits the last label and requires the earlier shapes unchanged, then rasterises through resvg (960x68). The first run needs network; later runs reuse `output/src`.
 
 ## Recipe: script to SVG to PNG
 ```pikchr

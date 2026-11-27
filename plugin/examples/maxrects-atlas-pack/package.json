@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-maxrects-atlas-pack",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "maxrects-packer": "3.0.0"
+  }
+}
