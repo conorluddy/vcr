@@ -1,0 +1,9 @@
+{
+  "id": "gpac-cmaf-dash",
+  "title": "GPAC MP4Box fragments a generated MP4 into DASH segments with WebVTT and chapters",
+  "summary": "MP4Box adds a WebVTT track and chapters to an ffmpeg testsrc+tone MP4 and cuts it into 4 s DASH segments (video, audio, text); tracks, chapters and segment counts match. Reruns are not byte-identical (KNOWN FAIL).",
+  "status": "validated",
+  "tools": ["gpac"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-27", "hostname": "Conors-MacBook-Pro-2.local" }
+}
