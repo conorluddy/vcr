@@ -1,0 +1,80 @@
+{
+  "id": "ambientcg-api",
+  "name": "ambientCG API",
+  "category": "A8. Physics, audio and 3D assets",
+  "tier": "candidate",
+  "role": "Search and pin CC0 PBR materials, HDRIs and models by id over a JSON API; ZIPs by resolution",
+  "summary": "ambientcg.com/api/v2/full_json (and a newer v3) lists assets with maps, tags and download sizes; ZIPs come from /get?file=<id>_<res>-<format>.zip. Assets are CC0 1.0, stated on the docs site, not in the API payload. A hosted service run by one person: pin the id, cache the ZIP and record its hash.",
+  "use_when": [
+    "A blender, three-js or pov-ray scene needs a CC0 PBR material (colour, roughness, normal, AO)",
+    "Pinning a material by asset id and resolution, with the file hash kept as evidence"
+  ],
+  "avoid_when": [
+    "Offline or reproducible renders without a local cache: the service is hobbyist-run and its docs promise no stability",
+    "Measured material values for physically exact work: ambientCG maps are photographs and approximations",
+    "Interpreting or applying the maps once downloaded: materials and the renderer's own guide"
+  ],
+  "pairs_with": [
+    "blender",
+    "three-js",
+    "pov-ray",
+    "imagemagick"
+  ],
+  "official_url": "https://ambientcg.com",
+  "documentation_urls": [
+    "https://docs.ambientcg.com/api/",
+    "https://docs.ambientcg.com/license/"
+  ],
+  "automation_route": "remote-api",
+  "capabilities": [
+    "3d-asset-processing"
+  ],
+  "license": "CC0-1.0 (assets); service terms unstated",
+  "install": {
+    "macos": "none: curl or fetch; unzip for the archive"
+  },
+  "examples": [
+    "ambientcg-api-material"
+  ],
+  "notes": [
+    "2026-11-27: Lead said API terms and rate limits unverified. docs.ambientcg.com/api/ states no rate limit and no terms; it warns the service is run by one person for hobbyists and educators and may not be as stable as an enterprise application. Keep requests few, anonymous and cached.",
+    "2026-11-27: Lead said v3 status unverified. v3 is live (/api/v3/assets returns JSON; docs describe assets, categories, collections, rss, user; a Patreon bearer token unlocks paid benefits only). The fixture uses v2 full_json, which is documented and still answers.",
+    "2026-11-27: The v2 payload has no licence field. CC0 comes from docs.ambientcg.com/license (covers files and preview renders; credit optional). The ZIP contains no licence file, so keep the docs URL and fetch date with the asset record (ADR 0011: an asset needs rights evidence).",
+    "2026-11-27: Download links redirect to a tokenised storage URL; always request /get?file=, never store the redirect. Both NormalDX and NormalGL ship in each ZIP; pick the one the renderer expects."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "API v2 and v3 live",
+    "last_release": "n/a (hosted service)",
+    "maintenance": "unknown",
+    "verdict": "keep",
+    "rationale": "Docs read and the API called anonymously. Nothing catalogued sources CC0 materials by id; imagemagick and blender only process files you hold. Catalogue home fits (iconify is the precedent for an asset source); library intake stays ADR 0011's. No release history, terms or rate limit published.",
+    "sources": [
+      "https://docs.ambientcg.com/api/",
+      "https://docs.ambientcg.com/api/v2/full_json/",
+      "https://docs.ambientcg.com/api/v3/",
+      "https://docs.ambientcg.com/license/"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "not-applicable",
+  "validation": {
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "api/v2 snapshot 2026.11.27 (service reports no version)",
+        "command": "examples/ambientcg-api-material/run.sh",
+        "result": "PavingStones036_1K-JPG.zip fetched once and cached: 9354813 bytes equal to the API size, sha256 91223aa4...e9ce, six 1024x1024 maps, DX+GL green means sum to 255. KNOWN FAIL: payload has no licence field; CC0 is on the docs page.",
+        "example": "examples/ambientcg-api-material",
+        "scope": "One asset, one fetch day: later drift in files or API is unobserved. Service stability, rate limits, v3, HDRIs and models untested. Licence rests on the docs page, not the API."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-25-discovery.md",
+  "skill": "skills/ambientcg-api/SKILL.md"
+}
