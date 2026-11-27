@@ -85,7 +85,7 @@ This is the fourth W47 run. Earlier runs this week covered shaders, simulation, 
 - Found via: GitHub topic search `cartography`.
 
 ### ffsubsync (`ffsubsync`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/smacke/ffsubsync
 - Role: a CLI that shifts a subtitle file to line up with a video's speech, by matching voice-activity detection against subtitle timing (or against a reference subtitle).
 - Category: Speech and lyric alignment (or Caption compliance).
