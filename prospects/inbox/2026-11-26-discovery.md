@@ -99,7 +99,7 @@ This is the fourth W48 run. Earlier W48 digests (2026-11-23, 2026-11-24, 2026-11
 - Found via: pacing-adjacent keyword dedupe sweep.
 
 ### Vizzu (`vizzu`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/vizzuhq/vizzu-lib (docs: https://lib.vizzuhq.com)
 - Role: a browser library (C++ compiled to WASM, drawing to canvas) for animated charts that morph between chart types through `chart.animate()`.
 - Category: A1. Creative coding and 2D.

@@ -1,0 +1,63 @@
+{
+  "id": "vizzu",
+  "name": "Vizzu",
+  "category": "A1. Creative coding and 2D",
+  "tier": "candidate",
+  "role": "Animated charts that morph between chart types (bar, stacked, scatter) in a browser canvas, seekable",
+  "summary": "Vizzu (vizzu npm package, C++ compiled to WASM) draws charts to a canvas and animates between chart states with chart.animate(), keeping each data marker as one object through bar, stacked, scatter, pie and similar changes. A keyframe array is one paused AnimControl whose seek() takes a time, so the harness can drive it from t. Strength: object-constant data-story transitions without hand-built tweens.",
+  "use_when": [
+    "A data story where one set of marks morphs between chart types; over d3, which leaves transitions to the author",
+    "Bar, stacked and scatter views of one table as a single seekable timeline",
+    "A chart scene that must be captured frame by frame through packages/capture"
+  ],
+  "avoid_when": [
+    "Bespoke marks or full geometry control: d3 with SVG",
+    "A static chart image with no motion: vl-convert",
+    "Alpha output: the fixture draws on an opaque background and alpha is untested"
+  ],
+  "pairs_with": ["playwright", "d3"],
+  "official_url": "https://github.com/vizzuhq/vizzu-lib",
+  "repository_url": "https://github.com/vizzuhq/vizzu-lib",
+  "automation_route": "library-or-runtime",
+  "capabilities": ["data-visualisation", "2d-rendering", "timeline-animation"],
+  "license": "Apache-2.0",
+  "install": { "macos": "pnpm add vizzu" },
+  "examples": ["vizzu-morph-seek"],
+  "notes": [
+    "2026-11-27: determinism needed the scene's seek to call control.seek twice; with one call, shuffled capture differed from sequential in 3 of 5 runs (one random frame each). Untested whether a longer settle fixes it instead."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "0.18.0",
+    "last_release": "2026-04-20",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "npm vizzu 0.18.0 and GitHub v0.18.0 both 2026-04-20; repository last pushed the same day (7 months ago), not archived; Apache-2.0; 2,051 stars. Object-constant chart-type morphs that d3 and vl-convert lack; seekable via AnimControl.",
+    "sources": [
+      "https://github.com/vizzuhq/vizzu-lib",
+      "https://www.npmjs.com/package/vizzu",
+      "https://lib.vizzuhq.com"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "partial",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "0.18.0",
+        "command": "examples/vizzu-morph-seek/run.sh",
+        "result": "90 1280x720 frames of a 3 s bar, stacked, scatter keyframe chain seeked via AnimControl; shuffled equals sequential in 16 of 16 runs with a double seek, 2 of 5 with a single seek (one random frame differed); 69 to 70 distinct frames; frame 90 differs. Frames inspected.",
+        "example": "examples/vizzu-morph-seek",
+        "scope": "Paused keyframe chain seek on macOS arm64, Chromium via Playwright, screenshot route. Needs a double seek; opaque background only, no alpha; end-of-chain seek checked once; no other charts or fonts."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-26-discovery.md",
+  "skill": "skills/vizzu/SKILL.md"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "vcr-example-vizzu-morph-seek",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "node --import tsx/esm capture.ts"
+  },
+  "dependencies": {
+    "@vcr/capture": "workspace:*",
+    "playwright": "^1.64.1",
+    "vizzu": "0.18.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}
