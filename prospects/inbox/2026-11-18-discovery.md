@@ -29,7 +29,7 @@ This is the second run in ISO week 2026-W47. The earlier W47 digest (2026-11-16)
 - Found via: Reverse-neighbour search for the seed `opentype-js` (PureImage parses fonts with opentype.js)
 
 ### three.quarks (`three-quarks`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/Alchemist0823/three.quarks
 - Role: A particle system and VFX library for three.js, with batched rendering, emitters, behaviours, Unity Shuriken import and JSON effects exported from a visual editor.
 - Category: A3. 3D, shaders and effects (gap area: simulation beyond rigid bodies, particles)

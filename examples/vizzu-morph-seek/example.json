@@ -1,0 +1,9 @@
+{
+  "id": "vizzu-morph-seek",
+  "title": "Vizzu chart morph seeked frame by frame",
+  "summary": "One paused Vizzu animate() keyframe chain (bars, stacked bars, scatter) is seeked by time through packages/capture; run.sh asserts shuffled capture equals sequential, and distinct first, middle, last and past-the-end frames.",
+  "status": "validated",
+  "tools": ["vizzu"],
+  "run": "./run.sh",
+  "capture": { "scene": "scene.html", "width": 1280, "height": 720, "fps": 30 }
+}

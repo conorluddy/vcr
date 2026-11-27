@@ -1,0 +1,74 @@
+{
+  "id": "fontsource",
+  "name": "Fontsource",
+  "category": "A4. Vector, typography, diagrams and stills",
+  "tier": "candidate",
+  "role": "Open-source (OFL) font families as version-pinned npm packages with CSS and per-subset WOFF2",
+  "summary": "Fontsource publishes Google Fonts and other open families as npm packages such as @fontsource/inter, each with CSS @font-face rules and per-subset WOFF2/WOFF files. A pnpm lockfile entry pins the exact font bytes a browser capture loads, which removes system-font-fallback drift. It supplies fonts; it does not shape, subset or render them.",
+  "use_when": [
+    "Pinning the exact font bytes of a browser-captured scene through the lockfile, over system fonts",
+    "A Node or browser scene needs an open font family with no download step at render time",
+    "Reading a family's WOFF2 files from node_modules for satori, opentype-js or harfbuzz input"
+  ],
+  "avoid_when": [
+    "Trimming a font to the glyphs used or instancing a variable font: fonttools",
+    "A brand or paid typeface the person supplies themselves: load the file directly",
+    "Reading or shaping glyphs: opentype-js or harfbuzz"
+  ],
+  "pairs_with": [
+    "playwright",
+    "satori",
+    "fonttools"
+  ],
+  "official_url": "https://fontsource.org",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "typography",
+    "text-rendering"
+  ],
+  "license": "MIT (tooling); each font keeps its own licence, @fontsource/inter is OFL-1.1",
+  "install": {
+    "macos": "pnpm add @fontsource/inter"
+  },
+  "examples": [
+    "fontsource-pinned-inter"
+  ],
+  "notes": [
+    "2026-11-27: Triage: assess. Package versions follow Fontsource's scheme, not the foundry's; record both when a font matters. Licence is per family, check each package. Not every Google Fonts family is mirrored the same day.",
+    "2026-11-27: Not yet checked: variable packages (@fontsource-variable/*), non-latin subsets, satori or resvg consuming the files."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "@fontsource/inter 5.3.0",
+    "last_release": "2026-07-19",
+    "maintenance": "active",
+    "verdict": "promote",
+    "rationale": "Repository MIT, pushed 2026-11-09, not archived; @fontsource/inter 5.3.0 (OFL-1.1) published 2026-07-19. Fills the gap where scene fonts come from; fonttools, opentype-js and harfbuzz all assume a font file already exists.",
+    "sources": [
+      "https://fontsource.org",
+      "https://github.com/fontsource/fontsource",
+      "https://www.npmjs.com/package/@fontsource/inter"
+    ]
+  },
+  "documentation_status": "skill-written",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "validated",
+    "evidence": [
+      {
+        "date": "2026-11-27",
+        "hostname": "Conors-MacBook-Pro-2.local",
+        "version": "5.3.0",
+        "command": "examples/fontsource-pinned-inter/run.sh",
+        "result": "@fontsource/inter 5.3.0 (OFL-1.1) in Chromium 156.0.8078.4: latin 400 and 700 woff2 SHA-256 diffed (8909904a…, 6f56409f…); 2 of 14 declared faces loaded after document.fonts.ready, only those 2 woff2 requested; two renders byte-identical PNG, differs from a no-CSS control (heading 744 vs 736 px); both PNGs inspected.",
+        "example": "examples/fontsource-pinned-inter",
+        "scope": "One family (Inter latin 400/700), CSS route, Chromium 156 on macOS arm64; not variable packages, other subsets, satori or resvg use, or other browsers."
+      }
+    ]
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-25-discovery.md",
+  "skill": "skills/fontsource/SKILL.md"
+}

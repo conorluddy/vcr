@@ -15,7 +15,7 @@ This is the third W48 run. The 2026-11-23 digest (PR #233) and the 2026-11-24 di
 ## Leads
 
 ### Fontsource (`fontsource`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://fontsource.org (repository: https://github.com/fontsource/fontsource)
 - Role: open-source fonts (Google Fonts and other OFL families) published as versioned npm packages, such as `@fontsource/inter` and `@fontsource-variable/inter`, with the font files, CSS and per-subset WOFF2 inside.
 - Category: A4. Vector, typography, diagrams and stills.
@@ -57,7 +57,7 @@ This is the third W48 run. The 2026-11-23 digest (PR #233) and the 2026-11-24 di
 - Found via: GitHub topic search `topic:wgpu` (the wgpu seed neighbourhood).
 
 ### svg-path-commander (`svg-path-commander`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/thednp/svg-path-commander
 - Role: a TypeScript library for SVG path data. It parses, normalises to absolute cubic form, converts arcs, reverses, optimises and applies 2D or 3D matrix transforms to the path string, and reports length, bounding box and point-at-length.
 - Category: A4. Vector, typography, diagrams and stills.
@@ -99,7 +99,7 @@ This is the third W48 run. The 2026-11-23 digest (PR #233) and the 2026-11-24 di
 - Found via: dedupe sweep for openly-licensed asset APIs, a lower-priority area.
 
 ### Clipper2 (`clipper2`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/AngusJohnson/Clipper2 (WASM port on npm: `clipper2-wasm`)
 - Role: a polygon library for boolean operations (union, difference, intersection, XOR), offsetting (inflate and deflate with miter, round and square joins), Minkowski sums and, since 2.0, constrained Delaunay triangulation.
 - Category: A4. Vector, typography, diagrams and stills.

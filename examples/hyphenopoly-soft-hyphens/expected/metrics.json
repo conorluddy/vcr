@@ -1,0 +1,64 @@
+{
+  "measureColumns": 14,
+  "results": [
+    {
+      "language": "de",
+      "hyphenated": "Do·nau·dampf·schiff·fahrts·ge·sell·schaft und Ge·schwin·dig·keits·be·gren·zung",
+      "roundTrips": true,
+      "softHyphenCount": 13,
+      "plainLines": [
+        "Donaudampfschifffahrtsgesellschaft",
+        "und",
+        "Geschwindigkeitsbegrenzung"
+      ],
+      "plainOverflowLines": 2,
+      "hyphenatedLines": [
+        "Donaudampf-",
+        "schifffahrts-",
+        "gesellschaft",
+        "und Geschwin-",
+        "digkeitsbe-",
+        "grenzung"
+      ],
+      "hyphenatedOverflowLines": 0
+    },
+    {
+      "language": "en-us",
+      "hyphenated": "In·ter·na·tion·al·iza·tion of ty·po·graph·i·cal hy·phen·ation",
+      "roundTrips": true,
+      "softHyphenCount": 12,
+      "plainLines": [
+        "Internationalization",
+        "of",
+        "typographical",
+        "hyphenation"
+      ],
+      "plainOverflowLines": 1,
+      "hyphenatedLines": [
+        "International-",
+        "ization of ty-",
+        "pographical",
+        "hyphenation"
+      ],
+      "hyphenatedOverflowLines": 0
+    },
+    {
+      "language": "en-us",
+      "hyphenated": "short words stay as they are",
+      "roundTrips": true,
+      "softHyphenCount": 0,
+      "plainLines": [
+        "short words",
+        "stay as they",
+        "are"
+      ],
+      "plainOverflowLines": 0,
+      "hyphenatedLines": [
+        "short words",
+        "stay as they",
+        "are"
+      ],
+      "hyphenatedOverflowLines": 0
+    }
+  ]
+}

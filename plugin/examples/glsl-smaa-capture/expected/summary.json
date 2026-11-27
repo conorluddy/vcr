@@ -1,0 +1,10 @@
+{
+  "frames": 90,
+  "width": 1280,
+  "height": 720,
+  "shuffled_matches_sequential": true,
+  "frame_45_aliased_half_colours": 4,
+  "frame_45_smaa_half_colours": 455,
+  "frame_45_alpha_min": 1,
+  "smaa_adds_edge_colours": true
+}

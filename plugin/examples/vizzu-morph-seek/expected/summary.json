@@ -1,0 +1,9 @@
+{
+  "frames": 90,
+  "width": 1280,
+  "height": 720,
+  "shuffled_matches_sequential": true,
+  "end_frame_hash_differs_from_last": true,
+  "first_mid_last_all_differ": true,
+  "at_least_60_distinct_frames": true
+}

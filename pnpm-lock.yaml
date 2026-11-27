@@ -179,6 +179,12 @@ importers:
         specifier: ^4.23.15
         version: 4.23.15
 
+  examples/clipper2-polygon-ops:
+    dependencies:
+      clipper2-wasm:
+        specifier: 0.4.0
+        version: 0.4.0
+
   examples/colorjs-conversions:
     dependencies:
       colorjs.io:
@@ -303,6 +309,15 @@ importers:
         specifier: 8.3.5
         version: 8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(tsx@4.23.15)
 
+  examples/fontsource-pinned-inter:
+    dependencies:
+      '@fontsource/inter':
+        specifier: 5.3.0
+        version: 5.3.0
+      playwright:
+        specifier: ^1.64.1
+        version: 1.64.1
+
   examples/gl-react-shader:
     dependencies:
       buffer:
@@ -356,6 +371,22 @@ importers:
         specifier: ^4.23.15
         version: 4.23.15
 
+  examples/glsl-smaa-capture:
+    dependencies:
+      '@vcr/capture':
+        specifier: workspace:*
+        version: link:../../packages/capture
+      glsl-smaa:
+        specifier: 4.0.0
+        version: 4.0.0
+      playwright:
+        specifier: 1.64.1
+        version: 1.64.1
+    devDependencies:
+      tsx:
+        specifier: 4.23.15
+        version: 4.23.15
+
   examples/glslify-bundle:
     dependencies:
       glsl-easings:
@@ -393,6 +424,21 @@ importers:
       pngjs:
         specifier: 7.0.0
         version: 7.0.0
+
+  examples/hyphenopoly-soft-hyphens:
+    dependencies:
+      hyphenopoly:
+        specifier: 6.1.0
+        version: 6.1.0
+
+  examples/iconify-svg-licences:
+    dependencies:
+      '@iconify/json':
+        specifier: 2.2.562
+        version: 2.2.562
+      '@iconify/utils':
+        specifier: 3.1.7
+        version: 3.1.7
 
   examples/imscjs-seek-render:
     dependencies:
@@ -1057,6 +1103,12 @@ importers:
         specifier: ^4.23.15
         version: 4.23.15
 
+  examples/svg-path-commander-cubic:
+    dependencies:
+      svg-path-commander:
+        specifier: 2.4.0
+        version: 2.4.0
+
   examples/svgjs-capture:
     dependencies:
       '@svgdotjs/svg.js':
@@ -1122,6 +1174,22 @@ importers:
       three:
         specifier: 0.187.0
         version: 0.187.0
+
+  examples/three-quarks-capture:
+    dependencies:
+      three:
+        specifier: 0.186.1
+        version: 0.186.1
+      three.quarks:
+        specifier: 0.18.0
+        version: 0.18.0(three@0.186.1)
+    devDependencies:
+      '@vcr/capture':
+        specifier: workspace:*
+        version: link:../../packages/capture
+      tsx:
+        specifier: ^4.23.15
+        version: 4.23.15
 
   examples/three-vrm-capture:
     dependencies:
@@ -1209,6 +1277,22 @@ importers:
       two.js:
         specifier: 0.8.24
         version: 0.8.24
+    devDependencies:
+      tsx:
+        specifier: ^4.23.15
+        version: 4.23.15
+
+  examples/vizzu-morph-seek:
+    dependencies:
+      '@vcr/capture':
+        specifier: workspace:*
+        version: link:../../packages/capture
+      playwright:
+        specifier: ^1.64.1
+        version: 1.64.1
+      vizzu:
+        specifier: 0.18.0
+        version: 0.18.0
     devDependencies:
       tsx:
         specifier: ^4.23.15
@@ -2168,6 +2252,9 @@ packages:
   '@fontsource-variable/recursive@5.3.0':
     resolution: {integrity: sha512-4B4/lWCVeZgdbpJdIIU1sOVO/ECjjM673ohuxvyQ6uCK41TPlGzKRNokKY84noUgGYnpwc//MW4k2KrOMY19jQ==}
 
+  '@fontsource/inter@5.3.0':
+    resolution: {integrity: sha512-RofMylZmjlJEfELXeNHFWBRcSs75rGU/6bV2S2jfnvv/3rPXPGe0LgUJTklcHZ9lM4OZmAVFhcJPnACfb91A3g==}
+
   '@fontsource/open-sans@5.3.0':
     resolution: {integrity: sha512-V1bdMlGNyZrJwzrdusshMOw2YR0aqYDL7kOo9dkxUEKl8dFv66A9HLckOOXl572sG/7ohhDQrCrTFGSn9LZcSw==}
 
@@ -2202,6 +2289,9 @@ packages:
     engines: {node: '>=20'}
     peerDependencies:
       hono: ^4 || ^5.0.0-0
+
+  '@iconify/json@2.2.562':
+    resolution: {integrity: sha512-F8W7ybxpSLiAr43fiGnFUtzIIgaC5NvmdZEiuuLSSrnUjr3RU/rAtG64Pwa9RbgPaLLzrXNtPSvdrh7TXy6sDA==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -3994,6 +4084,9 @@ packages:
   '@theatre/dataverse@0.7.2':
     resolution: {integrity: sha512-YyfoyX7EyhFUY2OM5fsM0LPrs1SdgLwpiTMkkvTIoZLdOwvQhstjYq4Yz/8ZncJlRoTWvakfmgvCaBN+QuBYxg==}
 
+  '@thednp/dommatrix@3.1.4':
+    resolution: {integrity: sha512-vNI1uA4My/z4Z7btrPsQ9mEV/ZC1bzl2ZdXPIHZiY3U6fHREKDFdNA97Z9VE57dzavgG9FHQZ5EKkpLBbwGx7g==}
+
   '@tmcw/togeojson@5.8.1':
     resolution: {integrity: sha512-2YNrbis3l5kS0XrYwiHEZcGwiRp0MJ5CvwGwtMWp2z2tsVlskeec2qgvKHnF0RCwI5GnjrrBOoKsWfndEnd3LA==}
     peerDependencies:
@@ -4201,6 +4294,9 @@ packages:
   '@types/earcut@3.2.4':
     resolution: {integrity: sha512-I688mi107oflZOpzhs4EwasCN4ycLlZHf7XAGhM6EQIHEJkRTEuTL08lemIZOQ1YAACJoNoCzAiSDCJujpJLHA==}
     deprecated: This is a stub types definition. earcut provides its own type definitions, so you do not need this installed.
+
+  '@types/emscripten@1.41.6':
+    resolution: {integrity: sha512-uN+9i8bFT5CUcZfyIEYDrSueACEyKGbUs5kC/72DGlZZoinh84sJfVV0i8UOJD1asdzkvLPBRrKs41kZ8MdEXg==}
 
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
@@ -4843,6 +4939,9 @@ packages:
   cli-width@4.1.0:
     resolution: {integrity: sha512-ouuZd4/dm2Sw5Gmqy6bGyNNNe1qt9RpmxveLSO7KcgsTnU7RXfsw+/bukWGo1abgBiMAic068rclZsO4IWmmxQ==}
     engines: {node: '>= 12'}
+
+  clipper2-wasm@0.4.0:
+    resolution: {integrity: sha512-oYM/F8m7ogBmBXGxARJt9SEcjWPQg6+8zdfYw4Cmb5Ii5AOUjRgdQwQ9i5UW3BCJ4CFWG2CQWwm5HvekyvIdUA==}
 
   cliui@9.0.1:
     resolution: {integrity: sha512-k7ndgKhwoQveBL+/1tqGJYNz097I7WOvwbmmU2AR5+magtbjPWQTS1C5vzGkBC8Ym8UWRzfKUzUUqFLypY4Q+w==}
@@ -5788,6 +5887,10 @@ packages:
   glsl-shader-name@1.0.0:
     resolution: {integrity: sha512-OtHon0dPCbJD+IrVA1vw9QDlp2cS/f9z8X/0y+W7Qy1oZ3U1iFAQUEco2v30V0SAlVLDG5rEfhjEfc3DKdGbFQ==}
 
+  glsl-smaa@4.0.0:
+    resolution: {integrity: sha512-kBflPqpol3fJlCDqsoOLye0yQazQq8lv1u2AnxSOlA2IKjZSaoLDuKE3MjyNC2fbYIYTsMF31m8CztTgiNvYcg==}
+    engines: {node: '>=22.0.0', snowdev: '>=3.0.0-alpha.3'}
+
   glsl-token-assignments@2.0.2:
     resolution: {integrity: sha512-OwXrxixCyHzzA0U2g4btSNAyB2Dx8XrztY5aVUCjRSh4/D0WoJn8Qdps7Xub3sz6zE73W3szLrmWtQ7QMpeHEQ==}
 
@@ -5956,6 +6059,10 @@ packages:
     resolution: {integrity: sha512-bhuVp6bmK33n2JVu6wuuwifqBum5AYZfMGa7jEke0TxbWl8i098rKuU6ZUD9sFxYsmg77e4CBNKJXfK/ZToYtQ==}
     engines: {node: '>=22'}
     hasBin: true
+
+  hyphenopoly@6.1.0:
+    resolution: {integrity: sha512-exXJMFxLaNAHxl5gQ9JSKNak3M4asJpPonHgctniD7d4Ql6Ba1QQaw7tDBzaoJ8Qmpr4QL5Afo98zESBtvQ0qA==}
+    engines: {node: '>=22'}
 
   hysnappy@1.1.1:
     resolution: {integrity: sha512-/V9XcN2NtRyWjR4LYMfvnvasVVF8jbT/ej0eofBQjZel91E3D813FQ3mQC6gDSMMTCq/FJh28XHeyqr3I/oBRw==}
@@ -7007,6 +7114,9 @@ packages:
     resolution: {integrity: sha512-T2ZUsdZFHgA3u4e5PfPbjd7HDDpxPnQb5jN0SrDsjNSuVXHJqtwTnWqG0B1jZrgmJ/7lj1EmVIByWt1gxGkWvg==}
     engines: {node: '>=4'}
 
+  pathe@2.0.3:
+    resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
+
   pause-stream@0.0.11:
     resolution: {integrity: sha512-e3FBlXLmN/D1S+zHzanP4E/4Z60oFAa3O051qt1pxa7DEJWKAyil6upYVXCWadEnuoqa4Pkc9oUx9zsxYeRv8A==}
 
@@ -7204,6 +7314,9 @@ packages:
     resolution: {integrity: sha512-J+OQNlI7I6ZjHhF6Q8M+LgiUGldF7meer5EqMJBZMHgnFN3zcehOhpz/x0bYDEEvbEiXzKzmqSRP3QT+5accjQ==}
     engines: {node: '>=22.12.0'}
     hasBin: true
+
+  quarks.core@0.18.0:
+    resolution: {integrity: sha512-DxhGxsGLykIffHy74YZjcQOVRk09eB/1o+9DPiQveyAonpwIzpUu80EtwfZTjBVf9DvM0f8qLSXAjRqXKJ9IIQ==}
 
   querystringify@2.2.0:
     resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
@@ -7736,6 +7849,9 @@ packages:
     peerDependencies:
       react: '>=17.0'
 
+  svg-path-commander@2.4.0:
+    resolution: {integrity: sha512-adcNMyhgdL+7Ruhwapx/c799NtNMk1+A3uyQYvg3H3biwBFaekhqvWx7iMB1RpYKMxlOdgu9OMhcvkWZsqHtbA==}
+
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
 
@@ -7797,6 +7913,11 @@ packages:
     resolution: {integrity: sha512-PT8Swf/gAKl9KoZDAnwUEy0pesiwrGTiVrPanfGUfA8RO8KcoDwZSg+QfEzbmYa2/1VJaNy4JNqa2TSwXWJPUw==}
     peerDependencies:
       three: '>=0.155.0'
+
+  three.quarks@0.18.0:
+    resolution: {integrity: sha512-Pp7TUHyIA6esrV/YVDma5dLn1lfGNd8rGW2usk9lRNZ7kRTT9aUlfVulwYhlHwHgwEWNL3ONQULK5XeMfTthHA==}
+    peerDependencies:
+      three: '>=0.182.0'
 
   three@0.159.0:
     resolution: {integrity: sha512-eCmhlLGbBgucuo4VEA9IO3Qpc7dh8Bd4VKzr7WfW4+8hMcIfoAVi1ev0pJYN9PTTsCslbcKgBwr2wNZ1EvLInA==}
@@ -8237,6 +8358,9 @@ packages:
         optional: true
       jsdom:
         optional: true
+
+  vizzu@0.18.0:
+    resolution: {integrity: sha512-uXoLfSsdoQMLy1aKZjqXxv235NLb/M9pE265/sGCLTaKMauOwPNG52hDPOAomUemTLylvurywowrgQtrxfTCVQ==}
 
   vscode-oniguruma@1.7.0:
     resolution: {integrity: sha512-L9WMGRfrjOhgHSdOYgCt/yRMsXzLDJSL7BPrOZt73gU0iWO4mpqzqQzOz5srxqTvMBaR0XZTSrVWo4j55Rc6cA==}
@@ -9106,6 +9230,8 @@ snapshots:
 
   '@fontsource-variable/recursive@5.3.0': {}
 
+  '@fontsource/inter@5.3.0': {}
+
   '@fontsource/open-sans@5.3.0': {}
 
   '@fortawesome/fontawesome-free@7.3.1': {}
@@ -9145,6 +9271,11 @@ snapshots:
   '@hono/node-server@2.1.8(hono@4.13.19)':
     dependencies:
       hono: 4.13.19
+
+  '@iconify/json@2.2.562':
+    dependencies:
+      '@iconify/types': 2.0.0
+      pathe: 2.0.3
 
   '@iconify/types@2.0.0': {}
 
@@ -10895,6 +11026,8 @@ snapshots:
     dependencies:
       lodash-es: 4.18.1
 
+  '@thednp/dommatrix@3.1.4': {}
+
   '@tmcw/togeojson@5.8.1(@types/geojson@7946.0.16)':
     dependencies:
       '@types/geojson': 7946.0.16
@@ -11184,6 +11317,8 @@ snapshots:
   '@types/earcut@3.2.4':
     dependencies:
       earcut: 3.2.4
+
+  '@types/emscripten@1.41.6': {}
 
   '@types/estree@1.0.9': {}
 
@@ -11764,6 +11899,10 @@ snapshots:
 
   cli-width@4.1.0:
     optional: true
+
+  clipper2-wasm@0.4.0:
+    dependencies:
+      '@types/emscripten': 1.41.6
 
   cliui@9.0.1:
     dependencies:
@@ -12929,6 +13068,8 @@ snapshots:
       atob-lite: 1.0.0
       glsl-tokenizer: 2.1.5
 
+  glsl-smaa@4.0.0: {}
+
   glsl-token-assignments@2.0.2: {}
 
   glsl-token-defines@1.0.0:
@@ -13173,6 +13314,8 @@ snapshots:
       - proxy-agent
       - supports-color
       - utf-8-validate
+
+  hyphenopoly@6.1.0: {}
 
   hysnappy@1.1.1: {}
 
@@ -14299,6 +14442,8 @@ snapshots:
     dependencies:
       pify: 3.0.0
 
+  pathe@2.0.3: {}
+
   pause-stream@0.0.11:
     dependencies:
       through: 2.3.8
@@ -14510,6 +14655,8 @@ snapshots:
       - proxy-agent
       - utf-8-validate
       - yauzl
+
+  quarks.core@0.18.0: {}
 
   querystringify@2.2.0:
     optional: true
@@ -15225,6 +15372,10 @@ snapshots:
     dependencies:
       react: 19.3.1
 
+  svg-path-commander@2.4.0:
+    dependencies:
+      '@thednp/dommatrix': 3.1.4
+
   symbol-tree@3.2.4:
     optional: true
 
@@ -15331,6 +15482,11 @@ snapshots:
 
   three.meshline@2.0.0(three@0.186.1):
     dependencies:
+      three: 0.186.1
+
+  three.quarks@0.18.0(three@0.186.1):
+    dependencies:
+      quarks.core: 0.18.0
       three: 0.186.1
 
   three@0.159.0: {}
@@ -15731,6 +15887,10 @@ snapshots:
       jsdom: 26.1.0(canvas@3.2.3)
     transitivePeerDependencies:
       - msw
+
+  vizzu@0.18.0:
+    dependencies:
+      type-fest: 4.41.0
 
   vscode-oniguruma@1.7.0: {}
 

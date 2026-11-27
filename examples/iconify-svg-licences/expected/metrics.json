@@ -1,0 +1,37 @@
+{
+  "icons": [
+    {
+      "icon": "lucide:film",
+      "licence": "ISC",
+      "handling": "notice-retained",
+      "viewBox": "0 0 24 24",
+      "size": "96x96",
+      "sha256": "f597f6b6c369f65f6d8ed60ede20ce0930c2f182d31277ce481c490988ca9404"
+    },
+    {
+      "icon": "fa6-brands:github",
+      "licence": "CC-BY-4.0",
+      "handling": "attribution-required",
+      "viewBox": "0 0 496 512",
+      "size": "93x96",
+      "sha256": "5dcffb458ce67766e43861deab9376db21bfccef2957d0b9beb9fdd891aef830"
+    },
+    {
+      "icon": "simple-icons:ffmpeg",
+      "licence": "CC0-1.0",
+      "handling": "free",
+      "viewBox": "0 0 24 24",
+      "size": "96x96",
+      "sha256": "0c27b635a186f622b409bbc38b5a7a2c06897240fe65ee681385148aec0caf0a"
+    }
+  ],
+  "setCounts": {
+    "notice-retained": 184,
+    "attribution-required": 68,
+    "share-alike-review": 10,
+    "blocked-copyleft": 6,
+    "free": 11,
+    "blocked-non-commercial": 2
+  },
+  "totalSets": 281
+}

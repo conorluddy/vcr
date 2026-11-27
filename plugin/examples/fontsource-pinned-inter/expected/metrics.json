@@ -1,0 +1,30 @@
+{
+  "package": "@fontsource/inter@5.3.0",
+  "packageLicense": "OFL-1.1",
+  "woff2Sha256": {
+    "inter-latin-400-normal.woff2": "8909904ab6c872eb994093482a88a28eca2cd95912d7b6fecd72103b0dc07edc",
+    "inter-latin-700-normal.woff2": "6f56409fd3d64bb85f7d070bce20749db2d66b6d63cec586cc22d1c761be2491"
+  },
+  "withFontsource": {
+    "loadedFaces": [
+      "Inter 400",
+      "Inter 700"
+    ],
+    "declaredFaces": 14,
+    "headingWidthPx": 744,
+    "textWidthPx": 786,
+    "woff2Requests": [
+      "inter-latin-400-normal.woff2",
+      "inter-latin-700-normal.woff2"
+    ]
+  },
+  "control": {
+    "loadedFaces": [],
+    "declaredFaces": 0,
+    "headingWidthPx": 736,
+    "textWidthPx": 743,
+    "woff2Requests": []
+  },
+  "pngByteStableAcrossPages": true,
+  "controlDiffers": true
+}

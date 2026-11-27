@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  html, body { margin: 0; background: #101418; width: 100%; height: 100%; overflow: hidden; }
+  #chart { display: block; width: 100vw; height: 100vh; }
+</style>
+</head>
+<body>
+<div id="chart"></div>
+<script type="module">
+  import Vizzu from "./node_modules/vizzu/dist/vizzu.min.js";
+
+  // One animate() call with three keyframes (bars, stacked bars, scatter) is one paused
+  // AnimControl; seek() addresses the whole chain by time, so no wall clock is involved.
+  const STEP_SECONDS = 1;
+  const data = {
+    series: [
+      { name: "Region", type: "dimension", values: ["North", "South", "East", "West", "North", "South", "East", "West"] },
+      { name: "Year", type: "dimension", values: ["2024", "2024", "2024", "2024", "2025", "2025", "2025", "2025"] },
+      { name: "Revenue", type: "measure", values: [30, 55, 42, 18, 48, 61, 40, 35] },
+      { name: "Margin", type: "measure", values: [12, 20, 15, 6, 22, 18, 9, 14] },
+    ],
+  };
+  const style = {
+    backgroundColor: "#101418",
+    fontFamily: "Arial, sans-serif",
+    fontSize: 26,
+    plot: { xAxis: { interlacing: { color: "#ffffff0d" } }, yAxis: { interlacing: { color: "#ffffff0d" } }, marker: { colorPalette: "#c7f36b #6bd3f3 #f39c6b #b36bf3" }, paddingLeft: 90, paddingBottom: 60 },
+  };
+  const chart = new Vizzu({ element: document.querySelector("#chart") });
+  (async () => {
+    await chart.initializing;
+    await chart.animate({ data, style, config: { x: "Region", y: "Revenue", title: "Revenue by region" } }, 0);
+    const completing = chart.animate([
+      { target: { config: { x: "Region", y: "Revenue", color: "Region", title: "Revenue by region" } }, options: { duration: STEP_SECONDS } },
+      { target: { config: { x: "Region", y: ["Revenue", "Year"], color: "Year", title: "Split by year" } }, options: { duration: STEP_SECONDS } },
+      { target: { config: { x: "Revenue", y: "Margin", color: "Region", geometry: "circle", title: "Revenue against margin" } }, options: { duration: STEP_SECONDS } },
+    ], { playState: "paused" });
+    const control = await completing.activated;
+    window.__scene = {
+      duration: 3,
+      seek: (seconds) => {
+        const position = `${Math.round(seconds * 1000)}ms`;
+        control.seek(position);
+        // Experiment: a second seek to the same position, in case the first render races the screenshot.
+        control.seek(position);
+      },
+    };
+  })();
+</script>
+</body>
+</html>

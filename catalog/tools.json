@@ -1610,6 +1610,86 @@
       }
     },
     {
+      "id": "clipper2",
+      "name": "Clipper2",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "Robust 2D polygon booleans, offsetting and triangulation; Node via the clipper2-wasm port",
+      "summary": "Clipper2 clips polygons (union, intersection, difference, XOR), offsets them with miter, round or square joins, takes Minkowski sums and triangulates. VCR reaches it through the clipper2-wasm npm port, which runs in Node with no native build and returns point arrays that scripts write as SVG. Its strength is a robust integer-scaled engine for outline, inset and shape-union work on flattened curves.",
+      "use_when": [
+        "Outset or inset an outline with round or mitered joins for stroke, glow or inline effects",
+        "Union or subtract many overlapping polygons into clean rings; over paper-js on hard overlap cases",
+        "Polygon geometry in plain Node, with no canvas, DOM or browser",
+        "Inset-and-hatch or offset-contour fills that feed a plotter path set"
+      ],
+      "avoid_when": [
+        "Bezier-native booleans that keep curves: paper-js",
+        "3D solids or meshes: build123d or trimesh",
+        "Optimising or hatching plotter paths: vpype",
+        "Plain SVG drawing with no geometry operations: svg"
+      ],
+      "pairs_with": [
+        "resvg",
+        "svg",
+        "paper-js",
+        "vpype"
+      ],
+      "official_url": "https://github.com/PolyClipping/Clipper2",
+      "repository_url": "https://github.com/ErikSom/Clipper2-WASM",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring",
+        "math-utilities"
+      ],
+      "license": "BSL-1.0",
+      "install": {
+        "macos": "pnpm add clipper2-wasm"
+      },
+      "notes": [
+        "2026-11-27: AngusJohnson/Clipper2 is archived; its README says development moved to PolyClipping/Clipper2 (BSL-1.0, pushed 2026-11-12). clipper2-wasm 0.4.0 is by Erik Sombroek (ErikSom/Clipper2-WASM, last push 2026-05-18); which Clipper2 release it bundles is not stated in its package.",
+        "2026-11-27: BSL-1.0 is the Boost Software License, permissive, not the Business Source License.",
+        "2026-11-27: input must be flattened polygons; flattening tolerance and the decimal precision argument decide the output, so record both."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "2.0.1",
+        "last_release": "2026-10-26",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Upstream AngusJohnson/Clipper2 retired in favour of PolyClipping/Clipper2 (2.0.1 release 2026-10-26, pushed 2026-11-12, BSL-1.0). npm clipper2-wasm 0.4.0 published 2026-05-18, BSL-1.0, one maintainer. No other catalogue route does robust 2D offsetting.",
+        "sources": [
+          "https://github.com/AngusJohnson/Clipper2",
+          "https://github.com/PolyClipping/Clipper2",
+          "https://github.com/ErikSom/Clipper2-WASM",
+          "https://www.npmjs.com/package/clipper2-wasm"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.4.0",
+            "command": "examples/clipper2-polygon-ops/run.sh",
+            "result": "Union, round outset, miter inset and difference to SVG twice in separate Node 22.19.0 processes: identical SHA-256, union 1 ring/79 vertices, difference 2 rings area 21098.5 vs analytic 21098.6; resvg 0.47.0 PNG 960x300 inspected.",
+            "example": "examples/clipper2-polygon-ops",
+            "scope": "clipper2-wasm 0.4.0 double API (UnionD, InflatePathsD, DifferenceD), precision 2, 96-segment arcs, macOS arm64; not Minkowski, triangulation, open paths, browser or performance."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-25-discovery.md",
+      "examples": [
+        "clipper2-polygon-ops"
+      ],
+      "skill": "skills/clipper2/SKILL.md"
+    },
+    {
       "id": "colmap",
       "name": "COLMAP",
       "category": "A8. Physics, audio and 3D assets",
@@ -3720,6 +3800,80 @@
       "skill": "skills/fogleman-sdf/SKILL.md"
     },
     {
+      "id": "fontsource",
+      "name": "Fontsource",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "Open-source (OFL) font families as version-pinned npm packages with CSS and per-subset WOFF2",
+      "summary": "Fontsource publishes Google Fonts and other open families as npm packages such as @fontsource/inter, each with CSS @font-face rules and per-subset WOFF2/WOFF files. A pnpm lockfile entry pins the exact font bytes a browser capture loads, which removes system-font-fallback drift. It supplies fonts; it does not shape, subset or render them.",
+      "use_when": [
+        "Pinning the exact font bytes of a browser-captured scene through the lockfile, over system fonts",
+        "A Node or browser scene needs an open font family with no download step at render time",
+        "Reading a family's WOFF2 files from node_modules for satori, opentype-js or harfbuzz input"
+      ],
+      "avoid_when": [
+        "Trimming a font to the glyphs used or instancing a variable font: fonttools",
+        "A brand or paid typeface the person supplies themselves: load the file directly",
+        "Reading or shaping glyphs: opentype-js or harfbuzz"
+      ],
+      "pairs_with": [
+        "playwright",
+        "satori",
+        "fonttools"
+      ],
+      "official_url": "https://fontsource.org",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "typography",
+        "text-rendering"
+      ],
+      "license": "MIT (tooling); each font keeps its own licence, @fontsource/inter is OFL-1.1",
+      "install": {
+        "macos": "pnpm add @fontsource/inter"
+      },
+      "examples": [
+        "fontsource-pinned-inter"
+      ],
+      "notes": [
+        "2026-11-27: Triage: assess. Package versions follow Fontsource's scheme, not the foundry's; record both when a font matters. Licence is per family, check each package. Not every Google Fonts family is mirrored the same day.",
+        "2026-11-27: Not yet checked: variable packages (@fontsource-variable/*), non-latin subsets, satori or resvg consuming the files."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "@fontsource/inter 5.3.0",
+        "last_release": "2026-07-19",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Repository MIT, pushed 2026-11-09, not archived; @fontsource/inter 5.3.0 (OFL-1.1) published 2026-07-19. Fills the gap where scene fonts come from; fonttools, opentype-js and harfbuzz all assume a font file already exists.",
+        "sources": [
+          "https://fontsource.org",
+          "https://github.com/fontsource/fontsource",
+          "https://www.npmjs.com/package/@fontsource/inter"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "5.3.0",
+            "command": "examples/fontsource-pinned-inter/run.sh",
+            "result": "@fontsource/inter 5.3.0 (OFL-1.1) in Chromium 156.0.8078.4: latin 400 and 700 woff2 SHA-256 diffed (8909904a…, 6f56409f…); 2 of 14 declared faces loaded after document.fonts.ready, only those 2 woff2 requested; two renders byte-identical PNG, differs from a no-CSS control (heading 744 vs 736 px); both PNGs inspected.",
+            "example": "examples/fontsource-pinned-inter",
+            "scope": "One family (Inter latin 400/700), CSS route, Chromium 156 on macOS arm64; not variable packages, other subsets, satori or resvg use, or other browsers."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-25-discovery.md",
+      "skill": "skills/fontsource/SKILL.md"
+    },
+    {
       "id": "fonttools",
       "name": "fonttools",
       "category": "Discovery: research candidates",
@@ -5335,6 +5489,155 @@
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a",
       "skill": "skills/hyperframes/SKILL.md"
+    },
+    {
+      "id": "hyphenopoly",
+      "name": "Hyphenopoly",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "TeX-pattern hyphenation: soft hyphens inserted into strings in Node and the browser",
+      "summary": "Hyphenopoly 6 applies TeX hyphenation patterns, compiled to WebAssembly, to plain strings in Node and inserts soft hyphens at the break points. It runs from one pnpm dependency, needs no browser, and gives the same result on every platform, unlike CSS `hyphens: auto`. Its strength is deciding where long words may break before any layout engine wraps them, for German and many other languages.",
+      "use_when": [
+        "Justified or narrow text in satori, canvas-2d or troika-three-text, which break only at spaces",
+        "Long German or Dutch compounds in lower thirds and localised strings that overflow the measure",
+        "Break points that must be identical in Node and in the browser, unlike CSS hyphens: auto"
+      ],
+      "avoid_when": [
+        "Browser DOM text where CSS hyphens: auto with a correct lang is enough and platform variation is acceptable",
+        "Whole documents with automatic hyphenation: typst",
+        "Languages without a shipped pattern file, or proper nouns and brand names that must not break"
+      ],
+      "pairs_with": [
+        "satori",
+        "canvas-2d",
+        "troika-three-text",
+        "typst"
+      ],
+      "official_url": "https://github.com/mnater/Hyphenopoly",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "typography",
+        "text-rendering"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add hyphenopoly"
+      },
+      "examples": [
+        "hyphenopoly-soft-hyphens"
+      ],
+      "notes": [
+        "2026-11-27: pattern files carry their own licences, unverified per language; the fixture uses de and en-us only. Pin the package version, because pattern updates change break points.",
+        "2026-11-27: typography pillar (references/typography, TYPO-FEATURES and KB 'Rag, hyphenation and justification') says justified text needs lang and hyphenation; this tool supplies the break points where the renderer lacks CSS hyphenation."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "6.1.0",
+        "last_release": "2026-01-01",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "npm hyphenopoly 6.1.0 published 2026-01-01, MIT; repository pushed 2026-11-21. No catalogued tool hyphenates; satori, canvas-2d and troika-three-text break only at spaces. Alternatives hypher (Rust) and Pyphen (Python) are not in the catalogue.",
+        "sources": [
+          "https://github.com/mnater/Hyphenopoly",
+          "https://www.npmjs.com/package/hyphenopoly",
+          "https://mnater.github.io/Hyphenopoly/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "6.1.0",
+            "command": "examples/hyphenopoly-soft-hyphens/run.sh",
+            "result": "de and en-us strings hyphenated in Node 22.19.0 twice with identical output; 13 and 12 soft hyphens inserted, stripping them restores the input, a 14-column wrap goes from overflowing lines to none, short words unchanged.",
+            "example": "examples/hyphenopoly-soft-hyphens",
+            "scope": "Node API, de and en-us patterns, soft-hyphen output, character-count wrap on macOS arm64; not other languages, the browser polyfill, exceptions or rendering in a real font."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-24-discovery.md",
+      "skill": "skills/hyphenopoly/SKILL.md"
+    },
+    {
+      "id": "iconify",
+      "name": "Iconify",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "Offline icon data for 280+ open sets as SVG, with per-set licence and author metadata",
+      "summary": "@iconify/json bundles every open icon set as JSON with each set's SPDX licence and author; @iconify/utils turns an icon into SVG offline. Its strength is a machine-readable licence per set, so a credits or licence check can gate icons before they enter a scene.",
+      "use_when": [
+        "Icons or logos as SVG layers where the licence must be checked or credited",
+        "Reproducible renders: icon data is local and pinned, no live API",
+        "Picking one icon from a very large mixed-style library by set and name"
+      ],
+      "avoid_when": [
+        "Editing, optimising or rasterising SVG once you have it: svg, svgo, resvg",
+        "Icons from one known set only: install that set's own package instead of 730 MB of data",
+        "Brand logos where trademark terms matter: a CC0 set does not clear the mark"
+      ],
+      "pairs_with": [
+        "resvg",
+        "svg",
+        "svgo"
+      ],
+      "official_url": "https://iconify.design",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add @iconify/json @iconify/utils"
+      },
+      "examples": [
+        "iconify-svg-licences"
+      ],
+      "notes": [
+        "2026-11-27: Tooling is MIT; each icon set keeps its own licence. Of 281 sets in @iconify/json 2.2.562: 184 notice-retained (MIT, ISC, Apache-2.0, BSD-3), 68 attribution-required (CC-BY, OFL), 11 free (CC0, Unlicense), 10 share-alike review (CC-BY-SA, MPL-2.0), 6 GPL (gridicons, wordpress, dashicons, gala, icomoon-free, et) and 2 non-commercial (cbi, ps).",
+        "2026-11-27: @iconify/json publishes almost daily and installs about 730 MB; pin the exact version and prefer the local JSON over api.iconify.design."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "2.2.562",
+        "last_release": "2026-11-19",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "@iconify/json 2.2.562 and @iconify/utils 3.1.7 (both MIT) installed and read locally; repository pushed 2026-11-21. Nothing catalogued supplies icons with machine-readable licence metadata; svg, svgo and resvg only handle SVG you already have. Set licences vary, including GPL and non-commercial sets, so use must be gated per set.",
+        "sources": [
+          "https://iconify.design",
+          "https://github.com/iconify/iconify",
+          "https://iconify.design/docs/icons/json.html",
+          "https://www.npmjs.com/package/@iconify/json"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "@iconify/json 2.2.562, @iconify/utils 3.1.7",
+            "command": "examples/iconify-svg-licences/run.sh",
+            "result": "3 icons (ISC, CC-BY-4.0, CC0) built offline to SVG, identical SHA-256 across two Node 22.19.0 processes; all 281 set licences classified, 0 unknown; resvg 192 px PNGs inspected.",
+            "example": "examples/iconify-svg-licences",
+            "scope": "Local JSON and utils only: 3 icons, height and colour options, one data release, macOS arm64; not the live API, @iconify/tools, palette icons, or legal sufficiency of a licence."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-21-discovery.md",
+      "skill": "skills/iconify/SKILL.md"
     },
     {
       "id": "imagemagick",
@@ -12205,6 +12508,82 @@
       "skill": "skills/segment-anything/SKILL.md"
     },
     {
+      "id": "shaders-smaa",
+      "name": "shaders-smaa (glsl-smaa, wgsl-smaa)",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "candidate",
+      "role": "SMAA antialiasing passes as GLSL and WGSL shader strings for raw WebGL and WebGPU renderers",
+      "summary": "glsl-smaa 4.0.0 ships the SMAA edges, weights and blend shaders and the reference lookup textures as ES module strings; wgsl-smaa 1.0.0 is the WGSL port. You wire three framebuffer passes yourself in any raw WebGL renderer. Its strength is SMAA outside a Three.js composer. 1x mode is spatial only, so each frame depends only on its input and seeks cleanly; T2x is history-dependent.",
+      "use_when": [
+        "Aliased edges in a raw WebGL, regl, twgl or ogl scene with no antialiasing pass",
+        "Over postprocessing's SMAA when the scene does not use a Three.js composer",
+        "Post-process antialiasing where MSAA is unavailable, such as on a render-to-texture target"
+      ],
+      "avoid_when": [
+        "A Three.js scene: postprocessing or react-three-postprocessing bring SMAA with a composer",
+        "Alpha-keyed output: edge detection reads colour, and alpha is untested here",
+        "Seek-driven capture with T2x: it blends the previous frame, so use 1x"
+      ],
+      "pairs_with": [
+        "webgl",
+        "regl",
+        "twgl",
+        "ogl",
+        "playwright",
+        "postprocessing"
+      ],
+      "official_url": "https://github.com/dmnsgn/shaders-smaa",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "effects",
+        "shaders"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add glsl-smaa"
+      },
+      "notes": [
+        "2026-11-27: wgsl-smaa 1.0.0 (WebGPU) is untested; the fixture covers glsl-smaa only. Quality against postprocessing's SMAA was not compared pixel for pixel.",
+        "2026-11-27: The README warns of a flipped y sign in WebGL T2x jitter and that alpha is overwritten when reprojection is on; neither was exercised."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "4.0.0",
+        "last_release": "2026-09-24",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "glsl-smaa 4.0.0 and wgsl-smaa 1.0.0 published 2026-09-24; MIT; the only catalogue route to SMAA outside a Three.js composer. Shaders only: the caller writes the pass wiring. No upstream tests against the reference are described.",
+        "sources": [
+          "https://github.com/dmnsgn/shaders-smaa",
+          "https://www.npmjs.com/package/glsl-smaa"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "examples": [
+        "glsl-smaa-capture"
+      ],
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.0.0",
+            "command": "examples/glsl-smaa-capture/run.sh",
+            "result": "90 frames at 1280x720; shuffled hashes equal sequential; frame 45 unique colours 4 aliased half vs 455 SMAA half, alpha min 1. glsl-smaa 4.0.0, Playwright 1.64.1, Chromium 156.0.8078.4, Node 22.19.0, WebGL1; 4x crop inspected: staircases gone, geometry intact.",
+            "example": "examples/glsl-smaa-capture",
+            "scope": "SMAA 1x (HIGH, luma edges) on an opaque raw WebGL1 scene, macOS arm64 Chromium; not wgsl-smaa, T2x, alpha, depth edges, WebGL2 or comparison with postprocessing."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-23-discovery.md",
+      "skill": "skills/shaders-smaa/SKILL.md"
+    },
+    {
       "id": "sharp",
       "name": "Sharp",
       "category": "A6. Image processing and colour",
@@ -13160,6 +13539,81 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "svg-path-commander",
+      "name": "svg-path-commander",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "SVG path-string maths in Node: normalise to cubics, transform, measure, no DOM",
+      "summary": "TypeScript library (svg-path-commander) that parses an SVG path string and normalises it to absolute cubic segments, converts arcs, reverses, optimises, applies matrix transforms and reports length, bounding box and point-at-length, all in Node with no DOM. Its strength is the path-data step a morph needs before any renderer: two different paths reduced to comparable cubic control points, ahead of resvg.",
+      "use_when": [
+        "Preparing two paths for a seekable shape morph; over svgo, which optimises whole files",
+        "Path length, bounding box or transforms on a path string without building a scene model; over paper-js or svg-js",
+        "Converting arcs, quadratics and shorthand curves to absolute cubics before frame generation"
+      ],
+      "avoid_when": [
+        "Whole-file SVG optimisation or ID cleanup: svgo",
+        "A scene graph with hit-testing, boolean ops or rendering: paper-js",
+        "Real 3D: its 3D transform is a perspective projection of the path"
+      ],
+      "pairs_with": [
+        "resvg",
+        "svg",
+        "svgo",
+        "paper-js"
+      ],
+      "official_url": "https://github.com/thednp/svg-path-commander",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring",
+        "math-utilities",
+        "svg-animation"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add svg-path-commander"
+      },
+      "examples": [
+        "svg-path-commander-cubic"
+      ],
+      "notes": [
+        "2026-11-27: it normalises but does not pair or split segments; two paths with 6 and 7 cubics after toCurve() stay unequal, so equal counts are the caller's job.",
+        "2026-11-27: toCurve() mutates the instance, so getTotalLength() afterwards measures the cubic approximation and differs slightly from a fresh instance."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "2.4.0",
+        "last_release": "2026-11-24",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "npm svg-path-commander 2.4.0 published 2026-11-24, MIT. Only catalogue route for path-string normalisation without a DOM or scene model; svgo works on files, paper-js and svg-js hold a scene.",
+        "sources": [
+          "https://github.com/thednp/svg-path-commander",
+          "https://www.npmjs.com/package/svg-path-commander"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.4.0",
+            "command": "examples/svg-path-commander-cubic/run.sh",
+            "result": "Two paths (H/A/L/Q and L/S/Q/H) both normalised to 6 absolute cubics, interpolated to 3 SVG frames identical across two Node 22.19.0 processes; translate moved bbox x by 5; resvg 0.47.0 PNGs 260x260 inspected.",
+            "example": "examples/svg-path-commander-cubic",
+            "scope": "toCurve, transform, getBBox and getTotalLength on two single-subpath paths, macOS arm64; not getPointAtLength, optimize, reverse, 3D, unequal segment counts or browser use."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-25-discovery.md",
+      "skill": "skills/svg-path-commander/SKILL.md"
+    },
+    {
       "id": "svgo",
       "name": "SVGO",
       "category": "A4. Vector, typography, diagrams and stills",
@@ -13931,6 +14385,78 @@
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a",
       "skill": "skills/three-meshline/SKILL.md"
+    },
+    {
+      "id": "three-quarks",
+      "name": "three.quarks",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "candidate",
+      "role": "Particle and VFX emitters for three.js; seek by replaying fixed steps with a seeded Math.random",
+      "summary": "three.quarks adds batched particle systems to a three.js scene: emitters with shapes, start and over-life behaviours, billboard, mesh and trail rendering, and JSON effects from its editor. It advances only through batchRenderer.update(delta) and draws all randomness from Math.random, so VCR rebuilds the system, reseeds Math.random and steps at a fixed delta from 0 to t on every seek.",
+      "use_when": [
+        "Art-directed sprite or mesh particles (sparks, smoke, fountains) inside a three-js scene",
+        "Over splishsplash when the look matters more than fluid physics",
+        "Effects authored as JSON in the quarks.art editor and replayed in a scene"
+      ],
+      "avoid_when": [
+        "Rigid-body collisions: rapier or matter-js",
+        "Very long timelines where replay from 0 per frame is too slow: pre-bake instead",
+        "Particles in a 2D canvas scene: canvas-2d with your own loop"
+      ],
+      "pairs_with": [
+        "three-js",
+        "postprocessing",
+        "rapier"
+      ],
+      "official_url": "https://github.com/Alchemist0823/three.quarks",
+      "repository_url": "https://github.com/Alchemist0823/three.quarks",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "effects"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add three.quarks"
+      },
+      "examples": [
+        "three-quarks-capture"
+      ],
+      "notes": [
+        "2026-11-27: Seeded randomness is not a library feature. Every random draw in three.quarks 0.18.0 and quarks.core goes through Math.random, so the fixture replaces Math.random during each seek."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "0.18.0",
+        "last_release": "2026-11-17",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "npm 0.18.0 published 2026-11-17; repository pushed 2026-11-18; MIT; peer dependency three >=0.182. Only catalogued particle and VFX system for three.js; splishsplash is a fluid solver and three-nebula was rejected as engine-bound.",
+        "sources": [
+          "https://github.com/Alchemist0823/three.quarks",
+          "https://www.npmjs.com/package/three.quarks"
+        ]
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.18.0",
+            "command": "examples/three-quarks-capture/run.sh",
+            "result": "Fountain rebuilt, Math.random seeded and stepped at 1/60 s from t=0 per seek through packages/capture: 90 frames 640x360, shuffled order equals sequential, 90 distinct hashes, frame 45 alpha 0..1; frames inspected (particles rise, spread and fade).",
+            "example": "examples/three-quarks-capture",
+            "scope": "One sprite fountain, three.js 0.186.1, Chromium WebGL screenshot mode, macOS arm64; replay cost grows with t (about 19 fps); not trails, mesh particles, JSON effects, prewarm or looping."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-18-discovery.md",
+      "skill": "skills/three-quarks/SKILL.md"
     },
     {
       "id": "three-vrm",
@@ -14892,6 +15418,80 @@
           "https://github.com/charmbracelet/vhs/blob/main/LICENSE"
         ]
       }
+    },
+    {
+      "id": "vizzu",
+      "name": "Vizzu",
+      "category": "A1. Creative coding and 2D",
+      "tier": "candidate",
+      "role": "Animated charts that morph between chart types (bar, stacked, scatter) in a browser canvas, seekable",
+      "summary": "Vizzu (vizzu npm package, C++ compiled to WASM) draws charts to a canvas and animates between chart states with chart.animate(), keeping each data marker as one object through bar, stacked, scatter, pie and similar changes. A keyframe array is one paused AnimControl whose seek() takes a time, so the harness can drive it from t. Strength: object-constant data-story transitions without hand-built tweens.",
+      "use_when": [
+        "A data story where one set of marks morphs between chart types; over d3, which leaves transitions to the author",
+        "Bar, stacked and scatter views of one table as a single seekable timeline",
+        "A chart scene that must be captured frame by frame through packages/capture"
+      ],
+      "avoid_when": [
+        "Bespoke marks or full geometry control: d3 with SVG",
+        "A static chart image with no motion: vl-convert",
+        "Alpha output: the fixture draws on an opaque background and alpha is untested"
+      ],
+      "pairs_with": [
+        "playwright",
+        "d3"
+      ],
+      "official_url": "https://github.com/vizzuhq/vizzu-lib",
+      "repository_url": "https://github.com/vizzuhq/vizzu-lib",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "data-visualisation",
+        "2d-rendering",
+        "timeline-animation"
+      ],
+      "license": "Apache-2.0",
+      "install": {
+        "macos": "pnpm add vizzu"
+      },
+      "examples": [
+        "vizzu-morph-seek"
+      ],
+      "notes": [
+        "2026-11-27: determinism needed the scene's seek to call control.seek twice; with one call, shuffled capture differed from sequential in 3 of 5 runs (one random frame each). Untested whether a longer settle fixes it instead."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "0.18.0",
+        "last_release": "2026-04-20",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "npm vizzu 0.18.0 and GitHub v0.18.0 both 2026-04-20; repository last pushed the same day (7 months ago), not archived; Apache-2.0; 2,051 stars. Object-constant chart-type morphs that d3 and vl-convert lack; seekable via AnimControl.",
+        "sources": [
+          "https://github.com/vizzuhq/vizzu-lib",
+          "https://www.npmjs.com/package/vizzu",
+          "https://lib.vizzuhq.com"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.18.0",
+            "command": "examples/vizzu-morph-seek/run.sh",
+            "result": "90 1280x720 frames of a 3 s bar, stacked, scatter keyframe chain seeked via AnimControl; shuffled equals sequential in 16 of 16 runs with a double seek, 2 of 5 with a single seek (one random frame differed); 69 to 70 distinct frames; frame 90 differs. Frames inspected.",
+            "example": "examples/vizzu-morph-seek",
+            "scope": "Paused keyframe chain seek on macOS arm64, Chromium via Playwright, screenshot route. Needs a double seek; opaque background only, no alpha; end-of-chain seek checked once; no other charts or fonts."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-26-discovery.md",
+      "skill": "skills/vizzu/SKILL.md"
     },
     {
       "id": "vl-convert",
