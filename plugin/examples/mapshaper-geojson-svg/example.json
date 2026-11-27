@@ -1,0 +1,8 @@
+{
+  "id": "mapshaper-geojson-svg",
+  "title": "mapshaper dissolve, simplify and project GeoJSON to SVG",
+  "summary": "Dissolve three hand-written polygons into two regions, simplify, project to Web Mercator and export GeoJSON and a flat SVG with the mapshaper CLI, no browser; rasterise with resvg.",
+  "status": "validated",
+  "tools": ["mapshaper"],
+  "run": "./run.sh"
+}

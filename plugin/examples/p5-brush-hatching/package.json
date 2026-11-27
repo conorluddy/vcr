@@ -1,0 +1,17 @@
+{
+  "name": "@vcr/example-p5-brush-hatching",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx capture.ts"
+  },
+  "dependencies": {
+    "p5": "^2.3.4",
+    "p5.brush": "3.3.0"
+  },
+  "devDependencies": {
+    "@vcr/capture": "workspace:*",
+    "tsx": "^4.23.15"
+  }
+}

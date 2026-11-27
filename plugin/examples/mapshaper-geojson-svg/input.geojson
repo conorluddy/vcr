@@ -1,0 +1,5 @@
+{"type":"FeatureCollection","features":[
+{"type":"Feature","properties":{"name":"North","region":"A"},"geometry":{"type":"Polygon","coordinates":[[[-10,52],[-9.5,52.4],[-9,52.1],[-8.2,52.5],[-7.5,52.2],[-6.8,52.6],[-6,52.3],[-6,54],[-7,54.3],[-8,54.1],[-9,54.4],[-10,54],[-10,52]]]}},
+{"type":"Feature","properties":{"name":"South","region":"A"},"geometry":{"type":"Polygon","coordinates":[[[-10,50],[-6,50],[-6,52.3],[-6.8,52.6],[-7.5,52.2],[-8.2,52.5],[-9,52.1],[-9.5,52.4],[-10,52],[-10,50]]]}},
+{"type":"Feature","properties":{"name":"East","region":"B"},"geometry":{"type":"Polygon","coordinates":[[[-6,50],[-3,50],[-3,54],[-6,54],[-6,52.3],[-6,50]]]}}
+]}

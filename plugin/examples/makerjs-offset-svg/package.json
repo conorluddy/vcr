@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-makerjs-offset-svg",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "makerjs": "0.19.2"
+  }
+}

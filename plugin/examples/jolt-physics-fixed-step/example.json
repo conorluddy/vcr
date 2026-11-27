@@ -1,0 +1,8 @@
+{
+  "id": "jolt-physics-fixed-step",
+  "title": "Jolt Physics fixed-step trajectory in Node",
+  "summary": "Step three dropped spheres at a fixed timestep in Node with the Jolt WASM build, record per-frame positions, and check the trajectory is finite, physical and byte-identical across processes.",
+  "status": "validated",
+  "tools": ["jolt-physics-js"],
+  "run": "./run.sh"
+}

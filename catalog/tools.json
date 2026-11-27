@@ -5710,6 +5710,79 @@
       "skill": "skills/jimp/SKILL.md"
     },
     {
+      "id": "jolt-physics-js",
+      "name": "Jolt Physics (JoltPhysics.js)",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "candidate",
+      "role": "Jolt rigid-body and soft-body physics as WASM in Node or the browser, stepped at a fixed timestep",
+      "summary": "JoltPhysics.js (npm jolt-physics) compiles Jolt's C++ engine to WebAssembly. A JoltInterface steps the world by a fixed dt, so positions are read per frame and cached as a trajectory. Beyond Rapier and Matter.js it documents soft bodies and cloth; the fixture covers only rigid spheres on a floor.",
+      "use_when": [
+        "Rigid-body motion baked to per-frame transforms in Node and replayed in a scene",
+        "Soft bodies or cloth beside Three.js, which Rapier does not provide (untested here)",
+        "Over matter-js for 3D; over rapier when soft bodies are wanted"
+      ],
+      "avoid_when": [
+        "A few 2D bodies in the browser: matter-js",
+        "3D rigid bodies with snapshots and an upstream determinism guide: rapier",
+        "Scripted motion with no collisions: anime-js or theatre-js"
+      ],
+      "pairs_with": [
+        "three-js",
+        "rapier",
+        "matter-js"
+      ],
+      "official_url": "https://github.com/jrouwe/JoltPhysics.js",
+      "repository_url": "https://github.com/jrouwe/JoltPhysics",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "physics-simulation"
+      ],
+      "license": "MIT",
+      "examples": [
+        "jolt-physics-fixed-step"
+      ],
+      "install": {
+        "macos": "pnpm add jolt-physics"
+      },
+      "notes": [
+        "2026-11-27: Bake, do not seek: step every frame from t=0 and cache transforms. The npm WASM build reproduced a byte-identical trajectory across two Node processes on one machine; cross-platform determinism is a Jolt compile-time option and is unverified."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "1.1.2",
+        "last_release": "2026-11-21",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "npm jolt-physics 1.1.2 published 2026-11-21; MIT for bindings and engine; installs with one pnpm dependency and runs in Node with no browser. Adds soft bodies and cloth to the rigid-body neighbours rapier and matter-js; the soft-body claim is documented, not yet tested.",
+        "sources": [
+          "https://github.com/jrouwe/JoltPhysics.js",
+          "https://github.com/jrouwe/JoltPhysics",
+          "https://www.npmjs.com/package/jolt-physics"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.1.2",
+            "command": "examples/jolt-physics-fixed-step/run.sh",
+            "result": "Three spheres dropped on a floor, 90 steps at 1/30 s in Node 22.19.0; trajectory JSON identical across two processes (SHA-256 20046d1d…b132), all finite, bounced and settled at y 0.50, 0.52, 0.68, min y 0.4346.",
+            "example": "examples/jolt-physics-fixed-step",
+            "scope": "Rigid spheres on a static box, wasm build, one machine (macOS arm64); not soft bodies, cloth, other platforms, seeking, or Three.js playback. Settling is incomplete by frame 89."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-26-discovery.md",
+      "skill": "skills/jolt-physics-js/SKILL.md"
+    },
+    {
       "id": "kokoro-onnx",
       "name": "Kokoro (kokoro-onnx)",
       "category": "Discovery: research candidates",
@@ -6550,6 +6623,80 @@
       "skill": "skills/magenta-studio/SKILL.md"
     },
     {
+      "id": "makerjs",
+      "name": "Maker.js",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "Parametric 2D line models in Node with union and outline offset, exported to SVG and DXF",
+      "summary": "Maker.js (npm makerjs) builds 2D models from lines, arcs and Béziers, combines them (union, intersection) and offsets outlines in Node with no browser, then exports SVG, DXF, PDF or OpenJSCAD. Its strength is real geometry operations on headless, precision-controlled vector line work for laser, plotter and technical-drawing stills.",
+      "use_when": [
+        "Parametric technical line art with an offset or outline operation, as SVG or DXF, in Node",
+        "Union or intersection of shapes into one clean path; over paper-js when no browser model is wanted",
+        "Laser or plotter-ready stills; vpype then optimises the SVG"
+      ],
+      "avoid_when": [
+        "3D solids or STEP export: build123d",
+        "Interactive or animated vector scenes: paper-js, konva or anime-js",
+        "Optimising an existing plotter SVG: vpype"
+      ],
+      "pairs_with": [
+        "resvg",
+        "vpype",
+        "svgo"
+      ],
+      "official_url": "https://maker.js.org",
+      "repository_url": "https://github.com/microsoft/maker.js",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring",
+        "typography"
+      ],
+      "license": "Apache-2.0",
+      "install": {
+        "macos": "pnpm add makerjs"
+      },
+      "examples": [
+        "makerjs-offset-svg"
+      ],
+      "notes": [
+        "2026-11-27: the last npm release (0.19.2, 2026-01-27) is ten months old although commits continue; text needs a font loaded through opentype.js, untested here."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "0.19.2",
+        "last_release": "2026-01-27",
+        "maintenance": "slow",
+        "verdict": "keep",
+        "rationale": "npm makerjs 0.19.2, Apache-2.0, repository pushed 2026-10-29. Headless outline offset and union with DXF out is absent from paper-js (browser model), vpype (post-process) and build123d (3D); release cadence is slow.",
+        "sources": [
+          "https://maker.js.org",
+          "https://github.com/microsoft/maker.js",
+          "https://www.npmjs.com/package/makerjs"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.19.2",
+            "command": "examples/makerjs-offset-svg/run.sh",
+            "result": "Union of rounded rectangle and circle, 3 mm outline offset: plate 80x50 mm, outline 86x56 mm, 21 DXF entities; SVG and DXF identical across two Node 22.19.0 processes; resvg 0.47.0 PNGs 800x501 and 800x522 inspected.",
+            "example": "examples/makerjs-offset-svg",
+            "scope": "Union and outline offset of one plate to SVG and DXF, macOS arm64; stroke clips at viewBox edge; not text, Béziers, chains, layout, PDF or OpenJSCAD."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-25-discovery.md",
+      "skill": "skills/makerjs/SKILL.md"
+    },
+    {
       "id": "manim-community",
       "name": "Manim Community",
       "category": "A7. Native applications and procedural tools",
@@ -6768,6 +6915,80 @@
         "maplibre-native-offline-render"
       ],
       "skill": "skills/maplibre-native/SKILL.md"
+    },
+    {
+      "id": "mapshaper",
+      "name": "mapshaper",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "CLI that dissolves, simplifies, reprojects and styles GeoJSON and exports flat SVG maps",
+      "summary": "mapshaper is an npm CLI that edits boundary data: dissolve, simplify by percentage, reproject, clip, join and style, then write GeoJSON, TopoJSON or a flat SVG. Its strength is shrinking heavy boundary files into a small map still or scene input with one pnpm dependency and no browser.",
+      "use_when": [
+        "Heavy boundary files must become small simplified GeoJSON or a flat SVG map still",
+        "Regions need dissolving by a property and reprojecting before they enter a scene",
+        "A scripted geodata step is wanted with no GDAL or browser; d3 then draws or animates the result"
+      ],
+      "avoid_when": [
+        "Projecting and drawing geometry inside a seeked scene: d3",
+        "Tiled raster map stills from a style: chiitiler or maplibre-native",
+        "Heavy format conversion across exotic GIS formats: GDAL"
+      ],
+      "pairs_with": [
+        "d3",
+        "resvg",
+        "svg"
+      ],
+      "official_url": "https://github.com/mbloch/mapshaper",
+      "automation_route": "native-cli-or-scripting",
+      "capabilities": [
+        "vector-authoring",
+        "data-visualisation"
+      ],
+      "license": "MPL-2.0",
+      "install": {
+        "macos": "pnpm add mapshaper"
+      },
+      "examples": [
+        "mapshaper-geojson-svg"
+      ],
+      "notes": [
+        "2026-11-27: GitHub reports NOASSERTION for the licence; README and npm both say MPL-2.0.",
+        "2026-11-27: -proj and -o format=svg work in 0.8.13 though the README omits them. An unstyled SVG has no fill and renders black; use -style."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "0.8.13",
+        "last_release": "2026-11-24",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "npm mapshaper 0.8.13 (lead saw 0.8.10 published 2026-11-24); repository pushed 2026-11-24; MPL-2.0 per README and npm. Only catalogue route that dissolves, simplifies, reprojects and writes SVG from the command line; d3 projects in a scene, GDAL is only a lead.",
+        "sources": [
+          "https://github.com/mbloch/mapshaper",
+          "https://github.com/mbloch/mapshaper/wiki/Command-Reference",
+          "https://www.npmjs.com/package/mapshaper"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.8.13",
+            "command": "examples/mapshaper-geojson-svg/run.sh",
+            "result": "3-polygon GeoJSON dissolved to 2 regions, 29 to 15 vertices at simplify 50%, projected to Web Mercator, styled SVG 800x821 with 2 paths and 2 fills; resvg 800px PNG inspected. Node 22.19.0.",
+            "example": "examples/mapshaper-geojson-svg",
+            "scope": "One tiny self-authored GeoJSON, dissolve, simplify, webmercator, style, SVG export on macOS arm64; not Shapefile, TopoJSON, clip, join, mapshaper-xl or real-size data."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-26-discovery.md",
+      "skill": "skills/mapshaper/SKILL.md"
     },
     {
       "id": "mathjax",
@@ -9149,6 +9370,79 @@
       "skill": "skills/oxipng/SKILL.md"
     },
     {
+      "id": "p5-brush",
+      "name": "p5.brush",
+      "category": "A1. Creative coding and 2D",
+      "tier": "candidate",
+      "role": "Natural-media brushes, wash fills, hatching and flow-field strokes for p5.js sketches",
+      "summary": "p5.brush 3.x adds pencils, charcoal, markers, watercolour-style fills, hatch patterns and vector fields that bend strokes to a p5 WEBGL canvas (a standalone build needs no p5). In VCR a scene clears and redraws from scratch at each seek with its seeds reset, so the hand-drawn look captures deterministically with alpha.",
+      "use_when": [
+        "Hand-drawn illustration, hatching or print look for generative stills and motion in a browser scene",
+        "Over rough-js when fills, hatching or flow-field strokes are needed; over p5-js alone, which has no brush or fill model",
+        "A p5-js scene that should look like pencil, charcoal or watercolour"
+      ],
+      "avoid_when": [
+        "Plotter or pen-path output: vsketch or vpype",
+        "Many frames at speed: brush fills ran at roughly 5 frames per second here",
+        "Plain procedural shapes with no media look: p5-js"
+      ],
+      "pairs_with": [
+        "p5-js",
+        "playwright",
+        "ffmpeg-ffprobe"
+      ],
+      "official_url": "https://github.com/acamposuribe/p5.brush",
+      "repository_url": "https://github.com/acamposuribe/p5.brush",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "generative-2d",
+        "2d-rendering"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add p5.brush@3.3.0 p5"
+      },
+      "examples": [
+        "p5-brush-hatching"
+      ],
+      "notes": [
+        "2026-11-27: the lead said 3.0.0; npm latest is 3.3.0 (published 2026-11-26), and that is the version the fixture ran."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "3.3.0",
+        "last_release": "2026-11-26",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "MIT; npm 3.3.0 published 2026-11-26, repository active; peer p5 ^2.2 (standalone build needs none). Fills the hand-drawn media gap that rough-js (no fills or flow fields) and p5-js (no brush model) leave. The p5 build needs a WEBGL canvas and seeds must be reset each frame, both of which the fixture handled.",
+        "sources": [
+          "https://github.com/acamposuribe/p5.brush",
+          "https://www.npmjs.com/package/p5.brush"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.3.0",
+            "command": "examples/p5-brush-hatching/run.sh",
+            "result": "90 alpha frames at 1280x720, 90 unique frame hashes, shuffled order matches sequential; frames 0, 30, 60 alpha min 0 max 1; frames inspected (wash disc with hatching, moving flow lines).",
+            "example": "examples/p5-brush-hatching",
+            "scope": "p5.brush 3.3.0 on p5 2.3.4 WEBGL in Chromium via @vcr/capture, macOS arm64: hatch, wash fill, flowLine, marker rect at one seed; not the standalone build, buffers or hardware GPU."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-22-discovery.md",
+      "skill": "skills/p5-brush/SKILL.md"
+    },
+    {
       "id": "p5-js",
       "name": "p5.js",
       "category": "A1. Creative coding and 2D",
@@ -10497,6 +10791,78 @@
       "checked_at": "2026-10-26",
       "source": "specifications/vcr-prd.md#appendix-a",
       "skill": "skills/pyscenedetect/SKILL.md"
+    },
+    {
+      "id": "pysubs2",
+      "name": "pysubs2",
+      "category": "Caption compliance",
+      "tier": "candidate",
+      "role": "Python library and CLI to edit, retime and convert subtitle files, writing ASS styles from code",
+      "summary": "Python library and `pysubs2` CLI for SRT, ASS/SSA, WebVTT, MicroDVD, MPL2, TMP, JSON and TTML. It writes ASS styles and override-tag events from code, retimes in milliseconds and converts between formats; it does not render.",
+      "use_when": [
+        "Write ASS styles and events from code as input for libass or FFmpeg burned-in captions",
+        "Retime or convert subtitle files in a script; over ttconv when ASS styling matters"
+      ],
+      "avoid_when": [
+        "Rendering subtitles onto video: libass",
+        "Delivery formats such as IMSC, SCC or EBU STL: ttconv",
+        "Checking caption limits: caption-checker"
+      ],
+      "pairs_with": [
+        "libass",
+        "ttconv",
+        "caption-checker"
+      ],
+      "official_url": "https://github.com/tkarabela/pysubs2",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "media-inspection"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "python3 -m venv venv && venv/bin/pip install pysubs2==1.9.1",
+        "check_command": "pysubs2 --version"
+      },
+      "examples": [
+        "pysubs2-ass-authoring"
+      ],
+      "notes": [
+        "2026-11-27: the CLI's -o takes an output directory, not a file; without it files are rewritten in place. ASS times are written as centiseconds."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "1.9.1",
+        "last_release": "2026-10-30",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "PyPI 1.9.1 uploaded 2026-10-30 (Python >=3.12), repository pushed 2026-11-10; MIT per installed metadata, no dependencies. Nothing catalogued writes ASS styles and events from code: libass renders but does not edit, ttconv skips ASS styling, caption-checker only checks.",
+        "sources": [
+          "https://github.com/tkarabela/pysubs2",
+          "https://pysubs2.readthedocs.io",
+          "https://pypi.org/project/pysubs2/"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "1.9.1",
+            "command": "examples/pysubs2-ass-authoring/run.sh",
+            "result": "11 checks pass, repeat processes identical: ASS built from code (Kinetic style, \\an8 \\fad \\k tags) reloads with tags and ms timings; SRT to ASS with +2.5 s shift gives 3 cues at 3500-5000, 5620-7540, 8000-9750 ms; CLI SRT to WebVTT leaves input unchanged. Python 3.12.2.",
+            "example": "examples/pysubs2-ass-authoring",
+            "scope": "ASS authoring, SRT to ASS shift and CLI to WebVTT as text; not libass rendering, frame-rate transforms, other formats or encodings; macOS arm64, Python 3.12."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-21-discovery.md",
+      "skill": "skills/pysubs2/SKILL.md"
     },
     {
       "id": "raea",
@@ -11993,6 +12359,80 @@
         ]
       },
       "skill": "skills/shikijs-magic-move/SKILL.md"
+    },
+    {
+      "id": "skia-canvas",
+      "name": "skia-canvas",
+      "category": "A1. Creative coding and 2D",
+      "tier": "candidate",
+      "role": "Canvas 2D API on Skia for Node: PNG frames and outlined SVG from one drawing function, no browser",
+      "summary": "skia-canvas implements the HTML Canvas 2D API in Node on Skia with prebuilt native binaries. It renders on the CPU to PNG, JPEG, WEBP, raw pixels, SVG and multi-page PDF, loads fonts from local files, and can outline text to paths in SVG. Its strength is running ordinary Canvas 2D scene code headlessly, with no Chromium capture loop.",
+      "use_when": [
+        "Canvas 2D scene code as PNG frames in Node with no browser; over canvas-2d when no capture loop is wanted",
+        "The same drawing calls needed as raster frames and as vector SVG or PDF",
+        "Over canvaskit-skia when the familiar Canvas API is wanted rather than the lower-level Skia one"
+      ],
+      "avoid_when": [
+        "Shaped paragraphs, SkSL shaders or path boolean ops: canvaskit-skia",
+        "3D or GPU-heavy scenes: three-js or pixijs",
+        "DOM or CSS layout: playwright capture"
+      ],
+      "pairs_with": [
+        "resvg",
+        "canvas-2d",
+        "canvaskit-skia"
+      ],
+      "official_url": "https://github.com/samizdatco/skia-canvas",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "2d-rendering",
+        "text-rendering",
+        "vector-authoring"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add skia-canvas"
+      },
+      "examples": [
+        "skia-canvas-frames"
+      ],
+      "notes": [
+        "2026-11-27: set canvas.gpu = false for reproducible CPU pixels; fonts must be registered with FontLibrary.use from files. Byte equality across macOS and Linux is not checked. @napi-rs/canvas is a similar alternative, not assessed."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "4.0.1",
+        "last_release": "2026-11-14",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "npm skia-canvas 4.0.1 (MIT) published 2026-11-14, repository pushed the same day. Prebuilt native binary installed through pnpm with no system dependency. Adds headless Canvas 2D to PNG, SVG and PDF in Node, which canvas-2d (browser capture) and canvaskit-skia (WASM, lower-level API) do not.",
+        "sources": [
+          "https://github.com/samizdatco/skia-canvas",
+          "https://www.npmjs.com/package/skia-canvas",
+          "https://skia-canvas.org"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "4.0.1",
+            "command": "examples/skia-canvas-frames/run.sh",
+            "result": "Canvas 2D scene of t=0, 0.5, 1 to 640x360 CPU PNGs and an outlined-text SVG in separate Node 22.19.0 processes: identical SHA-256 for all 3 PNGs and the SVG; pixel probes matched; SVG has 0 text or font references; resvg 0.47.0 raster 640x360 inspected.",
+            "example": "examples/skia-canvas-frames",
+            "scope": "Rects, arc and one registered-font text line, CPU raster, PNG and outlined SVG on macOS arm64; not GPU, PDF, other OS byte equality, system fonts or speed."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-26-discovery.md",
+      "skill": "skills/skia-canvas/SKILL.md"
     },
     {
       "id": "sonic-annotator",

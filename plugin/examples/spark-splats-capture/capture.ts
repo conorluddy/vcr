@@ -12,7 +12,7 @@ const FPS = 30;
 const outputDirectory = join(here, "output/frames");
 mkdirSync(outputDirectory, { recursive: true });
 
-const scene = await openScenePage({ sceneFile: join(here, "scene.html"), width: 960, height: 540, fps: FPS, captureMode: "screenshot" });
+const scene = await openScenePage({ sceneFile: join(here, "scene.html"), width: 960, height: 540, captureMode: "screenshot" });
 type SettledScene = { __scene: { seek: (seconds: number) => void; whenSettled: () => Promise<void> } };
 
 async function captureFrame(frame: number): Promise<Buffer> {
