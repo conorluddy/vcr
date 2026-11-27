@@ -71,7 +71,7 @@ This is the first W48 run. The 19 earlier digests (2026-11-01 to 2026-11-22) alr
 - Found via: keyword search `frame-accurate in:description`.
 
 ### Omakase Player (`omakase-player`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/byomakase/omakase-player (API docs: https://api.player.byomakase.org)
 - Role: a JavaScript framework for frame-accurate video review players. It has main and sidecar media players, a multi-track timeline, marker lists and cut lists, a VU meter, and a detached control bar. It plays HLS through hls.js.
 - Category: A5. Video and capture (review). It matches the lower-priority gap "frame-accurate review players".
