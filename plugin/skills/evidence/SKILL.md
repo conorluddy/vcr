@@ -14,6 +14,7 @@ Read `<harness>/catalog/FIXTURE-EVIDENCE-TEMPLATE.md` first. It is the contract 
 - `vcr tools info <id>`: read the card, its current evidence and `Evidence scope`. Pick one concrete VCR job the card claims, such as "seeked timeline captured deterministically with alpha". One claim per fixture.
 - Prefer an existing chain. A browser tool that seeks from `t` reuses the `packages/capture` route (`window.__scene = { duration, seek }`); copy the shape of `examples/browser-capture`, not its scene. A native CLI copies `examples/native-svg` or `examples/ffmpeg-assembly`.
 - If an existing example already exercises the tool, extend it instead of adding one, and add the tool id to its `example.json` `tools`.
+- `example.json` `tools` lists only the tools the evidence is about. A tool used only to check the output (resvg rasterising, ImageMagick measuring) stays out, or `validate` requires its record to list the example too.
 
 ## 2. Plan before running
 
