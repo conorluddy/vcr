@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "frames_distinct": true,
+    "output_differs_from_input": true,
+    "output_dimensions": true,
+    "presets_differ": true,
+    "rerun_identical": true,
+    "scanline_modulation": true,
+    "screen_curvature_corner": true,
+    "shuffled_equals_sequential": true,
+    "wgpu_runtime_renders": false
+  },
+  "cli": "librashader-cli 0.12.1",
+  "frames": 3,
+  "geomF0Sha256": "f6a5fd9e4820dcccbc1ef87d943fd3260e16a01359ffa6f7752cde5edac6c5ec",
+  "lottesSha256": [
+    "182f3256445aea25a0fd045a328623fe38c49e5b64171456572140f92e450a97",
+    "e7894f9280a903ae933038792f3521d52631ac52cb2573c890dbd732730d3498",
+    "c5d6d355644f8b2e84889ce4e96b09946e90f1e61ca73db3d6f230bca98e8674"
+  ],
+  "measured": {
+    "cornerLuma": 0.00,
+    "scanlineStddev": 0.04,
+    "wgpuError": "Error: Unsupported features were requested: PIPELINE_CACHE"
+  },
+  "runtime": "metal"
+}
