@@ -1,0 +1,8 @@
+{
+  "id": "occt-wasm-step-svg",
+  "title": "occt-wasm bracket to STEP, STL and hidden-line SVG",
+  "summary": "Model a filleted two-hole bracket with occt-wasm in Node, round-trip it through STEP, tessellate it, draw hidden-line views as SVG and check volume and determinism.",
+  "status": "validated",
+  "tools": ["occt-wasm"],
+  "run": "./run.sh"
+}
