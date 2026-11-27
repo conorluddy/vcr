@@ -1,0 +1,2 @@
+lightusd==1.0.0
+usd-core==26.11
