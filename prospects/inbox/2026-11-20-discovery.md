@@ -42,7 +42,7 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `webgpu`.
 
 ### TypeGPU (`typegpu`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://docs.swmansion.com/TypeGPU (source: https://github.com/software-mansion/TypeGPU)
 - Role: a typed WebGPU toolkit: typed buffers, bind groups and pipelines, plus shader functions written in TypeScript (`'use gpu'`) that resolve to WGSL.
 - Category: A3. 3D, shaders and effects.

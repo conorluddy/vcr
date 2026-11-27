@@ -1,0 +1,9 @@
+{
+  "id": "typegpu-typed-wgsl",
+  "title": "TypeGPU in Node: TypeScript shader to WGSL, rendered and read back through Dawn",
+  "summary": "typegpu 0.12.12 turns 'use gpu' TypeScript and a typed uniform into WGSL, rendered in Node through webgpu (Dawn, Metal); pixels match an analytic reference within 1 LSB, the WGSL is snapshotted, reruns are identical.",
+  "status": "validated",
+  "tools": ["typegpu"],
+  "run": "./run.sh",
+  "validated_on": { "date": "2026-11-27", "hostname": "Conors-MacBook-Pro-2.local" }
+}
