@@ -1,0 +1,8 @@
+{
+  "id": "morphicons-icon-morph",
+  "title": "morphicons pure-core icon morph by progress",
+  "summary": "Morph a Lucide menu icon into an X with morphicons' DOM-free core as a pure function of progress, check bounds, endpoints and byte equality across processes, and rasterise five frames with resvg.",
+  "status": "validated",
+  "tools": ["morphicons"],
+  "run": "./run.sh"
+}

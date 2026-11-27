@@ -69,7 +69,7 @@ Summary line: 8 leads (2 in a new category: music notation engraving).
 - Found via: GitHub topic search `motion-graphics`.
 
 ### OpenSheetMusicDisplay (`opensheetmusicdisplay`) — worth cataloguing (joins proposed category "music notation engraving")
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://opensheetmusicdisplay.org (source: https://github.com/opensheetmusicdisplay/opensheetmusicdisplay)
 - Role: renders MusicXML to SVG (VexFlow-based) in a browser, or headless in Node to SVG or PNG.
 - Category: new category: music notation engraving.

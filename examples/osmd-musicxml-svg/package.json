@@ -1,0 +1,10 @@
+{
+  "name": "vcr-example-osmd-musicxml-svg",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@napi-rs/canvas": "1.2.1",
+    "jsdom": "27.0.0",
+    "opensheetmusicdisplay": "3.0.0"
+  }
+}

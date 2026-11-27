@@ -1,0 +1,19 @@
+{
+  "frames": 90,
+  "trajectorySha256": "d9b9285ba9f4d094a0206ad3fdfef8449eb9b66b507ab6b2fd187dde387c4b90",
+  "finalPositions": [
+    [
+      -2,
+      0.4997
+    ],
+    [
+      0,
+      0.4999
+    ],
+    [
+      2,
+      0.7912
+    ]
+  ],
+  "minY": 0.3657
+}

@@ -1,0 +1,55 @@
+{
+  "id": "pureimage",
+  "name": "PureImage",
+  "category": "A1. Creative coding and 2D",
+  "tier": "candidate",
+  "role": "Pure-JS Canvas 2D subset for Node: PNG and JPEG with no native or browser dependency",
+  "summary": "PureImage implements a subset of the HTML Canvas 2D API in plain JavaScript for Node and writes PNG and JPEG. It has no native dependency and loads fonts through opentype.js. The README lists gradients, image fills, non-default blend modes, bold and italic and smooth interpolation as missing. Deferred: skia-canvas covers the same job with a fuller API.",
+  "use_when": [
+    "Simple flat-colour Canvas 2D stills in Node where no native binary may be installed at all"
+  ],
+  "avoid_when": [
+    "Gradients, blend modes, SVG output or rich scenes: skia-canvas or canvaskit-skia",
+    "Browser-faithful Canvas output: canvas-2d with playwright"
+  ],
+  "pairs_with": [
+    "skia-canvas",
+    "canvas-2d",
+    "canvaskit-skia"
+  ],
+  "official_url": "https://github.com/joshmarinacci/node-pureimage",
+  "automation_route": "library-or-runtime",
+  "capabilities": [
+    "2d-rendering"
+  ],
+  "license": "MIT",
+  "install": {
+    "macos": "pnpm add pureimage"
+  },
+  "examples": [],
+  "notes": [
+    "2026-11-27: the lead said 0.4.20; npm latest is 0.5.0 (modified 2026-11-24). Revisit if a no-native-binary Node route becomes a requirement or the missing features land."
+  ],
+  "assessment": {
+    "date": "2026-11-27",
+    "assessed_by": "onboard",
+    "version_seen": "0.5.0",
+    "last_release": "2026-11-24",
+    "maintenance": "active",
+    "verdict": "keep",
+    "rationale": "MIT, active, no system install. But skia-canvas (prebuilt binary through pnpm, no system dependency) now gives Canvas 2D PNG and SVG in Node with a full feature set, so PureImage's only edge is no native binary, which VCR does not need. Missing gradients and blend modes limit motion graphics. Cross-machine byte equality is unverified. Deferred without a fixture.",
+    "sources": [
+      "https://github.com/joshmarinacini/node-pureimage",
+      "https://www.npmjs.com/package/pureimage"
+    ]
+  },
+  "documentation_status": "listed-in-prd",
+  "installation_status": "unknown",
+  "validation": {
+    "status": "not-validated",
+    "evidence": []
+  },
+  "adapter_maturity": "none",
+  "checked_at": null,
+  "source": "prospects/inbox/2026-11-18-discovery.md"
+}

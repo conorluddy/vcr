@@ -29,7 +29,7 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 - Found via: HDR delivery gap, neighbour of `dovi-tool` and `libavif`.
 
 ### Manifold (`manifold`) — strong candidate
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/elalish/manifold
 - Role: a robust mesh Boolean and CSG library that guarantees manifold output, with Python (`manifold3d`) and JS/WASM (`manifold-3d`) bindings; exports through its own mesh API or glTF via the JS bindings.
 - Category: A8. Physics, audio and 3D assets.
@@ -71,7 +71,7 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 - Found via: reverse dependency of the `gltf-transform` seed.
 
 ### Box2D v3 (`box2d`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/erincatto/box2d
 - Role: a 2D rigid-body physics engine in C, rewritten for v3. Its author states cross-platform determinism since 3.1 (same results on x64 and ARM across MSVC, GCC and Clang, independent of worker count), and a June 2026 post adds a replay system built on that. WASM bindings exist on npm (`box2d3-wasm`).
 - Category: A8. Physics, audio and 3D assets.
@@ -141,7 +141,8 @@ This is the fifth W48 run. The earlier W48 digests (2026-11-23 to 2026-11-26) ar
 - Found via: diagrams area, neighbour of `d2` and `graphviz`.
 
 ### libfive (`libfive`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): CMake source build, MacPorts only; manifold and occt-wasm cover solids. Revisit with an approved install window.
 - URL: https://github.com/libfive/libfive
 - Role: a functional-representation (SDF) solid-modelling kernel with Python bindings and a standard library of shapes; meshes implicit models to STL with feature-preserving dual contouring and renders 2D slices.
 - Category: A8. Physics, audio and 3D assets.

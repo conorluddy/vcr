@@ -675,6 +675,79 @@
       "source": "specifications/vcr-prd.md#appendix-a"
     },
     {
+      "id": "box2d",
+      "name": "Box2D v3 (box2d3-wasm)",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "candidate",
+      "role": "2D rigid-body physics as WASM in Node, stepped at a fixed timestep and baked to per-frame positions",
+      "summary": "Box2D v3 is Erin Catto's C engine; box2d3-wasm is a third-party npm build of v3.2 with compat (no threads) and deluxe (SIMD and threads) variants. The C-style API steps a world by a fixed dt, so positions are read per frame and cached. The author states cross-platform determinism; the fixture checks only single-machine repeatability.",
+      "use_when": [
+        "2D rigid bodies (circles, boxes, joints) baked to per-frame transforms in Node and replayed in a scene",
+        "Over matter-js when stable stacking, many bodies or a determinism claim from the engine author matter",
+        "Over rapier when only 2D is needed and a small C-style API is preferred"
+      ],
+      "avoid_when": [
+        "A few 2D bodies in the browser with no WASM wanted: matter-js",
+        "3D rigid bodies: rapier or jolt-physics-js",
+        "Scripted motion with no collisions: anime-js or theatre-js"
+      ],
+      "pairs_with": [
+        "matter-js",
+        "rapier",
+        "jolt-physics-js"
+      ],
+      "official_url": "https://github.com/erincatto/box2d",
+      "repository_url": "https://github.com/Birch-san/box2d3-wasm",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "physics-simulation"
+      ],
+      "license": "MIT",
+      "examples": [
+        "box2d-fixed-step"
+      ],
+      "install": {
+        "macos": "pnpm add box2d3-wasm"
+      },
+      "notes": [
+        "2026-11-27: Bake, do not seek: step every frame from t=0 and cache positions. Vector getters return owned wasm objects; call .delete() on them. The compat and deluxe builds gave identical trajectories on one machine. The engine's cross-platform determinism claim is unverified here, and the binding's maintainer is a third party."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "box2d3-wasm 6.0.0 (Box2D v3.2)",
+        "last_release": "2026-10-26",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "MIT for engine and binding; box2d3-wasm 6.0.0 (2026-10-26) installs with one pnpm dependency and runs in Node with no browser or system install. The lead named Homebrew stable 3.2.0; the npm binding pins a patched v3.2 fork. Adds an engine-author determinism claim that matter-js and pymunk do not make; the claim itself is not verified across platforms.",
+        "sources": [
+          "https://github.com/erincatto/box2d",
+          "https://github.com/Birch-san/box2d3-wasm",
+          "https://www.npmjs.com/package/box2d3-wasm"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "partial",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "6.0.0",
+            "command": "examples/box2d-fixed-step/run.sh",
+            "result": "Three circles dropped on a floor, 90 steps at 1/30 s, 4 sub-steps in Node 22.19.0; trajectory JSON identical across two processes (SHA-256 d9b9285b...4b90) and across compat and deluxe builds; all finite, bounced, settled at y 0.4997, 0.4999, 0.7912; min y 0.3657.",
+            "example": "examples/box2d-fixed-step",
+            "scope": "Rigid circles on a static box, one machine (macOS arm64); not joints, other shapes, other platforms, seeking, replay, or playback in a scene. Settling is incomplete at frame 89."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-27-discovery.md",
+      "skill": "skills/box2d/SKILL.md"
+    },
+    {
       "id": "build123d",
       "name": "build123d",
       "category": "Discovery: conversation candidates",
@@ -7000,6 +7073,78 @@
       "skill": "skills/makerjs/SKILL.md"
     },
     {
+      "id": "manifold",
+      "name": "Manifold",
+      "category": "A8. Physics, audio and 3D assets",
+      "tier": "candidate",
+      "role": "Fast mesh Booleans (CSG) with guaranteed watertight output, in Node/WASM or Python",
+      "summary": "Manifold (manifold-3d on npm, manifold3d on PyPI) unions, subtracts and intersects triangle meshes and guarantees a manifold result, with volume, genus and status queries. In Node it runs as WASM from one pnpm dependency. It is not a CAD kernel: no fillets, no STEP.",
+      "use_when": [
+        "Mesh Booleans on triangle geometry, over build123d when B-rep and STEP are not needed",
+        "A watertight result must be certified numerically before it enters a 3D scene",
+        "Boolean work in Node or a browser, where trimesh would need an external engine"
+      ],
+      "avoid_when": [
+        "Dimensioned parts with fillets or STEP export: build123d",
+        "Inspecting or converting mesh files: trimesh or gltf-transform",
+        "Meshing an implicit field: fogleman-sdf"
+      ],
+      "pairs_with": [
+        "build123d",
+        "trimesh",
+        "gltf-transform"
+      ],
+      "official_url": "https://github.com/elalish/manifold",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-asset-processing"
+      ],
+      "license": "Apache-2.0",
+      "install": {
+        "macos": "cd examples/manifold-csg-check && pnpm install"
+      },
+      "examples": [
+        "manifold-csg-check"
+      ],
+      "notes": [
+        "2026-11-27: lead said 3.5.5 on PyPI and npm; npm 3.5.5 confirmed at install. Python manifold3d and glTF export were not exercised.",
+        "2026-11-27: thread-count determinism (TBB builds) untested; the npm WASM build ran single-threaded."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "3.5.5",
+        "last_release": "2026-11-13",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "Apache-2.0, active (push 2026-11-26), installs with pnpm and ran without system software. Fills the triangle-mesh Boolean gap beside build123d (B-rep), trimesh (external engines) and fogleman-sdf (implicit).",
+        "sources": [
+          "https://github.com/elalish/manifold",
+          "https://www.npmjs.com/package/manifold-3d"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.5.5",
+            "command": "examples/manifold-csg-check/run.sh",
+            "result": "cube(2) minus sphere(r1.2, 64 seg): NoError, genus 5, 812 verts, 1640 tris, volume 1.638331 from raw arrays equals volume(); 0 unpaired and 0 repeated edges; V(A-B) and V(A+B) inclusion-exclusion residual 1.8e-15; analytic 1.616284 (1.364% faceting gap); identical bytes across processes; 600x600 still inspected.",
+            "example": "examples/manifold-csg-check",
+            "scope": "One cube-minus-sphere Boolean in Node 22 WASM on macOS arm64; not Python, glTF export, loaded meshes, threads or timing."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-27-discovery.md",
+      "skill": "skills/manifold/SKILL.md"
+    },
+    {
       "id": "manim-community",
       "name": "Manim Community",
       "category": "A7. Native applications and procedural tools",
@@ -8345,6 +8490,79 @@
       "skill": "skills/mo-js/SKILL.md"
     },
     {
+      "id": "morphicons",
+      "name": "morphicons",
+      "category": "A2. Animation and authored assets",
+      "tier": "candidate",
+      "role": "Morph one SVG icon path into another by a progress value; DOM-free core runs in Node",
+      "summary": "morphicons matches points between two unrelated icon paths (stroked or filled, on a 24 grid) and interpolates rotation, scale and translation separately. Its root entry is a pure core: build a plan once, then turn any progress in 0..1 into an SVG path string, so a morph can follow capture time with no spring or DOM.",
+      "use_when": [
+        "An icon becomes a different icon (menu to X, play to pause) and the in-between shape should be matched, not cross-faded",
+        "Morph frames from a progress value in a seek-driven scene or a Node script",
+        "Icons from Lucide, Tabler, Heroicons or Feather on one 24 grid"
+      ],
+      "avoid_when": [
+        "Tweening arbitrary SVG attributes or long paths: svg-js, anime-js or motion-js",
+        "Looking up which icon to use or its licence: iconify",
+        "Morphing large illustrations or text outlines: not what its icon matching is built for"
+      ],
+      "pairs_with": [
+        "iconify",
+        "resvg",
+        "svg-path-commander"
+      ],
+      "official_url": "https://github.com/guillermolg00/morphicons",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring",
+        "svg-animation"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add morphicons@2.0.2",
+        "check_command": "pnpm list morphicons --depth 0"
+      },
+      "examples": [
+        "morphicons-icon-morph"
+      ],
+      "notes": [
+        "2026-11-27: the lead's install and licence lines held; its playground icons carry their own ISC and MIT licences. The pure core it called undocumented is exported from the root entry and works in Node."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "2.0.2",
+        "last_release": "2026-10-24",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "npm morphicons 2.0.2 published 2026-10-24, MIT, zero runtime dependencies. No catalogue tool matches points between two unrelated icon paths; its core is seekable by progress, so it fits capture.",
+        "sources": [
+          "https://github.com/guillermolg00/morphicons",
+          "https://www.npmjs.com/package/morphicons"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "2.0.2",
+            "command": "examples/morphicons-icon-morph/run.sh",
+            "result": "Lucide menu to x via morphicons pure core (Node 22.19.0): frames.json byte-identical across two processes, 3 subpaths, 192 commands per frame, coords within 4..20 to 6..18 across progress 0..1, 5 frames rasterised by resvg 0.47.0 into a 1200x240 contact sheet, inspected.",
+            "example": "examples/morphicons-icon-morph",
+            "scope": "One stroke icon pair, DOM-free core, progress 0 to 1 in five steps, macOS arm64; not filled icons, bindings, springs, other grids or in-browser capture."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "skill": "skills/morphicons/SKILL.md",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-21-discovery.md"
+    },
+    {
       "id": "motion",
       "name": "Motion",
       "category": "A2. Animation and authored assets",
@@ -8929,6 +9147,79 @@
       "skill": "skills/node-av/SKILL.md"
     },
     {
+      "id": "occt-wasm",
+      "name": "occt-wasm",
+      "category": "3D CAD interchange",
+      "tier": "candidate",
+      "role": "OpenCascade CAD kernel in WebAssembly: exact solids, STEP/STL I/O and hidden-line SVG in Node",
+      "summary": "OpenCascade V8 compiled to WebAssembly with a typed TypeScript API. From one pnpm dependency, Node builds exact solids (primitives, booleans, fillets, sweeps), reads and writes STEP, STL and BREP, tessellates for three-js or babylon-js, and draws hidden-line views as SVG or PNG. It is the JavaScript route to exact CAD, with no Python.",
+      "use_when": [
+        "Exact dimensioned parts and STEP I/O inside a Node or browser pipeline; over build123d when Python is unwanted",
+        "Tessellate a solid straight into a three-js or babylon-js scene",
+        "Hidden-line technical views as SVG for the svg and resvg chain"
+      ],
+      "avoid_when": [
+        "Python CAD scripts with a builder API: build123d",
+        "Viewing or converting CAD files with a GUI or CLI: mayo",
+        "Lighting, materials and final frames: blender-background or three-js"
+      ],
+      "pairs_with": [
+        "build123d",
+        "three-js",
+        "babylon-js",
+        "resvg"
+      ],
+      "official_url": "https://github.com/andymai/occt-wasm",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "3d-asset-processing",
+        "vector-authoring"
+      ],
+      "license": "MIT OR Apache-2.0 for the wrapper and build tooling; the compiled WASM is LGPL-2.1-only (inherits OCCT), so the .wasm must stay replaceable",
+      "install": {
+        "macos": "pnpm add occt-wasm@5.18.6"
+      },
+      "examples": [
+        "occt-wasm-step-svg"
+      ],
+      "notes": [
+        "2026-11-27: Lead said 5.17.2; npm latest is 5.18.6 (modified 2026-11-25). Requires WASM SIMD, tail calls and wasm exceptions; no IGES. Node 22 lacks `using` syntax, so dispose the kernel by hand."
+      ],
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "5.18.6",
+            "command": "examples/occt-wasm-step-svg/run.sh",
+            "result": "Filleted two-hole bracket 60x30x10 mm: volume 16917.434 mm3 equals analytic and the STEP re-import; 12 faces, 340 triangles; STL, SVG and timestamp-free STEP hashes identical across two Node 22.19.0 processes; resvg 0.47.0 PNG 1000x1046 inspected.",
+            "example": "examples/occt-wasm-step-svg",
+            "scope": "One box, fillet, cut solid via STEP, STL and multiview SVG in Node 22, macOS arm64; not browser, workers, XCAF or glTF, sweeps or imported STEP; STEP header timestamp varies."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-18-discovery.md",
+      "skill": "skills/occt-wasm/SKILL.md",
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "5.18.6",
+        "last_release": "2026-11-25",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "npm occt-wasm 5.18.6 published 2026-11-25; repository created 2026-03-26, young but releasing often. Free software (MIT OR Apache-2.0 wrapper, LGPL-2.1 WASM). Only catalogue route to exact CAD, STEP and hidden-line views from pnpm alone; build123d needs Python, mayo has no macOS build.",
+        "sources": [
+          "https://github.com/andymai/occt-wasm",
+          "https://www.npmjs.com/package/occt-wasm"
+        ]
+      }
+    },
+    {
       "id": "odiff",
       "name": "odiff",
       "category": "Discovery: research candidates",
@@ -9371,6 +9662,84 @@
       "checked_at": null,
       "source": "specifications/vcr-prd.md#appendix-a",
       "skill": "skills/openimageio-oiiotool/SKILL.md"
+    },
+    {
+      "id": "opensheetmusicdisplay",
+      "name": "OpenSheetMusicDisplay",
+      "category": "A4. Vector, typography, diagrams and stills",
+      "tier": "candidate",
+      "role": "MusicXML scores to SVG notation in Node (with jsdom) or a browser, VexFlow-based",
+      "summary": "OpenSheetMusicDisplay (OSMD) parses MusicXML and engraves it with VexFlow into SVG or canvas. In Node it needs jsdom plus a canvas package for text measurement; it is a library, not a CLI. Its SVG is mostly paths for notes, clefs and stems, with semantic classes (vf-stavenote, vf-notehead) so a scene can recolour or animate single notes; titles and lyrics are font-dependent <text>.",
+      "use_when": [
+        "Engraved notation from MusicXML as an SVG layer; over music21 or mido, which do not draw",
+        "Per-note styling or animation: notes carry vf-stavenote and vf-notehead classes",
+        "Permissive BSD-3-Clause engraving for a bundled or hosted scene"
+      ],
+      "avoid_when": [
+        "Plain bars, chords or piano rolls with no score: draw with svg or canvas-2d",
+        "Notation that must match print-engraving quality and fonts exactly: a dedicated engraver",
+        "Audio or MIDI analysis with no drawing: music21 or mido"
+      ],
+      "pairs_with": [
+        "music21",
+        "resvg",
+        "svg"
+      ],
+      "official_url": "https://opensheetmusicdisplay.org",
+      "repository_url": "https://github.com/opensheetmusicdisplay/opensheetmusicdisplay",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "vector-authoring",
+        "typography",
+        "text-rendering"
+      ],
+      "license": "BSD-3-Clause",
+      "install": {
+        "macos": "pnpm add opensheetmusicdisplay jsdom @napi-rs/canvas"
+      },
+      "examples": [
+        "osmd-musicxml-svg"
+      ],
+      "notes": [
+        "2026-11-27: The lead said 2.3.1; npm shows 3.0.0 (published 2026-11-26) and the example pins 3.0.0.",
+        "2026-11-27: Node route needs jsdom and HTMLCanvasElement.getContext patched to a @napi-rs/canvas context; the package is a CJS bundle, so ESM reads default.OpenSheetMusicDisplay.",
+        "2026-11-27: Lyric and title text stays <text font-family=\"Times New Roman\">, so output depends on installed fonts and layout on measurement fonts; not path-only like mathjax.",
+        "2026-11-27: Proposed capability \"music-notation\" (and category \"music notation engraving\"); existing vocabulary used for now."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "3.0.0",
+        "last_release": "2026-11-26",
+        "maintenance": "active",
+        "verdict": "promote",
+        "rationale": "npm 3.0.0 published 2026-11-26; repository pushed 2026-11-26, not archived; BSD-3-Clause. Only catalogued route from MusicXML to engraved SVG; music21 and mido do not draw. Headless Node route works with jsdom and a canvas package.",
+        "sources": [
+          "https://github.com/opensheetmusicdisplay/opensheetmusicdisplay",
+          "https://www.npmjs.com/package/opensheetmusicdisplay",
+          "https://opensheetmusicdisplay.org"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "3.0.0",
+            "command": "examples/osmd-musicxml-svg/run.sh",
+            "result": "Self-authored 4-bar MusicXML to SVG twice in separate Node 22.19.0 processes (jsdom 27.0.0, @napi-rs/canvas 1.2.1): identical SHA-256 cb783562…5b35c, 4 vf-measure, 11 vf-stavenote, 11 vf-notehead, lyrics as <text>; resvg 0.47.0 PNG 1800x696 inspected.",
+            "example": "examples/osmd-musicxml-svg",
+            "scope": "One 4-bar melody, SVG backend under jsdom on macOS arm64; not Chromium, cursor, multi-system layout, .mxl, fonts, note recolouring or animation."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "skill": "skills/opensheetmusicdisplay/SKILL.md",
+      "source": "prospects/inbox/2026-11-19-discovery.md"
     },
     {
       "id": "opentimelineio",
@@ -10952,6 +11321,61 @@
         ]
       },
       "skill": "skills/pure-data/SKILL.md"
+    },
+    {
+      "id": "pureimage",
+      "name": "PureImage",
+      "category": "A1. Creative coding and 2D",
+      "tier": "candidate",
+      "role": "Pure-JS Canvas 2D subset for Node: PNG and JPEG with no native or browser dependency",
+      "summary": "PureImage implements a subset of the HTML Canvas 2D API in plain JavaScript for Node and writes PNG and JPEG. It has no native dependency and loads fonts through opentype.js. The README lists gradients, image fills, non-default blend modes, bold and italic and smooth interpolation as missing. Deferred: skia-canvas covers the same job with a fuller API.",
+      "use_when": [
+        "Simple flat-colour Canvas 2D stills in Node where no native binary may be installed at all"
+      ],
+      "avoid_when": [
+        "Gradients, blend modes, SVG output or rich scenes: skia-canvas or canvaskit-skia",
+        "Browser-faithful Canvas output: canvas-2d with playwright"
+      ],
+      "pairs_with": [
+        "skia-canvas",
+        "canvas-2d",
+        "canvaskit-skia"
+      ],
+      "official_url": "https://github.com/joshmarinacci/node-pureimage",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "2d-rendering"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add pureimage"
+      },
+      "examples": [],
+      "notes": [
+        "2026-11-27: the lead said 0.4.20; npm latest is 0.5.0 (modified 2026-11-24). Revisit if a no-native-binary Node route becomes a requirement or the missing features land."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "0.5.0",
+        "last_release": "2026-11-24",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "MIT, active, no system install. But skia-canvas (prebuilt binary through pnpm, no system dependency) now gives Canvas 2D PNG and SVG in Node with a full feature set, so PureImage's only edge is no native binary, which VCR does not need. Missing gradients and blend modes limit motion graphics. Cross-machine byte equality is unverified. Deferred without a fixture.",
+        "sources": [
+          "https://github.com/joshmarinacini/node-pureimage",
+          "https://www.npmjs.com/package/pureimage"
+        ]
+      },
+      "documentation_status": "listed-in-prd",
+      "installation_status": "unknown",
+      "validation": {
+        "status": "not-validated",
+        "evidence": []
+      },
+      "adapter_maturity": "none",
+      "checked_at": null,
+      "source": "prospects/inbox/2026-11-18-discovery.md"
     },
     {
       "id": "pymunk",
@@ -15115,6 +15539,78 @@
         ]
       },
       "skill": "skills/typed-ffmpeg/SKILL.md"
+    },
+    {
+      "id": "typegpu",
+      "name": "TypeGPU",
+      "category": "A3. 3D, shaders and effects",
+      "tier": "candidate",
+      "role": "Typed WebGPU toolkit: TypeScript shader functions and typed buffers that resolve to WGSL",
+      "summary": "TypeGPU (Software Mansion) wraps WebGPU with schemas that are at once GPU types, CPU buffer layouts and TypeScript types, and compiles 'use gpu' TypeScript functions to WGSL through the unplugin-typegpu build plugin. tgpu.resolve returns the generated WGSL as a string. Distinguishing strength: typed, composable shaders for plain WebGPU, with shader output that can be snapshotted.",
+      "use_when": [
+        "Typed buffers, bind groups and pipelines over raw WebGPU calls, in a browser scene or in Node with dawn-node-webgpu",
+        "Shader logic written once in TypeScript and shared with CPU code, with the generated WGSL pinned by a snapshot"
+      ],
+      "avoid_when": [
+        "Shaders inside a Three.js scene: three-js-shading-language",
+        "WebGL targets: twgl or regl",
+        "A single hand-written WGSL pass where the raw API is shorter: webgpu"
+      ],
+      "pairs_with": [
+        "webgpu",
+        "dawn-node-webgpu"
+      ],
+      "official_url": "https://github.com/software-mansion/TypeGPU",
+      "automation_route": "library-or-runtime",
+      "capabilities": [
+        "shaders",
+        "3d-rendering"
+      ],
+      "license": "MIT",
+      "install": {
+        "macos": "pnpm add typegpu && pnpm add -D unplugin-typegpu"
+      },
+      "examples": [
+        "typegpu-typed-wgsl"
+      ],
+      "notes": [
+        "2026-11-27: lead said 0.12.10 and an unverified plugin name; npm latest is typegpu 0.12.12 and the plugin is unplugin-typegpu (latest 0.12.9, lagging the library). Node use with dawn-node-webgpu was unverified in the lead and is now shown by the example."
+      ],
+      "assessment": {
+        "date": "2026-11-27",
+        "assessed_by": "onboard",
+        "version_seen": "0.12.12",
+        "last_release": "2026-11-26",
+        "maintenance": "active",
+        "verdict": "keep",
+        "rationale": "MIT, active (repo pushed 2026-11-19, npm 0.12.12). Nearest neighbours are raw webgpu, three-js-shading-language (Three.js only) and WebGL helpers; none gives typed WGSL authoring for plain WebGPU. Pre-1.0 API, and the build plugin lags the library; no system install needed.",
+        "sources": [
+          "https://github.com/software-mansion/TypeGPU",
+          "https://docs.swmansion.com/TypeGPU",
+          "https://www.npmjs.com/package/typegpu",
+          "https://www.npmjs.com/package/unplugin-typegpu"
+        ]
+      },
+      "documentation_status": "skill-written",
+      "installation_status": "unknown",
+      "skill": "skills/typegpu/SKILL.md",
+      "validation": {
+        "status": "validated",
+        "evidence": [
+          {
+            "date": "2026-11-27",
+            "hostname": "Conors-MacBook-Pro-2.local",
+            "version": "0.12.12",
+            "command": "examples/typegpu-typed-wgsl/run.sh",
+            "result": "'use gpu' vertex and fragment functions plus a typed uniform struct resolved to WGSL (snapshotted), 3 frames 64x64 rgba8unorm via webgpu 0.6.2 Metal (apple metal-3); max channel deviation 0 vs analytic reference; shuffled equals sequential; two runs byte-identical; Node v22.19.0, unplugin-typegpu 0.12.9; contact sheet inspected.",
+            "example": "examples/typegpu-typed-wgsl",
+            "scope": "typegpu 0.12.12 with unplugin-typegpu 0.12.9 Node hook, one render pipeline and uniform, Node 22 on macOS arm64 Metal. Not browsers, compute, textures sampling, other backends or performance."
+          }
+        ]
+      },
+      "adapter_maturity": "none",
+      "checked_at": "2026-11-27",
+      "source": "prospects/inbox/2026-11-20-discovery.md"
     },
     {
       "id": "typst",

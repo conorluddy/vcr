@@ -1,0 +1,8 @@
+{
+  "name": "vcr-example-occt-wasm-step-svg",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "occt-wasm": "5.18.6"
+  }
+}

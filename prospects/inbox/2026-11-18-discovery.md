@@ -15,7 +15,8 @@ This is the second run in ISO week 2026-W47. The earlier W47 digest (2026-11-16)
 ## Leads
 
 ### PureImage (`pureimage`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+  Overlaps skia-canvas (no-native edge not needed); lacks gradients and blend modes. Revisit if a no-native route is required.
 - URL: https://github.com/joshmarinacci/node-pureimage
 - Role: A pure-TypeScript implementation of the HTML Canvas 2D API for Node. It has no native dependencies and writes PNG and JPEG.
 - Category: A1. Creative coding and 2D
@@ -43,7 +44,7 @@ This is the second run in ISO week 2026-W47. The earlier W47 digest (2026-11-16)
 - Found via: GitHub topic search `particles` (gap area)
 
 ### occt-wasm (`occt-wasm`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://github.com/andymai/occt-wasm
 - Role: The OpenCascade (OCCT) B-rep kernel compiled to WebAssembly, with a typed TypeScript API. It offers primitives, booleans, fillets, sweeps, STEP, STL, glTF and BREP I/O, tessellation and wireframe extraction, and runs in Node 18+ (22+ recommended), the browser or a Web Worker.
 - Category: 3D CAD interchange (existing category)
@@ -71,7 +72,8 @@ This is the second run in ISO week 2026-W47. The earlier W47 digest (2026-11-16)
 - Found via: GitHub topic search `hdr`
 
 ### gsdf (`gsdf`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): Go library needing cgo for GPU; fogleman-sdf and manifold cover SDF/CSG meshes. Revisit with a Go toolchain plan.
 - URL: https://github.com/soypat/gsdf
 - Role: A Go SDF CAD library. Shapes evaluate on the CPU or on the GPU through WebGPU (Metal on macOS). It generates WGSL shaders from shape definitions and writes STL through an octree triangle renderer. Its `forge` packages cover text SDFs and screw threads.
 - Category: A3. 3D, shaders and effects
@@ -85,7 +87,8 @@ This is the second run in ISO week 2026-W47. The earlier W47 digest (2026-11-16)
 - Found via: GitHub topic search `sdf`
 
 ### Polyform (`polyform`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): prebuilt binary download or go run; overlaps fogleman-sdf/manifold. Revisit with an approved install window.
 - URL: https://github.com/EliCDavis/polyform
 - Role: A Go toolkit for loading, generating, editing and exporting 3D geometry: glTF, OBJ, PLY, STL, SPLAT, SPZ and Potree formats, marching cubes, extrusion, mesh operations and normal-map texturing. A `polyform edit` node editor ships with it.
 - Category: A8. Physics, audio and 3D assets
@@ -113,7 +116,8 @@ This is the second run in ISO week 2026-W47. The earlier W47 digest (2026-11-16)
 - Found via: GitHub topic search `typesetting`
 
 ### html-to-video (`html-to-video`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): clone-and-run project, no package; overlaps playwright + ffmpeg capture already in VCR. Revisit if packaged.
 - URL: https://github.com/wx4766/html-to-video
 - Role: A Node CLI with templates that renders a single HTML or Canvas file to MP4, GIF, a transparent layer or a poster. Each scene is a pure `frame(t)` function, and the CLI seeks headless Chromium to each frame and encodes with FFmpeg. It has four numeric QA gates (copy `check`, page `qa`, output `qc`, audio `master`), 12 named camera moves and SRT subtitle tracks.
 - Category: A5. Video and capture

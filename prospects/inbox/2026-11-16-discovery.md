@@ -40,7 +40,8 @@ Summary line: 3 leads (1 in a new category: accessibility and compliance; `pysph
 - Found via: Show HN (2026-11-09, 6 points), then repo page.
 
 ### pysph (`pysph`) — niche, keep in mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): Cython/OpenCL build with unverified macOS arm64 install; splishsplash covers SPH. Revisit with an approved install window.
 - URL: https://github.com/pypr/pysph (PyPI: https://pypi.org/project/pysph/)
 - Role: Python-first Smoothed Particle Hydrodynamics framework, with Cython and PyOpenCL back ends and OpenMP or MPI. Runs write output directories and includes `pysph view`. A fixed-step simulation that could bake particle output for later surfacing (`splashsurf` is already reported).
 - Category: joins the proposed "fluid / particle simulation" category (first raised by `splishsplash`, 2026-11-01)

@@ -1,0 +1,19 @@
+{
+  "volumeMm3": 16917.434,
+  "reimportedVolumeMm3": 16917.434,
+  "boundingBox": {
+    "xmin": 0,
+    "ymin": 0,
+    "zmin": 0,
+    "xmax": 60,
+    "ymax": 30,
+    "zmax": 10
+  },
+  "faceCount": 12,
+  "vertexCount": 356,
+  "triangleCount": 340,
+  "stepStartsWithIso": true,
+  "stepSha256WithoutTimestamp": "af48ae64739afdb5b85376b86a3db354cca91f47b74fe0772306246aad6b14c1",
+  "stlSha256": "0eff9ab67da9b119aa86117d99ee6def4ef56dfca5390c70d0e88ad03c5a779d",
+  "svgSha256": "5dfe01bdfd561d64909b02f78fa1262a414a086535bac96fa4bd6a168ebe8867"
+}

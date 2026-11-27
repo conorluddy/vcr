@@ -1,0 +1,8 @@
+{
+  "id": "manifold-csg-check",
+  "title": "Manifold mesh Boolean, checked numerically",
+  "summary": "Subtract a faceted sphere from a cube with manifold-3d in Node, then prove the result is watertight and correctly sized from the raw triangle arrays, deterministic across processes, and look at a shaded still.",
+  "status": "validated",
+  "tools": ["manifold"],
+  "run": "./run.sh"
+}

@@ -57,7 +57,8 @@ This is the fifth W47 run. Earlier W47 runs covered shaders, maps, provenance, d
 - Found via: gap search (simulation beyond rigid bodies) after the `taichi` and `position-based-dynamics` topics.
 
 ### PositionBasedDynamics / pyPBD (`position-based-dynamics`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): no macOS wheel (Linux/Windows only). Revisit if macOS wheels appear.
 - URL: https://github.com/InteractiveComputerGraphics/PositionBasedDynamics
 - Role: a C++ library with Python bindings (pyPBD) for position-based simulation. It covers deformable solids (distance, bending, volume, shape-matching, FEM and strain-based constraints, so cloth and soft bodies), Cosserat elastic rods, position-based fluids, and rigid bodies with joints.
 - Category: A8. Physics, audio and 3D assets.
@@ -99,7 +100,8 @@ This is the fifth W47 run. Earlier W47 runs covered shaders, maps, provenance, d
 - Found via: GitHub topic search `dem`.
 
 ### Genesis (`genesis-world`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): needs PyTorch and heavy setup; no concrete VCR job yet. Revisit when a physics-sim brief needs it.
 - URL: https://github.com/Genesis-Embodied-AI/Genesis
 - Role: a Python physics platform with rigid-body, MPM, SPH, FEM, PBD (cloth) and IPC solvers, plus its own renderers exposed as cameras.
 - Category: A8. Physics, audio and 3D assets.
@@ -127,7 +129,8 @@ This is the fifth W47 run. Earlier W47 runs covered shaders, maps, provenance, d
 - Found via: Show HN (past 7 days, hn.algolia.com).
 
 ### CDAF (`cdaf`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): git-only install, early project, unclear VCR job. Revisit if it ships a release.
 - URL: https://github.com/UditAkhourii/cdaf
 - Role: an open plain-text sidecar format (`.cdaf` next to the video, keyed by SHA-256 and byte size), plus a CLI and agent skill. The file holds a summary, timestamped segments, a transcript, on-screen text and tags, so agents do not re-analyse the same footage.
 - Category: Discovery: research candidates (agent-facing visual review).

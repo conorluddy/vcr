@@ -27,7 +27,8 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `shaders`.
 
 ### LYGIA (`lygia`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: retire
+  Non-free: npm `lygia` 1.4.1 declares Prosperity License & Patron License (non-commercial; commercial needs sponsorship), which fails the free-software gate; no record written. Revisit only if the licence changes.
 - URL: https://lygia.xyz (source: https://github.com/patriciogonzalezvivo/lygia)
 - Role: a granular shader function library (noise, SDFs, colour, filters, lighting, easing) in GLSL, HLSL, Metal, WGSL and CUDA, pulled in with `#include`.
 - Category: A3. 3D, shaders and effects.
@@ -41,7 +42,7 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `webgpu`.
 
 ### TypeGPU (`typegpu`) — worth cataloguing
-- [ ] triage: assess | defer | retire
+- [x] triage: assess
 - URL: https://docs.swmansion.com/TypeGPU (source: https://github.com/software-mansion/TypeGPU)
 - Role: a typed WebGPU toolkit: typed buffers, bind groups and pipelines, plus shader functions written in TypeScript (`'use gpu'`) that resolve to WGSL.
 - Category: A3. 3D, shaders and effects.
@@ -111,7 +112,8 @@ Summary line: 10 leads (0 in new categories).
 - Found via: GitHub topic search `sprite-sheet`.
 
 ### simvyn (`simvyn`) — niche-keep-in-mind
-- [ ] triage: assess | defer | retire
+- [x] triage: defer
+- Triage reason (2026-11-27): iOS simulator tooling, baguette already covers simulator capture. Revisit if baguette proves insufficient.
 - URL: https://github.com/pranshuchittora/simvyn
 - Role: one CLI (and local dashboard) over iOS Simulators, Android emulators and USB devices: list, boot, erase, screenshot and record.
 - Category: A5. Video and capture (app-preview and device capture gap).
