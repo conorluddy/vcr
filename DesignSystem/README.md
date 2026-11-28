@@ -49,4 +49,6 @@ The pre-commit hook runs `pnpm check` when files under `DesignSystem/` are stage
 
 ## Publishing
 
+The published system: [VCRStudio](https://claude.ai/artifact/H495NPVFGDk1afVBQt8GCN) (Design System artifact `82026d2c-c9a3-415e-baef-4de2f7f006d7`).
+
 `pnpm build`, then publish every file under `dist/project/` to the artifact at the same path under `project/`. `design-system.json` goes last, merged with the live index so the page's own keys survive. Never publish `dist/tokens.css`: the page writes its own.
