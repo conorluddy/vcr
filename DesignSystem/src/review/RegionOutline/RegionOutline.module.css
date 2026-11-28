@@ -1,0 +1,51 @@
+@layer vcr.components {
+  .regionOutline {
+    --region-line-style: solid;
+
+    position: absolute;
+    inset-inline-start: var(--region-x);
+    inset-block-start: var(--region-y);
+    inline-size: var(--region-width);
+    block-size: var(--region-height);
+    border: var(--vcr-outline-width) var(--region-line-style) var(--vcr-outline-light);
+    outline: var(--vcr-outline-width) var(--region-line-style) var(--vcr-outline-dark);
+
+    &[data-state="drawing"] {
+      --region-line-style: dashed;
+    }
+
+    &[data-state="muted"] {
+      opacity: var(--vcr-opacity-muted);
+    }
+  }
+
+  .label {
+    position: absolute;
+    inset-inline-start: -1px;
+    inset-block-start: -18px;
+    padding: 2px 5px;
+    background: var(--vcr-outline-dark);
+    color: var(--vcr-outline-light);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-label);
+    letter-spacing: var(--vcr-tracking-tag);
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    .regionOutline[data-state="drawing"] & {
+      inset-block: auto -18px;
+      background: var(--vcr-outline-light);
+      color: var(--vcr-outline-dark);
+    }
+  }
+
+  .handle {
+    position: absolute;
+    inset-inline-end: -5px;
+    inset-block-end: -5px;
+    inline-size: var(--vcr-handle-size);
+    block-size: var(--vcr-handle-size);
+    border: 1px solid var(--vcr-outline-dark);
+    background: var(--vcr-outline-light);
+  }
+}

@@ -1,0 +1,28 @@
+@layer vcr.components {
+  .groupHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--vcr-space-5);
+    margin-block-end: var(--vcr-space-6);
+    font-family: var(--font-vcr-mono);
+  }
+
+  .title {
+    color: var(--vcr-text-strong);
+    font-size: var(--vcr-font-size-label);
+    letter-spacing: var(--vcr-tracking-heading);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .rule {
+    flex: 1;
+    block-size: 1px;
+    background: var(--vcr-line-divider);
+  }
+
+  .code {
+    color: var(--vcr-text-quiet);
+    font-size: var(--vcr-font-size-micro);
+  }
+}

@@ -1,0 +1,29 @@
+@layer vcr.components {
+  .select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--vcr-space-5);
+    min-inline-size: 150px;
+    block-size: var(--vcr-height-small);
+    padding: 0 9px;
+    border: 1px solid var(--vcr-line);
+    border-radius: var(--vcr-radius-control);
+    background: var(--vcr-fill-field);
+    color: var(--vcr-bone);
+    font-family: var(--font-vcr-sans);
+    font-size: var(--vcr-font-size-body);
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      border-color: var(--vcr-line-hover);
+    }
+  }
+
+  .position {
+    color: var(--vcr-text-tertiary);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-label);
+    font-variant-numeric: tabular-nums;
+  }
+}

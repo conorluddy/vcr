@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>07 Round history · VCRStudio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/vcrstudio/tokens.css">
+<link rel="stylesheet" href="ds/vcrstudio/components/bundle.css">
+<script src="ds/vcrstudio/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500&amp;family=Fragment+Mono&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--vcr-text-primary)}a:hover{color:var(--vcr-text-secondary)}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="width:1280px;height:800px;position:relative;overflow:hidden;background:var(--vcr-ground);font-family:var(--font-vcr-sans);font-size:12px;line-height:1.45;color:var(--vcr-text-body)">
+  <div style="position:absolute;top:12px;left:12px;right:12px;height:40px;display:flex;align-items:center;gap:16px;padding:0 6px 0 14px;background:var(--vcr-glass-bar);border:1px solid var(--vcr-line-panel);border-radius:3px">
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-secondary)">← HOME</span>
+    <span style="width:1px;height:14px;background:var(--vcr-line-strong)"></span>
+    <span style="color:var(--vcr-text-primary)">Context poster</span>
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-on-bone);background:var(--vcr-bone);padding:5px 8px;border-radius:2px">R4 · HISTORY ▴</span>
+    <span style="flex:1"></span>
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-secondary)">◆ MARKED DETAILS · 14</span>
+    <x-import component-from-global-scope="VCRStudio.Button" variant="secondary" glyph="→" hint-size="110px,28px">New round</x-import>
+  </div>
+  <div style="position:absolute;top:64px;left:12px;right:12px;bottom:12px;display:grid;grid-template-columns:minmax(0,1fr) 480px;gap:12px">
+    <div style="display:flex;flex-direction:column;background:var(--vcr-glass-panel);border:1px solid var(--vcr-line-panel);border-radius:3px">
+      <div style="padding:16px 18px 12px;border-bottom:1px solid var(--vcr-line-divider)"><div style="font-size:22px;font-weight:300;letter-spacing:-.01em;color:var(--vcr-text-primary)">Round history</div><div style="font-size:11px;color:var(--vcr-text-tertiary);margin-top:2px">Indent shows the round each was started from. Dashed links show borrowed details.</div></div>
+      <div style="display:flex;flex-direction:column;padding:8px 0">
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 18px">
+          <span style="width:6px;height:6px;background:var(--vcr-text-tertiary)"></span><span style="font-family:var(--font-vcr-mono);font-size:11px;letter-spacing:.06em;color:var(--vcr-text-primary);width:28px">R1</span><span style="flex:1;color:var(--vcr-text-primary)">Open exploration</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em;color:var(--vcr-text-tertiary)">ROOT · 20 DESIGNS · ◆ 06 · 24 NOV</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 18px 12px 46px;border-left:0">
+          <span style="color:var(--vcr-text-quiet);font-family:var(--font-vcr-mono)">└</span><span style="font-family:var(--font-vcr-mono);font-size:11px;letter-spacing:.06em;color:var(--vcr-text-primary);width:28px">R2</span><span style="flex:1;color:var(--vcr-text-primary)">Typography studies</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em;color:var(--vcr-text-tertiary)">FROM R1 · 20 DESIGNS · ◆ 05 · 25 NOV</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin:0 12px 0 74px;padding:12px;border:1px solid var(--vcr-bone);border-radius:2px;background:var(--vcr-fill-active)">
+          <div style="display:flex;align-items:center;gap:12px"><span style="color:var(--vcr-text-primary);font-family:var(--font-vcr-mono)">└</span><span style="font-family:var(--font-vcr-mono);font-size:11px;letter-spacing:.06em;color:var(--vcr-text-primary);width:28px">R4</span><span style="flex:1;color:var(--vcr-text-primary)">Type meets image</span><x-import component-from-global-scope="VCRStudio.Tag" variant="solid" hint-size="56px,16px">CURRENT</x-import><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em;color:var(--vcr-text-tertiary)">FROM R2 · 20 DESIGNS · 27 NOV</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding-left:52px;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em;color:var(--vcr-text-secondary)"><span style="width:28px;border-top:1px dashed var(--vcr-text-secondary)"></span>REFERENCE · R3 · V-12 · M-11 IMAGERY ↗</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 18px 12px 46px;margin-top:6px">
+          <span style="color:var(--vcr-text-quiet);font-family:var(--font-vcr-mono)">└</span><span style="font-family:var(--font-vcr-mono);font-size:11px;letter-spacing:.06em;color:var(--vcr-text-primary);width:28px">R3</span><span style="flex:1;color:var(--vcr-text-primary)">Imagery studies</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em;color:var(--vcr-text-tertiary)">FROM R1 · SIBLING OF R2 · 20 DESIGNS · ◆ 03 · 26 NOV</span>
+        </div>
+        <div style="height:1px;background:var(--vcr-line-divider);margin:10px 18px"></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 18px">
+          <span style="width:6px;height:6px;border:1px solid var(--vcr-text-tertiary);box-sizing:border-box;transform:rotate(45deg)"></span><span style="font-family:var(--font-vcr-mono);font-size:11px;letter-spacing:.06em;color:var(--vcr-text-primary);width:28px">R0</span><span style="flex:1;color:var(--vcr-text-secondary)">Imported from prototype</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em;color:var(--vcr-text-tertiary)">PARENT NOT RECORDED · 10 DESIGNS · ◆ 02</span>
+        </div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="padding:12px 18px;border-top:1px solid var(--vcr-line-divider);font-size:11px;color:var(--vcr-text-tertiary)">Starting a new round from an older sheet adds a sibling. Earlier branches stay intact.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;background:var(--vcr-glass-panel);border:1px solid var(--vcr-line-panel);border-radius:3px">
+      <div style="padding:12px 16px;border-bottom:1px solid var(--vcr-line-divider);display:flex;justify-content:space-between;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.16em"><span style="color:var(--vcr-text-strong)">R4 · INPUT SUMMARY</span><span style="color:var(--vcr-text-tertiary)">SNAPSHOT · 27 NOV 14:02</span></div>
+      <div style="padding:14px 16px;display:flex;flex-direction:column;gap:14px;flex:1">
+        <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:8px 12px">
+          <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">STARTED FROM</span><span style="color:var(--vcr-text-primary)">R2 · Typography studies ↗</span>
+          <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">DIRECTION</span><span>Keep the stacked light headline. Let the image bleed off the right edge.</span>
+          <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">FIXED</span><span>2 copy lines · 1080 × 1350 PX</span>
+          <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">COUNT</span><span style="font-family:var(--font-vcr-mono);font-size:11px">20</span>
+        </div>
+        <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.16em;color:var(--vcr-text-strong);padding-top:10px;border-top:1px solid var(--vcr-line-divider)">JUDGMENTS SENT · 03</span>
+        <div style="display:flex;gap:10px;align-items:center"><x-import component-from-global-scope="VCRStudio.CropThumb" width-px="{{ px60 }}" height-px="{{ px28 }}" hint-size="60px,28px"></x-import><div style="flex:1"><div style="color:var(--vcr-text-primary)">+ 5★ Typography · “Tight stacked setting”</div><div style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.1em;color:var(--vcr-text-tertiary)">M-09 · V-14 · R2 · PARENT ROUND ↗</div></div></div>
+        <div style="display:flex;gap:10px;align-items:center"><x-import component-from-global-scope="VCRStudio.CropThumb" width-px="{{ px60 }}" height-px="{{ px28 }}" is-hatched="{{ true }}" hint-size="60px,28px"></x-import><div style="flex:1"><div style="color:var(--vcr-text-primary)">+ 5★ Imagery · “Crop bleeds off the right”</div><div style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.1em;color:var(--vcr-text-tertiary)">M-11 · V-12 · R3 · REFERENCE FROM SIBLING ↗</div></div></div>
+        <div style="display:flex;gap:10px;align-items:center"><x-import component-from-global-scope="VCRStudio.CropThumb" width-px="{{ px60 }}" height-px="{{ px28 }}" hint-size="60px,28px"></x-import><div style="flex:1"><div style="color:var(--vcr-text-primary)">− 2★ Make it pop · “Three things compete”</div><div style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.1em;color:var(--vcr-text-tertiary)">M-04 · V-02 · R2 · NOTE EDITED SINCE · SHOWN AS SENT</div></div></div>
+      </div>
+      <div style="padding:12px 8px 12px 16px;border-top:1px solid var(--vcr-line-divider);display:flex;justify-content:flex-end;gap:8px">
+        <x-import component-from-global-scope="VCRStudio.Button" variant="secondary" hint-size="130px,28px">New round from R4</x-import>
+        <x-import component-from-global-scope="VCRStudio.Button" variant="primary" glyph="→" hint-size="110px,28px">Open sheet</x-import>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark", "tsType": "&#39;dark&#39;|&#39;light&#39;"}, "$preview": {"width": 1280, "height": 800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      theme: this.props.theme ?? 'dark',
+      px28: 28,
+      px60: 60,
+    };
+  }
+}
+</script>
+</body>
+</html>

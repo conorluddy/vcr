@@ -1,0 +1,25 @@
+@layer vcr.components {
+  .chip {
+    flex-shrink: 0;
+    padding: var(--vcr-space-5) var(--vcr-space-6);
+    border: 1px solid var(--vcr-line-strong);
+    border-radius: var(--vcr-radius-panel);
+    background: transparent;
+    color: var(--vcr-text-strong);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-ui);
+    letter-spacing: var(--vcr-tracking-tag);
+    white-space: nowrap;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--vcr-line-hover);
+    }
+
+    &[aria-pressed="true"] {
+      border-color: var(--vcr-bone);
+      background: var(--vcr-fill-selected);
+      color: var(--vcr-bone);
+    }
+  }
+}

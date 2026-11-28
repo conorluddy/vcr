@@ -1,0 +1,61 @@
+@layer vcr.components {
+  .starRating {
+    display: inline-flex;
+    gap: var(--vcr-star-gap);
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    line-height: var(--vcr-line-height-tight);
+  }
+
+  .star {
+    color: var(--vcr-star-off);
+    font-size: var(--vcr-font-size-lead);
+    line-height: var(--vcr-line-height-tight);
+    cursor: pointer;
+
+    &::before {
+      content: "☆";
+    }
+
+    &[data-filled] {
+      color: var(--vcr-star-on);
+
+      &::before {
+        content: "★";
+      }
+    }
+
+    &:has(input:focus-visible) {
+      outline: var(--vcr-outline-width) solid var(--vcr-line-focus);
+      outline-offset: 2px;
+    }
+
+    .starRating[data-density="list"] & {
+      font-size: var(--vcr-font-size-body);
+    }
+
+    .starRating[data-read-only] & {
+      cursor: default;
+    }
+
+    /* Hover preview: while the pointer is over the group, light the hovered star and every star before it. */
+    .starRating:not([data-read-only]):hover & {
+      color: var(--vcr-star-off);
+
+      &::before {
+        content: "☆";
+      }
+    }
+
+    .starRating:not([data-read-only]) &:hover,
+    .starRating:not([data-read-only]) &:has(~ .star:hover) {
+      color: var(--vcr-star-on);
+
+      &::before {
+        content: "★";
+      }
+    }
+  }
+}

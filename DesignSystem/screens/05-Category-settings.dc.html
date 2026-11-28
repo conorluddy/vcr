@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>05 Category settings · VCRStudio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/vcrstudio/tokens.css">
+<link rel="stylesheet" href="ds/vcrstudio/components/bundle.css">
+<script src="ds/vcrstudio/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500&amp;family=Fragment+Mono&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--vcr-text-primary)}a:hover{color:var(--vcr-text-secondary)}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="width:1280px;height:800px;position:relative;overflow:hidden;background:var(--vcr-ground);font-family:var(--font-vcr-sans);font-size:12px;line-height:1.45;color:var(--vcr-text-body)">
+  <div style="position:absolute;top:12px;left:12px;right:12px;height:40px;display:flex;align-items:center;gap:16px;padding:0 14px;background:var(--vcr-glass-bar);border:1px solid var(--vcr-line-panel);border-radius:3px">
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-secondary)">← HOME</span>
+    <span style="width:1px;height:14px;background:var(--vcr-line-strong)"></span>
+    <span style="color:var(--vcr-text-primary)">Context poster</span>
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">SETTINGS / CATEGORIES</span>
+  </div>
+  <div style="position:absolute;top:64px;left:12px;right:12px;bottom:12px;display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:12px">
+    <div style="display:flex;flex-direction:column;background:var(--vcr-glass-panel);border:1px solid var(--vcr-line-panel);border-radius:3px">
+      <div style="padding:16px 18px 12px;border-bottom:1px solid var(--vcr-line-divider);display:flex;align-items:flex-end;justify-content:space-between">
+        <div><div style="font-size:22px;font-weight:300;letter-spacing:-.01em;color:var(--vcr-text-primary)">Categories</div><div style="font-size:11px;color:var(--vcr-text-tertiary);margin-top:2px">A category says what to examine. The rating and note say what you thought.</div></div>
+        <x-import component-from-global-scope="VCRStudio.Button" variant="secondary" hint-size="120px,28px">+ New category</x-import>
+      </div>
+      <div style="display:grid;grid-template-columns:36px 150px minmax(0,1fr) 90px 90px;padding:8px 18px;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary);border-bottom:1px solid var(--vcr-line-divider)"><span></span><span>NAME</span><span>WHAT TO LOOK FOR</span><span>JUDGMENTS</span><span></span></div>
+      <div style="display:grid;grid-template-columns:36px 150px minmax(0,1fr) 90px 90px;align-items:center;padding:11px 18px;border-bottom:1px solid var(--vcr-line-divider)"><span style="color:var(--vcr-text-quiet)">⇕</span><span style="color:var(--vcr-text-primary)">Typography</span><span style="color:var(--vcr-text-secondary);padding-right:16px">Look at typeface, scale, weight, line breaks and hierarchy.</span><span style="font-family:var(--font-vcr-mono);font-size:10px">07</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">ARCHIVE</span></div>
+      <div style="display:grid;grid-template-columns:36px 150px minmax(0,1fr) 90px 90px;align-items:center;padding:11px 18px;border-bottom:1px solid var(--vcr-line-divider)"><span style="color:var(--vcr-text-quiet)">⇕</span><span style="color:var(--vcr-text-primary)">Colour</span><span style="color:var(--vcr-text-secondary);padding-right:16px">Look at palette, contrast and how colour separates levels.</span><span style="font-family:var(--font-vcr-mono);font-size:10px">03</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">ARCHIVE</span></div>
+      <div style="display:grid;grid-template-columns:36px 150px minmax(0,1fr) 90px 90px;align-items:center;padding:11px 18px;border-bottom:1px solid var(--vcr-line-divider)"><span style="color:var(--vcr-text-quiet)">⇕</span><span style="color:var(--vcr-text-primary)">Spacing</span><span style="color:var(--vcr-text-secondary);padding-right:16px">Look at margins, gaps between elements and open space.</span><span style="font-family:var(--font-vcr-mono);font-size:10px">02</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">ARCHIVE</span></div>
+      <div style="display:grid;grid-template-columns:36px 150px minmax(0,1fr) 90px 90px;align-items:center;padding:11px 18px;border-bottom:1px solid var(--vcr-line-divider)"><span style="color:var(--vcr-text-quiet)">⇕</span><span style="color:var(--vcr-text-primary)">Imagery</span><span style="color:var(--vcr-text-secondary);padding-right:16px">Look at crop, scale, treatment and how the image meets type.</span><span style="font-family:var(--font-vcr-mono);font-size:10px">04</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">ARCHIVE</span></div>
+      <div style="display:grid;grid-template-columns:36px 150px minmax(0,1fr) 90px 90px;align-items:center;padding:11px 18px;border:1px solid var(--vcr-bone);margin:-1px 0 0;background:var(--vcr-fill-active)"><span style="color:var(--vcr-text-primary)">⇕</span><span style="color:var(--vcr-text-primary)">Make it pop</span><span style="color:var(--vcr-text-body);padding-right:16px">Create one strong focal point through scale or contrast. Keep the rest quiet.</span><span style="font-family:var(--font-vcr-mono);font-size:10px">02</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-primary)">EDITING ›</span></div>
+      <div style="padding:14px 18px 6px;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.16em;color:var(--vcr-text-tertiary)">ARCHIVED · HIDDEN FROM NEW ENTRIES</div>
+      <div style="display:grid;grid-template-columns:36px 150px minmax(0,1fr) 90px 90px;align-items:center;padding:11px 18px;border-top:1px solid var(--vcr-line-divider);border-bottom:1px solid var(--vcr-line-divider);color:var(--vcr-text-tertiary)"><span></span><span>Texture</span><span style="padding-right:16px">Look at grain, paper and print artefacts.</span><span style="font-family:var(--font-vcr-mono);font-size:10px">01</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-secondary)">RESTORE</span></div>
+      <div style="flex:1"></div>
+      <div style="padding:12px 18px;border-top:1px solid var(--vcr-line-divider);font-size:11px;color:var(--vcr-text-tertiary)">The first four appear in the region popover. Drag ⇕ to reorder.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;background:var(--vcr-glass-panel);border:1px solid var(--vcr-line-panel);border-radius:3px">
+      <div style="padding:12px 16px;border-bottom:1px solid var(--vcr-line-divider);font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.16em;color:var(--vcr-text-strong)">EDIT CATEGORY</div>
+      <div style="padding:14px 16px;display:flex;flex-direction:column;gap:14px;flex:1">
+        <div style="display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">DISPLAY NAME</span><div style="height:30px;display:flex;align-items:center;padding:0 10px;background:var(--vcr-fill-field);border:1px solid var(--vcr-line);border-radius:2px;color:var(--vcr-text-primary)">Make it pop</div><span style="font-size:11px;color:var(--vcr-text-tertiary)">Renaming keeps its 2 existing judgments attached.</span></div>
+        <div style="display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">WHAT TO LOOK FOR</span><div style="height:84px;padding:8px 10px;background:var(--vcr-fill-field);border:1px solid var(--vcr-bone);border-radius:2px;color:var(--vcr-text-primary)">Create one strong focal point through scale or contrast. Keep the rest quiet.</div></div>
+        <div style="padding:10px 12px;border:1px solid var(--vcr-line-strong);border-radius:2px;display:flex;flex-direction:column;gap:6px">
+          <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-primary)">GUIDANCE HISTORY</span>
+          <div style="display:flex;gap:10px"><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.06em;color:var(--vcr-text-tertiary);width:64px;flex:none">NEXT BATCH</span><span>Uses the wording above.</span></div>
+          <div style="display:flex;gap:10px"><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.06em;color:var(--vcr-text-tertiary);width:64px;flex:none">R3 · SENT</span><span style="color:var(--vcr-text-secondary)">“Make one thing loud.” Kept as supplied.</span></div>
+        </div>
+      </div>
+      <div style="padding:12px 8px 12px 16px;border-top:1px solid var(--vcr-line-divider);display:flex;align-items:center;gap:8px">
+        <x-import component-from-global-scope="VCRStudio.Button" variant="text" hint-size="70px,28px">Archive</x-import>
+        <span style="flex:1"></span>
+        <x-import component-from-global-scope="VCRStudio.Button" variant="secondary" hint-size="70px,28px">Cancel</x-import>
+        <x-import component-from-global-scope="VCRStudio.Button" variant="primary" glyph="↵" hint-size="70px,28px">Save</x-import>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark", "tsType": "&#39;dark&#39;|&#39;light&#39;"}, "$preview": {"width": 1280, "height": 800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      theme: this.props.theme ?? 'dark',
+    };
+  }
+}
+</script>
+</body>
+</html>

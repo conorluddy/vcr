@@ -1,0 +1,99 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-28T11:03:09Z"
+ },
+ "title": "Design Studio Screens",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 800,
+   "title": "01 Brief"
+  },
+  "02-Contact-sheet.dc.html": {
+   "x": 1360,
+   "y": 0,
+   "w": 1280,
+   "h": 800,
+   "title": "02 Contact sheet"
+  },
+  "03-Inspect-and-mark.dc.html": {
+   "x": 2720,
+   "y": 0,
+   "w": 1280,
+   "h": 800,
+   "title": "03 Inspect and mark"
+  },
+  "04-Region-popover.dc.html": {
+   "x": 0,
+   "y": 920,
+   "w": 1280,
+   "h": 800,
+   "title": "04 Region popover",
+   "is_interactive": true
+  },
+  "05-Category-settings.dc.html": {
+   "x": 1360,
+   "y": 920,
+   "w": 1280,
+   "h": 800,
+   "title": "05 Category settings"
+  },
+  "06-Marked-details.dc.html": {
+   "x": 2720,
+   "y": 920,
+   "w": 1280,
+   "h": 800,
+   "title": "06 Marked details"
+  },
+  "07-Round-history.dc.html": {
+   "x": 0,
+   "y": 1840,
+   "w": 1280,
+   "h": 800,
+   "title": "07 Round history"
+  },
+  "08-New-round.dc.html": {
+   "x": 1360,
+   "y": 1840,
+   "w": 1280,
+   "h": 800,
+   "title": "08 New round"
+  },
+  "09-Export.dc.html": {
+   "x": 2720,
+   "y": 1840,
+   "w": 1280,
+   "h": 800,
+   "title": "09 Export"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "02-Contact-sheet.dc.html",
+  "03-Inspect-and-mark.dc.html",
+  "04-Region-popover.dc.html",
+  "05-Category-settings.dc.html",
+  "06-Marked-details.dc.html",
+  "07-Round-history.dc.html",
+  "08-New-round.dc.html",
+  "09-Export.dc.html"
+ ],
+ "notes": {},
+ "designSystems": [
+  {
+   "title": "VCRStudio",
+   "namespace": "vcrstudio",
+   "artifact": "https://claude.ai/artifact/H495NPVFGDk1afVBQt8GCN",
+   "version": "1795863695-1e74",
+   "copiedAt": "2026-11-28T11:03:09Z"
+  }
+ ]
+}

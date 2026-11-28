@@ -1,0 +1,11 @@
+@layer vcr.components {
+  .kbd {
+    padding: 2px 5px;
+    border: 1px solid var(--vcr-line-strong);
+    border-radius: var(--vcr-radius-control);
+    color: var(--vcr-text-tertiary);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-label);
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>03 Inspect and mark · VCRStudio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/vcrstudio/tokens.css">
+<link rel="stylesheet" href="ds/vcrstudio/components/bundle.css">
+<script src="ds/vcrstudio/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500&amp;family=Fragment+Mono&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--vcr-text-primary)}a:hover{color:var(--vcr-text-secondary)}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="width:1280px;height:800px;position:relative;overflow:hidden;background:var(--vcr-ground);font-family:var(--font-vcr-sans);font-size:12px;line-height:1.45;color:var(--vcr-text-body)">
+  <div style="position:absolute;top:12px;left:12px;right:12px;height:40px;display:flex;align-items:center;gap:14px;padding:0 6px 0 14px;background:var(--vcr-glass-bar);border:1px solid var(--vcr-line-panel);border-radius:3px">
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-secondary)">← SHEET · R1</span>
+    <span style="width:1px;height:14px;background:var(--vcr-line-strong)"></span>
+    <span style="font-family:var(--font-vcr-mono);font-size:11px;letter-spacing:.06em;color:var(--vcr-text-primary)">V-07</span>
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em;color:var(--vcr-text-tertiary)">07 / 20 · 1080 × 1350</span>
+    <span style="flex:1"></span>
+    <x-import component-from-global-scope="VCRStudio.Button" variant="text" hint-size="60px,28px">‹ Prev</x-import>
+    <x-import component-from-global-scope="VCRStudio.Button" variant="text" hint-size="60px,28px">Next ›</x-import>
+    <x-import component-from-global-scope="VCRStudio.Segmented" options="{{ zoomOpts }}" value="FIT" aria-label="Zoom" hint-size="110px,28px"></x-import>
+    <span style="font-family:var(--font-vcr-mono);font-size:10px;letter-spacing:.06em;color:var(--vcr-text-secondary);width:34px">44%</span>
+    <x-import component-from-global-scope="VCRStudio.Button" variant="secondary" hint-size="110px,28px">Hide overlays</x-import>
+    <x-import component-from-global-scope="VCRStudio.Button" variant="secondary" glyph="↓" hint-size="90px,28px">Export</x-import>
+    <x-import component-from-global-scope="VCRStudio.Button" variant="primary" hint-size="90px,28px">◆ Marking</x-import>
+  </div>
+  <div style="position:absolute;top:64px;left:12px;right:336px;bottom:12px;display:flex;align-items:center;justify-content:center">
+    <div style="background:var(--vcr-artboard-backing);padding:28px">
+      <div style="width:480px;height:600px;background:var(--vcr-placeholder);position:relative;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-ink-3)">
+        <div style="position:absolute;left:36px;top:40px;width:300px;height:120px;border:1px solid rgba(14,15,16,.35);padding:8px;box-sizing:border-box">HEADLINE</div>
+        <div style="position:absolute;left:36px;top:200px;width:408px;height:260px;background:repeating-linear-gradient(-45deg, var(--vcr-hatch-ink) 0 2px, var(--vcr-hatch-light) 2px 9px)"></div>
+        <div style="position:absolute;left:36px;bottom:36px;width:180px;height:40px;border:1px solid rgba(14,15,16,.35);padding:8px;box-sizing:border-box">CAPTION</div>
+        <div style="position:absolute;right:36px;bottom:36px;font-size:11px;letter-spacing:.06em">V-07</div>
+        <x-import component-from-global-scope="VCRStudio.RegionOutline" x-px="{{ px30 }}" y-px="{{ px34 }}" width-px="{{ px312 }}" height-px="{{ px132 }}" label="M-01" state="saved"></x-import>
+        <x-import component-from-global-scope="VCRStudio.RegionOutline" x-px="{{ px236 }}" y-px="{{ px476 }}" width-px="{{ px208 }}" height-px="{{ px84 }}" label="M-02 · EMPTY SPACE" state="saved"></x-import>
+        <x-import component-from-global-scope="VCRStudio.RegionOutline" x-px="{{ px120 }}" y-px="{{ px250 }}" width-px="{{ px190 }}" height-px="{{ px130 }}" label="190 × 130 · DRAWING" state="drawing"></x-import>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:24px;bottom:24px;display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--vcr-glass-tip);border:1px solid var(--vcr-line-panel);border-radius:3px;font-size:11px;color:var(--vcr-text-secondary)">Click an element or drag a rectangle. <x-import component-from-global-scope="VCRStudio.Kbd" hint-size="20px,16px">R</x-import> place <x-import component-from-global-scope="VCRStudio.Kbd" hint-size="36px,16px">←↑↓→</x-import> move <x-import component-from-global-scope="VCRStudio.Kbd" hint-size="30px,16px">⇧</x-import> resize <x-import component-from-global-scope="VCRStudio.Kbd" hint-size="30px,16px">ESC</x-import> cancel</div>
+  <div style="position:absolute;top:64px;right:12px;bottom:12px;width:312px;display:flex;flex-direction:column;background:var(--vcr-glass-panel);border:1px solid var(--vcr-line-panel);border-radius:3px">
+    <div style="padding:12px 14px;border-bottom:1px solid var(--vcr-line-divider);display:flex;justify-content:space-between;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.16em"><span style="color:var(--vcr-text-strong)">REGIONS ON V-07</span><span style="color:var(--vcr-text-tertiary)">02 SAVED</span></div>
+    <div style="display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid var(--vcr-line-divider)">
+      <x-import component-from-global-scope="VCRStudio.CropThumb" label="HEADLINE" hint-size="72px,32px"></x-import>
+      <div style="flex:1;display:flex;flex-direction:column;gap:4px">
+        <div style="display:flex;justify-content:space-between;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em"><span style="color:var(--vcr-text-primary)">M-01</span><span style="color:var(--vcr-text-tertiary)">3 JUDGMENTS</span></div>
+        <div style="display:flex;justify-content:space-between"><span>Typography</span><x-import component-from-global-scope="VCRStudio.StarRating" value="{{ px5 }}" density="list" label="Rating" is-read-only="{{ true }}" hint-size="72px,14px"></x-import></div>
+        <div style="display:flex;justify-content:space-between"><span>Typography</span><x-import component-from-global-scope="VCRStudio.StarRating" value="{{ px2 }}" density="list" label="Rating" is-read-only="{{ true }}" hint-size="72px,14px"></x-import></div>
+        <div style="display:flex;justify-content:space-between"><span>Colour</span><x-import component-from-global-scope="VCRStudio.StarRating" value="{{ px1 }}" density="list" label="Rating" is-read-only="{{ true }}" hint-size="72px,14px"></x-import></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid var(--vcr-line-divider)">
+      <x-import component-from-global-scope="VCRStudio.CropThumb" hint-size="72px,32px"></x-import>
+      <div style="flex:1;display:flex;flex-direction:column;gap:4px">
+        <div style="display:flex;justify-content:space-between;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em"><span style="color:var(--vcr-text-primary)">M-02</span><span style="color:var(--vcr-text-tertiary)">UNRATED</span></div>
+        <div style="color:var(--vcr-text-secondary)">Saved for later. No judgment yet.</div>
+      </div>
+    </div>
+    <div style="flex:1"></div>
+    <div style="margin:12px;padding:10px 12px;border:1px solid var(--vcr-line-strong);border-radius:2px;display:flex;align-items:center;justify-content:space-between"><span>Removed region M-03</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-primary)">UNDO ↶</span></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark", "tsType": "&#39;dark&#39;|&#39;light&#39;"}, "$preview": {"width": 1280, "height": 800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      theme: this.props.theme ?? 'dark',
+      px1: 1,
+      px2: 2,
+      px5: 5,
+      px30: 30,
+      px34: 34,
+      px84: 84,
+      px120: 120,
+      px130: 130,
+      px132: 132,
+      px190: 190,
+      px208: 208,
+      px236: 236,
+      px250: 250,
+      px312: 312,
+      px476: 476,
+      zoomOpts: ["FIT", "100%"],
+    };
+  }
+}
+</script>
+</body>
+</html>

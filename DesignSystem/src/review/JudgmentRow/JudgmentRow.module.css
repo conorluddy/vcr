@@ -1,0 +1,72 @@
+@layer vcr.components {
+  .judgmentRow {
+    container-type: inline-size;
+    border-block-end: 1px solid var(--vcr-line-divider);
+
+    &[data-active] {
+      background: var(--vcr-fill-active);
+    }
+  }
+
+  .line {
+    display: flex;
+    align-items: center;
+    gap: var(--vcr-space-5);
+    padding: 9px var(--vcr-space-7);
+  }
+
+  .category {
+    flex: none;
+    inline-size: 92px;
+    color: var(--vcr-text-body);
+    font-size: var(--vcr-font-size-body);
+
+    .judgmentRow[data-rated] & {
+      color: var(--vcr-text-primary);
+    }
+  }
+
+  .polarity {
+    flex: 1;
+    text-align: end;
+  }
+
+  .clear {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--vcr-text-tertiary);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-label);
+    letter-spacing: var(--vcr-tracking-ui);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--vcr-bone);
+    }
+  }
+
+  .note {
+    margin: 0;
+    padding: 0 var(--vcr-space-7) var(--vcr-space-5) 116px;
+    color: var(--vcr-text-secondary);
+    font-size: var(--vcr-font-size-hint);
+    line-height: var(--vcr-line-height-status);
+  }
+
+  /* In a narrow tray the note stops aligning under the stars and the polarity drops its use. */
+  @container (inline-size < 300px) {
+    .category {
+      inline-size: auto;
+      flex: 1;
+    }
+
+    .polarity {
+      flex: none;
+    }
+
+    .note {
+      padding-inline-start: var(--vcr-space-7);
+    }
+  }
+}

@@ -1,0 +1,34 @@
+@layer vcr.components {
+  .iconButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--vcr-height-large);
+    block-size: var(--vcr-height-large);
+    padding: 0;
+    border: 1px solid var(--vcr-line-panel);
+    border-radius: var(--vcr-radius-panel);
+    background: var(--vcr-glass-bar);
+    backdrop-filter: blur(var(--vcr-blur-large)) saturate(1.3);
+    color: var(--vcr-bone);
+    font-size: var(--vcr-font-size-lead);
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color var(--vcr-duration-fast) var(--vcr-easing-standard);
+
+    &:hover {
+      border-color: var(--vcr-line-hover);
+    }
+
+    &[data-glyph-kind="letter"] {
+      font-family: var(--font-vcr-mono);
+      font-size: var(--vcr-font-size-hint);
+    }
+
+    &[aria-pressed="true"] {
+      border-color: var(--vcr-bone);
+      background: var(--vcr-bone);
+      color: var(--vcr-text-on-bone);
+    }
+  }
+}

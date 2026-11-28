@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>01 Brief · VCRStudio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/vcrstudio/tokens.css">
+<link rel="stylesheet" href="ds/vcrstudio/components/bundle.css">
+<script src="ds/vcrstudio/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500&amp;family=Fragment+Mono&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--vcr-text-primary)}a:hover{color:var(--vcr-text-secondary)}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="width:1280px;height:800px;position:relative;overflow:hidden;background:var(--vcr-ground);font-family:var(--font-vcr-sans);font-size:12px;line-height:1.45;color:var(--vcr-text-body)">
+  <div style="position:absolute;top:12px;left:12px;right:12px;height:40px;display:flex;align-items:center;gap:16px;padding:0 14px;background:var(--vcr-glass-bar);border:1px solid var(--vcr-line-panel);border-radius:3px">
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-secondary)">← HOME</span>
+    <span style="width:1px;height:14px;background:var(--vcr-line-strong)"></span>
+    <span style="color:var(--vcr-text-primary)">New exploration</span>
+    <span style="flex:1"></span>
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">DRAFT · SAVED IN THIS BROWSER</span>
+  </div>
+  <div style="position:absolute;top:64px;left:12px;bottom:12px;width:520px;display:flex;flex-direction:column;background:var(--vcr-glass-panel);border:1px solid var(--vcr-line-panel);border-radius:3px">
+    <div style="padding:16px 18px 12px;border-bottom:1px solid var(--vcr-line-divider)">
+      <div style="font-size:22px;font-weight:300;letter-spacing:-.01em;color:var(--vcr-text-primary)">Brief</div>
+      <div style="font-size:11px;color:var(--vcr-text-tertiary);margin-top:2px">Fixed inputs are rendered exactly. Everything else is open to variation.</div>
+    </div>
+    <div style="flex:1;padding:14px 18px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">WORKSPACE NAME</span>
+        <div style="height:30px;display:flex;align-items:center;padding:0 10px;background:var(--vcr-fill-field);border:1px solid var(--vcr-line);border-radius:2px;color:var(--vcr-text-primary)">Context poster</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">DESIGN DIRECTION</span>
+        <div style="height:72px;padding:8px 10px;background:var(--vcr-fill-field);border:1px solid var(--vcr-bone);border-radius:2px;color:var(--vcr-text-primary)">A poster for an app that builds context. Quiet, technical, confident. Open on composition, type and image treatment.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <div style="display:flex;justify-content:space-between"><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">REQUIRED COPY</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">RENDERED EXACTLY</span></div>
+        <div style="display:flex;flex-direction:column;border:1px solid var(--vcr-line);border-radius:2px">
+          <div style="height:30px;display:flex;align-items:center;gap:10px;padding:0 10px;border-bottom:1px solid var(--vcr-line-divider)"><span style="font-family:var(--font-vcr-mono);font-size:9px;color:var(--vcr-text-quiet)">01</span><span style="flex:1;color:var(--vcr-text-primary)">Build context, not prompts.</span><x-import component-from-global-scope="VCRStudio.Tag" variant="solid" hint-size="40px,16px">FIXED</x-import></div>
+          <div style="height:30px;display:flex;align-items:center;gap:10px;padding:0 10px;border-bottom:1px solid var(--vcr-line-divider)"><span style="font-family:var(--font-vcr-mono);font-size:9px;color:var(--vcr-text-quiet)">02</span><span style="flex:1;color:var(--vcr-text-primary)">Available this winter</span><x-import component-from-global-scope="VCRStudio.Tag" variant="solid" hint-size="40px,16px">FIXED</x-import></div>
+          <div style="height:28px;display:flex;align-items:center;padding:0 10px;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-secondary)">+ ADD LINE</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px">
+        <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+          <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">CANVAS WIDTH</span>
+          <div style="height:30px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;background:var(--vcr-fill-field);border:1px solid var(--vcr-line);border-radius:2px;font-family:var(--font-vcr-mono);font-size:11px;color:var(--vcr-text-primary)"><span>1080</span><span style="font-size:9px;color:var(--vcr-text-quiet)">PX</span></div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+          <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">CANVAS HEIGHT</span>
+          <div style="height:30px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;background:var(--vcr-fill-field);border:1px solid var(--vcr-line);border-radius:2px;font-family:var(--font-vcr-mono);font-size:11px;color:var(--vcr-text-primary)"><span>1350</span><span style="font-size:9px;color:var(--vcr-text-quiet)">PX</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">IMAGERY · OPTIONAL</span>
+        <div style="display:flex;align-items:center;gap:12px;padding:8px 10px;border:1px solid var(--vcr-line);border-radius:2px">
+          <div style="width:44px;height:44px;background:repeating-linear-gradient(-45deg, var(--vcr-hatch-ink) 0 2px, var(--vcr-hatch-light) 2px 9px);border-radius:1px"></div>
+          <div style="flex:1"><div style="color:var(--vcr-text-primary)">app-screen.png</div><div style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.06em;color:var(--vcr-text-tertiary)">2400 × 1600 PX · 1.8 MB</div></div>
+          <x-import component-from-global-scope="VCRStudio.Segmented" options="{{ assetOpts }}" value="REFERENCE" aria-label="Asset role" hint-size="170px,26px"></x-import>
+        </div>
+        <span style="font-size:11px;color:var(--vcr-text-tertiary)">Reference imagery guides the look. A fixed asset appears in every design unaltered.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">BATCH SIZE</span>
+        <x-import component-from-global-scope="VCRStudio.Segmented" options="{{ batchOpts }}" value="20" is-stretched="{{ true }}" aria-label="Variants per round" hint-size="100%,28px"></x-import>
+      </div>
+    </div>
+    <div style="padding:12px 18px;border-top:1px solid var(--vcr-line-divider);display:flex;align-items:center;justify-content:space-between">
+      <span style="font-size:11px;color:var(--vcr-text-tertiary)">Opens the contact sheet immediately.</span>
+      <x-import component-from-global-scope="VCRStudio.Button" variant="primary" glyph="→" hint-size="130px,30px">Generate 20</x-import>
+    </div>
+  </div>
+  <div style="position:absolute;top:64px;left:544px;right:12px;bottom:12px;display:flex;align-items:center;justify-content:center;gap:40px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="width:416px;height:520px;background:var(--vcr-artboard-backing);padding:20px;box-sizing:border-box">
+        <div style="width:100%;height:100%;background:var(--vcr-placeholder);position:relative;box-sizing:border-box">
+          <div style="position:absolute;left:28px;right:28px;top:120px;height:230px;background:repeating-linear-gradient(-45deg, var(--vcr-hatch-ink) 0 2px, var(--vcr-hatch-light) 2px 9px)"></div>
+          <div style="position:absolute;left:28px;top:98px;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-ink-3)">REFERENCE · APP-SCREEN.PNG</div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.06em;color:var(--vcr-text-tertiary)"><span>1080 × 1350 PX</span><span>4 : 5 · PORTRAIT</span></div>
+    </div>
+    <div style="width:210px;display:flex;flex-direction:column;gap:10px">
+      <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.16em;color:var(--vcr-text-strong)">FIXED INPUTS</span>
+      <div style="display:flex;flex-direction:column;gap:8px;padding-top:10px;border-top:1px solid var(--vcr-line)">
+        <div><div style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">COPY</div><div style="color:var(--vcr-text-primary)">Build context, not prompts.</div><div style="color:var(--vcr-text-primary)">Available this winter</div></div>
+        <div><div style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">OUTPUT</div><div style="font-family:var(--font-vcr-mono);font-size:11px;color:var(--vcr-text-primary)">1080 × 1350 PX · PNG</div></div>
+      </div>
+      <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.16em;color:var(--vcr-text-strong);margin-top:10px">OPEN TO VARIATION</span>
+      <div style="padding-top:10px;border-top:1px solid var(--vcr-line);color:var(--vcr-text-secondary)">Composition · typography · image treatment · use of space</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark", "tsType": "&#39;dark&#39;|&#39;light&#39;"}, "$preview": {"width": 1280, "height": 800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      theme: this.props.theme ?? 'dark',
+      assetOpts: ["FIXED", "REFERENCE"],
+      batchOpts: ["10", "20", "50", "100"],
+    };
+  }
+}
+</script>
+</body>
+</html>

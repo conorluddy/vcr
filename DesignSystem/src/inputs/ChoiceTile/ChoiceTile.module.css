@@ -1,0 +1,49 @@
+@layer vcr.components {
+  .choiceTile {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-block-size: 32px;
+    padding: var(--vcr-space-3) var(--vcr-space-4);
+    border: 1px solid var(--vcr-line);
+    border-radius: var(--vcr-radius-control);
+    background: transparent;
+    color: var(--vcr-text-secondary);
+    font-family: var(--font-vcr-sans);
+    font-size: var(--vcr-font-size-hint);
+    text-align: start;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--vcr-line-hover);
+      color: var(--vcr-bone);
+    }
+
+    &[aria-pressed="true"] {
+      border-color: var(--vcr-bone);
+      background: var(--vcr-fill-selected);
+      color: var(--vcr-bone);
+    }
+
+    &[data-size="mobile"] {
+      gap: var(--vcr-space-4);
+      min-block-size: var(--vcr-height-large);
+      padding: 0 var(--vcr-space-5);
+      border-radius: var(--vcr-radius-panel);
+      font-size: var(--vcr-font-size-mobile-value);
+    }
+  }
+
+  .swatch {
+    flex-shrink: 0;
+    inline-size: 10px;
+    block-size: 10px;
+    border: 1px solid var(--vcr-line-hover);
+    background: var(--swatch-color);
+
+    .choiceTile[data-size="mobile"] & {
+      inline-size: 12px;
+      block-size: 12px;
+    }
+  }
+}
