@@ -22,4 +22,9 @@ describe("VariantTile", () => {
     fireEvent.click(screen.getByRole("button", { name: "RETRY" }));
     expect(handleRetry).toHaveBeenCalledOnce();
   });
+
+  test("marks a pending tile as busy", () => {
+    const { container } = render(<VariantTile variantId="V-16" state="pending" />);
+    expect(container.firstElementChild?.getAttribute("aria-busy")).toBe("true");
+  });
 });

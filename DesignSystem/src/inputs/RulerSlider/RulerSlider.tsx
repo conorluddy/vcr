@@ -39,6 +39,7 @@ export function RulerSlider({
         <span className={styles.fill} />
         <span className={styles.thumb} />
         <input
+          {...inputAttributes}
           id={inputId}
           type="range"
           className={styles.input}
@@ -46,9 +47,9 @@ export function RulerSlider({
           max={max}
           step={step}
           value={value}
-          readOnly={!onValueChange}
+          // Browsers ignore readOnly on range inputs; without a handler the slider is display-only.
+          disabled={!onValueChange || inputAttributes.disabled}
           onChange={(event) => onValueChange?.(Number.parseFloat(event.target.value))}
-          {...inputAttributes}
         />
       </div>
     </div>

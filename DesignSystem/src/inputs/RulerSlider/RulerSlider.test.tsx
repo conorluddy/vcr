@@ -19,4 +19,9 @@ describe("RulerSlider", () => {
     fireEvent.change(screen.getByRole("slider"), { target: { value: "25" } });
     expect(handleValueChange).toHaveBeenCalledWith(25);
   });
+
+  test("is disabled without a change handler, since range inputs ignore readOnly", () => {
+    render(<RulerSlider label="Grain" value={40} />);
+    expect((screen.getByRole("slider") as HTMLInputElement).disabled).toBe(true);
+  });
 });

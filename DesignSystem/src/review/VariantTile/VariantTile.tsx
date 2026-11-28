@@ -26,6 +26,7 @@ export function VariantTile({
       className={joinClassNames(styles.variantTile, className)}
       data-state={state}
       data-selected={isSelected || undefined}
+      aria-busy={state === "pending" || undefined}
       style={tileStyle}
       {...divAttributes}
     >
