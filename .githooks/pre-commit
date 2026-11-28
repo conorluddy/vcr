@@ -25,3 +25,9 @@ if grep -qE '^DesignSystem/' <<<"$staged"; then
   echo "pre-commit: design system check"
   pnpm -s --filter @vcr/design-system check
 fi
+
+# The studio app lints and type-checks itself; tests and the build run in CI (`pnpm verify`).
+if grep -qE '^apps/studio/' <<<"$staged"; then
+  echo "pre-commit: studio check"
+  pnpm -s --filter @vcr/studio check
+fi

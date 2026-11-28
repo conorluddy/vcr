@@ -1,0 +1,52 @@
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  background: var(--vcr-ground);
+  color: var(--vcr-text-body);
+  font-family: var(--font-vcr-sans);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.topBar {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 6px 0 14px;
+  background: var(--vcr-glass-bar);
+  border: 1px solid var(--vcr-line-panel);
+  border-radius: 3px;
+}
+
+.homeLink {
+  font-family: var(--font-vcr-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--vcr-text-secondary);
+}
+
+.divider {
+  width: 1px;
+  height: 14px;
+  background: var(--vcr-line-strong);
+}
+
+.title {
+  margin: 0;
+  font: inherit;
+  color: var(--vcr-text-primary);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
