@@ -3,7 +3,7 @@
 Cycling select: each press advances to the next option, wrapping, and shows its position (01/03).
 
 ```jsx
-<Select options={["Auto", "Fixed", "Off"]} value={mode} onValueChange={setMode} />;
+<Select label="Mode" options={["Auto", "Fixed", "Off"]} value={mode} onValueChange={setMode} />;
 ```
 
 - For two to five short options. A real dropdown is not designed yet.
