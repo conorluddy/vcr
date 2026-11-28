@@ -1,0 +1,30 @@
+@layer vcr.components {
+  .signalMark {
+    --signal-color: var(--vcr-signal);
+
+    display: inline-block;
+    flex-shrink: 0;
+    inline-size: var(--signal-size);
+    block-size: var(--signal-size);
+    background: var(--signal-color);
+
+    &[data-tone="amber"] {
+      --signal-color: var(--vcr-signal-amber);
+    }
+
+    &[data-tone="phosphor"] {
+      --signal-color: var(--vcr-signal-phosphor);
+    }
+
+    &[data-shape="diamond"],
+    &[data-shape="diamond-outline"] {
+      border: 1px solid var(--signal-color);
+      rotate: 45deg;
+    }
+
+    &[data-shape="diamond-outline"] {
+      border-color: var(--vcr-bone);
+      background: transparent;
+    }
+  }
+}

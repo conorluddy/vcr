@@ -1,0 +1,40 @@
+@layer vcr.components {
+  .switch {
+    display: inline-flex;
+    gap: var(--vcr-space-1);
+    padding: var(--vcr-space-1);
+    border: 1px solid var(--vcr-line);
+    border-radius: var(--vcr-radius-control);
+    background: transparent;
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-micro);
+    letter-spacing: var(--vcr-tracking-tag);
+    cursor: pointer;
+
+    &[data-size="mobile"] {
+      border-color: var(--vcr-line-strong);
+      font-size: var(--vcr-font-size-code);
+    }
+  }
+
+  .offCell,
+  .onCell {
+    padding: 3px var(--vcr-space-3);
+    border-radius: var(--vcr-radius-inner);
+    color: var(--vcr-text-disabled);
+  }
+
+  .switch[data-size="mobile"] :is(.offCell, .onCell) {
+    padding: var(--vcr-space-3) var(--vcr-space-4);
+  }
+
+  .switch[aria-checked="false"] .offCell {
+    background: var(--vcr-fill-off);
+    color: var(--vcr-text-strong);
+  }
+
+  .switch[aria-checked="true"] .onCell {
+    background: var(--vcr-bone);
+    color: var(--vcr-text-on-bone);
+  }
+}

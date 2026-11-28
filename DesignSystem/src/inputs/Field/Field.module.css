@@ -1,0 +1,40 @@
+@layer vcr.components {
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vcr-space-3);
+    min-inline-size: 0;
+  }
+
+  .label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    color: var(--vcr-text-body);
+    font-size: var(--vcr-font-size-body);
+  }
+
+  .unit {
+    color: var(--vcr-text-quiet);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-label);
+    letter-spacing: var(--vcr-tracking-unit);
+  }
+
+  .input {
+    block-size: var(--vcr-height-medium);
+    min-inline-size: 0;
+    padding: 0 9px;
+    border: 1px solid var(--vcr-line);
+    border-radius: var(--vcr-radius-control);
+    background: var(--vcr-fill-field);
+    color: var(--vcr-bone);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-value);
+
+    &:focus-visible {
+      border-color: var(--vcr-line-focus);
+      outline: none;
+    }
+  }
+}

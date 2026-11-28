@@ -19,3 +19,9 @@ if grep -qE '^(packages/cli/|packages/capture/|packages/timeline/|catalog/|skill
   pnpm -s vcr plugin build >/dev/null
   git add plugin references/cli.md
 fi
+
+# The design system lints and type-checks itself; tests and the build run in CI (`pnpm verify`).
+if grep -qE '^DesignSystem/' <<<"$staged"; then
+  echo "pre-commit: design system check"
+  pnpm -s --filter @vcr/design-system check
+fi

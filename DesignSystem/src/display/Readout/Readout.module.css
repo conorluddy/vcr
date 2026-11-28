@@ -1,0 +1,25 @@
+@layer vcr.components {
+  .readout {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-family: var(--font-vcr-mono);
+  }
+
+  .label {
+    color: var(--vcr-text-quiet);
+    font-size: var(--vcr-font-size-micro);
+    letter-spacing: var(--vcr-tracking-label);
+    text-transform: uppercase;
+  }
+
+  .value {
+    color: var(--vcr-bone);
+    font-size: var(--vcr-font-size-value);
+    font-variant-numeric: tabular-nums;
+
+    .readout[data-size="mobile"] & {
+      font-size: var(--vcr-font-size-mobile-value);
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@layer vcr.components {
+  .polarityTag {
+    color: var(--vcr-text-quiet);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-label);
+    letter-spacing: var(--vcr-tracking-ui);
+    white-space: nowrap;
+
+    &[data-rated] {
+      color: var(--vcr-text-secondary);
+    }
+  }
+}

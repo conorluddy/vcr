@@ -1,0 +1,33 @@
+@layer vcr.components {
+  .glassPanel {
+    border: 1px solid var(--vcr-line-panel);
+    border-radius: var(--vcr-radius-panel);
+    background: var(--vcr-glass-panel);
+    backdrop-filter: blur(var(--vcr-blur-large)) saturate(1.3);
+    color: var(--vcr-bone);
+
+    &[data-level="bar"] {
+      background: var(--vcr-glass-bar);
+    }
+
+    &[data-level="sheet"] {
+      background: var(--vcr-glass-sheet);
+    }
+
+    &[data-level="tip"] {
+      background: var(--vcr-glass-tip);
+    }
+
+    &[data-elevation="bar"] {
+      box-shadow: var(--vcr-shadow-bar);
+    }
+
+    &[data-elevation="card"] {
+      box-shadow: var(--vcr-shadow-card);
+    }
+
+    &[data-elevation="panel"] {
+      box-shadow: var(--vcr-shadow-panel);
+    }
+  }
+}

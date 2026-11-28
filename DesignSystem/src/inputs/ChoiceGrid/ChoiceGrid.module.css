@@ -1,0 +1,15 @@
+@layer vcr.components {
+  .choiceGrid {
+    min-inline-size: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(var(--choice-grid-columns), minmax(0, 1fr));
+    gap: var(--vcr-space-2);
+    padding: 0;
+    border: 0;
+
+    &[data-size="mobile"] {
+      gap: var(--vcr-space-3);
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@layer vcr.components {
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 5px;
+    border: 1px solid var(--vcr-bone);
+    color: var(--vcr-bone);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-tag);
+    letter-spacing: var(--vcr-tracking-tag);
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    &[data-variant="muted"] {
+      border-color: var(--vcr-line-hover);
+      color: var(--vcr-text-tertiary);
+    }
+
+    &[data-variant="solid"] {
+      background: var(--vcr-bone);
+      color: var(--vcr-text-on-bone);
+    }
+  }
+}

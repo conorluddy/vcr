@@ -1,0 +1,34 @@
+@layer vcr.components {
+  .statusMessage {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 9px var(--vcr-space-5);
+    border: 1px solid var(--vcr-line-divider);
+    background: var(--vcr-fill-field);
+  }
+
+  .mark {
+    display: flex;
+    margin-block-start: var(--vcr-space-2);
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .code {
+    color: var(--vcr-text-strong);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-label);
+    letter-spacing: var(--vcr-tracking-label);
+  }
+
+  .text {
+    color: var(--vcr-text-body);
+    font-size: var(--vcr-font-size-value);
+    line-height: var(--vcr-line-height-status);
+  }
+}

@@ -1,0 +1,18 @@
+@layer vcr.components {
+  .colorField {
+    display: flex;
+    align-items: center;
+    gap: var(--vcr-space-4);
+    color: var(--vcr-text-tertiary);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-ui);
+    letter-spacing: var(--vcr-tracking-coordinate);
+  }
+
+  .swatch {
+    inline-size: 22px;
+    block-size: 14px;
+    border: 1px solid var(--vcr-line-hover);
+    background: var(--swatch-color);
+  }
+}

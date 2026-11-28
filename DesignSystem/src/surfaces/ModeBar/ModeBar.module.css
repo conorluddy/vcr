@@ -1,0 +1,25 @@
+@layer vcr.components {
+  .modeBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    block-size: var(--vcr-height-large);
+    padding: 0 var(--vcr-space-2) 0 var(--vcr-space-7);
+    border: 1px solid var(--vcr-line-panel);
+    border-radius: var(--vcr-radius-card);
+    background: var(--vcr-glass-panel);
+    backdrop-filter: blur(var(--vcr-blur-large)) saturate(1.3);
+  }
+
+  .title {
+    color: var(--vcr-bone);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-ui);
+    letter-spacing: var(--vcr-tracking-heading);
+  }
+
+  .modeBar .done {
+    block-size: 34px;
+    border-radius: var(--vcr-radius-panel);
+  }
+}

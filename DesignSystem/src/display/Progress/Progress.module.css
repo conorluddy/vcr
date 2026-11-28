@@ -1,0 +1,16 @@
+@layer vcr.components {
+  .progress {
+    inline-size: 100%;
+    block-size: 2px;
+    background: var(--vcr-line-divider);
+
+    &::after {
+      content: "";
+      display: block;
+      inline-size: var(--progress-percent);
+      block-size: 100%;
+      background: var(--vcr-bone);
+      transition: inline-size var(--vcr-duration-standard) var(--vcr-easing-standard);
+    }
+  }
+}

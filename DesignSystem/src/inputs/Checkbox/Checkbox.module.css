@@ -1,0 +1,26 @@
+@layer vcr.components {
+  .checkbox {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-content: center;
+    inline-size: 18px;
+    block-size: 18px;
+    margin: 0;
+    border: 1px solid var(--vcr-line-hover);
+    background: transparent;
+    color: var(--vcr-text-on-bone);
+    font-size: var(--vcr-font-size-hint);
+    line-height: var(--vcr-line-height-tight);
+    appearance: none;
+    cursor: pointer;
+
+    &:checked {
+      border-color: var(--vcr-bone);
+      background: var(--vcr-bone);
+
+      &::before {
+        content: "✓";
+      }
+    }
+  }
+}

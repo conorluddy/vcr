@@ -1,0 +1,67 @@
+/* biome-ignore-all lint/complexity/noImportantStyles: the reduced-motion rule must win over every later layer. */
+/*
+ * Layer order for everything the system paints. A consumer's own unlayered CSS beats both layers, so it can
+ * override a component without !important. Tokens come from tokens.css, which the artifact page generates.
+ */
+@layer vcr.reset, vcr.components;
+
+@layer vcr.reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--vcr-ground);
+    color: var(--vcr-text-primary);
+    font-family: var(--font-vcr-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--vcr-text-body);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--vcr-bone-hover);
+      text-decoration: underline;
+    }
+  }
+
+  ::placeholder {
+    color: var(--vcr-text-quiet);
+  }
+
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: var(--vcr-outline-width) solid var(--vcr-line-focus);
+    outline-offset: 2px;
+  }
+
+  :where(input, textarea, select):focus-visible {
+    outline-offset: 0;
+  }
+
+  .vcr-visually-hidden {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}

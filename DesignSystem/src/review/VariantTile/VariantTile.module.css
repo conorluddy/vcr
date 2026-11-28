@@ -1,0 +1,90 @@
+@layer vcr.components {
+  .variantTile {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .frame {
+    display: block;
+    inline-size: 100%;
+    padding: var(--vcr-tile-padding);
+    border: 1px solid transparent;
+    background: var(--vcr-artboard-backing);
+    font: inherit;
+    text-align: inherit;
+
+    &:is(button) {
+      cursor: pointer;
+    }
+
+    .variantTile[data-selected] & {
+      border-color: var(--vcr-bone);
+    }
+  }
+
+  .art {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--vcr-space-4);
+    aspect-ratio: var(--variant-aspect-ratio);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-label);
+    letter-spacing: var(--vcr-tracking-label);
+    text-transform: uppercase;
+  }
+
+  .done {
+    background: var(--vcr-placeholder);
+    color: var(--vcr-ink-3);
+    font-size: var(--vcr-font-size-hint);
+    letter-spacing: var(--vcr-tracking-coordinate);
+  }
+
+  .image {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: contain;
+  }
+
+  .pending {
+    border: 1px dashed var(--vcr-line-hover);
+    color: var(--vcr-text-tertiary);
+  }
+
+  .failed {
+    background: repeating-linear-gradient(-45deg, var(--vcr-hatch-ink) 0 2px, var(--vcr-hatch-light) 2px 9px);
+  }
+
+  .faultChip {
+    padding: 3px 6px;
+    background: var(--vcr-outline-dark);
+    color: var(--vcr-outline-light);
+  }
+
+  .retry {
+    padding: var(--vcr-space-2) var(--vcr-space-4);
+    border: 0;
+    border-radius: var(--vcr-radius-control);
+    background: var(--vcr-outline-light);
+    color: var(--vcr-outline-dark);
+    font: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    color: var(--vcr-text-tertiary);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-label);
+    letter-spacing: var(--vcr-tracking-coordinate);
+  }
+
+  .marks {
+    color: var(--vcr-text-primary);
+  }
+}

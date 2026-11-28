@@ -36,3 +36,4 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm validate
       - run: pnpm test
+      - run: pnpm --filter @vcr/design-system verify

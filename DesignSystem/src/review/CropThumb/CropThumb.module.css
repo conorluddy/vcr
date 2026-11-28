@@ -1,0 +1,42 @@
+@layer vcr.components {
+  .cropThumb {
+    flex: none;
+    inline-size: var(--crop-width);
+    border: 1px solid var(--vcr-line-strong);
+
+    &[data-padded] {
+      inline-size: auto;
+      padding: var(--vcr-tile-padding);
+      border: 0;
+      background: var(--vcr-artboard-backing);
+    }
+  }
+
+  .art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    block-size: var(--crop-height);
+    overflow: hidden;
+    background: var(--vcr-placeholder);
+    color: var(--vcr-ink-3);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-micro);
+    letter-spacing: var(--vcr-tracking-tag);
+    text-transform: uppercase;
+
+    &[data-hatched] {
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--vcr-hatch-ink) 0 2px,
+        var(--vcr-hatch-light) 2px 9px
+      );
+    }
+  }
+
+  .image {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+}

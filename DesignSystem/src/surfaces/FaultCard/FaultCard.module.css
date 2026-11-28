@@ -1,0 +1,62 @@
+@layer vcr.components {
+  .faultCard {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--vcr-line);
+    border-radius: var(--vcr-radius-card);
+    background: var(--vcr-glass-sheet);
+    backdrop-filter: blur(var(--vcr-blur-large)) saturate(1.3);
+    box-shadow: var(--vcr-shadow-card);
+    color: var(--vcr-bone);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--vcr-space-7);
+    border-block-end: 1px solid var(--vcr-line-divider);
+    font-family: var(--font-vcr-mono);
+    font-size: var(--vcr-font-size-code);
+    letter-spacing: var(--vcr-tracking-label);
+  }
+
+  .code {
+    display: flex;
+    align-items: center;
+    gap: var(--vcr-space-5);
+  }
+
+  .metric {
+    color: var(--vcr-text-tertiary);
+  }
+
+  .body {
+    padding: var(--vcr-space-7);
+    color: var(--vcr-text-body);
+    font-size: var(--vcr-font-size-body);
+    line-height: var(--vcr-line-height-hint);
+    text-wrap: pretty;
+
+    .faultCard[data-size="mobile"] & {
+      font-size: var(--vcr-font-size-mobile-body);
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vcr-space-4);
+    padding: var(--vcr-space-7);
+
+    .body + & {
+      padding-block-start: 0;
+    }
+  }
+
+  .secondaryActions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--vcr-space-4);
+  }
+}
