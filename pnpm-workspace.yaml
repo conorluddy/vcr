@@ -1,5 +1,6 @@
 packages:
   - DesignSystem
+  - apps/studio
   - packages/*
   - examples/*
   - projects/*

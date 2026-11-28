@@ -6,7 +6,8 @@
   "description": "VCRStudio design system: tokens, React components with CSS modules, and the build that publishes them as a Claude Design System artifact.",
   "exports": {
     ".": "./src/index.ts",
-    "./tokens.json": "./tokens/tokens.json"
+    "./tokens.json": "./tokens/tokens.json",
+    "./tokens.css": "./dist/tokens.css"
   },
   "scripts": {
     "build": "tsx scripts/build.ts",
