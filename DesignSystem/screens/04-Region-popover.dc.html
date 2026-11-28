@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>04 Region popover · VCRStudio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/vcrstudio/tokens.css">
+<link rel="stylesheet" href="ds/vcrstudio/components/bundle.css">
+<script src="ds/vcrstudio/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500&amp;family=Fragment+Mono&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--vcr-text-primary)}a:hover{color:var(--vcr-text-secondary)}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="width:1280px;height:800px;position:relative;overflow:hidden;background:var(--vcr-ground);font-family:var(--font-vcr-sans);font-size:12px;line-height:1.45;color:var(--vcr-text-body)">
+  <div style="position:absolute;top:12px;left:12px;right:12px;height:40px;display:flex;align-items:center;gap:14px;padding:0 6px 0 14px;background:var(--vcr-glass-bar);border:1px solid var(--vcr-line-panel);border-radius:3px">
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-secondary)">← SHEET · R1</span>
+    <span style="width:1px;height:14px;background:var(--vcr-line-strong)"></span>
+    <span style="font-family:var(--font-vcr-mono);font-size:11px;letter-spacing:.06em;color:var(--vcr-text-primary)">V-07</span>
+    <span style="flex:1"></span>
+    <x-import component-from-global-scope="VCRStudio.Segmented" options="{{ zoomOpts }}" value="100%" aria-label="Zoom" hint-size="110px,28px"></x-import>
+    <span style="font-family:var(--font-vcr-mono);font-size:10px;letter-spacing:.06em;color:var(--vcr-text-secondary);width:34px">100%</span>
+    <x-import component-from-global-scope="VCRStudio.Button" variant="secondary" hint-size="90px,28px">◆ Marking</x-import>
+  </div>
+  <div style="position:absolute;top:64px;left:12px;right:12px;bottom:12px;background:var(--vcr-artboard-backing);overflow:hidden">
+    <div style="position:absolute;left:60px;top:50px;width:1080px;height:1350px;background:var(--vcr-placeholder);font-family:var(--font-vcr-mono);font-size:11px;letter-spacing:.14em;color:var(--vcr-ink-3)">
+      <div style="position:absolute;left:80px;top:90px;width:676px;height:270px;border:1px solid rgba(14,15,16,.35);padding:14px;box-sizing:border-box">HEADLINE</div>
+      <div style="position:absolute;left:80px;top:450px;width:920px;height:586px;background:repeating-linear-gradient(-45deg, var(--vcr-hatch-ink) 0 2px, var(--vcr-hatch-light) 2px 9px)"></div>
+      <x-import component-from-global-scope="VCRStudio.RegionOutline" x-px="{{ px66 }}" y-px="{{ px76 }}" width-px="{{ px704 }}" height-px="{{ px298 }}" label="M-01 · SELECTED" state="selected"></x-import>
+    </div>
+  </div>
+  <div style="position:absolute;top:128px;left:862px;width:372px;display:flex;flex-direction:column;background:var(--vcr-glass-sheet);backdrop-filter:blur(var(--vcr-blur-large)) saturate(1.3);border:1px solid var(--vcr-line-strong);border-radius:3px;box-shadow:var(--vcr-shadow-panel)">
+    <div style="display:flex;gap:12px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--vcr-line-divider)">
+      <x-import component-from-global-scope="VCRStudio.CropThumb" width-px="{{ px94 }}" height-px="{{ px40 }}" label="HEADLINE" hint-size="94px,40px"></x-import>
+      <div style="flex:1"><div style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-primary)">M-01 · V-07 · R1</div><div style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.06em;color:var(--vcr-text-tertiary)">704 × 298 AT 66, 76 ›</div></div>
+      <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">3 SAVED</span>
+    </div>
+    <div style="display:flex;flex-direction:column">
+      <x-import component-from-global-scope="VCRStudio.JudgmentRow" category="Typography" rating="{{ typography }}" on-rating-change="{{ rateTypography }}" note="The letterforms. Light weight at this scale." hint-size="100%,64px"></x-import>
+      <x-import component-from-global-scope="VCRStudio.JudgmentRow" category="Colour" rating="{{ colour }}" on-rating-change="{{ rateColour }}" is-active="{{ true }}" on-clear="{{ clearColour }}" hint-size="100%,38px"></x-import>
+      <x-import component-from-global-scope="VCRStudio.JudgmentRow" category="Spacing" rating="{{ spacing }}" on-rating-change="{{ rateSpacing }}" hint-size="100%,38px"></x-import>
+      <x-import component-from-global-scope="VCRStudio.JudgmentRow" category="Imagery" rating="{{ imagery }}" on-rating-change="{{ rateImagery }}" hint-size="100%,38px"></x-import>
+      <div style="padding:8px 14px;border-bottom:1px solid var(--vcr-line-divider);font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">ALL CATEGORIES · 05 ›</div>
+    </div>
+    <div style="padding:10px 14px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--vcr-line-divider)">
+      <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.16em;color:var(--vcr-text-strong)">SEPARATE NOTE</span>
+      <div style="display:flex;align-items:center;gap:10px"><span style="padding:3px 7px;border:1px solid var(--vcr-line-strong);border-radius:2px;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em;color:var(--vcr-text-primary)">TYPOGRAPHY ▾</span><x-import component-from-global-scope="VCRStudio.StarRating" value="{{ px2 }}" density="list" label="Rating" hint-size="72px,14px"></x-import><span style="flex:1;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em;color:var(--vcr-text-secondary);text-align:right">− 2 · AVOID</span></div>
+      <div style="padding:8px 10px;background:var(--vcr-fill-field);border:1px solid var(--vcr-bone);border-radius:2px;color:var(--vcr-text-primary);min-height:34px">Line breaks orphan “not prompts.”</div>
+    </div>
+    <div style="padding:10px 8px 10px 14px;display:flex;align-items:center;gap:8px">
+      <x-import component-from-global-scope="VCRStudio.Button" variant="secondary" hint-size="90px,28px">+ Add note</x-import>
+      <span style="flex:1;font-size:11px;color:var(--vcr-text-tertiary)">Saved as you go. Not sent to a round until selected.</span>
+      <x-import component-from-global-scope="VCRStudio.Button" variant="primary" glyph="↵" hint-size="70px,28px">Done</x-import>
+    </div>
+  </div>
+  <div style="position:absolute;left:24px;bottom:24px;width:420px;display:grid;grid-template-columns:86px 1fr 1fr;gap:0;background:var(--vcr-glass-tip);backdrop-filter:blur(var(--vcr-blur-large)) saturate(1.3);border:1px solid var(--vcr-line-panel);border-radius:3px;font-size:11px">
+    <span style="padding:6px 10px;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary);border-bottom:1px solid var(--vcr-line-divider)">RATING</span><span style="padding:6px 10px;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary);border-bottom:1px solid var(--vcr-line-divider)">MEANS</span><span style="padding:6px 10px;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary);border-bottom:1px solid var(--vcr-line-divider)">IF SENT TO A ROUND</span>
+    <span style="padding:5px 10px;color:var(--vcr-text-primary)">○ Unrated</span><span style="padding:5px 10px">Collected for later</span><span style="padding:5px 10px">Context only</span>
+    <span style="padding:5px 10px;color:var(--vcr-text-primary)">− 1–2 ★</span><span style="padding:5px 10px">Negative</span><span style="padding:5px 10px">Avoid the treatment</span>
+    <span style="padding:5px 10px;color:var(--vcr-text-primary)">■ 3 ★</span><span style="padding:5px 10px">Neutral</span><span style="padding:5px 10px">Comparison context</span>
+    <span style="padding:5px 10px;color:var(--vcr-text-primary)">+ 4–5 ★</span><span style="padding:5px 10px">Positive</span><span style="padding:5px 10px">Draw on the treatment</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark", "tsType": "&#39;dark&#39;|&#39;light&#39;"}, "$preview": {"width": 1280, "height": 800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const ratings = { typography: 5, colour: 1, spacing: 0, imagery: 0, ...(this.state || {}) };
+    const rate = (category) => (rating) => this.setState({ [category]: rating });
+    return {
+      theme: this.props.theme ?? 'dark',
+      px2: 2,
+      px40: 40,
+      px66: 66,
+      px76: 76,
+      px94: 94,
+      px298: 298,
+      px704: 704,
+      zoomOpts: ["FIT", "100%"],
+      typography: ratings.typography, colour: ratings.colour, spacing: ratings.spacing, imagery: ratings.imagery,
+      rateTypography: rate('typography'), rateColour: rate('colour'), rateSpacing: rate('spacing'), rateImagery: rate('imagery'),
+      clearColour: () => this.setState({ colour: 0 }),
+    };
+  }
+}
+</script>
+</body>
+</html>

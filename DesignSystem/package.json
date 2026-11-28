@@ -12,6 +12,7 @@
     "build": "tsx scripts/build.ts",
     "check": "biome check . && tsc -p tsconfig.json",
     "format": "biome check --write .",
+    "screens": "pnpm build && tsx scripts/screens/serveScreens.ts",
     "test": "vitest run",
     "verify": "pnpm check && pnpm test && pnpm build"
   },

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>02 Contact sheet · VCRStudio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/vcrstudio/tokens.css">
+<link rel="stylesheet" href="ds/vcrstudio/components/bundle.css">
+<script src="ds/vcrstudio/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500&amp;family=Fragment+Mono&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--vcr-text-primary)}a:hover{color:var(--vcr-text-secondary)}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="width:1280px;height:800px;position:relative;overflow:hidden;background:var(--vcr-ground);font-family:var(--font-vcr-sans);font-size:12px;line-height:1.45;color:var(--vcr-text-body)">
+  <div style="position:absolute;top:12px;left:12px;right:12px;height:40px;display:flex;align-items:center;gap:16px;padding:0 6px 0 14px;background:var(--vcr-glass-bar);border:1px solid var(--vcr-line-panel);border-radius:3px">
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-secondary)">← HOME</span>
+    <span style="width:1px;height:14px;background:var(--vcr-line-strong)"></span>
+    <span style="color:var(--vcr-text-primary)">Context poster</span>
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-secondary);padding:5px 8px;border:1px solid var(--vcr-line);border-radius:2px">R1 · HISTORY ▾</span>
+    <span style="flex:1"></span>
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-secondary)">◆ MARKED DETAILS · 06</span>
+    <x-import component-from-global-scope="VCRStudio.Button" variant="primary" glyph="→" hint-size="110px,28px">New round</x-import>
+  </div>
+  <div style="position:absolute;top:66px;left:24px;right:24px;display:flex;align-items:center;gap:16px">
+    <span style="font-size:22px;font-weight:300;letter-spacing:-.01em;color:var(--vcr-text-primary)">Open exploration</span>
+    <span style="font-family:var(--font-vcr-mono);font-size:10px;letter-spacing:.12em;color:var(--vcr-text-tertiary)">R1 · ROOT</span>
+    <span style="flex:1"></span>
+    <div style="display:flex;flex-direction:column;gap:5px;width:300px">
+      <div style="display:flex;justify-content:space-between;font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em;color:var(--vcr-text-secondary)"><span>■ 14 DONE</span><span>□ 05 PENDING</span><span style="color:var(--vcr-text-primary)">◇ 01 FAILED</span></div>
+      <x-import component-from-global-scope="VCRStudio.Progress" value-percent="{{ seventy }}" label="Round 1 generating" hint-size="100%,2px"></x-import>
+    </div>
+    <x-import component-from-global-scope="VCRStudio.Segmented" options="{{ filterOpts }}" value="ALL · 20" aria-label="Filter variants" hint-size="190px,28px"></x-import>
+  </div>
+  <div style="position:absolute;top:118px;left:24px;right:24px;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px">
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-01" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-02" mark-count="{{ px1 }}" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-03" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-04" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-05" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-06" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-07" mark-count="{{ px2 }}" is-selected="{{ true }}" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-08" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-09" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-10" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-11" state="failed" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-12" mark-count="{{ px3 }}" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-13" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-14" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-15" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-16" state="pending" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-17" state="pending" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-18" state="pending" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-19" state="pending" hint-size="100%,190px"></x-import>
+    <x-import component-from-global-scope="VCRStudio.VariantTile" variant-id="V-20" state="pending" hint-size="100%,190px"></x-import>
+  </div>
+  <div style="position:absolute;right:24px;bottom:20px;display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--vcr-glass-tip);border:1px solid var(--vcr-line-panel);border-radius:3px;font-size:11px;color:var(--vcr-text-secondary)">Inspect while work continues. <x-import component-from-global-scope="VCRStudio.Kbd" hint-size="20px,16px">↵</x-import> open <x-import component-from-global-scope="VCRStudio.Kbd" hint-size="20px,16px">M</x-import> marked only</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark", "tsType": "&#39;dark&#39;|&#39;light&#39;"}, "$preview": {"width": 1280, "height": 800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      theme: this.props.theme ?? 'dark',
+      px1: 1,
+      px2: 2,
+      px3: 3,
+      filterOpts: ["ALL · 20", "MARKED · 3"],
+      seventy: 70,
+    };
+  }
+}
+</script>
+</body>
+</html>

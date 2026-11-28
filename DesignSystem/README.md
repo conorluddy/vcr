@@ -13,6 +13,7 @@ src/<group>/<Component>/  <Component>.types.ts (contract), .tsx, .module.css, .t
 src/styles/reset.css      declares the layer order and the reset layer
 scripts/tokens/           tokens.json types, the tokens.css compiler, contrast and grammar tests
 scripts/build/            bundle, previews, declarations and the artifact's file layout
+screens/                  the studio's nine screens from the Design canvas, served by scripts/screens/
 dist/project/             build output, mirroring the artifact's project/ folder (ignored)
 ```
 
@@ -26,6 +27,7 @@ Run from `DesignSystem/`:
 | `pnpm test` | Vitest: components in jsdom, token grammar, contrast and the tokens.css compiler |
 | `pnpm build` | writes `dist/project/` (with `tokens.css`) and `dist/tokens.css`; prints one JSON event |
 | `pnpm verify` | all three; CI runs this |
+| `pnpm screens` | builds, then serves the screens at http://localhost:4321/ ([screens/README.md](screens/README.md)) |
 
 The pre-commit hook runs `pnpm check` when files under `DesignSystem/` are staged.
 

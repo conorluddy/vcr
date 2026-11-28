@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>06 Marked details · VCRStudio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/vcrstudio/tokens.css">
+<link rel="stylesheet" href="ds/vcrstudio/components/bundle.css">
+<script src="ds/vcrstudio/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500&amp;family=Fragment+Mono&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--vcr-text-primary)}a:hover{color:var(--vcr-text-secondary)}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="width:1280px;height:800px;position:relative;overflow:hidden;background:var(--vcr-ground);font-family:var(--font-vcr-sans);font-size:12px;line-height:1.45;color:var(--vcr-text-body)">
+  <div style="position:absolute;top:12px;left:12px;right:12px;height:40px;display:flex;align-items:center;gap:16px;padding:0 14px;background:var(--vcr-glass-bar);border:1px solid var(--vcr-line-panel);border-radius:3px">
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-secondary)">← SHEET · R3</span>
+    <span style="width:1px;height:14px;background:var(--vcr-line-strong)"></span>
+    <span style="color:var(--vcr-text-primary)">Context poster</span>
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-primary)">◆ MARKED DETAILS</span>
+    <span style="flex:1"></span>
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em;color:var(--vcr-text-tertiary)">14 REGIONS · 19 JUDGMENTS · 03 AWAITING REVIEW</span>
+  </div>
+  <div style="position:absolute;top:66px;left:24px;right:24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">BROWSE BY</span>
+    <x-import component-from-global-scope="VCRStudio.Segmented" options="{{ browseOpts }}" value="ASPECT" aria-label="Browse by" hint-size="200px,28px"></x-import>
+    <span style="width:1px;height:14px;background:var(--vcr-line-strong);margin:0 4px"></span>
+    <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.14em;color:var(--vcr-text-tertiary)">FILTER</span>
+    <span style="white-space:nowrap;flex:none;padding:10px 12px;border:1px solid var(--vcr-line-strong);border-radius:3px;font-family:var(--font-vcr-mono);font-size:10px;letter-spacing:.1em;color:var(--vcr-text-strong)">CATEGORY</span>
+    <x-import component-from-global-scope="VCRStudio.Chip" is-selected="{{ true }}" hint-size="110px,24px"><span style="white-space:nowrap">+ POS</span></x-import>
+    <span style="white-space:nowrap;flex:none;padding:10px 12px;border:1px solid var(--vcr-line-strong);border-radius:3px;font-family:var(--font-vcr-mono);font-size:10px;letter-spacing:.1em;color:var(--vcr-text-strong)">− NEG</span>
+    <span style="white-space:nowrap;flex:none;padding:10px 12px;border:1px solid var(--vcr-line-strong);border-radius:3px;font-family:var(--font-vcr-mono);font-size:10px;letter-spacing:.1em;color:var(--vcr-text-strong)">■ NEUTRAL</span>
+    <span style="white-space:nowrap;flex:none;padding:10px 12px;border:1px solid var(--vcr-line-strong);border-radius:3px;font-family:var(--font-vcr-mono);font-size:10px;letter-spacing:.1em;color:var(--vcr-text-strong)">○ UNRATED</span>
+    <span style="white-space:nowrap;flex:none;padding:10px 12px;border:1px solid var(--vcr-line-strong);border-radius:3px;font-family:var(--font-vcr-mono);font-size:10px;letter-spacing:.1em;color:var(--vcr-text-strong)">ROUND</span>
+  </div>
+  <div style="position:absolute;top:112px;left:24px;right:24px;bottom:112px;display:flex;flex-direction:column;gap:18px;overflow:hidden">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:baseline;gap:12px;padding-bottom:6px;border-bottom:1px solid var(--vcr-line)"><span style="font-size:15px;color:var(--vcr-text-primary)">Typography</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em;color:var(--vcr-text-tertiary)">03 REGIONS · 04 JUDGMENTS SHOWN</span></div>
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+        <div style="border:1px solid var(--vcr-bone);border-radius:2px;display:flex;flex-direction:column">
+          <x-import component-from-global-scope="VCRStudio.CropThumb" is-padded="{{ true }}" height-px="{{ px74 }}" label="HEADLINE" hint-size="100%,94px"></x-import>
+          <div style="padding:8px 10px;display:flex;flex-direction:column;gap:5px">
+            <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.1em;color:var(--vcr-text-tertiary)">M-01 · V-07 · R1 ↗</span>
+            <div style="display:flex;align-items:center;gap:8px"><x-import component-from-global-scope="VCRStudio.Checkbox" is-checked="{{ true }}" aria-label="Include" hint-size="18px,18px"></x-import><x-import component-from-global-scope="VCRStudio.StarRating" value="{{ px5 }}" density="list" label="Rating" is-read-only="{{ true }}" hint-size="72px,14px"></x-import><span style="flex:1;color:var(--vcr-text-secondary);font-size:11px">The letterforms</span></div>
+            <div style="display:flex;align-items:center;gap:8px;opacity:.45"><x-import component-from-global-scope="VCRStudio.Checkbox" is-checked="{{ false }}" aria-label="Include" hint-size="18px,18px"></x-import><x-import component-from-global-scope="VCRStudio.StarRating" value="{{ px2 }}" density="list" label="Rating" is-read-only="{{ true }}" hint-size="72px,14px"></x-import><span style="flex:1;font-size:11px">Line breaks</span></div>
+          </div>
+        </div>
+        <div style="border:1px solid var(--vcr-line);border-radius:2px;display:flex;flex-direction:column">
+          <x-import component-from-global-scope="VCRStudio.CropThumb" is-padded="{{ true }}" height-px="{{ px74 }}" label="CAPTION" hint-size="100%,94px"></x-import>
+          <div style="padding:8px 10px;display:flex;flex-direction:column;gap:5px">
+            <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.1em;color:var(--vcr-text-tertiary)">M-06 · V-03 · R2 ↗</span>
+            <div style="display:flex;align-items:center;gap:8px"><x-import component-from-global-scope="VCRStudio.Checkbox" is-checked="{{ false }}" aria-label="Include" hint-size="18px,18px"></x-import><x-import component-from-global-scope="VCRStudio.StarRating" value="{{ px4 }}" density="list" label="Rating" is-read-only="{{ true }}" hint-size="72px,14px"></x-import><span style="flex:1;color:var(--vcr-text-secondary);font-size:11px">Mono caption scale</span></div>
+          </div>
+        </div>
+        <div style="border:1px solid var(--vcr-bone);border-radius:2px;display:flex;flex-direction:column">
+          <x-import component-from-global-scope="VCRStudio.CropThumb" is-padded="{{ true }}" height-px="{{ px74 }}" label="HEADLINE" hint-size="100%,94px"></x-import>
+          <div style="padding:8px 10px;display:flex;flex-direction:column;gap:5px">
+            <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.1em;color:var(--vcr-text-tertiary)">M-09 · V-14 · R2 ↗</span>
+            <div style="display:flex;align-items:center;gap:8px"><x-import component-from-global-scope="VCRStudio.Checkbox" is-checked="{{ true }}" aria-label="Include" hint-size="18px,18px"></x-import><x-import component-from-global-scope="VCRStudio.StarRating" value="{{ px5 }}" density="list" label="Rating" is-read-only="{{ true }}" hint-size="72px,14px"></x-import><span style="flex:1;color:var(--vcr-text-secondary);font-size:11px">Tight stacked setting</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:baseline;gap:12px;padding-bottom:6px;border-bottom:1px solid var(--vcr-line)"><span style="font-size:15px;color:var(--vcr-text-primary)">Imagery</span><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.12em;color:var(--vcr-text-tertiary)">02 REGIONS · 02 JUDGMENTS SHOWN</span></div>
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+        <div style="border:1px solid var(--vcr-bone);border-radius:2px;display:flex;flex-direction:column">
+          <x-import component-from-global-scope="VCRStudio.CropThumb" is-padded="{{ true }}" height-px="{{ px74 }}" is-hatched="{{ true }}" hint-size="100%,94px"></x-import>
+          <div style="padding:8px 10px;display:flex;flex-direction:column;gap:5px">
+            <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.1em;color:var(--vcr-text-tertiary)">M-11 · V-12 · R3 ↗</span>
+            <div style="display:flex;align-items:center;gap:8px"><x-import component-from-global-scope="VCRStudio.Checkbox" is-checked="{{ true }}" aria-label="Include" hint-size="18px,18px"></x-import><x-import component-from-global-scope="VCRStudio.StarRating" value="{{ px5 }}" density="list" label="Rating" is-read-only="{{ true }}" hint-size="72px,14px"></x-import><span style="flex:1;color:var(--vcr-text-secondary);font-size:11px">Crop bleeds off the right</span></div>
+          </div>
+        </div>
+        <div style="border:1px solid var(--vcr-line);border-radius:2px;display:flex;flex-direction:column">
+          <x-import component-from-global-scope="VCRStudio.CropThumb" is-padded="{{ true }}" height-px="{{ px74 }}" is-hatched="{{ true }}" hint-size="100%,94px"></x-import>
+          <div style="padding:8px 10px;display:flex;flex-direction:column;gap:5px">
+            <span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.1em;color:var(--vcr-text-tertiary)">M-01 · V-07 · R1 ↗ · ALSO IN TYPOGRAPHY</span>
+            <div style="display:flex;align-items:center;gap:8px"><x-import component-from-global-scope="VCRStudio.Checkbox" is-checked="{{ false }}" aria-label="Include" hint-size="18px,18px"></x-import><x-import component-from-global-scope="VCRStudio.StarRating" value="{{ px4 }}" density="list" label="Rating" is-read-only="{{ true }}" hint-size="72px,14px"></x-import><span style="flex:1;color:var(--vcr-text-secondary);font-size:11px">Image under the headline</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;gap:14px;padding:12px 8px 12px 16px;background:var(--vcr-glass-sheet);backdrop-filter:blur(var(--vcr-blur-large)) saturate(1.3);border:1px solid var(--vcr-line-strong);border-radius:3px;box-shadow:var(--vcr-shadow-panel)">
+    <div style="display:flex;flex-direction:column;gap:2px;flex:none"><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.16em;color:var(--vcr-text-primary)">TRAVELS TO NEXT ROUND · 04</span><span style="font-size:11px;color:var(--vcr-text-tertiary)">1 hidden by the current filter</span></div>
+    <div style="flex:1;display:flex;gap:8px;flex-wrap:wrap">
+      <span style="display:flex;align-items:center;gap:8px;white-space:nowrap;flex:none;padding:5px 8px;border:1px solid var(--vcr-line-strong);border-radius:2px"><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.1em;color:var(--vcr-text-tertiary)">M-01</span>+ 5★ Typography<span style="color:var(--vcr-text-tertiary)">×</span></span>
+      <span style="display:flex;align-items:center;gap:8px;white-space:nowrap;flex:none;padding:5px 8px;border:1px solid var(--vcr-line-strong);border-radius:2px"><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.1em;color:var(--vcr-text-tertiary)">M-09</span>+ 5★ Typography<span style="color:var(--vcr-text-tertiary)">×</span></span>
+      <span style="display:flex;align-items:center;gap:8px;white-space:nowrap;flex:none;padding:5px 8px;border:1px solid var(--vcr-line-strong);border-radius:2px"><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.1em;color:var(--vcr-text-tertiary)">M-11</span>+ 5★ Imagery<span style="color:var(--vcr-text-tertiary)">×</span></span>
+      <span style="display:flex;align-items:center;gap:8px;white-space:nowrap;flex:none;padding:5px 8px;border:1px dashed var(--vcr-line-hover);border-radius:2px"><span style="font-family:var(--font-vcr-mono);font-size:9px;letter-spacing:.1em;color:var(--vcr-text-tertiary)">M-04 · HIDDEN</span>− 2★ Make it pop<span style="color:var(--vcr-text-tertiary)">×</span></span>
+    </div>
+    <x-import component-from-global-scope="VCRStudio.Button" variant="primary" glyph="→" hint-size="150px,30px">New round with 4</x-import>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark", "tsType": "&#39;dark&#39;|&#39;light&#39;"}, "$preview": {"width": 1280, "height": 800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      theme: this.props.theme ?? 'dark',
+      px2: 2,
+      px4: 4,
+      px5: 5,
+      px74: 74,
+      browseOpts: ["ASPECT", "ROUND", "RATING"],
+    };
+  }
+}
+</script>
+</body>
+</html>
