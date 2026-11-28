@@ -17,9 +17,12 @@ export function writeSystemFiles(components: readonly ComponentEntry[], builtAt:
     copyFileSync(component.readmePath, `${PROJECT_ROOT}components/${component.name}/README.md`);
   }
   writeFileSync(`${PROJECT_ROOT}design-system.json`, `${JSON.stringify(systemIndex(builtAt), null, 2)}\n`);
-  // Never published: the page generates its own tokens.css. This copy serves local previews and other consumers.
-  writeFileSync(`${DIST_ROOT}tokens.css`, compileTokensCss(readTokenFile()));
-  return ["tokens.json", "README.md", "components/Cover/preview.html", "design-system.json"];
+  // The page regenerates tokens.css on its first save and takes over any file whose first line matches ours; until
+  // then this copy is what Design canvases and other consumers load. dist/tokens.css serves local previews.
+  const tokensCss = compileTokensCss(readTokenFile());
+  writeFileSync(`${PROJECT_ROOT}tokens.css`, tokensCss);
+  writeFileSync(`${DIST_ROOT}tokens.css`, tokensCss);
+  return ["tokens.json", "tokens.css", "README.md", "components/Cover/preview.html", "design-system.json"];
 }
 
 // === PRIVATE HELPERS ===

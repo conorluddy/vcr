@@ -38,7 +38,7 @@ No icon font or SVG set. Use Unicode glyphs in the surrounding font: â—† mark, â
 
 ## Using the components
 
-- Load `tokens.css`, `components/bundle.css`, React 18 and `components/bundle.js`; the components are on `window.VCRStudio`.
+- Load `tokens.css`, `components/bundle.css`, React 18 and `components/bundle.js`, in that order; the components are on `window.VCRStudio`. On a Design canvas, link `tokens.css` and `components/bundle.css`, then `components/bundle.js`; the canvas supplies React 18. Fonts are Google-hosted: add a `fonts.googleapis.com/css2` link for Schibsted Grotesk 400;500 and Fragment Mono.
 - `bundle.css` declares `@layer vcr.reset, vcr.components`. Your own unlayered CSS overrides any component without `!important`; pass `className` or `style` to the root element.
 - Components expose state as attributes, not classes: `data-variant`, `data-size`, `aria-pressed`, `aria-checked`. Style off those when you extend one.
 - `size="mobile"` raises touch targets to 44px or more; desktop is the default.

@@ -24,7 +24,7 @@ Run from `DesignSystem/`:
 | --- | --- |
 | `pnpm check` | Biome (format and lint, TS and CSS) and strict `tsc` |
 | `pnpm test` | Vitest: components in jsdom, token grammar, contrast and the tokens.css compiler |
-| `pnpm build` | writes `dist/project/` and `dist/tokens.css`; prints one JSON event |
+| `pnpm build` | writes `dist/project/` (with `tokens.css`) and `dist/tokens.css`; prints one JSON event |
 | `pnpm verify` | all three; CI runs this |
 
 The pre-commit hook runs `pnpm check` when files under `DesignSystem/` are staged.
@@ -51,4 +51,4 @@ The pre-commit hook runs `pnpm check` when files under `DesignSystem/` are stage
 
 The published system: [VCRStudio](https://claude.ai/artifact/H495NPVFGDk1afVBQt8GCN) (Design System artifact `82026d2c-c9a3-415e-baef-4de2f7f006d7`).
 
-`pnpm build`, then publish every file under `dist/project/` to the artifact at the same path under `project/`. `design-system.json` goes last, merged with the live index so the page's own keys survive. Never publish `dist/tokens.css`: the page writes its own.
+`pnpm build`, then publish every file under `dist/project/` to the artifact at the same path under `project/`. `design-system.json` goes last, merged with the live index so the page's own keys survive. `tokens.css` is published too, laid out exactly as the page compiles it, because Design canvases load it before anyone has saved the system on its page; the page takes it over on its first save.
