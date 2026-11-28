@@ -2,6 +2,8 @@
 
 VCR is an agent-friendly studio for code-first motion graphics, images and video. It ships as a plugin for Claude Code and Codex. An agent can then pick the right native tool for a job, capture browser scenes frame by frame, plan a video before building it, and file review findings that only a person can close. It runs locally and has no editor: humans review renders, and agents do the building.
 
+The standalone [design studio](apps/design-studio/index.html) opens directly in a browser. Generate static layouts, mark details across variants and export a selected design. Workspaces are saved in that browser.
+
 ## What works today
 
 | Area | What exists |
